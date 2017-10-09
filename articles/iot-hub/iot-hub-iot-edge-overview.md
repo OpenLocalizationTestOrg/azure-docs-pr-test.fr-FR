@@ -1,6 +1,6 @@
 ---
-title: "Vue d’ensemble d’Azure IoT Edge | Microsoft Docs"
-description: "Décrit les concepts architecturaux clés dans Azure IoT Edge tels que les passerelles, les modules et les répartiteurs."
+title: aaaOverview Azure IoT bord | Documents Microsoft
+description: "Décrit hello concepts architecturaux clés dans Azure IoT Edge tels que les passerelles, les modules et les services Broker."
 services: iot-hub
 documentationcenter: 
 author: dominicbetts
@@ -13,52 +13,52 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/02/2017
 ms.author: dobett
-ms.openlocfilehash: ecdd56c91a8fc2011b3d7abe93b9d27c1e1e0bef
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 32debc0d4f40cfd7f2cce7cf8c76b12ec18ee2dc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-iot-edge-architectural-concepts"></a>Concepts architecturaux d’Azure IoT Edge
 
-Avant d’examiner un exemple de code ou de créer votre propre passerelle de champ à l’aide d’IoT Edge, vous devez comprendre les concepts fondamentaux qui étayent l’architecture IoT Edge.
+Avant de consulter des exemples de code ou créer votre propre passerelle de champ à l’aide de IoT Edge, vous devez comprendre hello principaux concepts qui sous-tendent l’architecture hello du bord de IoT.
 
 ## <a name="iot-edge-modules"></a>Modules IoT Edge
 
-Vous créez une passerelle avec Azure IoT Edge en créant et en assemblant des *modules IoT Edge*. Les modules s’échangent des données par le biais de *messages* . Un module reçoit un message, exécute une action sur celui-ci, le transforme éventuellement en un nouveau message, puis le publie sur d'autres modules pour un traitement ultérieur. Certains modules peuvent uniquement produire de nouveaux messages et ne jamais traiter les messages entrants. Une chaîne de modules crée un pipeline de traitement des données dans lequel chaque module exécute une transformation de données en un point unique sur ce pipeline.
+Vous créez une passerelle avec Azure IoT Edge en créant et en assemblant des *modules IoT Edge*. Utilisent des modules *messages* tooexchange des données entre eux. Un module reçoit un message, effectue une action sur celui-ci, éventuellement transforme un nouveau message et le publie ensuite pour les autres tooprocess modules. Certains modules peuvent uniquement produire de nouveaux messages et ne jamais traiter les messages entrants. Une chaîne de modules crée un pipeline de traitement des données avec chaque module effectuant une transformation sur des données à un moment donné de ce pipeline hello.
 
 ![Chaîne de modules dans la passerelle créée avec Azure IoT Edge][1]
 
-IoT Edge est composé des éléments suivants :
+IoT bord contient hello suivant des composants :
 
 * Des modules pré-écrits qui exécutent des fonctions de passerelles courantes.
-* Les interfaces qu’un développeur peut utiliser pour écrire des modules personnalisés.
-* L'infrastructure nécessaire pour déployer et exécuter un ensemble de modules.
+* interfaces Hello un développeur peuvent utiliser toowrite des modules personnalisés.
+* Hello toodeploy nécessaire d’infrastructure et d’exécuter un ensemble de modules.
 
-Le SDK fournit une couche d’abstraction qui vous permet de créer des passerelles qui s’exécutent sur différents systèmes d’exploitation et plateformes.
+Hello SDK fournit une couche d’abstraction qui vous permet de toobuild passerelles toorun sur différentes plateformes et les systèmes d’exploitation.
 
 ![Couche d’abstraction Azure IoT Edge][2]
 
 ## <a name="messages"></a>Messages
 
-L’approche consistant à utiliser des modules pour s’échanger des messages représente un moyen pratique de conceptualiser le fonctionnement d'une passerelle, mais elle ne reflète pas exactement ce qui se produit. Les modules IoT Edge utilisent un répartiteur pour communiquer entre eux. Les modules publient des messages sur le répartiteur (en utilisant des modèles de messagerie tels qu’un bus ou les options de publication et d’abonnement), puis laissent le répartiteur acheminer le message vers les modules connectés.
+Bien que vous réfléchissez à passer de modules, messages tooeach autres est un moyen pratique de tooconceptualize fonctionnement d’une passerelle, il ne pas refléter correctement ce qui se passe. Les modules IoT bord utilisent un toocommunicate broker entre eux. Les modules publier broker toohello de messages (à l’aide de modèles de messagerie telles que les bus ou la publication/abonnement) et laisser ensuite hello broker itinéraire hello message toohello modules tooit connecté.
 
-Un module utilise la fonction **Broker_Publish** pour publier un message sur le répartiteur. Le répartiteur remet les messages à un module en appelant une fonction de rappel. Un message se compose d'un ensemble de propriétés de clés/valeurs et d’un contenu transmis sous forme d’un bloc de mémoire.
+Un module utilise hello **Broker_Publish** toopublish toohello message broker de la fonction. service broker de Hello remet module tooa de messages en appelant une fonction de rappel. Un message se compose d'un ensemble de propriétés de clés/valeurs et d’un contenu transmis sous forme d’un bloc de mémoire.
 
-![Rôle du répartiteur dans Azure IoT Edge][3]
+![rôle Hello Hello Broker dans Azure IoT Edge][3]
 
 ## <a name="message-routing-and-filtering"></a>Routage et filtrage des messages
 
-Deux méthodes permettent d’acheminer des messages vers les modules IoT Edge adéquats :
+Il existe deux façons de modules de IoT bord corrects toodirect messages toohello :
 
-* Vous pouvez transmettre un ensemble de liens au répartiteur pour permettre à ce dernier de connaître la source et le récepteur de chaque module.
-* Un module peut appliquer un filtre sur les propriétés du message.
+* Vous pouvez passer un ensemble de liens peuvent être passés toohello broker afin que service broker de hello sache source de hello et le récepteur pour chaque module.
+* Un module peut filtrer sur les propriétés de hello de message de type hello.
 
-Un module doit agir sur un message uniquement si le message lui est destiné. Les liens et le filtrage des messages permettent de créer efficacement un pipeline de messages.
+Un module doit agir uniquement un message si le message de type hello est destiné. Les liens et le filtrage des messages permettent de créer efficacement un pipeline de messages.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Pour voir l’application de ces concepts dans un exemple que vous pouvez exécuter, consultez [Explorer l’architecture Azure IoT Edge][lnk-hello-world].
+consultez de ces concepts appliqués dans un exemple, vous pouvez exécuter, toosee [architecture Explorer de Azure IoT Edge][lnk-hello-world].
 
 <!-- Images -->
 [1]: media/iot-hub-iot-edge-overview/modules.png

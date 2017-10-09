@@ -1,6 +1,6 @@
 ---
-title: "Connexion sécurisée à des ressources de backend à partir d'un environnement App Service"
-description: "Découvrez comment connecter de façon sécurisée des ressources de backend à partir d'un environnement App Service."
+title: "aaaSecurely connexion tooBackEnd ressources à partir d’un environnement App Service"
+description: "Découvrez comment toosecurely connecter toobackend ressources à partir d’un environnement App Service."
 services: app-service
 documentationcenter: 
 author: stefsch
@@ -14,83 +14,83 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/04/2016
 ms.author: stefsch
-ms.openlocfilehash: 0b6d3a47dc429c469b37c2c74f546cfeca580358
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6311d3fc301512ea3c4ed8f14f268f75755aa415
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="securely-connecting-to-backend-resources-from-an-app-service-environment"></a>Connexion sécurisée à des ressources de backend à partir d'un environnement App Service
+# <a name="securely-connecting-toobackend-resources-from-an-app-service-environment"></a>En toute sécurité connexion tooBackend ressources à partir d’un environnement App Service
 ## <a name="overview"></a>Vue d'ensemble
-Étant donné qu’un environnement App Service est toujours créé **soit** dans un réseau virtuel Azure Resource Manager **ou** un [réseau virtuel][virtualnetwork] de modèle de déploiement classique, les connexions sortantes d’un environnement App Service à destination d’autres ressources de back-end peuvent passer exclusivement sur le réseau virtuel.  Grâce à une modification récente effectuée en juin 2016, les ASE peuvent également être déployés dans les réseaux virtuels qui utilisent soit des plages d’adresses publiques soit des espaces d’adressage RFC1918 (par exemple, des adresses privées).  
+Dans la mesure où un environnement App Service est toujours créé dans **soit** un réseau virtuel Azure Resource Manager, **ou** un modèle de déploiement classique [réseau virtuel] [ virtualnetwork], exclusivement sur le réseau virtuel de hello peuvent transférer des connexions sortantes depuis une ressources principales du tooother environnement App Service.  Suite à une modification récente effectuée en juin 2016, les environnements ASE peuvent également être déployés dans les réseaux virtuels qui utilisent soit des plages d’adresses publiques soit des espaces d’adressage RFC1918 (par exemple, des adresses privées).  
 
-Par exemple, un serveur SQL Server peut être en cours d'exécution sur un cluster de machines virtuelles dont le port 1433 est verrouillé.  Le point de terminaison peut être placé dans une liste de contrôle d'accès pour autoriser uniquement l'accès à partir d'autres ressources se trouvant sur le même réseau virtuel.  
+Par exemple, un serveur SQL Server peut être en cours d'exécution sur un cluster de machines virtuelles dont le port 1433 est verrouillé.  point de terminaison Hello peut-être ACLd tooonly autoriser l’accès à d’autres ressources sur hello même réseau virtuel.  
 
-De même, les points de terminaison sensibles peuvent s'exécuter localement et être connectés à Azure via des connexions [de site à site][SiteToSite] ou [Azure ExpressRoute][ExpressRoute].  Par conséquent, seules les ressources des réseaux virtuels connectés aux tunnels site à site ou ExpressRoute peuvent accéder aux points de terminaison locaux.
+Comme autre exemple, des points de terminaison sensibles peuvent exécuter localement et être tooAzure connecté via une [Site-à-Site] [ SiteToSite] ou [Azure ExpressRoute] [ ExpressRoute] connexions.  Par conséquent, seules les ressources dans des réseaux virtuels connectés toohello Site à Site ou ExpressRoute tunnels sont tooaccess en mesure de points de terminaison de local.
 
-Pour tous ces scénarios, les applications s'exécutant dans un environnement App Service peuvent se connecter de façon sécurisée aux différents serveurs et aux différentes ressources.  Le trafic sortant à partir d'applications qui s'exécutent dans un environnement App Service vers des points de terminaison privés se trouvant sur le même réseau virtuel (ou connectés au même réseau virtuel) circulent uniquement sur le réseau virtuel.  Le trafic sortant vers des points de terminaison privés ne circule pas via le réseau Internet public.
+Pour l’ensemble de ces scénarios, les applications s’exécutant sur un environnement App Service être toosecurely en mesure de se connectera toohello divers serveurs et ressources.  Le trafic sortant à partir d’applications qui s’exécutent dans un points de terminaison tooprivate environnement App Service Bonjour même réseau virtuel (ou connecté toohello même réseau virtuel), sera uniquement flux de réseau virtuel hello.  Tooprivate le trafic sortant points de terminaison ne seront pas déborder hello Internet public.
 
-L’inconvénient est que le trafic sortant à partir d’un environnement App Service circule vers des points de terminaison se trouvant sur un réseau virtuel .  Les environnements App Service ne peuvent pas atteindre les points de terminaison de machines virtuelles situées dans le **même** sous-réseau que l'environnement App Service.  Cela ne devrait normalement pas poser de problème tant que les environnements App Service sont déployés dans un sous-réseau réservé à un usage exclusif par l'environnement App Service.
+Un inconvénient s’applique toooutbound trafic à partir d’un tooendpoints environnement App Service dans un réseau virtuel.  Environnements de Service d’application ne peut pas atteindre les points de terminaison des machines virtuelles situées dans hello **même** sous-réseau hello environnement App Service.  Cela normalement ne doit pas être un problème tant que les environnements App Service sont déployés dans un sous-réseau réservé pour une utilisation exclusive par uniquement hello environnement App Service.
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
 ## <a name="outbound-connectivity-and-dns-requirements"></a>Connectivité sortante et configuration DNS requise
-Pour qu’un environnement App Service fonctionne correctement, il requiert un accès sortant à différents points de terminaison. Une liste complète des points de terminaison externes utilisés par un ASE est disponible dans la section « Connectivité réseau requise » de l’article [Configuration réseau pour ExpressRoute](app-service-app-service-environment-network-configuration-expressroute.md#required-network-connectivity) .
+Pour une environnement App Service de toofunction correctement, il requiert points de terminaison de toovarious un accès sortant. Une liste complète des points de terminaison externes hello utilisé par un environnement app service est Bonjour section « Connectivité de réseau requis » Hello [Configuration du réseau pour ExpressRoute](app-service-app-service-environment-network-configuration-expressroute.md#required-network-connectivity) l’article.
 
-Les environnements App Service nécessitent une infrastructure DNS valide configurée pour le réseau virtuel.  Si, pour une raison quelconque, la configuration DNS est modifiée après la création d'un environnement App Service, les développeurs peuvent forcer un environnement App Service à récupérer la nouvelle configuration DNS.  Le déclenchement d'un redémarrage d'un environnement propagé à l'aide de l'icône « Redémarrer » située en haut du panneau de gestion de l'environnement App Service du portail force l'environnement à récupérer la nouvelle configuration DNS.
+Les environnements App Service nécessitent une infrastructure DNS valide configurée pour le réseau virtuel de hello.  Si pour n’importe quel hello raison configuration DNS est modifiée après la création d’un environnement App Service, les développeurs peuvent forcer un toopick environnement App Service de configuration DNS de la nouvelle hello.  Déclenchement d’un redémarrage environnement propagée à l’aide d’icône « Redémarrer » hello en haut hello Hello environnement App Service blade de gestion dans le portail de hello entraîne toopick d’environnement hello nouvelle configuration de DNS hello.
 
-Il est également recommandé de configurer les serveurs DNS personnalisés sur le réseau virtuel à l'avance, avant de créer un environnement App Service.  Si la configuration DNS d'un réseau virtuel est modifiée pendant la création d'un environnement App Service, alors le processus de création de l'environnement App Service échouera.  De même, s’il existe un serveur DNS personnalisé à l’autre extrémité d’une passerelle VPN et que le serveur DNS n’est pas accessible ou disponible, le processus de création d’un environnement App Service échoue également.
+Il est également recommandé que tous les serveurs DNS personnalisés sur le réseau virtuel de hello être configuré à l’avance toocreating de temps préalable un environnement App Service.  Si la configuration de DNS d’un réseau virtuel est modifiée pendant la création d’un environnement App Service, qui entraîne au basculement de processus de création d’environnement App Service hello.  De la même manière, si un serveur DNS personnalisé existe sur hello autre extrémité d’une passerelle VPN et le serveur DNS de hello est inaccessible ou indisponible, hello environnement App Service processus de création échoue également.
 
-## <a name="connecting-to-a-sql-server"></a>Connexion à un serveur SQL Server
+## <a name="connecting-tooa-sql-server"></a>Tooa de connexion SQL Server
 Une configuration courante de SQL Server comprend un point de terminaison qui écoute sur le port 1433 :
 
 ![Point de terminaison de SQL Server][SqlServerEndpoint]
 
-Pour limiter le trafic sur ce point de terminaison, vous avez le choix entre deux approches :
+Il existe deux approches pour restreindre le point de terminaison toothis le trafic :
 
 * [Listes de contrôle d'accès réseau][NetworkAccessControlLists] (ACL réseau)
 * [Groupes de sécurité réseau][NetworkSecurityGroups]
 
 ## <a name="restricting-access-with-a-network-acl"></a>Restriction de l'accès à l'aide d'une ACL réseau
-Le port 1433 peut être sécurisé à l'aide d'une liste de contrôle d'accès réseau.  L'exemple ci-dessous place dans une liste approuvée les adresses de clients provenant d'un réseau virtuel, et bloque l'accès à tous les autres clients.
+Le port 1433 peut être sécurisé à l'aide d'une liste de contrôle d'accès réseau.  exemple Hello ci-dessous d’autorisation client résout provenant à l’intérieur d’un réseau virtuel, et bloque l’accès tooall autres clients.
 
 ![Exemple de liste de contrôle d'accès réseau][NetworkAccessControlListExample]
 
-Toutes les applications s'exécutant dans un environnement App Service du même réseau virtuel que le serveur SQL Server peuvent se connecter à l'instance SQL Server à l'aide de l'adresse IP de **réseau virtuel interne** de la machine virtuelle SQL Server.  
+Toutes les applications en cours d’exécution dans l’environnement App Service dans hello même réseau virtuel hello SQL Server sera l’instance de SQL Server en mesure de tooconnect toohello à l’aide de hello **réseau virtuel interne** adresse IP pour la machine virtuelle de SQL Server hello.  
 
-L'exemple de chaîne de connexion ci-dessous fait référence au serveur SQL Server en utilisant son adresse IP privée.
+chaîne de connexion exemple Hello ci-dessous références hello SQL Server à l’aide de son adresse IP privée.
 
     Server=tcp:10.0.1.6;Database=MyDatabase;User ID=MyUser;Password=PasswordHere;provider=System.Data.SqlClient
 
-Même si la machine virtuelle possède également un point de terminaison public, les tentatives de connexion à l'aide de l'adresse IP publique sont rejetées en raison de l'ACL réseau. 
+Bien que la machine virtuelle de hello a également un point de terminaison public, des tentatives de connexion à l’aide de l’adresse IP hello seront rejetées en raison de réseau de hello ACL. 
 
 ## <a name="restricting-access-with-a-network-security-group"></a>Restriction de l'accès à l'aide d'un groupe de sécurité réseau
-Un groupe de sécurité réseau constitue une autre approche de sécurisation de l'accès.  Les groupes de sécurité réseau peuvent être appliqués à des machines virtuelles individuelles ou à un sous-réseau comprenant des machines virtuelles.
+Un groupe de sécurité réseau constitue une autre approche de sécurisation de l'accès.  Groupes de sécurité réseau peuvent être appliqué tooindividual virtuels, ou un sous-réseau tooa contenant des machines virtuelles.
 
-Un groupe de sécurité réseau doit tout d'abord être créé :
+Tout d’abord un groupe de sécurité réseau doit toobe créé :
 
     New-AzureNetworkSecurityGroup -Name "testNSGexample" -Location "South Central US" -Label "Example network security group for an app service environment"
 
-Il est très simple de restreindre l'accès exclusivement au trafic d'un réseau virtuel interne à l'aide d'un groupe de sécurité réseau.  Les règles par défaut d'un groupe de sécurité réseau autorisent l'accès uniquement à partir d'autres clients réseau du même réseau virtuel.
+Restreindre l’accès tooonly le trafic de réseau virtuel interne est très simple avec un groupe de sécurité réseau.  règles par défaut de Hello dans un groupe de sécurité réseau autoriser uniquement l’accès à partir d’autres clients du réseau Bonjour même réseau virtuel.
 
-Par conséquent, il est aussi simple de verrouiller l'accès à SQL Server que d'appliquer un groupe de sécurité réseau avec ses règles par défaut aux machines virtuelles exécutant SQL Server ou au sous-réseau comprenant des machines virtuelles.
+Par conséquent verrouillage tooSQL d’accès serveur est aussi simple que l’application d’un groupe de sécurité réseau avec ses ordinateurs virtuels par défaut règles tooeither hello exécutant SQL Server, ou un sous-réseau hello contenant des machines virtuelles de hello.
 
-L'exemple ci-dessous applique un groupe de sécurité réseau au sous-réseau conteneur :
+exemple Hello ci-dessous s’applique à un sous-réseau toohello conteneur groupe de sécurité réseau :
 
     Get-AzureNetworkSecurityGroup -Name "testNSGExample" | Set-AzureNetworkSecurityGroupToSubnet -VirtualNetworkName 'testVNet' -SubnetName 'Subnet-1'
 
-Le résultat final est un ensemble de règles de sécurité qui bloquent l'accès externe, tout en autorisant l'accès au réseau virtuel interne :
+résultat final de Hello est un ensemble de règles de sécurité qui bloquent l’accès externe, tout en autorisant un accès réseau virtuel interne :
 
 ![Règles de sécurité réseau par défaut][DefaultNetworkSecurityRules]
 
 ## <a name="getting-started"></a>Prise en main
-Tous les articles et procédures concernant les environnements App Service sont disponibles dans le [fichier Lisez-moi des environnements App Service](../app-service/app-service-app-service-environments-readme.md).
+Tous les articles et comment-de pour les environnements App Service sont disponibles dans hello [fichier Lisezmoi pour les environnements de Service d’Application](../app-service/app-service-app-service-environments-readme.md).
 
-Pour bien démarrer avec les environnements App Service, consultez [Présentation de l’environnement App Service][IntroToAppServiceEnvironment]
+tooget démarré avec les environnements de Service d’application, consultez [Introduction tooApp environnement de Service][IntroToAppServiceEnvironment]
 
-Pour plus d'informations sur le contrôle du trafic entrant vers votre environnement App Service, consultez [Contrôle du trafic entrant vers un environnement App Service][ControlInboundASE]
+Pour plus d’informations sur le contrôle du trafic entrant tooyour environnement App Service, consultez [contrôler le trafic entrant tooan environnement App Service][ControlInboundASE]
 
-Pour plus d’informations sur la plateforme Azure App Service, consultez la rubrique [Azure App Service][AzureAppService].
+Pour plus d’informations sur la plateforme Azure App Service de hello, consultez [Azure App Service][AzureAppService].
 
 [!INCLUDE [app-service-web-whats-changed](../../includes/app-service-web-whats-changed.md)]
 

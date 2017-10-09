@@ -1,6 +1,6 @@
 ---
-title: "Comment créer une collection hybride pour Azure RemoteApp | Microsoft Docs"
-description: "Découvrez comment créer un déploiement de RemoteApp qui se connecte à votre réseau interne."
+title: aaaHow toocreate une collection hybride pour Azure RemoteApp | Documents Microsoft
+description: "Découvrez comment toocreate un déploiement de RemoteApp qui relie le réseau interne de tooyour."
 services: remoteapp
 documentationcenter: 
 author: msmbaldwin
@@ -14,126 +14,126 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/26/2017
 ms.author: mbaldwin
-ms.openlocfilehash: 346a5fe3e4011985e4247ceef0d5ca858049fd28
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3fba29acc676e0af48e995da406f889c532c44c3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-create-a-hybrid-collection-for-azure-remoteapp"></a>Création d'une collection hybride pour Azure RemoteApp
+# <a name="how-toocreate-a-hybrid-collection-for-azure-remoteapp"></a>Comment toocreate une collection hybride pour Azure RemoteApp
 > [!IMPORTANT]
-> Azure RemoteApp ne sera plus disponible à partir du 31 août 2017. Pour plus d’informations, lisez [l’annonce](https://go.microsoft.com/fwlink/?linkid=821148) .
+> Azure RemoteApp ne sera plus disponible à partir du 31 août 2017. Hello de lecture [annonce](https://go.microsoft.com/fwlink/?linkid=821148) pour plus d’informations.
 > 
 > 
 
 Il existe deux types de collection Azure RemoteApp :
 
-* Cloud : réside complètement dans Azure . Vous pouvez soit enregistrer toutes les données dans le cloud (la collection se trouve uniquement dans le cloud), soit connecter votre collection à un réseau virtuel et enregistrer vos données dans celui-ci.   
-* Hybride : inclut un réseau virtuel pour l’accès local (nécessite Azure AD et un environnement Active Directory local).
+* Cloud : réside complètement dans Azure . Vous pouvez choisir toosave toutes les données dans le cloud de hello (pour une collection cloud uniquement) ou tooconnect votre tooa collection réseau virtuel et enregistrer des données.   
+* Hybride : inclut un réseau virtuel pour un accès local - cela nécessite utilisez hello d’Azure AD et un environnement d’Active Directory local.
 
 Vous ne savez pas de quoi vous avez besoin ? Consultez [De quel type de collection avez-vous besoin pour Azure RemoteApp ?](remoteapp-collections.md)
 
-Ce didacticiel vous familiarise avec la procédure de création d'une collection hybride. Elle comprend huit étapes :
+Ce didacticiel vous guide tout au long des processus de hello de création d’une collection hybride. Elle comprend huit étapes :
 
-1. Choix de l’ [image](remoteapp-imageoptions.md) à utiliser pour votre collection. Vous pouvez créer une image personnalisée ou utiliser l’une des images Microsoft incluses dans votre abonnement.
-2. Configuration de votre réseau virtuel. Passez en revue les informations concernant la [planification](remoteapp-planvnet.md) et le [dimensionnement d’un réseau virtuel](remoteapp-vnetsizing.md).
+1. Déterminer les éléments [image](remoteapp-imageoptions.md) toouse pour votre collection. Vous pouvez créer une image personnalisée ou utiliser une des images de Microsoft hello inclus dans votre abonnement.
+2. Configuration de votre réseau virtuel. Extraire hello [planification de réseau virtuel](remoteapp-planvnet.md) et [sizing](remoteapp-vnetsizing.md) plus d’informations.
 3. Création d’une collection.
-4. Association de votre collection à votre domaine local.
-5. Ajout d'une image de modèle à votre collection.
-6. Configuration d'une synchronisation d'annuaires. Azure RemoteApp exige que vous intégriez Azure Active Directory soit 1) en configurant la synchronisation Azure Active Directory avec l’option de synchronisation de mot de passe ou 2) en configurant Azure Active Directory sans option de synchronisation de mot de passe, mais à l’aide d’un domaine fédéré à AD FS. Consultez les [informations de configuration d'Active Directory avec RemoteApp](remoteapp-ad.md).
+4. Joindre votre domaine local tooyour de collection.
+5. Ajouter une collection de tooyour d’image du modèle.
+6. Configuration d'une synchronisation d'annuaires. Azure RemoteApp requiert que vous intégrez avec Azure Active Directory à un (1) configuration synchronisation Azure Active Directory avec l’option de synchronisation de mot de passe de hello ou (2) configuration synchronisation Azure Active Directory sans option de synchronisation de mot de passe hello, mais à l’aide d’un domaine tooAD fédérée FS. Extraire hello [les informations de configuration d’Active Directory avec RemoteApp](remoteapp-ad.md).
 7. Publication d'applications RemoteApp.
 8. Configuration de l'accès utilisateur
 
 **Avant de commencer**
 
-Avant de créer la collection, vous devez effectuer les étapes suivantes :
+Vous devez toodo qui suit hello avant la création de la collection de hello :
 
 * [S’inscrire](https://azure.microsoft.com/services/remoteapp/) à Azure RemoteApp.
-* Créer un compte d’utilisateur dans Active Directory à utiliser comme compte de service Azure RemoteApp. Limiter les autorisations pour ce compte, de telle sorte qu'il puisse uniquement joindre des ordinateurs au domaine.
+* Créer un compte d’utilisateur dans Active Directory toouse comme hello compte de service Azure RemoteApp. Limitez les autorisations de hello pour ce compte pour qu’il puisse rejoindre uniquement domaine toohello de machines.
 * Collecter des informations sur votre réseau local : adresse IP et périphérique VPN.
-* Installer le module [Azure PowerShell](/powershell/azure/overview) .
-* Collecter des informations sur les utilisateurs auxquels vous souhaitez accorder l'accès. Vous aurez besoin du nom d’utilisateur principal Azure Active Directory (par exemple, name@contoso.com) pour chaque utilisateur. Assurez-vous que le nom UPN soit cohérent entre Azure AD et Active Directory.
-* Choisir votre image de modèle. Une image de modèle Azure RemoteApp contient les applications et les programmes que vous souhaitez publier pour les utilisateurs. Consultez les [options d’images Azure RemoteApp](remoteapp-imageoptions.md) pour plus d’informations.
-* Vous souhaitez utiliser l'image d'Office 365 ProPlus ? Pour plus d’informations, cliquez [ici](remoteapp-officesubscription.md).
+* Installer hello [Azure PowerShell](/powershell/azure/overview) module.
+* Collecter des informations sur les utilisateurs hello auxquels vous souhaitez accéder toogrant à. Vous devez serez hello nom d’utilisateur principal Azure Active Directory (par exemple, name@contoso.com) pour chaque utilisateur. Vérifiez que hello UPN identique dans Azure AD et Active Directory.
+* Choisir votre image de modèle. Une image de modèle Azure RemoteApp contient les applications hello et les programmes que vous souhaitez toopublish pour vos utilisateurs. Consultez les [options d’images Azure RemoteApp](remoteapp-imageoptions.md) pour plus d’informations.
+* Vous souhaitez image Office 365 ProPlus de hello toouse ? Pour plus d’informations, cliquez [ici](remoteapp-officesubscription.md).
 * [Configuration d'Active Directory pour RemoteApp](remoteapp-ad.md).
 
 ## <a name="step-1-set-up-your-virtual-network"></a>Étape 1 : configuration de votre réseau virtuel
-Vous pouvez déployer une collection hybride qui utilise un réseau virtuel Azure existant ou vous pouvez créer un réseau virtuel. Un réseau virtuel permet aux utilisateurs d'accéder aux données de votre réseau local via des ressources distantes de RemoteApp. L'utilisation d'un réseau virtuel Azure offre à votre collection un accès réseau direct aux autres services Azure et aux machines virtuelles déployées sur ce réseau virtuel.
+Vous pouvez déployer une collection hybride qui utilise un réseau virtuel Azure existant ou vous pouvez créer un réseau virtuel. Un réseau virtuel permet aux utilisateurs d'accéder aux données de votre réseau local via des ressources distantes de RemoteApp. À l’aide d’un réseau virtuel Azure donne à votre tooother de l’accès réseau direct collection services Azure et les ordinateurs virtuels déployés toothat des réseaux virtuels.
 
-Passez en revue les informations sur la [planification](remoteapp-planvnet.md) et le [dimensionnement d'un réseau virtuel](remoteapp-vnetsizing.md) avant de créer votre réseau virtuel.
+Assurez-vous que vous passez en revue hello [planification de réseau virtuel](remoteapp-planvnet.md) et [taille du réseau virtuel](remoteapp-vnetsizing.md) informations avant de créer votre réseau virtuel.
 
-### <a name="create-an-azure-vnet-and-join-it-to-your-active-directory-deployment"></a>Création d'un réseau virtuel Azure et jonction à votre déploiement Active Directory
-Commencez par créer un [réseau virtuel](../virtual-network/virtual-networks-create-vnet-arm-pportal.md). Cette opération s’effectue sous l’onglet **Réseau** dans le Portail Azure. Vous devez connecter votre réseau virtuel au déploiement Active Directory qui est synchronisé avec votre locataire Azure Active Directory.
+### <a name="create-an-azure-vnet-and-join-it-tooyour-active-directory-deployment"></a>Créer un réseau virtuel Azure et de joindre le déploiement d’Active Directory tooyour
+Commencez par créer un [réseau virtuel](../virtual-network/virtual-networks-create-vnet-arm-pportal.md). Cette opération est effectuée sur hello **réseau** onglet Bonjour portail Azure. Vous devez tooconnect votre déploiement d’Active Directory de client Azure Active Directory synchronisé tooyour du toohello réseau virtuel.
 
-Pour plus d’informations, consultez [Créer un réseau virtuel à l’aide du Portail Azure](../virtual-network/virtual-networks-create-vnet-arm-pportal.md) .
+Consultez [créer un réseau virtuel à l’aide de hello portail Azure](../virtual-network/virtual-networks-create-vnet-arm-pportal.md) pour plus d’informations.
 
 ### <a name="make-sure-your-virtual-network-is-ready-for-azure-remoteapp"></a>Vérification que votre réseau virtuel est prêt pour Azure RemoteApp
-Avant de créer votre collection, assurez-vous que votre nouveau réseau virtuel est prêt. Vous pouvez le confirmer en procédant comme suit :
+Avant de créer votre collection, assurez-vous que votre nouveau réseau virtuel est prêt. Vous pouvez le vérifier en procédant comme suit de hello :
 
-1. Créez une machine virtuelle Azure dans le sous-réseau du réseau virtuel que vous venez de créer pour RemoteApp.
-2. Utilisez le Bureau à distance pour se connecter à la machine virtuelle. (Cliquez sur **Connecter**.)
-3. Joignez-la au même déploiement Active Directory que celui que vous voulez utiliser pour RemoteApp.
+1. Créer une machine virtuelle Azure à l’intérieur du sous-réseau hello du réseau virtuel de hello que vous venez de créer pour RemoteApp.
+2. Utilisez un ordinateur de bureau à distance tooconnect toohello virtuel. (Cliquez sur **Connecter**.)
+3. Joindre toohello même déploiement Active Directory que vous souhaitez toouse pour RemoteApp.
 
 Tout s'est bien passé ? Votre réseau virtuel et le sous-réseau sont prêts pour Azure RemoteApp !
 
-Vous trouverez plus d'informations sur la création de machines virtuelles Azure et leur connexion au Bureau à distance [ici](https://msdn.microsoft.com/library/azure/jj156003.aspx).
+Vous trouverez plus d’informations sur la création de machines virtuelles et de connexion toothem avec le Bureau à distance [ici](https://msdn.microsoft.com/library/azure/jj156003.aspx).
 
 ## <a name="step-2-create-an-azure-remoteapp-collection"></a>Étape 2 : créer une collection Azure RemoteApp
-1. Accédez à la page Azure RemoteApp du [portail Azure](http://manage.windowsazure.com).
+1. Bonjour [portail Azure](http://manage.windowsazure.com), accédez toohello Azure RemoteApp page.
 2. Cliquez sur **Nouveau > Créer avec VNET**.
 3. Entrez un nom pour votre collection.
-4. Choisissez le plan que vous souhaitez utiliser (de base ou standard).
-5. Choisissez votre réseau virtuel dans la liste déroulante, puis votre sous-réseau.
-6. Choisissez de le joindre à votre domaine.
+4. Choisissez plan hello que vous souhaitez toouse - de base ou standard.
+5. Choisissez votre réseau virtuel hello liste déroulante et ensuite votre sous-réseau.
+6. Choisissez toojoin il tooyour domaine.
 7. Cliquez sur **Créer une collection RemoteApp**.
 
-Après avoir créé votre collection Azure RemoteApp, double-cliquez sur son nom. Ceci affiche la page **Démarrage rapide** qui vous permet de terminer la configuration de la collection.
+Une fois que votre collection Azure RemoteApp a été créée, double-cliquez sur le nom hello de collection de hello. Qui s’affiche hello **Quick Start** page - il s’agit où vous avez terminé la configuration de la collection de hello.
 
-Un problème est survenu ? Consultez les [informations de dépannage d'une collection hybride](remoteapp-hybridtrouble.md).
+Un problème est survenu ? Extraire hello [collection hybride des informations de dépannage](remoteapp-hybridtrouble.md).
 
-## <a name="step-3-link-your-collection-to-the-local-domain"></a>Étape 3 : liaison de votre collection au domaine local
-1. Dans la page **Démarrage rapide**, cliquez sur **joindre un domaine local**.
-2. Ajoutez le compte de service Azure RemoteApp à votre domaine Active Directory local. Vous aurez besoin du nom de domaine, de l'unité d'organisation, ainsi que du nom d'utilisateur et du mot de passe du compte de service.
+## <a name="step-3-link-your-collection-toohello-local-domain"></a>Étape 3 : Relier votre domaine local toohello de collection
+1. Sur hello **Quick Start** , cliquez sur **joindre un domaine local**.
+2. Ajouter le domaine de Active Directory local de hello Azure RemoteApp service compte tooyour. Vous devez le nom de domaine hello, unité d’organisation, nom d’utilisateur de compte de service et un mot de passe.
    
-    Voici les informations collectées si vous avez suivi les étapes de la procédure [Configuration d'Active Directory pour Azure RemoteApp](remoteapp-ad.md).
+    Il s’agit d’informations hello collectées si vous avez suivi les étapes de hello dans [configurer Active Directory pour Azure RemoteApp](remoteapp-ad.md).
 
-## <a name="step-4-link-to-an-azure-remoteapp-image"></a>Étape 4 : établir un lien vers une image Azure RemoteApp
-Une image de modèle Azure RemoteApp contient les programmes que vous souhaitez partager avec les utilisateurs. Vous pouvez créer une [image de modèle](remoteapp-imageoptions.md) ou un lien vers une image existante (une image déjà importée ou téléchargée vers Azure RemoteApp). Vous pouvez également établir un lien avec l'une des [images de modèle](remoteapp-images.md) Azure RemoteApp contenant des programmes Office 365 ou Office 2013 (à des fins d'évaluation).
+## <a name="step-4-link-tooan-azure-remoteapp-image"></a>Étape 4 : Image d’Azure RemoteApp lien tooan
+Une image de modèle Azure RemoteApp contient les programmes hello que vous souhaitez tooshare avec des utilisateurs. Vous pouvez créer un nouveau [image de modèle](remoteapp-imageoptions.md) ou image existante du lien tooan (déjà importé ou téléchargé tooAzure RemoteApp). Vous pouvez également lier tooone Hello Azure RemoteApp [images de modèle](remoteapp-images.md) contenant des programmes Office 2013 (pour un essai) ou Office 365.
 
-Si vous optez pour le téléchargement de la nouvelle image, vous devez entrer un nom et choisir son emplacement. Plusieurs cmdlets PowerShell sont affichés sur la page suivante de l'Assistant. Copiez-les et exécutez-les à partir d'une invite de commandes Windows PowerShell avec élévation de privilèges afin de télécharger l'image spécifiée.
+Si vous téléchargez une nouvelle image de hello, vous devez tooenter hello nom et choisir l’emplacement hello pour l’image de hello. Sur la page suivante de hello d’Assistant de hello, vous voyez un ensemble d’applets de commande PowerShell, copie et exécuter ces applets de commande à partir une avec élévation de privilèges Windows PowerShell invite tooupload hello image spécifiée.
 
-En cas d’association d’une image de modèle existante, il vous suffit de spécifier le nom de l’image, son emplacement et l’abonnement Azure associé.
+Si vous attachez une image de modèle existante tooan, spécifiez simplement le nom de l’image hello, l’emplacement et un abonnement Azure associé.
 
 ## <a name="step-5-configure-active-directory-directory-synchronization"></a>Étape 5 : configuration de la synchronisation d'annuaires Active Directory
-Azure RemoteApp exige que vous intégriez Azure Active Directory soit 1) en configurant la synchronisation Azure Active Directory avec l’option de synchronisation de mot de passe ou 2) en configurant Azure Active Directory sans option de synchronisation de mot de passe, mais à l’aide d’un domaine fédéré à AD FS.
+Azure RemoteApp requiert que vous intégrez avec Azure Active Directory à un (1) configuration synchronisation Azure Active Directory avec l’option de synchronisation de mot de passe de hello ou (2) configuration synchronisation Azure Active Directory sans option de synchronisation de mot de passe hello, mais à l’aide d’un domaine tooAD fédérée FS.
 
 Consultez [AD Connect](https://blogs.technet.microsoft.com/enterprisemobility/2014/08/04/connecting-ad-and-azure-ad-only-4-clicks-with-azure-ad-connect/) : cet article vous permet de configurer l’intégration d’annuaire en 4 étapes.
 
 Pour plus d'informations sur la planification, consultez la rubrique [Programme de synchronisation d'annuaires](http://msdn.microsoft.com//library/azure/hh967642.aspx) .
 
 ## <a name="step-6-publish-apps"></a>Étape 6 : publier des applications
-Une application Azure RemoteApp correspond à l’application ou au programme que vous fournissez à vos utilisateurs. Elle se trouve dans l'image de modèle que vous avez téléchargée pour la collection. Quand un utilisateur accède à une application, celle-ci semble s'exécuter dans son environnement local. En réalité, elle s'exécute dans Azure.
+Une application Azure RemoteApp est l’application hello ou un programme que vous fournissez aux utilisateurs de tooyour. Il se trouve dans l’image de modèle hello chargé pour la collection de hello. Lorsqu’un utilisateur accède à une application, il s’affiche toorun dans leur environnement local, mais il est réellement exécuté dans Azure.
 
-Avant que vos utilisateurs puissent accéder à des applications, vous devez les publier. Ceci permet à vos utilisateurs d'y accéder via le client Bureau à distance.
+Avant que vos utilisateurs peuvent accéder aux applications, vous devez toopublish leur – Cela permet à vos applications de hello d’accès aux utilisateurs via le client du Bureau à distance hello.
 
-Vous pouvez publier plusieurs applications dans votre collection. Dans la page de publication, cliquez sur **Publier** pour ajouter une application. Vous pouvez publier l'application à partir du menu **Démarrer** de l'image de modèle ou en indiquant le chemin d'accès dans l'image de modèle de l'application. Si vous choisissez d'ajouter l'application à partir du menu **Démarrer** , sélectionnez le programme à ajouter. Si vous choisissez la deuxième option, indiquez un nom pour l'application ainsi que le chemin d'accès à son répertoire d'installation dans l'image de modèle.
+Vous pouvez publier la collection de tooyour plusieurs applications. Dans la page de publication hello, cliquez sur **publier** tooadd une application. Vous pouvez publier à partir de hello **Démarrer** menu de l’image de modèle hello ou en spécifiant le chemin d’accès hello sur l’image de modèle hello pour une application hello. Si vous choisissez tooadd hello **Démarrer** menu, choisissez tooadd de programme hello. Si vous choisissez application toohello de tooprovide hello chemin d’accès, fournissez un nom pour l’application hello et hello toowhere de chemin d’accès que n’est installé sur l’image de modèle hello.
 
 ## <a name="step-7-configure-user-access"></a>Étape 7 : configuration de l'accès utilisateur
-Maintenant que vous avez créé votre collection, vous devez ajouter les utilisateurs qui seront autorisés à utiliser vos ressources distantes. Ceux-ci doivent exister dans le locataire Active Directory associé à l’abonnement que vous avez utilisé pour créer cette collection Azure RemoteApp.
+Maintenant que vous avez créé votre collection, vous devez tooadd hello utilisateurs que toouse en mesure de toobe vos ressources distantes. les utilisateurs de Hello, vous devez fournir tooexist de tooneed d’accès dans le locataire d’Active Directory hello associé vous hello abonnement utilisé toocreate cette collection Azure RemoteApp.
 
-1. Sur la page Démarrage rapide, cliquez sur **Configurer l'accès utilisateur**.
-2. Entrez le compte professionnel (à partir d'Active Directory) ou le compte Microsoft auquel vous souhaitez accorder l'accès.
+1. Dans la page de démarrage rapide de hello, cliquez sur **configurer l’accès utilisateur**.
+2. Entrez hello Professionnel (à partir d’Active Directory) ou compte Microsoft auxquels vous souhaitez accéder toogrant pour.
    
    **Remarques :**
    
-   Assurez-vous d’utiliser le format *user@domain.com*.
+   Assurez-vous que vous utilisez hello  *user@domain.com*  format.
    
-   Si vous utilisez Office 365 ProPlus dans votre collection, vous devez utiliser les identités Active Directory de vos utilisateurs. Cela permet de valider la licence.
-3. Une fois les utilisateurs validés, cliquez sur **Enregistrer**.
+   Si vous utilisez Office 365 ProPlus dans votre collection, vous devez utiliser des identités d’Active Directory hello pour vos utilisateurs. Cela permet de valider la licence.
+3. Une fois que les utilisateurs de hello sont validés, cliquez sur **enregistrer**.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Félicitations ! Vous avez créé et déployé correctement votre collection hybride Azure RemoteApp. L'étape suivante consistera à faire en sorte que vos utilisateurs téléchargent et installent le client Bureau à distance. L’URL du client est disponible dans la page Démarrage rapide de RemoteApp. Les utilisateurs peuvent à présent se connecter au client et accéder aux applications que vous avez publiées.
+Félicitations ! Vous avez créé et déployé correctement votre collection hybride Azure RemoteApp. étape suivante de Hello est toohave vos utilisateurs téléchargement et installer le client du Bureau à distance hello. Vous pouvez trouver des URL de hello pour le client de hello sur la page de démarrage rapide de Azure RemoteApp hello. Ensuite, munissez-vous du journal des utilisateurs dans le client de hello et accéder aux applications hello que vous avez publié.
 
 ### <a name="help-us-help-you"></a>Vos commentaires nous aideront à mieux vous servir
-Saviez-vous qu’en plus de noter cet article et de rédiger des commentaires ci-dessous, vous pouviez modifier l’article lui-même ? Il manque des informations ? Des informations sont erronées ? Certains passages ne sont pas clairs ? Faites défiler l’écran vers le haut et cliquez sur **Modifier sur GitHub** pour apporter des modifications. Nous les passerons ensuite en revue, et une fois que nous les aurons confirmées, vos modifications et les améliorations seront visibles ici.
+Saviez-vous que toorating d’ajout de cet article et de faire des commentaires vers le bas, vous pouvez effectuer modifications toohello article ? Il manque des informations ? Des informations sont erronées ? Certains passages ne sont pas clairs ? Faites défiler et cliquez sur **modifier sur GitHub** toomake modifications - ces proviendront toous pour révision et, une fois que nous se déconnecter sur ces derniers, vous verrez alors vos modifications et des améliorations ici.
 

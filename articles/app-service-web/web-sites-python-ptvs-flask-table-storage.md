@@ -1,6 +1,6 @@
 ---
-title: "Flask et stockage des tables Azure sur Azure avec Python Tools 2.2 pour Visual Studio"
-description: "Découvrez comment utiliser Python Tools pour Visual Studio afin de créer une application Flask qui stocke les données dans le stockage de tables Azure et déployer l’application web dans Azure App Service Web Apps."
+title: aaaFlask et stockage de Table Azure sur Windows Azure avec 2.2 des outils Python pour Visual Studio
+description: "Découvrez comment toouse hello outils Python pour Visual Studio toocreate, une application web ballon qui stocke les données dans le stockage Table Azure et déployez-le tooAzure App Service Web Apps."
 services: app-service\web
 tags: python
 documentationcenter: python
@@ -15,146 +15,146 @@ ms.devlang: python
 ms.topic: article
 ms.date: 07/07/2016
 ms.author: huvalo
-ms.openlocfilehash: 2e1bc8eebd0b67b965cc70ac4b5dfe03c4720ddf
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 1a09d4cc78078a00492ba4fe7e2075df96fb0380
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="flask-and-azure-table-storage-on-azure-with-python-tools-22-for-visual-studio"></a>Flask et stockage des tables Azure sur Azure avec Python Tools 2.2 pour Visual Studio
-Dans ce didacticiel, nous allons utiliser [Python Tools pour Visual Studio] afin de créer une application web de sondage simple, à l’aide de l’un des exemples de modèle PTVS. Ce didacticiel est également disponible en [vidéo](https://www.youtube.com/watch?v=qUtZWtPwbTk).
+Dans ce didacticiel, nous allons utiliser [outils Python pour Visual Studio] toocreate simple interroge l’application web à l’aide d’un des exemples de modèles de PTVS hello. Ce didacticiel est également disponible en [vidéo](https://www.youtube.com/watch?v=qUtZWtPwbTk).
 
-L’application web de sondage définit une abstraction pour son référentiel, ce qui vous permet de basculer facilement d’un type de référentiel à un autre (In-Memory, Azure Table Storage, MongoDB).
+application web de sondages Hello définit une abstraction pour son espace de stockage, afin que vous pouvez facilement basculer entre les différents types de référentiels (en mémoire, stockage de tables Azure, MongoDB).
 
-Nous allons découvrir comment créer un compte Azure Storage, comment configurer l’application web pour utiliser le stockage de tables Azure et comment publier l’application web sur un [Azure App Service Web Apps](http://go.microsoft.com/fwlink/?LinkId=529714).
+Vous allez apprendre comment toocreate un stockage Azure de compte, comment tooconfigure hello web application toouse stockage de tables Azure et toopublish hello web application trop[Azure App Service Web Apps](http://go.microsoft.com/fwlink/?LinkId=529714).
 
-Visitez le [Centre de développement Python] pour consulter d’autres articles sur le développement d’applications Azure App Service Web Apps avec PTVS à l’aide des infrastructures web Bottle, Flask et Django, ainsi que des services MongoDB, Azure Table Storage, MySQL et Base de données SQL. Cet article concerne App Service, mais les étapes sont similaires lorsque vous développez pour [Azure Cloud Services].
+Consultez hello [centre de développement Python] autres articles qui couvrent le développement de Azure App Service Web Apps avec PTVS à l’aide d’eau, ballon Django web et infrastructures, avec les services MongoDB, stockage de tables Azure, MySQL et base de données SQL. Alors que cet article se concentre sur le Service d’applications, les étapes de hello sont similaires lors du développement [Azure Cloud Services].
 
 ## <a name="prerequisites"></a>Composants requis
 * Visual Studio 2015
 * [Python Tools 2.2 pour Visual Studio]
-* [Python Tools 2.2 pour Visual Studio Samples VSIX]
+* [2.2 des outils Python pour Visual Studio exemples VSIX]
 * [Outils du Kit de développement logiciel (SDK) Azure pour Visual Studio 2015]
 * [Python 2.7 32 bits] ou [Python 3.4 32 bits]
 
 [!INCLUDE [create-account-and-websites-note](../../includes/create-account-and-websites-note.md)]
 
 > [!NOTE]
-> Si vous voulez vous familiariser avec Azure App Service avant d’ouvrir un compte Azure, accédez à la page [Essayer App Service](https://azure.microsoft.com/try/app-service/), où vous pourrez créer immédiatement une application web temporaire dans App Service. Aucune carte de crédit n’est requise ; vous ne prenez aucun engagement.
+> Si vous souhaitez tooget démarré avec le Service d’application Azure avant de s’inscrire pour un compte Azure, accédez trop[essayez du Service d’applications](https://azure.microsoft.com/try/app-service/), où vous pouvez créer une application web de courte durée de démarrage immédiatement dans le Service d’applications. Aucune carte de crédit n’est requise ; vous ne prenez aucun engagement.
 > 
 > 
 
-## <a name="create-the-project"></a>Création du projet
-Dans cette section, nous allons créer un projet Visual Studio à l’aide d’un exemple de modèle. Nous allons créer un environnement virtuel et installer les packages requis. Ensuite, nous allons exécuter l’application localement à l’aide du référentiel In-Memory par défaut.
+## <a name="create-hello-project"></a>Créer hello projet
+Dans cette section, nous allons créer un projet Visual Studio à l’aide d’un exemple de modèle. Nous allons créer un environnement virtuel et installer les packages requis. Puis nous exécuterons application hello localement à l’aide de référentiel de hello par défaut en mémoire.
 
 1. Dans Visual Studio, sélectionnez **Fichier**, **Nouveau projet**.
-2. Les modèles de projet issus de [Python Tools 2.2 pour Visual Studio Samples VSIX] sont disponibles sous **Python**, **Exemples**. Sélectionnez **Projet web de sondage Flask** et cliquez sur OK pour créer le projet.
+2. Hello des modèles de projet à partir de hello [2.2 des outils Python pour Visual Studio exemples VSIX] sont disponibles sous **Python**, **exemples**. Sélectionnez **interroge ballon Web projet** et cliquez sur OK toocreate hello projet.
    
      ![Boîte de dialogue Nouveau projet](./media/web-sites-python-ptvs-flask-table-storage/PollsFlaskNewProject.png)
-3. Vous allez être invité à installer des packages externes. Sélectionnez **Installer dans un environnement virtuel**.
+3. Vous serez invité à tooinstall les packages externes. Sélectionnez **Installer dans un environnement virtuel**.
    
      ![Boîte de dialogue Packages externes](./media/web-sites-python-ptvs-flask-table-storage/PollsFlaskExternalPackages.png)
-4. Sélectionnez **Python 2.7** ou **Python 3.4** comme interpréteur de base.
+4. Sélectionnez **Python 2.7** ou **Python 3.4** comme interpréteur de base hello.
    
      ![Boîte de dialogue Ajouter un environnement virtuel](./media/web-sites-python-ptvs-flask-table-storage/PollsCommonAddVirtualEnv.png)
-5. Vérifiez que l’application fonctionne en appuyant sur `F5`. Par défaut, l’application utilise un référentiel In-Memory qui ne requiert aucune configuration. Toutes les données sont perdues à l’arrêt du serveur web.
+5. Vérifier que l’application hello fonctionne en appuyant sur `F5`. Par défaut, application hello utilise un référentiel en mémoire qui ne nécessite aucune configuration. Toutes les données sont perdues lorsque hello web server est arrêté.
 6. Cliquez sur **Créer un exemple de sondage**, puis sur un sondage et un vote.
    
      ![Navigateur web](./media/web-sites-python-ptvs-flask-table-storage/PollsFlaskInMemoryBrowser.png)
 
 ## <a name="create-an-azure-storage-account"></a>Création d’un compte de stockage Azure
-Pour utiliser les opérations de stockage, vous avez besoin d’un compte Azure Storage. Pour en créer un, procédez comme suit :
+toouse des opérations de stockage, vous devez un compte de stockage Azure. Pour en créer un, procédez comme suit :
 
-1. Connectez-vous au [portail Azure](https://portal.azure.com/).
-2. Cliquez sur l’icône **Nouveau** en haut à gauche du portail, puis cliquez sur **Données + stockage** > **Compte de stockage**. Cliquez sur **Créer**, puis attribuez un nom unique au compte de stockage et créez un [groupe de ressources](../azure-resource-manager/resource-group-overview.md).
+1. Ouvrez une session sur hello [Azure Portal](https://portal.azure.com/).
+2. Cliquez sur hello **nouveau** icône en haut de hello à gauche de hello Portal, puis cliquez sur **données + stockage** > **compte de stockage**. Cliquez sur **créer**, puis donnez un nom unique à compte de stockage hello et créer un nouveau [groupe de ressources](../azure-resource-manager/resource-group-overview.md) pour celle-ci.
    
       ![Création rapide](./media/web-sites-python-ptvs-flask-table-storage/PollsCommonAzureStorageCreate.png)
    
-    Une fois le compte de stockage créé, le bouton **Notifications** affiche la mention **RÉUSSITE** en vert clignotant et le panneau du compte de stockage s’ouvre pour indiquer qu’il appartient au groupe de ressources créé.
-3. Cliquez sur la section **Clés d’accès** dans le panneau du compte de stockage. Prenez note du nom du compte et de la clé1.
+    Lorsque le compte de stockage hello a été créé, hello **Notifications** un vert clignote en bouton **réussite** et panneau du compte de stockage hello est ouvert tooshow qu’il appartient toohello nouvelle ressource groupe que vous avez créé.
+3. Cliquez sur hello **clés d’accès** partie dans le panneau du compte de stockage hello. Prenez note du nom du compte hello et hello key1.
    
-      ![de clés symétriques](./media/web-sites-python-ptvs-flask-table-storage/PollsCommonAzureStorageKeys.png)
+      ![Clés](./media/web-sites-python-ptvs-flask-table-storage/PollsCommonAzureStorageKeys.png)
    
-    Nous aurons besoin de ces informations pour configurer votre projet dans la section suivante.
+    Nous devons cette tooconfigure informations votre projet dans la section suivante de hello.
 
-## <a name="configure-the-project"></a>Configurer le projet
-Dans cette section, nous allons configurer notre application pour utiliser le compte de stockage que nous venons de créer. Nous allons découvrir comment obtenir des paramètres de connexion à partir du portail Azure. Ensuite, nous allons exécuter l’application localement.
+## <a name="configure-hello-project"></a>Configurer hello projet
+Dans cette section, nous allons configurer notre compte de stockage application toouse hello que nous venons de créer. Nous allons voir comment les paramètres de connexion tooobtain de hello portail Azure. Ensuite, nous allons exécuter application hello localement.
 
-1. Dans Visual Studio, cliquez avec le bouton droit sur le nœud de votre projet dans l’Explorateur de solutions, puis sélectionnez **Propriétés**. Cliquez sur l’onglet **Déboguer** .
+1. Dans Visual Studio, cliquez avec le bouton droit sur le nœud de votre projet dans l’Explorateur de solutions, puis sélectionnez **Propriétés**. Cliquez sur hello **déboguer** onglet.
    
      ![Paramètres de débogage du projet](./media/web-sites-python-ptvs-flask-table-storage/PollsFlaskAzureTableStorageProjectDebugSettings.png)
-2. Définissez les valeurs des variables d’environnement requises par l’application dans **Déboguer la commande de serveur**, **Environnement**.
+2. Définir les valeurs des variables d’environnement requises par l’application hello dans hello **déboguer la commande de serveur**, **environnement**.
    
        REPOSITORY_NAME=azuretablestorage
        STORAGE_NAME=<storage account name>
        STORAGE_KEY=<primary access key>
    
-   Les variables d’environnement sont définies lorsque la commande **Démarrer le débogage**est exécutée. Si vous voulez que les variables soient définies lorsque la commande **Démarrer sans débogage** est exécutée, indiquez les mêmes valeurs sous **Exécuter la commande de serveur**.
+   Ceci permettra de définir les variables d’environnement hello lorsque vous **démarrer le débogage**. Si vous souhaitez hello variables toobe définie lorsque vous **démarrer sans débogage**, hello ensemble sous les mêmes valeurs **exécuter une commande de serveur** également.
    
-   Vous pouvez aussi définir des variables d’environnement à l’aide du Panneau de configuration Windows. Cette option est la plus appropriée pour éviter de stocker des informations d’identification dans le code source/fichier de projet. Notez que vous devrez redémarrer Visual Studio pour que les nouvelles variables d’environnement soient disponibles pour l’application.
-3. Le code qui implémente le référentiel du stockage de tables Azure se trouve dans **models/azuretablestorage.py**. Consultez la [documentation] pour plus d’informations sur la manière d’utiliser le service de Table de Python.
-4. Exécutez l’application avec `F5`. Les sondages créés à l’aide de la fonction **Créer un exemple de sondage** et les données soumises par vote sont sérialisés dans le stockage de tables Azure.
+   Vous pouvez également définir des variables d’environnement à l’aide de hello le panneau de configuration Windows. Il s’agit d’une meilleure option si vous souhaitez tooavoid stocke des informations d’identification dans le code source / fichier de projet. Notez que vous devez toorestart Visual Studio pour l’application de hello nouvel environnement valeurs toobe toohello disponible.
+3. code Hello qui implémente le référentiel de stockage de Table Azure hello se trouve dans **models/azuretablestorage.py**. Consultez hello [documentation] pour plus d’informations sur la façon de toouse Service de Table à partir de Python.
+4. Exécutez l’application hello avec `F5`. Les interrogations sont créées avec **créer des sondages exemple** et données hello soumises par le vote seront sérialisées dans le stockage Table Azure.
    
    > [!NOTE]
-   > L'environnement virtuel Python 2.7 peut provoquer un arrêt exceptionnel dans Visual Studio.  Appuyez sur `F5` pour continuer à charger le projet web.
+   > Hello environnement virtuel de Python 2.7 peut provoquer un arrêt de l’exception dans Visual Studio.  Appuyez sur `F5` toocontinue chargement hello web projet.
    > 
    > 
-5. Accédez à la page **À propos** pour vérifier que l’application utilise le référentiel **Stockage de tables Azure**.
+5. Parcourir toohello **sur** tooverify page qui hello d’application à l’aide de hello **Azure Table Storage** référentiel.
    
      ![Navigateur web](./media/web-sites-python-ptvs-flask-table-storage/PollsFlaskAzureTableStorageAbout.png)
 
-## <a name="explore-the-azure-table-storage"></a>Exploration du stockage de tables Azure
-L’affichage et la modification des tables de stockage sont très faciles dans Visual Studio grâce à Cloud Explorer. Dans cette section, nous allons utiliser l’Explorateur de serveurs pour afficher le contenu des tables de l’application de sondage.
+## <a name="explore-hello-azure-table-storage"></a>Explorer hello stockage de Table Azure
+Il est facile tooview et modifier des tables de stockage à l’aide de l’Explorateur de Cloud dans Visual Studio. Dans cette section, nous allons utiliser contenu de hello tooview de l’Explorateur de serveurs de tables d’application interroge hello.
 
 > [!NOTE]
-> Pour cela, les outils Microsoft Azure doivent être installés. Ils sont disponibles dans le [Kit de développement logiciel (SDK) Azure pour .NET].
+> Cela nécessite toobe Microsoft Azure Tools installé, qui sont disponible dans le cadre de hello [Azure SDK pour .NET].
 > 
 > 
 
 1. Ouvrez **Cloud Explorer**. Développez **Comptes de stockage**, votre compte de stockage, puis **Tables**.
    
      ![Cloud Explorer](./media/web-sites-python-ptvs-bottle-table-storage/PollsCommonServerExplorer.png)
-2. Double-cliquez sur la table **sondages** ou **choix** pour en afficher le contenu dans une fenêtre et ajouter/supprimer/modifier des entités.
+2. Double-cliquez sur hello **interroge** ou **choix** contenu de hello tooview de table hello dans une fenêtre de document, ainsi que d’ajouter/supprimer/modifier des entités de table.
    
      ![Résultats de la requête de table](./media/web-sites-python-ptvs-bottle-table-storage/PollsCommonServerExplorerTable.png)
 
-## <a name="publish-the-web-app-to-azure-app-service"></a>Publication de l’application web dans Azure App Service
-Le kit de développement logiciel (SDK) Azure .NET offre un moyen simple de déployer votre application web dans Azure App Service.
+## <a name="publish-hello-web-app-tooazure-app-service"></a>Publier hello web application tooAzure du Service d’applications
+Hello Kit de développement .NET Azure fournit un moyen simple de toodeploy votre tooAzure d’application web du Service d’applications.
 
-1. Dans l’**Explorateur de solutions**, cliquez avec le bouton droit sur le nœud du projet et sélectionnez **Publier**.
+1. Dans **l’Explorateur de solutions**, avec le bouton droit sur le nœud de projet hello et sélectionnez **publier**.
    
      ![Boîte de dialogue Publier le site Web](./media/web-sites-python-ptvs-bottle-table-storage/PollsCommonPublishWebSiteDialog.png)
 2. Cliquez sur **Microsoft Azure Web Apps**.
-3. Cliquez sur **Nouveau** pour créer une application web.
-4. Renseignez les champs suivants et cliquez sur **Créer**.
+3. Cliquez sur **nouveau** toocreate une application web.
+4. Renseignez hello suivant des champs, cliquez sur **créer**.
    
    * **Nom de l’application web**
    * **Plan App Service**
    * **Groupe de ressources**
    * **Région**
-   * Dans **Serveur de base de données**, conservez **Aucune base de données**
+   * Laissez **serveur de base de données** défini trop**aucune base de données**
 5. Acceptez toutes les valeurs par défaut et cliquez sur **Publier**.
-6. Votre navigateur web ouvre automatiquement l’application web publiée. Si vous accédez à la page À propos, vous pouvez voir qu’elle utilise le référentiel **en mémoire** et non le référentiel **Stockage de tables Azure**.
+6. Votre navigateur web s’ouvre automatiquement toohello publié web app. Si vous y accédez toohello sur la page, vous verrez qu’il utilise hello **In-Memory** référentiel, pas hello **Azure Table Storage** référentiel.
    
-   En effet, comme les variables d’environnement ne sont pas définies dans l’instance Web Apps d’Azure App Service, l’application utilise les valeurs par défaut spécifiées dans **settings.py**.
+   C’est parce que les variables d’environnement hello ne sont pas définies sur l’instance d’applications Web hello dans Azure App Service, afin d’utiliser les valeurs par défaut hello spécifiés dans **settings.py**.
 
-## <a name="configure-the-web-apps-instance"></a>Configurer l'instance Web Apps
-Dans cette section, nous allons configurer les variables d’environnement de l’instance Web Apps.
+## <a name="configure-hello-web-apps-instance"></a>Configurer l’instance d’applications Web hello
+Dans cette section, nous allons configurer les variables d’environnement pour l’instance d’applications Web hello.
 
-1. Dans le [portail Azure](https://portal.azure.com), ouvrez le panneau de l'application web en cliquant sur **Parcourir** > **App Services** > le nom de votre application web.
+1. Dans [Azure Portal](https://portal.azure.com), ouvrez le panneau de l’application hello web en cliquant sur **Parcourir** > **des Services d’application** > nom de votre application web.
 2. Dans le volet de votre application web, cliquez sur **Tous les paramètres**, puis cliquez sur **Paramètres de l'application**.
-3. Accédez à la section **Paramètres de l’application** et définissez les valeurs **REPOSITORY\_NAME**, **STORAGE\_NAME** et **STORAGE\_KEY** comme décrit dans la section **Configurer le projet** ci-dessus.
+3. Faites défiler vers le bas toohello **paramètres de l’application** section et définir des valeurs hello pour **référentiel\_nom**, **stockage\_nom** et  **STOCKAGE\_clé** comme décrit dans hello **projet hello de configurer** section ci-dessus.
    
-     ![Paramètres de l’application](./media/web-sites-python-ptvs-bottle-table-storage/PollsCommonWebSiteConfigureSettingsTableStorage.png)
-4. Cliquez sur **Save**(Enregistrer). Une fois que vous avez reçu les notifications confirmant que les modifications ont été appliquées, cliquez sur **Parcourir** à partir du panneau principal de l’application Web.
-5. L’application doit fonctionner comme prévu et utiliser le référentiel **Stockage de tables Azure** .
+     ![Paramètres de l'application](./media/web-sites-python-ptvs-bottle-table-storage/PollsCommonWebSiteConfigureSettingsTableStorage.png)
+4. Cliquez sur **Save**(Enregistrer). Une fois que vous avez reçu des notifications de hello que les modifications de hello ont été appliquées, cliquez sur **Parcourir** à partir du panneau principal de l’application hello Web.
+5. Vous devez voir le travail d’application hello web comme prévu, à l’aide de hello **Azure Table Storage** référentiel.
    
    Félicitations !
    
      ![Navigateur web](./media/web-sites-python-ptvs-flask-table-storage/PollsFlaskAzureBrowser.png)
 
 ## <a name="next-steps"></a>Étapes suivantes
-Suivez ces liens pour en savoir plus sur Python Tools for Visual Studio, Flask et le stockage de tables Azure.
+Suivez ces liens de toolearn plus d’informations sur les outils Python pour Visual Studio, ballon et le stockage Table.
 
 * [Documentation relative à Python Tools for Visual Studio]
   * [Projets web]
@@ -163,23 +163,23 @@ Suivez ces liens pour en savoir plus sur Python Tools for Visual Studio, Flask e
 * [Documentation relative à Flask]
 * [Azure Storage]
 * [Kit de développement logiciel (SDK) Azure pour Python]
-* [Utilisation du service de stockage de tables de Python]
+* [Comment tooUse hello Service de stockage de Table à partir de Python]
 
 ## <a name="whats-changed"></a>Changements apportés
-* Pour obtenir un guide présentant les modifications apportées dans le cadre de la transition entre Sites Web et App Service, consultez la page [Azure App Service et les services Azure existants](http://go.microsoft.com/fwlink/?LinkId=529714)
+* Pour un toohello guide voir changer à partir de sites Web tooApp Service : [Azure App Service et son Impact sur les Services Azure existants](http://go.microsoft.com/fwlink/?LinkId=529714)
 
 <!--Link references-->
-[Centre de développement Python]: /develop/python/
+[centre de développement Python]: /develop/python/
 [Azure Cloud Services]: ../cloud-services/cloud-services-python-ptvs.md
 [documentation]:../cosmos-db/table-storage-how-to-use-python.md
-[Utilisation du service de stockage de tables de Python]:../cosmos-db/table-storage-how-to-use-python.md
+[Comment tooUse hello Service de stockage de Table à partir de Python]:../cosmos-db/table-storage-how-to-use-python.md
 
 <!--External Link references-->
 [Azure Portal]: https://portal.azure.com
-[Kit de développement logiciel (SDK) Azure pour .NET]: http://azure.microsoft.com/downloads/
-[Python Tools pour Visual Studio]: http://aka.ms/ptvs
+[Azure SDK pour .NET]: http://azure.microsoft.com/downloads/
+[outils Python pour Visual Studio]: http://aka.ms/ptvs
 [Python Tools 2.2 pour Visual Studio]: http://go.microsoft.com/fwlink/?LinkID=624025
-[Python Tools 2.2 pour Visual Studio Samples VSIX]: http://go.microsoft.com/fwlink/?LinkID=624025
+[2.2 des outils Python pour Visual Studio exemples VSIX]: http://go.microsoft.com/fwlink/?LinkID=624025
 [Outils du Kit de développement logiciel (SDK) Azure pour Visual Studio 2015]: http://go.microsoft.com/fwlink/?linkid=518003
 [Python 2.7 32 bits]: http://go.microsoft.com/fwlink/?LinkId=517190
 [Python 3.4 32 bits]: http://go.microsoft.com/fwlink/?LinkId=517191

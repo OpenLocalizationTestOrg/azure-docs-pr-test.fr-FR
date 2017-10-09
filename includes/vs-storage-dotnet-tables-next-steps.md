@@ -1,9 +1,9 @@
-Maintenant que vous connaissez les bases du stockage de tables Azure, activez les liens suivants pour apprendre à exécuter des tâches de stockage plus complexes.
+Maintenant que vous avez appris les notions de base de hello de stockage de Table Azure, suivez ces toolearn des liens sur les tâches de stockage plus complexes.
 
-* Pour plus d’informations sur les API disponibles, consultez la documentation de référence du service de Table dans la [Bibliothèque cliente Azure Storage pour .NET](http://go.microsoft.com/fwlink/?LinkID=390731) .
-* Pour découvrir comment simplifier le code que vous écrivez avec Azure Storage, consultez [Présentation du Kit de développement logiciel (SDK) Azure WebJobs](../articles/app-service-web/websites-dotnet-webjobs-sdk.md)
-* Pour plus d'informations sur les autres options de stockage de données dans Azure, consultez d'autres guides de fonctionnalités.
-  * Pour utiliser les objets blob Azure Storage, consultez [Prise en main du stockage d’objets blob Azure à l’aide de .NET](../articles/storage/blobs/storage-dotnet-how-to-use-blobs.md).
-  * Pour utiliser les files d’attente Azure Storage, consultez [Prise en main du stockage de files d’attente Azure à l’aide de .NET](../articles/storage/queues/storage-dotnet-how-to-use-queues.md).
-  * Pour stocker des données relationnelles, consultez [Connexion à SQL Database à l’aide de .NET (C#)](../articles/sql-database/sql-database-develop-dotnet-simple.md).
+* Afficher la documentation de référence de Service de Table hello Bonjour [bibliothèque cliente de stockage Azure pour .NET](http://go.microsoft.com/fwlink/?LinkID=390731) référence pour plus d’informations sur les API disponibles.
+* toolearn comment le code de hello toosimplify que vous écrivez toowork avec le stockage Azure, consultez [What ' s hello Azure WebJobs SDK](../articles/app-service-web/websites-dotnet-webjobs-sdk.md)
+* Permet d’afficher plusieurs toolearn de repères de fonctionnalité sur les options supplémentaires pour le stockage des données dans Azure.
+  * toowork avec des objets BLOB de stockage Azure, consultez [prise en main le stockage Blob Azure à l’aide de .NET](../articles/storage/blobs/storage-dotnet-how-to-use-blobs.md).
+  * toowork avec les files d’attente de stockage Azure, [prise en main avec stockage de file d’attente Azure à l’aide de .NET](../articles/storage/queues/storage-dotnet-how-to-use-queues.md).
+  * toostore de données relationnelles, consultez [connecter tooSQL de base de données à l’aide de .NET (c#)](../articles/sql-database/sql-database-develop-dotnet-simple.md).
 

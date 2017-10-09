@@ -1,6 +1,6 @@
 ---
-title: "Créer des clusters Hadoop avec Azure REST API - Azure | Documents Microsoft"
-description: "Découvrez comment créer des clusters HDInsight en soumettant des modèles Azure Resource Manager à l’API REST Azure."
+title: "aaaCreate Hadoop clusters à l’aide des API REST de Azure - Azure | Documents Microsoft"
+description: "Découvrez comment toocreate HDInsight clusters en soumettant toohello de modèles Azure Resource Manager API REST Azure."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,31 +16,31 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 08/10/2017
 ms.author: larryfr
-ms.openlocfilehash: a36a41c231472ceeeb46d02ddb65549b1c79728a
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 87b585e5084eccdc3d7c57483deabb4ad6e32597
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-hadoop-clusters-using-the-azure-rest-api"></a>Créer des clusters Hadoop à l’aide de l’API REST Azure
+# <a name="create-hadoop-clusters-using-hello-azure-rest-api"></a>Créer des clusters Hadoop à l’aide de hello API REST Azure
 
 [!INCLUDE [selector](../../includes/hdinsight-create-linux-cluster-selector.md)]
 
-Découvrez comment créer des clusters HDInsight l’aide d’un modèle Azure Resource Manager et de l’API REST Azure.
+Découvrez comment toocreate un HDInsight de cluster à l’aide d’un modèle Azure Resource Manager et hello API REST Azure.
 
-L’API REST Azure vous permet d’effectuer des opérations de gestion sur les services hébergés sur la plateforme Azure, y compris la création de nouvelles ressources, telles que des clusters HDInsight.
+Hello API REST Azure vous permet de tooperform les opérations de gestion sur les services hébergés dans hello plateforme Azure, y compris la création de nouvelles ressources telles que des clusters HDInsight hello.
 
 > [!IMPORTANT]
-> Linux est le seul système d’exploitation utilisé sur HDInsight version 3.4 ou supérieure. Pour plus d’informations, consultez [Suppression de HDInsight sous Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+> Linux est hello seul système d’exploitation utilisé sur HDInsight version 3.4 ou supérieure. Pour plus d’informations, consultez [Suppression de HDInsight sous Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
 > [!NOTE]
-> Les étapes décrites dans ce document se servent de l’utilitaire [curl (https://curl.haxx.se/)](https://curl.haxx.se/) pour communiquer avec l’API REST Azure.
+> Hello les étapes dans cette hello d’utilisation de document [curl (https://curl.haxx.se/)](https://curl.haxx.se/) toocommunicate utilitaire avec hello API REST Azure.
 
 ## <a name="create-a-template"></a>Créer un modèle
 
-Les modèles Azure Resource Manager sont des documents JSON qui décrivent un **groupe de ressources** et toutes les ressources qu’il contient (par exemple, HDInsight). Cette approche à base de modèles vous permet de définir les ressources dont vous avez besoin pour HDInsight dans un modèle.
+Les modèles Azure Resource Manager sont des documents JSON qui décrivent un **groupe de ressources** et toutes les ressources qu’il contient (par exemple, HDInsight). Cette approche basée sur un modèle vous permet de ressources hello toodefine dont vous avez besoin pour HDInsight dans un modèle.
 
-Le document JSON suivant résulte d’une fusion des fichiers de modèle et de paramètres disponibles sur [https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-linux-ssh-password](https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-linux-ssh-password). Ce code crée un cluster Linux qui utilise un mot de passe pour sécuriser le compte d’utilisateur SSH.
+Bonjour document JSON suivant est une fusion de hello les fichiers de modèle et les paramètres à partir de [https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-linux-ssh-password](https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-linux-ssh-password), ce qui crée une base de Linux cluster à l’aide d’un Bonjour toosecure de mot de passe SSH compte d’utilisateur.
 
    ```json
    {
@@ -56,50 +56,50 @@ Le document JSON suivant résulte d’une fusion des fichiers de modèle et de p
                        "storm",
                        "spark"],
                        "metadata": {
-                           "description": "The type of the HDInsight cluster to create."
+                           "description": "hello type of hello HDInsight cluster toocreate."
                        }
                    },
                    "clusterName": {
                        "type": "string",
                        "metadata": {
-                           "description": "The name of the HDInsight cluster to create."
+                           "description": "hello name of hello HDInsight cluster toocreate."
                        }
                    },
                    "clusterLoginUserName": {
                        "type": "string",
                        "metadata": {
-                           "description": "These credentials can be used to submit jobs to the cluster and to log into cluster dashboards."
+                           "description": "These credentials can be used toosubmit jobs toohello cluster and toolog into cluster dashboards."
                        }
                    },
                    "clusterLoginPassword": {
                        "type": "securestring",
                        "metadata": {
-                           "description": "The password must be at least 10 characters in length and must contain at least one digit, one non-alphanumeric character, and one upper or lower case letter."
+                           "description": "hello password must be at least 10 characters in length and must contain at least one digit, one non-alphanumeric character, and one upper or lower case letter."
                        }
                    },
                    "sshUserName": {
                        "type": "string",
                        "metadata": {
-                           "description": "These credentials can be used to remotely access the cluster."
+                           "description": "These credentials can be used tooremotely access hello cluster."
                        }
                    },
                    "sshPassword": {
                        "type": "securestring",
                        "metadata": {
-                           "description": "The password must be at least 10 characters in length and must contain at least one digit, one non-alphanumeric character, and one upper or lower case letter."
+                           "description": "hello password must be at least 10 characters in length and must contain at least one digit, one non-alphanumeric character, and one upper or lower case letter."
                        }
                    },
                    "clusterStorageAccountName": {
                        "type": "string",
                        "metadata": {
-                           "description": "The name of the storage account to be created and be used as the cluster's storage."
+                           "description": "hello name of hello storage account toobe created and be used as hello cluster's storage."
                        }
                    },
                    "clusterWorkerNodeCount": {
                        "type": "int",
                        "defaultValue": 4,
                        "metadata": {
-                           "description": "The number of nodes in the HDInsight cluster."
+                           "description": "hello number of nodes in hello HDInsight cluster."
                        }
                    }
                },
@@ -215,52 +215,52 @@ Le document JSON suivant résulte d’une fusion des fichiers de modèle et de p
    }
    ```
 
-Cet exemple est utilisé dans les étapes de ce document. Remplacez les *valeurs* de l’exemple dans la section **Paramètres** par les valeurs de votre cluster.
+Cet exemple est utilisé dans les étapes de hello dans ce document. Remplacez l’exemple de hello *valeurs* Bonjour **paramètres** section avec des valeurs hello pour votre cluster.
 
 > [!IMPORTANT]
-> Le modèle utilise le nombre par défaut de nœuds worker (4) pour un cluster HDInsight. Si vous envisagez d’utiliser plus de 32 nœuds worker, vous devez sélectionner une taille de nœud principal avec au moins 8 cœurs et 14 Go de RAM.
+> modèle de Hello utilise le nombre de nœuds de travail (4) par défaut de hello pour un cluster HDInsight. Si vous envisagez d’utiliser plus de 32 nœuds worker, vous devez sélectionner une taille de nœud principal avec au moins 8 cœurs et 14 Go de RAM.
 >
 > Pour plus d’informations sur les tailles de nœud et les coûts associés, consultez [Tarification HDInsight](https://azure.microsoft.com/pricing/details/hdinsight/).
 
-## <a name="log-in-to-your-azure-subscription"></a>Connexion à votre abonnement Azure
+## <a name="log-in-tooyour-azure-subscription"></a>Ouvrez une session dans tooyour abonnement Azure
 
-Suivez la procédure décrite dans la [prise en main d’Azure CLI 2.0](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2) et connectez-vous à votre abonnement en utilisant la commande `az login`.
+Suivez les étapes de hello documentées dans [prise en main Azure CLI 2.0](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2) et connecter abonnement tooyour à l’aide de hello `az login` commande.
 
 ## <a name="create-a-service-principal"></a>Créer un principal du service
 
 > [!NOTE]
-> Ces étapes sont une version abrégée de la section *Créer un principal du service avec un mot de passe - Azure CLI* dans le document [Créer un principal du service pour accéder aux ressources à l’aide de l’interface de ligne de commande (CLI) Azure](../azure-resource-manager/resource-group-authenticate-service-principal-cli.md#create-service-principal-with-password) . Les étapes suivantes créent un principal de service qui est utilisé pour s’authentifier sur l’API REST Azure.
+> Ces étapes sont une version abrégée de hello *créer le service principal avec un mot de passe* section Hello [CLI d’Azure utilisation toocreate un principal de service tooaccess ressources](../azure-resource-manager/resource-group-authenticate-service-principal-cli.md#create-service-principal-with-password) document. Les étapes suivantes créent un principal de service qui est utilisé tooauthenticate toohello API REST Azure.
 
-1. À partir d’une ligne de commande, utilisez la commande suivante pour répertorier vos abonnements Azure.
+1. À partir d’une ligne de commande, utilisez hello suivant toolist de commande vos abonnements Azure.
 
    ```bash
    az account list --query '[].{Subscription_ID:id,Tenant_ID:tenantId,Name:name}'  --output table
    ```
 
-    Dans la liste, sélectionnez l’abonnement que vous souhaitez utiliser et notez les colonnes **Subscription_ID** et __Tenant_ID__. Enregistrez ces valeurs.
+    Dans la liste hello, sélectionnez l’abonnement hello que vous le souhaitez toouse et notez hello **ID_ABONNEMENT** et __Tenant_ID__ colonnes. Enregistrez ces valeurs.
 
-2. Utilisez les commandes suivantes pour créer une application dans Azure Active Directory.
+2. Utilisez hello suivant commande toocreate une application dans Azure Active Directory.
 
    ```bash
    az ad app create --display-name "exampleapp" --homepage "https://www.contoso.org" --identifier-uris "https://www.contoso.org/example" --password <Your password> --query 'appId'
    ```
 
-    Remplacez les valeurs de `--display-name`, `--homepage` et `--identifier-uris` par vos propres valeurs. Fournissez un mot de passe pour la nouvelle entrée Active Directory.
+    Remplacez les valeurs hello pour hello `--display-name`, `--homepage`, et `--identifier-uris` avec vos propres valeurs. Fournir un mot de passe pour la nouvelle entrée de Active Directory hello.
 
    > [!NOTE]
-   > Les valeurs `--home-page` et `--identifier-uris` n’ont pas à faire référence à une page web réelle hébergée sur Internet. Les URI doivent être uniques.
+   > Hello `--home-page` et `--identifier-uris` les valeurs ne doivent tooreference une page web réel hébergé sur hello internet. Les URI doivent être uniques.
 
-   La valeur retournée par cette commande est __l’ID de l’application__ pour la nouvelle application. Enregistrez cette valeur.
+   valeur retournée à partir de cette commande Hello est hello __ID d’application__ pour application hello. Enregistrez cette valeur.
 
-3. Utilisez la commande suivante pour créer un principal du service à l’aide de **l’ID de l’application**.
+3. Toocreate de commande suivant de hello utilisez un principal de service à l’aide de hello **ID d’application**.
 
    ```bash
    az ad sp create --id <App ID> --query 'objectId'
    ```
 
-     La valeur retournée par cette commande est __l’ID d’objet__. Enregistrez cette valeur.
+     valeur retournée à partir de cette commande Hello est hello __ID d’objet__. Enregistrez cette valeur.
 
-4. Affectez le rôle **Owner** (Propriétaire) au principal du service à l’aide de la valeur **Object ID** (ID d’objet). Utilisez **l’ID d’abonnement** obtenu précédemment.
+4. Affecter hello **propriétaire** rôle toohello principal de service à l’aide de hello **ID d’objet** valeur. Hello d’utilisation **ID d’abonnement** obtenues précédemment.
 
    ```bash
    az role assignment create --assignee <Object ID> --role Owner --scope /subscriptions/<Subscription ID>/
@@ -268,7 +268,7 @@ Suivez la procédure décrite dans la [prise en main d’Azure CLI 2.0](https://
 
 ## <a name="get-an-authentication-token"></a>Obtenir un jeton d’authentification
 
-Utilisez la commande suivante pour récupérer un jeton d’authentification :
+Utilisez hello suivant commande tooretrieve un jeton d’authentification :
 
 ```bash
 curl -X "POST" "https://login.microsoftonline.com/$TENANTID/oauth2/token" \
@@ -280,11 +280,11 @@ curl -X "POST" "https://login.microsoftonline.com/$TENANTID/oauth2/token" \
 --data-urlencode "resource=https://management.azure.com/"
 ```
 
-Définissez `$TENANTID`, `$APPID` et `$PASSWORD` sur des valeurs obtenues ou utilisées précédemment.
+Définissez `$TENANTID`, `$APPID`, et `$PASSWORD` toohello valeurs obtenues ou précédemment utilisé.
 
-Si cette demande aboutit, vous recevez une réponse de type 200 dont le corps contient un document JSON.
+Si cette demande réussit, vous recevez une réponse 200 de série et les corps de réponse hello contient un document JSON.
 
-Le document JSON retourné par cette demande contient un élément nommé **access_token**. La valeur de l’élément **access_token** est utilisée pour les demandes d’authentification adressées à l’API REST.
+Hello document JSON retourné par la demande contient un élément nommé **access_token**. Hello valeur **access_token** est utilisé tooauthentication demandes toohello API REST.
 
 ```json
 {
@@ -298,12 +298,12 @@ Le document JSON retourné par cette demande contient un élément nommé **acce
 
 ## <a name="create-a-resource-group"></a>Créer un groupe de ressources
 
-Procédez comme suit pour créer un groupe de ressources.
+Utilisez hello suivant toocreate un groupe de ressources.
 
-* Définissez `$SUBSCRIPTIONID` sur l’ID d’abonnement reçu lors de la création du principal du service.
-* Définissez `$ACCESSTOKEN` sur le jeton d’accès reçu à l’étape précédente.
-* Remplacez `DATACENTERLOCATION` par le centre de données dans lequel vous voulez créer le groupe de ressources et les ressources. Par exemple, « South Central US ».
-* Définissez `$RESOURCEGROUPNAME` sur le nom que vous souhaitez utiliser pour ce groupe :
+* Définissez `$SUBSCRIPTIONID` toohello ID d’abonnement reçues lors de la création de hello principal du service.
+* Définissez `$ACCESSTOKEN` toohello obtenu à l’étape précédente de hello du jeton d’accès.
+* Remplacez `DATACENTERLOCATION` avec le centre de données hello vous souhaitez le groupe de ressources toocreate hello et ressources, dans. Par exemple, « South Central US ».
+* Définissez `$RESOURCEGROUPNAME` toohello nom du toouse pour ce groupe :
 
 ```bash
 curl -X "PUT" "https://management.azure.com/subscriptions/$SUBSCRIPTIONID/resourcegroups/$RESOURCEGROUPNAME?api-version=2015-01-01" \
@@ -314,34 +314,34 @@ curl -X "PUT" "https://management.azure.com/subscriptions/$SUBSCRIPTIONID/resour
 }'
 ```
 
-Si cette demande est acceptée, vous recevez une réponse 200 qui contient un document JSON renfermant des informations sur le groupe. L’élément `"provisioningState"` contient la valeur `"Succeeded"`.
+Si cette demande réussit, vous recevez une réponse 200 de série et les corps de réponse hello contient un document JSON contenant des informations sur le groupe de hello. Hello `"provisioningState"` élément contient une valeur de `"Succeeded"`.
 
 ## <a name="create-a-deployment"></a>Créer un déploiement
 
-Utilisez la commande suivante pour déployer le modèle sur le groupe de ressources.
+Utilisez hello suivant du groupe de ressources toohello de modèle de commande toodeploy hello.
 
-* Définissez `$DEPLOYMENTNAME` sur le nom que vous souhaitez utiliser pour ce déploiement.
+* Définissez `$DEPLOYMENTNAME` toohello nom du toouse pour ce déploiement.
 
 ```bash
 curl -X "PUT" "https://management.azure.com/subscriptions/$SUBSCRIPTIONID/resourcegroups/$RESOURCEGROUPNAME/providers/microsoft.resources/deployments/$DEPLOYMENTNAME?api-version=2015-01-01" \
 -H "Authorization: Bearer $ACCESSTOKEN" \
 -H "Content-Type: application/json" \
--d "{set your body string to the template and parameters}"
+-d "{set your body string toohello template and parameters}"
 ```
 
 > [!NOTE]
-> Si vous avez enregistré le modèle dans un fichier, vous pouvez utiliser la commande suivante à la place de `-d "{ template and parameters}"`:
+> Si vous avez enregistré le fichier de tooa hello modèle, vous pouvez utiliser hello suivant de commande au lieu de `-d "{ template and parameters}"`:
 >
 > `--data-binary "@/path/to/file.json"`
 
-Si cette demande est acceptée, vous recevez une réponse 200 qui contient un document JSON renfermant des informations sur le déploiement.
+Si cette demande réussit, vous recevez une réponse 200 de série et les corps de réponse hello contient un document JSON contenant des informations sur l’opération de déploiement hello.
 
 > [!IMPORTANT]
-> Le déploiement a été soumis, mais n’est pas terminé. Le processus de déploiement prend généralement 15 minutes environ.
+> déploiement de Hello a été envoyée, mais n’est pas terminée. Il peut prendre plusieurs minutes, en règle générale environ 15, hello déploiement toocomplete.
 
-## <a name="check-the-status-of-a-deployment"></a>Vérifier l’état d’un déploiement
+## <a name="check-hello-status-of-a-deployment"></a>Vérifiez l’état d’un déploiement hello
 
-Pour vérifier le statut du déploiement, utilisez la commande suivante :
+état de hello toocheck de déploiement hello, hello utilisez commande suivante :
 
 ```bash
 curl -X "GET" "https://management.azure.com/subscriptions/$SUBSCRIPTIONID/resourcegroups/$RESOURCEGROUPNAME/providers/microsoft.resources/deployments/$DEPLOYMENTNAME?api-version=2015-01-01" \
@@ -349,7 +349,7 @@ curl -X "GET" "https://management.azure.com/subscriptions/$SUBSCRIPTIONID/resour
 -H "Content-Type: application/json"
 ```
 
-Cette commande renvoie un document JSON renfermant des informations sur le déploiement. L’élément `"provisioningState"` contient l’état du déploiement. Si cet élément contient la valeur `"Succeeded"`, cela indique que le déploiement a été correctement effectué.
+Cette commande retourne un document JSON contenant des informations sur l’opération de déploiement hello. Hello `"provisioningState"` élément contient l’état hello du déploiement de hello. Si cet élément contient une valeur de `"Succeeded"`, puis déploiement de hello est bien terminée.
 
 ## <a name="troubleshoot"></a>Résolution des problèmes
 
@@ -357,7 +357,7 @@ Si vous rencontrez des problèmes lors de la création de clusters HDInsight, re
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Vous avez créé un cluster HDInsight. Pour apprendre à l’utiliser, consultez les rubriques ci-dessous.
+Maintenant que vous avez créé un cluster HDInsight, utilisez hello suivant toolearn comment toowork avec votre cluster.
 
 ### <a name="hadoop-clusters"></a>Clusters Hadoop
 

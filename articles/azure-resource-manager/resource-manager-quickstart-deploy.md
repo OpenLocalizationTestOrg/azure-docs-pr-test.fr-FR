@@ -1,6 +1,6 @@
 ---
-title: "Déployer des ressources sur Azure | Microsoft Docs"
-description: "Utilisez Azure PowerShell ou l’interface de ligne de commande Azure pour déployer des ressources sur Azure. Les ressources sont définies dans un modèle Resource Manager."
+title: aaaDeploy ressources tooAzure | Documents Microsoft
+description: "Utilisez tooAzure de ressources toodeploy Azure PowerShell ou CLI d’Azure. ressources de Hello sont définies dans un modèle de gestionnaire de ressources."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,37 +14,37 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 02/16/2017
 ms.author: tomfitz
-ms.openlocfilehash: 19d5ec337a18b1a159de05ed611b2ccd0c15c592
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0cd3f8ad45af1fb85c78899b56f6807d00b859f5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-resources-to-azure"></a>Déployer des ressources sur Azure
+# <a name="deploy-resources-tooazure"></a>Déployer des ressources tooAzure
 
-Cette rubrique explique comment déployer des ressources sur votre abonnement Azure. Vous pouvez utiliser Azure PowerShell ou l’interface de ligne de commande Azure pour déployer un modèle Resource Manager qui définit l’infrastructure de votre solution.
+Cette rubrique montre comment toodeploy ressources tooyour abonnement Azure. Vous pouvez utiliser Azure PowerShell ou CLI d’Azure toodeploy un modèle de gestionnaire de ressources qui définit l’infrastructure hello pour votre solution.
 
-Pour une introduction aux concepts de Resource Manager, consultez [Vue d'ensemble d’Azure Resource Manager](resource-group-overview.md).
+Pour une introduction tooconcepts du Gestionnaire de ressources, consultez [vue d’ensemble du Gestionnaire de ressources Azure](resource-group-overview.md).
 
 ## <a name="steps-for-deployment"></a>Étapes de déploiement
 
-Cette rubrique suppose que vous déployez l[’exemple de modèle de stockage](#example-storage-template) dans cette rubrique. Vous pouvez utiliser un modèle différent, mais les paramètres que vous transmettez sont différents de ceux indiqués dans cette rubrique.
+Cette rubrique suppose que vous déployez hello [exemple de modèle de stockage](#example-storage-template) dans cette rubrique. Vous pouvez utiliser un autre modèle, mais vous passez des paramètres de hello sont autre que celui indiqué dans cette rubrique.
 
-Après avoir créé un modèle, les étapes générales pour le déploiement de votre modèle sont les suivantes :
+Après avoir créé un modèle, les étapes générales de hello pour le déploiement de votre modèle sont :
 
-1. Se connecter à son compte
-2. Sélectionnez l’abonnement à utiliser (uniquement si vous en avez plusieurs et souhaitez utiliser un abonnement qui n’est pas celui défini par défaut)
+1. Connectez-vous au compte de tooyour
+2. Sélectionnez toouse d’abonnement hello (nécessaire uniquement si vous avez plusieurs abonnements et que vous souhaitez toouse qui n’est pas hello par défaut abonnement)
 3. Créer un groupe de ressources
-4. Déployer le modèle
+4. Déployer le modèle de hello
 5. Vérifier l’état de votre déploiement
 
-Les sections suivantes vous expliquent comment effectuer ces étapes à l’aide de [PowerShell](#powershell) ou de [l’interface de ligne de commande Azure](#azure-cli).
+Hello sections suivantes montrent comment tooperform ces étapes avec [PowerShell](#powershell) ou [CLI d’Azure](#azure-cli).
 
 ## <a name="powershell"></a>PowerShell
 
-1. Pour Installer Azure PowerShell, consultez [Prise en main des applets de commande Azure PowerShell](/powershell/azure/overview).
+1. tooinstall Azure PowerShell, consultez [prise en main des applets de commande Azure PowerShell](/powershell/azure/overview).
 
-2. Pour commencer le déploiement rapidement, utilisez les applets de commande suivantes :
+2. tooquickly prise en main déploiement, utilisez hello suivant d’applets de commande :
 
   ```powershell
   Login-AzureRmAccount
@@ -54,13 +54,13 @@ Les sections suivantes vous expliquent comment effectuer ces étapes à l’aide
   New-AzureRmResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName ExampleGroup -TemplateFile c:\MyTemplates\azuredeploy.json 
   ```
 
-  L’applet de commande `Set-AzureRmContext` est nécessaire uniquement si vous souhaitez utiliser un abonnement autre que votre abonnement par défaut. Pour afficher tous vos abonnements et leurs numéros d’identification, utilisez :
+  Hello `Set-AzureRmContext` applet de commande est uniquement nécessaire si vous souhaitez toouse un abonnement autre que votre abonnement par défaut. toosee tous vos abonnements et leurs ID, utilisez :
 
   ```powershell
   Get-AzureRmSubscription
   ```
 
-3. Le déploiement peut prendre plusieurs minutes. Une fois l’opération terminée, un message similaire à celui apparaît :
+3. déploiement de Hello peut prendre quelques minutes toocomplete. Une fois l’opération terminée, un message similaire à celui apparaît :
 
   ```powershell
   DeploymentName          : ExampleDeployment
@@ -70,14 +70,14 @@ Les sections suivantes vous expliquent comment effectuer ces étapes à l’aide
   ...
   ```
 
-4. Pour vérifier que votre groupe de ressources et votre compte de stockage ont été déployés sur votre abonnement, utilisez :
+4. toosee votre compte de stockage et le groupe de ressources ont été déployés tooyour abonnement, utilisez :
 
   ```powershell
   Get-AzureRmResourceGroup -Name ExampleGroup
   Find-AzureRmResource -ResourceGroupNameEquals ExampleGroup
   ```
 
-5. Vous pouvez spécifier des modèles de paramètres comme paramètres PowerShell lors du déploiement d’un modèle. Comme l’exemple précédent ne comportait aucun modèle de paramètre, les valeurs par défaut du modèle ont été utilisées. Pour déployer un autre compte de stockage et fournir des valeurs de paramètres pour le préfixe du nom de stockage et la référence du compte de stockage, utilisez :
+5. Vous pouvez spécifier des modèles de paramètres comme paramètres PowerShell lors du déploiement d’un modèle. Hello exemple précédent n’incluait pas tous les paramètres de modèle, afin de valeurs par défaut de hello dans le modèle de hello ont été utilisés. toodeploy stockage d’un autre compte et fournir des valeurs de paramètre pour le préfixe du nom de stockage hello et compte de stockage hello référence (SKU), utilisez :
 
   ```powershell
   New-AzureRmResourceGroupDeployment -Name ExampleDeployment2 -ResourceGroupName ExampleGroup -TemplateFile c:\MyTemplates\azuredeploy.json -storageNamePrefix "contoso" -storageSKU "Standard_GRS"
@@ -87,9 +87,9 @@ Les sections suivantes vous expliquent comment effectuer ces étapes à l’aide
 
 ## <a name="azure-cli"></a>Interface de ligne de commande Azure
 
-1. Pour installer l’interface de ligne de commande Azure, consultez [Installer l’interface de ligne de commande Azure 2.0](/cli/azure/install-az-cli2).
+1. tooinstall CLI d’Azure, consultez [installer Azure CLI 2.0](/cli/azure/install-az-cli2).
 
-2. Pour commencer le déploiement rapidement, utilisez les commandes suivantes :
+2. tooquickly prise en main déploiement, utilisez hello suivant les commandes :
 
   ```azurecli
   az login
@@ -99,26 +99,26 @@ Les sections suivantes vous expliquent comment effectuer ces étapes à l’aide
   az group deployment create --name ExampleDeployment --resource-group ExampleGroup --template-file c:\MyTemplates\azuredeploy.json
   ```
 
-  La commande `az account set` est uniquement nécessaire si vous souhaitez utiliser un abonnement autre que votre abonnement par défaut. Pour afficher tous vos abonnements et leurs numéros d’identification, utilisez :
+  Hello `az account set` commande est uniquement nécessaire si vous souhaitez toouse un abonnement autre que votre abonnement par défaut. toosee tous vos abonnements et leurs ID, utilisez :
 
   ```azurecli
   az account list
   ```
 
-3. Le déploiement peut prendre plusieurs minutes. Une fois l’opération terminée, un message similaire à celui apparaît :
+3. déploiement de Hello peut prendre quelques minutes toocomplete. Une fois l’opération terminée, un message similaire à celui apparaît :
 
   ```azurecli
   "provisioningState": "Succeeded",
   ```
 
-4. Pour vérifier que votre groupe de ressources et votre compte de stockage ont été déployés sur votre abonnement, utilisez :
+4. toosee votre compte de stockage et le groupe de ressources ont été déployés tooyour abonnement, utilisez :
 
   ```azurecli
   az group show --name ExampleGroup
   az resource list --resource-group ExampleGroup
   ```
 
-5. Vous pouvez spécifier des modèles de paramètres comme paramètres PowerShell lors du déploiement d’un modèle. Comme l’exemple précédent ne comportait aucun modèle de paramètre, les valeurs par défaut du modèle ont été utilisées. Pour déployer un autre compte de stockage et fournir des valeurs de paramètres pour le préfixe du nom de stockage et la référence du compte de stockage, utilisez :
+5. Vous pouvez spécifier des modèles de paramètres comme paramètres PowerShell lors du déploiement d’un modèle. Hello exemple précédent n’incluait pas tous les paramètres de modèle, afin de valeurs par défaut de hello dans le modèle de hello ont été utilisés. toodeploy stockage d’un autre compte et fournir des valeurs de paramètre pour le préfixe du nom de stockage hello et compte de stockage hello référence (SKU), utilisez :
 
   ```azurecli
   az group deployment create --name ExampleDeployment2 --resource-group ExampleGroup --template-file c:\MyTemplates\azuredeploy.json --parameters '{"storageNamePrefix":{"value":"contoso"},"storageSKU":{"value":"Standard_GRS"}}'
@@ -128,7 +128,7 @@ Les sections suivantes vous expliquent comment effectuer ces étapes à l’aide
 
 ## <a name="example-storage-template"></a>Exemple de modèle de stockage
 
-Utilisez l’exemple de modèle suivant pour déployer un compte de stockage sur votre abonnement :
+Utilisez hello suivant exemple modèle toodeploy un abonnement de tooyour de compte de stockage :
 
 ```json
 {
@@ -140,7 +140,7 @@ Utilisez l’exemple de modèle suivant pour déployer un compte de stockage su
       "maxLength": 11,
       "defaultValue": "storage",
       "metadata": {
-        "description": "The value to use for starting the storage account name."
+        "description": "hello value toouse for starting hello storage account name."
       }
     },
     "storageSKU": {
@@ -154,7 +154,7 @@ Utilisez l’exemple de modèle suivant pour déployer un compte de stockage su
       ],
       "defaultValue": "Standard_LRS",
       "metadata": {
-        "description": "The type of replication to use for the storage account."
+        "description": "hello type of replication toouse for hello storage account."
       }
     }
   },
@@ -182,8 +182,8 @@ Utilisez l’exemple de modèle suivant pour déployer un compte de stockage su
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* Pour plus d’informations sur l’utilisation de PowerShell afin de déployer des modèles, consultez [Déployer des ressources à l’aide de modèles Resource Manager et d’Azure PowerShell](/azure/azure-resource-manager/resource-group-template-deploy).
-* Pour plus d’informations sur l’utilisation de l’interface de ligne de commande Azure afin de déployer des modèles, consultez [Déployer des ressources à l’aide de modèles Resource Manager et de l’interface de ligne de commande Azure](/azure/azure-resource-manager/resource-group-template-deploy-cli).
+* Pour plus d’informations sur l’utilisation de modèles de toodeploy PowerShell, consultez [déployer des ressources avec des modèles de gestionnaire de ressources et d’Azure PowerShell](/azure/azure-resource-manager/resource-group-template-deploy).
+* Pour plus d’informations sur l’utilisation de modèles de toodeploy CLI d’Azure, consultez [déployer des ressources avec des modèles de gestionnaire de ressources et CLI d’Azure](/azure/azure-resource-manager/resource-group-template-deploy-cli).
 
 
 

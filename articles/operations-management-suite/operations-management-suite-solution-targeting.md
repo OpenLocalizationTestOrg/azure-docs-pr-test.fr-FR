@@ -1,6 +1,6 @@
 ---
-title: Ciblage de solution dans OMS | Microsoft Docs
-description: "Le ciblage de solution est une fonctionnalité dans Operations Management Suite (OMS) qui vous permet de limiter les solutions de gestion à un ensemble spécifique d’agents.  Cet article décrit comment créer une configuration d’étendue et l’appliquer à une solution."
+title: "ciblage d’aaaSolution dans OMS | Documents Microsoft"
+description: "Ciblage de la solution est une fonctionnalité dans Operations Management Suite (OMS) qui vous permet de toolimit management solutions tooa ensemble spécifique d’agents.  Cet article décrit comment toocreate une configuration de l’étendue et appliquez-le tooa solution."
 services: operations-management-suite
 documentationcenter: 
 author: bwren
@@ -14,64 +14,64 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/27/2017
 ms.author: bwren
-ms.openlocfilehash: cb73a2d7ae57a5a11869259dbe913ae83ffb2b01
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6f8c8109e0d9e282e18724bf8b673b10de8e498a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-solution-targeting-in-operations-management-suite-oms-to-scope-management-solutions-to-specific-agents-preview"></a>Utilisez le ciblage de solution dans Operations Management Suite (OMS) pour limiter les solutions de gestion à des agents spécifiques (version préliminaire)
-Lorsque vous ajoutez une solution à OMS, elle est déployée automatiquement par défaut à tous les agents Windows et Linux connectés à votre espace de travail Log Analytics.  Vous pouvez gérer vos coûts et limiter la quantité de données collectées pour une solution en limitant celle-ci à un ensemble spécifique d’agents.  Cet article explique comment utiliser le **ciblage de solution**, une fonctionnalité OMS qui permet d’appliquer une étendue à vos solutions.
+# <a name="use-solution-targeting-in-operations-management-suite-oms-tooscope-management-solutions-toospecific-agents-preview"></a>Utiliser la solution de ciblage dans Operations Management Suite (OMS) agents de toospecific de solutions de gestion tooscope (version préliminaire)
+Lorsque vous ajoutez un tooOMS de solution, il est déployé automatiquement par défaut tooall Windows et Linux agents connectés tooyour Analytique de journal espace de travail.  Vous souhaiterez toomanage votre quantité hello les coûts et la limite de données collectée pour une solution en limitant l’ensemble particulier de tooa d’agents.  Cet article décrit comment toouse **Solution ciblant** qui est une fonctionnalité d’OMS qui vous permet de tooapply une étendue tooyour solutions.
 
-## <a name="how-to-target-a-solution"></a>Ciblage d’une solution
-Il existe trois étapes au ciblage d’une solution, comme décrit dans les sections suivantes.  Remarque : vous aurez besoin du portail OMS et du portail Azure pour les différentes étapes.
+## <a name="how-tootarget-a-solution"></a>Comment tootarget une solution
+Voici trois étapes tootargeting une solution comme décrit dans les sections suivantes de hello.  Notez que vous devez à la fois du portail OMS hello et hello portail Azure pour les différentes étapes.
 
 
 ### <a name="1-create-a-computer-group"></a>1. Créer un groupe d’ordinateurs
-Vous spécifiez les ordinateurs que vous souhaitez inclure dans une étendue en créant un [groupe d’ordinateurs](../log-analytics/log-analytics-computer-groups.md) dans Log Analytics.  Le groupe d’ordinateurs peut être basé sur une recherche dans les journaux ou importé à partir d’autres sources comme les groupes WSUS ou Active Directory. Comme [décrit ci-dessous](#solutions-and-agents-that-cant-be-targeted), seuls les ordinateurs qui sont directement connectés à Log Analytics figurent dans l’étendue.
+Vous spécifiez hello ordinateurs sur lesquels tooinclude dans une étendue en créant un [groupe d’ordinateurs](../log-analytics/log-analytics-computer-groups.md) dans le journal Analytique.  groupe d’ordinateurs Hello peut être basé sur une recherche de journal ou importé à partir d’autres sources telles que Active Directory ou les groupes WSUS. En tant que [ci-dessous](#solutions-and-agents-that-cant-be-targeted), seuls les ordinateurs qui sont directement connectés tooLog Analytique est inclus dans l’étendue de hello.
 
-Une fois que le groupe d’ordinateurs est créé dans votre espace de travail, vous devez l’inclure dans une configuration d’étendue qui peut être appliquée à une ou plusieurs solutions.
+Une fois que vous avez groupe d’ordinateurs hello créé dans votre espace de travail, vous devez l’inclure dans une configuration de l’étendue qui peut être appliqué tooone ou autres solutions.
  
  
  ### <a name="2-create-a-scope-configuration"></a>2. Création d’une configuration d’étendue
- Une **configuration d’étendue** inclut un ou plusieurs groupes d’ordinateurs et peut être appliquée à une ou plusieurs solutions. 
+ A **Configuration de l’étendue** inclut un ou plusieurs groupes d’ordinateurs et peut être appliqué tooone ou autres solutions. 
  
- Créez une configuration d’étendue à l’aide de la procédure suivante.  
+ Créer une configuration de l’étendue à l’aide de hello suivant le processus.  
 
- 1. Dans le portail Azure, accédez à **Log Analytics** et sélectionnez votre espace de travail.
- 2. Dans les propriétés de l’espace de travail sous **Sources de données de l’espace de travail**, sélectionnez **Configurations d’étendue**.
- 3. Cliquez sur **Ajouter** pour créer une configuration d’étendue.
- 4. Entrez un **nom** pour la configuration d’étendue.
+ 1. Dans l’hello portail Azure, accédez trop**Analytique de journal** et sélectionnez votre espace de travail.
+ 2. Dans les propriétés de hello pour l’espace de travail hello **Sources de données d’espace de travail** sélectionnez **étendue Configurations**.
+ 3. Cliquez sur **ajouter** toocreate une nouvelle configuration de l’étendue.
+ 4. Tapez un **nom** pour la configuration de l’étendue hello.
  5. Cliquez sur **Sélectionner des groupes d’ordinateurs**.
- 6. Sélectionnez le groupe d’ordinateurs que vous avez créé et éventuellement d’autres groupes à ajouter à la configuration.  Cliquez sur **Sélectionner**.  
- 6. Cliquez sur **OK** pour créer la configuration d’étendue. 
+ 6. Sélectionnez le groupe d’ordinateurs hello que vous avez créé et éventuellement les autres groupes tooadd toohello configuration.  Cliquez sur **Sélectionner**.  
+ 6. Cliquez sur **OK** configuration de l’étendue toocreate hello. 
 
 
- ### <a name="3-apply-the-scope-configuration-to-a-solution"></a>3. Appliquez la configuration d’étendue à une solution.
-Une fois que vous avez une configuration d’étendue, vous pouvez l’appliquer à une ou plusieurs solutions.  Notez qu’une seule configuration d’étendue peut être utilisée avec plusieurs solutions, mais chaque solution ne peut utiliser qu’une seule configuration d’étendue.
+ ### <a name="3-apply-hello-scope-configuration-tooa-solution"></a>3. Appliquer la solution de tooa configuration hello étendue.
+Une fois que vous avez une configuration de l’étendue, puis vous pouvez l’appliquer tooone ou autres solutions.  Notez qu’une seule configuration d’étendue peut être utilisée avec plusieurs solutions, mais chaque solution ne peut utiliser qu’une seule configuration d’étendue.
 
-Appliquez une configuration d’étendue à l’aide de la procédure suivante.  
+Appliquer une configuration étendue à l’aide de hello suivant le processus.  
 
- 1. Dans le portail Azure, accédez à **Log Analytics** et sélectionnez votre espace de travail.
- 2. Dans les propriétés de l’espace de travail, sélectionnez **Solutions**.
- 3. Cliquez sur la solution à laquelle appliquer une étendue.
- 4. Dans les propriétés de la solution sous **Sources de données de l’espace de travail**, sélectionnez **Ciblage de solution**.  Si l’option n’est pas disponible, alors [cette solution ne peut pas être ciblée](#solutions-and-agents-that-cant-be-targeted).
- 5. Cliquez sur **Ajouter une configuration d’étendue**.  Si une configuration est déjà appliquée à cette solution, alors cette option n’est pas disponible.  Vous devez supprimer la configuration existante avant d’en ajouter une autre.
- 6. Cliquez sur la configuration d’étendue que vous avez créée.
- 7. Consultez **l’état** de la configuration pour vous assurer qu’il s’affiche en tant que **Réussi**.  Si l’état indique une erreur, cliquez sur les points de suspension à droite de la configuration et sélectionnez **Modifier la configuration d’étendue** pour apporter des modifications.
+ 1. Dans l’hello portail Azure, accédez trop**Analytique de journal** et sélectionnez votre espace de travail.
+ 2. Dans les propriétés de hello pour l’espace de travail hello sélectionnez **Solutions**.
+ 3. Cliquez sur la solution de hello souhaité tooscope.
+ 4. Dans les propriétés de hello de solution hello sous **Sources de données d’espace de travail** sélectionnez **Solution ciblant**.  Si l’option de hello n’est pas disponible puis [cette solution ne peut pas être ciblée](#solutions-and-agents-that-cant-be-targeted).
+ 5. Cliquez sur **Ajouter une configuration d’étendue**.  Si vous disposez déjà d’une solution de toothis configuration appliquée cette option n’est pas disponible.  Vous devez supprimer la configuration existante de hello avant d’ajouter un autre.
+ 6. Cliquez sur la configuration de l’étendue hello que vous avez créé.
+ 7. Hello d’espion **état** de tooensure de configuration de hello il montre **Succeeded**.  Si l’état de hello indique une erreur, puis cliquez sur hello ellipse toohello de configuration de hello et sélectionnez **configuration de modifier l’étendue** toomake modifications.
 
 ## <a name="solutions-and-agents-that-cant-be-targeted"></a>Solutions et agents ne pouvant pas être ciblés
-Voici les critères pour les agents et les solutions qui ne peuvent pas être utilisés avec le ciblage de solution.
+Voici les critères hello pour les agents et les solutions qui ne peut pas être utilisées avec le ciblage de la solution.
 
-- Le ciblage de solution s’applique uniquement aux solutions avec déploiement sur les agents.
-- Le ciblage de solution s’applique uniquement aux solutions fournies par Microsoft.  Il ne s’applique pas aux solutions [créées par vous-même ou vos partenaires](operations-management-suite-solutions-creating.md).
-- Vous pouvez filtrer uniquement les agents qui se connectent directement à Log Analytics.  Les solutions se déploient automatiquement sur les agents (qu’ils soient inclus dans une configuration d’étendue ou non) qui font partie d’un groupe d’administration Operations Manager connecté.
+- Ciblage de la solution ne s’applique toosolutions tooagents à déployer.
+- Ciblage de la solution ne s’applique toosolutions fournies par Microsoft.  Il ne s’applique pas toosolutions [créés par vous-même ou partenaires](operations-management-suite-solutions-creating.md).
+- Vous ne pouvez filtrer les agents qui se connectent directement tooLog Analytique.  Solutions déploient automatiquement les agents tooany qui font partie d’un groupe d’administration Operations Manager connecté ou non, ils sont inclus dans une configuration de l’étendue.
 
 ### <a name="exceptions"></a>Exceptions
-Le ciblage de solution ne peut pas être utilisé avec les solutions suivantes, même si elles sont conformes aux critères indiqués.
+Ciblage de la solution ne peut pas être utilisé avec hello suivant solutions même si elles tiennent hello établi des critères.
 
 - Évaluation de l’intégrité de l’agent
 
 ## <a name="next-steps"></a>Étapes suivantes
-- En savoir plus sur les solutions de gestion, notamment les solutions qui peuvent être installées dans votre environnement en consultant [Ajout de solutions de gestion Azure Log Analytics dans votre espace de travail](../log-analytics/log-analytics-add-solutions.md).
+- En savoir plus sur les solutions de gestion, y compris les solutions hello tooinstall disponible dans votre environnement à [espace de travail Analytique des journaux de Azure ajouter management solutions tooyour](../log-analytics/log-analytics-add-solutions.md).
 - En savoir plus sur la création de groupes d’ordinateurs en consultant [Groupes d’ordinateurs dans la recherche dans les journaux de Log Analytics](../log-analytics/log-analytics-computer-groups.md).

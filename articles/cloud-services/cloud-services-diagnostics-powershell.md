@@ -1,6 +1,6 @@
 ---
-title: "Activer les diagnostics dans Azure Cloud Services à l’aide de PowerShell | Microsoft Docs"
-description: "Découvrez comment activer les diagnostics pour les services cloud à l’aide de PowerShell"
+title: "aaaEnable des diagnostics dans Azure Cloud Services à l’aide de PowerShell | Documents Microsoft"
+description: "Découvrez comment tooenable des diagnostics pour cloud services à l’aide de PowerShell"
 services: cloud-services
 documentationcenter: .net
 author: Thraka
@@ -14,19 +14,19 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 09/06/2016
 ms.author: adegeo
-ms.openlocfilehash: 8dd9724981860c9cd4ccc443cc2bfdc465811e7c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7c7444df13edc8d7f5663e20ec7558d36aac45d4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="enable-diagnostics-in-azure-cloud-services-using-powershell"></a>Activer les diagnostics dans Azure Cloud Services à l’aide de PowerShell
-Vous pouvez collecter des données de diagnostic telles que les journaux des applications, les compteurs de performances, etc. à partir d’un service cloud à l’aide de l’extension de diagnostics Azure. Cet article décrit comment activer l’extension Diagnostics Azure pour un service cloud à l’aide de PowerShell.  Consultez [Installer et configurer Azure PowerShell Azure](/powershell/azure/overview) pour connaître les conditions requises pour cet article.
+Vous pouvez collecter des données de diagnostic tels que les journaux des applications, etc. à partir d’un Service Cloud à l’aide des compteurs de performance hello extension Azure Diagnostics. Cet article décrit comment tooenable hello extension Azure Diagnostics pour un Service Cloud à l’aide de PowerShell.  Consultez [comment tooinstall et configurer Azure PowerShell](/powershell/azure/overview) pour hello requis pour cet article.
 
 ## <a name="enable-diagnostics-extension-as-part-of-deploying-a-cloud-service"></a>Activer l’extension de diagnostics lors du déploiement d’un service cloud
-Cette approche peut s’appliquer aux scénarios d’intégration continue où l’extension de diagnostics peut être activée dans le cadre du déploiement d’un service cloud. Lorsque vous créez un nouveau déploiement de service cloud, vous pouvez activer l’extension de diagnostics en transmettant le paramètre *ExtensionConfiguration* à l’applet de commande [New-AzureDeployment](/powershell/module/azure/new-azuredeployment?view=azuresmps-3.7.0) . Le paramètre *ExtensionConfiguration* prend un tableau de configurations de diagnostics qui peut être créé à l’aide de l’applet de commande [New-AzureServiceDiagnosticsExtensionConfig](/powershell/module/azure/new-azureservicediagnosticsextensionconfig?view=azuresmps-3.7.0) .
+Cette approche est de type d’intégration toocontinuous applicable de scénarios, où les diagnostics hello extension peut être activée dans le cadre du déploiement hello service cloud. Lors de la création d’un nouveau déploiement de Service Cloud vous pouvez activer l’extension de diagnostics hello en passant hello *ExtensionConfiguration* paramètre toohello [New-Azuredeployement](/powershell/module/azure/new-azuredeployment?view=azuresmps-3.7.0) applet de commande. Hello *ExtensionConfiguration* accepte un tableau de configurations de diagnostics qui peuvent être créés à l’aide de hello [New-AzureServiceDiagnosticsExtensionConfig](/powershell/module/azure/new-azureservicediagnosticsextensionconfig?view=azuresmps-3.7.0) applet de commande.
 
-L’exemple suivant montre comment vous pouvez activer les diagnostics pour un service cloud avec un rôle web et un rôle de travail possédant chacun sa propre configuration de diagnostics.
+Hello suivant montre comment vous pouvez activer les diagnostics pour un service cloud avec WebRole et WorkerRole, ayant chacun une configuration de différents tests de diagnostic.
 
 ```powershell
 $service_name = "MyService"
@@ -41,23 +41,23 @@ $workerrole_diagconfig = New-AzureServiceDiagnosticsExtensionConfig -Role "Worke
 New-AzureDeployment -ServiceName $service_name -Slot Production -Package $service_package -Configuration $service_config -ExtensionConfiguration @($webrole_diagconfig,$workerrole_diagconfig)
 ```
 
-Si le fichier de configuration des diagnostics spécifie un élément `StorageAccount` avec un nom de compte de stockage, l’applet de commande `New-AzureServiceDiagnosticsExtensionConfig` utilise automatiquement ce compte de stockage. Pour que cela fonctionne, le compte de stockage doit appartenir au même abonnement que le service cloud déployé.
+Si le fichier de configuration de diagnostics hello spécifie un `StorageAccount` élément avec un nom de compte de stockage, puis hello `New-AzureServiceDiagnosticsExtensionConfig` applet de commande utilisent automatiquement ce compte de stockage. Pour que cette toowork, compte de stockage hello doit toobe dans hello même abonnement que hello Service Cloud en cours de déploiement.
 
-À partir d’Azure SDK 2.6, les fichiers de configuration de l’extension générés par la sortie cible de publication MSBuild incluent le nom du compte de stockage en fonction de la chaîne de configuration des diagnostics spécifiée dans le fichier de configuration de service (.cscfg). Le script ci-dessous vous montre comment analyser les fichiers de configuration de l’extension à partir de la sortie cible de publication, et comment configurer l’extension de diagnostics pour chaque rôle lorsque vous déployez le service cloud.
+À partir de Azure SDK 2.6 publier des fichiers de configuration d’extension hello ultérieur générés par hello MSBuild sortie cible les nom de compte de stockage hello en fonction de la chaîne de configuration de diagnostics hello spécifié dans le fichier de configuration de service hello (.cscfg). script Hello ci-dessous vous montre comment tooparse hello Extension des fichiers de configuration hello la sortie de la cible de publication et configurer l’extension diagnostics pour chaque rôle lors du déploiement de service de cloud computing hello.
 
 ```powershell
 $service_name = "MyService"
 $service_package = "C:\build\output\CloudService.cspkg"
 $service_config = "C:\build\output\ServiceConfiguration.Cloud.cscfg"
 
-#Find the Extensions path based on service configuration file
+#Find hello Extensions path based on service configuration file
 $extensionsSearchPath = Join-Path -Path (Split-Path -Parent $service_config) -ChildPath "Extensions"
 
 $diagnosticsExtensions = Get-ChildItem -Path $extensionsSearchPath -Filter "PaaSDiagnostics.*.PubConfig.xml"
 $diagnosticsConfigurations = @()
 foreach ($extPath in $diagnosticsExtensions)
 {
-    #Find the RoleName based on file naming convention PaaSDiagnostics.<RoleName>.PubConfig.xml
+    #Find hello RoleName based on file naming convention PaaSDiagnostics.<RoleName>.PubConfig.xml
     $roleName = ""
     $roles = $extPath -split ".",0,"simplematch"
     if ($roles -is [system.array] -and $roles.Length -gt 1)
@@ -84,11 +84,11 @@ foreach ($extPath in $diagnosticsExtensions)
 New-AzureDeployment -ServiceName $service_name -Slot Production -Package $service_package -Configuration $service_config -ExtensionConfiguration $diagnosticsConfigurations
 ```
 
-Visual Studio Online utilise une approche similaire pour les déploiements automatisés de services cloud avec l’extension de diagnostics. Consultez [Publish-AzureCloudDeployment.ps1](https://github.com/Microsoft/vso-agent-tasks/blob/master/Tasks/AzureCloudPowerShellDeployment/Publish-AzureCloudDeployment.ps1) pour obtenir un exemple complet.
+Visual Studio Online utilise une approche similaire pour des déploiements automatisés de Services Cloud avec l’extension de diagnostics hello. Consultez [Publish-AzureCloudDeployment.ps1](https://github.com/Microsoft/vso-agent-tasks/blob/master/Tasks/AzureCloudPowerShellDeployment/Publish-AzureCloudDeployment.ps1) pour obtenir un exemple complet.
 
-Si aucun `StorageAccount` n’a été spécifié dans la configuration des diagnostics, vous devez transmettre le paramètre *StorageAccountName* à l’applet de commande. Si le paramètre *StorageAccountName* est spécifié, l’applet de commande utilise toujours le compte de stockage spécifié dans le paramètre et non celui spécifié dans le fichier de configuration des diagnostics.
+Si aucun `StorageAccount` a été spécifié dans la configuration des diagnostics hello, vous devez toopass Bonjour *StorageAccountName* paramètre toohello applet de commande. Si hello *StorageAccountName* paramètre est spécifié, puis applet de commande hello sera toujours utiliser le compte de stockage hello est spécifié dans le paramètre hello et pas hello qui est spécifié dans le fichier de configuration des diagnostics hello.
 
-Si le compte de stockage de diagnostics appartient à un autre abonnement que celui du service cloud, vous devez transmettre explicitement les paramètres *StorageAccountName* et *StorageAccountKey* à l’applet de commande. Le paramètre *StorageAccountKey* n’est pas nécessaire lorsque le compte de stockage de diagnostics appartient au même abonnement si l’applet de commande peut interroger et définir automatiquement la valeur clé lors de l’activation de l’extension de diagnostics. Toutefois, si le compte de stockage de diagnostics appartient à un autre abonnement, l’applet de commande n’est peut-être pas en mesure d’obtenir automatiquement la clé, et vous devez explicitement spécifier celle-ci par le biais du paramètre *StorageAccountKey* .
+Si les diagnostics hello compte de stockage est dans un autre abonnement hello Service Cloud, vous devez tooexplicitly passez hello *StorageAccountName* et *StorageAccountKey* paramètres applet de commande toohello. Hello *StorageAccountKey* paramètre n’est pas nécessaire lorsque les diagnostics hello compte de stockage est dans hello même abonnement, car l’applet de commande hello peut automatiquement de requête et définir la valeur de clé hello lors de l’activation de l’extension de diagnostics hello. Toutefois, si hello compte de stockage de diagnostics est dans un autre abonnement, puis hello applet de commande peuvent ne pas être automatiquement clé de hello tooget en mesure, vous devez tooexplicitly spécifiez clé hello via hello *StorageAccountKey* paramètre.
 
 ```powershell
 $webrole_diagconfig = New-AzureServiceDiagnosticsExtensionConfig -Role "WebRole" -DiagnosticsConfigurationPath $webrole_diagconfigpath -StorageAccountName $diagnosticsstorage_name -StorageAccountKey $diagnosticsstorage_key
@@ -96,7 +96,7 @@ $workerrole_diagconfig = New-AzureServiceDiagnosticsExtensionConfig -Role "Worke
 ```
 
 ## <a name="enable-diagnostics-extension-on-an-existing-cloud-service"></a>Activer l’extension de diagnostics sur un service cloud existant
-Vous pouvez utiliser l’applet de commande [Set-AzureServiceDiagnosticsExtension](/powershell/module/azure/set-azureservicediagnosticsextension?view=azuresmps-3.7.0) pour activer ou mettre à jour la configuration de diagnostics sur un service cloud qui est déjà en cours d’exécution.
+Vous pouvez utiliser hello [Set-AzureServiceDiagnosticsExtension](/powershell/module/azure/set-azureservicediagnosticsextension?view=azuresmps-3.7.0) applet de commande tooenable ou mise à jour de configuration des diagnostics sur un Service Cloud qui est déjà en cours d’exécution.
 
 [!INCLUDE [cloud-services-wad-warning](../../includes/cloud-services-wad-warning.md)]
 
@@ -112,28 +112,28 @@ Set-AzureServiceDiagnosticsExtension -DiagnosticsConfiguration @($webrole_diagco
 ```
 
 ## <a name="get-current-diagnostics-extension-configuration"></a>Obtenir la configuration actuelle de l’extension de diagnostics
-Pour obtenir la configuration de diagnostics actuelle pour un service cloud, utilisez l’applet de commande [Get-AzureServiceDiagnosticsExtension](/powershell/module/azure/get-azureservicediagnosticsextension?view=azuresmps-3.7.0) :
+Hello d’utilisation [Get-AzureServiceDiagnosticsExtension](/powershell/module/azure/get-azureservicediagnosticsextension?view=azuresmps-3.7.0) applet de commande tooget hello configuration des diagnostics pour un service cloud.
 
 ```powershell
 Get-AzureServiceDiagnosticsExtension -ServiceName "MyService"
 ```
 
 ## <a name="remove-diagnostics-extension"></a>Supprimer l’extension de diagnostics
-Pour désactiver les diagnostics sur un service cloud, vous pouvez utiliser l’applet de commande [Set-AzureServiceDiagnosticsExtension](/powershell/module/azure/remove-azureservicediagnosticsextension?view=azuresmps-3.7.0) .
+tooturn désactiver les tests de diagnostic sur un cloud service que vous pouvez utiliser hello [Remove-AzureServiceDiagnosticsExtension](/powershell/module/azure/remove-azureservicediagnosticsextension?view=azuresmps-3.7.0) applet de commande.
 
 ```powershell
 Remove-AzureServiceDiagnosticsExtension -ServiceName "MyService"
 ```
 
-Si vous avez activé l’extension de diagnostics à l’aide de *Set-AzureServiceDiagnosticsExtension* ou *New-AzureServiceDiagnosticsExtensionConfig* sans le paramètre *Role*, vous pouvez supprimer l’extension à l’aide de *Remove-AzureServiceDiagnosticsExtension* sans le paramètre *Role*. Si le paramètre *Role* a été utilisé lors de l’activation de l’extension, il doit également être utilisé lors de la suppression de l’extension.
+Si vous avez activé l’extension à l’aide des diagnostics hello *Set-AzureServiceDiagnosticsExtension* ou hello *New-AzureServiceDiagnosticsExtensionConfig* sans hello *rôle* paramètre, vous pouvez supprimer hello extension à l’aide *Remove-AzureServiceDiagnosticsExtension* sans hello *rôle* paramètre. Si hello *rôle* paramètre a été utilisé lors de l’activation d’extension de hello, puis il doit également être utilisé lors de la suppression d’extension de hello.
 
-Pour supprimer l’extension de diagnostics de chaque rôle individuel :
+extension des diagnostics hello tooremove à partir de chaque rôle individuel :
 
 ```powershell
 Remove-AzureServiceDiagnosticsExtension -ServiceName "MyService" -Role "WebRole"
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Pour obtenir une aide supplémentaire sur l’utilisation des diagnostics Azure et d’autres techniques pour résoudre les problèmes, consultez la page [Activation de Diagnostics dans Azure Cloud Services et Azure Virtual Machines](cloud-services-dotnet-diagnostics.md).
-* Le [schéma de configuration des diagnostics](https://msdn.microsoft.com/library/azure/dn782207.aspx) explique les différentes options de configuration xml pour l’extension de diagnostics.
-* Pour savoir comment activer l’extension de diagnostics pour les machines virtuelles, consultez [Créer une machine virtuelle Windows avec la surveillance et les diagnostics à l’aide d’un modèle Azure Resource Manager](../virtual-machines/windows/extensions-diagnostics-template.md)
+* Pour plus d’informations sur l’utilisation de diagnostics Azure et autres problèmes de tootroubleshoot techniques, consultez [activation des Diagnostics dans Azure Cloud Services et Machines virtuelles](cloud-services-dotnet-diagnostics.md).
+* Hello [schéma de Configuration de Diagnostics](https://msdn.microsoft.com/library/azure/dn782207.aspx) explique hello diverses configurations xml options pour l’extension de diagnostics hello.
+* toolearn extension de diagnostics tooenable hello pour les ordinateurs virtuels, voir [créer une machine virtuelle Windows avec l’analyse et de diagnostics à l’aide du modèle de gestionnaire de ressources Azure](../virtual-machines/windows/extensions-diagnostics-template.md)

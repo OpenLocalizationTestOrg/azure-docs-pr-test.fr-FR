@@ -1,5 +1,5 @@
 ---
-title: "Documentation Azure Machine Learning - Didacticiels, informations de référence sur les API | Microsoft Docs"
+title: "aaaAzure Machine Learning Documentation - didacticiels, référence de l’API | Documents Microsoft"
 description: "Documents, vidéos et exemples de modèle pour Machine Learning, un service cloud destiné aux développeurs et aux scientifiques des données qui utilisent des analyses prédictives dans leurs applications."
 services: machine-learning
 author: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 241cf0904f1c410575017f586c65f41ee3efc753
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7307d83a6c8059e581a37910d3af5a66fc502d0b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 #<a name="azure-machine-learning-documentation"></a>Documentation Azure Machine Learning
 
-Découvrez comment les scientifiques des données et les développeurs utilisent Machine Learning pour incorporer des analyses prédictives dans des applications. Des didacticiels, des vidéos et des exemples de modèle vous montrent comment créer et déployer des modèles Machine Learning.
+Découvrez comment les développeurs et les chercheurs de données utilisent analytique de Machine Learning tooembed prédictive dans des applications. Modèles d’exemple, des vidéos et didacticiels vous montrent comment toobuild et déployer des modèles d’apprentissage automatique.
 
 <ul class="panelContent cardsFTitle">
     <li>

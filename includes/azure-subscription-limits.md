@@ -12,7 +12,7 @@
 | [Groupes d'affinités](../articles/virtual-network/virtual-networks-migrate-to-regional-vnet.md) par abonnement |256 |256 |
 | Règles d’alerte par abonnement |250 |250 |
 
-<sup>1</sup>Les très petites instances comptent comme un cœur pour la limite de cœurs, malgré l'utilisation d'un cœur partiel.
+<sup>1</sup>très petite nombre d’instances en tant qu’un seul cœur dans nombre maximal de noyaux hello malgré l’utilisation d’un cœur partiels.
 
-<sup>2</sup>Cela inclut à la fois les comptes de stockage Standard et Premium. Si vous avez besoin de plus de 200 comptes de stockage, sollicitez le [Support Azure](https://azure.microsoft.com/support/faq/)pour obtenir une assistance. L’équipe Azure Storage examinera votre cas d’entreprise et pourra approuver jusqu’à 250 comptes de stockage. 
+<sup>2</sup>Cela inclut à la fois les comptes de stockage Standard et Premium. Si vous avez besoin de plus de 200 comptes de stockage, sollicitez le [Support Azure](https://azure.microsoft.com/support/faq/)pour obtenir une assistance. équipe du stockage Azure Hello Examinez vos cas et peut approuver les comptes de stockage too250. 
 

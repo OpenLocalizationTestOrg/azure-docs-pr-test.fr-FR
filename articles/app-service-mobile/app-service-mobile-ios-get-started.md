@@ -1,6 +1,6 @@
 ---
-title: "Créer une application iOS sur Azure App Service Mobile Apps | Microsoft Docs"
-description: "Suivez ce didacticiel pour commencer à utiliser des backends Azure Mobile App pour le développement iOS en Objective-C ou Swift"
+title: aaaCreate une application iOS sur Azure App Service Mobile Apps | Documents Microsoft
+description: "Suivez ce didacticiel tooget un bon départ avec les serveurs principaux de l’application mobile Azure pour le développement d’iOS dans Objective-C ou Swift"
 services: app-service\mobile
 documentationcenter: ios
 author: ggailey777
@@ -14,27 +14,27 @@ ms.devlang: objective-c
 ms.topic: hero-article
 ms.date: 10/01/2016
 ms.author: glenga
-ms.openlocfilehash: 36936ae66c458fcbedeec95cfa2f573a40c8af53
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 869fa971f7b5ab4a7119bbfa92808185d2ecdf8a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-ios-app"></a>Création d'une application iOS
 [!INCLUDE [app-service-mobile-selector-get-started](../../includes/app-service-mobile-selector-get-started.md)]
 
 ## <a name="overview"></a>Vue d'ensemble
-Ce didacticiel présente l’ajout d’ [Azure Mobile Apps](app-service-mobile-value-prop.md), un service principal cloud, à une application iOS. Nous créerons tout d’abord un serveur principal mobile. Ensuite, nous utiliserons une simple application iOS de *To do list* pour stocker des données dans Azure.
+Ce didacticiel montre comment tooadd [Azure Mobile Apps](app-service-mobile-value-prop.md), un service de cloud principal, une application iOS de tooan. Nous créerons tout d’abord un serveur principal mobile. Ensuite, nous allons utiliser une simple *liste de tâches* toostore données de l’application iOS dans Azure.
 
-Pour suivre ce didacticiel, vous avez besoin d’un Mac et d’un [compte Azure](https://azure.microsoft.com/pricing/free-trial/)
+toocomplete ce didacticiel, vous avez besoin d’un Mac et [un compte Azure](https://azure.microsoft.com/pricing/free-trial/)
 
 ## <a name="step-i-create-a-new-azure-mobile-app-backend"></a>Étape I : créer un serveur principal d’applications mobiles Azure
 [!INCLUDE [app-service-mobile-dotnet-backend-create-new-service](../../includes/app-service-mobile-dotnet-backend-create-new-service.md)]
 
-## <a name="step-ii-configure-the-backend-project"></a>Étape II : configurer le projet de serveur principal
+## <a name="step-ii-configure-hello-backend-project"></a>Étape II : Configurer le projet de service principal hello
 [!INCLUDE [app-service-mobile-configure-new-backend.md](../../includes/app-service-mobile-configure-new-backend.md)]
 
-## <a name="step-iii-download-and-run-the-ios-app"></a>Étape III : télécharger et exécuter l’application iOS
+## <a name="step-iii-download-and-run-hello-ios-app"></a>Étape III : Télécharger et exécuter l’application iOS de hello
 [!INCLUDE [app-service-mobile-ios-run-app](../../includes/app-service-mobile-ios-run-app.md)]
 
 <!-- URLs -->

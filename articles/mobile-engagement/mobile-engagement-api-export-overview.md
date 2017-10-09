@@ -1,6 +1,6 @@
 ---
-title: "Vue d’ensemble de l'API d’exportation Mobile Engagement"
-description: "Apprenez les principes de base de l'exportation de vos données brutes générées par les appareils de vos utilisateurs de façon à en tirer parti dans vos propres outils"
+title: "Présentation de l’API Engagement exporter d’aaaMobile"
+description: "Découvrez les principes de base hello sur l’exportation de vos données brutes généré par tooleverage de périphériques de vos utilisateurs il dans vos propres outils"
 services: mobile-engagement
 documentationcenter: mobile
 author: kpiteira
@@ -14,62 +14,62 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 04/26/2016
 ms.author: kapiteir
-ms.openlocfilehash: 346e0e480ff84ee849f135a7605d27df9e32f966
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f55be29a29878e74f6a33419f08a5574a07a7478
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="mobile-engagement-export-api-overview"></a>Vue d’ensemble de l'API d’exportation Mobile Engagement
 ## <a name="introduction"></a>Introduction
-Dans ce document, vous allez apprendre les principes de base de l'exportation de vos données brutes générées par les appareils de vos utilisateurs de façon à en tirer parti dans vos propres outils.
+Dans ce document, vous allez apprendre bases hello sur l’exportation de vos données brutes généré par tooleverage de périphériques de l’utilisateur de votre dans vos propres outils.
 
 ## <a name="pre-requisites"></a>Conditions préalables
-L’exportation des données brutes à partir de Mobile Engagement requiert :
+Exportation des données brutes de hello de Mobile Engagement nécessite :
 
-* la possibilité pour la configuration de l'authentification des API d’utiliser les API (consultez [installation manuelle de l'authentification](mobile-engagement-api-authentication-manual.md)),
-* l’utilisation des API REST ou du [Kit de développement logiciel (SDK) .NET](mobile-engagement-dotnet-sdk-service-api.md),
-* un compte Azure Storage.
+* Toobe toouse en mesure de hello API API d’authentification le programme d’installation (consultez [le programme d’installation manuelle de l’authentification](mobile-engagement-api-authentication-manual.md)),
+* Utilisez hello API REST ou hello [.net SDK](mobile-engagement-dotnet-sdk-service-api.md),
+* Un compte de stockage Azure.
 
 > [!NOTE]
-> Nous recommandons également l'excellent [Explorateur Microsoft Azure Storage](http://storageexplorer.com/), au moins pendant la phase de développement, car il fournit une interface utilisateur facile à utiliser pour interagir avec Azure Storage.
+> Nous vous conseillons également de hello excellent [Microsoft Azure Storage Explorer](http://storageexplorer.com/), au moins pendant la phase de développement hello tel qu’il fournit une interface utilisateur de toouse facile d’interagir avec le stockage Azure.
 > 
 > 
 
 ## <a name="what-can-be-exported"></a>Que peut-on exporter ?
-Mobile Engagement permet à ses utilisateurs de collecter de nombreux types de données et, par conséquent, possède plusieurs types d'exportation adaptés à ces différents types de données.
+Mobile Engagement permet son toocollect les utilisateurs de nombreux types de données et par conséquent, plusieurs types d’exportation a adapté toothese différents types de données.
 Il existe 2 types d'exportation principaux :
 
-* Instantané : généralement utilisé pour exporter des données qui représentent un état et pour lesquelles Mobile Engagement n'a pas d'historique. Cela inclut par exemple les balises (app-info), les jetons ou les retours d’expérience de campagnes push. Par conséquent, ces types d'exportation ne sont pas liés à une date.
+* Instantané : utilisé en général tooexport des données qui représente un état et pour lequel Mobile Engagement n’a pas de l’historique. Cela inclut par exemple les balises (app-info), les jetons ou les retours d’expérience de campagnes push. Par conséquent ces types d’exportation ne sont pas liées tooa date.
 * Historique : ce type d'exportation est utilisé pour les données qui s'accumulent au fil du temps, par exemple des événements ou des activités.
 
-Le tableau ci-dessous décrit de façon exhaustive toutes les exportations possibles :
+tableau de Hello ci-dessous décrit la manière exhaustive toutes les exportations possible hello :
 
 | Type d’exportation | Type de données | Description |
 | --- | --- | --- |
 | Instantané |Émettre |Génère une exportation de retours d’expérience de campagnes push, ID d’appareil/d'utilisateur par ID d’appareil/d’utilisateur |
-| Instantané |Tag |Génère une exportation des balises (app-info) associées à chaque appareil |
-| Instantané |Appareil |Génère une exportation de la plupart des données sur les appareils, notamment les informations techniques (modèle, paramètres régionaux, fuseau horaire, etc.), les balises ou la date de la première consultation. |
-| Instantané |Jeton |Génère une exportation de tous les jetons valides |
-| Historique |Activité |Génère une exportation de toutes les activités de chaque appareil sur une période donnée |
-| Historique |Événement |Génère une exportation de toutes les activités de chaque appareil sur une période donnée |
-| Historique |Job |Génère une exportation de toutes les tâches de chaque appareil sur une période donnée |
-| Historique |Erreur |Génère une exportation de toutes les erreurs de chaque appareil sur une période donnée |
+| Instantané |Tag |Génère une exportation de périphériques de tooeach hello induits (app-info) |
+| Instantané |Appareil |Génère une exportation de la plupart des données de hello sur des appareils tels que technicals hello (modèle, paramètres régionaux, fuseau horaire,...), les balises hello, première vu... |
+| Instantané |Jeton |Génère une exportation de tous les jetons valides hello |
+| Historique |Activité |Génère une exportation de toutes les activités hello pour chaque périphérique sur une période donnée |
+| Historique |Événement |Génère une exportation de toutes les activités hello pour chaque périphérique sur une période donnée |
+| Historique |Travail |Génère une exportation de tous les travaux hello pour chaque périphérique sur une période donnée |
+| Historique |Error |Génère une exportation de toutes les erreurs de hello pour chaque périphérique sur une période donnée |
 
 ## <a name="how-does-it-work"></a>Comment cela fonctionne-t-il ?
-Les exportations sont des tâches de longue durée qui peuvent produire des fichiers de données volumineux. Pour cette raison, elles ne peuvent pas être appelées pour retourner immédiatement un fichier à télécharger.
-Pour exporter des données à partir de Mobile Engagement, vous devrez créer une **Tâche d'exportation** avec l'API, où vous spécifiez généralement :
+Les exportations sont des tâches de longue durée qui peuvent produire des fichiers de données volumineux. Pour cette raison, ils ne peut pas être appelée tooreturn immédiatement un toodownload de fichier.
+Données de commandes tooexport de Mobile Engagement, vous devez toocreate une **tâche d’exportation** via l’API dans lequel vous spécifiez généralement :
 
-* le type d'exportation (instantané ou historique),
-* le type de données,
-* le **conteneur Azure Storage** (avec une SAP valide et un accès en écriture) où sera écrit le résultat de l'exportation.
+* type Hello d’exportation (instantanée ou historique)
+* type de données Hello,
+* Hello **conteneur de stockage Azure** (y compris une SAP valide avec un accès en écriture) où le résultat de hello d’exportation de hello sera écrit.
 * Par exemple, un paramètre d’URL de conteneur serait https://[StorageAccountName].blob.core.windows.net/[ContainerName]?[SASWritePermissionsToken]  
 
 Voici un exemple réel. https://testazmeexport.blob.core.windows.net/test1234azme?sv=2015-12-11&ss=b&srt=sco&sp=rwdlac&se=2016-12-17T04:59:26Z&st=2016-12-16T20:59:26Z&spr=https&sig=KRF3aVWjp2NEJDzjlmoplmu0M9HHlLdkBWRPAFmw90Q%3D
 
-Veuillez noter que le démarrage de votre tâche peut prendre quelques minutes et que son exécution peut durer quelques secondes pour les toutes petites applications ou plusieurs heures pour les applications avec un grand nombre d'utilisateurs ou d'activités.
+Notez que peut prendre quelques minutes pour votre toobe de travail a démarré, et, il peut s’exécuter à partir de quelques secondes pour les heures de tooseveral de petites applications pour les applications avec un grand nombre d’utilisateurs ou d’activité.
 
-Une fois la tâche créée, il est possible de vérifier son état pour voir si elle est toujours en cours d'exécution ou si elle est terminée.
+Une fois le travail de hello est créé, il est possible de toocheck son toosee état si elle est toujours en cours d’exécution ou si elle est terminée.
 
-Une fois la tâche RÉUSSIE, le fichier de données qui en résulte est disponible sur le conteneur de stockage fourni.
+Une fois que le travail de hello est réussi, fichier de données résultant hello est disponible sur hello fourni le conteneur de stockage.
 

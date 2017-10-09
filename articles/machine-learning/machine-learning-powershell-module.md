@@ -1,6 +1,6 @@
 ---
-title: Module PowerShell pour Machine Learning | Microsoft Docs
-description: "Le module PowerShell pour Azure Machine Learning est disponible en version préliminaire publique. Utilisez PowerShell pour créer et gérer des espaces de travail, des expériences, des services web, etc."
+title: "module aaaPowerShell pour l’apprentissage | Documents Microsoft"
+description: "module PowerShell de Hello pour Azure Machine Learning est disponible en version préliminaire publique. Utilisez PowerShell toocreate et gérer des espaces de travail, des expériences, des services web et bien plus encore."
 keywords: "expérience,régression linéaire,algorithmes d’apprentissage automatique,didacticiel d’apprentissage automatique,techniques de modélisation prédictive,expérience de science de données"
 services: machine-learning
 documentationcenter: 
@@ -15,27 +15,27 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/15/2017
 ms.author: garye;haining
-ms.openlocfilehash: 6ea4b887428891f41ed1a4bad26148763cefabe8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 59362027356b86bf286b7c07380db677ae1d71c1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="powershell-module-for-microsoft-azure-machine-learning"></a>Module PowerShell pour Microsoft Azure Machine Learning
-Le module PowerShell pour Azure Machine Learning est un outil puissant qui vous permet d’utiliser Windows PowerShell pour gérer des espaces de travail, des expériences, des jeux de données, des services web classiques, etc.
+Hello du module PowerShell pour Azure Machine Learning est un outil puissant qui vous permet d’espaces de travail toomanage toouse Windows PowerShell, expériences, jeux de données, des services web standard et bien plus encore.
 
-Vous pouvez consulter la documentation et télécharger le module, ainsi que le code source complet, à l’adresse [https://aka.ms/amlps](https://aka.ms/amlps). 
+Vous pouvez afficher la documentation de hello et télécharger le module de hello, ainsi que le code source complet hello à [https://aka.ms/amlps](https://aka.ms/amlps). 
 
 > [!NOTE]
-> Le module PowerShell pour Azure Machine Learning est actuellement en version préliminaire. Nous continuerons d’améliorer et de développer le module pendant toute la durée de la version préliminaire. Pour vous tenir informé, consultez régulièrement le blog [Cortana Intelligence and Machine Learning](https://blogs.technet.microsoft.com/machinelearning/) (en anglais).
+> Bonjour Azure Machine Learning module PowerShell est actuellement en mode Aperçu. module de Hello continue toobe amélioré et développé pendant cette période d’évaluation. Garder un œil sur hello [Cortana Intelligence et Machine Learning Blog](https://blogs.technet.microsoft.com/machinelearning/) nouvelles et informations.
 
-## <a name="what-is-the-machine-learning-powershell-module"></a>Qu’est-ce que le module Machine Learning PowerShell ?
-Le module Machine Learning PowerShell est un module DLL basé sur .NET qui vous permet de gérer entièrement les espaces de travail, les expériences, les jeux de données, les services web classiques et les points de terminaison de services web classiques Azure Machine Learning depuis Windows PowerShell. 
+## <a name="what-is-hello-machine-learning-powershell-module"></a>Qu’est hello Machine Learning PowerShell module ?
+le module Machine Learning PowerShell Hello est un. Module DLL Internet qui vous permet de toofully gérer les espaces de travail Azure Machine Learning, expériences, des datasets, des services web classique et points de terminaison de service standard web à partir de Windows PowerShell. 
 
-En plus du module, vous pouvez télécharger le code source complet, qui inclut une [couche d’API C#](https://github.com/hning86/azuremlps/blob/master/code/AzureMLSDK.cs) bien distincte. Vous pouvez référencer cette DLL depuis votre propre projet .NET et gérer Azure Machine Learning par le biais du code .NET. En outre, la DLL repose sur des API REST sous-jacentes que vous pouvez utiliser directement depuis le client de votre choix.
+En même temps que le module de hello, vous pouvez télécharger le code source complet hello qui inclut un correctement séparés [couche API C#](https://github.com/hning86/azuremlps/blob/master/code/AzureMLSDK.cs). Vous pouvez référencer cette DLL depuis votre propre projet .NET et gérer Azure Machine Learning par le biais du code .NET. En outre, hello DLL dépend de l’API REST sous-jacentes que vous pouvez utiliser directement à partir de votre client favori.
 
-## <a name="what-can-i-do-with-the-powershell-module"></a>Quelles sont les possibilités offertes par le module PowerShell ?
-Voici quelques-unes des tâches que vous pouvez effectuer avec ce module PowerShell. Pour plus d’informations sur celles-ci et les nombreuses autres fonctions disponibles, consultez la [documentation complète](https://aka.ms/amlps) .
+## <a name="what-can-i-do-with-hello-powershell-module"></a>Que puis-je faire avec le module PowerShell de hello ?
+Voici quelques-unes des tâches hello que vous pouvez effectuer avec ce module PowerShell. Extraire hello [complète la documentation](https://aka.ms/amlps) pour celles-ci et davantage de fonctions.
 
 * Approvisionner un nouvel espace de travail à l’aide d’un certificat de gestion ([New-AmlWorkspace](https://github.com/hning86/azuremlps#new-amlworkspace))
 * Exporter et importer un fichier JSON représentant un graphique d’expérience ([Export-AmlExperimentGraph](https://github.com/hning86/azuremlps#export-amlexperimentgraph) et [Import-AmlExperimentGraph](https://github.com/hning86/azuremlps#import-amlexperimentgraph))
@@ -44,21 +44,21 @@ Voici quelques-unes des tâches que vous pouvez effectuer avec ce module PowerSh
 * Créer un point de terminaison sur un service web publié ([Add-AmlWebServiceEndpoint](https://github.com/hning86/azuremlps#add-amlwebserviceendpoint))
 * Appeler un point de terminaison de service web RRS et/ou BES ([Invoke-AmlWebServiceRRSEndpoint](https://github.com/hning86/azuremlps#invoke-amlwebservicerrsendpoint) et [Invoke-AmlWebServicBESEndpoint](https://github.com/hning86/azuremlps#invoke-amlwebservicebesendpoint))
 
-Voici un exemple rapide d’utilisation de PowerShell pour exécuter une expérience existante :
+Voici un exemple rapide de l’utilisation de PowerShell toorun une expérience existante :
 
-        #Find the first Experiment named “xyz”
+        #Find hello first Experiment named “xyz”
         $exp = (Get-AmlExperiment | where Description -eq ‘xyz’)[0]
-        #Run the Experiment
+        #Run hello Experiment
         Start-AmlExperiment -ExperimentId $exp.ExperimentId 
 
-Pour un cas d’utilisation plus approfondi, consultez l’article suivant sur l’utilisation du module PowerShell pour automatiser une tâche souvent demandée : [Créer de nombreux modèles Machine Learning et points de terminaison de service web à partir d’une expérience à l’aide de PowerShell](machine-learning-create-models-and-endpoints-with-powershell.md).
+Pour un cas d’usage plus détaillé, consultez l’article sur l’utilisation de hello PowerShell module tooautomate une tâche couramment demandées : [créer plusieurs modèles d’apprentissage et web points de terminaison de service à partir d’une expérience à l’aide de PowerShell](machine-learning-create-models-and-endpoints-with-powershell.md).
 
 ## <a name="how-do-i-get-started"></a>Comment faire pour démarrer ?
-Pour bien démarrer avec Machine Learning PowerShell, téléchargez le [package de la version](https://github.com/hning86/azuremlps/releases) dans GitHub et suivez les [instructions d’installation](https://github.com/hning86/azuremlps/blob/master/README.md). Les instructions indiquent comment débloquer la DLL téléchargée/décompressée et l’importer dans votre environnement PowerShell. La plupart des applets de commande nécessitent que vous fournissiez l’ID de l’espace de travail, le jeton d’autorisation de l’espace de travail et la région Azure dans laquelle l’espace de travail se trouve. La façon la plus simple de fournir ces valeurs est d’utiliser un fichier config.json par défaut. Les instructions expliquent également comment configurer ce fichier. 
+tooget main Machine Learning PowerShell, téléchargez hello [package de version](https://github.com/hning86/azuremlps/releases) à partir de GitHub et suivez hello [instructions d’installation](https://github.com/hning86/azuremlps/blob/master/README.md). les instructions Hello expliquent comment toounblock hello téléchargé/décompressé DLL et puis l’importer dans votre environnement PowerShell. La plupart des applets de commande nécessitent que vous fournissez l’ID d’espace de travail hello, jeton d’autorisation de l’espace de travail hello et hello région Azure qui hello d’espace de travail de hello est dans. Hello la plus simple des tooprovide hello valeurs se fait via un fichier de config.json par défaut. les instructions Hello expliquent également comment tooconfigure ce fichier. 
 
-Si vous le souhaitez, vous pouvez cloner l’arborescence git, modifier le code et le compiler localement à l’aide de Visual Studio.
+Et si vous le souhaitez, vous pouvez cloner arborescence git de hello, modifier le code de hello et compilez-le localement à l’aide de Visual Studio.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Vous trouverez la documentation complète pour le module PowerShell à l’adresse [https://aka.ms/amlps](https://aka.ms/amlps). 
+Vous trouverez une documentation complète pour le module PowerShell de hello dans hello [https://aka.ms/amlps](https://aka.ms/amlps). 
 
-Pour obtenir un exemple de l’utilisation du module dans un scénario réel, consultez le cas d’utilisation détaillé, [Créer de nombreux modèles Machine Learning et points de terminaison de service web à partir d’une expérience à l’aide de PowerShell](machine-learning-create-models-and-endpoints-with-powershell.md).
+Pour obtenir un exemple d’étendue de la façon dont toouse hello module dans un scénario réel, extraction hello approfondie cas d’utilisation et [créer plusieurs modèles d’apprentissage et web points de terminaison de service à partir d’une expérience à l’aide de PowerShell](machine-learning-create-models-and-endpoints-with-powershell.md).

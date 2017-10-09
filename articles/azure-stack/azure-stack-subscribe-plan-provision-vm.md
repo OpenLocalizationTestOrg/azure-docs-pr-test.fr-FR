@@ -1,6 +1,6 @@
 ---
-title: "S’abonner à une offre | Microsoft Docs"
-description: "Découvrez comment vous abonner à une offre en qualité de locataire."
+title: offre de tooan aaaSubscribe | Documents Microsoft
+description: "En tant que client, découvrez comment toosubscribe tooan offre."
 services: azure-stack
 documentationcenter: 
 author: ErikjeMS
@@ -14,31 +14,31 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 7/03/2017
 ms.author: erikje
-ms.openlocfilehash: 3cd87ebe9827249d32f15b5de0ad8521d0282c47
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: b9e340d2030ceeaad0667cb4183aae0a34f3336a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="subscribe-to-an-offer"></a>S’abonner à une offre
+# <a name="subscribe-tooan-offer"></a>S’abonner tooan offre
 Maintenant que vous avez [créé une offre](azure-stack-create-offer.md), vérifiez que vos locataires peuvent créer un abonnement.
 
-1. [Connectez-vous](azure-stack-connect-azure-stack.md) au portail des locataires Azure Stack (https://portal.local.azurestack.external) et cliquez sur **Obtenir un abonnement**.
+1. [Connectez-vous](azure-stack-connect-azure-stack.md) toohello Azure pile locataire portail (https://portal.local.azurestack.external) et cliquez sur **obtenir un abonnement**.
 
    ![](media/azure-stack-subscribe-plan-provision-vm/image01.png)
-2. Dans le champ **Nom d’affichage**, tapez un nom pour votre abonnement, cliquez sur **Offre**, cliquez sur l’une des offres du panneau **Choisir une offre**, puis sur **Créer**.
+2. Bonjour **nom d’affichage** , tapez un nom pour votre abonnement, cliquez sur **offrent**, cliquez sur une des offres hello Bonjour **choisissez une offre** panneau, puis cliquez sur **Créer**.
 
    ![](media/azure-stack-subscribe-plan-provision-vm/image02.png)
-3. Pour afficher l’abonnement que vous avez créé, cliquez sur **Autres services**, sur **Abonnements**, puis sur votre nouvel abonnement.  
+3. abonnement de hello tooview que vous avez créé, cliquez sur **davantage de services**, cliquez sur **abonnements**, puis cliquez sur votre nouvel abonnement.  
 
-Une fois que vous êtes abonné à une offre, actualisez le portail pour voir les services qui font partie du nouvel abonnement.
+Après que vous être abonné tooan offre, actualiser les toosee portail hello les services qui font partie d’un nouvel abonnement hello.
 
-## <a name="subscribe-to-an-add-on-plan"></a>S’abonner à un plan additionnel
-Si l’offre a un plan additionnel, les locataires peuvent l’ajouter à leur abonnement à tout moment.  
+## <a name="subscribe-tooan-add-on-plan"></a>S’abonner plan du module complémentaire tooan
+Si l’offre de hello dispose d’un plan de module complémentaire, les locataires peuvent les ajouter tootheir abonnement à tout moment.  
 
-1. Dans le portail des locataires, sélectionnez **Autres services** > **Abonnements**.
+1. Dans le portail de locataires hello, sélectionnez **davantage de services** > **abonnements**.
 
-2. Cliquez sur l’abonnement > sur le bouton **Ajouter un plan**, puis sélectionnez le plan additionnel.
+2. Cliquez sur l’abonnement de hello > **ajouter un Plan** bouton et sélectionnez hello module complémentaire plan.
 
 
 

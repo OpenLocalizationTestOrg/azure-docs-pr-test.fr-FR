@@ -2,14 +2,14 @@
 
 
 ## <a name="using-vm-extensions"></a>Utilisation d'extensions de machines virtuelles
-Les extensions de machines virtuelles Azure mettent en œuvre des comportements ou des fonctionnalités grâce auxquels d’autres programmes peuvent fonctionner sur des machines virtuelles Azure (par exemple, l’extension **WebDeployForVSDevTest** permet à Visual Studio de déployer des solutions web sur votre machine virtuelle Azure) ou d’interagir avec votre machine virtuelle pour prendre en charge un autre comportement (par exemple, vous pouvez utiliser les extensions d’accès à la machine virtuelle à partir de PowerShell, l’interface de ligne de commande Azure et des clients REST pour réinitialiser ou modifier des valeurs d’accès à distance de votre machine virtuelle Azure).
+Les Extensions de machine virtuelle Azure implémenter des comportements ou des fonctionnalités qui soit à autres programmes de fonctionner sur des machines virtuelles Azure (par exemple, hello **WebDeployForVSDevTest** extension permet de déployer des solutions Visual Studio tooWeb sur votre machine virtuelle Azure) ou fournir Hello possibilité pour vous toointeract avec hello VM toosupport un autre comportement (par exemple, vous pouvez utiliser PowerShell, hello CLI d’Azure et les autres clients tooreset les extensions VM accès hello ou modifier les valeurs de l’accès à distance sur votre machine virtuelle Azure).
 
 > [!IMPORTANT]
-> Pour obtenir une liste complète des extensions en fonction des fonctionnalités prises en charge, consultez [Fonctionnalités et extensions de machine virtuelle Azure](../articles/virtual-machines/windows/extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). Étant donné que chaque extension de machine virtuelle prend en charge une fonctionnalité spécifique, elle détermine ce que vous pouvez et ne pouvez pas faire avec une extension. Par conséquent, avant de modifier votre machine virtuelle, assurez-vous d'avoir bien lu la documentation relative à l'extension de machine virtuelle que vous souhaitez utiliser. La suppression de certaines extensions de machine virtuelle n'est pas prise en charge. D'autres ont des propriétés qui peuvent être définies et qui modifient radicalement le comportement de la machine virtuelle.
+> Pour obtenir une liste complète des extensions en fonctionnalités hello prises en charge, consultez [fonctionnalités et Extensions de machine virtuelle Azure](../articles/virtual-machines/windows/extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). Étant donné que chaque extension de machine virtuelle prend en charge une fonctionnalité spécifique, exactement ce que vous pouvez et ne peut pas faire avec une extension dépend hello extension. Par conséquent, avant de modifier votre machine virtuelle, assurez-vous que vous avez lu la documentation hello pour hello machine virtuelle de l’Extension toouse. La suppression de certaines extensions de machine virtuelle n'est pas prise en charge. D'autres ont des propriétés qui peuvent être définies et qui modifient radicalement le comportement de la machine virtuelle.
 > 
 > 
 
-Les tâches les plus courantes sont :
+les tâches les plus courantes Hello sont :
 
 1. Recherche d'extensions disponibles
 2. Mise à jour des extensions chargées
@@ -24,14 +24,14 @@ Vous pouvez localiser l’extension et obtenir des informations étendues en uti
 * API REST de gestion de service
 
 ### <a name="azure-powershell"></a>Azure PowerShell
-Certaines extensions disposent d’applets de commande PowerShell spécifiques, ce qui simplifie leur configuration à partir de PowerShell. Mais les applets de commande suivantes fonctionnent pour toutes les extensions de machine virtuelle.
+Certaines extensions ont les applets de commande PowerShell sont toothem spécifique, ce qui peut faciliter leur configuration à partir de PowerShell ; mais hello applets de commande suivantes fonctionnent pour toutes les extensions de machine virtuelle.
 
-Vous pouvez utiliser les applets de commande suivantes pour obtenir des informations sur les extensions disponibles :
+Vous pouvez utiliser hello suivant d’applets de commande tooobtain plus d’informations sur les extensions disponibles :
 
-* Pour les instances de rôles web ou de travail, vous pouvez utiliser l’applet de commande [Get-AzureServiceAvailableExtension](https://msdn.microsoft.com/library/azure/dn722498.aspx) .
-* Pour les instances de machines virtuelles, vous pouvez utiliser l’applet de commande [Get-AzureVMAvailableExtension](https://msdn.microsoft.com/library/azure/dn722480.aspx) .
+* Pour les instances de rôles web ou les rôles de travail, vous pouvez utiliser hello [Get-AzureServiceAvailableExtension](https://msdn.microsoft.com/library/azure/dn722498.aspx) applet de commande.
+* Pour les instances d’ordinateurs virtuels, vous pouvez utiliser hello [Get-AzureVMAvailableExtension](https://msdn.microsoft.com/library/azure/dn722480.aspx) applet de commande.
   
-   Par exemple, le code qui suit montre comment obtenir les informations sur l’extension **IaaSDiagnostics** avec PowerShell.
+   Par exemple, hello suivant exemple de code montre comment toolist les informations de hello **IaaSDiagnostics** extension à l’aide de PowerShell.
   
       PS C:\> Get-AzureVMAvailableExtension -ExtensionName IaaSDiagnostics
   
@@ -55,11 +55,11 @@ Vous pouvez utiliser les applets de commande suivantes pour obtenir des informat
       CompanyName                 :
 
 ### <a name="azure-command-line-interface-azure-cli"></a>Interface de ligne de commande Azure (Azure CLI)
-Certaines extensions ont leurs propres commandes Azure CLI (par exemple, l'extension de machine virtuelle Docker), ce qui peut faciliter leur configuration. Mais les commandes suivantes fonctionnent pour toutes les extensions de machines virtuelles.
+Certaines extensions ont des commandes CLI d’Azure toothem spécifique (hello Extension de machine virtuelle Docker est un exemple), ce qui peut faciliter leur configuration ; mais suivant de hello des commandes pour toutes les extensions de machine virtuelle.
 
-La commande **azure vm extension list** permet d’obtenir des informations sur les extensions disponibles et l’option **–-json** permet d’afficher toutes les informations disponibles sur une ou plusieurs extensions. Si vous n’utilisez pas de nom d’extension, la commande renvoie une description JSON de toutes les extensions disponibles.
+Vous pouvez utiliser hello **liste des extensions de machine virtuelle azure** tooobtain plus d’informations sur les extensions disponibles de commandes et utilisez hello **–-json** option toodisplay toutes les informations disponibles sur une ou plusieurs extensions. Si vous n’utilisez pas un nom d’extension, la commande hello retourne une description JSON de toutes les extensions disponibles.
 
-Ainsi, l’exemple de code suivant montre comment répertorier les informations relatives à l’extension **IaaSDiagnostics** à l’aide de la commande Azure CLI **azure vm extension list** et utilise l’option **–-json** pour renvoyer des informations complètes.
+Par exemple, hello, exemple de code suivant montre comment toolist hello concernant hello **IaaSDiagnostics** à l’aide de l’extension hello CLI d’Azure **liste des extensions de machine virtuelle azure** hello de commande et utilise **–-json** option tooreturn obtenir des informations complètes.
 
     $ azure vm extension list -n IaaSDiagnostics --json
     [
@@ -77,32 +77,32 @@ Ainsi, l’exemple de code suivant montre comment répertorier les informations 
 
 
 ### <a name="service-management-rest-apis"></a>API REST de gestion de service
-Vous pouvez utiliser les API REST suivantes pour obtenir des informations sur les extensions disponibles :
+Vous pouvez utiliser hello API REST des informations de tooobtain sur les extensions disponibles suivantes :
 
-* Pour les instances de rôles web ou de travail, vous pouvez utiliser l’opération [Liste des extensions disponibles](https://msdn.microsoft.com/library/dn169559.aspx) . Pour dresser une liste des versions des extensions disponibles, vous pouvez utiliser l’opération [Liste des versions d’extension](https://msdn.microsoft.com/library/dn495437.aspx).
-* Pour les instances de machines virtuelles, vous pouvez utiliser l’opération [Liste des extensions des ressources](https://msdn.microsoft.com/library/dn495441.aspx) . Pour dresser une liste des versions des extensions disponibles, vous pouvez utiliser l’opération [Liste des versions d’extension des ressources](https://msdn.microsoft.com/library/dn495440.aspx).
+* Pour les instances de rôles web ou les rôles de travail, vous pouvez utiliser hello [liste des Extensions disponibles](https://msdn.microsoft.com/library/dn169559.aspx) opération. versions de hello toolist des extensions disponibles, vous pouvez utiliser [liste des Versions d’Extension](https://msdn.microsoft.com/library/dn495437.aspx).
+* Pour les instances d’ordinateurs virtuels, vous pouvez utiliser hello [liste des Extensions de ressource](https://msdn.microsoft.com/library/dn495441.aspx) opération. versions de hello toolist des extensions disponibles, vous pouvez utiliser [liste des Versions d’Extension de ressource](https://msdn.microsoft.com/library/dn495440.aspx).
 
 ## <a name="add-update-or-disable-extensions"></a>Ajout, mise à jour ou désactivation des extensions
-Des extensions peuvent être ajoutées à une instance créée ou déjà exécutée. Des extensions peuvent être mises à jour, désactivées ou supprimées. Vous pouvez effectuer ces actions à l'aide des applets de commande Azure PowerShell ou des opérations de l'API REST de gestion des services. Des paramètres sont requis pour installer et configurer certaines extensions. Des paramètres publics et privés sont pris en charge pour les extensions.
+Extensions peuvent être ajoutées lors de la création d’une instance ou qu’ils peuvent être ajoutés tooa instance en cours d’exécution. Des extensions peuvent être mises à jour, désactivées ou supprimées. Vous pouvez effectuer ces actions à l’aide des applets de commande PowerShell de Azure ou à l’aide d’opérations d’API REST Service Management hello. Les paramètres sont tooinstall requis et configurer certaines extensions. Des paramètres publics et privés sont pris en charge pour les extensions.
 
 ### <a name="azure-powershell"></a>Azure PowerShell
-Le moyen le plus simple pour ajouter et mettre à jour des extensions consiste à utiliser les applets de commande Azure PowerShell. Lorsque vous utilisez les applets de commande de l'extension, la majeure partie de la configuration de l'extension est effectuée pour vous. Il peut arriver que vous deviez ajouter une extension par programmation. Le cas échéant, vous devez indiquer la configuration de l'extension.
+À l’aide des applets de commande PowerShell de Azure est hello plus simple façon tooadd et mise à jour extensions. Lorsque vous utilisez les applets de commande hello extension, la plupart des configuration hello d’extension de hello est effectuée pour vous. Dans certains cas, vous devrez peut-être tooprogrammatically Ajout d’une extension. Lorsque vous devez toodo cela, vous devez fournir la configuration hello d’extension de hello.
 
-Vous pouvez utiliser les applets de commande suivantes pour savoir si une extension nécessite une configuration de paramètres publics et privés :
+Vous pouvez utiliser hello suivant d’applets de commande tooknow si une extension nécessite une configuration de paramètres publics et privés :
 
-* Pour les instances de rôles web ou de travail, vous pouvez utiliser l’applet de commande **Get-AzureServiceAvailableExtension** .
-* Pour les instances de machines virtuelles, vous pouvez utiliser l’applet de commande **Get-AzureVMAvailableExtension** .
+* Pour les instances de rôles web ou les rôles de travail, vous pouvez utiliser hello **Get-AzureServiceAvailableExtension** applet de commande.
+* Pour les instances d’ordinateurs virtuels, vous pouvez utiliser hello **Get-AzureVMAvailableExtension** applet de commande.
 
 ### <a name="service-management-rest-apis"></a>API REST de gestion de service
-Lorsque vous récupérez une liste d'extensions disponibles à l'aide des API REST, vous recevez des informations sur la procédure de configuration de l'extension. Elles peuvent comporter des informations sur les paramètres représentés par un schéma public et un schéma privé. Les valeurs de paramètres publics sont renvoyées dans des requêtes relatives aux instances. Les valeurs de paramètres privés ne sont pas renvoyées.
+Lorsque vous récupérez une liste d’extensions disponibles à l’aide des API REST de hello, vous recevez des informations sur l’extension de hello toobe configuré. informations Hello retourné peuvent afficher des informations de paramètre représentées par un schéma public et un schéma privé. Valeurs de paramètres publics sont retournés dans les requêtes sur les instances de hello. Les valeurs de paramètres privés ne sont pas renvoyées.
 
-Vous pouvez utiliser les API REST suivantes pour savoir si une extension nécessite une configuration de paramètres publics et privés :
+Vous pouvez utiliser hello suivant l’API REST tooknow si une extension nécessite une configuration de paramètres publics et privés :
 
-* Pour les instances de rôles web ou de travail, les éléments **PublicConfigurationSchema** et **PrivateConfigurationSchema** contiennent les informations dans la réponse provenant de l’opération [Liste des extensions disponibles](https://msdn.microsoft.com/library/dn169559.aspx).
-* pour les instances de machines virtuelles, les éléments **PublicConfigurationSchema** et **PrivateConfigurationSchema** contiennent les informations dans la réponse provenant de l’opération [Liste des extensions de ressources](https://msdn.microsoft.com/library/dn495441.aspx).
+* Pour les instances de rôles web ou des rôles de travail, hello **PublicConfigurationSchema** et **PrivateConfigurationSchema** éléments contiennent des informations de hello en réponse hello hello [liste Extensions disponibles](https://msdn.microsoft.com/library/dn169559.aspx) opération.
+* Pour les instances de Machines virtuelles, hello **PublicConfigurationSchema** et **PrivateConfigurationSchema** éléments contiennent des informations de hello en réponse hello hello [liste Extensions de ressource](https://msdn.microsoft.com/library/dn495441.aspx) opération.
 
 > [!NOTE]
-> Des extensions peuvent également utiliser des configurations définies avec JSON. En cas d’utilisation de ces types d’extension, seul l’élément **SampleConfig** est utilisé.
+> Des extensions peuvent également utiliser des configurations définies avec JSON. Lorsque ces types d’extensions sont utilisés, vous devez uniquement hello **SampleConfig** élément est utilisé.
 > 
 > 
 

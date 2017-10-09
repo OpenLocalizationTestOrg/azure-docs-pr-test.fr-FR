@@ -1,5 +1,5 @@
 ---
-title: "Connecter Arduino à Azure IoT - Leçon 2 : Outils Azure (macOS) | Microsoft Docs"
+title: "Se connecter Arduino tooAzure IoT - leçon 2 : Windows Azure tools (macOS) | Documents Microsoft"
 description: "Sur Mac OS, installez Python et l’interface de ligne de commande Azure (Azure CLI)."
 services: iot-hub
 documentationcenter: 
@@ -17,11 +17,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: 037f8e3dba542773185fde43a345d5fd487b2d84
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8f0ec4131e54af5475cd0b4240480c3fda497e14
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-azure-tools-macos-1010"></a>Obtenir les outils Azure (macOS 10.10)
 
@@ -32,49 +32,49 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="what-you-will-do"></a>Procédure à suivre
 
-Installez l’interface de ligne de commande Azure (Azure CLI). Si vous rencontrez des problèmes, recherchez une solution sur la [page Résolution des problèmes](iot-hub-adafruit-feather-m0-wifi-kit-arduino-troubleshooting.md) pour la carte Adafruit Feather M0 WiFi Arduino.
+Installez hello Azure interface de ligne de commande (CLI d’Azure). Si vous rencontrez des problèmes, recherchez des solutions sur hello [page Résolution des problèmes](iot-hub-adafruit-feather-m0-wifi-kit-arduino-troubleshooting.md) pour votre carte mère Adafruit estompe M0 Wi-Fi Arduino.
 
 ## <a name="what-you-will-learn"></a>Contenu
 Cet article portera sur les éléments suivants :
-* Comment installer Azure CLI.
-* Comment ajouter un sous-groupe IoT de l’interface de ligne de commande Azure.
+* Comment tooinstall CLI d’Azure.
+* Comment tooadd un sous-groupe IoT Hello CLI d’Azure.
 
 ## <a name="what-you-need"></a>Ce dont vous avez besoin
 * Un Mac avec une connexion Internet.
 * Un abonnement Azure actif. Si vous ne possédez pas de compte Azure, vous pouvez créer un [compte d’évaluation Azure gratuit](http://azure.microsoft.com/pricing/free-trial/) en quelques minutes.
 
-## <a name="install-python"></a>Installer python
-Bien que Mac OS soit fourni avec Python 2.7, il est recommandé d’installer Python via Homebrew. Voir [Installation de Python sur Mac OS](http://docs.python-guide.org/en/latest/starting/install/osx/).
+## <a name="install-python"></a>Installation de Python
+Bien que macOS fourni avec Python 2.7 prédéfinies hello, nous vous recommandons d’installer Python via Homebrew. Voir [Installation de Python sur Mac OS](http://docs.python-guide.org/en/latest/starting/install/osx/).
 
-Installez Python et pip en exécutant la commande suivante :
+Installer Python et pip en exécutant hello de commande suivante :
 
 ```bash
 brew install python
 ```
 
-## <a name="install-the-azure-cli"></a>Installer l’interface de ligne de commande Microsoft Azure
-L’interface de ligne de commande Azure offre une expérience de ligne de commande multiplateforme pour Azure. Vous travaillez directement à partir de votre ligne de commande pour approvisionner et gérer les ressources.
+## <a name="install-hello-azure-cli"></a>Installer hello CLI d’Azure
+Hello CLI d’Azure fournit une expérience en ligne de commande multiplateforme pour Azure. Travailler directement depuis votre tooprovision de ligne de commande et de gérer les ressources.
 
-Pour installer la dernière version d’Azure CLI, procédez comme suit :
+tooinstall hello dernière CLI d’Azure, procédez comme suit :
 
-1. Exécutez les commandes suivantes dans une fenêtre de Terminal. L’installation de l’interface de ligne de commande Azure peut prendre cinq minutes.
+1. Exécutez hello suivant les commandes dans une fenêtre de terminal. Il peut prendre cinq minutes tooinstall hello CLI d’Azure.
 
    ```bash
    pip install --upgrade azure-cli
    pip install --upgrade azure-cli-iot
    ```
-2. Vérifiez l’installation en exécutant la commande suivante :
+2. Hello Vérifiez-la en exécutant hello de commande suivante :
 
    ```bash
    az iot -h
    ```
 
-Si l’installation a réussi, vous devez voir la sortie suivante.
+Vous devez voir suivant de hello de sortie si l’installation de hello a réussi.
 
-![Sortie indiquant la réussite][output]
+![Sortie qui indique la réussite][output]
 
 ## <a name="summary"></a>Résumé
-Vous avez installé l’interface de ligne de commande Azure. La tâche suivante consiste à créer votre Azure IoT Hub et votre identité d’appareil à l’aide de l’interface de ligne de commande Azure.
+Vous avez installé hello CLI d’Azure. La tâche suivante est toocreate votre identité Azure IoT hub et appareil à l’aide de hello CLI d’Azure.
 
 ## <a name="next-steps"></a>Étapes suivantes
 [Créer votre IoT Hub et inscrire votre carte Arduino][create-your-iot-hub-and-register-your-arduino-board]

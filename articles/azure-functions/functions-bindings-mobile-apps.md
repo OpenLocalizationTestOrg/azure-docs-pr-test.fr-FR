@@ -1,6 +1,6 @@
 ---
-title: Liaisons Mobile Apps Azure Functions| Microsoft Docs
-description: "Découvrez comment utiliser des liaisons Azure Mobile Apps dans Azure Functions."
+title: liaisons des applications mobiles de fonctions aaaAzure | Documents Microsoft
+description: "Comprendre comment les liaisons d’applications mobiles Azure toouse dans les fonctions d’Azure."
 services: functions
 documentationcenter: na
 author: ggailey777
@@ -16,48 +16,48 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 10/31/2016
 ms.author: glenga
-ms.openlocfilehash: c5e1c02984f9773b263c0bee7685c7d5ff62e658
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d3679a5d5c66705b32e422ec17e3a1e6d6ac063c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-functions-mobile-apps-bindings"></a>Liaisons Azure Mobile Apps Azure Functions
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-Cet article explique comment configurer et coder des liaisons [Azure Mobile Apps](../app-service-mobile/app-service-mobile-value-prop.md) dans Azure Functions. Azure Functions prend en charge des liaisons d’entrée et de sortie pour Mobile Apps.
+Cet article explique comment tooconfigure et code [Azure Mobile Apps](../app-service-mobile/app-service-mobile-value-prop.md) liaisons dans les fonctions d’Azure. Azure Functions prend en charge des liaisons d’entrée et de sortie pour Mobile Apps.
 
-Les liaisons d’entrée et de sortie Mobile Apps vous permettent d’effectuer des opérations de [lecture et écriture dans des tables de données](../app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md#TableOperations), dans votre application mobile.
+Hello applications mobiles d’entrée et sortie liaisons vous permettent de [lisent et écrivent des tables de toodata](../app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk.md#TableOperations) dans votre application mobile.
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
 <a name="input"></a>
 
 ## <a name="mobile-apps-input-binding"></a>Liaison d’entrée Mobile Apps
-La liaison d’entrée Mobile Apps charge un enregistrement à partir d’un point de terminaison de table mobile et le transmet à votre fonction. Dans des fonctions C# et F#, toutes les modifications apportées à l’enregistrement sont automatiquement renvoyées à la table une fois que la fonction s’est correctement terminée.
+Hello liaison d’entrée des applications mobiles charge un enregistrement à partir d’un point de terminaison de table mobile et le passe dans votre fonction. Dans c# et F # fonctions, tout enregistrement toohello de modifications apportées sont automatiquement envoyés arrière toohello table lors de la fonction hello se termine avec succès.
 
-L’entrée Mobile Apps d’une fonction utilise l’objet JSON suivant dans le tableau `bindings` de function.json :
+Hello applications mobiles d’entrée tooa fonction utilise hello objet JSON Bonjour `bindings` tableau de function.json :
 
 ```json
 {
     "name": "<Name of input parameter in function signature>",
     "type": "mobileTable",
     "tableName": "<Name of your mobile app's data table>",
-    "id" : "<Id of the record to retrieve - see below>",
+    "id" : "<Id of hello record tooretrieve - see below>",
     "connection": "<Name of app setting that has your mobile app's URL - see below>",
     "apiKey": "<Name of app setting that has your mobile app's API key - see below>",
     "direction": "in"
 }
 ```
 
-Notez les points suivants :
+Notez hello suivantes :
 
-* L’élément `id` peut être statique ou basé sur le déclencheur qui appelle la fonction. Par exemple, si vous utilisez un [déclencheur de file d’attente]() pour votre fonction, `"id": "{queueTrigger}"` utilise la valeur de chaîne du message de file d’attente en tant qu’ID de l’enregistrement à récupérer.
-* `connection` doit contenir le nom d’un paramètre d’application de votre application de fonction, comportant l’URL de votre application mobile. La fonction utilise cette URL pour construire les opérations REST requises par rapport à votre application mobile. Vous [créez un paramètre d’application dans votre application de fonction](), contenant l’URL de votre application mobile (de type `http://<appname>.azurewebsites.net`), puis spécifiez le nom du paramètre d’application dans la propriété `connection` de votre liaison d’entrée. 
-* Vous devez spécifier `apiKey` si vous [implémentez une clé API dans le service principal de votre application mobile Node.js](https://github.com/Azure/azure-mobile-apps-node/tree/master/samples/api-key) ou [implémentez une clé API dans le service principal de votre application mobile .NET](https://github.com/Azure/azure-mobile-apps-net-server/wiki/Implementing-Application-Key). Pour ce faire, vous [créez un paramètre d’application dans votre application de fonction](), contenant la clé API, puis ajoutez la propriété `apiKey` dans votre liaison d’entrée avec le nom du paramètre d’application. 
+* `id`peut être statique, ou il peut être basée sur déclencheur hello qui appelle la fonction hello. Par exemple, si vous utilisez un [déclencheur de la file d’attente]() de votre fonction, puis `"id": "{queueTrigger}"` utilise hello la valeur de chaîne de message de file d’attente hello comme enregistrement ID tooretrieve de hello.
+* `connection`doit contenir nom hello d’un paramètre d’application dans votre application de fonction, qui à son tour contient hello les URL de votre application mobile. fonction Hello utilise cette URL tooconstruct hello requis des opérations de reste par rapport à votre application mobile. Vous [créer un paramètre d’application dans votre application de la fonction]() qui contient les URL de votre application mobile (qui ressemble à `http://<appname>.azurewebsites.net`), puis spécifiez le nom de hello du paramètre d’application hello Bonjour `connection` propriété dans votre liaison d’entrée. 
+* Vous devez toospecify `apiKey` si vous [implémenter une clé d’API dans le service principal de votre application mobile Node.js](https://github.com/Azure/azure-mobile-apps-node/tree/master/samples/api-key), ou [implémenter une clé d’API dans le service principal de votre application mobile .NET](https://github.com/Azure/azure-mobile-apps-net-server/wiki/Implementing-Application-Key). toodo, vous [créer un paramètre d’application dans votre application de la fonction]() qui contient la clé d’API de hello, puis ajoutez hello `apiKey` propriété dans votre liaison d’entrée par nom de hello du paramètre d’application hello. 
   
   > [!IMPORTANT]
-  > Cette clé API ne doit pas être partagée avec vos clients d’application mobile. Elle doit uniquement être distribuée de façon sécurisée aux clients côté service, comme Azure Functions. 
+  > Cette clé API ne doit pas être partagée avec vos clients d’application mobile. Il ne doit être distribuées clients tooservice côté en toute sécurité, comme les fonctions d’Azure. 
   > 
   > [!NOTE]
   > Azure Functions stocke vos informations de connexion et les clés API en tant que paramètres d’application, de sorte qu’elles ne soient pas vérifiées dans votre référentiel de contrôle de code source. Ceci protège vos informations sensibles.
@@ -67,16 +67,16 @@ Notez les points suivants :
 <a name="inputusage"></a>
 
 ## <a name="input-usage"></a>Utilisation en entrée
-Cette section vous montre comment utiliser la liaison d’entrée Mobile Apps dans le code de votre fonction. 
+Cette section vous montre comment toouse vos applications mobiles d’entrée de liaison dans votre code de fonction. 
 
-Lorsque l’enregistrement correspondant à la table et à l’ID d’enregistrement spécifiés est trouvé, il est transmis au paramètre [JObject](http://www.newtonsoft.com/json/help/html/t_newtonsoft_json_linq_jobject.htm) nommé (ou, dans Node.js, à l’objet `context.bindings.<name>`). Si l’enregistrement est introuvable, le paramètre présente la valeur `null`. 
+Lors de l’enregistrement hello avec hello spécifié ID de table et d’enregistrement est trouvé, il est passé dans hello nommé [JObject](http://www.newtonsoft.com/json/help/html/t_newtonsoft_json_linq_jobject.htm) paramètre (ou, dans Node.js, il est passé dans hello `context.bindings.<name>` objet). Lors de l’enregistrement de hello n’est pas trouvé, le paramètre hello est `null`. 
 
-Dans les fonctions C# et F#, toutes les modifications apportées à l’enregistrement d’entrée (paramètre d’entrée) sont automatiquement renvoyées à la table Mobile Apps une fois que la fonction s’est correctement terminée. Dans les fonctions Node.js, utilisez `context.bindings.<name>` pour accéder à l’enregistrement d’entrée. Vous ne pouvez pas modifier un enregistrement dans Node.js.
+Dans les fonctions de c# et F #, toute modification apportée toohello entrée enregistrement (paramètre d’entrée) est automatiquement envoyé arrière toohello table des applications mobiles lors de la fonction hello se termine avec succès. Dans les fonctions de Node.js, utilisez `context.bindings.<name>` tooaccess hello enregistrement d’entrée. Vous ne pouvez pas modifier un enregistrement dans Node.js.
 
 <a name="inputsample"></a>
 
 ## <a name="input-sample"></a>Exemple d’entrée
-Supposons le code function.json suivant, qui récupère un enregistrement de table Mobile Apps avec l’ID du message de déclenchement de file d’attente :
+Supposez que vous avez hello suivant function.json, qui extrait un enregistrement de la table de l’application Mobile avec l’id de hello de message de déclenchement de file d’attente hello :
 
 ```json
 {
@@ -102,7 +102,7 @@ Supposons le code function.json suivant, qui récupère un enregistrement de tab
 }
 ```
 
-Consultez l’exemple dans le langage de votre choix pour voir comment utiliser l’enregistrement d’entrée à partir de la liaison. Les exemples en C# et F# modifient également la propriété `text` de l’enregistrement.
+Voir l’exemple hello spécifiques à une langue qui utilise l’enregistrement d’entrée de hello à partir de la liaison de hello. les exemples c# et F # Hello également modifier l’enregistrement hello `text` propriété.
 
 * [C#](#inputcsharp)
 * [Node.JS](#inputnodejs)
@@ -150,9 +150,9 @@ module.exports = function (context, myQueueItem) {
 <a name="output"></a>
 
 ## <a name="mobile-apps-output-binding"></a>Liaison de sortie Mobile Apps
-Utilisez la liaison de sortie Mobile Apps pour écrire un nouvel enregistrement dans un point de terminaison de table Mobile Apps.  
+Utilisez hello Mobile Apps sortie liaison toowrite un enregistrement tooa Mobile Apps table point de terminaison.  
 
-La sortie Mobile Apps d’une fonction utilise l’objet JSON suivant dans le tableau `bindings` de function.json :
+Hello des applications mobiles de sortie pour une fonction utilise hello objet JSON Bonjour `bindings` tableau de function.json :
 
 ```json
 {
@@ -165,13 +165,13 @@ La sortie Mobile Apps d’une fonction utilise l’objet JSON suivant dans le ta
 }
 ```
 
-Notez les points suivants :
+Notez hello suivantes :
 
-* `connection` doit contenir le nom d’un paramètre d’application de votre application de fonction, comportant l’URL de votre application mobile. La fonction utilise cette URL pour construire les opérations REST requises par rapport à votre application mobile. Vous [créez un paramètre d’application dans votre application de fonction](), contenant l’URL de votre application mobile (de type `http://<appname>.azurewebsites.net`), puis spécifiez le nom du paramètre d’application dans la propriété `connection` de votre liaison d’entrée. 
-* Vous devez spécifier `apiKey` si vous [implémentez une clé API dans le service principal de votre application mobile Node.js](https://github.com/Azure/azure-mobile-apps-node/tree/master/samples/api-key) ou [implémentez une clé API dans le service principal de votre application mobile .NET](https://github.com/Azure/azure-mobile-apps-net-server/wiki/Implementing-Application-Key). Pour ce faire, vous [créez un paramètre d’application dans votre application de fonction](), contenant la clé API, puis ajoutez la propriété `apiKey` dans votre liaison d’entrée avec le nom du paramètre d’application. 
+* `connection`doit contenir nom hello d’un paramètre d’application dans votre application de fonction, qui à son tour contient hello les URL de votre application mobile. fonction Hello utilise cette URL tooconstruct hello requis des opérations de reste par rapport à votre application mobile. Vous [créer un paramètre d’application dans votre application de la fonction]() qui contient les URL de votre application mobile (qui ressemble à `http://<appname>.azurewebsites.net`), puis spécifiez le nom de hello du paramètre d’application hello Bonjour `connection` propriété dans votre liaison d’entrée. 
+* Vous devez toospecify `apiKey` si vous [implémenter une clé d’API dans le service principal de votre application mobile Node.js](https://github.com/Azure/azure-mobile-apps-node/tree/master/samples/api-key), ou [implémenter une clé d’API dans le service principal de votre application mobile .NET](https://github.com/Azure/azure-mobile-apps-net-server/wiki/Implementing-Application-Key). toodo, vous [créer un paramètre d’application dans votre application de la fonction]() qui contient la clé d’API de hello, puis ajoutez hello `apiKey` propriété dans votre liaison d’entrée par nom de hello du paramètre d’application hello. 
   
   > [!IMPORTANT]
-  > Cette clé API ne doit pas être partagée avec vos clients d’application mobile. Elle doit uniquement être distribuée de façon sécurisée aux clients côté service, comme Azure Functions. 
+  > Cette clé API ne doit pas être partagée avec vos clients d’application mobile. Il ne doit être distribuées clients tooservice côté en toute sécurité, comme les fonctions d’Azure. 
   > 
   > [!NOTE]
   > Azure Functions stocke vos informations de connexion et les clés API en tant que paramètres d’application, de sorte qu’elles ne soient pas vérifiées dans votre référentiel de contrôle de code source. Ceci protège vos informations sensibles.
@@ -181,14 +181,14 @@ Notez les points suivants :
 <a name="outputusage"></a>
 
 ## <a name="output-usage"></a>Utilisation en sortie
-Cette section vous montre comment utiliser la liaison de sortie Mobile Apps dans le code de votre fonction. 
+Cette section vous montre comment toouse vos applications mobiles de sortie de liaison dans votre code de fonction. 
 
-Dans les fonctions C#, utilisez un paramètre de sortie nommé de type `out object` pour accéder à l’enregistrement de sortie. Dans les fonctions Node.js, utilisez `context.bindings.<name>` pour accéder à l’enregistrement de sortie.
+Dans les fonctions de c#, utilisez un paramètre de sortie nommés de type `out object` tooaccess hello sortie d’enregistrement. Dans les fonctions de Node.js, utilisez `context.bindings.<name>` tooaccess hello sortie d’enregistrement.
 
 <a name="outputsample"></a>
 
 ## <a name="output-sample"></a>Exemple de sortie
-Supposons le code function.json suivant, qui définit un déclencheur de file d’attente et une sortie Mobile Apps :
+Supposons que vous avez hello suivant function.json, qui définit un déclencheur de la file d’attente et une sortie d’applications mobiles :
 
 ```json
 {
@@ -213,7 +213,7 @@ Supposons le code function.json suivant, qui définit un déclencheur de file d�
 }
 ```
 
-Consultez l’exemple dans le langage de votre choix pour voir comment créer un enregistrement dans le point de terminaison de la table Mobile Apps avec le contenu du message de file d’attente.
+Voir exemple hello spécifiques au langage qui crée un enregistrement de point de terminaison de table hello applications mobiles avec le contenu du message de file d’attente hello hello.
 
 * [C#](#outcsharp)
 * [Node.JS](#outnodejs)

@@ -1,6 +1,6 @@
 ---
-title: "Créer une application web PHP et MySQL dans Azure | Microsoft Docs"
-description: "Découvrez comment faire fonctionner une application PHP dans Azure en établissant une connexion à une base de données MySQL dans Azure."
+title: aaaBuild une application web PHP et MySQL dans Azure | Documents Microsoft
+description: "Découvrez comment tooget une application PHP dans Azure, avec tooa de connexion MySQL de base de données dans Azure."
 services: app-service\web
 documentationcenter: nodejs
 author: cephalin
@@ -15,15 +15,15 @@ ms.topic: tutorial
 ms.date: 07/21/2017
 ms.author: cephalin
 ms.custom: mvc
-ms.openlocfilehash: 6e8d8962180f7534b0b9074f03ecc8ea431ae1a4
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 3c050b30e2e2c80d011bed989cd5f8cecac35d15
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="build-a-php-and-mysql-web-app-in-azure"></a>Créer une application web PHP et MySQL dans Azure
 
-[Azure Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) offre un service d’hébergement web hautement évolutif appliquant des mises à jour correctives automatiques. Ce didacticiel vous montre comment créer une application web PHP dans Azure et comment la connecter à une base de données MySQL. Une fois terminé, vous disposerez d’une application [Laravel](https://laravel.com/) s’exécutant dans Azure App Service Web Apps.
+[Azure Web Apps](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) offre un service d’hébergement web hautement évolutif appliquant des mises à jour correctives automatiques. Ce didacticiel montre comment toocreate PHP application dans Azure web et le connecter tooa base de données MySQL. Une fois terminé, vous disposerez d’une application [Laravel](https://laravel.com/) s’exécutant dans Azure App Service Web Apps.
 
 ![Application PHP exécutée dans Azure App Service](./media/app-service-web-tutorial-php-mysql/complete-checkbox-published.png)
 
@@ -31,20 +31,20 @@ Ce didacticiel vous montre comment effectuer les opérations suivantes :
 
 > [!div class="checklist"]
 > * Création d’une base de données MySQL dans Azure
-> * Connexion d’une application PHP à MySQL
-> * Déploiement de l’application dans Azure
-> * Mise à jour du modèle de données et redéploiement de l’application
+> * Se connecter à un tooMySQL d’application PHP
+> * Déployer hello application tooAzure
+> * Mettre à jour le modèle de données hello et redéployer l’application hello
 > * Diffusion des journaux de diagnostic à partir d’Azure
-> * Gestion de l’application dans le portail Azure
+> * Gérer l’application hello Bonjour portail Azure
 
 ## <a name="prerequisites"></a>Composants requis
 
-Pour suivre ce didacticiel :
+toocomplete ce didacticiel :
 
 * [Installez Git](https://git-scm.com/)
 * [Installez PHP 5.6.4 ou version ultérieure](http://php.net/downloads.php)
 * [Installez Composer](https://getcomposer.org/doc/00-intro.md)
-* Activation des extensions PHP suivantes requises par Laravel : OpenSSL, PDO-MySQL, Mbstring, Tokenizer, XML
+* Activer hello suivant les besoins de Laravel les extensions PHP : OpenSSL, PDO-MySQL, Mbstring, Générateur de jetons, XML
 * [Installez et démarrez MySQL](https://dev.mysql.com/doc/refman/5.7/en/installing.html) 
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
@@ -53,21 +53,21 @@ Pour suivre ce didacticiel :
 
 Dans cette étape, vous allez créer une base de données dans votre serveur MySQL local qui vous sera utile dans ce didacticiel.
 
-### <a name="connect-to-local-mysql-server"></a>Se connecter au serveur MySQL local
+### <a name="connect-toolocal-mysql-server"></a>Se connecter toolocal MySQL server
 
-Dans une fenêtre de terminal, connectez-vous à votre serveur MySQL local. Vous pouvez utiliser cette fenêtre de terminal pour exécuter toutes les commandes de ce didacticiel.
+Dans une fenêtre de terminal, connectez-vous tooyour local MySQL server. Vous pouvez utiliser cette fenêtre de terminal de toorun toutes les commandes hello dans ce didacticiel.
 
 ```bash
 mysql -u root -p
 ```
 
-Si vous êtes invité à entrer un mot de passe, tapez le mot de passe du compte `root`. Si vous avez oublié votre mot de passe de compte racine, consultez [MySQL: How to Reset the Root Password](https://dev.mysql.com/doc/refman/5.7/en/resetting-permissions.html) (MySQL : réinitialisation du mot de passe racine).
+Si vous êtes invité à entrer un mot de passe, entrez le mot de passe hello pour hello `root` compte. Si vous avez oublié votre mot de passe du compte racine, consultez [MySQL : comment tooReset hello mot de passe racine](https://dev.mysql.com/doc/refman/5.7/en/resetting-permissions.html).
 
-Si la commande est exécutée correctement, votre serveur MySQL est en cours d’exécution. Dans le cas contraire, assurez-vous que votre serveur MySQL local est démarré en suivant ces [étapes consécutives à l’installation de MySQL](https://dev.mysql.com/doc/refman/5.7/en/postinstallation.html).
+Si la commande est exécutée correctement, votre serveur MySQL est en cours d’exécution. Dans le cas contraire, assurez-vous que votre serveur MySQL local est démarrée par hello suivant [les étapes de post-installation MySQL](https://dev.mysql.com/doc/refman/5.7/en/postinstallation.html).
 
 ### <a name="create-a-database-locally"></a>Créer une base de données locale
 
-À l’invite `mysql`, créez une base de données.
+À hello `mysql` invite, créer une base de données.
 
 ```sql 
 CREATE DATABASE sampledb;
@@ -84,18 +84,18 @@ quit
 ## <a name="create-a-php-app-locally"></a>Créer une application PHP locale
 Dans cette étape, vous allez créer un exemple d’application Laravel, configurer sa connexion à la base de données et l’exécuter localement. 
 
-### <a name="clone-the-sample"></a>Clonage de l’exemple
+### <a name="clone-hello-sample"></a>Exemple hello de clone
 
-Dans la fenêtre de terminal, `cd` vers un répertoire de travail.
+Dans la fenêtre de terminal hello, `cd` répertoire de travail tooa.
 
-Exécutez la commande suivante pour cloner l’exemple de référentiel.
+Exécutez hello suivant le dépôt d’exemples de commande tooclone hello.
 
 ```bash
 git clone https://github.com/Azure-Samples/laravel-tasks
 ```
 
-`cd` vers votre répertoire cloné.
-Installez les packages requis.
+`cd`répertoire de tooyour cloné.
+Installer les packages hello requis.
 
 ```bash
 cd laravel-tasks
@@ -104,7 +104,7 @@ composer install
 
 ### <a name="configure-mysql-connection"></a>Configuration de la connexion MySQL
 
-À la racine du référentiel, créez un fichier nommé *.env*. Copiez les variables suivantes dans le fichier *.env*. Remplacez l’espace réservé _&lt;root_password>_ par le mot de passe de l’utilisateur racine de MySQL.
+Dans la racine du référentiel hello, créez un fichier nommé *.env*. Hello copie suivant des variables dans hello *.env* fichier. Remplacez hello  _&lt;root_password >_ espace réservé avec mot de passe de l’utilisateur racine hello MySQL.
 
 ```
 APP_ENV=local
@@ -118,11 +118,11 @@ DB_USERNAME=root
 DB_PASSWORD=<root_password>
 ```
 
-Pour en savoir plus sur la manière dont Laravel utilise ce fichier _.env_, consultez [Configuration de l’environnement Laravel](https://laravel.com/docs/5.4/configuration#environment-configuration).
+Pour plus d’informations sur la façon dont Laravel utilise hello _.env_ de fichiers, consultez [Configuration de l’environnement Laravel](https://laravel.com/docs/5.4/configuration#environment-configuration).
 
-### <a name="run-the-sample-locally"></a>Télécharger l’exemple localement
+### <a name="run-hello-sample-locally"></a>Exécuter les exemples hello localement
 
-Exécutez les [migrations de base de données Laravel](https://laravel.com/docs/5.4/migrations) pour créer les tables requises par l’application. Pour voir quelles tables sont créées dans les migrations, consultez le répertoire _database/migrations_ dans le référentiel Git.
+Exécutez [migrations de base de données Laravel](https://laravel.com/docs/5.4/migrations) toocreate hello tables des besoins de l’application hello. toosee les tables sont créées dans les migrations hello, recherchez Bonjour _base de données/migrations_ répertoire dans le référentiel Git de hello.
 
 ```bash
 php artisan migrate
@@ -134,23 +134,23 @@ Générez une nouvelle clé d’application Laravel.
 php artisan key:generate
 ```
 
-Exécutez l’application.
+Exécutez l’application hello.
 
 ```bash
 php artisan serve
 ```
 
-Dans un navigateur, accédez à `http://localhost:8000`. Ajoutez quelques tâches dans la page.
+Accédez trop`http://localhost:8000` dans un navigateur. Ajouter quelques tâches dans la page de hello.
 
-![PHP se connecte correctement à MySQL](./media/app-service-web-tutorial-php-mysql/mysql-connect-success.png)
+![PHP connecte correctement tooMySQL](./media/app-service-web-tutorial-php-mysql/mysql-connect-success.png)
 
-Pour arrêter PHP, tapez `Ctrl + C` dans le terminal.
+toostop PHP, tapez `Ctrl + C` Bonjour Terminal Server.
 
 [!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
 
 ## <a name="create-mysql-in-azure"></a>Création de MySQL dans Azure
 
-Dans cette étape, vous allez créer une base de données MySQL dans [Azure Database pour MySQL (Version préliminaire)](/azure/mysql). Ensuite, vous configurerez l’application PHP pour la connexion à cette base de données.
+Dans cette étape, vous allez créer une base de données MySQL dans [Azure Database pour MySQL (Version préliminaire)](/azure/mysql). Ensuite, vous configurez hello PHP tooconnect toothis base de données.
 
 ### <a name="create-a-resource-group"></a>Créer un groupe de ressources
 
@@ -158,9 +158,9 @@ Dans cette étape, vous allez créer une base de données MySQL dans [Azure Data
 
 ### <a name="create-a-mysql-server"></a>Création d’un serveur MySQL
 
-Créez un serveur Azure Database pour MySQL (préversion) avec la commande [az mysql server create](/cli/azure/mysql/server#create).
+Créer un serveur de base de données Azure pour MySQL (version préliminaire) avec hello [az mysql server créer](/cli/azure/mysql/server#create) commande.
 
-Dans la commande suivante, indiquez le nom unique de votre propre serveur MySQL là où se trouve l’espace réservé _&lt;mysql_server_name>_ (les caractères valides sont `a-z`, `0-9` et `-`). Ce nom fait partie du nom d’hôte du serveur MySQL (`<mysql_server_name>.database.windows.net`) et doit donc être globalement unique.
+Bonjour suivant de commande, remplacez le nom de votre serveur MySQL dans lequel vous consultez hello  _&lt;mysql_server_name >_ espace réservé (les caractères valides sont `a-z`, `0-9`, et `-`). Ce nom fait partie du nom d’hôte du serveur hello MySQL (`<mysql_server_name>.database.windows.net`), il doit toobe global unique.
 
 ```azurecli-interactive
 az mysql server create \
@@ -171,7 +171,7 @@ az mysql server create \
     --admin-password MySQLAzure2017
 ```
 
-Lorsque le serveur MySQL est créé, l’interface Azure CLI affiche des informations similaires à l’exemple suivant :
+Lorsque le serveur MySQL de hello est créé, hello CLI d’Azure affiche des informations similaires toohello est l’exemple suivant :
 
 ```json
 {
@@ -188,7 +188,7 @@ Lorsque le serveur MySQL est créé, l’interface Azure CLI affiche des inform
 
 ### <a name="configure-server-firewall"></a>Configuration d’un pare-feu de serveur
 
-Créez une règle de pare-feu pour votre serveur MySQL afin d’autoriser les connexions client à l’aide de la commande [az mysql server firewall-rule create](/cli/azure/mysql/server/firewall-rule#create).
+Créer une règle de pare-feu pour votre client de tooallow MySQL server connexions à l’aide de hello [az mysql server-règle de pare-feu créer](/cli/azure/mysql/server/firewall-rule#create) commande.
 
 ```azurecli-interactive
 az mysql server firewall-rule create \
@@ -200,23 +200,23 @@ az mysql server firewall-rule create \
 ```
 
 > [!NOTE]
-> Pour le moment, Azure Database pour MySQL (version préliminaire) ne limite pas les connexions aux services Azure seulement. Étant donné que les adresses IP sont affectées dynamiquement dans Azure, il est préférable d’activer toutes les adresses IP. Le service est en version préliminaire. Les meilleures méthodes de sécurisation de votre base de données sont planifiées.
+> Services de tooAzure uniquement les connexions actuellement ne limite pas la base de données Azure pour MySQL (version préliminaire). Comme les adresses IP dans Azure sont attribuées dynamiquement, il s’agit d’une meilleure tooenable toutes les adresses IP. service de Hello est en version préliminaire. Les meilleures méthodes de sécurisation de votre base de données sont planifiées.
 >
 >
 
-### <a name="connect-to-production-mysql-server-locally"></a>Se connecter au serveur de production MySQL localement
+### <a name="connect-tooproduction-mysql-server-locally"></a>Se connecter localement tooproduction MySQL server
 
-Dans la fenêtre de terminal, connectez-vous au serveur MySQL dans Azure. Utilisez la valeur spécifiée précédemment pour _&lt;mysql_server_name>_.
+Dans la fenêtre de terminal hello, connectez-vous toohello MySQL server dans Azure. Utilisez la valeur hello spécifiée précédemment pour  _&lt;mysql_server_name >_.
 
 ```bash
 mysql -u adminuser@<mysql_server_name> -h <mysql_server_name>.database.windows.net -P 3306 -p
 ```
 
-Lorsqu’une invite de mot de passe apparaît, utilisez _$tr0ngPa$w0rd!_, que vous avez spécifié lors de la création de la base de données.
+Lors de l’invité à entrer un mot de passe, utilisez _tr0ngPa $$ w0rd !_, que vous avez spécifiés lors de la création de la base de données hello.
 
 ### <a name="create-a-production-database"></a>Création d’une base de données de production
 
-À l’invite `mysql`, créez une base de données.
+À hello `mysql` invite, créer une base de données.
 
 ```sql
 CREATE DATABASE sampledb;
@@ -224,28 +224,28 @@ CREATE DATABASE sampledb;
 
 ### <a name="create-a-user-with-permissions"></a>Création d’un utilisateur avec des autorisations
 
-Créez un utilisateur de base de données nommé _phpappuser_ et accordez-lui tous les privilèges dans la base de données `sampledb`.
+Créez un utilisateur de base de données appelé _phpappuser_ et lui donner tous les privilèges Bonjour `sampledb` base de données.
 
 ```sql
 CREATE USER 'phpappuser' IDENTIFIED BY 'MySQLAzure2017'; 
-GRANT ALL PRIVILEGES ON sampledb.* TO 'phpappuser';
+GRANT ALL PRIVILEGES ON sampledb.* too'phpappuser';
 ```
 
-Quittez la connexion au serveur en tapant `quit`.
+Quitter la connexion au serveur hello en tapant `quit`.
 
 ```sql
 quit
 ```
 
-## <a name="connect-app-to-azure-mysql"></a>Connexion de l’application à Azure MySQL
+## <a name="connect-app-tooazure-mysql"></a>Connecter l’application tooAzure MySQL
 
-Dans cette étape, vous allez connecter l’application PHP à la base de données MySQL que vous avez créée dans Azure Database pour MySQL (version préliminaire).
+Dans cette étape, vous vous connectez hello PHP application toohello base de données MySQL que vous avez créé dans la base de données Azure pour MySQL (version préliminaire).
 
 <a name="devconfig"></a>
 
-### <a name="configure-the-database-connection"></a>Configurer la connexion à la base de données
+### <a name="configure-hello-database-connection"></a>Configurer la connexion de base de données hello
 
-À la racine du référentiel, créez un fichier _.env.production_ et copiez-y les variables suivantes. Remplacez l’espace réservé _&lt;mysql_server_name>_.
+Dans la racine du référentiel hello, créez un _. env.production_ fichier et copiez hello suivant des variables dans celui-ci. Remplacez l’espace réservé de hello  _&lt;mysql_server_name >_.
 
 ```
 APP_ENV=production
@@ -260,17 +260,17 @@ DB_PASSWORD=MySQLAzure2017
 MYSQL_SSL=true
 ```
 
-Enregistrez les modifications.
+Enregistrer les modifications de hello.
 
 > [!TIP]
-> Pour sécuriser vos informations de connexion MySQL, ce fichier est déjà exclu du référentiel Git (consultez _.gitignore_ dans la racine du référentiel). Vous apprendrez ultérieurement à configurer les variables d’environnement dans App Service pour vous connecter à votre base de données dans Azure Database pour MySQL (version préliminaire). Avec les variables d’environnement, vous n’avez pas besoin du fichier *.env* dans App Service.
+> toosecure vos informations de connexion MySQL, ce fichier sont déjà exclues de référentiel Git de hello (consultez _.gitignore_ dans la racine du référentiel hello). Une version ultérieure, vous découvrez comment les variables d’environnement tooconfigure dans tooyour tooconnect de Service d’applications de base de données dans la base de données Azure pour MySQL (version préliminaire). Avec les variables d’environnement, vous n’avez pas besoin hello *.env* fichier dans le Service d’applications.
 >
 
 ### <a name="configure-ssl-certificate"></a>Configuration du certificat SSL
 
-Par défaut, la base de données Azure pour MySQL applique les connexions SSL à partir des clients. Pour vous connecter à votre base de données MySQL dans Azure, vous devez utiliser un certificat SSL _.pem_.
+Par défaut, la base de données Azure pour MySQL applique les connexions SSL à partir des clients. tooconnect tooyour base de données MySQL dans Azure, vous devez utiliser un _.pem_ certificat SSL.
 
-Ouvrez _config/database.php_ et ajoutez les paramètres _sslmode_ et _options_ à `connections.mysql`, comme illustré dans le code suivant.
+Ouvrez _config/database.php_ et ajoutez hello _sslmode_ et _options_ paramètres trop`connections.mysql`, comme indiqué dans hello suivant de code.
 
 ```php
 'mysql' => [
@@ -282,54 +282,54 @@ Ouvrez _config/database.php_ et ajoutez les paramètres _sslmode_ et _options_ �
 ],
 ```
 
-Pour savoir comment générer ce fichier _certificate.pem_, consultez l’article [Configuration de la connectivité SSL dans votre application pour se connecter en toute sécurité à la base de données Azure pour MySQL](../mysql/howto-configure-ssl.md).
+toolearn comment toogenerate cela _certificate.pem_, consultez [tooAzure base de données de connexion de connectivité configurez SSL dans votre application de toosecurely pour MySQL](../mysql/howto-configure-ssl.md).
 
 > [!TIP]
-> Le chemin d’accès _/ssl/certificate.pem_ pointe vers un fichier _certificate.pem_ existant dans le référentiel Git. Dans ce didacticiel, ce fichier est fourni pour des raisons pratiques. Il est préférable de ne pas valider vos certificats _.pem_ dans le contrôle de code source. 
+> chemin d’accès Hello _/ssl/certificate.pem_ pointe tooan existant _certificate.pem_ fichier dans le référentiel Git de hello. Dans ce didacticiel, ce fichier est fourni pour des raisons pratiques. Il est préférable de ne pas valider vos certificats _.pem_ dans le contrôle de code source. 
 >
 
-### <a name="test-the-application-locally"></a>Tester localement l’application
+### <a name="test-hello-application-locally"></a>Tester l’application hello localement
 
-Exécutez les migrations de base de données Laravel avec _.env.production_ comme fichier d’environnement pour créer les tables dans votre base de données MySQL dans Azure Database pour MySQL (version préliminaire). N’oubliez pas que _. env.production_ contient les informations de connexion à votre base de données MySQL dans Azure.
+Exécuter les migrations de base de données Laravel avec _. env.production_ comme hello tables environnement fichier toocreate hello votre base de données MySQL dans la base de données Azure pour MySQL (version préliminaire). N’oubliez pas que _. env.production_ a base de données de MySQL hello connexion informations tooyour dans Azure.
 
 ```bash
 php artisan migrate --env=production --force
 ```
 
-_.env.production_ n’a pas encore de clé d’application valide. Générez-en une pour lui dans le terminal.
+_.env.production_ n’a pas encore de clé d’application valide. Générer un nouveau pour elle dans hello Terminal Server.
 
 ```bash
 php artisan key:generate --env=production --force
 ```
 
-Exécutez l’exemple d’application avec _.env.production_ comme fichier d’environnement.
+Exécutez l’exemple d’application hello avec _. env.production_ en tant que fichier d’environnement hello.
 
 ```bash
 php artisan serve --env=production
 ```
 
-Accédez à `http://localhost:8000`. Si la page se charge sans erreur, l’application PHP se connecte à la base de données MySQL dans Azure.
+Accédez trop`http://localhost:8000`. Si le chargement de la page hello sans erreurs hello application PHP se connecte toohello de la base de données MySQL dans Azure.
 
-Ajoutez quelques tâches dans la page.
+Ajouter quelques tâches dans la page de hello.
 
-![PHP se connecte correctement à Azure Database pour MySQL (version préliminaire)](./media/app-service-web-tutorial-php-mysql/mysql-connect-success.png)
+![PHP connecte correctement tooAzure de base de données de MySQL (version préliminaire)](./media/app-service-web-tutorial-php-mysql/mysql-connect-success.png)
 
-Pour arrêter PHP, tapez `Ctrl + C` dans le terminal.
+toostop PHP, tapez `Ctrl + C` Bonjour Terminal Server.
 
 ### <a name="commit-your-changes"></a>Validation de vos modifications
 
-Exécutez les commandes Git suivantes pour valider vos modifications :
+Exécutez hello suivant toocommit de commandes Git vos modifications :
 
 ```bash
 git add .
 git commit -m "database.php updates"
 ```
 
-Votre application est prête à être déployée.
+Votre application est toobe prêt déployée.
 
-## <a name="deploy-to-azure"></a>Déployer dans Azure
+## <a name="deploy-tooazure"></a>Déployer tooAzure
 
-Dans cette étape, vous allez déployer l’application PHP connectée à MySQL dans Azure App Service.
+Dans cette étape, vous déployez hello PHP de connexion MySQL application tooAzure du Service d’applications.
 
 ### <a name="create-an-app-service-plan"></a>Créer un plan App Service
 
@@ -339,11 +339,11 @@ Dans cette étape, vous allez déployer l’application PHP connectée à MySQL 
 
 [!INCLUDE [Create web app no h](../../includes/app-service-web-create-web-app-no-h.md)]
 
-### <a name="set-the-php-version"></a>Définition de la version PHP
+### <a name="set-hello-php-version"></a>Définir la version PHP hello
 
-Définissez la version PHP requise par l’application en utilisant la commande [az webapp config set](/cli/azure/webapp/config#set).
+Version PHP hello Set qui hello application requiert à l’aide de hello [az webapp configuration défini](/cli/azure/webapp/config#set) commande.
 
-La commande suivante définit la version PHP sur _7.0_.
+Hello commande suivante définit hello PHP version too_7.0_.
 
 ```azurecli-interactive
 az webapp config set \
@@ -354,11 +354,11 @@ az webapp config set \
 
 ### <a name="configure-database-settings"></a>Configuration des paramètres de la base de données
 
-Comme indiqué précédemment, vous pouvez vous connecter à votre base de données Azure MySQL en utilisant des variables d’environnement dans App Service.
+Comme indiqué précédemment, vous pouvez vous connecter à Azure MySQL tooyour de base de données à l’aide de variables d’environnement dans le Service d’applications.
 
-Dans App Service, vous définissez les variables d’environnement en tant que _paramètres d’application_ à l’aide de la commande [az webapp config appsettings set](/cli/azure/webapp/config/appsettings#set).
+Dans le Service d’application, vous définissez les variables d’environnement _paramètres de l’application_ à l’aide de hello [az webapp configuration appsettings défini](/cli/azure/webapp/config/appsettings#set) commande.
 
-La commande suivante configure les paramètres d’application `DB_HOST`, `DB_DATABASE`, `DB_USERNAME` et `DB_PASSWORD`. Remplacez les espaces réservés _&lt;appname>_ et _&lt;mysql_server_name>_.
+Hello commande suivante configure les paramètres de l’application hello `DB_HOST`, `DB_DATABASE`, `DB_USERNAME`, et `DB_PASSWORD`. Remplacez les espaces réservés de hello  _&lt;appname >_ et  _&lt;mysql_server_name >_.
 
 ```azurecli-interactive
 az webapp config appsettings set \
@@ -367,7 +367,7 @@ az webapp config appsettings set \
     --settings DB_HOST="<mysql_server_name>.database.windows.net" DB_DATABASE="sampledb" DB_USERNAME="phpappuser@<mysql_server_name>" DB_PASSWORD="MySQLAzure2017" MYSQL_SSL="true"
 ```
 
-Vous pouvez utiliser la méthode PHP [getenv](http://www.php.net/manual/function.getenv.php) pour accéder aux paramètres. Votre code Laravel utilise un wrapper [env](https://laravel.com/docs/5.4/helpers#method-env) sur le PHP `getenv`. Par exemple, la configuration MySQL dans _config/database.php_ ressemble au code suivant :
+Vous pouvez utiliser hello PHP [getenv](http://www.php.net/manual/function.getenv.php) méthode tooaccess hello paramètres. Hello Laravel code utilise un [env](https://laravel.com/docs/5.4/helpers#method-env) wrapper sur hello PHP `getenv`. Par exemple, les configuration MySQL hello dans _config/database.php_ ressemble à hello suivant de code :
 
 ```php
 'mysql' => [
@@ -384,13 +384,13 @@ Vous pouvez utiliser la méthode PHP [getenv](http://www.php.net/manual/function
 
 Laravel a besoin d’une clé d’application dans App Service. Vous pouvez la configurer avec les paramètres d’application.
 
-Utilisez `php artisan` pour générer une nouvelle clé d’application sans l’enregistrer dans _.env_.
+Utilisez `php artisan` toogenerate une nouvelle clé d’application sans l’enregistrer too_.env_.
 
 ```bash
 php artisan key:generate --show
 ```
 
-Définissez la clé d’application dans l’application web App Service en utilisant la commande [az webapp config appsettings set](/cli/azure/webapp/config/appsettings#set). Remplacez les espaces réservés _&lt;appname>_ et _&lt;outputofphpartisankey:generate>_.
+Définir une clé de l’application hello Bonjour du Service d’applications, application web à l’aide de hello [az webapp configuration appsettings défini](/cli/azure/webapp/config/appsettings#set) commande. Remplacez les espaces réservés de hello  _&lt;appname >_ et  _&lt;outputofphpartisankey : générer >_.
 
 ```azurecli-interactive
 az webapp config appsettings set \
@@ -399,13 +399,13 @@ az webapp config appsettings set \
     --settings APP_KEY="<output_of_php_artisan_key:generate>" APP_DEBUG="true"
 ```
 
-`APP_DEBUG="true"` indique à Laravel de renvoyer les informations de débogage lorsque l’application web déployée rencontre des erreurs. Lorsque vous exécutez une application de production, affectez-lui la valeur `false`, qui est plus sécurisée.
+`APP_DEBUG="true"`Indique les informations débogage Laravel tooreturn hello déployé l’application web rencontre des erreurs. Lorsque vous exécutez une application de production, définissez-le trop`false`, qui est plus sécurisé.
 
-### <a name="set-the-virtual-application-path"></a>Définition du chemin d’accès de l’application virtuelle
+### <a name="set-hello-virtual-application-path"></a>Le chemin d’accès de jeu hello application virtuelle
 
-Définissez le chemin d’accès de l’application virtuelle pour l’application web. Cette étape est requise car le [cycle de vie de l’application Laravel](https://laravel.com/docs/5.4/lifecycle) commence dans le répertoire _public_ et non pas dans le répertoire racine de votre application. Les autres infrastructures PHP dont le cycle de vie démarre dans le répertoire racine peuvent fonctionner sans configuration manuelle du chemin d’accès à l’application virtuelle.
+Définissez hello chemin d’accès virtuel pour l’application web de hello. Cette étape est requise car hello [cycle de vie des applications Laravel](https://laravel.com/docs/5.4/lifecycle) commence dans hello _public_ répertoire au lieu du répertoire racine de l’application hello. Autres infrastructures PHP dont du cycle de vie Démarrer dans le répertoire racine de hello peuvent fonctionner sans configuration manuelle de hello chemin d’accès virtuel.
 
-Définissez le chemin d’accès à l’application virtuelle en utilisant la commande [az resource update](/cli/azure/resource#update). Remplacez l’espace réservé _&lt;appname>_.
+Ensemble hello chemin d’accès virtuel à l’aide de hello [mise à jour de la ressource az](/cli/azure/resource#update) commande. Remplacez hello  _&lt;appname >_ espace réservé.
 
 ```azurecli-interactive
 az resource update \
@@ -418,7 +418,7 @@ az resource update \
     --api-version 2015-06-01
 ```
 
-Par défaut, Azure App Service pointe le chemin d’accès à l’application virtuelle (_/_) vers le répertoire racine des fichiers d’application déployés (_sites\wwwroot_).
+Par défaut, les points de Service d’applications Azure hello racine chemin d’accès virtuel (_/_) répertoire toohello Hello déployé les fichiers d’application (_sites\wwwroot_).
 
 ### <a name="configure-a-deployment-user"></a>Configuration d’un utilisateur de déploiement
 
@@ -428,15 +428,15 @@ Par défaut, Azure App Service pointe le chemin d’accès à l’application vi
 
 [!INCLUDE [Configure local git](../../includes/app-service-web-configure-local-git-no-h.md)]
 
-### <a name="push-to-azure-from-git"></a>Effectuer une transmission de type push vers Azure à partir de Git
+### <a name="push-tooazure-from-git"></a>TooAzure par émission de données à partir de Git
 
-Ajoutez un référentiel distant Azure dans votre référentiel Git local.
+Ajouter un référentiel Git Azure tooyour à distance.
 
 ```bash
 git remote add azure <paste_copied_url_here>
 ```
 
-Effectuez une transmission de type push vers le référentiel distant Azure pour déployer l’application PHP. Le mot de passe que vous avez fourni précédemment dans le cadre de la création de l’utilisateur du déploiement vous est demandé.
+Push application PHP de toohello toodeploy distant Azure hello. Vous êtes invité au mot de passe hello fourni précédemment dans le cadre de la création de l’utilisateur du déploiement hello hello.
 
 ```bash
 git push azure master
@@ -446,7 +446,7 @@ Au cours du déploiement, Azure App Service communique sa progression avec Git.
 
 ```bash
 Counting objects: 3, done.
-Delta compression using up to 8 threads.
+Delta compression using up too8 threads.
 Compressing objects: 100% (3/3), done.
 Writing objects: 100% (3/3), 291 bytes | 0 bytes/s, done.
 Total 3 (delta 2), reused 0 (delta 0)
@@ -460,18 +460,18 @@ remote: Running deployment command...
 ```
 
 > [!NOTE]
-> Vous remarquerez peut-être que le processus de déploiement installe les packages [Composer](https://getcomposer.org/) à la fin. App Service n’exécute pas ces automatisations pendant le déploiement par défaut. Cet exemple de référentiel possède donc trois fichiers supplémentaires dans son répertoire racine pour l’activer :
+> Vous pouvez remarquer que le processus de déploiement hello installe [Composer](https://getcomposer.org/) packages à la fin de hello. Service de l’application ne s’exécute pas ces automatisations durant le déploiement de la valeur par défaut, donc ce dépôt d’exemples possède trois autres fichiers dans son tooenable du répertoire racine qu’il :
 >
-> - `.deployment` : ce fichier indique à App Service d’exécuter `bash deploy.sh` en tant que script de déploiement personnalisé.
-> - `deploy.sh` : le script de déploiement personnalisé. Si vous examinez le fichier, vous verrez qu’il exécute `php composer.phar install` après `npm install`.
-> - `composer.phar` - Le Gestionnaire de package Composer.
+> - `.deployment`-Ce fichier indique du Service d’applications toorun `bash deploy.sh` en tant que script de déploiement personnalisé hello.
+> - `deploy.sh`-hello du script de déploiement personnalisé. Si vous passez en revue le fichier de hello, vous verrez qu’il s’exécute `php composer.phar install` après `npm install`.
+> - `composer.phar`-Gestionnaire de package de Composer hello.
 >
-> Vous pouvez utiliser cette approche pour ajouter une étape à votre déploiement Git sur App Service. Pour plus d'informations, consultez le [script de déploiement personnalisé](https://github.com/projectkudu/kudu/wiki/Custom-Deployment-Script).
+> Vous pouvez utiliser cette approche tooadd n’importe quel ordinateur étape tooyour déploiement Git tooApp Service. Pour plus d'informations, consultez le [script de déploiement personnalisé](https://github.com/projectkudu/kudu/wiki/Custom-Deployment-Script).
 >
 
-### <a name="browse-to-the-azure-web-app"></a>Rechercher l’application web Azure
+### <a name="browse-toohello-azure-web-app"></a>Parcourir toohello Azure web app
 
-Accédez à `http://<app_name>.azurewebsites.net` et ajoutez quelques tâches à la liste.
+Parcourir trop`http://<app_name>.azurewebsites.net` et ajouter quelques tâches toohello.
 
 ![Application PHP exécutée dans Azure App Service](./media/app-service-web-tutorial-php-mysql/php-mysql-in-azure.png)
 
@@ -479,23 +479,23 @@ Félicitations, vous exécutez une application PHP orientée données dans Azure
 
 ## <a name="update-model-locally-and-redeploy"></a>Mettre à jour et redéployer un modèle localement
 
-Dans cette étape, vous allez apporter une modification simple au modèle de données `task` et à l’application web, puis publier la mise à jour sur Azure.
+Dans cette étape, vous apportez une modification simple de toohello `task` données de modèle, hello webapp et puis publiez tooAzure de mise à jour hello.
 
-Pour le scénario des tâches, vous modifiez l’application afin de pouvoir marquer une tâche comme terminée.
+Pour le scénario de tâches hello, vous modifiez application hello afin que vous pouvez marquer une tâche comme étant terminée.
 
 ### <a name="add-a-column"></a>Ajout d’une colonne
 
-Dans le terminal, accédez à la racine du référentiel Git.
+Bonjour terminal, accédez à racine toohello du référentiel Git de hello.
 
-Générez une nouvelle migration de base de données pour la table `tasks` :
+Générer une nouvelle migration de base de données pour hello `tasks` table :
 
 ```bash
 php artisan make:migration add_complete_column --table=tasks
 ```
 
-Cette commande affiche le nom du fichier de migration qui est généré. Recherchez ce fichier dans _database/migrations_ et ouvrez-le.
+Cette commande indique hello de nom du fichier de migration hello qui est généré. Recherchez ce fichier dans _database/migrations_ et ouvrez-le.
 
-Remplacez la méthode `up` par le code suivant :
+Remplacez hello `up` méthode avec hello suivant de code :
 
 ```php
 public function up()
@@ -506,9 +506,9 @@ public function up()
 }
 ```
 
-Le code ci-dessus ajoute une colonne booléenne dans la table `tasks` nommée `complete`.
+Hello code précédent ajoute une colonne booléenne Bonjour `tasks` table appelée `complete`.
 
-Remplacez la méthode `down` par le code suivant pour l’action de restauration :
+Remplacez hello `down` méthode avec hello suivant le code d’action de restauration hello :
 
 ```php
 public function down()
@@ -519,19 +519,19 @@ public function down()
 }
 ```
 
-Dans le terminal, exécutez les migrations de base de données Laravel pour apporter la modification dans la base de données locale.
+Bonjour Terminal Server, exécutez les Laravel de base de données migrations toomake hello modifications dans la base de données locale hello.
 
 ```bash
 php artisan migrate
 ```
 
-Selon la [convention d’affectation de noms Laravel](https://laravel.com/docs/5.4/eloquent#defining-models), le modèle `Task` (voir _app/Task.php_) est mappé à la table `tasks` par défaut.
+En fonction de hello [convention d’affectation de noms de Laravel](https://laravel.com/docs/5.4/eloquent#defining-models), modèle de hello `Task` (consultez _app/Task.php_) mappe toohello `tasks` table par défaut.
 
 ### <a name="update-application-logic"></a>Mise à jour de la logique d’application
 
-Ouvrez le fichier *routes/web.php*. L’application définit ici ses itinéraires et sa logique métier.
+Ouvrez hello *routes/web.php* fichier. application Hello définit ses itinéraires et la logique d’entreprise.
 
-À la fin du fichier, ajoutez un itinéraire avec le code suivant :
+En bas de hello du fichier de hello, ajoutez un itinéraire avec hello suivant de code :
 
 ```php
 /**
@@ -548,25 +548,25 @@ Route::post('/task/{id}', function ($id) {
 });
 ```
 
-Le code ci-dessus effectue une simple mise à jour du modèle de données en basculant la valeur de `complete`.
+Hello code précédent crée un modèle de données de mise à jour simple toohello en basculant la valeur hello `complete`.
 
-### <a name="update-the-view"></a>Mise à jour de la vue
+### <a name="update-hello-view"></a>Vue hello de mise à jour
 
-Ouvrez le fichier *resources/views/tasks.blade.php*. Recherchez la balise d’ouverture `<tr>` et remplacez-la par :
+Ouvrez hello *resources/views/tasks.blade.php* fichier. Recherche hello `<tr>` balise d’ouverture et remplacez-la par :
 
 ```html
 <tr class="{{ $task->complete ? 'success' : 'active' }}" >
 ```
 
-Le code ci-dessus modifie la couleur de la ligne selon que la tâche est terminée ou non.
+Hello précédant le code change de couleur ligne hello selon que la tâche hello est terminée.
 
-La ligne suivante contient le code suivant :
+Dans la ligne suivante de hello, vous avez hello suivant de code :
 
 ```html
 <td class="table-text"><div>{{ $task->name }}</div></td>
 ```
 
-Remplacez la ligne entière par le code suivant :
+Remplacez toute ligne de hello hello suivant de code :
 
 ```html
 <td>
@@ -581,31 +581,31 @@ Remplacez la ligne entière par le code suivant :
 </td>
 ```
 
-Le code ci-dessus ajoute le bouton Envoyer qui fait référence à l’itinéraire défini précédemment.
+Hello code précédent ajoute bouton Envoyer hello qui fait référence à itinéraire hello que vous avez défini précédemment.
 
-### <a name="test-the-changes-locally"></a>Test des modifications en local
+### <a name="test-hello-changes-locally"></a>Tester des modifications hello localement
 
-À partir du répertoire racine du référentiel Git, exécutez le serveur de développement.
+À partir du répertoire racine de hello du référentiel Git de hello, exécutez le serveur de développement hello.
 
 ```bash
 php artisan serve
 ```
 
-Pour voir l’évolution de l’état de la tâche, accédez à `http://localhost:8000` et activez la case à cocher.
+toosee hello changement d’état de la tâche, accédez trop`http://localhost:8000` puis hello select case.
 
-![Case à cocher ajoutée à la tâche](./media/app-service-web-tutorial-php-mysql/complete-checkbox.png)
+![Case à cocher ajouté tootask](./media/app-service-web-tutorial-php-mysql/complete-checkbox.png)
 
-Pour arrêter PHP, tapez `Ctrl + C` dans le terminal.
+toostop PHP, tapez `Ctrl + C` Bonjour Terminal Server.
 
-### <a name="publish-changes-to-azure"></a>Publier les modifications dans Azure
+### <a name="publish-changes-tooazure"></a>Publier les modifications tooAzure
 
-Dans le terminal, exécutez les migrations de base de données Laravel avec la chaîne de connexion de production pour apporter la modification dans la base de données Azure.
+Bonjour Terminal Server, exécuter les migrations de base de données Laravel avec hello production chaîne connexion toomake hello modification Bonjour Azure de base de données.
 
 ```bash
 php artisan migrate --env=production --force
 ```
 
-Validez toutes les modifications dans Git, puis envoyez les modifications de code à Azure.
+Valider toutes les modifications de hello dans Git et puis envoyez tooAzure de modifications de code hello.
 
 ```bash
 git add .
@@ -613,17 +613,17 @@ git commit -m "added complete checkbox"
 git push azure master
 ```
 
-Une fois le `git push` terminé, accédez à l’application web Azure et essayez la nouvelle fonctionnalité.
+Une fois hello `git push` terminée, accédez toohello Azure web app et test hello nouvelles fonctionnalités.
 
-![Modifications du modèle et de la base de données publiées dans Azure](media/app-service-web-tutorial-php-mysql/complete-checkbox-published.png)
+![Les modifications de modèle et de la base de données publiées tooAzure](media/app-service-web-tutorial-php-mysql/complete-checkbox-published.png)
 
-Si vous avez ajouté des tâches, celles-ci sont conservées dans la base de données. Les mises à jour appliquées au schéma de données n’affectent pas les données existantes.
+Si vous avez ajouté toutes les tâches, ils sont conservés dans la base de données hello. Schéma de données mises à jour toohello toucher les données existantes.
 
 ## <a name="stream-diagnostic-logs"></a>Diffuser les journaux de diagnostic
 
-Pendant l’exécution de l’application PHP dans Azure App Service, vous pouvez acheminer les journaux de la console vers votre terminal. De cette façon, vous pouvez obtenir les mêmes messages de diagnostic pour vous aider à déboguer les erreurs d’application.
+Pendant l’exécution de hello application PHP dans Azure App Service, vous pouvez obtenir hello console journaux dirigée tooyour Terminal Server. De cette façon, vous pouvez obtenir hello des messages de diagnostic mêmes toohelp vous déboguez des erreurs d’application.
 
-Pour démarrer la diffusion de journaux, utilisez la commande [az webapp log tail](/cli/azure/webapp/log#tail).
+journal toostart de diffusion en continu, utilisez hello [la fin du journal de az webapp](/cli/azure/webapp/log#tail) commande.
 
 ```azurecli-interactive
 az webapp log tail \
@@ -631,28 +631,28 @@ az webapp log tail \
     --resource-group myResourceGroup
 ```
 
-Une fois que la diffusion a démarré, actualisez l’application web Azure dans le navigateur pour générer un trafic web. Vous pouvez maintenant voir les journaux de la console acheminés vers le terminal. Si vous ne voyez pas les journaux de la console, attendez 30 secondes et vérifiez à nouveau.
+Une fois que le journal de diffusion en continu a démarré, actualiser application web Azure hello hello navigateur tooget certains types de trafic web. Vous pouvez maintenant voir dirigée toohello Terminal Server des journaux de console. Si vous ne voyez pas les journaux de la console, attendez 30 secondes et vérifiez à nouveau.
 
-Pour arrêter la diffusion de journaux à tout moment, tapez `Ctrl`+`C`.
+journal toostop de diffusion en continu à tout moment, type `Ctrl` + `C`.
 
 > [!TIP]
-> Une application PHP peut utiliser la commande [error_log()](http://php.net/manual/function.error-log.php) pour envoyer le résultat vers la console. L’exemple d’application utilise cette approche dans _app/Http/routes.php_.
+> Une application PHP peut utiliser standard de hello [error_log()](http://php.net/manual/function.error-log.php) toooutput toohello console. exemple d’application Hello utilise cette approche dans _app/Http/routes.php_.
 >
-> [Laravel utilise Monolog](https://laravel.com/docs/5.4/errors) comme fournisseur de journalisation, de la même manière qu’une infrastructure web. Pour savoir comment faire en sorte que Monolog envoie les messages vers la console, consultez [PHP: How to use monolog to log to console (php://out)](http://stackoverflow.com/questions/25787258/php-how-to-use-monolog-to-log-to-console-php-out) (PHP : utilisation de Monolog pour envoyer le journal vers la console (php://out)).
+> Comme une infrastructure web, [Laravel utilise Monolog](https://laravel.com/docs/5.4/errors) en tant que fournisseur de journalisation hello. toosee tooget Monolog toooutput des messages toohello console, consultez [PHP : comment toouse monolog toolog tooconsole (php://out)](http://stackoverflow.com/questions/25787258/php-how-to-use-monolog-to-log-to-console-php-out).
 >
 >
 
-## <a name="manage-the-azure-web-app"></a>Gérer l’application web Azure
+## <a name="manage-hello-azure-web-app"></a>Gérer l’application web Azure de hello
 
-Accédez au [Portail Azure](https://portal.azure.com) pour gérer l’application web que vous avez créée.
+Accédez toohello [portail Azure](https://portal.azure.com) toomanage vous avez créé l’application web hello.
 
-Dans le menu de gauche, cliquez sur **App Services**, puis cliquez sur le nom de votre application web Azure.
+Dans le menu de gauche hello, cliquez sur **des Services d’application**, puis cliquez sur nom hello de votre application web Azure.
 
-![Navigation au sein du portail pour accéder à l’application web Azure](./media/app-service-web-tutorial-php-mysql/access-portal.png)
+![Application de navigation du portail tooAzure web](./media/app-service-web-tutorial-php-mysql/access-portal.png)
 
 Vous voyez apparaître la page Vue d’ensemble de votre application web. Ici, vous pouvez effectuer des tâches de gestion de base (arrêter, démarrer, redémarrer, parcourir et supprimer).
 
-Le menu de gauche fournit des pages vous permettant de configurer votre application.
+menu de gauche Hello fournit des pages de configuration de votre application.
 
 ![Page App Service du Portail Azure](./media/app-service-web-tutorial-php-mysql/web-app-blade.png)
 
@@ -666,13 +666,13 @@ Dans ce didacticiel, vous avez appris à :
 
 > [!div class="checklist"]
 > * Création d’une base de données MySQL dans Azure
-> * Connexion d’une application PHP à MySQL
-> * Déploiement de l’application dans Azure
-> * Mise à jour du modèle de données et redéploiement de l’application
+> * Se connecter à un tooMySQL d’application PHP
+> * Déployer hello application tooAzure
+> * Mettre à jour le modèle de données hello et redéployer l’application hello
 > * Diffusion des journaux de diagnostic à partir d’Azure
-> * Gérer l’application dans le portail Azure
+> * Gérer l’application hello Bonjour portail Azure
 
-Passez au didacticiel suivant pour découvrir comment mapper un nom DNS personnalisé à une application web.
+Avancer toolearn de didacticiel suivant toohello tooa l’application web de noms toomap DNS personnalisé.
 
 > [!div class="nextstepaction"]
-> [Mapper un nom DNS personnalisé existant à des applications web Azure](app-service-web-tutorial-custom-domain.md)
+> [Mapper une tooAzure de nom DNS personnalisé existant Web Apps](app-service-web-tutorial-custom-domain.md)

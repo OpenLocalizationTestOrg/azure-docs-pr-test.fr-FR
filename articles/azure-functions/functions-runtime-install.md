@@ -1,6 +1,6 @@
 ---
-title: "Installation du runtime d’Azure Functions | Microsoft Docs"
-description: "Comment installer le runtime d’Azure Functions"
+title: aaaAzure fonctions Runtime Installation | Documents Microsoft
+description: Comment tooInstall hello Azure fonctions Runtime
 services: functions
 documentationcenter: 
 author: apwestgarth
@@ -14,84 +14,84 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 05/08/2017
 ms.author: anwestg
-ms.openlocfilehash: 1e4188313a87d07f396e5f8edc8969dd5da2c436
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 67c6d10b5c0ac43e880d29cff0ae7b099f82bdb5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="install-the-azure-functions-runtime-preview"></a>Installer la version préliminaire du runtime d’Azure Functions
+# <a name="install-hello-azure-functions-runtime-preview"></a>Installer hello Azure en version préliminaire fonctions Runtime
 
-Suivez ces étapes pour installer la version préliminaire du runtime d’Azure Functions :
+Si vous souhaitez que la version préliminaire de Azure fonctions Runtime tooinstall hello, procédez comme suit :
 
-1. Vérifiez que votre ordinateur respecte la configuration minimale requise
-1. Téléchargez le [programme d’installation de la version préliminaire du runtime d’Azure Functions](https://aka.ms/azafr). 
-1. Installer la version préliminaire du runtime d’Azure Functions
-1. Terminer la configuration de la version préliminaire du runtime d’Azure Functions
+1. Vérifiez que votre ordinateur passe requise hello
+1. Télécharger hello [le programme d’installation de Azure fonctions Runtime Preview](https://aka.ms/azafr). 
+1. Installez hello Azure fonctions Runtime preview
+1. Configuration de hello complète de l’aperçu du Runtime de fonctions Azure hello
 
 ## <a name="prerequisites"></a>Composants requis
 
-Avant d’installer la version préliminaire du runtime d’Azure Functions, vous devez disposer des éléments suivants :
+Avant d’installer de version préliminaire du Runtime de fonctions Azure hello, vous devez disposer de hello :
 
 1. Un ordinateur exécutant Microsoft Windows Server 2016 ou Windows 10 Creators Update (édition Professionnelle ou Entreprise).
 1. Une instance SQL Server en cours d’exécution au sein de votre réseau.  La version minimale requise est SQL Server Express.
 
-## <a name="install-the-azure-functions-runtime-preview"></a>Installer la version préliminaire du runtime d’Azure Functions
+## <a name="install-hello-azure-functions-runtime-preview"></a>Installer hello Azure en version préliminaire fonctions Runtime
 
-Le programme d’installation en version préliminaire du runtime d’Azure Functions vous guide lors de l’installation des rôles de gestion et de travail de la version préliminaire du runtime d’Azure Functions.  Il est possible d’installer le rôle de gestion et de travail sur le même ordinateur.  Toutefois, si vous ajoutez des fonctions, vous devez déployer davantage de rôles de travail sur des ordinateurs supplémentaires pour faire évoluer vos fonctions sur plusieurs rôles de travail.
+le programme d’installation de Hello Azure fonctions Runtime preview vous guide tout au long des installation hello d’aperçu du Runtime de fonctions Azure hello Management et les rôles de travail.  Il est possible tooinstall hello gestion et le rôle de travail sur hello même ordinateur.  Toutefois, lorsque vous ajoutez des fonctions, vous devez déployer plusieurs rôles de travail sur tooscale en mesure de machines supplémentaires toobe vos fonctions sur plusieurs threads de travail.
 
-## <a name="install-the-management-and-worker-role-on-the-same-machine"></a>Installer le rôle de gestion et de travail sur le même ordinateur
+## <a name="install-hello-management-and-worker-role-on-hello-same-machine"></a>Installer hello gestion et le rôle de travail sur hello même ordinateur
 
-1. Exécutez le programme d’installation de la version préliminaire du runtime d’Azure Functions.
+1. Exécutez hello le programme d’installation de Azure fonctions Runtime Preview.
 
     ![Programme d’installation de la version préliminaire du runtime d’Azure Functions][1]
 
-1. **Cliquez sur Suivant** pour progresser au-delà de la première étape du programme d’installation
-1. Une fois que vous avez lu les conditions d’utilisation du **CLUF**, **cochez la case** pour accepter les conditions d’utilisation et **cliquez sur Suivant** pour passer à l’étape suivante.
-1. À présent, sélectionnez les rôles que vous souhaitez installer sur cet ordinateur **Rôle de gestion Functions** et/ou **Rôle de travail Functions** et **cliquez sur Suivant**
+1. **Cliquez sur Suivant** avance au-delà de hello première étape du programme d’installation Bonjour
+1. Une fois que vous avez lu les termes du contrat de hello Hello **CLUF**, **hello case à cocher** termes de hello tooaccept et **cliquez sur Suivant** tooadvance.
+1. À présent, sélectionnez hello rôles lequel tooinstall sur cet ordinateur **rôle de fonctions de gestion** et/ou **rôle de travail des fonctions** et **cliquez sur Suivant**
 
     ![Programme d’installation de la version préliminaire du runtime d’Azure Functions - Sélection du rôle][3]
 
     > [!NOTE]
-    > Vous pouvez installer le **rôle de travail Functions** sur plusieurs autres ordinateurs. Pour ce faire, suivez ces instructions et sélectionnez uniquement **Rôle de travail Functions** dans le programme d’installation.
+    > Vous pouvez installer hello **rôle de travail des fonctions** sur nombreux autres toodo machines, suivez ces instructions, puis sélectionnez uniquement **rôle de travail des fonctions** dans le programme d’installation hello.
 
-1. **Cliquez sur Suivant** pour que le **programme d’installation du runtime d’Azure Functions** s’installe sur votre ordinateur.
-1. Une fois terminé, le programme d’installation lance **l’outil de configuration du runtime d’Azure Functions**.
+1. **Cliquez sur Suivant** toohave hello **le programme d’installation de Azure fonctions Runtime** installer sur votre ordinateur.
+1. Une fois que le programme d’installation complète hello lancera hello **outil de Configuration d’exécution Azure fonctions**.
 
     ![Programme d’installation de la version préliminaire du runtime d’Azure Functions terminé][5]
 
     > [!NOTE]
-    > Si vous installez sous **Windows 10** et si la fonctionnalité **Conteneur** n’a pas été précédemment activée, le programme d’installation du **runtime d’Azure Functions** vous invite à redémarrer votre ordinateur pour terminer l’installation.
+    > Si vous installez sur **Windows 10** et hello **conteneur** fonctionnalité a été précédemment désactivée, hello **Azure fonctions Runtime** programme d’installation vous invite tooreboot installation de votre hello toocomplete de machine.
 
-## <a name="configure-the-azure-functions-runtime"></a>Configurer le runtime d’Azure Functions
+## <a name="configure-hello-azure-functions-runtime"></a>Configurer hello Azure fonctions Runtime
 
-Pour terminer l’installation du runtime d’Azure Functions, vous devez terminer la configuration.
+hello toocomplete installation Azure fonctions Runtime vous devez effectuer la configuration de hello.
 
-1. **L’outil de configuration du runtime d’Azure Functions** vous indique les rôles installés sur votre ordinateur.
+1. Hello **outil de Configuration du Runtime Azure fonctions** montre les rôles installés sur votre ordinateur.
 
     ![Outil de configuration de la version préliminaire du runtime d’Azure Functions terminé][6]
 
-1. Cliquez sur l’onglet **Base de données**, entrez les **informations de connexion pour votre Instance SQL Server** et **cliquez sur Appliquer**.  Cela est nécessaire pour que le runtime d’Azure Functions crée une base de données pour prendre en charge le runtime.
+1. Cliquez sur hello **base de données** , entrez hello **détails de connexion pour votre Instance de SQL Server** et **cliquez sur Appliquer**.  Cela est nécessaire dans l’ordre toohello Azure fonctions Runtime toocreate un Bonjour de toosupport Runtime de base de données.
     
     ![Configuration de la base de données de la version préliminaire du runtime d’Azure Functions][7]
 
-1. Cliquez sur l’onglet **Informations d’identification**.  Dans cet écran, vous devez créer deux nouveaux jeux d’informations d’identification à utiliser avec un partage de fichiers pour l’hébergement de toutes vos Azure Functions.  **Spécifiez les combinaisons de nom d’utilisateur et de mot de passe** pour le **propriétaire du partage de fichiers** et **l’utilisateur du partage de fichiers** et cliquez sur **Appliquer**.
+1. Cliquez sur hello **informations d’identification** onglet.  Dans cet écran, vous devez créer deux nouveaux jeux d’informations d’identification à utiliser avec un partage de fichiers pour l’hébergement de toutes vos Azure Functions.  **Spécifiez le nom d’utilisateur et mot de passe** combinaisons pour hello **propriétaire du partage de fichiers** et pourquoi **utilisateur du partage de fichiers** et cliquez sur **appliquer**.
 
     ![Informations d’identification de la version préliminaire du runtime d’Azure Functions][8]
 
-1. Cliquez sur l’onglet **Partage de fichiers**.  Dans cet écran, vous devez spécifier les détails de **l’emplacement du partage de fichiers**.  Celui-ci peut être créé pour vous ou vous pouvez utiliser un partage de fichier existant, puis cliquez sur **Appliquer**.  Si vous sélectionnez un nouvel emplacement de partage de fichiers, vous devez spécifier un répertoire que le runtime d’Azure Functions doit utiliser.
+1. Cliquez sur hello **partage de fichiers** onglet.  Dans cet écran, vous devez spécifier les détails de hello Hello **emplacement du partage de fichiers**.  Celui-ci peut être créé pour vous ou vous pouvez utiliser un partage de fichier existant, puis cliquez sur **Appliquer**.  Si vous sélectionnez un nouvel emplacement de partage de fichiers, vous devez spécifier un répertoire pour une utilisation par hello Azure fonctions Runtime.
     
     ![Partage de fichiers de la version préliminaire du runtime d’Azure Functions][9]
 
-1. Cliquez sur l’onglet **IIS**.  Cet onglet affiche les détails des sites web dans IIS, que l’installation du runtime d’Azure Functions va créer.  **Cliquez sur Appliquer** pour terminer.
+1. Cliquez sur hello **IIS** onglet.  Cet onglet affiche les détails de hello de hello des sites Web dans IIS qui hello Azure fonctions Runtime Installation va créer.  **Cliquez sur Appliquer** toocomplete.
 
     ![IIS de la version préliminaire du runtime d’Azure Functions][10]
 
-1. Cliquez sur l’onglet **Services**.  Cet onglet affiche l’état des services dans l’installation du runtime d’Azure Functions.  Si après la configuration initiale le **service d’activation hôte Azure Functions** ne fonctionne pas, cliquez sur **Démarrer le service**
+1. Cliquez sur hello **Services** onglet.  Cet onglet affiche l’état hello de services de hello dans votre installation de l’exécution de fonctions d’Azure.  Si, après avoir hello de la configuration initiale **Service d’Activation de Azure fonctions hôte** ne fonctionne pas cliquez **démarrer le Service**
 
     ![Configuration de la version préliminaire du runtime d’Azure Functions terminée][11]
 
-1. Enfin, accédez au **portail du runtime d’Azure Functions** en tant que `https://<machinename>/`
+1. Enfin Parcourir toohello **Azure fonctions Runtime portail** en tant que`https://<machinename>/`
 
     ![Portail du runtime d’Azure Functions en version préliminaire][12]
 

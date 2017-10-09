@@ -1,6 +1,6 @@
 ---
-title: "Intégration des journaux Azure avec Security Center | Microsoft Docs"
-description: "Découvrez comment utiliser les alertes d’Azure Security Center via l’intégration des journaux"
+title: "aaaAzure intégration du journal avec le centre de sécurité | Documents Microsoft"
+description: "Découvrez comment tooget Azure Security center alertes fonctionne avec l’intégration du journal"
 services: security
 documentationcenter: na
 author: Barclayn
@@ -15,44 +15,44 @@ ums.workload: na
 ms.date: 03/22/2017
 ms.author: barclayn
 ms.custom: azlog
-ms.openlocfilehash: 294a795746420233e961e67cceec4b0538e49ff6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bcc208d071ec03738215f2aee3b71c7b10927904
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-get-your-security-center-alerts-in-azure-log-integration"></a>Recevoir les alertes de Security Center via l’intégration des journaux à Azure
-Cet article présente les étapes nécessaires pour activer le service d’intégration des journaux Azure et extraire des informations sur les alertes de sécurité générées par Azure Security Center. Vous devez avoir terminé avec succès les étapes de l’article [Prise en main](security-azure-log-integration-get-started.md) avant de suivre la procédure définie dans cet article.
+# <a name="how-tooget-your-security-center-alerts-in-azure-log-integration"></a>Comment tooget votre centre de sécurité des alertes dans l’intégration d’Azure log
+Cet article fournit hello étapes tooenable requis hello Azure journal Integration service toopull informations sur les alertes de sécurité générées par le centre de sécurité Azure. Vous devez avoir terminé avec succès les étapes hello Bonjour [prise en main](security-azure-log-integration-get-started.md) article avant d’effectuer les étapes de hello dans cet article.
 
 ## <a name="detailed-steps"></a>Procédure détaillée
-Les étapes suivantes créent le principal de service nécessaire pour Azure Active Directory et attribuent les autorisations de lecture du principal de service à l’abonnement :
-1. Ouvrez l’invite de commandes et rendez-vous dans **c:\Program Files\Microsoft Azure Log Integration**
-2. Exécutez la commande ``azlog createazureid``
+Hello suit créera hello requis Principal de Service Azure Active Directory et d’autorisations de lecture assign hello SPN toohello abonnement :
+1. Ouvrez l’invite de commandes hello et accédez trop**c:\Program Files\Microsoft Azure journal d’intégration**
+2. Exécutez la commande hello``azlog createazureid``
 
-    Cette commande vous invite à entrer votre nom d’utilisateur Azure. La commande crée ensuite un [principal du Service Azure Active Directory](../active-directory/develop/active-directory-application-objects.md) dans les locataires Azure AD qui hébergent les abonnements Azure dans lesquels l’utilisateur connecté est un administrateur, un coadministrateur ou un propriétaire. La commande échouera si l’utilisateur connecté est seulement un utilisateur invité dans le locataire Azure AD. L’authentification à Azure s’effectue par le biais d’Azure Azure Active Directory (AD). La création d’un principal du service pour l’intégration d’Azlog crée l’identité Azure AD qui aura un accès en lecture aux abonnements Azure.
+    Cette commande vous invite à entrer votre nom d’utilisateur Azure. commande Hello crée ensuite un [Principal de Service Azure Active Directory](../active-directory/develop/active-directory-application-objects.md) Bonjour clients Azure AD qui hébergent hello abonnements Azure qui Bonjour à l’utilisateur connecté est un administrateur, un Coadministrateur ou un propriétaire. commande Hello échouera si hello à l’utilisateur connecté est un utilisateur invité Bonjour client Azure AD. TooAzure de l’authentification est effectuée via Azure Active Directory (AD). Création d’un principal de service pour l’intégration de Azlog crée hello identité Azure AD qui aura accès tooread à partir d’abonnements Azure.
 
-2. Vous allez ensuite exécuter une commande qui affecte les accès en lecture de l’abonnement au service principal créé à l’étape 2. Si vous ne spécifiez pas de SubscriptionID, la commande tente d’affecter le rôle de lecteur du principal du service à tous les abonnements auxquels vous avez accès. </br></br>
+2. Ensuite, vous allez exécuter une commande qui affecte l’accès en lecture sur hello abonnement toohello principal du service créé à l’étape 2. Si vous ne spécifiez pas un ID d’abonnement, commande hello tentera tooassign hello rôle service lecteur principal tooall abonnements toowhich vous avez accès. </br></br>
 ``azlog authorize <SubscriptionID>`` </br> par exemple </br>
 ``azlog authorize 0ee55555-0bc4-4a32-a4e8-c29980000000``
 
     >[!NOTE]
-    Des avertissements peuvent s’afficher si vous exécutez la commande authorize immédiatement après la commande createazureid. Il existe un temps de latence entre la création du compte Azure AD et la disponibilité du compte pour une utilisation. Si vous patientez environ 60 secondes après l’exécution de la commande createazureid avant d’exécuter la commande authorize, vous ne devriez pas voir ces avertissements.
+    Avertissements peuvent s’afficher si vous exécutez hello autoriser commande immédiatement après la commande de createazureid hello. Il existe une latence entre la création de compte de hello Azure AD et quand le compte de hello est disponible pour utilisation. Si vous attendez environ 60 secondes après l’exécution de commande toorun hello hello createazureid autoriser la commande, puis vous ne devez pas voir ces avertissements.
 
-4. Vérifiez que les fichiers JSON de journaux d’audit sont présents dans les dossiers suivants :
+4. Vérifier hello suivant tooconfirm de dossiers qui hello les journaux d’Audit JSON :
  * **c:\Users\azlog\AzureResourceManagerJson**
  * **c:\Users\azlog\AzureResourceManagerJsonLD** </br></br>
-5. Vérifiez que les alertes Security Center existent dans les dossiers suivants :</br></br>
+5. Vérifiez hello suivant tooconfirm dossiers figurant dans les alertes du centre de sécurité :</br></br>
  * **c:\Users\azlog\AzureSecurityCenterJson**
  * **c:\Users\azlog\AzureSecurityCenterJsonLD** </br></br>
 
-Si vous rencontrez des problèmes pendant l’installation et la configuration, ouvrez une [demande de support](/azure-supportability/how-to-create-azure-support-request.md) et sélectionnez le service **Intégration des journaux** pour demander un support.
+Si vous rencontrez des problèmes pendant l’installation de hello et de configuration, ouvrez un [demande de support](/azure-supportability/how-to-create-azure-support-request.md), sélectionnez **journal intégration** en tant que service hello pour lequel vous demandez la prise en charge.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Pour en savoir plus sur l’intégration des journaux Azure, consultez les documents suivants :
+toolearn en savoir plus sur l’intégration des journaux Azure, consultez hello suivant des documents :
 
 * [Microsoft Azure Log Integration](https://www.microsoft.com/download/details.aspx?id=53324) : Centre de téléchargement pour plus d’informations, la configuration système requise et les instructions d’installation sur l’intégration des journaux Azure.
-* [Introduction à l’intégration de journaux Azure](security-azure-log-integration-overview.md) : ce document présente l’intégration des journaux Azure, ses principales fonctionnalités et son fonctionnement.
-* [Étapes de configuration de partenaires](https://blogs.msdn.microsoft.com/azuresecurity/2016/08/23/azure-log-siem-configuration-steps/) : ce billet de blog vous montre comment configurer l’intégration des journaux Azure pour travailler avec des solutions de partenaires Splunk, HP ArcSight et IBM QRadar.
+* [Intégration du journal tooAzure introduction](security-azure-log-integration-overview.md) : ce document présente tooAzure journal intégration, ses fonctionnalités clées, et comment il fonctionne.
+* [Étapes de configuration du partenaire](https://blogs.msdn.microsoft.com/azuresecurity/2016/08/23/azure-log-siem-configuration-steps/) – ce billet de blog montre comment tooconfigure Azure du journal toowork d’intégration avec les solutions de partenaire Splunk, HP ArcSight et QRadar d’IBM.
 * [FAQ de l’intégration des journaux Azure](security-azure-log-integration-faq.md) : ce forum aux questions répond aux questions sur l’intégration des journaux Azure.
-* [Intégration des alertes du Security Center avec les journaux Azure](../security-center/security-center-integrating-alerts-with-log-integration.md) : ce document montre comment synchroniser les alertes du Security Center, ainsi que les événements de sécurité des machines virtuelles collectés par Azure Diagnostics et les journaux d’audit Azure dans leur solution SIEM ou Log Analytics.
-* [Nouvelles fonctionnalités des diagnostics Azure et des journaux d’Audit Azure](https://azure.microsoft.com/blog/new-features-for-azure-diagnostics-and-azure-audit-logs/) : ce billet de blog présente les journaux d’Audit Azure et autres fonctionnalités pour vous permettre de mieux connaître les opérations de vos ressources Azure.
+* [Intégration de centre de sécurité les alertes avec Azure journal intégration](../security-center/security-center-integrating-alerts-with-log-integration.md) – ce document vous montre comment le centre de sécurité toosync des alertes, ainsi que des événements de sécurité d’ordinateur virtuel collectées par Diagnostics Azure et les journaux d’Audit Azure, avec votre analytique de journal ou Solution SIEM.
+* [Nouvelles fonctionnalités pour les diagnostics Azure et les journaux d’Audit Azure](https://azure.microsoft.com/blog/new-features-for-azure-diagnostics-and-azure-audit-logs/) – ce billet de blog vous présente les journaux d’Audit de tooAzure et autres fonctionnalités qui vous aident à obtenir les opérations hello de vos ressources Azure.

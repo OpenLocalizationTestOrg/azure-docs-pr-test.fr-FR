@@ -1,6 +1,6 @@
 ---
-title: "Déplacer des données depuis Cassandra à l’aide de Data Factory | Microsoft Docs"
-description: "Découvrez comment déplacer des données depuis une base de données Cassandra locale à l’aide d’Azure Data Factory."
+title: "données aaaMove Cassandra à l’aide de la fabrique de données | Documents Microsoft"
+description: "Découvrez comment toomove des données à partir d’un Cassandra local de base de données à l’aide d’Azure Data Factory."
 services: data-factory
 documentationcenter: 
 author: linda33wj
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/27/2017
 ms.author: jingwang
-ms.openlocfilehash: f2b225bdbdf2880d26a6ab5f992301bf0a804b0d
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 0e265d3a8439d0a2cb2a5c32e5ea8348a1617621
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="move-data-from-an-on-premises-cassandra-database-using-azure-data-factory"></a>Déplacer des données depuis une base de données Cassandra locale à l’aide d’Azure Data Factory
-Cet article explique comment utiliser l’activité de copie dans Azure Data Factory, afin de déplacer des données à partir d’une base de données Cassandra locale. Il s’appuie sur l’article [Activités de déplacement des données](data-factory-data-movement-activities.md), qui présente une vue d’ensemble du déplacement de données avec l’activité de copie.
+Cet article explique comment toouse hello activité de copie de données de toomove Azure Data Factory à partir d’une base de données locale Cassandra. Il repose sur hello [les activités de déplacement des données](data-factory-data-movement-activities.md) article, qui présente une vue d’ensemble du déplacement des données avec l’activité de copie hello.
 
-Vous pouvez copier et coller les données d’un magasin de données Cassandra local vers tout magasin de données récepteur pris en charge. Consultez la table [Magasins de données pris en charge](data-factory-data-movement-activities.md#supported-data-stores-and-formats) pour obtenir la liste des magasins de données pris en charge en tant que récepteurs par l’activité de copie. Actuellement, Data Factory prend uniquement en charge le déplacement de données d’un magasin de données Cassandra vers d’autres magasins de données, mais non l’inverse. 
+Vous pouvez copier les données d’une banque de données locale Cassandra données magasin tooany pris en charge récepteur. Pour une liste de données pris en charge des magasins récepteurs par l’activité de copie hello, consultez hello [prise en charge des magasins de données](data-factory-data-movement-activities.md#supported-data-stores-and-formats) table. Fabrique de données prend en charge uniquement le déplacement tooother les magasins de données du magasin de données à partir de données Cassandra, mais ne pas pour déplacer des données d’une autre banque de données Cassandra tooa données magasins. 
 
 ## <a name="supported-versions"></a>Versions prises en charge
-Le connecteur Cassandra prend en charge les versions suivantes de Cassandra : 2.x.
+connecteur de Cassandra Hello prend en charge hello versions de Cassandra suivantes : 2.X.
 
 ## <a name="prerequisites"></a>Composants requis
-Pour que le service Azure Data Factory puisse se connecter à la base de données Cassandra locale, vous devez installer une passerelle de gestion de données sur l’ordinateur qui héberge la base de données ou sur un autre ordinateur, afin d’éviter toute mise en concurrence avec la base de données pour les ressources. La passerelle de gestion de données est un composant qui connecte des sources de données locales à des services cloud de manière gérée et sécurisée. Consultez l’article [Passerelle de gestion des données](data-factory-data-management-gateway.md) pour obtenir des informations détaillées sur la passerelle de gestion des données. Consultez l’article [Déplacement de données entre des sources locales et le cloud à l’aide de la passerelle de gestion des données](data-factory-move-data-between-onprem-and-cloud.md) pour obtenir des instructions détaillées sur la configuration de la passerelle, un pipeline de données, pour déplacer des données.
+Pour hello Azure Data Factory service toobe tooconnect en mesure de tooyour Cassandra base de données locale, vous devez installer une passerelle de gestion des données sur hello même cette base de données hello hôtes de l’ordinateur ou sur un tooavoid machine distincte qui entrent en concurrence pour les ressources par hello base de données. Passerelle de gestion des données est un composant qui établit des services de toocloud de sources de données sur site de manière sécurisée et gérée. Consultez l’article [Passerelle de gestion des données](data-factory-data-management-gateway.md) pour obtenir des informations détaillées sur la passerelle de gestion des données. Consultez [déplacer des données locales toocloud](data-factory-move-data-between-onprem-and-cloud.md) article pour obtenir des instructions sur la configuration de passerelle de hello données toomove de pipeline de données.
 
-Vous devez utiliser la passerelle pour vous connecter à une base de données Cassandra, même si elle est hébergée dans le cloud, par exemple sur une machine virtuelle IaaS Azure. Vous pouvez installer la passerelle sur la même machine virtuelle que le magasin de données ou sur une autre machine virtuelle, tant que la passerelle peut se connecter à la base de données.  
+Vous devez utiliser la base de données hello passerelle tooconnect tooa Cassandra même si la base de données hello est hébergé dans le cloud de hello, par exemple, sur une machine virtuelle IaaS de Azure. Y avoir de passerelle de hello sur hello même machine virtuelle de cette base de données hôtes hello ou sur un ordinateur distinct virtuel tant que passerelle de hello peuvent se connecter toohello de base de données.  
 
-L’installation de la passerelle engendre automatiquement l’installation d’un pilote Microsoft ODBC Cassandra, utilisé pour se connecter à la base de données Cassandra. Par conséquent, vous n’avez pas besoin d’installer manuellement un pilote sur l’ordinateur de passerelle lors de la copie des données à partir de la base de données Cassandra. 
+Lorsque vous installez la passerelle de hello, il installe automatiquement une base de données ODBC de Microsoft Cassandra pilote utilisé tooconnect tooCassandra. Par conséquent, vous n’avez pas besoin toomanually installer un pilote sur l’ordinateur de passerelle hello lors de la copie des données à partir de la base de données Cassandra hello. 
 
 > [!NOTE]
 > Consultez [Résolution des problèmes de passerelle](data-factory-data-management-gateway.md#troubleshooting-gateway-issues) pour obtenir des conseils sur la résolution des problèmes de connexion/passerelle.
@@ -41,62 +41,62 @@ L’installation de la passerelle engendre automatiquement l’installation d’
 ## <a name="getting-started"></a>Prise en main
 Vous pouvez créer un pipeline avec une activité de copie qui déplace les données d’un magasin de données Cassandra local à l’aide de différents outils/API. 
 
-- Le moyen le plus simple de créer un pipeline consiste à utiliser **l’Assistant de copie**. Consultez la page [Didacticiel : Créer un pipeline avec l’activité de copie à l’aide de l’Assistant Data Factory Copy](data-factory-copy-data-wizard-tutorial.md) pour une procédure pas à pas rapide sur la création d’un pipeline à l’aide de l’Assistant Copier des données. 
-- Vous pouvez également utiliser les outils suivants pour créer un pipeline : le **portail Azure**, **Visual Studio**, **Azure PowerShell**, le **modèle Azure Resource Manager**, l’**API .NET** et l’**API REST**. Consultez le [Didacticiel de l’activité de copie](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) pour obtenir des instructions détaillées sur la création d’un pipeline avec une activité de copie. 
+- toocreate de façon plus simple Hello un pipeline est toouse hello **Assistant copie de**. Consultez [didacticiel : créer un pipeline à l’aide d’Assistant copie de](data-factory-copy-data-wizard-tutorial.md) pour une procédure pas à pas rapides sur la création d’un pipeline à l’aide d’Assistant de données de copie hello. 
+- Vous pouvez également utiliser hello suivant outils toocreate un pipeline : **portail Azure**, **Visual Studio**, **Azure PowerShell**, **modèle Azure Resource Manager** , **API .NET**, et **API REST**. Consultez [didacticiel d’activité de copie](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) pour obtenir des instructions toocreate un pipeline avec une activité de copie. 
 
-Que vous utilisiez des outils ou des API, la création d’un pipeline qui déplace les données d’un magasin de données source vers un magasin de données récepteur implique les étapes suivantes :
+Si vous utilisez hello ou une API, vous effectuez hello suivant les étapes toocreate un pipeline qui déplace la banque de données récepteur tooa du magasin de données à partir des données d’une source :
 
-1. Création de **services liés** pour lier les magasins de données d’entrée et de sortie à votre fabrique de données.
-2. Création de **jeux de données** pour représenter les données d’entrée et de sortie de l’opération de copie. 
+1. Créer **services liés** fabrique de données tooyour toolink les données d’entrée et de sortie magasins.
+2. Créer **datasets** toorepresent d’entrée et sortie l’opération de copie des données pour hello. 
 3. Création d’un **pipeline** avec une activité de copie qui utilise un jeu de données en tant qu’entrée et un jeu de données en tant que sortie. 
 
-Lorsque vous utilisez l’Assistant, les définitions JSON de ces entités Data Factory (services liés, jeux de données et pipeline) sont automatiquement créées pour vous. Lorsque vous utilisez des outils/API (à l’exception de l’API .NET), vous devez définir ces entités Data Factory au format JSON.  Pour consulter un exemple contenant des définitions JSON pour les entités Data Factory utilisées pour copier des données d’un magasin de données Cassandra local, consultez la section [Exemple JSON : copier des données depuis un système Cassandra vers Azure Blob](#json-example-copy-data-from-cassandra-to-azure-blob) de cet article. 
+Lorsque vous utilisez hello Assistant, les définitions de JSON pour ces entités de fabrique de données (services liés, des datasets et pipeline de hello) sont créées automatiquement pour vous. Lorsque vous utilisez/API des outils (à l’exception des API .NET), vous définissez ces entités de fabrique de données à l’aide du format JSON de hello.  Pour voir un exemple avec des définitions de JSON pour les entités de fabrique de données qui sont utilisés toocopy des données à partir d’une banque de données locale Cassandra, [exemple de JSON : copier des données à partir de Cassandra tooAzure Blob](#json-example-copy-data-from-cassandra-to-azure-blob) section de cet article. 
 
-Les sections suivantes contiennent des informations détaillées sur les propriétés JSON utilisées pour définir les entités Data Factory propres à un magasin de données Cassandra :
+Hello les sections suivantes fournit des détails sur les propriétés JSON qui sont le magasin de données Cassandra utilisé toodefine Data Factory entités tooa spécifique :
 
 ## <a name="linked-service-properties"></a>Propriétés du service lié
-Le tableau suivant fournit la description des éléments JSON spécifiques au service lié Cassandra.
+Hello tableau suivant fournit la description du service de tooCassandra spécifique lié éléments JSON.
 
 | Propriété | Description | Requis |
 | --- | --- | --- |
-| type |Le type de propriété doit être défini sur : **OnPremisesCassandra** |Oui |
-| host |Une ou plusieurs adresses IP ou noms d’hôte de serveurs Cassandra.<br/><br/>Renseignez une liste des adresses IP ou des noms d’hôte séparée par des virgules pour vous connecter simultanément à tous les serveurs. |Oui |
-| port |Le port TCP utilisé par le serveur Cassandra pour écouter les connexions clientes. |Non, valeur par défaut : 9042 |
+| type |propriété de type Hello doit indiquer : **OnPremisesCassandra** |Oui |
+| host |Une ou plusieurs adresses IP ou noms d’hôte de serveurs Cassandra.<br/><br/>Spécifiez une liste séparée par des virgules des adresses IP ou hôte noms tooconnect tooall serveurs simultanément. |Oui |
+| port |Hello le port TCP qui hello du serveur de Cassandra utilise toolisten pour les connexions client. |Non, valeur par défaut : 9042 |
 | authenticationType |Basique ou anonyme |Oui |
-| username |Spécifiez le nom d’utilisateur du compte d’utilisateur. |Oui, si authenticationType est défini sur De base. |
-| password |Spécifiez le mot de passe du compte d'utilisateur. |Oui, si authenticationType est défini sur De base. |
-| gatewayName |Le nom de la passerelle qui est utilisée pour se connecter à la base de données Cassandra locale. |Oui |
-| Encryptedcredential |Informations d’identification chiffrées par la passerelle. |Non |
+| username |Spécifiez le nom d’utilisateur pour le compte d’utilisateur hello. |Oui, si authenticationType a la valeur tooBasic. |
+| password |Spécifiez le mot de passe de compte d’utilisateur hello. |Oui, si authenticationType a la valeur tooBasic. |
+| gatewayName |nom Hello de passerelle hello est utilisé tooconnect toohello Cassandra base de données locale. |Oui |
+| Encryptedcredential |Informations d’identification chiffrées par la passerelle de hello. |Non |
 
 ## <a name="dataset-properties"></a>Propriétés du jeu de données
-Pour obtenir une liste complète des sections et propriétés disponibles pour la définition de jeux de données, consultez l’article [Création de jeux de données](data-factory-create-datasets.md). Les sections comme la structure, la disponibilité et la stratégie d'un jeu de données JSON sont similaires pour tous les types de jeux de données (SQL Azure, Azure Blob, Azure Table, etc.).
+Pour obtenir une liste complète des sections et les propriétés disponibles pour définir des jeux de données, consultez hello [création de datasets](data-factory-create-datasets.md) l’article. Les sections comme la structure, la disponibilité et la stratégie d'un jeu de données JSON sont similaires pour tous les types de jeux de données (SQL Azure, Azure Blob, Azure Table, etc.).
 
-La section **typeProperties** est différente pour chaque type de jeu de données et fournit des informations sur l’emplacement des données dans le magasin de données. La section typeProperties pour le jeu de données de type **CassandraTable** a les propriétés suivantes
+Hello **typeProperties** section est différente pour chaque type de jeu de données et fournit des informations sur l’emplacement de hello de données hello dans le magasin de données hello. jeu de données de type Hello typeProperties section **CassandraTable** a les propriétés suivantes de hello
 
 | Propriété | Description | Requis |
 | --- | --- | --- |
-| espace de clé |Nom de l’espace de clé ou du schéma dans la base de données Cassandra. |Oui (si la **requête** pour **CassandraSource** n’est pas définie). |
-| TableName |Nom de la table dans la base de données Cassandra. |Oui (si la **requête** pour **CassandraSource** n’est pas définie). |
+| espace de clé |Nom de l’espace de clés hello ou un schéma de base de données Cassandra. |Oui (si la **requête** pour **CassandraSource** n’est pas définie). |
+| TableName |Nom de table hello Cassandra de base de données. |Oui (si la **requête** pour **CassandraSource** n’est pas définie). |
 
 ## <a name="copy-activity-properties"></a>Propriétés de l’activité de copie
-Pour obtenir la liste complète des sections et des propriétés disponibles pour la définition des activités, consultez l’article [Création de pipelines](data-factory-create-pipelines.md). Les propriétés comme le nom, la description, les tables d’entrée et de sortie et la stratégie sont disponibles pour tous les types d’activités.
+Pour obtenir une liste complète des sections et les propriétés disponibles pour la définition d’activités, consultez hello [création de Pipelines](data-factory-create-pipelines.md) l’article. Les propriétés comme le nom, la description, les tables d’entrée et de sortie et la stratégie sont disponibles pour tous les types d’activités.
 
-En revanche, les propriétés disponibles dans la section typeProperties de l’activité varient pour chaque type d'activité. Pour l’activité de copie, elles dépendent des types de sources et récepteurs.
+Alors que les propriétés disponibles dans la section typeProperties hello activité hello varient selon chaque type d’activité. Pour l’activité de copie, ils varient selon les types de sources et récepteurs hello.
 
-Lorsque la source est de type **CassandraSource**, les propriétés suivantes sont disponibles dans la section typeProperties :
+Lorsque la source est de type **CassandraSource**, hello propriétés suivantes est disponible dans la section de typeProperties :
 
 | Propriété | Description | Valeurs autorisées | Requis |
 | --- | --- | --- | --- |
-| query |Utilise la requête personnalisée pour lire des données. |Requête SQL-92 ou requête CQL. Reportez-vous à [référence CQL](https://docs.datastax.com/en/cql/3.1/cql/cql_reference/cqlReferenceTOC.html). <br/><br/>Lorsque vous utilisez la requête SQL, indiquez **keyspace name.table name** pour représenter la table que vous souhaitez interroger. |Non (si tableName et keyspace sur le jeu de données sont définis). |
-| Niveau de cohérence |Le niveau de cohérence spécifie le nombre de réplicas devant répondre à une demande de lecture avant de renvoyer des données à l’application cliente. Cassandra vérifie le nombre de réplicas spécifié pour permettre aux données de répondre à la demande de lecture. |UN, DEUX, TROIS, QUORUM, TOUT, LOCAL_QUORUM, EACH_QUORUM, LOCAL_ONE. Reportez-vous à [Configuring data consistency (Configuration de la cohérence des données)](http://docs.datastax.com/en//cassandra/2.0/cassandra/dml/dml_config_consistency_c.html) pour plus d’informations. |Non. La valeur par défaut est UN. |
+| query |Utiliser des données tooread hello requête personnalisée. |Requête SQL-92 ou requête CQL. Reportez-vous à [référence CQL](https://docs.datastax.com/en/cql/3.1/cql/cql_reference/cqlReferenceTOC.html). <br/><br/>Lorsque vous utilisez la requête SQL, spécifiez **nom d’espace de clés name.table** toorepresent hello tableau tooquery. |Non (si tableName et keyspace sur le jeu de données sont définis). |
+| Niveau de cohérence |niveau de cohérence Hello Spécifie le nombre de réplicas doit répondre de requête de lecture tooa avant de retourner l’application data toohello client. Les vérifications Cassandra hello un nombre spécifié de réplicas pour la requête de lecture hello toosatisfy de données. |UN, DEUX, TROIS, QUORUM, TOUT, LOCAL_QUORUM, EACH_QUORUM, LOCAL_ONE. Reportez-vous à [Configuring data consistency (Configuration de la cohérence des données)](http://docs.datastax.com/en//cassandra/2.0/cassandra/dml/dml_config_consistency_c.html) pour plus d’informations. |Non. La valeur par défaut est UN. |
 
-## <a name="json-example-copy-data-from-cassandra-to-azure-blob"></a>Exemple JSON : copier des données depuis un système Cassandra vers Azure Blob
-Cet exemple présente des exemples de définition JSON, que vous pouvez utiliser pour créer un pipeline à l’aide du [portail Azure](data-factory-copy-activity-tutorial-using-azure-portal.md), de [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) ou [d’Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md). Il indique comment copier des données à partir d’une base de données Cassandra locale vers un système de Stockage Blob Azure. Toutefois, les données peuvent être copiées vers l’un des récepteurs indiqués [ici](data-factory-data-movement-activities.md#supported-data-stores-and-formats) , via l’activité de copie d’Azure Data Factory.
+## <a name="json-example-copy-data-from-cassandra-tooazure-blob"></a>Exemple de JSON : copier des données à partir de Cassandra tooAzure Blob
+Cet exemple fournit des exemples de définitions de JSON que vous pouvez utiliser toocreate un pipeline à l’aide de [portail Azure](data-factory-copy-activity-tutorial-using-azure-portal.md) ou [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) ou [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md). Elle indique la base de données toocopy à partir d’un Cassandra local tooan stockage d’objets Blob Azure. Toutefois, les données peuvent être copié tooany de récepteurs hello indiqué [ici](data-factory-data-movement-activities.md#supported-data-stores-and-formats) à l’aide de hello activité de copie dans Azure Data Factory.
 
 > [!IMPORTANT]
-> Cet exemple fournit des extraits de code JSON. Il n’inclut pas d’instructions détaillées pour la création de la fabrique de données. Les instructions se trouvent dans l’article [Déplacement de données entre des emplacements locaux et le cloud](data-factory-move-data-between-onprem-and-cloud.md) .
+> Cet exemple fournit des extraits de code JSON. Il n’inclut pas d’instructions détaillées pour créer la fabrique de données hello. Les instructions se trouvent dans l’article [Déplacement de données entre des emplacements locaux et le cloud](data-factory-move-data-between-onprem-and-cloud.md) .
 
-L’exemple contient les entités de fabrique de données suivantes :
+exemple Hello a hello suivant des entités de fabrique de données :
 
 * Un service lié de type [OnPremisesCassandra](#linked-service-properties).
 * Un service lié de type [AzureStorage](data-factory-azure-blob-connector.md#linked-service-properties).
@@ -106,7 +106,7 @@ L’exemple contient les entités de fabrique de données suivantes :
 
 **Service lié Cassandra :**
 
-Cet exemple utilise le service lié **Cassandra** . Consultez la section [Service lié Cassandra](#linked-service-properties) pour visualiser les propriétés prises en charge par ce service lié.  
+Cet exemple utilise hello **Cassandra** service lié. Consultez [Cassandra de service lié](#linked-service-properties) section pour les propriétés hello pris en charge par ce service lié.  
 
 ```json
 {
@@ -169,11 +169,11 @@ Cet exemple utilise le service lié **Cassandra** . Consultez la section [Servic
 }
 ```
 
-La définition de **external** sur **true** informe le service Data Factory qu’il s’agit d’un jeu de données qui est externe à la Data Factory et non produit par une activité dans la Data Factory.
+Paramètre **externe** trop**true** informe le service de fabrique de données hello ce jeu de données hello est la fabrique de données externe toohello et n’est pas généré par une activité dans la fabrique de données hello.
 
 **Jeu de données de sortie Azure Blob :**
 
-Les données sont écrites dans un nouvel objet blob toutes les heures (fréquence : heure, intervalle : 1).
+Les données sont écrites tooa nouvel objet blob toutes les heures (fréquence : heure, intervalle : 1).
 
 ```json
 {
@@ -197,9 +197,9 @@ Les données sont écrites dans un nouvel objet blob toutes les heures (fréquen
 
 **Activité de copie dans un pipeline avec une source Cassandra et un récepteur blob :**
 
-Le pipeline contient une activité de copie qui est configurée pour utiliser les jeux de données d'entrée et de sortie, et qui est planifiée pour s'exécuter toutes les heures. Dans la définition du pipeline JSON, le type **source** est défini sur **CassandraSource** et le type **sink** est défini sur **BlobSink**.
+Hello pipeline contient une activité de copie qui est configuré toouse hello des jeux de données d’entrée et de sortie et est toorun planifiée toutes les heures. Dans la définition JSON du pipeline hello, hello **source** type est défini trop**CassandraSource** et **récepteur** type est défini trop**BlobSink**.
 
-Pour obtenir la liste des propriétés prises en charge par RelationalSource, consultez [propriétés du type RelationalSource](#copy-activity-properties) .
+Consultez [RelationalSource les propriétés de type](#copy-activity-properties) pour la liste des propriétés prises en charge par hello RelationalSource hello.
 
 ```json
 {  
@@ -211,7 +211,7 @@ Pour obtenir la liste des propriétés prises en charge par RelationalSource, co
         "activities":[  
         {
             "name": "CassandraToAzureBlob",
-            "description": "Copy from Cassandra to an Azure blob",
+            "description": "Copy from Cassandra tooan Azure blob",
             "type": "Copy",
             "inputs": [
             {
@@ -266,45 +266,45 @@ Pour obtenir la liste des propriétés prises en charge par RelationalSource, co
 | TIMEUUID |Guid |
 | UUID |Guid |
 | VARCHAR |String |
-| VARINT |DÉCIMAL |
+| VARINT |Décimal |
 
 > [!NOTE]
-> Pour les types de collections (mappages, ensembles, listes, etc.), reportez-vous à la section [Work with Cassandra collection types using virtual table (Travailler avec les types de collections Cassandra à l’aide d’une table virtuelle)](#work-with-collections-using-virtual-table) .
+> Pour la collection de types (carte, ensemble, liste, etc.), consultez trop[travailler avec les types de collection Cassandra à l’aide de la table virtuelle](#work-with-collections-using-virtual-table) section.
 >
 > Les types définis par l’utilisateur ne sont pas pris en charge.
 >
-> La longueur des colonnes binaires et des colonnes de chaîne ne peut pas être supérieure à 4 000.
+> longueur de Hello de longueurs de colonne binaire et de la colonne de chaîne ne peut pas être supérieure à 4000.
 >
 >
 
 ## <a name="work-with-collections-using-virtual-table"></a>Travailler avec des collections à l’aide d’une table virtuelle
-Azure Data Factory utilise un pilote ODBC intégré pour assurer la connexion à votre base de données Cassandra et copier des données à partir de cette dernière. Pour les types de collection, notamment les cartes, ensembles et listes, le pilote renormalise les données dans des tables virtuelles correspondantes. En particulier, si une table contient des colonnes de n’importe quelle collection, le pilote génère les tables virtuelles suivantes :
+Azure Data Factory utilise une intégrés ODBC driver tooconnect tooand copier les données de votre base de données Cassandra. Pour les types de collection, y compris la carte, ensemble et liste, les pilotes hello renormalise les données hello dans les tables virtuelles correspondants. Plus précisément, si une table contient des colonnes de la collection, pilote de hello génère hello tables virtuelles suivantes :
 
-* Une **table de base**, qui contient les mêmes données que la table réelle, à l’exception des colonnes de collection. La table de base utilise le même nom que la table réelle qu’elle représente.
-* Une **table virtuelle** pour chaque colonne de collection, qui étend les données imbriquées. Le nom des tables virtuelles qui représentent des collections est composé du nom de la table réelle, du séparateur «*vt*» et du nom de la colonne.
+* A **table de base**, lequel contient hello les mêmes données que la table réelle de hello sauf pour les colonnes de regroupement hello. table de base Hello utilise hello même nom en tant que table réelle hello qu’elle représente.
+* A **table virtuelle** pour chaque colonne de la collection, qui étend les données de salutation imbriquée. tables virtuelles Hello qui représentent des collections sont nommées à l’aide du nom hello de table réelle hello, un séparateur «*vt*» et le nom hello de colonne de hello.
 
-Les tables virtuelles font référence aux données présentées dans la table réelle, de manière à permettre au pilote d’accéder aux données dénormalisées. Consultez la section Exemple pour plus d’informations. Vous pouvez accéder au contenu des collections Cassandra en interrogeant et en joignant les tables virtuelles.
+Tables virtuelles font référence à des données de toohello dans la table réelle de hello, l’activation tooaccess de pilote hello hello données dénormalisées. Consultez la section Exemple pour plus d’informations. Vous pouvez accéder à contenu hello des collections de Cassandra en interrogeant et en joignant les tables virtuelles hello.
 
-Vous pouvez utiliser l’[Assistant de copie](data-factory-data-movement-activities.md#create-a-pipeline-with-copy-activity) afin d’afficher de manière intuitive la liste des tables dans la base de données Cassandra, y compris les tables virtuelles, et de prévisualiser les données qui s’y trouvent. Vous pouvez également construire une requête dans l’Assistant de copie et valider pour voir le résultat.
+Vous pouvez utiliser hello [Assistant copie de](data-factory-data-movement-activities.md#create-a-pipeline-with-copy-activity) toointuitively vue hello la liste des tables de base de données Cassandra, y compris les tables virtuelles hello et afficher un aperçu des données hello à l’intérieur. Vous pouvez également créer une requête dans l’Assistant copie de hello et toosee hello résultat de la validation.
 
 ### <a name="example"></a>Exemple
-Par exemple, « ExampleTable » ci-après est une table de base de données Cassandra qui contient une colonne clé primaire entière nommée « pk_int », une colonne de texte nommée « value », une colonne de liste, une colonne de mappage et une colonne de jeu (nommée « StringSet »).
+Par exemple, hello suivant « ExampleTable » est une table de base de données Cassandra qui contient une colonne clé primaire d’entiers nommés « pk_int », une colonne de texte nommé value, une colonne de liste, une colonne de table et une colonne de jeu (nommé « StringSet »).
 
 | pk_int | Valeur | Énumérer | Mappage | StringSet |
 | --- | --- | --- | --- | --- |
 | 1 |« exemple de valeur 1 » |[« 1 », « 2 », « 3 »] |{« S1 » : « a », « S2 » : « b »} |{« A », « B », « C »} |
 | 3 |« exemple de valeur 3 » |[« 100 », « 101 », « 102 », « 105 »] |{« S1 » : « t »} |{« A », « E »} |
 
-Le pilote génère plusieurs tables virtuelles pour représenter cette table. Les colonnes de clés étrangères dans les tables virtuelles font référence aux colonnes de clés primaires dans la table réelle, et indiquent à quelles lignes de la table réelle les lignes de la table virtuelle correspondent.
+pilote de Hello génèrent plusieurs tables virtuelles toorepresent ce tableau. Hello colonnes clés étrangères dans les tables virtuelles hello référencer des colonnes de clé primaire hello dans la table réelle de hello et indiquer quels réel table ligne hello table virtuelle ligne correspond à.
 
-La première table virtuelle est la table de base nommée « ExampleTable » affichée dans le tableau suivant. La table de base contient les mêmes données que la table de base de données d’origine, à l’exception des collections, qui sont omises de cette table et développées dans d’autres tables virtuelles.
+table virtuelle de Hello première est la table de base hello nommé « ExampleTable » est indiqué dans hello tableau suivant. table de base Hello contient hello mêmes données que la table de base de données d’origine hello à l’exception des collections de hello, qui sont omis dans cette table et développés dans d’autres tables virtuelles.
 
 | pk_int | Valeur |
 | --- | --- |
 | 1 |« exemple de valeur 1 » |
 | 3 |« exemple de valeur 3 » |
 
-Les tableaux suivants montrent les tables virtuelles qui renormalisent les données des colonnes Liste, Mappage et StringSet. Les colonnes portant des noms se terminant par « _index » ou « _key » indiquent la position des données dans la liste ou le mappage d’origine. Les colonnes portant des noms se terminant par « _value » contiennent les données étendues de la collection.
+Hello tableaux suivants indiquent les tables virtuelles hello qui renormalize données hello à partir de colonnes de liste, carte et StringSet hello. colonnes de Hello avec des noms qui se terminent par « _index » ou « _clés » indiquent position hello de données hello dans la liste d’origine de hello ou un mappage. les colonnes avec des noms qui se terminent par « _value » Hello contiennent des données de hello développé à partir de la collection de hello.
 
 #### <a name="table-exampletablevtlist"></a>Table « ExampleTable_vt_List » :
 | pk_int | List_index | List_value |
@@ -333,11 +333,11 @@ Les tableaux suivants montrent les tables virtuelles qui renormalisent les donn�
 | 3 |Un  |
 | 3 |E |
 
-## <a name="map-source-to-sink-columns"></a>Mapper les colonnes source aux colonnes du récepteur
-Pour en savoir plus sur le mappage de colonnes du jeu de données source à des colonnes du jeu de données récepteur, voir [Mappage des colonnes d’un jeu de données dans Azure Data Factory](data-factory-map-columns.md).
+## <a name="map-source-toosink-columns"></a>Mapper les colonnes de source toosink
+toolearn sur le mappage des colonnes dans toocolumns du jeu de données source dans le jeu de données récepteur, consultez [mappage des colonnes de jeu de données dans Azure Data Factory](data-factory-map-columns.md).
 
 ## <a name="repeatable-read-from-relational-sources"></a>Lecture renouvelée de sources relationnelles
-Lorsque vous copiez des données à partir de magasins de données relationnels, gardez à l’esprit la répétabilité de l’opération, afin d’éviter des résultats imprévus. Dans Azure Data Factory, vous pouvez réexécuter une tranche manuellement. Vous pouvez également configurer une stratégie de nouvelles tentatives pour un jeu de données, afin qu’une tranche soit réexécutée en cas de défaillance. Lorsqu’une tranche est réexécutée d’une manière ou d’une autre, vous devez vous assurer que les mêmes données sont lues et ce, quel que soit le nombre d’exécutions de la tranche. Voir [Lecture renouvelée de sources relationnelles](data-factory-repeatable-copy.md#repeatable-read-from-relational-sources).
+Lors de la copie des données à partir de banques de données relationnelles, conserver la répétabilité dans l’esprit tooavoid des résultats inattendus. Dans Azure Data Factory, vous pouvez réexécuter une tranche manuellement. Vous pouvez également configurer une stratégie de nouvelles tentatives pour un jeu de données, afin qu’une tranche soit réexécutée en cas de défaillance. Lorsqu’une tranche est exécuté à nouveau dans les deux cas, vous devez toomake vraiment qui hello des mêmes données n’est en lecture aucune question comment plusieurs fois une tranche est exécutée. Voir [Lecture renouvelée de sources relationnelles](data-factory-repeatable-copy.md#repeatable-read-from-relational-sources).
 
 ## <a name="performance-and-tuning"></a>Performances et réglage
-Consultez l’article [Guide sur les performances et le réglage de l’activité de copie](data-factory-copy-activity-performance.md) pour en savoir plus sur les facteurs clés affectant les performances de déplacement des données (activité de copie) dans Azure Data Factory et les différentes manières de les optimiser.
+Consultez [copie activité optimiser les performances et Guide d’optimisation](data-factory-copy-activity-performance.md) toolearn sur la clé de facteurs d’affecter les performances de transfert de données (activité de copie) dans Azure Data Factory et de différentes façons toooptimize il.

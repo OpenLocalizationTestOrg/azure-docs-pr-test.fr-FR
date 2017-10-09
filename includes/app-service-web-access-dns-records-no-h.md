@@ -1,14 +1,14 @@
-Connectez-vous au site web de votre fournisseur de domaine.
+Site Web de toohello du fournisseur de votre domaine de connexion.
 
-Trouvez la page de gestion des enregistrements DNS. Chaque fournisseur de domaine ayant sa propre interface d’enregistrements DNS, consultez la documentation de votre fournisseur. Recherchez les zones du site qui portent les mentions **Nom de domaine**, **DNS** ou **Gestion du nom de serveur**. 
+Rechercher la page de hello pour la gestion des enregistrements DNS. Chaque fournisseur de domaine a sa propre interface enregistrements DNS, par conséquent, la documentation du fournisseur hello. Recherchez les zones du site hello étiqueté **nom de domaine**, **DNS**, ou **gestion des noms de serveur**. 
 
-Vous trouvez généralement la page des enregistrements DNS en affichant vos informations de compte, puis en recherchant un lien comme **Mes domaines**. Accédez à cette page et recherchez un lien nommé **Fichier de zone**, **Enregistrements DNS**, ou **Configuration avancée**.
+Souvent, vous pouvez trouver la page des enregistrements DNS hello en affichant les informations de votre compte et puis recherchez un lien comme **mes domaines**. Atteindre la page de toothat et recherchez un lien nommé quelque chose comme **le fichier de Zone**, **enregistrements DNS**, ou **configuration avancée**.
 
-La capture d’écran suivante est un exemple d’une page d’enregistrements DNS :
+Hello capture d’écran suivante est un exemple d’une page d’enregistrements DNS :
 
 ![Exemple de page d’enregistrements DNS](./media/app-service-web-access-dns-records-no-h/example-record-ui.png)
 
-Dans l’exemple de capture d’écran, vous cliquez sur **Ajouter** pour créer un enregistrement. Certains fournisseurs ont différents liens pour ajouter divers types d’enregistrements. Là encore, consultez la documentation du fournisseur.
+Dans la capture d’écran hello, vous sélectionnez **ajouter** toocreate un enregistrement. Certains fournisseurs ont différents liens tooadd différents types d’enregistrements. Là encore, consultez la documentation du fournisseur de hello.
 
 > [!NOTE]
-> Pour certains fournisseurs tels que GoDaddy, les modifications apportées aux enregistrements DNS n’entrent en vigueur que lorsque vous cliquez sur un lien **Enregistrer les modifications** distinct. 
+> Pour certains fournisseurs, tels que GoDaddy, modifications tooDNS enregistrements ne deviennent effectives que lorsque vous sélectionnez un distinct **enregistrer les modifications** lien. 

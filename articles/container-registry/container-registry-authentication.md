@@ -1,6 +1,6 @@
 ---
-title: Authentification avec un Registre de conteneurs Azure | Microsoft Docs
-description: "Connexion à un Registre de conteneurs Azure à l’aide d’un compte d’administrateur ou d’un principal du service Azure Active Directory"
+title: aaaAuthenticate avec un Registre de conteneur Azure | Documents Microsoft
+description: "Comment toolog dans le Registre de conteneur Azure tooan à l’aide d’Azure Active Directory service principal ou un compte d’administrateur"
 services: container-registry
 documentationcenter: 
 author: stevelas
@@ -17,61 +17,61 @@ ms.workload: na
 ms.date: 03/24/2017
 ms.author: stevelas
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: aa2a6bf3d7d9ec22020036851fc0f2bca37e31bf
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: a0b0462e8432b2567689debca322e2426baa7fa2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="authenticate-with-a-private-docker-container-registry"></a>S’authentifier avec un registre de conteneurs Docker
-Pour utiliser des images de conteneur dans un Registre de conteneurs Azure, vous vous connectez à l’aide de la commande `docker login`. Vous pouvez vous connecter en utilisant un **[principal du service Azure Active Directory](../active-directory/active-directory-application-objects.md)** ou un **compte d’administrateur** spécifique à un registre. Cet article fournit des détails sur ces identités.
+toowork avec les images de conteneur dans un Registre de conteneur Azure, vous vous connectez à l’aide de hello `docker login` commande. Vous pouvez vous connecter en utilisant un **[principal du service Azure Active Directory](../active-directory/active-directory-application-objects.md)** ou un **compte d’administrateur** spécifique à un registre. Cet article fournit des détails sur ces identités.
 
 
 
 ## <a name="service-principal"></a>Principal du service
 
-Vous pouvez [affecter un principal du service](container-registry-get-started-azure-cli.md#assign-a-service-principal) à votre registre et l’utiliser pour l’authentification Docker de base. L’utilisation d’un principal du service est recommandée dans la plupart des scénarios. Fournissez le mot de passe et l’ID d’application du principal du service à la commande `docker login`, comme indiqué dans l’exemple suivant :
+Vous pouvez [affecter un principal de service](container-registry-get-started-azure-cli.md#assign-a-service-principal) tooyour Registre et l’utiliser pour l’authentification de base Docker. L’utilisation d’un principal du service est recommandée dans la plupart des scénarios. Fournir l’ID de l’application hello et le mot de passe toohello principal du service hello `docker login` de commande, comme indiqué dans hello l’exemple suivant :
 
 ```
 docker login myregistry.azurecr.io -u xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx -p myPassword
 ```
 
-Une fois que vous êtes connecté, Docker met les informations d’identification en cache. Vous n’avez donc pas besoin de vous souvenir de l’ID d’application.
+Une fois connecté, Docker met en cache les informations d’identification de hello, vous n’avez pas besoin d’identifiant d’application tooremember hello.
 
 > [!TIP]
-> Si vous le souhaitez, vous pouvez régénérer le mot de passe d’un principal du service en exécutant la commande `az ad sp reset-credentials`.
+> Si vous le souhaitez, vous pouvez régénérer le mot de passe hello d’un principal de service en exécutant hello `az ad sp reset-credentials` commande.
 >
 
 
-Les principaux du service autorisent [l’accès en fonction du rôle](../active-directory/role-based-access-control-configure.md) à un registre. Les rôles disponibles sont les suivants :
+Autoriser les principaux du service [accès en fonction du rôle](../active-directory/role-based-access-control-configure.md) tooa Registre. Les rôles disponibles sont les suivants :
   * Lecteur (extraction).
   * Contributeur (extraction et envoi).
-  * Propriétaire (extraction, envoi et attribution de rôles à d’autres utilisateurs).
+  * Propriétaire (par extraction de données, par envoi de données et affecter des rôles utilisateurs tooother).
 
 L’accès anonyme n’est pas disponible sur les registres de conteneur Azure. Pour des images publiques, vous pouvez utiliser [Docker Hub](https://docs.docker.com/docker-hub/).
 
-Vous pouvez affecter plusieurs principaux du service à un registre, ce qui vous permet de définir l’accès pour différents utilisateurs ou applications. Les principaux du service activent également la connectivité « headless » (sans périphérique de contrôle) à un registre dans des scénarios de Développeur ou DevOps, tels que les exemples suivants :
+Vous pouvez affecter plusieurs principaux de service de Registre tooa, ce qui vous permet d’accéder toodefine pour différents utilisateurs ou les applications. Principaux de service permettent également de Registre tooa connectivité « sans affichage » développeur ou DevOps scénarios hello exemple suivant :
 
-  * Déploiements de conteneurs à partir d’un registre vers des systèmes d’orchestration, y compris DC/OS, Docker Swarm et Kubernetes. Vous pouvez également extraire des registres de conteneurs vers des services Azure connexes tels que [Container Service](../container-service/index.yml), [App Service](../app-service/index.md), [Batch](../batch/index.md), [Service Fabric](/azure/service-fabric/) et autres.
+  * Déploiements de conteneur à partir d’un système de tooorchestration de Registre, y compris le contrôleur de domaine/système d’exploitation, Docker Swarm et Kubernetes. Vous pouvez également extraire toorelated de registres de conteneur des services Azure tels que [Service de conteneur](../container-service/index.yml), [du Service d’applications](../app-service/index.md), [lot](../batch/index.md), [Service Fabric](/azure/service-fabric/)et d’autres.
 
-  * Solutions d’intégration et de déploiement en continu (comme Visual Studio Team Services ou Jenkins) qui créent des images de conteneur et les envoient vers un registre.
+  * Continue intégration et le déploiement des solutions (tels que Visual Studio Team Services ou Jenkins) qui génèrent des images de conteneur et de les transmettre tooa Registre.
 
 
 
 
 
 ## <a name="admin-account"></a>Compte d’administrateur
-Un compte d’administrateur est créé automatiquement pour chaque registre que vous créez. Le compte est désactivé par défaut, mais vous pouvez l’activer et gérer les informations d’identification, par exemple à l’aide du [portal](container-registry-get-started-portal.md#manage-registry-settings) ou des [commandes d’Azure CLI 2.0](container-registry-get-started-azure-cli.md#manage-admin-credentials). Chaque compte d’administrateur reçoit deux mots de passe qui peuvent être régénérés. Les deux mots de passe vous permettent de maintenir des connexions au Registre à en utilisant un mot de passe tandis que vous régénérez l’autre. Si le compte est activé, vous pouvez transmettre le nom d’utilisateur et chaque mot de passe à la commande `docker login` pour une authentification de base auprès du Registre. Par exemple :
+Un compte d’administrateur est créé automatiquement pour chaque registre que vous créez. Compte de hello est désactivé par défaut, mais vous pouvez l’activer et gérer les informations d’identification hello, par exemple via hello [portal](container-registry-get-started-portal.md#manage-registry-settings) ou à l’aide de hello [Azure CLI 2.0 commandes](container-registry-get-started-azure-cli.md#manage-admin-credentials). Chaque compte d’administrateur reçoit deux mots de passe qui peuvent être régénérés. deux mots de passe Hello permettent de Registre de toohello toomaintain connexions en utilisant un mot de passe pendant la régénération de hello autre mot de passe. Si le compte de hello est activé, vous pouvez passer le nom d’utilisateur hello et soit toohello de mot de passe `docker login` commande de Registre toohello de l’authentification de base. Par exemple :
 
 ```
 docker login myregistry.azurecr.io -u myAdminName -p myPassword1
 ```
 
 > [!IMPORTANT]
-> Le compte d’administrateur est conçu pour permettre à un seul utilisateur d’accéder au registre, principalement à des fins de test. Il n’est pas recommandé de partager les informations d’identification du compte d’administrateur avec d’autres utilisateurs. Tous les utilisateurs apparaissent sous la forme d’un seul utilisateur dans le registre. La modification ou la désactivation de ce compte désactive l’accès au registre pour tous les utilisateurs qui utilisent les informations d’identification.
+> compte d’administrateur Hello est conçu pour un seul utilisateur tooaccess hello du Registre, principalement à des fins de test. Il est recommandé pas les informations d’identification du compte de l’administrateur tooshare hello parmi d’autres utilisateurs. Tous les utilisateurs apparaissent sous la forme d’un Registre de toohello utilisateur unique. La modification ou la désactivation de ce compte désactive l’accès au Registre pour tous les utilisateurs qui utilisent des informations d’identification hello.
 >
 
 
 ### <a name="next-steps"></a>Étapes suivantes
-* [Transmettre votre première image à l’aide de l’interface de ligne de commande (CLI) Docker](container-registry-get-started-docker-cli.md).
-* Pour plus d’informations sur l’authentification dans la version préliminaire du Registre de conteneurs, consultez le [billet de blog](https://blogs.msdn.microsoft.com/stevelasker/2016/11/17/azure-container-registry-user-accounts/).
+* [Push de votre première image à l’aide de hello Docker CLI](container-registry-get-started-docker-cli.md).
+* Pour plus d’informations sur l’authentification dans l’aperçu du Registre de conteneur hello, consultez hello [billet de blog](https://blogs.msdn.microsoft.com/stevelasker/2016/11/17/azure-container-registry-user-accounts/).

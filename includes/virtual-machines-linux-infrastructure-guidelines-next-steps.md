@@ -1,4 +1,4 @@
-La série complète d’instructions vous aide à comprendre tous les points de conception à considérer pour la création de votre infrastructure d’application dans Azure :
+série complète de Hello des instructions vous aide comprendre tous hello différentes considérations conceptuelles concernant la construction notre infrastructure de votre application dans Azure :
 
 * [Instructions pour les abonnements et les comptes Azure](../articles/virtual-machines/linux/infrastructure-subscription-accounts-guidelines.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 * [Instructions de dénomination d’infrastructure Azure](../articles/virtual-machines/linux/infrastructure-naming-guidelines.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)

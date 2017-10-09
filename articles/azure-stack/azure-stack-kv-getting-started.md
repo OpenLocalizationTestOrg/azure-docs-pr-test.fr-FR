@@ -1,5 +1,5 @@
 ---
-title: "Mise en route avec le coffre de clés dans la pile de Azure | Documents Microsoft"
+title: "aaaGetting a démarré avec le coffre de clés dans la pile de Azure | Documents Microsoft"
 description: "Commencer à l’aide de la pile d’Azure Key Vault"
 services: azure-stack
 documentationcenter: 
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 01/23/2017
 ms.author: ricardom
-ms.openlocfilehash: 32fad3ce17c877db661573e67c9cb5948b3c78fa
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 66ae55291951ee0c673ba2b50ea4aecb3df19a88
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="getting-started-with-key-vault"></a>Mise en route avec le coffre de clés
-Cette section décrit les étapes pour créer un coffre, gérer les clés et les clés secrètes ainsi que pour autoriser des utilisateurs ou des applications pour appeler des opérations dans le coffre dans la pile de Azure. Les étapes suivantes supposent un abonnement locataire existe et KeyVault service est enregistré au sein de cet abonnement. Tous les exemples de commandes sont basées sur les applets de commande KeyVault disponibles dans le cadre du kit SDK Azure PowerShell.
+Cette section décrit hello étapes toocreate un coffre, gérer les clés et les clés secrètes ainsi autoriser des utilisateurs ou des applications opérations tooinvoke dans le coffre de hello dans la pile d’Azure. Hello suit supposent un abonnement locataire existe et KeyVault service est enregistré au sein de cet abonnement. Toutes les commandes d’exemple hello reposent sur hello KeyVault d’applets de commande disponibles dans le cadre de hello Kit de développement logiciel Azure PowerShell.
 
-## <a name="enabling-the-tenant-subscription-for-vault-operations"></a>L’activation de l’abonnement du client pour les opérations d’archivage
-Avant de pouvoir émettre des opérations par rapport à un coffre-fort, vous devez vous assurer que votre abonnement est activé pour les opérations d’archivage. Vous pouvez confirmer qu’en émettant la commande PowerShell suivante :
+## <a name="enabling-hello-tenant-subscription-for-vault-operations"></a>L’activation d’abonnement du locataire hello pour les opérations d’archivage
+Avant de pouvoir émettre des opérations par rapport à un coffre-fort, vous devez tooensure votre abonnement est activé pour les opérations de coffre. Vous pouvez confirmer qu’en émettant hello suivant de commande PowerShell :
 
     Get-AzureRmResourceProvider -ProviderNamespace Microsoft.KeyVault | ft -AutoSize
 
-La sortie de la commande ci-dessus doit signaler les « Enregistré » pour l’état « Registration » de chaque ligne.
+sortie Hello Hello ci-dessus commande rapport « Enregistré » hello état « Registration » de chaque ligne.
 
     ProviderNamespace RegistrationState ResourceTypes Locations
     Microsoft.KeyVault Registered {operations} {local}
@@ -36,11 +36,11 @@ La sortie de la commande ci-dessus doit signaler les « Enregistré » pour l�
     Microsoft.KeyVault Registered {vaults/secrets} {local}
 
 
- Si tel n’est pas le cas, vous devez appeler la commande suivante pour inscrire le service KeyVault dans votre abonnement :
+ Si tel n’est pas le cas de hello, vous devez appeler hello après commande tooregister hello KeyVault service au sein de votre abonnement :
 
     Register-AzureRmResourceProvider -ProviderNamespace Microsoft.KeyVault
 
-Et ce qui suit est la sortie de la commande :
+Et hello suivants est sortie hello de commande hello :
 
     ProviderNamespace : Microsoft.KeyVault
     RegistrationState : Registered
@@ -49,19 +49,19 @@ Et ce qui suit est la sortie de la commande :
 
 
 > [!NOTE]
-> Si vous obtenez l’erreur : «*l’abonnement n’est pas inscrit auprès d’Azure Key Vault*» lors de l’appel des applets de commande KeyVault, vérifiez que vous avez activé le fournisseur de ressources KeyVault par les instructions ci-dessus.
+> Si vous obtenez hello erreur : «*abonnement de hello n’est pas inscrit auprès d’Azure Key Vault*» lors de l’appel des applets de commande KeyVault, vérifiez que vous avez activé le fournisseur de ressources KeyVault hello par les instructions ci-dessus.
 > 
 > 
 
-## <a name="creating-a-hardened-container-a-vault-in-azure-stack-to-store-and-manage-cryptographic-keys-and-secrets"></a>Création d’un conteneur de sécurisation renforcé (un coffre) dans la pile de Azure pour stocker et gérer des clés de chiffrement et des clés secrètes
-Pour créer un coffre, un locataire devez d’abord créer un groupe de ressources. Les commandes PowerShell créent un groupe de ressources, puis un coffre dans ce groupe de ressources. L’exemple inclut également les sorties à partir de cette applet de commande.
+## <a name="creating-a-hardened-container-a-vault-in-azure-stack-toostore-and-manage-cryptographic-keys-and-secrets"></a>Création d’un conteneur de sécurisation renforcé (un coffre) dans la pile de Azure toostore et gérer les clés de chiffrement et les clés secrètes
+Dans l’ordre toocreate un coffre, un locataire devez d’abord créer un groupe de ressources. Hello commandes PowerShell suivantes créent un groupe de ressources, puis un coffre dans ce groupe de ressources. Hello exemple inclut également la sortie de type hello à partir de cette applet de commande.
 
 ### <a name="creating-a-resource-group"></a>Création d’un groupe de ressources :
     New-AzureRmResourceGroup -Name vaultrg010 -Location local -Verbose -Force
 
 Output:
 
-    VERBOSE: Performing the operation "Replacing resource group ..." on target "".
+    VERBOSE: Performing hello operation "Replacing resource group ..." on target "".
     VERBOSE: 12:52:51 PM - Created resource group 'vaultrg010' in location 'local'
     ResourceGroupName : vaultrg010
     Location : local
@@ -88,8 +88,8 @@ Output:
     Object ID : ca342e90-f6aa-435b-a11c-dfe5ef0bfeeb
     Application ID :
     Display Name : Tenant Admin (tenantadmin1@msazurestack.onmicrosoft.com)
-    Permissions to Keys : get, create, delete, list, update, import, backup, restore
-    Permissions to Secrets : all
+    Permissions tooKeys : get, create, delete, list, update, import, backup, restore
+    Permissions tooSecrets : all
     OriginalVault : Microsoft.Azure.Management.KeyVault.Vault
     ResourceId : /subscriptions/fa881715-3802-42cc-a54e-a06adf61584d/resourceGroups/vaultrg010/providers/Microsoft.KeyVault/vaults/vault010
     VaultName : vault010
@@ -98,22 +98,22 @@ Output:
     Tags : {}
     TagsTable :
 
-La sortie de cette applet de commande affiche les propriétés du coffre de clés que vous venez de créer. Les deux propriétés les plus importantes sont :
+sortie Hello de cette applet de commande affiche les propriétés du coffre de clés hello que vous venez de créer. propriétés les plus importantes Hello deux sont :
 
-* **Nom de coffre**: dans l’exemple, il s’agit de **vault010**. Vous allez utiliser ce nom pour les autres applets de commande Key Vault.
-* **URI de coffre**: dans l’exemple, il s’agit d’https://vault010.vault.local.azurestack.global. Les applications qui utilisent votre coffre via son API REST doivent utiliser cet URI.
+* **Nom de coffre**: dans l’exemple de hello, il s’agit **vault010**. Vous allez utiliser ce nom pour les autres applets de commande Key Vault.
+* **URI de coffre**: dans l’exemple de hello, il s’agit https://vault010.vault.local.azurestack.global. Les applications qui utilisent votre coffre via son API REST doivent utiliser cet URI.
 
-Votre compte Azure est pour l’instant le seul autorisé à effectuer des opérations sur ce coffre de clés.
+Votre compte Azure est désormais toutes les opérations sur cette clé de coffre tooperform autorisé. coffre de clés.
 
 ## <a name="operating-on-keys-and-secrets"></a>Fonctionne sur les clés et les clés secrètes
-Après avoir créé un coffre, suivez les étapes ci-dessous pour créer, gérer les clés et les secrets :
+Après avoir créé un coffre, hello suivez ci-dessous les étapes toocreate gérer les clés et les secrets :
 
 ### <a name="creating-a-key"></a>Création d’une clé
-Pour créer une clé, utilisez la **Add-AzureKeyVaultKey** par l’exemple ci-dessous. Après la création réussie de la clé, l’applet de commande affiche les détails de la clé nouvellement créées.
+Dans l’ordre toocreate une clé, utilisez hello **Add-AzureKeyVaultKey** par exemple hello ci-dessous. Après la création réussie de la clé, applet de commande hello produira hello nouvellement créé les détails de la clé.
 
     Add-AzureKeyVaultKey -VaultName \$vaultName -Name\$keyVaultKeyName -Verbose -Destination Software
 
-Voici la sortie de la *Add-AzureKeyVaultKey* applet de commande :
+Hello Voici la sortie hello Hello *Add-AzureKeyVaultKey* applet de commande :
 
     Attributes : Microsoft.Azure.Commands.KeyVault.Models.KeyAttributes
     Key : {"kid":"https://vault010.vault.local.azurestack.global/keys/keyVaultKeyName001/86062b02b10342688f3b0b3713e343ff","kty":"RSA","key\_ops":\["encrypt"
@@ -125,14 +125,14 @@ Voici la sortie de la *Add-AzureKeyVaultKey* applet de commande :
     Version : 86062b02b10342688f3b0b3713e343ff
     Id : https://vault010.vault.local.azurestack.global:443/keys/keyVaultKeyName001/86062b02b10342688f3b0b3713e343ff
 
-Vous pouvez maintenant référencer cette clé que vous avez créée ou téléchargée dans Azure Key Vault à l’aide de son URI. Utilisez **https://vault010.vault.local.azurestack.global:443/clés/keyVaultKeyName001** pour obtenir la version actuelle ; toujours utiliser **https://vault010.vault.local.azurestack.global:443/clés keyVaultKeyName001/86062b02b10342688f3b0b3713e343ff** pour obtenir cette version spécifique.
+Vous pouvez maintenant référencer cette clé que vous avez créé ou téléchargé tooAzure le coffre de clés, à l’aide de son URI. Utilisez **https://vault010.vault.local.azurestack.global:443/clés/keyVaultKeyName001** tooalways obtenir la version actuelle de hello ; et utiliser **https://vault010.vault.local.azurestack.global:443/clés keyVaultKeyName001/86062b02b10342688f3b0b3713e343ff** tooget cette version spécifique.
 
 ### <a name="retrieving-a-key"></a>La récupération d’une clé
-Utilisez le **Get-AzureKeyVaultKey** pour récupérer une clé et ses détails par l’exemple suivant :
+Hello d’utilisation **Get-AzureKeyVaultKey** tooretrieve une clé et ses détails par hello selon exemple :
 
     Get-AzureKeyVaultKey -VaultName vault010 -Name keyVaultKeyName001
 
-Voici la sortie de Get-AzureKeyVaultKey
+Hello Voici la sortie de hello de Get-AzureKeyVaultKey
 
     Attributes : Microsoft.Azure.Commands.KeyVault.Models.KeyAttributes
     Key : {"kid":"https://vault010.vault.local.azurestack.global/keys/keyVaultKeyName001/86062b02b10342688f3b0b3713e343ff","kty":"RSA","key\_ops":\["encrypt"
@@ -179,17 +179,17 @@ Sortie
     Content Type :
     Tags :
 
-À présent, votre coffre de clés et la clé/le secret sont prêts à être utilisés par les applications
-qui doivent recevoir les autorisations adéquates.
+Votre coffre de clés et la clé ou le secret est maintenant prête pour les applications toouse.
+Vous devez autoriser les applications toouse les.
 
-## <a name="authorize-the-application-to-use-the-key-or-secret"></a>Autorisation de l’application à utiliser la clé ou le secret
-Pour autoriser l’application d’accéder à la clé ou le secret dans le coffre, utilisez la commande Set -**AzureRmKeyVaultAccessPolicy** applet de commande.
+## <a name="authorize-hello-application-toouse-hello-key-or-secret"></a>Autoriser hello application toouse hello clé ou le secret
+tooauthorize hello application tooaccess hello clé ou le secret de coffre hello, hello d’utiliser Set -**AzureRmKeyVaultAccessPolicy** applet de commande.
 
-Par exemple, si le nom de votre coffre est *ContosoKeyVault* et dispose de l’application que vous souhaitez autoriser un *ID Client* de *8f8c4bbd-485b-45fd-98f7-ec6300b7b4ed*et que vous vous souhaitez autoriser l’application pour déchiffrer et vous connecter avec des clés dans le coffre, exécutez la commande suivante :
+Par exemple, si le nom de votre coffre est *ContosoKeyVault* , puis hello application tooauthorize a un *ID Client* de *8f8c4bbd-485b-45fd-98f7-ec6300b7b4ed*et que vous choix tooauthorize hello application toodecrypt et connectez-vous avec des clés dans le coffre, exécutez hello suivante :
 
     Set-AzureRmKeyVaultAccessPolicy -VaultName 'ContosoKeyVault' -ServicePrincipalName 8f8c4bbd-485b-45fd-98f7-ec6300b7b4ed -PermissionsToKeys decrypt,sign
 
-Si vous souhaitez autoriser cette même application à lire les éléments secrets de votre coffre, exécutez la commande suivante :
+Si vous souhaitez tooauthorize que secrets de tooread même application dans le coffre, exécutez suivante de hello :
 
     Set-AzureRmKeyVaultAccessPolicy -VaultName 'ContosoKeyVault' -ServicePrincipalName 8f8c4bbd-485b-45fd-98f7-ec6300b7b4ed -PermissionsToSecrets Get
 

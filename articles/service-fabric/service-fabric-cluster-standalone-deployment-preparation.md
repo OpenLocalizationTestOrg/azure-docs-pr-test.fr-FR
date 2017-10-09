@@ -1,6 +1,6 @@
 ---
-title: "Préparation du déploiement d’un cluster Azure Service Fabric autonome | Microsoft Docs"
-description: "Documentation relative à la préparation de l’environnement et la création de la configuration du cluster, à prendre en considération avant de déployer un cluster conçu pour gérer une charge de travail de production."
+title: "Préparation du déploiement de Cluster Service Fabric autonomes d’aaaAzure | Documents Microsoft"
+description: "Documentation liée environnement de hello toopreparing et créez la configuration de cluster hello, toobe considérée comme toodeploying préalable un cluster conçu pour gérer une charge de travail de production."
 services: service-fabric
 documentationcenter: .net
 author: maburlik
@@ -13,52 +13,52 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 1/17/2017
 ms.author: maburlik;chackdan
-ms.openlocfilehash: f332193f9a53260173a1010b8bf9f08726bea427
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e503c61a64b408af3f22bd75ab02f1c34ac9f380
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 <a id="preparemachines"></a>
 
 ## <a name="plan-and-prepare-your-service-fabric-standalone-cluster-deployment"></a>Planifier et préparer votre déploiement de cluster Service Fabric autonome
-Exécutez les étapes suivantes avant de créer votre cluster.
+Effectuer hello comme suit avant de créer votre cluster.
 
 ### <a name="step-1-plan-your-cluster-infrastructure"></a>Étape 1 : planifier votre infrastructure de cluster
-Vous allez créer un cluster Service Fabric sur les ordinateurs que vous avez pour décider des types de défaillance auxquels le cluster doit survivre. Par exemple, devez-vous séparer les lignes d’alimentation des connexions internet reliées à ces ordinateurs ? Prenez en outre en compte la sécurité physique de ces ordinateurs. Où sont situés les ordinateurs et qui a besoin d’y accéder ? Une fois ces décisions prises, vous pouvez mapper logiquement les ordinateurs sur les différents domaines d’erreur (voir l’étape 4). La planification de l’infrastructure pour les clusters de production est plus complexe que pour les clusters de test.
+Vous êtes sur le toocreate un cluster Service Fabric sur les ordinateurs que vous possédez, afin de décider quels types d’échecs, vous souhaitez hello toosurvive du cluster. Par exemple, avez-vous besoin de lignes distinctes, ou les connexions Internet fourni des machines de toothese ? En outre, envisagez de sécurité physique de hello de ces ordinateurs. Où sont trouvent les machines hello et qui a besoin d’accès toothem ? Après avoir apporté ces décisions, vous pouvez logiquement mapper hello machines toohello différents domaines d’erreur (voir l’étape 4). planification pour les clusters de production de l’infrastructure Hello est plus complexe que pour les clusters de test.
 
-### <a name="step-2-prepare-the-machines-to-meet-the-prerequisites"></a>Étape 2 : préparer les ordinateurs pour répondre aux conditions préalables
-Conditions préalables pour chaque ordinateur que vous souhaitez ajouter au cluster :
+### <a name="step-2-prepare-hello-machines-toomeet-hello-prerequisites"></a>Étape 2 : Préparer hello machines toomeet conditions préalables de hello
+Configuration requise pour chaque ordinateur que vous souhaitez tooadd toohello cluster :
 
 * Un minimum de 16 Go de RAM est recommandé.
 * Un minimum de 40 Go d’espace disque disponible est recommandé.
 * Un processeur 4 cœurs ou plus est recommandé.
-* Connectivité à un ou plusieurs réseaux sécurisés pour tous les ordinateurs.
+* Connectivité tooa sécurisé ou les réseaux pour tous les ordinateurs.
 * Windows Server 2012 R2 ou Windows Server 2016. 
 * [.NET Framework 4.5.1 ou une version ultérieure](https://www.microsoft.com/download/details.aspx?id=40773), installation complète.
 * [Windows PowerShell 3.0](https://msdn.microsoft.com/powershell/scripting/setup/installing-windows-powershell).
-* Le [service RemoteRegistry](https://technet.microsoft.com/library/cc754820) doit être exécuté sur tous les ordinateurs.
+* Hello [RemoteRegistry service](https://technet.microsoft.com/library/cc754820) doit s’exécuter sur tous les ordinateurs hello.
 
-L’administrateur de cluster déployant et configurant le cluster doit disposer de [privilèges d’administrateur](https://social.technet.microsoft.com/wiki/contents/articles/13436.windows-server-2012-how-to-add-an-account-to-a-local-administrator-group.aspx) sur chaque ordinateur. Vous ne pouvez pas installer Service Fabric sur un contrôleur de domaine.
+Hello déploiement et la configuration de cluster de hello l’administrateur de cluster doit avoir [des privilèges d’administrateur](https://social.technet.microsoft.com/wiki/contents/articles/13436.windows-server-2012-how-to-add-an-account-to-a-local-administrator-group.aspx) sur chacun des ordinateurs de hello. Vous ne pouvez pas installer Service Fabric sur un contrôleur de domaine.
 
-### <a name="step-3-determine-the-initial-cluster-size"></a>Étape 3 : déterminer la taille initiale du cluster
-Le runtime Service Fabric est déployé sur chaque nœud d’un cluster Service Fabric autonome, et les nœuds sont membres du cluster. Un déploiement de production type comprend un nœud par instance du système d’exploitation (physique ou virtuel). La taille de cluster est déterminée par les besoins de votre entreprise. Toutefois, vous devez disposer d’une taille minimale de cluster de trois nœuds (ordinateurs ou machines virtuelles).
+### <a name="step-3-determine-hello-initial-cluster-size"></a>Étape 3 : Déterminer la taille initiale du cluster de hello
+Chaque nœud dans un cluster de Service Fabric autonomes a hello Service Fabric runtime déployé et qu’il est membre du cluster de hello. Un déploiement de production type comprend un nœud par instance du système d’exploitation (physique ou virtuel). taille de cluster Hello est déterminée par les besoins de votre entreprise. Toutefois, vous devez disposer d’une taille minimale de cluster de trois nœuds (ordinateurs ou machines virtuelles).
 À des fins de développement, vous pouvez avoir plusieurs nœuds sur un ordinateur donné. Dans un environnement de production, Service Fabric ne prend en charge qu’un seul nœud par ordinateur physique ou virtuel.
 
-### <a name="step-4-determine-the-number-of-fault-domains-and-upgrade-domains"></a>Étape 4 : déterminer le nombre de domaines d’erreur et de domaines de mise à niveau
-Un *domaine d’erreur (FD)* est une unité physique de défaillance directement liée à l’infrastructure physique dans les centres de données. Un domaine d’erreur est constitué de composants matériels (ordinateurs, commutateurs, réseaux, etc.) qui partagent un point de défaillance unique. Bien qu’il n’existe aucun mappage 1:1 entre les domaines d’erreur et les racks, chaque rack peut être considéré au sens large comme un domaine d’erreur. Lorsque vous envisagez d’utiliser les nœuds de votre cluster, nous vous recommandons fortement de distribuer les nœuds sur au moins trois domaines d’erreur.
+### <a name="step-4-determine-hello-number-of-fault-domains-and-upgrade-domains"></a>Étape 4 : Déterminer le nombre de hello de domaines d’erreur et domaines de mise à niveau
+A *domaine d’erreur* (DP) est une unité physique de l’échec et est directement lié, toohello l’infrastructure physique hello centres de données. Un domaine d’erreur est constitué de composants matériels (ordinateurs, commutateurs, réseaux, etc.) qui partagent un point de défaillance unique. Bien qu’il n’existe aucun mappage 1:1 entre les domaines d’erreur et les racks, chaque rack peut être considéré au sens large comme un domaine d’erreur. Lorsque vous envisagez de nœuds hello dans votre cluster, nous recommandons vivement que les nœuds hello distribuée entre au moins trois domaines d’erreur.
 
-Quand vous spécifiez des domaines d’erreur dans ClusterConfig.json, vous pouvez choisir le nom de chaque domaine d’erreur. Service Fabric prend en charge les domaines d’erreur hiérarchiques pour vous permettre d’y refléter votre topologie d’infrastructure.  Par exemple, les domaines d’erreur suivants sont valides :
+Lorsque vous spécifiez des groupes dans le fichier ClusterConfig.json, vous pouvez choisir le nom hello pour chaque lecteur de disquette. Service Fabric prend en charge les domaines d’erreur hiérarchiques pour vous permettre d’y refléter votre topologie d’infrastructure.  Par exemple, hello suivant groupes est valide :
 
 * "faultDomain": "fd:/Room1/Rack1/Machine1"
 * "faultDomain": "fd:/FD1"
 * "faultDomain": "fd:/Room1/Rack1/PDU1/M1"
 
-Un *domaine de mise à niveau (UD)* est une unité logique de nœuds. Pendant les mises à niveau orchestrées par Service Fabric (mise à niveau de l’application ou du cluster), tous les nœuds dans un domaine de mise à niveau sont mis hors service pour effectuer la mise à niveau alors que les nœuds dans d’autres domaines de mise à niveau restent disponibles pour répondre aux requêtes. Les mises à niveau du microprogramme que vous effectuez sur vos ordinateurs ne respectent pas les domaines de mise à niveau. Vous devez donc les exécuter sur un ordinateur à la fois.
+Un *domaine de mise à niveau (UD)* est une unité logique de nœuds. Pendant les mises à niveau de Service Fabric orchestrés (une mise à niveau de l’application ou une mise à niveau de cluster), tous les nœuds dans un UD sont mis hors service de la mise à niveau de tooperform hello tandis que les nœuds dans d’autres domaines d’erreur restent disponibles tooserve demandes. Hello vous effectuez sur vos ordinateurs les mises à niveau du microprogramme n’honorent pas ces domaines d’erreur, vous devez les faire un ordinateur à la fois.
 
-L’approche la plus simple de ces concepts consiste à considérer les domaines d’erreur comme unité de défaillance non planifiée et les domaines mise à niveau comme unité de maintenance planifiée.
+Hello toothink de façon la plus simple à ces concepts est tooconsider mise en tant qu’unité hello d’échec non planifié et de domaines d’erreur en tant qu’unité hello de maintenance planifiée.
 
-Quand vous spécifiez des domaines de mise à niveau dans ClusterConfig.json, vous pouvez choisir le nom de chaque domaine de mise à niveau. Par exemple, les noms suivants sont valides :
+Lorsque vous spécifiez des domaines d’erreur dans le fichier ClusterConfig.json, vous pouvez choisir le nom hello pour chaque UD. Par exemple, hello suivant de noms est valide :
 
 * "upgradeDomain": "UD0"
 * "upgradeDomain": "UD1A"
@@ -67,44 +67,44 @@ Quand vous spécifiez des domaines de mise à niveau dans ClusterConfig.json, vo
 
 Pour plus d’informations sur les domaines de mise à niveau et les domaines d’erreur, consultez [Description d’un cluster Service Fabric](service-fabric-cluster-resource-manager-cluster-description.md) .
 
-### <a name="step-5-download-the-service-fabric-standalone-package-for-windows-server"></a>Étape 5 : télécharger le package autonome Service Fabric pour Windows Server
-[Lien de téléchargement - Package autonome Service Fabric - Windows Server](http://go.microsoft.com/fwlink/?LinkId=730690) et décompressez le package sur un ordinateur de déploiement qui ne fait pas partie du cluster ou sur l’un des ordinateurs qui fera partie de votre cluster.
+### <a name="step-5-download-hello-service-fabric-standalone-package-for-windows-server"></a>Étape 5 : Téléchargez le package autonome de Service Fabric hello pour Windows Server
+[Télécharger le lien - Package de Service Fabric autonomes - Windows Server](http://go.microsoft.com/fwlink/?LinkId=730690) et décompressez le package de hello, soit déploiement tooa ordinateur ne fait pas partie du cluster de hello ou tooone d’ordinateurs hello qui feront partie de votre cluster.
 
 ### <a name="step-6-modify-cluster-configuration"></a>Étape 6 : Modifier la configuration du cluster
-Pour créer un cluster autonome, vous devez créer un fichier ClusterConfig.json de configuration de cluster autonome qui décrit les spécifications du cluster. Vous pouvez baser le fichier de configuration sur les modèles accessibles avec le lien ci-dessous. <br>
+toocreate un cluster autonome que vous avez toocreate un fichier autonome cluster configuration ClusterConfig.json qui décrit la spécification de hello du cluster de hello. Vous pouvez baser le fichier de configuration hello sur des modèles hello à hello lien ci-après. <br>
 [Configurations de cluster autonome](https://github.com/Azure-Samples/service-fabric-dotnet-standalone-cluster-configuration/tree/master/Samples)
 
-Pour plus d’informations sur les sections de ce fichier, consultez [Paramètres de configuration pour un cluster Windows autonome](service-fabric-cluster-manifest.md).
+Pour plus d’informations sur les sections hello dans ce fichier, consultez [paramètres de Configuration de cluster de Windows autonome](service-fabric-cluster-manifest.md).
 
-Ouvrez l’un des fichiers ClusterConfig.json à partir du package que vous avez téléchargé et modifiez les paramètres suivants :
+Un des fichiers de ClusterConfig.json hello ouvrir à partir du package hello que vous avez téléchargé et modifier hello suivant les paramètres :
 | **Paramètres de configuration** | **Description** |
 | --- | --- |
-| **NodeTypes** |Les types de nœuds permettent de séparer vos nœuds de cluster en différents groupes. Un cluster doit comprendre au moins un NodeType. Tous les nœuds d’un groupe ont les caractéristiques communes suivantes :  <br> **Name** : il s’agit du nom de type de nœud. <br>**Endpoints Ports** : il s’agit de différents points de terminaison (ports) nommés qui sont associés à ce type de nœud. Vous pouvez utiliser n’importe quel numéro de port, tant qu’il n’entre pas en conflit avec un autre élément de ce manifeste et qu’il n’est pas déjà utilisé par une autre application en cours d’exécution sur l’ordinateur/la machine virtuelle. <br> **Placement Properties** : il s’agit des propriétés pour ce type de nœud que vous avez utilisées comme contraintes de positionnement pour les services système ou pour vos services. Ces propriétés sont des paires clé/valeur définies par l’utilisateur qui fournissent des métadonnées supplémentaires pour un nœud donné. La présence d’un disque dur ou d’une carte graphique sur le nœud, le nombre de rotations du disque dur, les noyaux et d’autres propriétés physiques sont des exemples de propriétés du nœud. <br> **Capacities** : les capacités du nœud définissent le nom et la quantité d’une ressource spécifique disponible sur un nœud particulier pour consommation. Par exemple, un nœud peut définir qu’il possède la capacité pour une mesure appelée « MemoryInMb » et qu’il dispose de 2 048 Mo de mémoire disponible par défaut. Ces capacités sont utilisées au moment de l’exécution pour garantir que les services qui nécessitent une quantité spécifique de ressources sont placés sur des nœuds où ces ressources sont disponibles dans la quantité requise.<br>**IsPrimary** : si plusieurs NodeType sont définis, vérifiez qu’un seul est défini comme primaire avec la valeur *true*; c’est là que les services système s’exécutent. Tous les autres types de nœuds doivent avoir la valeur *false* |
-| **Nœuds** |Il s’agit des détails de chacun des nœuds qui font partie du cluster (type de nœud, nom de nœud, adresse IP, domaine d’erreur et domaine de mise à niveau du nœud). Les ordinateurs sur lesquels vous souhaitez créer le cluster doivent être répertoriés ici avec leur adresse IP. <br> Si vous utilisez la même adresse IP pour tous les nœuds, un cluster à boîtier unique est créé. Vous pouvez l’utiliser à des fins de test. N’utilisez pas les clusters à boîtier unique pour le déploiement de charges de travail de production. |
+| **NodeTypes** |Autorisent les types de nœuds vous tooseparate vos nœuds de cluster dans différents groupes. Un cluster doit comprendre au moins un NodeType. Tous les nœuds dans un groupe ont hello suivant des caractéristiques communes : <br> **Nom** -Ceci est le nom de type de nœud de hello. <br>**Endpoints Ports** : il s’agit de différents points de terminaison (ports) nommés qui sont associés à ce type de nœud. Vous pouvez utiliser n’importe quel numéro de port que vous le souhaitez, tant qu’ils ne sont pas en conflit avec rien d’autre dans ce manifeste et ne sont pas déjà en cours d’utilisation par une autre application en cours d’exécution sur la machine de hello/machine virtuelle. <br> **Propriétés de positionnement** -elles décrivent les propriétés pour ce type de nœud que vous utilisez en tant que contraintes de sélection élective pour les services système hello ou vos services. Ces propriétés sont des paires clé/valeur définies par l’utilisateur qui fournissent des métadonnées supplémentaires pour un nœud donné. Exemples de propriétés de nœud serait indique si le nœud de hello a un disque dur ou la carte graphique, le nombre de hello de piles dans son disque dur, les cœurs et autres propriétés physiques. <br> **Capacités** -définissent les capacités de nœud nom de hello et la quantité d’une ressource spécifique qu’un nœud particulier est disponible pour la consommation. Par exemple, un nœud peut définir qu’il possède la capacité pour une mesure appelée « MemoryInMb » et qu’il dispose de 2 048 Mo de mémoire disponible par défaut. Ces capacités sont utilisées au tooensure runtime que les services qui nécessitent une quantité spécifique de ressources placés sur les nœuds de hello qu’aient les ressources disponibles dans hello requis quantités.<br>**IsPrimary** : Si vous avez plusieurs NodeType défini Assurez-vous que seul est tooprimary avec la valeur de hello *true*, emplacements où les services de système de hello exécuter. Valeur de toohello doivent être définis à tous les autres types de nœud *false* |
+| **Nœuds** |Voici les détails de hello pour chacun des nœuds hello qui font partie du cluster hello (type de nœud, nom de nœud, IP adresse, domaine d’erreur et domaine de mise à niveau du nœud de hello). les machines Hello souhaité hello toobe de cluster créé sur toobe besoin répertorié ici avec leurs adresses IP. <br> Si vous utilisez hello même adresse IP pour tous les nœuds de hello, puis d’un cluster d’une zone est créée, vous pouvez utiliser à des fins de test. N’utilisez pas les clusters à boîtier unique pour le déploiement de charges de travail de production. |
 
-Une fois tous les paramètres de la configuration du cluster configurés dans l’environnement, vous pouvez tester la configuration dans l’environnement du cluster (étape 7).
+Une fois la configuration du cluster hello a un environnement de toohello tous les paramètres configurés, il peut être testé par rapport à l’environnement de cluster hello (étape 7).
 
 <a id="environmentsetup"></a>
 
 ### <a name="step-7-environment-setup"></a>Étape 7. Configuration de l’environnement
 
-Lorsqu’un administrateur de cluster configure un cluster autonome Service Fabric, l’environnement doit être configuré avec les critères suivants : <br>
-1. L’utilisateur qui crée le cluster doit disposer de privilèges de sécurité de niveau administrateur sur tous les ordinateurs qui sont répertoriés en tant que nœuds dans le fichier de configuration du cluster.
-2. L’ordinateur à partir duquel le cluster est créé, ainsi que chaque ordinateur nœud du cluster doit respecter les conditions suivantes :
+Lorsqu’un administrateur de cluster configure un cluster autonome de Service Fabric, hello environnement est besoins toobe configuré avec hello suivant des critères : <br>
+1. utilisateur Hello création hello cluster doit avoir la sécurité au niveau de l’administrateur des privilèges tooall machines qui sont répertoriés en tant que nœuds dans le fichier de configuration de cluster hello.
+2. Ordinateur à partir de quels hello cluster est créé, ainsi que chaque ordinateur nœud de cluster doit :
 * le Kit de développement logiciel (SDK) Service Fabric doit être désinstallé ;
 * le runtime Service Fabric doit être désinstallé ; 
-* le service pare-feu Windows (mpssvc) doit être activé ;
-* le service Registre distant (remoteregistry) doit être activé ;
+* Avez hello service de pare-feu Windows (mpssvc) activé
+* Hello Service Registre distant (remoteregistry) avez activé
 * le partage de fichiers (SMB) doit être activé ;
 * les ports requis doivent être ouverts, selon les ports de configuration du cluster ;
 * les ports requis doivent êtres ouverts pour le service Registre distant et SMB Windows : 135, 137, 138, 139 et 445 ;
-* la connectivité réseau entre les ordinateurs doit être activée.
-3. Aucun des ordinateurs nœuds de cluster ne doit être un contrôleur de domaine.
-4. Si le cluster à déployer est un cluster sécurisé, vérifiez que les conditions préalables de sécurité requises sont en place et correctement configurées en fonction de la configuration.
-5. Si les ordinateurs du cluster ne sont pas accessibles via Internet, définissez les éléments suivants dans la configuration du cluster :
+* Ont tooone de connectivité réseau une autre
+3. Aucun des ordinateurs hello du nœud de cluster doit être un contrôleur de domaine.
+4. Si toobe de cluster hello déployé est un cluster sécurisé, valider sécurité hello conditions préalables sont en place et sont correctement configurés sur la configuration de hello.
+5. Si les ordinateurs du cluster hello ne sont pas accessibles sur internet, qui suit hello ensemble dans hello configuration du cluster :
 * Désactiver la télémétrie : sous *Propriétés*, définissez *« enableTelemetry » : false*
-* Désactiver le téléchargement de version Fabric automatique et les notifications indiquant que la prise en charge de la version actuelle touche à sa fin : sous *Propriétés*, définissez *« fabricClusterAutoupgradeEnabled » : false*
-* Si l’accès réseau à Internet est limité à des domaines sur liste verte, les domaines ci-dessous sont nécessaires pour la mise à niveau automatique : go.microsoft.com   download.microsoft.com
+* Désactiver automatique de téléchargement de version de l’ensemble fibre optique & de cette version du cluster actuel hello est proche de sa fin de prise en charge des notifications : sous *propriétés* définir *« fabricClusterAutoupgradeEnabled » : false*
+* Vous pouvez également si l’accès à internet de réseau est toowhite dans la liste des domaines limités, les domaines hello ci-dessous sont requis pour la mise à niveau automatique : go.microsoft.com download.microsoft.com
 
 6. Définissez les exclusions antivirus Service Fabric appropriées :
 
@@ -130,13 +130,13 @@ Lorsqu’un administrateur de cluster configure un cluster autonome Service Fabr
 | FileStoreService.exe |
 
 ### <a name="step-8-validate-environment-using-testconfiguration-script"></a>Étape 8 : Valider l’environnement à l’aide du script TestConfiguration
-Vous trouverez le script TestConfiguration.ps1 dans le package autonome. Il est utilisé comme un outil d’analyse des meilleures pratiques pour valider certains des critères ci-dessus et doit être utilisé comme contrôle de la validité pour vérifier si un cluster peut être déployé dans un environnement donné. En cas de défaillance, consultez la liste sous [Configuration de l’environnement](service-fabric-cluster-standalone-deployment-preparation.md) pour la résolution des problèmes. 
+Vous trouverez Hello TestConfiguration.ps1 script dans le package autonome de hello. Il est utilisé comme un toovalidate Best Practices Analyzer, certains des critères hello ci-dessus et doit être utilisé comme un toovalidate de vérification de validité si un cluster peut être déployé sur un environnement donné. S’il existe une défaillance, consultez la liste toohello sous [configuration de l’environnement](service-fabric-cluster-standalone-deployment-preparation.md) pour le dépannage. 
 
-Ce script peut être exécuté sur n’importe quel ordinateur disposant d’un accès administrateur à tous les ordinateurs qui sont répertoriés en tant que nœuds dans le fichier de configuration du cluster. L’ordinateur sur lequel ce script est exécuté ne doit pas nécessairement faire partie du cluster.
+Ce script peut être exécuté sur n’importe quel ordinateur qui a accès tooall hello machines d’administrateur sont répertoriés en tant que nœuds dans le fichier de configuration de cluster hello. ordinateur Hello ce script s’exécute n’a pas de partie toobe du cluster de hello.
 
 ```powershell
 PS C:\temp\Microsoft.Azure.ServiceFabric.WindowsServer> .\TestConfiguration.ps1 -ClusterConfigFilePath .\ClusterConfig.Unsecure.DevCluster.json
-Trace folder already exists. Traces will be written to existing trace folder: C:\temp\Microsoft.Azure.ServiceFabric.WindowsServer\DeploymentTraces
+Trace folder already exists. Traces will be written tooexisting trace folder: C:\temp\Microsoft.Azure.ServiceFabric.WindowsServer\DeploymentTraces
 Running Best Practices Analyzer...
 Best Practices Analyzer completed successfully.
 
@@ -153,10 +153,10 @@ FabricInstallable          : True
 Passed                     : True
 ```
 
-Actuellement, ce module de test de configuration ne valide pas la configuration de sécurité. Cette opération doit donc être effectuée de manière indépendante.  
+Actuellement ce module de test de configuration ne valide pas la configuration de sécurité hello par conséquent, il a toobe fait indépendamment.  
 
 > [!NOTE]
-> Nous améliorons en permanence ce module afin de le rendre plus fiable. Par conséquent, s’il existe un cas défectueux ou manquant qui, selon vous, n’est pas actuellement détecté par TestConfiguration, faites-le nous savoir via nos [canaux de prise en charge](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-support).   
+> Nous en permanence apportons des améliorations toomake ce module plus robuste, par conséquent, s’il existe un défectueux ou manquant casse, ce qui vous pensez n’est pas actuellement interceptée par TestConfiguration, faites-le nous savoir via notre [prennent en charge des canaux](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-support).   
 > 
 > 
 

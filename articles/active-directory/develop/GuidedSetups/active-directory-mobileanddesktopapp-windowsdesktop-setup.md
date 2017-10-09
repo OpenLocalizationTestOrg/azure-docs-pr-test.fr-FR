@@ -1,5 +1,5 @@
 ---
-title: "Prise en main d’Azure AD v2 avec les applications de bureau Windows - Paramétrage | Microsoft Docs"
+title: "aaaAzure AD v2 Windows Desktop mise en route - le programme d’installation | Documents Microsoft"
 description: "Cet article explique comment les applications de bureau Windows .NET (XAML) peuvent appeler une API qui nécessite des jetons d’accès à partir d’un point de terminaison Azure Active Directory v2."
 services: active-directory
 documentationcenter: dev-center-name
@@ -15,40 +15,40 @@ ms.workload: identity
 ms.date: 05/09/2017
 ms.author: andret
 ms.custom: aaddev
-ms.openlocfilehash: 4065727aef04d7969d438c6ef79127bb44568be1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 097ea99bef01e15edaa5ff914ff4e18392b77c5a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 ## <a name="set-up-your-project"></a>Configuration de votre projet
 
-Cette section fournit des instructions détaillées sur la création d’un nouveau projet pour expliquer comment intégrer une application de bureau Windows .NET (XAML) avec l’option *Se connecter avec Microsoft* pour pouvoir interroger les API web qui requièrent un jeton.
+Cette section fournit des instructions pas à pas toocreate un nouveau toodemonstrate de projet comment toointegrate un bureau Windows .NET Applications (XAML) avec *connectez-vous avec Microsoft* afin qu’il peut interroger les API Web qui requiert un jeton.
 
-L’application créée par ce guide comprend un bouton pour afficher les résultats à l’écran sous forme graphique, ainsi qu’un bouton de déconnexion.
+application Hello créée par ce guide expose un bouton toograph et afficher les résultats sur l’écran et un bouton de déconnexion.
 
-> Vous préférez télécharger le projet Visual Studio de cet exemple ? [Téléchargez un projet](https://github.com/Azure-Samples/active-directory-dotnet-desktop-msgraph-v2/archive/master.zip) et passez à [l’étape Configuration](#create-an-application-express) pour configurer l’exemple de code avant l’exécution.
+> Vous préférez toodownload de projet Visual Studio de cet exemple à la place ? [Télécharger un projet](https://github.com/Azure-Samples/active-directory-dotnet-desktop-msgraph-v2/archive/master.zip) et ignorer toohello [étape de Configuration](#create-an-application-express) exemple de code hello tooconfigure avant l’exécution.
 
 
 ### <a name="create-your-application"></a>Créer votre application
 1. Dans Visual Studio : `File` > `New` > `Project`<br/>
 2. Sous *Modèles*, sélectionnez `Visual C#`
-3. Sélectionnez `WPF App` (ou *Application WPF* selon la version de Visual Studio que vous utilisez)
+3. Sélectionnez `WPF App` (ou *Application WPF* selon la version de hello de votre Visual Studio)
 
-## <a name="add-the-microsoft-authentication-library-msal-to-your-project"></a>Ajoutez Microsoft Authentication Library (MSAL) à votre projet
+## <a name="add-hello-microsoft-authentication-library-msal-tooyour-project"></a>Ajouter un projet de tooyour hello bibliothèque d’authentification Microsoft (MSAL)
 1. Dans Visual Studio : `Tools` > `Nuget Package Manager` > `Package Manager Console`
-2. Copiez et collez la commande suivante dans la fenêtre Console du gestionnaire de package :
+2. Copier/coller suivant de hello Bonjour fenêtre de Console du Gestionnaire de Package :
 
 ```powershell
 Install-Package Microsoft.Identity.Client -Pre
 ```
 
-> Le package ci-dessus installe Microsoft Authentication Library (MSAL). MSAL gère l’acquisition, la mise en cache et l’actualisation des jetons d’utilisateur permettant d’accéder aux API protégées par Azure Active Directory v2.
+> package Hello ci-dessus installe hello bibliothèque d’authentification Microsoft (MSAL). MSAL gère l’acquisition, la mise en cache et l’actualisation utilisateur toskens utilisé tooaccess API protégé par Azure Active Directory v2.
 
-## <a name="add-the-code-to-initialize-msal"></a>Ajoutez le code pour initialiser MSAL
-Cette étape vous permet de créer une classe pour gérer l’interaction avec la bibliothèque MSAL, telle que la gestion des jetons.
+## <a name="add-hello-code-tooinitialize-msal"></a>Ajouter le code de hello tooinitialize MSAL
+Cette étape vous aide à créer une classe toohandle une interaction avec MSAL bibliothèque, telles que la gestion des jetons.
 
-1. Ouvrez le fichier `App.xaml.cs` et ajoutez la référence de la bibliothèque MSAL à la classe :
+1. Ouvrez hello `App.xaml.cs` de fichiers et ajouter une référence de hello pour la classe de toohello MSAL bibliothèque :
 
 ```csharp
 using Microsoft.Identity.Client;
@@ -56,15 +56,15 @@ using Microsoft.Identity.Client;
 <!-- Workaround for Docs conversion bug -->
 <ol start="2">
 <li>
-Mettez à jour la classe d’application tel que suit :
+Mise à jour suivante de toohello classe hello application :
 </li>
 </ol>
 
 ```csharp
 public partial class App : Application
 {
-    //Below is the clientId of your app registration. 
-    //You have to replace the below with the Application Id for your app registration
+    //Below is hello clientId of your app registration. 
+    //You have tooreplace hello below with hello Application Id for your app registration
     private static string ClientId = "your_client_id_here";
 
     public static PublicClientApplication PublicClientApp = new PublicClientApplication(ClientId);
@@ -73,9 +73,9 @@ public partial class App : Application
 ```
 
 ## <a name="create-your-applications-ui"></a>Créer l’interface utilisateur de votre application
-La section suivante explique comment une application peut interroger un serveur principal protégé tel que Microsoft Graph. Un fichier MainWindow.xaml doit être automatiquement créé dans le cadre de votre modèle de projet. Ouvrez ce fichier ce fichier et suivez les instructions ci-dessous :
+section Hello ci-dessous montre comment une application peut interroger un serveur principal protégé comme Microsoft Graph. Un fichier MainWindow.xaml doit être automatiquement créé dans le cadre de votre modèle de projet. Ouvrez ce fichier ce fichier et puis suivez les instructions de hello ci-dessous :
 
-Remplacez la valeur `<Grid>` de votre application par ce qui suit :
+Remplacez votre application `<Grid>` être suivant de hello :
 
 ```xml
 <Grid>

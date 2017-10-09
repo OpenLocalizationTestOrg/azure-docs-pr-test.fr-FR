@@ -1,6 +1,6 @@
 ---
-title: "Développement logiciel agile avec Azure App Service"
-description: "Apprenez à créer des applications complexes à grande échelle avec Azure App Service afin que le développement logiciel agile soit pris en charge."
+title: "développement de logiciels aaaAgile avec Azure App Service"
+description: "Découvrez comment des applications de grande échelle de toocreate complexes avec Azure App Service d’une manière qui prend en charge le développement agile."
 services: app-service
 documentationcenter: 
 author: cephalin
@@ -14,97 +14,97 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/01/2016
 ms.author: cephalin
-ms.openlocfilehash: 5ed888cbb422766cf2094f5980dfd1c599bd431c
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: a1c1c78cfff711774943b0235ed762f03f48fc6e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="agile-software-development-with-azure-app-service"></a>Développement logiciel agile avec Azure App Service
-Dans ce didacticiel, vous allez apprendre à créer des applications complexes à grande échelle avec [Azure App Service](/azure/app-service/) d’une façon qui prend en charge le [développement de logiciel agile](https://en.wikipedia.org/wiki/Agile_software_development). Cela suppose que vous savez déjà [déployer une application complexe de manière prévisible dans Microsoft Azure](app-service-deploy-complex-application-predictably.md).
+Dans ce didacticiel, vous allez apprendre comment toocreate des applications complexes à grande échelle avec [Azure App Service](/azure/app-service/) d’une façon qui prend en charge [développement Agile](https://en.wikipedia.org/wiki/Agile_software_development). Il part du principe que vous savez comment trop[déployer des applications complexes comme prévu dans Azure](app-service-deploy-complex-application-predictably.md).
 
-Les limitations des processus techniques peuvent souvent faire obstacle à l’implémentation des méthodologies agiles. Azure App Service avec des fonctionnalités comme la [publication continue](app-service-continuous-deployment.md), les [environnements intermédiaires](web-sites-staged-publishing.md) (emplacements) et l’[analyse](web-sites-monitor.md) lorsqu’ils sont associé avec soin à l’orchestration et à la gestion du déploiement dans [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md), peut constituer une solution idéale pour les développeurs qui intègrent le développement de logiciel agile.
+Limitations dans les processus techniques peuvent souvent constituer à elle de façon hello de réussite de l’implémentation des méthodologies agiles. Azure App Service avec des fonctionnalités telles que [publication continue](app-service-continuous-deployment.md), [environnements intermédiaires](web-sites-staged-publishing.md) (emplacements), et [analyse](web-sites-monitor.md), lorsqu’il est associé avec soin avec l’orchestration de hello et gestion du déploiement dans [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md), peut être partie d’une solution idéale pour les développeurs qui adopter le développement agile.
 
-Le tableau suivant comporte une courte liste de prérequis associés au développement agile et sur la façon dont les services Azure permettent de mettre en œuvre chacun d’eux.
+Bonjour tableau suivant est une liste courte d’exigences associées au développement agile, et comment les services Azure permettent à chacun d’eux.
 
 | Prérequis | Implémentation avec Azure |
 | --- | --- |
-| - Génération à chaque validation<br>- Génération automatique et rapide |Lorsqu’il est configuré avec le déploiement continu, Azure App Service peut générer les ressources en direct sur une branche de développement. Chaque fois que le code est envoyé à la branche, il est généré automatiquement et exécuté en direct dans Azure. |
-| - Test automatique des générations |Les tests de charge, les tests web, par exemple, peuvent être déployés avec le modèle Azure Resource Manager. |
-| - Effectuer des tests dans un clone de l’environnement de production |Les modèles Azure Resource Manager permettent de créer des clones de l’environnement de production Azure (notamment les paramètres de l’application, les modèles de chaînes de connexion, la mise à l’échelle, etc.) afin d’effectuer des tests rapidement et de manière prévisible. |
-| - Afficher aisément le résultat de la dernière génération |Le déploiement continu entre un référentiel et Azure signifie que vous pouvez tester le nouveau code d’une application en direct dans une application immédiatement après avoir validé vos modifications. |
-| - Effectuer des validations quotidiennes dans la branche principale<br>- Automatiser le déploiement |L’intégration continue d’une application de production dans la branche principale d’un référentiel déploie automatiquement chaque validation/fusion dans la branche principale en production. |
+| - Génération à chaque validation<br>- Génération automatique et rapide |Lorsqu’il est configuré avec le déploiement continu, Azure App Service peut générer les ressources en direct sur une branche de développement. Chaque fois que code est envoyé toohello branche, il est automatiquement généré et en cours d’exécution en direct dans Azure. |
+| - Test automatique des générations |Charger les tests, les tests web, etc., peuvent être déployés avec le modèle de gestionnaire de ressources Azure hello. |
+| - Effectuer des tests dans un clone de l’environnement de production |Les modèles de gestionnaire de ressources Azure peuvent être utilisé toocreate des clones de l’environnement de production Azure hello (y compris les paramètres de l’application, de modèles de chaînes de connexion, de mise à l’échelle, etc.) pour tester rapidement et de manière prévisible. |
+| - Afficher aisément le résultat de la dernière génération |TooAzure de déploiement continu à partir d’un référentiel signifie que vous pouvez tester de nouveau code dans une application en temps réel immédiatement après avoir validé vos modifications. |
+| -Valider branche principale de toohello tous les jours<br>- Automatiser le déploiement |Intégration continue d’une application de production avec la branche principale d’un référentiel déploie automatiquement chaque tooproduction de branche principale toohello validation et de fusion. |
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
 ## <a name="what-you-will-do"></a>Procédure à suivre
-Vous découvrirez un flux de travail de type développement-test-intermédiaire-production pour publier les modifications apportées à l’exemple d’application [ToDoApp](https://github.com/azure-appservice-samples/ToDoApp), qui se compose de deux [applications web](/services/app-service/web/), l’une étant un serveur frontal (FE) et l’autre un serveur principal d’API Web (BE), et d’une [base de données SQL](/services/sql-database/). Vous utiliserez l’architecture de déploiement suivante :
+Vous guide dans un workflow de développement test-étape de production typique dans l’ordre toopublish nouvelles modifications toohello [ToDoApp](https://github.com/azure-appservice-samples/ToDoApp) exemple d’application, qui se compose de deux [les applications web](/services/app-service/web/), l’une est un serveur frontal (FE) et autre étant un principal de l’API Web (BE), Hello et un [base de données SQL](/services/sql-database/). Vous allez travailler avec hello suivant l’architecture de déploiement :
 
 ![](./media/app-service-agile-software-development/what-1-architecture.png)
 
-Voici la situation telle qu’elle apparaît :
+image de hello tooput en mots :
 
-* L’architecture de déploiement est divisée en trois environnements distincts (appelés [groupes de ressources](../azure-resource-manager/resource-group-overview.md) dans Azure), chacun disposant de son propre [plan App Service](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md), des paramètres de [mise à l’échelle](web-sites-scale.md) et de la base de données SQL. 
+* architecture de déploiement Hello est divisée en trois environnements distincts (ou [groupes de ressources](../azure-resource-manager/resource-group-overview.md) dans Azure), chacun avec son propre [plan App Service](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md), [mise à l’échelle](web-sites-scale.md) paramètres, et la base de données SQL. 
 * Chaque environnement peut être géré séparément. Il peut même être couvert par des abonnements différents.
-* Les phases intermédiaire et de production sont implémentées comme deux emplacements de la même application App Service. La branche principale est configurée pour l’intégration continue avec l’emplacement intermédiaire.
-* Quand une validation pour la branche principale est vérifiée sur l’emplacement intermédiaire (avec des données de production), l’application intermédiaire vérifiée est permutée dans l’emplacement de production [sans interruption](web-sites-staged-publishing.md).
+* Intermédiaire et production sont implémentés en tant que les deux emplacements de hello même application de Service d’applications. branche principale de Hello est configuré pour l’intégration continue avec hello staging emplacement.
+* Lorsqu’une branche de toomaster de validation est vérifiée sur hello staging emplacement (avec les données de production), hello vérifiées application intermédiaire est transférée dans l’emplacement de production hello [sans temps mort](web-sites-staged-publishing.md).
 
-L’environnement de production et intermédiaire est défini par le modèle dans [*&lt;racine_référentiel>*/ARMTemplates/ProdandStage.json](https://github.com/azure-appservice-samples/ToDoApp/blob/master/ARMTemplates/ProdAndStage.json).
+environnement de production et intermédiaire Hello est définie par modèle hello à [  *&lt;repository_root >*/ARMTemplates/ProdandStage.json](https://github.com/azure-appservice-samples/ToDoApp/blob/master/ARMTemplates/ProdAndStage.json).
 
-Les environnements de développement et de test sont définis par le modèle dans [*&lt;racine_référentiel>*/ARMTemplates/Dev.json](https://github.com/azure-appservice-samples/ToDoApp/blob/master/ARMTemplates/Dev.json).
+Hello dev et environnements de test sont définies par modèle hello à [  *&lt;repository_root >*/ARMTemplates/Dev.json](https://github.com/azure-appservice-samples/ToDoApp/blob/master/ARMTemplates/Dev.json).
 
-Vous utiliserez également la stratégie de création de branchement typique, qui déplace le code entre la branche de développement et la branche de test, puis vers la branche principale (il s’agit d’un déplacement en qualité, pour ainsi dire).
+Vous utiliserez également stratégie de création de branche hello classique, avec le code de déplacement à partir de la branche de développement hello branche de test toohello, puis toohello de branche principale (remontant en qualité, c’est le cas toospeak).
 
 ![](./media/app-service-agile-software-development/what-2-branches.png) 
 
 ## <a name="what-you-need"></a>Ce dont vous avez besoin
 * Un compte Azure
 * Un compte [GitHub](https://github.com/)
-* Git Shell (installé avec [GitHub for Windows](https://windows.github.com/)) - vous permet d’exécuter des commandes PowerShell et Git dans la même session 
+* Interpréteur de commandes GIT (installé avec [GitHub pour Windows](https://windows.github.com/))-permet de vous toorun à la fois hello Git et PowerShell des commandes hello même session 
 * Dernières informations [Azure PowerShell](https://docs.microsoft.com/en-us/powershell/azure/install-azurerm-ps)
-* Compréhension élémentaire des outils suivants :
+* Présentation de la base des hello suite d’outils :
   * Déploiement de modèles [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) (voir également [Déployer une application complexe de manière prévisible dans Microsoft Azure](app-service-deploy-complex-application-predictably.md))
   * [Git](http://git-scm.com/documentation)
   * [PowerShell](https://technet.microsoft.com/library/bb978526.aspx)
 
 > [!NOTE]
-> Pour suivre ce didacticiel, vous avez besoin d'un compte Azure :
+> Vous avez besoin une toocomplete compte Azure ce didacticiel :
 > 
-> * Vous pouvez [ouvrir un compte Azure gratuitement](https://azure.microsoft.com/pricing/free-trial/) : vous obtenez alors des crédits dont vous pouvez vous servir pour tester les services Azure payants, et même quand ils sont épuisés, vous pouvez conserver le compte et utiliser les services Azure gratuits, notamment Web Apps.
+> * Vous pouvez [ouvrir un compte Azure gratuitement](https://azure.microsoft.com/pricing/free-trial/) -vous obtenez des crédits vous pouvez utiliser tootry à payer des services Azure et même après leur utilisation vous pouvez conserver le compte de hello et libérer de l’utilisation des services Azure, telles que les applications Web.
 > * Vous pouvez [activer les avantages de votre abonnement Visual Studio](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/) : votre abonnement Visual Studio vous donne droit chaque mois à des crédits dont vous pouvez vous servir pour les services Azure payants.
 > 
-> Si vous voulez vous familiariser avec Azure App Service avant d’ouvrir un compte Azure, accédez à la page [Essayer App Service](https://azure.microsoft.com/try/app-service/), où vous pourrez créer immédiatement une application web temporaire dans App Service. Aucune carte de crédit n’est requise ; vous ne prenez aucun engagement.
+> Si vous souhaitez tooget démarré avec le Service d’application Azure avant de s’inscrire pour un compte Azure, accédez trop[essayez du Service d’applications](https://azure.microsoft.com/try/app-service/), où vous pouvez créer une application web de courte durée de démarrage immédiatement dans le Service d’applications. Aucune carte de crédit n’est requise ; vous ne prenez aucun engagement.
 > 
 > 
 
 ## <a name="set-up-your-production-environment"></a>Configurer votre environnement de production
 > [!NOTE]
-> Le script utilisé dans ce didacticiel configure automatiquement la publication continue à partir de votre référentiel GitHub. Pour ce faire, vos informations d’identification GitHub doivent déjà être stockées dans Azure, sinon les scripts de déploiement échoueront lorsque vous tenterez de configurer les paramètres de contrôle de code source pour les applications web. 
+> script Hello automatiquement utilisé dans ce didacticiel configure la publication en continu à partir de votre référentiel GitHub. Cela nécessite que vos informations d’identification GitHub sont déjà stockées dans Azure, sinon hello basée sur un script de déploiement échoue lors de la tentative de paramètres de contrôle de code source tooconfigure pour les applications web hello. 
 > 
-> Pour stocker vos informations d’identification GitHub dans Azure, créez une application web dans le [portail Azure](https://portal.azure.com/) et [configurez le déploiement GitHub](app-service-continuous-deployment.md). Cette opération est unique. 
+> toostore informations d’identification de votre GitHub dans Azure, créez une application web Bonjour [portail Azure](https://portal.azure.com/) et [configurer le déploiement de GitHub](app-service-continuous-deployment.md). Vous ne devez toodo ce qu’une seule fois. 
 > 
 > 
 
-Dans un scénario classique d’opérations de développement, vous disposez d’une application qui s’exécute dans Azure et vous souhaitez lui apporter des modifications par le biais de la publication continue. Dans ce scénario, vous disposez d’un modèle que vous avez développé, testé et utilisé pour déployer l’environnement de production. Vous allez le configurer dans cette section.
+Dans un scénario classique de DevOps, vous avez une application qui est en cours d’exécution en direct dans Azure, et vous souhaitez tooit de modifications toomake via la publication continue. Dans ce scénario, vous avez un modèle que vous toodeploy développés, testés et de hello environnement. Vous allez le configurer dans cette section.
 
-1. Créez votre branchement dans le référentiel [ToDoApp](https://github.com/azure-appservice-samples/ToDoApp) . Pour plus d’informations sur la création de votre branchement, consultez [Branchement dans un référentiel](https://help.github.com/articles/fork-a-repo/). Une fois votre branchement créé, il est visible dans votre navigateur.
+1. Créer votre propre branchement de hello [ToDoApp](https://github.com/azure-appservice-samples/ToDoApp) référentiel. Pour plus d’informations sur la création de votre branchement, consultez [Branchement dans un référentiel](https://help.github.com/articles/fork-a-repo/). Une fois votre branchement créé, il est visible dans votre navigateur.
    
     ![](./media/app-service-agile-software-development/production-1-private-repo.png)
 2. Ouvrez une session Git Shell. Si vous n’avez pas encore Git Shell, installez [GitHub for Windows](https://windows.github.com/) .
-3. Créez un clone local de votre branchement en exécutant la commande suivante :
+3. Créer un clone local de votre branche en exécutant hello de commande suivante :
 
         git clone https://github.com/<your_fork>/ToDoApp.git 
-4. Lorsque le clone local est créé, accédez à *&lt;racine_référentiel>*\ARMTemplates, puis exécutez le script deploy.ps1 comme suit :
+4. Une fois que vous avez votre clone local, accédez trop*&lt;repository_root >*\ARMTemplates et exécution hello deploy.ps1 script comme suit :
    
         .\deploy.ps1 –RepoUrl https://github.com/<your_fork>/todoapp.git
-5. Lorsque vous y êtes invité, tapez le nom d’utilisateur et le mot de passe souhaités pour l’accès à la base de données.
+5. Lorsque vous y êtes invité, tapez Bonjour voulue nom d’utilisateur et mot de passe pour l’accès de la base de données.
    
-   Vous devez voir l’avancement de la configuration des différentes ressources Azure. Lorsque le déploiement est terminé, le script lance l’application dans le navigateur et émet un signal sonore convivial.
+   Vous devez voir hello mise en service de la progression de plusieurs ressources d’Azure. Lorsque le déploiement terminé, script de hello lance l’application hello dans le navigateur de hello et vous donne un signal sonore convivial.
    
     ![](./media/app-service-agile-software-development/production-2-app-in-browser.png)
    
    > [!TIP]
-   > Examinez *&lt;racine_référentiel>*\ARMTemplates\Deploy.ps1 pour voir comment il génère des ressources avec des ID uniques. Vous pouvez utiliser la même approche pour créer des clones de déploiement sans vous soucier des noms de ressource en conflit.
+   > Examinons  *&lt;repository_root >*\ARMTemplates\Deploy.ps1, toosee comment il génère des ressources avec des ID uniques. Vous pouvez utiliser hello même approche toocreate clone de hello déploiement même sans vous préoccuper des noms de ressources en conflit.
    > 
    > 
 6. De retour dans votre session Git Shell, exécutez :
@@ -112,52 +112,52 @@ Dans un scénario classique d’opérations de développement, vous disposez d�
         .\swap –Name ToDoApp<unique_string>master
    
     ![](./media/app-service-agile-software-development/production-4-swap.png)
-7. Lorsque le script se termine, revenez en arrière pour accéder à l’adresse du serveur frontal (http://ToDoApp*&lt;chaîne_unique>*master.azurewebsites.net/) afin d’afficher l’application qui s’exécute en production.
-8. Connectez-vous au [portail Azure](https://portal.azure.com/) et observez ce qui a été créé.
+7. Une fois le script de hello, revenez adresse du frontale toobrowse toohello (http://ToDoApp*&lt;unique_string >*master.azurewebsites.net/) toosee hello applications exécutent en production.
+8. Connectez-vous à toohello [portail Azure](https://portal.azure.com/) et examiner ce qui est créé.
    
-   Les deux applications web doivent figurer dans le même groupe de ressources, et le nom de l’une d’elles doit comporter le suffixe `Api` . Si vous examinez l’affichage de groupe de ressources, vous pouvez voir également la base de données et le serveur SQL, le plan App Service et les emplacements intermédiaires pour les applications web. Parcourez les différentes ressources et comparez-les à *&lt;racine_référentiel>*\ARMTemplates\ProdAndStage.json pour voir comment elles sont configurées dans le modèle.
+   Vous devez être en mesure de toosee deux les applications web Bonjour même groupe de ressources, avec hello `Api` suffixe de nom de hello. Si vous examinez l’affichage hello du groupe de ressources, vous consultez également hello de base de données SQL, server, hello plan App Service et emplacements intermédiaires de hello pour les applications web hello. Parcourir les différentes ressources hello et de les comparer avec  *&lt;repository_root >*toosee \ARMTemplates\ProdAndStage.json comment ils sont configurés dans le modèle de hello.
    
     ![](./media/app-service-agile-software-development/production-3-resource-group-view.png)
 
-Vous venez de configurer l’environnement de production. Vous allez lancer une nouvelle mise à jour de l’application.
+Vous avez maintenant configuré environnement de production hello. Ensuite, vous serez déclencher une nouvelle application toohello de mise à jour.
 
 ## <a name="create-dev-and-test-branches"></a>Créer des branches de développement et de test
-À présent que vous disposez d’une application complexe qui s’exécute en production dans Azure, vous allez effectuer une mise à jour dans votre application en recourant à la méthodologie agile. Dans cette section, vous allez créer les branches de développement et de test dont vous aurez besoin pour effectuer les mises à jour requises.
+Maintenant que vous avez une application complexe en cours d’exécution en production dans Azure, vous allez apporter une application tooyour de mise à jour en fonction de la méthodologie agile. Dans cette section, vous allez créer des branches de développement et de test que vous avez besoin des mises à jour de toomake hello requis hello.
 
-1. Créez d’abord l’environnement de test. Dans votre session Git Shell, exécutez les commandes suivantes afin de créer l’environnement pour une nouvelle branche appelée **NewUpdate**. 
+1. Environnement de test hello d’abord créer. Dans votre session d’interpréteur de commandes Git, suivante d’exécution hello commandes environnement de hello toocreate pour une nouvelle branche appelée **NewUpdate**. 
    
         git checkout -b NewUpdate
         git push origin NewUpdate 
         .\deploy.ps1 -TemplateFile .\Dev.json -RepoUrl https://github.com/<your_fork>/ToDoApp.git -Branch NewUpdate
-2. Lorsque vous y êtes invité, tapez le nom d’utilisateur et le mot de passe souhaités pour l’accès à la base de données. 
+2. Lorsque vous y êtes invité, tapez Bonjour voulue nom d’utilisateur et mot de passe pour l’accès de la base de données. 
    
-   Lorsque le déploiement est terminé, le script lance l’application dans le navigateur et émet un signal sonore convivial. Vous disposez alors d’une nouvelle branche avec son propre environnement de test. Prenez un moment pour examiner plus longuement cet environnement de test :
+   Lorsque le déploiement terminé, script de hello lance l’application hello dans le navigateur de hello et vous donne un signal sonore convivial. Vous disposez alors d’une nouvelle branche avec son propre environnement de test. Prendre un moment tooreview un peu plus sur cet environnement de test :
    
-   * Vous pouvez le créer avec n’importe quel abonnement Azure. Cela signifie que l’environnement de production peut être géré séparément à partir de votre environnement de test.
+   * Vous pouvez le créer avec n’importe quel abonnement Azure. Cela signifie l’environnement de production hello peut être gérée séparément à partir de votre environnement de test.
    * Votre environnement de test s’exécute dans Azure.
-   * Votre environnement de test est identique à l’environnement de production, à l’exception des emplacements intermédiaires et des paramètres de mise à l’échelle. Il s’agit des seules différences entre ProdandStage.json et Dev.json.
+   * Votre environnement de test est un environnement de production toohello identiques, à l’exception hello mise en lots des emplacements et hello mise à l’échelle des paramètres. Vous la connaissez, car elles sont les seules différences de hello entre ProdandStage.json et.JSON.
    * Vous pouvez gérer votre environnement de test dans son propre plan App Service avec un niveau de prix différent (par exemple, **Gratuit**).
-   * La suppression de cet environnement de test est aussi simple que la suppression du groupe de ressources. Vous découvrirez [ultérieurement](#delete)comment procéder.
-3. Poursuivez avec la création d’une branche de développement en exécutant les commandes suivantes :
+   * La suppression de cet environnement de test est aussi simple que la suppression du groupe de ressources hello. Vous trouverez comment toodo cela [ultérieurement](#delete).
+3. Allez sur toocreate une branche de développement en exécutant hello suivant de commandes :
    
         git checkout -b Dev
         git push origin Dev
         .\deploy.ps1 -TemplateFile .\Dev.json -RepoUrl https://github.com/<your_fork>/ToDoApp.git -Branch Dev
-4. Lorsque vous y êtes invité, tapez le nom d’utilisateur et le mot de passe souhaités pour l’accès à la base de données. 
+4. Lorsque vous y êtes invité, tapez Bonjour voulue nom d’utilisateur et mot de passe pour l’accès de la base de données. 
    
-   Prenez un moment pour examiner un certain nombre de points sur cet environnement de développement : 
+   Prendre un moment tooreview un peu plus sur cet environnement de développement : 
    
-   * Votre environnement de développement possède une configuration identique à l’environnement de test, car il est déployé à l’aide du même modèle.
-   * Chaque environnement de développement peut être créé avec l’abonnement Azure du développeur, ce qui permet de gérer l’environnement de test séparément.
+   * Votre environnement de développement a un environnement de test configuration toohello identiques car il est déployé à l’aide de hello même modèle.
+   * Chaque environnement de développement peut être créé dans l’abonnement Azure hello du développeur, en laissant toobe d’environnement de test hello géré séparément.
    * Votre environnement de développement s’exécute dans Azure.
-   * La suppression de l’environnement de développement est aussi simple que la suppression du groupe de ressources. Vous découvrirez [ultérieurement](#delete)comment procéder.
+   * La suppression de hello dev environnement est aussi simple que la suppression du groupe de ressources hello. Vous trouverez comment toodo cela [ultérieurement](#delete).
 
 > [!NOTE]
-> Lorsque plusieurs développeurs travaillent sur la nouvelle mise à jour, chacun d’eux peut facilement créer un environnement de branche et de développement dédié en procédant comme suit :
+> Lorsque vous avez plusieurs développeurs travaillent sur la nouvelle mise à jour de hello, chacun d’eux peut facilement créer une branche et l’environnement de développement dédié avec hello comme suit :
 > 
-> 1. Créez leur branchement de référentiel dans GitHub (voir [Branchement de référentiel](https://help.github.com/articles/fork-a-repo/)).
-> 2. Clonez le branchement sur leur ordinateur local.
-> 3. Exécutez les mêmes commandes pour créer leur environnement et leur branche.
+> 1. Créer leur propres branche du référentiel de hello dans GitHub (consultez [une branche dans un référentiel](https://help.github.com/articles/fork-a-repo/)).
+> 2. Cloner le branchement hello sur leur ordinateur local
+> 3. Exécutez hello même commandes toocreate leur propre environnement et la branche dev.
 > 
 > 
 
@@ -170,55 +170,55 @@ Vous devez disposer de six applications web (trois ensembles de deux application
 ![](./media/app-service-agile-software-development/test-2-all-webapps.png)
 
 > [!NOTE]
-> ProdandStage.json ordonne à l’environnement de production d’utiliser le niveau de tarification **Standard**, qui est approprié pour l’extensibilité de l’application de production.
+> ProdandStage.json spécifie Bonjour production environnement toouse Bonjour **Standard** tarification, ce qui est approprié pour l’évolutivité de l’application de production hello.
 > 
 > 
 
 ## <a name="build-and-test-every-commit"></a>Générer et tester chaque validation
-Les fichiers de modèle ProdAndStage.json et Dev.json comportent déjà les paramètres de contrôle du code source, qui par défaut configurent la publication continue de l’application web. Par conséquent, chaque validation dans la branche GitHub déclenche le déploiement automatique vers Azure à partir de cette branche. Nous allons à présent découvrir le fonctionnement de votre configuration.
+Bonjour les fichiers de modèle ProdAndStage.json et.JSON déjà spécifier les paramètres de contrôle de source de hello, qui par défaut définit la publication en continu pour l’application web de hello. Par conséquent, chaque branche de GitHub toohello validation déclenche un tooAzure de déploiement automatique de cette branche. Nous allons à présent découvrir le fonctionnement de votre configuration.
 
-1. Assurez-vous de vous situer dans la branche Dev du référentiel local. Pour ce faire, exécutez la commande suivante dans Git Shell :
+1. Assurez-vous que vous êtes dans la branche de développement hello du référentiel local de hello. toodo, exécution hello commande dans Git Shell suivante :
    
         git checkout Dev
-2. Apportez une modification à la couche d’interface utilisateur de l’application. Pour cela, vous allez éditer le code pour activer l’utilisation des listes [Bootstrap](http://getbootstrap.com/components/). Ouvrez *&lt;racine_référentiel>*\src\MultiChannelToDo.Web\index.cshtml et apportez les modifications mises en évidence ci-dessous :
+2. Rendre couche d’interface utilisateur de l’application de toohello une modification en modifiant hello code toouse [Bootstrap](http://getbootstrap.com/components/) répertorie. Ouvrez  *&lt;repository_root >*\src\MultiChannelToDo.Web\index.cshtml et apportez hello après modification de la mise en surbrillance :
    
     ![](./media/app-service-agile-software-development/commit-1-changes.png)
    
     > [!NOTE]
-    > Si vous ne pouvez pas lire l’image ci-dessus : 
+    > Si vous ne pouvez pas lire hello image précédente : 
     > 
-    > * Ligne 18, remplacez `check-list` par `list-group`.
-    > * Ligne 19, remplacez `class="check-list-item"` par `class="list-group-item"`.
+    > * Dans la ligne 18, modifiez `check-list` trop`list-group`.
+    > * Dans la ligne 19, modifiez `class="check-list-item"` trop`class="list-group-item"`.
     > 
     > 
-3. Enregistrez la modification. De retour dans Git Shell, exécutez les commandes suivantes :
+3. Enregistrez les modifications hello. Sauvegarder dans l’interpréteur de commandes Git, exécutez hello suivant de commandes :
    
         cd <repository_root>
         git add .
-        git commit -m "changed to bootstrap style"
+        git commit -m "changed toobootstrap style"
         git push origin Dev
    
-   Ces commandes git ont pour effet de « vérifier le code » comme ce serait le cas dans un autre système de contrôle de code source, tel que TFS. Lorsque vous exécutez `git push`, la nouvelle validation déclenche une transmission automatique de type push à Azure, lequel reconstruit ensuite l’application pour refléter la modification dans l’environnement de développement.
-4. Pour vérifier que cette transmission de code de type push à votre environnement de développement s’est bien produite, accédez à la page d’application web de votre environnement de développement et examinez la partie **Déploiement**. Le message de la dernière validation doit y figurer.
+   Ces commandes git sont similaires trop « vérification dans votre code » dans un autre système de contrôle de source, tel que TFS. Lorsque vous exécutez `git push`, validation de nouveau hello déclenche un tooAzure push de code automatique, les reconstructions puis hello application tooreflect hello modification dans l’environnement de développement hello.
+4. tooverify cet environnement de développement de code push tooyour s’est produite, consultez la page d’application web de l’environnement de développement tooyour et examinez hello **déploiement** partie. Vous devez être en mesure de toosee votre dernière validation de message il.
    
     ![](./media/app-service-agile-software-development/commit-2-deployed.png)
-5. Cliquez alors sur **Parcourir** pour voir la nouvelle modification dans l’application en direct dans Azure.
+5. À partir de là, cliquez sur **Parcourir** toosee hello nouvelle modification dans l’application en temps réel de hello dans Azure.
    
     ![](./media/app-service-agile-software-development/commit-3-webapp-in-browser.png)
    
-   Il s’agit d’une modification relativement mineure pour l’application. Toutefois, bien souvent les modifications apportées à une application web complexe ont des effets secondaires inattendus et indésirables. Pouvoir facilement tester chaque validation dans les générations en direct vous permet d’intercepter les problèmes avant qu’ils ne s’affichent sur l’ordinateur de vos clients.
+   Il s’agit d’une application de toohello modification mineure. Toutefois, de nombreux heures modifications tooa complexes une application web ont des effets inattendus et indésirables. En cours de test de tooeasily en mesure de chaque validation dans les versions en direct permet de vous toocatch ces problèmes avant de les afficher par vos clients.
 
-À ce stade, vous devez avoir conscience qu’en tant que développeur du projet **NewUpdate** , vous pouvez créer aisément un environnement de développement pour vous-même, puis générer chaque validation et tester chaque génération.
+À ce stade, vous devez être familiarisé avec la réalisation de hello qui, en tant que développeur sur hello **NewUpdate** projet, vous pouvez créer un environnement de développement pour vous-même, puis générer chaque validation et tester chaque build.
 
 ## <a name="merge-code-into-test-environment"></a>Fusionner le code dans l’environnement de test
-Lorsque vous êtes prêt à envoyer votre code à la branche NewUpdate à partir de la branche Dev, le processus git standard se déroule ainsi :
+Lorsque vous êtes prêt toopush votre code à partir de développement branche tooNewUpdate branche, elle consiste à hello git standard :
 
-1. Fusionnez les nouvelles validations de NewUpdate dans la branche Dev de GitHub, comme les validations créées par d’autres développeurs. Toute nouvelle validation dans GitHub déclenche une transmission de type push et une validation dans l’environnement de développement. Vous pouvez vérifier que votre code fonctionne toujours dans la branche Dev avec les dernières informations de la branche NewUpdate.
-2. Fusionnez toutes vos nouvelles validations entre la branche Dev et la branche NewUpdate dans GitHub. Cette action déclenche une transmission de code de type push et une génération dans l’environnement de test. 
+1. Fusionner toutes les nouvelles tooNewUpdate de validations dans la branche de développement hello dans GitHub, tels que des validations créés par d’autres développeurs. Toute nouvelle validation sur GitHub déclenche un push de code et de la build dans l’environnement de développement hello. Vous pouvez vérifiez que votre code dans la branche Dev fonctionne toujours avec les éléments les plus récents à partir de la branche de NewUpdate hello.
+2. Fusionnez toutes vos nouvelles validations entre la branche Dev et la branche NewUpdate dans GitHub. Cette action déclenche un push de code et de la build dans l’environnement de test hello. 
 
-Du fait que le déploiement continu est déjà configuré avec ces branches git, vous n’avez aucune action à effectuer (comme les générations d’intégration). Vous devez simplement effectuer des actions de contrôle de code source standard à l’aide de git ; Azure s’occupe ensuite de tous les processus de génération à votre place.
+Notez à nouveau que parce que le déploiement continu est déjà configuré avec ces branches git, vous n’avez pas besoin tootake génère de toute autre action, comme l’intégration en cours d’exécution. Vous devez simplement des méthodes de contrôle de source standard tooperform à l’aide de git et Azure effectue tous les processus de génération hello pour vous.
 
-Maintenant, nous allons transmettre le code à la branche **NewUpdate** . Dans Git Shell, exécutez les commandes suivantes :
+Maintenant, nous allons push trop votre code**NewUpdate** branche. Dans l’interpréteur de commandes Git, exécutez hello suivant de commandes :
 
     git checkout NewUpdate
     git pull origin NewUpdate
@@ -227,33 +227,33 @@ Maintenant, nous allons transmettre le code à la branche **NewUpdate** . Dans G
 
 Et voilà ! 
 
-Accédez à la page d’application web pour votre environnement de test afin de voir votre validation (fusionnée dans la branche NewUpdate) qui est à présent transférée à l’environnement de test. Cliquez ensuite sur **Parcourir** pour vérifier que la modification du style s’exécute désormais en direct dans Azure.
+Page de l’application web accédez toohello pour votre toosee d’environnement de test de votre nouvelle validation (fusionnée dans NewUpdate branche) envoyées maintenant environnement de test toohello. Ensuite, cliquez sur **Parcourir** toosee qui hello changement de style est en cours d’exécution en direct dans Azure.
 
-## <a name="deploy-update-to-production"></a>Déployer la mise à jour en production
-La transmission de type push du code à l’environnement intermédiaire et de production doit être similaire à la transmission de type push du code à l’environnement de test. Cette opération est très simple. 
+## <a name="deploy-update-tooproduction"></a>Déployer la mise à jour tooproduction
+Environnement intermédiaire et de production en exécutant un push de code toohello n’êtes pas différente de ce que vous avez déjà fait lors de l’environnement de test de code toohello transmis en push. Cette opération est très simple. 
 
-Dans Git Shell, exécutez les commandes suivantes :
+Dans l’interpréteur de commandes Git, exécutez hello suivant de commandes :
 
     git checkout master
     git pull origin master
     git merge NewUpdate
     git push origin master
 
-N’oubliez pas que selon la façon dont l’environnement intermédiaire et de production est programmé dans ProdandStage.json, votre nouveau code est envoyé à l’emplacement **intermédiaire** et s’y exécute. Par conséquent, si vous accédez à l’URL de l’emplacement intermédiaire, vous pouvez y voir le nouveau code en cours d’exécution. Pour ce faire, exécutez l’applet de commande suivante dans Git Shell.
+N’oubliez pas que selon la façon hello environnement intermédiaire et de production de hello est défini dans ProdandStage.json, votre nouveau code est transmise toohello **intermédiaire** emplacement et il exécute. Par conséquent, si vous accédez à URL l’emplacement intermédiaire toohello, vous consultez hello nouveau code en cours d’exécution il. toodo, exécution hello suivant l’applet de commande de l’interpréteur de commandes Git.
 
     Start-Process -FilePath "http://ToDoApp<unique_string>master-Staging.azurewebsites.net"
 
-Une fois que vous avez vérifié la mise à jour dans l’emplacement intermédiaire, la seule chose qui reste à faire est de la faire passer en production. Dans Git Shell, il suffit d’exécuter les commandes suivantes :
+Et maintenant, une fois que vous avez vérifié la mise à jour hello Bonjour staging emplacement, hello seule chose qui reste toodo est tooswap en production. Dans l’interpréteur de commandes Git, il suffit d’exécuter hello suivant les commandes :
 
     cd <repository_root>\ARMTemplates
     .\swap.ps1 -Name ToDoApp<unique_string>master
 
-Félicitations ! Vous venez de publier une nouvelle mise à jour pour votre application web de production. De plus, vous y êtes parvenu en créant aisément des environnements de développement et de test et en générant et en testant chaque validation. Ces étapes sont essentielles pour le développement logiciel agile.
+Félicitations ! Vous avez correctement publié une nouvelle application web mise à jour tooyour production. De plus, vous y êtes parvenu en créant aisément des environnements de développement et de test et en générant et en testant chaque validation. Ces étapes sont essentielles pour le développement logiciel agile.
 
 <a name="delete"></a>
 
 ## <a name="delete-dev-and-test-environments"></a>Supprimer des environnements de développement et de test
-Comme vous avez volontairement conçu vos environnements de développement et de test en tant que groupes de ressources autonomes, il est facile de les supprimer. Pour supprimer ceux que vous avez créés dans ce didacticiel, c’est-à-dire les branches GitHub et les artefacts Azure, il suffit d’exécuter les commandes suivantes dans Git Shell :
+Étant donné que vous avez conçu volontairement votre développement et groupes de ressources autonomes toobe environnements de test, il est facile toodelete les. toodelete hello ceux que vous avez créé dans ce didacticiel, les branches de GitHub hello et des artefacts Azure, exécutez simplement hello suivant les commandes dans l’interpréteur de commandes Git :
 
     git branch -d Dev
     git push origin :Dev
@@ -263,15 +263,15 @@ Comme vous avez volontairement conçu vos environnements de développement et de
     Remove-AzureRmResourceGroup -Name ToDoApp<unique_string>newupdate-group -Force -Verbose
 
 ## <a name="summary"></a>Résumé
-Le développement logiciel agile est indispensable pour de nombreuses entreprises qui souhaitent adopter Azure comme plateforme d’application. Dans ce didacticiel, vous avez appris à créer et à détruire aisément des réplicas exacts ou proches de l’environnement de production, même pour les applications complexes. Vous avez également appris à exploiter la possibilité de créer un processus de développement capable de créer et de tester chaque validation dans Azure. Ce didacticiel vous a montré comment mieux utiliser conjointement Azure App Service et Azure Resource Manager pour créer une solution d’opérations de développement recourant aux méthodologies agiles. À présent, vous pouvez tirer parti de ce scénario en recourant à des techniques DevOps avancées telles que le [test dans les environnements de production](app-service-web-test-in-production-get-start.md). Pour découvrir un scénario courant de test dans les environnements de production, consultez [Déploiement avec distribution d’une version d’évaluation (test bêta) dans Azure App Service](app-service-web-test-in-production-controlled-test-flight.md).
+Développement Agile est indispensable pour de nombreuses entreprises qui veulent tooadopt Azure en tant que leur plate-forme d’application. Dans ce didacticiel, vous avez appris comment toocreate et son réplicas exactes ou près de réplicas de hello environnement de production en toute simplicité, même pour les applications complexes. Vous avez également appris comment tooleverage traiter cette toocreate permet un développement qui peut générer et tester chaque validation simple dans Azure. Ce didacticiel vous a espère montré comment mieux utiliser Azure App Service et Azure Resource Manager toocreate ensemble une solution DevOps qui gère les méthodologies tooagile. À présent, vous pouvez tirer parti de ce scénario en recourant à des techniques DevOps avancées telles que le [test dans les environnements de production](app-service-web-test-in-production-get-start.md). Pour découvrir un scénario courant de test dans les environnements de production, consultez [Déploiement avec distribution d’une version d’évaluation (test bêta) dans Azure App Service](app-service-web-test-in-production-controlled-test-flight.md).
 
 ## <a name="more-resources"></a>Autres ressources
 * [Déployer une application complexe de manière prévisible dans Microsoft Azure](app-service-deploy-complex-application-predictably.md)
 * [Développement Agile en pratique : trucs et astuces pour le cycle de développement moderne](http://channel9.msdn.com/Events/Ignite/2015/BRK3707)
 * [Stratégies de déploiement avancées pour les applications web Azure à l’aide des modèles Resource Manager](http://channel9.msdn.com/Events/Build/2015/2-620)
-* [Création de modèles Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md)
-* [JSONLint - Validateur JSON](http://jsonlint.com/)
-* [ARMClient – Configurer la publication GitHub sur site](https://github.com/projectKudu/ARMClient/wiki/Setup-GitHub-publishing-to-Site)
+* [Création de modèles Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md)
+* [JSONLint - hello validateur JSON](http://jsonlint.com/)
+* [ARMClient – configurer toosite de publication de GitHub](https://github.com/projectKudu/ARMClient/wiki/Setup-GitHub-publishing-to-Site)
 * [Création de branches Git – Branchement et fusion basiques](http://www.git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)
 * [Blog de David Ebbo](http://blog.davidebbo.com/)
 * [Azure PowerShell](/powershell/azure/overview)

@@ -1,6 +1,6 @@
 ---
-title: "Utiliser des disques gérés avec des groupes de machines virtuelles identiques Azure | Microsoft Docs"
-description: "Découvrez pourquoi et comment utiliser des disques gérés avec des groupes de machines virtuelles identiques"
+title: "aaaUsing gérés disques avec Azure machines virtuelles identiques | Documents Microsoft"
+description: "Découvrez pourquoi et comment toouse gérés disques avec les machines virtuelles identiques"
 services: virtual-machine-scale-sets
 documentationcenter: 
 author: gatneil
@@ -15,41 +15,41 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 6/01/2017
 ms.author: negat
-ms.openlocfilehash: 3ab1d432a2f90db57b99f0e7d419d85e2958c308
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 0e2a21e9f8b114ae1c8b81e1e6124621366f5643
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-vm-scale-sets-and-managed-disks"></a>Groupes de machines virtuelles identiques Azure et disques gérés
 
 Les [groupes de machines virtuelles identiques](/azure/virtual-machine-scale-sets/) Azure prennent en charge les machines virtuelles avec disques gérés. Les disques gérés avec groupes identiques présentent plusieurs avantages, notamment :
 
-* Vous n’avez plus besoin de créer au préalable et de gérer des comptes de stockage pour stocker les disques du système d’exploitation pour les machines virtuelles de groupes identiques.
+* Vous n’avez plus besoin toopre-créer et gérer des disques de stockage comptes toostore hello du système d’exploitation pour l’ensemble d’échelle de hello de machines virtuelles.
 
-* Vous pouvez attacher des disques de données gérés au groupe identique.
+* Vous pouvez joindre des données managées disques toohello identiques.
 
 * Avec un disque géré, un groupe identique peut atteindre une capacité de 1 000 machines virtuelles à partir d’une image de plateforme ou de 100 machines virtuelles à partir d’une image personnalisée.
 
 ## <a name="get-started"></a>Prise en main
 
-Un moyen simple de se familiariser avec les groupes de disques gérés identiques consiste à en déployer un à partir du Portail Azure. Pour plus d’informations, consultez [cet article](./virtual-machine-scale-sets-portal-create.md). Il est aussi possible, pour commencer, d’utiliser [Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-az-cli2) afin de déployer un groupe identique. L’exemple suivant montre comment créer un groupe identique sous Ubuntu avec 10 machines virtuelles, comprenant chacune un disque de données de 50 Go et de 100 Go :
+Un moyen simple tooget main identiques de disque géré est un toodeploy de hello portail Azure. Pour plus d’informations, consultez [cet article](./virtual-machine-scale-sets-portal-create.md). Une autre façon simple tooget démarré est toouse [Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-az-cli2) toodeploy une échelle définie. Hello suivant montre comment toocreate un Ubuntu en fonction de l’échelle avec des machines 10 virtuelles, chacun avec un disque de 50 Go et de 100 Go de données :
 
 ```azurecli
 az group create -l southcentralus -n dsktest
 az vmss create -g dsktest -n dskvmss --image ubuntults --instance-count 10 --data-disk-sizes-gb 50 100
 ```
 
-Vous pouvez également consulter le [Référentiel GitHub de modèles de démarrage rapide Azure](https://github.com/Azure/azure-quickstart-templates), dans les dossiers qui contiennent `vmss`, pour voir des exemples prédéfinis de modèles qui déploient des groupes identiques. Pour savoir quels modèles utilisent déjà des disques gérés, vous pouvez consulter [cette liste](https://github.com/Azure/azure-quickstart-templates/blob/master/managed-disk-support-list.md).
+Vous pouvez également consulter hello [référentiel GitHub de modèles de démarrage rapide Azure](https://github.com/Azure/azure-quickstart-templates) pour les dossiers qui contiennent des `vmss` toosee prégénérées des exemples de modèles de déploiement identiques. tootell les modèles sont déjà à l’aide de disques gérés, vous pouvez faire référence trop[cette liste](https://github.com/Azure/azure-quickstart-templates/blob/master/managed-disk-support-list.md).
 
 ## <a name="next-steps"></a>Étapes suivantes
 
 Pour plus d’informations sur les disques gérés en général, consultez [cet article](../virtual-machines/windows/managed-disks-overview.md).
 
-Pour savoir comment convertir un modèle Resource Manager afin d’approvisionner des groupes identiques avec disques gérés, consultez [cet article](./virtual-machine-scale-sets-convert-template-to-md.md). Les modifications apportées aux modèles Resource Manager s’appliquent également à l’API REST Azure.
+reportez-vous à la méthode de tooconvert une échelle de tooprovision de modèle de gestionnaire de ressources définit avec gestion des disques, toosee [cet article](./virtual-machine-scale-sets-convert-template-to-md.md). Hello mêmes modèles de gestionnaire de ressources toohello modifications s’appliquent toohello API REST Azure.
 
-Pour en savoir plus sur l’utilisation de disques de données gérés avec des groupes identiques, consultez [cet article](./virtual-machine-scale-sets-attached-disks.md).
+toolearn savoir plus sur l’utilisation de disques de données managées avec identiques, consultez [cet article](./virtual-machine-scale-sets-attached-disks.md).
 
-Pour commencer à travailler avec des groupes identiques, consultez [cet article](./virtual-machine-scale-sets-placement-groups.md).
+toobegin les jeux à grande échelle, consultez trop[cet article](./virtual-machine-scale-sets-placement-groups.md).
 
 

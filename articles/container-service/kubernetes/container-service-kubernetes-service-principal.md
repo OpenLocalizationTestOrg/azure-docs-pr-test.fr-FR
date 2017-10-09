@@ -1,5 +1,5 @@
 ---
-title: Principal du service de cluster Azure Kubernetes | Microsoft Docs
+title: principal aaaService pour Azure Kubernetes cluster | Documents Microsoft
 description: "Créer et gérer un principal de service Azure Active Directory pour un cluster Kubernetes dans Azure Container Service"
 services: container-service
 documentationcenter: 
@@ -16,40 +16,40 @@ ms.workload: na
 ms.date: 05/08/2017
 ms.author: danlep
 ms.custom: mvc
-ms.openlocfilehash: 37171b4e69ad7d8c41ca8e7475c33ce70379f484
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 7a01624c5ac3fa717dbcbd570e05ceb4d917c53a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="set-up-an-azure-ad-service-principal-for-a-kubernetes-cluster-in-container-service"></a>Configurer un principal de service Azure Active Directory pour un cluster Kubernetes dans Container Service
 
 
-Dans Azure Container Service, un cluster Kubernetes nécessite un [principal de service Azure Active Directory](../../active-directory/develop/active-directory-application-objects.md) pour interagir avec des API Azure. Le principal de service est nécessaire pour gérer dynamiquement des ressources telles que des [itinéraires définis par l’utilisateur](../../virtual-network/virtual-networks-udr-overview.md) et [Azure Load Balancer de couche 4](../../load-balancer/load-balancer-overview.md). 
+Dans le conteneur de Service Azure, un cluster Kubernetes nécessite un [principal du service Azure Active Directory](../../active-directory/develop/active-directory-application-objects.md) toointeract avec les API d’Azure. Hello principal du service est nécessaire toodynamically gérer les ressources telles que [itinéraires définis par l’utilisateur](../../virtual-network/virtual-networks-udr-overview.md) et hello [équilibrage de charge de couche 4 Azure](../../load-balancer/load-balancer-overview.md). 
 
 
-Cet article indique les différentes options permettant de configurer un principal de service pour votre cluster Kubernetes. Par exemple, si vous avez installé et configuré [Azure CLI 2.0](/cli/azure/install-az-cli2), vous pouvez exécuter la commande [`az acs create`](/cli/azure/acs#create) pour créer le cluster Kubernetes et le principal du service en même temps.
+Cet article explique tooset différentes options d’un service principal pour votre cluster Kubernetes. Par exemple, si vous avez installé et configuré hello [Azure CLI 2.0](/cli/azure/install-az-cli2), vous pouvez exécuter hello [ `az acs create` ](/cli/azure/acs#create) commande toocreate hello Kubernetes cluster et hello principal du service à hello même temps.
 
 
-## <a name="requirements-for-the-service-principal"></a>Configuration requise pour le principal du service
+## <a name="requirements-for-hello-service-principal"></a>Configuration requise pour le principal du service hello
 
-Vous pouvez utiliser un principal de service Azure AD existant qui répond aux exigences ci-dessous ou en créer un.
+Vous pouvez utiliser un principal de service Azure AD existant que répond aux hello suivant les exigences ou créez-en un.
 
-* **Étendue** : groupe de ressources de l’abonnement utilisé pour déployer le cluster Kubernetes ou abonnement utilisé pour déployer le cluster (de façon moins restrictive).
+* **Étendue**: groupe de ressources hello dans l’abonnement de hello utilisés cluster de Kubernetes toodeploy hello ou (moins de manière restrictive) abonnement de hello cluster hello de toodeploy.
 
 * **Rôle** : **Collaborateur**
 
 * **Clé secrète client** : doit être un mot de passe. Actuellement, vous ne pouvez pas utiliser de principal du service configuré pour l’authentification par certificat.
 
 > [!IMPORTANT] 
-> Pour créer un principal de service, vous devez disposer des autorisations suffisantes pour inscrire une application auprès de votre client Azure AD et l’affecter à un rôle dans votre abonnement. Si voir si vous disposez des autorisations requises, [procédez à une vérification dans le portail](../../azure-resource-manager/resource-group-create-service-principal-portal.md#required-permissions). 
+> toocreate un principal de service, vous devez disposer des autorisations tooregister une application avec votre locataire Azure AD et le rôle de tooa tooassign hello application dans votre abonnement. toosee si vous avez les autorisations requises de hello, [archiver hello Portal](../../azure-resource-manager/resource-group-create-service-principal-portal.md#required-permissions). 
 >
 
 ## <a name="option-1-create-a-service-principal-in-azure-ad"></a>Option 1 : créer un principal de service dans Azure Active Directory
 
-Si vous souhaitez créer un principal de service Azure AD avant de déployer votre cluster Kubernetes, Azure propose plusieurs méthodes. 
+Si vous voulez toocreate un principal du service Azure AD avant de déployer votre cluster Kubernetes, Azure fournit plusieurs méthodes. 
 
-L’exemple de commande suivant vous montre comment procéder avec [l’Azure CLI 2.0](../../azure-resource-manager/resource-group-authenticate-service-principal-cli.md). Vous pouvez également créer un principal de service à l’aide [d’Azure PowerShell](../../azure-resource-manager/resource-group-authenticate-service-principal.md), du [portail](../../azure-resource-manager/resource-group-create-service-principal-portal.md) ou d’autres méthodes.
+Hello suivant des exemples de commandes vous indiquent comment toodo avec hello [Azure CLI 2.0](../../azure-resource-manager/resource-group-authenticate-service-principal-cli.md). Vous pouvez également créer un service principal à l’aide de [Azure PowerShell](../../azure-resource-manager/resource-group-authenticate-service-principal.md), hello [portal](../../azure-resource-manager/resource-group-create-service-principal-portal.md), ou d’autres méthodes.
 
 ```azurecli
 az login
@@ -61,32 +61,32 @@ az group create -n "myResourceGroupName" -l "westus"
 az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/mySubscriptionID/resourceGroups/myResourceGroupName"
 ```
 
-Le résultat est semblable à ce qui suit (illustré ici de manière rédigée) :
+La sortie est similaire toohello suivante (présentée ici rédigé) :
 
 ![Créer un principal du service](./media/container-service-kubernetes-service-principal/service-principal-creds.png)
 
-**L’ID client** (`appId`) et la **clé secrète client** (`password`) que vous utilisez en tant que paramètres du principal du service pour le déploiement du cluster sont mis en surbrillance.
+Mise en surbrillance sont hello **ID client** (`appId`) et hello **clé secrète client** (`password`) que vous utilisez en tant que paramètres de principal de service pour le déploiement de cluster.
 
 
-### <a name="specify-service-principal-when-creating-the-kubernetes-cluster"></a>Spécifier un principal de service lors de la création du cluster Kubernetes
+### <a name="specify-service-principal-when-creating-hello-kubernetes-cluster"></a>Spécifiez le principal du service lors de la création du cluster de Kubernetes hello
 
-Fournissez **l’ID client** (également appelé `appId`, pour l’ID de l’application) et la **clé secrète client** (`password`) d’un principal du service existant en tant que paramètres lors de la création du cluster Kubernetes. Veillez à que le principal de service réponde aux exigences indiquées au début cet article.
+Fournir hello **ID client** (également appelé hello `appId`, pour l’ID de l’Application) et **clé secrète client** (`password`) d’un service existant principal en tant que paramètres lorsque vous créez hello Kubernetes cluster. Assurez-vous que le principal du service hello répond aux exigences de hello en hello à partir de cet article.
 
-Vous pouvez spécifier ces paramètres lors du déploiement du cluster Kubernetes à l’aide [d’Azure CLI 2.0](container-service-kubernetes-walkthrough.md), du [portail Azure](../dcos-swarm/container-service-deployment.md) ou d’autres méthodes.
+Vous pouvez spécifier ces paramètres lors du déploiement de cluster de Kubernetes hello à l’aide de hello [Azure Interface de ligne de commande (CLI) 2.0](container-service-kubernetes-walkthrough.md), [portail Azure](../dcos-swarm/container-service-deployment.md), ou d’autres méthodes.
 
 >[!TIP] 
->Lorsque vous spécifiez **l’ID client**, veillez à utiliser l’`appId`, et non l’`ObjectId`, du principal du service.
+>Lorsque vous spécifiez hello **ID client**, être vraiment toouse hello `appId`, pas hello `ObjectId`, de principal du service hello.
 >
 
-L’exemple suivant illustre une manière de transmettre les paramètres avec Azure CLI 2.0. Cet exemple utilise le [modèle de démarrage rapide Kubernetes](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-kubernetes).
+Hello suivant montre une façon toopass paramètres hello avec hello Azure CLI 2.0. Cet exemple utilise hello [Kubernetes quickstart modèle](https://github.com/Azure/azure-quickstart-templates/tree/master/101-acs-kubernetes).
 
-1. [Téléchargez](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-acs-kubernetes/azuredeploy.parameters.json) le fichier de paramètres de modèle `azuredeploy.parameters.json` à partir de GitHub.
+1. [Télécharger](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-acs-kubernetes/azuredeploy.parameters.json) fichier de paramètres de modèle hello `azuredeploy.parameters.json` à partir de GitHub.
 
-2. Pour spécifier le principal du service, entrez les valeurs pour `servicePrincipalClientId` et `servicePrincipalClientSecret` dans le fichier (vous devez également fournir vos propres valeurs pour `dnsNamePrefix` et `sshRSAPublicKey`. La clé en question est la clé publique SSH pour accéder au cluster). Enregistrez le fichier .
+2. service de hello toospecify principal, entrez les valeurs de `servicePrincipalClientId` et `servicePrincipalClientSecret` dans le fichier de hello. (Vous devez également tooprovide vos propres valeurs pour `dnsNamePrefix` et `sshRSAPublicKey`. Hello ce dernier est cluster hello de hello SSH tooaccess de clé publique). Enregistrez le fichier de hello.
 
     ![Transmettez les paramètres du principal du service](./media/container-service-kubernetes-service-principal/service-principal-params.png)
 
-3. Exécutez la commande suivante à l’aide de `--parameters` pour définir le chemin d’accès au fichier azuredeploy.parameters.json. Cette commande déploie le cluster dans un groupe de ressources que vous créez appelé `myResourceGroup` dans la région États-Unis de l’Ouest.
+3. Exécution hello commande suivante, en utilisant `--parameters` tooset hello chemin d’accès toohello azuredeploy.parameters.json fichier. Cette commande déploie cluster hello dans un groupe de ressources que vous créez appelée `myResourceGroup` dans la région ouest des États-Unis hello.
 
     ```azurecli
     az login
@@ -99,37 +99,37 @@ L’exemple suivant illustre une manière de transmettre les paramètres avec Az
     ```
 
 
-## <a name="option-2-generate-a-service-principal-when-creating-the-cluster-with-az-acs-create"></a>Option 2 : générer un principal de service lors de la création du cluster avec `az acs create`
+## <a name="option-2-generate-a-service-principal-when-creating-hello-cluster-with-az-acs-create"></a>Option 2 : Générer un principal de service lors de la création de cluster hello avec`az acs create`
 
-Si vous exécutez la commande [`az acs create`](/cli/azure/acs#create) pour créer le cluster Kubernetes, vous pouvez générer un principal de service automatiquement.
+Si vous exécutez hello [ `az acs create` ](/cli/azure/acs#create) toocreate de commande hello Kubernetes cluster, vous avez un principal de service hello option toogenerate automatiquement.
 
-Comme avec d’autres options de création de clusters Kubernetes, vous pouvez spécifier des paramètres pour un principal du service existant lorsque vous exécutez `az acs create`. Toutefois, si vous omettez ces paramètres, Azure CLI en crée un automatiquement à utiliser avec Container Service. Cette procédure est réalisée en toute transparence au cours du déploiement. 
+Comme avec d’autres options de création de clusters Kubernetes, vous pouvez spécifier des paramètres pour un principal du service existant lorsque vous exécutez `az acs create`. Toutefois, lorsque vous omettez ces paramètres, hello CLI d’Azure crée un automatiquement pour une utilisation avec le Service de conteneur. Cela s’effectue en toute transparence au cours du déploiement de hello. 
 
-La commande suivante crée un cluster Kubernetes et génère des clés SSH et des informations d’identification du principal du service :
+Hello commande suivante crée un cluster Kubernetes et génère des clés SSH et les informations d’identification du principal de service :
 
 ```console
 az acs create -n myClusterName -d myDNSPrefix -g myResourceGroup --generate-ssh-keys --orchestrator-type kubernetes
 ```
 
 > [!IMPORTANT]
-> Si votre compte ne dispose pas des autorisations Azure AD ni des autorisations d’abonnement pour créer un principal de service, la commande génère une erreur semblable à `Insufficient privileges to complete the operation.`
+> Si votre compte ne dispose pas hello Azure AD et abonnement autorisations toocreate un principal de service, commande hello génère une erreur similaire trop`Insufficient privileges toocomplete hello operation.`
 > 
 
 ## <a name="additional-considerations"></a>Considérations supplémentaires
 
-* Si vous ne disposez pas des autorisations pour créer un principal de service dans votre abonnement, vous devrez peut-être demander à votre administrateur Azure AD ou à l’administrateur de votre abonnement de vous attribuer les autorisations nécessaires ou de créer un principal de service à utiliser avec Azure Container Service. 
+* Si vous n’avez toocreate d’autorisations à un principal de service dans votre abonnement, vous devrez peut-être tooask votre annuaire Azure AD ou abonnement administrateur tooassign hello des autorisations nécessaires ou demandez-lui un toouse principal de service avec le Service de conteneur Azure. 
 
-* Le principal de service pour Kubernetes fait partie de la configuration du cluster. Toutefois, n’utilisez pas l’identité pour déployer le cluster.
+* principal du service Hello pour Kubernetes fait partie de la configuration de cluster hello. Toutefois, n’utilisez pas cluster hello de hello identité toodeploy.
 
-* Chaque principal de service est associé à une application Azure AD. Le principal de service pour un cluster Kubernetes peut être associé à tout nom d’application Azure AD valide (par exemple : `https://www.contoso.org/example`). L’URL de l’application ne doit pas être un point de terminaison réel.
+* Chaque principal de service est associé à une application Azure AD. Hello principal du service pour un cluster Kubernetes peut être associé à n’importe quel Azure valide nom de l’application Active Directory (par exemple : `https://www.contoso.org/example`). URL de Hello pour une application hello n’a pas un point de terminaison réel toobe.
 
-* Lorsque vous spécifiez **l’ID Client** du principal de service, vous pouvez utiliser la valeur de `appId` (comme indiqué dans cet article) ou le principal de service correspondant `name` (par exemple, `https://www.contoso.org/example`).
+* Lorsque vous spécifiez principal du service hello **ID Client**, vous pouvez utiliser la valeur hello hello `appId` (comme indiqué dans cet article) ou principal du service correspondant hello `name` (par exemple,`https://www.contoso.org/example`).
 
-* Sur les machines virtuelles principales et d’agent du cluster Kubernetes, les informations d’identification du principal de service sont stockées dans le fichier /etc/kubernetes/azure.json.
+* Sur le maître de hello et de machines virtuelles dans un cluster de Kubernetes hello, hello service principal sont stockées dans hello fichier /etc/kubernetes/azure.json.
 
-* Si vous utilisez la commande `az acs create` pour générer automatiquement le principal de service, les informations d’identification du principal de service sont écrites dans le fichier ~/.azure/acsServicePrincipal.json sur la machine utilisée pour exécuter la commande. 
+* Lorsque vous utilisez hello `az acs create` commande principal du service toogenerate hello automatiquement, les informations d’identification de principal hello service sont écrites toohello fichier ~/.azure/acsServicePrincipal.json sur l’ordinateur de hello utilisé toorun hello. 
 
-* Si vous utilisez la commande `az acs create` pour générer automatiquement le principal de service, ce dernier peut également s’authentifier auprès d’un registre [Azure Container Registry](../../container-registry/container-registry-intro.md) créé dans le même abonnement.
+* Lorsque vous utilisez hello `az acs create` commande principal du service toogenerate hello automatiquement, le principal du service hello peut également authentifier avec un [Registre de conteneur Azure](../../container-registry/container-registry-intro.md) créées Bonjour même abonnement.
 
 
 
@@ -138,6 +138,6 @@ az acs create -n myClusterName -d myDNSPrefix -g myResourceGroup --generate-ssh-
 
 * [Prise en main de Kubernetes](container-service-kubernetes-walkthrough.md) dans votre cluster de service de conteneur.
 
-* Pour résoudre les problèmes du principal de service pour Kubernetes, consultez la [documentation du moteur ACS](https://github.com/Azure/acs-engine/blob/master/docs/kubernetes.md#troubleshooting).
+* tootroubleshoot hello principal du service pour Kubernetes, consultez hello [documentation du moteur de ACS](https://github.com/Azure/acs-engine/blob/master/docs/kubernetes.md#troubleshooting).
 
 

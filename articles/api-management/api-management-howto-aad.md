@@ -1,6 +1,6 @@
 ---
-title: "Autoriser des comptes de développeurs à l’aide d’Azure Active Directory dans Gestion des API Azure | Microsoft Docs"
-description: Comment autoriser des utilisateurs avec Azure Active Directory dans Gestion des API.
+title: "comptes de développeur aaaAuthorize à l’aide d’Azure Active Directory - gestion des API Azure | Documents Microsoft"
+description: "Découvrez comment les utilisateurs de tooauthorize à l’aide d’Azure Active Directory dans la gestion des API."
 services: api-management
 documentationcenter: API Management
 author: steved0x
@@ -14,177 +14,177 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: apimpm
-ms.openlocfilehash: 7637e6419d17a2d75904fbe63df5f27d4be4bbe3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ebf5447a509a47df35e4262138bfcf423cb1dd5c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-authorize-developer-accounts-using-azure-active-directory-in-azure-api-management"></a>Comment autoriser des comptes de développeurs avec Azure Active Directory dans Gestion des API Azure
+# <a name="how-tooauthorize-developer-accounts-using-azure-active-directory-in-azure-api-management"></a>Comment les développeurs tooauthorize comptes à l’aide Azure Active Directory dans la gestion des API Azure
 ## <a name="overview"></a>Vue d'ensemble
-Ce guide vous explique comment activer l’accès au portail des développeurs pour les utilisateurs d’Azure Active Directory. Il vous montre également comment gérer des groupes d’utilisateurs Azure Active Directory en ajoutant des groupes externes qui contiennent les utilisateurs d’un annuaire Azure Active Directory.
+Ce guide vous explique comment tooenable accéder au portail des développeurs toohello pour les utilisateurs d’Azure Active Directory. Ce guide vous montre également comment toomanage des groupes d’utilisateurs d’Azure Active Directory en ajoutant des groupes externes qui contiennent hello utilisateurs d’Azure Active Directory.
 
-> Pour effectuer les étapes de ce guide, vous devez disposer d’un annuaire Azure Active Directory dans lequel vous souhaitez créer une application.
+> les étapes toocomplete hello dans ce guide vous devez avoir un annuaire Azure Active Directory dans le toocreate une application.
 > 
 > 
 
-## <a name="how-to-authorize-developer-accounts-using-azure-active-directory"></a>Comment autoriser des comptes de développeurs avec Azure Active Directory
-Pour commencer, cliquez sur **Portail des éditeurs** dans le portail Azure de votre service Gestion des API. Vous accédez au portail des éditeurs Gestion des API.
+## <a name="how-tooauthorize-developer-accounts-using-azure-active-directory"></a>Comment les développeurs tooauthorize comptes à l’aide Azure Active Directory
+tooget démarré, cliquez sur **portail de publication** Bonjour portail Azure pour votre service de gestion des API. Cela vous prend un portail de publication de gestion des API toohello.
 
 ![Portail des éditeurs][api-management-management-console]
 
-> Si vous n’avez pas encore créé une instance de service Gestion des API, consultez la page de [création d’une instance de service Gestion des API][Create an API Management service instance] dans le didacticiel de [prise en main de Gestion des API Azure][Get started with Azure API Management].
+> Si vous n’avez pas encore créé une instance de service de gestion des API, consultez [de créer une instance de service de gestion des API] [ Create an API Management service instance] Bonjour [prise en main Azure API Management] [ Get started with Azure API Management] didacticiel.
 > 
 > 
 
-Cliquez sur **Sécurité** dans le menu **Gestion des API** à gauche, puis sur **Identités externes**.
+Cliquez sur **sécurité** de hello **gestion des API** menu hello gauche et cliquez sur **les identités externes**.
 
 ![Identités externes][api-management-security-external-identities]
 
-Cliquez sur **Azure Active Directory**. Notez l’ **URL de redirection** et revenez à votre annuaire Azure Active Directory dans le portail Azure Classic.
+Cliquez sur **Azure Active Directory**. Prenez note de hello **URL de redirection** et basculer tooyour Azure Active Directory Bonjour portail classique Azure.
 
 ![Identités externes][api-management-security-aad-new]
 
-Cliquez sur le bouton **Ajouter** pour créer une application Azure Active Directory, puis choisissez **Ajouter une application développée par mon organisation**.
+Cliquez sur hello **ajouter** bouton toocreate une application Azure Active Directory, puis choisissez **ajouter une application développée par mon organisation**.
 
 ![Ajouter de nouvelles applications Azure Active Directory][api-management-new-aad-application-menu]
 
-Entrez le nom de l’application, sélectionnez **Application web et/ou API web**, puis cliquez sur le bouton Suivant.
+Entrez un nom pour l’application hello, sélectionnez **Web application et/ou API Web**, puis cliquez sur le bouton suivant de hello.
 
 ![Nouvelle application Azure Active Directory][api-management-new-aad-application-1]
 
-Pour **URL de connexion**, entrez l’URL de connexion de votre portail des développeurs. Dans cet exemple, la valeur de **URL de connexion** est `https://aad03.portal.current.int-azure-api.net/signin`. 
+Pour **URL de connexion**, entrez hello l’authentification sur l’URL de votre portail des développeurs. Dans cet exemple, hello **URL de connexion** est `https://aad03.portal.current.int-azure-api.net/signin`. 
 
-Dans **URL d’ID de l’application**, entrez le domaine par défaut ou un domaine personnalisé pour Azure Active Directory et ajoutez une chaîne unique. Dans cet exemple, le domaine par défaut de **https://contoso5api.onmicrosoft.com** est utilisé avec le suffixe **/api** spécifié.
+Pourquoi **URL ID d’application**, entrez le domaine par défaut de hello ou un domaine personnalisé pour hello Azure Active Directory et ajouter un tooit de chaîne unique. Dans cet exemple, hello domaine par défaut de **https://contoso5api.onmicrosoft.com** est utilisé avec le suffixe hello **/API** spécifié.
 
 ![Propriétés de la nouvelle application Azure Active Directory][api-management-new-aad-application-2]
 
-Cliquez sur la coche pour enregistrer et créer l’application, puis revenez à l’onglet **Configurer** pour configurer la nouvelle application.
+Cliquez sur toosave de bouton de vérification hello et créer l’application hello basculer toohello **configurer** onglet nouvelle application de tooconfigure hello.
 
 ![Nouvelle application Azure Active Directory créée][api-management-new-aad-app-created]
 
-Si plusieurs annuaires Azure Active Directory vont être utilisés pour cette application, cliquez sur **Oui** pour **Application mutualisée**. La valeur par défaut est **Non**.
+Si plusieurs annuaires Azure Active Directory vont toobe utilisée pour cette application, cliquez sur **Oui** pour **Application est mutualisée**. valeur par défaut Hello est **non**.
 
 ![Application mutualisée][api-management-aad-app-multi-tenant]
 
-Copiez **l’URL de redirection** dans la section **Azure Active Directory** de l’onglet **Identités externes** du portail des éditeurs et collez-la dans la zone de texte **URL de réponse**. 
+Hello de copie **URL de redirection** de hello **Azure Active Directory** section Hello **les identités externes** onglet dans le portail de publication hello et collez-le dans hello **URL de réponse** zone de texte. 
 
 ![URL de réponse][api-management-aad-reply-url]
 
-Allez en bas de l’onglet Configurer, sélectionnez la liste déroulante **Autorisations de l’application** et activez l’option **Lire les données de l’annuaire**.
+Défiler vers le bas de hello toohello configurer onglet, sélectionnez hello **autorisations d’Application** liste déroulante, puis vérifiez **lire les données d’annuaire**.
 
 ![Autorisations de l’application][api-management-aad-app-permissions]
 
-Sélectionnez la liste déroulante **Déléguer les autorisations** et activez l’option **Activer l’authentification et lire les profils utilisateur**.
+Sélectionnez hello **déléguer des autorisations** liste déroulante, puis vérifiez **activer l’authentification et de lire les profils utilisateurs**.
 
 ![Autorisations déléguées][api-management-aad-delegated-permissions]
 
-> Pour plus d’informations sur l’application et les autorisations déléguées, consultez la page [Accès à l’API Graph][Accessing the Graph API].
+> Pour plus d’informations sur l’application et des autorisations déléguées, consultez [hello d’accès à l’API Graph][Accessing hello Graph API].
 > 
 > 
 
-Copiez l’ **ID de client** dans le Presse-papiers.
+Hello de copie **Id Client** toohello Presse-papiers.
 
 ![ID de client][api-management-aad-app-client-id]
 
-Revenez au portail des éditeurs et collez l’ **ID de client** copié dans la configuration de l’application Azure Active Directory.
+Basculer le portail de publication toohello différé et la coller dans hello **Id Client** copiés à partir de la configuration de l’application hello Azure Active Directory.
 
 ![ID de client][api-management-client-id]
 
-Revenez à la configuration d’Azure Active Directory, puis cliquez sur la liste déroulante **Sélectionner une durée** dans la section **Clés** et spécifiez un intervalle. Dans cet exemple, la valeur **1 an** est utilisée.
+Configuration d’Azure Active Directory toohello arrière du commutateur, puis cliquez sur hello **sélectionner une durée** déroulante Bonjour **clés** section et spécifiez un intervalle. Dans cet exemple, la valeur **1 an** est utilisée.
 
 ![Clé][api-management-aad-key-before-save]
 
-Cliquez sur **Enregistrer** pour enregistrer la configuration et afficher la clé. Copiez la clé dans le Presse-papiers.
+Cliquez sur **enregistrer** clé hello toosave hello configuration et l’affichage. Copier le Presse-papiers toohello clé hello.
 
-> Notez sa valeur. Une fois que vous fermez la fenêtre de configuration Azure Active Directory, la clé ne peut plus être affichée.
+> Notez sa valeur. Une fois que vous fermez la fenêtre de configuration d’Azure Active Directory hello, clé de hello Impossible d’afficher à nouveau.
 > 
 > 
 
 ![Clé][api-management-aad-key-after-save]
 
-Revenez au portail des éditeurs et collez la clé dans la zone de texte **Clé secrète client** .
+Commutateur toohello précédent portal et la coller hello clé publisher dans hello **clé secrète Client** zone de texte.
 
 ![Clé secrète client][api-management-client-secret]
 
-**Locataires autorisés** spécifie les répertoires qui ont accès aux API de l’instance de service Gestion des API. Spécifiez les domaines des instances Azure Active Directory auxquelles vous souhaitez accorder l’accès. Vous pouvez séparer plusieurs domaines par des sauts de ligne, des espaces ou des virgules.
+**Autorisé locataires** spécifie les répertoires qui ont accès toohello API d’instance de service de gestion des API hello. Spécifier les domaines hello Hello toowhich d’instances Azure Active Directory vous souhaitez toogrant accéder. Vous pouvez séparer plusieurs domaines par des sauts de ligne, des espaces ou des virgules.
 
 ![Locataires autorisés][api-management-client-allowed-tenants]
 
 
-Une fois la configuration souhaitée spécifiée, cliquez sur **Enregistrer**.
+Une fois hello souhaitée de configuration est spécifiée, cliquez sur **enregistrer**.
 
 ![Enregistrer][api-management-client-allowed-tenants-save]
 
-Après avoir enregistré les modifications, les utilisateurs de l’annuaire Azure Active Directory spécifié peuvent se connecter au portail des développeurs en suivant les étapes de la section [Connexion au portail des développeurs avec un compte Azure Active Directory][Log in to the Developer portal using an Azure Active Directory account].
+Une fois que l’enregistrement des modifications de hello, les utilisateurs de hello Bonjour spécifiés Azure Active Directory peuvent se connecter dans le portail des développeurs toohello en suivant les étapes de hello dans [connectez-vous au portail des développeurs toohello à l’aide d’un compte Azure Active Directory] [Log in toohello Developer portal using an Azure Active Directory account].
 
-Plusieurs domaines peuvent être spécifiés dans la section **Locataires autorisés** . Avant qu’un utilisateur puisse se connecter à partir d’un autre domaine que le domaine d’origine dans lequel l’application a été enregistrée, l’administrateur général de l’autre domaine doit accorder à l’application l’autorisation d’accéder aux données de l’annuaire. Pour accorder l’autorisation, l’administrateur général doit accéder à `https://<URL of your developer portal>/aadadminconsent` (par exemple, https://contoso.portal.azure-api.net/aadadminconsent), entrer le nom de domaine du client Active Directory auquel il souhaite accorder l’accès, puis cliquer sur Envoyer. Dans l’exemple suivant, un administrateur général de `miaoaad.onmicrosoft.com` tente d’accorder l’autorisation à ce portail développeur spécifique. 
+Plusieurs domaines peuvent être spécifiés dans hello **autorisé de locataires** section. Avant de n’importe quel utilisateur peut se connecter à partir d’un autre domaine que hello d’origine où l’application hello a été enregistrée, un administrateur global de domaine différent de hello doit autoriser pour hello application tooaccess données d’annuaire. autorisation de toogrant, administrateur global de hello doit devenir trop`https://<URL of your developer portal>/aadadminconsent` (par exemple, https://contoso.portal.azure-api.net/aadadminconsent), type de nom de domaine hello Hello client Active Directory qu’ils souhaitent toogive accès tooand, cliquez sur Envoyer. Suivant de hello exemple, un administrateur global de `miaoaad.onmicrosoft.com` tente de portail de développement particulier toothis toogive autorisation. 
 
 ![Autorisations][api-management-aad-consent]
 
-Dans l’écran suivant, l’administrateur général sera invité à confirmer l’octroi de l’autorisation. 
+Dans l’écran suivant de hello, administrateur global de hello sera invité à tooconfirm hello si vous autorisez. 
 
 ![Autorisations][api-management-permissions-form]
 
-> Si un administrateur autre que l’administrateur global tente de se connecter avant que les autorisations ne soient accordées par un administrateur général, la tentative de connexion échoue et un écran d’erreur s’affiche.
+> Si un administrateur non global tente toolog dans avant les autorisations sont accordées par un administrateur global, tentative de connexion hello échoue et un écran d’erreur s’affiche.
 > 
 > 
 
-## <a name="how-to-add-an-external-azure-active-directory-group"></a>Ajout d’un groupe Azure Active Directory externe
-Après avoir activé l’accès pour les utilisateurs dans Azure Active Directory, vous pouvez ajouter des groupes Azure Active Directory à Gestion des API pour gérer plus facilement l’association des développeurs du groupe avec les produits souhaités.
+## <a name="how-tooadd-an-external-azure-active-directory-group"></a>Comment tooadd groupe externe Azure Active Directory
+Après l’activation de l’accès pour les utilisateurs dans Azure Active Directory, vous pouvez ajouter les groupes Azure Active Directory dans la gestion des API toomore gérer facilement l’association hello de hello les développeurs hello groupe avec les produits hello souhaité.
 
-> Pour pouvoir configurer un groupe Azure Active Directory externe, Azure Active Directory doit d’abord être configuré dans l’onglet Identités, selon la procédure décrite dans la section précédente. 
+> tooconfigure un groupe Azure Active Directory externe, hello Azure Active Directory doit d’abord être configuré dans l’onglet d’identités hello en suivant la procédure hello dans la section précédente de hello. 
 > 
 > 
 
-Les groupes Azure Active Directory externes sont ajoutés à partir de l’onglet **Visibilité** du produit auquel vous souhaitez accorder l’accès au groupe. Cliquez sur **Produits**, puis sur le nom du produit souhaité.
+Les groupes Azure Active Directory externes sont ajoutés à partir de hello **visibilité** onglet du produit hello pour laquelle vous souhaitez au groupe toohello toogrant accès. Cliquez sur **produits**, puis cliquez sur nom hello de produit de votre choix hello.
 
 ![Configure product][api-management-configure-product]
 
-Passez à l’onglet **Visibilité**, puis cliquez sur **Ajouter des groupes depuis Azure Active Directory**.
+Commutateur toohello **visibilité** onglet, puis cliquez sur **ajouter des groupes à partir d’Azure Active Directory**.
 
 ![Ajouter des groupes][api-management-add-groups]
 
-Sélectionnez le **locataire Azure Active Directory** dans la liste déroulante, puis tapez le nom du groupe de votre choix dans la zone de texte des **groupes** à ajouter.
+Sélectionnez hello **client Azure Active Directory** de liste de déroulante hello, puis hello nom de type groupe hello Bonjour **groupes** toobe ajouté la zone de texte.
 
 ![Sélectionner un groupe][api-management-select-group]
 
-Ce nom de groupe se trouve dans la liste **Groupes** de votre annuaire Azure Active Directory, comme illustré dans l’exemple suivant.
+Ce nom de groupe se trouvent dans hello **groupes** liste pour Azure Active Directory, comme indiqué dans hello l’exemple suivant.
 
 ![Liste des groupes Azure Active Directory][api-management-aad-groups-list]
 
-Cliquez sur **Ajouter** pour valider le nom du groupe et ajouter le groupe. Dans cet exemple, le groupe externe **Contoso 5 Developers** est ajouté. 
+Cliquez sur **ajouter** toovalidate hello nom du groupe et ajouter un groupe hello. Dans cet exemple, hello **les développeurs de Contoso 5** groupe externe est ajouté. 
 
 ![Group added][api-management-aad-group-added]
 
-Cliquez sur **Enregistrer** pour enregistrer la nouvelle sélection de groupe.
+Cliquez sur **enregistrer** toosave hello nouvelle sélection de groupe.
 
-Une fois le groupe Azure Active Directory configuré à partir d’un produit, il est consultable dans l’onglet **Visibilité** des autres produits dans l’instance de service Gestion des API.
+Une fois qu’un groupe Azure Active Directory a été configuré à partir d’un produit, il est disponible toobe vérifiée sur hello **visibilité** onglet hello autres produits dans l’instance de service de gestion des API hello.
 
-Pour vérifier et configurer les propriétés des groupes externes une fois qu’ils ont été ajoutés, cliquez sur le nom du groupe dans l’onglet **Groupes**.
+tooreview et configurer les propriétés de hello pour les groupes externes une fois qu’ils ont été ajoutés, cliquez sur nom hello du groupe hello de hello **groupes** onglet.
 
 ![Gérer les groupes][api-management-groups]
 
-À partir de là, vous pouvez modifier le **nom** et la **description** du groupe.
+À partir d’ici, vous pouvez modifier hello **nom** et hello **Description** du groupe de hello.
 
 ![Modifier un groupe][api-management-edit-group]
 
-Les utilisateurs de l’annuaire Azure Active Directory configuré peuvent se connecter au portail des développeurs et consulter des groupes. Ils peuvent s’abonner aux groupes qui leur sont accessibles selon les instructions de la section suivante.
+Les utilisateurs de hello configuré Azure Active Directory peuvent se connecter en mode et le portail des développeurs toohello et d’abonnement tooany les groupes pour lesquels ils disposent de visibilité en suivant les instructions de hello Bonjour suivant la section.
 
-## <a name="how-to-log-in-to-the-developer-portal-using-an-azure-active-directory-account"></a>Connexion au portail des développeurs avec un compte Azure Active Directory
-Pour vous connecter au portail des développeurs à l’aide d’un compte Azure Active Directory configuré dans les sections précédentes, ouvrez une nouvelle fenêtre de navigateur avec **l’URL de connexion** dans la configuration de l’application Active Directory, puis cliquez sur **Azure Active Directory**.
+## <a name="how-toolog-in-toohello-developer-portal-using-an-azure-active-directory-account"></a>Comment toolog dans le portail des développeurs toohello à l’aide d’un compte Azure Active Directory
+toolog portail des développeurs hello à l’aide d’un compte Azure Active Directory configuré dans les sections précédentes hello, ouvrez une nouvelle fenêtre de navigateur à l’aide de hello **URL de connexion** à partir de la configuration de l’application hello Active Directory, puis cliquez sur **Azure Active Directory**.
 
 ![Portail des développeurs][api-management-dev-portal-signin]
 
-Entrez les informations d’identification d’un des utilisateurs dans votre annuaire Azure Active Directory, puis cliquez sur **Se connecter**.
+Entrez les informations d’identification hello de l’un des utilisateurs de hello dans Azure Active Directory, puis cliquez sur **connectez-vous**.
 
-![Se connecter][api-management-aad-signin]
+![de connexion][api-management-aad-signin]
 
-Un formulaire d’inscription peut vous être présenté si certaines informations supplémentaires sont requises. Renseignez le formulaire d’inscription, puis cliquez sur **S’inscrire**.
+Un formulaire d’inscription peut vous être présenté si certaines informations supplémentaires sont requises. Complétez le formulaire d’inscription de hello et cliquez sur **inscrire**.
 
 ![Inscription][api-management-complete-registration]
 
-Votre utilisateur est maintenant connecté au portail des développeurs pour votre instance de service Gestion des API.
+Votre utilisateur est maintenant connecté dans le portail des développeurs hello pour votre instance de service de gestion des API.
 
 ![Inscription terminée][api-management-registration-complete]
 
@@ -220,10 +220,10 @@ Votre utilisateur est maintenant connecté au portail des développeurs pour vot
 [api-management-groups]: ./media/api-management-howto-aad/api-management-groups.png
 [api-management-edit-group]: ./media/api-management-howto-aad/api-management-edit-group.png
 
-[How to add operations to an API]: api-management-howto-add-operations.md
-[How to add and publish a product]: api-management-howto-add-products.md
+[How tooadd operations tooan API]: api-management-howto-add-operations.md
+[How tooadd and publish a product]: api-management-howto-add-products.md
 [Monitoring and analytics]: api-management-monitoring.md
-[Add APIs to a product]: api-management-howto-add-products.md#add-apis
+[Add APIs tooa product]: api-management-howto-add-products.md#add-apis
 [Publish a product]: api-management-howto-add-products.md#publish-product
 [Get started with Azure API Management]: api-management-get-started.md
 [API Management policy reference]: api-management-policy-reference.md
@@ -232,13 +232,13 @@ Votre utilisateur est maintenant connecté au portail des développeurs pour vot
 
 [http://oauth.net/2/]: http://oauth.net/2/
 [WebApp-GraphAPI-DotNet]: https://github.com/AzureADSamples/WebApp-GraphAPI-DotNet
-[Accessing the Graph API]: http://msdn.microsoft.com/library/azure/dn132599.aspx#BKMK_Graph
+[Accessing hello Graph API]: http://msdn.microsoft.com/library/azure/dn132599.aspx#BKMK_Graph
 
 [Prerequisites]: #prerequisites
 [Configure an OAuth 2.0 authorization server in API Management]: #step1
-[Configure an API to use OAuth 2.0 user authorization]: #step2
-[Test the OAuth 2.0 user authorization in the Developer Portal]: #step3
+[Configure an API toouse OAuth 2.0 user authorization]: #step2
+[Test hello OAuth 2.0 user authorization in hello Developer Portal]: #step3
 [Next steps]: #next-steps
 
-[Log in to the Developer portal using an Azure Active Directory account]: #Log-in-to-the-Developer-portal-using-an-Azure-Active-Directory-account
+[Log in toohello Developer portal using an Azure Active Directory account]: #Log-in-to-the-Developer-portal-using-an-Azure-Active-Directory-account
 

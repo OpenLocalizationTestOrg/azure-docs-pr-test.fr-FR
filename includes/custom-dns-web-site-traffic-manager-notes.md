@@ -1,0 +1,2 @@
+Si vous n’avez pas déjà un profil Traffic Manager, utilisez les informations de hello dans [créer un profil Traffic Manager à l’aide de la création rapide](../articles/traffic-manager/traffic-manager-manage-profiles.md) toocreate une. Hello de note **. trafficmanager.net** nom de domaine associé à votre profil Traffic Manager, comme cela sera utilisée ultérieurement par les étapes ultérieures de ce document.
+

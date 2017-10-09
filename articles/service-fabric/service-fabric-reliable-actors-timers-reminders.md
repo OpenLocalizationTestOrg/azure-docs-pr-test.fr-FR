@@ -1,6 +1,6 @@
 ---
-title: Minuteries et rappels pour Reliable Actors | Microsoft Docs
-description: "Présentation des minuteries et rappels pour Service Fabric Reliable Actors."
+title: aaaReliable acteurs minuteries et rappels | Documents Microsoft
+description: "Introduction tootimers et des rappels auprès de l’infrastructure de Service Reliable Actors."
 services: service-fabric
 documentationcenter: .net
 author: vturecek
@@ -14,19 +14,19 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/29/2017
 ms.author: vturecek
-ms.openlocfilehash: 06b026ce06e0f16a77ac238de0af2263f272933c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c5116ec1923014e131130b9f4e86dd1e133bbf7e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="actor-timers-and-reminders"></a>Minuteries et rappels d’acteur
-Les acteurs peuvent planifier un travail régulier par eux-mêmes en inscrivant des minuteries ou des rappels. Cet article montre comment utiliser des minuteries et des rappels, puis explique les différences entre les deux.
+Les acteurs peuvent planifier un travail régulier par eux-mêmes en inscrivant des minuteries ou des rappels. Cet article explique comment toouse minuteries et rappels et explique les différences de hello entre eux.
 
 ## <a name="actor-timers"></a>Minuteries des acteurs
-Les minuteries des acteurs fournissent un wrapper simple autour de minuteries .NET ou Java pour veiller à ce que les méthodes de rappel respectent les garanties d’un accès concurrentiel en alternance fournies par le runtime Actors.
+Les minuteurs acteur fournissent un wrapper simple autour d’un tooensure du minuteur .NET ou Java que les méthodes de rappel hello respectent les garanties de concurrence activer hello hello acteurs runtime fournit.
 
-Les acteurs peuvent utiliser les méthodes `RegisterTimer` (C#) ou `registerTimer` (Java) et `UnregisterTimer` (C#) ou `unregisterTimer` (Java) sur leur classe de base pour inscrire et désinscrire leurs minuteries. L'exemple ci-dessous montre l'utilisation des API de minuterie. Les API sont très similaires à la minuterie .NET ou Java. Dans cet exemple, quand la minuterie arrive à son terme, le runtime Actors appelle la méthode `MoveObject` (C#) ou `moveObject` (Java). Le respect par la méthode de l’accès concurrentiel en alternance est garanti. Aucune autre méthode d’acteur ou aucun autre rappel de minuterie n’est donc en cours d’exécution avant la fin de ce rappel.
+Intervenants peuvent utiliser hello `RegisterTimer`(c#) ou `registerTimer`(Java) et `UnregisterTimer`(c#) ou `unregisterTimer`méthodes (Java) sur la base de leur classe tooregister et annuler l’inscription de leurs minuteurs. exemple Hello ci-dessous montre l’utilisation hello du minuteur d’API. Hello API sont très similaires toohello .NET timer ou un minuteur de Java. Dans cet exemple, lorsque le minuteur de hello arrive, hello acteurs runtime appellera hello `MoveObject`(c#) ou `moveObject`(méthode) (Java). méthode Hello est garantie concurrence toorespect hello activer. Aucune autre méthode d’acteur ou aucun autre rappel de minuterie n’est donc en cours d’exécution avant la fin de ce rappel.
 
 ```csharp
 class VisualObjectActor : Actor, IVisualObject
@@ -44,9 +44,9 @@ class VisualObjectActor : Actor, IVisualObject
 
         _updateTimer = RegisterTimer(
             MoveObject,                     // Callback method
-            null,                           // Parameter to pass to the callback method
-            TimeSpan.FromMilliseconds(15),  // Amount of time to delay before the callback is invoked
-            TimeSpan.FromMilliseconds(15)); // Time interval between invocations of the callback method
+            null,                           // Parameter toopass toohello callback method
+            TimeSpan.FromMilliseconds(15),  // Amount of time toodelay before hello callback is invoked
+            TimeSpan.FromMilliseconds(15)); // Time interval between invocations of hello callback method
 
         return base.OnActivateAsync();
     }
@@ -93,9 +93,9 @@ public class VisualObjectActorImpl extends FabricActor implements VisualObjectAc
                     this.registerTimer(
                             (o) -> this.moveObject(o),                        // Callback method
                             "moveObject",
-                            null,                                             // Parameter to pass to the callback method
-                            Duration.ofMillis(10),                            // Amount of time to delay before the callback is invoked
-                            Duration.ofMillis(timerIntervalInMilliSeconds));  // Time interval between invocations of the callback method
+                            null,                                             // Parameter toopass toohello callback method
+                            Duration.ofMillis(10),                            // Amount of time toodelay before hello callback is invoked
+                            Duration.ofMillis(timerIntervalInMilliSeconds));  // Time interval between invocations of hello callback method
                     return null;
                 });
     }
@@ -126,16 +126,16 @@ public class VisualObjectActorImpl extends FabricActor implements VisualObjectAc
 }
 ```
 
-La période suivante de la minuterie démarre après la fin du rappel. Cela implique que la minuterie s’arrête pendant l’exécution du rappel, puis démarre quand le rappel se termine.
+Hello prochaine période de minuterie de hello démarre après que le rappel de hello termine l’exécution. Cela implique ce minuteur hello est arrêté alors que le rappel de hello s’exécute et qu’il est démarré lorsque le rappel de hello se termine.
 
-Le runtime Actors enregistre les modifications apportées au Gestionnaire d’état de l’acteur à la fin du rappel. Si une erreur se produit lors de l'enregistrement de l'état, cet objet acteur sera désactivé et une nouvelle instance sera activée.
+Hello acteurs runtime enregistre les modifications apportées Gestionnaire d’état d’acteur toohello issue de rappel de hello. Si une erreur se produit dans l’enregistrement de l’état de hello, cet objet acteur sera désactivé et une nouvelle instance est activée.
 
-Toutes les minuteries sont arrêtées quand l’acteur est désactivé dans le cadre du nettoyage de la mémoire. Aucun rappel de minuterie n’est appelé après cela. En outre, le runtime Actors ne conserve aucune information concernant les minuteries qui étaient exécutées avant la désactivation. C'est à l'acteur d'inscrire toutes les minuteries dont il a besoin lors d'une réactivation ultérieure. Pour plus d’informations, consultez la section sur le [nettoyage de la mémoire d’acteur](service-fabric-reliable-actors-lifecycle.md).
+Toutes les minuteries sont arrêtés lors de l’acteur de hello est désactivé dans le cadre du garbage collection. Aucun rappel de minuterie n’est appelé après cela. En outre, hello acteurs runtime ne conserve pas toutes les informations à propos des minuteries hello en cours d’exécution avant la désactivation. C’est toohello acteur tooregister tous les minuteurs dont il a besoin lorsqu’il est réactivé Bonjour futures. Pour plus d’informations, consultez la section de hello sur [nettoyage acteur](service-fabric-reliable-actors-lifecycle.md).
 
 ## <a name="actor-reminders"></a>Rappels d’acteur
-Les rappels sont un mécanisme permettant de déclencher des rappels persistants sur un acteur à certaines heures. Leur fonctionnalité est semblable à celle des minuteries. Toutefois, contrairement aux minuteries, les rappels sont déclenchés en toutes circonstances jusqu’à ce que l’acteur les désinscrive ou qu’il soit supprimé explicitement. Plus précisément, les rappels sont déclenchés lors des désactivations d'acteur et des basculements car le runtime Actors conserve des informations sur les rappels de l'acteur.
+Les rappels sont un mécanisme tootrigger rappels persistants sur un acteur à certaines heures. Leur fonctionnalité est tootimers similaire. Mais contrairement aux minuteries, les rappels sont déclenchées en toutes circonstances jusqu'à ce que les acteur hello leur enregistrement explicitement ou acteur de hello est supprimé explicitement. Plus précisément, des rappels sont déclenchées sur les basculements et les désactivations acteur car hello acteurs runtime conserve les informations sur les rappels d’acteur hello.
 
-Pour inscrire un rappel, un acteur appelle la méthode `RegisterReminderAsync` fournie dans la classe de base, comme illustré dans l’exemple suivant :
+tooregister un rappel, un acteur appelle hello `RegisterReminderAsync` méthode fournie sur la classe de base hello, comme indiqué dans hello l’exemple suivant :
 
 ```csharp
 protected override async Task OnActivateAsync()
@@ -161,14 +161,14 @@ protected CompletableFuture onActivateAsync()
     ActorReminder reminderRegistration = this.registerReminderAsync(
             reminderName,
             state,
-            dueTime,    //The amount of time to delay before firing the reminder
-            period);    //The time interval between firing of reminders
+            dueTime,    //hello amount of time toodelay before firing hello reminder
+            period);    //hello time interval between firing of reminders
 }
 ```
 
-Dans cet exemple, `"Pay cell phone bill"` est le nom du rappel. Il s’agit d’une chaîne que l’acteur utilise pour identifier de façon unique un rappel. `BitConverter.GetBytes(amountInDollars)` (C#) est le contexte associé au rappel. Il est renvoyé à l’acteur en tant qu’argument vers le rappel, soit `IRemindable.ReceiveReminderAsync` (C#) ou `Remindable.receiveReminderAsync` (Java).
+Dans cet exemple, `"Pay cell phone bill"` est le nom de rappel hello. Il s’agit d’une chaîne qui hello acteur utilise toouniquely identifier un rappel. `BitConverter.GetBytes(amountInDollars)`(C#) est le contexte hello associé au rappel de hello. Il sera passé toohello arrière acteur comme un rappel de rappel toohello argument, c'est-à-dire `IRemindable.ReceiveReminderAsync`(c#) ou `Remindable.receiveReminderAsync`(Java).
 
-Les acteurs qui utilisent des rappels doivent implémenter l’interface `IRemindable` , comme illustré dans l’exemple ci-dessous.
+Les acteurs qui utilisent des rappels doivent implémenter hello `IRemindable` d’interface, comme indiqué dans l’exemple hello ci-dessous.
 
 ```csharp
 public class ToDoListActor : Actor, IToDoListActor, IRemindable
@@ -209,11 +209,11 @@ public class ToDoListActorImpl extends FabricActor implements ToDoListActor, Rem
 
 ```
 
-Quand un rappel est déclenché, le runtime Reliable Actors appelle la méthode `ReceiveReminderAsync` (C#) ou `receiveReminderAsync` (Java) sur l’acteur. Un acteur peut inscrire plusieurs rappels, et la méthode `ReceiveReminderAsync` (C#) ou `receiveReminderAsync` (Java) est appelée chaque fois qu’un de ces rappels est déclenché. L’acteur peut ensuite utiliser le nom du rappel qui est envoyé à la méthode `ReceiveReminderAsync` (C#) ou `receiveReminderAsync` (Java) pour identifier le rappel qui a été déclenché.
+Lorsqu’un rappel est déclenché, hello Reliable Actors runtime appelle hello `ReceiveReminderAsync`(c#) ou `receiveReminderAsync`(méthode) (Java) sur hello acteur. Un acteur peut enregistrer des rappels multiples et hello `ReceiveReminderAsync`(c#) ou `receiveReminderAsync`(méthode) (Java) est appelé lorsque un de ces rappels est déclenché. acteur de Hello peut utiliser le nom de rappel de hello qui est passé dans toohello `ReceiveReminderAsync`(c#) ou `receiveReminderAsync`toofigure de méthode (Java) à quels rappel a été déclenchée.
 
-Le runtime Actors enregistre l’état de l’acteur à la fin de l’appel `ReceiveReminderAsync` (C#) ou `receiveReminderAsync` (Java). Si une erreur se produit lors de l'enregistrement de l'état, cet objet acteur sera désactivé et une nouvelle instance sera activée.
+état d’acteur hello lorsque hello enregistre Hello acteurs runtime `ReceiveReminderAsync`(c#) ou `receiveReminderAsync`(Java) l’appel. Si une erreur se produit dans l’enregistrement de l’état de hello, cet objet acteur sera désactivé et une nouvelle instance est activée.
 
-Pour désinscrire un rappel, un acteur appelle la méthode `UnregisterReminderAsync` (C#) ou `unregisterReminderAsync` (Java), comme l’illustre l’exemple ci-dessous.
+toounregister un rappel, un acteur appelle hello `UnregisterReminderAsync`(c#) ou `unregisterReminderAsync`(méthode) (Java), comme indiqué dans les exemples hello ci-dessous.
 
 ```csharp
 IActorReminder reminder = GetReminder("Pay cell phone bill");
@@ -224,7 +224,7 @@ ActorReminder reminder = getReminder("Pay cell phone bill");
 CompletableFuture reminderUnregistration = unregisterReminderAsync(reminder);
 ```
 
-Comme indiqué ci-dessus, la méthode `UnregisterReminderAsync`(C#) ou `unregisterReminderAsync`(Java) accepte une interface `IActorReminder` (C#) ou `ActorReminder` (Java). La classe de base de l’acteur prend en charge une méthode `GetReminder` (C#) ou `getReminder` (Java) qui peut être utilisée pour récupérer l’interface `IActorReminder` (C#) ou `ActorReminder` (Java) en passant le nom du rappel. C’est pratique, car l’acteur n’a pas besoin de conserver l’interface `IActorReminder` (C#) ou `ActorReminder` (Java) renvoyée par l’appel de la méthode `RegisterReminder` (C#) ou `registerReminder` (Java).
+Comme indiqué ci-dessus, hello `UnregisterReminderAsync`(c#) ou `unregisterReminderAsync`(Java) méthode accepte un `IActorReminder`(c#) ou `ActorReminder`interface (Java). Hello prend en charge de la classe de base acteur un `GetReminder`(c#) ou `getReminder`(méthode) (Java) qui peut être utilisés tooretrieve hello `IActorReminder`(c#) ou `ActorReminder`interface (Java) en passant dans le nom de rappel hello. Ceci est pratique, car l’acteur de hello n’a pas besoin toopersist hello `IActorReminder`(c#) ou `ActorReminder`interface (Java) qui a été retourné à partir de hello `RegisterReminder`(c#) ou `registerReminder`appel de méthode (Java).
 
 ## <a name="next-steps"></a>Étapes suivantes
 En savoir plus sur les événements acteurs fiables et la réentrance :

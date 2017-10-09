@@ -1,27 +1,27 @@
-#### <a name="configure-the-ios-project-in-xamarin-studio"></a>Configurer le projet iOS dans Xamarin Studio
-1. Dans Xamarin.Studio, ouvrez **Info.plist**, puis mettez à jour la valeur du champ **Bundle Identifier (Identificateur d’offre groupée)** avec l’ID d’offre groupée que vous avez créé précédemment avec votre nouvel ID d’application.
+#### <a name="configure-hello-ios-project-in-xamarin-studio"></a>Configurer le projet d’iOS hello dans Xamarin Studio
+1. Dans Xamarin.Studio, ouvrez **Info.plist**et la mise à jour hello **identificateur de lot** avec hello regrouper ID que vous avez créé précédemment avec votre nouvel ID d’application.
 
     ![](./media/app-service-mobile-xamarin-ios-configure-project/mobile-services-ios-push-21.png)
-2. Faites défiler l’écran jusqu’à **Background Modes (Modes d’arrière-plan)**. Cochez les cases **Enable Background Modes (Activer les modes d’arrière-plan)** et **Remote notifications (Notifications distantes)**.
+2. Faites défiler la liste trop**Modes d’arrière-plan**. Sélectionnez hello **activer les Modes d’arrière-plan** boîte et hello **des notifications à distance** boîte.
 
     ![](./media/app-service-mobile-xamarin-ios-configure-project/mobile-services-ios-push-22.png)
-3. Double-cliquez sur votre projet dans Solution Panel (Panneau de solutions) pour ouvrir **Project Options (Options de projet)**.
-4. Sous **Build (Build)**, choisissez **iOS Bundle Signing (Signature d’offre groupée iOS)**, puis sélectionnez le profil d’identité et d’approvisionnement correspondant que vous venez de configurer pour ce projet.
+3. Double-cliquez sur votre projet dans tooopen du Panneau de configuration de Solution hello **Options du projet**.
+4. Sous **générer**, choisissez **signature d’offre groupée iOS**et sélectionnez hello identité correspondante et profil de configuration vous venez de définir pour ce projet.
 
    ![](./media/app-service-mobile-xamarin-ios-configure-project/mobile-services-ios-push-20.png)
 
-   Cela permet de vérifier que le projet utilise le nouveau profil pour la signature du code. Pour obtenir la documentation officielle de l’approvisionnement des appareils Xamarin, consultez la page [Approvisionnement des appareils Xamarin].
+   Cela garantit que ce projet hello utilise le nouveau profil de hello pour la signature de code. Hello officiel Xamarin unité documentation de configuration, consultez [Xamarin configuration].
 
-#### <a name="configure-the-ios-project-in-visual-studio"></a>Configurer le projet iOS dans Visual Studio
-1. Dans Visual Studio, cliquez avec le bouton droit sur le projet, puis cliquez sur **Propriétés**.
-2. Dans les pages de propriétés, cliquez sur l’onglet **iOS Application**, puis mettez à jour la valeur de la zone **Identifier** avec l’ID que vous avez créé précédemment.
+#### <a name="configure-hello-ios-project-in-visual-studio"></a>Configurer le projet d’iOS hello dans Visual Studio
+1. Dans Visual Studio, cliquez sur le projet de hello, puis cliquez sur **propriétés**.
+2. Dans les pages de propriétés de hello, cliquez sur hello **iOS Application** onglet et mise à jour hello **identificateur** avec l’ID de hello que vous avez créé précédemment.
 
     ![](./media/app-service-mobile-xamarin-ios-configure-project/mobile-services-ios-push-23.png)
-3. Dans l’onglet **iOS Bundle Signing (Signature d’offre groupée iOS)**, sélectionnez le profil d’identité et d’approvisionnement correspondant que vous venez de configurer pour ce projet.
+3. Bonjour **signature d’offre groupée iOS** sous l’onglet identité correspondante de sélection hello et de configuration de profil vous venez de définir pour ce projet.
 
     ![](./media/app-service-mobile-xamarin-ios-configure-project/mobile-services-ios-push-24.png)
 
-    Cela permet de vérifier que le projet utilise le nouveau profil pour la signature du code. Pour obtenir la documentation officielle de l’approvisionnement des appareils Xamarin, consultez la page [Approvisionnement des appareils Xamarin].
-4. Double-cliquez sur Info.plist pour l’ouvrir, puis activez **RemoteNotifications (Notifications distantes)** sous **Modes d’arrière-plan**.
+    Cela garantit que ce projet hello utilise le nouveau profil de hello pour la signature de code. Hello officiel Xamarin unité documentation de configuration, consultez [Xamarin configuration].
+4. Double-cliquez sur le fichier Info.plist tooopen, puis activez **RemoteNotifications** sous **Modes d’arrière-plan**.
 
-[Approvisionnement des appareils Xamarin]: http://developer.xamarin.com/guides/ios/getting_started/installation/device_provisioning/
+[Xamarin configuration]: http://developer.xamarin.com/guides/ios/getting_started/installation/device_provisioning/

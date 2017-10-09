@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory avec Kantega SSO pour FishEye/Crucible | Microsoft Docs"
-description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et Kantega SSO pour FishEye/Crucible."
+description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et Kantega SSO pour FishEye/creuset."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,117 +13,117 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: jeedes
-ms.openlocfilehash: 9eaa2ec661a3488b0bef1f6b7cc7a82290720054
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: fdd68b5e90c3e2893887650735429a33e21ffa68
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-kantega-sso-for-fisheyecrucible"></a>Didacticiel : Intégration d’Azure Active Directory avec Kantega SSO pour FishEye/Crucible
 
-Ce didacticiel explique comment intégrer Kantega SSO pour FishEye/Crucible avec Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous apprendrez comment toointegrate Kantega SSO pour FishEye/creuset avec Azure Active Directory (Azure AD).
 
-L’intégration de Kantega SSO pour FishEye/Crucible avec Azure AD offre les avantages suivants :
+Intégration Kantega SSO pour FishEye/creuset à Azure AD offre hello avantages suivants :
 
-- Vous pouvez contrôler dans Azure AD qui a accès à Kantega SSO pour FishEye/Crucible.
-- Vous pouvez permettre à vos utilisateurs d’être automatiquement connectés à Kantega SSO pour FishEye/Crucible (authentification unique) avec leur comptes Azure AD.
-- Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure.
+- Vous pouvez contrôler dans Azure AD qui a accès tooKantega SSO pour FishEye/creuset
+- Vous pouvez activer vos utilisateurs tooautomatically get connecté tooKantega SSO pour FishEye/creuset (Single Sign-On) avec leurs comptes Azure AD
+- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure
 
-Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
+Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
-## <a name="prerequisites"></a>Conditions préalables
+## <a name="prerequisites"></a>Composants requis
 
-Pour configurer l’intégration d’Azure AD avec Kantega SSO pour FishEye/Crucible, vous avez besoin des éléments suivants :
+tooconfigure intégration d’Azure AD avec Kantega SSO pour FishEye/creuset, vous devez hello éléments suivants :
 
 - Un abonnement Azure AD
 - Un abonnement Kantega SSO pour FishEye/Crucible pour lequel l’authentification unique est activée
 
 > [!NOTE]
-> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
+> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
 
-Vous devez en outre suivre les recommandations ci-dessous :
+tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
 
-1. Ajout de Kantega SSO pour FishEye/Crucible à partir de la galerie
+1. Ajout de Kantega SSO pour FishEye/creuset à partir de la galerie de hello
 2. Configuration et test de l’authentification unique Azure AD
 
-## <a name="adding-kantega-sso-for-fisheyecrucible-from-the-gallery"></a>Ajout de Kantega SSO pour FishEye/Crucible à partir de la galerie
-Pour configurer l’intégration de Kantega SSO pour FishEye/Crucible dans Azure AD, vous devez ajouter Kantega SSO pour FishEye/Crucible à partir de la galerie à la liste de vos applications SaaS managées.
+## <a name="adding-kantega-sso-for-fisheyecrucible-from-hello-gallery"></a>Ajout de Kantega SSO pour FishEye/creuset à partir de la galerie de hello
+intégration de hello tooconfigure de Kantega SSO pour FishEye/creuset dans Azure AD, vous devez tooadd Kantega SSO pour FishEye/creuset à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
 
-**Pour ajouter Kantega SSO pour FishEye/Crucible à partir de la galerie, procédez comme suit :**
+**tooadd Kantega SSO pour FishEye/creuset à partir de la galerie hello, procédez hello comme suit :**
 
-1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
+1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
 
     ![Active Directory][1]
 
-2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
+2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
 
     ![Applications][2]
     
-3. Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
+3. tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.
 
     ![Applications][3]
 
-4. Dans la zone de recherche, tapez **Kantega SSO pour FishEye/Crucible**.
+4. Dans la zone de recherche de hello, tapez **Kantega SSO pour FishEye/creuset**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-kantegassoforfisheyecrucible-tutorial/tutorial_kantegassoforfisheyecrucible_search.png)
 
-5. Dans le volet de résultats, sélectionnez **Kantega SSO pour FishEye/Crucible**, puis cliquez sur le bouton **Ajouter** pour ajouter l’application.
+5. Dans le volet de résultats hello, sélectionnez **Kantega SSO pour FishEye/creuset**, puis cliquez sur **ajouter** bouton application hello de tooadd.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-kantegassoforfisheyecrucible-tutorial/tutorial_kantegassoforfisheyecrucible_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configuration et test de l’authentification unique Azure AD
 Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec Kantega SSO pour FishEye/Crucible sur un utilisateur de test nommé « Britta Simon ».
 
-Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur équivalent à l’utilisateur Azure AD dans Kantega SSO pour FishEye/Crucible. En d’autres termes, une relation entre un utilisateur Azure AD et un utilisateur Kantega SSO pour FishEye/Crucible associé doit être établie.
+Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur équivalent hello Kantega SSO pour FishEye/creuset est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans Kantega SSO pour FishEye/creuset doit toobe établie.
 
-Dans Kantega SSO pour FishEye/Crucible, affectez la valeur du **nom d’utilisateur** dans Azure AD comme valeur du **Username** pour établir la relation.
+Dans Kantega SSO pour FishEye/creuset, affecter la valeur de hello de hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.
 
-Pour configurer et tester l’authentification unique Azure AD avec Kantega SSO pour FishEye/Crucible, vous devez suivre les indications des sections suivantes :
+tooconfigure et tester Azure AD l’authentification unique avec Kantega SSO FishEye/creuset, vous devez hello toocomplete suivant des blocs de construction :
 
-1. **[Configuration de l’authentification unique Azure AD](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
-2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
-3. **[Création d’un utilisateur de test Kantega SSO pour FishEye/Crucible](#creating-a-kantega-sso-for-fisheyecrucible-test-user)** pour avoir un équivalent de Britta Simon dans Kantega SSO pour FishEye/Crucible qui soit lié à la représentation Azure AD associée.
-4. **[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
-5. **[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.
+1. **[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
+2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
+3. **[Création d’un Kantega SSO pour utilisateur de test FishEye/creuset](#creating-a-kantega-sso-for-fisheyecrucible-test-user)**  -toohave un équivalent de Britta Simon dans Kantega SSO pour FishEye/creuset est la représentation sous forme de toohello lié Azure AD de l’utilisateur.
+4. **[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
+5. **[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configuration de l’authentification unique Azure AD
 
-Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application Kantega SSO pour FishEye/Crucible.
+Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre Kantega SSO pour les applications FishEye/creuset.
 
-**Pour configurer l’authentification unique Azure AD avec Kantega SSO pour FishEye/Crucible, procédez comme suit :**
+**tooconfigure Azure AD l’authentification unique avec Kantega SSO pour FishEye/creuset, effectuez hello comme suit :**
 
-1. Sur le portail Azure, dans la page d’intégration de l’application **Kantega SSO pour FishEye/Crucible**, cliquez sur **Authentification unique**.
+1. Bonjour portail Azure, sur hello **Kantega SSO pour FishEye/creuset** page d’intégration d’application, cliquez sur **l’authentification unique**.
 
     ![Configurer l’authentification unique][4]
 
-2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
+2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
  
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforfisheyecrucible-tutorial/tutorial_kantegassoforfisheyecrucible_samlbase.png)
 
-3. En mode initié **IDP**, dans la section **Domaine et URL Kantega SSO pour FishEye/Crucible**, procédez comme suit :
+3. Dans **IDP** initiée par le mode, hello **Kantega SSO pour FishEye/creuset domaine et les URL** section effectuer hello suivant l’étape :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforfisheyecrucible-tutorial/tutorial_kantegassoforfisheyecrucible_url1.png)
 
-    a. Dans la zone de texte **Identificateur**, tapez une URL au format suivant : `https://<server-base-url>/plugins/servlet/no.kantega.saml/sp/<uniqueid>/login`
+    a. Bonjour **identificateur** zone de texte, tapez une URL à l’aide de hello modèle :`https://<server-base-url>/plugins/servlet/no.kantega.saml/sp/<uniqueid>/login`
 
-    b. Dans la zone de texte **URL de réponse** , tapez une URL au format suivant : `https://<server-base-url>/plugins/servlet/no.kantega.saml/sp/<uniqueid>/login`
+    b. Bonjour **URL de réponse** zone de texte, tapez une URL à l’aide de hello modèle :`https://<server-base-url>/plugins/servlet/no.kantega.saml/sp/<uniqueid>/login`
 
-4. En mode initié **SP**, activez **Afficher les paramètres d’URL avancés**, puis procédez comme suit :
+4. Dans **SP** mode initié, cocher **afficher les paramètres d’URL avancés** et effectuer hello suivant l’étape :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforfisheyecrucible-tutorial/tutorial_kantegassoforfisheyecrucible_url2.png)
 
-    Dans la zone de texte **URL de connexion**, tapez une URL au format suivant : `https://<server-base-url>/plugins/servlet/no.kantega.saml/sp/<uniqueid>/login`
+    Bonjour **URL de connexion** zone de texte, tapez une URL à l’aide de hello modèle :`https://<server-base-url>/plugins/servlet/no.kantega.saml/sp/<uniqueid>/login`
      
     > [!NOTE] 
-    > Il ne s’agit pas de valeurs réelles. Mettez à jour ces valeurs avec l’identificateur, l’URL de réponse et l’URL de connexion réels. Ces valeurs sont reçues durant la configuration du plug-in FishEye/Crucible qui est décrite plus loin dans le didacticiel.
+    > Il ne s’agit pas de valeurs réelles. Mettre à jour ces valeurs avec hello réel identificateur, URL de réponse et URL de connexion. Ces valeurs sont reçues lors de la configuration de hello du plug-in FishEye/creuset qui est expliquée plus loin dans le didacticiel de hello.
 
-5. Dans la section **Certificat de signature SAML**, cliquez sur **Métadonnées XML** puis enregistrez le fichier de métadonnées sur votre ordinateur.
+5. Sur hello **le certificat de signature SAML** , cliquez sur **Metadata XML** , puis enregistrez le fichier de métadonnées hello sur votre ordinateur.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforfisheyecrucible-tutorial/tutorial_kantegassoforfisheyecrucible_certificate.png) 
 
@@ -131,9 +131,9 @@ Dans cette section, vous allez activer l’authentification unique Azure AD dans
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforfisheyecrucible-tutorial/tutorial_general_400.png)
     
-7. Dans une autre fenêtre de navigateur web, connectez-vous à votre serveur local FishEye/Crucible en tant qu’administrateur.
+7. Dans une fenêtre de navigateur web, connectez-vous tooyour FishEye/creuset sur le serveur local en tant qu’administrateur.
 
-8. Pointez sur le roue dentée, puis cliquez sur **Modules complémentaires**.
+8. Pointez sur représentant une roue dentée et cliquez sur hello **modules complémentaires**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforfisheyecrucible-tutorial/addon1.png)
 
@@ -141,15 +141,15 @@ Dans cette section, vous allez activer l’authentification unique Azure AD dans
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforfisheyecrucible-tutorial/add-on2.png)
 
-10. Recherchez **Kantega SSO pour Crucible**, puis cliquez sur le bouton **Installer** pour installer le nouveau plug-in SAML.
+10. Recherche **Kantega SSO pour creuset** et cliquez sur **installer** bouton tooinstall hello nouveau plug-in SAML.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforfisheyecrucible-tutorial/addon2.png)
 
-11. L’installation du plug-in démarre. 
+11. installation du plug-in Hello démarre. 
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforfisheyecrucible-tutorial/addon33.png)
 
-12. Une fois l’installation terminée. Cliquez sur **Fermer**.
+12. Une fois l’installation de hello est terminée. Cliquez sur **Fermer**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforfisheyecrucible-tutorial/addon34.png)
 
@@ -157,11 +157,11 @@ Dans cette section, vous allez activer l’authentification unique Azure AD dans
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforfisheyecrucible-tutorial/addon35.png)
 
-14. Cliquez sur **Configurer** pour configurer le nouveau plug-in.    
+14. Cliquez sur **configurer** tooconfigure hello nouveau plug-in.  
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforfisheyecrucible-tutorial/addon3.png)
 
-15. Dans la section **SAML**. Dans le menu déroulant **Ajouter le fournisseur d’identité**, sélectionnez **Azure Active Directory (Azure AD)**.
+15. Bonjour **SAML** section. Sélectionnez **Azure Active Directory (Azure AD)** de hello **ajouter le fournisseur d’identité** liste déroulante.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforfisheyecrucible-tutorial/addon4.png)
 
@@ -169,15 +169,15 @@ Dans cette section, vous allez activer l’authentification unique Azure AD dans
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforfisheyecrucible-tutorial/addon5.png)
 
-17. Dans la section **Propriétés de l’application**, procédez comme suit :
+17. Sur hello **propriétés de l’application** section, procédez comme suit :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforfisheyecrucible-tutorial/addon6.png)
 
-    a. Copiez la valeur **URI ID d'application** et utilisez-la en tant que **Identifier, Reply URL, and Sign-On URL** (Identificateur, URL de réponse et URL de connexion) dans la section **Domaine et URL Kantega SSO pour FishEye/Crucible** du portail Azure.
+    a. Hello de copie **URI ID d’application** valeur et l’utiliser en tant que **identificateur, les URL de réponse et les URL de connexion** sur hello **Kantega SSO pour FishEye/creuset domaine et les URL** section dans le portail Azure.
 
     b. Cliquez sur **Suivant**.
 
-18. Dans la section **Metadata import** (Importation des métadonnées), procédez comme suit :
+18. Sur hello **importation de métadonnées** section, procédez comme suit :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforfisheyecrucible-tutorial/addon7.png)
 
@@ -185,23 +185,23 @@ Dans cette section, vous allez activer l’authentification unique Azure AD dans
 
     b. Cliquez sur **Suivant**.
 
-19. Dans la section **Name and SSO location** (Nom et emplacement de l’authentification unique), procédez comme suit :
+19. Sur hello **nom et l’authentification unique emplacement** section, procédez comme suit :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforfisheyecrucible-tutorial/addon8.png)
 
-    a. Ajoutez le nom du fournisseur d’identité dans la zone de texte **Identity provider name** (Nom du fournisseur d’identité) (par exemple, Azure AD).
+    a. Ajoutez le nom du fournisseur d’identité de hello dans **nom de fournisseur d’identité** zone de texte (par exemple, Azure AD).
 
     b. Cliquez sur **Suivant**.
 
-20. Vérifiez le certificat de signature, puis cliquez sur **Suivant**.  
+20. Vérifier le certificat de signature hello et cliquez sur **suivant**.    
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforfisheyecrucible-tutorial/addon9.png)
 
-21. Dans la section **FishEye user accounts** (Comptes d’utilisateur FishEye), procédez comme suit :
+21. Sur hello **des comptes d’utilisateur déforment** section, procédez comme suit :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforfisheyecrucible-tutorial/addon10.png)
 
-    a. Sélectionnez **créer des utilisateurs dans l’annuaire interne de FishEye si nécessaire** et entrez le nom du groupe approprié pour les utilisateurs (peut être non plusieurs. groupes séparés par des virgules).
+    a. Sélectionnez **créer des utilisateurs dans l’annuaire interne de FishEye si nécessaire** et entrez le nom de hello approprié du groupe de hello pour les utilisateurs (peut être non plusieurs. groupes séparés par des virgules).
 
     b. Cliquez sur **Suivant**.
 
@@ -209,59 +209,59 @@ Dans cette section, vous allez activer l’authentification unique Azure AD dans
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforfisheyecrucible-tutorial/addon11.png)
 
-23. Dans la section **Known domains for Azure AD** (Domaines connus pour Azure AD), procédez comme suit : 
+23. Sur hello **connu des domaines pour Azure AD** section, procédez comme suit :   
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforfisheyecrucible-tutorial/addon12.png)
 
-    a. Sélectionnez **Known domains** (Domaines connus) dans le volet gauche de la page.
+    a. Sélectionnez **connu domaines** à partir du Panneau de gauche hello de page de hello.
 
-    b. Entrez le nom de domaine dans la zone de texte **Known domains** (Domaines connus).
+    b. Entrez le nom de domaine Bonjour **connu domaines** zone de texte.
 
     c. Cliquez sur **Enregistrer**.  
 
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
 
 ### <a name="creating-an-azure-ad-test-user"></a>Création d’un utilisateur de test Azure AD
-L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
+objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
 
 ![Créer un utilisateur Azure AD][100]
 
-**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
+**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
 
-1. Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.
+1. Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-kantegassoforfisheyecrucible-tutorial/create_aaduser_01.png) 
 
-2. Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.
+2. liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-kantegassoforfisheyecrucible-tutorial/create_aaduser_02.png) 
 
-3. Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.
+3. tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-kantegassoforfisheyecrucible-tutorial/create_aaduser_03.png) 
 
-4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
+4. Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-kantegassoforfisheyecrucible-tutorial/create_aaduser_04.png) 
 
-    a. Dans la zone de texte **Nom**, entrez **BrittaSimon**.
+    a. Bonjour **nom** zone de texte, type **BrittaSimon**.
 
-    b. Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.
+    b. Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.
 
-    c. Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.
+    c. Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.
 
     d. Cliquez sur **Create**.
  
 ### <a name="creating-a-kantega-sso-for-fisheyecrucible-test-user"></a>Création d’un utilisateur de test Kantega SSO pour FishEye/Crucible
 
-Pour permettre aux utilisateurs Azure AD de se connecter à FishEye/Crucible, vous devez les approvisionner dans FishEye/Crucible. Dans Kantega SSO pour FishEye/Crucible, cet approvisionnement est une tâche manuelle.
+tooenable Azure AD les utilisateurs toolog dans tooFishEye/creuset, vous devez les configurer dans FishEye/creuset. Dans Kantega SSO pour FishEye/Crucible, cet approvisionnement est une tâche manuelle.
 
-**Pour approvisionner un compte d’utilisateur, procédez comme suit :**
+**tooprovision un compte d’utilisateur, effectuez hello comme suit :**
 
-1. Connectez-vous à votre serveur local Crucible en tant qu’administrateur.
+1. Ouvrez une session dans tooyour creuset sur le serveur local en tant qu’administrateur.
 
-2. Pointez sur le roue dentée, puis cliquez sur **Users** (Utilisateurs).
+2. Pointez sur représentant une roue dentée et cliquez sur hello **utilisateurs**.
 
     ![Ajouter un employé](./media/active-directory-saas-kantegassoforfisheyecrucible-tutorial/user1.png) 
 
@@ -269,39 +269,39 @@ Pour permettre aux utilisateurs Azure AD de se connecter à FishEye/Crucible, vo
 
     ![Ajouter un employé](./media/active-directory-saas-kantegassoforfisheyecrucible-tutorial/user2.png)
 
-4. Dans la page de boîte de dialogue **Add New User** (Ajouter un utilisateur), procédez comme suit :
+4. Sur hello **ajouter un nouvel utilisateur** boîte de dialogue de page, effectuer hello comme suit :
 
     ![Ajouter un employé](./media/active-directory-saas-kantegassoforfisheyecrucible-tutorial/user3.png) 
 
-    a. Dans la zone de texte **Username** (Nom d’utilisateur), tapez l’e-mail d’un utilisateur, par exemple, Brittasimon@contoso.com.
+    a. Bonjour **nom d’utilisateur** par courrier électronique de type hello d’utilisateur de zone de texte, comme Brittasimon@contoso.com.
     
-    b. Dans la zone de texte **Display Name** (Nom d’affichage), tapez le nom d’affichage de l’utilisateur, par exemple, Britta Simon.
+    b. Bonjour **le nom complet** zone de texte, nom complet du type d’utilisateur hello comme Britta Simon.
     
-    c. Dans la zone de texte **Email address** (Adresse e-mail), tapez l’adresse e-mail d’un utilisateur, par exemple, Brittasimon@contoso.com.
+    c. Bonjour **adresse de messagerie** adresse de messagerie de type hello d’utilisateur de zone de texte, comme Brittasimon@contoso.com.
 
-    d. Dans la zone de texte **Password** (Mot de passe), tapez le mot de passe de l’utilisateur.  
+    d. Bonjour **mot de passe** zone de texte, un mot de passe hello type d’utilisateur.  
 
-    e. Dans la zone de texte **Confirm Password** (Confirmer le mot de passe), entrez à nouveau le mot de passe de l’utilisateur.
+    e. Bonjour **confirmer le mot de passe** zone de texte, entrez à nouveau hello mot de passe de l’utilisateur.
 
     f. Cliquez sur **Add**.   
 
-### <a name="assigning-the-azure-ad-test-user"></a>Affectation de l’utilisateur de test Azure AD
+### <a name="assigning-hello-azure-ad-test-user"></a>Affectation d’utilisateur de test hello Azure AD
 
-Dans cette section, vous permettez à Britta Simon d’utiliser l’authentification unique Azure en lui accordant l’accès à Kantega SSO pour FishEye/Crucible.
+Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooKantega SSO pour FishEye/creuset.
 
 ![Affecter des utilisateurs][200] 
 
-**Pour affecter Britta Simon à Kantega SSO pour FishEye/Crucible, procédez comme suit :**
+**tooassign Britta Simon tooKantega SSO pour FishEye/creuset, effectuez hello comme suit :**
 
-1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
+1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications, sélectionnez **Kantega SSO pour FishEye/Crucible**.
+2. Dans la liste des applications hello, sélectionnez **Kantega SSO pour FishEye/creuset**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-kantegassoforfisheyecrucible-tutorial/tutorial_kantegassoforfisheyecrucible_app.png) 
 
-3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
+3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
 
     ![Affecter des utilisateurs][202] 
 
@@ -309,7 +309,7 @@ Dans cette section, vous permettez à Britta Simon d’utiliser l’authentifica
 
     ![Affecter des utilisateurs][203]
 
-5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
+5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -317,14 +317,14 @@ Dans cette section, vous permettez à Britta Simon d’utiliser l’authentifica
     
 ### <a name="testing-single-sign-on"></a>Test de l’authentification unique
 
-Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.
+Dans cette section, vous tester votre configuration Azure AD unique de session à l’aide de hello panneau d’accès.
 
-Lorsque vous cliquez sur la vignette Kantega SSO pour FishEye/Crucible dans le panneau d’accès, vous devez être automatiquement connecté à votre application Kantega SSO pour FishEye/Crucible.
-Pour plus d’informations sur le panneau d’accès, consultez [Présentation du panneau d’accès](active-directory-saas-access-panel-introduction.md). 
+Lorsque vous cliquez sur hello Kantega SSO pour vignette FishEye/creuset Bonjour volet d’accès, vous devez obtenir automatiquement signé sur tooyour Kantega SSO pour l’application de FishEye/creuset.
+Pour plus d’informations sur le volet d’accès, consultez [Introduction toohello volet d’accès](active-directory-saas-access-panel-introduction.md). 
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 

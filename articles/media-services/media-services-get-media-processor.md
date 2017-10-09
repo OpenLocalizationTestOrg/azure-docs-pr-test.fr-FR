@@ -1,6 +1,6 @@
 ---
-title: "Création d’un processeur multimédia à l’aide du Kit de développement logiciel Azure Media Services pour .NET | Microsoft Docs"
-description: "Apprenez à créer un composant processeur multimédia pour encoder, chiffrer ou déchiffrer un contenu multimédia, ou convertir son format pour Azure Media Services. Les exemples de code sont écrits en C# et utilisent le Kit de développement logiciel (SDK) Media Services pour .NET."
+title: "tooCreate aaaHow un processeur multimédia à l’aide hello Azure Media Services SDK pour .NET | Documents Microsoft"
+description: "Découvrez comment toocreate un tooencode de composant de processeur multimédia, convertir le format de chiffrer ou déchiffrer le contenu multimédia pour Azure Media Services. Exemples de code sont écrits en c# et utilisent hello Media Services SDK pour .NET."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/31/2017
 ms.author: juliako
-ms.openlocfilehash: c2cbe41b71afa8acc184f9d7f4cfe94686de783e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f133565cc1321d366013f17302adc8bc7585b251
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="how-to-get-a-media-processor-instance"></a>Obtention d’une instance de processeur multimédia
 > [!div class="op_single_selector"]
@@ -28,18 +28,18 @@ ms.lasthandoff: 08/29/2017
 > 
 
 ## <a name="overview"></a>Vue d'ensemble
-Dans Media Services, un processeur multimédia est un composant qui gère une tâche de traitement spécifique, telle que l’encodage, la conversion de format, le chiffrement ou le déchiffrement de contenu multimédia. Le plus souvent, vous devez créer un processeur multimédia lorsque vous créez une tâche visant à encoder, à chiffrer ou à convertir le format du contenu multimédia.
+Dans Media Services, un processeur multimédia est un composant qui gère une tâche de traitement spécifique, telle que l’encodage, la conversion de format, le chiffrement ou le déchiffrement de contenu multimédia. Vous généralement créez un processeur multimédia lorsque vous créez une tâche tooencode, chiffrez ou convertissez le format hello du contenu multimédia.
 
 ## <a name="azure-media-processors"></a>Processeurs multimédias Azure 
 
-La rubrique suivante fournit une liste de processeurs multimédias :
+Hello rubrique suivante fournit des listes de processeurs multimédias :
 
 * [Processeurs multimédias d’encodage](scenarios-and-availability.md#encoding-media-processors)
 * [Processeurs multimédias Analytics](scenarios-and-availability.md#analytics-media-processors)
 
 ## <a name="get-media-processor"></a>Obtention d'un processeur multimédia
 
-La méthode suivante montre comment obtenir une instance de processeur multimédia. L’exemple de code implique l’utilisation d’une variable au niveau du module, nommée **_context**, pour conserver une référence au contexte, tel que décrit dans la section [Comment : se connecter à Media Services par programmation](media-services-use-aad-auth-to-access-ams-api.md).
+Hello suivant de méthode montre comment tooget une instance de processeur multimédia. exemple de code Hello suppose l’utilisation de hello d’une variable au niveau du module nommée **contexte _de_données** tooreference contexte hello du serveur comme décrit dans la section de hello [Comment : se connecter tooMedia Services par programmation](media-services-use-aad-auth-to-access-ams-api.md).
 
     private static IMediaProcessor GetLatestMediaProcessorByName(string mediaProcessorName)
     {
@@ -60,5 +60,5 @@ La méthode suivante montre comment obtenir une instance de processeur multiméd
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
 ## <a name="next-steps"></a>Étapes suivantes
-Maintenant que vous savez comment obtenir une instance de processeur multimédia, consultez la rubrique [Encodage d’un élément multimédia](media-services-dotnet-encode-with-media-encoder-standard.md) pour savoir comment utiliser Media Encoder Standard afin d’encoder un élément multimédia.
+Maintenant que vous savez comment tooget une instance de processeur multimédia, accédez toohello [comment tooEncode un élément multimédia](media-services-dotnet-encode-with-media-encoder-standard.md) rubrique qui vous indique comment toouse hello tooencode Media Encoder Standard, un élément multimédia.
 

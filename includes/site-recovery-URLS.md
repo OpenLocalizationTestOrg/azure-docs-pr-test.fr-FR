@@ -1,0 +1,4 @@
+``*.accesscontrol.windows.net``. Élément utilisé pour la gestion des identités et le contrôle d’accès.<br/><br/>``\*.backup.windowsazure.com``. Élément utilisé pour la coordination et le transfert des données de réplication. <br/><br/> ``\*.blob.core.windows.net``. Utilisé pour l’accès toohello compte de stockage qui stocke les données répliquées.<br/><br/> ``\*.hypervrecoverymanager.windowsazure.com``. Élément utilisé pour la coordination et l’administration des opérations de gestion de la réplication.<br/><br/>
+``time.nist.gov``et ``time.windows.com``. Utilisé toocheck synchronisation date / heure entre le système et l’heure globale.
+<br/><br/>
+URL pour hello cloud d’Azure Government :<br/>- .ugv.hypervrecoverymanager.windowsazure.us<br/>- .ugv.backup.windowsazure.us<br/>- .ugi.hypervrecoverymanager.windowsazure.us<br/>- .ugi.backup.windowsazure.us

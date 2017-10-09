@@ -1,6 +1,6 @@
 ---
-title: Utiliser un serveur de sauvegarde Azure pour sauvegarder des charges de travail dans le portail Azure Classic | Microsoft Docs
-description: "Assurez-vous que votre environnement est correctement préparé à la sauvegarde des charges de travail à l’aide d’Azure Backup Server"
+title: "tooback d’Azure Backup Server aaaUse portail classique de charges de travail tooAzure | Documents Microsoft"
+description: "Assurez-vous que votre environnement est correctement préparé tooback des charges de travail à l’aide d’Azure Backup Server"
 services: backup
 documentationcenter: 
 author: pvrk
@@ -15,13 +15,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/02/2017
 ms.author: masaran;trinadhk;pullabhk;markgal
-ms.openlocfilehash: ffef289e154986e4b08a072d3a95f77818fb9c35
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 7b574824c448096e0c0ba74a872ab8f2a434f6a1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="preparing-to-back-up-workloads-using-azure-backup-server"></a>Préparation de la sauvegarde des charges de travail à l’aide d’Azure Backup Server
+# <a name="preparing-tooback-up-workloads-using-azure-backup-server"></a>Préparation de tooback des charges de travail à l’aide d’Azure Backup Server
 > [!div class="op_single_selector"]
 > * [Azure Backup Server](backup-azure-microsoft-azure-backup.md)
 > * [SCDPM](backup-azure-dpm-introduction.md)
@@ -30,40 +30,40 @@ ms.lasthandoff: 08/03/2017
 >
 >
 
-Cet article concerne la préparation de votre environnement à la sauvegarde des charges de travail à l’aide d’Azure Backup Server. Avec Azure Backup Server, vous pouvez protéger des charges de travail d’application telles que les machines virtuelles Hyper-V, Microsoft SQL Server, SharePoint Server, Microsoft Exchange et les clients Windows à partir d’une console unique :
+Cet article porte sur la préparation de votre tooback environnement des charges de travail à l’aide d’Azure Backup Server. Avec Azure Backup Server, vous pouvez protéger des charges de travail d’application telles que les machines virtuelles Hyper-V, Microsoft SQL Server, SharePoint Server, Microsoft Exchange et les clients Windows à partir d’une console unique :
 
 > [!WARNING]
-> Azure Backup Server hérite des fonctionnalités de Data Protection Manager (DPM) pour la sauvegarde de charge de travail. Vous trouverez des liens vers la documentation DPM pour certaines de ces fonctionnalités. Cependant, le serveur Microsoft Azure Backup ne fournit pas de protection sur bande et ne s’intègre pas à System Center.
+> Serveur de sauvegarde Azure hérite des fonctionnalités de hello de Data Protection Manager (DPM) pour la sauvegarde de la charge de travail. Vous trouverez des pointeurs documentation tooDPM pour certaines de ces fonctionnalités. Cependant, le serveur Microsoft Azure Backup ne fournit pas de protection sur bande et ne s’intègre pas à System Center.
 >
 >
 
 ## <a name="1-windows-server-machine"></a>1. Machine Windows Server
 ![étape 1](./media/backup-azure-microsoft-azure-backup/step1.png)
 
-La première étape de la mise en service d’Azure Backup Server consiste à se procurer un ordinateur Windows Server.
+première étape de Hello la route hello Azure Backup Server est toohave un ordinateur Windows Server.
 
-| Emplacement | Configuration minimale requise | Instructions supplémentaires |
+| Lieu | Configuration minimale requise | Instructions supplémentaires |
 | --- | --- | --- |
-| Microsoft Azure |Machine virtuelle IaaS Azure<br><br>Standard A2 : 2 cœurs, 3,5 Go de RAM |Vous pouvez démarrer avec une simple image de la galerie de Windows Server 2012 R2 Datacenter. [La protection des charges de travail IaaS à l’aide d’Azure Backup Server (DPM)](https://technet.microsoft.com/library/jj852163.aspx) peut prendre plusieurs formes. Veillez à lire l’article dans son intégralité avant de déployer la machine. |
-| Local |Machine virtuelle Hyper-V,<br> Machine virtuelle VMWare,<br> ou un hôte physique<br><br>2 cœurs et 4 Go de RAM |Vous pouvez dédupliquer le stockage DPM en vous servant de la fonction de déduplication Windows Server. En savoir plus sur le fonctionnement du [DPM et de la déduplication](https://technet.microsoft.com/library/dn891438.aspx) en cas de déploiement sur des machines virtuelles Hyper-V. |
+| Microsoft Azure |Machine virtuelle IaaS Azure<br><br>Standard A2 : 2 cœurs, 3,5 Go de RAM |Vous pouvez démarrer avec une simple image de la galerie de Windows Server 2012 R2 Datacenter. [La protection des charges de travail IaaS à l’aide d’Azure Backup Server (DPM)](https://technet.microsoft.com/library/jj852163.aspx) peut prendre plusieurs formes. Veillez à lire l’article de hello complètement avant de déployer l’ordinateur de hello. |
+| Local |Machine virtuelle Hyper-V,<br> Machine virtuelle VMWare,<br> ou un hôte physique<br><br>2 cœurs et 4 Go de RAM |Vous pouvez dédupliquer le stockage DPM hello à l’aide de la déduplication de Windows Server. En savoir plus sur le fonctionnement du [DPM et de la déduplication](https://technet.microsoft.com/library/dn891438.aspx) en cas de déploiement sur des ordinateurs virtuels Hyper-V. |
 
 > [!NOTE]
-> Il est conseillé d’installer Azure Backup Server sur un ordinateur équipé de Windows Server 2012 R2 Datacenter. La dernière version du système d’exploitation Windows est automatiquement conforme aux conditions préalables requises.
+> Il est conseillé d’installer Azure Backup Server sur un ordinateur équipé de Windows Server 2012 R2 Datacenter. Un grand nombre de conditions préalables de hello sont traités automatiquement avec la version la plus récente du système d’exploitation de Windows hello hello.
 >
 >
 
-Si vous envisagez de joindre le serveur de sauvegarde Azure à un domaine, il est recommandé de joindre le serveur physique ou une machine virtuelle au domaine avant d’installer le logiciel de sauvegarde du serveur Azure. Le déplacement d’un serveur de sauvegarde Azure vers un nouveau domaine après le déploiement *n’est pas pris en charge*.
+Si vous envisagez de domaine de tooa toojoin Azure Backup Server, il est recommandé de joindre les serveurs physiques hello ou domaine toohello de machine virtuelle avant d’installer le logiciel de sauvegarde du serveur Azure hello. Le déplacement d’un serveur de sauvegarde Azure tooa nouveau domaine, après le déploiement, est *ne pas pris en charge*.
 
 ## <a name="2-backup-vault"></a>2. Archivage de sauvegarde
 ![étape 2](./media/backup-azure-microsoft-azure-backup/step2.png)
 
-Que vous envoyiez des données de sauvegarde vers Azure ou que vous les conserviez localement, le serveur de sauvegarde Azure doit être inscrit dans un coffre. Si vous êtes un nouvel utilisateur de la Sauvegarde Azure et que vous souhaitez utiliser un serveur de sauvegarde Azure, consultez la version de cet article pour le Portail Azure : [Préparer la sauvegarde des charges de travail à l’aide du serveur de sauvegarde Azure](backup-azure-microsoft-azure-backup.md).
+Si vous envoyez des données de sauvegarde tooAzure ou qu’il soit localement, hello Azure Backup Server doit être inscrit tooa coffre. Si vous êtes un nouvel utilisateur d’Azure Backup et que vous souhaitez toouse Azure Backup Server, consultez hello Azure portail version de cet article - [préparer tooback des charges de travail à l’aide d’Azure Backup Server](backup-azure-microsoft-azure-backup.md).
 
 > [!IMPORTANT]
-> Depuis mars 2017, vous ne pouvez plus utiliser le portail Classic pour créer des coffres de sauvegarde.
-> Vous pouvez désormais mettre à niveau vos coffres de sauvegarde vers des coffres Recovery Services. Pour en savoir plus, consultez l’article [Mettre à niveau un coffre de sauvegarde vers un coffre Recovery Services](backup-azure-upgrade-backup-to-recovery-services.md). Microsoft vous recommande de mettre à niveau vos coffres de sauvegarde vers des coffres Recovery Services.<br/> À compter du 15 octobre 2017, vous ne pourrez plus vous servir de PowerShell pour créer des coffres de sauvegarde. **D’ici au 1er novembre 2017** :
->- tous les coffres de sauvegarde restants seront automatiquement mis à niveau vers des coffres Recovery Services.
->- Vous ne pourrez plus accéder à vos données de sauvegarde depuis le portail Classic. Au lieu de cela, vous devrez utiliser le portail Azure pour accéder à ces données au sein de coffres Recovery Services.
+> À partir de mars 2017, vous pouvez utiliser n’est plus les coffres de sauvegarde hello toocreate portail classique.
+> Vous pouvez maintenant mettre à niveau vos archivages de sauvegarde coffres tooRecovery Services. Pour plus d’informations, voir l’article hello [mise à niveau d’un tooa de coffre de sauvegarde de coffre Recovery Services](backup-azure-upgrade-backup-to-recovery-services.md). Microsoft vous encourage tooupgrade coffres des Services tooRecovery les coffres de votre sauvegarde.<br/> Après le 15 octobre 2017, vous ne pouvez pas utiliser les coffres de sauvegarde toocreate PowerShell. **D’ici au 1er novembre 2017** :
+>- Tous les coffres de sauvegarde restants seront les coffres des Services de tooRecovery automatiquement mis à niveau.
+>- Vous ne pourra plus être en mesure de tooaccess vos données de sauvegarde dans le portail classique de hello. Au lieu de cela, utilisez hello tooaccess portail Azure vos données de sauvegarde dans les coffres des Services de récupération.
 >
 
 
@@ -71,98 +71,98 @@ Que vous envoyiez des données de sauvegarde vers Azure ou que vous les conservi
 ## <a name="3-software-package"></a>3. Package logiciel
 ![étape 3](./media/backup-azure-microsoft-azure-backup/step3.png)
 
-### <a name="downloading-the-software-package"></a>Téléchargement du package logiciel
-Vous pouvez télécharger Microsoft Azure Backup pour les charges de travail d’application depuis la **page de démarrage rapide** d’un coffre de sauvegarde au même titre que les informations d’identification.
+### <a name="downloading-hello-software-package"></a>Téléchargement du package de logiciel hello
+Informations d’identification toovault similaires, vous pouvez télécharger Microsoft Azure Backup pour des charges de travail à partir de hello **Page démarrage rapide** hello coffre de sauvegarde.
 
-1. Cliquez sur **Pour les charges de travail d’application (Disque à Disque vers Cloud)**. Vous serez alors orienté vers la page du centre de téléchargement à partir de laquelle le package logiciel peut être téléchargé.
+1. Cliquez sur **pour des charges de travail (tooCloud tooDisk de disque)**. Cette opération prendra page du centre de téléchargement toohello à partir de laquelle logiciel hello peut être téléchargé.
 
     ![Écran d’accueil Microsoft Azure Backup](./media/backup-azure-microsoft-azure-backup/dpm-venus1.png)
 2. Cliquez sur **Télécharger**.
 
     ![Centre de téléchargement 1](./media/backup-azure-microsoft-azure-backup/downloadcenter1.png)
-3. Sélectionnez tous les fichiers, puis cliquez sur **Suivant**. Téléchargez tous les fichiers en provenance de la page de téléchargement Microsoft Azure Backup et placez tous les fichiers dans le même dossier.
+3. Sélectionnez tous les fichiers hello et cliquez sur **suivant**. Téléchargement que tous hello fichiers provenant d’une page de téléchargement de Microsoft Azure Backup hello et place que tous les hello dans les fichiers hello même dossier.
    ![Centre de téléchargement 1](./media/backup-azure-microsoft-azure-backup/downloadcenter.png)
 
-    Puisque la taille de téléchargement de l’ensemble des fichiers est > 3G, sur un lien de téléchargement de 10 Mbits/s, le téléchargement peut prendre jusqu’à 60 minutes.
+    Étant hello taille du téléchargement de tous les fichiers hello ensemble > 3G, minutes pour hello téléchargent sur un lien de téléchargement de 10 Mbits/s que peut prendre jusqu'à too60 toocomplete.
 
-### <a name="extracting-the-software-package"></a>Extraction du package logiciel
-Une fois que vous avez téléchargé tous les fichiers, cliquez sur **MicrosoftAzureBackupInstaller.exe**. **L’Assistant Installation de Microsoft Azure Backup** démarre l’extraction des fichiers d’installation vers l’emplacement que vous avez spécifié. Suivez les instructions de l’Assistant et cliquez sur le bouton **Extraire** pour commencer le processus d’extraction.
+### <a name="extracting-hello-software-package"></a>Extraction du package de logiciel hello
+Une fois que vous avez téléchargé tous les fichiers de hello, cliquez sur **MicrosoftAzureBackupInstaller.exe**. Ceci démarrera hello **Assistant Installation de Microsoft Azure sauvegarde** le programme d’installation de tooextract hello fichiers emplacement tooa que vous avez spécifié. Suivez les instructions de l’Assistant de hello et cliquez sur hello **extraire** bouton processus d’extraction de hello toobegin.
 
 > [!WARNING]
-> Au moins 4 Go d’espace libre sont nécessaires pour l’extraction des fichiers d’installation.
+> Au moins 4 Go d’espace libre est les fichiers d’installation requis tooextract hello.
 >
 >
 
 ![L’Assistant Installation de Microsoft Azure Backup](./media/backup-azure-microsoft-azure-backup/extract/03.png)
 
-Une fois le processus d’extraction terminé, cochez la case pour exécuter le fichier *setup.exe* que vous venez d’extraire pour installer Microsoft Azure Backup Server, puis cliquez sur le bouton **Terminer** .
+Une fois hello extraction terminée, hello de toolaunch case à cocher hello fraîchement extrait *setup.exe* toobegin l’installation de Microsoft Azure Backup Server, puis cliquez sur hello **Terminer** bouton.
 
-### <a name="installing-the-software-package"></a>Installation du package logiciel
-1. Cliquez sur **Microsoft Azure Backup** pour lancer l’Assistant d’installation.
+### <a name="installing-hello-software-package"></a>Installation du package de logiciel hello
+1. Cliquez sur **Microsoft Azure Backup** Assistant d’installation toolaunch hello.
 
     ![L’Assistant Installation de Microsoft Azure Backup](./media/backup-azure-microsoft-azure-backup/launch-screen2.png)
-2. Dans l’écran d’accueil, cliquez sur le bouton **Suivant** . Vous êtes redirigé vers la section *Vérification des conditions préalables* . Dans cet écran, cliquez sur le bouton **Vérifier** afin de déterminer si les configurations matérielle et logicielle requises pour Azure Backup Server sont respectées. Si c’est le cas, un message indiquant que la machine respecte les conditions préalables requises s’affiche. Cliquez sur le bouton **Suivant** .
+2. Sur l’écran d’accueil hello, cliquez sur hello **suivant** bouton. Vous accéderez toohello *Prerequisite Checks* section. Dans cet écran, cliquez sur hello **vérifier** bouton toodetermine hello matérielle et logicielle requise pour Azure Backup Server ont été remplies. Si tous hello sont des conditions préalables sont remplies avec succès, vous verrez un message indiquant que l’ordinateur hello répond aux besoins de hello. Cliquez sur hello **suivant** bouton.
 
     ![Azure Backup Server - Accueil et contrôle des conditions préalables requises](./media/backup-azure-microsoft-azure-backup/prereq/prereq-screen2.png)
-3. Microsoft Azure Backup Server requiert SQL Server Standard, et le package d’installation d’Azure Backup Server est fourni avec les fichiers binaires SQL Server appropriés. Lorsque vous démarrez avec une nouvelle installation du serveur de sauvegarde Azure, vous devez sélectionner l’option **Installer une nouvelle instance de SQL Server avec ce programme d’installation** et cliquer sur le bouton **Vérifier et installer**. Une fois les composants requis installés, cliquez sur **Suivant**.
+3. Microsoft Azure Backup Server nécessite SQL Server Standard, et le package d’installation du serveur de sauvegarde Azure hello est fourni avec des fichiers binaires SQL Server appropriés de hello nécessités. Lorsque vous démarrez avec une nouvelle installation du serveur de sauvegarde Azure, vous devez choisir les option hello **installer de nouvelle Instance de SQL Server avec ce programme d’installation** et cliquez sur hello **vérifier et installer** bouton. Une fois les conditions préalables de hello sont correctement installés, cliquez sur **suivant**.
 
     ![Serveur de sauvegarde Azure - Vérification SQL](./media/backup-azure-microsoft-azure-backup/sql/01.png)
 
-    Si une défaillance se produit et qu’il est conseillé de redémarrer la machine, faites-le, puis cliquez sur **Vérifier à nouveau**.
+    Si une défaillance se produit avec un ordinateur de hello recommandation toorestart, dans ce cas, cliquez sur **vérifier à nouveau**.
 
    > [!NOTE]
-   > Azure Backup Server ne fonctionne pas avec une instance de serveur SQL distante. L’instance utilisée par le serveur de sauvegarde Azure doit être installée en local.
+   > Azure Backup Server ne fonctionne pas avec une instance de serveur SQL distante. instance Hello utilisé par le serveur de sauvegarde Azure doit toobe local.
    >
    >
 
-4. Fournissez un emplacement pour l’installation des fichiers de serveur Microsoft Azure Backup, puis cliquez sur **Suivant**.
+4. Fournir un emplacement pour l’installation de hello des fichiers du serveur Microsoft Azure Backup, puis cliquez sur **suivant**.
 
     ![Microsoft Azure Backup PreReq2](./media/backup-azure-microsoft-azure-backup/space-screen.png)
 
-    Un emplacement temporaire est requis pour la sauvegarde sur Azure. Vérifiez que l’emplacement temporaire correspond à au moins 5 % du volume qu’il est prévu de sauvegarder dans le cloud. Pour la protection de disque, des disques séparés doivent être séparés une fois l’installation terminée. Pour plus d’informations sur les pools de stockage, consultez [Configurer des pools de stockage et de stockage sur disque](https://technet.microsoft.com/library/hh758075.aspx).
+    emplacement de fichier temporaire Hello est obligatoire pour tooAzure de sauvegarde. Vérifiez l’emplacement hello est au moins 5 % des données de salutation planifié toobe sauvegardée toohello cloud. Pour la protection des disques, des disques distincts doivent toobe configuré une fois hello installation terminée. Pour plus d’informations sur les pools de stockage, consultez [Configurer des pools de stockage et de stockage sur disque](https://technet.microsoft.com/library/hh758075.aspx).
 5. Fournissez un mot de passe fort pour les comptes utilisateur locaux restreints et cliquez sur **Suivant**.
 
     ![Microsoft Azure Backup PreReq2](./media/backup-azure-microsoft-azure-backup/security-screen.png)
-6. Indiquez si vous souhaitez utiliser *Microsoft Update* pour vérifier les mises à jour et cliquez sur **Suivant**.
+6. Indiquez si vous souhaitez toouse *Microsoft Update* toocheck pour les mises à jour et cliquez sur **suivant**.
 
    > [!NOTE]
-   > Nous conseillons de faire en sorte que Windows Update soit redirigé vers Microsoft Update, qui offre une sécurité et des mises à jour importantes pour Windows et autres produits, tels que le serveur Microsoft Azure Backup.
+   > Nous vous conseillons Windows Update rediriger tooMicrosoft mise à jour, ce qui offre une sécurité et des mises à jour importantes pour Windows et d’autres produits tels que Microsoft Azure Backup Server.
    >
    >
 
     ![Microsoft Azure Backup PreReq2](./media/backup-azure-microsoft-azure-backup/update-opt-screen2.png)
-7. Examinez le *Résumé des paramètres* et cliquez sur **Installer**.
+7. Hello de révision *résumé des paramètres* et cliquez sur **installer**.
 
     ![Microsoft Azure Backup PreReq2](./media/backup-azure-microsoft-azure-backup/summary-screen.png)
-8. L’installation se déroule en plusieurs phases. Lors de la première phase, l’Agent Microsoft Azure Recovery Services est installé sur le serveur. L’Assistant vérifie également la connectivité à Internet. Si la connectivité à Internet est disponible, vous pouvez poursuivre l’installation, sinon, vous devez fournir les informations de proxy détaillées pour se connecter à Internet.
+8. installation de Hello se produit en plusieurs phases. Bonjour phase de la première hello Microsoft Azure Recovery Services Agent est installé sur le serveur de hello. Assistant de Hello vérifie également pour la connectivité Internet. Si la connectivité Internet est disponible vous pouvez poursuivre l’installation, si ce n’est pas, vous devez tooprovide proxy détails tooconnect toohello Internet.
 
-    L’étape suivante consiste à configurer l’Agent Microsoft Azure Recovery Services. Dans le cadre de la configuration, vous devrez fournir les informations d’identification de coffre pour inscrire l’ordinateur dans le coffre de sauvegarde. Vous allez également fournir une phrase secrète pour chiffrer/déchiffrer les données circulant entre Azure et votre environnement local. Vous pouvez automatiquement générer une phrase secrète ou fournir votre propre phrase secrète d’au minimum 16 caractères. Continuez avec l’Assistant jusqu’à ce que l’agent soit configuré.
+    étape suivante de Hello est tooconfigure hello Microsoft Azure Recovery Services Agent. Dans le cadre de la configuration de hello, vous aurez tooprovide votre hello coffre informations d’identification tooregister hello machine toohello coffre de sauvegarde. Elle fournit également une phrase secrète tooencrypt/decrypt hello les données envoyées entre Azure et votre environnement local. Vous pouvez automatiquement générer une phrase secrète ou fournir votre propre phrase secrète d’au minimum 16 caractères. Continuer avec l’Assistant de hello jusqu'à ce que l’agent de hello a été configuré.
 
     ![PreReq2 de serveur de sauvegarde Azure](./media/backup-azure-microsoft-azure-backup/mars/04.png)
-9. Une fois l’inscription du serveur Microsoft Azure Backup terminée et réussie, l’Assistant général d’installation procède à l’installation et à la configuration de SQL Server et des composants Azure Backup Server. Une fois l’installation du composant SQL Server terminée, les composants Azure Backup Server sont installés.
+9. Une fois l’inscription du serveur de Microsoft Azure Backup hello terminée avec succès, hello globale Assistant d’installation poursuit toohello installation et configuration de SQL Server et les composants du serveur de sauvegarde Azure hello. Une fois hello installation des composants SQL Server terminée, les composants du serveur de sauvegarde Azure hello sont installés.
 
     ![Azure Backup Server](./media/backup-azure-microsoft-azure-backup/final-install/venus-installation-screen.png)
 
-Lorsque l’étape d’installation est terminée, les icônes du produit sur le bureau sont en principe créées elles aussi. Double-cliquez sur l’icône pour lancer le produit.
+Lors de l’étape d’installation hello terminée, hello icônes du bureau du produit seront créées ainsi. Simplement double-cliquer sur le produit de hello icône toolaunch hello.
 
 ### <a name="add-backup-storage"></a>Ajouter de l’espace de stockage pour la sauvegarde
-La première copie de sauvegarde est conservée sur l’espace de stockage associé à l’ordinateur du serveur de sauvegarde Azure. Pour plus d’informations sur l’ajout de disques, consultez la section [Configurer des pools de stockage et un disque de stockage](https://technet.microsoft.com/library/hh758075.aspx).
+première copie de sauvegarde Hello est conservé sur le stockage attaché toohello machine du serveur de sauvegarde Azure. Pour plus d’informations sur l’ajout de disques, consultez la section [Configurer des pools de stockage et un disque de stockage](https://technet.microsoft.com/library/hh758075.aspx).
 
 > [!NOTE]
-> Vous devez ajouter un stockage de sauvegarde même si vous prévoyez d’envoyer des données à Azure. Dans l’architecture actuelle d’Azure Backup Server, le coffre Azure Backup conserve la *deuxième* copie des données, alors que le stockage local conserve la première copie (obligatoire).  
+> Vous avez besoin de stockage de sauvegarde tooadd même si vous envisagez de toosend données tooAzure. Dans l’architecture actuelle hello du serveur de sauvegarde Azure, le coffre de sauvegarde Azure hello conserve hello *deuxième* copie des données hello pendant que le stockage local de hello conserve hello premier (et obligatoire) copie de sauvegarde.  
 >
 >
 
 ## <a name="4-network-connectivity"></a>4. Connectivité réseau
 ![step4](./media/backup-azure-microsoft-azure-backup/step4.png)
 
-Pour que le produit fonctionne correctement, Azure Backup Server exige la connectivité au service Azure Backup. Pour vérifier que l’ordinateur est bien connecté à Azure, utilisez l’applet de commande ```Get-DPMCloudConnection``` dans la console Azure Backup Server PowerShell. Si le résultat de l’applet de commande est TRUE, la connectivité existe. Dans le cas contraire, la connectivité n’existe pas.
+Serveur de sauvegarde Azure requiert service de sauvegarde Azure toohello de connectivité pour hello produit toowork avec succès. toovalidate si la machine de hello a hello connectivité tooAzure, utilisez hello ```Get-DPMCloudConnection``` applet de commande dans la console du serveur de sauvegarde Azure PowerShell hello. Si hello sortie de l’applet de commande hello est TRUE, puis il existe une connectivité, sinon il n’existe aucune connectivité.
 
-Dans le même temps, l’abonnement Azure doit être dans un état correct. Pour déterminer l’état de votre abonnement et le gérer, connectez-vous au [portail d’abonnement](https://account.windowsazure.com/Subscriptions).
+Hello simultanément, hello abonnement Azure doit toobe dans un état sain. toofind état hello de votre abonnement et de toomanage il, ouvrez une session toohello [portal d’abonnement](https://account.windowsazure.com/Subscriptions).
 
-Une fois que vous connaissez l’état de la connectivité d’Azure et de l’abonnement Azure, vous pouvez utiliser le tableau ci-dessous pour déterminer l’impact sur la fonctionnalité de sauvegarde/restauration proposée.
+Une fois que vous connaissez état hello hello connectivité Azure et hello abonnement Azure, vous pouvez utiliser la table hello ci-dessous toofind out impact de hello sur les fonctionnalités de sauvegarde/restauration hello offertes.
 
-| État de la connectivité | Abonnement Azure | Sauvegarde sur Azure | Sauvegarde sur disque | Restauration à partir d’Azure | Restauration à partir d’un disque |
+| État de la connectivité | Abonnement Azure | Sauvegarde tooAzure | Sauvegarde toodisk | Restauration à partir d’Azure | Restauration à partir d’un disque |
 | --- | --- | --- | --- | --- | --- |
 | Connecté |Actif |Autorisé |Autorisé |Autorisé |Autorisé |
 | Connecté |Expiré |Arrêté |Arrêté |Autorisé |Autorisé |
@@ -172,7 +172,7 @@ Une fois que vous connaissez l’état de la connectivité d’Azure et de l’a
 | Connectivité perdue depuis > 15 jours |Approvisionnement annulé |Arrêté |Arrêté |Arrêté et points de restauration Azure supprimés |Arrêté |
 
 ### <a name="recovering-from-loss-of-connectivity"></a>Récupération après la perte de connectivité
-Si vous êtes équipé d’un pare-feu ou d’un proxy qui empêche l’accès à Azure, vous devez mettre sur liste approuvée les adresses de domaine suivantes dans le profil de pare-feu/proxy :
+Si vous avez un pare-feu ou un proxy qui empêche l’accès tooAzure, vous devez hello toowhitelist suivant des adresses de domaine dans le profil de pare-feu/proxy hello :
 
 * www.msftncsi.com
 * \*.Microsoft.com
@@ -180,22 +180,22 @@ Si vous êtes équipé d’un pare-feu ou d’un proxy qui empêche l’accès �
 * \*.microsoftonline.com
 * \*.windows.net
 
-Une fois la connectivité à Azure restaurée sur l’ordinateur Azure Backup Server, les opérations qui peuvent être exécutées sont déterminées par l’état de l’abonnement Azure. Le tableau ci-dessus comporte les détails des opérations autorisées une fois l’ordinateur « connecté ».
+Une fois la connectivité tooAzure a été restaurée toohello Azure sauvegarde du serveur, les opérations hello qui peuvent être effectuées sont déterminées par hello état de l’abonnement Azure. tableau Hello ci-dessus a plus d’informations sur les opérations hello autorisées une fois que l’ordinateur de hello est « connecté ».
 
 ### <a name="handling-subscription-states"></a>Gestion des états d’abonnement
-Il est possible de faire passer un abonnement Azure de l’état *Expiré* ou *Approvisionnement annulé* à l’état *Actif*. Cependant, cette opération a certaines conséquences sur le comportement du produit lorsque l’état n’est pas *Actif*:
+Il est possible tootake un abonnement Azure à partir d’un *expiré* ou *Deprovisioned* état toohello *Active* état. Toutefois cela a des conséquences sur le comportement du produit hello pendant que l’état de hello n’est pas *Active*:
 
-* Un abonnement dont *l’approvisionnement est annulé* ne fonctionne pas pendant la période pour laquelle l’approvisionnement est annulé. En redevenant *Actif*, la fonctionnalité de sauvegarde/restauration du produit est rétablie. Les données de sauvegarde présentes sur le disque local peuvent également être récupérées si le délai de rétention est suffisant. Toutefois, les données de sauvegarde dans Azure sont irrémédiablement perdues une fois que l’abonnement passe à l’état *Approvisionnement annulé* .
-* Un abonnement *Expiré* ne fonctionne plus tant qu’il n’a pas été *réactivé*. Lorsque l’abonnement est à l’état *Expiré* , les sauvegardes planifiées ne sont pas exécutées.
+* A *Deprovisioned* abonnement perd la fonctionnalité hello période pour laquelle il est annulé. Sur l’activation *Active*, fonctionnalités du produit de sauvegarde/restauration hello sont réactivée. les données de sauvegarde Hello sur le disque local hello peuvent également être récupérées si elle a été conservé avec une période de rétention suffisante. Toutefois, les données de sauvegarde hello dans Azure sont irrémédiablement perdues dès que l’abonnement de hello atteint hello *Deprovisioned* état.
+* Un abonnement *Expiré* ne fonctionne plus tant qu’il n’a pas été *réactivé*. Toutes les sauvegardes planifiées pour la période de hello hello d’abonnement a été *expiré* ne s’exécutera pas.
 
 ## <a name="troubleshooting"></a>Résolution des problèmes
-Si le serveur de sauvegarde Microsoft Azure échoue avec des erreurs pendant la phase d’installation (ou de sauvegarde ou restauration), reportez-vous à ce [document de codes d’erreur](https://support.microsoft.com/kb/3041338) pour plus d’informations.
-Vous pouvez également vous reporter au [FAQ relatives à la sauvegarde Azure](backup-azure-backup-faq.md)
+Si Microsoft Azure Backup server échoue avec des erreurs pendant la phase d’installation hello (ou de sauvegarde ou de restauration), consultez toothis [document de codes d’erreur](https://support.microsoft.com/kb/3041338) pour plus d’informations.
+Vous pouvez également faire référence trop[Azure Backup liées à des questions fréquentes](backup-azure-backup-faq.md)
 
 ## <a name="next-steps"></a>Étapes suivantes
-Vous pouvez obtenir des informations détaillées sur la [préparation de votre environnement pour DPM](https://technet.microsoft.com/library/hh758176.aspx) sur le site Microsoft TechNet. Ce dernier contient également des informations relatives aux configurations prises en charge sur lesquelles Azure Backup Server peut être déployé et utilisé.
+Vous pouvez obtenir des informations détaillées [préparation de votre environnement pour DPM](https://technet.microsoft.com/library/hh758176.aspx) sur site de Microsoft TechNet hello. Ce dernier contient également des informations relatives aux configurations prises en charge sur lesquelles Azure Backup Server peut être déployé et utilisé.
 
-Vous pouvez utiliser ces articles pour apprendre à mieux connaître la notion de protection de charge de travail à l’aide du serveur Microsoft Azure Backup.
+Vous pouvez utiliser ces toogain articles une meilleure compréhension de la protection de la charge de travail à l’aide de Microsoft Azure sauvegarde du serveur.
 
 * [Sauvegarde SQL Server](backup-azure-backup-sql.md)
 * [Sauvegarde de serveur SharePoint](backup-azure-backup-sharepoint.md)

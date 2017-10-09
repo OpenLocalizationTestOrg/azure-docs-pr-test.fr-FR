@@ -1,6 +1,6 @@
 ---
-title: "Configurer un compte d’authentification Azure | Microsoft Docs"
-description: "Ce didacticiel vous guide tout au long des procédures de création et de test d’une authentification de principal de sécurité dans Azure Automation. Il est complété par un exemple d’utilisation."
+title: "aaaConfigure une exécution en tant que compte Azure | Documents Microsoft"
+description: "Ce didacticiel vous guide à l’aide de la création, le test et exemple hello d’authentification principal de sécurité dans Azure Automation."
 services: automation
 documentationcenter: 
 author: mgoedtel
@@ -17,79 +17,79 @@ ms.date: 04/06/2017
 ms.author: magoedte
 ROBOTS: NOINDEX
 redirect_url: /azure/automation/
-redirect_document_id: TRUE
-ms.openlocfilehash: f88c775eba19bb227d0e206d6420c08b57305b92
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+redirect_document_id: True
+ms.openlocfilehash: 06675d2f6b9d8e7260ffaead4f2b2f61c2b98d13
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="authenticate-runbooks-with-an-azure-run-as-account"></a>Authentifier des Runbooks avec un compte d’identification Azure
-Cet article vous montre comment configurer un compte Azure Automation dans le portail Azure. Pour ce faire, utilisez la fonctionnalité Compte d’identification qui permet d’authentifier les Runbooks gérant les ressources dans Azure Resource Manager ou dans Azure Service Management.
+Cet article vous explique comment tooconfigure un Azure Automation compte Bonjour portail Azure. toodo par conséquent, vous utilisez hello exécuter en tant que compte fonctionnalité tooauthenticate runbooks la gestion des ressources dans le Gestionnaire de ressources Azure ou de gestion des services Azure.
 
-Lorsque vous créez un compte Automation dans le portail Azure, il crée automatiquement 2 comptes :
+Lorsque vous créez un compte Automation Bonjour portail Azure, vous créez automatiquement deux comptes :
 
-* Compte d’identification Azure. Ce compte crée un principal de service dans Azure Active Directory (Azure AD) et un certificat. Il affecte également le rôle RBAC (contrôle d’accès en fonction du rôle) de contributeur qui gère les ressources Resource Manager à l’aide de Runbooks.
-* Compte d’identification Classic. Ce compte charge un certificat de gestion, qui est utilisé pour gérer les ressources de gestion des services ou les ressources classiques à l’aide de Runbooks.
+* Compte d’identification Azure. Ce compte crée un principal de service dans Azure Active Directory (Azure AD) et un certificat. Il assigne également hello collaborateur basée sur le rôle de contrôle d’accès (RBAC), qui gère les ressources de gestionnaire de ressources à l’aide de procédures opérationnelles.
+* Compte d’identification Classic. Ce compte télécharge un certificat de gestion, qui est utilisé toomanage de gestion des services ou des ressources classiques à l’aide de procédures opérationnelles.
 
-Le processus de création d’un compte Automation s’en trouve ainsi simplifié, et vous êtes en mesure de commencer rapidement à générer et déployer des Runbooks pour répondre à vos besoins d’automatisation.
+Création d’un objet Automation compte simplifie hello pour vous et vous aide à que commencer rapidement générer et déployer des procédures opérationnelles toosupport votre automatisation a besoin.
 
 À l’aide de comptes d’identification standard ou Classic, vous pouvez :
 
-* Bénéficier d’une méthode d’authentification Azure standardisée lorsque vous gérez des ressources Resource Manager ou des ressources des services de gestion Azure à partir de Runbooks dans le portail Azure.
-* Automatiser l’utilisation de Runbooks globaux que vous pouvez configurer dans les alertes Azure.
+* Fournir une méthode standardisée de tooauthenticate avec Azure lorsque vous gérez le Gestionnaire de ressources ou des ressources de gestion de Service à partir de procédures opérationnelles Bonjour portail Azure.
+* Automatisez l’utilisation de hello des procédures opérationnelles globales, vous pouvez les configurer dans Azure Alerts.
 
 > [!NOTE]
-> La [fonctionnalité d’intégration d’alertes](../monitoring-and-diagnostics/insights-receive-alert-notifications.md) Azure associée aux Runbooks globaux requiert un compte Automation configuré avec un compte d’identification standard et un compte d’identification Classic. Vous pouvez sélectionner un compte Automation pour lequel des comptes d’identification standard et Classic sont déjà définis ou choisir d’en créer un.
+> Hello [fonctionnalité d’intégration Azure alerte](../monitoring-and-diagnostics/insights-receive-alert-notifications.md) avec l’Automation des procédures opérationnelles globales nécessite un compte Automation est configuré avec un compte d’identification et classique compte d’identification. Vous pouvez sélectionner un compte Automation a déjà défini des comptes d’identification et Classic exécuter en tant que, ou vous pouvez choisir toocreate un compte Automation.
 >  
 
-Cet article vous montre comment créer un compte Automation à partir du portail Azure, le mettre à jour à l’aide de PowerShell, gérer la configuration du compte et vous authentifier dans vos Runbooks.
+Cet article explique comment toocreate un compte Automation à partir de hello portail Azure, mettre à jour un compte Automation à l’aide d’Azure PowerShell, gérer la configuration de compte hello et s’authentifier dans vos runbook.
 
-Avant de créer un compte Automation, il est judicieux de comprendre et de prendre en compte les éléments suivants :
+Avant de commencer la création d’un compte Automation, elle est une bonne idée toounderstand et tenez compte hello qui suit :
 
-* La création d’un compte Automation n’affecte pas les comptes Automation existants déjà créés dans le modèle de déploiement classique ou Resource Manager.
-* Cela fonctionne uniquement pour les comptes Automation créés via le portail Azure. Si vous tentez de créer un compte à partir du portail Azure Classic, la configuration du compte d’identification n’est pas répliquée.
-* Si vous avez déjà des Runbooks et des ressources (telles que des planifications ou des variables) en place pour gérer les ressources classiques, et que vous souhaitez que les Runbooks s’authentifient auprès du nouveau compte d’identification Classic, effectuez l’une des actions suivantes :
+* Création d’un compte Automation n’affecte pas les comptes Automation que vous avez peut-être déjà créé dans hello classique ou modèle de déploiement de gestionnaire de ressources.
+* processus de Hello fonctionne uniquement pour les comptes Automation que vous créez dans hello portail Azure. Tentative de toocreate un compte à partir de hello portail Azure classic ne réplique pas hello exécuter en tant que compte configuration.
+* Si vous avez déjà des procédures opérationnelles et ressources (telles que des planifications ou des variables) dans toomanage place les ressources classiques, et vous souhaitez tooauthenticate runbooks avec hello classique compte d’identification, procéder de hello suivantes :
 
-  * Pour créer un compte d’identification Classic, suivez les instructions de la section « Gestion de votre compte d’identification ». 
-  * Pour mettre à jour votre compte existant, utilisez le script PowerShell de la section « Mise à jour de votre compte Automation à l’aide de PowerShell ».
-* Pour vous authentifier à l’aide du nouveau compte d’identification ou du compte Automation d’identification Classic, vous devez modifier les Runbooks existants avec l’exemple de code indiqué dans la section [Exemples de code d’authentification](#authentication-code-examples).
+  * toocreate classique compte d’identification, suivez les instructions de hello dans la section « Gestion de votre compte d’identification » de hello. 
+  * votre compte existant, utilisez hello PowerShell tooupdate un script dans la section « Mise à jour de votre compte Automation à l’aide de PowerShell » de hello.
+* tooauthenticate à l’aide de hello nouveau compte d’identification et compte classique exécuter en tant que Automation, vous devez toomodify vos runbooks existants avec hello l’exemple de code fourni dans la section de hello [exemples de code d’authentification](#authentication-code-examples).
 
     >[!NOTE]
-    >Le compte d’identification sert à l’authentification des ressources Resource Manager à l’aide du principal de service basé sur les certificats. Le compte d’identification Classic sert à l’authentification des ressources de gestion des services avec un certificat de gestion.
+    >Exécuter en tant que compte de Hello est pour l’authentification par rapport aux ressources du Gestionnaire de ressources à l’aide de principal du service de basée sur certificat hello. est de Hello classique compte d’identification pour s’authentifier auprès des ressources de gestion de Service avec un certificat de gestion.
 
-## <a name="create-an-automation-account-from-the-azure-portal"></a>Créer un compte Automation à partir du portail Azure
-Dans cette section, vous créez un compte Azure Automation à partir du portail Azure, qui à son tour crée un compte d’identification standard et un compte d’identification Classic.
+## <a name="create-an-automation-account-from-hello-azure-portal"></a>Créer un compte Automation à partir de hello portail Azure
+Dans cette section, vous créer un compte Azure Automation à partir de hello portail Azure, qui crée ensuite un compte d’identification et classique compte d’identification.
 
 >[!NOTE]
->Pour créer un compte Automation, vous devez posséder le rôle Administrateurs de services ou être coadministrateur de l’abonnement, ce qui permet d’accéder à l’abonnement. Vous devez également être ajouté en tant qu’utilisateur à l’instance Active Directory par défaut de cet abonnement. Il n’est pas nécessaire d’attribuer au compte un rôle doté de privilèges.
+>toocreate un compte Automation, vous devez être membre du rôle des administrateurs de Service hello ou coadministrateur de l’abonnement hello qui accorde l’accès toohello abonnement. Vous devez également être ajouté en tant qu’instance d’Active Directory d’un abonnement toothat utilisateur par défaut. compte de Hello n’a pas besoin toobe affecté un rôle privilégié.
 >
->Si vous n’êtes pas membre de l’instance d’Active Directory de l’abonnement au moment d’être ajouté au rôle Coadministrateur de l’abonnement, vous serez ajouté à Active Directory en tant qu’invité. Dans ce cas, vous recevrez le message d’avertissement « Vous n’avez pas les autorisations pour créer... » dans le panneau **Ajouter un compte Automation**.
+>Si vous n’êtes pas un membre d’instance d’Active Directory de l’abonnement hello avant que vous êtes ajouté le rôle de coadministrateur toohello d’abonnement de hello, vous ajouterez tooActive active en tant qu’invité. Dans ce cas, vous recevrez un « vous n’avez pas toocreate autorisations... » avertissement sur hello **ajouter un compte Automation** panneau.
 >
->Les utilisateurs qui ont d’abord reçu le rôle Coadministrateur peuvent être supprimés de l’instance Active Directory de l’abonnement, puis rajoutés pour en faire des utilisateurs complets dans Active Directory. Pour vérifier si tel est le cas, dans le volet **Azure Active Directory** du portail Azure, sélectionnez **Utilisateurs et groupes** et **Tous les utilisateurs**, choisissez l’utilisateur concerné, puis sélectionnez **Profil**. La valeur de l’attribut **Type d’utilisateur** sous le profil de l’utilisateur ne doit pas être **Invité**.
+>Les utilisateurs qui ont été ajoutés tout d’abord, rôle de coadministrateur toohello peut être supprimé de l’instance d’Active Directory de l’abonnement hello et rajouté toomake les un utilisateur complète dans Active Directory. tooverify cette situation hello **Azure Active Directory** volet Bonjour portail Azure en sélectionnant **utilisateurs et groupes**, en sélectionnant **tous les utilisateurs** et, après avoir sélectionné utilisateur spécifique de Hello, en sélectionnant **profil**. Hello valeur Hello **type utilisateur** attribut sous le profil de l’utilisateur hello doit être **invité**.
 >
 
-1. Connectez-vous au portail Azure avec un compte membre du rôle Administrateurs des abonnements et coadministrateur de l’abonnement.
+1. Connectez-vous toohello portail Azure avec un compte qui est membre du rôle Administrateurs d’abonnement hello et coadministrateur de l’abonnement de hello.
 
 2. Sélectionnez **Comptes Automation**.
 
-3. Dans le panneau **Comptes Automation**, cliquez sur **Ajouter**.
-Le panneau **Ajouter un compte Automation** s’ouvre.
+3. Sur hello **comptes Automation** panneau, cliquez sur **ajouter**.
+Hello **ajouter un compte Automation** panneau s’ouvre.
 
- ![Panneau « Ajouter un compte Automation »](media/automation-sec-configure-azure-runas-account/create-automation-account-properties-b.png)
+ ![panneau de « Ajouter un compte Automation » Hello](media/automation-sec-configure-azure-runas-account/create-automation-account-properties-b.png)
 
    > [!NOTE]
-   > Si votre compte n’est ni membre du rôle Administrateurs des abonnements ni coadministrateur de l’abonnement, l’avertissement suivant s’affiche dans le panneau **Ajouter un compte Automation** :
+   > Si votre compte n’est pas membre du rôle Administrateurs d’abonnement aux hello et coadministrateur de l’abonnement de hello, hello suivant d’avertissement s’affiche sur hello **ajouter un compte Automation** panneau :
    >
    >![Avertissement Ajouter un compte Automation](media/automation-sec-configure-azure-runas-account/create-account-without-perms.png)
    >
    >
 
-4. Dans le panneau **Ajouter un compte Automation**, entrez le nom de votre nouveau compte Automation dans la zone **Nom**.
+4. Sur hello **ajouter un compte Automation** panneau, Bonjour **nom** , tapez un nom pour votre nouveau compte Automation.
 
-5. Si vous avez plusieurs abonnements, procédez comme suit :
+5. Si vous avez plusieurs abonnements, procédez comme hello suivant :
 
-    a. Sous **Abonnement**, spécifiez-en un pour le nouveau compte.
+    a. Sous **abonnement**, spécifiez un nouveau compte de hello.
 
     b. Sous **Groupe de ressources**, cliquez sur **Créer** ou **Utiliser l’existant**.
 
@@ -98,189 +98,189 @@ Le panneau **Ajouter un compte Automation** s’ouvre.
 6. Sous **Créer un compte d’identification Azure**, sélectionnez **Oui**, puis cliquez sur **Créer**.
 
    > [!NOTE]
-   > Si vous choisissez de ne pas créer de compte d’identification en sélectionnant l’option **Non**, un message d’avertissement s’affiche dans le panneau **Ajouter un compte Automation**. Même si le compte est créé dans le portail Azure, il n’aura pas d’identité d’authentification correspondante au sein de votre service de répertoire des abonnements classique ou Resource Manager. Par conséquent, le compte n’a aucun accès aux ressources de votre abonnement. Ce scénario empêche tous les Runbooks faisant référence à ce compte de pouvoir s’authentifier et d’effectuer des tâches sur les ressources de ces modèles de déploiement.
+   > Si vous ne choisissez pas toocreate hello compte d’identification en sélectionnant **non**, un message d’avertissement s’affiche hello **ajouter un compte Automation** panneau. Bien que le compte de hello est créé dans hello portail Azure, il n’a pas une identité d’authentification correspondant au sein de votre classique ou le service d’annuaire abonnement Gestionnaire de ressources. En conséquence, le compte de hello n’a aucune tooresources d’accès dans votre abonnement. Ce scénario empêche tous les Runbooks faisant référence à ce compte de pouvoir s’authentifier et d’effectuer des tâches sur les ressources de ces modèles de déploiement.
    >
-   > ![Message d’avertissement dans le panneau « Ajouter un compte Automation »](media/automation-sec-configure-azure-runas-account/create-account-decline-create-runas-msg.png)
+   > ![Message d’avertissement sur le panneau de « Ajouter un compte Automation » hello](media/automation-sec-configure-azure-runas-account/create-account-decline-create-runas-msg.png)
    >
-   > En outre, étant donné que le principal du service n’est pas créé, le rôle Collaborateur n’est pas attribué.
+   > En outre, étant donné que le principal du service hello n’est pas créée, rôle de collaborateur hello n’est pas affecté.
    >
 
-7. Pour suivre la progression de la création du compte Automation, accédez à l’onglet **Notifications** du menu.
+7. Alors que Azure crée le compte d’automatisation hello, vous pouvez suivre la progression de hello sous **Notifications** à partir du menu de hello.
 
-### <a name="resources"></a>les ressources
-Une fois le compte Automation créé, plusieurs ressources vous sont automatiquement créées. Les ressources sont récapitulées dans les 2 tableaux ci-dessous :
+### <a name="resources"></a>Ressources
+Lorsque hello compte Automation a été créé, plusieurs ressources sont automatiquement créées pour vous. ressources de Hello sont résumées dans hello les deux tableaux suivants :
 
 #### <a name="run-as-account-resources"></a>Ressources de compte d’identification
 
 | Ressource | Description |
 | --- | --- |
-| Runbook AzureAutomationTutorial | Exemple de Runbook Graphical qui illustre l’authentification à l’aide du compte d’identification et l’accès à l’ensemble des ressources Resource Manager. |
-| Runbook AzureAutomationTutorialScript | Exemple de Runbook PowerShell qui illustre l’authentification à l’aide du compte d’identification et l’accès à l’ensemble des ressources Resource Manager. |
-| AzureRunAsCertificate | La ressource de certificat créée automatiquement lors de la création du compte Automation ou à l’aide du script PowerShell ci-dessous pour un compte existant. Le certificat permet de vous authentifier auprès d’Azure afin de pouvoir gérer les ressources Azure Resource Manager des Runbooks. Ce certificat a une durée de vie d’1 an. |
-| AzureRunAsConnection | La ressource de connexion créée automatiquement lors de la création du compte Automation ou à l’aide du script PowerShell pour un compte existant. |
+| Runbook AzureAutomationTutorial | Runbook graphique exemple qui montre comment tooauthenticate à l’aide de hello compte d’identification et obtient toutes les ressources du Gestionnaire de ressources hello. |
+| Runbook AzureAutomationTutorialScript | Un exemple de runbook PowerShell qui montre comment tooauthenticate à l’aide de hello compte d’identification et obtient toutes les ressources du Gestionnaire de ressources hello. |
+| AzureRunAsCertificate | ressource de certificat Hello qui est créé automatiquement lorsque vous créez un compte Automation ou que vous utilisez hello suite du script PowerShell pour un compte existant. certificat de Hello vous permet de tooauthenticate avec Azure afin que vous puissiez gérer les ressources Azure Resource Manager à partir de procédures opérationnelles. certificat de Hello a une durée de vie d’un an. |
+| AzureRunAsConnection | ressource de connexion Hello qui est créé automatiquement lorsque vous créez un compte Automation ou utilisez un script PowerShell de hello pour un compte existant. |
 
 #### <a name="classic-run-as-account-resources"></a>Ressources de compte d’identification Classic
 
 | Ressource | Description |
 | --- | --- |
-| Runbook AzureClassicAutomationTutorial | Exemple de Runbook Graphical qui accède à toutes les machines virtuelles créées sur le modèle de déploiement classique dans un abonnement à l’aide du compte d’identification Classic (certificat), puis indique leur nom et état. |
-| Runbook AzureClassicAutomationTutorialScript | Exemple de Runbook PowerShell qui accède à toutes les machines virtuelles Classic d’un abonnement à l’aide du compte d’identification Classic (certificat), puis écrit leur nom et leur état. |
-| AzureClassicRunAsCertificate | Ressource de certificat créée automatiquement et utilisée pour l’authentification auprès d’Azure afin que vous puissiez gérer les ressources Azure Classic des Runbooks. Ce certificat a une durée de vie d’1 an. |
-| AzureClassicRunAsConnection | Ressource de connexion créée automatiquement et utilisée pour l’authentification auprès d’Azure afin que vous puissiez gérer les ressources Azure Classic des Runbooks. |
+| Runbook AzureClassicAutomationTutorial | Exemple de runbook graphique qui obtient tous les ordinateurs virtuels de hello qui sont créés à l’aide du modèle de déploiement classique hello dans un abonnement à l’aide de hello classique compte d’identification (certificat), puis écrit l’état et le nom de machine virtuelle hello. |
+| Runbook AzureClassicAutomationTutorialScript | Exemple de runbook PowerShell qui obtient tous les hello classiques machines virtuelles dans un abonnement à l’aide de hello classique compte d’identification (certificat), puis écritures hello état et le nom de la machine virtuelle. |
+| AzureClassicRunAsCertificate | ressource de certificat Hello créé automatiquement utiliser tooauthenticate avec Azure afin que vous puissiez gérer les ressources classiques Azure à partir de procédures opérationnelles. certificat de Hello a une durée de vie d’un an. |
+| AzureClassicRunAsConnection | ressource de connexion créés automatiquement de Hello utiliser tooauthenticate avec Azure afin que vous puissiez gérer les ressources classiques Azure à partir de procédures opérationnelles. |
 
 ## <a name="verify-run-as-authentication"></a>Vérifier l’authentification d’identification
-Effectuez un test rapide afin de vérifier que vous êtes en mesure de vous authentifier à l’aide du nouveau compte d’identification.
+Effectuer un tooconfirm de test peu que vous pouvez vous authentifier avec succès à l’aide de hello nouveau compte d’identification.
 
-1. Dans le portail Azure, ouvrez le compte Automation que vous avez créé.
+1. Bonjour portail Azure, ouvrez le compte Automation hello que vous avez créé précédemment.
 
-2. Cliquez sur la vignette **Runbooks** pour ouvrir la liste des runbooks.
+2. Cliquez sur hello **Runbooks** vignette tooopen hello liste des runbooks.
 
-3. Sélectionnez le Runbook **AzureAutomationTutorialScript**, puis cliquez sur **Démarrer** pour le lancer. Les événements suivants se produisent :
- * Un [travail du Runbook](automation-runbook-execution.md) est créé. Le panneau **Travail** s’affiche alors et l’état du travail est affiché dans la mosaïque **Résumé du travail**.
- * L’état initial du travail est **Mis en file d’attente** pour indiquer qu’il attend la disponibilité d’un Runbook Worker dans le cloud.
- * L’état passe ensuite à **Démarrage en cours** lorsqu’un Worker sélectionne le travail.
- * L’état passe à **En cours d’exécution** lorsque le Runbook commence à s’exécuter.
- * Lorsque le travail de Runbook a fini de s’exécuter,l’état est **Terminé**.
+3. Sélectionnez hello **AzureAutomationTutorialScript** runbook, puis cliquez sur **Démarrer** toostart hello runbook. Hello suivant des événements se produire :
+ * A [tâche du runbook](automation-runbook-execution.md) est créé, hello **travail** panneau s’affiche, et état de la tâche hello est affiché dans hello **récapitulatif** vignette.
+ * état de la tâche Hello commence en tant que **en file d’attente**, indiquant qu’il est en attente d’un runbook worker dans hello toobecome de cloud disponible.
+ * l’état de Hello devient **départ** lorsqu’un travailleur de revendications travail de hello.
+ * l’état de Hello devient **en cours d’exécution** lorsque hello runbook démarre l’exécution.
+ * Lors de la tâche du runbook hello est terminée, vous devez voir un état de **terminé**.
 
        ![Security Principal Runbook Test](media/automation-sec-configure-azure-runas-account/job-summary-automationtutorialscript.png)
-4. Pour afficher les résultats détaillés du Runbook, cliquez sur la mosaïque **Sortie**.  
-Le panneau **Sortie** est affiché, indiquant que le Runbook a authentifié et retourné la liste de toutes les ressources disponibles dans le groupe de ressources.
+4. toosee hello les résultats détaillés de hello runbook, cliquez sur hello **sortie** vignette.  
+Hello **sortie** panneau s’affiche, indiquant que runbook hello a authentifié et a renvoyé une liste de toutes les ressources disponibles dans le groupe de ressources hello.
 
-5. Fermez le panneau **Sortie** pour revenir au panneau **Résumé du travail**.
+5. Fermer hello **sortie** panneau tooreturn toohello **récapitulatif** panneau.
 
-6. Fermez le panneau **Résumé du travail** et le panneau du Runbook **AzureAutomationTutorialScript** correspondant.
+6. Fermer hello **récapitulatif** lame et hello correspondant **AzureAutomationTutorialScript** panneau runbook.
 
 ## <a name="verify-classic-run-as-authentication"></a>Vérifier l’authentification d’identification Classic
-Effectuez un test rapide similaire afin de vérifier que vous êtes en mesure de vous authentifier à l’aide du nouveau compte d’identification Classic.
+Effectuer un petit semblables tests tooconfirm que vous pouvez vous authentifier avec succès à l’aide de hello classique compte d’identification.
 
-1. Dans le portail Azure, ouvrez le compte Automation que vous avez créé.
+1. Bonjour portail Azure, ouvrez le compte Automation hello que vous avez créé précédemment.
 
-2. Cliquez sur la vignette **Runbooks** pour ouvrir la liste des runbooks.
+2. Cliquez sur hello **Runbooks** vignette tooopen hello liste des runbooks.
 
-3. Sélectionnez le Runbook **AzureClassicAutomationTutorialScript**, puis cliquez sur **Démarrer** pour le lancer. Les événements suivants se produisent :
+3. Sélectionnez hello **AzureClassicAutomationTutorialScript** runbook, puis cliquez sur **Démarrer** trop démarrer hello runbook. Hello suivant des événements se produire :
 
- * Un [travail du Runbook](automation-runbook-execution.md) est créé. Le panneau **Travail** s’affiche alors et l’état du travail est affiché dans la mosaïque **Résumé du travail**.
- * L’état initial du travail est **Mis en file d’attente** pour indiquer qu’il attend la disponibilité d’un Runbook Worker dans le cloud.
- * L’état passe ensuite à **Démarrage en cours** lorsqu’un Worker sélectionne le travail.
- * L’état passe à **En cours d’exécution** lorsque le Runbook commence à s’exécuter.
- * Lorsque le travail de Runbook a fini de s’exécuter, l’état est **Terminé**.
+ * A [tâche du runbook](automation-runbook-execution.md) est créé, hello **travail** panneau s’affiche, et état de la tâche hello est affiché dans hello **récapitulatif** vignette.
+ * état de la tâche Hello commence en tant que **en file d’attente**, indiquant qu’il est en attente d’un runbook worker dans hello toobecome de cloud disponible.
+ * l’état de Hello devient **départ** lorsqu’un travailleur de revendications travail de hello.
+ * l’état de Hello devient **en cours d’exécution** lorsque hello runbook démarre l’exécution.
+ * Lors de la tâche du runbook hello est terminée, vous devez voir un état de **terminé**.
 
     ![Test de Runbook du principal de sécurité](media/automation-sec-configure-azure-runas-account/job-summary-automationclassictutorialscript.png)<br>
-4. Pour afficher les résultats détaillés du Runbook, cliquez sur la mosaïque **Sortie**.  
-Le panneau **Sortie** est affiché, indiquant que le Runbook a authentifié et retourné la liste de toutes les machines virtuelles Classic de l’abonnement.
+4. toosee hello les résultats détaillés de hello runbook, cliquez sur hello **sortie** vignette.  
+Hello **sortie** panneau s’affiche, indiquant que runbook hello a authentifié et retourné une liste de toutes les machines virtuelles classiques dans l’abonnement de hello.
 
-5. Fermez le panneau **Sortie** pour revenir au panneau **Résumé du travail**.
+5. Fermer hello **sortie** panneau tooreturn toohello **récapitulatif** panneau.
 
-6. Fermez le panneau **Résumé du travail** et le panneau du Runbook **AzureAutomationTutorialScript** correspondant.
+6. Fermer hello **récapitulatif** lame et hello correspondant **AzureAutomationTutorialScript** panneau runbook.
 
 ## <a name="managing-your-run-as-account"></a>Gestion de votre compte d’identification
-Avant que votre compte Automation n’expire, vous devez renouveler le certificat. Si vous pensez que le compte d’identification a été compromis, vous pouvez le supprimer et le recréer. Cette section décrit comment effectuer ces opérations.
+À un moment donné avant l’expiration de votre compte Automation, vous devez le certificat de hello toorenew. Si vous pensez que ce compte d’identification hello a été compromise, vous pouvez supprimer et recréer. Cette section explique comment tooperform ces opérations.
 
 ### <a name="self-signed-certificate-renewal"></a>Renouvellement de certificat auto-signé
-Le certificat auto-signé que vous avez créé pour le compte d’identification expire 1 an après la date de création. Vous pouvez le renouveler à tout moment avant qu’il n’expire. Lorsque vous le renouvelez, le certificat valide en cours est conservé afin de garantir que les Runbooks en file d’attente ou en cours d’exécution, qui s’authentifient avec le compte d’identification, ne sont pas affectés. Le certificat reste valide jusqu’à sa date d’expiration.
+Hello un certificat auto-signé que vous avez créé pour hello exécuter en tant que compte expire un an à partir de la date de hello de création. Vous pouvez le renouveler à tout moment avant qu’il n’expire. Lors du renouvellement, il certificat valide de hello actuelle est retenue tooensure que les runbooks qui sont en attente jusqu'à ou activement en cours d’exécution, et qui s’authentifient avec hello compte d’identification, ne sont pas affectés négativement. certificat de Hello reste valide jusqu'à ce que sa date d’expiration.
 
 > [!NOTE]
-> Si vous avez configuré votre compte d’identification Automation pour utiliser un certificat émis par votre autorité de certification d’entreprise et que vous utilisez cette option, ce certificat sera remplacé par un certificat auto-signé.
+> Si vous avez configuré votre toouse de compte Automation s’exécuter en tant qu’un certificat émis par votre autorité de certification d’entreprise et que vous utilisez cette option, le certificat d’entreprise hello est remplacé par un certificat auto-signé.
 
-Pour renouveler le certificat, procédez comme suit :
+toorenew hello certificat, procédez comme hello suivant :
 
-1. Dans le portail Azure, ouvrez le compte Automation.
+1. Bonjour portail Azure, ouvrez le compte Automation de hello.
 
-2. Dans le panneau **Compte Automation**, dans le volet **Propriétés du compte**, sous **Paramètres du compte**, sélectionnez **Comptes d’identification**.
+2. Sur hello **compte Automation** panneau, Bonjour **compte propriétés** volet, sous **les paramètres de compte**, sélectionnez **exécuter en tant que comptes**.
 
     ![Panneau des propriétés du compte Automation](media/automation-sec-configure-azure-runas-account/automation-account-properties-pane.png)
-3. Dans le panneau des propriétés des **Comptes d’identification**, sélectionnez le compte d’identification standard ou le compte d’identification Classic pour lequel vous souhaitez renouveler le certificat.
+3. Sur hello **comptes d’identification** panneau des propriétés, sélectionnez soit hello d’identification de compte ou hello classique exécuter en tant que compte de certificat de hello toorenew pour.
 
-4. Sur le panneau **Propriétés** du compte sélectionné, cliquez sur **Renouveler le certificat**.
+4. Sur hello **propriétés** panneau pourquoi le compte sélectionné, cliquez sur **renouveler certificat**.
 
     ![Renouveler le certificat pour le compte d’identification](media/automation-sec-configure-azure-runas-account/automation-account-renew-runas-certificate.png)
 
-5. Pour suivre la progression du renouvellement du certificat, accédez à l’onglet **Notifications** du menu.
+5. Pendant le renouvellement de certificat de hello, vous pouvez suivre la progression de hello sous **Notifications** à partir du menu de hello.
 
 ### <a name="delete-a-run-as-or-classic-run-as-account"></a>Supprimer un compte d’identification standard ou Classic
-Cette section décrit comment supprimer et recréer votre compte d’identification standard ou Classic. Lorsque vous effectuez cette opération, le compte Automation est conservé. Après avoir supprimé le compte d’identification standard ou le compte d’identification Classic, vous pouvez le recréer dans le portail Azure.
+Cette section décrit comment toodelete et recréer un compte d’identification ou classique exécuter en tant que. Lorsque vous effectuez cette action, hello compte Automation est conservée. Après avoir supprimé un compte d’identification ou classique exécuter en tant que, vous pouvez le recréer dans hello portail Azure.
 
-1. Dans le portail Azure, ouvrez le compte Automation.
+1. Bonjour portail Azure, ouvrez le compte Automation de hello.
 
-2. Dans le panneau **Compte Automation**, dans le volet des propriétés du compte, sélectionnez **Comptes d’identification**.
+2. Sur hello **compte Automation** lame, hello compte volet Propriétés, sélectionnez **exécuter en tant que comptes**.
 
-3. Dans le panneau des propriétés des **Comptes d’identification**, sélectionnez le compte d’identification standard ou le compte d’identification Classic que vous voulez supprimer. Ensuite, dans le panneau **Propriétés** du compte sélectionné, cliquez sur **Supprimer**.
+3. Sur hello **comptes d’identification** panneau des propriétés, sélectionnez soit hello d’identification de compte ou classique exécuter en tant que le compte que vous souhaitez toodelete. Ensuite, sous hello **propriétés** panneau pourquoi le compte sélectionné, cliquez sur **supprimer**.
 
  ![Supprimer un compte d’identification](media/automation-sec-configure-azure-runas-account/automation-account-delete-runas.png)
 
-4. Pour suivre la progression de la suppression du compte, accédez à l’onglet **Notifications** du menu.
+4. Lors de la suppression du compte de hello, vous pouvez suivre la progression de hello sous **Notifications** à partir du menu de hello.
 
-5. Une fois le compte supprimé, vous pouvez le recréer sur le panneau des propriétés **Comptes d’identification** en sélectionnant l’option de création **Compte d’identification Azure**.
+5. Une fois que le compte de hello a été supprimé, vous pouvez recréer il sur hello **comptes d’identification** option de création du panneau des propriétés en sélectionnant hello **exécuter en tant que compte Azure**.
 
- ![Recréer le compte d’identification Automation](media/automation-sec-configure-azure-runas-account/automation-account-create-runas.png)
+ ![Recréez le compte d’identification Automation hello](media/automation-sec-configure-azure-runas-account/automation-account-create-runas.png)
 
 ### <a name="misconfiguration"></a>Configuration incorrecte
-Certains éléments de configuration nécessaires pour que le compte d’identification standard ou le compte d’identification Classic fonctionne correctement ont peut-être été supprimés ou n’ont pas été créés correctement lors de l’installation initiale. Par exemple :
+Certains éléments de configuration nécessaires pour toofunction de compte Exécuter en tant qu’ou classique en hello peuvent correctement ont été supprimés ou créés correctement lors de l’installation initiale. éléments de Hello sont les suivantes :
 
 * Ressource de certificat
 * Ressource de connexion
-* Compte d’identification supprimé du rôle Contributeur
+* Compte d’identification a été supprimé de rôle de collaborateur hello
 * Principal du service ou application dans Azure AD
 
-Dans les cas précédents et dans d’autres instances de configuration incorrecte, le compte Automation détecte les modifications et affiche l’état *Incomplet* dans le panneau des propriétés **Comptes d’identification** du compte.
+Hello précédent et les autres instances d’une configuration incorrecte, hello compte Automation détecte hello modifie et affiche l’état *incomplet* sur hello **comptes d’identification** panneau des propriétés pour hello compte.
 
 ![État Incomplet pour la configuration du compte d’identification](media/automation-sec-configure-azure-runas-account/automation-account-runas-incomplete-config.png)
 
-Lorsque vous sélectionnez le compte d’identification, le volet **Propriétés** du compte affiche le message d’erreur suivant :
+Lorsque vous sélectionnez le compte d’identification hello, hello compte **propriétés** volet affiche hello message d’erreur suivant :
 
 ![Message d’avertissement Incomplet pour la configuration du compte d’identification](media/automation-sec-configure-azure-runas-account/automation-account-runas-incomplete-config-msg.png).
 
-Vous pouvez rapidement résoudre ces problèmes liés au compte d’identification en supprimant et en recréant le compte.
+Vous pouvez rapidement résoudre ces problèmes de compte Exécuter en tant qu’à supprimer et recréer le compte de hello.
 
 ## <a name="update-your-automation-account-by-using-powershell"></a>Mise à jour de votre compte Automation à l’aide de PowerShell
-Vous pouvez utiliser PowerShell pour mettre à jour votre compte Automation existant si :
+Vous pouvez utiliser PowerShell tooupdate votre compte Automation existant si :
 
-* Vous créez un compte Automation sans compte d’identification.
-* Vous possédez déjà un compte Automation pour gérer les ressources Resource Manager et vous voulez le mettre à jour pour inclure le compte d’identification pour l’authentification du Runbook.
-* Vous possédez déjà un compte Automation pour gérer les ressources classiques et souhaitez le mettre à jour pour utiliser le compte d’identification Classic au lieu de créer un compte et d’y migrer vos Runbooks et ressources.   
-* Vous souhaitez créer un compte d’identification standard et un compte d’identification Classic à l’aide d’un certificat émis par votre AC d’entreprise.
+* Vous créez un compte Automation mais refusez toocreate hello exécuter en tant que compte.
+* Vous utilisez déjà une ressources de gestionnaire de ressources toomanage compte Automation et que vous souhaitez tooupdate hello tooinclude hello exécuter en tant que compte pour l’authentification de runbook.
+* Vous utilisez déjà une Automation compte toomanage les ressources classiques et tooupdate il toouse hello classique compte d’identification au lieu de créer un compte et la migration de votre tooit runbooks et ressources.   
+* Vous souhaitez que toocreate une identification et classique compte d’identification à l’aide d’un certificat émis par votre autorité de certification d’entreprise (CA).
 
-Le script nécessite les éléments suivants :
+script de Hello a hello suivant des conditions préalables :
 
-* Ce script peut uniquement être exécuté sur Windows 10 et sur Windows Server 2016 avec les modules Azure Resource Manager 2.01 et versions ultérieures. Il n’est pas pris en charge dans les versions antérieures de Windows.
-* Azure PowerShell 1.0 et versions ultérieures. Pour plus d’informations sur la version PowerShell 1.0, voir [Installation et configuration d’Azure PowerShell](/powershell/azure/overview).
-* Un compte Automation, référencé en tant que valeur des paramètres *–AutomationAccountName* et *-ApplicationDisplayName* dans le script PowerShell suivant.
+* script de Hello peut exécuter uniquement sur Windows 10 et Windows Server 2016 avec des modules Azure Resource Manager 2.01 et versions ultérieures. Il n’est pas pris en charge dans les versions antérieures de Windows.
+* Azure PowerShell 1.0 et versions ultérieures. Pour plus d’informations sur la mise en production hello PowerShell 1.0, consultez [comment tooinstall et configurer Azure PowerShell](/powershell/azure/overview).
+* Un compte Automation, qui est référencé en tant que valeur hello pour hello *– AutomationAccountName* et *- ApplicationDisplayName* paramètres Bonjour suite du script PowerShell.
 
-Pour obtenir les valeurs des paramètres *SubscriptionID*, *ResourceGroup* et *AutomationAccountName*, qui sont des paramètres requis pour les scripts, procédez comme suit :
-1. Sélectionnez votre compte Automation à partir du panneau **Compte Automation** du portail Azure, puis sélectionnez **Tous les paramètres**. 
-2. Dans le panneau **Tous les paramètres**, sous **Paramètres du compte**, sélectionnez **Propriétés**. 
-3. Notez les valeurs dans le panneau **Propriétés**.
+les valeurs tooget hello pour *SubscriptionID*, *ResourceGroup*, et *AutomationAccountName*, qui sont des paramètres requis pour les scripts de hello, procédez comme hello suivant :
+1. Dans l’hello portail Azure, sélectionnez votre compte Automation sur hello **compte Automation** panneau, puis sélectionnez **tous les paramètres**. 
+2. Sur hello **tous les paramètres** panneau, sous **les paramètres de compte**, sélectionnez **propriétés**. 
+3. Notez les valeurs hello sur hello **propriétés** panneau.
 
-![Panneau Propriétés du compte Automation](media/automation-sec-configure-azure-runas-account/automation-account-properties.png)  
+![Panneau de Hello Automation compte « Propriétés »](media/automation-sec-configure-azure-runas-account/automation-account-properties.png)  
 
 ### <a name="create-a-run-as-account-powershell-script"></a>Créer le script PowerShell d’un compte d’identification
-Ce script PowerShell prend en charge les configurations suivantes :
+Ce script PowerShell prend en charge hello suivant configurations :
 
 * Créez un compte d’identification à l’aide d’un certificat auto-signé.
 * Créez un compte d’identification standard et un compte d’identification Classic à l’aide d’un certificat auto-signé.
 * Créez un compte d’identification standard et un compte d’identification Classic à l’aide d’un certificat d’entreprise.
-* Créez un compte d’identification standard et un compte d’identification Classic à l’aide d’un certificat auto-signé dans le cloud Azure Government.
+* Créer un compte d’identification et classique compte d’identification à l’aide d’un certificat auto-signé Bonjour cloud d’Azure Government.
 
-Selon l’option de configuration que vous sélectionnez, le script crée les éléments suivants.
+En fonction de l’option de configuration hello sélectionnée, le script de hello crée hello éléments suivants.
 
 **Pour les comptes d’identification :**
 
-* Crée une application Azure AD qui sera exportée avec la clé publique du certificat auto-signé ou du certificat d’entreprise, crée un compte de principal de service pour cette application dans Azure AD et affecte le rôle Collaborateur pour le compte dans votre abonnement actuel. Vous pouvez remplacer ce paramètre par un rôle de propriétaire ou par tout autre rôle. Pour plus d’informations, voir [Contrôle d’accès en fonction du rôle dans Azure Automation](automation-role-based-access-control.md).
-* Crée une ressource de certificat Automation nommée *AzureRunAsCertificate* dans le compte Automation spécifié. La ressource de certificat conserve la clé privée du certificat utilisée par l’application Azure AD.
-* Crée une ressource de connexion Automation nommée *AzureRunAsConnection* dans le compte Automation spécifié. La ressource de connexion conserve les ID applicationId, tenantId et subscriptionId, et l’empreinte de certificat.
+* Crée un Azure AD application toobe exporté avec soit hello auto-signé ou clé publique du certificat enterprise, crée un compte de principal du service pour l’application hello dans Azure AD, et assigne hello compte hello dans votre rôle de collaborateur abonnement. Vous pouvez modifier ce paramètre tooOwner ou tout autre rôle. Pour plus d’informations, voir [Contrôle d’accès en fonction du rôle dans Azure Automation](automation-role-based-access-control.md).
+* Crée une ressource de certificat Automation nommée *AzureRunAsCertificate* Bonjour spécifié le compte Automation. ressource de certificat Hello conserve la clé privée hello certificat utilisé par l’application hello Azure AD.
+* Crée une ressource de connexion d’Automation nommée *AzureRunAsConnection* Bonjour spécifié le compte Automation. ressource de connexion Hello conserve hello applicationId, tenantId, ID d’abonnement et l’empreinte numérique du certificat.
 
 **Pour les comptes d’identification Classic :**
 
-* Crée une ressource de certificat Automation nommée *AzureClassicRunAsCertificate*dans le compte Automation spécifié. La ressource de certificat conserve la clé privée du certificat utilisée par le certificat de gestion.
-* Crée une ressource de connexion Automation nommée *AzureClassicRunAsConnection* dans le compte Automation spécifié. La ressource de connexion conserve le nom de l’abonnement, l’ID subscriptionId et le nom de ressource de certificat.
+* Crée une ressource de certificat Automation nommée *AzureClassicRunAsCertificate* Bonjour spécifié le compte Automation. ressource de certificat Hello conserve la clé privée du certificat hello utilisé par le certificat de gestion hello.
+* Crée une ressource de connexion d’Automation nommée *AzureClassicRunAsConnection* Bonjour spécifié le compte Automation. ressource de connexion Hello conserve hello abonnement nom, ID d’abonnement et nom de ressource de certificat.
 
 >[!NOTE]
-> Si vous sélectionnez l’option permettant de créer un compte d’identification Classic, après l’exécution du script, vous devez charger le certificat public (extension de nom de fichier .cer) dans le magasin de gestion de l’abonnement dans lequel le compte Automation a été créé.
+> Si vous sélectionnez l’option de création d’un compte classique exécuter en tant qu’après l’exécution de script de hello, téléchargement hello publique magasin de certificats de gestion de toohello (extension de nom de fichier .cer) pour l’abonnement de hello que hello compte Automation a été créé dans.
 > 
 
-Pour exécuter le script et télécharger le certificat, procédez comme suit :
+tooexecute hello script et télécharger le certificat de hello, hello suivant :
 
-1. Enregistrez le script suivant sur votre ordinateur. Dans cet exemple, enregistrez-le sous le nom de fichier *New-RunAsAccount.ps1*.
+1. Enregistrez hello script suivant sur votre ordinateur. Dans cet exemple, enregistrez-le sous le nom de fichier hello *New-RunAsAccount.ps1*.
 
         #Requires -RunAsAdministrator
          Param (
@@ -350,7 +350,7 @@ Pour exécuter le script et télécharger le certificat, procédez comme suit :
         $ServicePrincipal = New-AzureRMADServicePrincipal -ApplicationId $Application.ApplicationId
         $GetServicePrincipal = Get-AzureRmADServicePrincipal -ObjectId $ServicePrincipal.Id
 
-        # Sleep here for a few seconds to allow the service principal application to become active (ordinarily takes a few seconds)
+        # Sleep here for a few seconds tooallow hello service principal application toobecome active (ordinarily takes a few seconds)
         Sleep -s 15
         $NewRole = New-AzureRMRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $Application.ApplicationId -ErrorAction SilentlyContinue
         $Retries = 0;
@@ -381,7 +381,7 @@ Pour exécuter le script et télécharger le certificat, procédez comme suit :
         $AzureRMProfileVersion= (Get-Module AzureRM.Profile).Version
         if (!(($AzureRMProfileVersion.Major -ge 2 -and $AzureRMProfileVersion.Minor -ge 1) -or ($AzureRMProfileVersion.Major -gt 2)))
         {
-           Write-Error -Message "Please install the latest Azure PowerShell and retry. Relevant doc url : https://docs.microsoft.com/powershell/azureps-cmdlets-docs/ "
+           Write-Error -Message "Please install hello latest Azure PowerShell and retry. Relevant doc url : https://docs.microsoft.com/powershell/azureps-cmdlets-docs/ "
            return
         }
 
@@ -408,16 +408,16 @@ Pour exécuter le script et télécharger le certificat, procédez comme suit :
         $PfxCert = New-Object -TypeName System.Security.Cryptography.X509Certificates.X509Certificate2 -ArgumentList @($PfxCertPathForRunAsAccount, $PfxCertPlainPasswordForRunAsAccount)
         $ApplicationId=CreateServicePrincipal $PfxCert $ApplicationDisplayName
 
-        # Create the Automation certificate asset
+        # Create hello Automation certificate asset
         CreateAutomationCertificateAsset $ResourceGroup $AutomationAccountName $CertifcateAssetName $PfxCertPathForRunAsAccount $PfxCertPlainPasswordForRunAsAccount $true
 
-        # Populate the ConnectionFieldValues
+        # Populate hello ConnectionFieldValues
         $SubscriptionInfo = Get-AzureRmSubscription -SubscriptionId $SubscriptionId
         $TenantID = $SubscriptionInfo | Select TenantId -First 1
         $Thumbprint = $PfxCert.Thumbprint
         $ConnectionFieldValues = @{"ApplicationId" = $ApplicationId; "TenantId" = $TenantID.TenantId; "CertificateThumbprint" = $Thumbprint; "SubscriptionId" = $SubscriptionId}
 
-        # Create an Automation connection asset named AzureRunAsConnection in the Automation account. This connection uses the service principal.
+        # Create an Automation connection asset named AzureRunAsConnection in hello Automation account. This connection uses hello service principal.
         CreateAutomationConnectionAsset $ResourceGroup $AutomationAccountName $ConnectionAssetName $ConnectionTypeName $ConnectionFieldValues
 
         if ($CreateClassicRunAsAccount) {
@@ -425,9 +425,9 @@ Pour exécuter le script et télécharger le certificat, procédez comme suit :
             $ClassicRunAsAccountCertifcateAssetName = "AzureClassicRunAsCertificate"
             $ClassicRunAsAccountConnectionAssetName = "AzureClassicRunAsConnection"
             $ClassicRunAsAccountConnectionTypeName = "AzureClassicCertificate "
-            $UploadMessage = "Please upload the .cer format of #CERT# to the Management store by following the steps below." + [Environment]::NewLine +
-                    "Log in to the Microsoft Azure Management portal (https://manage.windowsazure.com) and select Settings -> Management Certificates." + [Environment]::NewLine +
-                    "Then click Upload and upload the .cer format of #CERT#"
+            $UploadMessage = "Please upload hello .cer format of #CERT# toohello Management store by following hello steps below." + [Environment]::NewLine +
+                    "Log in toohello Microsoft Azure Management portal (https://manage.windowsazure.com) and select Settings -> Management Certificates." + [Environment]::NewLine +
+                    "Then click Upload and upload hello .cer format of #CERT#"
 
              if ($EnterpriseCertPathForClassicRunAsAccount -and $EnterpriseCertPlainPasswordForClassicRunAsAccount ) {
              $PfxCertPathForClassicRunAsAccount = $EnterpriseCertPathForClassicRunAsAccount
@@ -442,14 +442,14 @@ Pour exécuter le script et télécharger le certificat, procédez comme suit :
              CreateSelfSignedCertificate $KeyVaultName $ClassicRunAsAccountCertificateName $PfxCertPlainPasswordForClassicRunAsAccount $PfxCertPathForClassicRunAsAccount $CerCertPathForClassicRunAsAccount $SelfSignedCertNoOfMonthsUntilExpired
         }
 
-        # Create the Automation certificate asset
+        # Create hello Automation certificate asset
         CreateAutomationCertificateAsset $ResourceGroup $AutomationAccountName $ClassicRunAsAccountCertifcateAssetName $PfxCertPathForClassicRunAsAccount $PfxCertPlainPasswordForClassicRunAsAccount $false
 
-        # Populate the ConnectionFieldValues
+        # Populate hello ConnectionFieldValues
         $SubscriptionName = $subscription.Subscription.SubscriptionName
         $ClassicRunAsAccountConnectionFieldValues = @{"SubscriptionName" = $SubscriptionName; "SubscriptionId" = $SubscriptionId; "CertificateAssetName" = $ClassicRunAsAccountCertifcateAssetName}
 
-        # Create an Automation connection asset named AzureRunAsConnection in the Automation account. This connection uses the service principal.
+        # Create an Automation connection asset named AzureRunAsConnection in hello Automation account. This connection uses hello service principal.
         CreateAutomationConnectionAsset $ResourceGroup $AutomationAccountName $ClassicRunAsAccountConnectionAssetName $ClassicRunAsAccountConnectionTypeName $ClassicRunAsAccountConnectionFieldValues
 
         Write-Host -ForegroundColor red $UploadMessage
@@ -457,9 +457,9 @@ Pour exécuter le script et télécharger le certificat, procédez comme suit :
 
 2. Sur votre ordinateur, cliquez sur **Démarrer**, puis démarrez **Windows PowerShell** avec des droits de l’utilisateur élevés.
 
-3. À partir de l’interface de ligne de commande PowerShell avec élévation de privilèges, accédez au dossier contenant le script que vous avez créé à l’étape 1.
+3. À partir de hello élevé PowerShell interpréteur de commandes, accédez toohello dossier qui contient le script hello créé à l’étape 1.
 
-4. Exécutez le script en utilisant les valeurs de paramètre pour la configuration dont vous avez besoin.
+4. Exécuter le script de hello à l’aide des valeurs de paramètre hello pour configuration hello que vous avez besoin.
 
     **Créer un compte d’identification à l’aide d’un certificat auto-signé**  
     `.\New-RunAsAccount.ps1 -ResourceGroup <ResourceGroupName> -AutomationAccountName <NameofAutomationAccount> -SubscriptionId <SubscriptionId> -ApplicationDisplayName <DisplayNameofAADApplication> -SelfSignedCertPlainPassword <StrongPassword> -CreateClassicRunAsAccount $false`
@@ -470,36 +470,36 @@ Pour exécuter le script et télécharger le certificat, procédez comme suit :
     **Créer un compte d’identification standard et un compte d’identification Classic à l’aide d’un certificat d’entreprise**  
     `.\New-RunAsAccount.ps1 -ResourceGroup <ResourceGroupName> -AutomationAccountName <NameofAutomationAccount> -SubscriptionId <SubscriptionId> -ApplicationDisplayName <DisplayNameofAADApplication>  -SelfSignedCertPlainPassword <StrongPassword> -CreateClassicRunAsAccount $true -EnterpriseCertPathForRunAsAccount <EnterpriseCertPfxPathForRunAsAccount> -EnterpriseCertPlainPasswordForRunAsAccount <StrongPassword> -EnterpriseCertPathForClassicRunAsAccount <EnterpriseCertPfxPathForClassicRunAsAccount> -EnterpriseCertPlainPasswordForClassicRunAsAccount <StrongPassword>`
 
-    **Créer un compte d’identification standard et un compte d’identification Classic à l’aide d’un certificat auto-signé dans le cloud Azure Government**  
+    **Créer un compte d’identification et classique compte d’identification à l’aide d’un certificat auto-signé Bonjour cloud d’Azure Government**  
     `.\New-RunAsAccount.ps1 -ResourceGroup <ResourceGroupName> -AutomationAccountName <NameofAutomationAccount> -SubscriptionId <SubscriptionId> -ApplicationDisplayName <DisplayNameofAADApplication> -SelfSignedCertPlainPassword <StrongPassword> -CreateClassicRunAsAccount $true  -EnvironmentName AzureUSGovernment`
 
     > [!NOTE]
-    > Une fois le script exécuté, vous êtes invité à vous authentifier auprès d’Azure. Connectez-vous avec un compte membre du rôle Administrateurs des abonnements et coadministrateur de l’abonnement.
+    > Après l’exécution de script de hello, vous serez invité à tooauthenticate avec Azure. Connectez-vous avec un compte qui est membre du rôle Administrateurs d’abonnement hello et coadministrateur de l’abonnement de hello.
     >
     >
 
-Une fois le script exécuté, notez les points suivants :
-* Si vous avez créé un compte d’identification Classic avec un certificat public auto-signé (fichier .cer), le script le crée et l’enregistre dans le dossier de fichiers temporaires sur votre ordinateur, sous le profil d’utilisateur *%USERPROFILE%\AppData\Local\Temp* utilisé pour exécuter la session PowerShell.
-* Si vous avez créé un compte d’identification Classic avec un certificat public d’entreprise (fichier .cer), utilisez ce certificat. Suivez les instructions pour [charger un certificat d’API de gestion vers le portail Azure Classic](../azure-api-management-certs.md), puis validez la configuration des informations d’identification avec les ressources de gestion des services à l’aide de [l’exemple de code pour l’authentification avec les ressources de gestion des services](#sample-code-to-authenticate-with-service-management-resources). 
-* Si vous n’avez *pas* créé de compte d’identification Classic, authentifiez-vous avec des ressources Resource Manager et validez la configuration des informations d’identification à l’aide [l’exemple de code pour l’authentification avec les ressources de gestion des services](#sample-code-to-authenticate-with-resource-manager-resources).
+Une fois le script de hello a été exécutée correctement, notez hello qui suit :
+* Si vous avez créé un classique compte d’identification avec un certificat auto-signé de public (fichier .cer), le script de hello crée et enregistre toohello dossier des fichiers temporaires sur votre ordinateur sous le profil utilisateur hello *%USERPROFILE%\AppData\Local\Temp*, que vous avez utilisé la session de PowerShell tooexecute hello.
+* Si vous avez créé un compte d’identification Classic avec un certificat public d’entreprise (fichier .cer), utilisez ce certificat. Suivez les instructions de hello pour [téléchargement un toohello de certificat d’API de gestion portail Azure classic](../azure-api-management-certs.md), puis validez de configuration des informations d’identification hello avec les ressources de gestion des services à l’aide de hello [exemple de code tooauthenticate avec le Service de gestion des ressources](#sample-code-to-authenticate-with-service-management-resources). 
+* Si vous l’avez fait *pas* créer classique compte d’identification, de s’authentifier auprès des ressources du Gestionnaire de ressources et de valider la configuration des informations d’identification hello à l’aide de hello [exemple de code pour s’authentifier auprès de gestion des services ressources](#sample-code-to-authenticate-with-resource-manager-resources).
 
-## <a name="sample-code-to-authenticate-with-resource-manager-resources"></a>Exemple de code pour l’authentification avec des ressources Azure Resource Manager
-Vous pouvez utiliser l’exemple de code mis à jour suivant, extrait de l’exemple de Runbook *AzureAutomationTutorialScript*, pour procéder à une authentification avec le compte d’identification pour gérer les ressources Azure Resource Manager avec vos Runbooks.
+## <a name="sample-code-tooauthenticate-with-resource-manager-resources"></a>Tooauthenticate de code d’exemple avec des ressources du Gestionnaire de ressources
+Vous pouvez utiliser suivante hello mis à jour exemple de code, obtenue à partir de hello *AzureAutomationTutorialScript* exemple de runbook, tooauthenticate à l’aide des ressources de gestionnaire de ressources de toomanage hello exécuter en tant que compte avec les procédures opérationnelles.
 
     $connectionName = "AzureRunAsConnection"
     $SubId = Get-AutomationVariable -Name 'SubscriptionId'
     try
     {
-       # Get the connection "AzureRunAsConnection "
+       # Get hello connection "AzureRunAsConnection "
        $servicePrincipalConnection=Get-AutomationConnection -Name $connectionName         
 
-       "Signing in to Azure..."
+       "Signing in tooAzure..."
        Add-AzureRmAccount `
          -ServicePrincipal `
          -TenantId $servicePrincipalConnection.TenantId `
          -ApplicationId $servicePrincipalConnection.ApplicationId `
          -CertificateThumbprint $servicePrincipalConnection.CertificateThumbprint
-       "Setting context to a specific subscription"     
+       "Setting context tooa specific subscription"     
        Set-AzureRmContext -SubscriptionId $SubId              
     }
     catch {
@@ -513,34 +513,34 @@ Vous pouvez utiliser l’exemple de code mis à jour suivant, extrait de l’exe
          }
     }
 
-Afin de faciliter le travail entre plusieurs abonnements, le script inclut deux lignes de code supplémentaires pour prendre en charge le référencement d’un contexte d’abonnement. La ressource variable *SubscriptionId* contient l’ID de l’abonnement. Après l’instruction d’applet de commande `Add-AzureRmAccount`, l’applet de commande [`Set-AzureRmContext`](/powershell/module/azurerm.profile/set-azurermcontext) est indiqué avec le jeu de paramètres *-SubscriptionId*. Si le nom de la variable est trop générique, vous pouvez le modifier afin qu’il comprenne un préfixe ou utiliser une autre convention d’affectation de noms pour faciliter son identification. Vous pouvez également utiliser le jeu de paramètres *-SubscriptionName* au lieu de *-SubscriptionId* avec la ressource de variable correspondante.
+toohelp vous tooeasily de travail entre plusieurs abonnements, script de hello inclut deux lignes supplémentaires de code qui prennent en charge le référencement d’un contexte de l’abonnement. Une ressource de variable nommée *SubscriptionId* contient hello des ID d’abonnement de hello. Après avoir hello `Add-AzureRmAccount` instruction de l’applet de commande, hello [ `Set-AzureRmContext` ](/powershell/module/azurerm.profile/set-azurermcontext) applet de commande est établi avec le jeu de paramètres hello *- SubscriptionId*. Si le nom de la variable hello est trop générique, vous pouvez réviser tooinclude un préfixe ou utiliser un autre toomake de convention d’affectation de noms il tooidentify plus facile. Vous pouvez également utiliser le jeu de paramètres hello *- SubscriptionName* au lieu de *- SubscriptionId* avec une ressource de variable correspondante.
 
-L’applet de commande utilisée pour l’authentification dans le Runbook, `Add-AzureRmAccount`, utilise le jeu de paramètres *ServicePrincipalCertificate*. Elle effectue l’authentification à l’aide du certificat du principal du service, et non des informations d’identification de l’utilisateur.
+Hello applet de commande que vous utilisez pour l’authentification dans les runbook hello, `Add-AzureRmAccount`, utilise hello *ServicePrincipalCertificate* jeu de paramètres. Il s’authentifie à l’aide du certificat hello service principal, pas hello informations d’identification.
 
-## <a name="sample-code-to-authenticate-with-service-management-resources"></a>Exemple de code pour l’authentification avec les ressources de gestion des services
-Vous pouvez utiliser l’exemple de code mis à jour suivant, extrait de l’exemple de Runbook *AzureClassicAutomationTutorialScript*, pour procéder à une authentification avec le compte d’identification Classic pour gérer les ressources classiques avec vos Runbooks.
+## <a name="sample-code-tooauthenticate-with-service-management-resources"></a>Tooauthenticate de code d’exemple avec les ressources de gestion des services
+Vous pouvez utiliser hello après mise à jour des exemples de code provient de hello *AzureClassicAutomationTutorialScript* exemple de runbook, tooauthenticate à l’aide de hello classique exécuter en tant que compte toomanage ressources classiques avec votre procédures opérationnelles.
 
     $ConnectionAssetName = "AzureClassicRunAsConnection"
-    # Get the connection
+    # Get hello connection
     $connection = Get-AutomationConnection -Name $connectionAssetName        
 
-    # Authenticate to Azure with certificate
+    # Authenticate tooAzure with certificate
     Write-Verbose "Get connection asset: $ConnectionAssetName" -Verbose
     $Conn = Get-AutomationConnection -Name $ConnectionAssetName
     if ($Conn -eq $null)
     {
-       throw "Could not retrieve connection asset: $ConnectionAssetName. Assure that this asset exists in the Automation account."
+       throw "Could not retrieve connection asset: $ConnectionAssetName. Assure that this asset exists in hello Automation account."
     }
 
     $CertificateAssetName = $Conn.CertificateAssetName
-    Write-Verbose "Getting the certificate: $CertificateAssetName" -Verbose
+    Write-Verbose "Getting hello certificate: $CertificateAssetName" -Verbose
     $AzureCert = Get-AutomationCertificate -Name $CertificateAssetName
     if ($AzureCert -eq $null)
     {
-       throw "Could not retrieve certificate asset: $CertificateAssetName. Assure that this asset exists in the Automation account."
+       throw "Could not retrieve certificate asset: $CertificateAssetName. Assure that this asset exists in hello Automation account."
     }
 
-    Write-Verbose "Authenticating to Azure with certificate." -Verbose
+    Write-Verbose "Authenticating tooAzure with certificate." -Verbose
     Set-AzureSubscription -SubscriptionName $Conn.SubscriptionName -SubscriptionId $Conn.SubscriptionID -Certificate $AzureCert
     Select-AzureSubscription -SubscriptionId $Conn.SubscriptionID
 

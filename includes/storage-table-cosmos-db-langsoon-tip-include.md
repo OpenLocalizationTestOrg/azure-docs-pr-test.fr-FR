@@ -1,0 +1,3 @@
+> [!TIP]
+> contenu de Hello dans cet article s’applique à stockage de Table Azure de base d’origine toohello. Toutefois, il existe désormais une offre premium de stockage de tables Azure en version préliminaire publique qui propose des tables optimisées pour le débit, la distribution globale et les index secondaires automatiques. toolearn plus et essayer hello nouvelle expérience, consultez [base de données Azure Cosmos : API de Table](https://aka.ms/premiumtables). Langage de programmation de cet article n’est pas encore pris en charge dans l’offre premium hello, mais sera ajoutée dans hello futures.
+>

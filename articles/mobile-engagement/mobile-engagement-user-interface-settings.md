@@ -1,6 +1,6 @@
 ---
-title: "Interface utilisateur d'Azure Mobile Engagement : Paramètres"
-description: "Découvrez comment gérer les paramètres globaux de votre application grâce à Azure Mobile Engagement"
+title: "aaaAzure Mobile Engagement l’Interface utilisateur - paramètres"
+description: "Découvrez comment toomanage hello paramètres globaux de votre application à l’aide d’Azure Mobile Engagement"
 services: mobile-engagement
 documentationcenter: 
 author: piyushjo
@@ -14,73 +14,73 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: af5c81df2b9f288161b38625d3ac2adde8fb195d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 02d4a36c591fc5e097410b7e931d1c9ce81d68d5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-manage-the-global-settings-of-your-application"></a>Comment gérer les paramètres globaux de votre application
-Les options de menu **Paramètres** disponibles pour une application dépendent de la plateforme de l’application et des autorisations qui vous ont été accordées pour cette application. Les paramètres suivants sont inclus : Détails, Projets, Native Push, Push Speed, Balise (Information sur l’application) et Pression commerciale. L’option de menu Balise (Informations sur l’application) peut être gérée par votre application (à l’aide du Kit de développement logiciel (SDK)) ou par votre backend (à l’aide de l’API d’appareil). 
+# <a name="how-toomanage-hello-global-settings-of-your-application"></a>Comment toomanage hello paramètres globaux de votre application
+Hello **paramètres** des options de menu disponibles pour une application dépendent de la plateforme hello de l’application hello et autorisations hello vous ont été accordées pour l’application hello. Les paramètres suivants de hello : détails, projets, Push natif, vitesse de Push, Tag (app info) et une pression commerciale. Hello, option de menu de balise (informations de l’application) de la section Paramètres hello peut être géré par votre application (à l’aide de hello SDK) ou par votre serveur principal (à l’aide de hello Device API). 
 
 > [!NOTE]
-> De nombreuses sections de l’interface utilisateur du portail **Mobile Engagement** contiennent un bouton **AFFICHER L’AIDE**. Appuyez sur ce bouton pour obtenir des informations contextuelles supplémentaires sur une section.
+> De nombreuses sections de hello **Mobile Engagement** interface utilisateur du portail contient hello **afficher l’aide** bouton. Appuyez sur ce bouton tooget informations contextuelles supplémentaires sur une section.
 > 
 > 
 
 ## <a name="details"></a>Détails
-Permet de modifier le nom et la description de votre application, d’afficher le propriétaire de votre application et vos autorisations de rôle. 
+Vous permet de nom de hello toochange et une description de votre application, le propriétaire de la vue hello de votre application et vos autorisations de rôle. 
 
-La configuration de l’analytique permet d’afficher ou de modifier le jour du début de semaine et la durée de rétention en jour(s).
+Configuration de l’Analytique vous permet de tooview ou modification jour hello semaines démarrer sur et hello durée de rétention en jours.
 
   ![settings1][46]
 
 ## <a name="projects"></a>Projets
-Vous pouvez sélectionner tous les projets que vous souhaitez voir apparaître dans votre application. 
+Vous permet de tooselect tous les projets que vous souhaitez tooappear de votre application dans. 
 
-Vous pouvez également rechercher un projet et afficher le nom, la description, le propriétaire et vos autorisations de rôle pour n'importe quel projet dont votre application fait partie.
+Vous pouvez également rechercher un projet et afficher le nom de hello, la description, le propriétaire et vos autorisations de rôle d’un projet de votre application fait partie.
 
 Pour plus d’informations, consultez [Documentation sur l’interface utilisateur - Accueil][Link 13]
 
   ![settings3][48]
 
 ## <a name="native-push"></a>Native Push
-Vous pouvez inscrire un nouveau certificat ou supprimer un certificat existant pour une utilisation avec Native Push. Native Push permet à Azure Mobile Engagement de transmettre des opérations push à votre application à tout moment, même lorsqu'elle n'est pas en cours d'exécution. 
+Vous permet de tooregister un nouveau certificat ou le supprimer et le certificat existant pour utilisent avec push natif. Push natif permet l’application de tooyour toopush Azure Mobile Engagement à tout moment, même quand il n’est pas en cours d’exécution. 
 
-Après avoir fourni des informations d'identification ou des certificats pour au moins un service Native Push, vous pouvez sélectionner « Tout le temps » lors de la création de campagnes Reach et également utiliser le paramètre « Notification » dans l'API de PUSH.
+Après avoir entré les informations d’identification ou des certificats au moins un service de Push natif, vous pouvez sélectionner « Tout temps » lors de la création de couvertures campagne et également utiliser hello « notifiant » paramètre Bonjour API de PUSH.
 
 ### <a name="apple-push-notification-service-apns"></a>Service de notifications Push Apple (APNS)
-Pour activer Native Push à l'aide du Service de notifications Push Apple (APNS), vous devez enregistrer votre certificat. Vous devrez spécifier le type de certificat, soit de développement (DEV), soit de production (PROD). Vous allez ensuite devoir charger votre certificat et définir son mot de passe.
+tooenable le Push natif à l’aide de hello Apple Push Notification Service vous devez tooregister votre certificat. Vous aurez besoin de type hello de toospecify de certificat en tant que le développement (DEV) ou la production (production). Puis vous allez peut-être télécharger votre certificat et hello le mot de passe.
 
-Pour plus d’informations, consultez [Documentation du Kit de développement logiciel (SDK) - iOS - Préparation de votre application pour les notifications Push Apple][Link 5]
+Pour plus d’informations, consultez : [Documentation du Kit de développement logiciel - iOS - comment tooPrepare votre Application pour les notifications Push Apple][Link 5]
 
 ![settings4][49]
 
 ### <a name="windows-push-notification-service-wpns"></a>Service de notifications Push Windows (WPNS)
-Pour activer Native Push à l'aide du Service de notifications Push Windows (WPNS), vous devez fournir les informations d'identification de votre application. Vous aurez besoin de votre ID de sécurité (SID) de Package et la clé secrète.
+tooenable le Push natif à l’aide du Service de Notification Windows, vous devez fournir les informations d’identification de votre application. Vous aurez besoin de votre ID de sécurité (SID) de Package et la clé secrète.
 
 ![settings5][50]
 
 ### <a name="google-cloud-messaging-for-android-gcm"></a>Google Cloud Messaging pour Android (GCM)
-Pour activer le Push Native à l'aide de GCM, vous devez suivre les instructions fournies par Google. Puis vous devez coller une clé d'API simple de serveur, configurée sans restriction d'adresse IP. Requiert l'intégration avec le Kit de développement logiciel (SDK) pour Android v1.12.0 +.
+tooenable du Push natif à l’aide de GCM, vous avez besoin d’instructions de hello toofollow à partir de Google. Puis vous devez coller une clé d'API simple de serveur, configurée sans restriction d'adresse IP. Nécessite une intégration avec hello SDK pour Android v1.12.0 +.
 
 Pour plus d'informations, consultez les pages suivantes : 
 
-* [Documentation du Kit de développement logiciel (SDK) Android - Intégrer GCM][Link 5]
+* [Kit de développement logiciel Documentation Android comment tooIntegrate GCM][Link 5]
 * [Guide de développement Google GCM](http://developer.android.com/guide/google/gcm/gs.html)
 
 ### <a name="amazon-device-messaging-for-android-adm"></a>Amazon Device Messaging pour Android (ADM)
-Pour activer Native Push avec Amazon Device Messaging (ADM), vous devez fournir des <OAuth credentials> Amazon qui consistent en un ID Client et Secret Client (requiert l'intégration avec le Kit de développement logiciel (SDK) pour Android v2.1.0 +).
+tooenable natif Push à l’aide de ADM, vous devez fournir Amazon <OAuth credentials> consistant en un ID Client et la clé secrète du Client (requiert l’intégration avec le SDK pour Android v2.1.0 +).
 
 Pour plus d'informations, consultez les pages suivantes : 
 
-* [Documentation du Kit de développement logiciel (SDK) Android - Intégrer ADM][Link 5]
+* [Kit de développement logiciel Documentation Android comment tooIntegrate ADM][Link 5]
 * [Documentation pour les développeurs Amazon ADM](https://developer.amazon.com/sdk/adm/credentials.html#Getting)
 
 ![settings6][51]
 
 ## <a name="push-speed"></a>Push Speed
-Vous pouvez afficher la vitesse de transmission actuelle de votre application et définir la vitesse de transmission de votre application.
+Affiche hello actuel vitesse de push de votre application et vous permet de vitesse de push hello toodefine de votre application.
 
   ![settings7][52]
 

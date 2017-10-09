@@ -1,0 +1,12 @@
+1. Dans le portail hello, à partir de **toutes les ressources**, cliquez sur **+ ajouter**. Bonjour **tout** panneau recherche, tapez **passerelle de réseau Local**, puis cliquez sur tooreturn une liste de ressources. Cliquez sur **passerelle de réseau Local** tooopen hello panneau, puis cliquez sur **créer** tooopen hello **créer une passerelle réseau local** panneau.
+   
+    ![créer une passerelle de réseau local](./media/vpn-gateway-add-lng-rm-portal-include/lng.png)
+
+2. Sur hello **Panneau de passerelle de réseau local de créer**, spécifiez un **nom** pour votre objet de passerelle de réseau local. Dans la mesure du possible, utilisez un nom intuitif, tel que **RéseauVirtuelClassicLocal** ou **RéseauVirtuel1TestLocal**. Cela rend plus facile pour vous tooidentify hello passerelle de réseau local dans le portail de hello.
+3. Spécifiez un Public valid **adresse IP** périphérique VPN de hello ou toowhich de passerelle de réseau virtuel vous voulez tooconnect.<br>**Si ce réseau local représente un emplacement local :** spécifier l’adresse IP publique de hello de périphérique VPN hello tooconnect à souhaitées. Il ne peut pas se trouver derrière un NAT et toobe accessible par Azure.<br>**Si ce réseau local représente un autre réseau virtuel :** spécifier l’adresse IP publique hello qui a été affectée de passerelle de réseau virtuel toohello pour ce réseau virtuel.<br>**Si vous n’avez pas d’adresse IP de hello :** constituent une adresse IP valide d’espace réservé et ensuite revenir et modifier ce paramètre avant de vous connecter.
+4. **L’espace d’adressage** fait référence toohello les plages d’adresses réseau hello représentant ce réseau local. Vous pouvez ajouter plusieurs plages d’espaces d’adressage. Assurez-vous que vous spécifiez ici des plages hello ne se chevauchent pas avec des plages d’autres toowhich réseaux que vous vous connectez.
+5. Pour **abonnement**, vérifiez que hello correct abonnement s’affiche.
+6. Pour **groupe de ressources**, sélectionnez groupe de ressources hello que vous souhaitez toouse. Vous pouvez créer un groupe de ressources ou en sélectionner un déjà créé.
+7. Pour **emplacement**, sélectionnez l’emplacement hello dans laquelle cette ressource sera créée. Vous souhaiterez tooselect hello même emplacement que votre réseau virtuel se trouve dans, mais vous n’êtes pas toodo requis ainsi.
+8. Cliquez sur **créer** passerelle de réseau local toocreate hello.
+

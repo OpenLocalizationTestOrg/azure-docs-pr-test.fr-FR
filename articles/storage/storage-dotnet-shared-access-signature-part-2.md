@@ -1,6 +1,6 @@
 ---
-title: "Créer et utiliser une signature d’accès partagé (SAP) avec le Stockage Blob Azure | Documents Microsoft"
-description: "Ce didacticiel vous montre comment créer des signatures d’accès partagé en vue d’une utilisation avec Stockage Blob et comment les utiliser dans vos applications clientes."
+title: "aaaCreate et utiliser une signature d’accès partagé (SAS) avec le stockage d’objets Blob Azure | Documents Microsoft"
+description: "Ce didacticiel vous montre comment toocreate partagé des signatures d’accès pour une utilisation avec le stockage d’objets Blob et tooconsume dans vos applications clientes."
 services: storage
 documentationcenter: 
 author: mmacy
@@ -14,39 +14,39 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 05/15/2017
 ms.author: marsma
-ms.openlocfilehash: ba78dd2bbcc68ffffeba59b1623891126baf656f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 629f5c0aee3f41115a0d514a2010d8cc0187126d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="shared-access-signatures-part-2-create-and-use-a-sas-with-blob-storage"></a>Signatures d’accès partagé, partie 2 : créer et utiliser une signature d’accès partagé avec Blob Storage
 
-[partie 1](storage-dotnet-shared-access-signature-part-1.md) de ce didacticiel traitait des signatures d'accès partagé et indiquait les meilleures pratiques les concernant. La partie 2 indique comment générer et utiliser les signatures d’accès partagé avec Blob Storage. Les exemples ont été écrits en C# et utilisent la bibliothèque du client Azure Storage pour .NET. Le didacticiel traite des points suivants :
+[partie 1](storage-dotnet-shared-access-signature-part-1.md) de ce didacticiel traitait des signatures d'accès partagé et indiquait les meilleures pratiques les concernant. Partie 2 vous montre comment toogenerate, puis utiliser un accès partagé les signatures avec un stockage d’objets Blob. exemples de Hello sont écrites en c# et utilisent hello bibliothèque cliente de stockage Azure pour .NET. exemples de Hello dans ce didacticiel :
 
 * Générer une signature d'accès partagé sur un conteneur
 * Générer une signature d'accès partagé sur un blob
-* Créer une stratégie d’accès afin de gérer les signatures sur les ressources d’un conteneur
-* Tester les signatures d’accès partagé dans une application cliente
+* Créer des signatures de toomanage stratégie un accès stockée sur les ressources d’un conteneur
+* Test des signatures d’accès hello partagé dans une application cliente
 
 ## <a name="about-this-tutorial"></a>À propos de ce didacticiel
 Au cours de ce didacticiel, nous allons créer deux consoles d’application qui présentent la création et l’utilisation des signatures d’accès partagé pour les conteneurs et les blobs :
 
-**Application n°1** : l’application de gestion. Elle génère une signature d’accès partagé pour un conteneur et un blob. Elle inclut la clé d’accès au compte de stockage dans le code source.
+**Application 1**: hello application de gestion. Elle génère une signature d’accès partagé pour un conteneur et un blob. Inclut la clé de l’accès du compte de stockage hello dans le code source.
 
-**Application n°2** : l’application cliente. Elle accède aux ressources du conteneur et du blob à l’aide des signatures d’accès partagé, créées grâce à la première application. Elle utilise uniquement les signatures d’accès partagé pour accéder aux ressources du conteneur et du blob. La clé d’accès au compte de stockage *n’est pas* incluse.
+**L’application 2**: hello application cliente. Accède aux objets blob ressources de conteneur et à l’aide de signatures d’accès hello partagé créés avec la première application de hello. Signatures tooaccess conteneur utilise uniquement hello accès partagé et des ressources d’objet blob--il exécute *pas* incluent la clé de l’accès du compte de stockage hello.
 
-## <a name="part-1-create-a-console-application-to-generate-shared-access-signatures"></a>Première partie : créer une application console pour générer des signatures d’accès partagé
-Commencez par vérifier que la bibliothèque cliente Azure Storage pour .NET est installée. Vous pouvez installer le [package NuGet](http://nuget.org/packages/WindowsAzure.Storage/ "package NuGet") qui contient les assemblies les plus récentes pour la bibliothèque cliente. Il s’agit de la méthode recommandée pour vérifier que vous disposez des correctifs les plus récents. Vous pouvez également télécharger la bibliothèque cliente avec la version la plus récente du [Kit de développement logiciel (SDK) Azure pour .NET](https://azure.microsoft.com/downloads/).
+## <a name="part-1-create-a-console-application-toogenerate-shared-access-signatures"></a>Partie 1 : Créer un accès à la console application toogenerate partagé des signatures
+Tout d’abord, assurez-vous que vous avez hello bibliothèque cliente de stockage Azure pour .NET est installé. Vous pouvez installer hello [package NuGet](http://nuget.org/packages/WindowsAzure.Storage/ "package NuGet") contenant des assemblys plus récentes de hello pour la bibliothèque cliente de hello. Il s’agit de hello méthode pour vous assurer que vous disposez correctifs les plus récentes de hello recommandée. Vous pouvez également télécharger la bibliothèque cliente de hello dans le cadre de la version la plus récente de hello hello [Azure SDK pour .NET](https://azure.microsoft.com/downloads/).
 
-Dans Visual Studio, créez une application console Windows et nommez-la **GenerateSharedAccessSignatures**. Ajoutez des références à [Microsoft.WindowsAzure.Configuration.dll](https://www.nuget.org/packages/Microsoft.WindowsAzure.ConfigurationManager) et [Microsoft.WindowsAzure.Storage.dll](https://www.nuget.org/packages/WindowsAzure.Storage/) en utilisant l’une des méthodes suivantes :
+Dans Visual Studio, créez une application console Windows et nommez-la **GenerateSharedAccessSignatures**. Ajouter des références trop[Microsoft.WindowsAzure.ConfigurationManager](https://www.nuget.org/packages/Microsoft.WindowsAzure.ConfigurationManager) et [WindowsAzure.Storage](https://www.nuget.org/packages/WindowsAzure.Storage/) à l’aide d’une des méthodes suivantes de hello :
 
-* Utilisez le [gestionnaire des packages NuGet](https://docs.nuget.org/consume/installing-nuget) dans Visual Studio. Sélectionnez **Projet** > **Gérer les packages NuGet**, puis effectuez une recherche en ligne pour chaque package (Microsoft.WindowsAzure.ConfigurationManager et WindowsAzure.Storage), et installez-les.
-* Vous pouvez également rechercher ces assemblies dans l’installation de votre Kit de développement logiciel Azure SDK et y ajouter des références :
+* Hello d’utilisation [Gestionnaire de package NuGet](https://docs.nuget.org/consume/installing-nuget) dans Visual Studio. Sélectionnez **Projet** > **Gérer les packages NuGet**, puis effectuez une recherche en ligne pour chaque package (Microsoft.WindowsAzure.ConfigurationManager et WindowsAzure.Storage), et installez-les.
+* Vous pouvez également rechercher ces assemblys dans votre installation de hello Azure SDK et ajouter des références toothem :
   * Microsoft.WindowsAzure.Configuration.dll
   * Microsoft.WindowsAzure.Storage.dll
 
-Au tout début du fichier Program.cs, ajoutez les directives **d’utilisation** suivantes :
+Au haut hello du fichier de hello Program.cs, ajoutez hello **à l’aide de** directives :
 
 ```csharp
 using System.IO;
@@ -55,7 +55,7 @@ using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 ```
 
-Modifiez le fichier app.config pour qu'il contienne un paramètre de configuration avec une chaîne de connexion qui pointe vers votre compte de stockage. Votre fichier app.config ressemble à ceci :
+Modifier le fichier app.config de hello pour qu’il contienne un paramètre de configuration avec une chaîne de connexion qui pointe de compte de stockage tooyour. Votre fichier app.config doit ressembler similaire toothis une :
 
 ```xml
 <configuration>
@@ -69,127 +69,127 @@ Modifiez le fichier app.config pour qu'il contienne un paramètre de configurati
 ```
 
 ### <a name="generate-a-shared-access-signature-uri-for-a-container"></a>Générer une URI de signature d’accès partagé pour un conteneur
-Pour commencer, nous allons ajouter une méthode pour générer une signature d'accès partagé sur un nouveau conteneur. Ici, la signature n'est pas associée à une stratégie d'accès stocké. C’est pourquoi elle reporte sur l’URI les informations concernant son heure d’expiration et les autorisations qu’elle accorde.
+toobegin avec, nous ajoutons une méthode de toogenerate une signature d’accès partagé sur un nouveau conteneur. Dans ce cas, la signature de hello n’est pas associé à une stratégie d’accès stockée, afin qu’elle exerce hello d’informations URI hello indiquant ses autorisations d’expiration de temps et hello il accorde un accès.
 
-Ajoutons du code à la méthode **Main()** pour authentifier l'accès à votre compte de stockage et créer un conteneur :
+D’abord, ajoutez le code toohello **Main()** méthode tooauthenticate accéder au compte de stockage tooyour et créer un nouveau conteneur :
 
 ```csharp
 static void Main(string[] args)
 {
-    //Parse the connection string and return a reference to the storage account.
+    //Parse hello connection string and return a reference toohello storage account.
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("StorageConnectionString"));
 
-    //Create the blob client object.
+    //Create hello blob client object.
     CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
-    //Get a reference to a container to use for the sample code, and create it if it does not exist.
+    //Get a reference tooa container toouse for hello sample code, and create it if it does not exist.
     CloudBlobContainer container = blobClient.GetContainerReference("sascontainer");
     container.CreateIfNotExists();
 
-    //Insert calls to the methods created below here...
+    //Insert calls toohello methods created below here...
 
-    //Require user input before closing the console window.
+    //Require user input before closing hello console window.
     Console.ReadLine();
 }
 ```
 
-Ensuite, ajoutez une nouvelle méthode qui génère la signature d'accès partagé pour le conteneur et renvoie l'URI de signature :
+Ensuite, ajoutez une méthode qui génère la signature d’accès partagé hello pour le conteneur de hello et retourne l’URI de signature hello :
 
 ```csharp
 static string GetContainerSasUri(CloudBlobContainer container)
 {
-    //Set the expiry time and permissions for the container.
-    //In this case no start time is specified, so the shared access signature becomes valid immediately.
+    //Set hello expiry time and permissions for hello container.
+    //In this case no start time is specified, so hello shared access signature becomes valid immediately.
     SharedAccessBlobPolicy sasConstraints = new SharedAccessBlobPolicy();
     sasConstraints.SharedAccessExpiryTime = DateTimeOffset.UtcNow.AddHours(24);
     sasConstraints.Permissions = SharedAccessBlobPermissions.List | SharedAccessBlobPermissions.Write;
 
-    //Generate the shared access signature on the container, setting the constraints directly on the signature.
+    //Generate hello shared access signature on hello container, setting hello constraints directly on hello signature.
     string sasContainerToken = container.GetSharedAccessSignature(sasConstraints);
 
-    //Return the URI string for the container, including the SAS token.
+    //Return hello URI string for hello container, including hello SAS token.
     return container.Uri + sasContainerToken;
 }
 ```
 
-Ajoutez les lignes suivantes à la fin de la méthode **Main()** avant d’appeler **Console.ReadLine()** pour appeler **GetContainerSasUri()** et écrire l’URI de la signature dans la fenêtre de la console :
+Ajouter hello lignes bas hello hello suivantes **Main()** (méthode), avant l’appel hello**console.ReadLine**, toocall **GetContainerSasUri()** et d’écriture hello fenêtre de console URI toohello signature :
 
 ```csharp
-//Generate a SAS URI for the container, without a stored access policy.
+//Generate a SAS URI for hello container, without a stored access policy.
 Console.WriteLine("Container SAS URI: " + GetContainerSasUri(container));
 Console.WriteLine();
 ```
 
-Compilez et exécutez pour renvoyer l'URI de la signature d'accès partagé pour le nouveau conteneur. L’URI ressemblera à l’exemple suivant :
+Compilez et exécutez la signature d’accès partagé toooutput hello URI pour le nouveau conteneur de hello. Hello URI sera similaire toohello suivantes :
 
 ```
 https://storageaccount.blob.core.windows.net/sascontainer?sv=2012-02-12&se=2013-04-13T00%3A12%3A08Z&sr=c&sp=wl&sig=t%2BbzU9%2B7ry4okULN9S0wst%2F8MCUhTjrHyV9rDNLSe8g%3D
 ```
 
-Dès lors que le code est exécuté, la signature d’accès partagé que vous avez créée pour le conteneur sera valide durant les prochaines 24 heures. La signature accorde une autorisation client pour lister des blobs dans le conteneur et pour écrire de nouveaux blobs dans le conteneur.
+Une fois que vous avez exécuté le code de hello, signature d’accès partagé hello que vous avez créé pour le conteneur de hello sera valide pour hello pendant les 24 heures. signature de Hello accorde à un client autorisation toolist des objets BLOB hello conteneurs et toowrite nouveaux objets BLOB toohello.
 
 ### <a name="generate-a-shared-access-signature-uri-for-a-blob"></a>Générer une URI de signature d’accès partagé pour un blob
-Nous allons ensuite écrire un code similaire afin de créer un blob au sein du conteneur et lui générer une signature d'accès partagé. Cette signature d'accès partagé n'est pas associée à une stratégie d'accès stocké. C’est pourquoi elle inclut dans l’URI l’heure de début, l’heure d’expiration et les informations concernant l’autorisation.
+Ensuite, nous écrire toocreate de code similaire à un nouvel objet blob dans le conteneur de hello et générer une signature d’accès partagé pour celle-ci. Cette signature d’accès partagé n’est pas associée à une stratégie d’accès stockée pour qu’elle comporte hello heure de début, heure d’expiration et les informations d’autorisation Bonjour URI.
 
-Ajoutez une nouvelle méthode qui crée un blob et y écrit quelques textes, puis génère une signature d’accès partagé et renvoie l’URI de signature :
+Ajoutez une nouvelle méthode qui crée un nouvel objet blob et écrit certains tooit de texte, puis génère une signature d’accès partagé et retourne l’URI de signature hello :
 
 ```csharp
 static string GetBlobSasUri(CloudBlobContainer container)
 {
-    //Get a reference to a blob within the container.
+    //Get a reference tooa blob within hello container.
     CloudBlockBlob blob = container.GetBlockBlobReference("sasblob.txt");
 
-    //Upload text to the blob. If the blob does not yet exist, it will be created.
-    //If the blob does exist, its existing content will be overwritten.
-    string blobContent = "This blob will be accessible to clients via a shared access signature (SAS).";
+    //Upload text toohello blob. If hello blob does not yet exist, it will be created.
+    //If hello blob does exist, its existing content will be overwritten.
+    string blobContent = "This blob will be accessible tooclients via a shared access signature (SAS).";
     blob.UploadText(blobContent);
 
-    //Set the expiry time and permissions for the blob.
-    //In this case, the start time is specified as a few minutes in the past, to mitigate clock skew.
-    //The shared access signature will be valid immediately.
+    //Set hello expiry time and permissions for hello blob.
+    //In this case, hello start time is specified as a few minutes in hello past, toomitigate clock skew.
+    //hello shared access signature will be valid immediately.
     SharedAccessBlobPolicy sasConstraints = new SharedAccessBlobPolicy();
     sasConstraints.SharedAccessStartTime = DateTimeOffset.UtcNow.AddMinutes(-5);
     sasConstraints.SharedAccessExpiryTime = DateTimeOffset.UtcNow.AddHours(24);
     sasConstraints.Permissions = SharedAccessBlobPermissions.Read | SharedAccessBlobPermissions.Write;
 
-    //Generate the shared access signature on the blob, setting the constraints directly on the signature.
+    //Generate hello shared access signature on hello blob, setting hello constraints directly on hello signature.
     string sasBlobToken = blob.GetSharedAccessSignature(sasConstraints);
 
-    //Return the URI string for the container, including the SAS token.
+    //Return hello URI string for hello container, including hello SAS token.
     return blob.Uri + sasBlobToken;
 }
 ```
 
-Ajoutez les lignes suivantes à la fin de la méthode **Main()** avant d’appeler **Console.ReadLine()** pour appeler **GetBlobSasUri()** et écrire l’URI de la signature d’accès partagé dans la fenêtre de la console :
+Bas hello hello **Main()** (méthode), ajouter hello suivant lignes toocall **GetBlobSasUri()**, avant d’appeler de hello trop**console.ReadLine ()**et d’écriture hello partagé fenêtre de console accès signature URI toohello :
 
 ```csharp
-//Generate a SAS URI for a blob within the container, without a stored access policy.
+//Generate a SAS URI for a blob within hello container, without a stored access policy.
 Console.WriteLine("Blob SAS URI: " + GetBlobSasUri(container));
 Console.WriteLine();
 ```
 
-Compilez et exécutez pour renvoyer l'URI de la signature d'accès partagé pour le nouvel objet blob. L’URI ressemblera à l’exemple suivant :
+Compilez et exécutez la signature d’accès partagé toooutput hello URI pour le nouvel objet blob de hello. Hello URI sera similaire toohello suivantes :
 
 ```
 https://storageaccount.blob.core.windows.net/sascontainer/sasblob.txt?sv=2012-02-12&st=2013-04-12T23%3A37%3A08Z&se=2013-04-13T00%3A12%3A08Z&sr=b&sp=rw&sig=dF2064yHtc8RusQLvkQFPItYdeOz3zR8zHsDMBi4S30%3D
 ```
 
-### <a name="create-a-stored-access-policy-on-the-container"></a>Créer une stratégie d’accès stocké sur le conteneur
-Créons une stratégie d'accès stockée sur le conteneur pour définir les contraintes des signatures d'accès partagé qui y sont associées.
+### <a name="create-a-stored-access-policy-on-hello-container"></a>Créer une stratégie d’accès stockée sur le conteneur de hello
+Maintenant nous allons créer une stratégie d’accès stockée sur le conteneur de hello, qui définit les contraintes hello pour les signatures d’accès partagé qui lui sont associés.
 
-Dans les exemples précédents, nous avons spécifié l'heure de début (implicitement ou explicitement), l'heure d'expiration et les autorisations sur l'URI de la signature d'accès partagé lui-même. Dans les exemples suivants, nous allons les spécifier sur la stratégie d'accès stocké, et non sur la signature d’accès partagé. Cela nous permettra de modifier ces contraintes sans devoir émettre de nouveau la signature d'accès partagé.
+Dans les exemples précédents hello, que nous avons spécifié l’heure de début hello (implicitement ou explicitement), heure d’expiration hello et autorisations hello sur hello signature d’accès partagé URI lui-même. Bonjour exemple suivant, nous spécifions ces sur la stratégie d’accès stockée hello, et non sur la signature d’accès partagé hello. Cela permet de nous toochange ces contraintes sans réémettre hello partagés signature d’accès.
 
-Il est possible de définir sur la signature d’accès partagé un certain nombre de contraintes et de définir le reste sur la stratégie d’accès stocké. Toutefois, vous ne pouvez spécifier que l’heure de début, l’heure d’expiration et les autorisations dans un emplacement ou un autre. Par exemple, vous ne pouvez pas spécifier d’autorisations sur la signature d’accès partagé et dans le même temps, les spécifier sur une stratégie d’accès stocké.
+Il est possible de toohave un ou plusieurs des contraintes de hello sur la signature d’accès partagé hello et reste hello sur la stratégie d’accès stockée hello. Toutefois, vous pouvez spécifier uniquement l’heure de début hello, délai d’expiration et les autorisations dans un lieu ou hello autres. Par exemple, vous ne peut pas spécifier des autorisations sur la signature d’accès partagé hello et également de les spécifier dans la stratégie d’accès stockée hello.
 
-Lorsque vous ajoutez une stratégie d’accès stocké à un conteneur, vous devez obtenir les autorisations existantes du conteneur, ajouter la nouvelle stratégie d’accès et ensuite configurer les autorisations du conteneur.
+Lorsque vous ajoutez un conteneur de tooa de stratégie d’accès stockée, vous devez obtenir les autorisations existantes du conteneur hello, ajoutez la nouvelle stratégie d’accès hello et puis définissez les autorisations du conteneur hello.
 
-Ajoutez une nouvelle méthode qui crée une stratégie d’accès stockée sur un conteneur et renvoie le nom de la stratégie :
+Ajoutez une nouvelle méthode qui crée une nouvelle stratégie d’accès stockée sur un conteneur et retourne le nom hello de stratégie de hello :
 
 ```csharp
 static void CreateSharedAccessPolicy(CloudBlobClient blobClient, CloudBlobContainer container,
     string policyName)
 {
-    //Get the container's existing permissions.
+    //Get hello container's existing permissions.
     BlobContainerPermissions permissions = container.GetPermissions();
 
     //Create a new shared access policy and define its constraints.
@@ -199,13 +199,13 @@ static void CreateSharedAccessPolicy(CloudBlobClient blobClient, CloudBlobContai
         Permissions = SharedAccessBlobPermissions.Write | SharedAccessBlobPermissions.List | SharedAccessBlobPermissions.Read
     };
 
-    //Add the new policy to the container's permissions, and set the container's permissions.
+    //Add hello new policy toohello container's permissions, and set hello container's permissions.
     permissions.SharedAccessPolicies.Add(policyName, sharedPolicy);
     container.SetPermissions(permissions);
 }
 ```
 
-À la fin de la méthode **Main()**, avant d’appeler **Console.ReadLine()**, ajoutez les lignes suivantes pour supprimer dans un premier temps toute stratégie d’accès existante, puis appeler la méthode **CreateSharedAccessPolicy()** :
+En bas de hello Hello **Main()** (méthode), avant l’appel hello**console.ReadLine**, ajouter hello suivant lignes toofirst effacer les stratégies d’accès, puis appelez hello  **CreateSharedAccessPolicy()** méthode :
 
 ```csharp
 //Clear any existing access policies on container.
@@ -213,54 +213,54 @@ BlobContainerPermissions perms = container.GetPermissions();
 perms.SharedAccessPolicies.Clear();
 container.SetPermissions(perms);
 
-//Create a new access policy on the container, which may be optionally used to provide constraints for
-//shared access signatures on the container and the blob.
+//Create a new access policy on hello container, which may be optionally used tooprovide constraints for
+//shared access signatures on hello container and hello blob.
 string sharedAccessPolicyName = "tutorialpolicy";
 CreateSharedAccessPolicy(blobClient, container, sharedAccessPolicyName);
 ```
 
-Avant de désactiver les stratégies d’accès sur un conteneur, vous devez obtenir les autorisations existantes du conteneur. Vous pouvez par la suite désactiver les autorisations et en configurer de nouvelles.
+Lorsque vous désactivez les stratégies d’accès hello sur un conteneur, vous devez tout d’abord obtenir les autorisations existantes du conteneur hello, puis les autorisations hello clair, puis définir les autorisations de hello à nouveau.
 
-### <a name="generate-a-shared-access-signature-uri-on-the-container-that-uses-an-access-policy"></a>Générer une URI de signature d’accès partagé sur un conteneur qui utilise une stratégie d’accès
-Nous allons dès à présent créer une nouvelle fois une signature d’accès partagé pour le conteneur créé précédemment. Cette fois-ci, nous allons associer la signature à la stratégie d’accès stocké de l’exemple précédent.
+### <a name="generate-a-shared-access-signature-uri-on-hello-container-that-uses-an-access-policy"></a>Générer une signature d’accès partagé URI sur conteneur hello qui utilise une stratégie d’accès
+Ensuite, nous créons une autre signature d’accès partagé pour le conteneur hello que nous avons créés précédemment, mais cette fois nous associons signature de hello avec la stratégie d’accès stockée hello que nous avons créé dans l’exemple précédent de hello.
 
-Ajouter une nouvelle méthode afin de générer une autre signature d’accès partagé pour le conteneur :
+Ajouter un nouveau toogenerate de méthode autre signature d’accès partagé pour le conteneur de hello :
 
 ```csharp
 static string GetContainerSasUriWithPolicy(CloudBlobContainer container, string policyName)
 {
-    //Generate the shared access signature on the container. In this case, all of the constraints for the
-    //shared access signature are specified on the stored access policy.
+    //Generate hello shared access signature on hello container. In this case, all of hello constraints for the
+    //shared access signature are specified on hello stored access policy.
     string sasContainerToken = container.GetSharedAccessSignature(null, policyName);
 
-    //Return the URI string for the container, including the SAS token.
+    //Return hello URI string for hello container, including hello SAS token.
     return container.Uri + sasContainerToken;
 }
 ```
 
-Ajoutez les lignes suivantes à la fin de la méthode **Main()** avant d’appeler **Console.ReadLine()** pour appeler la méthode **GetContainerSasUriWithPolicy** :
+Bas hello hello **Main()** (méthode), avant l’appel hello**console.ReadLine**, ajouter hello suivant hello toocall de lignes **GetContainerSasUriWithPolicy** (méthode) :
 
 ```csharp
-//Generate a SAS URI for the container, using a stored access policy to set constraints on the SAS.
+//Generate a SAS URI for hello container, using a stored access policy tooset constraints on hello SAS.
 Console.WriteLine("Container SAS URI using stored access policy: " + GetContainerSasUriWithPolicy(container, sharedAccessPolicyName));
 Console.WriteLine();
 ```
 
-### <a name="generate-a-shared-access-signature-uri-on-the-blob-that-uses-an-access-policy"></a>Génération d'un URI de signature d'accès partagé sur l'objet blob qui utilise une stratégie d'accès
-Pour finir, nous allons ajouter une méthode similaire afin de créer un autre blob et générer une signature d’accès partagé, associée à une stratégie d’accès partagé.
+### <a name="generate-a-shared-access-signature-uri-on-hello-blob-that-uses-an-access-policy"></a>Générer un URI de Signature d’accès partagé sur hello Blob qu’utilise une stratégie d’accès
+Enfin, nous ajouter un toocreate méthode similaire à un autre objet blob et générer une signature d’accès partagé qui est associé à une stratégie d’accès stockée.
 
-Ajoutez une nouvelle méthode pour créer un objet blob et générer une signature d'accès partagé :
+Ajouter un nouveau toocreate de la méthode un objet blob et générer une signature d’accès partagé :
 
 ```csharp
 static string GetBlobSasUriWithPolicy(CloudBlobContainer container, string policyName)
 {
-    //Get a reference to a blob within the container.
+    //Get a reference tooa blob within hello container.
     CloudBlockBlob blob = container.GetBlockBlobReference("sasblobpolicy.txt");
 
-    //Upload text to the blob. If the blob does not yet exist, it will be created.
-    //If the blob does exist, its existing content will be overwritten.
-    string blobContent = "This blob will be accessible to clients via a shared access signature. " +
-    "A stored access policy defines the constraints for the signature.";
+    //Upload text toohello blob. If hello blob does not yet exist, it will be created.
+    //If hello blob does exist, its existing content will be overwritten.
+    string blobContent = "This blob will be accessible tooclients via a shared access signature. " +
+    "A stored access policy defines hello constraints for hello signature.";
     MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(blobContent));
     ms.Position = 0;
     using (ms)
@@ -268,42 +268,42 @@ static string GetBlobSasUriWithPolicy(CloudBlobContainer container, string polic
         blob.UploadFromStream(ms);
     }
 
-    //Generate the shared access signature on the blob.
+    //Generate hello shared access signature on hello blob.
     string sasBlobToken = blob.GetSharedAccessSignature(null, policyName);
 
-    //Return the URI string for the container, including the SAS token.
+    //Return hello URI string for hello container, including hello SAS token.
     return blob.Uri + sasBlobToken;
 }
 ```
 
-Ajoutez les lignes suivantes à la fin de la méthode **Main()** avant d’appeler **Console.ReadLine()** pour appeler la méthode **GetBlobSasUriWithPolicy** :
+Bas hello hello **Main()** (méthode), avant l’appel hello**console.ReadLine**, ajouter hello suivant hello toocall de lignes **GetBlobSasUriWithPolicy** méthode :
 
 ```csharp
-//Generate a SAS URI for a blob within the container, using a stored access policy to set constraints on the SAS.
+//Generate a SAS URI for a blob within hello container, using a stored access policy tooset constraints on hello SAS.
 Console.WriteLine("Blob SAS URI using stored access policy: " + GetBlobSasUriWithPolicy(container, sharedAccessPolicyName));
 Console.WriteLine();
 ```
 
-La méthode **Main()** doit maintenant ressembler à ceci. Lancez-la pour écrire les URI de signature d'accès partagé sur la fenêtre de la console, puis copiez et collez-les dans un fichier texte pour les utiliser dans la deuxième partie de ce didacticiel.
+Hello **Main()** méthode doit maintenant ressembler à ceci dans son intégralité. Exécuter la signature d’accès partagé hello toowrite fenêtre de console toohello URI, puis copiez et collez-les dans un fichier texte pour une utilisation dans hello deuxième partie de ce didacticiel.
 
 ```csharp
 static void Main(string[] args)
 {
-    //Parse the connection string and return a reference to the storage account.
+    //Parse hello connection string and return a reference toohello storage account.
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("StorageConnectionString"));
 
-    //Create the blob client object.
+    //Create hello blob client object.
     CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 
-    //Get a reference to a container to use for the sample code, and create it if it does not exist.
+    //Get a reference tooa container toouse for hello sample code, and create it if it does not exist.
     CloudBlobContainer container = blobClient.GetContainerReference("sascontainer");
     container.CreateIfNotExists();
 
-    //Generate a SAS URI for the container, without a stored access policy.
+    //Generate a SAS URI for hello container, without a stored access policy.
     Console.WriteLine("Container SAS URI: " + GetContainerSasUri(container));
     Console.WriteLine();
 
-    //Generate a SAS URI for a blob within the container, without a stored access policy.
+    //Generate a SAS URI for a blob within hello container, without a stored access policy.
     Console.WriteLine("Blob SAS URI: " + GetBlobSasUri(container));
     Console.WriteLine();
 
@@ -312,16 +312,16 @@ static void Main(string[] args)
     perms.SharedAccessPolicies.Clear();
     container.SetPermissions(perms);
 
-    //Create a new access policy on the container, which may be optionally used to provide constraints for
-    //shared access signatures on the container and the blob.
+    //Create a new access policy on hello container, which may be optionally used tooprovide constraints for
+    //shared access signatures on hello container and hello blob.
     string sharedAccessPolicyName = "tutorialpolicy";
     CreateSharedAccessPolicy(blobClient, container, sharedAccessPolicyName);
 
-    //Generate a SAS URI for the container, using a stored access policy to set constraints on the SAS.
+    //Generate a SAS URI for hello container, using a stored access policy tooset constraints on hello SAS.
     Console.WriteLine("Container SAS URI using stored access policy: " + GetContainerSasUriWithPolicy(container, sharedAccessPolicyName));
     Console.WriteLine();
 
-    //Generate a SAS URI for a blob within the container, using a stored access policy to set constraints on the SAS.
+    //Generate a SAS URI for a blob within hello container, using a stored access policy tooset constraints on hello SAS.
     Console.WriteLine("Blob SAS URI using stored access policy: " + GetBlobSasUriWithPolicy(container, sharedAccessPolicyName));
     Console.WriteLine();
 
@@ -329,7 +329,7 @@ static void Main(string[] args)
 }
 ```
 
-Lorsque vous exécutez l'application console GenerateSharedAccessSignatures, vous verrez une sortie semblable à l’exemple suivant. Il s'agit des signatures d'accès partagé que vous utilisez dans la deuxième partie du didacticiel.
+Lorsque vous exécutez des applications de console hello GenerateSharedAccessSignatures, vous verrez suivant toohello similaire de sortie. Il s’agit des signatures d’accès partagé de hello que vous utilisez dans la partie 2 du didacticiel de hello.
 
 ```
 Container SAS URI: https://storagesample.blob.core.windows.net/sascontainer?sv=2016-05-31&sr=c&sig=pFlEZD%2F6sJTNLxD%2FQ26Hh85j%2FzYPxZav6mP1KJwnvJE%3D&se=2017-05-16T16%3A16%3A47Z&sp=wl
@@ -341,16 +341,16 @@ Container SAS URI using stored access policy: https://storagesample.blob.core.wi
 Blob SAS URI using stored access policy: https://storagesample.blob.core.windows.net/sascontainer/sasblobpolicy.txt?sv=2016-05-31&sr=b&si=tutorialpolicy&sig=%2FkTWkT23SS45%2FoF4bK2mqXkN%2BPKs%2FyHuzkfQ4GFoZVU%3D
 ```
 
-## <a name="part-2-create-a-console-application-to-test-the-shared-access-signatures"></a>Deuxième partie : créer une application console afin de tester les signatures d’accès partagé
-Afin de tester les signatures d’accès partagé créées dans les exemples précédents, nous allons créer une deuxième application console qui utilise les signatures pour exécuter les opérations sur le conteneur et sur un blob.
+## <a name="part-2-create-a-console-application-tootest-hello-shared-access-signatures"></a>Partie 2 : Créer un accès à la console application tootest hello partagé des signatures
+tootest hello partagé créés dans les exemples précédents hello des signatures d’accès, nous créons une deuxième application console qui utilise des opérations de tooperform hello signatures sur le conteneur de hello et sur un objet blob.
 
 > [!NOTE]
-> Si plus de 24 heures se sont écoulées depuis la fin de la première partie de ce didacticiel, les signatures que vous avez générées ne sont plus valides. Dans ce cas, exécutez le code dans la première application console pour générer de nouvelles signatures d’accès partagé pour la seconde partie du didacticiel.
+> Si plus de 24 heures se sont écoulés depuis la fin de hello première partie du didacticiel de hello, vous avez généré des signatures hello ne seront plus valides. Dans ce cas, vous devez exécuter les code hello dans hello première console application toogenerate signatures d’accès partagé actualisée pour une utilisation dans la deuxième partie de hello du didacticiel de hello.
 >
 
-Dans Visual Studio, créez une application console Windows et nommez-la **ConsumeSharedAccessSignatures**. Ajoutez des références à [Microsoft.WindowsAzure.ConfigurationManager](https://www.nuget.org/packages/Microsoft.WindowsAzure.ConfigurationManager) et [WindowsAzure.Storage](https://www.nuget.org/packages/WindowsAzure.Storage/), comme précédemment.
+Dans Visual Studio, créez une application console Windows et nommez-la **ConsumeSharedAccessSignatures**. Ajouter des références trop[Microsoft.WindowsAzure.ConfigurationManager](https://www.nuget.org/packages/Microsoft.WindowsAzure.ConfigurationManager) et [WindowsAzure.Storage](https://www.nuget.org/packages/WindowsAzure.Storage/), comme vous l’avez fait précédemment.
 
-Au tout début du fichier Program.cs, ajoutez les directives **d’utilisation** suivantes :
+Au haut hello du fichier de hello Program.cs, ajoutez hello **à l’aide de** directives :
 
 ```csharp
 using System.IO;
@@ -358,7 +358,7 @@ using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 ```
 
-Dans le corps de la méthode **Main()**, ajoutez les constantes de chaîne suivantes. Cela entraîne une modification des valeurs par les signatures d’accès partagé générées dans la première partie de ce didacticiel.
+Dans le corps hello Hello **Main()** (méthode), ajouter hello suivant des constantes de chaîne, la modification de leurs valeurs toohello partagé des signatures d’accès vous avez généré dans la partie 1 du didacticiel de hello.
 
 ```csharp
 static void Main(string[] args)
@@ -370,27 +370,27 @@ static void Main(string[] args)
 }
 ```
 
-### <a name="add-a-method-to-try-container-operations-using-a-shared-access-signature"></a>Ajouter une méthode afin de tester les opérations sur un conteneur à l’aide d’une signature d’accès partagé
-Par la suite, nous allons ajouter une méthode qui teste quelques opérations sur un conteneur à l’aide d’une signature d’accès partagé pour le conteneur. La signature d'accès partagé permet de renvoyer une référence au conteneur, authentifiant l'accès au conteneur uniquement sur la base de la signature.
+### <a name="add-a-method-tootry-container-operations-using-a-shared-access-signature"></a>Ajouter une méthode tootry conteneur les opérations à l’aide d’une signature d’accès partagé
+Ensuite, nous ajouter une méthode qui vérifie certaines opérations de conteneur à l’aide d’une signature d’accès partagé pour le conteneur de hello. signature d’accès partagé Hello est tooreturn utilisé un conteneur de toohello de référence, l’authentification du conteneur de toohello d’accès basé sur la signature hello uniquement.
 
-Ajoutez la méthode suivante au fichier Program.cs :
+Ajoutez hello suivant tooProgram.cs de méthode :
 
 ```csharp
 static void UseContainerSAS(string sas)
 {
-    //Try performing container operations with the SAS provided.
+    //Try performing container operations with hello SAS provided.
 
-    //Return a reference to the container using the SAS URI.
+    //Return a reference toohello container using hello SAS URI.
     CloudBlobContainer container = new CloudBlobContainer(new Uri(sas));
 
-    //Create a list to store blob URIs returned by a listing operation on the container.
+    //Create a list toostore blob URIs returned by a listing operation on hello container.
     List<ICloudBlob> blobList = new List<ICloudBlob>();
 
-    //Write operation: write a new blob to the container.
+    //Write operation: write a new blob toohello container.
     try
     {
         CloudBlockBlob blob = container.GetBlockBlobReference("blobCreatedViaSAS.txt");
-        string blobContent = "This blob was created with a shared access signature granting write permissions to the container. ";
+        string blobContent = "This blob was created with a shared access signature granting write permissions toohello container. ";
         blob.UploadText(blobContent);
 
         Console.WriteLine("Write operation succeeded for SAS " + sas);
@@ -403,7 +403,7 @@ static void UseContainerSAS(string sas)
         Console.WriteLine();
     }
 
-    //List operation: List the blobs in the container.
+    //List operation: List hello blobs in hello container.
     try
     {
         foreach (ICloudBlob blob in container.ListBlobs())
@@ -420,7 +420,7 @@ static void UseContainerSAS(string sas)
         Console.WriteLine();
     }
 
-    //Read operation: Get a reference to one of the blobs in the container and read it.
+    //Read operation: Get a reference tooone of hello blobs in hello container and read it.
     try
     {
         CloudBlockBlob blob = container.GetBlockBlobReference(blobList[0].Name);
@@ -442,7 +442,7 @@ static void UseContainerSAS(string sas)
     }
     Console.WriteLine();
 
-    //Delete operation: Delete a blob in the container.
+    //Delete operation: Delete a blob in hello container.
     try
     {
         CloudBlockBlob blob = container.GetBlockBlobReference(blobList[0].Name);
@@ -459,7 +459,7 @@ static void UseContainerSAS(string sas)
 }
 ```
 
-Mettez à jour la méthode **Main()** afin d’appeler **UseContainerSAS()** grâce aux deux signatures d’accès partagé créées sur le conteneur :
+Hello de mise à jour **Main()** méthode toocall **UseContainerSAS()** avec deux hello de signatures d’accès vous avez créé sur le conteneur de hello partagé :
 
 ```csharp
 static void Main(string[] args)
@@ -469,7 +469,7 @@ static void Main(string[] args)
     string containerSASWithAccessPolicy = "<your container SAS with access policy>";
     string blobSASWithAccessPolicy = "<your blob SAS with access policy>";
 
-    //Call the test methods with the shared access signatures created on the container, with and without the access policy.
+    //Call hello test methods with hello shared access signatures created on hello container, with and without hello access policy.
     UseContainerSAS(containerSAS);
     UseContainerSAS(containerSASWithAccessPolicy);
 
@@ -477,23 +477,23 @@ static void Main(string[] args)
 }
 ```
 
-### <a name="add-a-method-to-try-blob-operations-using-a-shared-access-signature"></a>Ajoutez une méthode pour tester les opérations sur un blob à l’aide d’une signature d'accès partagé
-Pour terminer, nous allons ajouter une méthode qui teste quelques opérations sur un blob à l’aide d’une signature d’accès partagé sur le blob. Ici, nous utilisons le constructeur **CloudBlockBlob(String)**, en passant dans la signature d'accès partagé, pour renvoyer une référence vers le blob. Aucune autre authentification n'est nécessaire, car l'opération est basée uniquement sur la signature.
+### <a name="add-a-method-tootry-blob-operations-using-a-shared-access-signature"></a>Ajouter une méthode tootry blob les opérations à l’aide d’une signature d’accès partagé
+Enfin, nous ajouter une méthode qui vérifie certaines opérations de l’objet blob à l’aide d’une signature d’accès partagé sur un objet blob de hello. Dans ce cas, nous utilisons le constructeur de hello **CloudBlockBlob(String)**, en passant la signature d’accès partagé hello, tooreturn un objet blob toohello de référence. Aucune authentification n’est requise ; Il est basé sur la signature hello uniquement.
 
-Ajoutez la méthode suivante au fichier Program.cs :
+Ajoutez hello suivant tooProgram.cs de méthode :
 
 ```csharp
 static void UseBlobSAS(string sas)
 {
-    //Try performing blob operations using the SAS provided.
+    //Try performing blob operations using hello SAS provided.
 
-    //Return a reference to the blob using the SAS URI.
+    //Return a reference toohello blob using hello SAS URI.
     CloudBlockBlob blob = new CloudBlockBlob(new Uri(sas));
 
-    //Write operation: Write a new blob to the container.
+    //Write operation: Write a new blob toohello container.
     try
     {
-        string blobContent = "This blob was created with a shared access signature granting write permissions to the blob. ";
+        string blobContent = "This blob was created with a shared access signature granting write permissions toohello blob. ";
         MemoryStream msWrite = new MemoryStream(Encoding.UTF8.GetBytes(blobContent));
         msWrite.Position = 0;
         using (msWrite)
@@ -510,7 +510,7 @@ static void UseBlobSAS(string sas)
         Console.WriteLine();
     }
 
-    //Read operation: Read the contents of the blob.
+    //Read operation: Read hello contents of hello blob.
     try
     {
         MemoryStream msRead = new MemoryStream();
@@ -537,7 +537,7 @@ static void UseBlobSAS(string sas)
         Console.WriteLine();
     }
 
-    //Delete operation: Delete the blob.
+    //Delete operation: Delete hello blob.
     try
     {
         blob.Delete();
@@ -553,7 +553,7 @@ static void UseBlobSAS(string sas)
 }
 ```
 
-Mettez à jour la méthode **Main()** pour appeler **UseBlobSAS()** avec les deux signatures d’accès partagé que vous avez créées sur l’objet blob :
+Hello de mise à jour **Main()** méthode toocall **UseBlobSAS()** avec deux hello partagé des signatures d’accès que vous avez créé sur l’objet blob de hello :
 
 ```csharp
 static void Main(string[] args)
@@ -563,11 +563,11 @@ static void Main(string[] args)
     string containerSASWithAccessPolicy = "<your container SAS with access policy>";
     string blobSASWithAccessPolicy = "<your blob SAS with access policy>";
 
-    //Call the test methods with the shared access signatures created on the container, with and without the access policy.
+    //Call hello test methods with hello shared access signatures created on hello container, with and without hello access policy.
     UseContainerSAS(containerSAS);
     UseContainerSAS(containerSASWithAccessPolicy);
 
-    //Call the test methods with the shared access signatures created on the blob, with and without the access policy.
+    //Call hello test methods with hello shared access signatures created on hello blob, with and without hello access policy.
     UseBlobSAS(blobSAS);
     UseBlobSAS(blobSASWithAccessPolicy);
 
@@ -575,7 +575,7 @@ static void Main(string[] args)
 }
 ```
 
-Exécutez l'application console et observez la sortie pour connaître les opérations autorisées en fonction des signatures. La sortie dans la fenêtre de la console ressemble à ceci :
+Exécutez l’application de console hello et observez les toosee de sortie hello quelles opérations sont autorisées pour les signatures. sortie Hello dans la fenêtre de console hello ressemblera similaire toohello suivantes :
 
 ```
 Write operation succeeded for SAS https://storagesample.blob.core.windows.net/sascontainer?sv=2016-05-31&sr=c&sig=32EaQGuFyDMb3yOAey3wq%2B%2FLwgPQxAgSo7UhzLdyIDU%3D&se=2017-05-16T15%3A41%3A20Z&sp=wl
@@ -583,17 +583,17 @@ Write operation succeeded for SAS https://storagesample.blob.core.windows.net/sa
 List operation succeeded for SAS https://storagesample.blob.core.windows.net/sascontainer?sv=2016-05-31&sr=c&sig=32EaQGuFyDMb3yOAey3wq%2B%2FLwgPQxAgSo7UhzLdyIDU%3D&se=2017-05-16T15%3A41%3A20Z&sp=wl
 
 Read operation failed for SAS https://storagesample.blob.core.windows.net/sascontainer?sv=2016-05-31&sr=c&sig=32EaQGuFyDMb3yOAey3wq%2B%2FLwgPQxAgSo7UhzLdyIDU%3D&se=2017-05-16T15%3A41%3A20Z&sp=wl
-Additional error information: The remote server returned an error: (403) Forbidden.
+Additional error information: hello remote server returned an error: (403) Forbidden.
 
 Delete operation failed for SAS https://storagesample.blob.core.windows.net/sascontainer?sv=2016-05-31&sr=c&sig=32EaQGuFyDMb3yOAey3wq%2B%2FLwgPQxAgSo7UhzLdyIDU%3D&se=2017-05-16T15%3A41%3A20Z&sp=wl
-Additional error information: The remote server returned an error: (403) Forbidden.
+Additional error information: hello remote server returned an error: (403) Forbidden.
 
 ...
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* [Signatures d'accès partagé, partie 1 : présentation du modèle SAP](storage-dotnet-shared-access-signature-part-1.md)
-* [Gestion de l’accès en lecture anonyme aux conteneurs et aux objets blob](storage-manage-access-to-resources.md)
+* [Signatures d’accès partagé, partie 1 : Hello de présentation modèle SAP](storage-dotnet-shared-access-signature-part-1.md)
+* [Gérer les objets BLOB et l’accès en lecture anonyme toocontainers](storage-manage-access-to-resources.md)
 * [Délégation de l’accès avec une signature d’accès partagé (API REST)](http://msdn.microsoft.com/library/azure/ee395415.aspx)
 * [Présentation des signatures d’accès partagé de table et de file d’attente](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-table-sas-shared-access-signature-queue-sas-and-update-to-blob-sas.aspx)

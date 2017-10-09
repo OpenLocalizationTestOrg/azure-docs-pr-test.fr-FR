@@ -1,7 +1,7 @@
-Data Lake Analytics simplifie la gestion complexe d’une infrastructure distribuée et de code. Il approvisionne dynamiquement les ressources et vous permet d’analyser plusieurs exaoctets de données. Lorsque le travail est terminé, le service ralentit automatiquement les ressources et vous payez uniquement la puissance de traitement utilisée. Il n'est pas nécessaire de réécrire le code à mesure que vous augmentez ou diminuez la taille des données stockées ou le volume de calcul utilisé. La plupart des limites par défaut de votre abonnement peuvent être facilement repoussées en contactant le support. 
+Analytique lac de données rend la tâche complexe hello de gestion d’infrastructure distribuée et code complexe facile. Il approvisionne dynamiquement les ressources et vous permet d’analyser plusieurs exaoctets de données. Lorsque hello est terminée, elle apprêtez sans ressources automatiquement et vous ne payez que pour hello utilisé de puissance de traitement. Lorsque vous augmentez ou diminuez la taille de hello des données stockées ou hello la quantité de calcul utilisé, vous n’avez toorewrite code. Nombre de limites de hello par défaut peuvent être facilement déclenchés pour votre abonnement en contactant le support. 
 
 | **Ressource** | **Limite par défaut** | **Commentaires** |
 | --- | --- | --- |
 | nombre maximal de travaux simultanés |20 | |
-| Parallélisme maximal par compte |250 |Utilisez n’importe quelle combinaison contenant jusqu'à 60 unités de parallélisme réparties sur trois travaux. |
+| Parallélisme maximal par compte |250 |Utilisez n’importe quelle combinaison de haut maximum tooa 60 unités de parallélisme entre les trois tâches. |
 

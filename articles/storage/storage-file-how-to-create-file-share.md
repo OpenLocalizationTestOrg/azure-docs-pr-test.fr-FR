@@ -1,6 +1,6 @@
 ---
-title: "Création d’un partage de fichiers Azure | Microsoft Docs"
-description: "Comment créer un partage de fichiers Azure dans le Stockage Fichier Azure à l’aide du portail Azure, de PowerShell et de l’interface de ligne de commande Azure CLI."
+title: aaaHow toocreate un partage de fichiers Azure | Documents Microsoft
+description: "Comment toocreate un Azure partage de fichiers dans le stockage de fichiers Azure à l’aide de hello portail Azure, PowerShell et hello CLI d’Azure."
 services: storage
 documentationcenter: 
 author: RenaShahMSFT
@@ -14,30 +14,30 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 05/27/2017
 ms.author: renash
-ms.openlocfilehash: 10da4d903eaab290a6cca2c4f674548a43a70c53
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: c4c59966b82d743fb4ecf79f48c0c8e61295d03d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-file-share-in-azure-file-storage"></a>Création d’un partage de fichiers dans le Stockage Fichier Azure
-Vous pouvez créer des partages de fichiers Azure à l’aide du [portail Azure](https://portal.azure.com/), des applets de commande PowerShell pour Stockage Azure, des bibliothèques clientes Stockage Azure ou de l’API REST de Stockage Azure. Ce didacticiel contient des informations concernant les procédures suivantes :
-* [Création d’un partage de fichiers Azure avec le portail Azure](#Create file share through the Portal)
-* [Création d’un partage de fichiers Azure avec PowerShell](#Create file share using PowerShell)
-* [Création d’un partage de fichiers Azure avec CLI](#create-file-share-using-command-line-interface-cli)
+Vous pouvez créer des partages de fichiers Azure à l’aide de [portail Azure](https://portal.azure.com/), hello applets de commande PowerShell de stockage Azure, hello des bibliothèques clientes de stockage Azure ou hello API REST de stockage Azure. Dans ce didacticiel, vous allez apprendre :
+* [Comment toocreate un fichier Azure partager à l’aide de hello portail Azure](#Create file share through hello Portal)
+* [Comment toocreate un Azure de partage de fichiers à l’aide de Powershell](#Create file share using PowerShell)
+* [Comment toocreate un Azure de partage de fichiers à l’aide de CLI](#create-file-share-using-command-line-interface-cli)
 
 ## <a name="prerequisites"></a>Composants requis
-Pour créer un partage de fichiers Azure, vous pouvez utiliser un compte de stockage existant ou [créer un nouveau compte de stockage Azure](storage-create-storage-account.md). Pour créer un partage de fichiers Azure avec PowerShell, vous avez besoin de la clé de compte et du nom de votre compte de stockage. Si vous envisagez d’utiliser Powershell ou CLI, vous aurez besoin de la clé du compte de stockage.
+toocreate un partage de fichiers Azure, vous pouvez utiliser un compte de stockage existe déjà, ou [créer un nouveau compte de stockage Azure](storage-create-storage-account.md). toocreate un partage de fichiers Azure avec PowerShell, vous devez clé de compte hello et le nom de votre compte de stockage... Si vous envisagez de toouse Powershell ou CLI, vous devez clé de compte de stockage.
 
-## <a name="create-file-share-through-the-portal"></a>Création d’un partage de fichiers via le portail
-1. **Accédez au panneau Compte de stockage dans le portail Azure** :    
+## <a name="create-file-share-through-hello-portal"></a>Créer le partage de fichiers via hello portail
+1. **Panneau de compte tooStorage accédez sur le portail Azure**:    
     ![Panneau Compte de stockage](media/storage-file-how-to-create-file-share/create-file-share-portal1.png)
 
 2. **Cliquez sur Ajouter un partage de fichiers** :    
-    ![Cliquez sur Ajouter un partage de fichiers](media/storage-file-how-to-create-file-share/create-file-share-portal2.png)
+    ![Cliquez sur hello ajouter le bouton de partage de fichier](media/storage-file-how-to-create-file-share/create-file-share-portal2.png)
 
 3. **Indiquez le nom et le quota. Actuellement, la limite de quota maximum est 5 To** :    
-    ![Indiquez un nom et le quota souhaité pour le nouveau partage de fichiers](media/storage-file-how-to-create-file-share/create-file-share-portal3.png).
+    ![Fournir un nom et un quota de votre choix pour le nouveau partage de fichiers hello](media/storage-file-how-to-create-file-share/create-file-share-portal3.png)
 
 4. **Affichez votre nouveau partage de fichiers** : ![Affichez votre nouveau partage de fichiers](media/storage-file-how-to-create-file-share/create-file-share-portal4.png)
 
@@ -47,12 +47,12 @@ Pour créer un partage de fichiers Azure, vous pouvez utiliser un compte de stoc
 
 
 ## <a name="create-file-share-through-powershell"></a>Création d’un partage de fichiers via PowerShell
-Pour vous préparer à utiliser PowerShell, téléchargez et installez les applets de commande PowerShell Azure. Consultez la rubrique [Installation et configuration d’Azure PowerShell](https://azure.microsoft.com/documentation/articles/powershell-install-configure/) pour des instructions sur l’installation et le point d’installation.
+tooprepare toouse PowerShell, téléchargez et installez les applets de commande PowerShell Azure hello. Consultez [comment tooinstall et configurer Azure PowerShell](https://azure.microsoft.com/documentation/articles/powershell-install-configure/) Pourquoi installer instructions d’installation et de point.
 
 > [!Note]  
-> Il est recommandé de télécharger et d’installer le dernier module Azure PowerShell ou d’effectuer une mise à niveau vers celui-ci.
+> Il est recommandé de télécharger et installer ou mettre à niveau du module Azure PowerShell toohello plus récent.
 
-1. **Créez un contexte pour le compte de stockage et la clé**. Le contexte regroupe la clé de compte et le nom du compte de stockage. Pour obtenir des instructions sur la copie de votre clé de compte à partir du [portail Azure](https://portal.azure.com/), voir [Afficher et copier les clés d’accès de stockage](storage-create-storage-account.md#view-and-copy-storage-access-keys).
+1. **Créer un contexte pour votre compte de stockage et de la clé** contexte de hello encapsule la clé de compte et le nom du compte de stockage hello. Pour obtenir des instructions sur la copie de votre clé de compte à partir du [portail Azure](https://portal.azure.com/), voir [Afficher et copier les clés d’accès de stockage](storage-create-storage-account.md#view-and-copy-storage-access-keys).
 
     ```powershell
     $storageContext = New-AzureStorageContext <storage-account-name> <storage-account-key>
@@ -65,20 +65,20 @@ Pour vous préparer à utiliser PowerShell, téléchargez et installez les apple
     ```
 
 > [!Note]  
-> Le nom de votre partage de fichiers doit être en minuscules. Pour plus d’informations sur la façon de nommer des partages de fichiers et des fichiers, consultez la rubrique [Affectation de noms et références aux partages, répertoires, fichiers et métadonnées](https://msdn.microsoft.com/library/azure/dn167011.aspx).
+> nom de Hello de votre partage de fichiers doit être tout en minuscules. Pour plus d’informations sur la façon de nommer des partages de fichiers et des fichiers, consultez la rubrique [Affectation de noms et références aux partages, répertoires, fichiers et métadonnées](https://msdn.microsoft.com/library/azure/dn167011.aspx).
 
 ## <a name="create-file-share-through-command-line-interface-cli"></a>Création d’un partage de fichiers via l’Interface de ligne de commande (CLI)
-1. **Pour vous préparer à utiliser une Interface de ligne de commande (CLI), téléchargez et installez Azure CLI.**  
+1. **tooprepare toouse une Interface de ligne de commande (CLI), téléchargez et installez les hello CLI d’Azure.**  
     Consultez [Installation d’Azure CLI 2.0](/cli/azure/install-az-cli2.md) et [Prise en main d’Azure CLI 2.0](/cli/azure/get-started-with-azure-cli.md).
 
-2. **Créez une chaîne de connexion vers le compte de stockage dans lequel vous souhaitez créer le partage.**  
-    Remplacez ```<storage-account>``` et ```<resource_group>``` par le nom de votre compte de stockage et le groupe de ressources de l’exemple suivant.
+2. **Créer un compte de stockage de chaîne de connexion toohello où vous souhaitez partager de hello toocreate.**  
+    Remplacez ```<storage-account>``` et ```<resource_group>``` avec votre compte nom et la ressource de groupe de stockage Bonjour l’exemple suivant.
 
    ```azurecli
     current_env_conn_string = $(az storage account show-connection-string -n <storage-account> -g <resource-group> --query 'connectionString' -o tsv)
 
     if [[ $current_env_conn_string == "" ]]; then  
-        echo "Couldn't retrieve the connection string."
+        echo "Couldn't retrieve hello connection string."
     fi
     ```
 

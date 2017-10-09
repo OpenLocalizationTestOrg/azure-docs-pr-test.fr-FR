@@ -1,6 +1,6 @@
 ---
-title: "Planifier votre réseau virtuel pour une collection RemoteApp Azure | Microsoft Docs"
-description: "Planifier votre réseau virtuel pour une collection Azure RemoteApp"
+title: "aaaHow tooplan votre réseau virtuel pour une collection Azure RemoteApp | Documents Microsoft"
+description: "Découvrez comment tooplan votre réseau virtuel pour une collection Azure RemoteApp."
 services: remoteapp
 documentationcenter: 
 author: mghosh1616
@@ -13,47 +13,47 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/23/2016
 ms.author: mbaldwin
-ms.openlocfilehash: 1eb8115b13fb18074b4c4726b69e3d9faf387c32
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d7eeefc3c66815b18f9338e2e428585e6f81a12a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-plan-your-virtual-network-for-azure-remoteapp"></a>Comment planifier votre réseau virtuel pour Azure RemoteApp
+# <a name="how-tooplan-your-virtual-network-for-azure-remoteapp"></a>Comment tooplan votre réseau virtuel pour Azure RemoteApp
 > [!IMPORTANT]
-> Azure RemoteApp ne sera plus disponible à partir du 31 août 2017. Pour plus d’informations, lisez [l’annonce](https://go.microsoft.com/fwlink/?linkid=821148) .
+> Azure RemoteApp ne sera plus disponible à partir du 31 août 2017. Hello de lecture [annonce](https://go.microsoft.com/fwlink/?linkid=821148) pour plus d’informations.
 > 
 > 
 
-Ce document décrit comment configurer votre réseau virtuel Azure (réseau) et le sous-réseau pour Azure RemoteApp. Si vous n’êtes pas familiarisé avec les réseaux virtuels Azure, c’est une fonctionnalité qui vous permet de virtualiser votre infrastructure réseau vers le nuage et pour créer des solutions hybrides avec Azure et vos ressources locales. Pour plus d'informations à ce sujet, cliquez [ici](../virtual-network/virtual-networks-overview.md).
+Ce document décrit comment tooset votre réseau virtuel Azure (VNET) et le sous-réseau hello pour Azure RemoteApp. Si vous n’êtes pas familiarisé avec les réseaux virtuels Azure, il s’agit d’une fonctionnalité qui vous aide à vous toovirtualize votre réseau infrastructure toohello cloud et toocreate solutions hybrides avec Azure et vos ressources locales. Pour plus d'informations à ce sujet, cliquez [ici](../virtual-network/virtual-networks-overview.md).
 
-Si vous souhaitez définir des stratégies de sécurité pour le trafic (entrant et sortant) du réseau virtuel dans lequel vous déployez Azure RemoteApp, nous vous recommandons vivement de créer un sous-réseau distinct pour Azure RemoteApp à partir du reste de vos déploiements dans le réseau virtuel Azure. Pour plus d’informations sur la façon de définir des stratégies de sécurité sur votre sous-réseau de réseau virtuel Azure, consultez la section [Qu’est-ce qu’un groupe de sécurité réseau (NSG) ?](../virtual-network/virtual-networks-nsg.md).
+Si vous souhaitez que les stratégies de sécurité toodefine pour le trafic (entrant et sortant) dans votre réseau virtuel où vous déployez Azure RemoteApp, nous recommandons de créer un sous-réseau distinct pour Azure RemoteApp reste hello de vos déploiements Bonjour Azure réseau virtuel. Pour plus d’informations sur comment toodefine les stratégies de sécurité sur votre Azure virtual network sous-réseau, veuillez lire [qu’est un groupe de sécurité réseau (NSG) ?](../virtual-network/virtual-networks-nsg.md).
 
 ## <a name="types-of-azure-remoteapp-collections-with-azure-virtual-networks"></a>Types de collections RemoteApp Azure avec les réseaux virtuels Azure
-Les graphiques suivants illustrent les deux options de collection différentes que vous pouvez choisir au moment d’utiliser un réseau virtuel.
+Hello graphiques suivants illustrent hello deux options de l’autre collection lorsque vous souhaitez toouse un réseau virtuel.
 
 ### <a name="azure-remoteapp-cloud-collection-with-vnet"></a>Collection Cloud Azure RemoteApp avec réseau virtuel
  ![Azure RemoteApp - Collection Cloud avec réseau virtuel](./media/remoteapp-planvpn/ra-cloudvpn.png)
 
-Cela représente une collection Azure RemoteApp dans laquelle toutes les ressources auxquelles les hôtes de session RemoteApp doivent accéder sont déployées dans Azure. Ils peuvent se trouver dans le même réseau virtuel que le réseau virtuel RemoteApp VNET ou dans un autre réseau virtuel dans Azure.
+Représente une collection Azure RemoteApp où toutes les ressources hello que les hôtes de session de RemoteApp hello doivent tooaccess sont déployés dans Azure. Ils peuvent être Bonjour même réseau virtuel en tant que hello RemoteApp VNET ou un autre réseau virtuel dans Azure.
 
 ### <a name="azure-remoteapp-hybrid-collection-with-vnet"></a>Collection hybride RemoteApp avec réseau virtuel
 ![Azure RemoteApp - Collection hybride avec réseau virtuel](./media/remoteapp-planvpn/ra-hybridvpn.png)
 
-Cela représente une collection Azure RemoteApp dans laquelle certaines ressources auxquelles les hôtes de session RemoteApp doivent accéder sont déployées localement. VNET RemoteApp est lié au réseau local à l’aide de technologies hybrides Azure comme VPN de site à site ou Express Route.
+Représente une collection Azure RemoteApp où certaines ressources hello que les hôtes de session de RemoteApp hello doivent tooaccess sont déployés localement. Hello RemoteApp VNET est un réseau local de toohello lié à l’aide de technologies Azure hybride comme VPN de site à site ou Express Route.
 
-## <a name="how-the-system-works"></a>Fonctionnement du système
-En arrière-plan, Azure RemoteApp déploie des machines virtuelles Azure (avec votre image chargée) sur le sous-réseau de réseau virtuel que vous avez choisi lors de la configuration. Si vous avez opté pour une collection hybride, nous essayons de résoudre le nom de domaine complet du contrôleur de domaine saisi lors de la configuration du flux de travail avec le serveur DNS fourni dans le réseau virtuel.  
-Si vous vous connectez à un réseau virtuel existant, veillez à exposer les ports nécessaires dans des groupes de sécurité réseau dans votre sous-réseau Azure RemoteApp. 
+## <a name="how-hello-system-works"></a>Fonctionnement du système hello
+Dans les coulisses de hello Azure RemoteApp déploie les machines virtuelles Azure (avec votre image téléchargée) toohello sous-réseau du réseau virtuel que vous avez choisi lors de la configuration. Si vous avez opté pour une collection hybride, nous nous efforçons tooresolve hello nom de domaine complet du contrôleur de domaine hello saisis dans hello mise en service de flux de travail avec serveurDNS hello fourni dans le réseau virtuel de hello.  
+Si vous vous connectez tooan de réseau virtuel existant, vérifiez les ports nécessaires que tooexpose hello dans vos groupes de sécurité réseau dans votre sous-réseau Azure RemoteApp. 
 
-Nous vous recommandons d’utiliser un [sous-réseau suffisamment grand pour Azure RemoteApp](remoteapp-vnetsizing.md). La prise en charge maximale par le réseau virtuel Azure est /8 (avec des définitions de sous-réseau CIDR). Votre sous-réseau doit être suffisamment grand pour contenir toutes les machines virtuelles Azure RemoteApp pendant la mise à l’échelle lorsque plusieurs utilisateurs accèdent aux applications. 
+Nous vous recommandons d’utiliser un [sous-réseau suffisamment grand pour Azure RemoteApp](remoteapp-vnetsizing.md). Hello plus grande prise en charge par le réseau virtuel Azure est la valeur/8 (à l’aide de définitions de sous-réseau CIDR). Votre sous-réseau doit être suffisamment grand tooaccommodate toutes les machines virtuelles hello Azure RemoteApp pendant montée en puissance parallèle lorsque davantage d’utilisateurs accèdent à des applications de hello. 
 
-Voici les éléments à activer sur votre sous-réseau de réseau virtuel : 
+Voici les choses hello vous devez tooenable sur votre sous-réseau de réseau virtuel : 
 
-1. Le trafic sortant du sous-réseau est affecté à la plage de ports 10101-10175 pour communiquer avec un des services Azure RemoteApp internes.
-2. Le trafic sortant de votre sous-réseau doit être autorisé à se connecter au stockage Azure sur le port 443
-3. Si Active Directory est hébergé dans Azure, assurez-vous que toutes les machines virtuelles dans le sous-réseau de réseau virtuel pour Azure RemoteApp est en mesure de se connecter à ce contrôleur de domaine. Le serveur DNS du réseau virtuel doit être en mesure de résoudre le nom de domaine complet de ce contrôleur de domaine.
+1. Le trafic sortant à partir du sous-réseau de hello doit être autorisé sur le port plage 10101-10175 toocommunicate avec l’un des services de Azure RemoteApp hello internes.
+2. Le trafic sortant doit être autorisé à partir de votre tooAzure tooconnect de sous-réseau stockage sur le port 443
+3. Si vous disposez d’Active Directory hébergé dans Azure, assurez-vous que toutes les machines virtuelles dans le sous-réseau de réseau virtuel hello pour Azure RemoteApp sont contrôleur de domaine en mesure de tooconnect toothat. Hello DNS dans le réseau virtuel de hello doit être en mesure de tooresolve hello nom de domaine complet de ce contrôleur de domaine.
 
 ## <a name="virtual-network-with-forced-tunneling"></a>Réseau virtuel avec tunneling forcé
-[Tunneling forcé](../vpn-gateway/vpn-gateway-about-forced-tunneling.md) est maintenant pris en charge dans toutes les nouvelles collections Azure RemoteApp. Actuellement, nous ne gérons pas la migration d’une collection existante pour prendre en charge le tunneling forcé.  Vous devez supprimer toutes les collections existantes à l’aide du réseau virtuel que vous associez à Azure RemoteApp et en créer un nouveau pour activer le tunneling sur vos collections. 
+[Tunneling forcé](../vpn-gateway/vpn-gateway-about-forced-tunneling.md) est maintenant pris en charge dans toutes les nouvelles collections Azure RemoteApp. Nous ne gèrent pas la migration hello d’un toosupport collection existante, le tunneling forcé.  Vous avez toodelete vos collections existantes à l’aide de hello réseau virtuel que vous créez un lien tooAzure RemoteApp et créez un nouveau un tooget tunneling activé sur vos collections forcé. 
 

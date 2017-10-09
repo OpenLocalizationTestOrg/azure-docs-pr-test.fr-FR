@@ -1,6 +1,6 @@
 ---
-title: Validation de la configuration de compte Azure Automation | Microsoft Docs
-description: "Cet article décrit comment vérifier que votre compte Automation est correctement configuré."
+title: configuration du compte Azure Automation aaaValidate | Documents Microsoft
+description: "Cet article décrit la configuration de hello tooconfirm de votre compte Automation est configurée correctement."
 services: automation
 documentationcenter: 
 author: mgoedtel
@@ -14,25 +14,25 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/07/2017
 ms.author: magoedte
-ms.openlocfilehash: 804e05f596e1d6d5f650e4c94a18eff6b7c3ba4e
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 3a990dcc6661cf67c4b62592ce03d55a3791053a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="test-azure-automation-run-as-account-authentication"></a>Test d’authentification du compte d’identification Azure Automation
-Une fois qu’un compte Automation est correctement créé, vous pouvez effectuer un test simple pour confirmer que vous êtes en mesure de vous authentifier dans Azure Resource Manager ou un déploiement classique Azure à l’aide de votre compte d’identification Automation nouvellement créé ou mis à jour.    
+Une fois un compte Automation est créé avec succès, vous pouvez effectuer un tooconfirm de test simple que vous ne pouvez toosuccessfully s’authentifier dans Azure Resource Manager ou un déploiement classique Azure à l’aide de votre compte Automation exécuter en tant que nouvellement créé ou mis à jour.    
 
 ## <a name="automation-run-as-authentication"></a>Authentification d’identification Automation
-Utilisez l’exemple de code ci-dessous pour [créer un runbook PowerShell](automation-creating-importing-runbook.md) afin de vérifier l’authentification à l’aide d’un compte d’identification. Utilisez-le aussi sur votre runbook personnalisé pour vous authentifier et gérer les ressources du Gestionnaire des ressources avec un compte Automation.   
+Utilisez hello exemple de code ci-dessous trop[créer un runbook PowerShell](automation-creating-importing-runbook.md) tooverify l’authentification à l’aide de hello exécuter en tant que compte et également dans votre tooauthenticate runbooks personnalisés et de gérer les ressources du Gestionnaire de ressources avec votre compte Automation.   
 
     $connectionName = "AzureRunAsConnection"
     try
     {
-        # Get the connection "AzureRunAsConnection "
+        # Get hello connection "AzureRunAsConnection "
         $servicePrincipalConnection=Get-AutomationConnection -Name $connectionName         
 
-        "Logging in to Azure..."
+        "Logging in tooAzure..."
         Add-AzureRmAccount `
            -ServicePrincipal `
            -TenantId $servicePrincipalConnection.TenantId `
@@ -64,50 +64,50 @@ Utilisez l’exemple de code ci-dessous pour [créer un runbook PowerShell](auto
        Write-Output ("")
     } 
 
-Notez que l’applet de commande utilisée pour l’authentification ( **Add-AzureRmAccount**) dans le Runbook, utilise le jeu de paramètres *ServicePrincipalCertificate* .  Elle effectue l’authentification à l’aide du certificat du principal du service et non des informations d’identification.  
+Notez hello applet de commande utilisée pour l’authentification dans hello runbook - **Add-AzureRmAccount**, utilise hello *ServicePrincipalCertificate* jeu de paramètres.  Elle effectue l’authentification à l’aide du certificat du principal du service et non des informations d’identification.  
 
-Lorsque vous [exécutez un runbook](automation-starting-a-runbook.md#starting-a-runbook-with-the-azure-portal) pour valider un compte d’identification, un [travail du runbook](automation-runbook-execution.md) est créé. Le panneau Travail s’affiche alors et l’état du travail est affiché dans la mosaïque **Résumé du travail**. L’état initial du travail est *Mis en file d’attente* pour indiquer qu’il attend la disponibilité d’un Runbook Worker dans le cloud. La tâche prend ensuite l’état *Démarrage en cours* lorsqu’un Worker sélectionne la tâche, puis l’état *En cours d’exécution* lorsque le Runbook commence à s’exécuter.  À l’issue du travail du Runbook, l’état **Terminé** doit s’afficher.
+Lorsque vous [exécuter hello runbook](automation-starting-a-runbook.md#starting-a-runbook-with-the-azure-portal) toovalidate votre compte d’identification, un [tâche du runbook](automation-runbook-execution.md) est créé, panneau de tâche hello s’affiche, et état de la tâche hello affichée Bonjour **récapitulatif**vignette. état de la tâche Hello démarrera en tant que *en file d’attente* indiquant qu’il est en attente d’un runbook worker dans hello toobecome de cloud disponible. Il passe alors trop*départ* lorsqu’un processus de travail tâche de hello, les revendications, puis *en cours d’exécution* démarrage hello runbook réellement en cours d’exécution.  Lors de la tâche de runbook hello est terminée, nous devons voyez l’état **terminé**.
 
-Pour afficher les résultats détaillés du Runbook, cliquez sur la mosaïque **Sortie** .  Le panneau **Sortie** doit indiquer qu’il a authentifié et retourné la liste de toutes les ressources dans les groupes de ressources de votre abonnement.  
+toosee hello les résultats détaillés de hello runbook, cliquez sur hello **sortie** vignette.  Sur hello **sortie** panneau, vous devez voir qu’il a été authentifié et retourne une liste de toutes les ressources de tous les groupes de ressources dans votre abonnement.  
 
-Pensez à supprimer le bloc de code en commençant par le commentaire `#Get all ARM resources from all resource groups` lorsque vous réutiliser le code de vos runbooks.
+Rappelez-vous simplement le bloc de hello tooremove de code commençant par le commentaire hello `#Get all ARM resources from all resource groups` lorsque vous réutilisez le code de hello pour les procédures opérationnelles.
 
 ## <a name="classic-run-as-authentication"></a>Authentification d’identification Classic
-Utilisez l’exemple de code ci-dessous pour [créer un runbook PowerShell](automation-creating-importing-runbook.md) afin de vérifier l’authentification à l’aide d’un compte d’identification Classic. Utilisez-le aussi sur votre runbook personnalisé pour vous authentifier et gérer les ressources dans le modèle de déploiement Classic.  
+Utilisez hello exemple de code ci-dessous trop[créer un runbook PowerShell](automation-creating-importing-runbook.md) à l’aide de l’authentification tooverify hello classique exécute en tant que compte et également dans votre tooauthenticate runbooks personnalisés et de gérer les ressources dans le modèle de déploiement classique hello.  
 
     $ConnectionAssetName = "AzureClassicRunAsConnection"
-    # Get the connection
+    # Get hello connection
     $connection = Get-AutomationConnection -Name $connectionAssetName        
 
-    # Authenticate to Azure with certificate
+    # Authenticate tooAzure with certificate
     Write-Verbose "Get connection asset: $ConnectionAssetName" -Verbose
     $Conn = Get-AutomationConnection -Name $ConnectionAssetName
     if ($Conn -eq $null)
     {
-       throw "Could not retrieve connection asset: $ConnectionAssetName. Assure that this asset exists in the Automation account."
+       throw "Could not retrieve connection asset: $ConnectionAssetName. Assure that this asset exists in hello Automation account."
     }
 
     $CertificateAssetName = $Conn.CertificateAssetName
-    Write-Verbose "Getting the certificate: $CertificateAssetName" -Verbose
+    Write-Verbose "Getting hello certificate: $CertificateAssetName" -Verbose
     $AzureCert = Get-AutomationCertificate -Name $CertificateAssetName
     if ($AzureCert -eq $null)
     {
-       throw "Could not retrieve certificate asset: $CertificateAssetName. Assure that this asset exists in the Automation account."
+       throw "Could not retrieve certificate asset: $CertificateAssetName. Assure that this asset exists in hello Automation account."
     }
 
-    Write-Verbose "Authenticating to Azure with certificate." -Verbose
+    Write-Verbose "Authenticating tooAzure with certificate." -Verbose
     Set-AzureSubscription -SubscriptionName $Conn.SubscriptionName -SubscriptionId $Conn.SubscriptionID -Certificate $AzureCert
     Select-AzureSubscription -SubscriptionId $Conn.SubscriptionID
     
-    #Get all VMs in the subscription and return list with name of each
+    #Get all VMs in hello subscription and return list with name of each
     Get-AzureVM | ft Name
 
-Lorsque vous [exécutez un runbook](automation-starting-a-runbook.md#starting-a-runbook-with-the-azure-portal) pour valider un compte d’identification, un [travail du runbook](automation-runbook-execution.md) est créé. Le panneau Travail s’affiche alors et l’état du travail est affiché dans la mosaïque **Résumé du travail**. L’état initial du travail est *Mis en file d’attente* pour indiquer qu’il attend la disponibilité d’un Runbook Worker dans le cloud. La tâche prend ensuite l’état *Démarrage en cours* lorsqu’un Worker sélectionne la tâche, puis l’état *En cours d’exécution* lorsque le Runbook commence à s’exécuter.  À l’issue du travail du Runbook, l’état **Terminé** doit s’afficher.
+Lorsque vous [exécuter hello runbook](automation-starting-a-runbook.md#starting-a-runbook-with-the-azure-portal) toovalidate votre compte d’identification, un [tâche du runbook](automation-runbook-execution.md) est créé, panneau de tâche hello s’affiche, et état de la tâche hello affichée Bonjour **récapitulatif**vignette. état de la tâche Hello démarrera en tant que *en file d’attente* indiquant qu’il est en attente d’un runbook worker dans hello toobecome de cloud disponible. Il passe alors trop*départ* lorsqu’un processus de travail tâche de hello, les revendications, puis *en cours d’exécution* démarrage hello runbook réellement en cours d’exécution.  Lors de la tâche de runbook hello est terminée, nous devons voyez l’état **terminé**.
 
-Pour afficher les résultats détaillés du Runbook, cliquez sur la mosaïque **Sortie** .  Le panneau **Sortie** doit indiquer qu’il a authentifié et retourné la liste de toutes les machines virtuelles Azure de VMName qui sont déployées dans votre abonnement.  
+toosee hello les résultats détaillés de hello runbook, cliquez sur hello **sortie** vignette.  Sur hello **sortie** panneau, vous devez voir qu’il a été authentifié et retourne une liste de tous les ordinateurs virtuels de Azure à VMName qui sont déployés dans votre abonnement.  
 
-N’oubliez pas de supprimer le cmdlet **Get-AzureVM** lorsque vous réutilisez le code de vos runbooks.
+N’oubliez pas applet de commande hello tooremove **Get-AzureVM** lorsque vous réutilisez le code de hello pour les procédures opérationnelles.
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Pour une prise en main des Runbooks PowerShell, consultez [Mon premier Runbook PowerShell](automation-first-runbook-textual-powershell.md).
-* Pour en savoir plus sur la création graphique, consultez [Création de graphiques dans Azure Automation](automation-graphical-authoring-intro.md).
+* tooget main runbook PowerShell, consultez [mon runbook PowerShell premier](automation-first-runbook-textual-powershell.md).
+* toolearn plus sur la création de graphiques, consultez [de création graphique dans Azure Automation](automation-graphical-authoring-intro.md).

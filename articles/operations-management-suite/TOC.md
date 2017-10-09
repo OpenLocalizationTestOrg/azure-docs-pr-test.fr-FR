@@ -24,7 +24,7 @@
 
 ## Sécuriser
 ### [Surveiller les ressources](oms-security-monitoring-resources.md)
-### [Répondre à des alertes de sécurité](oms-security-responding-alerts.md)
+### [Alertes répondent toosecurity](oms-security-responding-alerts.md)
 ### [Évaluation de la ligne de base](oms-security-baseline.md)
 ### [Évaluation des logiciels malveillants](../log-analytics/log-analytics-malware.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)
 ### [Évaluation des mises à jour du système](../log-analytics/log-analytics-system-update.md?toc=%2fazure%2foperations-management-suite%2ftoc.json)

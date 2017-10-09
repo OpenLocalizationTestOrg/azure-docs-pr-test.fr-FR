@@ -15,6 +15,6 @@
 
 (\* -Tous les déclencheurs comportent des données d’entrée associées)
 
-(\** - La liaison de sortie HTTP nécessite un déclencheur HTTP)
+(\**-hello HTTP de la liaison requiert un déclencheur HTTP sortie)
 
 

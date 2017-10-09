@@ -1,6 +1,6 @@
 ---
-title: "Quand utiliser des objets blob Azure, des fichiers Azure ou des disques de données Azure"
-description: "Découvrez les différentes façons de stocker les données dans Azure et d’y accéder pour choisir la technologie la mieux adaptée."
+title: "aaaDeciding lorsque les objets BLOB de Azure toouse, des fichiers de Azure ou des disques de données Azure"
+description: "En savoir plus sur hello différentes façons toostore et accéder aux données dans Azure toohelp que vous décidez quels toouse technologie."
 services: storage
 documentationcenter: 
 author: robinsh
@@ -14,29 +14,29 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/13/2017
 ms.author: robinsh
-ms.openlocfilehash: 452030e2e55ebeae55be2bd858c59e45428c7621
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: cd43abde43daf33dd7c43aa2696a9c8d5cd19612
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deciding-when-to-use-azure-blobs-azure-files-or-azure-data-disks"></a>Quand utiliser des objets blob Azure, des fichiers Azure ou des disques de données Azure
+# <a name="deciding-when-toouse-azure-blobs-azure-files-or-azure-data-disks"></a>Déterminer à quel moment les objets BLOB de Azure toouse, des fichiers de Azure ou des disques de données Azure
 
-Microsoft Azure propose plusieurs fonctionnalités dans le stockage Azure pour stocker vos données dans le cloud et y accéder. Cet article traite des fichiers, des objets blob et des disques de données Azure, afin de vous aider à choisir entre ces fonctionnalités.
+Microsoft Azure fournit plusieurs fonctionnalités dans le stockage Azure pour stocker et accéder à vos données dans le cloud de hello. Cet article traite des fichiers Azure, les objets BLOB et les disques de données et est conçu toohelp vous choisissez entre ces fonctionnalités.
 
 ## <a name="scenarios"></a>Scénarios
 
-Le tableau suivant compare les fichiers, les objets blob et les disques de données, et il présente des exemples de scénarios appropriés pour chacun.
+Bonjour tableau suivant compare les fichiers, les objets BLOB et les disques de données et présente des exemples de scénarios appropriés pour chacun.
 
-| Fonctionnalité | Description | Quand utiliser |
+| Fonctionnalité | Description | Lorsque toouse |
 |--------------|-------------|-------------|
-| **Azure Files** | Fournit une interface SMB, des bibliothèques clientes et une [interface REST](/rest/api/storageservices/file-service-rest-api) qui permet d’accéder en tout lieu aux fichiers stockés. | Vous souhaitez développer et transférer une application dans le cloud qui utilise déjà les API du système de fichiers natif pour partager des données avec d’autres applications s’exécutant dans Azure.<br/><br/>Vous souhaitez stocker les outils de développement et de débogage qui doivent être accessibles à partir de nombreuses machines virtuelles. |
-| **Objets blob Azure** | Fournit des bibliothèques clientes et une [interface REST](/rest/api/storageservices/blob-service-rest-api) qui permet de stocker les données non structurées et d’y accéder à grande échelle dans les objets blob de blocs. | Vous souhaitez que votre application prenne en charge le streaming et l’accès aléatoire.<br/><br/>Vous souhaitez être en mesure d’accéder aux données d’application à partir de n’importe quel endroit. |
-| **Disques de données Azure** | Fournit des bibliothèques clientes et une [interface REST](/rest/api/compute/virtualmachines/virtualmachines-create-or-update) qui permet de stocker de manière permanente les données et d’y accéder à partir d’un disque dur virtuel joint. | Vous souhaitez développer et transférer des applications qui utilisent les API du système de fichiers natif pour lire et écrire des données sur des disques persistants.<br/><br/>Vous souhaitez stocker des données dont l’accès n’est pas requis à l’extérieur de la machine virtuelle à laquelle le disque est joint. |
+| **Azure Files** | Fournit une interface SMB, les bibliothèques clientes et un [interface REST](/rest/api/storageservices/file-service-rest-api) qui autorise l’accès à partir de n’importe quel emplacement les fichiers toostored. | Vous souhaitez trop « de courbes d’élévation et MAJ » un nuage de toohello d’application qui utilise déjà hello natif API tooshare données entre elle et d’autres applications s’exécutant dans Azure.<br/><br/>Vous souhaitez toostore développement et outils de débogage qui doivent toobe accessible à partir de nombreux ordinateurs virtuels. |
+| **Objets blob Azure** | Fournit des bibliothèques clientes et un [interface REST](/rest/api/storageservices/blob-service-rest-api) qui permet à des données non structurées trop être stockées et accessibles à une grande échelle dans les objets BLOB de blocs. | Vous souhaitez que votre diffusion en continu de toosupport application et les scénarios d’accès aléatoire.<br/><br/>Vous souhaitez toobe en mesure de tooaccess des données d’application à partir de n’importe quel endroit. |
+| **Disques de données Azure** | Fournit des bibliothèques clientes et un [interface REST](/rest/api/compute/virtualmachines/virtualmachines-create-or-update) qui permet de données toobe persistante stockées et accessibles à partir d’un disque dur virtuel attaché. | Vous souhaitez toolift et déplacer les applications qui utilisent des tooread d’API de système de fichiers natif et écrire des disques de données toopersistent.<br/><br/>Vous souhaitez que les données toostore qui ne sont pas requis toobe accessible à partir du disque de hello toowhich hello extérieur ordinateur virtuel sont attachées. |
 
 ## <a name="comparison-files-and-blobs"></a>Comparaison : fichiers et objets blob
 
-Le tableau suivant compare les fichiers Azure et les objets blob Azure.  
+Hello tableau suivant compare les fichiers Azure aux objets BLOB Azure.  
   
 ||||  
 |-|-|-|  
@@ -47,35 +47,35 @@ Le tableau suivant compare les fichiers Azure et les objets blob Azure.
 |Endpoints|`http://myaccount.blob.core.windows.net/mycontainer/myblob`|`\\myaccount.file.core.windows.net\myshare\myfile.txt`<br /><br /> `http://myaccount.file.core.windows.net/myshare/myfile.txt`|  
 |Répertoires|Espace de noms plat|Vrais objets d’annuaire|  
 |Sensibilité des noms à la casse|Respect de la casse|Non sensible à la casse, mais la casse est conservée|  
-|Capacité|Conteneurs jusqu’à 500 To|Partages de fichiers de 5 To|  
-|Débit|Jusqu’à 60 Mo/s par objet blob de blocs|Jusqu’à 60 Mo/s par partage|  
-|Taille de l’objet|Jusqu’à 200 Go/objet blob de blocs|Jusqu’à 1 To/fichier|  
+|Capacity|Les conteneurs de to too500|Partages de fichiers de 5 To|  
+|Throughput|Des too60 Mo/s par objet blob de blocs|Des too60 Mo/s par partage|  
+|Taille de l’objet|Les objets blob de too200 Go/bloc|Too1TB/fichier|  
 |Capacité facturée|En fonction des octets écrits|En fonction de la taille de fichier|  
 |Bibliothèques clientes|Plusieurs langages|Plusieurs langages|  
   
 ## <a name="comparison-files-and-data-disks"></a>Comparaison : fichiers et disques de données
 
-Les fichiers Azure complètent les disques de données Azure. Un disque de données ne peut être joint qu’à une seule machine virtuelle Azure à la fois. Les disques de données sont des VHD de format fixe stockés en tant qu’objets blob de pages dans le stockage Azure, et ils sont utilisés par la machine virtuelle pour stocker des données durables. Les partages de fichiers dans les fichiers Azure sont accessibles de la même façon que le disque local (par le biais des API du système de fichiers natif) et peuvent être partagés entre plusieurs machines virtuelles.  
+Les fichiers Azure complètent les disques de données Azure. Un disque de données ne peut être attaché tooone Machine virtuelle Azure à une heure. Disques de données sont des disques durs virtuels de format fixe stockés en tant qu’objets BLOB de pages dans le stockage Azure et sont utilisés par les données durables de toostore de machine virtuelle hello. Partages de fichiers dans des fichiers Azure sont accessibles dans hello même façon que le disque local de hello est accessible (en utilisant les API du système de fichiers natif) et peut être partagé entre plusieurs machines virtuelles.  
  
-Le tableau suivant compare les fichiers Azure et les disques de données Azure.  
+Hello tableau suivant compare les fichiers Azure aux disques de données Azure.  
  
 ||||  
 |-|-|-|  
 |**Attribut**|**Disques de données Azure**|**Azure Files**|  
-|Scope|Exclusif à une seule machine virtuelle|Accès partagé entre plusieurs machines virtuelles|  
+|Scope|Machine virtuelle unique de tooa exclusif|Accès partagé entre plusieurs machines virtuelles|  
 |Captures instantanées et copie|Oui|Non|  
-|Configuration|Connexion au démarrage de la machine virtuelle|Connexion après le démarrage de la machine virtuelle|  
+|Configuration|Connecté au démarrage de l’ordinateur virtuel de hello|Connecté après le démarrage de l’ordinateur virtuel de hello|  
 |Authentification|Intégration|Configuration avec net use|  
 |Nettoyage|Automatique|Manuel|  
-|Accès à l’aide de REST|Les fichiers du disque dur virtuel ne sont pas accessibles|Les fichiers stockés dans un partage sont accessibles|  
+|Accès à l’aide de REST|Fichiers hello disque dur virtuel ne sont pas accessibles|Les fichiers stockés dans un partage sont accessibles|  
 |Taille maximale|Disque de 1 To|Partage de fichiers de 5 To et fichier de 1 To au sein du partage|  
 |E/S par seconde de 8 Ko max.|500 E/S par seconde|1 000 E/S par seconde|  
-|Débit|Jusqu’à 60 Mo/s par disque|Jusqu’à 60 Mo/s par partage de fichiers|  
+|Throughput|Des too60 Mo/s par disque|Des too60 Mo/s par partage de fichiers|  
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Lors des décisions concernant le stockage et l’accès de vos données, vous devez également prendre en considération les coûts impliqués. Pour plus d’informations, consultez [Tarification du stockage Azure](https://azure.microsoft.com/pricing/details/storage/).
+Lors de décisions sur comment vos données sont stockées et accessibles, vous devez également envisager les coûts de hello impliqués. Pour plus d’informations, consultez [Tarification du stockage Azure](https://azure.microsoft.com/pricing/details/storage/).
   
-Certaines fonctionnalités SMB ne sont pas applicables au cloud. Pour plus d’informations, consultez [Features not supported by the Azure File service](/rest/api/storageservices/features-not-supported-by-the-azure-file-service) (Fonctionnalités non prises en charge par le service Azure File).
+Certaines fonctionnalités SMB ne sont pas applicables toohello cloud. Pour plus d’informations, consultez [fonctionnalités non prises en charge par hello Azure File service](/rest/api/storageservices/features-not-supported-by-the-azure-file-service).
   
-Pour plus d’informations sur les disques de données, consultez [Managing disks and image](../../virtual-machines/windows/about-disks-and-vhds.md) (Gestion des disques et des images) et [Comment attacher un disque de données à une machine virtuelle Windows](../../virtual-machines/windows/classic/attach-disk.md).
+Pour plus d’informations sur les disques de données, consultez [gestion des disques et images](../../virtual-machines/windows/about-disks-and-vhds.md) et [comment tooAttach un tooa de disque de données Machine virtuelle Windows](../../virtual-machines/windows/classic/attach-disk.md).

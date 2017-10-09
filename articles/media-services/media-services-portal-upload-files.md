@@ -1,6 +1,6 @@
 ---
-title: " Téléchargement de fichiers dans un compte Media Services à l’aide du portail Azure | Microsoft Docs"
-description: "Ce didacticiel vous guide à travers les étapes de téléchargement de fichiers dans un compte Media Services à l’aide du portail Azure."
+title: "AAA » télécharger des fichiers dans un compte de service de média à l’aide de hello portail Azure | Documents Microsoft »"
+description: "Ce didacticiel vous guide à travers les étapes de hello de téléchargement de fichiers dans un compte de service de média à l’aide de hello portail Azure"
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,54 +14,54 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/07/2017
 ms.author: juliako
-ms.openlocfilehash: 3a1dd7470f940da839687478b636464d930d8ab7
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4ce1e133c72854532735ba7c72a43c92a75bc240
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="upload-files-into-a-media-services-account-using-the-azure-portal"></a>Téléchargement de fichiers dans un compte Media Services à l’aide du portail Azure
+# <a name="upload-files-into-a-media-services-account-using-hello-azure-portal"></a>Télécharger des fichiers dans un compte de service de média à l’aide de hello portail Azure
 > [!div class="op_single_selector"]
 > * [Portail](media-services-portal-upload-files.md)
 > * [.NET](media-services-dotnet-upload-files.md)
 > * [REST](media-services-rest-upload-files.md)
 > 
 > [!NOTE]
-> Pour suivre ce didacticiel, vous avez besoin d'un compte Azure. Pour plus d'informations, consultez la page [Version d'évaluation gratuite d'Azure](https://azure.microsoft.com/pricing/free-trial/). 
+> toocomplete ce didacticiel, vous avez besoin d’un compte Azure. Pour plus d'informations, consultez la page [Version d'évaluation gratuite d'Azure](https://azure.microsoft.com/pricing/free-trial/). 
 > 
 
 
-Dans Media Services, vous téléchargez vos fichiers numériques dans une ressource. L’élément multimédia peut contenir des fichiers vidéo, des fichiers audio, des images, des collections de miniatures, des pistes textuelles et des légendes (ainsi que les métadonnées concernant ces fichiers). Une fois les fichiers téléchargés, votre contenu est stocké en toute sécurité dans le cloud et peut faire l’objet d’un traitement et d’une diffusion en continu.
+Dans Media Services, vous téléchargez vos fichiers numériques dans une ressource. Hello actif peut contenir vidéo, audio, images, collections de miniatures, texte assure le suivi et sous-titres fichiers (et les métadonnées hello sur ces fichiers.) Une fois que les fichiers hello sont téléchargés, votre contenu est stocké en toute sécurité dans le cloud hello pour le traitement et la diffusion en continu.
 
 
 ## <a name="upload-files"></a>Charger des fichiers
 
 >[!NOTE]
->Une limite est appliquée à la taille maximale des fichiers pris en charge pour le traitement dans Media Services. Consultez [cette rubrique](media-services-quotas-and-limitations.md) pour en savoir plus sur les limites de taille des fichiers.
+>Il existe une taille de fichier maximale toohello limite pris en charge pour le traitement dans Media Services. Consultez [cela](media-services-quotas-and-limitations.md) pour plus d’informations sur la limite de taille de fichier hello.
 >
 
-1. Dans le [portail Azure](https://portal.azure.com/), sélectionnez votre compte Azure Media Services.
-2. Dans le panneau **Paramètres**, cliquez sur **Éléments multimédias**.
+1. Bonjour [portail Azure](https://portal.azure.com/), sélectionnez votre compte Azure Media Services.
+2. Sur hello **paramètres** panneau, cliquez sur **actifs**.
    
     ![Charger des fichiers](./media/media-services-portal-vod-get-started/media-services-upload.png)
-3. Cliquez sur le bouton **Télécharger** .
+3. Cliquez sur hello **télécharger** bouton.
    
-    La fenêtre **Upload a video asset** (Charger un élément multimédia vidéo) s’affiche.
+    Hello **télécharger un élément multimédia vidéo** fenêtre s’affiche.
    
    > [!NOTE]
    > Il n’existe aucune limite de taille de fichier.
    > 
    > 
-4. Accédez à la vidéo de votre choix sur votre ordinateur, sélectionnez-la, puis cliquez sur OK.  
+4. Parcourir vidéo toohello souhaité sur votre ordinateur, sélectionnez-le, puis appuyez sur OK.  
    
-    Le chargement démarre ; vous pouvez en voir la progression sous le nom du fichier.  
+    téléchargement de Hello démarre et vous pouvez voir la progression hello sous le nom de fichier hello.  
 
-Une fois le téléchargement terminé, le nouvel élément multimédia s’affiche dans la fenêtre **Éléments multimédias** . 
+Une fois le téléchargement de hello terminé, vous verrez hello un nouveau composant répertorié dans hello **actifs** fenêtre. 
 
 ## <a name="next-steps"></a>Étapes suivantes
 Vous pouvez désormais encoder vos éléments multimédias téléchargés. Pour plus d'informations, consultez [Encode an asset using Media Encoder Standard with the Azure portal (Encoder un élément multimédia à l’aide de Media Encoder Standard avec le portail Azure)](media-services-portal-encode.md).
 
-Vous pouvez également utiliser les fonctions Azure pour déclencher une tâche de codage à partir d’un fichier entrant dans le conteneur configuré. Pour plus d’informations, consultez [cet exemple](https://azure.microsoft.com/resources/samples/media-services-dotnet-functions-integration/ ).
+Vous pouvez également utiliser les fonctions Azure tootrigger un travail d’encodage basé sur un fichier qui arrivent dans le conteneur de hello configuré. Pour plus d’informations, consultez [cet exemple](https://azure.microsoft.com/resources/samples/media-services-dotnet-functions-integration/ ).
 
 ## <a name="media-services-learning-paths"></a>Parcours d’apprentissage de Media Services
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

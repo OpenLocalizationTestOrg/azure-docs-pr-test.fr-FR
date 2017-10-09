@@ -1,6 +1,6 @@
 ---
-title: "Architecture de connectivité Azure SQL Database | Microsoft Docs"
-description: "Ce document décrit l’architecture de connectivité Azure SQLDB dans et en dehors d’Azure."
+title: "architecture de connectivité de base de données SQL d’aaaAzure | Documents Microsoft"
+description: "Ce document explique hello Azure SQLDB connectivité architecture d’Azure ou d’en dehors d’Azure."
 services: sql-database
 documentationcenter: 
 author: CarlRabeler
@@ -15,51 +15,51 @@ ms.tgt_pltfrm: na
 ms.workload: data-management
 ms.date: 06/05/2017
 ms.author: carlrab
-ms.openlocfilehash: 8a1dd89c9e82483184ceb5d767190a5a5044265d
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 917df6d88a16f1b841b617fb2a53025b4d14d034
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-sql-database-connectivity-architecture"></a>Architecture de connectivité Azure SQL Database 
 
-Cet article explique l’architecture de connectivité Azure SQL Database et comment les différents composants fonctionnent pour diriger le trafic vers votre instance Azure SQL Database. Ces composants de connectivité Azure SQL Database permettent de diriger le trafic réseau vers la base de données Azure avec des clients se connectant à partir d’Azure et d’autres se connectant en dehors d’Azure. Cet article comporte également des exemples de script permettant de modifier la façon dont la connectivité se produit et des considérations liées à la modification des paramètres de connectivité par défaut. Si vous avez des questions suite à la lecture de cet article, veuillez contacter Dhruv à l’adresse suivante : dmalik@microsoft.com. 
+Cet article explique l’architecture de connectivité de base de données SQL Azure hello et explique le fonctionnement des différents composants de hello instance de tooyour toodirect le trafic de base de données SQL Azure. Ces composants de connectivité de base de données SQL Azure fonctionnent toohello de trafic réseau toodirect de la base de données Azure avec les clients se connectant à partir d’Azure et avec les clients se connectant depuis l’extérieur d’Azure. Cet article fournit également des toochange d’exemples de script comment connectivité se produit, et les considérations hello liées paramètres de connectivité toochanging hello par défaut. Si vous avez des questions suite à la lecture de cet article, veuillez contacter Dhruv à l’adresse suivante : dmalik@microsoft.com. 
 
 ## <a name="connectivity-architecture"></a>Architecture de connectivité
 
-Le diagramme suivant donne une vue d’ensemble détaillée de l’architecture de connectivité Azure SQL Database. 
+Hello suivant schéma fournit une vue d’ensemble de hello architecture de connectivité de base de données SQL Azure. 
 
 ![Présentation de l’architecture](./media/sql-database-connectivity-architecture/architecture-overview.png)
 
 
-Les étapes suivantes décrivent la manière dont une connexion est établie vers une base de données SQL Azure via l’équilibreur de charge logiciel et la passerelle Azure SQL Database.
+Hello étapes suivantes décrivent comment une connexion est établie tooan base de données SQL Azure via hello Azure SQL Database-équilibrage de charge logiciel (SLB) et la passerelle de base de données SQL Azure hello.
 
-- Les clients dans Azure ou en dehors d’Azure se connectent à l’équilibreur de charge logiciel, qui détient une adresse IP publique et écoute le port 1433.
-- L’équilibreur de charge logiciel dirige le trafic vers la passerelle Azure SQL Database.
-- La passerelle redirige le trafic vers l’intergiciel de proxy approprié.
-- Ce dernier redirige le trafic vers la base de données SQL Azure appropriée.
+- Les clients dans Azure ou en dehors de Azure connecteront toohello SLB, ce qui a une adresse IP publique et écoute le port 1433.
+- Hello SLB dirige la passerelle de base de données SQL Azure toohello le trafic.
+- passerelle de Hello redirige intergiciel (middleware) de hello trafic toohello proxy approprié.
+- intergiciel (middleware) de Hello proxy redirige hello trafic toohello approprié SQL Azure de base de données.
 
 > [!IMPORTANT]
-> Chacun de ces composants dispose d’une protection contre les attaques par déni de service distribué (DDoS) intégrée au niveau du réseau et de la couche d’application.
+> Chacun de ces composants a distribué de refus de la protection de service (distribué DDoS) intégrée au réseau de hello et à la couche d’application hello.
 >
 
 ## <a name="connectivity-from-within-azure"></a>Connectivité dans Azure
 
-Si vous vous connectez à partir d’Azure, vos connexions ont une stratégie de connexion par **redirection** par défaut. Une stratégie de **redirection** signifie qu’une fois les connexions établies après la session TCP vers la base de données SQL Azure, la session du client est redirigée vers l’intergiciel de proxy en modifiant l’adresse (en la faisant passer de celle de la passerelle de base de données SQL Azure à celle de l’intergiciel de proxy). Ainsi, tous les paquets suivants flux se dirigent directement vers l’intergiciel de proxy en ignorant la passerelle Azure SQL Database. Le schéma suivant illustre ce flux de trafic :
+Si vous vous connectez à partir d’Azure, vos connexions ont une stratégie de connexion par **redirection** par défaut. Une stratégie de **rediriger** signifie que les connexions une fois la session TCP de hello est la base de données SQL Azure toohello établie, la session de client hello est alors redirigé toohello intergiciel (middleware) pour le proxy avec une modification toohello destination adresse IP virtuelle à partir de celle de toothat de passerelle de base de données SQL Azure hello d’intergiciel (middleware) de hello proxy. Par la suite, tous les paquets suivants de flux directement via l’intergiciel proxy hello, en ignorant la passerelle de base de données SQL Azure hello. Hello suivant le diagramme illustre le flux de trafic.
 
 ![Présentation de l’architecture](./media/sql-database-connectivity-architecture/connectivity-from-within-azure.png)
 
 ## <a name="connectivity-from-outside-of-azure"></a>Connectivité en dehors d’Azure
 
-Si vous vous connectez en dehors d’Azure, vos connexions disposent d’une stratégie de connexion de **proxy** par défaut. Une stratégie de **Proxy** signifie que la session TCP est établie via la passerelle Azure SQL Database et que tous les paquets suivants transitent via la passerelle. Le schéma suivant illustre ce flux de trafic :
+Si vous vous connectez en dehors d’Azure, vos connexions disposent d’une stratégie de connexion de **proxy** par défaut. Une stratégie de **Proxy** signifie que hello TCP est établie via une passerelle de base de données SQL Azure hello et flux de tous les paquets suivants hello passerelle. Hello suivant le diagramme illustre le flux de trafic.
 
 ![Présentation de l’architecture](./media/sql-database-connectivity-architecture/connectivity-from-outside-azure.png)
 
 ## <a name="azure-sql-database-gateway-ip-addresses"></a>Adresses IP de la passerelle Azure SQL Database
 
-Pour vous connecter à une base de données SQL Azure à partir de ressources locales, vous devez autoriser le trafic réseau sortant vers la passerelle Azure SQL Database pour votre région Azure. Les connexions transitent uniquement via la passerelle lors de la connexion en mode Proxy, qui est le mode par défaut lors de la connexion à partir de ressources locales.
+tooconnect tooan Azure base de données SQL à partir des ressources locales, vous devez passerelle de base de données SQL Azure toohello tooallow réseau sortant du trafic de votre région Azure. Les connexions uniquement accéder via une passerelle de hello lors de la connexion en mode de Proxy, qui est la valeur par défaut hello lors de la connexion à partir des ressources locales.
 
-Le tableau suivant répertorie les adresses IP principales et secondaires de la passerelle Azure SQL Database pour toutes les régions de données. Pour certaines régions, il existe deux adresses IP. Dans ces régions, l’adresse IP principale est l’adresse IP actuelle de la passerelle et la deuxième adresse IP est une adresse IP de basculement. L’adresse de basculement est l’adresse vers laquelle nous pouvons déplacer votre serveur pour maintenir la haute disponibilité du service. Pour ces régions, nous vous conseillons d’autoriser le trafic sortant vers les deux adresses IP. La deuxième adresse IP est détenue par Microsoft et n’écoute pas les services tant qu’elle n’est pas activée par Azure SQL Database de manière à accepter les connexions.
+Hello tableau ci-dessous répertorie hello principaux et secondaire des adresses IP de passerelle de base de données SQL Azure hello pour toutes les régions de données. Pour certaines régions, il existe deux adresses IP. Dans ces régions, l’adresse IP principale hello est hello adresse IP actuelle de passerelle de hello et adresse IP de la deuxième hello est une adresse IP de basculement. adresse de basculement Hello est toowhich d’adresse hello nous pouvons déplacer votre disponibilité du service serveur tookeep hello haute. Pour ces régions, nous vous recommandons d’autoriser des adresses IP hello tooboth sortant. adresse IP de la deuxième Hello est détenu par Microsoft et n’écoute pas tous les services jusqu'à ce qu’il est activé par des connexions de tooaccept de base de données SQL Azure.
 
 | Nom de la région | Adresse IP principale | Adresse IP secondaire |
 | --- | --- |--- |
@@ -95,18 +95,18 @@ Le tableau suivant répertorie les adresses IP principales et secondaires de la 
 
 ## <a name="change-azure-sql-database-connection-policy"></a>Modifier la stratégie de connexion Azure SQL Database
 
-Pour modifier la stratégie de connexion Azure SQL Database d’un serveur Azure SQL Database, utilisez l’[API REST](https://msdn.microsoft.com/library/azure/mt604439.aspx). 
+toochange hello stratégie de connexion de base de données SQL Azure pour un serveur de base de données SQL Azure, utilisez hello [API REST](https://msdn.microsoft.com/library/azure/mt604439.aspx). 
 
-- Si votre stratégie de connexion est définie sur **Proxy**, tous les paquets réseau transitent via la passerelle Azure SQL Database. Pour ce paramètre, vous devez autoriser le trafic sortant uniquement vers l’IP de la passerelle Azure SQL Database. L’utilisation d’un paramètre de **Proxy** offre plus de latence qu’un paramètre de **redirection**. 
-- Si votre stratégie de connexion repose sur le paramètre de **redirection**, tous les paquets réseau se dirigent directement vers le proxy de l’intergiciel. Pour ce paramètre, vous devez autoriser le trafic sortant vers plusieurs adresses IP. 
+- Si votre stratégie de connexion est défini trop**Proxy**, tous les flux de paquets via une passerelle de base de données SQL Azure hello du réseau. Pour ce paramètre, vous devez IP de passerelle de base de données SQL Azure tooallow tooonly sortant hello. L’utilisation d’un paramètre de **Proxy** offre plus de latence qu’un paramètre de **redirection**. 
+- Si la définition de votre stratégie de connexion **rediriger**, tous les paquets réseau flux directement toohello intergiciel (middleware) proxy. Pour ce paramètre, vous devez toomultiple sortant de tooallow des adresses IP. 
 
-## <a name="script-to-change-connection-settings"></a>Script permettant de modifier les paramètres de connexion
+## <a name="script-toochange-connection-settings"></a>Paramètres de script de connexion toochange
 
 > [!IMPORTANT]
-> Ce script nécessite le [module Azure PowerShell](/powershell/azure/install-azurerm-ps).
+> Ce script nécessite hello [module Azure PowerShell](/powershell/azure/install-azurerm-ps).
 >
 
-Le script PowerShell suivant montre comment modifier la stratégie de connexion.
+Hello PowerShell script suivant montre comment toochange hello stratégie de connexion.
 
 ```powershell
 import-module azureRm
@@ -130,10 +130,10 @@ $authHeader = @{
 'Authorization'=$result.CreateAuthorizationHeader()
 }
 
-#getting the current connection property
+#getting hello current connection property
 Invoke-RestMethod -Uri "https://management.azure.com/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Sql/servers/$serverName/connectionPolicies/Default?api-version=2014-04-01-preview" -Method GET -Headers $authHeader
 
-#setting the property to ‘Proxy’
+#setting hello property too‘Proxy’
 $connectionType=”Proxy” <#Redirect / Default are other options#>
 $body = @{properties=@{connectionType=$connectionType}} | ConvertTo-Json
 
@@ -142,6 +142,6 @@ Invoke-RestMethod -Uri "https://management.azure.com/subscriptions/$subscription
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-- Pour plus d’informations sur la façon de modifier la stratégie de connexion Azure SQL Database d’un serveur Azure SQL Database, consultez [Create or Update Server Connection Policy using the REST API](https://msdn.microsoft.com/library/azure/mt604439.aspx) (Créer ou mettre à jour la stratégie de connexion au serveur à l’aide de l’API REST).
+- Pour plus d’informations sur la façon dont toochange hello stratégie de connexion de base de données SQL Azure pour un serveur de base de données SQL Azure, consultez [à l’aide de Create ou de la stratégie de mise à jour de connexion serveur hello API REST](https://msdn.microsoft.com/library/azure/mt604439.aspx).
 - Pour plus d’informations sur le comportement de connexion d’Azure SQL Database pour les clients qui utilisent ADO.NET version 4.5 ou ultérieure, consultez [Ports au-delà de 1433 pour ADO.NET 4.5](sql-database-develop-direct-route-ports-adonet-v12.md).
 - Pour en savoir plus sur la vue d’ensemble du développement d’applications générales, consultez [Vue d’ensemble du développement de base de données SQL](sql-database-develop-overview.md).

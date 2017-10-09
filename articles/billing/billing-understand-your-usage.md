@@ -1,6 +1,6 @@
 ---
-title: "Comprendre votre utilisation détaillée d’Azure | Microsoft Docs"
-description: "Apprenez à lire et à comprendre les sections du fichier CSV sur l’utilisation détaillée de votre abonnement Azure"
+title: "aaaUnderstand votre Azure détaillées d’utilisation | Documents Microsoft"
+description: "Découvrez comment tooread et comprendre les sections hello votre détaillée d’utilisation de volumes partagés de cluster pour votre abonnement Azure"
 services: 
 documentationcenter: 
 author: tonguyen10
@@ -14,73 +14,73 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/29/2017
 ms.author: tonguyen
-ms.openlocfilehash: 0d4f2e19ec3417b7ca111f777e34b1ce66ddb32d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c9284bf94bfa9f36cdd5d39e653a35def7c1aa34
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="understand-terms-on-your-microsoft-azure-detailed-usage-charges"></a>Comprendre les termes figurant sur le fichier détaillant les frais d’utilisation Microsoft Azure 
-Le fichier CSV des frais d’utilisation détaillés contient les frais d’utilisation quotidienne et au niveau du compteur pour la période de facturation actuelle. 
+Hello d’utilisation détaillées fichier CSV de frais contient tous les jours et les frais d’utilisation de niveau de compteur pour hello en cours de période de facturation. 
 
-Pour obtenir le fichier détaillant l’utilisation, consultez [Comment obtenir votre facture Azure et vos données d’utilisation quotidienne](billing-download-azure-invoice-daily-usage-date.md).
-Il est disponible au format .csv, que vous pouvez ouvrir dans une application de feuille de calcul. Si deux versions sont disponibles, téléchargez la version 2. C’est le format de fichier le plus récent.
+tooget votre fichier d’utilisation détaillées, consultez [comment tooget votre facturation Azure facture et les données d’utilisation quotidienne](billing-download-azure-invoice-daily-usage-date.md).
+Il est disponible au format .csv, que vous pouvez ouvrir dans une application de feuille de calcul. Si deux versions sont disponibles, téléchargez la version 2. Qui est le format de fichier hello plus récente.
 
-Les frais d’utilisation correspondent au total des frais **mensuels** d’un abonnement. Les frais d’utilisation ne prennent pas en compte les crédits et les remises.
+Frais d’utilisation sont hello total **mensuel** frais sur un abonnement. Les frais d’utilisation ne prennent pas en compte les crédits et les remises.
 
 ## <a name="detailed-terms-and-descriptions-of-your-detailed-usage-file"></a>Termes et descriptions détaillés de votre fichier sur l’utilisation détaillée
-Les sections suivantes décrivent les termes importants indiqués dans la version 2 du fichier d’utilisation détaillée.
+Hello sections suivantes décrivent les termes importants hello indiqués dans la version 2 du fichier d’utilisation détaillées de hello.
 
 ### <a name="statement"></a>Instruction
-La partie supérieure du fichier CSV sur l’utilisation détaillée contient les services que vous avez utilisés au cours de la période de facturation du mois. Le tableau suivant répertorie les conditions et les descriptions présentées dans cette section.
+section supérieure de Hello Hello détaillée l’utilisation des volumes partagés de cluster affiche hello services de fichiers que vous avez utilisé pendant la période de facturation du mois hello. Hello tableau suivant répertorie les termes du contrat de hello et descriptions présentées dans cette section.
 
 | Terme | Description |
 | --- | --- |
-|Période de facturation |Période de facturation où les compteurs ont été consommés |
-|Catégorie du compteur |Identifie le service de niveau supérieur pour l’utilisation |
-|Sous-catégorie du compteur |Définit le type de service Azure qui peut affecter le tarif |
-|Nom du compteur |Identifie l’unité de mesure du compteur consommé |
-|Région du compteur |Identifie l’emplacement du centre de données pour certains services dont le prix est basé sur cet emplacement |
-|SKU |Identifie l’identificateur système unique de chaque compteur Azure |
-|Unité |Identifie l'unité dans laquelle le service est facturé. Par exemple, Go, heures, 10 000 s. |
-|Quantité consommée |Quantité du compteur utilisée au cours de la période de facturation |
-|Quantité incluse |Montant du compteur inclus gratuitement dans votre période de facturation actuelle |
-|Quantité de dépassement |Affiche la différence entre la quantité consommée et la quantité incluse. Ce montant vous est facturé. Pour les offres avec paiement à l’utilisation n’incluant aucune quantité incluse avec l’offre, ce total est identique à la quantité consommée. |
-|Au sein de l'engagement |Affiche les frais liés aux compteurs, déduits du montant de votre engagement associé à votre offre de 6 ou 12 mois. Les frais de compteur sont soustraits dans l’ordre chronologique. |
-|Devise |Devise utilisée pour votre période de facturation en cours |
-|Dépassement |Affiche les frais liés aux compteurs qui excèdent le montant de votre engagement associé à votre offre de 6 ou 12 mois. |
-|Taux d'engagement |Affiche le taux d’engagement basé sur le montant total de votre engagement associé à votre offre de 6 ou 12 mois. |
-|Tarif |Montant qui vous est facturé par unité facturable |
-|Valeur |Affiche le résultat de la multiplication de la colonne Quantité de dépassement par la colonne Taux. Si la quantité consommée ne dépasse pas la quantité incluse, aucun frais n’apparaît dans cette colonne. |
+|Période de facturation |période de facturation Hello lorsque les compteurs hello ont été utilisés |
+|Catégorie du compteur |Identifie le service de niveau supérieur hello pour l’utilisation de hello |
+|Sous-catégorie du compteur |Définit le type hello du service Azure qui peut affecter les taux de hello |
+|Nom du compteur |Identifie l’unité de mesure pour le compteur hello consommé de hello |
+|Région du compteur |Identifie l’emplacement hello de centre de données hello pour certains services dont le prix est basée sur l’emplacement du centre de données |
+|SKU |Identifie l’identificateur système unique de hello pour chaque compteur Azure |
+|Unité |Identifie hello unité service de hello est facturé en. Par exemple, Go, heures, 10 000 s. |
+|Quantité consommée |quantité de Hello de compteur hello utilisé pendant la période de facturation hello |
+|Quantité incluse |quantité de Hello de compteur de hello est incluse sans frais dans votre période de facturation actuelle |
+|Quantité de dépassement |Affiche hello différence entre hello quantité consommée et hello inclus une quantité. Ce montant vous est facturé. Pour les offres de paiement à l’utilisation sans quantité inclus avec l’offre de hello, ce total est hello identique hello quantité consommée. |
+|Au sein de l'engagement |Affiche les frais de compteur hello soustraites du montant de votre engagement associé à votre offre de 6 ou 12 mois. Les frais de compteur sont soustraits dans l’ordre chronologique. |
+|Devise |devise de Hello utilisée dans votre période de facturation actuelle |
+|Dépassement |Affiche les frais de compteur hello qui dépassent le montant de l’engagement associé à votre offre de 6 ou 12 mois |
+|Taux d'engagement |Affiche le taux d’engagement hello basé sur le montant de l’engagement total hello associé à votre offre de 6 ou 12 mois |
+|Tarif |taux de Hello que vous êtes facturé pour chaque unité facturable |
+|Valeur |Montre le résultat hello Hello multipliant la colonne Quantity de dépassement par colonne de taux hello. Si hello que quantité consommée ne dépasse pas hello inclus une quantité, aucun frais n’est dans cette colonne. |
 
 ### <a name="daily-usage"></a>Utilisation quotidienne
 
-La section Utilisation quotidienne du fichier CSV montre les détails d’utilisation qui affectent les tarifs de facturation. Le tableau suivant répertorie les conditions et les descriptions présentées dans cette section.
+Hello quotidienne section de l’utilisation d’un fichier CSV hello affiche les détails d’utilisation qui affectent les taux de facturation hello. Hello tableau suivant répertorie les termes du contrat de hello et descriptions présentées dans cette section.
 
 | Terme | Description |
 | --- | --- |
-|Date d'utilisation |Date à laquelle le compteur a été utilisé |
-|Catégorie du compteur |Identifie le service de niveau supérieur dont cette utilisation relève |
-|ID du compteur |Identificateur de compteur facturé pour l’établissement du prix de l’utilisation de la facturation |
-|Sous-catégorie du compteur |Définit le type de service Azure pouvant affecter le tarif |
-|Nom du compteur |Identifie l’unité de mesure du compteur consommé |
-|Région du compteur |Identifie l’emplacement du centre de données pour certains services dont le prix est basé sur cet emplacement |
-|Unité |Identifie l’unité dans laquelle le compteur est facturé. Par exemple, Go, heures, 10 000 s. |
-|Quantité consommée |Quantité du compteur consommé le jour en question |
-|Emplacement de la ressource |Identifie le centre de données dans lequel le compteur est en cours d’exécution |
-|Service consommé |Service de plateforme Azure que vous avez utilisé |
-|Groupe de ressources |Groupe de ressources dans lequel le compteur déployé est en cours d’exécution. <br/><br/>Pour plus d’informations, consultez [Présentation d’Azure Resource Manager](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview). |
-|ID de l’instance | Identificateur du compteur. <br/><br/> L’identificateur contient le nom que vous avez spécifié pour le compteur lors de sa création. Nom de la ressource ou ID de ressource complet. Pour plus d’informations, consultez la page [API Azure Resource Manager](https://docs.microsoft.com/rest/api/resources/resources). |
-|Balises | Balise que vous affectez au compteur. Utilisez des balises pour regrouper les enregistrements de facturation.<br/><br/>Par exemple, vous pouvez utiliser des balises pour répartir les coûts par département qui utilise le compteur. Les services qui prennent en charge l’émission de balises sont les services de machine virtuelle, de stockage et de réseau approvisionnés à l’aide de [l’API Azure Resource Manager](https://docs.microsoft.com/rest/api/resources/resources). Pour plus d’informations, voir [Organisation des ressources Azure à l’aide de balises](http://azure.microsoft.com/updates/organize-your-azure-resources-with-tags/). |
+|Date d'utilisation |date de Hello lorsqu’un compteur de hello a été utilisé |
+|Catégorie du compteur |Identifie le service de niveau supérieur hello pour lequel cette utilisation appartient |
+|ID du compteur |Hello facturé identificateur compteur qui a utilisé l’utilisation de la facturation de tooprice |
+|Sous-catégorie du compteur |Définit le type de service Azure hello qui peut affecter les taux de hello |
+|Nom du compteur |Identifie l’unité de mesure pour le compteur hello consommé de hello |
+|Région du compteur |Identifie l’emplacement hello de centre de données hello pour certains services dont le prix est basée sur l’emplacement du centre de données |
+|Unité |Identifie les unités hello ce compteur hello est facturé en. Par exemple, Go, heures, 10 000 s. |
+|Quantité consommée |quantité de Hello de compteur hello qui a été utilisé pour ce jour |
+|Emplacement de la ressource |Identifie le centre de données hello où jauge de hello est en cours d’exécution |
+|Service consommé |Hello service de plateforme Windows Azure que vous avez utilisé |
+|Groupe de ressources |groupe de ressources Hello dans quel hello compteur déployé est en cours d’exécution dans. <br/><br/>Pour plus d’informations, consultez [Présentation d’Azure Resource Manager](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview). |
+|ID de l’instance | Identificateur Hello pour le compteur de hello. <br/><br/> identificateur de Hello contient nom hello que vous spécifiez pour le compteur de hello lors de sa création. Il s’agit soit nom hello de ressource de hello ou hello complet ID de ressource. Pour plus d’informations, consultez la page [API Azure Resource Manager](https://docs.microsoft.com/rest/api/resources/resources). |
+|Tags | Balise de vous attribuez toohello compteur. Utiliser des enregistrements de facturation toogroup balises.<br/><br/>Par exemple, vous pouvez utiliser des balises toodistribute coûts par département hello qui utilise le compteur de hello. Les services qui prennent en charge l’émission des balises sont des machines virtuelles, de stockage et les services réseau configurés à l’aide de hello [API Azure Resource Manager](https://docs.microsoft.com/rest/api/resources/resources). Pour plus d’informations, voir [Organisation des ressources Azure à l’aide de balises](http://azure.microsoft.com/updates/organize-your-azure-resources-with-tags/). |
 |Informations supplémentaires |Métadonnées relatives au service. Par exemple, le type d’image d’une machine virtuelle. |
-|Informations sur le service 1 |Nom du projet auquel le service appartient sur votre abonnement. |
+|Informations sur le service 1 |nom du projet Hello hello service appartient tooon votre abonnement |
 |Informations sur le service 2 |Champ hérité capturant les métadonnées facultatives propres au service |
 
-## <a name="how-do-i-make-sure-that-the-charges-in-my-detailed-usage-file-are-correct"></a>Comment m’assurer que les frais indiqués dans mon fichier sur l’utilisation détaillée sont corrects ?
+## <a name="how-do-i-make-sure-that-hello-charges-in-my-detailed-usage-file-are-correct"></a>Comment m’assurer que les frais de hello dans mon fichier d’utilisation détaillées sont corrects ?
 Si vous voulez plus de détails sur des frais indiqués sur votre fichier sur l’utilisation détaillée, consultez [Comprendre votre facture Microsoft Azure.](./billing-understand-your-bill.md)
 
 ## <a name="external"></a>Quels sont les frais associés aux services externes ?
-Les services externes (également appelés commandes de la Place de marché) sont fournis par les fournisseurs de services indépendants et sont facturés séparément. Les frais ne s’affichent pas sur la facture Azure. Pour en savoir plus, consultez [Présentation de vos frais de service externe Azure](billing-understand-your-azure-marketplace-charges.md).
+Les services externes (également appelés commandes de la Place de marché) sont fournis par les fournisseurs de services indépendants et sont facturés séparément. frais de Hello n’apparaissent pas sur hello facture Azure. toolearn, voir [comprendre vos frais de service externes Azure](billing-understand-your-azure-marketplace-charges.md).
 
 ## <a name="need-help-contact-support"></a>Vous avez besoin d’aide ? Contactez le support technique.
 Si vous avez besoin d’aide, [contactez le support technique](https://portal.azure.com/?) pour obtenir une prise en charge rapide de votre problème.

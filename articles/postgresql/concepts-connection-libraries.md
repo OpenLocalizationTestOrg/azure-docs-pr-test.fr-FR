@@ -1,6 +1,6 @@
 ---
 title: "Bibliothèques de connexions de la base de données Azure pour PostgreSQL | Microsoft Docs"
-description: "Cet article décrit plusieurs bibliothèques et pilotes que les développeurs peuvent utiliser lorsqu’ils codent des applications pour se connecter à une base de données Azure pour PostgreSQL et l’interroger."
+description: "Cet article décrit plusieurs bibliothèques et les pilotes que les développeurs peuvent utiliser lors du codage des applications tooconnect et requête de base de données Azure pour PostgreSQL."
 services: postgresql
 author: SaloniSonpal
 ms.author: salonis
@@ -9,17 +9,17 @@ editor: jasonwhowell
 ms.service: postgresql
 ms.topic: article
 ms.date: 06/15/2017
-ms.openlocfilehash: 1f99ef7fefb1ff9d35f564a1f0ad77c8dd64659e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 1f7234499d8abe37f8de9008e3158765b1fb0bde
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="connection-libraries-for-azure-database-for-postgresql"></a>Bibliothèques de connexions de la base de données Azure pour PostgreSQL
-Cette rubrique répertorie les bibliothèques et pilotes que les développeurs peuvent utiliser lorsqu’ils programment des applications pour se connecter à une base de données Azure pour PostgreSQL et l’interroger.
+Cette rubrique répertorie les bibliothèques et les pilotes pour une utilisation par les développeurs pour la programmation d’applications tooconnect et requête de base de données Azure pour PostgreSQL.
 
-## <a name="client-interfaces"></a>Interfaces clients
-La plupart des bibliothèques clientes de langages qui se connectent au serveur PostgreSQL sont des projets externes, distribués de manière indépendante. Ils sont pris en charge sur les plateformes Windows, Linux et Mac. Voici quelques-uns des pilotes clients les plus courants :
+## <a name="client-interfaces"></a>Interfaces client
+La plupart des clients bibliothèques tooconnect tooPostgreSQL serveur sont des projets externes et sont distribuées de manière indépendante. Ils sont pris en charge sur les plateformes Windows, Linux et Mac. Certains des pilotes de client répandu hello sont répertoriés :
 
 | **Langage** | **Interface client** | **Informations supplémentaires** | **Télécharger** |
 |--------------|----------------------------------------------------------------|-------------------------------------|--------------------------------------------------------------------|
@@ -35,6 +35,6 @@ La plupart des bibliothèques clientes de langages qui se connectent au serveur 
 | C++ | [libpqxx](http://pqxx.org/) | Interface C++ remaniée | [Télécharger](http://pqxx.org/download/software/) |
 
 ## <a name="next-steps"></a>Étapes suivantes
-Lisez ces guides de démarrage rapide expliquant comment vous connecter à une base de données Azure pour PostgreSQL et l’interroger à l’aide du langage de votre choix :
+Lisez ces Démarrages rapides sur la façon de tooconnect et requête Azure de base de données PostgreSQL à l’aide de la langue de votre choix :
 
 [Python](./connect-python.md) | [Node.JS](./connect-nodejs.md) | [.NET (C#)](./connect-csharp.md)

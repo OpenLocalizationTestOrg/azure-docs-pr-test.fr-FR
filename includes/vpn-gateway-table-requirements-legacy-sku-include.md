@@ -1,4 +1,4 @@
-Le tableau suivant répertorie la configuration requise pour les passerelles VPN basées sur des stratégies ou des itinéraires. Cette table s’applique aux modèles de déploiement classique et Resource Manager. Pour le modèle classique, les passerelles VPN basées sur des stratégies sont identiques aux passerelles statiques et les passerelles basées sur des itinéraires sont identiques aux passerelles dynamiques.
+Hello suivant les exigences de hello de listes de table pour les passerelles basée sur des stratégies et RouteBased VPN. Ce tableau s’applique tooboth hello Gestionnaire de ressources et les modèles de déploiement classique. Pour le modèle classique hello passerelles PolicyBased VPN sont hello même en tant que passerelles statiques et basée sur un itinéraire de passerelles sont de même hello en tant que passerelles dynamiques.
 
 |  | **Passerelle VPN basée sur des stratégies De base** | **Passerelle VPN basée sur des itinéraires De base** | **Passerelle VPN basée sur des itinéraires Standard** | **Passerelle VPN à hautes performances basée sur des itinéraires** |
 | --- | --- | --- | --- | --- |

@@ -1,5 +1,5 @@
 ---
-title: Utilisation des vues T-SQL dans Azure SQL Data Warehouse | Microsoft Docs
+title: vues aaaUsing T-SQL dans Azure SQL Data Warehouse | Documents Microsoft
 description: "Conseils relatifs à l’utilisation de vues Transact-SQL dans Microsoft Azure SQL Data Warehouse, dans le cadre du développement de solutions."
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,24 +15,24 @@ ms.workload: data-services
 ms.custom: t-sql
 ms.date: 10/31/2016
 ms.author: jrj;barbkess
-ms.openlocfilehash: d2a03be810bd7f792876607ec735eb578b65a3b5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3990b133946621691bdfa4b09523d21867470c74
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="views-in-sql-data-warehouse"></a>Vues proposées par SQL Data Warehouse
-Les vues sont particulièrement utiles dans SQL Data Warehouse. Vous pouvez les utiliser de différentes façons, afin d’améliorer la qualité de votre solution.  Cet article met en évidence quelques exemples montrant comment enrichir votre solution avec des vues, ainsi que les limites à prendre en considération.
+Les vues sont particulièrement utiles dans SQL Data Warehouse. Ils peuvent être utilisés dans un certain nombre de façons différentes tooimprove hello de qualité de votre solution.  Cet article présente quelques exemples de comment tooenrich votre solution avec les vues, ainsi que des limitations hello nécessitant toobe pris en compte.
 
 > [!NOTE]
-> La syntaxe de `CREATE VIEW` n’est pas abordée dans cet article. Consultez l’article [CREATE VIEW][CREATE VIEW] sur MSDN pour obtenir ces informations de référence.
+> La syntaxe de `CREATE VIEW` n’est pas abordée dans cet article. Reportez-vous toohello [CREATE VIEW] [ CREATE VIEW] l’article sur MSDN pour obtenir ces informations de référence.
 > 
 > 
 
 ## <a name="architectural-abstraction"></a>Abstraction architecturale
-Un des modèles d’application les plus courants consiste à recréer des tables au moyen de la commande CREATE TABLE AS SELECT (CTAS), suivie d’un modèle de changement de nom d’un objet, lors du chargement des données.
+Un modèle très courant de l’application est toore-créer des tables à l’aide de CREATE TABLE AS sélectionnez (SACT) suivi d’un objet renommer le modèle pendant le chargement de données.
 
-L’exemple ci-dessous permet d’ajouter de nouveaux enregistrements de date à une dimension de date. Notez comment un nouvel objet, DimDate_New, est d’abord créé et ensuite renommé pour remplacer la version d’origine de la table.
+exemple Hello ci-dessous ajoute la dimension de date tooa date nouveaux enregistrements. Notez comment un nouveau tableau, DimDate_New, est créé et ensuite renommé la version d’origine de hello tooreplace de la table de hello.
 
 ```sql
 CREATE TABLE dbo.DimDate_New
@@ -47,28 +47,28 @@ SELECT *
 FROM   dbo.DimDate_stg AS stg
 ;
 
-RENAME OBJECT DimDate TO DimDate_Old;
-RENAME OBJECT DimDate_New TO DimDate;
+RENAME OBJECT DimDate tooDimDate_Old;
+RENAME OBJECT DimDate_New tooDimDate;
 
 ```
 
-Toutefois, cette approche peut provoquer l’apparition et la disparition de table d’une vue utilisateur, ainsi que l’affichage de messages d’erreur de type « la table n’existe pas ». Vous pouvez utiliser des vues pour fournir aux utilisateurs une couche de présentation cohérente alors que les objets sous-jacents sont renommés. Grâce à la mise à disposition d’un accès aux données via une vue, les utilisateurs n’ont pas besoin d’afficher les tables sous-jacentes. Ainsi, l’expérience utilisateur est plus cohérente ; les concepteurs d’entrepôts de données peuvent faire évoluer le modèle de données tout en optimisant les performances, en exécutant la commande CTAS lors du processus de chargement des données.    
+Toutefois, cette approche peut provoquer l’apparition et la disparition de table d’une vue utilisateur, ainsi que l’affichage de messages d’erreur de type « la table n’existe pas ». Les vues peuvent être des utilisateurs de tooprovide utilisé avec une couche de présentation cohérent tandis que les objets sous-jacents hello sont renommés. En fournissant aux utilisateurs un accès toohello des données via une vue, signifie que les utilisateurs n’ont besoin de visibilité toohave de tables sous-jacentes de hello. Cela fournit une expérience utilisateur cohérente, tout en garantissant que les concepteurs d’entrepôts de données hello peuvent évolue au modèle de données hello et optimiser les performances à l’aide de SACT pendant le processus de chargement des données de salutation.    
 
 ## <a name="performance-optimization"></a>Optimisation des performances
-Une vue peut également être utilisée pour mettre en place des jointures plus performantes entre les tables. Ainsi, une vue peut inclure une clé de distribution redondante parmi ses critères de jointure, afin de réduire le nombre de déplacements de données.  Elle peut également permettre de forcer une indication de jointure ou de requête spécifique. Utiliser des vues de cette manière permet de garantir que les jointures sont toujours effectuées de façon optimale en évitant d’avoir à se souvenir de leur construction correcte.
+Vues peuvent également être des jointures de performance optimisée tooenforce utilisé entre les tables. Par exemple, une vue peut incorporer une clé de répartition redondant dans le cadre de hello toominimize déplacement des données dans les critères de jointure.  Un autre avantage d’une vue peut être tooforce une requête spécifique ou un indicateur de jointure. À l’aide des vues de cette façon garantit que les jointures sont toujours effectuées en évitant recours hello pour la construction correcte de hello tooremember les utilisateurs pour les jointures de manière optimale.
 
-## <a name="limitations"></a>Limitations
-Dans SQL Data Warehouse, les vues concernent uniquement les métadonnées.  De ce fait, les options suivantes ne sont pas disponibles :
+## <a name="limitations"></a>Limites
+Dans SQL Data Warehouse, les vues concernent uniquement les métadonnées.  Par conséquent hello options suivantes n’est pas disponible :
 
 * Il n’existe aucune option de liaison de schéma.
-* Les tables de base ne peuvent pas être mises à jour par le biais de la vue.
+* Tables de base ne peut pas être mis à jour via la vue de hello
 * Vous ne pouvez pas créer des vues sur des tables temporaires.
-* Les indications EXPAND/NOEXPAND ne sont pas prises en charge.
+* Aucune prise en charge pour hello développer / indicateurs de NOEXPAND
 * SQL Data Warehouse n’inclut aucune vue indexée.
 
 ## <a name="next-steps"></a>Étapes suivantes
 Pour obtenir des conseils supplémentaires en matière de développement, consultez l’article [Vue d’ensemble sur le développement SQL Data Warehouse][SQL Data Warehouse development overview].
-Pour la syntaxe de `CREATE VIEW`, consultez [CREATE VIEW][CREATE VIEW].
+Pour `CREATE VIEW` syntaxe, consultez trop[CREATE VIEW][CREATE VIEW].
 
 <!--Image references-->
 

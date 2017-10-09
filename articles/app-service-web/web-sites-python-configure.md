@@ -1,5 +1,5 @@
 ---
-title: Configuration de Python dans Azure App Service Web Apps
+title: aaaConfiguring de Python avec Azure App Service Web Apps
 description: "Ce didacticiel décrit les options relatives à la création et à la configuration d’une application Python compatible WSGI (Web Server Gateway Interface) de base dans Azure App Service Web Apps."
 services: app-service
 documentationcenter: python
@@ -15,11 +15,11 @@ ms.devlang: python
 ms.topic: article
 ms.date: 02/26/2016
 ms.author: huvalo
-ms.openlocfilehash: 9683a1af13eeff364d3c4714f0b791324fd82659
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 00d49fb01491e9adb4b6fededfb95669a8dbd485
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configuring-python-with-azure-app-service-web-apps"></a>Configuration de Python dans Azure App Service Web Apps
 Ce didacticiel décrit les options relatives à la création et à la configuration d’une application Python compatible WSGI (Web Server Gateway Interface) de base dans [Azure App Service Web Apps](http://go.microsoft.com/fwlink/?LinkId=529714).
@@ -27,24 +27,24 @@ Ce didacticiel décrit les options relatives à la création et à la configurat
 Il décrit les fonctions supplémentaires associées au déploiement Git, telles que l’environnement virtuel et l’installation de packages à l’aide de fichier requirements.txt.
 
 ## <a name="bottle-django-or-flask"></a>Bottle, Django ou Flask ?
-Azure Marketplace comporte des modèles pour les infrastructures Bottle, Django et Flask. Si vous développez votre première application web dans Azure App Service ou que vous n’êtes pas familiarisé avec Git, nous vous invitons à suivre l’un des didacticiels suivants, lesquels présentent des instructions pas à pas pour générer une application à partir de la galerie à l’aide du déploiement Git sur Windows ou Mac :
+Bonjour Azure Marketplace contient des modèles pour les infrastructures d’eau, Django et ballon hello. Si vous développez votre première application web dans Azure App Service, ou vous n’êtes pas familiarisé avec Git, nous vous recommandons de suivre une de ces didacticiels, qui incluent des instructions pas à pas pour la création d’une application à partir de la galerie hello à l’aide du déploiement Git à partir de Windows ou Mac :
 
 * [Création d’applications web avec Bottle](web-sites-python-create-deploy-bottle-app.md)
 * [Création d’applications web avec Django](web-sites-python-create-deploy-django-app.md)
 * [Création d’applications web avec Flask](web-sites-python-create-deploy-flask-app.md)
 
 ## <a name="web-app-creation-on-azure-portal"></a>Création d’applications web sur le portail Azure
-Ce didacticiel part du principe que vous disposez d'un abonnement Azure et d'un accès au portail Azure.
+Ce didacticiel suppose un existant Azure abonnement et accès toohello portail Azure.
 
-Si vous ne disposez pas d’une application web existante, vous pouvez en créer une à partir du [portail Azure](https://portal.azure.com).  Cliquez sur le bouton NOUVEAU dans l’angle supérieur gauche, puis cliquez sur **Web + mobile** > **Application web**.
+Si vous ne disposez pas d’une application web existante, vous pouvez en créer un à partir de hello [Azure Portal](https://portal.azure.com).  Cliquez sur bouton Nouveau hello hello en haut à gauche, puis cliquez sur **Web + Mobile** > **application Web**.
 
 ## <a name="git-publishing"></a>Publication Git
-Configurez la publication Git de votre nouvelle application web en suivant les instructions de l’article [Déploiement Git local vers Azure App Service](app-service-deploy-local-git.md). Ce didacticiel utilise Git pour créer, gérer et publier notre application web Python dans Azure App Service.
+Configurer la publication Git de votre application web qui vient d’être créé en suivant les instructions de hello sur [tooAzure de déploiement Git Local du Service d’applications](app-service-deploy-local-git.md). Ce didacticiel utilise Git toocreate, gérer et publier notre tooAzure d’application Python web du Service d’applications.
 
-Une fois la publication Git configurée, un référentiel Git est créé et associé à votre application web. L’URL du référentiel est affichée et peut désormais être utilisée pour envoyer des données depuis l’environnement de développement local vers le cloud. Pour publier des applications via Git, vérifiez qu’un client Git est également installé et suivez les instructions fournies pour envoyer le contenu de votre application web vers Azure App Service.
+Une fois la publication Git configurée, un référentiel Git est créé et associé à votre application web. les URL du référentiel Hello s’affiche et peut être dorénavant utilisés toopush des données du cloud de toohello environnement hello développement local. applications toopublish via Git, assurez-vous qu’un client Git est également installé et suivez les instructions hello fourni toopush votre tooAzure de contenu d’application du Service d’applications web.
 
 ## <a name="application-overview"></a>Vue d’ensemble de l’application
-Dans les sections suivantes, les fichiers qui suivent sont créés. Ils doivent être placés à la racine du référentiel Git.
+Dans les sections suivantes hello, hello fichiers suivants est créé. Ils doivent être placés dans la racine de hello du référentiel Git de hello.
 
     app.py
     requirements.txt
@@ -54,7 +54,7 @@ Dans les sections suivantes, les fichiers qui suivent sont créés. Ils doivent 
 
 
 ## <a name="wsgi-handler"></a>Gestionnaire WSGI
-WSGI est une norme Python décrite par [PEP 3333](http://www.python.org/dev/peps/pep-3333/) qui définit une interface entre le serveur web et Python. Elle fournit une interface normalisée pour la rédaction de diverses applications et infrastructures Web à l'aide de Python. Des infrastructures Web Python connues utilisent aujourd’hui WSGI. Azure App Service Web Apps vous offre la prise en charge de ces infrastructures. En outre, les utilisateurs experts peuvent même créer leur propre infrastructure à condition que le gestionnaire personnalisé suive les instructions de la spécification WSGI.
+Wsgi sous est une norme de Python décrite par [PEP 3333](http://www.python.org/dev/peps/pep-3333/) définissant une interface entre le serveur web de hello et Python. Elle fournit une interface normalisée pour la rédaction de diverses applications et infrastructures Web à l'aide de Python. Des infrastructures Web Python connues utilisent aujourd’hui WSGI. Azure permet d’application de Service Web Apps que vous prenez en charge pour les versions de .NET Framework ; en outre, les utilisateurs expérimentés peuvent même créer leurs propres tant que gestionnaire personnalisé de hello suit les directives de spécification de wsgi sous hello.
 
 Voici un exemple de `app.py` définissant un gestionnaire personnalisé :
 
@@ -71,19 +71,19 @@ Voici un exemple de `app.py` définissant un gestionnaire personnalisé :
         httpd = make_server('localhost', 5555, wsgi_app)
         httpd.serve_forever()
 
-Vous pouvez exécuter cette application localement à l’aide de `python app.py`, puis accéder à `http://localhost:5555` dans votre navigateur web.
+Vous pouvez exécuter l’application localement avec `python app.py`, puis recherchez trop`http://localhost:5555` dans votre navigateur web.
 
 ## <a name="virtual-environment"></a>Environnement virtuel
-Bien que l’exemple d’application précédent ne requière aucun package externe, il est probable que votre application en requiert un.
+Bien que l’application d’exemple hello ci-dessus ne nécessite pas les packages externes, il est probable que votre application nécessite certaines.
 
-Pour faciliter la gestion des dépendances des packages externes, le déploiement Azure Git prend en charge la création d’environnements virtuels.
+toohelp gérer les dépendances du package externe, Azure Git déploiement prend en charge la création d’environnements virtuels hello.
 
-Lorsqu’Azure détecte un fichier requirements.txt à la racine du référentiel, il crée automatiquement un environnement virtuel nommé `env`. Cette opération intervient uniquement lors du premier déploiement ou lors de tout déploiement faisant suite à la modification du runtime Python sélectionné.
+Quand Azure détecte un requirements.txt racine hello du référentiel de hello, il crée automatiquement un environnement virtuel nommé `env`. Cela se produit uniquement sur le premier déploiement de hello, ou pendant un déploiement après hello sélectionné runtime Python a changé.
 
-Vous souhaiterez probablement créer un environnement virtuel local pour le développement, sans pour autant l’inclure à votre référentiel Git.
+Vous aurez probablement besoin de toocreate un environnement virtuel localement pour le développement, mais ne pas inclure dans votre référentiel Git.
 
 ## <a name="package-management"></a>Gestion des packages
-Les packages répertoriés dans le fichier requirements.txt seront automatiquement installés au sein de l’environnement virtuel à l’aide de pip. Cette opération intervient à chaque déploiement, mais pip ignorera l’installation si un package est déjà installé.
+Packages répertoriés dans requirements.txt seront automatiquement installés dans un environnement virtuel de hello l’utilisation de pip. Cette opération intervient à chaque déploiement, mais pip ignorera l’installation si un package est déjà installé.
 
 Exemple `requirements.txt`:
 
@@ -99,11 +99,11 @@ Exemple `runtime.txt`:
 
 
 ## <a name="webconfig"></a>Web.config
-Vous devez créer un fichier web.config pour spécifier de quelle manière le serveur doit gérer les demandes.
+Vous devez toocreate un toospecify du fichier web.config comment les serveur hello doivent gérer les requêtes.
 
-Si vous disposez d’un fichier web.X.Y.config dans votre référentiel, où X.Y correspond au runtime Python sélectionné, Azure copie automatiquement le fichier approprié en tant que fichier web.config.
+Notez que si vous disposez d’un fichier web.x.y.config dans votre référentiel où x.y correspond à hello sélectionné runtime Python, puis Azure copie automatiquement le fichier approprié de hello en tant que fichier web.config.
 
-Les exemples de fichier web.config suivants concernent un script proxy d’environnement virtuel, lequel est décrit dans la section suivante.  Ces fichiers fonctionnent avec le gestionnaire WSGI utilisé dans l’exemple `app.py` précédent.
+Hello exemples web.config suivants s’appuient sur un script de proxy environnement virtuel qui est décrit dans la section suivante de hello.  Elles fonctionnent avec le gestionnaire wsgi sous hello utilisé dans l’exemple de hello `app.py` ci-dessus.
 
 Exemple `web.config` pour Python 2.7 :
 
@@ -203,16 +203,16 @@ Exemple `web.config` pour Python 3.4 :
     </configuration>
 
 
-Les fichiers statiques sont directement gérés par le serveur web, sans passer par le code Python, afin d’améliorer les performances.
+Fichiers statiques doivent être gérés par le serveur web de hello directement, sans passer par le code Python, pour améliorer les performances.
 
-Dans les exemples précédents, l’emplacement des fichiers statiques sur le disque doit correspondre à celui présent dans l’URL. Cela signifie qu’une demande pour `http://pythonapp.azurewebsites.net/static/site.css` renverra au fichier présent sur le disque à l’emplacement `\static\site.css`.
+Bonjour exemples ci-dessus, emplacement hello des fichiers statiques de hello sur le disque doit correspondre à emplacement hello dans les URL hello. Cela signifie qu’une demande de `http://pythonapp.azurewebsites.net/static/site.css` servira fichier hello sur le disque à `\static\site.css`.
 
-`WSGI_ALT_VIRTUALENV_HANDLER` est l’emplacement où vous spécifiez le gestionnaire WSGI. Dans les exemples précédents, il s’agit de `app.wsgi_app`, car le gestionnaire correspond à une fonction nommée `wsgi_app` dans `app.py`, dans le dossier racine.
+`WSGI_ALT_VIRTUALENV_HANDLER`est où vous spécifiez le Gestionnaire de wsgi sous hello. Bonjour au-dessus des exemples, il a `app.wsgi_app` , car le Gestionnaire de hello est une fonction nommée `wsgi_app` dans `app.py` dans le dossier racine de hello.
 
-`PYTHONPATH` , mais si vous installez toutes vos dépendances dans l’environnement virtuel en les spécifiant dans le fichier requirements.txt, il n’est pas nécessaire de les modifier.
+`PYTHONPATH`peut être personnalisé, mais si vous installez toutes les dépendances dans un environnement virtuel de hello en les spécifiant dans requirements.txt, vous ne devez toochange il.
 
 ## <a name="virtual-environment-proxy"></a>Proxy d’environnement virtuel
-Le script suivant permet de récupérer le gestionnaire WSGI, d’activer l’environnement virtuel et de journaliser les erreurs. Il est conçu pour être générique et utilisé sans modification.
+Hello script suivant est associé au gestionnaire utilisé tooretrieve hello wsgi sous, activer les erreurs de journaux et d’environnement virtuels hello. Il est conçu toobe générique et utilisé sans modification.
 
 Contenu de `ptvs_virtualenv_proxy.py`:
 
@@ -220,11 +220,11 @@ Contenu de `ptvs_virtualenv_proxy.py`:
      #
      # Copyright (c) Microsoft Corporation. 
      #
-     # This source code is subject to terms and conditions of the Apache License, Version 2.0. A 
-     # copy of the license can be found in the License.html file at the root of this distribution. If 
-     # you cannot locate the Apache License, Version 2.0, please send an email to 
-     # vspython@microsoft.com. By using this source code in any fashion, you are agreeing to be bound 
-     # by the terms of the Apache License, Version 2.0.
+     # This source code is subject tooterms and conditions of hello Apache License, Version 2.0. A 
+     # copy of hello license can be found in hello License.html file at hello root of this distribution. If 
+     # you cannot locate hello Apache License, Version 2.0, please send an email too
+     # vspython@microsoft.com. By using this source code in any fashion, you are agreeing toobe bound 
+     # by hello terms of hello Apache License, Version 2.0.
      #
      # You must not remove this notice, or any other, from this software.
      #
@@ -250,7 +250,7 @@ Contenu de `ptvs_virtualenv_proxy.py`:
             return value.encode(sys.getfilesystemencoding())
 
     def log(txt):
-        """Logs fatal errors to a log file if WSGI_LOG env var is defined"""
+        """Logs fatal errors tooa log file if WSGI_LOG env var is defined"""
         log_file = os.environ.get('WSGI_LOG')
         if log_file:
             f = open(log_file, 'a+')
@@ -350,13 +350,13 @@ Contenu de `ptvs_virtualenv_proxy.py`:
 [!INCLUDE [web-sites-python-troubleshooting-virtual-environment](../../includes/web-sites-python-troubleshooting-virtual-environment.md)]
 
 ## <a name="next-steps"></a>Étapes suivantes
-Pour plus d’informations, consultez le [Centre pour développeurs Python](/develop/python/).
+Pour plus d’informations, consultez hello [centre de développement Python](/develop/python/).
 
 > [!NOTE]
-> Si vous voulez vous familiariser avec Azure App Service avant d’ouvrir un compte Azure, accédez à la page [Essayer App Service](https://azure.microsoft.com/try/app-service/), où vous pourrez créer immédiatement une application web temporaire dans App Service. Aucune carte de crédit n’est requise ; vous ne prenez aucun engagement.
+> Si vous souhaitez tooget démarré avec le Service d’application Azure avant de s’inscrire pour un compte Azure, accédez trop[essayez du Service d’applications](https://azure.microsoft.com/try/app-service/), où vous pouvez créer une application web de courte durée de démarrage immédiatement dans le Service d’applications. Aucune carte de crédit n’est requise ; vous ne prenez aucun engagement.
 > 
 > 
 
 ## <a name="whats-changed"></a>Changements apportés
-* Pour obtenir un guide présentant les modifications apportées dans le cadre de la transition entre Sites Web et App Service, consultez la page [Azure App Service et les services Azure existants](http://go.microsoft.com/fwlink/?LinkId=529714)
+* Pour un toohello guide voir changer à partir de sites Web tooApp Service : [Azure App Service et son Impact sur les Services Azure existants](http://go.microsoft.com/fwlink/?LinkId=529714)
 

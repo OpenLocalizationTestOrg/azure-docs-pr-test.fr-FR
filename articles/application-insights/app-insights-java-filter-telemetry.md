@@ -1,6 +1,6 @@
 ---
-title: "Filtrer les données de télémétrie d’Azure Application Insights dans votre application web Java | Microsoft Docs"
-description: "Réduisez le trafic de télémétrie en excluant les événements que vous n’avez pas besoin de surveiller."
+title: "aaaFilter télémétrie Azure Application Insights dans votre application de web Java | Documents Microsoft"
+description: "Réduire le trafic de télémétrie en filtrant les événements de hello vous n’avez pas besoin toomonitor."
 services: application-insights
 documentationcenter: 
 author: CFreemanwa
@@ -12,25 +12,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/23/2016
 ms.author: bwren
-ms.openlocfilehash: 5f6d6d4ad590b85810c42e9f9520850024c5446a
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 95713e11d5f86472777c67e4e7f3177fbf2cd0b4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="filter-telemetry-in-your-java-web-app"></a>Filtrer la télémétrie dans votre application web Java
 
-Les filtres offrent un moyen de sélectionner les données de télémétrie que votre [application web Java envoie à Application Insights](app-insights-java-get-started.md). Vous pouvez utiliser certains filtres prêts à l’emploi, et également écrire vos propres filtres personnalisés.
+Filtres fournissent une télémétrie de hello tooselect façon dont votre [d’application web Java envoie tooApplication Insights](app-insights-java-get-started.md). Vous pouvez utiliser certains filtres prêts à l’emploi, et également écrire vos propres filtres personnalisés.
 
-Les filtres prêts à l’emploi incluent :
+les filtres out of box Hello incluent :
 
 * Niveau de gravité de trace
 * URL, mots clés ou codes de réponse spécifiques
-* Réponses rapides, autrement dit, les demandes auxquelles votre application a répondu rapidement
+* Des réponses rapides - demande qui est, toowhich votre application a répondu tooquickly
 * Noms des événements spécifiques
 
 > [!NOTE]
-> Les filtres faussent les mesures de votre application. Par exemple, vous pouvez décider que, pour diagnostiquer les réponses lentes, vous allez définir un filtre permettant d’ignorer les temps de réponse rapides. Toutefois, vous devez être conscient que les temps de réponse moyens signalés par Application Insights seront plus lents que la vitesse réelle, et que le nombre de demandes sera inférieur au nombre réel.
+> Filtres d’inclinaison de métriques hello de votre application. Par exemple, vous pouvez décider que, dans l’ordre toodiagnose des réactions lentes, vous allez définir un filtre toodiscard un temps de réponse. Mais vous devez être conscient que les temps de réponse moyens hello signalés à Application Insights sera plus lents que la vitesse réelle de hello, et nombre hello de requêtes est inférieur au nombre réel de hello.
 > Si cela pose problème, utilisez plutôt [l’échantillonnage](app-insights-sampling.md).
 
 ## <a name="setting-filters"></a>Définition de filtres
@@ -60,7 +60,7 @@ Dans ApplicationInsights.xml, ajoutez une section `TelemetryProcessors` comme da
            </Processor>
 
            <Processor type="TelemetryEventFilter">
-                  <!-- Names of events we don't want to see -->
+                  <!-- Names of events we don't want toosee -->
                   <Add name="NotNeededNames" value="Start,Stop,Pause"/>
            </Processor>
 
@@ -88,7 +88,7 @@ Dans ApplicationInsights.xml, ajoutez une section `TelemetryProcessors` comme da
 
 
 
-[Inspectez l’ensemble complet des processeurs intégrés](https://github.com/Microsoft/ApplicationInsights-Java/tree/master/core/src/main/java/com/microsoft/applicationinsights/internal/processor).
+[Inspecter le jeu complet de hello de processeurs intégrés](https://github.com/Microsoft/ApplicationInsights-Java/tree/master/core/src/main/java/com/microsoft/applicationinsights/internal/processor).
 
 ## <a name="built-in-filters"></a>Filtres intégrés
 
@@ -115,9 +115,9 @@ Dans ApplicationInsights.xml, ajoutez une section `TelemetryProcessors` comme da
            </Processor>
 ```
 
-* `DurationThresholdInMS` : la durée correspond au temps nécessaire pour charger la page. Si ce paramètre est défini, les pages qui se sont chargées plus rapidement que cette durée ne sont pas signalées.
+* `DurationThresholdInMS`-Durée fait référence toohello durée de la page de hello tooload. Si ce paramètre est défini, les pages qui se sont chargées plus rapidement que cette durée ne sont pas signalées.
 * `NotNeededNames` : liste séparée par des virgules de noms de pages.
-* `NotNeededUrls` : liste séparée par des virgules de fragments d’URL. Par exemple, `"home"` exclut toutes les pages contenant « home » dans l’URL.
+* `NotNeededUrls` : liste séparée par des virgules de fragments d’URL. Par exemple, `"home"` exclut toutes les pages qui ont « accueil » dans l’URL de hello.
 
 
 ### <a name="request-telemetry-filter"></a>Filtre Télémétrie des demandes
@@ -136,7 +136,7 @@ Dans ApplicationInsights.xml, ajoutez une section `TelemetryProcessors` comme da
 
 ### <a name="synthetic-source-filter"></a>Filtre Sources synthétiques
 
-Exclut toutes les données de télémétrie présentant des valeurs dans la propriété SyntheticSource. Cela inclut notamment les demandes des robots, les robots et les tests de disponibilité.
+Exclut toutes les données de télémétrie qui ont des valeurs Bonjour SyntheticSource propriété. Cela inclut notamment les demandes des robots, les robots et les tests de disponibilité.
 
 Exclure les données de télémétrie pour toutes les demandes synthétiques :
 
@@ -187,7 +187,7 @@ Filtre les traces de journaux (consignés à l’aide de [TrackTrace()](app-insi
 
 * Les valeurs autorisées `FromSeverityLevel` sont :
  *  OFF             - Exclure TOUTES les traces
- *  TRACE           - Aucun filtrage. équivaut au niveau Trace
+ *  TRACE           - Aucun filtrage. niveau de tooTrace égal à
  *  INFO            - Exclure le niveau TRACE
  *  WARN            - Exclure TRACE et INFO
  *  ERROR           - Exclure WARN, INFO, TRACE
@@ -208,18 +208,18 @@ Dans votre code, créez une classe qui implémente `TelemetryProcessor`:
 
     public class SuccessFilter implements TelemetryProcessor {
 
-       /* Any parameters that are required to support the filter.*/
+       /* Any parameters that are required toosupport hello filter.*/
        private final String successful;
 
-       /* Initializers for the parameters, named "setParameterName" */
+       /* Initializers for hello parameters, named "setParameterName" */
        public void setNotNeeded(String successful)
        {
           this.successful = successful;
        }
 
-       /* This method is called for each item of telemetry to be sent.
-          Return false to discard it.
-          Return true to allow other processors to inspect it. */
+       /* This method is called for each item of telemetry toobe sent.
+          Return false toodiscard it.
+          Return true tooallow other processors tooinspect it. */
        @Override
        public boolean process(Telemetry telemetry) {
         if (telemetry == null) { return true; }
@@ -235,7 +235,7 @@ Dans votre code, créez une classe qui implémente `TelemetryProcessor`:
 ```
 
 
-### <a name="2-invoke-your-filter-in-the-configuration-file"></a>2. Appeler votre filtre dans le fichier de configuration
+### <a name="2-invoke-your-filter-in-hello-configuration-file"></a>2. Appeler votre filtre dans le fichier de configuration hello
 
 Dans ApplicationInsights.xml :
 
@@ -258,7 +258,7 @@ Dans ApplicationInsights.xml :
 
 *Mon filtre ne fonctionne pas.*
 
-* Vérifiez que vous avez fourni des valeurs de paramètres valides. Par exemple, les durées doivent être des entiers. En cas de valeurs non valides, le filtre est ignoré. Si votre filtre personnalisé lève une exception à partir d’un constructeur ou d’une méthode définie, il sera ignoré.
+* Vérifiez que vous avez fourni des valeurs de paramètres valides. Par exemple, les durées doivent être des entiers. Valeurs non valides entraîne hello filtre toobe est ignoré. Si votre filtre personnalisé lève une exception à partir d’un constructeur ou d’une méthode définie, il sera ignoré.
 
 ## <a name="next-steps"></a>Étapes suivantes
 

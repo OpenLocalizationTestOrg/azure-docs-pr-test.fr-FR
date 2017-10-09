@@ -1,10 +1,10 @@
-Vous payez deux choses : les coûts horaires de calcul de la passerelle de réseau virtuel, et les coûts de transfert des données sortantes à partir de la passerelle de réseau virtuel. Pour des informations sur les prix, consultez la page [Tarification](https://azure.microsoft.com/pricing/details/vpn-gateway) .
+Vous payez pour deux choses : hello toutes les heures de calcul des coûts pour la passerelle de réseau virtuel hello et transfert de données de sortie de hello de passerelle de réseau virtuel hello. Informations de tarification se trouvent sur hello [tarification](https://azure.microsoft.com/pricing/details/vpn-gateway) page.
 
-**Coûts de calcul de la passerelle de réseau virtuel**<br>Chaque passerelle de réseau virtuel a un coût horaire de calcul. Le prix est basé sur la référence SKU de passerelle que vous spécifiez lorsque vous créez une passerelle de réseau virtuel. Le coût est celui de la passerelle elle-même. Il s’ajoute au coût du transfert des données qui transitent par la passerelle.
+**Coûts de calcul de la passerelle de réseau virtuel**<br>Chaque passerelle de réseau virtuel a un coût horaire de calcul. les prix Hello sont basée sur la passerelle hello référence (SKU) que vous spécifiez lorsque vous créez une passerelle de réseau virtuel. Hello coût est pour la passerelle hello lui-même et est en outre toohello le transfert de données de ce flux via la passerelle de hello.
 
-**Coût de transfert des données**<br>Les coûts de transfert de données sont calculés en fonction du trafic sortant à partir de la passerelle de réseau virtuel source.
+**Coût de transfert des données**<br>Coûts de transfert de données sont calculées en fonction de trafic sortant à partir de la passerelle de réseau virtuel source hello.
 
-* Si vous envoyez du trafic vers votre périphérique VPN local, il est facturé avec le taux de transfert des données sortantes sur Internet.
-* Si vous envoyez le trafic entre les réseaux virtuels dans différentes régions, la tarification est basée sur la région.
-* Si vous envoyez le trafic seulement entre les réseaux virtuels qui sont dans la même région, il n’y a aucun coût de données. Le trafic entre les réseaux virtuels dans la même région est gratuit.
+* Si vous envoyez un périphérique VPN de trafic tooyour local, il sera facturé avec un taux de transfert de données hello Internet sortant.
+* Si vous envoyez le trafic entre les réseaux virtuels dans des régions différentes, hello est la région de hello en fonction.
+* Si vous envoyez le trafic uniquement entre des réseaux virtuels qui se trouvent dans hello la même région, il n’existe aucun coût de données. Le trafic entre les réseaux virtuels Bonjour même région est gratuite.
 

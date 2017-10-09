@@ -1,6 +1,6 @@
 ---
-title: "Propriétés du projet Azure"
-description: "Décrit les paramètres de propriétés du projet Azure dans la boîte à outils Azure pour Eclipse."
+title: "aaaAzure propriétés du projet"
+description: "Décrit les paramètres de propriétés du projet Azure hello Bonjour boîte à outils Azure pour Eclipse."
 services: 
 documentationcenter: java
 author: rmcmurray
@@ -14,30 +14,30 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 04/14/2017
 ms.author: robmcm
-ms.openlocfilehash: 9d9eb695b63c2f4efa3ebea97ddb2f2780180bca
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6d8993ca38e7e03a8c7ebe96d174594aa0ff78e2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-project-properties"></a>Propriétés du projet Azure
-Vous avez la possibilité de définir différents paramètres pour votre projet Azure dans la boîte à outils Azure pour Eclipse.
+Peuvent être définir divers paramètres pour votre projet Windows Azure hello boîte à outils Azure pour Eclipse.
 
 ## <a name="configuring-azure-project-properties"></a>Configuration des propriétés du projet Azure
-La configuration des propriétés de votre projet Azure s’effectue via les boîtes de dialogue de votre propriétés de votre projet Azure. Cliquez avec le bouton droit sur le projet dans l’Explorateur de projets Eclipse, cliquez sur **Propriétés**, puis sélectionnez le sous-menu **Azure**.
+Configuration des propriétés de votre projet Azure est accomplie via les boîtes de dialogue de propriétés pour votre projet Windows Azure hello. Cliquez sur projet hello dans le volet Explorateur de projets d’Eclipse, cliquez sur **propriétés**, puis sélectionnez hello **Azure** sous-menu.
 
 ![][ic719480]
 
-Dans cette page de propriétés, vous pouvez modifier les éléments suivants : 
+Dans cette page de propriétés, vous pouvez modifier hello éléments suivants : 
 
-* **Nom du service :** nom de votre projet Azure.
-* **Générer pour :** indique si le projet doit être généré pour l’émulateur de calcul ou être déployé dans Azure.
-* **Système d’exploitation cible :** système d’exploitation à utiliser lors du déploiement de votre projet dans Azure.
+* **Nom du service :** nom hello pour votre projet Windows Azure.
+* **Build :** si le projet de hello est définie pour la création de tooAzure de déploiement ou d’émulateur de calcul toohello.
+* **Cible du système d’exploitation :** hello toouse du système d’exploitation lorsque votre projet est déployé tooAzure.
 
 ## <a name="see-also"></a>Voir aussi
 [Kit de ressources Azure pour Eclipse][Azure Toolkit for Eclipse]
 
-[Installation du kit de ressources Azure pour Eclipse][Installing the Azure Toolkit for Eclipse] 
+[Lors de l’installation hello boîte à outils Azure pour Eclipse][Installing hello Azure Toolkit for Eclipse] 
 
 [Création d’une application Hello World pour Azure dans Eclipse][Creating a Hello World Application for Azure in Eclipse]
 
@@ -45,7 +45,7 @@ Dans cette page de propriétés, vous pouvez modifier les éléments suivants :
 
 [Liste des comptes de stockage Azure][Azure Storage Account List]
 
-Pour plus d’informations sur l’utilisation d’Azure avec Java, consultez le [Centre de développement Java pour Azure][Azure Java Developer Center].
+Pour plus d’informations sur l’utilisation d’Azure avec Java, consultez hello [centre de développement Java Azure][Azure Java Developer Center].
 
 <!-- URL List -->
 
@@ -54,7 +54,7 @@ Pour plus d’informations sur l’utilisation d’Azure avec Java, consultez le
 [Azure Role Properties]: http://go.microsoft.com/fwlink/?LinkID=699525
 [Azure Storage Account List]: http://go.microsoft.com/fwlink/?LinkID=699528
 [Creating a Hello World Application for Azure in Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699533
-[Installing the Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
+[Installing hello Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
 
 <!-- IMG List -->
 

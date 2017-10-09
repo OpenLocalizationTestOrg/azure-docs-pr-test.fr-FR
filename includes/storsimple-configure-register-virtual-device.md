@@ -1,19 +1,19 @@
-#### <a name="to-configure-and-register-the-virtual-device"></a>Pour configurer et enregistrer l’appareil virtuel
+#### <a name="tooconfigure-and-register-hello-virtual-device"></a>tooconfigure et inscrire un appareil virtuel hello
 
-1. Sélectionnez l’appareil virtuel StorSimple que vous venez de créer dans la page **Appareils** .
-2. Cliquez sur **Terminer la configuration de l’appareil**. L’Assistant Configurer l’appareil démarre.
+1. Vous venez de créer dans hello un appareil virtuel StorSimple hello sélectionnez **périphériques** page.
+2. Cliquez sur **Terminer la configuration de l’appareil**. L’Assistant de périphérique hello configurer démarre.
     
     ![Installation complète de l’appareil StorSimple à la page Appareils](./media/storsimple-configure-register-virtual-device/StorSimple_CompleteDeviceSetupSVA1M.png)
 
-4. Entrez la **clé de chiffrement des données de service** dans l’espace fourni.
+4. Entrez hello **clé de chiffrement de données de Service** dans espace hello fourni.
 
-5. Entrez les mots de passe d’administrateur de l’appareil et du Gestionnaire d'instantanés conformes à la longueur et aux paramètres spécifiés.
+5. Entrez hello Gestionnaire d’instantanés et administrateur de l’appareil les mots de passe de longueur de hello et les paramètres spécifiés.
 
-6. Cliquez sur la coche pour terminer la configuration initiale et l’inscription de l’appareil virtuel. 
+6. Cliquez sur la configuration initiale hello coche toofinish hello et l’inscription de l’appareil virtuel de hello. 
     
     ![Paramètres de l’appareil virtuel StorSimple](./media/storsimple-configure-register-virtual-device/StorSimple_VirtualDeviceSettings1.png)
 
-Une fois la configuration et l'inscription terminées, l’appareil est mis en ligne. (La mise en ligne de l’appareil peut prendre plusieurs minutes.)
+Une fois l’inscription et configuration de hello est terminée, les appareils hello seront mis en ligne. (Il peut prendre plusieurs minutes pour hello appareil toocome en ligne.)
 
 ![Étape en ligne de l’appareil virtuel StorSimple](./media/storsimple-configure-register-virtual-device/StorSimple_VirtualDeviceOnline1M.png)
 

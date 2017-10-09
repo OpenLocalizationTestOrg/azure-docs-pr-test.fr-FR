@@ -1,10 +1,10 @@
-La version 3.0 du module AzureRm.Resources inclus des modifications importantes par rapport à l’utilisation des balises. Avant de poursuivre, vérifiez votre version :
+La version 3.0 de module de AzureRm.Resources hello inclus des modifications importantes dans l’utilisation de balises. Avant de poursuivre, vérifiez votre version :
 
 ```powershell
 Get-Module -ListAvailable -Name AzureRm.Resources | Select Version
 ```
 
-Si vous avez la version 3.0 ou une version ultérieure, les exemples de cette rubrique fonctionnent avec votre environnement. Si vous n’avez pas la version 3.0 ou une version ultérieure, vous devez [mettre à jour votre version](/powershell/azureps-cmdlets-docs/) à l’aide de PowerShell Gallery ou de Web Platform Installer avant de consulter cette rubrique.
+Si les résultats indiquent la version 3.0 ou version ultérieure, les exemples de hello dans cette rubrique fonctionnent avec votre environnement. Si vous n’avez pas la version 3.0 ou une version ultérieure, vous devez [mettre à jour votre version](/powershell/azureps-cmdlets-docs/) à l’aide de PowerShell Gallery ou de Web Platform Installer avant de consulter cette rubrique.
 
 ```powershell
 Version
@@ -12,13 +12,13 @@ Version
 3.5.0
 ```
 
-Pour afficher les balises existantes pour un *groupe de ressources*, utilisez :
+toosee hello balises existantes pour un *groupe de ressources*, utilisez :
 
 ```powershell
 (Get-AzureRmResourceGroup -Name examplegroup).Tags
 ```
 
-Le script retourne les informations au format suivant :
+Ce script renvoie hello suivant le format :
 
 ```powershell
 Name                           Value
@@ -27,39 +27,39 @@ Dept                           IT
 Environment                    Test
 ```
 
-Pour afficher les balises existantes pour une *ressource dont l’ID de ressource est spécifié*, utilisez :
+toosee hello balises existantes pour un *ressource qui comporte un ID de ressource spécifié*, utilisez :
 
 ```powershell
 (Get-AzureRmResource -ResourceId {resource-id}).Tags
 ```
 
-Alternativement, pour afficher les balises existantes pour une *ressource dont le nom et le groupe de ressources sont spécifiés*, utilisez :
+Ou, toosee hello balises existantes pour un *ressource qui comporte un groupe de ressources et de nom spécifié*, utilisez :
 
 ```powershell
 (Get-AzureRmResource -ResourceName examplevnet -ResourceGroupName examplegroup).Tags
 ```
 
-Pour obtenir *les groupes de ressources contenant une balise spécifique*, utilisez :
+tooget *des groupes de ressources qui ont une balise spécifique*, utilisez :
 
 ```powershell
 (Find-AzureRmResourceGroup -Tag @{ Dept="Finance" }).Name 
 ```
 
-Pour obtenir *les ressources contenant une balise spécifique*, utilisez :
+tooget *ressources qui ont une balise spécifique*, utilisez :
 
 ```powershell
 (Find-AzureRmResource -TagName Dept -TagValue Finance).Name
 ```
 
-Chaque fois que vous appliquez des balises à une ressource ou un groupe de ressources, vous remplacez les balises existantes de cette ressource ou de ce groupe de ressources. Par conséquent, vous devez utiliser une approche différente selon que la ressource ou le groupe de ressources a des balises existantes. 
+Chaque fois que vous appliquez des balises tooa ressource ou un groupe de ressources, vous remplacez les balises existantes hello sur cette ressource ou un groupe de ressources. Par conséquent, vous devez utiliser une approche différente selon que hello ressource ou un groupe de ressources a des balises existantes. 
 
-Pour ajouter des balises à un *groupe de ressources ne contenant pas de balises existantes*, utilisez :
+tooadd balises tooa *groupe de ressources sans balises existantes*, utilisez :
 
 ```powershell
 Set-AzureRmResourceGroup -Name examplegroup -Tag @{ Dept="IT"; Environment="Test" }
 ```
 
-Pour ajouter des balises à un *groupe de ressources avec des balises existantes*, récupérez les balises existantes, ajoutez la nouvelle balise et réappliquez les balises :
+tooadd balises tooa *groupe de ressources qui comporte des balises existantes*, récupérer les balises existantes hello, ajoutez la balise hello et réappliquer les balises hello :
 
 ```powershell
 $tags = (Get-AzureRmResourceGroup -Name examplegroup).Tags
@@ -67,13 +67,13 @@ $tags += @{Status="Approved"}
 Set-AzureRmResourceGroup -Tag $tags -Name examplegroup
 ```
 
-Pour ajouter des balises à une *ressource ne contenant pas de balises existantes*, utilisez :
+tooadd balises tooa *ressource sans balises existantes*, utilisez :
 
 ```powershell
 Set-AzureRmResource -Tag @{ Dept="IT"; Environment="Test" } -ResourceName examplevnet -ResourceGroupName examplegroup
 ```
 
-Pour ajouter des balises à une *ressource avec des balises existantes*, utilisez :
+tooadd balises tooa *ressource qui comporte les balises existantes*, utilisez :
 
 ```powershell
 $tags = (Get-AzureRmResource -ResourceName examplevnet -ResourceGroupName examplegroup).Tags
@@ -81,7 +81,7 @@ $tags += @{Status="Approved"}
 Set-AzureRmResource -Tag $tags -ResourceName examplevnet -ResourceGroupName examplegroup
 ```
 
-Pour appliquer toutes les balises d’un groupe de ressources à ses ressources *sans conserver les balises existantes*, utilisez le script suivant :
+tooapply toutes les balises à partir d’un groupe tooits ressources, et *ne conserve pas les balises existantes sur des ressources hello*, utilisez hello script suivant :
 
 ```powershell
 $groups = Get-AzureRmResourceGroup
@@ -91,7 +91,7 @@ foreach ($g in $groups)
 }
 ```
 
-Pour appliquer toutes les balises d’un groupe de ressources à ses ressources et *conserver les balises existantes sur les ressources qui ne sont pas des doublons*, utilisez le script suivant :
+tooapply toutes les balises à partir d’un groupe tooits ressources, et *conserver les balises existantes sur les ressources qui ne sont pas des doublons*, utilisez hello script suivant :
 
 ```powershell
 $groups = Get-AzureRmResourceGroup
@@ -113,7 +113,7 @@ foreach ($g in $groups)
 }
 ```
 
-Pour supprimer toutes les balises, utilisez une table de hachage vide :
+tooremove toutes les balises, passez à une table de hachage vide :
 
 ```powershell
 Set-AzureRmResourceGroup -Tag @{} -Name examplegroup

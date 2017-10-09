@@ -1,80 +1,80 @@
-### <a name="open-tcp-ports-in-the-windows-firewall-for-the-default-instance-of-the-database-engine"></a>Ouverture de ports TCP dans le pare-feu Windows pour l'instance par défaut du moteur de base de données
-1. Connectez-vous à la machine virtuelle avec le Bureau à distance. Pour obtenir des instructions détaillées sur la connexion à la machine virtuelle, consultez [Ouvrir la machine virtuelle à l’aide du Bureau à distance](../articles/virtual-machines/windows/sql/virtual-machines-windows-portal-sql-server-provision.md#open-the-vm-with-remote-desktop).
-2. Une fois connecté, sur l’écran d’accueil, tapez **WF.msc**, puis appuyez sur ENTRÉE.
+### <a name="open-tcp-ports-in-hello-windows-firewall-for-hello-default-instance-of-hello-database-engine"></a>Ouvrez les ports TCP dans le pare-feu Windows hello hello instance par défaut de hello du moteur de base de données
+1. Se connecter toohello virtuels avec le Bureau à distance. Pour obtenir des instructions détaillées sur la connexion toohello machine virtuelle, consultez [ouvrir une VM SQL avec le Bureau à distance](../articles/virtual-machines/windows/sql/virtual-machines-windows-portal-sql-server-provision.md#open-the-vm-with-remote-desktop).
+2. Une fois connecté, à l’écran d’accueil hello, tapez **WF.msc**, puis appuyez sur ENTRÉE.
    
-    ![Démarrer le programme du pare-feu](./media/virtual-machines-sql-server-connection-steps/12Open-WF.png)
-3. Dans le **Pare-feu Windows avec fonctions avancées de sécurité**, dans le volet gauche, cliquez avec le bouton droit sur **Règles de trafic entrant**, puis sur **Nouvelle règle** dans le volet d’action.
+    ![Démarrer hello programme de pare-feu](./media/virtual-machines-sql-server-connection-steps/12Open-WF.png)
+3. Bonjour **pare-feu Windows avec fonctions avancées de sécurité**, dans hello du volet gauche, cliquez sur **règles de trafic entrant**, puis cliquez sur **nouvelle règle** dans le volet d’actions hello.
    
     ![Nouvelle règle](./media/virtual-machines-sql-server-connection-steps/13New-FW-Rule.png)
-4. Dans la boîte de dialogue de **Assistant Nouvelle règle de trafic entrant**, sous **Type de règle**, sélectionnez **Port**, puis cliquez sur **Suivant**.
-5. Dans la boîte de dialogue **Protocole et ports**, utilisez le paramètre par défaut **TCP**. Dans la boîte de dialogue **Ports locaux spécifiques**, entrez le numéro de port de l’instance du moteur de base de données (**1433** pour l’instance par défaut, ou le numéro que vous avez choisi pour le port privé à l’étape du point de terminaison).
+4. Bonjour **Assistant Nouvelle règle de trafic entrant** boîte de dialogue **le Type de règle**, sélectionnez **Port**, puis cliquez sur **suivant**.
+5. Bonjour **protocole et Ports** boîte de dialogue, par défaut hello **TCP**. Bonjour **ports locaux spécifiques** zone, puis hello de type numéro de port d’instance hello Hello du moteur de base de données (**1433** pour l’instance par défaut de hello ou de votre choix pour un port privé à l’étape de point de terminaison hello hello).
    
     ![Port TCP 1433](./media/virtual-machines-sql-server-connection-steps/14Port-1433.png)
 6. Cliquez sur **Suivant**.
-7. Dans la boîte de dialogue **Action**, sélectionnez **Autoriser la connexion**, puis cliquez sur **Suivant**.
+7. Bonjour **Action** boîte de dialogue, sélectionnez **autoriser la connexion hello**, puis cliquez sur **suivant**.
    
-    **Remarque relative à la sécurité** : la sélection de l’option **Autoriser la connexion si elle est sécurisée** peut renforcer la sécurité. Sélectionnez cette option si vous voulez configurer des options de sécurité supplémentaires dans votre environnement.
+    **Note de sécurité :** sélection **autoriser la connexion de hello si elle est sécurisée** peut fournir une sécurité supplémentaire. Sélectionnez cette option si vous souhaitez que les options de sécurité supplémentaires tooconfigure dans votre environnement.
    
     ![Autoriser les connexions](./media/virtual-machines-sql-server-connection-steps/15Allow-Connection.png)
-8. Dans la boîte de dialogue **Profil**, sélectionnez **Public**, **Privé** et **Domaine**. Cliquez ensuite sur **Suivant**.
+8. Bonjour **profil** boîte de dialogue, sélectionnez **Public**, **privé**, et **domaine**. Cliquez ensuite sur **Suivant**.
    
-    **Remarque relative à la sécurité** : la sélection de l’option **Public** autorise l’accès via Internet. Lorsque cela est possible, sélectionnez un profil plus restrictif.
+    **Note de sécurité :** sélection **Public** autorise l’accès via internet de hello. Lorsque cela est possible, sélectionnez un profil plus restrictif.
    
     ![Profil public](./media/virtual-machines-sql-server-connection-steps/16Public-Private-Domain-Profile.png)
-9. Dans la boîte de dialogue **Nom**, entrez un nom et une description pour cette règle, puis cliquez sur **Terminer**.
+9. Bonjour **nom** boîte de dialogue, tapez un nom et une description pour cette règle, puis cliquez sur **Terminer**.
    
     ![Nom de la règle](./media/virtual-machines-sql-server-connection-steps/17Rule-Name.png)
 
-Le cas échéant, ouvrez des ports supplémentaires pour les autres composants. Pour plus d'informations, consultez la page [Configurer le Pare-feu Windows pour autoriser l'accès à SQL Server](http://msdn.microsoft.com/library/cc646023.aspx).
+Le cas échéant, ouvrez des ports supplémentaires pour les autres composants. Pour plus d’informations, consultez [tooAllow de pare-feu Windows hello accès à SQL Server de configuration](http://msdn.microsoft.com/library/cc646023.aspx).
 
-### <a name="configure-sql-server-to-listen-on-the-tcp-protocol"></a>Configuration de SQL Server pour écouter le protocole TCP
+### <a name="configure-sql-server-toolisten-on-hello-tcp-protocol"></a>Configurer SQL Server toolisten sur hello protocole TCP
 
 [!INCLUDE [Enable TCP](virtual-machines-sql-server-connection-tcp-protocol.md)]
 
 ### <a name="configure-sql-server-for-mixed-mode-authentication"></a>Configuration de SQL Server pour l'authentification en mode mixte
-Le moteur de base de données de SQL Server ne peut pas utiliser l'authentification Windows sans un environnement de domaine. Pour vous connecter au moteur de base de données à partir d'un autre ordinateur, configurez SQL Server pour l'authentification en mode mixte qui permet l'authentification SQL Server et l'authentification Windows
+Hello du moteur de base de données SQL Server ne peut pas utiliser l’authentification Windows sans environnement de domaine. tooconnect toohello du moteur de base de données à partir d’un autre ordinateur, configurez SQL Server pour l’authentification en mode mixte. qui permet l'authentification SQL Server et l'authentification Windows
 
 > [!NOTE]
 > (il n’est pas nécessaire de configurer l’authentification en mode mixte si vous avez configuré un réseau virtuel Azure avec un environnement de domaine configuré).
 > 
 > 
 
-1. Lorsque vous êtes connecté à la machine virtuelle, sur la page de démarrage, tapez **SQL Server Management Studio** et cliquez sur l’icône sélectionnée.
+1. Lors de la machine virtuelle toohello connecté, sur la page de démarrage hello, tapez **SQL Server Management Studio** et cliquez sur icône sélectionnée de hello.
    
-    Lorsque vous ouvrez Management Studio pour la première fois, il doit créer l’environnement Management Studio pour les utilisateurs. Cette opération peut prendre du temps.
-2. Management Studio affiche la boîte de dialogue **Se connecter au serveur** . Dans la zone **Nom du serveur**, tapez le nom de la machine virtuelle pour vous connecter au moteur de base de données avec l’explorateur d’objets (au lieu du nom de machine virtuelle, vous pouvez également utiliser **(local)** ou un simple point unique comme **nom du serveur**). Sélectionnez **Authentification Windows** et laissez ***your_VM_name*\your_local_administrator** dans la zone **Nom d’utilisateur**. Cliquez sur **Connecter**.
+    Hello la première fois que vous ouvrez Management Studio, il doit créer des environnement de Management Studio utilisateurs hello. Cette opération peut prendre du temps.
+2. Management Studio présente hello **connecter tooServer** boîte de dialogue. Bonjour **nom du serveur** zone, entrez un nom hello de hello machine virtuelle tooconnect toohello du moteur de base de données avec l’Explorateur d’objets de hello (au lieu du nom d’ordinateur virtuel hello vous pouvez également utiliser **(local)** ou un période unique comme hello **nom du serveur**). Sélectionnez **l’authentification Windows**et laisser  ***your_VM_name*\your_local_administrator** Bonjour **nom d’utilisateur** boîte. Cliquez sur **Connecter**.
    
-    ![Se connecter au serveur](./media/virtual-machines-sql-server-connection-steps/19Connect-to-Server.png)
-3. Dans SQL Server Management Studio Object Explorer, cliquez avec le bouton droit sur le nom de l'instance de SQL Server (le nom de la machine virtuelle), puis cliquez sur **Propriétés**.
+    ![Se connecter tooServer](./media/virtual-machines-sql-server-connection-steps/19Connect-to-Server.png)
+3. Dans l’Explorateur d’objets SQL Server Management Studio, le bouton droit sur hello instance hello de SQL Server (nom de machine virtuelle hello), puis cliquez sur **propriétés**.
    
     ![Propriétés de serveur](./media/virtual-machines-sql-server-connection-steps/20Server-Properties.png)
-4. Dans la page **Sécurité**, sous **Authentification du serveur**, sélectionnez **Mode d’authentification SQL Server et Windows**, puis cliquez sur **OK**.
+4. Sur hello **sécurité** sous **l’authentification du serveur**, sélectionnez **mode d’authentification SQL Server et Windows**, puis cliquez sur **OK** .
    
     ![Sélectionner le mode d'authentification](./media/virtual-machines-sql-server-connection-steps/21Mixed-Mode.png)
-5. Dans la boîte de dialogue SQL Server Management Studio, cliquez sur **OK** pour confirmer l'obligation de redémarrer SQL Server.
+5. Dans la boîte de dialogue hello SQL Server Management Studio, cliquez sur **OK** tooacknowledge hello exigence toorestart SQL Server.
 6. Dans l’Explorateur d’objets, cliquez avec le bouton droit sur votre serveur, puis cliquez sur **Redémarrer**. (si SQL Server Agent est exécuté, il doit également être redémarré).
    
     ![Redémarrer](./media/virtual-machines-sql-server-connection-steps/22Restart2.png)
-7. Dans la boîte de dialogue SQL Server Management Studio, cliquez sur **Oui** pour confirmer que vous voulez redémarrer SQL Server.
+7. Dans la boîte de dialogue hello SQL Server Management Studio, cliquez sur **Oui** tooagree que vous souhaitez toorestart SQL Server.
 
 ### <a name="create-sql-server-authentication-logins"></a>Création de connexions d'authentification SQL Server
-Pour vous connecter au moteur de base de données à partir d'un autre ordinateur, vous devez créer au moins une connexion d'authentification SQL Server.
+tooconnect toohello du moteur de base de données à partir d’un autre ordinateur, vous devez créer au moins une connexion d’authentification SQL Server.
 
-1. Dans SQL Server Management Studio Object Explorer, développez le dossier de l'instance de serveur dans laquelle vous voulez créer la connexion.
-2. Cliquez avec le bouton droit sur le dossier **Sécurité**, pointez sur **Nouveau**, puis sélectionnez **Connexion...**.
+1. Dans l’Explorateur d’objets SQL Server Management Studio, développez le dossier hello d’instance de serveur hello dans lequel vous souhaitez toocreate hello nouveau compte de connexion.
+2. Avec le bouton hello **sécurité** dossier, pointez trop**nouveau**, puis sélectionnez **connexion...** .
    
     ![Nouvelle connexion](./media/virtual-machines-sql-server-connection-steps/23New-Login.png)
-3. Dans la boîte de dialogue **Nouvelle connexion**, sur la page **Général**, entrez le nom du nouvel utilisateur dans la zone **Nom de connexion**.
+3. Bonjour **nouvelle connexion** la boîte de dialogue hello **général** , entrez le nom hello du nouvel utilisateur de hello Bonjour **nom de connexion** boîte.
 4. Sélectionnez **Authentification SQL Server**.
-5. Dans la zone **Mot de passe** , entrez un mot de passe pour le nouvel utilisateur. Entrez de nouveau ce mot de passe dans la zone **Confirmer le mot de passe** .
-6. Sélectionnez les options de mise en œuvre de mot de passe nécessaires (**Appliquer la stratégie de mot de passe**, **Appliquer l’expiration du mot de passe**, et **L’utilisateur doit changer de mot de passe à la prochaine connexion**). Si vous utilisez cette connexion pour vous-même, il est inutile d’exiger un mot de passe à la prochaine connexion.
-7. Dans la liste **Base de données par défaut** , sélectionnez une base de données par défaut pour la connexion. **principale** . Si vous n'avez pas encore créé de base de données d'utilisateur, gardez la valeur par défaut **master**.
+5. Bonjour **mot de passe** , entrez un mot de passe pour le nouvel utilisateur de hello. Entrez de nouveau ce mot de passe dans hello **confirmer le mot de passe** boîte.
+6. Sélectionnez les options de mise en œuvre de mot de passe hello requis (**appliquer la stratégie de mot de passe**, **appliquer l’expiration du mot de passe**, et **utilisateur doit changer de mot de passe à la prochaine connexion**). Si vous utilisez cette connexion pour vous-même, il est inutile toorequire modification d’un mot de passe à la prochaine connexion de hello.
+7. À partir de hello **base de données par défaut** , sélectionnez une base de données par défaut pour la connexion de hello. **maître** est par défaut de hello pour cette option. Si vous n’avez pas encore créé une base de données utilisateur, laissez ce paramètre défini trop**master**.
    
     ![Propriétés de connexion](./media/virtual-machines-sql-server-connection-steps/24Test-Login.png)
-8. S’il s’agit de votre première connexion, vous pouvez désigner cette connexion en tant qu’administrateur SQL Server. Si tel est le cas, sur la page **Rôles du serveur**, activez la case à cocher **administrateur système**.
+8. Si c’est la première ouverture de session hello que vous créez, vous souhaiterez toodesignate cette connexion en tant qu’un administrateur SQL Server. Si tel est le cas, hello **rôles serveur** page, vérifiez **sysadmin**.
    
    > [!NOTE]
-   > les membres du rôle serveur administrateur système fixe contrôlent complètement le moteur de base de données. Vous devez limiter soigneusement l'appartenance à ce rôle.
+   > Les membres du rôle serveur fixe sysadmin de hello disposent du contrôle total hello du moteur de base de données. Vous devez limiter soigneusement l'appartenance à ce rôle.
    > 
    > 
    

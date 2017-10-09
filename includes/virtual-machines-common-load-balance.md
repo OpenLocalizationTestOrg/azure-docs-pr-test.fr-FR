@@ -2,65 +2,65 @@
 
 Deux niveaux d’équilibrage de charge sont disponibles pour les services d’infrastructure Azure :
 
-* **Niveau DNS** : équilibrage de charge du trafic sur différents services cloud situés dans divers centres de données, sur différents sites Web Azure figurant dans différents centres de données, ou sur des points de terminaison externes. Ceci s’effectue à l’aide d’Azure Traffic Manager et de la méthode d’équilibrage de charge de tourniquet (round robin).
-* **Niveau réseau** : équilibrage de charge du trafic Internet entrant sur différentes machines virtuelles d’un service cloud, ou équilibrage de charge du trafic entre des machines virtuelles dans un service cloud ou un réseau virtuel. Il s’effectue à l’aide de l’équilibrage de charge Azure.
+* **Au niveau du DNS**: l’équilibrage de charge pour les services de cloud de trafic toodifferent situé dans les données de différents centres de, toodifferent des sites Web Azure situés dans différents centres de données, ou tooexternal points de terminaison. Cette opération est effectuée avec Azure Traffic Manager et méthode d’équilibrage de charge hello tourniquet (Round Robin).
+* **Au niveau du réseau**: charger l’équilibrage des entrant Internet trafic toodifferent virtuels d’un service cloud, ou l’équilibrage du trafic entre les machines virtuelles dans un service cloud ou d’un réseau virtuel. Cela est effectué avec équilibrage de charge Azure hello.
 
 ## <a name="traffic-manager-load-balancing-for-cloud-services-and-websites"></a>Équilibrage de charge de Traffic Manager pour des services cloud et des sites Web
-Traffic Manager vous permet de contrôler la répartition du trafic utilisateur sur des points de terminaison, comme des services cloud, des sites web, des sites externes et d’autres profils Traffic Manager. Traffic Manager utilise un moteur de stratégie intelligent pour les requêtes DNS des noms de domaine de vos ressources Internet. Vos services cloud ou vos sites Web peuvent être exécutés dans différents centres de données à travers le monde.
+Traffic Manager vous permet de répartition hello toocontrol tooendpoints de trafic utilisateur, ce qui peut inclure des services de cloud computing, sites Web, des sites externes et des autres profils Traffic Manager. Traffic Manager fonctionne en appliquant une requêtes (nom DNS) tooDomain du moteur de stratégies intelligent pour les noms de domaine hello de vos ressources Internet. Vos services de cloud computing ou les sites Web peuvent être exécutés dans différents centres de données dans Bonjour.
 
-Vous devez utiliser REST ou Windows PowerShell pour configurer les points de terminaison externes ou les profils Traffic Manager en tant que points de terminaison.
+Vous devez utiliser REST ou Windows PowerShell tooconfigure points de terminaison externes ou des profils Traffic Manager comme points de terminaison.
 
-Traffic Manager utilise trois méthodes d’équilibrage de charge pour répartir le trafic :
+Traffic Manager utilise trois toodistribute le trafic des méthodes de l’équilibrage de charge :
 
-* **Basculement** : utilisez cette méthode quand vous souhaitez utiliser un point de terminaison principal pour l’ensemble du trafic, mais également fournir des sauvegardes au cas où celui-ci deviendrait indisponible.
-* **Performances** : utilisez cette méthode lorsque vos points de terminaison se trouvent à des emplacements géographiques différents et que vous souhaitez que les clients à l’origine des demandes utilisent le point de terminaison « le plus proche » (latence la plus faible).
-* **Tourniquet (round robin)** : utilisez cette méthode si vous souhaitez répartir la charge sur un ensemble de services cloud situés dans le même centre de données ou sur des services cloud ou des sites Web figurant dans différents centres de données.
+* **Basculement**: utilisez cette méthode lorsque toouse un point de terminaison principal pour tout le trafic, mais vous fournissez des sauvegardes au cas où hello principal devient indisponible.
+* **Performances**: utilisez cette méthode lorsque vous avez des points de terminaison dans différents emplacements géographiques et que vous souhaitez demander les clients toouse hello le plus proche » » point de terminaison en termes de latence la plus faible de hello.
+* **Tourniquet (Round Robin) :** utiliser cette méthode lorsque vous souhaitez que la charge toodistribute sur un ensemble de cloud services Bonjour même centre de données ou sur les services de cloud computing ou sites Web situés dans différents centres de données.
 
 Pour plus d’informations, consultez la page [À propos des méthodes d’équilibrage de charge dans Traffic Manager](../articles/traffic-manager/traffic-manager-routing-methods.md).
 
-Le diagramme suivant montre un exemple d’équilibrage de charge de tourniquet (round robin) utilisé pour répartir le trafic entre différents services cloud.
+Hello suivant schéma montre un exemple de méthode d’équilibrage de charge tourniquet (Round Robin) pour distribuer le trafic entre les différents services cloud de hello.
 
 ![loadbalancing](./media/virtual-machines-common-load-balance/TMSummary.png)
 
-Cela se déroule généralement de la manière suivante :
+processus de base Hello est suivant de hello :
 
-1. Un client Internet interroge un nom de domaine correspondant à un service Web.
-2. DNS envoie le nom de la demande de requête à Traffic Manager.
-3. Traffic Manager choisit le service cloud suivant dans la liste du tourniquet (round robin) et renvoie le nom DNS. Le serveur DNS du client Internet résout le nom en adresse IP et l'envoie au client Internet.
-4. Le client Internet se connecte au service cloud choisi par Traffic Manager.
+1. Un client Internet interroge un service web tooa correspondant de domaine nom.
+2. DNS transfère hello nom requête demande tooTraffic Manager.
+3. Traffic Manager choisit hello suivant cloud service hello liste de tourniquet (Round Robin) et renvoie un hello nom DNS. serveur DNS du client Hello Internet résout l’adresse IP tooan hello et il envoie au client Internet toohello.
+4. le client Internet Hello établit une connexion avec le service cloud hello choisi par le Gestionnaire de trafic.
 
 Pour plus d'informations, consultez la rubrique [Traffic Manager](../articles/traffic-manager/traffic-manager-overview.md).
 
 ## <a name="azure-load-balancing-for-virtual-machines"></a>Équilibrage de charge Azure pour des machines virtuelles
-Les machines virtuelles d'un même service cloud ou réseau virtuel peuvent communiquer les unes avec les autres en utilisant directement leurs adresses IP privées. Les ordinateurs et services n'utilisant pas le service cloud ou le réseau virtuel ne peuvent communiquer avec les machines virtuelles d'un service cloud ou d'un réseau virtuel qu'à l'aide d'un point de terminaison configuré. Un point de terminaison est un mappage d'une adresse IP et d'un port publics à cette adresse IP privée, et d'un port d'une machine virtuelle ou d'un rôle Web au sein d'un service cloud Azure.
+Machines virtuelles dans hello même service cloud ou réseau virtuel permettre communiquer entre eux directement à l’aide de leurs adresses IP privées. Ordinateurs et les services en dehors de hello service de cloud computing ou réseau virtuel peut communiquer uniquement avec les machines virtuelles dans un service cloud ou d’un réseau virtuel avec un point de terminaison configuré. Un point de terminaison est un mappage d’une adresse IP publique et une adresse IP privée de port toothat et le port d’un ordinateur virtuel ou un rôle web au sein d’un service cloud Azure.
 
-L'équilibrage de charge Azure répartit aléatoirement un type de trafic entrant spécifique sur plusieurs machines virtuelles ou services via une configuration connue sous le nom de jeu d'équilibrage de charge. Par exemple, vous pouvez répartir la charge du trafic des requêtes Web sur plusieurs serveurs ou rôles Web.
+Hello équilibrage de charge Azure distribue aléatoirement un type spécifique de trafic entrant entre plusieurs machines virtuelles ou services dans une configuration appelée un jeu d’équilibrage de charge. Par exemple, vous pouvez répartir la charge hello du trafic de demande web sur plusieurs serveurs web ou les rôles web.
 
-Le diagramme suivant montre un point de terminaison à charge équilibrée pour le trafic web (non chiffré) standard partagé entre trois machines virtuelles pour le port TCP public et privé 80. Celles-ci sont incluses dans un jeu d’équilibrage de la charge.
+Hello diagramme suivant illustre un point de terminaison avec équilibrage de charge pour le trafic web (non chiffré) standard qui est partagé entre trois machines virtuelles pour hello public et privé le port TCP 80. Celles-ci sont incluses dans un jeu d’équilibrage de la charge.
 
 ![loadbalancing](./media/virtual-machines-common-load-balance/LoadBalancing.png)
 
-Pour plus d’informations, consultez la page [Équilibrage de charge Azure](../articles/load-balancer/load-balancer-overview.md). Pour découvrir comment créer un jeu d’équilibrage de charge, consultez la page [Configurer un jeu d’équilibrage de charge](../articles/load-balancer/load-balancer-get-started-internet-arm-ps.md).
+Pour plus d’informations, consultez la page [Équilibrage de charge Azure](../articles/load-balancer/load-balancer-overview.md). Les étapes de hello toocreate un jeu d’équilibrage de charge, consultez [configurer un jeu d’équilibrage de charge](../articles/load-balancer/load-balancer-get-started-internet-arm-ps.md).
 
-Azure peut également équilibrer la charge au sein d’un service cloud ou réseau virtuel. On parle alors d'équilibrage de charge interne, que l'on peut utiliser comme suit :
+Azure peut également équilibrer la charge au sein d’un service cloud ou réseau virtuel. Cela est connu comme l’équilibrage de charge interne et peut être utilisé dans hello suivant façons :
 
-* Pour équilibrer la charge entre des serveurs aux différents niveaux d'une application multiniveau (par exemple, entre les niveaux Web et base de données).
-* Pour équilibrer la charge d’applications métier hébergées dans Azure, sans nécessiter du matériel ou du logiciel d’équilibreur de charge supplémentaire.
-* Pour inclure des serveurs locaux dans l’ensemble d’ordinateurs dont la charge du trafic est équilibrée.
+* Solde tooload entre les serveurs dans les différents niveaux d’une application à plusieurs niveaux (par exemple, entre les couches web et de la base de données).
+* tooload solde line-of-business (LOB) applications hébergées dans Azure sans équilibreur de charge supplémentaires ou de logiciels.
+* tooinclude serveurs locaux dans l’ensemble de hello d’ordinateurs dont le trafic est à charge équilibrée.
 
-Tout comme l'équilibrage de charge Azure, l'équilibrage de charge interne est facilité par la configuration d'un jeu d'équilibrage de charge interne.
+TooAzure équilibrage de charge similaire, équilibrage de charge interne est facilitée par la configuration d’un jeu d’équilibrage de la charge interne.
 
-Le diagramme suivant montre un exemple de point de terminaison interne à charge équilibrée pour une application métier qui est partagée entre trois machines virtuelles au sein d’un réseau virtuel établi entre différents locaux.
+Hello suivant schéma montre un exemple du point de terminaison avec équilibrage de charge interne pour une application métier (LOB) qui est partagée entre trois machines virtuelles dans un réseau virtuel intersite.
 
 ![loadbalancing](./media/virtual-machines-common-load-balance/LOBServers.png)
 
 ## <a name="load-balancer-considerations"></a>Considérations relatives à l’équilibreur de charge
-Un équilibreur de charge est configuré par défaut pour mettre fin à une session inactive pendant 4 minutes. Si l’application derrière un équilibreur de charge conserve une connexion inactive pendant plus de 4 minutes sans une configuration de persistance de connexion, la connexion est supprimée. Vous pouvez modifier le comportement de l’équilibreur de charge Azure pour autoriser un [paramètre de délai d’attente plus long](../articles/load-balancer/load-balancer-tcp-idle-timeout.md).
+Un équilibreur de charge est configuré par défaut tootimeout une session en 4 minutes d’inactivité. Si votre application derrière un équilibreur de charge quitte une connexion inactive pendant plus de 4 minutes et qu’il n’est pas une configuration Keep-Alive, hello est abandonnée. Vous pouvez modifier tooallow de comportement de programme d’équilibrage de charge hello un [paramètre de délai d’attente plus de temps pour l’équilibrage de charge Azure](../articles/load-balancer/load-balancer-tcp-idle-timeout.md).
 
-Un autre élément à prendre en compte est le type de mode de distribution pris en charge par l’équilibreur de charge Azure. Vous pouvez configurer l’affinité d’IP source (adresse IP source, adresse IP de destination) ou le protocole IP source (adresse IP source, adresse IP de destination et protocole). Pour plus d’informations, consultez l’article [Azure Load Balancer distribution mode (source IP affinity)](../articles/load-balancer/load-balancer-distribution-mode.md) (Mode de distribution de l’équilibreur de charge Azure [affinité d’IP source]).
+Autre considération est de type hello du mode de distribution pris en charge par l’équilibrage de charge Azure. Vous pouvez configurer l’affinité d’IP source (adresse IP source, adresse IP de destination) ou le protocole IP source (adresse IP source, adresse IP de destination et protocole). Pour plus d’informations, consultez l’article [Azure Load Balancer distribution mode (source IP affinity)](../articles/load-balancer/load-balancer-distribution-mode.md) (Mode de distribution de l’équilibreur de charge Azure [affinité d’IP source]).
 
 ## <a name="next-steps"></a>Étapes suivantes
-Pour découvrir comment créer un jeu d’équilibrage de charge, consultez la page [Configurer un jeu d’équilibrage de charge interne](../articles/load-balancer/load-balancer-get-started-ilb-arm-ps.md).
+Les étapes de hello toocreate un jeu d’équilibrage de charge, consultez [configurer un jeu d’équilibrage de la charge interne](../articles/load-balancer/load-balancer-get-started-ilb-arm-ps.md).
 
 Pour plus d’informations sur l’équilibrage de charge, voir l’article [Équilibrage de charge interne](../articles/load-balancer/load-balancer-internal-overview.md).
 

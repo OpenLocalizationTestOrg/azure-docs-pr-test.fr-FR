@@ -1,5 +1,5 @@
 ---
-title: "Échantillonner des données dans SQL Server sur Azure | Microsoft Docs"
+title: "aaaSample données dans SQL Server sur Azure | Documents Microsoft"
 description: "Échantillonner des données dans SQL Server sur Azure"
 services: machine-learning
 documentationcenter: 
@@ -14,35 +14,35 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: fashah;garye;bradsev
-ms.openlocfilehash: 1bdcc7175dac325de1144d805e977264524b3fbc
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: dc7f9529c771f6deb633775557e64a04b774f5b1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="heading"></a>Échantillonner des données dans SQL Server sur Azure
-Ce document montre comment échantillonner des données stockées dans SQL Server sur Azure à l’aide de SQL ou du langage de programmation Python. Il montre également comment déplacer les données échantillonnées vers Azure Machine Learning en les enregistrant dans un fichier, en les chargeant vers un objet blob Azure, puis en les lisant dans Azure Machine Learning Studio.
+Ce document montre comment les données de toosample stockées dans SQL Server sur Azure à l’aide de SQL ou hello langage de programmation Python. Il montre également comment toomove les données échantillonnées dans Azure Machine Learning en l’enregistrant le fichier tooa, téléchargeant tooan objets blob Azure, puis de le lire dans Azure Machine Learning Studio.
 
-L’échantillonnage Python utilise la bibliothèque ODBC [pyodbc](https://code.google.com/p/pyodbc/) pour se connecter à SQL Server sur Azure et la bibliothèque [Pandas](http://pandas.pydata.org/) pour effectuer l’échantillonnage proprement dit.
+échantillonnage de Python Hello utilise hello [pyodbc](https://code.google.com/p/pyodbc/) ODBC bibliothèque tooconnect tooSQL Server sur Azure et hello [Pandas](http://pandas.pydata.org/) échantillonnage de bibliothèque toodo hello.
 
 > [!NOTE]
-> L’exemple de code SQL figurant dans ce document repose sur l’hypothèse que les données sont stockées dans SQL Server sur Azure. Si ce n’est pas le cas, reportez-vous à la rubrique [Déplacer des données vers SQL Server sur Azure](machine-learning-data-science-move-sql-server-virtual-machine.md) pour savoir comment déplacer vos données vers SQL Server sur Azure.
+> Hello exemple de code SQL dans ce document part du principe que hello données sont dans un serveur SQL Server sur Azure. Si elle n’est pas le cas, veuillez vous référer trop[déplacer les données tooSQL Server sur Azure](machine-learning-data-science-move-sql-server-virtual-machine.md) rubrique pour obtenir des instructions sur la façon de toomove votre tooSQL données Server sur Azure.
 > 
 > 
 
-Le **menu** ci-après pointe vers des rubriques qui expliquent comment échantillonner des données dans différents environnements de stockage. 
+suivant de Hello **menu** lie tootopics qui décrivent comment toosample des données à partir de différents environnements de stockage. 
 
 [!INCLUDE [cap-sample-data-selector](../../includes/cap-sample-data-selector.md)]
 
 **Pourquoi échantillonner vos données ?**
-Si vous prévoyez d’analyser un jeu de données volumineux, il est généralement recommandé de sous-échantillonner les données afin de réduire leur taille sous une forme plus facilement exploitable, mais toujours représentative. Cette opération facilite la compréhension et l’exploration des données, ainsi que la conception de fonctionnalités. Son rôle dans le [processus TDSP (Team Data Science Process)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) consiste à permettre le prototypage rapide des fonctions de traitement des données et des modèles d’apprentissage automatique.
+Si dataset hello vous envisagez de tooanalyze est grand, il est généralement un tooreduce de données recommandé toodown-exemple hello il tooa plus petite mais représentatif et plus facile à gérer la taille. Cette opération facilite la compréhension et l’exploration des données, ainsi que la conception de fonctionnalités. Son rôle dans hello [processus de science des données équipe (TDSP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/) est tooenable le prototypage rapide des fonctions de traitement des données de hello et modèles d’apprentissage automatique.
 
-Cette tâche d’échantillonnage est une étape du [processus TDSP (Team Data Science Process)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/).
+Cette tâche d’échantillonnage est une étape Bonjour [processus de science des données équipe (TDSP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/).
 
 ## <a name="SQL"></a>Utilisation de SQL
-Cette section décrit différentes méthodes permettant d’effectuer un échantillonnage aléatoire simple des données de la base de données via SQL. Choisissez une méthode en fonction de la taille de vos données et de leur distribution.
+Cette section décrit plusieurs méthodes à l’aide de SQL tooperform un échantillonnage aléatoire simple par rapport aux données de hello dans la base de données hello. Choisissez une méthode en fonction de la taille de vos données et de leur distribution.
 
-Les deux options ci-après indiquent comment utiliser l’élément newid dans SQL Server pour procéder à l’échantillonnage. La méthode que vous choisissez dépend du degré aléatoire qui doit caractériser l’échantillon (dans l’exemple de code ci-après, l’élément pk_id est supposé correspondre à une clé primaire générée automatiquement).
+deux éléments Hello ci-dessous montrent comment newid toouse dans SQL Server tooperform hello d’échantillonnage. Hello méthode que vous choisissez dépend aléatoire hello exemple toobe (pk_id hello exemple de code ci-dessous est supposé toobe une clé primaire générée automatiquement).
 
 1. Échantillon aléatoire moins strict
    
@@ -53,7 +53,7 @@ Les deux options ci-après indiquent comment utiliser l’élément newid dans S
         SELECT * FROM <table_name>
         WHERE 0.1 >= CAST(CHECKSUM(NEWID(), <primary_key>) & 0x7fffffff AS float)/ CAST (0x7fffffff AS int)
 
-Vous pouvez également utiliser l’élément TABLESAMPLE pour l’échantillonnage, comme illustré ci-dessous. L’utilisation de cette méthode peut constituer une meilleure approche si vos données sont volumineuses (en supposant que les données figurant sur des pages différentes ne sont pas corrélées) et que vous souhaitez que la requête s’exécute dans un délai acceptable.
+Vous pouvez également utiliser l’élément TABLESAMPLE pour l’échantillonnage, comme illustré ci-dessous. Cela peut être une meilleure approche si vos données sont volumineuses (en supposant que les données sur des pages différentes ne sont pas mis en corrélation) et pour hello requête toocomplete dans un délai raisonnable.
 
     SELECT *
     FROM <table_name> 
@@ -64,34 +64,34 @@ Vous pouvez également utiliser l’élément TABLESAMPLE pour l’échantillonn
 > 
 > 
 
-### <a name="sql-aml"></a>Connexion à Azure Machine Learning
-Vous pouvez utiliser directement les exemples de requêtes ci-dessus dans le module [Importer les données][import-data] d’Azure Machine Learning afin de sous-échantillonner les données à la volée et de les importer dans une expérience Azure Machine Learning. La capture d’écran ci-après illustre l’utilisation du module Lecteur pour lire les données échantillonnées :
+### <a name="sql-aml"></a>Connexion tooAzure Machine Learning
+Vous pouvez utiliser directement les exemples de requêtes hello ci-dessus Bonjour Azure Machine Learning [importer des données] [ import-data] données toodown-exemple hello module hello rendiez et importez-les dans une expérience Azure Machine Learning. Vous trouverez ci-dessous une capture d’écran de l’utilisation de données de hello échantillonnée tooread hello lecture du module :
 
 ![lecteur sql][1]
 
-## <a name="python"></a>Utilisation du langage de programmation Python
-Cette section décrit l’utilisation de la [bibliothèque pyodbc](https://code.google.com/p/pyodbc/) pour établir une connexion ODBC à une base de données SQL Server dans Python. La chaîne de connexion de base de données se présente comme suit :(remplacez les variables servername, dbname, username et password par les valeurs de votre configuration) :
+## <a name="python"></a>À l’aide du langage de programmation Python hello
+Cette section illustre l’utilisation de hello [pyodbc bibliothèque](https://code.google.com/p/pyodbc/) tooestablish une application ODBC se connecter tooa la base de données SQL server dans Python. chaîne de connexion de base de données Hello est comme suit : (replace servername, dbname, nom d’utilisateur et mot de passe à la configuration) :
 
-    #Set up the SQL Azure connection
+    #Set up hello SQL Azure connection
     import pyodbc    
     conn = pyodbc.connect('DRIVER={SQL Server};SERVER=<servername>;DATABASE=<dbname>;UID=<username>;PWD=<password>')
 
-La bibliothèque [Pandas](http://pandas.pydata.org/) de Python offre un ensemble élaboré de structures de données et d’outils d’analyse des données pour la manipulation des données dans le cadre d’une programmation en Python. Le code ci-après lit un échantillon de 0,1 % des données d’une table de la base de données Azure SQL dans une trame de données pandas :
+Hello [Pandas](http://pandas.pydata.org/) dans Python fournit un ensemble complet d’outils d’analyse de données et des structures de données pour la manipulation de données pour la programmation de Python. code Hello ci-dessous lit un exemple de 0,1 % des données de hello à partir d’une table de base de données SQL Azure en données Pandas :
 
     import pandas as pd
 
-    # Query database and load the returned results in pandas data frame
+    # Query database and load hello returned results in pandas data frame
     data_frame = pd.read_sql('''select column1, cloumn2... from <table_name> tablesample (0.1 percent)''', conn)
 
-Vous pouvez à présent travailler sur les données échantillonnées dans la trame de données pandas. 
+Vous pouvez désormais travailler avec des données dans une trame de données hello Pandas hello échantillonnée. 
 
-### <a name="python-aml"></a>Connexion à Azure Machine Learning
-Vous pouvez utiliser l’exemple de code ci-après pour enregistrer les données sous-échantillonnées dans un fichier et les charger dans un objet blob Azure. Les données figurant dans l’objet blob peuvent être lues directement dans une expérimentation Azure Machine Learning à l’aide du module [Importer les données][import-data]. La procédure comporte trois étapes : 
+### <a name="python-aml"></a>Connexion tooAzure Machine Learning
+Vous pouvez utiliser hello toosave le code exemple hello échantillonnées en bas des données tooa fichier suivant et téléchargez-le tooan objets blob Azure. Hello données dans l’objet blob de hello peuvent être directement lues dans une expérience d’apprentissage de Machine Azure à l’aide de hello [importer des données] [ import-data] module. étapes de Hello sont les suivantes : 
 
-1. Écrire la trame de données pandas dans un fichier local
+1. Écrire le fichier local tooa du frame données hello pandas
    
         dataframe.to_csv(os.path.join(os.getcwd(),LOCALFILENAME), sep='\t', encoding='utf-8', index=False)
-2. Charger le fichier local dans un objet blob Azure
+2. Télécharger l’objet blob de fichier local tooAzure
    
         from azure.storage import BlobService
         import tables
@@ -112,12 +112,12 @@ Vous pouvez utiliser l’exemple de code ci-après pour enregistrer les données
    
         except:            
             print ("Something went wrong with uploading blob:"+BLOBNAME)
-3. Lisez les données de l’objet blob Azure à l’aide du module [Importer les données][import-data] d’Azure Machine Learning, comme l’illustre la capture d’écran ci-dessous :
+3. Lire les données d’objets blob Azure à l’aide d’Azure Machine Learning [importer des données] [ import-data] module, comme indiqué dans la capture d’écran hello ci-dessous :
 
 ![objet blob de lecteur][2]
 
-## <a name="the-team-data-science-process-in-action-example"></a>Exemple de processus TDSP (Team Data Science Process) en action
-Pour obtenir un exemple de procédure pas à pas complet du processus TDSP (Team Data Science Process) à l’aide d’un jeu de données public, consultez [Processus TDSP (Team Data Science Process) en action : utilisation de SQL Server](machine-learning-data-science-process-sql-walkthrough.md).
+## <a name="hello-team-data-science-process-in-action-example"></a>Hello processus de science des données équipe dans l’exemple d’Action
+Pour obtenir un exemple de procédure pas à pas de bout en bout de hello processus de science des données équipe un un jeu de données public, à l’aide voir [équipe processus de science des données en Action : à l’aide de SQL Server](machine-learning-data-science-process-sql-walkthrough.md).
 
 [1]: ./media/machine-learning-data-science-sample-sql-server-virtual-machine/reader_database.png
 [2]: ./media/machine-learning-data-science-sample-sql-server-virtual-machine/reader_blob.png

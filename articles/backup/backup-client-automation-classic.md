@@ -1,5 +1,5 @@
 ---
-title: "Utiliser PowerShell pour gérer les sauvegardes Windows Server dans Azure | Microsoft Docs"
+title: sauvegardes de Windows Server aaaUse PowerShell toomanage dans Azure | Documents Microsoft
 description: "Déployez et gérez des sauvegardes Windows Server à l’aide de PowerShell."
 services: backup
 documentationcenter: 
@@ -14,83 +14,83 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/02/2017
 ms.author: saurse;markgal;nkolli;trinadhk
-ms.openlocfilehash: a8e20356ae383ee4fa2158ea544d5d0905028124
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 72292e510b0f059102440bd49a195be4ef700a6a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-and-manage-backup-to-azure-for-windows-serverwindows-client-using-powershell"></a>Déployer et gérer une sauvegarde vers Azure pour un serveur/client Windows à l’aide de PowerShell
+# <a name="deploy-and-manage-backup-tooazure-for-windows-serverwindows-client-using-powershell"></a>Déployer et gérer la sauvegarde tooAzure pour le Client Windows Server et Windows à l’aide de PowerShell
 > [!div class="op_single_selector"]
 > * [ARM](backup-client-automation.md)
 > * [Classique](backup-client-automation-classic.md)
 >
 >
 
-Cet article explique comment utiliser PowerShell pour sauvegarder des données Windows Server ou de station de travail Windows dans un coffre de sauvegarde. Microsoft recommande d’utiliser des coffres Recovery Services pour tous les nouveaux déploiements. Si vous êtes un nouvel utilisateur de la Sauvegarde Azure et que vous n’avez pas créé de coffre de sauvegarde dans votre abonnement, appuyez-vous sur l’article [Déployer et gérer une sauvegarde vers Azure pour un serveur/client Windows à l’aide de PowerShell](backup-client-automation.md) pour stocker vos données dans un coffre Recovery Services. 
+Cet article explique comment tooback de PowerShell toouse Windows Server ou Windows workstation données tooa coffre de sauvegarde. Microsoft recommande d’utiliser des coffres Recovery Services pour tous les nouveaux déploiements. Si vous êtes un nouvel utilisateur Azure Backup et que vous n’avez pas créé un coffre de sauvegarde dans votre abonnement, utilisez l’article hello, [déployer et gérer des tooAzure de données de Data Protection Manager à l’aide de PowerShell](backup-client-automation.md) afin de vous stockez vos données dans un coffre Recovery Services. 
 
 > [!IMPORTANT]
-> Vous pouvez désormais mettre à niveau vos coffres de sauvegarde vers des coffres Recovery Services. Pour en savoir plus, consultez l’article [Mettre à niveau un coffre de sauvegarde vers un coffre Recovery Services](backup-azure-upgrade-backup-to-recovery-services.md). Microsoft vous recommande de mettre à niveau vos coffres de sauvegarde vers des coffres Recovery Services.<br/> À compter du 15 octobre 2017, vous ne pourrez plus vous servir de PowerShell pour créer des coffres de sauvegarde. **D’ici au 1er novembre 2017** :
->- tous les coffres de sauvegarde restants seront automatiquement mis à niveau vers des coffres Recovery Services.
->- Vous ne pourrez plus accéder à vos données de sauvegarde depuis le portail Classic. Au lieu de cela, vous devrez utiliser le portail Azure pour accéder à ces données au sein de coffres Recovery Services.
+> Vous pouvez maintenant mettre à niveau vos archivages de sauvegarde coffres tooRecovery Services. Pour plus d’informations, voir l’article hello [mise à niveau d’un tooa de coffre de sauvegarde de coffre Recovery Services](backup-azure-upgrade-backup-to-recovery-services.md). Microsoft vous encourage tooupgrade coffres des Services tooRecovery les coffres de votre sauvegarde.<br/> Après le 15 octobre 2017, vous ne pouvez pas utiliser les coffres de sauvegarde toocreate PowerShell. **D’ici au 1er novembre 2017** :
+>- Tous les coffres de sauvegarde restants seront les coffres des Services de tooRecovery automatiquement mis à niveau.
+>- Vous ne pourra plus être en mesure de tooaccess vos données de sauvegarde dans le portail classique de hello. Au lieu de cela, utilisez hello tooaccess portail Azure vos données de sauvegarde dans les coffres des Services de récupération.
 >
 
 ## <a name="install-azure-powershell"></a>Installation d'Azure PowerShell
 [!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-include.md)]
 
-Azure PowerShell 1.0 a été publié en octobre 2015. Cette version, qui fait suite à la release 0.9.8, a introduit d’importantes modifications, en particulier dans le modèle de dénomination des applets de commande. Les applets de commande version 1.0 suivent le modèle d’affectation de noms {verbe}-AzureRm{nom} ; les noms 0.9.8 n’incluent pas **Rm** (par exemple, New-AzureRmResourceGroup au lieu de New-AzureResourceGroup). Lorsque vous utilisez Azure PowerShell 0.9.8, vous devez d’abord activer le mode Resource Manager en exécutant la commande **Switch-AzureMode AzureResourceManager** . Cette commande n’est pas nécessaire dans les versions 1.0 ou ultérieures.
+Azure PowerShell 1.0 a été publié en octobre 2015. Cette version a réussi la mise en production hello 0.9.8 et résultant des modifications importantes, notamment dans le modèle de désignation hello d’applets de commande hello. Suivez d’applets de commande 1.0 hello modèle d’affectation de noms {verbe}-Azure Resource Manager {nom} ; alors que les noms de hello 0.9.8 n’incluent pas **Rm** (par exemple, New-AzureRmResourceGroup au lieu de New-AzureResourceGroup). Lorsque vous utilisez Azure PowerShell 0.9.8, vous devez d’abord activer le mode Gestionnaire de ressources hello en exécutant hello **Switch-AzureMode AzureResourceManager** commande. Cette commande n’est pas nécessaire dans les versions 1.0 ou ultérieures.
 
-Si vous souhaitez utiliser dans l’environnement 1.0 (ou ultérieur) des scripts écrits pour l’environnement 0.9.8, veillez à les tester dans un environnement de pré-production avant de les utiliser en production, ce afin d’éviter tout résultat inattendu.
+Si vous souhaitez toouse vos scripts écrits pour hello 0.9.8 environnement hello 1.0 ou ultérieure environnement, vous devez tester soigneusement les scripts hello dans un environnement de préproduction avant de les utiliser dans la production tooavoid impact inattendu.
 
-[Téléchargez la dernière version de PowerShell](https://github.com/Azure/azure-powershell/releases) (version minimale requise : 1.0.0).
+[Télécharger la dernière version de PowerShell hello](https://github.com/Azure/azure-powershell/releases) (version minimale requise est : 1.0.0)
 
 [!INCLUDE [arm-getting-setup-powershell](../../includes/arm-getting-setup-powershell.md)]
 
 ## <a name="create-a-backup-vault"></a>Créer un coffre de sauvegarde
 > [!WARNING]
-> Pour les clients utilisant Sauvegarde Azure pour la première fois, vous devez enregistrer le fournisseur Sauvegarde Azure à utiliser avec votre abonnement. Pour cela, exécutez la commande suivante : Register-AzureProvider -ProviderNamespace "Microsoft.Backup"
+> Pour les clients à l’aide de la sauvegarde Azure pour hello première fois, vous devez tooregister hello Azure Backup fournisseur toobe utilisé avec votre abonnement. Cela est possible en exécutant hello de commande suivante : Register-AzureProvider - ProviderNamespace « Microsoft.Backup »
 >
 >
 
-Vous pouvez créer un coffre de sauvegarde en utilisant l’applet de commande **New-AzureRMBackupVault** . Le coffre de sauvegarde constituant une ressource ARM, vous devez le placer dans un groupe de ressources. Dans une console Azure PowerShell avec élévation de privilèges, exécutez les commandes suivantes :
+Vous pouvez créer un coffre de sauvegarde à l’aide de hello **New-AzureRMBackupVault** applet de commande. coffre de sauvegarde Hello est une ressource ARM, par conséquent, vous devez tooplace dans un groupe de ressources. Dans une console Azure PowerShell avec élévation de privilèges, exécutez hello suivant de commandes :
 
 ```
 PS C:\> New-AzureResourceGroup –Name “test-rg” -Region “West US”
 PS C:\> $backupvault = New-AzureRMBackupVault –ResourceGroupName “test-rg” –Name “test-vault” –Region “West US” –Storage GeoRedundant
 ```
 
-Utilisez l’applet de commande **Get-AzureRMBackupVault** pour répertorier les coffres de sauvegarde d’un abonnement.
+Hello d’utilisation **Get-AzureRMBackupVault** les coffres de sauvegarde de hello toolist applet de commande dans un abonnement.
 
-## <a name="installing-the-azure-backup-agent"></a>Installation de l'agent Azure Backup
-Avant d’installer l'agent Azure Backup, vous devez avoir téléchargé le programme d’installation sur le serveur Windows. Vous pouvez obtenir la dernière version du programme d’installation à partir du [Centre de téléchargement Microsoft](http://aka.ms/azurebackup_agent) ou de la page Tableau de bord du coffre de sauvegarde. Enregistrez le programme d’installation dans un emplacement auquel vous pouvez accéder facilement, par exemple *C:\Téléchargements\*.
+## <a name="installing-hello-azure-backup-agent"></a>Installation de l’agent Azure Backup hello
+Avant d’installer l’agent de sauvegarde Azure hello, vous devez le programme d’installation de toohave hello téléchargés et présent sur hello Windows Server. Vous pouvez obtenir la version la plus récente du programme d’installation hello hello de hello [Microsoft Download Center](http://aka.ms/azurebackup_agent) ou à partir de la page du tableau de bord du coffre de sauvegarde hello. Enregistrer le programme d’installation de hello tooan les emplacement facilement accessible, tel que * C:\Downloads\*.
 
-Pour installer l’agent, exécutez la commande ci-après dans une console PowerShell avec élévation de privilèges :
+tooinstall hello exécution de l’agent, hello suivant de commande dans une console PowerShell avec élévation de privilèges :
 
 ```
 PS C:\> MARSAgentInstaller.exe /q
 ```
 
-Cette opération installe l’agent avec les options par défaut. L’installation s’effectue en arrière-plan et prend quelques minutes. Si vous ne spécifiez pas l’option */nu* , la fenêtre **Windows Update** s’ouvrira à la fin de l’installation pour rechercher des mises à jour. Une fois installé, l’agent apparaît dans la liste des programmes installés.
+Cette commande installe l’agent de hello avec toutes les options par défaut de hello. installation de Hello prend quelques minutes en arrière-plan de hello. Si vous ne spécifiez pas hello */nu* option puis hello **mise à jour Windows** fenêtre s’ouvre à fin hello de toocheck d’installation hello pour les mises à jour. Une fois installé, l’agent de hello s’affichent dans la liste hello des programmes installés.
 
-Pour afficher la liste des programmes installés, cliquez sur **Panneau de configuration** > **Programmes** > **Programmes et fonctionnalités**.
+liste de hello toosee des programmes installés, passez trop**le panneau de configuration** > **programmes** > **programmes et fonctionnalités**.
 
 ![Agent installé](./media/backup-client-automation/installed-agent-listing.png)
 
 ### <a name="installation-options"></a>Options d’installation
-Pour afficher toutes les options disponibles via la ligne de commande, utilisez la commande suivante :
+toosee tous hello options disponibles via hello de ligne de commande, utilisez les hello de commande suivante :
 
 ```
 PS C:\> MARSAgentInstaller.exe /?
 ```
 
-Les options disponibles incluent :
+les options disponibles Hello sont les suivantes :
 
 | Option | Détails | Default |
 | --- | --- | --- |
 | /q |Installation silencieuse |- |
-| /p:"emplacement" |Chemin d’accès du dossier d’installation de l’agent de Sauvegarde Azure. |C:\Program Files\Microsoft Azure Recovery Services Agent |
-| /s:"emplacement" |Chemin d’accès du dossier de cache de l’agent de Sauvegarde Azure. |C:\Program Files\Microsoft Azure Recovery Services Agent\Scratch |
-| /m |Abonnement à Microsoft Update |- |
+| /p:"emplacement" |Chemin d’accès toohello dossier d’installation de l’agent de sauvegarde Azure hello. |C:\Program Files\Microsoft Azure Recovery Services Agent |
+| /s:"emplacement" |Chemin d’accès toohello dossier de cache de l’agent de sauvegarde Azure hello. |C:\Program Files\Microsoft Azure Recovery Services Agent\Scratch |
+| /m |Acceptation de la mise à jour tooMicrosoft |- |
 | /nu |Ne pas vérifier les mises à jour une fois l’installation terminée |- |
 | /d |Désinstalle l’agent Microsoft Azure Recovery Services |- |
 | /ph |Adresse de l’hôte proxy |- |
@@ -98,13 +98,13 @@ Les options disponibles incluent :
 | /pu |Nom d’utilisateur de l’hôte proxy |- |
 | /pw |Mot de passe du proxy |- |
 
-## <a name="registering-with-the-azure-backup-service"></a>Inscription auprès du service Sauvegarde Azure
-Avant de pouvoir vous inscrire auprès du service Sauvegarde Azure, vous devez vous assurer que les [prérequis](backup-configure-vault.md) sont remplis. Vous devez respecter les consignes suivantes :
+## <a name="registering-with-hello-azure-backup-service"></a>L’inscription auprès de hello service Azure Backup
+Avant de pouvoir inscrire avec hello service Azure Backup, vous devez tooensure que hello [conditions préalables](backup-configure-vault.md) sont remplies. Vous devez respecter les consignes suivantes :
 
 * Avoir un abonnement Azure valide
 * Disposer d’un coffre de sauvegarde
 
-Pour télécharger les informations d’identification du coffre, exécutez l’applet de commande **Get-AzureRMBackupVaultCredentials** dans une console Azure PowerShell, puis stockez ces informations dans un emplacement pratique, tel que *C:\Downloads\*.
+informations d’identification d’archivage toodownload hello, exécutez hello **Get-AzureRMBackupVaultCredentials** applet de commande dans une console Azure PowerShell et le magasin dans un emplacement pratique comme * C:\Downloads\*.
 
 ```
 PS C:\> $credspath = "C:\"
@@ -113,7 +113,7 @@ PS C:\> $credsfilename
 f5303a0b-fae4-4cdb-b44d-0e4c032dde26_backuprg_backuprn_2015-08-11--06-22-35.VaultCredentials
 ```
 
-L’inscription de la machine auprès du coffre s’effectue l’aide de la cmdlet [Start-OBRegistration](https://technet.microsoft.com/library/hh770398%28v=wps.630%29.aspx) :
+L’enregistrement machine hello avec le coffre de hello est effectuée à l’aide de hello [Start-OBRegistration](https://technet.microsoft.com/library/hh770398%28v=wps.630%29.aspx) applet de commande :
 
 ```
 PS C:\> $cred = $credspath + $credsfilename
@@ -128,16 +128,16 @@ Machine registration succeeded.
 ```
 
 > [!IMPORTANT]
-> N’utilisez pas de chemins relatifs pour spécifier le fichier des informations d’identification du coffre. Vous devez fournir un chemin absolu dans l’applet de commande.
+> N’utilisez pas le fichier d’informations d’identification de chemins d’accès relatifs toospecify hello coffre. Vous devez fournir un chemin d’accès absolu comme une applet de commande toohello d’entrée.
 >
 >
 
 ## <a name="networking-settings"></a>Paramètres de mise en réseau
-Lorsque l’ordinateur Windows accède à Internet via un serveur proxy, les paramètres proxy peuvent également être fournis à l’agent. Dans cet exemple, il n’y a aucun serveur proxy. Nous effaçons donc explicitement toutes informations concernant un proxy.
+Lors de la connectivité hello Hello toohello qu'internet se fait via un serveur proxy d’ordinateur Windows, les paramètres de proxy hello peuvent également être fournies toohello agent. Dans cet exemple, il n’y a aucun serveur proxy. Nous effaçons donc explicitement toutes informations concernant un proxy.
 
-L’utilisation de la bande passante peut également être contrôlée avec les options ```work hour bandwidth``` et ```non-work hour bandwidth```, certains jours de la semaine.
+L’utilisation de la bande passante peut également être contrôlée avec options hello ```work hour bandwidth``` et ```non-work hour bandwidth``` pour un ensemble donné de jours de semaine de hello.
 
-La définition des détails sur le proxy et la bande passante s’effectue à l’aide de l’applet de commande [Set-OBMachineSetting](https://technet.microsoft.com/library/hh770409%28v=wps.630%29.aspx) :
+Définition des détails de la bande passante et de proxy hello est effectuée à l’aide de hello [Set-OBMachineSetting](https://technet.microsoft.com/library/hh770409%28v=wps.630%29.aspx) applet de commande :
 
 ```
 PS C:\> Set-OBMachineSetting -NoProxy
@@ -148,7 +148,7 @@ Server properties updated successfully.
 ```
 
 ## <a name="encryption-settings"></a>Paramètres de chiffrement
-Les données sauvegardées envoyées à Sauvegarde Azure sont chiffrées pour garantir leur confidentialité. Le mot de passe du chiffrement est le « mot de passe » permettant de déchiffrer les données lors de la restauration.
+tooAzure de données de sauvegarde envoyées Hello sauvegarde est la confidentialité de hello tooprotect chiffré des données de hello. phrase secrète de chiffrement Hello donnée hello « mot de passe » toodecrypt hello au moment de la restauration de hello.
 
 ```
 PS C:\> ConvertTo-SecureString -String "Complex!123_STRING" -AsPlainText -Force | Set-OBMachineSetting
@@ -156,30 +156,30 @@ Server properties updated successfully
 ```
 
 > [!IMPORTANT]
-> Conservez les informations de phrase secrète en lieu sûr après les avoir définies. Vous ne pourrez pas restaurer les données à partir d’Azure sans ce mot de passe.
+> Conserver les informations de mot de passe hello sûre et sécurisée une fois qu’elle est définie. Vous ne serez pas toorestore en mesure des données à partir d’Azure sans cette phrase secrète.
 >
 >
 
 ## <a name="back-up-files-and-folders"></a>Sauvegarde des fichiers et dossiers
-Toutes les sauvegardes de serveurs et clients Windows vers Azure Backup sont régies par une stratégie. Cette dernière comprend trois parties :
+Toutes les sauvegardes à partir de serveurs et clients Windows tooAzure sauvegarde sont régies par une stratégie. stratégie de Hello comprend trois parties :
 
-1. Une **planification de sauvegarde** qui spécifie quand les sauvegardes doivent être établies et synchronisées avec le service.
-2. Une **planification de rétention** qui spécifie la durée de rétention des points de récupération dans Azure.
+1. A **planification de sauvegarde** qui spécifie quand les sauvegardes doivent toobe prises et synchronisé avec le service de hello.
+2. A **planification de rétention** qui spécifie la durée pendant laquelle des points de récupération de hello tooretain dans Azure.
 3. Une **spécification d'inclusion/exclusion de fichier** qui dicte ce qui doit être sauvegardé.
 
-Dans ce document, comme nous automatisons la sauvegarde, nous supposons que rien n'a été configuré. Nous commençons par créer une stratégie de sauvegarde en utilisant l’applet de commande [New-OBPolicy](https://technet.microsoft.com/library/hh770416.aspx) .
+Dans ce document, comme nous automatisons la sauvegarde, nous supposons que rien n'a été configuré. Nous commençons par créer une stratégie de sauvegarde à l’aide de hello [New-OBPolicy](https://technet.microsoft.com/library/hh770416.aspx) applet de commande et son utilisation.
 
 ```
 PS C:\> $newpolicy = New-OBPolicy
 ```
 
-À ce stade, la stratégie est vide et les autres applets de commande sont nécessaires pour définir les éléments qui seront inclus ou exclus, le moment auquel les sauvegardes s'exécuteront et leur emplacement de stockage.
+À ce hello temps stratégie est vide et autres applets de commande sont nécessaire toodefine quels éléments seront inclus ou exclus, lorsque les sauvegardes sont exécutées et hello où les sauvegardes seront stockées.
 
-### <a name="configuring-the-backup-schedule"></a>Configuration de la planification de sauvegarde
-La première des 3 parties d'une stratégie est la planification de sauvegarde, qui est créée à l'aide de l’applet de commande [New-OBSchedule](https://technet.microsoft.com/library/hh770401) . La planification de sauvegarde définit le moment où les sauvegardes doivent être effectuées. Lors de la création d'une planification, vous devez spécifier 2 paramètres d'entrée :
+### <a name="configuring-hello-backup-schedule"></a>Configuration de planification de sauvegarde hello
+Hello tout d’abord de hello 3 parties d’une stratégie est hello planification de sauvegarde est créée à l’aide de hello [New-OBSchedule](https://technet.microsoft.com/library/hh770401) applet de commande. planification de sauvegarde Hello définit lorsque les sauvegardes doivent toobe prise. Lors de la création d’une planification, vous devez toospecify 2 des paramètres d’entrée :
 
-* **jours de la semaine** où la sauvegarde doit s'exécuter. Vous pouvez exécuter le travail de sauvegarde une seule journée ou tous les jours de la semaine, ou une combinaison des deux.
-* **heures** où la sauvegarde doit être exécutée. Vous pouvez définir jusqu'à 3 différentes heures pour le déclenchement de la sauvegarde.
+* **Jours de semaine de hello** cette sauvegarde hello doit s’exécuter. Vous pouvez exécuter la tâche de sauvegarde hello sur une seule journée, ou tous les jours de semaine de hello ou n’importe quelle combinaison entre les deux.
+* **Heures de la journée de hello** quand la sauvegarde de hello doit s’exécuter. Vous pouvez définir des too3 différents moments de la journée hello déclenchement de sauvegarde de hello.
 
 Par exemple, vous pouvez configurer une stratégie de sauvegarde qui s'exécute à 16 h 00 chaque samedi et chaque dimanche.
 
@@ -187,20 +187,20 @@ Par exemple, vous pouvez configurer une stratégie de sauvegarde qui s'exécute 
 PS C:\> $sched = New-OBSchedule -DaysofWeek Saturday, Sunday -TimesofDay 16:00
 ```
 
-La planification de sauvegarde doit être associée à une stratégie à l'aide de l’applet de commande [Set-OBSchedule](https://technet.microsoft.com/library/hh770407) .
+planification de sauvegarde Hello doit toobe associé à une stratégie, et cela peut être obtenue à l’aide de hello [Set-OBSchedule](https://technet.microsoft.com/library/hh770407) applet de commande.
 
 ```
 PS C:> Set-OBSchedule -Policy $newpolicy -Schedule $sched
 BackupSchedule : 4:00 PM Saturday, Sunday, Every 1 week(s) DsList : PolicyName : RetentionPolicy : State : New PolicyState : Valid
 ```
 ### <a name="configuring-a-retention-policy"></a>Configuration d'une stratégie de rétention
-La stratégie de rétention définit la durée de conservation des points de récupération créés à partir des travaux de sauvegarde. Lorsque vous créez une stratégie de rétention à l'aide de l’applet de commande [New-OBRetentionPolicy](https://technet.microsoft.com/library/hh770425) , vous pouvez spécifier le nombre de jours pendant lesquels les points de récupération de sauvegarde doivent être conservés avec Sauvegarde Azure. L'exemple suivant définit une stratégie de rétention de 7 jours.
+stratégie de rétention Hello définit la durée de récupération points créés à partir des travaux de sauvegarde sont conservés. Lorsque vous créez une nouvelle stratégie de rétention à l’aide de hello [New-OBRetentionPolicy](https://technet.microsoft.com/library/hh770425) applet de commande, vous pouvez spécifier plusieurs hello jours pendant lesquels les points de récupération d’une sauvegarde de hello doivent toobe avec Azure Backup. exemple Hello ci-dessous définit une stratégie de rétention de 7 jours.
 
 ```
 PS C:\> $retentionpolicy = New-OBRetentionPolicy -RetentionDays 7
 ```
 
-La stratégie de rétention doit être associée à la stratégie principale à l'aide de l'applet de commande [Set-OBRetentionPolicy](https://technet.microsoft.com/library/hh770405):
+Hello stratégie de rétention doit être associé à stratégie de principal de hello à l’aide d’applet de commande hello [Set-OBRetentionPolicy](https://technet.microsoft.com/library/hh770405):
 
 ```
 PS C:\> Set-OBRetentionPolicy -Policy $newpolicy -RetentionPolicy $retentionpolicy
@@ -224,16 +224,16 @@ RetentionPolicy : Retention Days : 7
 State           : New
 PolicyState     : Valid
 ```
-### <a name="including-and-excluding-files-to-be-backed-up"></a>Inclusion et exclusion des fichiers à sauvegarder
-Un objet ```OBFileSpec``` définit les fichiers à inclure et à exclure d'une sauvegarde. Il s'agit d'un ensemble de règles qui définissent l'étendue des fichiers et dossiers protégés sur un ordinateur. Vous pouvez avoir de nombreuses règles d'inclusion ou d’exclusion en fonction de vos besoins, et les associer à une stratégie. Lorsque vous créez un objet OBFileSpec, vous pouvez :
+### <a name="including-and-excluding-files-toobe-backed-up"></a>Inclusion et exclusion de toobe de fichiers sauvegardé
+Un ```OBFileSpec``` objet définit hello fichiers toobe inclus et exclu dans une sauvegarde. Il s’agit d’un ensemble de règles que les fichiers et dossiers sur un ordinateur protégés par étendue out hello. Vous pouvez avoir de nombreuses règles d'inclusion ou d’exclusion en fonction de vos besoins, et les associer à une stratégie. Lorsque vous créez un objet OBFileSpec, vous pouvez :
 
-* Spécifier les fichiers et dossiers à inclure
-* Spécifier les fichiers et dossiers à exclure
-* Indiquer la sauvegarde récursive des données dans un dossier (ou) indiquer si seuls les fichiers de niveau supérieur du dossier spécifié doivent être sauvegardés
+* Spécifiez hello toobe fichiers et dossiers inclus
+* Spécifiez hello toobe fichiers et dossiers exclu
+* Spécifiez la sauvegarde récursive de données dans un dossier (ou) si uniquement hello fichiers de niveau supérieur dans le dossier spécifié de hello doivent être sauvegardées jusqu'à.
 
-Dans le dernier cas, l’opération est effectuée à l’aide de l'indicateur -NonRecursive dans la commande New-OBFileSpec.
+Hello ce dernier est obtenue à l’aide d’indicateur de non récursives - hello dans la commande hello New-OBFileSpec.
 
-Dans l'exemple ci-dessous, nous sauvegardons les volumes C: et D: et excluons les fichiers binaires de système d'exploitation dans le dossier Windows et tous les dossiers temporaires. Pour cela, nous allons créer deux spécifications de fichiers à l'aide de l’applet de commande [New-OBFileSpec](https://technet.microsoft.com/library/hh770408) : une pour l’inclusion et une pour l’exclusion. Une fois que les spécifications de fichiers ont été créées, elles sont associées à la stratégie à l'aide de l’applet de commande [Add-OBFileSpec](https://technet.microsoft.com/library/hh770424) .
+Dans l’exemple hello ci-dessous, nous sauvegarder volume C: et D: et exclure les fichiers binaires du système d’exploitation hello dans le dossier de Windows hello et tous les dossiers temporaires. toodo afin que nous allons créer deux spécifications de fichier à l’aide de hello [New-OBFileSpec](https://technet.microsoft.com/library/hh770408) applet de commande - un pour inclusion et un pour l’exclusion. Une fois les spécifications de fichier hello ont été créées, ils sont associés avec stratégie hello hello [Add-OBFileSpec](https://technet.microsoft.com/library/hh770424) applet de commande.
 
 ```
 PS C:\> $inclusions = New-OBFileSpec -FileSpec @("C:\", "D:\")
@@ -324,19 +324,19 @@ State           : New
 PolicyState     : Valid
 ```
 
-### <a name="applying-the-policy"></a>Application de la stratégie
-L'objet de stratégie est à présent complet. Il est associé à une planification de sauvegarde, à une stratégie de rétention et à une liste d’inclusion/exclusion de fichiers. Cette stratégie peut maintenant être validée à des fins d’utilisation par Sauvegarde Azure. Avant d’appliquer la stratégie que vous venez de créer, vérifiez qu’aucune stratégie de sauvegarde existante n’est associée au serveur à l’aide de l’applet de commande [Remove-OBPolicy](https://technet.microsoft.com/library/hh770415). Lors de la suppression de la stratégie, vous êtes invité à confirmer l'opération. Pour ignorer la confirmation, utilisez l’indicateur ```-Confirm:$false``` avec l'applet de commande.
+### <a name="applying-hello-policy"></a>Appliquer la stratégie de hello
+Maintenant, objet de stratégie de hello est terminée et a une planification de sauvegarde associée, la stratégie de rétention et une liste d’inclusion/exclusion de fichiers. Cette stratégie peut maintenant être validée pour Azure Backup toouse. Avant d’appliquer hello nouvellement créé stratégie Assurez-vous qu’il n’y a aucune stratégie de sauvegarde existant associé avec le serveur de hello à l’aide de hello [Remove-OBPolicy](https://technet.microsoft.com/library/hh770415) applet de commande. Suppression de la stratégie de hello invitera à confirmer l’opération. confirmation de hello tooskip utiliser hello ```-Confirm:$false``` indicateur avec l’applet de commande hello.
 
 ```
 PS C:> Get-OBPolicy | Remove-OBPolicy
-Microsoft Azure Backup Are you sure you want to remove this backup policy? This will delete all the backed up data. [Y] Yes [A] Yes to All [N] No [L] No to All [S] Suspend [?] Help (default is "Y"):
+Microsoft Azure Backup Are you sure you want tooremove this backup policy? This will delete all hello backed up data. [Y] Yes [A] Yes tooAll [N] No [L] No tooAll [S] Suspend [?] Help (default is "Y"):
 ```
 
-La validation de l'objet de stratégie s'effectue à l'aide de l’applet de commande [Set-OBPolicy](https://technet.microsoft.com/library/hh770421) . Une confirmation vous est également demandée. Pour ignorer la confirmation, utilisez l’indicateur ```-Confirm:$false``` avec l'applet de commande.
+Objet de stratégie de validation hello est effectuée à l’aide de hello [Set-OBPolicy](https://technet.microsoft.com/library/hh770421) applet de commande. Une confirmation vous est également demandée. confirmation de hello tooskip utiliser hello ```-Confirm:$false``` indicateur avec l’applet de commande hello.
 
 ```
 PS C:> Set-OBPolicy -Policy $newpolicy
-Microsoft Azure Backup Do you want to save this backup policy ? [Y] Yes [A] Yes to All [N] No [L] No to All [S] Suspend [?] Help (default is "Y"):
+Microsoft Azure Backup Do you want toosave this backup policy ? [Y] Yes [A] Yes tooAll [N] No [L] No tooAll [S] Suspend [?] Help (default is "Y"):
 BackupSchedule : 4:00 PM Saturday, Sunday, Every 1 week(s)
 DsList : {DataSource
          DatasourceId:4508156004108672185
@@ -377,7 +377,7 @@ RetentionPolicy : Retention Days : 7
 State : Existing PolicyState : Valid
 ```
 
-Vous pouvez afficher les détails de la stratégie de sauvegarde existante à l'aide de l’applet de commande [Get-OBPolicy](https://technet.microsoft.com/library/hh770406) . Vous pouvez afficher plus de détails à l’aide de l’applet de commande [Get-OBSchedule](https://technet.microsoft.com/library/hh770423) pour la planification de sauvegarde et de l’applet de commande [Get-OBRetentionPolicy](https://technet.microsoft.com/library/hh770427) pour les stratégies de rétention.
+Vous pouvez afficher les détails de hello hello existant stratégie de sauvegarde à l’aide de hello [Get-OBPolicy](https://technet.microsoft.com/library/hh770406) applet de commande. Vous pouvez Explorer à l’aide des hello [Get-OBSchedule](https://technet.microsoft.com/library/hh770423) applet de commande pour la planification de sauvegarde hello et hello [Get-OBRetentionPolicy](https://technet.microsoft.com/library/hh770427) applet de commande pour les stratégies de rétention hello
 
 ```
 PS C:> Get-OBPolicy | Get-OBSchedule
@@ -418,7 +418,7 @@ IsRecursive : True
 ```
 
 ### <a name="performing-an-ad-hoc-backup"></a>Exécution d'une sauvegarde ad hoc
-Une fois qu'une stratégie de sauvegarde a été définie, les sauvegardes ont lieu selon la planification indiquée. Le déclenchement d'une sauvegarde ad hoc est également possible à l'aide de l’applet de commande [Start-OBBackup](https://technet.microsoft.com/library/hh770426) :
+Une fois qu’une stratégie de sauvegarde a été définie hello sauvegardes par la planification de hello. Déclenchement d’une sauvegarde ad hoc est également possible à l’aide de hello [OBBackup de début](https://technet.microsoft.com/library/hh770426) applet de commande :
 
 ```
 PS C:> Get-OBPolicy | Start-OBBackup
@@ -429,19 +429,19 @@ Estimating size of backup items...
 Transferring data...
 Verifying backup...
 Job completed.
-The backup operation completed successfully.
+hello backup operation completed successfully.
 ```
 
 ## <a name="restore-data-from-azure-backup"></a>Restauration des données à partir de Sauvegarde Azure
-Cette section vous guide tout au long des étapes d'automatisation de la récupération des données à partir de Sauvegarde Azure. Cette opération implique les étapes suivantes :
+Cette section vous guidera tout au long des étapes hello pour automatiser la récupération des données à partir d’Azure Backup. Cette opération implique hello comme suit :
 
-1. Sélection du volume source
-2. Choix d’un point de sauvegarde à restaurer
-3. Choix d’un élément à restaurer
-4. Déclenchement du processus de restauration
+1. Sélectionnez hello source volume
+2. Choisissez un toorestore de point de sauvegarde
+3. Choisissez un élément de toorestore
+4. Processus de restauration hello déclencheur
 
-### <a name="picking-the-source-volume"></a>Sélection du volume source
-Pour restaurer un élément à partir de Sauvegarde Azure, vous devez d'abord identifier la source associée. Étant donné que nous exécutons les commandes dans le contexte d'un serveur ou d’un client Windows, l'ordinateur est déjà identifié. L'étape suivante pour identifier la source consiste à identifier le volume qui la contient. Vous pouvez récupérer la liste des volumes ou des sources en cours de sauvegarde à partir de cet ordinateur en exécutant l’applet de commande [Get-OBRecoverableSource](https://technet.microsoft.com/library/hh770410) . Cette commande renvoie un tableau de toutes les sources sauvegardées à partir de ce serveur/client.
+### <a name="picking-hello-source-volume"></a>Volume de prélèvement hello source
+Dans l’ordre toorestore un élément à partir d’Azure Backup, vous devez d’abord source de hello tooidentify d’élément de hello. Étant donné que nous allons l’exécution de commandes hello dans le contexte de hello d’un serveur Windows ou d’un client Windows, hello ordinateur est déjà identifié. étape suivante de Hello pour identifier la source de hello est volume de hello tooidentify qui le contient. Une liste des volumes ou des sources en cours de sauvegarde à partir de cet ordinateur peut être récupérée en exécutant hello [Get-OBRecoverableSource](https://technet.microsoft.com/library/hh770410) applet de commande. Cette commande retourne un tableau de toutes les sources de hello sauvegardés à partir de ce serveur/client.
 
 ```
 PS C:> $source = Get-OBRecoverableSource
@@ -455,8 +455,8 @@ RecoverySourceName : D:\
 ServerName : myserver.microsoft.com
 ```
 
-### <a name="choosing-a-backup-point-to-restore"></a>Choix d’un point de sauvegarde à restaurer
-Vous pouvez récupérer la liste des points de sauvegarde en exécutant l’applet de commande [Get-OBRecoverableItem](https://technet.microsoft.com/library/hh770399.aspx) avec les paramètres appropriés. Dans notre exemple, nous allons sélectionner le dernier point de sauvegarde du volume source *D:* et l'utiliser pour récupérer un fichier spécifique.
+### <a name="choosing-a-backup-point-toorestore"></a>Choix d’un toorestore de point de sauvegarde
+Hello liste de points de sauvegarde peut être récupérée en exécutant hello [Get-OBRecoverableItem](https://technet.microsoft.com/library/hh770399.aspx) applet de commande avec les paramètres appropriés. Dans notre exemple, nous allons choisir hello sauvegarde les plus récentes pour le volume source de hello *D:* et utilisez-le toorecover un fichier spécifique.
 
 ```
 PS C:> $rps = Get-OBRecoverableItem -Source $source[1]
@@ -482,12 +482,12 @@ ServerName : myserver.microsoft.com
 ItemSize :
 ItemLastModifiedTime :
 ```
-L'objet ```$rps``` est un tableau de points de sauvegarde. Le premier élément est le point le plus récent et le Nième élément est le point le plus ancien. Pour choisir le point le plus récent, nous allons utiliser ```$rps[0]```.
+objet de Hello ```$rps``` est un tableau de points de sauvegarde. premier élément de Hello est plus récentes hello et Nième élément de hello est le point le plus ancien hello. toochoose hello les plus récentes, nous allons utiliser ```$rps[0]```.
 
-### <a name="choosing-an-item-to-restore"></a>Choix d’un élément à restaurer
-Pour identifier le fichier ou dossier exact à restaurer, utilisez de manière récursive l’applet de commande [Get-OBRecoverableItem](https://technet.microsoft.com/library/hh770399.aspx) . De cette façon, la hiérarchie de dossiers est accessible uniquement à l'aide de ```Get-OBRecoverableItem```.
+### <a name="choosing-an-item-toorestore"></a>Choix d’un élément de toorestore
+tooidentify hello exact ou du fichier toorestore du dossier, récursive utiliser hello [Get-OBRecoverableItem](https://technet.microsoft.com/library/hh770399.aspx) applet de commande. Cette hiérarchie de dossiers de manière hello peut être parcourue uniquement à l’aide de hello ```Get-OBRecoverableItem```.
 
-Dans cet exemple, si vous souhaitez restaurer le fichier *finances.xls*, nous pouvons le référencer à l’aide de l’objet ```$filesFolders[1]```.
+Dans cet exemple, si nous voulons que le fichier de hello toorestore *finances.xls* nous pouvons font référence à l’aide de cet objet de hello ```$filesFolders[1]```.
 
 ```
 PS C:> $filesFolders = Get-OBRecoverableItem $rps[0]
@@ -528,20 +528,20 @@ ItemSize : 96256
 ItemLastModifiedTime : 21-Jun-14 6:43:02 AM
 ```
 
-Vous pouvez également rechercher des éléments à restaurer à l'aide de l’applet de commande ```Get-OBRecoverableItem``` . Dans notre exemple, pour rechercher le fichier *finances.xls* , nous pouvons trouver le fichier en exécutant la commande suivante :
+Vous pouvez également rechercher des toorestore d’éléments à l’aide de hello ```Get-OBRecoverableItem``` applet de commande. Dans notre exemple, toosearch pour *finances.xls* nous aurions pu obtenir un descripteur sur un fichier hello en exécutant cette commande :
 
 ```
 PS C:\> $item = Get-OBRecoverableItem -RecoveryPoint $rps[0] -Location "D:\MyData" -SearchString "finance*"
 ```
 
-### <a name="triggering-the-restore-process"></a>Déclenchement du processus de restauration
-Pour déclencher le processus de restauration, nous devons d'abord spécifier les options de récupération. Pour ce faire, utilisez l’applet de commande [New-OBRecoveryOption](https://technet.microsoft.com/library/hh770417.aspx) . Dans le cadre de cet exemple, supposons que vous souhaitez restaurer les fichiers dans *C:\temp*. Supposons également que vous souhaitez ignorer les fichiers qui existent déjà dans le dossier de destination *C:\temp*. Pour créer une telle option de récupération, utilisez la commande suivante :
+### <a name="triggering-hello-restore-process"></a>Processus de restauration hello déclenchement
+processus de restauration tootrigger hello, nous devons tout d’abord les options de récupération toospecify hello. Cela est possible à l’aide de hello [New-OBRecoveryOption](https://technet.microsoft.com/library/hh770417.aspx) applet de commande. Pour cet exemple, supposons que nous souhaitons que les fichiers de hello toorestore trop*C:\temp*. Supposons également que nous souhaitons tooskip fichiers qui existent déjà sur le dossier de destination hello *C:\temp*. toocreate telle une option de récupération, utilisez hello de commande suivante :
 
 ```
 PS C:\> $recovery_option = New-OBRecoveryOption -DestinationPath "C:\temp" -OverwriteType Skip
 ```
 
-Déclenchez à présent la restauration à l’aide de la commande [Start-OBRecovery](https://technet.microsoft.com/library/hh770402.aspx) dans l’élément ```$item``` sélectionné à partir de la sortie de l’applet de commande ```Get-OBRecoverableItem``` :
+Déclenchement de la restauration à l’aide de hello maintenant [Start-OBRecovery](https://technet.microsoft.com/library/hh770402.aspx) commande hello sélectionné ```$item``` à partir de la sortie de hello Hello ```Get-OBRecoverableItem``` applet de commande :
 
 ```
 PS C:\> Start-OBRecovery -RecoverableItem $item -RecoveryOption $recover_option
@@ -550,29 +550,29 @@ Estimating size of backup items...
 Estimating size of backup items...
 Estimating size of backup items...
 Job completed.
-The recovery operation completed successfully.
+hello recovery operation completed successfully.
 ```
 
 
-## <a name="uninstalling-the-azure-backup-agent"></a>Désinstallation de l’agent Azure Backup
-La désinstallation de l’agent de sauvegarde Azure peut être effectuée à l’aide de la commande suivante :
+## <a name="uninstalling-hello-azure-backup-agent"></a>Désinstallation de l’agent de sauvegarde Azure hello
+Désinstaller l’agent de sauvegarde Azure hello est possible à l’aide de hello de commande suivante :
 
 ```
 PS C:\> .\MARSAgentInstaller.exe /d /q
 ```
 
-La désinstallation des fichiers binaires de l'agent de l'ordinateur a certaines conséquences à prendre en compte :
+Désinstallation des fichiers binaires hello à partir de l’ordinateur de hello a certaines tooconsider conséquences :
 
-* Elle supprime le filtre de fichier de l'ordinateur et le suivi des modifications est arrêté.
-* Toutes les informations de stratégie sont supprimées de l'ordinateur, mais elles continuent à être stockées dans le service.
+* Elle supprime le filtre de fichier hello à partir de l’ordinateur de hello et le suivi des modifications est arrêté.
+* Toutes les informations de stratégie sont supprimées de la machine de hello, mais les informations de stratégie hello continuent toobe stockée dans le service hello.
 * Toutes les planifications de sauvegarde sont supprimées, et aucune autre sauvegarde n'est effectuée.
 
-Cependant, les données stockées dans Azure sont conservées selon la stratégie de rétention que vous avez définie. Les points plus anciens deviennent automatiquement obsolètes.
+Toutefois, hello des données stockées dans le reste de Azure et sont conservées conformément aux paramètres de stratégie de rétention hello par vous. Les points plus anciens deviennent automatiquement obsolètes.
 
 ## <a name="remote-management"></a>Gestion à distance
-L’intégralité de la gestion concernant l’agent de sauvegarde Azure, les stratégies et les sources de données peut être effectuée à distance par le biais de PowerShell. L’ordinateur qui sera géré à distance doit être correctement préparé.
+Toute la gestion hello autour de l’agent de sauvegarde Azure hello, les stratégies et les sources de données peut être effectuée à distance via PowerShell. ordinateur Hello qui est géré à distance doit toobe correctement préparé.
 
-Par défaut, le service WinRM est configuré pour un démarrage manuel. Le type de démarrage doit être défini sur *Automatique* et le service devrait être démarré. Pour vérifier que le service WinRM est exécuté, la valeur de la propriété État devrait être défini sur *En cours d’exécution*.
+Par défaut, hello service WinRM est configuré pour un démarrage manuel. type de démarrage de Hello doit être défini trop*automatique* et hello service doit être démarré. tooverify qui hello service WinRM est en cours d’exécution, la valeur de la propriété Status de hello hello doit être *en cours d’exécution*.
 
 ```
 PS C:\> Get-Service WinRM
@@ -586,14 +586,14 @@ PowerShell doit être configuré pour la communication à distance.
 
 ```
 PS C:\> Enable-PSRemoting -force
-WinRM is already set up to receive requests on this computer.
+WinRM is already set up tooreceive requests on this computer.
 WinRM has been updated for remote management.
 WinRM firewall exception enabled.
 
 PS C:\> Set-ExecutionPolicy unrestricted -force
 ```
 
-L’ordinateur peut maintenant être géré à distance, en commençant par l’installation de l’agent. Par exemple, le script suivant copie et installe l’agent sur l’ordinateur distant.
+machine de Hello désormais peut être géré à distance, en commençant à partir de l’installation Bonjour de l’agent de hello. Par exemple, hello script suivant copie de l’ordinateur distant hello agent toohello et l’installe.
 
 ```
 PS C:\> $dloc = "\\REMOTESERVER01\c$\Windows\Temp"
@@ -608,5 +608,5 @@ PS C:\> Invoke-Command -Session $s -Script { param($d, $a) Start-Process -FilePa
 ## <a name="next-steps"></a>Étapes suivantes
 Pour plus d’informations sur Sauvegarde Azure pour client/serveur Windows, consultez
 
-* [Présentation de Sauvegarde Azure](backup-introduction-to-azure-backup.md)
+* [Introduction tooAzure sauvegarde](backup-introduction-to-azure-backup.md)
 * [Sauvegarder des serveurs Windows](backup-configure-vault.md)

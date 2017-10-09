@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory à TigerText Secure Messenger | Microsoft Docs"
-description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et TigerText Secure Messenger."
+description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et Messenger de sécuriser TigerText."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,107 +13,107 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/21/2017
 ms.author: jeedes
-ms.openlocfilehash: e101e5fc84b032b66dd0636bab8bff128791f77c
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: a3d7bb9598658c75c567c15751740d885fe4fc27
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-tigertext-secure-messenger"></a>Didacticiel : Intégration d’Azure Active Directory à TigerText Secure Messenger
 
-Dans ce didacticiel, vous allez apprendre à intégrer TigerText Secure Messenger à Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous apprendrez comment toointegrate TigerText Secure Messenger avec Azure Active Directory (Azure AD).
 
-L’intégration de TigerText Secure Messenger dans Azure AD vous offre les avantages suivants :
+Intégration Messenger de sécuriser TigerText à Azure AD offre hello avantages suivants :
 
-- Dans Azure AD, vous pouvez contrôler qui a accès à TigerText Secure Messenger
-- Vous pouvez autoriser vos utilisateurs à se connecter automatiquement à TigerText Secure Messenger (authentification unique) avec leur compte Azure AD
-- Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure
+- Vous pouvez contrôler dans Azure AD qui a accès tooTigerText Messenger sécurisé
+- Vous pouvez activer vos utilisateurs tooautomatically get connecté tooTigerText Messenger de sécuriser (Single Sign-On) avec leurs comptes Azure AD
+- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure
 
-Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
+Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
-## <a name="prerequisites"></a>Prérequis
+## <a name="prerequisites"></a>Composants requis
 
-Pour configurer l’intégration d’Azure AD à TigerText Secure Messenger, vous avez besoin des éléments suivants :
+tooconfigure intégration d’Azure AD avec Messenger de sécuriser TigerText, vous devez hello éléments suivants :
 
 - Un abonnement Azure AD
 - Un abonnement TigerText Secure Messenger pour lequel l’authentification unique est activée
 
 > [!NOTE]
-> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
+> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
 
-Vous devez en outre suivre les recommandations ci-dessous :
+tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez [obtenir un essai d’un mois](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
 
-1. Ajouter TigerText Secure Messenger à partir de la galerie
+1. Ajouter Messenger de sécuriser TigerText à partir de la galerie de hello
 2. Configurer et tester l’authentification unique Azure AD
 
-## <a name="add-tigertext-secure-messenger-from-the-gallery"></a>Ajouter TigerText Secure Messenger à partir de la galerie
-Pour configurer l’intégration de TigerText Secure Messenger à Azure AD, vous devez ajouter TigerText Secure Messenger, disponible dans la galerie, à votre liste d’applications SaaS gérées.
+## <a name="add-tigertext-secure-messenger-from-hello-gallery"></a>Ajouter Messenger de sécuriser TigerText à partir de la galerie de hello
+intégration de hello tooconfigure de Messenger de sécuriser TigerText dans Azure AD, vous devez tooadd Messenger de sécuriser TigerText à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
 
-**Pour ajouter TigerText Secure Messenger à partir de la galerie, effectuez les étapes suivantes :**
+**tooadd TigerText Secure Messenger à partir de la galerie hello, procédez hello comme suit :**
 
-1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
+1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
 
     ![Active Directory][1]
 
-2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
+2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
 
     ![Applications][2]
     
-3. Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
+3. tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.
 
     ![Applications][3]
 
-4. Dans la zone de recherche, tapez **TigerText Secure Messenger**, sélectionnez **TigerText Secure Messenger** à partir du volet de résultats, puis cliquez sur le bouton **Ajouter** pour ajouter l’application.
+4. Dans la zone de recherche de hello, tapez **Messenger de sécuriser TigerText**, sélectionnez **Messenger de sécuriser TigerText** à partir du volet de résultats, puis sur **ajouter** bouton application hello de tooadd.
 
     ![Ajouter à partir de la galerie](./media/active-directory-saas-tigertext-tutorial/tutorial_tigertext_addfromgallery.png)
 
 ##  <a name="configure-and-test-azure-ad-single-sign-on"></a>Configurer et tester l’authentification unique Azure AD
 Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec TigerText Secure Messenger pour un utilisateur de test appelé « Britta Simon ».
 
-Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur TigerText Secure Messenger équivalent dans Azure AD. En d’autres termes, une relation entre un utilisateur Azure AD et l’utilisateur TigerText Secure Messenger associé doit être établie.
+Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans Messenger de sécuriser TigerText est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans Messenger de sécuriser TigerText doit toobe établie.
 
-Dans TigerText Secure Messenger, affectez la valeur de **nom d’utilisateur** dans Azure AD comme valeur de **Username** pour établir la relation de lien.
+Dans TigerText Secure Messenger, affecter la valeur de hello de hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.
 
-Pour configurer et tester l’authentification unique Azure AD avec TigerText Secure Messenger, vous devez suivre les indications des sections suivantes :
+tooconfigure et test Azure AD l’authentification unique avec Messenger de sécuriser TigerText, vous devez hello toocomplete suivant des blocs de construction :
 
-1. **[Configurer l’authentification unique Azure AD](#configure-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
-2. **[Créer un utilisateur de test Azure AD](#create-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
-3. **[Créer un utilisateur de test TigerText Secure Messenger](#create-a-tigertext-secure-messenger-test-user)** pour avoir un équivalent de Britta Simon dans TigerText Secure Messenger, lié à la représentation Azure AD associée.
-4. **[Affecter l’utilisateur de test Azure AD](#assign-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
-5. **[Tester l’authentification unique](#test-single-sign-on)** pour vérifier si la configuration fonctionne.
+1. **[Configurer Azure AD Single Sign-On](#configure-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
+2. **[Créer un utilisateur de test Azure AD](#create-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
+3. **[Créer un utilisateur de test Messenger de sécuriser TigerText](#create-a-tigertext-secure-messenger-test-user)**  -toohave un équivalent de Britta Simon dans Messenger TigerText sécurisé qui est la représentation sous forme de toohello lié Azure AD de l’utilisateur.
+4. **[Affecter l’utilisateur de test hello Azure AD](#assign-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
+5. **[Tester l’authentification unique sur](#test-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
 
 ### <a name="configure-azure-ad-single-sign-on"></a>Configurer l’authentification unique Azure AD
 
-Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application TigerText Secure Messenger.
+Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application Messenger de sécuriser TigerText.
 
-**Pour configurer l’authentification unique Azure AD avec TigerText Secure Messenger, effectuez les étapes suivantes :**
+**tooconfigure Azure AD l’authentification unique avec TigerText Secure Messenger, effectuez hello comme suit :**
 
-1. Dans le portail Azure, dans la page d’intégration de l’application **TigerText Secure Messenger**, cliquez sur **Authentification unique**.
+1. Bonjour portail Azure, sur hello **Messenger de sécuriser TigerText** page d’intégration d’application, cliquez sur **l’authentification unique**.
 
     ![Configurer l’authentification unique][4]
 
-2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
+2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
  
     ![Authentification basée sur SAML](./media/active-directory-saas-tigertext-tutorial/tutorial_tigertext_samlbase.png)
 
-3. Dans la section **Domaine et URL TigerText Secure Messenger**, effectuez les étapes suivantes :
+3. Sur hello **TigerText Secure Messenger domaine et les URL** section, effectuer hello comme suit :
 
     ![Section Domaine et URL TigerText Secure Messenger](./media/active-directory-saas-tigertext-tutorial/tutorial_tigertext_url.png)
 
-    a. Dans la zone de texte **URL d’authentification**, tapez l’URL : `https://home.tigertext.com`
+    a. Bonjour **URL de connexion** zone de texte, tapez l’URL en tant que :`https://home.tigertext.com`
 
-    b. Dans la zone de texte **Identificateur**, tapez une URL au format suivant : `https://saml-lb.tigertext.me/v1/organization/<instance Id>`
+    b. Bonjour **identificateur** zone de texte, tapez une URL à l’aide de hello modèle :`https://saml-lb.tigertext.me/v1/organization/<instance Id>`
 
     > [!NOTE] 
-    > Cette valeur n’est pas la valeur réelle. Mettez à jour cette valeur avec l’identificateur réel. Contactez l’[équipe de support de TigerText Secure Messenger](mailTo:prosupport@tigertext.com) pour obtenir cette valeur. 
+    > Cette valeur n’est pas la valeur réelle. Mettre à jour de cette valeur avec hello identificateur réel. Contact [équipe de support Client de messagerie sécurisé TigerText](mailTo:prosupport@tigertext.com) tooget cette valeur. 
  
-4. Dans la section **Certificat de signature SAML**, cliquez sur **Métadonnées XML** puis enregistrez le fichier de métadonnées sur votre ordinateur.
+4. Sur hello **le certificat de signature SAML** , cliquez sur **Metadata XML** , puis enregistrez le fichier de métadonnées hello sur votre ordinateur.
 
     ![Section Certificat de signature SAML](./media/active-directory-saas-tigertext-tutorial/tutorial_tigertext_certificate.png) 
 
@@ -121,64 +121,64 @@ Dans cette section, vous allez activer l’authentification unique Azure AD dans
 
     ![Bouton Enregistrer](./media/active-directory-saas-tigertext-tutorial/tutorial_general_400.png)
 
-6. Pour obtenir la configuration de l’authentification unique pour votre application, contactez [l’équipe de support technique TigerText Secure Messenger](mailTo:prosupport@tigertext.com), en lui fournissant les **métadonnées téléchargées**.
+6. tooget l’authentification unique configurée pour votre application, contactez [équipe de support Messenger de sécuriser TigerText](mailTo:prosupport@tigertext.com) et nommez-les hello **téléchargés métadonnées**.
 
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="create-an-azure-ad-test-user"></a>Créer un utilisateur de test Azure AD
-L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
+objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
 
 ![Créer un utilisateur Azure AD][100]
 
-**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
+**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
 
-1. Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.
+1. Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-tigertext-tutorial/create_aaduser_01.png) 
 
-2. Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.
+2. liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.
     
     ![Utilisateurs et groupes->Tous les utilisateurs](./media/active-directory-saas-tigertext-tutorial/create_aaduser_02.png) 
 
-3. Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.
+3. tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.
  
     ![Bouton Ajouter](./media/active-directory-saas-tigertext-tutorial/create_aaduser_03.png) 
 
-4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
+4. Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :
  
     ![Boîte de dialogue utilisateur](./media/active-directory-saas-tigertext-tutorial/create_aaduser_04.png) 
 
-    a. Dans la zone de texte **Nom**, entrez **BrittaSimon**.
+    a. Bonjour **nom** zone de texte, type **BrittaSimon**.
 
-    b. Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.
+    b. Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.
 
-    c. Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.
+    c. Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.
 
     d. Cliquez sur **Create**.
  
 ### <a name="create-a-tigertext-secure-messenger-test-user"></a>Créer un utilisateur de test TigerText Secure Messenger
 
-Dans cette section, vous allez créer un utilisateur appelé Britta Simon dans TigerText. Veuillez contacter l’[équipe de support TigerText Secure Messenger](mailTo:prosupport@tigertext.com) pour ajouter des utilisateurs à la plateforme TigerText.
+Dans cette section, vous allez créer un utilisateur appelé Britta Simon dans TigerText. Veuillez contacter trop[équipe de support Client de messagerie sécurisé TigerText](mailTo:prosupport@tigertext.com) tooadd les utilisateurs de hello dans la plateforme de TigerText hello.
 
-### <a name="assign-the-azure-ad-test-user"></a>Affecter l’utilisateur de test Azure AD
+### <a name="assign-hello-azure-ad-test-user"></a>Affecter l’utilisateur de test hello Azure AD
 
-Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à TigerText Secure Messenger.
+Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooTigerText Messenger de sécuriser.
 
 ![Affecter des utilisateurs][200] 
 
-**Pour affecter Britta Simon à TigerText Secure Messenger, effectuez les étapes suivantes :**
+**tooassign Britta Simon tooTigerText Messenger sécuriser, effectuer hello comme suit :**
 
-1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
+1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications, sélectionnez **TigerText Secure Messenger**.
+2. Dans la liste des applications hello, sélectionnez **Messenger de Secure TigerText**.
 
     ![TigerText Secure Messenger dans la liste des applications](./media/active-directory-saas-tigertext-tutorial/tutorial_tigertext_app.png) 
 
-3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
+3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
 
     ![Affecter des utilisateurs][202] 
 
@@ -186,7 +186,7 @@ Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentifi
 
     ![Affecter des utilisateurs][203]
 
-5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
+5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -194,13 +194,13 @@ Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentifi
     
 ### <a name="test-single-sign-on"></a>Tester l’authentification unique
 
-Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.
+Dans cette section, vous tester votre configuration Azure AD unique de session à l’aide de hello panneau d’accès.
 
-Lorsque vous cliquez sur la vignette TigerText dans le volet d’accès, vous êtes normalement connecté automatiquement à votre application TigerText. Pour plus d’informations sur le panneau d’accès, consultez [Présentation du panneau d’accès](active-directory-saas-access-panel-introduction.md).
+Lorsque vous cliquez sur mosaïque TigerText hello hello volet d’accès, vous devez obtenir automatiquement signé sur tooyour TigerText application. Pour plus d’informations sur hello volet d’accès, consultez [Introduction toohello volet d’accès](active-directory-saas-access-panel-introduction.md).
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 

@@ -1,6 +1,6 @@
 ---
-title: Azure Service Fabric sur Linux | Microsoft Docs
-description: "Les clusters Service Fabric prenant en charge Linux et Java, vous pouvez déployer et héberger des applications Service Fabric écrites en Java et C# sur Linux."
+title: aaaAzure Service Fabric sur Linux | Documents Microsoft
+description: "Clusters service Fabric prend en charge Linux et Java, ce qui signifie que vous serez en mesure de toodeploy et héberger des applications de Service Fabric écrites en Java et c# sur Linux."
 services: service-fabric
 documentationcenter: .net
 author: mani-ramaswamy
@@ -14,36 +14,36 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 8/9/2017
 ms.author: SubramaR
-ms.openlocfilehash: dddc9f698d9776999d406117b46285a0f90d9620
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ca0e092b00faec560963c0d6cc379593d085f6a8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="service-fabric-on-linux"></a>Service Fabric sur Linux
-La version d’évaluation de Service Fabric sur Linux vous permet de créer, déployer et gérer des applications à haut niveau de disponibilité et d’extensibilité dans l’environnement Linux de la même manière que sur Windows. De plus, les frameworks Service Fabric (Reliable Services et Reliable Actors) sont désormais disponibles dans Java sur Linux, en plus de C# (.NET Core).  Vous pouvez également créer des [services exécutables invités](service-fabric-deploy-existing-app.md) via tous les langages ou frameworks. En outre, la version préliminaire prend également en charge l’orchestration des conteneurs Docker. Les conteneurs Docker peuvent lancer des exécutables invités ou des services Service Fabric natifs, qui ont recours à des frameworks Service Fabric.
+Aperçu de Hello du Service Fabric sur Linux vous permet de toobuild, déployer et gérer des applications hautement disponibles et hautement évolutives sur Linux comme vous le feriez sur Windows. les infrastructures de Service Fabric Hello (Services fiables et Reliable Actors) sont disponibles dans Java sur Linux en outre tooC # (.NET Core).  Vous pouvez également créer des [services exécutables invités](service-fabric-deploy-existing-app.md) via tous les langages ou frameworks. En outre, l’aperçu de hello prend également en charge des conteneurs Docker orchestrant ces opérations. Conteneurs docker peuvent exécuter des exécutables de l’invité ou les services de Service Fabric natives, qui utilisent des infrastructures de Service Fabric hello.
 
-Service Fabric sur Linux est conceptuellement équivalent à Service Fabric sur Windows (à l’exception des caractéristiques du système d’exploitation et de la prise en charge du langage de programmation). Par conséquent, la plupart de notre [documentation existante](http://aka.ms/servicefabricdocs) s’applique pour vous permettre de vous familiariser avec la technologie.
+Service Fabric sur Linux est conceptuellement équivalent tooService Fabric sur Windows (à l’exception des caractéristiques du système d’exploitation et la prise en charge du langage de programmation). Par conséquent, la plupart de nos [documentation existante](http://aka.ms/servicefabricdocs) s’applique en vous permettant de vous familiariserez avec la technologie de hello.
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/Service-Fabric-Linux-Preview/player]
 >
 >
 
 ## <a name="supported-operating-systems-and-programming-languages"></a>Systèmes d’exploitation et langages de programmation pris en charge
-La version préliminaire limitée vous permet de créer des clusters de développement à boîtier unique ainsi que des clusters de plusieurs machines Azure exécutant Ubuntu Server 16.04. La version préliminaire prend en charge les frameworks Reliable Actors et Reliable Stateless Services dans les langages Java et C# en plus des exécutables invités et de l’orchestration de conteneurs Docker.  
+Création de hello Hello limitée version préliminaire prend en charge du développement d’une case des clusters de plus toomulti-ordinateur des clusters dans Azure Ubuntu Server 16.04 en cours d’exécution. prend en charge de la version préliminaire Hello hello Reliable Actors et hello des infrastructures de Services sans état fiable en Java et c# dans Ajout tooguest exécutables et d’organiser des conteneurs Docker.  
 
 > [!NOTE]
-> Les infrastructures Reliable Collections ne sont pas encore prises en charge dans Linux. Par ailleurs, les clusters autonomes ne sont pas gérés. La version préliminaire ne prend en charge que les clusters impliquant plusieurs machines Linux Azure et un boîtier.
+> Les infrastructures Reliable Collections ne sont pas encore prises en charge dans Linux. Les clusters seuls support ne sont pas pris en charge soit - qu’une seule zone et les clusters comportant plusieurs ordinateurs Azure Linux sont prises en charge dans l’aperçu de hello.
 >
 >
 
 
 ## <a name="supported-tooling"></a>Outils pris en charge
-L’aperçu prend en charge l’interaction avec le cluster via l’interface CLI Service Fabric. Pour les développeurs Java, l’intégration avec Eclipse et Yeoman est assurée, la fonction Eclipse étant prise en charge sous Linux et OSX. L’intégration d’OSX repose sur une machine virtuelle Linux, via vagrant. Pour les développeurs C#, l’intégration avec Yeoman est assurée pour générer des modèles d’application.
+Aperçu de Hello prend en charge l’interaction avec le cluster hello via l’interface CLI de l’infrastructure de Service. Pour les développeurs Java, l’intégration avec Eclipse et Yeoman est assurée, la fonction Eclipse étant prise en charge sous Linux et OSX. Hello intégration de OSX utilise un VM Linux dans les coulisses de hello via vagrant. Pour les développeurs c#, l’intégration avec Yeoman est fournie toogenerate modèles d’application.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* Se familiariser avec les infrastructures de programmation [Acteurs fiables](service-fabric-reliable-actors-introduction.md) et [Services fiables](service-fabric-reliable-services-introduction.md)
+* Se familiariser avec hello [Reliable Actors](service-fabric-reliable-actors-introduction.md) et [des Services fiables](service-fabric-reliable-services-introduction.md) infrastructures de programmation
 * [Préparer votre environnement de développement sur Linux](service-fabric-get-started-linux.md)
 * [Prepare your development environment on OSX (Préparer votre environnement de développement sur OSX)](service-fabric-get-started-mac.md)
 * [Create your first Service Fabric Java application on Linux](service-fabric-create-your-first-linux-application-with-java.md)

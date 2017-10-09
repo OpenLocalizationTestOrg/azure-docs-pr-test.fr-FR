@@ -1,76 +1,59 @@
 ---
-title: "Leçon 13 du didacticiel Azure Analysis Services : Déployer | Microsoft Docs"
-description: "Explique comment déployer le projet du didacticiel Azure Analysis Services."
-services: analysis-services
-documentationcenter: 
-author: minewiskan
-manager: erikre
-editor: 
-tags: 
-ms.assetid: 
-ms.service: analysis-services
-ms.devlang: NA
-ms.topic: get-started-article
-ms.tgt_pltfrm: NA
-ms.workload: na
-ms.date: 07/17/2017
-ms.author: owend
-ms.openlocfilehash: 70dbf5786262f75199270aa8009e03b9b48b8559
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
-ms.translationtype: MT
-ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+titre : aaa « leçon du didacticiel Azure Analysis Services 13 : déployer | Description de Microsoft Docs » : décrit comment le didacticiel de hello toodeploy project tooAzure Analysis Services.
+Services : analysis services documentationcenter : '' auteur : minewiskan manager : erikre éditeur : '' balises : ».
+
+MS.AssetId : ms.service : ms.devlang d’analysis services : NA ms.topic : get-started-article ms.tgt_pltfrm : NA ms.workload : na ms.date : 17/07/2017 ms.author : owend
 ---
 # <a name="lesson-13-deploy"></a>Leçon 13 : Déployer
 
 [!INCLUDE[analysis-services-appliesto-aas-sql2017-later](../../../includes/analysis-services-appliesto-aas-sql2017-later.md)]
 
-Dans cette leçon, vous allez configurer les propriétés de déploiement en spécifiant un serveur Azure Analysis Services sur lequel procéder au déploiement et en indiquant le nom du modèle. Ensuite, vous allez déployer le modèle sur cette instance. Une fois votre modèle déployé, les utilisateurs peuvent s’y connecter à l’aide d’une application cliente de création de rapports. Pour en savoir plus, voir [Déployer sur Azure Analysis Services](https://docs.microsoft.com/azure/analysis-services/analysis-services-deploy).  
+Dans cette leçon, vous configurez les propriétés de déploiement ; spécification d’un ordinateur Azure Analysis Services server toodeploy tooand un nom pour le modèle de hello. Vous déployez ensuite hello modèle toothat instance. Une fois votre modèle est déployé, les utilisateurs peuvent se connecter à tooit à l’aide d’une application cliente de création de rapports. toolearn, voir [déployer tooAzure Analysis Services](https://docs.microsoft.com/azure/analysis-services/analysis-services-deploy).  
   
-Durée estimée pour suivre cette leçon : **5 minutes**  
+Estimé temps toocomplete cette leçon : **5 minutes**  
   
-## <a name="prerequisites"></a>Prérequis  
-Cette rubrique fait partie d’un didacticiel de modélisation tabulaire, qui doit être suivi dans l’ordre prévu. Avant d’effectuer les tâches de cette leçon, vous devez avoir terminé la leçon précédente : [Leçon 12 : Analyser dans Excel](../tutorials/aas-lesson-12-analyze-in-excel.md).  
+## <a name="prerequisites"></a>Composants requis  
+Cette rubrique fait partie d’un didacticiel de modélisation tabulaire, qui doit être suivi dans l’ordre prévu. Avant d’effectuer les tâches de hello dans cette leçon, vous devez avoir terminé les leçon précédente hello : [leçon 12 : analyser dans Excel](../tutorials/aas-lesson-12-analyze-in-excel.md).  
 
 > [!IMPORTANT]  
-> Vous devez disposer des [autorisations d’administrateur](../analysis-services-server-admins.md) sur le serveur Analysis Services distant afin pouvoir procéder au déploiement.  
+> Vous devez avoir [des autorisations d’administrateur](../analysis-services-server-admins.md) on hello distant Analysis Services server dans l’ordre toodeploy tooit.  
 
 > [!IMPORTANT]  
-> Si vous avez installé l’exemple de base de données AdventureWorksDW2014 sur un serveur local SQL Server, et que vous déployez votre modèle sur un serveur Azure Analysis Services, une [passerelle de données locale](../analysis-services-gateway.md) est nécessaire.
+> Si vous avez installé la base de données exemple hello AdventureWorksDW2014 sur un ordinateur local SQL Server, et que vous déployez votre serveur Azure Analysis Services de tooan de modèle, un [passerelle de données locale](../analysis-services-gateway.md) est requis.
   
-## <a name="deploy-the-model"></a>Déployer le modèle  
+## <a name="deploy-hello-model"></a>Déployer le modèle de hello  
   
-#### <a name="to-configure-deployment-properties"></a>Pour configurer les propriétés de déploiement  
+#### <a name="tooconfigure-deployment-properties"></a>propriétés de déploiement tooconfigure  
 
   
-1.  Dans **l’Explorateur de solutions**, cliquez avec le bouton droit sur le projet **AW Internet Sales**, puis cliquez sur **Propriétés**.  
+1.  Dans **l’Explorateur de solutions**, avec le bouton hello **AW Internet Sales** de projet, puis cliquez sur **propriétés**.  
   
-2.  Dans la boîte de dialogue **Pages de propriétés de AW Internet Sales**, sous **Serveur de déploiement**, dans la propriété **Serveur**, entrez le nom du serveur complet.  
+2.  Bonjour **Pages de propriétés de AW Internet Sales** boîte de dialogue **serveur de déploiement**, Bonjour **Server** propriété, entrez le serveur complet de hello.  
 
     ![aas-lesson13-deploy-property](../tutorials/media/aas-lesson13-deploy-property.png)
   
-3.  Dans la propriété **Base de données**, tapez **Adventure Works Internet Sales**.  
+3.  Bonjour **base de données** , tapez **Internet Sales Adventure Works**.  
   
-4.  Dans la propriété **Nom du modèle**, tapez **Adventure Works Internet Sales Model**.  
+4.  Bonjour **Nom_modèle** , tapez **Adventure Works Internet Sales Model**.  
   
 5.  Passez en revue vos sélections, puis cliquez sur **OK**.  
   
-#### <a name="to-deploy-the-adventure-works-internet-sales"></a>Pour déployer Adventure Works Internet Sales
+#### <a name="toodeploy-hello-adventure-works-internet-sales"></a>toodeploy hello Adventure Works Internet Sales
   
-1.  Dans **l’Explorateur de solutions**, cliquez avec le bouton droit sur le projet **AW Internet Sales** > **Générer**.  
+1.  Dans **l’Explorateur de solutions**, avec le bouton hello **AW Internet Sales** projet > **Build**.  
 
-2.  Cliquez avec le bouton droit sur le projet **AW Internet Sales** > **Déployer**.
+2.  Avec le bouton hello **AW Internet Sales** projet > **déployer**.
 
-    Lors du déploiement sur Azure Analysis Services, vous pouvez être invité à entrer votre compte. Entrez votre compte professionnel et votre mot de passe, par exemple nancy@adventureworks.com. Ce compte doit faire partie du groupe Administrateurs sur le serveur.
+    Lorsque vous déployez tooAzure Analysis Services, vous pouvez être invité à tooenter votre compte. Entrez votre compte professionnel et votre mot de passe, par exemple nancy@adventureworks.com. Ce compte doit être dans les administrateurs sur le serveur de hello.
   
-    La boîte de dialogue Déployer s’affiche et montre l’état du déploiement des métadonnées, ainsi que chaque table incluse dans le modèle.  
+    boîte de dialogue déployer Hello apparaît et affiche l’état du déploiement des métadonnées de hello hello et chaque table incluse dans le modèle de hello.  
     
     ![aas-lesson13-deploy-status](../tutorials/media/aas-lesson13-deploy-status.png)
   
 3. Si le déploiement se termine sans erreurs, cliquez sur **Fermer**.  
   
 ## <a name="conclusion"></a>Conclusion  
-Félicitations ! Vous venez de terminer la création et le déploiement de votre premier modèle tabulaire Analysis Services. Ce didacticiel vous a guidé dans les tâches les plus courantes associées à la création d’un modèle tabulaire. Maintenant que votre modèle Internet Sales Adventure Works est déployé, vous pouvez utiliser SQL Server Management Studio pour le gérer, ainsi que pour créer des scripts de processus et un plan de sauvegarde. Les utilisateurs peuvent désormais se connecter au modèle à l’aide d’une application cliente de création de rapports telle que Microsoft Excel ou Power BI.  
+Félicitations ! Vous venez de terminer la création et le déploiement de votre premier modèle tabulaire Analysis Services. Ce didacticiel a permis de vous guider dans la réalisation des tâches courantes de hello lors de la création d’un modèle tabulaire. Maintenant que votre modèle Internet Sales Adventure Works est déployé, vous pouvez utiliser le modèle de SQL Server Management Studio toomanage hello ; créer des scripts de processus et d’un plan de sauvegarde. Les utilisateurs peuvent également connectez-vous de modèle toohello à l’aide d’une application cliente de création de rapports tels que Microsoft Excel ou Power BI.  
 
 ![aas-lesson13-ssms](../tutorials/media/aas-lesson13-ssms.png)
   

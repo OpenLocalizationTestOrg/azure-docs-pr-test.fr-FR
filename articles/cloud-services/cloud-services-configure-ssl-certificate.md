@@ -1,6 +1,6 @@
 ---
-title: Configuration de SSL pour un service cloud (classique) | Microsoft Docs
-description: "Découvrez comment spécifier un point de terminaison HTTPS pour un rôle web et télécharger un certificat SSL pour sécuriser votre application."
+title: aaaConfigure SSL pour un service cloud (classiques) | Documents Microsoft
+description: "Découvrez comment toospecify un point de terminaison HTTPS pour un rôle web et comment tooupload une connexion SSL certificat toosecure de votre application."
 services: cloud-services
 documentationcenter: .net
 author: Thraka
@@ -14,50 +14,50 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/14/2016
 ms.author: adegeo
-ms.openlocfilehash: edb9aaf6dae11c9b8a171b22bc8a17003f80d86b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a1ca031b98af49d371977a208ed24f6dc8ea2ac9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configuring-ssl-for-an-application-in-azure"></a>Configuration de SSL pour une application dans Azure
 > [!div class="op_single_selector"]
 > * [Portail Azure](cloud-services-configure-ssl-certificate-portal.md)
-> * [Portail Azure Classic](cloud-services-configure-ssl-certificate.md)
+> * [portail Azure Classic](cloud-services-configure-ssl-certificate.md)
 > 
 > 
 
-Le chiffrement SSL (Secure Socket Layer) est la méthode de sécurisation la plus couramment utilisée pour envoyer des données sécurisées sur Internet. Cette tâche présente la spécification d'un point de terminaison HTTPS pour un rôle Web et le téléchargement d'un certificat SSL pour sécuriser votre application.
+Le chiffrement Secure Socket Layer (SSL) est la méthode hello couramment utilisé de la sécurisation des données envoyées sur hello internet. Cette tâche courante explique comment toospecify un point de terminaison HTTPS pour un rôle web et comment tooupload une connexion SSL certificat toosecure de votre application.
 
 > [!NOTE]
-> Les procédures décrites dans cette tâche s’appliquent à Azure Cloud Services ; pour App Services, consultez [cet](../app-service-web/web-sites-configure-ssl-certificate.md) article.
+> les procédures de Hello dans cette tâche s’appliquent les Services de cloud computing tooAzure ; pour les Services d’application, consultez [cela](../app-service-web/web-sites-configure-ssl-certificate.md) l’article.
 > 
 > 
 
-Cette tâche utilise un déploiement de production. Vous trouverez des informations sur l’utilisation d’un déploiement intermédiaire à la fin de cette rubrique.
+Cette tâche utilise un déploiement de production. Vous trouverez des informations sur l’utilisation d’un déploiement intermédiaire à fin hello de cette rubrique.
 
 Lisez tout d’abord [cet](cloud-services-how-to-create-deploy.md) article si vous n’avez pas encore créé de service cloud.
 
 [!INCLUDE [websites-cloud-services-css-guided-walkthrough](../../includes/websites-cloud-services-css-guided-walkthrough.md)]
 
 ## <a name="step-1-get-an-ssl-certificate"></a>Étape 1 : obtention d’un certificat SSL
-Pour configurer le chiffrement SSL pour une application, vous devez d’abord obtenir un certificat SSL signé par une autorité de certification, un tiers approuvé qui émet des certificats à cet effet. Si vous n’en possédez pas, vous devez en obtenir un auprès de la société qui vend des certificats SSL.
+tooconfigure SSL pour une application, vous devez tout d’abord tooget un certificat SSL qui a été signé par un certificat autorité (CA), un tiers de confiance qui émet des certificats à cet effet. Si vous n’en avez pas déjà, vous devez tooobtain une à partir d’une société qui vend des certificats SSL.
 
-Le certificat SSL doit répondre aux prérequis suivants dans Azure :
+certificat de Hello doit respecter hello suivant les exigences pour les certificats SSL dans Azure :
 
-* Le certificat doit contenir une clé privée.
-* Le certificat doit être créé pour l'échange de clés et pouvoir faire l'objet d'un export au format Personal Information Exchange (.pfx).
-* Le nom d'objet du certificat doit correspondre au domaine servant à accéder au service cloud. Vous ne pouvez pas obtenir de certificat SSL d'une autorité de certification pour le domaine cloudapp.net. Vous devez acquérir un nom de domaine personnalisé à utiliser pour accéder à votre service. Lorsque vous demandez un certificat auprès d’une autorité de certification, le nom d’objet du certificat doit correspondre au nom de domaine personnalisé que vous utilisez pour accéder à votre application. Par exemple, si votre nom de domaine personnalisé est **contoso.com**, vous demandez un certificat auprès de votre autorité de certification pour **.contoso.com** ou **www.contoso.com**.
-* Le certificat doit utiliser au minimum un chiffrement à 2048 bits.
+* certificat de Hello doit contenir une clé privée.
+* certificat de Hello doit être créé pour l’échange de clés, exportable tooa fichier d’échange d’informations personnelles (.pfx).
+* Hello nom du sujet du certificat doit correspondre au service de cloud hello domaine utilisé tooaccess hello. Impossible d’obtenir un certificat SSL à partir d’une autorité de certification (CA) pour le domaine cloudapp.net de hello. Vous devez vous procurer un toouse de nom de domaine personnalisé lorsque accéder à votre service. Lorsque vous demandez un certificat à partir d’une autorité de certification, nom du sujet du certificat hello doit correspondre à hello domaine personnalisé nom utilisé tooaccess votre application. Par exemple, si votre nom de domaine personnalisé est **contoso.com**, vous demandez un certificat auprès de votre autorité de certification pour **.contoso.com** ou **www.contoso.com**.
+* certificat de Hello doit utiliser un minimum de chiffrement de 2048 bits.
 
-Dans le cadre d’un test, vous pouvez [créer](cloud-services-certs-create.md) et utiliser un certificat auto-signé. Un certificat auto-signé n'est pas authentifié par une autorité de certification et peut utiliser le domaine cloudapp.net comme URL de site Web. Par exemple, la tâche ci-dessous utilise un certificat auto-signé dans lequel le nom commun utilisé dans le certificat est **sslexample.cloudapp.net**.
+Dans le cadre d’un test, vous pouvez [créer](cloud-services-certs-create.md) et utiliser un certificat auto-signé. Un certificat auto-signé n’est pas authentifié par une autorité de certification et pouvez utiliser le domaine cloudapp.net de hello en tant qu’URL du site Web hello. Par exemple, hello tâche suivante utilise un certificat auto-signé qui Bonjour nom commun (CN) utilisé dans le certificat de hello est **sslexample.cloudapp.net**.
 
-Ensuite, vous devez ajouter des informations sur le certificat dans votre définition de service et dans les fichiers de configuration de service.
+Ensuite, vous devez inclure plus d’informations sur les certificats hello dans votre définition de service et les fichiers de configuration de service.
 
-## <a name="step-2-modify-the-service-definition-and-configuration-files"></a>Étape 2 : modification des fichiers de définition de service et de configuration
-Votre application doit être configurée pour utiliser le certificat, et un point de terminaison HTTPS doit être ajouté. Suite à cette opération, les fichiers de définition de service et de configuration de service doivent être mis à jour.
+## <a name="step-2-modify-hello-service-definition-and-configuration-files"></a>Étape 2 : Modifier les fichiers de définition et de configuration de service hello
+Votre application doit être configuré toouse hello et un point de terminaison HTTPS doit être ajouté. Par conséquent, hello définition de service et les fichiers de configuration de service doivent toobe mis à jour.
 
-1. Dans votre environnement de développement, ouvrez le fichier de définition du service (CSDEF), ajoutez une section **Certificates** dans la section **WebRole**, puis ajoutez les informations qui suivent sur le certificat (et les certificats intermédiaires) :
+1. Dans votre environnement de développement, ouvrez le fichier de définition de service (CSDEF) hello, ajoutez un **certificats** section hello **WebRole** section et inclure hello informations suivantes le certificat (et les certificats intermédiaires) :
    
     ```xml
     <WebRole name="CertificateTesting" vmsize="Small">
@@ -68,11 +68,11 @@ Votre application doit être configurée pour utiliser le certificat, et un poin
                         storeName="My"
                         permissionLevel="limitedOrElevated" />
             <!-- IMPORTANT! Unless your certificate is either
-            self-signed or signed directly by the CA root, you
-            must include all the intermediate certificates
+            self-signed or signed directly by hello CA root, you
+            must include all hello intermediate certificates
             here. You must list them here, even if they are
-            not bound to any endpoints. Failing to list any of
-            the intermediate certificates may cause hard-to-reproduce
+            not bound tooany endpoints. Failing toolist any of
+            hello intermediate certificates may cause hard-to-reproduce
             interoperability problems on some clients.-->
             <Certificate name="CAForSampleCertificate"
                         storeLocation="LocalMachine"
@@ -83,15 +83,15 @@ Votre application doit être configurée pour utiliser le certificat, et un poin
     </WebRole>
     ```
    
-   La section **Certificates** définit le nom du certificat, son emplacement et le nom du magasin dans lequel il se trouve.
+   Hello **certificats** section définit le nom hello de notre certificat, son emplacement et le nom de hello du magasin hello où il se trouve.
    
-   Les autorisations (attribut `permisionLevel`) peuvent être définies sur les valeurs suivantes :
+   Autorisations (`permisionLevel` attribut) peut être tooone de jeu de hello valeurs suivantes :
    
    | Valeur de l’autorisation | Description |
    | --- | --- |
-   | limitedOrElevated |**(Par défaut)** Tous les processus de rôle peuvent accéder à la clé privée. |
-   | elevated |Seuls les processus élevés peuvent accéder à la clé privée. |
-2. Dans votre fichier de définition du service, ajoutez un élément **InputEndpoint** dans la section **Endpoints** pour activer HTTPS :
+   | limitedOrElevated |**(Par défaut)**  Tous les processus de rôle peuvent accéder à clé privée de hello. |
+   | elevated |Seuls les processus élevés peuvent accéder à clé privée de hello. |
+2. Dans votre fichier de définition de service, ajoutez un **InputEndpoint** élément hello **points de terminaison** section tooenable HTTPS :
    
     ```xml
     <WebRole name="CertificateTesting" vmsize="Small">
@@ -104,7 +104,7 @@ Votre application doit être configurée pour utiliser le certificat, et un poin
     </WebRole>
     ```
 
-3. Dans votre fichier de définition du service, ajoutez un élément **Binding** dans la section **Sites**. Cette section ajoute une liaison HTTPS pour mapper le point de terminaison à votre site :
+3. Dans votre fichier de définition de service, ajoutez un **liaison** élément hello **Sites** section. Cette section permet d’ajouter un toomap de liaison du site tooyour de point de terminaison HTTPS :
    
     ```xml   
     <WebRole name="CertificateTesting" vmsize="Small">
@@ -120,8 +120,8 @@ Votre application doit être configurée pour utiliser le certificat, et un poin
     </WebRole>
     ```
    
-   Toutes les modifications nécessaires ont été apportées au fichier de définition de service, mais vous devez encore y ajouter les informations de certificat.
-4. Dans votre fichier de configuration de service (CSCFG) ServiceConfiguration.Cloud.cscfg, ajoutez une section **Certificates** dans la section **Role** en remplaçant la valeur d’empreinte numérique ci-dessous par celle de votre certificat :
+   Tous les fichier de définition de service de toohello de modifications requises de hello ont été effectuées, mais vous devez toujours des informations de certificat hello tooadd au fichier de configuration de service hello.
+4. Dans votre fichier de configuration service (CSCFG), ServiceConfiguration.Cloud.cscfg, ajoutez un **certificats** section hello **rôle** section, en remplaçant la valeur d’empreinte numérique exemple hello ci-dessous avec celui de votre certificat :
    
     ```xml   
     <Role name="Deployment">
@@ -138,46 +138,46 @@ Votre application doit être configurée pour utiliser le certificat, et un poin
     </Role>
     ```
 
-(L’exemple précédent utilise **sha1** comme algorithme d’empreinte numérique. Spécifiez la valeur correspondant à l'algorithme d'empreinte numérique de votre certificat.)
+(hello précédant l’exemple suivant utilise **sha1** pour l’algorithme d’empreinte numérique hello. Spécifiez la valeur appropriée de hello pour l’algorithme d’empreinte numérique de votre certificat.)
 
-Maintenant que les fichiers de définition du service et de configuration de service ont été mis à jour, créez un package pour votre déploiement afin de le télécharger dans Azure. Si vous utilisez **cspack**, n’utilisez pas l’indicateur **/generateConfigurationFile**, car les informations de certificat que vous venez d’entrer seraient écrasées.
+Maintenant que les fichiers de configuration des service et de définition de hello service ont été mis à jour, votre déploiement pour le téléchargement tooAzure du package. Si vous utilisez **cspack**, n’utilisez pas l’indicateur **/generateConfigurationFile**, car les informations de certificat que vous venez d’entrer seraient écrasées.
 
 ## <a name="step-3-upload-a-certificate"></a>Étape 3 : chargement d’un certificat
-Votre package de déploiement a été mis à jour pour utiliser le certificat, et un point de terminaison HTTPS a été ajouté. Vous pouvez maintenant télécharger le certificat dans Azure via le portail Azure Classic.
+Votre package de déploiement a été le certificat de hello toouse mis à jour, et un point de terminaison HTTPS a été ajoutée. Vous pouvez maintenant télécharger tooAzure de package et de certificat hello avec hello portail Azure classic.
 
-1. Connectez-vous au [portail Azure Classic][Azure classic portal]. 
-2. Cliquez sur **Cloud Services** dans le volet de navigation de gauche.
-3. Cliquez sur le service cloud de votre choix.
-4. Cliquer sur l’onglet **Certificats**.
+1. Connectez-vous à toohello [portail Azure classic][Azure classic portal]. 
+2. Cliquez sur **Services de cloud computing** sur le volet de navigation de gauche hello.
+3. Cliquez sur le service de cloud computing hello souhaité.
+4. Cliquez sur hello **certificats** onglet.
    
-    ![Cliquer sur l’onglet Certificats](./media/cloud-services-configure-ssl-certificate/click-cert.png)
+    ![Cliquez sur onglet de certificats hello](./media/cloud-services-configure-ssl-certificate/click-cert.png)
 
-5. Cliquez sur le bouton **Télécharger** .
+5. Cliquez sur hello **télécharger** bouton.
    
     ![Télécharger](./media/cloud-services-configure-ssl-certificate/upload-button.png)
     
-6. Fournissez le **Fichier**, le **Mot de passe**, puis cliquez sur **Terminé** (la coche).
+6. Fournir hello **fichier**, **mot de passe**, puis cliquez sur **Complete** (hello coche).
 
-## <a name="step-4-connect-to-the-role-instance-by-using-https"></a>Étape 4 : connexion à l’instance de rôle à l’aide de HTTPS
-Maintenant que votre déploiement est opérationnel dans Azure, vous pouvez vous y connecter via HTTPS.
+## <a name="step-4-connect-toohello-role-instance-by-using-https"></a>Étape 4 : Connecter l’instance de rôle toohello à l’aide de HTTPS
+Maintenant que votre déploiement est en cours d’exécution dans Azure, vous pouvez vous connecter tooit à l’aide de HTTPS.
 
-1. Dans le portail Azure Classic, sélectionnez le déploiement, puis cliquez sur le lien sous **Site URL**.
+1. Dans hello portail Azure classic, sélectionnez votre déploiement, puis cliquez sur lien hello sous **URL du Site**.
    
    ![Déterminer l'URL du site][2]
-2. Dans votre navigateur Web, modifiez le lien pour utiliser **HTTPS** au lieu de **HTTP**, puis accédez à la page.
+2. Dans votre navigateur web, modifiez hello lien toouse **https** au lieu de **http**, puis consultez la page de hello.
    
    > [!NOTE]
-   > Si vous utilisez un certificat auto-signé, lorsque vous accédez à un point de terminaison HTTPS qui lui est associé, vous pourriez obtenir une erreur de certificat dans le navigateur. Pour remédier à ce problème, utilisez un certificat signé par une autorité de certification approuvée. En attendant, vous pouvez ignorer cette erreur. (Une autre possibilité est d'ajouter le certificat auto-signé au magasin de certificats d'autorité de certification approuvé de l'utilisateur.)
+   > Si vous utilisez un certificat auto-signé, lorsque vous parcourez tooan point de terminaison HTTPS a associé à un certificat auto-signé de hello, vous voyez une erreur de certificat dans le navigateur de hello. À l’aide d’un certificat signé par une autorité de certification approuvée élimine le problème ; Bonjour attendant, vous pouvez ignorer les erreurs hello. (Une autre option consiste à magasin Autorités de certification approuvée de certificat d’utilisateur toohello tooadd hello certificat auto-signé.)
    > 
    > 
    
    ![Exemple de site Web SSL][3]
 
-Si vous voulez utiliser SSL pour un déploiement intermédiaire au lieu d’un déploiement de production, vous devez d’abord déterminer l’URL utilisée pour le déploiement intermédiaire. Déployez votre service cloud dans l'environnement intermédiaire sans inclure de certificat ou d'informations de certificat. Une fois le déploiement effectué, vous pouvez déterminer l'URL basée sur le GUID, qui se trouve dans le champ **Site URL** du portail Azure Classic. Créez un certificat avec le nom commun (CN) similaire à l’URL basée sur GUID (par exemple, **32818777-6e77-4ced-a8fc-57609d404462.cloudapp.net**). Utilisez le portail Azure Classic pour ajouter le certificat à votre service cloud intermédiaire. Ensuite, ajoutez les informations du certificat à vos fichiers CSDEF et CSCFG, recréez le package de votre application et mettez à jour votre déploiement intermédiaire pour utiliser le nouveau package.
+Si vous souhaitez toouse SSL pour un déploiement intermédiaire au lieu d’un déploiement de production, vous devez d’abord les URL de hello toodetermine utilisée pour le déploiement intermédiaire de hello. Déployez votre environnement intermédiaire de cloud service toohello sans inclure un certificat ou toutes les informations de certificat. Une fois déployé, vous pouvez déterminer les URL de type GUID hello, qui est répertoriée dans hello portail Azure classic **URL du Site** champ. Créez un certificat avec hello courantes URL basée sur le GUID de nom (CN) égal toohello (par exemple, **32818777-6e77-4ced-a8fc-57609d404462.cloudapp.net**). Utilisez hello tooadd de portail classique Azure hello certificat tooyour mises en lots de service cloud. Ensuite, ajoutez hello informations tooyour CSDEF et CSCFG fichiers de certificat, réorganiser votre application et mettre à jour votre déploiement intermédiaire toouse hello nouveau package.
 
 ## <a name="next-steps"></a>Étapes suivantes
 * [Configuration générale de votre service cloud](cloud-services-how-to-configure.md).
-* Découvrez comment [déployer un service cloud](cloud-services-how-to-create-deploy.md).
+* Découvrez comment trop[déployer un service cloud](cloud-services-how-to-create-deploy.md).
 * Configurez un [nom de domaine personnalisé](cloud-services-custom-domain-name.md).
 * [Gérez votre service cloud](cloud-services-how-to-manage.md).
 

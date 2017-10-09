@@ -1,5 +1,5 @@
 ---
-title: Collections de la galerie Cortana Intelligence | Microsoft Docs
+title: "collections de la galerie d’Intelligence aaaCortana | Documents Microsoft"
 description: "Découvrez et partagez des collections dans la galerie Cortana Intelligence."
 services: machine-learning
 documentationcenter: 
@@ -14,88 +14,88 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: roopalik;garye
-ms.openlocfilehash: 03f423fff9f4105bdb3a53b245514bde506b9743
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7252edd8973c90b25f79cb903b00d2f26853bdd7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="discover-and-share-collections-in-cortana-intelligence-gallery"></a>Découvrez et partagez des collections dans la galerie Cortana Intelligence
 [!INCLUDE [machine-learning-gallery-item-selector](../../includes/machine-learning-gallery-item-selector.md)]
 
 ## <a name="collections"></a>Collections
-Vous pouvez utiliser une [collection](https://gallery.cortanaintelligence.com/collections) pour regrouper des expériences, des API et d’autres éléments de la galerie que vous utilisez pour une solution ou un concept précis. Vous pouvez les regrouper en vue de les utiliser, de les conserver pour plus tard ou de les partager.
+Vous pouvez utiliser un [collection](https://gallery.cortanaintelligence.com/collections) toogroup expériences et autres éléments de la galerie que vous utilisez pour une solution spécifique ou une API. Vous pouvez les regrouper toouse, toosave pour référence ultérieure, ou tooshare.
 
 ## <a name="discover"></a>Découvrez
-Pour parcourir les collections [dans la galerie](http://gallery.cortanaintelligence.com), allez dans **Autres** et sélectionnez **Collections**.
+collections de toobrowse [Bonjour galerie](http://gallery.cortanaintelligence.com), sous **plus**, sélectionnez **Collections**.
 
-![Sélectionnez Collections sur la page d’accueil de la galerie](media/machine-learning-gallery-collections/select-collections-in-gallery.png)
+![Sélectionnez les Collections sur la page d’accueil de la galerie de hello](media/machine-learning-gallery-collections/select-collections-in-gallery.png)
 
-La page **[Collections](https://gallery.cortanaintelligence.com/collections)** affiche la liste des collections récemment ajoutées et populaires. Pour voir toutes les collections, sélectionnez **Afficher tout**. Pour rechercher une collection spécifique, sélectionnez **Afficher tout** puis sélectionnez les critères de filtre. Vous pouvez également entrer des termes de recherche dans la zone **Recherche** située en haut de la page de la galerie.
+Hello  **[Collections](https://gallery.cortanaintelligence.com/collections)**  page affiche une liste de collections récemment ajoutées et populaires. sélectionner de toutes les collections, tooview **afficher tous les**. toosearch pour un regroupement spécifique, sélectionnez **afficher tous les**et les critères de filtre puis sélectionnez. Vous pouvez également entrer des termes de recherche dans hello **recherche** zone en haut de hello de page de la galerie hello.
 
-Vous pouvez obtenir plus d’informations sur une collection sur la page de détails de la collection. Pour ouvrir une page de détails de la collection, sélectionnez la collection. Dans la section **Commentaires** d’une page de détails de la collection, vous pouvez commenter, donner un avis ou poser des questions sur la collection. Vous pouvez même partager la collection avec vos amis ou collègues sur Twitter ou LinkedIn. Vous pouvez également envoyer un lien vers la page de détails de la collection afin d’inviter d’autres utilisateurs à consulter cette page.
+Vous pouvez obtenir plus d’informations sur une collection sur la page de détails de collection hello. tooopen une page Détails de la collection, collection de hello select. Page sur une collection de détails Bonjour **commentaires** section, vous pouvez commenter, fournir des commentaires ou poser des questions sur la collection de hello. Vous pouvez même partager la collection de hello avec vos amis ou vos collègues sur Twitter ou LinkedIn. Vous également pourrez envoyer une page de détails de liaison toohello collection, tooinvite autres page hello tooview des utilisateurs.
 
 ![Partager cet élément avec des amis](media/machine-learning-gallery-how-to-use-contribute-publish/share-links.png)
 
 ![Ajouter vos propres commentaires](media/machine-learning-gallery-how-to-use-contribute-publish/comments.png)
 
 ## <a name="contribute"></a>Participez
-Vous pouvez créer une collection qui contient des éléments que vous possédez ou qui ont été proposés par la communauté. Un élément d’une collection peut être n’importe quel élément de la galerie qui répond à une solution ou concept spécifique.
+Vous pouvez créer un regroupement qui comporte des éléments que vous possédez ou qui ont été fournis par la Communauté de hello. Un élément d’une collection peut être n’importe quel élément de la galerie qui répond à une solution ou concept spécifique.
 
-Par exemple, vous pouvez utiliser une collection pour regrouper des éléments sur un sujet spécifique ou pour regrouper une expérience en plusieurs étapes qui permet de résoudre un problème complexe. Les collections initiales fournies par Microsoft sont constituées de modèles d’expérience Machine Learning en plusieurs étapes. Vous pouvez utiliser ces modèles pour aider à résoudre des problèmes réels, tels que la détection des fraudes en ligne, la classification textuelle, la prévision des ventes au détail ou la maintenance prédictive.
+Par exemple, vous pouvez utiliser des éléments de collection toogroup sur une rubrique spécifique, ou vous pouvez regrouper une expérience de plusieurs étape qui résout un problème complex. les collections initiale Hello fournies par Microsoft sont constitués de modèles de l’expérience d’apprentissage à plusieurs étapes. Vous pouvez utiliser les modèles hello toohelp résoudre les problèmes du monde réel, telles que la détection des fraudes en ligne, de classification de texte, de prévisions de vente au détail ou de maintenance prédictive.
 
 ### <a name="create-a-collection"></a>Création d'une collection
 
-1. Connectez-vous à la galerie à l’aide de votre compte Microsoft.
+1. Connectez-vous toohello galerie à l’aide de votre compte Microsoft.
 
-2.  Sélectionnez votre image en haut de la page, puis sélectionnez votre nom.
+2.  Sélectionnez votre image en hello haut hello, puis votre nom.
   
     ![Sélectionnez le nom de votre compte](media/machine-learning-gallery-collections/click-account-name.png)
 
 3. Sélectionnez **Nouvel élément**.
    
     ![Sélectionnez « Nouvel élément »](media/machine-learning-gallery-collections/click-new-item.png)
-4. Sur la page **Description**, pour **TYPE D’ÉLÉMENT**, sélectionnez **Collection**. Entrez un nom pour votre collection, un bref résumé, une description détaillée et toutes les balises susceptibles d’aider les autres utilisateurs à trouver votre collection.
+4. Sur hello **Description** page, pour **TYPE d’élément**, sélectionnez **Collection**. Entrez un nom pour votre collection, un bref résumé, une description détaillée et toutes les balises susceptibles d’aider les autres utilisateurs à trouver votre collection.
    
     ![Entrer des informations pour une nouvelle collection](media/machine-learning-gallery-collections/create-collection-page-1.png)
-5. Sur la page **Sélection de l’image**, sélectionnez une image qui est affichée avec la collection. Vous pouvez charger votre propre fichier image ou sélectionner une image de banque d’images. Choisissez une image qui pourrait aider les utilisateurs à identifier le contenu et l’objectif de la collection.
+5. Sur hello **sélection d’Image** , sélectionnez une image qui est affichée avec la collection de hello. Vous pouvez charger votre propre fichier image ou sélectionner une image de banque d’images. Choisissez une image qui peut aider les utilisateurs à identifier le contenu hello et l’objectif de la collection de hello.
    
     ![Entrer des informations pour une nouvelle collection](media/machine-learning-gallery-collections/create-collection-page-2.png)
-6. Sur la page **Paramètres**, pour le paramètre **Visibilité**, indiquez si la collection est **Visible au public** (tout le monde peut consulter la collection) ou **Non visible au public** (seules les personnes bénéficiant d’un lien direct vers la collection peuvent la consulter).
+6. Sur hello **paramètres** page, pour **visibilité**, indiquez si la collection de hello est **Public** (tout le monde peut afficher la collection de hello) ou **non listé**(uniquement les personnes avec une collection de toohello lien direct puissent l’afficher).
    
    > [!IMPORTANT]
-   > Une fois que vous avez défini une collection sur **Visible au public** et avez sélectionné **Créer**, vous ne pouvez plus régler la collection sur **Non visible au public**.
+   > Après avoir défini une collection trop**Public** , puis sélectionnez **créer**, vous ne pouvez pas modifier ultérieurement de collection de hello trop**non listé**.
    > 
    > 
    
     ![Sélectionnez « Visible au public » ou « Non visible au public »](media/machine-learning-gallery-collections/create-collection-page-3.png)
 7. Sélectionnez **Créer**.
 
-Votre collection figure désormais dans la galerie Cortana Intelligence. Vos collections sont répertoriées sur la page de votre compte, dans l’onglet **Collection**.
+Votre collection figure désormais dans la galerie Cortana Intelligence. Vos collections sont répertoriées sur la page de votre compte, sur hello **Collection** onglet.
 
-### <a name="add-items-to-a-collection"></a>Ajouter des éléments à une collection
-Pour ajouter des éléments à votre collection, ouvrez la collection, sélectionnez **Modifier**, puis sélectionnez **Ajouter un élément**.
+### <a name="add-items-tooa-collection"></a>Ajouter des collections d’éléments tooa
+collection de tooyour tooadd items, collection de hello ouvert, sélectionnez **modifier**, puis sélectionnez **ajouter un élément**.
 
-![Ajouter des éléments à une collection à partir de la page de détails](media/machine-learning-gallery-collections/add-to-collection-from-details-page.png)
+![Ajouter des éléments tooa collection à partir de la page de détails hello](media/machine-learning-gallery-collections/add-to-collection-from-details-page.png)
 
-La liste des éléments que vous avez ajoutés à la galerie est indiquée sur la page de votre compte. Vous pouvez également rechercher dans la galerie les éléments à ajouter. Sélectionnez les éléments que vous souhaitez ajouter. Chaque élément que vous sélectionnez est inclus dans l’ensemble d’éléments à ajouter. Le bouton **Ajouter** indique le nombre d’éléments que vous avez sélectionné.
+Une liste d’éléments, vous avez contribué toohello que galerie s’affiche sur la page de votre compte. Vous pouvez également rechercher hello Galerie d’éléments tooadd. Sélectionnez les éléments hello que vous souhaitez tooadd. Chaque élément que vous sélectionnez est inclus dans le jeu de hello d’éléments tooadd. Hello **ajouter** bouton indique le nombre d’éléments que vous avez sélectionné.
 
-![Ajouter à la collection](media/machine-learning-gallery-collections/add-to-collection.png)
+![Ajouter toocollection](media/machine-learning-gallery-collections/add-to-collection.png)
 
-Si vous trouvez un élément que vous souhaitez ajouter lorsque vous parcourez la galerie, sélectionnez **Ajouter à la collection** pour ouvrir l’élément. Sélectionnez la collection à laquelle vous souhaitez ajouter l’élément.
+Si vous trouvez un élément que vous souhaitez tooadd lors de la vous parcourez la galerie hello, élément de hello tooopen, sélectionnez **ajouter toocollection**. Sélectionnez hello regroupement que vous souhaitez que tooadd hello.
 
-![Ajouter des éléments à une collection à partir de la page de détails](media/machine-learning-gallery-collections/add-to-collection-from-item-details.png)
+![Ajouter des éléments tooa collection à partir de la page de détails hello](media/machine-learning-gallery-collections/add-to-collection-from-item-details.png)
 
-Pour modifier le résumé, la description ou les balises pour votre collection, ouvrez la collection, puis sélectionnez **Modifier**. 
+Résumé de hello toochange, description ou les balises pour votre collection, ouvrez hello regroupement, puis **modifier**. 
 
-Lorsque vous modifiez votre collection, vous pouvez modifier l’ordre des éléments dans la collection. Utilisez les flèches à côté d’un élément pour le déplacer vers le haut ou le bas dans la liste d’ordre. 
+Lorsque vous modifiez votre collection, vous pouvez modifier l’ordre hello d’éléments hello dans la collection de hello. Utilisez hello flèche boutons suivant tooan élément toomove il vers le haut ou vers le bas dans la liste des commandes hello. 
 
-Pour ajouter des notes aux éléments de votre collection, sélectionnez le coin supérieur droit d’un élément, puis sélectionnez **Ajouter/modifier une note**. 
+éléments de toohello tooadd notes dans votre collection, sélectionnez hello haut à droite d’un élément, puis **Ajouter/modifier une note**. 
 
-Pour supprimer un élément de votre collection, sélectionnez **Supprimer**.
+tooremove un élément de votre collection, sélectionnez **supprimer**.
 
 ![Modifier les détails d’une collection](media/machine-learning-gallery-collections/change-collection-details.png)
 
-**[Accéder à la galerie](http://gallery.cortanaintelligence.com)**
+**[Accédez à toohello galerie](http://gallery.cortanaintelligence.com)**
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]

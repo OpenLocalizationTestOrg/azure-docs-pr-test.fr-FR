@@ -1,0 +1,5 @@
+## <a name="scenario"></a>Scénario
+Ce document vous explique un déploiement qui utilise plusieurs cartes d’interface réseau dans des machines virtuelles, dans un scénario spécifique. Dans ce scénario, vous avez une charge de travail IaaS à deux niveaux hébergée dans Azure. Chaque niveau est déployé dans son propre sous-réseau dans un réseau virtuel (VNet). niveau de frontal Hello est composé de plusieurs serveurs web, regroupés dans un équilibreur de charge défini pour la haute disponibilité. couche de back-end Hello est composé de plusieurs serveurs de base de données. Ces serveurs de base de données sont déployées avec deux cartes réseau, un pour l’accès de la base de données, autre hello pour la gestion. scénario de Hello inclut également des groupes de sécurité réseau (NSG) toocontrol le trafic autorisé tooeach sous-réseau et la carte réseau dans un déploiement de hello. figure Hello ci-dessous illustre l’architecture de base de hello de ce scénario.  
+
+![Scénario à cartes d’interface réseau multiples](./media/virtual-network-deploy-multinic-scenario-include/Figure1.png)
+

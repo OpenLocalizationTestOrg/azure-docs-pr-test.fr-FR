@@ -1,6 +1,6 @@
 ---
-title: "Charger des fichiers dans un compte Media Services à l’aide de .NET | Microsoft Docs"
-description: "Apprenez à obtenir du contenu multimédia dans Media Services en créant et en chargeant des ressources."
+title: "fichiers aaaUpload dans un compte Media Services à l’aide de .NET | Documents Microsoft"
+description: "Découvrez comment tooget média du contenu dans Media Services création et téléchargement d’éléments multimédias."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/12/2017
 ms.author: juliako
-ms.openlocfilehash: ec8c1da633374ba684f6a0a895c542ee76ef73b8
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 11c8a359b09efe04b54490fd48ac0cd7c366f8b3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="upload-files-into-a-media-services-account-using-net"></a>Charger des fichiers dans un compte Media Services à l’aide de .NET
 > [!div class="op_single_selector"]
@@ -28,39 +28,39 @@ ms.lasthandoff: 08/29/2017
 > 
 > 
 
-Dans Media Services, vous téléchargez (ou réceptionnez) vos fichiers numériques dans un élément multimédia. L’entité **Asset** peut contenir des fichiers vidéo et audio, des images, des collections de miniatures, des pistes textuelles et des légendes (et les métadonnées concernant ces fichiers).  Une fois les fichiers téléchargés, votre contenu est stocké en toute sécurité dans le cloud et peut faire l’objet d’un traitement et d’un streaming.
+Dans Media Services, vous téléchargez (ou réceptionnez) vos fichiers numériques dans un élément multimédia. Hello **Asset** entité peut contenir vidéo, audio, images, collections de miniatures, texte assure le suivi et sous-titres fichiers (et les métadonnées hello sur ces fichiers.)  Une fois que les fichiers hello sont téléchargés, votre contenu est stocké en toute sécurité dans le cloud hello pour le traitement et la diffusion en continu.
 
-Les fichiers de l'élément multimédia sont appelés **fichiers d'élément multimédia**. L'instance **AssetFile** et le fichier multimédia réel sont deux objets distincts. L’instance AssetFile contient des métadonnées concernant le fichier multimédia, tandis que le fichier multimédia contient le contenu multimédia réel.
+fichiers Hello dans asset de hello sont appelés **des fichiers**. Hello **AssetFile** instance et le fichier multimédia lui-même de hello sont deux objets distincts. instance AssetFile de Hello contient des métadonnées sur le fichier du média hello, tandis que le fichier du média hello contient le contenu du média réel hello.
 
 > [!NOTE]
-> Les considérations suivantes s'appliquent :
+> Hello suivant considérations s’appliquent :
 > 
-> * Media Services utilise la valeur de la propriété IAssetFile.Name lors de la génération d’URL pour le contenu de streaming (par exemple, http://{AMSAccount}.origin.mediaservices.windows.net/{GUID}/{IAssetFile.Name}/streamingParameters). Pour cette raison, l’encodage par pourcentage n’est pas autorisé. La valeur de la propriété **Name** ne peut pas comporter les [caractères réservés à l’encodage en pourcentage suivants](http://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters) : !*'();:@&=+$,/?%#[]". En outre, il ne peut exister qu’un ’.’ pour l’extension de nom de fichier.
-> * La longueur du nom ne doit pas dépasser 260 caractères.
-> * Une limite est appliquée à la taille maximale de fichier prise en charge pour le traitement dans Media Services. Consultez [cette rubrique](media-services-quotas-and-limitations.md) pour en savoir plus sur les limites de taille des fichiers.
-> * Un nombre limite de 1 000 000 a été défini pour les différentes stratégies AMS (par exemple, pour la stratégie de localisateur ou pour ContentKeyAuthorizationPolicy). Vous devez utiliser le même ID de stratégie si vous utilisez toujours les mêmes jours / autorisations d’accès, par exemple, les stratégies pour les localisateurs destinées à demeurer en place pendant une longue période (stratégies sans chargement). Pour plus d’informations, consultez [cette rubrique](media-services-dotnet-manage-entities.md#limit-access-policies) .
+> * Media Services utilise la valeur hello hello IAssetFile.Name propriété lors de la génération d’URL pour hello de diffusion en continu de contenu (par exemple, http://{AMSAccount}.origin.mediaservices.windows.net/{GUID}/{IAssetFile.Name}/streamingParameters.) Pour cette raison, l’encodage par pourcentage n’est pas autorisé. Hello valeur Hello **nom** propriété ne peut pas avoir un des éléments suivants de hello [% réservés d’encodage de caractères](http://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters): ! *' () ; : @& = + $, / ? % # [] ». En outre, il ne peut exister un '.' pour l’extension de nom de fichier hello.
+> * la longueur du nom de hello Hello ne doit pas dépasser 260 caractères.
+> * Il existe une taille de fichier maximale toohello limite pris en charge pour le traitement dans Media Services. Consultez [cela](media-services-quotas-and-limitations.md) pour plus d’informations sur la limite de taille de fichier hello.
+> * Un nombre limite de 1 000 000 a été défini pour les différentes stratégies AMS (par exemple, pour la stratégie de localisateur ou pour ContentKeyAuthorizationPolicy). Vous devez utiliser hello ID de stratégie même si vous utilisez toujours hello même jours / autorisations d’accès, par exemple, les stratégies pour les localisateurs sont tooremain prévue en place pendant une longue période (non-téléchargement stratégies). Pour plus d’informations, consultez [cette rubrique](media-services-dotnet-manage-entities.md#limit-access-policies) .
 > 
 
-Lorsque vous créez des éléments multimédias, vous pouvez spécifier les options de chiffrement suivantes : 
+Lorsque vous créez des ressources, vous pouvez spécifier hello suivant les options de chiffrement. 
 
-* **None** : aucun chiffrement. Il s’agit de la valeur par défaut. À noter que quand vous utilisez cette option, votre contenu n’est pas protégé pendant le transit ou le repos dans le stockage.
-  Si vous prévoyez de fournir un MP4 sous forme de téléchargement progressif, utilisez cette option. 
-* **CommonEncryption** : utilisez cette option quand vous téléchargez du contenu qui a déjà été chiffré et protégé par Common Encryption ou PlayReady DRM (par exemple, Smooth Streaming protégé par PlayReady DRM).
-* **EnvelopeEncrypted** : utilisez cette option quand vous téléchargez du contenu au format HLS chiffré avec AES. Notez que les fichiers doivent avoir été encodés et chiffrés par le gestionnaire de transformation Transform Manager.
-* **StorageEncrypted** : permet de chiffrer votre contenu en clair localement en utilisant le chiffrement AES-256 bits, puis de le télécharger vers Azure Storage où il est chiffré pour le stockage, au repos. Les éléments multimédias protégés par le chiffrement de stockage sont automatiquement déchiffrés et placés dans un système de fichiers chiffré avant d’être encodés, puis éventuellement rechiffrés avant d’être rechargés sous la forme d’un nouvel élément multimédia de sortie. Le principal cas d’utilisation du chiffrement de stockage concerne la sécurisation de fichiers multimédias d’entrée de haute qualité avec un chiffrement renforcé au repos sur le disque.
+* **None** : aucun chiffrement. Il s’agit de valeur par défaut de hello. À noter que quand vous utilisez cette option, votre contenu n’est pas protégé pendant le transit ou le repos dans le stockage.
+  Si vous envisagez de toodeliver un fichier MP4 à l’aide d’un téléchargement progressif, utilisez cette option. 
+* **CommonEncryption** : utilisez cette option quand vous téléchargez du contenu qui a déjà été chiffré et protégé par chiffrement commun ou gestion des droits numériques (DRM) PlayReady (par exemple, une diffusion en continu lisse, « Smooth Streaming », protégée par gestion des droits numériques (DRM) PlayReady).
+* **EnvelopeEncrypted** : utilisez cette option quand vous téléchargez du contenu au format HLS chiffré avec AES. Notez que les fichiers hello doivent avoir été codés et chiffrés par Transform Manager.
+* **StorageEncrypted** - chiffre votre contenu en clair localement à l’aide du chiffrement AES-256 bits, puis le télécharge tooAzure Storage où il est stocké et chiffré au repos. Les éléments multimédias protégés par chiffrement de stockage sont automatiquement déchiffrés et placés dans un tooencoding préalable de système de fichiers chiffrés et éventuellement RE-chiffrée toouploading préalable comme un nouvel élément multimédia de sortie. Hello est principalement utilisé pour le chiffrement de stockage lorsque vous souhaitez toosecure vos fichiers multimédias d’entrée de haute qualité avec un chiffrement renforcé au reste sur le disque.
   
     Media Services fournit pour vos éléments multimédias un chiffrement de stockage sur disque, et non pas sur le réseau comme pour la gestion des droits numériques (DRM).
   
     Si votre ressource est stockée sous forme chiffrée, vous devez configurer une stratégie de remise de ressources. Pour plus d'informations, consultez [Configuration de la stratégie de remise de ressources](media-services-dotnet-configure-asset-delivery-policy.md).
 
-Si votre élément multimédia est chiffré avec l'option **CommonEncrypted** ou **EnvelopeEncypted**, vous devez l'associer à une **ContentKey**. Pour plus d'informations, consultez [Comment créer une ContentKey](media-services-dotnet-create-contentkey.md) 
+Si vous spécifiez pour toobe de votre élément multimédia chiffré avec un **CommonEncrypted** option, ou un **EnvelopeEncypted** option, vous devez tooassociate votre élément multimédia avec un **ContentKey**. Pour plus d’informations, consultez [comment toocreate une ContentKey](media-services-dotnet-create-contentkey.md). 
 
-Si votre élément multimédia est chiffré avec l'option **StorageEncrypted**, le Kit de développement logiciel (SDK) Media Services pour .NET crée une **ContentKey** **StorateEncrypted** pour votre élément multimédia.
+Si vous spécifiez pour toobe de votre élément multimédia chiffré avec un **StorageEncrypted** option, hello Media Services SDK pour .NET créera un **StorateEncrypted** **ContentKey** pour votre élément multimédia.
 
-Cette rubrique montre comment utiliser le Kit de développement logiciel (SDK) Media Services pour .NET, ainsi que les extensions du SDK Media Services pour .NET, pour charger des fichiers vers un élément multimédia Media Services.
+Cette rubrique montre comment toouse Media Services .NET SDK ainsi que les fichiers de tooupload extensions Media Services .NET SDK dans un élément multimédia Media Services.
 
 ## <a name="upload-a-single-file-with-media-services-net-sdk"></a>Téléchargement d’un fichier unique avec le Kit de développement logiciel (SDK) .NET de Media Services
-L’exemple de code ci-dessous utilise le Kit de développement logiciel (SDK) .NET pour charger un fichier unique. AccessPolicy et Locator sont créés et détruits par la fonction de chargement. 
+Hello exemple de code ci-dessous utilise tooupload du Kit de développement .NET un seul fichier. Hello AccessPolicy et recherche sont créés et détruits par fonction de téléchargement hello. 
 
 
         static public IAsset CreateAssetAndUploadSingleFile(AssetCreationOptions assetCreationOptions, string singleFilePath)
@@ -86,19 +86,19 @@ L’exemple de code ci-dessous utilise le Kit de développement logiciel (SDK) .
 
 
 ## <a name="upload-multiple-files-with-media-services-net-sdk"></a>Téléchargement de plusieurs fichiers avec le Kit de développement logiciel (SDK) .NET de Media Services
-Le code qui suit présente la création d’un élément multimédia et le chargement de plusieurs fichiers.
+Hello suivant de code montre comment toocreate un élément multimédia et téléchargement de plusieurs fichiers.
 
-Le code effectue les actions suivantes :
+code de Hello hello suivant :
 
-* Création d’un élément multimédia vide à l’aide de la méthode CreateEmptyAsset définie dans l’étape précédente.
-* Création d'une instance **AccessPolicy** qui définit les autorisations et la durée de l'accès à l'élément multimédia.
-* Création d'une instance **Locator** qui fournit l'accès à l'élément multimédia.
-* Création d'une instance **BlobTransferClient**. Ce type représente un client qui opère sur les objets blob Azure. Dans cet exemple, nous utilisons le client pour surveiller la progression du téléchargement. 
-* Énumère les fichiers dans le répertoire spécifié et crée une instance **AssetFile** pour chaque fichier.
-* Télécharge les fichiers dans Media Services à l'aide de la méthode **UploadAsync** . 
+* Crée un élément multimédia vide, à l’aide de la méthode de CreateEmptyAsset hello définie à l’étape précédente de hello.
+* Crée un **AccessPolicy** instance qui définit les autorisations de hello et la durée de ressource de toohello d’accès.
+* Crée un **recherche** instance qui fournit les actifs de toohello d’accès.
+* Création d'une instance **BlobTransferClient**. Ce type représente un client qui fonctionne sur hello qu'objets BLOB Azure. Dans cet exemple nous utilisons la progression du téléchargement hello client toomonitor hello. 
+* Énumère les fichiers dans le répertoire spécifié de hello et crée un **AssetFile** instance pour chaque fichier.
+* Téléchargements hello des fichiers dans les Services de support à l’aide de hello **UploadAsync** (méthode). 
 
 > [!NOTE]
-> Utilisez la méthode UploadAsync afin de garantir que les appels ne sont pas bloqués et que les fichiers sont téléchargés en parallèle.
+> Utilisez hello UploadAsync méthode tooensure hello appels ne sont pas bloquées et les fichiers de hello sont téléchargés en parallèle.
 > 
 > 
 
@@ -134,13 +134,13 @@ Le code effectue les actions suivantes :
                 var assetFile = asset.AssetFiles.Create(Path.GetFileName(filePath));
                 Console.WriteLine("Created assetFile {0}", assetFile.Name);
 
-                // It is recommended to validate AccestFiles before upload. 
+                // It is recommended toovalidate AccestFiles before upload. 
                 Console.WriteLine("Start uploading of {0}", assetFile.Name);
                 uploadTasks.Add(assetFile.UploadAsync(filePath, blobTransferClient, locator, CancellationToken.None));
             }
 
             Task.WaitAll(uploadTasks.ToArray());
-            Console.WriteLine("Done uploading the files");
+            Console.WriteLine("Done uploading hello files");
 
             blobTransferClient.TransferProgressChanged -= blobTransferClient_TransferProgressChanged;
 
@@ -152,7 +152,7 @@ Le code effectue les actions suivantes :
 
     static void  blobTransferClient_TransferProgressChanged(object sender, BlobTransferProgressChangedEventArgs e)
     {
-        if (e.ProgressPercentage > 4) // Avoid startup jitter, as the upload tasks are added.
+        if (e.ProgressPercentage > 4) // Avoid startup jitter, as hello upload tasks are added.
         {
             Console.WriteLine("{0}% upload competed for {1}.", e.ProgressPercentage, e.LocalFile);
         }
@@ -160,28 +160,28 @@ Le code effectue les actions suivantes :
 
 
 
-Lorsque vous téléchargez un grand nombre d'éléments multimédias, prenez en compte les points suivants.
+Lors du téléchargement d’un grand nombre de ressources, tenez compte hello qui suit.
 
-* Créez un objet **CloudMediaContext** par thread. La classe **CloudMediaContext** n'est pas thread-safe.
-* Augmentez la valeur par défaut (2) de NumberOfConcurrentTransfers à une valeur supérieure à 5. Cette propriété affecte toutes les instances de **CloudMediaContext**. 
-* Conservez la valeur par défaut de 10 pour ParallelTransferThreadCount.
+* Créez un objet **CloudMediaContext** par thread. Hello **CloudMediaContext** classe n’est pas thread-safe.
+* Augmentez NumberOfConcurrentTransfers de valeur par défaut hello 2 tooa plus élevée, telle que 5. Cette propriété affecte toutes les instances de **CloudMediaContext**. 
+* Conservez ParallelTransferThreadCount valeur hello par défaut 10.
 
 ## <a id="ingest_in_bulk"></a>Réception d’éléments multimédias en bloc à l’aide du Kit de développement logiciel (SDK) .NET de Media Services
-Le téléchargement de fichiers multimédias volumineux peut entraîner un goulot d’étranglement lors de la création de l'élément multimédia. La réception des éléments multimédias en bloc ou « réception en bloc » implique de découpler la création des éléments multimédias du processus de téléchargement. Pour utiliser une approche de réception en bloc, créez un manifeste (IngestManifest) qui décrit l'élément multimédia et ses fichiers associés. Utilisez ensuite la méthode de téléchargement de votre choix pour télécharger les fichiers associés sur le conteneur d’objets blob du manifeste. Microsoft Azure Media Services surveille le conteneur d’objets blob associé au manifeste. Une fois qu’un fichier est téléchargé vers le conteneur d’objets blob, Microsoft Azure Media Services termine la création des éléments multimédias selon la configuration de l'élément multimédia du manifeste (IngestManifestAsset).
+Le téléchargement de fichiers multimédias volumineux peut entraîner un goulot d’étranglement lors de la création de l'élément multimédia. Réception d’éléments multimédias en bloc ou « Réception en bloc », implique de découpler la création d’élément multimédia à partir du processus de téléchargement hello. toouse une approche de réception en bloc, créez un manifeste (IngestManifest) qui décrit l’élément multimédia de hello et ses fichiers associés. Utilisez ensuite méthode de téléchargement hello du conteneur d’objets blob de votre choix tooupload hello fichiers associés toohello du manifeste. Microsoft Azure Media Services surveille le conteneur d’objets blob hello associée hello manifeste. Une fois qu’un fichier est un conteneur d’objets blob toohello téléchargé, Microsoft Azure Media Services complète de création de ressource de hello en fonction de configuration hello d’actif hello dans le manifeste hello (IngestManifestAsset).
 
-Pour créer un IngestManifest, appelez la méthode Create exposée par la collection IngestManifests sur le CloudMediaContext. Cette méthode crée un IngestManifest avec le nom de manifeste que vous fournissez.
+toocreate un nouvel IngestManifest appeler la méthode de création de hello exposée par hello collection les IngestManifests sur hello CloudMediaContext. Cette méthode crée un nouvel IngestManifest avec le nom de manifeste hello que vous fournissez.
 
     IIngestManifest manifest = context.IngestManifests.Create(name);
 
-Créez les éléments multimédias associés à l’IngestManifest en bloc. Configurez les options de chiffrement souhaitées sur l'élément multimédia pour la réception en bloc.
+Créer des composants de hello qui seront associés au bloc de hello IngestManifest. Configurer les options de chiffrement hello souhaité sur asset hello pour la réception en bloc.
 
-    // Create the assets that will be associated with this bulk ingest manifest
+    // Create hello assets that will be associated with this bulk ingest manifest
     IAsset destAsset1 = _context.Assets.Create(name + "_asset_1", AssetCreationOptions.None);
     IAsset destAsset2 = _context.Assets.Create(name + "_asset_2", AssetCreationOptions.None);
 
-Un IngestManifestAsset associe un élément multimédia à un IngestManifest en bloc pour la réception en bloc. Il associe également les AssetFiles qui constitueront chaque élément multimédia. Pour créer un IngestManifestAsset, utilisez la méthode Create dans le contexte de serveur.
+Un IngestManifestAsset associe un élément multimédia à un IngestManifest en bloc pour la réception en bloc. Il associe également hello AssetFiles qui composent chaque élément multimédia. toocreate un IngestManifestAsset, utilisez la méthode de création de hello sur le contexte de serveur hello.
 
-L’exemple suivant illustre l’ajout de deux IngestManifestAssets qui associent les deux éléments multimédias précédemment créés au manifeste de réception en bloc. Chaque IngestManifestAsset associe également un ensemble de fichiers qui seront téléchargés pour chaque élément multimédia lors de la réception en bloc.  
+Hello exemple suivant montre Ajout deux IngestManifestAssets nouvelles qui associer des éléments de deux hello créé précédemment en bloc de toohello manifeste de réception. Chaque IngestManifestAsset associe également un ensemble de fichiers qui seront téléchargés pour chaque élément multimédia lors de la réception en bloc.  
 
     string filename1 = _singleInputMp4Path;
     string filename2 = _primaryFilePath;
@@ -190,7 +190,7 @@ L’exemple suivant illustre l’ajout de deux IngestManifestAssets qui associen
     IIngestManifestAsset bulkAsset1 =  manifest.IngestManifestAssets.Create(destAsset1, new[] { filename1 });
     IIngestManifestAsset bulkAsset2 =  manifest.IngestManifestAssets.Create(destAsset2, new[] { filename2, filename3 });
 
-Vous pouvez utiliser n'importe quelle application cliente rapide capable de télécharger les fichiers d'éléments multimédias sur l'URI du conteneur de stockage blob fourni par la propriété **IIngestManifest.BlobStorageUriForUpload** de l'IngestManifest. [Aspera On Demand pour l'Application Azure](https://datamarket.azure.com/application/2cdbc511-cb12-4715-9871-c7e7fbbb82a6)est un service de téléchargement à grande vitesse intéressant. Vous pouvez également écrire du code pour télécharger les fichiers d'éléments multimédias, comme illustré dans l’exemple de code suivant.
+Vous pouvez utiliser n’importe quelle application de client haute vitesse capable de télécharger le conteneur de stockage blob pour les fichiers actifs hello toohello URI fourni par hello **IIngestManifest.BlobStorageUriForUpload** propriété Hello IngestManifest. [Aspera On Demand pour l'Application Azure](https://datamarket.azure.com/application/2cdbc511-cb12-4715-9871-c7e7fbbb82a6)est un service de téléchargement à grande vitesse intéressant. Vous pouvez également écrire du code les fichiers de ressources hello tooupload comme indiqué dans l’exemple de code suivant de hello.
 
     static void UploadBlobFile(string destBlobURI, string filename)
     {
@@ -215,16 +215,16 @@ Vous pouvez utiliser n'importe quelle application cliente rapide capable de tél
         copytask.Start();
     }
 
-Le code pour charger les fichiers d’éléments multimédias de l’exemple utilisé dans cette rubrique est illustré dans l’exemple de code suivant.
+code Hello pour le téléchargement des fichiers d’éléments multimédias hello pour exemple hello utilisé dans cette rubrique est illustré hello, exemple de code suivant.
 
     UploadBlobFile(manifest.BlobStorageUriForUpload, filename1);
     UploadBlobFile(manifest.BlobStorageUriForUpload, filename2);
     UploadBlobFile(manifest.BlobStorageUriForUpload, filename3);
 
 
-Vous pouvez déterminer la progression de la réception en bloc de tous les éléments multimédias associés à un **IngestManifest** en interrogeant la propriété Statistics de **l’IngestManifest**. Pour mettre à jour les informations de progression, vous devez utiliser un nouveau **CloudMediaContext** chaque fois que vous interrogez la propriété Statistics.
+Vous pouvez déterminer la progression hello de réception de hello en bloc pour tous les actifs associés à un **IngestManifest** en interrogeant la propriété de statistiques hello Hello **IngestManifest**. Dans les informations de progression tooupdate commande, vous devez utiliser un nouveau **CloudMediaContext** chaque fois que vous interrogez propriété Statistics de hello.
 
-L'exemple suivant illustre l'interrogation d'un IngestManifest par son **Id**.
+Hello exemple suivant montre comment interroger un IngestManifest par son **Id**.
 
     static void MonitorBulkManifest(string manifestID)
     {
@@ -261,7 +261,7 @@ L'exemple suivant illustre l'interrogation d'un IngestManifest par son **Id**.
 
 
 ## <a name="upload-files-using-net-sdk-extensions"></a>Téléchargement de fichiers à l’aide des extensions du Kit de développement logiciel (SDK) .NET
-L’exemple ci-dessous montre comment télécharger un fichier unique à l’aide des extensions du Kit de développement logiciel (SDK) .NET. Dans ce cas, on utilise la méthode **CreateFromFile**, mais la version asynchrone est également disponible (**CreateFromFileAsync**). La méthode **CreateFromFile** vous permet de spécifier le nom de fichier, l'option de chiffrement et un rappel pour signaler la progression du téléchargement du fichier.
+exemple Hello ci-dessous montre comment tooupload un seul fichier à l’aide des Extensions du Kit de développement logiciel .NET. Dans ce cas hello **CreateFromFile** méthode est utilisée, mais la version asynchrone de hello est également disponible (**CreateFromFileAsync**). Hello **CreateFromFile** méthode vous permet de spécifier le nom de fichier hello, option de chiffrement et un rappel Bonjour tooreport de commande la progression du fichier de hello du téléchargement.
 
     static public IAsset UploadFile(string fileName, AssetCreationOptions options)
     {
@@ -278,7 +278,7 @@ L’exemple ci-dessous montre comment télécharger un fichier unique à l’aid
         return inputAsset;
     }
 
-L’exemple suivant appelle la fonction UploadFile et spécifie le chiffrement de stockage en tant qu’option de création d'éléments multimédias.  
+Hello exemple suivant appelle la fonction de UploadFile et spécifie le chiffrement de stockage en tant que l’option de création hello actif.  
 
     var asset = UploadFile(@"C:\VideoFiles\BigBuckBunny.mp4", AssetCreationOptions.StorageEncrypted);
 
@@ -286,7 +286,7 @@ L’exemple suivant appelle la fonction UploadFile et spécifie le chiffrement d
 
 Vous pouvez désormais encoder vos éléments multimédias téléchargés. Pour plus d'informations, consultez [Encode an asset using Media Encoder Standard with the Azure portal (Encoder un élément multimédia à l’aide de Media Encoder Standard avec le portail Azure)](media-services-portal-encode.md).
 
-Vous pouvez également utiliser les fonctions Azure pour déclencher une tâche de codage à partir d’un fichier entrant dans le conteneur configuré. Pour plus d’informations, consultez [cet exemple](https://azure.microsoft.com/resources/samples/media-services-dotnet-functions-integration/ ).
+Vous pouvez également utiliser les fonctions Azure tootrigger un travail d’encodage basé sur un fichier qui arrivent dans le conteneur de hello configuré. Pour plus d’informations, consultez [cet exemple](https://azure.microsoft.com/resources/samples/media-services-dotnet-functions-integration/ ).
 
 ## <a name="media-services-learning-paths"></a>Parcours d’apprentissage de Media Services
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
@@ -295,7 +295,7 @@ Vous pouvez également utiliser les fonctions Azure pour déclencher une tâche 
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
 ## <a name="next-step"></a>Étape suivante
-Après avoir chargé un élément multimédia dans Media Services, consultez la rubrique [Obtention d’un processeur multimédia][How to Get a Media Processor].
+Maintenant que vous avez téléchargé un élément multimédia tooMedia Services, accédez à toohello [comment tooGet un processeur multimédia] [ How tooGet a Media Processor] rubrique.
 
-[How to Get a Media Processor]: media-services-get-media-processor.md
+[How tooGet a Media Processor]: media-services-get-media-processor.md
 

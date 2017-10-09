@@ -1,6 +1,6 @@
 ---
-title: "Chaîne de connexion du magasin d’images Azure Service Fabric | Microsoft Docs"
-description: "Comprendre la chaîne de connexion du magasin d’images"
+title: "aaaAzure chaîne de connexion de Service Fabric image store | Documents Microsoft"
+description: "Comprendre la chaîne de connexion de magasin hello image"
 services: service-fabric
 documentationcenter: .net
 author: alexwun
@@ -14,19 +14,19 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/07/2017
 ms.author: alexwun
-ms.openlocfilehash: f497006a8ba48da0032b82113702d8014952ca20
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 83f5ad75b5df07726997da3173722028255b8cae
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="understand-the-imagestoreconnectionstring-setting"></a>Comprendre le paramètre ImageStoreConnectionString
+# <a name="understand-hello-imagestoreconnectionstring-setting"></a>Comprendre le paramètre de ImageStoreConnectionString hello
 
-Dans une partie de notre documentation, nous mentionnons brièvement l’existence d’un paramètre « ImageStoreConnectionString », sans décrire ce qu’il signifie vraiment. Et, après avoir parcouru un article comme [Déployer et supprimer des applications à l’aide de PowerShell][10], il semble que vous vous contentez de copier/coller la valeur telle qu’elle apparaît dans le manifeste du cluster cible. Le paramètre doit donc être configurable par cluster, mais, lorsque vous créez un cluster avec le [Portail Azure][11], il n’y a pas d’option permettant de configurer ce paramètre, qui est toujours « fabric:ImageStore ». Dans ce cas, quelle est l’utilité de ce paramètre ?
+Dans certains notre documentation, nous mentionner existence hello d’un paramètre « ImageStoreConnectionString » sans décrivant ce que cela signifie réellement. Et après avoir effectué un article comme [déployer et supprimer des applications à l’aide de PowerShell][10], il semble que tout ce que vous faire est de copier/coller hello valeur tel qu’il apparaît dans le manifeste du cluster hello de cible de hello cluster. Paramètre de hello doivent donc être configurable par cluster, mais lorsque vous créez un cluster via hello [portail Azure][11], il n’existe aucune option de tooconfigure ce paramètre et ses toujours « fabric : images ». À quoi sert hello de ce paramètre ?
 
 ![Manifeste de cluster][img_cm]
 
-Service Fabric était à l’origine une plateforme destinée à la consommation interne de Microsoft par de nombreuses équipes très diverses ; par conséquent, certains de ses aspects sont hautement personnalisables, et notamment le « magasin d’images ». En substance, le magasin d’images est un référentiel enfichable permettant de stocker des packages d’applications. Lorsque votre application est déployée sur un nœud du cluster, ce nœud télécharge le contenu du package de votre application à partir du magasin d’images. ImageStoreConnectionString est un paramètre qui comprend toutes les informations nécessaires pour que les clients et les nœuds trouvent le bon magasin d’images pour un cluster donné.
+Service Fabric commencé en tant que plateforme de consommation internes de Microsoft en de nombreuses équipes divers, pour certains aspects de celui-ci sont hautement personnalisables : hello « Image Store » est un aspect de ce type. Essentiellement, hello Image Store est un référentiel enfichable pour stocker les packages d’application. Lorsque votre application est un nœud tooa déployé dans un cluster de hello, ce nœud télécharge contenu hello de votre package d’application à partir de hello magasin d’images. Hello ImageStoreConnectionString est un paramètre qui inclut toutes les informations nécessaires hello pour les clients et les nœuds toofind hello correct magasin d’images pour un cluster donné.
 
 Il existe actuellement trois genres possibles de fournisseurs de magasins d’images ; les chaînes de connexion correspondantes sont les suivantes :
 
@@ -36,15 +36,15 @@ Il existe actuellement trois genres possibles de fournisseurs de magasins d’im
 
 3. Stockage Azure : « xstore:DefaultEndpointsProtocol=https;AccountName=[...];AccountKey=[...];Container=[...] »
 
-Le type de fournisseur utilisé en production est le service de magasin d’images, qui est un service système persistant avec état, visible dans Service Fabric Explorer. 
+type de fournisseur Hello utilisé en production est hello Service Banque d’Image, qui est un service système persistants avec état que vous pouvez voir à partir de Service Fabric Explorer. 
 
 ![Service de magasin d’images][img_is]
 
-Le fait d’héberger le magasin d’images dans un service système au sein même du cluster élimine les dépendances externes du référentiel de packages et nous donne davantage de contrôle sur le lieu de stockage. Les améliorations à venir du magasin d’images cibleront probablement le fournisseur de magasin d’images en premier lieu, si ce n’est exclusivement. La chaîne de connexion du fournisseur de service de magasin d’images ne contient aucune information unique, dans la mesure où le client est déjà connecté au cluster cible. Le client a seulement besoin de savoir que les protocoles ciblant le service système doivent être utilisés.
+Hébergement hello magasin d’images dans un service système cluster hello lui-même élimine les dépendances externes pour le référentiel de packages hello et nous permet de mieux contrôler la localité hello de stockage. Futures améliorations autour hello magasin d’images sont tout d’abord, fournisseur de magasin d’images hello tootarget probable si ce n’est pas exclusivement. chaîne de connexion Hello pour le fournisseur de Service de magasin d’images hello ne contient aucune information unique, car le client de hello est déjà connecté toohello cible cluster. client de Hello doit uniquement tooknow que les protocoles ciblant le service système hello doivent être utilisés.
 
-Le fournisseur du système de fichiers est utilisé à la place du service de magasin d’images pour les clusters à boîtier unique locaux pendant le développement, de façon à démarrer le cluster un peu plus vite. La différence est généralement faible, mais c’est une optimisation utile à la plupart des gens lors du développement. Il est également possible de déployer un cluster à boîtier unique local avec les autres types de fournisseurs de stockage, mais il n’y a généralement aucune raison de le faire dans la mesure où le flux de travail de développement / test reste le même quel que soit le fournisseur. En dehors de cette utilisation, les fournisseurs de système de fichiers et de Stockage Azure n’existent que pour la prise en charge des anciennes générations.
+fournisseur de système de fichiers Hello est utilisée au lieu de hello Service Banque d’Image pour local une case clusters durant cluster de développement toobootstrap hello légèrement plus rapide. différence de Hello est généralement faible, mais il s’agit d’une optimisation utile pour la plupart des gens pendant le développement. Son possible toodeploy une zone locale un cluster avec hello d’autres types de fournisseurs de stockage ainsi, mais il est généralement inutile toodo par conséquent, étant donné que le reste du flux de travail de développement/test hello hello même quel que soit le fournisseur. Que cette utilisation, des fournisseurs de système de fichiers et de stockage Azure hello existent uniquement pour la prise en charge héritée.
 
-Par conséquent, si ImageStoreConnectionString est configurable, on utilise en général simplement le paramètre par défaut. En cas de publication sur Azure avec [Visual Studio][12], le paramètre est automatiquement défini en conséquence. Pour un déploiement par programmation sur des clusters hébergés dans Azure, la chaîne de connexion est toujours « fabric:ImageStore ». En cas de doute, sa valeur peut toujours être vérifiée en récupérant le manifeste de cluster par [PowerShell](https://docs.microsoft.com/powershell/servicefabric/vlatest/get-servicefabricclustermanifest), [.NET](https://msdn.microsoft.com/library/azure/mt161375.aspx) ou [REST](https://docs.microsoft.com/rest/api/servicefabric/get-a-cluster-manifest). Les clusters de test et de production locaux doivent également être toujours configurés pour utiliser le fournisseur de service de magasin d’images.
+Par conséquent, tandis que hello ImageStoreConnectionString est configurable, vous en général simplement utilisez hello paramètre par défaut. Lors de la publication tooAzure via [Visual Studio][12], hello est automatiquement affectée pour vous en conséquence. Pour un déploiement par programmation les tooclusters hébergés dans Azure, chaîne de connexion hello est toujours « fabric : images ». Bien que, en cas de doute, sa valeur peut toujours être vérifiée par la récupération du manifeste du cluster hello par [PowerShell](https://docs.microsoft.com/powershell/servicefabric/vlatest/get-servicefabricclustermanifest), [.NET](https://msdn.microsoft.com/library/azure/mt161375.aspx), ou [reste](https://docs.microsoft.com/rest/api/servicefabric/get-a-cluster-manifest). De test à la fois localement et clusters de production doivent toujours être fournisseur de Service de magasin d’images hello toouse configuré ainsi.
 
 ### <a name="next-steps"></a>Étapes suivantes
 [Déployer et supprimer des applications avec PowerShell][10]

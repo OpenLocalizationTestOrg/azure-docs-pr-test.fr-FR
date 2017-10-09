@@ -1,45 +1,45 @@
 <!--author=alkohli last changed: 02/10/17-->
 
-#### <a name="to-download-hotfixes"></a>Pour télécharger des correctifs logiciels
+#### <a name="toodownload-hotfixes"></a>correctifs logiciels toodownload
 
-Procédez comme suit pour télécharger la mise à jour logicielle à partir du Catalogue Microsoft Update.
+Effectuer hello suivant étapes toodownload hello mise à jour à partir de hello catalogue Microsoft Update.
 
-1. Démarrez Internet Explorer et accédez à [http://catalog.update.microsoft.com](http://catalog.update.microsoft.com).
-2. Si vous utilisez le catalogue Microsoft Update pour la première fois sur cet ordinateur, cliquez sur **Installer** lorsque vous êtes invité à installer le module complémentaire Catalogue Microsoft Update.
+1. Démarrez Internet Explorer et accédez trop[http://catalog.update.microsoft.com](http://catalog.update.microsoft.com).
+2. S’il s’agit de votre première utilisation hello catalogue Microsoft Update sur cet ordinateur, cliquez sur **installer** lorsque tooinstall demandée hello module complémentaire du catalogue Microsoft Update.
 
     ![Installer le catalogue](./media/storsimple-install-update2-hotfix/HCS_InstallCatalog-include.png)
 
-3. Dans la zone de recherche du Catalogue Microsoft Update, entrez le numéro KB (Base de connaissances) du correctif logiciel que vous souhaitez télécharger, par exemple **4011839**, puis cliquez sur **Rechercher**.
+3. Dans la zone de recherche hello Hello catalogue Microsoft Update, entrez le nombre de Base de connaissances (KB) hello de hello correctif souhaité toodownload, par exemple **4011839**, puis cliquez sur **recherche**.
    
-    La liste des correctifs s’affiche, par exemple **Ensemble de logiciels Update 4.0 pour StorSimple série 8000**.
+    Hello correctif liste s’affiche, par exemple, **Cumulative 4.0 de mise à jour logicielle offre groupée pour StorSimple 8000 Series**.
    
     ![Rechercher dans le catalogue](./media/storsimple-install-update2-hotfix/HCS_SearchCatalog1-include.png)
 
-4. Cliquez sur **Télécharger**. Spécifiez ou **recherchez** l'emplacement local où vous voulez effectuer les téléchargements. Cliquez sur les fichiers à télécharger vers l’emplacement et le dossier spécifiés. Ce dossier peut également être copié sur un partage réseau accessible à partir de l’appareil.
-5. Recherchez les correctifs logiciels supplémentaires répertoriés dans le tableau ci-dessus (**4011841**) et téléchargez les fichiers correspondants vers les dossiers spécifiques répertoriés dans le tableau précédent.
+4. Cliquez sur **Télécharger**. Spécifiez ou **Parcourir** tooa local emplacement souhaité hello télécharge tooappear. Cliquez sur les fichiers hello toodownload toohello spécifié l’emplacement et le dossier. dossier de Hello peut également être tooa copié partage réseau accessible à partir de l’appareil de hello.
+5. Recherche de tous les correctifs supplémentaires répertoriées dans le tableau hello ci-dessus (**4011841**), et hello de téléchargement correspondant de fichiers des dossiers spécifiques toohello comme indiqué dans le tableau précédent de hello.
 
 > [!NOTE]
-> Les correctifs doivent être accessibles depuis les deux contrôleurs pour détecter les messages d’erreur potentiels à partir du contrôleur homologue.
+> les correctifs logiciels Hello doivent être accessibles depuis les deux toodetect contrôleurs toute erreur potentielle de messages à partir du contrôleur homologue de hello.
 >
-> Les correctifs doivent être copiés dans trois dossiers séparés. Par exemple, la mise à jour de l’agent MDS/Cis/du logiciel de l’appareil peut être copiée dans le dossier _FirstOrderUpdate_, tandis que toutes les autres mises à jour non perturbatrices peuvent être copiées dans le dossier _SecondOrderUpdate_ et les mises à jour du mode maintenance dans le dossier _ThirdOrderUpdate_.
+> les correctifs logiciels Hello doivent être copiés dans des dossiers distincts 3. Par exemple, la mise à jour de l’agent de logiciel/Cis/MDS hello périphérique peut être copié dans _FirstOrderUpdate_ hello de dossier, tous les autres mises à jour sans interruption de service peuvent être copiées à hello _SecondOrderUpdate_ dossier, et mises à jour du mode maintenance copiés dans _ThirdOrderUpdate_ dossier.
 
-#### <a name="to-install-and-verify-regular-mode-hotfixes"></a>Pour installer et vérifier les correctifs logiciels en mode Normal
+#### <a name="tooinstall-and-verify-regular-mode-hotfixes"></a>tooinstall et vérifiez les correctifs en mode normal
 
-Procédez comme suit pour installer et vérifier les correctifs logiciels en mode Normal. Si vous les avez déjà installés à l’aide du portail Azure Classic, passez directement à la section [Pour installer et vérifier les correctifs logiciels en mode Maintenance](#to-install-and-verify-maintenance-mode-hotfixes).
+Effectuer hello suivant les étapes tooinstall et vérifier les correctifs en mode normal. Si vous avez déjà installé à l’aide de hello portail Azure classic, passez directement trop[installer et vérifier les correctifs en mode de maintenance](#to-install-and-verify-maintenance-mode-hotfixes).
 
-1. Pour installer les correctifs logiciels, accédez à l’interface Windows PowerShell sur la console série de votre appareil StorSimple. Suivez les instructions détaillées de la section [Utilisation de PuTTY pour se connecter à la console série de l’appareil](../articles/storsimple/storsimple-deployment-walkthrough.md#use-putty-to-connect-to-the-device-serial-console). À l'invite de commandes, appuyez sur **Entrée**.
-2. Sélectionnez **Option 1** pour vous connecter à l’appareil avec un accès complet. Nous vous recommandons d’installer le correctif d’abord sur le contrôleur passif.
-3. Pour installer le correctif logiciel, tapez ce qui suit à l’invite de commandes :
+1. correctifs logiciels hello tooinstall, interface de Windows PowerShell hello accès sur votre console série du périphérique StorSimple. Suivez hello des instructions dans [console série d’utilisation PuTTy tooconnect toohello](../articles/storsimple/storsimple-deployment-walkthrough.md#use-putty-to-connect-to-the-device-serial-console). Appuyez sur l’invite de commande hello, **entrée**.
+2. Sélectionnez **Option 1** toolog sur l’appareil toohello avec un accès complet. Nous vous recommandons d’installer hello correctif sur le contrôleur passif de hello tout d’abord.
+3. correctif de hello tooinstall, à hello invite de commandes, tapez :
    
-    `Start-HcsHotfix -Path <path to update file> -Credential <credentials in domain\username format>`
+    `Start-HcsHotfix -Path <path tooupdate file> -Credential <credentials in domain\username format>`
    
-    Utilisez IP au lieu de DNS dans le chemin d'accès du partage dans la commande ci-dessus. Le paramètre Informations d’identification n’est utilisé que si vous accédez à un partage authentifié.
+    Utilisez IP plutôt que DNS dans le chemin d’accès de partage Bonjour au-dessus de commande. paramètre des informations d’identification de Hello est utilisé uniquement si vous accédez à un partage authentifié.
    
-    Nous vous recommandons d'utiliser le paramètre d'informations d'identification pour accéder aux partages. Même les partages qui sont ouverts à « tout le monde » ne sont généralement pas ouverts aux utilisateurs non authentifiés.
+    Nous vous recommandons d’utiliser les partages de tooaccess paramètre hello d’informations d’identification. Même les partages qui sont ouverts trop « tout le monde » est généralement pas ouvrir toounauthenticated utilisateurs.
    
-    Indiquez le mot de passe lorsque vous y êtes invité.
+    Fournissez le mot de passe hello lorsque vous y êtes invité.
    
-    Vous trouverez ci-dessous un exemple de sortie pour l’installation des mises à jour prioritaires. Pour la première mise à jour de commande, vous devez pointer vers le fichier spécifique.
+    Vous trouverez ci-dessous un exemple de sortie pour l’installation des mises à jour de commande premier hello. Hello première commande mise à jour, vous devez toopoint toohello un fichier spécifique.
    
         ````
         Controller0>Start-HcsHotfix -Path \\10.100.100.100\share
@@ -47,16 +47,16 @@ Procédez comme suit pour installer et vérifier les correctifs logiciels en mod
    
         Confirm
    
-        This operation starts the hotfix installation and could reboot one or
-        both of the controllers. If the device is serving I/Os, these will not
-        be disrupted. Are you sure you want to continue?
+        This operation starts hello hotfix installation and could reboot one or
+        both of hello controllers. If hello device is serving I/Os, these will not
+        be disrupted. Are you sure you want toocontinue?
         [Y] Yes [N] No [?] Help (default is "Y"): Y
    
         ````
-4. Tapez **Y** lorsque vous êtes invité à confirmer l’installation du correctif.
-5. Contrôlez la mise à jour à l'aide de l'applet de commande `Get-HcsUpdateStatus` . La mise à jour se termine d’abord sur le contrôleur passif. Une fois le contrôleur passif mis à jour, un basculement se produit et la mise à jour est ensuite appliquée à l’autre contrôleur. La mise à jour est terminée lorsque les deux contrôleurs sont mis à jour.
+4. Type **Y** lorsque tooconfirm demandée hello installation du correctif logiciel.
+5. Surveiller les mises à jour hello à l’aide de hello `Get-HcsUpdateStatus` applet de commande. mise à jour Hello terminera tout d’abord sur le contrôleur passif de hello. Une fois que le contrôleur passif de hello est mise à jour, il y aura un basculement et mise à jour hello puis appliqué sur hello autre contrôleur. mise à jour Hello est terminée lorsque les deux contrôleurs hello sont mis à jour.
    
-    L’exemple de sortie suivant indique que la mise à jour est en cours. `RunInprogress` a la valeur `True` lorsque la mise à jour est en cours.
+    Hello résultat de l’exemple suivant illustre hello mise à jour en cours d’exécution. Hello `RunInprogress` sera `True` lorsque la mise à jour hello est en cours d’exécution.
 
     ```
     Controller0>Get-HcsUpdateStatus
@@ -67,7 +67,7 @@ Procédez comme suit pour installer et vérifier les correctifs logiciels en mod
     Controller1Events   :
     ```
    
-     L’exemple de sortie suivant indique que la mise à jour est terminée. `RunInProgress` a la valeur `False` lorsque la mise à jour est terminée.
+     Hello suivant l’exemple de sortie indique que cette mise à jour hello est terminée. Hello `RunInProgress` sera `False` lorsque la mise à jour hello est terminée.
    
     ```
     Controller0>Get-HcsUpdateStatus
@@ -79,40 +79,40 @@ Procédez comme suit pour installer et vérifier les correctifs logiciels en mod
     ```
 
     > [!NOTE]
-    > Parfois, l'applet de commande indique `False` lorsque la mise à jour est encore en cours d'exécution. Pour vous assurer que le correctif logiciel est terminé, patientez quelques minutes, exécutez à nouveau cette commande et vérifiez que `RunInProgress` est `False`. Dans ce cas, le correctif est terminé.
+    > Hello occasionnellement, les rapports de l’applet de commande `False` lorsque la mise à jour hello est toujours en cours. tooensure qui hello correctif est terminée, patientez quelques minutes, réexécutez cette commande et vérifiez que hello `RunInProgress` est `False`. S’il s’agit, hello correctif est terminée.
 
-6. Lorsque la mise à jour logicielle est terminée, vérifiez les versions des logiciels du système. Entrez :
+6. Une fois la mise à jour logicielle de hello est terminée, vérifiez les versions des logiciels système hello. Entrez :
    
     `Get-HcsSystem`
    
-    Vous devez voir les versions suivantes :
+    Vous devez voir hello versions suivantes :
    
    * `FriendlySoftwareVersion: StorSimple 8000 Series Update 4.0`
    *  `HcsSoftwareVersion: 6.3.9600.17820`
    
-    Si le numéro de version ne change pas après la mise à jour, cela indique que le correctif n’a pas pu s’appliquer. Dans ce cas, contactez le [Support Microsoft](../articles/storsimple/storsimple-contact-microsoft-support.md) pour obtenir une assistance supplémentaire.
+    Si le numéro de version hello ne change pas après avoir appliqué la mise à jour hello, il indique ce correctif hello a échoué tooapply. Dans ce cas, contactez le [Support Microsoft](../articles/storsimple/storsimple-contact-microsoft-support.md) pour obtenir une assistance supplémentaire.
      
     > [!IMPORTANT]
-    > Vous devez redémarrer le contrôleur actif via la cmdlet `Restart-HcsController` avant d’appliquer la prochaine mise à jour.
+    > Vous devez redémarrer le contrôleur actif de hello via hello `Restart-HcsController` applet de commande avant l’application hello prochaine mise à jour.
      
-7. Répétez les étapes 3 à 5 pour installer l’agent MDS/Cis téléchargé vers votre dossier _FirstOrderUpdate_. 
-8. Répétez les étapes 3 à 5 pour installer les mises à jour de deuxième priorité. **Pour les mises à jour de la deuxième commande, il est possible d’installer plusieurs mises à jour en exécutant simplement `Start-HcsHotfix cmdlet` et en désignant le dossier où se trouvent les mises à jour de deuxième priorité. L’applet de commande exécute alors toutes les mises à jour disponibles dans le dossier.** La logique de mise à jour détecte les éventuelles mises à jour déjà installées et ne les applique pas. 
+7. Répétez les étapes 3 à 5 tooinstall hello Cis/MDS agent téléchargé tooyour _FirstOrderUpdate_ dossier. 
+8. Répétez les étapes 3 à 5 tooinstall hello deuxième mises à jour. **Deuxième mise à jour de l’ordre, plusieurs mises à jour peuvent être installés en exécutant simplement les hello `Start-HcsHotfix cmdlet` et pointage toohello dossier dans lequel se trouvent les mises à jour de deuxième ordre. applet de commande hello s’exécute toutes les mises à jour de hello disponibles dans le dossier de hello.** Si une mise à jour est déjà installé, la logique de mise à jour hello détectera qu’et pas appliquer cette mise à jour. 
 
-Une fois tous les correctifs installés, utilisez l’applet de commande `Get-HcsSystem`. Les versions doivent être les suivantes :
+Une fois que tous les correctifs hello sont installés, utilisez hello `Get-HcsSystem` applet de commande. les versions Hello doivent être :
 
    * `CisAgentVersion:  1.0.9441.0`
    * `MdsAgentVersion: 35.2.2.0`
    * `Lsisas2Version: 2.0.78.00`
 
 
-#### <a name="to-install-and-verify-maintenance-mode-hotfixes"></a>Pour installer et vérifier les correctifs logiciels en mode Maintenance
-Utilisez l’article KB4011837 pour installer les mises à jour du microprogramme de disque. Ces mises à jour, qui entraînent des perturbations, nécessitent environ 30 minutes. Vous pouvez choisir de les installer dans une fenêtre de maintenance planifiée en vous connectant à la console série du périphérique.
+#### <a name="tooinstall-and-verify-maintenance-mode-hotfixes"></a>tooinstall et vérifiez les correctifs en mode de maintenance
+Utilisez les mises à jour du microprogramme KB4011837 tooinstall disque. Ces mises à jour et prennent environ 30 minutes toocomplete. Vous pouvez choisir tooinstall dans une fenêtre de maintenance planifiée par la console série du périphérique toohello connexion.
 
-Notez que si votre microprogramme de disque est déjà à jour, vous n’aurez pas à installer ces mises à jour. Exécutez l’applet de commande `Get-HcsUpdateAvailability` à partir de la console série de l’appareil pour vérifier si des mises à jour sont disponibles et si elles risquent de provoquer une interruption de service (mode maintenance) ou non (mode normal).
+Notez que si le microprogramme du disque est déjà à jour, vous n’aurez pas tooinstall ces mises à jour. Exécutez hello `Get-HcsUpdateAvailability` applet de commande hello appareil console série toocheck si les mises à jour sont disponibles et hello si des mises à jour sont perturbateur (mode de maintenance) ou sans interruption de service (mode standard) des mises à jour.
 
-Pour installer les mises à jour du microprogramme de disque, suivez les instructions ci-dessous.
+tooinstall hello disque mises à jour, suivez les instructions de hello ci-dessous.
 
-1. Mettez l’appareil en mode maintenance. **Notez que vous ne devez pas utiliser l’accès distant Windows PowerShell quand vous vous connectez à un appareil en mode maintenance. À la place, exécutez cette applet de commande sur le contrôleur de l’appareil si vous êtes connecté par le biais de la console série de l’appareil.** Entrez :
+1. Placez l’appareil de hello en mode de maintenance hello. **Notez que vous ne devez pas utiliser la communication à distance de Windows PowerShell lors de la connexion du périphérique tooa en mode maintenance. Au lieu de cela, exécutez cette applet de commande sur le contrôleur de l’appareil hello lorsqu’il est connecté via la console série du périphérique hello.** Entrez :
    
     `Enter-HcsMaintenanceMode`
    
@@ -121,14 +121,14 @@ Pour installer les mises à jour du microprogramme de disque, suivez les instruc
         Controller0>Enter-HcsMaintenanceMode
         Checking device state...
    
-        In maintenance mode, your device will not service IOs and will be disconnected from the Microsoft Azure StorSimple Manager service. Entering maintenance mode will end the current session and reboot both controllers, which takes a few minutes to complete. Are you sure you want to enter maintenance mode?
+        In maintenance mode, your device will not service IOs and will be disconnected from hello Microsoft Azure StorSimple Manager service. Entering maintenance mode will end hello current session and reboot both controllers, which takes a few minutes toocomplete. Are you sure you want tooenter maintenance mode?
         [Y] Yes [N] No (Default is "Y"): Y
    
         -----------------------MAINTENANCE MODE------------------------
         Microsoft Azure StorSimple Appliance Model 8600
         Name: Update4-8600-mystorsimple
         Copyright (C) 2014 Microsoft Corporation. All rights reserved.
-        You are connected to Controller0 - Passive
+        You are connected tooController0 - Passive
         ---------------------------------------------------------------
    
         Serial Console Menu
@@ -138,26 +138,26 @@ Pour installer les mises à jour du microprogramme de disque, suivez les instruc
         [4] Change language
         Please enter your choice>
    
-    Les deux contrôleurs redémarrent alors en mode maintenance.
-2. Pour installer la mise à jour du microprogramme de disque, tapez :
+    Les deux contrôleurs hello puis redémarrez en mode de maintenance.
+2. tooinstall hello disque microprogramme mise à jour, type :
    
-    `Start-HcsHotfix -Path <path to update file> -Credential <credentials in domain\username format>`
+    `Start-HcsHotfix -Path <path tooupdate file> -Credential <credentials in domain\username format>`
    
     Voici un exemple de sortie obtenue.
    
         Controller1>Start-HcsHotfix -Path \\10.100.100.100\share\ThirdOrderUpdates\ -Credential contoso\john
         Enter Password:
-        WARNING: In maintenance mode, hotfixes should be installed on each controller sequentially. After the hotfix is installed on this controller, install it on the peer controller.
+        WARNING: In maintenance mode, hotfixes should be installed on each controller sequentially. After hello hotfix is installed on this controller, install it on hello peer controller.
         Confirm
-        This operation starts a hotfix installation and could reboot one or both of the controllers. By installing new updates you agree to, and accept any additional terms associated with, the new functionality listed in the release notes (https://go.microsoft.com/fwLink/?LinkID=613790). Are you sure you want to continue?
+        This operation starts a hotfix installation and could reboot one or both of hello controllers. By installing new updates you agree to, and accept any additional terms associated with, hello new functionality listed in hello release notes (https://go.microsoft.com/fwLink/?LinkID=613790). Are you sure you want toocontinue?
         [Y] Yes [N] No (Default is "Y"): Y
-        WARNING: Installation is currently in progress. This operation can take several minutes to complete.
-3. Surveillez la progression de l’installation à l’aide de la commande `Get-HcsUpdateStatus` . La mise à jour est terminée quand `RunInProgress` passe à `False`.
-4. Une fois l’installation terminée, le contrôleur sur lequel le correctif logiciel en mode Maintenance a été installé redémarre. Connectez-vous avec l’option 1 (accès total) et vérifiez la version du microprogramme de disque. Entrez :
+        WARNING: Installation is currently in progress. This operation can take several minutes toocomplete.
+3. À l’aide de moniteur hello install progression `Get-HcsUpdateStatus` commande. Hello mise à jour est terminée lorsque hello `RunInProgress` change également`False`.
+4. Après que l’installation de hello est terminée, le contrôleur hello sur quel hello correctif en mode de maintenance a été installé redémarre. Connectez-vous en tant qu’option 1 avec un accès complet et vérifier la version du microprogramme du disque hello. Entrez :
    
    `Get-HcsFirmwareVersion`
    
-   Les versions attendues du microprogramme de disque sont les suivantes :
+   Hello attendu sont des versions du microprogramme de disque :
    
    `XMGJ, XGEG, KZ50, F6C2, VR08, N002, 0106`
    
@@ -168,7 +168,7 @@ Pour installer les mises à jour du microprogramme de disque, suivez les instruc
        Name: Update4-8600-mystorsimple
        Software Version: 6.3.9600.17820
        Copyright (C) 2014 Microsoft Corporation. All rights reserved.
-       You are connected to Controller1
+       You are connected tooController1
        ---------------------------------------------------------------
    
        Controller1>Get-HcsFirmwareVersion
@@ -244,9 +244,9 @@ Pour installer les mises à jour du microprogramme de disque, suivez les instruc
               WD:WD4001FYYG-01SL3:VR08
               WD:WD4001FYYG-01SL3:VR08
    
-    Exécutez la commande `Get-HcsFirmwareVersion` sur le deuxième contrôleur pour vérifier que la version du logiciel a été mise à jour. Vous pouvez à présent quitter le mode Maintenance. Pour ce faire, tapez la commande suivante pour chaque contrôleur d’appareil :
+    Exécutez hello `Get-HcsFirmwareVersion` commande hello deuxième contrôleur tooverify qui hello version du logiciel a été mis à jour. Vous pouvez ensuite quitter le mode de maintenance de hello. Par conséquent, toodo de type hello commande pour chaque contrôleur de périphérique suivante :
    
    `Exit-HcsMaintenanceMode`
 
-5. Les contrôleurs redémarrent quand vous quittez le mode maintenance. Une fois que les mises à jour du microprogramme de disque ont été appliquées avec succès et que l’appareil a quitté le mode Maintenance, revenez au portail Azure Classic. Remarque : il se peut que le portail n’affiche pas les mises à jour installées en mode maintenance pendant 24 heures.
+5. contrôleurs de Hello redémarrer lorsque vous quittez le mode maintenance. Une fois que du microprogramme du disque hello mises à jour sont correctement appliquées et les appareils hello sont sortie du mode de maintenance, retour toohello portail Azure classic. Notez que ce portail hello peut ne pas affiche que vous avez installé des mises à jour du mode de maintenance hello pendant 24 heures.
 

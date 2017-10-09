@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 09/01/2016
 ms.author: bwren
-ms.openlocfilehash: 8bdaf9592ed29371ecfe8e9e5d2f8da9ac1795bb
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 14b363c934a018ce72be97d1a0b74a6c2210656e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="developer-analytics-languages-platforms-and-integrations"></a>Analyse développeur : langages, plateformes et intégrations
 Ces éléments sont des implémentations [Application Insights](app-insights-overview.md) dont nous avons entendu parler, y compris par des tiers.
@@ -41,7 +41,7 @@ Ces éléments sont des implémentations [Application Insights](app-insights-ove
 * [ASP.NET Core](app-insights-asp-net-core.md)
 * [Android](https://github.com/Microsoft/ApplicationInsights-Android) (HockeyApp)
 * [Azure Web Apps](app-insights-azure-web-apps.md)
-* [Services cloud Azure](app-insights-cloudservices.md)&#151;incluant les rôles web et de travail
+* [Services cloud Azure](app-insights-cloudservices.md)&amp;#151;incluant les rôles web et de travail
 * [Azure Functions](https://github.com/christopheranderson/azure-functions-app-insights-sample)
 * [Docker](app-insights-docker.md)
 * [Glimpse](https://azure.microsoft.com/blog/glimpse-application-insights/)
@@ -82,4 +82,4 @@ Ces éléments sont des implémentations [Application Insights](app-insights-ove
 * [Stream Analytics](app-insights-export-power-bi.md)
 
 ## <a name="projects"></a> Génération de votre propre kit de développement logiciel (SDK)
-S’il n’existe pas encore de kit de développement logiciel (SDK) pour votre langage ou plateforme, peut-être souhaitez-vous créer un ? Examinons le code des kits de développement logiciel (SDK) existants répertoriés dans le [projet Kit de développement logiciel (SDK) Application Insights sur GitHub](https://github.com/Microsoft/AppInsights-Home).
+S’il n’existe pas encore d’un kit de développement logiciel pour votre plateforme ou le langage, peut-être que vous aimeriez toobuild une ? Examinons code hello Hello existante des kits de développement logiciel répertoriés dans hello [projet Application Insights SDK sur GitHub](https://github.com/Microsoft/AppInsights-Home).

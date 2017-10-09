@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory à SuccessFactors | Microsoft Docs"
-description: "Découvrez comment utiliser SuccessFactors avec Azure Active Directory pour activer l’authentification unique, l’approvisionnement automatique et bien plus encore."
+description: "Découvrez comment toouse SuccessFactors avec Azure Active Directory tooenable single sign-on, l’approvisionnement automatisé et bien plus encore !"
 services: active-directory
 author: jeevansd
 documentationcenter: na
@@ -14,103 +14,103 @@ ms.workload: identity
 ms.date: 07/21/2017
 ms.author: jeedes
 ms.reviewer: jeedes
-ms.openlocfilehash: e85a38ccbe25263ac42bc76351416b023fb77c87
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 3f7895d7d5e26fda27f555ae2f14a1645b50dcba
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-successfactors"></a>Didacticiel : Intégration d’Azure Active Directory à SuccessFactors
-L’objectif de ce didacticiel est de vous montrer comment intégrer SuccessFactors dans Azure Active Directory (Azure AD).
+objectif Hello de ce didacticiel est tooshow vous comment toointegrate SuccessFactors avec Azure Active Directory (Azure AD).
 
-L’intégration de SuccessFactors dans Azure AD vous offre les avantages suivants :
+Intégration de SuccessFactors à Azure AD offre hello avantages suivants :
 
-* Dans Azure AD, vous pouvez contrôler qui a accès à SuccessFactors.
-* Vous pouvez autoriser les utilisateurs à se connecter automatiquement à SuccessFactors (via l’authentification unique) avec leur compte Azure AD.
-* Vous pouvez gérer vos comptes à un emplacement central : le portail Azure Classic.
+* Vous pouvez contrôler dans Azure AD qui a accès tooSuccessFactors
+* Vous pouvez activer vos utilisateurs tooautomatically get connecté tooSuccessFactors (Single Sign-On) avec leurs comptes Azure AD
+* Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure classic
 
-Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
+Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Composants requis
-Pour configurer l’intégration d’Azure AD à SuccessFactors, vous avez besoin des éléments suivants :
+tooconfigure intégration d’Azure AD avec SuccessFactors, vous devez hello éléments suivants :
 
 * Un abonnement Azure valide
 * Un locataire SuccessFactors
 
 > [!NOTE]
-> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
+> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
 > 
 > 
 
-Vous devez en outre suivre les recommandations ci-dessous :
+tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
 
 * Vous ne devez pas utiliser votre environnement de production, sauf si cela est nécessaire.
 * Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Ce didacticiel vise à vous permettre de tester l’authentification unique Azure AD dans un environnement de test.
+objectif Hello de ce didacticiel est tooenable vous tootest Azure AD l’authentification unique dans un environnement de test.
 
-Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
+scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
 
-1. Ajout de SuccessFactors à partir de la galerie
+1. Ajout de SuccessFactors à partir de la galerie de hello
 2. Configuration et test de l’authentification unique Azure AD
 
-## <a name="adding-successfactors-from-the-gallery"></a>Ajout de SuccessFactors à partir de la galerie
-Pour configurer l’intégration de SuccessFactors à Azure AD, vous devez ajouter SuccessFactors à partir de la galerie à votre liste d’applications SaaS gérées.
+## <a name="adding-successfactors-from-hello-gallery"></a>Ajout de SuccessFactors à partir de la galerie de hello
+intégration de hello tooconfigure de SuccessFactors dans Azure AD, vous devez tooadd SuccessFactors à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
 
-**Pour ajouter SuccessFactors à partir de la galerie, procédez comme suit :**
+**tooadd SuccessFactors à partir de la galerie hello, procédez hello comme suit :**
 
-1. Dans le volet de navigation gauche du portail Azure Classic, cliquez sur **Active Directory**.
+1. Bonjour portail Azure classic, dans le volet de navigation gauche hello, cliquez sur **Active Directory**.
    
     ![Configuration de l'authentification unique][1]
-2. Dans la liste **Annuaire** , sélectionnez l'annuaire pour lequel vous voulez activer l'intégration d'annuaire.
-3. Pour ouvrir la vue des applications, dans la vue d'annuaire, cliquez sur **Applications** dans le menu du haut.
+2. À partir de hello **répertoire** liste, répertoire sélectionnez hello pour lequel vous souhaitez tooenable intégration d’annuaire.
+3. vue d’applications de hello tooopen, dans la vue active de hello, cliquez sur **Applications** dans le menu du haut hello.
    
     ![Configuration de l'authentification unique][2]
-4. Cliquez sur **Ajouter** en bas de la page.
+4. Cliquez sur **ajouter** bas hello de page de hello.
    
     ![Applications][3]
-5. Dans la boîte de dialogue **Que voulez-vous faire ?**, cliquez sur **Ajouter une application à partir de la galerie**.
+5. Sur hello **comment vous souhaitez toodo** boîte de dialogue, cliquez sur **ajouter une application à partir de la galerie de hello**.
    
     ![Configuration de l'authentification unique][4]
-6. Dans la **zone de recherche**, tapez **SuccessFactors**.
+6. Bonjour **zone de recherche**, type **SuccessFactors**.
    
     ![Configuration de l'authentification unique][5]
-7. Dans le volet des résultats, sélectionnez **SuccessFactors**, puis cliquez sur **Terminer** pour ajouter l’application.
+7. Dans le volet de résultats hello, sélectionnez **SuccessFactors**, puis cliquez sur **Complete** application hello de tooadd.
    
     ![Configuration de l'authentification unique][6]
 
 ## <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configuration et test de l’authentification unique Azure AD
-L’objectif de cette section est de vous montrer comment configurer et tester l’authentification unique Azure AD avec SuccessFactors avec un utilisateur de test appelé « Britta Simon ».
+objectif Hello de cette section est tooshow comment tooconfigure et test Azure AD l’authentification unique avec SuccessFactors en fonction d’un utilisateur de test appelé « Britta Simon ».
 
-Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur SuccessFactors équivalent dans Azure AD. En d’autres termes, une relation entre l’utilisateur Azure AD et l’utilisateur SuccessFactors associé doit être établie.
+Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans SuccessFactors tooan l’utilisateur dans Azure AD est. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans SuccessFactors doit toobe établie.
 
-Pour cela, affectez la valeur de **nom d’utilisateur** dans Azure AD comme valeur de **nom d’utilisateur** dans SuccessFactors.
+Cette relation de lien est établie en assignant la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** dans SuccessFactors.
 
-Pour configurer et tester l’authentification unique Azure AD avec SuccessFactors, vous devez suivre les indications des sections suivantes :
+tooconfigure et test Azure AD l’authentification unique avec SuccessFactors, vous devez hello toocomplete suivant des blocs de construction :
 
-1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
-2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
-3. **[Création d’un utilisateur de test SuccessFactors](#creating-a-successfactors-test-user)** pour avoir un équivalent de Britta Simon dans SuccessFactors lié à la représentation Azure AD associée.
-4. **[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
-5. **[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.
+1. **[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
+2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
+3. **[Création d’un utilisateur de test de SuccessFactors](#creating-a-successfactors-test-user)**  -toohave de Britta Simon dans SuccessFactors qui est la représentation sous forme de toohello lié Azure AD de sa contrepartie.
+4. **[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
+5. **[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configuration de l’authentification unique Azure AD
-Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure Classic et configurer l’authentification unique dans votre application SuccessFactors.
+Dans cette section, vous activez Azure AD l’authentification unique dans le portail classique de hello et configurez l’authentification unique dans votre application SuccessFactors.
 
-**Pour configurer l’authentification unique Azure AD avec SuccessFactors, procédez comme suit :**
+**tooconfigure Azure AD single sign-on avec SuccessFactors, procédez hello comme suit :**
 
-1. Sur la page d’intégration d’application **SuccessFactors** du portail Azure Classic, cliquez sur **Configurer l’authentification unique** pour ouvrir la boîte de dialogue **Configurer l’authentification unique**.
+1. Bonjour portail Azure classic sur hello **SuccessFactors** page d’intégration d’application, cliquez sur **configurer l’authentification unique sur** tooopen hello **configurer Single Sign On** boîte de dialogue.
    
     ![Configuration de l'authentification unique][7]
-2. Dans la page **Comment voulez-vous que les utilisateurs se connectent à SuccessFactors**, sélectionnez **Authentification unique avec Microsoft Azure AD**, puis cliquez sur **Suivant**.
+2. Sur hello **Comment souhaitez-vous toosign utilisateurs sur tooSuccessFactors** page, sélectionnez **Microsoft Azure AD Single Sign-On**, puis cliquez sur **suivant**.
    
     ![Configuration de l'authentification unique][8]
-3. Dans la page **Configurer l’URL de l’application**, procédez comme suit, puis cliquez sur **Suivant**.
+3. Sur hello **Configure App URL** page, effectuer hello comme suit, puis cliquez sur **suivant**.
    
     ![Configuration de l'authentification unique][9]
    
-    a. Dans la zone de texte **URL de connexion** , tapez une URL en respectant l’un des formats suivants : 
+    a. Bonjour **URL de connexion** zone de texte, tapez une URL à l’aide d’une des hello suivant des modèles : 
    
     |  |
     | --- |
@@ -119,7 +119,7 @@ Dans cette section, vous allez activer l’authentification unique Azure AD dans
     | `https://<company name>.successfactors.eu/<company name>` |
     | `https://<company name>.sapsf.eu` |
    
-    b. Dans la zone de texte **URL de réponse** , tapez une URL en respectant l’un des formats suivants : 
+    b. Bonjour **URL de réponse** zone de texte, tapez une URL à l’aide d’une des hello suivant des modèles : 
    
     |  |
     | --- |
@@ -132,32 +132,32 @@ Dans cette section, vous allez activer l’authentification unique Azure AD dans
     c. Cliquez sur **Suivant**. 
 
     > [!NOTE]
-    > Notez qu’il ne s’agit pas des valeurs réelles. Vous devez mettre à jour ces valeurs avec l’URL de connexion et l’URL de réponse réelles. Pour obtenir ces valeurs, contactez [l’équipe du support technique SuccessFactors](https://www.successfactors.com/en_us/support.html).
+    > Notez qu’il s’agit pas des valeurs réelles hello. Vous avez tooupdate ces valeurs avec URL hello URL de connexion et de réponse réelle. Ces valeurs, contactez le tooget [équipe de support technique SuccessFactors](https://www.successfactors.com/en_us/support.html).
 
-1. Dans la page **Configurer l’authentification unique sur SuccessFactors**, cliquez sur **Télécharger le certificat**, puis enregistrez le fichier de certificat en local sur votre ordinateur.
+1. Sur hello **configurer l’authentification unique sur SuccessFactors** , cliquez sur **télécharger le certificat**, puis enregistrez le fichier de certificat hello localement sur votre ordinateur.
    
     ![Configuration de l'authentification unique][10]
 
 2. Dans une autre fenêtre de navigateur web, connectez-vous à votre **portail d’administration SuccessFactors** en tant qu’administrateur.
 
-3. Dans **Application Security** (Sécurité des applications), accédez à la **fonctionnalité d’authentification unique**. 
+3. Visitez **sécurité de l’Application** et native trop**l’authentification unique sur la fonctionnalité**. 
 
-4. Indiquez une valeur dans le champ **Reset Token** (Réinitialiser le jeton), puis cliquez sur **Save Token** (Enregistrer le jeton) pour activer l’authentification unique SAML.
+4. Placer n’importe quelle valeur Bonjour **réinitialiser le jeton** et cliquez sur **enregistrer le jeton** tooenable SSO SAML.
    
     ![Configuration de l’authentification unique côté application][11]
 
     > [!NOTE] 
-    > Cette valeur est uniquement utilisée en tant que commutateur marche/arrêt. Si une valeur est enregistrée, l’authentification unique SAML est activée. Si aucune valeur n’est enregistrée, l’authentification unique SAML est désactivée.
+    > Cette valeur est uniquement utilisée comme hello sur commutateur marche/arrêt. Si aucune valeur n’est enregistrée, hello SAML SSO est activé. Si une valeur vide est enregistrée hello SAML SSO est désactivé.
 
-1. Accédez à la capture d’écran ci-dessous et effectuez les actions suivantes.
+1. Capture d’écran de toobelow natif et effectuer hello suivant des actions.
    
     ![Configuration de l’authentification unique côté application][12]
    
-    a. Sélectionnez la case d’option **SAML v2 SSO** .
+    a. Sélectionnez hello **SAML v2 SSO** case d’option
    
-    b. Définissez le nom de partie de confiance SAML (par exemple, émetteur SAML + nom de l’entreprise).
+    b. Définissez hello SAML assertion tiers Name(e.g. SAml issuer + company name).
    
-    c. Dans la zone de texte **SAML Issuer** (Émetteur SAML), copiez la valeur de **l’URL de l’émetteur** indiquée dans l’Assistant Configuration de l’application Azure AD.
+    c. Bonjour **SAML émetteur** zone de texte placer la valeur hello **URL de l’émetteur** à partir de l’Assistant configuration d’application Azure AD.
    
     d. Sélectionnez **Response(Customer Generated/IdP/AP)** (Réponse (générée par le client/fournisseur d’identité/point d’accès)) pour **Require Mandatory Signature** (Exiger une signature obligatoire).
    
@@ -169,18 +169,18 @@ Dans cette section, vous allez activer l’authentification unique Azure AD dans
    
     h. Sélectionnez **No** (Non) dans le champ **Enforce Certificate Valid Period** (Appliquer la période valide du certificat).
    
-    i. Copiez le contenu du fichier de certificat téléchargé, puis collez-le dans la zone de texte **SAML Verifying Certificate** (Certificat de vérification SAML).
+    i. Copier le contenu du fichier de certificat téléchargé hello hello, puis collez-le dans hello **certificat de vérification SAML** zone de texte.
 
     > [!NOTE] 
-    > Le contenu du certificat doit comporter des balises de début et de fin de certificat.
+    > contenu du certificat Hello doit avoir des balises de certificat certificat et de fin de début.
 
-1. Accédez à SAML V2, puis procédez comme suit :
+1. Accédez tooSAML V2, puis exécutez hello comme suit :
    
     ![Configuration de l’authentification unique côté application][13]
    
     a. Sélectionnez **Yes** (Oui) dans **Support SP-initiated Global Logout** (Prendre en charge la déconnexion globale initiée par le fournisseur de services).
    
-    b. Dans la zone de texte **Global Logout Service URL (LogoutRequest destination)** (URL de service de déconnexion globale (destination LogoutRequest)), copiez la valeur de **l’URL de déconnexion distante** indiquée dans l’Assistant Configuration de l’application Azure AD.
+    b. Bonjour **Global URL de Service de déconnexion (destination LogoutRequest)** zone de texte placer la valeur hello **URL de déconnexion distante** à partir de l’Assistant configuration d’application Azure AD.
    
     c. Sélectionnez **No** (Non) dans **Require sp must encrypt all NameID element** (Exiger que le fournisseur de services chiffre tous les éléments NameID).
    
@@ -188,10 +188,10 @@ Dans cette section, vous allez activer l’authentification unique Azure AD dans
    
     e. Sélectionnez **Yes** (Oui) dans **Enable sp initiated login (AuthnRequest)** (Activer la connexion initiée par le fournisseur de services (AuthnRequest)).
    
-    f. Dans la zone de texte **Send request as Company-Wide issuer** (Envoyer la demande en tant qu’émetteur au niveau de l’entreprise), copiez la valeur de **l’URL de connexion distante** indiquée dans l’Assistant Configuration de l’application Azure AD.
-2. Procédez comme suit si vous souhaitez que les noms d’utilisateur de connexion ne respectent pas la casse :
+    f. Bonjour **demande d’envoi que l’émetteur de société** zone de texte placer la valeur hello **URL de connexion distante** à partir de l’Assistant configuration d’application Azure AD.
+2. Procédez comme suit si vous souhaitez que les noms d’utilisateur de connexion toomake hello respecter la casse,.
    
-    a. Accédez à **Company Settings** (Paramètres de l’entreprise) (en bas).
+    a. Visitez **paramètres de la société**(près du bas hello).
    
     b. Sélectionnez la case à cocher près de **Enable Non-Case-Sensitive Username**(Activer le non-respect de la casse pour les noms d’utilisateur).
    
@@ -200,99 +200,99 @@ Dans cette section, vous allez activer l’authentification unique Azure AD dans
     ![Configurer l’authentification unique][29]
 
     > [!NOTE] 
-    > Si vous essayez d’activer cette option, le système vérifie si un nom de connexion SAML est créé en double. Par exemple, si le client possède les noms d’utilisateur User1 et user1. Si vous désactivez le respect de la casse, ces noms deviennent des doublons. Le système vous transmettra un message d’erreur et n’activera pas la fonctionnalité. Le client devra modifier l’un des noms d’utilisateur afin qu’il soit orthographié différemment. 
+    > Si vous essayez tooenable, système de hello vérifie si un nom de connexion SAML en double sera créé. Par exemple, si le client de hello possède des noms d’utilisateur, Utilisateur1 et user1. Si vous désactivez le respect de la casse, ces noms deviennent des doublons. système de Hello vous donne un message d’erreur et n’active pas la fonctionnalité de hello. Hello client devra toochange un des noms d’utilisateur hello afin qu’il est orthographié réellement différents. 
 
-1. Dans le portail Azure Classic, sélectionnez la confirmation de la configuration de l’authentification unique, puis cliquez sur **Terminer** pour fermer la boîte de dialogue **Configurer l’authentification unique**.
+1. Sur le portail Azure classic de hello, sélectionnez la confirmation de la configuration de l’authentification unique hello, puis cliquez sur **Complete** tooclose hello **configurer Single Sign On** boîte de dialogue.
    
     ![Applications][14]
-2. Sur la page **Confirmation de l’authentification unique**, cliquez sur **Terminer**.
+2. Sur hello **Single sign-on confirmation** , cliquez sur **Complete**.
    
     ![Applications][15]
 
 ### <a name="creating-an-azure-ad-test-user"></a>Création d’un utilisateur de test Azure AD
-L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail classique.
+objectif Hello de cette section est toocreate un utilisateur de test dans le portail classique de hello appelé Britta Simon.
 
 ![Créer un utilisateur Azure AD][16]
 
-**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
+**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
 
-1. Dans le volet de navigation gauche du **portail Azure Classic**, cliquez sur **Active Directory**.
+1. Bonjour **portail Azure classic**, on hello du volet de navigation gauche, cliquez sur **Active Directory**.
    
     ![Création d’un utilisateur de test Azure AD][17]
-2. Dans la liste **Annuaire** , sélectionnez l'annuaire pour lequel vous voulez activer l'intégration d'annuaire.
-3. Pour afficher la liste des utilisateurs, dans le menu situé en haut, cliquez sur **Utilisateurs**.
+2. À partir de hello **répertoire** liste, répertoire sélectionnez hello pour lequel vous souhaitez tooenable intégration d’annuaire.
+3. liste de hello toodisplay d’utilisateurs, dans le menu hello haut de hello, cliquez sur **utilisateurs**.
    
     ![Création d’un utilisateur de test Azure AD][18]
-4. Pour ouvrir la boîte de dialogue **Ajouter un utilisateur**, cliquez sur l’option **Ajouter un utilisateur** figurant dans la barre d’outils du bas.
+4. tooopen hello **ajouter un utilisateur** boîte de dialogue, dans la barre d’outils de hello en bas de hello, cliquez sur **ajouter un utilisateur**.
    
     ![Création d’un utilisateur de test Azure AD][19]
-5. Sur la page de boîte de dialogue **Dites-nous en plus sur cet utilisateur** , procédez comme suit :
+5. Sur hello **faites-nous part de cet utilisateur** boîte de dialogue de page, effectuer hello comme suit :
    
     ![Création d’un utilisateur de test Azure AD][20]
    
     a. Dans Type d’utilisateur, sélectionnez Nouvel utilisateur dans votre organisation.
    
-    b. Dans la zone de texte **Nom d’utilisateur**, entrez **BrittaSimon**.
+    b. Bonjour, nom d’utilisateur **zone de texte**, type **BrittaSimon**.
    
     c. Cliquez sur **Suivant**.
-6. Sur la page de boîte de dialogue **Profil utilisateur** , procédez comme suit :
+6. Sur hello **profil utilisateur** boîte de dialogue de page, effectuer hello comme suit :
    
     ![Création d’un utilisateur de test Azure AD][21]
    
-    a. Dans la zone de texte **First Name**, tapez **Britta**.  
+    a. Bonjour **prénom** zone de texte, type **Brian**.  
    
-    b. Dans la zone de texte **Last Name**, tapez **Simon**.
+    b. Bonjour **nom** zone de texte, type, **Simon**.
    
-    c. Dans la zone de texte **Nom d’affichage**, entrez **Britta Simon**.
+    c. Bonjour **nom d’affichage** zone de texte, type **Britta Simon**.
    
-    d. Dans la liste **Rôle**, sélectionnez **Utilisateur**.
+    d. Bonjour **rôle** liste, sélectionnez **utilisateur**.
    
     e. Cliquez sur **Suivant**.
-7. Sur la page de boîte de dialogue **Obtenir un mot de passe temporaire**, cliquez sur **créer**.
+7. Sur hello **mot de passe temporaire Get** page de boîte de dialogue, cliquez sur **créer**.
    
     ![Création d’un utilisateur de test Azure AD][22]
-8. Sur la page de boîte de dialogue **Obtenir un mot de passe temporaire** , procédez comme suit :
+8. Sur hello **mot de passe temporaire Get** boîte de dialogue de page, effectuer hello comme suit :
    
     ![Création d’un utilisateur de test Azure AD][23]
    
-    a. Notez la valeur du **Nouveau mot de passe**.
+    a. Notez la valeur hello hello **nouveau mot de passe**.
    
     b. Cliquez sur **Terminé**.  
 
 ### <a name="creating-a-successfactors-test-user"></a>Création d’un utilisateur de test SuccessFactors
-Pour se connecter à SuccessFactors, les utilisateurs d’Azure AD doivent être approvisionnés dans SuccessFactors.  
-Dans le cas de SuccessFactors, l’approvisionnement est une tâche manuelle.
+Dans l’ordre tooenable Azure AD les utilisateurs toolog à SuccessFactors, vous devez les configurer dans SuccessFactors.  
+Dans les cas de hello de SuccessFactors, cette configuration est une tâche manuelle.
 
-Pour créer des utilisateurs dans SuccessFactors, vous devez contacter [l’équipe de support technique SuccessFactors](https://www.successfactors.com/en_us/support.html).
+les utilisateurs tooget créés dans SuccessFactors, vous devez toocontact hello [équipe de support technique SuccessFactors](https://www.successfactors.com/en_us/support.html).
 
-### <a name="assigning-the-azure-ad-test-user"></a>Affectation de l’utilisateur de test Azure AD
-L’objectif de cette section est de permettre à Britta Simon d’utiliser l’authentification unique Azure en lui accordant l’accès à SuccessFactors.
+### <a name="assigning-hello-azure-ad-test-user"></a>Affectation d’utilisateur de test hello Azure AD
+objectif Hello de cette section est tooenabling toouse Britta Simon Azure l’authentification unique en accordant tooSuccessFactors de son accès.
 
 ![Affecter des utilisateurs][24]
 
-**Pour affecter Britta Simon à SuccessFactors, procédez comme suit :**
+**tooassign Britta Simon tooSuccessFactors, effectuez hello comme suit :**
 
-1. Pour ouvrir l’affichage des applications dans le portail Classic, dans l’affichage de l’annuaire, cliquez sur l’option **Applications** figurant dans le menu du haut.
+1. Sur le portail classique hello, cliquez sur la vue applications hello tooopen, dans la vue active de hello, **Applications** dans le menu du haut hello.
    
     ![Affecter des utilisateurs][25]
-2. Dans la liste des applications, sélectionnez **SuccessFactors**.
+2. Dans la liste des applications hello, sélectionnez **SuccessFactors**.
    
     ![Configurer l’authentification unique][26]
-3. Dans le menu situé en haut, cliquez sur **Utilisateurs**.
+3. Dans le menu hello haut de hello, cliquez sur **utilisateurs**.
    
     ![Affecter des utilisateurs][27]
-4. Dans la liste Utilisateurs, sélectionnez **Britta Simon**.
-5. Dans la barre d’outils située en bas, cliquez sur **Attribuer**.
+4. Dans la liste des utilisateurs hello, sélectionnez **Britta Simon**.
+5. Dans la barre d’outils de hello en bas de hello, cliquez sur **affecter**.
    
     ![Affecter des utilisateurs][28]
 
 ### <a name="testing-single-sign-on"></a>Test de l’authentification unique
-L’objectif de cette section est de tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.
+objectif Hello de cette section est tootest votre configuration de l’authentification unique Azure AD à l’aide de hello panneau d’accès.
 
-Lorsque vous cliquez sur la mosaïque SuccessFactors dans le volet d’accès, vous devez être connecté automatiquement à votre application SuccessFactors.
+Lorsque vous cliquez sur hello SuccessFactors vignette Bonjour volet d’accès, vous devez obtenir automatiquement signé sur tooyour application SuccessFactors.
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
-* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->

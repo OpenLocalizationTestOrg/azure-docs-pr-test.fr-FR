@@ -16,5 +16,5 @@
 
 
 > [!WARNING] 
-> L’installation de logiciels tiers sur des produits Red Hat peut affecter les conditions de prise en charge de Red Hat. Consultez l’[article de la Base de connaissances Red Hat](https://access.redhat.com/articles/1067).
+> Installation de logiciels tiers sur les produits de Red Hat peut affecter les termes du contrat de prise en charge de Red Hat hello. Consultez hello [Red Hat l’article](https://access.redhat.com/articles/1067).
 >

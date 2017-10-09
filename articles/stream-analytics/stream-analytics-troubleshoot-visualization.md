@@ -1,6 +1,6 @@
 ---
-title: "Visualisation et dépannage de travaux Stream Analytics | Microsoft Docs"
-description: "Découvrez comment visualiser un pipeline de tâches Stream Analytics pour le dépannage en libre-service à l’aide de la fonctionnalité de diagramme de diagnostic."
+title: "aaaVisualize et résoudre les tâches de flux de données Analytique | Documents Microsoft"
+description: "Découvrez comment toovisualize une tâche de flux de données Analytique de pipeline pour le dépannage à l’aide de la fonctionnalité de diagramme hello diagnostics de libre-service."
 keywords: 
 documentationcenter: 
 services: stream-analytics
@@ -15,32 +15,32 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 03/28/2017
 ms.author: jeffstok
-ms.openlocfilehash: 18c39a025f750cf5a17c535ab40923b7cafe413d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8a6715be601fdc47b8d9caf4112da161dad22618
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="visualize-and-troubleshoot-stream-analytics-jobs"></a>Visualisation et dépannage de travaux Stream Analytics
-Dans Stream Analytics, comme dans d’autres technologies de cloud, la résolution des problèmes implique parfois d’étudier la raison pour laquelle une tâche ne produit pas la sortie attendue (ou même aucune sortie). Dans cet esprit, Stream Analytics permet de visualiser une tâche de streaming. Il est également utile en tant qu’outil de modélisation pour aider les personnes ayant besoin de documenter tout leur travail.
+Dans le flux de données Analytique, comme avec d’autres technologies de nuage, résolution des problèmes sont parfois toolook nécessaire en raison pour laquelle une tâche ne produit pas de sortie de hello attendu (ou de sortie d’ailleurs). Dans cet esprit, flux de données Analytique fournit une fonctionnalité hello pour visualiser un travail de diffusion en continu. Cela est également utile comme outil de modélisation et a hello autre avantage pour celles qui nécessitent une documentation de leur travail.
 
-Dans le volet de visualisation, les entrées sont visibles, ainsi que la requête en cours d’exécution et toutes les sorties configurées. Les problèmes liés à la connectivité ou à la configuration peuvent alors être plus évidents, et il peut également être utile d’afficher une représentation visuelle de votre configuration.
+Dans la visualisation de hello entrées hello de panneau de configuration sont visibles, ainsi que la requête hello en cours d’exécution, et ensuite toutes les sorties hello configuré. Problèmes de connectivité ou de configuration peuvent deviennent plus évidents et il peut également être utile toosee une représentation visuelle de votre configuration.
 
-## <a name="using-the-diagnosis-diagram-tool"></a>Utilisation de l’outil de diagramme de diagnostic
-Pour accéder à ce visualiseur, cliquez simplement sur le bouton « Diagramme de diagnostic » dans le panneau « Paramètres » de la de la tâche Stream Analytics.
+## <a name="using-hello-diagnosis-diagram-tool"></a>À l’aide des outils de diagramme de diagnostic hello
+tooaccess ce visualiseur, cliquez simplement sur hello bouton « Diagramme de diagnostic » dans hello panneau « Paramètres » de hello de tâche de flux de données Analytique hello.
 
 ![stream-analytics-troubleshoot-visualization-diagnosis-diagram](./media/stream-analytics-troubleshoot-visualization/stream-analytics-troubleshoot-visualization-diagnosis-diagram1.png)
 
-Chaque entrée et sortie ont un code de couleur pour indiquer l’état actuel de ce composant, comme indiqué ci-dessous.
+Chaque entrée et la sortie sont codée par couleur tooindicate hello état actuel de ce composant, comme indiqué ci-dessous.
 
 ![stream-analytics-troubleshoot-visualization-input-map](./media/stream-analytics-troubleshoot-visualization/stream-analytics-troubleshoot-visualization-input-map.png)
 
-Lorsque l’utilisateur souhaite consulter les étapes intermédiaires de sa requête pour comprendre les modèles de flux de données au sein d’une tâche, l’outil de visualisation fournit une vue de la répartition des étapes de la requête et de la séquence de flux. Cliquez sur chaque étape de requête pour afficher la section correspondante dans un volet d’édition de requête, comme illustré. 
+Lorsque l’utilisateur hello veut toolook requête intermédiaire étapes toounderstand hello données flux modèles à l’intérieur d’un travail, outil de visualisation hello fournit une vue de répartition hello de requête de hello dans ses étapes et la séquence de flux de hello. En cliquant sur chaque étape de requête affiche la section correspondante de hello dans une requête de modification de volet, comme illustré. 
 
 ![stream-analytics-troubleshoot-visualization-intermediate-steps](./media/stream-analytics-troubleshoot-visualization/stream-analytics-troubleshoot-visualization-intermediate-steps.png)
 
 ## <a name="next-steps"></a>Étapes suivantes
-* [Présentation d’Azure Stream Analytics](stream-analytics-introduction.md)
+* [Introduction tooAzure Analytique de flux de données](stream-analytics-introduction.md)
 * [Prise en main d’Azure Stream Analytics](stream-analytics-real-time-fraud-detection.md)
 * [Mise à l'échelle des travaux Azure Stream Analytics](stream-analytics-scale-jobs.md)
 * [Références sur le langage des requêtes d'Azure Stream Analytics](https://msdn.microsoft.com/library/azure/dn834998.aspx)

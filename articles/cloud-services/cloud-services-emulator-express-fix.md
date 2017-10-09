@@ -1,6 +1,6 @@
 ---
-title: "Configurer l’émulateur express pour déboguer des applications de service cloud dans Visual Studio | Microsoft Docs"
-description: "Explique comment installer le redistribuable C++ pour activer l’émulateur express dans Visual Studio"
+title: "aaaSetup émulateur express toodebug des applications de Services de cloud computing dans Visual Studio | Documents Microsoft"
+description: "Explique comment tooinstall hello tooenable redistribuable de C++ émulateur Express dans Visual Studio"
 services: cloud-services
 documentationcenter: 
 author: cawa
@@ -14,31 +14,31 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 11/02/2016
 ms.author: cawa
-ms.openlocfilehash: 05d672dcb1335c617bb8d8cae43947bcd5e9ab3d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6fb506f0b1384f2e52310799eb5ae2a102d777bb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-emulator-express-to-debug-cloud-services-application-in-vs-2017"></a>Utiliser l’émulateur express pour déboguer des applications de service cloud dans VS 2017
-Cet article explique comment utiliser l’émulateur express pour déboguer des applications de service cloud dans VS 2017.
+# <a name="use-emulator-express-toodebug-cloud-services-application-in-vs-2017"></a>Utiliser l’émulateur Express une application de Services de cloud computing toodebug dans VS 2017
+Cet article explique comment applications émulateur Express toouse toodebug Services de cloud computing dans VS 2017.
 
 ## <a name="background-context"></a>Contexte
-L’émulateur express est utilisé par défaut pour le débogage des rôles web et de travail des services cloud dans Visual Studio. Ce paramètre est spécifié dans la page de propriétés du projet de service cloud.
+L’émulateur express est utilisé par défaut pour le débogage des rôles web et de travail des services cloud dans Visual Studio. Ce paramètre est spécifié dans la page de propriétés du projet de Services de cloud computing hello.
 
 ![Ouvrir les propriétés du projet][0]
 
 ![L’émulateur express est sélectionné par défaut][1]
 
-Le [Visual C++ Redistributable] [ Visual C++ Redistributable] pour Visual Studio est requis par l’émulateur express. Il n’est actuellement pas installé avec la charge de travail Azure. En cas d’appui sur F5 pour déboguer une application de service cloud, Visual Studio invite à installer ce composant et à continuer le débogage.
+Hello [Visual C++ Redistributable] [ Visual C++ Redistributable] pour Visual Studio est requis par l’émulateur express. Actuellement il n’est pas installé par hello la charge de travail Azure. Fonction F5 les mouvements toodebug une application de Services de cloud computing, Visual Studio serait invite tooinstall ce composant et continuer le débogage.
 
 ![Invite d’installation du redistribuable C++][2]
 
-Cliquez sur Oui pour installer le redistribuable C++.
+Cliquez sur Oui tooinstall de C++ Redistributable.
 
 ![Installer le redistribuable C++][3]
 
-Appuyez de nouveau sur F5 pour lancer des sessions de débogage.
+Appuyez sur F5 à nouveau les sessions de débogage toolaunch.
 
 ![Démarrer le débogage][4]
 
@@ -49,19 +49,19 @@ Appuyez de nouveau sur F5 pour lancer des sessions de débogage.
 > 
 
 ## <a name="manual-workaround"></a>Solution de contournement manuel
-Vous pouvez également installer le [Visual C++ Redistributable] [ Visual C++ Redistributable] manuellement et est appliquée même effet que la façon dont Visual Studio installée sur votre système.
+Vous pouvez également installer hello [Visual C++ Redistributable] [ Visual C++ Redistributable] manuellement et est appliquée même effet que la façon dont Visual Studio installée sur votre système.
 
 [VCRedist_x86.exe][vcredist_x86.exe]
 
 [VCRedist_x64.exe][vcredist_x64.exe]
 
 ## <a name="next-steps"></a>Étapes suivantes
-En savoir plus sur l’utilisation d’émulateur de calcul Azure pour déboguer vos applications de Services de cloud computing dans Visual Studio : [à l’aide d’émulateur Express pour exécuter et déboguer un service cloud sur un ordinateur local][Using Emulator Express to run and debug a cloud service on a local machine]
+En savoir plus sur l’utilisation d’émulateur de calcul Azure toodebug vos applications de Services de cloud computing dans Visual Studio : [toorun d’à l’aide de l’émulateur Express et déboguer un service cloud sur un ordinateur local][Using Emulator Express toorun and debug a cloud service on a local machine]
 
 [Visual C++ Redistributable]:https://www.microsoft.com/en-us/download/details.aspx?id=30679
 [vcredist_x86.exe]:https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe
 [vcredist_x64.exe]:https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x64.exe
-[Using Emulator Express to run and debug a cloud service on a local machine]:https://azure.microsoft.com/en-us/documentation/articles/vs-azure-tools-emulator-express-debug-run/
+[Using Emulator Express toorun and debug a cloud service on a local machine]:https://azure.microsoft.com/en-us/documentation/articles/vs-azure-tools-emulator-express-debug-run/
 
 [0]: ./media/cloud-services-emulator-express-fix/vs-05.png
 [1]: ./media/cloud-services-emulator-express-fix/vs-06.png

@@ -1,6 +1,6 @@
 ---
-title: "Charger des données dans des environnements de stockage Azure à des fins d’analyse | Microsoft Docs"
-description: "Déplacer des données vers et depuis un stockage Azure Blob"
+title: "données aaaLoad dans des environnements de stockage Azure pour analytique | Documents Microsoft"
+description: "Déplacer les données tooand à partir du stockage d’objets Blob Azure"
 services: machine-learning,storage
 documentationcenter: 
 author: bradsev
@@ -14,18 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/29/2017
 ms.author: bradsev
-ms.openlocfilehash: 7fbf3bfedca8fa57a5e9428c9399558992b4acbd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0fea2290991f9fa63d9e46c3a657000e27d95289
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="load-data-into-storage-environments-for-analytics"></a>Charger des données dans des environnements de stockage à des fins d’analyse
-Le processus Team Data Science nécessite que les données soient reçues ou chargées dans différents environnements de stockage pour y être traitées ou analysées de la façon la plus appropriée à chaque étape du processus. Les destinations de données couramment utilisées pour le traitement sont le stockage d’objets blob Azure, les bases de données SQL Azure, SQL Server sur machine virtuelle Azure, HDInsight (Hadoop) et Azure Machine Learning. 
+Hello, processus de science des données équipe requiert que données ingérées ou chargées dans une variété de stockage différents environnements toobe traité ou analysé de manière plus appropriée de hello dans chaque étape du processus de hello. Les destinations de données couramment utilisées pour le traitement sont le stockage d’objets blob Azure, les bases de données SQL Azure, SQL Server sur machine virtuelle Azure, HDInsight (Hadoop) et Azure Machine Learning. 
 
 [!INCLUDE [cap-ingest-data-selector](../../includes/cap-ingest-data-selector.md)]
 
-Ce **menu** pointe vers des rubriques qui décrivent comment recevoir les données dans les environnements cibles où les données sont stockées et traitées.
+Cela **menu** lie tootopics qui décrivent comment tooingest les données dans ces ciblent les environnements où les données de salutation sont stockées et traitées.
 
-Les besoins techniques et ceux de l’entreprise, ainsi que l’emplacement initial, le format et la taille de vos données déterminent l’environnement cible dans lequel les données doivent être reçues pour atteindre les objectifs de votre analyse. Il n’est pas rare pour un scénario d’exiger le déplacement des données entre plusieurs environnements pour arriver à effectuer les différentes tâches nécessaires pour construire un modèle prédictif. Cette suite de tâches peut par exemple inclure l’exploration des données, leur prétraitement, leur nettoyage, l’échantillonnage et l’apprentissage du modèle.
+Technique et les besoins professionnels, ainsi que les emplacement initial de hello, mettre en forme et la taille de vos données détermineront les environnements cibles hello dans le hello données doivent toobe ingéré tooachieve hello objectifs de votre analyse. Il n’est pas rare qu’un toobe de données toorequire scénario déplacé entre plusieurs environnements tooachieve hello diverses tâches, tooconstruct requis un modèle prédictif. Cette suite de tâches peut par exemple inclure l’exploration des données, leur prétraitement, leur nettoyage, l’échantillonnage et l’apprentissage du modèle.
 

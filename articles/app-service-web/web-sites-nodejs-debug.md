@@ -1,6 +1,6 @@
 ---
-title: "Débogage d’une application web Node.js dans Azure Web Service"
-description: "Apprenez à déboguer une application web Node.js dans Azure Web Service."
+title: aaaHow toodebug application web Node.js dans Azure App Service
+description: "Découvrez comment toodebug un Node.js web application dans Azure App Service."
 tags: azure-portal
 services: app-service\web
 documentationcenter: nodejs
@@ -15,123 +15,123 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 08/17/2016
 ms.author: tarcher
-ms.openlocfilehash: 5e302a4c58a171d40e43a22c34c724e868019ec8
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 888ec5c3f92cfc3aeea4ea86005b9b6a0d1306ea
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-debug-a-nodejs-web-app-in-azure-app-service"></a>Débogage d’une application web Node.js dans Azure Web Service
-Azure fournit un outil de diagnostic intégré qui vous aide à déboguer les applications Node.js hébergées dans [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) Web Apps. Cet article vous explique comment activer la journalisation de stdout et de stderr, comment afficher les informations sur l'erreur dans le navigateur et comment télécharger et afficher les fichiers journaux.
+# <a name="how-toodebug-a-nodejs-web-app-in-azure-app-service"></a>Comment toodebug un Node.js web application dans Azure App Service
+Azure fournit tooassist diagnostics intégrés avec le débogage des applications Node.js hébergées dans [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) les applications Web. Dans cet article, vous allez apprendre comment journalisation tooenable de stdout et stderr, afficher les informations d’erreur dans le navigateur de hello et comment toodownload et affichage des fichiers journaux.
 
-Le diagnostic des applications Node.js hébergées sur Azure est fourni par [IISNode]. Bien que les paramètres les plus courants pour la collecte des informations de diagnostic soient abordés, cet article ne fournit pas une référence complète sur l'utilisation de IISNode. Pour plus d'informations sur l'utilisation de IISNode, consultez le [fichier Lisez-moi IISNode] sur GitHub.
+Le diagnostic des applications Node.js hébergées sur Azure est fourni par [IISNode]. Alors que cet article décrit les paramètres les plus courants hello pour la collecte des informations de diagnostic, il ne fournit pas une référence complète pour l’utilisation des IISNode. Pour plus d’informations sur l’utilisation de IISNode, consultez hello [IISNode Readme] sur GitHub.
 
 <a id="enablelogging"></a>
 
 ## <a name="enable-logging"></a>Activation de la journalisation
 Par défaut, une application web App Service ne capture que les informations de diagnostic sur les déploiements, comme lorsque vous déployez une application Web à l’aide de Git. Cette information est utile si vous rencontrez un problème lors du déploiement, comme un échec lors de l'installation d'un module référencé dans **package.json**ou si vous utilisez un script de déploiement personnalisé.
 
-Pour activer la journalisation des flux stdout et stderr, vous devez créer un fichier **IISNode.yml** à la racine de votre application Node.js et ajouter ce qui suit :
+tooenable hello journalisation de flux stdout et stderr, vous devez créer un **IISNode.yml** de fichiers à votre application Node.js racine hello et ajoutez hello qui suit :
 
     loggingEnabled: true
 
-Cela active la journalisation de stderr et stdout à partir de votre application Node.js.
+Cela permet la journalisation de stderr et stdout à partir de votre application Node.js hello.
 
-Le fichier **IISNode.yml** peut également être utilisé pour contrôler si les erreurs conviviales ou les erreurs de développement sont renvoyées au navigateur lorsqu'un échec se produit. Pour activer les erreurs de développement, ajoutez la ligne suivante au fichier **IISNode.yml** :
+Hello **IISNode.yml** fichier peut également être utilisé toocontrol si simplifié des erreurs ou des erreurs des développeurs sont renvoyées toohello navigateur lorsqu’une erreur se produit. erreurs des développeurs tooenable, ajouter hello suivant ligne toohello **IISNode.yml** fichier :
 
     devErrorsEnabled: true
 
-Une fois cette option activée, IISNode renvoie les derniers 64 Ko d'informations envoyées à stderr plutôt qu'une erreur conviviale comme « une erreur de serveur interne s'est produite ».
+Une fois cette option est activée, IISNode renvoie hello dernière 64 Ko, des informations envoyées toostderr au lieu d’une erreur conviviale tel que « une erreur interne s’est produite ».
 
 > [!NOTE]
-> Bien que devErrorsEnabled soit utile pour diagnostiquer les problèmes lors du développement, l'activer dans un environnement de production peut entraîner l'envoi d'erreurs de développement aux utilisateurs finaux.
+> DevErrorsEnabled est utile lors du diagnostic de problèmes au cours du développement, son activation dans un environnement de production peut entraîner des erreurs de développement envoyés tooend utilisateurs.
 > 
 > 
 
-Si le fichier **IISNode.yml** n’existe pas dans votre application, vous devez redémarrer votre application Web après la publication de l’application mise à jour. Si vous modifiez simplement les paramètres dans un fichier **IISNode.yml** existant qui a été publié précédemment, aucun redémarrage n'est nécessaire.
+Si hello **IISNode.yml** fichier n’existe pas déjà dans votre application, vous devez redémarrer votre application web après la publication d’application hello mis à jour. Si vous modifiez simplement les paramètres dans un fichier **IISNode.yml** existant qui a été publié précédemment, aucun redémarrage n'est nécessaire.
 
 > [!NOTE]
-> Si votre application Web a été créée à l’aide des outils de ligne en commande Azure ou des applets de commande Azure PowerShell, un fichier **IISNode.yml** par défaut est automatiquement créé.
+> Si votre application web a été créée à l’aide des outils de ligne de commande Azure hello ou des applets de commande PowerShell de Azure, une valeur par défaut **IISNode.yml** fichier est créé automatiquement.
 > 
 > 
 
-Pour redémarrer l’application web, sélectionnez-la dans le [portail Azure](https://portal.azure.com), puis cliquez sur le bouton **REDÉMARRER** :
+toorestart hello web application, une application web de hello sélectionnez Bonjour [Azure Portal](https://portal.azure.com), puis cliquez sur **redémarrer** bouton :
 
 ![bouton redémarrer][restart-button]
 
-Si les outils en ligne de commande Azure sont installés dans votre environnement de développement, vous pouvez utiliser la commande suivante pour redémarrer l’application web :
+Si les outils de ligne de commande Azure hello sont installés dans votre environnement de développement, vous pouvez utiliser hello suivant commande toorestart hello web app :
 
     azure site restart [sitename]
 
 > [!NOTE]
-> Bien que loggingEnabled et devErrorsEnabled soient les options de configuration IISNode.yml les plus fréquemment utilisées pour la capture des informations de diagnostic, IISNode.yml peut être utilisé pour configurer diverses options pour votre environnement d'hébergement. Pour une liste complète des options de configuration, consultez le fichier [iisnode_schema.xml](https://github.com/tjanczuk/iisnode/blob/master/src/config/iisnode_schema.xml).
+> LoggingEnabled et devErrorsEnabled sont des options de configuration IISNode.yml hello couramment utilisé pour capturer des informations de diagnostic, IISNode.yml peut être utilisé tooconfigure diverses options pour votre environnement d’hébergement. Pour obtenir une liste complète des options de configuration hello, consultez hello [iisnode_schema.xml](https://github.com/tjanczuk/iisnode/blob/master/src/config/iisnode_schema.xml) fichier.
 > 
 > 
 
 <a id="viewlogs"></a>
 
 ## <a name="accessing-logs"></a>Accès aux journaux
-Il existe trois manières d'accéder aux journaux de diagnostic : à l'aide du protocole FTP, en téléchargeant une archive ZIP ou via un flux live mis à jour du journal (également appelé « tail »). Le téléchargement de l'archive ZIP des fichiers journaux ou l'affichage du flux live requièrent les outils en ligne de commande Azure, que vous pouvez installer à l'aide de la commande suivante :
+Journaux de diagnostic sont accessibles de trois manières ; À l’aide de hello Transfer protocole FTP (File), télécharger une archive Zip, ou comme une mise à jour de flux de données du journal de hello (également appelé une fin). Téléchargement de l’archive Zip des fichiers journaux de hello hello ou la consultation des flux live de hello nécessitent outils de ligne de commande Azure hello. Elles peuvent être installées à l’aide de hello de commande suivante :
 
     npm install azure-cli -g
 
-Une fois installés, ils sont accessibles à l'aide de la commande « azure ». Les outils en ligne de commande doivent d’abord être configurés pour utiliser votre abonnement Azure. Pour plus d'informations sur la réalisation de cette tâche, consultez la section **Téléchargement et importation des paramètres de publication** de l'article [Utilisation des outils en ligne de commande Azure](../xplat-cli-connect.md) .
+Une fois installé, les outils hello est accessible à l’aide de la commande hello 'azure'. outils de ligne de commande de Hello doit d’abord être configuré toouse votre abonnement Azure. Pour plus d’informations sur comment tooaccomplish cette tâche, consultez hello **comment toodownload et importation de paramètres de publication** section Hello [comment tooUse hello de ligne de commande de Windows Azure Tools](../xplat-cli-connect.md) l’article.
 
 ### <a name="ftp"></a>FTP
-Pour accéder aux informations de diagnostic via FTP, visitez le [portail Azure](https://portal.azure.com), sélectionnez votre application web, puis sélectionnez le **TABLEAU DE BORD**. Dans la section **liens rapides**, les liens **Journaux de diagnostic FTP** et **Journaux de diagnostic FTPS** permettent d’accéder aux journaux à l’aide du protocole FTP.
+informations de diagnostic hello tooaccess via FTP, visitez hello [Azure Portal](https://portal.azure.com), sélectionnez votre application web, puis hello **tableau de bord**. Bonjour **liens rapides** section hello **journaux de DIAGNOSTIC FTP** et **journaux de DIAGNOSTIC FTPS** liens fournissent des journaux de toohello d’accès à l’aide du protocole de hello FTP.
 
 > [!NOTE]
-> Si vous n’avez pas encore configuré un nom d’utilisateur et un mot de passe pour le FTP ou le déploiement, vous pouvez le faire sur la page de gestion **Démarrage rapide**, en sélectionnant **Configurer les informations d’identification du déploiement**.
+> Si vous n’avez pas précédemment configuré nom d’utilisateur et mot de passe pour le déploiement ou FTP, vous pouvez le faire à partir de hello **Quickstart** page de gestion en sélectionnant **configurer les informations d’identification de déploiement**.
 > 
 > 
 
-L'URL FTP renvoyée dans le tableau de bord concerne le répertoire **LogFiles** , qui contient les sous-répertoires suivants :
+Hello URL FTP retournées dans le tableau de bord hello concerne hello **LogFiles** répertoire qui contiendra hello suivant sous-répertoires :
 
-* [Méthode de déploiement](web-sites-deploy.md) : si vous utilisez une méthode de déploiement comme Git, un répertoire de même nom est créé et contient les informations relatives aux déploiements.
+* [Méthode de déploiement](web-sites-deploy.md) -si vous utilisez une méthode de déploiement tels que Git, un répertoire de même nom est créé et qu’il contienne des informations de hello liées toodeployments.
 * nodejs : les informations stdout et stderr capturées à partir de toutes les instances de votre application (lorsque loggingEnabled est défini sur true).
 
 ### <a name="zip-archive"></a>Archive ZIP
-Pour télécharger une archive ZIP des journaux de diagnostic, utilisez la commande suivante à partir des outils en ligne de commande Azure :
+toodownload une archive Zip des journaux de diagnostic hello, de hello utilisez commande suivante à partir des outils de ligne de commande Azure hello :
 
     azure site log download [sitename]
 
-Cela télécharge un fichier **diagnostics.zip** dans le répertoire actuel. Cette archive contient la structure de répertoires suivante :
+Cette commande télécharge un **diagnostics.zip** hello répertoire en cours. Cette archive contient hello suivant la structure de répertoires :
 
 * deployments : un journal des informations concernant les déploiements de votre application
 * LogFiles
   
-  * [Méthode de déploiement](web-sites-deploy.md) : si vous utilisez une méthode de déploiement comme Git, un répertoire de même nom est créé et contient les informations relatives aux déploiements.
+  * [Méthode de déploiement](web-sites-deploy.md) -si vous utilisez une méthode de déploiement tels que Git, un répertoire de même nom est créé et qu’il contienne des informations de hello liées toodeployments.
   * nodejs : les informations stdout et stderr capturées à partir de toutes les instances de votre application (lorsque loggingEnabled est défini sur true).
 
 ### <a name="live-stream-tail"></a>Flux live (tail)
-Pour afficher un flux live des informations du journal de diagnostic, utilisez la commande suivante à partir des outils en ligne de commande Azure :
+tooview un flux en direct des informations du journal de diagnostic, hello utilisez commande suivante à partir des outils de ligne de commande Azure hello :
 
     azure site log tail [sitename]
 
-Cela renvoie un flux d'événements de journal qui sont mis à jour lorsqu'ils se produisent sur le serveur. Ce flux renvoie les informations de déploiement ainsi que les informations relatives à stdout et stderr (lorsque loggingEnabled est défini sur true).
+Cette méthode retourne un flux de données de journaux d’événements sont mis à jour lorsqu’elles se produisent sur le serveur de hello. Ce flux renvoie les informations de déploiement ainsi que les informations relatives à stdout et stderr (lorsque loggingEnabled est défini sur true).
 
 <a id="nextsteps"></a>
 
 ## <a name="next-steps"></a>Étapes suivantes
-Cet article vous a montré comment activer les informations de diagnostic pour Azure et comment y accéder. Bien que ces informations soient utiles pour comprendre les problèmes qui surviennent avec votre application, elles peuvent signaler un problème avec un module que vous utilisez ou la version de Node.js utilisée par App Services Web Apps qui est différente de celle utilisée dans votre environnement de déploiement.
+Dans cet article vous avez appris comment tooenable et accès aux informations de diagnostic pour Azure. Alors que ces informations sont utiles dans les problèmes de présentation qui se produisent avec votre application, il peut pointer problème tooa avec un module que vous utilisez ou que la version de Node.js utilisé par l’application de Service Web Apps hello est différente de celle hello celui utilisé dans votre déploiement environnement.
 
 Pour plus d'informations sur l'utilisation des modules sur Azure, consultez la page [Utilisation des modules Node.js avec les applications Azure](../nodejs-use-node-modules-azure-apps.md).
 
 Pour plus d'informations sur la spécification d'une version Node.js de votre application, consultez la page [Spécification d'une version de Node.js dans une application Azure].
 
-Pour plus d'informations, consultez aussi le [Centre pour développeurs Node.js](/develop/nodejs/).
+Pour plus d’informations, consultez également hello [centre de développement Node.js](/develop/nodejs/).
 
 ## <a name="whats-changed"></a>Changements apportés
-* Pour obtenir un guide présentant les modifications apportées dans le cadre de la transition entre Sites Web et App Service, consultez la page [Azure App Service et les services Azure existants](http://go.microsoft.com/fwlink/?LinkId=529714)
+* Pour un toohello guide voir changer à partir de sites Web tooApp Service : [Azure App Service et son Impact sur les Services Azure existants](http://go.microsoft.com/fwlink/?LinkId=529714)
 
 > [!NOTE]
-> Si vous voulez vous familiariser avec Azure App Service avant d’ouvrir un compte Azure, accédez à la page [Essayer App Service](https://azure.microsoft.com/try/app-service/), où vous pourrez créer immédiatement une application web temporaire dans App Service. Aucune carte de crédit n’est requise ; vous ne prenez aucun engagement.
+> Si vous souhaitez tooget démarré avec le Service d’application Azure avant de s’inscrire pour un compte Azure, accédez trop[essayez du Service d’applications](https://azure.microsoft.com/try/app-service/), où vous pouvez créer une application web de courte durée de démarrage immédiatement dans le Service d’applications. Aucune carte de crédit n’est requise ; vous ne prenez aucun engagement.
 > 
 > 
 
 [IISNode]: https://github.com/tjanczuk/iisnode
-[fichier Lisez-moi IISNode]: https://github.com/tjanczuk/iisnode#readme
-[How to Use The Azure Command-Line Interface]:../cli-install-nodejs.md
+[IISNode Readme]: https://github.com/tjanczuk/iisnode#readme
+[How tooUse hello Azure Command-Line Interface]:../cli-install-nodejs.md
 [Using Node.js Modules with Azure Applications]: ../nodejs-use-node-modules-azure-apps.md
 [Spécification d'une version de Node.js dans une application Azure]: ../nodejs-specify-node-version-azure-apps.md
 

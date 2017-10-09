@@ -1,0 +1,2 @@
+Lorsque vous utilisez un tooyour dans Microsoft Azure Traffic Manager tooload équilibrer le trafic du site Web Azure, ce site Web est ensuite accessible à l’aide de hello  **\*. trafficmanager.net** nom de domaine attribuée par Azure. Vous pouvez également associer un nom de domaine personnalisé, tel que www.contoso.com, votre site Web dans l’ordre tooprovide un nom de domaine plus reconnaissable pour vos utilisateurs.
+

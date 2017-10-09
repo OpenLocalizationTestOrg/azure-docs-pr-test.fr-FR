@@ -1,6 +1,6 @@
 ---
-title: "Acheter un nom de domaine personnalisé pour Azure Web Apps"
-description: "Découvrez comment acheter un nom de domaine personnalisé avec une application web dans Azure App Service."
+title: "aaaBuy un nom de domaine personnalisé pour les applications Web Azure"
+description: "Découvrez comment nommer des toobuy un domaine personnalisé avec une application web dans Azure App Service."
 services: app-service\web
 documentationcenter: 
 author: cephalin
@@ -14,173 +14,173 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/17/2016
 ms.author: cephalin
-ms.openlocfilehash: 3cb22b935624041ab51e64028a1b668fd694f9b5
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 2ff61a3f27020516c917fe105ece99eb2a5754b7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="buy-a-custom-domain-name-for-azure-web-apps"></a>Acheter un nom de domaine personnalisé pour Azure Web Apps
 
-Les domaines App Service (version préliminaire) sont des domaines de niveau supérieur gérés directement dans Azure. Ils facilitent la gestion des domaines personnalisés pour [Azure Web Apps](app-service-web-overview.md). Ce didacticiel explique comment acheter un domaine App Service et attribuer des noms de domaine (DNS) dans Azure Web Apps.
+Les domaines App Service (version préliminaire) sont des domaines de niveau supérieur gérés directement dans Azure. Il est donc facile toomanage des domaines personnalisés [Azure Web Apps](app-service-web-overview.md). Ce didacticiel vous montre comment toobuy un domaine de Service d’application et attribuez DNS noms tooAzure Web Apps.
 
-Cet article concerne Azure App Service (Web Apps, API Apps, Mobile Apps, Logic Apps). Pour la machine virtuelle Azure ou le stockage Azure, consultez [Assign App Service domain to Azure VM or Azure Storage](https://blogs.msdn.microsoft.com/appserviceteam/2017/07/31/assign-app-service-domain-to-azure-vm-or-azure-storage/) (Attribuer un domaine App Service à une machine virtuelle Azure ou un stockage Azure). Pour Services cloud, consultez [Configuration d’un nom de domaine personnalisé pour un service cloud Azure](../cloud-services/cloud-services-custom-domain-name-portal.md).
+Cet article concerne Azure App Service (Web Apps, API Apps, Mobile Apps, Logic Apps). Pour la machine virtuelle Azure ou le stockage Azure, consultez [tooAzure de domaine du Service d’applications affecter machine virtuelle ou le stockage Azure](https://blogs.msdn.microsoft.com/appserviceteam/2017/07/31/assign-app-service-domain-to-azure-vm-or-azure-storage/). Pour Services cloud, consultez [Configuration d’un nom de domaine personnalisé pour un service cloud Azure](../cloud-services/cloud-services-custom-domain-name-portal.md).
 
 ## <a name="prerequisites"></a>Composants requis
 
-Pour suivre ce didacticiel :
+toocomplete ce didacticiel :
 
 * [Créez une application App Service](/azure/app-service/), ou utilisez une application créée pour un autre didacticiel.
 
-## <a name="prepare-the-app"></a>Préparer l’application
+## <a name="prepare-hello-app"></a>Préparer l’application hello
 
-Pour utiliser des domaines personnalisés dans Azure Web Apps, le [plan App Service](https://azure.microsoft.com/pricing/details/app-service/) de votre application web doit correspondre à un niveau payant (**Partagé**, **De base**, **Standard** ou **Premium**). Au cours de cette étape, vous allez vous assurer que votre application web se trouve dans le niveau de tarification pris en charge.
+toouse des domaines personnalisés dans les d’applications Web Azure, votre application web [plan App Service](https://azure.microsoft.com/pricing/details/app-service/) doit être un niveau payant (**Shared**, **base**, **Standard**, ou **Premium**). Dans cette étape, vous vérifiez que l’application web hello est Bonjour pris en charge niveau tarifaire.
 
-### <a name="sign-in-to-azure"></a>Connexion à Azure
+### <a name="sign-in-tooazure"></a>Connectez-vous à tooAzure
 
-Ouvrez le [portail Azure](https://portal.azure.com) et connectez-vous avec votre compte Azure.
+Ouvrez hello [portail Azure](https://portal.azure.com) et connectez-vous avec votre compte Azure.
 
-### <a name="navigate-to-the-app-in-the-azure-portal"></a>Accéder à l’application dans le portail Azure
+### <a name="navigate-toohello-app-in-hello-azure-portal"></a>Accédez application toohello Bonjour portail Azure
 
-Dans le menu de gauche, sélectionnez **App Services**, puis le nom de l’application.
+Dans le menu de gauche hello, sélectionnez **des Services d’application**, puis sélectionnez le nom hello de l’application hello.
 
-![Navigation au sein du portail pour accéder à l’application Azure](./media/app-service-web-tutorial-custom-domain/select-app.png)
+![Application tooAzure de navigation du portail](./media/app-service-web-tutorial-custom-domain/select-app.png)
 
-La page de gestion de l’application App Service s’affiche.  
+Page de gestion hello Hello application de Service de l’application s’affiche.  
 
-### <a name="check-the-pricing-tier"></a>Vérification du niveau tarifaire
+### <a name="check-hello-pricing-tier"></a>Vérifier le niveau tarifaire de hello
 
-Dans la navigation gauche de la page de l’application, faites défiler jusqu’à la section **Paramètres** et sélectionnez **Monter en puissance (plan App Service)**.
+Bonjour barre de navigation de page de l’application hello gauche, faites défiler toohello **paramètres** section et sélectionnez **montée en puissance (plan App Service)**.
 
 ![Menu Monter en puissance](./media/app-service-web-tutorial-custom-domain/scale-up-menu.png)
 
-Le niveau actuel de l’application est encadré d’un rectangle bleu. Vérifiez que l’application ne se trouve pas dans le niveau **Gratuit**. Les DNS personnalisés ne sont pas pris en charge dans le niveau **Gratuit**. 
+niveau actuel de l’application Hello est mis en surbrillance d’une bordure bleue. Vérifiez que cette application hello n’est pas hello de toomake **libre** couche. DNS personnalisé n’est pas pris en charge dans hello **libre** couche. 
 
 ![Vérification du niveau de tarification](./media/app-service-web-tutorial-custom-domain/check-pricing-tier.png)
 
-Si le plan App Service n’est pas **Gratuit**, fermez la page **Choisir votre niveau de tarification** et passez à [Acheter le domaine](#buy-the-domain).
+Si hello plan App Service n’est pas **libre**, fermez hello **choisir votre niveau tarifaire** page et ignorer trop[domaine de hello acheter](#buy-the-domain).
 
-### <a name="scale-up-the-app-service-plan"></a>Monter en puissance le plan App Service
+### <a name="scale-up-hello-app-service-plan"></a>Montée en puissance hello plan App Service
 
-Sélectionnez l’un des niveaux payants (**Partagé**, **De base**, **Standard** ou **Premium**). 
+Sélectionnez un des niveaux de hello occupé (**Shared**, **base**, **Standard**, ou **Premium**). 
 
 Cliquez sur **Sélectionner**.
 
 ![Vérification du niveau de tarification](./media/app-service-web-tutorial-custom-domain/choose-pricing-tier.png)
 
-Lorsque la notification suivante s’affiche, cela signifie que l’opération est terminée.
+Lorsque vous voyez hello suivant la notification, l’opération de mise à l’échelle de hello est terminée.
 
 ![Confirmation d’opération de mise à l’échelle](./media/app-service-web-tutorial-custom-domain/scale-notification.png)
 
-## <a name="buy-the-domain"></a>Acheter le domaine
+## <a name="buy-hello-domain"></a>Acheter hello domaine
 
-### <a name="sign-in-to-azure"></a>Connexion à Azure
-Ouvrez le [portail Azure](https://portal.azure.com/) et connectez-vous avec votre compte Azure.
+### <a name="sign-in-tooazure"></a>Connectez-vous à tooAzure
+Ouvrez hello [portail Azure](https://portal.azure.com/) et connectez-vous avec votre compte Azure.
 
 ### <a name="launch-buy-domains"></a>Lancer Acheter des domaines
-Dans l’onglet **Web Apps**, cliquez sur le nom de votre application web, puis sélectionnez **Paramètres** et **Domaines personnalisés**.
+Bonjour **Web Apps** , cliquez sur le nom hello de votre application web, sélectionnez **paramètres**, puis sélectionnez **les domaines personnalisés**
    
 ![](./media/custom-dns-web-site-buydomains-web-app/dncmntask-cname-6.png)
 
-Sur la page **Domaines personnalisés**, cliquez sur **Acheter des domaines**.
+Bonjour **les domaines personnalisés** , cliquez sur **acheter des domaines**.
 
 ![](./media/custom-dns-web-site-buydomains-web-app/dncmntask-cname-buydomains-1.png)
 
-### <a name="configure-the-domain-purchase"></a>Configurer l’achat de domaine
+### <a name="configure-hello-domain-purchase"></a>Configurer le fournisseur de domaine hello
 
-Sur la page **Domaine App Service**, dans la zone **Recherche de domaine**, tapez le nom de domaine que vous souhaitez acheter et tapez `Enter`. Les domaines disponibles proposés s'affichent juste en dessous de la zone de texte. Sélectionnez un ou plusieurs domaines que vous souhaitez acheter. 
+Bonjour **domaine d’application Service** page hello **recherche pour le domaine** boîte, de type hello nom du domaine toobuy et type `Enter`. Hello suggérées domaines disponibles sont affichés juste en dessous de zone de texte hello. Sélectionnez un ou plusieurs domaines que vous souhaitez toobuy. 
    
 ![](./media/custom-dns-web-site-buydomains-web-app/dncmntask-cname-buydomains-2.png)
 
-Cliquez sur **Informations de contact** et remplissez le formulaire d’informations de contact du domaine. Lorsque vous avez terminé, cliquez sur **OK** pour revenir à la page Domaine App Service.
+Cliquez sur hello **coordonnées de contact** et remplissez le formulaire des informations de contact du domaine hello. Lorsque vous avez terminé, cliquez sur **OK** page de domaine d’application Service tooreturn toohello.
    
-Il est très important de remplir tous les champs obligatoires aussi précisément que possible. L’inexactitude des informations de contact fournies peut empêcher l’achat des domaines. 
+Il est très important de remplir tous les champs obligatoires aussi précisément que possible. Domaines de toopurchase échec peuvent entraîner des données incorrectes pour les informations de contact. 
 
-Sélectionnez ensuite les options souhaitées pour votre domaine. Pour plus de précisions, consultez le tableau suivant :
+Ensuite, sélectionnez les options de hello souhaité pour votre domaine. Consultez hello tableau pour obtenir des explications suivant :
 
 | Paramètre | Valeur suggérée | Description |
 |-|-|-|
-|Renouvellement automatique | **Activer** | Renouvelle automatiquement votre domaine App Service chaque année. Au moment du renouvellement, vous serez facturé le même prix sur votre carte de crédit. |
-|Protection des données personnelles | Activer | Optez pour la « Protection des données personnelles », incluse dans le prix d’achat _gratuitement_ (à l’exception des domaines de niveau supérieur dont le registre ne prend pas en charge la protection des données, comme _.co.in_, _.co.uk_, et ainsi de suite). |
-| Attribuer des noms d’hôte par défaut | **www** et **@** | Si vous le souhaitez, vous pouvez sélectionner les liaisons de nom d’hôte souhaitées. Lorsque l’opération d’achat de domaine est terminée, votre application web est accessible aux noms d’hôtes choisis. Si l’application web se trouve derrière [Azure Traffic Manager](https://azure.microsoft.com/services/traffic-manager/), vous ne verrez pas l’option pour attribuer le domaine racine (@), parce que Traffic Manager ne prend pas en charge les enregistrements A. Vous pouvez apporter des modifications aux attributions de nom d’hôte après l’achat de domaine. |
+|Renouvellement automatique | **Activer** | Renouvelle automatiquement votre domaine App Service chaque année. Votre carte de crédit hello même prix d’achat au moment de hello de renouvellement. |
+|Protection des données personnelles | Activer | S’abonner trop « Confidentialité », qui est incluse dans le prix d’achat hello _gratuitement_ (à l’exception des domaines de premier niveau dont le Registre ne prennent pas en charge la protection des données, telles que _. co.in_, _. Co.uk_, et ainsi de suite). |
+| Attribuer des noms d’hôte par défaut | **www** et **@** | Sélectionnez hello souhaitée des liaisons de nom d’hôte, si vous le souhaitez. Lorsqu’une opération d’achat domaine hello est terminée, votre application web est accessible à des noms d’hôtes hello sélectionné. Si l’application hello web se trouve derrière [Azure Traffic Manager](https://azure.microsoft.com/services/traffic-manager/), vous ne voyez pas le domaine racine hello hello option tooassign (@), parce que Traffic Manager ne pas les enregistrements de prise en charge. Vous pouvez modifier les attributions de nom d’hôte toohello issue de l’achat de domaine hello. |
 
 ### <a name="accept-terms-and-purchase"></a>Accepter les mentions et acheter
 
-Cliquez sur **Mentions légales** pour consulter les mentions et les frais, puis cliquez sur **Acheter**.
+Cliquez sur **juridiques** tooreview hello générales de frais de hello, puis cliquez sur **acheter**.
 
 > [!NOTE]
-> Les domaines App Service utilisent Azure DNS pour héberger les domaines. Outre les frais d’inscription de domaine, les frais d’utilisation d’Azure DNS s’appliquent aussi. Pour en savoir plus, consultez la page relative à la [tarification Azure DNS](https://azure.microsoft.com/pricing/details/dns/).
+> Domaines de Service d’application d’utilisent des domaines de hello toohost Azure DNS. En outre frais d’inscription de domaine toohello, frais d’utilisation pour Azure DNS s’appliquent. Pour en savoir plus, consultez la page relative à la [tarification Azure DNS](https://azure.microsoft.com/pricing/details/dns/).
 >
 >
 
-Retournez sur la page **Domaine App Service**, puis cliquez sur **OK**. Pendant que l’opération, vous voyez apparaître les notifications suivantes :
+Dans hello **domaine d’application Service** , cliquez sur **OK**. Lors de l’opération de hello est en cours d’exécution, vous voyez hello suivant des notifications :
 
 ![](./media/custom-dns-web-site-buydomains-web-app/dncmntask-cname-buydomains-validate.png)
 
 ![](./media/custom-dns-web-site-buydomains-web-app/dncmntask-cname-buydomains-purchase-success.png)
 
-### <a name="test-the-hostnames"></a>Test des noms d’hôte
+### <a name="test-hello-hostnames"></a>Noms d’hôte de test hello
 
-Si vous avez attribué des noms d’hôte par défaut à votre application web, vous voyez également une notification de réussite pour chaque nom d’hôte choisi. 
+Si vous avez attribué par défaut les noms d’hôte tooyour web app, vous voyez également une notification de réussite pour chaque nom d’hôte sélectionné. 
 
 ![](./media/custom-dns-web-site-buydomains-web-app/dncmntask-cname-buydomains-bind-success.png)
 
-Vous voyez également les noms d’hôtes choisis sur la page **Domaines personnalisés**, dans la section **Noms d’hôte**. 
+Vous voyez également les noms d’hôte hello sélectionné Bonjour **les domaines personnalisés** page hello **noms d’hôtes** section. 
 
 ![](./media/custom-dns-web-site-buydomains-web-app/dncmntask-cname-buydomains-hostnames-added.png)
 
-Pour tester des noms d’hôte, accédez à ceux qui sont répertoriés dans le navigateur. Dans l’exemple de la capture d’écran précédente, essayez d’accéder à _kontoso.net_ et _www.kontoso.net_.
+noms d’hôtes de tootest hello, accédez toohello répertorié les noms d’hôtes dans le navigateur de hello. Dans l’exemple hello Bonjour précédant la capture d’écran, essayez too_kontoso.net_ et _www.kontoso.net_.
 
-## <a name="assign-hostnames-to-web-app"></a>Attribuer des noms d’hôte à une application web
+## <a name="assign-hostnames-tooweb-app"></a>Affecter des noms d’hôtes tooweb application
 
-Si vous choisissez de ne pas attribuer un ou plusieurs noms d’hôte par défaut à votre application web lors de l’achat, ou si vous devez attribuer un nom d’hôte non répertorié, sachez que vous pouvez attribuer ce nom à tout moment.
+Si vous ne choisissez pas les tooassign une ou plus par défaut les noms d’hôte tooyour web app pendant hello processus d’achat, ou si vous avez besoin tooassign un nom d’hôte non répertorié, vous pouvez affecter un nom d’hôte à tout moment.
 
-Vous pouvez également attribuer des noms d’hôte dans le domaine App Service à n’importe quelle application web. La procédure varie si le domaine App Service et l’application web appartiennent au même abonnement.
+Vous pouvez également affecter des noms d’hôte dans tooany de domaine de Service d’application hello autre application web. Hello étapes dépendent si hello domaine du Service d’application et l’application web hello appartiennent toohello même abonnement.
 
-- Autre abonnement : mapper des enregistrements DNS personnalisés depuis le domaine App Service vers l’application web comme un domaine acheté en externe. Pour en savoir plus sur l’ajout de noms DNS personnalisés à un domaine App Service, consultez [Gérer les enregistrements DNS personnalisés](#custom). Pour mapper un domaine acheté en externe à une application web, consultez [Mapper un nom DNS personnalisé existant à des applications web Azure](app-service-web-tutorial-custom-domain.md). 
-- Abonnement similaire : procédez comme suit.
+- Autre abonnement : mapper les enregistrements DNS personnalisés à partir de domaine de Service d’application hello toohello l’application web à un domaine extérieur achetée. Pour plus d’informations sur l’ajout de DNS personnalisé des noms tooan domaine du Service d’application, consultez [gérer les enregistrements DNS personnalisés](#custom). toomap une application web de tooa domaine achetées externe, consultez [mapper un tooAzure de nom DNS personnalisé existant Web Apps](app-service-web-tutorial-custom-domain.md). 
+- Même abonnement : hello utilisation comme suit.
 
 ### <a name="launch-add-hostname"></a>Lancer Ajouter un nom d’hôte
-Sur la page **App Services**, sélectionnez le nom de l’application web à laquelle vous souhaitez attribuer des noms d’hôte, puis **Paramètres**, et **Domaines personnalisés**.
+Bonjour **des Services d’application** page, le nom hello select de votre application web que vous souhaitez que les noms d’hôte tooassign pour sélectionner **paramètres**, puis sélectionnez **les domaines personnalisés**.
 
 ![](./media/custom-dns-web-site-buydomains-web-app/dncmntask-cname-6.png)
 
-Vérifiez que votre domaine acheté est répertorié dans la section **Domaines App Service**, mais ne le sélectionnez pas. 
+Assurez-vous que votre domaine achetée est répertorié dans hello **domaines de Service d’application** section, mais ne l’activez pas. 
 
 ![](./media/custom-dns-web-site-buydomains-web-app/dncmntask-cname-buydomains-select-domain.png)
 
 > [!NOTE]
-> Tous les domaines App Service du même abonnement sont affichés sur la page **Domaines personnalisés**de l’application web. Si votre domaine est inclus dans l’abonnement de l’application web, mais qu’il ne s’affiche pas sur la page **Domaines personnalisés** de l’application web, ouvrez à nouveau la page **Domaines personnalisés** ou actualisez la page web. Vérifiez également la cloche de notification en haut du portail Azure pour savoir s’il y a des échecs lors de la création ou de la progression.
+> Tous les domaines de Service d’application Bonjour même abonnement sont affichés dans l’application hello web **les domaines personnalisés** page. Si votre domaine est inclus dans l’abonnement de l’application hello web, mais il ne figure pas dans l’application hello web **les domaines personnalisés** page, essayez de rouvrir hello **les domaines personnalisés** page ou d’actualiser la page Web de hello. Vérifiez également représentant une cloche de notification hello haut hello hello portail Azure pour les échecs de la création ou de progression.
 >
 >
 
 Sélectionnez **Ajouter un nom d’hôte**.
 
 ### <a name="configure-hostname"></a>Configurer le nom d’hôte
-Dans la boîte de dialogue **Ajouter un nom d’hôte**, entrez le nom de domaine complet du domaine App Service ou de n’importe quel sous-domaine. Par exemple :
+Bonjour **ajouter le nom d’hôte** boîte de dialogue, le nom de domaine complet de type hello de votre domaine de Service d’application ou un sous-domaine. Par exemple :
 
 - kontoso.net
 - www.kontoso.net
 - abc.kontoso.net
 
-Lorsque vous avez terminé, sélectionnez **Valider**. Le type d’enregistrement de nom d’hôte est automatiquement sélectionné pour vous.
+Lorsque vous avez terminé, sélectionnez **Valider**. type d’enregistrement de nom d’hôte Hello est automatiquement sélectionné pour vous.
 
 Sélectionnez **Ajouter un nom d’hôte**.
 
-Une fois l’opération terminée, vous voyez une notification de réussite concernant le nom d’hôte attribué.  
+Lors de l’opération de hello est terminée, vous voyez une notification de réussite pour hello affecté le nom d’hôte.  
 
 ![](./media/custom-dns-web-site-buydomains-web-app/dncmntask-cname-buydomains-bind-success.png)
 
 ### <a name="close-add-hostname"></a>Fermer Ajouter un nom d’hôte
-Sur la page **Ajouter un nom d’hôte**, vous pouvez attribuer n’importe quel nom d’hôte à votre application web, si vous le souhaitez. Lorsque vous avez terminé, fermez la page **Ajouter un nom d’hôte**.
+Bonjour **ajouter le nom d’hôte** page, attribuer un autre nom d’hôte tooyour web application, comme vous le souhaitez. Une fois terminé, fermez hello **ajouter le nom d’hôte** page.
 
-Vous devez maintenant voir le ou les noms d’hôte nouvellement attribués sur la page **Domaines personnalisés** de l’application web.
+Vous devez maintenant voir hello viennent d’être attribué hostname(s) dans votre application **les domaines personnalisés** page.
 
 ![](./media/custom-dns-web-site-buydomains-web-app/dncmntask-cname-buydomains-hostnames-added2.png)
 
-### <a name="test-the-hostnames"></a>Test des noms d’hôte
+### <a name="test-hello-hostnames"></a>Noms d’hôte de test hello
 
-Accédez aux noms d’hôte répertoriés dans le navigateur. Dans l’exemple sur la capture d’écran précédente, essayez d’accéder à _abc.kontoso.net_.
+Accédez de noms d’hôtes toohello répertorié dans le navigateur de hello. Dans l’exemple hello Bonjour précédant la capture d’écran, essayez too_abc.kontoso.net_.
 
 <a name="custom" />
 
@@ -190,52 +190,52 @@ Dans Azure, les enregistrements DNS d’un domaine App Service sont gérés à l
 
 ### <a name="open-app-service-domain"></a>Ouvrir le domaine App Service
 
-Dans le portail Azure, dans le menu de gauche, sélectionnez **More Services** (Plus de services)  > **Domaine App Service**.
+Bonjour portail Azure, à partir du menu de gauche hello, sélectionnez **plus Services** > **domaines de Service d’application**.
 
 ![](./media/custom-dns-web-site-buydomains-web-app/dncmntask-cname-buydomains-access.png)
 
-Sélectionnez le domaine à gérer. 
+Sélectionnez hello domaine toomanage. 
 
 ### <a name="access-dns-zone"></a>Accéder à la zone DNS
 
-Dans le menu de gauche du domaine, sélectionnez **Zone DNS**.
+Dans le menu de gauche du domaine hello, sélectionnez **zone DNS**.
 
 ![](./media/custom-dns-web-site-buydomains-web-app/dncmntask-cname-buydomains-dns-zone.png)
 
-Cette action ouvre la page [Zone DNS](../dns/dns-zones-records.md) de votre domaine App Service dans Azure DNS. Pour savoir comment modifier des enregistrements DNS, consultez [Gérer des zones DNS dans le portail Azure](../dns/dns-operations-dnszones-portal.md).
+Cette action ouvre hello [zone DNS](../dns/dns-zones-records.md) page de votre domaine de Service d’application dans Azure DNS. Pour plus d’informations sur la façon de tooedit les enregistrements DNS, consultez [comment toomanage les Zones DNS dans hello Azure portal](../dns/dns-operations-dnszones-portal.md).
 
 ## <a name="cancel-purchase-delete-domain"></a>Annuler l’achat (supprimer le domaine)
 
-Après avoir acheté le domaine App Service, vous disposez de cinq jours pour annuler votre achat et bénéficier d’un remboursement intégral. Au-delà de cinq jours, vous pouvez supprimer le domaine App Service, mais vous ne serez pas remboursé.
+Après avoir acheté hello domaine du Service d’application, vous avez cinq jours toocancel votre achat d’un remboursement intégral. Après cinq jours, vous pouvez supprimer hello domaine du Service d’application, mais ne peut pas remboursé.
 
 ### <a name="open-app-service-domain"></a>Ouvrir le domaine App Service
 
-Dans le portail Azure, dans le menu de gauche, sélectionnez **More Services** (Plus de services)  > **Domaine App Service**.
+Bonjour portail Azure, à partir du menu de gauche hello, sélectionnez **plus Services** > **domaines de Service d’application**.
 
 ![](./media/custom-dns-web-site-buydomains-web-app/dncmntask-cname-buydomains-access.png)
 
-Sélectionnez le domaine que vous souhaitez annuler ou supprimer. 
+Sélectionnez hello domaine tooyou que vous souhaitez toocancel ou supprimer. 
 
 ### <a name="delete-hostname-bindings"></a>Supprimer des liaisons de noms d’hôte
 
-Dans le menu de gauche du domaine, sélectionnez **Liaisons de noms d’hôte**. Les liaisons de nom d’hôte de tous les services Azure sont répertoriées ici.
+Dans le menu de gauche du domaine hello, sélectionnez **liaisons de nom d’hôte**. liaisons de nom d’hôte Hello de tous les services Azure sont répertoriées ici.
 
 ![](./media/custom-dns-web-site-buydomains-web-app/dncmntask-cname-buydomains-hostname-bindings.png)
 
-Vous ne pouvez pas supprimer le domaine App Service avant d’avoir supprimé toutes les liaisons de nom d’hôte.
+Impossible de supprimer hello App Service de domaine jusqu'à ce que toutes les liaisons de nom d’hôte sont supprimés.
 
-Supprimez chaque liaison de nom d’hôte en sélectionnant **...** > **Supprimer**. Après avoir supprimé toutes les liaisons, sélectionnez **Enregistrer**.
+Supprimez chaque liaison de nom d’hôte en sélectionnant **...** > **Supprimer**. Une fois que toutes les liaisons de hello sont supprimés, sélectionnez **enregistrer**.
 
 ![](./media/custom-dns-web-site-buydomains-web-app/dncmntask-cname-buydomains-delete-hostname-bindings.png)
 
 ### <a name="cancel-or-delete"></a>Annuler ou supprimer
 
-Dans le menu de gauche du domaine, sélectionnez **Vue d’ensemble**. 
+Dans le menu de gauche du domaine hello, sélectionnez **vue d’ensemble**. 
 
-Si la période d’annulation pour domaine acheté n’est pas écoulée, sélectionnez **Annuler l’achat**. Dans le cas contraire, vous verrez le bouton **Supprimer**. Pour supprimer le domaine sans remboursement, sélectionnez **Supprimer**.
+Si la période d’annulation hello sur le domaine de hello acheté n’est pas écoulé, sélectionnez **Annuler achat**. Dans le cas contraire, vous verrez le bouton **Supprimer**. domaine de hello toodelete sans restitution, sélectionnez **supprimer**.
 
 ![](./media/custom-dns-web-site-buydomains-web-app/dncmntask-cname-buydomains-cancel.png)
 
-Sélectionnez **OK** pour confirmer l’opération. Si vous ne souhaitez pas continuer, cliquez n’importe où en dehors de la boîte de dialogue de confirmation.
+Sélectionnez **OK** opération hello de tooconfirm. Si vous ne souhaitez pas tooproceed, cliquez n’importe où en dehors de la boîte de dialogue de confirmation hello.
 
-Une fois l’opération terminée, le domaine n’est plus lié à votre abonnement et est de nouveau disponible à l’achat. 
+Une fois hello terminée, domaine de hello est lancé à partir de votre abonnement et disponibles pour toute personne toopurchase à nouveau. 

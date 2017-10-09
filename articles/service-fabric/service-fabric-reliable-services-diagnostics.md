@@ -1,5 +1,5 @@
 ---
-title: "Diagnostics de Reliable Services avec état | Microsoft Docs"
+title: aaaStateful diagnostics de Services fiables | Documents Microsoft
 description: "Fonctionnalité de diagnostic pour Reliable Services avec état"
 services: service-fabric
 documentationcenter: .net
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/30/2017
 ms.author: dekapur
-ms.openlocfilehash: 63a7707f16bbf037c0c91da1d02093e2314dc06e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6200800b858957c06039d9af062633b12a446318
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="diagnostic-functionality-for-stateful-reliable-services"></a>Fonctionnalité de diagnostic pour Reliable Services avec état
-La classe StatefulServiceBase de Reliable Services avec état émet des événements [EventSource](https://msdn.microsoft.com/library/system.diagnostics.tracing.eventsource.aspx) qui peuvent être utilisés pour déboguer le service, fournir des informations sur le fonctionnement du runtime et vous aider lors du dépannage.
+Hello StatefulServiceBase de Services fiables avec état classe émet [EventSource](https://msdn.microsoft.com/library/system.diagnostics.tracing.eventsource.aspx) les événements qui peuvent être utilisé toodebug hello service, fournissent des informations sur comment hello runtime est d’exploitation et vous aider à résoudre.
 
 ## <a name="eventsource-events"></a>Événements EventSource
-Le nom EventSource de la classe StatefulServiceBase de Reliable Services avec état est « Microsoft-ServiceFabric-Services ». Les événements issus de cette source d’événements s’affichent dans la fenêtre [Événements de diagnostics](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md#view-service-fabric-system-events-in-visual-studio) lorsque le service est en cours de [débogage dans Visual Studio](service-fabric-debugging-your-application.md).
+Hello EventSource nom hello classe de StatefulServiceBase de Services fiables avec état est « Microsoft-ServiceFabric-Services ». Événements à partir de cette source d’événements s’affichent dans le [événements de diagnostic](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md#view-service-fabric-system-events-in-visual-studio) fenêtre hello service est en cours [de débogage dans Visual Studio](service-fabric-debugging-your-application.md).
 
 [PerfView](http://www.microsoft.com/download/details.aspx?id=28567), [Diagnostics Microsoft Azure](../cloud-services/cloud-services-dotnet-diagnostics.md) et [Microsoft TraceEvent Library](http://www.nuget.org/packages/Microsoft.Diagnostics.Tracing.TraceEvent) sont des exemples d’outils et de technologies permettant de collecter et/ou d’afficher des événements EventSource.
 
@@ -34,17 +34,17 @@ Le nom EventSource de la classe StatefulServiceBase de Reliable Services avec é
 | StatefulRunAsyncInvocation |1 |Informations |Émis lorsque la tâche de service RunAsync est démarrée |
 | StatefulRunAsyncCancellation |2 |Informations |Émis lorsque la tâche de service RunAsync est annulée |
 | StatefulRunAsyncCompletion |3 |Informations |Émis lorsque la tâche de service RunAsync est terminée |
-| StatefulRunAsyncSlowCancellation |4 |Avertissement |Émis lorsque la tâche de service RunAsync prend trop de temps pour terminer l'annulation |
+| StatefulRunAsyncSlowCancellation |4 |Avertissement |Émis lorsque la tâche du service de RunAsync prend trop de temps toocomplete d’annulation |
 | StatefulRunAsyncFailure |5 |Erreur |Émis lorsque la tâche de service RunAsync renvoie une exception |
 
 ## <a name="interpret-events"></a>Interprétation des événements
-Les événements StatefulRunAsyncInvocation, StatefulRunAsyncCompletion et StatefulRunAsyncCancellation sont utiles à l’enregistreur du service pour comprendre le cycle de vie d’un service, ainsi que le minutage lorsqu’un service est démarré, annulé ou terminé. Cela peut être utile lors du débogage de problèmes du service ou pour comprendre le cycle de vie du service.
+Événements StatefulRunAsyncInvocation, StatefulRunAsyncCompletion et StatefulRunAsyncCancellation sont utiles toohello service Enregistreur toounderstand hello cycle de vie d’un service--ainsi que de minutage hello lorsqu’un service est démarré, annulé ou terminé . Cela peut être utile lors du débogage des problèmes de service ou de présentation hello cycle de vie du service.
 
-Les enregistreurs de service doivent prêter attention aux événements StatefulRunAsyncSlowCancellation et StatefulRunAsyncFailure qui indiquent des problèmes liés au service.
+Rédacteurs du service prêtez attention particulière tooStatefulRunAsyncSlowCancellation et les événements de StatefulRunAsyncFailure, car elles indiquent des problèmes avec le service de hello.
 
-StatefulRunAsyncFailure est émis à chaque fois que la tâche RunAsync() du service lève une exception. En général, une exception levée indique une erreur ou un bogue dans le service. En outre, l’exception entraîne l’échec du service, qui est alors déplacé vers un autre nœud. L’opération peut s’avérer coûteuse et peut retarder les requêtes entrantes pendant le déplacement du service. Les enregistreurs de service doivent déterminer la cause de l’exception et, si possible, la résoudre.
+StatefulRunAsyncFailure est émis chaque fois que la tâche de RunAsync() hello service lève une exception. En règle générale, une exception indique une erreur ou un bogue dans le service hello. En outre, hello cas hello service toofail, afin qu’il soit déplacé tooa autre nœud. Cela peut être une opération coûteuse et peut retarder les demandes entrantes pendant que le service de hello est déplacé. Rédacteurs du service doivent déterminer la cause de hello d’exception de hello et, si possible, limiter ce risque.
 
-StatefulRunAsyncSlowCancellation est émis à chaque fois qu’une requête d’annulation de la tâche RunAsync prend plus de quatre secondes. Lorsqu’un service prend trop de temps pour terminer l’annulation, cela a un impact sur la capacité du service à être redémarré rapidement sur un autre nœud. Cela peut avoir un impact sur la disponibilité globale du service.
+StatefulRunAsyncSlowCancellation est émise chaque fois qu’une demande d’annulation de tâche de RunAsync hello prend plue de quatre secondes. Lorsqu’un service prend trop de temps toocomplete d’annulation, il affecte la capacité hello pour toobe de service hello rapidement redémarré sur un autre nœud. Cela peut avoir un impact sur la disponibilité globale du service de hello de hello.
 
 ## <a name="next-steps"></a>Étapes suivantes
 * [Fournisseurs EventSource dans PerfView](https://blogs.msdn.microsoft.com/vancem/2012/07/09/introduction-tutorial-logging-etw-events-in-c-system-diagnostics-tracing-eventsource/)

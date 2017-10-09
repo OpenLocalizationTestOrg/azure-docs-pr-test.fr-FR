@@ -1,6 +1,6 @@
 ---
-title: "Déployer votre application dans Azure App Service avec FTP/S | Microsoft Docs"
-description: "Découvrez comment déployer votre application dans Azure App Service avec FTP ou FTPS."
+title: "aaaDeploy votre tooAzure d’application du Service d’applications à l’aide de FTP/S | Documents Microsoft"
+description: "Découvrez comment toodeploy votre tooAzure d’application du Service d’applications à l’aide de FTP ou FTPS."
 services: app-service
 documentationcenter: 
 author: cephalin
@@ -14,51 +14,51 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/05/2016
 ms.author: cephalin;dariac
-ms.openlocfilehash: 9078abbc4ed7eff6975201443992f7bbb84bf57c
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 318ae79d4fae269f853ea5c3ce28353b0864131e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-your-app-to-azure-app-service-using-ftps"></a>Déployer votre application dans Azure App Service avec FTP/S
+# <a name="deploy-your-app-tooazure-app-service-using-ftps"></a>Déployer votre tooAzure d’application du Service d’applications à l’aide de FTP/S
 
-Cet article vous explique comment utiliser FTP ou FTPS pour déployer votre application web, votre backend d’applications mobiles ou votre application API dans [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714).
+Cet article vous montre comment toouse FTP ou FTPS toodeploy votre application web, un principal de l’application mobile ou une application API trop[Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714).
 
-Le point de terminaison FTP/S de votre application est déjà actif. Aucune configuration n’est nécessaire pour activer le déploiement FTP/S.
+point de terminaison Hello FTP/S pour votre application est déjà active. Aucune configuration n’est un déploiement de FTP/S tooenable nécessaire.
 
 > [!IMPORTANT]
-> Nous prenons en permanence des mesures pour améliorer la sécurité de la plateforme Microsoft Azure. Dans le cadre de cet effort continu, une mise à niveau des Applications Web est prévue pour les régions d’Allemagne centrale et d’Allemagne du nord-est. L’utilisation du protocole FTP en texte brut pour les déploiements est désactivée pendant cette Web Apps. La recommandation faite à nos clients consiste à basculer vers FTPS pour les déploiements. Aucune interruption de votre service n’aura lieu pendant cette mise à niveau qui est prévue le 5 septembre. Nous vous remercions du soutien apporté à cet effort.
+> Nous prenons en permanence des étapes tooimprove sécurité de la plateforme Microsoft Azure. Dans le cadre de cet effort continu, une mise à niveau des Applications Web est prévue pour les régions d’Allemagne centrale et d’Allemagne du nord-est. Au cours de cette, applications Web seront désactivation utilisez hello du protocole FTP en texte brut pour les déploiements. Nos clients tooour de recommandation est tooFTPS tooswitch pour les déploiements. Nous n’attendent pas de n’importe quel service de tooyour interruption pendant cette mise à niveau qui est prévue pour le 9/5. Nous vous remercions du soutien apporté à cet effort.
 
 <a name="step1"></a>
 ## <a name="step-1-set-deployment-credentials"></a>Étape 1 : définir les informations d’identification du déploiement
 
-Pour accéder au serveur FTP de votre application, vous devez disposer des informations d’identification du déploiement. 
+serveur de hello FTP tooaccess pour votre application, vous devez tout d’abord d’informations d’identification de déploiement. 
 
-Pour définir ou réinitialiser vos informations d’identification du déploiement, consultez [Informations d’identification du déploiement d’Azure App Service](app-service-deployment-credentials.md). Ce didacticiel illustre l’utilisation des informations d’identification de niveau utilisateur.
+tooset ou réinitialiser vos informations d’identification de déploiement, consultez [informations d’identification du déploiement Azure App Service](app-service-deployment-credentials.md). Ce didacticiel montre l’utilisation hello d’informations d’identification au niveau de l’utilisateur.
 
 ## <a name="step-2-get-ftp-connection-information"></a>Étape 2 : obtenir les informations de connexion FTP
 
-1. Dans le [portail Azure](https://portal.azure.com), ouvrez le [panneau des ressources](../azure-resource-manager/resource-group-portal.md#manage-resources) de votre application.
-2. Sélectionnez **Vue d’ensemble** dans le menu de gauche, puis notez les valeurs de **Utilisateur FTP/de déploiement**, **Nom de l'hôte FTP** et **Nom de l'hôte FTPS**. 
+1. Bonjour [portail Azure](https://portal.azure.com), ouvrez votre application [panneau des ressources](../azure-resource-manager/resource-group-portal.md#manage-resources).
+2. Sélectionnez **vue d’ensemble** dans le menu de gauche hello, puis notez les valeurs hello pour **utilisateur FTP/déploiement**, **nom d’hôte FTP**, et **nom d’hôte FTPS**. 
 
     ![Informations de connexion FTP](./media/web-sites-deploy/FTP-Connection-Info.PNG)
 
     > [!NOTE]
-    > Valeur **Utilisateur FTP/de déploiement** affichée par le portail Azure, avec le nom de l’application, afin de fournir le contexte approprié au serveur FTP.
-    > Vous pouvez obtenir les mêmes informations en sélectionnant **Propriétés** dans le menu de gauche. 
+    > Hello **utilisateur FTP/déploiement** valeur utilisateur tel qu’affiché par hello portail Azure, y compris le nom de l’application hello dans l’ordre tooprovide bon contexte hello FTP serveur.
+    > Vous pouvez trouver hello les mêmes informations lorsque vous sélectionnez **propriétés** dans le menu de gauche hello. 
     >
-    > En outre, le mot de passe du déploiement n’est jamais affiché. Si vous oubliez le mot de passe de votre déploiement, revenez à l’[étape 1](#step1) et réinitialisez-le.
+    > En outre, le mot de passe de déploiement hello n’est jamais affichée. Si vous oubliez votre mot de passe de déploiement, revenez trop[étape 1](#step1) et réinitialiser votre mot de passe de déploiement.
     >
     >
 
-## <a name="step-3-deploy-files-to-azure"></a>Étape 3 : déployer les fichiers sur Azure
+## <a name="step-3-deploy-files-tooazure"></a>Étape 3 : Déployer des fichiers tooAzure
 
-1. À partir de votre client FTP ([Visual Studio](https://www.visualstudio.com/vs/community/), [FileZilla](https://filezilla-project.org/download.php?type=client), etc.), utilisez les informations de connexion que vous avez recueillies pour vous connecter à votre application.
-3. Copiez vos fichiers et la structure de répertoire qui leur correspond dans le répertoire [**/site/wwwroot** dans Azure](https://github.com/projectkudu/kudu/wiki/File-structure-on-azure) (ou dans le répertoire **/site/wwwroot/App_Data/Jobs/** pour WebJobs).
-4. Accédez à l’URL de votre application pour vérifier que l’application s’exécute correctement. 
+1. À partir de votre client FTP ([Visual Studio](https://www.visualstudio.com/vs/community/), [FileZilla](https://filezilla-project.org/download.php?type=client), etc.), utilisez les informations de connexion hello collectées tooconnect tooyour application.
+3. Copier vos fichiers et leur toohello de structure de répertoire correspondant [ **/site/wwwroot** active](https://github.com/projectkudu/kudu/wiki/File-structure-on-azure) dans Azure (ou hello **/site/wwwroot/App_Data/tâches/** répertoire pour Les tâches Web).
+4. Application de l’application de navigation tooyour URL tooverify hello s’exécute correctement. 
 
 > [!NOTE] 
-> Contrairement aux [déploiements Git](app-service-deploy-local-git.md), un déploiement FTP ne prend pas en charge les automatisations de déploiement suivantes : 
+> Contrairement aux [déploiements Git](app-service-deploy-local-git.md), déploiement FTP ne prend pas en charge hello suivant automatisations de déploiement : 
 >
 > - restauration de dépendances (par exemple, des automatisations NuGet, NPM, PIP et Composer)
 > - compilation de fichiers binaires .NET
@@ -70,7 +70,7 @@ Pour définir ou réinitialiser vos informations d’identification du déploiem
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Pour des scénarios de déploiement plus avancés, consultez [Déploiement Git local vers Azure App Service](app-service-deploy-local-git.md). Le déploiement GIT vers Azure autorise le contrôle de version, la restauration du package, MSBuild et bien plus encore.
+Pour les scénarios de déploiement plus avancées, essayez [déploiement tooAzure avec Git](app-service-deploy-local-git.md). Déploiement GIT tooAzure permet le contrôle de version, la restauration des packages, MSBuild et bien plus encore.
 
 ## <a name="more-resources"></a>Autres ressources
 

@@ -1,6 +1,6 @@
 ---
-title: "Résoudre les problèmes de reformation d’un service web Azure Machine Learning Classic | Microsoft Docs"
-description: "Identifiez et corrigez les problèmes courants rencontrés lorsque vous reformez le modèle d’un service web Azure Machine Learning."
+title: "service web d’aaaTroubleshoot réapprentissage un Azure Machine Learning Classic | Documents Microsoft"
+description: "Identifiez et corrigez rencontré de problèmes courants lorsque vous sont former le modèle de hello pour un Service Web de Azure Machine Learning."
 services: machine-learning
 documentationcenter: 
 author: VDonGlover
@@ -14,95 +14,93 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/19/2017
 ms.author: v-donglo
-ms.openlocfilehash: fc36499ebff88c86635228ff899c85e9166aabed
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2b6a78eaba161877106dccdc23437b5e454fca7b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="troubleshooting-the-retraining-of-an-azure-machine-learning-classic-web-service"></a>Résolution des problèmes de reformation d’un service web Azure Machine Learning classique
+# <a name="troubleshooting-hello-retraining-of-an-azure-machine-learning-classic-web-service"></a>Résolution des problèmes de hello recyclage d’un service Web classique de Azure Machine Learning
 ## <a name="retraining-overview"></a>Vue d’ensemble de la reformation
-Lorsque vous déployez une expérience prédictive en tant que service web d’évaluation, il s’agit d’un modèle statique. Lorsque de nouvelles données sont disponibles ou lorsque le consommateur de l’API a ses propres données, le modèle doit être reformé. 
+Lorsque vous déployez une expérience prédictive en tant que service web d’évaluation, il s’agit d’un modèle statique. Comme les nouvelles données sont disponibles ou lorsque le consommateur hello Hello API a ses propres données, modèle de hello doit toobe reformé. 
 
-Pour une procédure pas à pas complète du processus de reformation d’un service web classique, voir [Reformation des modèles Machine Learning par programme](machine-learning-retrain-models-programmatically.md).
+Pour obtenir une description complète de hello recyclage de processus d’un service Web classique, consultez [recycler Machine Learning modèles par programme](machine-learning-retrain-models-programmatically.md).
 
 ## <a name="retraining-process"></a>Processus de reformation
-Lorsque vous devez reformer le service web, vous devez ajouter quelques éléments supplémentaires :
+Lorsque vous devez tooretrain hello service Web, vous devez ajouter certains éléments supplémentaires :
 
-* Un service web déployé à partir de l’expérience de formation. L’expérience doit avoir un module de **sortie de service web** attaché à la sortie du module **Modèle de formation**.  
+* Un service Web est déployé à partir de hello expérience d’apprentissage. expérience de Hello doit avoir un **sortie du Service Web** module attaché sortie toohello Hello **Train Model** module.  
   
-    ![Attachez la sortie de service web au modèle de formation.][image1]
-* Un nouveau point de terminaison ajouté à votre service web de notation.  Vous pouvez ajouter le point de terminaison par programme à l’aide de l’exemple de code référencé dans la rubrique Reformation des modèles Machine Learning par programme ou via le portail Azure Classic.
+    ![Attacher le modèle de hello web service sortie toohello train.][image1]
+* Un nouveau point de terminaison ajouté tooyour calcul du score du service Web.  Vous pouvez ajouter des point de terminaison hello par programmation à l’aide des exemples de code hello référencés Bonjour recycler l’apprentissage des modèles par programme rubrique ou via hello portail Azure classic.
 
-Vous pouvez utiliser l’exemple de code C# de la page d’aide API du service web de formation pour reformer le modèle. Après avoir évalué les résultats et que vous en êtes satisfait, vous mettez à jour le service web d’évaluation du modèle formé à l’aide du nouveau point de terminaison que vous avez ajouté.
+Vous pouvez ensuite utiliser hello exemple c# code à partir API aide page tooretrain modèle du Service Web hello formation. Une fois que vous avez évalué les résultats hello et soyez satisfaisants, vous mettez à jour formé hello calcul du score du service web à l’aide de hello nouveau point de terminaison que vous avez ajouté.
 
-Une fois tous les éléments en place, les principales étapes à suivre pour reformer le modèle sont les suivantes :
+Avec tous les éléments de hello en place, les étapes majeures hello vous devez prendre le modèle de hello tooretrain sont les suivantes :
 
-1. Appelez le service web de formation : l’appel est destiné au service d’exécution de lots (BES, Batch Execution Service), et non au service de requête-réponse (RRS, Request-Response Service). Vous pouvez utiliser l’exemple de code C# sur la page d’aide API pour effectuer l’appel. 
-2. Recherchez les valeurs pour *BaseLocation*, *RelativeLocation* et *SasBlobToken* : ces valeurs sont retournées dans la sortie à partir de votre appel au service web de formation. 
-   ![Affichage de la sortie de l’exemple de reformation et des valeurs BaseLocation, RelativeLocation et SasBlobToken.][image6]
-3. Mettez à jour le point de terminaison ajouté à partir du service web d’évaluation avec le nouveau modèle formé : à l’aide de l’exemple de code fourni dans la rubrique Reformation des modèles Machine Learning par programme, mettez à jour le nouveau point de terminaison que vous avez ajouté au modèle d’évaluation avec le modèle nouvellement formé à partir du service web de formation.
+1. Appelez hello Service Web de formation : appel de hello est toohello Service de l’exécution de lot (BES), ne Hello pas les demandes de Service de réponse (RR). Vous pouvez utiliser le code c# exemple hello astreinte hello API aide page toomake hello. 
+2. Rechercher les valeurs hello hello *BaseLocation*, *RelativeLocation*, et *SasBlobToken*: ces valeurs sont retournées dans la sortie de hello à partir de votre toohello appel Web de formation Service. 
+   ![affichage de sortie hello Hello réapprentissage exemple et hello BaseLocation, RelativeLocation et SasBlobToken des valeurs.][image6]
+3. Mise à jour hello ajouté modèle entraîné de point de terminaison de hello score de nouveau service web avec hello : à l’aide des exemples de code hello fournies hello recycler l’apprentissage des modèles par programmation, mettre à jour nouveau point de terminaison hello, vous avez ajouté toohello score du modèle avec hello récemment modèle formé à partir de hello formation Web Service.
 
 ## <a name="common-obstacles"></a>Obstacles courants
-### <a name="check-to-see-if-you-have-the-correct-patch-url"></a>Vérifiez que vous disposez de l’URL d’application de correctifs appropriée
-L’URL d’application de correctifs que vous utilisez doit être celle associée au nouveau point de terminaison d’évaluation que vous avez ajouté au service web d’évaluation. Il existe plusieurs façons d’obtenir l’URL des CORRECTIFS :
+### <a name="check-toosee-if-you-have-hello-correct-patch-url"></a>Vérifiez toosee si vous avez hello Corrigez-la de correctif logiciel
+Hello URL de correctif logiciel que vous utilisez doit être hello associé hello nouveau calcul du score du point de terminaison que vous avez ajouté toohello calcul du score du service Web. Il existe un certain nombre de façons tooobtain hello de correctif logiciel des URL :
 
 **Option 1 : par programme**
 
-Pour obtenir l’URL d’application de correctifs appropriée :
+tooget hello Corrigez-la de correctif logiciel :
 
-1. Exécutez l’exemple de code [AddEndpoint](https://github.com/raymondlaghaeian/AML_EndpointMgmt/blob/master/Program.cs) .
-2. À partir de la sortie d’AddEndpoint, recherchez la valeur *HelpLocation* et copiez l’URL.
+1. Exécutez hello [AddEndpoint](https://github.com/raymondlaghaeian/AML_EndpointMgmt/blob/master/Program.cs) exemple de code.
+2. À partir de la sortie de hello de AddEndpoint, recherche hello *HelpLocation* valeur et copier l’URL de hello.
    
-   ![HelpLocation dans la sortie de l’exemple addEndpoint.][image2]
-3. Collez l’URL dans un navigateur pour accéder à une page qui fournit des liens d’aide pour le service web.
-4. Cliquez sur le lien de **Mettre à jour la ressource** pour ouvrir la page d’aide sur le correctif.
+   ![HelpLocation sortie hello addEndpoint exemple hello.][image2]
+3. Collez hello URL dans une page du navigateur toonavigate tooa qui fournit des liens d’aide pour le service Web de hello.
+4. Cliquez sur hello **mise à jour de ressource** page d’aide lien tooopen hello correctif.
 
-**Option 2 : utiliser le portail Azure Classic**
+**Option 2 : Utiliser hello portail Azure classic**
 
-1. Connectez-vous au [portail Azure Classic](https://manage.windowsazure.com).
-2. Ouvrez l’onglet Machine Learning. 
-   ![Onglet Machine Learning.][image4]
+1. Connectez-vous à toohello [portail Azure classic](https://manage.windowsazure.com).
+2. Onglet d’apprentissage hello ouvert. ![Onglet Machine Learning.][image4]
 3. Cliquez sur le nom de votre espace de travail, puis sur **Services web**.
-4. Cliquez sur le service web d’évaluation avec lequel vous travaillez. (Si vous n’avez pas modifié le nom par défaut du service web, il se terminera par [Exp. de notation].)
+4. Cliquez sur hello calcul du score du service Web que vous utilisez. (Si vous n’avez pas modifié le nom par défaut de hello du service web de hello, il va se terminer dans [score Exp.].)
 5. Cliquez sur **Ajouter un point de terminaison**.
-6. Après l’ajout du point de terminaison, cliquez sur le nom du point de terminaison. Cliquez ensuite sur **Mettre à jour la ressource** pour ouvrir la page d’aide d’application de correctifs.
+6. Une fois le point de terminaison hello est ajouté, cliquez sur nom de point de terminaison hello. Puis cliquez sur **mise à jour de ressource** tooopen hello correction page d’aide.
 
 > [!NOTE]
-> Si vous avez ajouté le point de terminaison au service web d’apprentissage plutôt qu’au service web prédictif, lorsque vous cliquez sur le lien **Mettre à jour la ressource**, vous recevrez un message d’erreur signalant que cette fonctionnalité n’est pas prise en charge ou disponible dans ce contexte. Ce service web n’a aucune ressource actualisable. Veuillez nous excuser pour ce désagrément. Nous travaillons actuellement à l’amélioration de ce flux de travail.
+> Si vous avez ajouté toohello de point de terminaison hello Service Web de formation au lieu de hello prédictive Service Web, vous recevrez l’erreur suivante lorsque vous cliquez sur hello de hello **mise à jour de ressource** lien : nous sommes désolés, mais cette fonctionnalité n’est pas prise en charge ou disponible dans ce contexte. Ce service web n’a aucune ressource actualisable. Nous excuser pour tout désagrément de hello et que vous travaillez sur l’amélioration de ce flux de travail.
 > 
 > 
 
 ![Nouveau tableau de bord de point de terminaison.][image3]
 
-La page d’aide d’application de correctifs contient l’URL d’application de correctifs que vous devez utiliser et fournit un exemple de code que vous pouvez utiliser pour l’appeler.
+page d’aide du correctif Hello contient hello correctif URL, vous devez utiliser et fournit des exemples de code que vous pouvez utiliser toocall il.
 
 ![URL d’application de correctifs.][image5]
 
-### <a name="check-to-see-that-you-are-updating-the-correct-scoring-endpoint"></a>Vérifiez que vous mettez à jour le point de terminaison d’évaluation approprié
-* N’appliquez pas de correctifs au service web de formation : l’opération d’application de correctifs doit être effectuée sur le service web d’évaluation.
-* N’appliquez pas de correctifs au point de terminaison par défaut du service web : l’opération d’application de correctifs doit être effectuée sur le nouveau point de terminaison du service web d’évaluation que vous avez ajouté.
+### <a name="check-toosee-that-you-are-updating-hello-correct-scoring-endpoint"></a>Vérifiez que vous mettez à jour point de terminaison hello correct score de toosee
+* Pas de correctif logiciel hello Service Web de formation : opération de hello patch doit être effectuée sur hello calcul du score du service Web.
+* Correctif pas de point de terminaison hello par défaut sur le service Web : opération de hello patch doit être effectuée sur hello nouveau calcul du score du point de terminaison Web service que vous avez ajouté.
 
-Vous pouvez vérifier sur quel service web se trouve le point de terminaison en visitant le portail Azure Classic. 
+Vous pouvez vérifier quel point de terminaison Web service hello est sous tension en visite hello portail Azure classic. 
 
 > [!NOTE]
-> Veillez à ajouter le point de terminaison au service web prédictif et non au service web d’apprentissage. Si vous avez correctement déployé à la fois un service web prédictif et un service web de formation, vous devez voir deux services web distincts répertoriés. Le service web prédictif doit se terminer par « [exp. prédictive] ».
+> Assurez-vous que vous ajoutez toohello de point de terminaison hello prédictive Web Service, pas hello formation Web Service. Si vous avez correctement déployé à la fois un service web prédictif et un service web de formation, vous devez voir deux services web distincts répertoriés. Hello prédictive Service Web doit se terminer par « [exp prédictive.] ».
 > 
 > 
 
-1. Connectez-vous au [portail Azure Classic](https://manage.windowsazure.com).
-2. Ouvrez l’onglet Machine Learning. 
-   ![Interface utilisateur de l’espace de travail Machine Learning.][image4]
+1. Connectez-vous à toohello [portail Azure classic](https://manage.windowsazure.com).
+2. Onglet d’apprentissage hello ouvert. ![Interface utilisateur de l’espace de travail Machine Learning.][image4]
 3. Sélectionnez votre espace de travail.
 4. Cliquez sur **Services web**.
 5. Sélectionnez votre service web prédictif.
-6. Vérifiez que votre nouveau point de terminaison a été ajouté au service web.
+6. Vérifiez que votre nouveau point de terminaison a été ajouté de service Web de toohello.
 
-### <a name="check-the-workspace-that-your-web-service-is-in-to-ensure-it-is-in-the-correct-region"></a>Vérifiez l’espace de travail dans lequel votre service web se trouve afin de vous assurer qu’il est dans la région appropriée.
-1. Connectez-vous au [portail Azure Classic](https://manage.windowsazure.com).
-2. Sélectionnez Machine Learning dans le menu.
+### <a name="check-hello-workspace-that-your-web-service-is-in-tooensure-it-is-in-hello-correct-region"></a>Vérifiez l’espace de travail hello que votre service web est en tooensure, qu'il se trouve dans la région correcte de hello
+1. Connectez-vous à toohello [portail Azure classic](https://manage.windowsazure.com).
+2. Sélectionnez la Machine Learning à partir du menu de hello.
    ![Interface utilisateur de la région Machine Learning.][image4]
-3. Vérifiez l’emplacement de votre espace de travail.
+3. Vérifiez l’emplacement hello de votre espace de travail.
 
 <!-- Image Links -->
 

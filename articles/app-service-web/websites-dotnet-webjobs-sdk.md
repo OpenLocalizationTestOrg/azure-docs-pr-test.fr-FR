@@ -1,6 +1,6 @@
 ---
-title: "Présentation du Kit de développement logiciel (SDK) Azure WebJobs"
-description: "Présentation du Kit de développement logiciel WebJobs Azure Explique la nature du Kit de développement logiciel (SDK), les scénarios typiques pour lesquels il est utile et fournit des exemples de code."
+title: aaaWhat est hello Azure WebJobs SDK
+description: "Une présentation toohello Kit de développement logiciel Azure WebJobs. Explique le hello SDK, scénarios classiques, qu'il est utile pour, et exemples de code."
 services: app-service\web, storage
 documentationcenter: .net
 author: ggailey777
@@ -14,44 +14,44 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/01/2016
 ms.author: glenga
-ms.openlocfilehash: 8eb05b7cbfb4505f2e94c5b8e6d367ec63a2f033
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: efac7a75c3b68a6a6601fb298f2ccac9bd71709d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="what-is-the-azure-webjobs-sdk"></a>Présentation du Kit de développement logiciel (SDK) Azure WebJobs
+# <a name="what-is-hello-azure-webjobs-sdk"></a>Nouveautés hello Azure WebJobs SDK
 ## <a id="overview"></a>Vue d’ensemble
-Cet article explique la nature du Kit de développement logiciel (SDK) WebJobs, examine quelques scénarios courants pour lesquels il est utile, et présente son utilisation dans votre code.
+Cet article explique ce que hello WebJobs SDK est, passe en revue quelques scénarios courants, il est utile pour et donne une vue d’ensemble de la façon dont vous l’utiliser dans votre code.
 
 [!INCLUDE [app-service-web-webjobs-corenote](../../includes/app-service-web-webjobs-corenote.md)]
 
-[WebJobs](websites-webjobs-resources.md) est une fonctionnalité de Microsoft Azure App Service qui vous permet d’exécuter un programme ou un script dans un même contexte, en tant qu’application web, application API ou application mobile. L’objectif du [kit de développement logiciel (SDK) WebJobs](websites-webjobs-resources.md) consiste à simplifier le code que vous écrivez pour les tâches web courantes, telles que le traitement d’image, le traitement de la file d’attente, l’agrégation RSS, la maintenance des fichiers et l’envoi des messages électroniques. Le kit de développement logiciel (SDK) WebJobs dispose de fonctionnalités intégrées fonctionnant avec le stockage Azure et Service Bus et servant à planifier des tâches, à gérer des erreurs et à nombreux autres scénarios courants. En outre, il est conçu pour être extensible. Le [SDK WebJobs est open source](https://github.com/Azure/azure-webjobs-sdk/) et il existe un [référentiel open source pour les extensions](https://github.com/Azure/azure-webjobs-sdk-extensions/wiki/Binding-Extensions-Overview).
+[Les tâches Web](websites-webjobs-resources.md) est une fonctionnalité du Service Azure App qui vous permet de toorun un programme ou un script Bonjour même contexte qu’une application web, une application API ou une application mobile. Hello d’objectif de hello [WebJobs SDK](websites-webjobs-resources.md) est toosimplify hello code que vous écrivez pour les tâches courantes qu’une tâche Web peut effectuer, telles que le traitement d’image, traitement de la file d’attente, agrégation RSS, maintenance des fichiers et de l’envoi des messages électroniques. Hello WebJobs SDK inclut des fonctionnalités intégrées pour de nombreux autres scénarios courants pour travailler avec le stockage Azure et Service Bus et pour la planification des tâches et la gestion des erreurs. En outre, il est conçu toobe extensible. Hello [WebJobs SDK est open source](https://github.com/Azure/azure-webjobs-sdk/)et qu’il existe un [référentiel open source pour les extensions](https://github.com/Azure/azure-webjobs-sdk-extensions/wiki/Binding-Extensions-Overview).
 
-Ce Kit comprend les composants suivants :
+Hello WebJobs SDK inclut hello suivant des composants :
 
-* **Packages NuGet**. Les packages NuGet que vous ajoutez à un projet d'application console Visual Studio fournissent une infrastructure que votre code utilise en décorant vos méthodes avec les attributs SDK de WebJobs.
-* **Tableau de bord**. Cette partie du Kit de développement logiciel (SDK) WebJobs est incluse dans Microsoft Azure App Service ; elle offre des fonctions évoluées de surveillance et de diagnostic pour les programmes qui utilisent les packages NuGet. Vous n’avez pas à écrire du code pour utiliser ces fonctions.
+* **Packages NuGet**. Les packages NuGet que vous ajoutez le projet d’Application Console Visual Studio tooa fournissent un cadre qui utilise votre code en décorant vos méthodes avec des attributs de WebJobs SDK.
+* **Tableau de bord**. Partie de hello WebJobs SDK est inclus dans Azure App Service et fournit une surveillance avancée et diagnostics pour les programmes qui utilisent les packages NuGet hello. Vous n’avez toowrite code toouse ces fonctionnalités d’analyse et de diagnostics.
 
 ## <a id="scenarios"></a>Scénarios
-Voici quelques scénarios typiques plus faciles à gérer avec le Kit de développement logiciel (SDK) Azure WebJobs :
+Voici quelques scénarios classiques, que vous pouvez gérer plus facilement avec hello Azure WebJobs SDK :
 
-* Traitement d'images ou autres tâches imposant une forte charge au processeur. Une caractéristique courante des sites web est le téléchargement d'images ou de vidéos. Vous voulez souvent manipuler le contenu après le téléchargement, mais vous ne voulez pas faire attendre l'utilisateur pendant ce temps.
-* Traitement de files d'attente. Un serveur web frontal utilise souvent des files d'attente pour communiquer avec un service principal. Lorsque le site web doit effectuer un travail, il envoie un message à une file d'attente. Un service principal extrait les messages de la file d’attente et effectue le travail. Vous pouvez utiliser les files d’attente pour le traitement d’image. Par exemple, une fois que l’utilisateur a chargé un certain nombre de fichiers, placez les noms de fichiers dans un message en file d’attente, afin qu’ils soient récupérés par le serveur principal à des fins de traitement. Vous pouvez également utiliser des files d’attente pour améliorer la réactivité d’un site. Par exemple, au lieu d'écrire directement dans une base de données SQL, écrivez dans une file d'attente, indiquez à l'utilisateur que vous avez terminé et laissez le serveur principal gérer le travail sur les bases de données relationnelles ayant une latence élevée. Pour consulter un exemple de traitement de file d’attente avec le traitement d’images, consultez le [didacticiel Prise en mains du Kit de développement logiciel (SDK) WebJobs](websites-dotnet-webjobs-sdk-get-started.md).
-* Agrégation RSS. Si vous avez un site qui maintient une liste de flux RSS, vous pouvez récupérer tous les articles des flux dans un traitement en arrière-plan.
-* Maintenance de fichiers (par exemple, agrégation ou nettoyage de fichiers journaux).  Vous voudrez peut-être que des fichiers journaux soient créés par plusieurs sites ou pour des périodes données que vous voulez associer pour les soumettre à des tâches d'analyse. Vous voudrez peut-être aussi planifier l'exécution hebdomadaire d'une tâche de nettoyage des fichiers journaux.
-* Entrée dans des tables Azure. Vous aurez peut-être des fichiers et des objets blob stockés que vous voudrez analyser pour enregistrer les données dans des tables. La fonction d'entrée peut consister à écrire de nombreuses lignes (des millions dans certains cas) : le Kit de développement logiciel (SDK) WebJobs permet d'implémenter facilement cette fonctionnalité. Il permet également la surveillance en temps réel d'indicateurs de progression tels que le nombre de lignes écrites dans la table.
-* Autres tâches longues que vous voulez exécuter dans un thread en arrière-plan (par exemple, [envoi de courriers électroniques](https://github.com/victorhurdugaci/AzureWebJobsSamples/tree/master/SendEmailOnFailure)). 
-* Toutes les tâches que vous souhaitez exécuter sur un planning, par exemple une opération de sauvegarde exécutée toutes les nuits.
+* Traitement d'images ou autres tâches imposant une forte charge au processeur. Une fonctionnalité courante des sites Web est hello capacité tooupload images ou des vidéos. Fréquence à laquelle vous souhaitez que de contenu de hello toomanipulate après son téléchargement, mais vous ne souhaitez pas toomake hello utilisateur Patientez pendant que vous effectuez qui.
+* Traitement de files d'attente. Une méthode courante pour un toocommunicate de serveur frontal web avec un service principal est toouse les files d’attente. Lorsque le site Web de hello doit tooget le travail effectué, il transmet un message dans une file d’attente. Un service principal extrait les messages de la file d’attente hello et hello de travail. Vous pouvez utiliser les files d’attente pour le traitement d’image : par exemple, une fois que l’utilisateur de hello télécharge un nombre de fichiers, placez les noms de fichiers hello dans un toobe de message de file d’attente récupéré par le principal hello pour le traitement. Ou bien, vous pouvez utiliser la réactivité de files d’attente tooimprove site. Par exemple, au lieu d’écrire directement la base de données SQL tooa, écrivez la file d’attente tooa, indiquer à l’utilisateur de hello vous avez terminé et permettre de travailler hello principal service handle à latence élevée base de données relationnelle. Pour obtenir un exemple de file d’attente de traitement avec des processus de l’image, consultez hello [tâches Web SDK prise en main de didacticiel](websites-dotnet-webjobs-sdk-get-started.md).
+* Agrégation RSS. Si vous avez un site qui gère une liste de flux RSS, vous pourriez extraire dans tous les articles hello à partir de flux hello dans un processus en arrière-plan.
+* Maintenance de fichiers (par exemple, agrégation ou nettoyage de fichiers journaux).  Vous pouvez avoir des fichiers de journal en cours de création par plusieurs sites ou pour différentes périodes que vous souhaitez toocombine dans commande toorun les tâches d’analyse sur les. Ou vous souhaiterez peut-être tooschedule un tooclean hebdomadaire toorun de tâche des anciens fichiers journaux.
+* Entrée dans des tables Azure. Vous avez stockés les fichiers et les objets BLOB et souhaitez tooparse les et stocker les données de hello dans les tables. fonction d’entrée Hello en l’écrivant un grand nombre de lignes (des millions dans certains cas) et hello WebJobs SDK rend possible tooimplement cette fonctionnalité facilement. Hello SDK fournit également une analyse en temps réel des indicateurs de progression comme nombre hello de lignes écrites dans la table de hello.
+* Autres tâches longues que vous voulez toorun dans un thread d’arrière-plan, tel que [l’envoi d’e-mails](https://github.com/victorhurdugaci/AzureWebJobsSamples/tree/master/SendEmailOnFailure). 
+* Toutes les tâches que vous souhaitez toorun selon une planification, telle que l’exécution d’une opération de sauvegarde chaque nuit.
 
-Dans un grand nombre de ces scénarios, vous souhaiterez mettre à l'échelle une application web de sorte à ce qu’elle puisse être exécutée sur plusieurs machines virtuelles, qui exécuteraient plusieurs WebJobs simultanément. Dans certains scénarios, cela pourrait entraîner le traitement multiple de mêmes données, mais ceci n'est pas un problème lorsque vous utilisez la file d'attente intégrée, blob et les déclencheurs de bus de service du Kit de développement logiciel (SDK) de WebJobs. Le Kit de développement logiciel (SDK) garantit que vos fonctions ne seront traitées qu'une seule fois pour chaque message ou objet blob.
+Dans la plupart de ces scénarios, vous voudrez tooscale un toorun d’application web sur plusieurs machines virtuelles, ce qui serait d’exécuter plusieurs tâches Web simultanément. Dans certains scénarios, cela peut entraîner hello même en cours de traitement des données plusieurs fois, mais cela n’est pas un problème lorsque vous utilisez la file d’attente intégrées de hello, blob et les déclencheurs de Service Bus de hello WebJobs SDK. Hello SDK garantit que vos fonctions seront traitées qu’une seule fois pour chaque message ou d’un objet blob.
 
-Le SDK WebJobs facilite également la gestion des scénarios de traitement des erreurs courantes. Vous pouvez définir des alertes pour envoyer des notifications lorsqu’une fonction échoue, et vous pouvez définir des délais d'attente afin qu’une fonction soit automatiquement annulée si elle ne se termine pas dans un délai spécifié.
+Hello WebJobs SDK permet également de toohandle facilement les scénarios courants de gestion des erreurs. Vous pouvez configurer des alertes toosend notifications lorsqu’une fonction échoue, et vous pouvez définir des délais d’attente afin qu’une fonction est automatiquement annulée si elle ne se termine pas dans un délai spécifié.
 
 ## <a id="code"></a> Exemples de code
-Le code de traitement des tâches typiques fonctionnant avec Azure Storage est simple. Dans votre méthode `Main` de Console Application, vous créez un objet `JobHost` qui coordonne les appels aux méthodes que vous écrivez. L’infrastructure du Kit de développement logiciel (SDK) WebJobs sait quand appeler vos méthodes et quels valeurs de paramètre utiliser d’après les attributs associés que vous utilisez dans ces méthodes. Le SDK fournit des *déclencheurs* qui spécifient les conditions déclenchant l’appel de la fonction, et des *binders* qui spécifient comment obtenir des informations vers et depuis des paramètres de méthode.
+code Hello pour la gestion des tâches courantes qui fonctionnent avec le stockage Azure est simple. Dans votre Application de Console `Main` méthode que vous créez un `JobHost` objet qui coordonne hello appelle toomethods vous écrivez. Hello WebJobs SDK framework connaît lorsque toocall vos méthodes et le paramètre valeurs toouse selon hello WebJobs SDK attributs vous utilisez dans les. Hello SDK fournit *déclencheurs* qui spécifient les conditions qui provoquent hello fonction toobe est appelée, et *classeurs* qui spécifient comment tooget informations vers et depuis des paramètres de méthode.
 
-Par exemple, l’attribut [QueueTrigger](websites-dotnet-webjobs-sdk-storage-queues-how-to.md) déclenche l’appel d’une fonction lorsqu’une file d’attente reçoit un message ; si le message est enregistré au format JSON pour un tableau d’octets ou un type personnalisé, il est automatiquement désérialisé. L’attribut [BlobTrigger](websites-dotnet-webjobs-sdk-storage-blobs-how-to.md) déclenche un processus lorsqu'un nouvel objet blob est créé dans un compte Azure Storage.
+Par exemple, hello [QueueTrigger](websites-dotnet-webjobs-sdk-storage-queues-how-to.md) attribut entraîne une toobe de la fonction appelée lorsqu’un message est reçu sur une file d’attente et si hello message est au format JSON pour un tableau d’octets ou un type personnalisé, le message de type hello est automatiquement désérialisé. Hello [BlobTrigger](websites-dotnet-webjobs-sdk-storage-blobs-how-to.md) attribut déclenche un processus chaque fois qu’un nouvel objet blob est créé dans un compte de stockage Azure.
 
 Voici un programme simple qui interroge une file d’attente et crée un objet blob pour chaque message de file d’attente reçu :
 
@@ -67,22 +67,22 @@ Voici un programme simple qui interroge une file d’attente et crée un objet b
             writer.WriteLine(inputText);
         }
 
-L’objet `JobHost` est un conteneur prévu pour un ensemble de fonctions en arrière-plan. L’objet `JobHost` surveille ces fonctions, recherche les événements qui les déclenchent et exécute les fonctions lorsque des événements de déclenchement se produisent. Vous appelez une méthode `JobHost` pour indiquer si vous voulez que le processus du conteneur s’exécute sur le thread actif ou dans un thread en arrière-plan. Dans cet exemple, la méthode `RunAndBlock` exécute le processus en permanence sur le thread actif.
+Hello `JobHost` objet est un conteneur pour un ensemble de fonctions d’arrière-plan. Hello `JobHost` objet moniteurs hello fonctionne, observe les événements qui déclenchent les et exécute les fonctions hello lorsque surviennent des événements de déclencheur. Vous appelez un `JobHost` méthode tooindicate si vous voulez hello conteneur processus toorun sur hello le thread actuel ou un thread d’arrière-plan. Dans l’exemple de hello, hello `RunAndBlock` méthode exécute les processus de hello en continu sur le thread en cours de hello.
 
-Comme la méthode `ProcessQueueMessage` de cet exemple inclut un attribut `QueueTrigger`, le déclencheur de cette fonction est la réception d’un nouveau message en file d’attente. L’objet `JobHost` recherche les nouveaux messages dans la file d’attente spécifiée (« webjobsqueue », dans cet exemple). Lorsqu’il trouve un message, il appelle `ProcessQueueMessage`. 
+Étant donné que hello `ProcessQueueMessage` méthode dans cet exemple a un `QueueTrigger` attribut, le déclencheur de hello pour cette fonction est réception hello d’un nouveau message de file d’attente. Hello `JobHost` objet surveille les nouveaux messages de file d’attente sur la file d’attente spécifiée hello (« webjobsqueue » dans cet exemple) et lorsqu’il en trouve, il appelle `ProcessQueueMessage`. 
 
-L’attribut `QueueTrigger` lie le paramètre `inputText` à la valeur du message de file d'attente. L’attribut `Blob` lie également un objet `TextWriter` à un objet blob nommé « blobname » dans le conteneur « containername ».  
+Hello `QueueTrigger` attribut lie hello `inputText` toohello valeur du paramètre de message de file d’attente hello. Et hello `Blob` attribut lie un `TextWriter` blob de tooa objet nommé « blobname » dans un conteneur nommé « containername ».  
 
         public static void ProcessQueueMessage([QueueTrigger("webjobsqueue")]] string inputText, 
             [Blob("containername/blobname")]TextWriter writer)
 
-La fonction utilise ensuite ces paramètres pour écrire la valeur du message en file d'attente dans l'objet blob :
+fonction Hello utilise ensuite ces valeur hello toowrite des paramètres de l’objet blob toohello de message de file d’attente hello :
 
         writer.WriteLine(inputText);
 
-Les fonctionnalités de déclencheur et de classeur du Kit de développement logiciel (SDK) WebJobs simplifient considérablement le code que vous devez écrire. L'infrastructure du SDK écrit pour vous le code de bas niveau nécessaire à la gestion des files d'attente et au traitement des objets blob. Par exemple, elle crée des files d'attente qui n'existent pas encore, ouvre une file d'attente, lit les messages en attente, supprime les messages en attente une fois qu'ils ont été traités, crée des conteneurs d'objets blob qui n'existent pas encore, écrit dans les objets blob, etc.
+fonctionnalités de déclencheur et le binder Hello Hello WebJobs SDK simplifient considérablement le code hello avoir toowrite. Hello code de bas niveau requis tooprocess files d’attente, objets BLOB, ou fichiers ou les tâches planifiée de tooinitiate, est réalisée pour vous par hello structure WebJobs SDK. Par exemple, infrastructure de hello crée les files d’attente qui n’existent pas encore, ouvre hello file d’attente, les messages de la file d’attente des lectures, supprime la file d’attente messages lorsque le traitement est terminé, crée des conteneurs d’objets blob qui n’existent pas encore, écrit tooblobs et ainsi de suite.
 
-L’exemple de code suivant présente différents déclencheurs dans une tâche WebJob : `QueueTrigger`, `FileTrigger`, `WebHookTrigger`, et `ErrorTrigger`. 
+Hello exemple de code suivant montre une variété de déclencheurs dans une tâche Web : `QueueTrigger`, `FileTrigger`, `WebHookTrigger`, et `ErrorTrigger`. 
 
 ```
     public class Functions
@@ -120,19 +120,19 @@ L’exemple de code suivant présente différents déclencheurs dans une tâche 
         public static void ErrorMonitor(
         [ErrorTrigger("00:01:00", 1)] TraceFilter filter, TextWriter log,
         [SendGrid(
-            To = "admin@emailaddress.com",
+            too= "admin@emailaddress.com",
             Subject = "Error!")]
          SendGridMessage message)
         {
-            // log last 5 detailed errors to the Dashboard
+            // log last 5 detailed errors toohello Dashboard
             log.WriteLine(filter.GetDetailedMessage(5));
             message.Text = filter.GetDetailedMessage(1);
         }
     }
 ```
 
-## Planification <a id="schedule"></a>
-L’attribut `TimerTrigger` permet de déclencher des fonctions selon une planification. Vous pouvez planifier une tâche Web dans son ensemble via des fonctions individuelles Azure ou de la planification d'une tâche WebJob à l’aide du SDK WebJobs `TimerTrigger`. Voici un exemple de code.
+## <a id="schedule"></a>
+Hello `TimerTrigger` attribut donne hello de capacité tootrigger fonctions toorun selon une planification. Vous pouvez planifier une tâche Web comme un entier à Azure ou la planification des fonctions individuelles d’un à l’aide de la tâche Web hello WebJobs SDK `TimerTrigger`. Voici un exemple de code.
 
 ```
 public class Functions
@@ -145,27 +145,27 @@ public class Functions
 }
 ```
 
-Pour d’autres exemples de code, consultez [TimerSamples.cs](https://github.com/Azure/azure-webjobs-sdk-extensions/blob/master/src/ExtensionsSample/Samples/TimerSamples.cs) dans le référentiel azure-webjobs-sdk-extensions sur GitHub.com.
+Pour plus d’exemples de code, consultez [TimerSamples.cs](https://github.com/Azure/azure-webjobs-sdk-extensions/blob/master/src/ExtensionsSample/Samples/TimerSamples.cs) dans le référentiel d’extensions azure-tâches Web-Kit de développement logiciel hello sur GitHub.com.
 
 ## <a name="extensibility"></a>Extensibilité
-Vous n'êtes pas limité aux fonctionnalités intégrées, en effet le SDK WebJobs vous permet d’écrire les binders et déclencheurs personnalisés.  Par exemple, vous pouvez écrire des déclencheurs pour les événements du cache et les planifications périodiques. Un [référentiel open source](https://github.com/Azure/azure-webjobs-sdk-extensions) contient un [guide détaillé sur l’extensibilité du SDK WebJobs](https://github.com/Azure/azure-webjobs-sdk-extensions/wiki/Binding-Extensions-Overview) et l’exemple de code pour vous aider à commencer à écrire vos propres déclencheurs et binders.
+Vous n’êtes pas limité dans toobuilt fonctionnalité--hello WebJobs SDK vous permet de toowrite des déclencheurs personnalisés et des classeurs.  Par exemple, vous pouvez écrire des déclencheurs pour les événements du cache et les planifications périodiques. Un [référentiel open source](https://github.com/Azure/azure-webjobs-sdk-extensions) contient un [guide détaillé sur l’extensibilité de WebJobs SDK](https://github.com/Azure/azure-webjobs-sdk-extensions/wiki/Binding-Extensions-Overview) et exemple code toohelp commencer, vous devez écrire vos propres déclencheurs et les classeurs.
 
-## <a id="workerrole"></a>Utilisation du Kit de développement logiciel (SDK) WebJobs en dehors de WebJobs
-Un programme qui utilise le Kit de développement logiciel (SDK) WebJobs est une application console standard qui peut s’exécuter n’importe où, et pas nécessairement en tant que tâche web. Vous pouvez tester ce programme localement sur votre ordinateur de développement ; en production, vous pouvez l’exécuter dans un rôle de travail de service cloud ou un service Windows si vous préférez un de ces environnements. 
+## <a id="workerrole"></a>À l’aide de hello SDK WebJobs en dehors des tâches Web
+Un programme qui utilise hello hello WebJobs SDK est une Application de Console standard et peut exécuter n’importe où--il ne dispose pas toorun comme une tâche Web. Vous pouvez tester les programme hello localement sur votre ordinateur de développement et vous pouvez l’exécuter dans un rôle de travail de Service Cloud ou un service Windows si vous préférez un de ces environnements de production. 
 
-Toutefois, le tableau de bord est uniquement disponible en tant qu’extension d’une application web Microsoft Azure App Service. Si vous voulez que l’exécution ait lieu en dehors de WebJobs, mais souhaitez pouvoir utiliser le tableau de bord, vous pouvez configurer une application web de manière à utiliser le compte de stockage auquel la chaîne de connexion du tableau de bord du Kit de développement logiciel (SDK) WebJobs fait référence ; le tableau de bord WebJobs de cette application affiche alors les données concernant l’exécution des fonctions de votre programme, qui s’exécute ailleurs. Vous pouvez accéder au tableau de bord en utilisant l’URL https://*{webappname}*.scm.azurewebsites.net/azurejobs/#/functions. Pour plus d’informations, consultez le billet de blog [Récupération d’un tableau de bord pour un développement local avec le Kit de développement logiciel (SDK) WebJobs](http://blogs.msdn.com/b/jmstall/archive/2014/01/27/getting-a-dashboard-for-local-development-with-the-webjobs-sdk.aspx)(notez cependant que le billet de blog affiche un ancien nom de chaîne de connexion). 
+Toutefois, tableau de bord hello est uniquement disponible en tant qu’extension d’une application web de Service d’applications Azure. Si vous souhaitez toorun en dehors d’une tâche Web et toujours utilisez hello du tableau de bord, vous pouvez configurer un site web application toouse hello même compte de stockage que votre chaîne de connexion du tableau de bord WebJobs Kit de développement logiciel fait référence à, et le tableau de bord de cette application web WebJobs puis affichent des données sur la fonction exécution à partir de votre programme qui exécute un autre emplacement. Vous pouvez obtenir toohello du tableau de bord à l’aide de hello URL https://*{webappname}*.scm.azurewebsites.net/azurejobs/#/functions. Pour plus d’informations, consultez [mise en route d’un tableau de bord pour un développement local avec hello WebJobs SDK](http://blogs.msdn.com/b/jmstall/archive/2014/01/27/getting-a-dashboard-for-local-development-with-the-webjobs-sdk.aspx), mais notez que le billet de blog hello affiche un ancien nom de chaîne de connexion. 
 
 ## <a id="nostorage"></a>Fonctionnalités du tableau de bord
-Le Kit de développement logiciel (SDK) WebJobs offre plusieurs avantages même si vous n’utilisez pas les déclencheurs ou binders du SDK WebJobs :
+Hello WebJobs SDK offre plusieurs avantages même si vous n’utilisez pas les déclencheurs de WebJobs SDK ou des classeurs :
 
-* Vous pouvez appeler des fonctions depuis le tableau de bord.
-* Vous pouvez réexécuter des fonctions depuis le tableau de bord.
-* Vous pouvez afficher les journaux dans le tableau de bord, liés à une tâche web spécifique (journaux d’application, écrits via les éléments Console.Out, Console.Error, Trace, etc.) ou liés à l’appel de fonction spécifique à l’origine de leur génération (journaux écrits via un objet `TextWriter` que le Kit de développement logiciel (SDK) passe à la fonction, en tant que paramètre). 
+* Vous pouvez appeler des fonctions de hello du tableau de bord.
+* Vous pouvez relire des fonctions à partir de hello du tableau de bord.
+* Vous pouvez afficher les journaux dans hello du tableau de bord, toohello lié la tâche Web particulier (journaux des applications, écrits à l’aide de Console.Out, Console.Error, Trace, etc.) ou de la liaison d’appel de fonction particulière toohello qui les a générés (journaux écrits à l’aide un `TextWriter` l’objet que hello que SDK passe toohello fonction en tant que paramètre). 
 
-Pour en savoir plus, consultez les pages [Appel manuel d’une fonction](websites-dotnet-webjobs-sdk-storage-queues-how-to.md#manual) et [Écriture de journaux](websites-dotnet-webjobs-sdk-storage-queues-how-to.md#logs) 
+Pour plus d’informations, consultez [comment toomanually appeler une fonction](websites-dotnet-webjobs-sdk-storage-queues-how-to.md#manual) et [comment toowrite journaux](websites-dotnet-webjobs-sdk-storage-queues-how-to.md#logs) 
 
 ## <a id="nextsteps"></a>Étapes suivantes
-Pour en savoir plus sur le Kit de développement logiciel (SDK) WebJobs, consultez la rubrique [Tâches web Azure - Ressources recommandées](http://go.microsoft.com/fwlink/?linkid=390226).
+Pour plus d’informations sur hello WebJobs SDK, consultez [Azure WebJobs recommandé de ressources](http://go.microsoft.com/fwlink/?linkid=390226).
 
-Pour plus d'informations sur les dernières améliorations apportées au SDK WebJobs, consultez les [Notes de publication](https://github.com/Azure/azure-webjobs-sdk/wiki/Release-Notes).
+Pour plus d’informations sur hello dernières améliorations toohello WebJobs SDK, consultez hello [Notes de publication](https://github.com/Azure/azure-webjobs-sdk/wiki/Release-Notes).
 

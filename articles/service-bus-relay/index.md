@@ -1,15 +1,15 @@
 ---
 layout: LandingPage
-title: Documentation Service Bus Relay
-description: "Découvrez comment le service Azure Relay fonctionne dans un environnement local et de cloud hybride, et accédez à des procédures, des didacticiels, des vidéos, des informations de référence sur les API et bien plus encore."
-ms.openlocfilehash: 43d2c5ca34e4903a41160496fdb4d975cb665de7
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+title: aaaService Documentation relais du Bus
+description: "Apprendre comment hello service de relais d’Azure fonctionnent dans un cloud et locales environnement hybride, avec la procédure, didacticiels, des vidéos, des références de l’API et bien plus encore."
+ms.openlocfilehash: c042c82c90fa03e91ee9c1b513e325d7e8d33c08
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="service-bus-relay-documentation"></a>Documentation Service Bus Relay
-Découvrez comment le service Azure Relay facilite la mise en œuvre d’applications hybrides entre des environnements locaux et cloud dans un réseau d’entreprise et le cloud public, sans avoir à ouvrir une connexion de pare-feu ni à exiger de modifications intrusives dans une infrastructure de réseau d’entreprise.
+Découvrez comment les relais Azure facilite le service d’applications hybrides entre locaux et cloud environnements au sein d’une entreprise réseau et hello cloud public, sans avoir à tooopen connexion via un pare-feu ou nécessitent tooa changements intrusifs d’entreprise infrastructure de réseau.
 
 <ul class="panelContent cardsFTitle">
     <li>

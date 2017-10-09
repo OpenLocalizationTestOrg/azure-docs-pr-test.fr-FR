@@ -1,6 +1,6 @@
 ---
-title: "Déplacer des données à partir de magasins de données ODBC | Microsoft Docs"
-description: "Apprenez à transférer des données à partir de magasins de données ODBC à l’aide d’Azure Data Factory."
+title: "aaaMove des données à partir de magasins de données ODBC | Documents Microsoft"
+description: "En savoir plus sur le stockage des données toomove à partir de données ODBC à l’aide d’Azure Data Factory."
 services: data-factory
 documentationcenter: 
 author: linda33wj
@@ -14,23 +14,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/16/2017
 ms.author: jingwang
-ms.openlocfilehash: 269d9802ca4a6a16dbf9021929fe21104cb431f7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bf96e71da449313b6144bb194205c572d2ca2030
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="move-data-from-odbc-data-stores-using-azure-data-factory"></a>Transfert de données à partir de magasins de données ODBC à l’aide d’Azure Data Factory
-Cet article explique comment utiliser l’activité de copie dans Azure Data Factory pour déplacer des données à partir d’un magasin de données ODBC local. Il s’appuie sur cet article, relatif aux [activités de déplacement de données](data-factory-data-movement-activities.md), qui présente une vue d’ensemble du déplacement de données avec l’activité de copie.
+Cet article explique comment stocker des toouse hello activité de copie de données Azure Data Factory toomove une locale, les données ODBC. Il repose sur hello [les activités de déplacement des données](data-factory-data-movement-activities.md) article, qui présente une vue d’ensemble du déplacement des données avec l’activité de copie hello.
 
-Vous pouvez copier et coller les données d’un magasin de données ODBC dans tout magasin de données récepteur pris en charge. Consultez la table [Magasins de données pris en charge](data-factory-data-movement-activities.md#supported-data-stores-and-formats) pour obtenir la liste des magasins de données pris en charge en tant que récepteurs par l’activité de copie. Actuellement, Data Factory prend uniquement en charge le déplacement de données d’un magasin de données ODBC vers d’autres magasins de données, mais non l’inverse. 
+Vous pouvez copier des données à partir d’une banque de données de récepteur ODBC données magasin tooany pris en charge. Pour une liste de données pris en charge des magasins récepteurs par l’activité de copie hello, consultez hello [prise en charge des magasins de données](data-factory-data-movement-activities.md#supported-data-stores-and-formats) table. Fabrique de données prend en charge uniquement le déplacement tooother les magasins de données du magasin de données à partir de des données ODBC, mais ne pas pour déplacer des données d’une autre banque de données ODBC tooan données magasins. 
 
 ## <a name="enabling-connectivity"></a>Activation de la connectivité
-Le service Data Factory prend en charge la connexion à des sources ODBC locales à l’aide de la passerelle de gestion des données. Consultez l’article [Déplacement de données entre des emplacements locaux et le cloud](data-factory-move-data-between-onprem-and-cloud.md) pour en savoir plus sur la passerelle de gestion des données et obtenir des instructions détaillées sur la configuration de la passerelle. Utilisez la passerelle pour vous connecter à un magasin de données ODBC même si elle est hébergée sur une machine virtuelle IaaS Azure.
+Service de fabrique de données prend en charge des sources de ODBC tooon local qui se connecte à l’aide de la passerelle de gestion des données de hello. Consultez [déplacement des données entre les emplacements locaux et cloud](data-factory-move-data-between-onprem-and-cloud.md) toolearn l’article sur la passerelle de gestion des données et des instructions détaillées sur la configuration de passerelle de hello. Utiliser le magasin de données ODBC hello passerelle tooconnect tooan même s’il est hébergé dans une machine virtuelle IaaS de Azure.
 
-Vous pouvez installer la passerelle sur le même ordinateur local ou la machine virtuelle Azure comme magasin de données ODBC. Toutefois, nous vous recommandons d’installer la passerelle sur un ordinateur/une machine virtuelle IaaS Azure distinct(e) afin d’éviter les conflits de ressources, ainsi que pour obtenir de meilleures performances. Lorsque vous installez la passerelle sur un ordinateur distinct, l’ordinateur doit être en mesure d’accéder à l’ordinateur sur lequel réside le magasin de données ODBC.
+Vous pouvez installer la passerelle de hello sur hello même local de l’ordinateur ou hello Azure VM comme magasin de données ODBC hello. Toutefois, nous vous recommandons d’installer hello passerelle sur un ordinateur distinct/Azure IaaS VM tooavoid les conflits de ressources et pour de meilleures performances. Lorsque vous installez la passerelle de hello sur un ordinateur distinct, machine de hello doit être machine hello tooaccess en mesure de magasin de données ODBC hello.
 
-En dehors de la passerelle de gestion des données, vous devez également installer le pilote ODBC pour le magasin de données de l’ordinateur de passerelle.
+Outre hello passerelle de gestion des données, vous devez également pilote ODBC de hello tooinstall de banque de données hello sur l’ordinateur de passerelle hello.
 
 > [!NOTE]
 > Consultez [Résolution des problèmes de passerelle](data-factory-data-management-gateway.md#troubleshooting-gateway-issues) pour obtenir des conseils sur la résolution des problèmes de connexion/passerelle.
@@ -38,32 +38,32 @@ En dehors de la passerelle de gestion des données, vous devez également instal
 ## <a name="getting-started"></a>Prise en main
 Vous pouvez créer un pipeline avec une activité de copie qui déplace les données d’un magasin de données ODBC local à l’aide de différents outils/API.
 
-Le moyen le plus simple de créer un pipeline consiste à utiliser **l’Assistant de copie**. Consultez la page [Didacticiel : Créer un pipeline avec l’activité de copie à l’aide de l’Assistant Data Factory Copy](data-factory-copy-data-wizard-tutorial.md) pour une procédure pas à pas rapide sur la création d’un pipeline à l’aide de l’Assistant Copier des données.
+toocreate de façon plus simple Hello un pipeline est toouse hello **Assistant copie de**. Consultez [didacticiel : créer un pipeline à l’aide d’Assistant copie de](data-factory-copy-data-wizard-tutorial.md) pour une procédure pas à pas rapides sur la création d’un pipeline à l’aide d’Assistant de données de copie hello.
 
-Vous pouvez également utiliser les outils suivants pour créer un pipeline : le **portail Azure**, **Visual Studio**, **Azure PowerShell**, le **modèle Azure Resource Manager**, l’**API .NET** et l’**API REST**. Consultez le [Didacticiel de l’activité de copie](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) pour obtenir des instructions détaillées sur la création d’un pipeline avec une activité de copie. 
+Vous pouvez également utiliser hello suivant outils toocreate un pipeline : **portail Azure**, **Visual Studio**, **Azure PowerShell**, **modèle Azure Resource Manager** , **API .NET**, et **API REST**. Consultez [didacticiel d’activité de copie](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) pour obtenir des instructions toocreate un pipeline avec une activité de copie. 
 
-Que vous utilisiez des outils ou des API, la création d’un pipeline qui déplace les données d’un magasin de données source vers un magasin de données récepteur implique les étapes suivantes : 
+Si vous utilisez hello ou une API, vous effectuez hello suivant les étapes toocreate un pipeline qui déplace la banque de données récepteur tooa du magasin de données à partir des données d’une source : 
 
-1. Création de **services liés** pour lier les magasins de données d’entrée et de sortie à votre fabrique de données.
-2. Création de **jeux de données** pour représenter les données d’entrée et de sortie de l’opération de copie. 
+1. Créer **services liés** fabrique de données tooyour toolink les données d’entrée et de sortie magasins.
+2. Créer **datasets** toorepresent d’entrée et sortie l’opération de copie des données pour hello. 
 3. Création d’un **pipeline** avec une activité de copie qui utilise un jeu de données en tant qu’entrée et un jeu de données en tant que sortie. 
 
-Lorsque vous utilisez l’Assistant, les définitions JSON de ces entités Data Factory (services liés, jeux de données et pipeline) sont automatiquement créées pour vous. Lorsque vous utilisez des outils/API (à l’exception de l’API .NET), vous devez définir ces entités Data Factory à l’aide du format JSON.  Pour consulter un exemple contenant des définitions JSON pour les entités Data Factory utilisées pour copier des données d’un magasin de données ODBC, consultez la section [Exemple JSON : copier des données depuis un magasin de données ODBC vers Blob Azure](#json-example-copy-data-from-odbc-data-store-to-azure-blob) de cet article. 
+Lorsque vous utilisez hello Assistant, les définitions de JSON pour ces entités de fabrique de données (services liés, des datasets et pipeline de hello) sont créées automatiquement pour vous. Lorsque vous utilisez/API des outils (à l’exception des API .NET), vous définissez ces entités de fabrique de données à l’aide du format JSON de hello.  Pour obtenir un exemple avec des définitions de JSON pour les entités de fabrique de données qui sont utilisées toocopy des données à partir d’une banque de données ODBC, consultez [exemple de JSON : tooAzure Blob de magasin de données de copie à partir de données ODBC](#json-example-copy-data-from-odbc-data-store-to-azure-blob) section de cet article. 
 
-Les sections suivantes contiennent des informations détaillées sur les propriétés JSON utilisées pour définir les entités Data Factory propres au magasin de données ODBC :
+Hello les sections suivantes fournit des détails sur les propriétés JSON qui sont le magasin de données utilisé toodefine Data Factory entités tooODBC spécifique :
 
 ## <a name="linked-service-properties"></a>Propriétés du service lié
-Le tableau suivant fournit la description des éléments JSON spécifiques au service lié ODBC.
+Hello tableau suivant fournit la description du service de tooODBC spécifique lié éléments JSON.
 
 | Propriété | Description | Requis |
 | --- | --- | --- |
-| type |Le type de propriété doit être défini sur : **OnPremisesOdbc** |Oui |
-| connectionString |Partie de la chaîne de connexion ne contenant pas les informations d’accès, avec des informations d’identification chiffrées facultatives. Consultez les exemples dans les sections suivantes. |Oui |
-| credential |Partie de la chaîne de connexion contenant les informations d’accès, spécifiée dans un format de valeurs de propriété spécifique au pilote. Exemple : « Uid=<user ID>;Pwd=<password>;RefreshToken=<secret refresh token>; ». |Non |
-| authenticationType |Type d’authentification utilisé pour se connecter au magasin de données ODBC. Les valeurs possibles sont : Anonyme et De base. |Oui |
+| type |propriété de type Hello doit indiquer : **OnPremisesOdbc** |Oui |
+| connectionString |partie des informations d’identification de l’accès non Hello de chaîne de connexion hello et éventuellement un chiffrées d’informations d’identification. Consultez les exemples dans les sections suivantes de hello. |Oui |
+| credential |Hello accès informations d’identification la partie de chaîne de connexion hello spécifié au format de la valeur de propriété spécifiques au pilote. Exemple : « Uid=<user ID>;Pwd=<password>;RefreshToken=<secret refresh token>; ». |Non |
+| authenticationType |Type d’authentification utilisé le magasin de données ODBC tooconnect toohello. Les valeurs possibles sont : Anonyme et De base. |Oui |
 | username |Spécifiez le nom d’utilisateur si vous utilisez l’authentification de base. |Non |
-| password |Spécifiez le mot de passe du compte d’utilisateur que vous avez spécifié pour le nom d’utilisateur. |Non |
-| gatewayName |Nom de la passerelle que le service Data Factory doit utiliser pour se connecter au magasin de données ODBC. |Oui |
+| password |Spécifiez le mot de passe de compte d’utilisateur hello que vous avez spécifié pour le nom d’utilisateur hello. |Non |
+| gatewayName |Nom de passerelle hello hello service Data Factory doit utiliser le magasin de données ODBC tooconnect toohello. |Oui |
 
 ### <a name="using-basic-authentication"></a>Utilisation de l’authentification de base
 
@@ -85,7 +85,7 @@ Le tableau suivant fournit la description des éléments JSON spécifiques au se
 }
 ```
 ### <a name="using-basic-authentication-with-encrypted-credentials"></a>Utilisation de l’authentification de base avec des informations d’identification chiffrées
-Vous pouvez chiffrer les informations d’identification à l’aide de l’applet de commande [New-AzureRMDataFactoryEncryptValue](https://msdn.microsoft.com/library/mt603802.aspx) (version 1.0 d’Azure PowerShell) ou [New-AzureDataFactoryEncryptValue](https://msdn.microsoft.com/library/dn834940.aspx) (version 0.9 ou antérieure d’Azure PowerShell).  
+Vous pouvez chiffrer les informations d’identification hello à l’aide de hello [New-AzureRMDataFactoryEncryptValue](https://msdn.microsoft.com/library/mt603802.aspx) applet de commande (1.0 version d’Azure PowerShell) ou [New-AzureDataFactoryEncryptValue](https://msdn.microsoft.com/library/dn834940.aspx) (0,9 version ou antérieure de hello Azure PowerShell).  
 
 ```json
 {
@@ -124,30 +124,30 @@ Vous pouvez chiffrer les informations d’identification à l’aide de l’appl
 
 
 ## <a name="dataset-properties"></a>Propriétés du jeu de données
-Pour obtenir une liste complète des sections et propriétés disponibles pour la définition de jeux de données, consultez l’article [Création de jeux de données](data-factory-create-datasets.md). Les sections comme la structure, la disponibilité et la stratégie d'un jeu de données JSON sont similaires pour tous les types de jeux de données (SQL Azure, Azure Blob, Azure Table, etc.).
+Pour obtenir une liste complète des sections et les propriétés disponibles pour définir des jeux de données, consultez hello [création de datasets](data-factory-create-datasets.md) l’article. Les sections comme la structure, la disponibilité et la stratégie d'un jeu de données JSON sont similaires pour tous les types de jeux de données (SQL Azure, Azure Blob, Azure Table, etc.).
 
-La section **typeProperties** est différente pour chaque type de jeu de données et fournit des informations sur l’emplacement des données dans le magasin de données. La section typeProperties du jeu de données de type **RelationalTable** (qui inclut le jeu de données ODBC) présente les propriétés suivantes
+Hello **typeProperties** section est différente pour chaque type de jeu de données et fournit des informations sur l’emplacement de hello de données hello dans le magasin de données hello. jeu de données de type Hello typeProperties section **RelationalTable** (qui comprend de jeu de données ODBC) a hello propriétés suivantes
 
 | Propriété | Description | Requis |
 | --- | --- | --- |
-| TableName |Nom de la table dans le magasin de données ODBC. |Oui |
+| TableName |Nom de table hello dans le magasin de données ODBC hello. |Oui |
 
 ## <a name="copy-activity-properties"></a>Propriétés de l’activité de copie
-Pour obtenir la liste complète des sections et des propriétés disponibles pour la définition des activités, consultez l’article [Création de pipelines](data-factory-create-pipelines.md). Les propriétés comme le nom, la description, les tables d'entrée et de sortie et les différentes stratégies sont disponibles pour tous les types d'activités.
+Pour obtenir une liste complète des sections et les propriétés disponibles pour la définition d’activités, consultez hello [création de Pipelines](data-factory-create-pipelines.md) l’article. Les propriétés comme le nom, la description, les tables d'entrée et de sortie et les différentes stratégies sont disponibles pour tous les types d'activités.
 
-En revanche, les propriétés disponibles dans la section **typeProperties** de l'activité varient pour chaque type d'activité. Pour l’activité de copie, elles dépendent des types de sources et récepteurs.
+Propriétés disponibles dans hello **typeProperties** section de l’activité de hello sur hello autre part varient selon chaque type d’activité. Pour l’activité de copie, ils varient selon les types de sources et récepteurs hello.
 
-Dans l’activité de copie, quand la source est de type **RelationalSource** (ce qui inclut ODBC), les propriétés suivantes sont disponibles dans la section typeProperties :
+Dans l’activité de copie, lors de la source est de type **RelationalSource** (qui inclut ODBC), hello propriétés suivantes est disponible dans la section de typeProperties :
 
 | Propriété | Description | Valeurs autorisées | Requis |
 | --- | --- | --- | --- |
-| query |Utilise la requête personnalisée pour lire des données. |Chaîne de requête SQL. Par exemple : select * from MyTable. |Oui |
+| query |Utiliser des données tooread hello requête personnalisée. |Chaîne de requête SQL. Par exemple : select * from MyTable. |Oui |
 
 
-## <a name="json-example-copy-data-from-odbc-data-store-to-azure-blob"></a>Exemple JSON : copier des données depuis un magasin de données ODBC vers Blob Azure
-Cet exemple présente des définitions JSON que vous pouvez utiliser pour créer un pipeline à l’aide du [portail Azure](data-factory-copy-activity-tutorial-using-azure-portal.md), de [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) ou [d’Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md). Il indique comment copier des données depuis une source ODBC vers un système de stockage Blob Azure. Toutefois, les données peuvent être copiées vers l’un des récepteurs indiqués [ici](data-factory-data-movement-activities.md#supported-data-stores-and-formats) , via l’activité de copie d’Azure Data Factory.
+## <a name="json-example-copy-data-from-odbc-data-store-tooazure-blob"></a>Exemple de JSON : tooAzure Blob de magasin de données de copie à partir de données ODBC
+Cet exemple fournit les définitions de JSON que vous pouvez utiliser toocreate un pipeline à l’aide de [portail Azure](data-factory-copy-activity-tutorial-using-azure-portal.md) ou [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) ou [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md). Il montre comment la source de données de toocopy à partir d’une application ODBC tooan stockage d’objets Blob Azure. Toutefois, les données peuvent être copié tooany de récepteurs hello indiqué [ici](data-factory-data-movement-activities.md#supported-data-stores-and-formats) à l’aide de hello activité de copie dans Azure Data Factory.
 
-L’exemple contient les entités de fabrique de données suivantes :
+exemple Hello a hello suivant des entités de fabrique de données :
 
 1. Un service lié de type [OnPremisesOdbc](#linked-service-properties).
 2. Un service lié de type [AzureStorage](data-factory-azure-blob-connector.md#linked-service-properties).
@@ -155,11 +155,11 @@ L’exemple contient les entités de fabrique de données suivantes :
 4. Un [jeu de données](data-factory-create-datasets.md) de sortie de type [AzureBlob](data-factory-azure-blob-connector.md#dataset-properties).
 5. Un [pipeline](data-factory-create-pipelines.md) avec une activité de copie qui utilise [RelationalSource](#copy-activity-properties) et [BlobSink](data-factory-azure-blob-connector.md#copy-activity-properties).
 
-L’exemple copie toutes les heures les données de résultat d’une requête d’un magasin de données ODBC en local vers un objet blob. Les propriétés JSON utilisées dans ces exemples sont décrites dans les sections suivant les exemples.
+exemple Hello copie des données à partir d’un résultat de requête dans un blob de tooa de magasin de données ODBC toutes les heures. propriétés JSON Hello utilisées dans ces exemples sont décrits dans les sections suivantes des exemples de hello.
 
-Dans un premier temps, configurez la passerelle de gestion des données. Les instructions se trouvent dans l’article [Déplacement de données entre des emplacements locaux et le cloud](data-factory-move-data-between-onprem-and-cloud.md) .
+Dans un premier temps, configurer la passerelle de gestion des données hello. instructions de Hello sont Bonjour [déplacement des données entre les emplacements locaux et cloud](data-factory-move-data-between-onprem-and-cloud.md) l’article.
 
-**Service lié de HDFS** : cet exemple utilise l’authentification de base. Consultez la section [Service lié ODBC](#linked-service-properties) pour connaître les différents types d’authentification que vous pouvez utiliser.
+**Service lié de ODBC** cet exemple utilise hello l’authentification de base. Consultez la section [Service lié ODBC](#linked-service-properties) pour connaître les différents types d’authentification que vous pouvez utiliser.
 
 ```json
 {
@@ -195,9 +195,9 @@ Dans un premier temps, configurez la passerelle de gestion des données. Les ins
 
 **Jeu de données d’entrée ODBC**
 
-L’exemple suppose que vous avez créé une table « MyTable » dans une base de données ODBC et qu’elle contient une colonne appelée « timestampcolumn » pour les données de série chronologique.
+exemple Hello suppose que vous avez créé une table « MaTable » dans une base de données ODBC et qu’il contient une colonne appelée « timestampcolumn » pour les données de série chronologique.
 
-La définition de « external » : « true» informe le service Data Factory qu’il s’agit d’un jeu de données qui est externe à Data Factory et non produit par une activité dans Data Factory.
+Paramètre « external » : « true » informe service Data Factory de hello ce jeu de données hello est la fabrique de données externe toohello et n’est pas généré par une activité dans la fabrique de données hello.
 
 ```json
 {
@@ -223,9 +223,9 @@ La définition de « external » : « true» informe le service Data Factory qu
 }
 ```
 
-**Jeu de données de sortie Azure Blob**
+**Jeu de données de sortie d’objet Blob Azure**
 
-Les données sont écrites dans un nouvel objet blob toutes les heures (fréquence : heure, intervalle : 1). Le chemin d’accès du dossier pour l’objet blob est évalué dynamiquement en fonction de l’heure de début du segment en cours de traitement. Le chemin d'accès du dossier utilise l'année, le mois, le jour et l'heure de l'heure de début.
+Les données sont écrites tooa nouvel objet blob toutes les heures (fréquence : heure, intervalle : 1). chemin d’accès du dossier Hello pour l’objet blob de hello est évaluée dynamiquement en fonction de l’heure de début hello de tranche hello qui est en cours de traitement. chemin d’accès du dossier Hello utilise l’année, mois, jours et heures des parties de l’heure de début hello.
 
 ```json
 {
@@ -286,7 +286,7 @@ Les données sont écrites dans un nouvel objet blob toutes les heures (fréquen
 
 **Activité de copie dans un pipeline, avec une source ODBC (RelationalSource) et un récepteur blob (BlobSink)**
 
-Le pipeline contient une activité de copie qui est configurée pour utiliser ces jeux de données d'entrée et de sortie, et qui est planifiée pour s'exécuter toutes les heures. Dans la définition du pipeline JSON, le type **source** est défini sur **RelationalSource** et le type **sink** est défini sur **BlobSink**. La requête SQL spécifiée pour la propriété **query** sélectionne les données de la dernière heure à copier.
+pipeline de Hello contient une activité de copie qui est configuré toouse ces jeux de données d’entrée et de sortie et est toorun planifiée toutes les heures. Dans la définition JSON du pipeline hello, hello **source** type est défini trop**RelationalSource** et **récepteur** type est défini trop**BlobSink**. la requête SQL Hello spécifiée pour hello **requête** propriété sélectionne des données de hello Bonjour au-delà de toocopy d’heure.
 
 ```json
 {
@@ -334,21 +334,21 @@ Le pipeline contient une activité de copie qui est configurée pour utiliser ce
 }
 ```
 ### <a name="type-mapping-for-odbc"></a>Mappage de type pour ODBC
-Comme mentionné dans l’article consacré aux [activités de déplacement de données](data-factory-data-movement-activities.md) , l’activité de copie convertit automatiquement des types source en types récepteur à l’aide de l’approche en deux étapes suivante :
+Comme mentionné dans hello [les activités de déplacement des données](data-factory-data-movement-activities.md) article, l’activité de copie effectue les conversions de type automatique à partir de types de sources de toosink types avec hello suivant l’approche en deux étapes :
 
-1. Conversion de types natifs source en types .NET
-2. Conversion à partir du type .NET en type de récepteur natif
+1. Convertir à partir de la source native types too.NET type
+2. Conversion de type de récepteur de toonative de type .NET
 
-Lors du déplacement de données à partir de magasins de données ODBC, les types de données ODBC sont mappés aux types .NET, comme indiqué dans la rubrique [Mappages de types de données ODBC](https://msdn.microsoft.com/library/cc668763.aspx) .
+Lors du déplacement des données à partir de magasins de données ODBC, types de données ODBC sont mappés too.NET types comme indiqué dans hello [les mappages de types de données ODBC](https://msdn.microsoft.com/library/cc668763.aspx) rubrique.
 
-## <a name="map-source-to-sink-columns"></a>Mapper les colonnes source aux colonnes du récepteur
-Pour en savoir plus sur le mappage de colonnes du jeu de données source à des colonnes du jeu de données récepteur, voir [Mappage des colonnes d’un jeu de données dans Azure Data Factory](data-factory-map-columns.md).
+## <a name="map-source-toosink-columns"></a>Mapper les colonnes de source toosink
+toolearn sur le mappage des colonnes dans toocolumns du jeu de données source dans le jeu de données récepteur, consultez [mappage des colonnes de jeu de données dans Azure Data Factory](data-factory-map-columns.md).
 
 ## <a name="repeatable-read-from-relational-sources"></a>Lecture renouvelée de sources relationnelles
-Lorsque vous copiez des données à partir de magasins de données relationnels, gardez à l’esprit la répétabilité de l’opération, afin d’éviter des résultats imprévus. Dans Azure Data Factory, vous pouvez réexécuter une tranche manuellement. Vous pouvez également configurer une stratégie de nouvelles tentatives pour un jeu de données, afin qu’une tranche soit réexécutée en cas de défaillance. Lorsqu’une tranche est réexécutée d’une manière ou d’une autre, vous devez vous assurer que les mêmes données sont lues et ce, quel que soit le nombre d’exécutions de la tranche. Voir [Lecture renouvelée de sources relationnelles](data-factory-repeatable-copy.md#repeatable-read-from-relational-sources).
+Lors de la copie des données à partir de banques de données relationnelles, conserver la répétabilité dans l’esprit tooavoid des résultats inattendus. Dans Azure Data Factory, vous pouvez réexécuter une tranche manuellement. Vous pouvez également configurer une stratégie de nouvelles tentatives pour un jeu de données, afin qu’une tranche soit réexécutée en cas de défaillance. Lorsqu’une tranche est exécuté à nouveau dans les deux cas, vous devez toomake vraiment qui hello des mêmes données n’est en lecture aucune question comment plusieurs fois une tranche est exécutée. Voir [Lecture renouvelée de sources relationnelles](data-factory-repeatable-copy.md#repeatable-read-from-relational-sources).
 
 ## <a name="ge-historian-store"></a>Magasin GE Historian
-Vous créez un service lié ODBC pour lier un magasin de données [GE Proficy Historian (désormais GE Historian)](http://www.geautomation.com/products/proficy-historian) à une fabrique de données Azure comme l’indique l’exemple suivant :
+Vous créez un toolink de service ODBC lié un [GE Proficy historien (désormais GE historien)](http://www.geautomation.com/products/proficy-historian) tooan service Azure data factory du magasin de données comme indiqué dans hello l’exemple suivant :
 
 ```json
 {
@@ -358,7 +358,7 @@ Vous créez un service lié ODBC pour lier un magasin de données [GE Proficy Hi
         "type": "OnPremisesOdbc",
         "typeProperties":
         {
-            "connectionString": "DSN=<name of the GE Historian store>",
+            "connectionString": "DSN=<name of hello GE Historian store>",
             "gatewayName": "<gateway name>",
             "authenticationType": "Basic",
             "userName": "<user name>",
@@ -368,24 +368,24 @@ Vous créez un service lié ODBC pour lier un magasin de données [GE Proficy Hi
 }
 ```
 
-Installez la passerelle de gestion des données sur un ordinateur local et enregistrez la passerelle auprès du portail. La passerelle installée sur votre ordinateur local utilise le pilote ODBC pour GE Historian afin de se connecter au magasin de données GE Historian. Par conséquent, installez le pilote s’il n’est pas déjà installé sur l’ordinateur passerelle. Consultez la section [Activation de la connectivité](#enabling-connectivity) pour plus d’informations.
+Installer la passerelle de gestion des données sur une machine locale et inscrire la passerelle de hello via le portail de hello. passerelle Hello installé sur votre ordinateur local utilise le pilote ODBC de hello pour GE historien tooconnect toohello magasin de données GE historien. Par conséquent, installez les pilotes hello s’il n’est pas déjà installé sur l’ordinateur de passerelle hello. Consultez la section [Activation de la connectivité](#enabling-connectivity) pour plus d’informations.
 
-Avant d'utiliser le magasin GE Historian dans une solution Data Factory, vérifiez que la passerelle peut se connecter au magasin de données en suivant les instructions de la section suivante.
+Avant d’utiliser hello GE historien stocker dans une solution de fabrique de données, vérifiez si la passerelle de hello peut se connecter toohello magasin de données à l’aide des instructions dans la section suivante de hello.
 
-Lisez l'article depuis le début pour une présentation détaillée de l'utilisation de magasins de données ODBC en tant que magasins de données sources dans une opération de copie.  
+Article de hello en lecture à partir du début de hello pour obtenir une présentation détaillée de l’utilisation de données ODBC stocke en tant que magasins de données source dans une opération de copie.  
 
 ## <a name="troubleshoot-connectivity-issues"></a>Résoudre les problèmes de connectivité
-Pour résoudre les problèmes de connexion, utilisez l’onglet **Diagnostics** du **Gestionnaire de configuration de la passerelle de gestion des données**.
+tootroubleshoot des problèmes de connexion, utilisez hello **Diagnostics** onglet de **Gestionnaire de Configuration de passerelle de gestion de données**.
 
-1. Lancez le **Gestionnaire de configuration de la passerelle de gestion des données**. Vous pouvez exécuter directement « C:\Program Files\Microsoft Data Management Gateway\1.0\Shared\ConfigManager.exe » (ou) rechercher **Passerelle** pour trouver un lien vers l’application **Passerelle de gestion des données de Microsoft**, comme l’illustre l’image suivante.
+1. Lancez le **Gestionnaire de configuration de la passerelle de gestion des données**. Vous pouvez exécuter « C:\Program Files\Microsoft données Gestion Gateway\1.0\Shared\ConfigManager.exe « directement (ou) recherche pour **passerelle** toofind un lien trop**passerelle de gestion des données Microsoft** application, comme illustré dans hello suivant l’image.
 
     ![Rechercher la passerelle](./media/data-factory-odbc-connector/search-gateway.png)
-2. Basculez vers l’onglet **Diagnostics** .
+2. Commutateur toohello **Diagnostics** onglet.
 
     ![Diagnostics de la passerelle](./media/data-factory-odbc-connector/data-factory-gateway-diagnostics.png)
-3. Sélectionnez le **type** de magasin de données (service lié).
-4. Spécifiez **l’authentification** et entrez les **informations d’identification** (ou) entrez la **chaîne de connexion** utilisée pour vous connecter au magasin de données.
-5. Cliquez sur **Tester la connexion** pour tester la connexion au magasin de données.
+3. Sélectionnez hello **type** de stocker des données (lié de service).
+4. Spécifiez **authentification** et entrez **informations d’identification** (ou) entrez **chaîne de connexion** qui est le magasin de données toohello tooconnect utilisé.
+5. Cliquez sur **tester la connexion** magasin de données toohello tootest hello connexion.
 
 ## <a name="performance-and-tuning"></a>Performances et réglage
-Consultez l’article [Guide sur les performances et le réglage de l’activité de copie](data-factory-copy-activity-performance.md) pour en savoir plus sur les facteurs clés affectant les performances de déplacement des données (activité de copie) dans Azure Data Factory et les différentes manières de les optimiser.
+Consultez [copie activité optimiser les performances et Guide d’optimisation](data-factory-copy-activity-performance.md) toolearn sur la clé de facteurs d’affecter les performances de transfert de données (activité de copie) dans Azure Data Factory et de différentes façons toooptimize il.

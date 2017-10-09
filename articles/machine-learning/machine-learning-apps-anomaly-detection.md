@@ -1,5 +1,5 @@
 ---
-title: "(déconseillé) Service de détection des anomalies Azure Machine Learning | Microsoft Docs"
+title: "AAA(deprecated) Service de détection d’anomalie Azure Machine Learning | Documents Microsoft"
 description: "(déconseillé) Le service de détection des anomalies est un exemple de service généré avec Microsoft Azure Machine Learning. Il permet de détecter les anomalies dans des données de séries chronologiques présentant des valeurs numériques réparties uniformément dans le temps."
 services: machine-learning
 documentationcenter: 
@@ -15,11 +15,11 @@ ms.date: 01/18/2017
 ms.author: alok
 ROBOTS: NOINDEX
 redirect_url: machine-learning-apps-anomaly-detection-api
-redirect_document_id: TRUE
-ms.openlocfilehash: 6f3b3329fbbca33d44a055ee7d9c2508a7e1fceb
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+redirect_document_id: True
+ms.openlocfilehash: c8c41426b669223844b3aefa2f9e23b42469d687
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="machine-learning-anomaly-detection-service-deprecated"></a>Service de détection des anomalies Machine Learning (déconseillé)

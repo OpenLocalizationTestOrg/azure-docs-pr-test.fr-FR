@@ -1,6 +1,6 @@
 ---
-title: "Fonctions de modèle Azure Resource Manager - déploiement| Microsoft Docs"
-description: "Décrit les fonctions à utiliser dans un modèle Azure Resource Manager pour récupérer des informations de déploiement."
+title: "fonctions de modèle de gestionnaire de ressources aaaAzure - déploiement | Documents Microsoft"
+description: "Décrit toouse de fonctions hello dans les informations de déploiement du tooretrieve modèle Azure Resource Manager."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,32 +14,32 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/13/2017
 ms.author: tomfitz
-ms.openlocfilehash: d7e6bcd669d40cb19de44b646505856ecd8f51a0
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 458c3f740504fdd6799ed24cc386219726737636
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deployment-functions-for-azure-resource-manager-templates"></a>Fonctions de déploiement pour les modèles Azure Resource Manager 
 
-Resource Manager offre les fonctions ci-après pour l’obtention de valeurs à partir des sections du modèle et de valeurs associées au déploiement :
+Gestionnaire de ressources fournit suivant de hello fonctionne pour l’obtention des valeurs à partir des sections du modèle de hello et valeurs connexes toohello déploiement :
 
 * [deployment](#deployment)
 * [parameters](#parameters)
 * [variables](#variables)
 
-Pour obtenir des valeurs de ressources, de groupes de ressources ou d’abonnements, consultez [Fonctions de ressource](resource-group-template-functions-resource.md).
+valeurs tooget à partir de ressources, les groupes de ressources ou les abonnements, consultez [fonctions de ressources](resource-group-template-functions-resource.md).
 
 <a id="deployment" />
 
 ## <a name="deployment"></a>déploiement
 `deployment()`
 
-Renvoie des informations sur l’opération de déploiement actuelle.
+Retourne des informations sur l’opération de déploiement actuelle hello.
 
 ### <a name="return-value"></a>Valeur de retour
 
-Cette fonction retourne l’objet transmis au cours du déploiement. Les propriétés de l’objet renvoyé diffèrent selon que l’objet de déploiement est passé sous forme de lien ou d’objet inline. Quand l’objet de déploiement est passé inline, comme lors de l’utilisation du paramètre **-TemplateFile** dans Azure PowerShell pour pointer vers un fichier local, l’objet renvoyé a le format suivant :
+Cette fonction retourne un objet hello qui est passée au cours du déploiement. propriétés Hello Bonjour retourné d’objet diffèrent selon si hello objet de déploiement est passé sous forme de lien ou en tant qu’objet en ligne. Lorsque l’objet de déploiement hello est transmis en ligne, comme lors de l’utilisation de hello **- TemplateFile** paramètre dans un fichier local Azure PowerShell toopoint tooa, hello retourné objet a hello suivant le format :
 
 ```json
 {
@@ -61,7 +61,7 @@ Cette fonction retourne l’objet transmis au cours du déploiement. Les propri�
 }
 ```
 
-Quand l’objet est passé comme lien, par exemple lors de l’utilisation du paramètre **-TemplateUri** pour pointer vers un objet distant, l’objet est retourné dans le format suivant : 
+Lorsqu’un objet de hello est passé sous forme de lien, tels que lorsque l’aide de hello **- TemplateUri** tooa à distance toopoint de paramètre de l’objet, hello est retourné dans hello suivant le format : 
 
 ```json
 {
@@ -87,7 +87,7 @@ Quand l’objet est passé comme lien, par exemple lors de l’utilisation du pa
 
 ### <a name="remarks"></a>Remarques
 
-Vous pouvez utiliser deployment() pour établir une liaison à un autre modèle en fonction de l’URI du modèle parent.
+Vous pouvez utiliser le déploiement() toolink tooanother modèle basé sur hello URI du modèle parent de hello.
 
 ```json
 "variables": {  
@@ -97,7 +97,7 @@ Vous pouvez utiliser deployment() pour établir une liaison à un autre modèle 
 
 ### <a name="example"></a>Exemple
 
-L’exemple suivant retourne l’objet de déploiement :
+Hello exemple suivant renvoie hello déploiement objet :
 
 ```json
 {
@@ -113,7 +113,7 @@ L’exemple suivant retourne l’objet de déploiement :
 }
 ```
 
-L’exemple précédent retourne l’objet suivant :
+Hello exemple précédent retourne hello objet :
 
 ```json
 {
@@ -142,21 +142,21 @@ L’exemple précédent retourne l’objet suivant :
 ## <a name="parameters"></a>parameters
 `parameters(parameterName)`
 
-Retourne une valeur de paramètre. Le nom de paramètre spécifié doit être défini dans la section parameters du modèle.
+Retourne une valeur de paramètre. nom de paramètre spécifié Hello doit être défini dans la section des paramètres de modèle de hello hello.
 
 ### <a name="parameters"></a>Paramètres
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| nom_paramètre |Oui |string |Nom du paramètre à retourner. |
+| nom_paramètre |Oui |string |nom de Hello de hello paramètre tooreturn. |
 
 ### <a name="return-value"></a>Valeur de retour
 
-La valeur du paramètre spécifié.
+valeur Hello hello spécifiée de paramètre.
 
 ### <a name="remarks"></a>Remarques
 
-En général, vous utilisez les paramètres pour définir les valeurs de la ressource. L’exemple suivant définit le nom du site web sur la valeur du paramètre transmise au cours du déploiement.
+En règle générale, vous utilisez des valeurs de ressource de tooset de paramètres. Hello exemple suivant définit nom hello valeur du paramètre de site web toohello passé durant le déploiement.
 
 ```json
 "parameters": { 
@@ -176,7 +176,7 @@ En général, vous utilisez les paramètres pour définir les valeurs de la ress
 
 ### <a name="example"></a>Exemple
 
-L'exemple suivant montre une utilisation simplifiée de la fonction parameters.
+Hello suivant montre une utilisation simplifiée de la fonction de paramètres hello.
 
 ```json
 {
@@ -231,7 +231,7 @@ L'exemple suivant montre une utilisation simplifiée de la fonction parameters.
 }
 ```
 
-La sortie de l’exemple précédent avec les valeurs par défaut se présente comme suit :
+Hello de sortie à partir de hello précédent exemple hello valeurs par défaut est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -246,21 +246,21 @@ La sortie de l’exemple précédent avec les valeurs par défaut se présente c
 ## <a name="variables"></a>variables
 `variables(variableName)`
 
-Retourne la valeur de la variable. Le nom de variable spécifié doit être défini dans la section variables du modèle.
+Retourne hello la valeur de variable. nom de variable spécifié Hello doit être défini dans la section sur les variables du modèle de hello hello.
 
 ### <a name="parameters"></a>Paramètres
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| variableName |Oui |String |Nom de la variable à retourner. |
+| variableName |Oui |String |nom de Hello de tooreturn de variable hello. |
 
 ### <a name="return-value"></a>Valeur de retour
 
-La valeur de la variable spécifiée.
+valeur Hello de hello.
 
 ### <a name="remarks"></a>Remarques
 
-En général, vous utilisez les variables pour simplifier votre modèle en créant des valeurs complexes une seule fois. L’exemple suivant crée un nom unique pour un compte de stockage.
+En règle générale, vous utilisez variables toosimplify votre modèle en créant des valeurs complexes qu’une seule fois. Hello exemple suivant crée un nom unique pour un compte de stockage.
 
 ```json
 "variables": {
@@ -284,7 +284,7 @@ En général, vous utilisez les variables pour simplifier votre modèle en créa
 
 ### <a name="example"></a>Exemple
 
-L’exemple de modèle retourne différentes valeurs de variables.
+exemple de modèle de Hello retourne des valeurs de variables différentes.
 
 ```json
 {
@@ -322,7 +322,7 @@ L’exemple de modèle retourne différentes valeurs de variables.
 }
 ```
 
-La sortie de l’exemple précédent avec les valeurs par défaut se présente comme suit :
+Hello de sortie à partir de hello précédent exemple hello valeurs par défaut est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -332,8 +332,8 @@ La sortie de l’exemple précédent avec les valeurs par défaut se présente c
 | exampleOutput4 |  Object | {"property1": "value1", "property2": "value2"} |
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Pour obtenir une description des sections d’un modèle Azure Resource Manager, consultez [Création de modèles Azure Resource Manager](resource-group-authoring-templates.md).
-* Pour fusionner plusieurs modèles, consultez [Utilisation de modèles liés avec Azure Resource Manager](resource-group-linked-templates.md).
-* Pour itérer un nombre de fois spécifié lors de la création d'un type de ressource, consultez [Création de plusieurs instances de ressources dans Azure Resource Manager](resource-group-create-multiple.md).
-* Pour savoir comment déployer le modèle que vous avez créé, consultez [Déploiement d’une application avec un modèle Azure Resource Manager](resource-group-template-deploy.md).
+* Pour obtenir une description des sections de hello dans un modèle Azure Resource Manager, consultez [les modèles de programmation Azure Resource Manager](resource-group-authoring-templates.md).
+* consultez de plusieurs modèles toomerge [à l’aide de modèles liés avec Azure Resource Manager](resource-group-linked-templates.md).
+* tooiterate un nombre spécifié de fois lors de la création d’un type de ressource, consultez [créer plusieurs instances de ressources dans Azure Resource Manager](resource-group-create-multiple.md).
+* toosee modèle de hello toodeploy que vous avez créé, voir [déployer une application avec le modèle Azure Resource Manager](resource-group-template-deploy.md).
 

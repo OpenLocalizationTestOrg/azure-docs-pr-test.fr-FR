@@ -1,6 +1,6 @@
 ---
-title: "Présentation des rapports de paiement Azure Marketplace | Microsoft Docs"
-description: "Découvrez comment examiner et recevoir le rapport de paiement Azure Marketplace."
+title: "Création de rapports de paiement d’aaaUnderstand hello Azure Marketplace | Documents Microsoft"
+description: "Découvrez comment tooreview et de la réception du rapport de paiement Azure Marketplace hello."
 services: marketplace-publishing
 documentationcenter: na
 author: v-jeana
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/16/2017
 ms.author: v-jeana; hascipio; v-dabosl
-ms.openlocfilehash: 5a89e9ba4376d0c4f49feb3783692e28a28902a2
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2bc21fad1805c0ead80c3f8a56128c789e17798e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="understand-your-azure-marketplace-payout-reports"></a>Présentation de vos rapports de paiement Azure Marketplace
 ## <a name="access-and-view-your-payout-reports"></a>Accéder à vos rapports de paiements et les consulter
-Lors de la transition vers le Centre de développement, certains de vos rapports de paiement peuvent être disponibles dans le Centre de développement sous https://dev.windows.com/fr-fr, alors que d’autres peuvent toujours se trouver sur le portail de publication sous https://publish.windowsazure.com.
+Pendant que nous transition tooDev Center certaines de vos rapports de paiement peuvent être disponibles dans hello centre de développement à https://dev.windows.com/en-us tandis que d’autres peuvent toujours être disponibles dans le portail de publication sur https://publish.windowsazure.com.
 
 Le rapport Revenus est alors disponible dans le **Centre de développement** pour les offres du Marketplace qui sont associées à des paiements modernes. Cela inclut actuellement :
 
@@ -32,13 +32,13 @@ Le rapport Revenus est alors disponible dans le **Centre de développement** pou
 
 Le rapport Revenus sera toujours dans le **Portail de publication** pour :
 
-* Services de développement et de données proposés sous Web Direct (qui utilise toujours le système de paiement hérité).
+* Données et des Services de développement proposé sous Web Direct (qui utilise toujours le système de paiement hérité hello).
 
-Les rapports sont disponibles pendant 45 jours après la fin du trimestre et sont calculés après tout remboursement.
+Les rapports sont disponibles 45 jours après la fermeture hello Hello trimestre et sont calculés après les remboursements.
 
 ### <a name="access-payout-reports-in-dev-center"></a>Accéder aux rapports de paiement dans le Centre de développement
-1. Accédez au Centre de développement à l’adresse https://dev.windows.com/fr-fr.
-2. Cliquez sur **Tableau de bord**.
+1. Accédez tooDev Center à https://dev.windows.com/en-us.
+2. Cliquez sur **Dashboard**.
 
     ![LandingPageDashboardHighlight][1]
 3. Cliquez sur **Synthèse des paiements**.
@@ -46,34 +46,34 @@ Les rapports sont disponibles pendant 45 jours après la fin du trimestre et son
     ![DashboardPayoutSummary][2]
 
 ## <a name="view-your-payout-reports-in-dev-center"></a>Consulter vos rapports de paiements dans le Centre de développement
-Le rapport de paiement pour chaque trimestre enregistre toutes les transactions effectuées au cours de ce trimestre.
+rapport de paiement Hello pour chaque trimestre enregistre toutes les transactions qui se sont produites dans ce trimestre.
 
-* La quantité réservée indique tous les paiements cumulés en dehors du cycle de paiement à venir (par exemple, cette quantité est déplacée sur le paiement à venir du mois suivant).  Ce montant est généralement de 0 $ (sauf si un client paie à l’avance).
-* Cliquez sur le lien **Afficher les détails** du paiement à venir ou du paiement le plus récent pour voir les notes concernant ces paiements.
-* Cliquez sur **Relevés de paiement** pour afficher les détails sous les revenus des ventes par application/produit.
-* Cliquez sur le lien **Afficher** pour afficher les relevés individuels.
+* montant réservé de Hello indique tous les paiements qui sont plus alloués en dehors du cycle de paiement à venir hello (par exemple, cette quantité déplacera hello de paiement tooupcoming suivant mois).  Ce montant est généralement de 0 $ (sauf si un client paie à l’avance).
+* Cliquez sur le paiement à venir de hello ou dernier paiement **afficher les détails** lie toosee Remarque concernant les paiements.
+* Cliquez sur **les instructions de paiement** tooview les détails de hello sous passe par l’application et de produits.
+* Cliquez sur hello **vue** lien toosee des instructions individuelles.
 
     ![PayoutSummaryUpcomingMostRecentLinksStatement][3]
-* Utilisez le filtre **Répartition des revenus** en bas de chaque relevé individuel pour afficher plusieurs applications/produits s'ils existent.
+* Hello d’utilisation **se déroule une répartition** filtrer bas hello hello instruction individuelle tooview plusieurs applications/produits s’ils existent.
 
     ![PayoutSummaryPaymentStatementsFilterControl][4]
 
 ## <a name="view-your-payout-reports-in-publishing-portal"></a>Afficher vos rapports de paiement dans le portail de publication
-Le rapport de paiement pour chaque trimestre enregistre toutes les transactions effectuées au cours de ce trimestre.
+rapport de paiement Hello pour chaque trimestre enregistre toutes les transactions qui se sont produites dans ce trimestre.
 
-1. Accédez au portail de publication à l’adresse https://publish.windowsazure.com.
-2. Dans la section **Publishers** (Éditeurs), cliquez sur **Payout Reports** (Rapports de paiement).
-3. Un clic sur la liste déroulante affiche tous les rapports de paiement trimestriels disponibles
+1. Accédez portail de publication toohello à https://publish.windowsazure.com.
+2. À partir de hello **éditeurs** , cliquez sur **paiement rapports**.
+3. Cliquez sur toodisplay de liste déroulante hello tous les rapports de tous les trimestres de paiement disponible.
 
     ![accessingpayoutreport][5]
 
 ### <a name="read-your-payout-reports"></a>Lire vos rapports de paiement
-Le rapport de paiement pour chaque trimestre enregistre toutes les transactions effectuées au cours de ce trimestre.
+rapport de paiement Hello pour chaque trimestre enregistre toutes les transactions qui se sont produites dans ce trimestre.
 
-* Si vous recherchez des écritures comptables se rapportant à un trimestre spécifique, sélectionnez le rapport de paiement pour ce trimestre dans la liste déroulante. Par exemple, si vous êtes intéressé par les écritures comptables d'avril à juin 2015, sélectionnez cette plage de dates dans la liste déroulante.
-* Si vous recherchez des détails de paiements se rapportant à un trimestre spécifique, sélectionnez le rapport de paiement pour le trimestre suivant. Par exemple, si vous êtes intéressé par les paiements d'avril à juin 2015, ces montants apparaîtront dans le rapport de paiement suivant, de juillet à septembre 2015.
+* Si vous recherchez des écritures qui concernent le trimestre et tooa, sélectionnez le rapport de paiement de hello pour ce trimestre à partir de la liste déroulante de hello. Par exemple, si vous êtes intéressé par écritures tooJune d’avril 2015, sélectionnez cette plage de dates dans hello de liste déroulante.
+* Si vous recherchez des détails de paiements qui concernent le trimestre et tooa, sélectionnez le rapport de paiement de hello pour le trimestre suivant de hello. Par exemple, si vous êtes intéressé par les paiements hello pour tooJune d’avril 2015, ces quantités apparaîtra dans le rapport de paiement suivantes hello pour tooSeptember de juillet 2015.
   ![readingpayoutreport][6]
-* Le volet de synthèse financière indique les soldes, crédits et débits par catégories.
+* Panneau de résumé financier Hello affiche des soldes, des crédits mensuels et des débits par catégorie.
 * Le volet des écritures comptables indique les transactions individuelles.
 
 ## <a name="definitions"></a>Définitions
@@ -86,11 +86,11 @@ Le rapport de paiement pour chaque trimestre enregistre toutes les transactions 
 ![ledgerdefinitions][8]
 
 ## <a name="payout-questions"></a>Questions sur les paiements
-Si vous avez une question concernant vos paiements, contactez notre équipe de support.
+Si vous avez une question relative tooyour paiements, contactez notre équipe de support.
 
 ![payoutquestions][9]
 
-1. Accédez aux pages de support.
+1. Naviguer entre les pages de prise en charge de toohello.
 2. Sélectionnez **Payouts**
 3. Sélectionnez **Payout related inquiries**
 4. Cliquez sur **Start request**.

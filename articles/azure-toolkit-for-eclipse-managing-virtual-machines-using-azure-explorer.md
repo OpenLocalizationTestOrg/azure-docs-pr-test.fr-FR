@@ -1,6 +1,6 @@
 ---
-title: "Gérer des machines virtuelles à l’aide de l’Explorateur Azure pour Eclipse | Microsoft Docs"
-description: "Découvrez comment gérer vos machines virtuelles Azure à l’aide de l’Explorateur Azure pour Eclipse."
+title: "machines virtuelles d’aaaManage à l’aide de hello Explorateur Azure pour Eclipse | Documents Microsoft"
+description: "Découvrez comment toomanage vos machines virtuelles Azure à l’aide de hello Explorateur Azure pour Eclipse."
 services: 
 documentationcenter: java
 author: rmcmurray
@@ -14,15 +14,15 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 04/14/2017
 ms.author: robmcm
-ms.openlocfilehash: 9784e8af9c530078afee06f08a23403a44b0762f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: aa83ec7546a0a8514842723b51ce8a5af81f98f3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-virtual-machines-by-using-the-azure-explorer-for-eclipse"></a>Gérer des machines virtuelles à l’aide de l’Explorateur Azure pour Eclipse
+# <a name="manage-virtual-machines-by-using-hello-azure-explorer-for-eclipse"></a>Gérer des ordinateurs virtuels à l’aide de hello Explorateur Azure pour Eclipse
 
-L’Explorateur Azure, qui fait partie du Kit de ressources Azure pour Eclipse, fournit aux développeurs Java une solution facile à utiliser pour gérer les machines virtuelles de leur compte Azure à partir de l’environnement de développement intégré (IDE) Eclipse.
+Hello Explorateur Azure, qui fait partie de hello boîte à outils Azure pour Eclipse, fournit aux développeurs Java une solution facile à utiliser pour la gestion des ordinateurs virtuels de leur compte Azure à partir d’à l’intérieur de hello Eclipse environnement de développement intégré (IDE).
 
 [!INCLUDE [azure-toolkit-for-eclipse-prerequisites](../includes/azure-toolkit-for-eclipse-prerequisites.md)]
 
@@ -30,116 +30,116 @@ L’Explorateur Azure, qui fait partie du Kit de ressources Azure pour Eclipse, 
 
 ## <a name="create-a-virtual-machine-in-eclipse"></a>Création d’une machine virtuelle dans Eclipse
 
-Pour créer une machine virtuelle à l’aide de l’Explorateur Azure, procédez comme suit :
+toocreate un ordinateur virtuel à l’aide de hello Explorateur Azure, procédez comme hello suivant :
 
-1. Connectez-vous à votre compte Azure en suivant les [Instructions de connexion pour le Kit de ressources Azure pour Eclipse].
+1. Se connecter à l’aide de hello tooyour compte Azure [instructions connectez-vous pour hello boîte à outils Azure pour Eclipse].
 
-2. Dans l’affichage **Explorateur Azure**, développez le nœud **Azure**, cliquez avec le bouton droit sur **Machines virtuelles**, puis cliquez sur **Créer une machine virtuelle**.
+2. Bonjour **Explorateur Azure** afficher, développez hello **Azure** nœud, avec le bouton droit **virtuels**, puis cliquez sur **créer un ordinateur virtuel**.
 
-   ![Commande Créer une machine virtuelle][CR01]  
-   L’**Assistant Créer une machine virtuelle** s’ouvre.
+   ![Hello commande de créer un ordinateur virtuel][CR01]  
+   Hello **créer Machine virtuelle** Assistant s’ouvre.
 
-3. Dans la fenêtre **Choisir un abonnement**, sélectionnez votre abonnement, puis cliquez sur **Suivant**.
+3. Bonjour **choisir un abonnement** fenêtre, sélectionnez votre abonnement, puis cliquez sur **suivant**.
 
-   ![Fenêtre Choisir un abonnement][CR02]
+   ![Hello fenêtre Choisir un abonnement][CR02]
 
-4. Dans la fenêtre **Sélectionner une image de machine virtuelle**, entrez les informations suivantes :
+4. Bonjour **sélectionner une Image de Machine virtuelle** fenêtre, entrez hello informations suivantes :
 
    * **Emplacement**: spécifie l’emplacement où votre machine virtuelle sera créée (par exemple *États-Unis de l’Ouest*).
 
-   * **Éditeur** : spécifie l’éditeur qui a créé l’image et que vous allez utiliser pour créer votre machine virtuelle, par exemple *Microsoft*.
+   * **Serveur de publication**: Spécifie le serveur de publication hello qui a créé l’image hello vous utiliserez toocreate votre machine virtuelle (par exemple, *Microsoft*).
 
-   * **Offre** : spécifie la machine virtuelle et l’offre de l’éditeur sélectionné à utiliser (par exemple, *JDK*).
+   * **Offre**: Spécifie l’ordinateur virtuel de hello offre toouse à partir du serveur de publication sélectionné hello (par exemple, *JDK*).
 
-   * **Référence (SKU)** : spécifie l’unité de gestion de stock (SKU) de l’offre sélectionnée à utiliser (par exemple, *JDK_8*).
+   * **Référence (SKU)**: Spécifie hello stock référence toouse à partir de l’offre de hello sélectionné (par exemple, *JDK_8*).
 
-   * **N° de version** : spécifie la version de la référence (SKU) sélectionnée à utiliser.
+   * **Version #**: Spécifie la version de hello sélectionné toouse de référence (SKU).
 
-    ![Fenêtre Sélectionner une image de machine virtuelle][CR03]
+    ![Hello sélectionner une fenêtre de l’Image de Machine virtuelle][CR03]
 
 5. Cliquez sur **Suivant**.
 
-6. Dans la fenêtre **Paramètres de base de la machine virtuelle**, entrez les informations suivantes :
+6. Bonjour **les paramètres de base de Machine virtuelle** fenêtre, entrez hello informations suivantes :
 
-   * **Nom de la machine virtuelle** : spécifie le nom de votre nouvelle machine virtuelle, qui doit commencer par une lettre et contenir uniquement des lettres, des chiffres et des traits d’union.
+   * **Nom de Machine virtuelle**: Spécifie le nom hello pour votre nouvel ordinateur virtuel, qui doit commencer par une lettre et contenir uniquement des lettres, des chiffres et des traits d’union.
 
-   * **Taille** : spécifie le nombre de cœurs et la quantité de mémoire à allouer à votre machine virtuelle.
+   * **Taille**: Spécifie le nombre de hello de cœurs et de tooallocate de mémoire pour votre machine virtuelle.
 
-   * **Nom d’utilisateur** : spécifie le compte administrateur à créer pour la gestion de votre machine virtuelle.
+   * **Nom d’utilisateur**: Spécifie hello toocreate de compte administrateur pour la gestion de votre machine virtuelle.
 
-   * **Mot de passe** et **Confirmer** : spécifient le mot de passe pour votre compte administrateur.
+   * **Mot de passe** et **confirmer**: Spécifie le mot de passe hello pour votre compte d’administrateur.
 
-    ![Fenêtre Paramètres de base de la machine virtuelle][CR04]
+    ![fenêtre des paramètres de base de Machine virtuelle Hello][CR04]
 
 7. Cliquez sur **Suivant**.
 
-8. Dans la fenêtre **Créer un nouveau compte de stockage**, saisissez les informations suivantes :
+8. Bonjour **créer un nouveau compte de stockage** fenêtre, entrez hello informations suivantes :
 
-   * **Groupe de ressources** : spécifie le groupe de ressources pour votre machine virtuelle. Sélectionnez l’une des options suivantes :
-      * **Créer** : spécifie que vous souhaitez créer un groupe de ressources.
-      * **Utiliser l’existant** : spécifie que vous souhaitez sélectionner un groupe de ressources déjà associé à votre compte Azure.
+   * **Groupe de ressources**: Spécifie le groupe de ressources hello pour votre machine virtuelle. Sélectionnez une des options suivantes de hello :
+      * **Créer de nouveaux**: Spécifie que vous souhaitez toocreate un groupe de ressources.
+      * **Utiliser l’existante**: Spécifie que vous souhaitez tooselect un groupe de ressources est déjà associé à votre compte Azure.
 
-      ![La boîte de dialogue Créer un compte de stockage][CR05]
+      ![boîte de dialogue Créer un nouveau compte de stockage Hello][CR05]
 
-   * **Compte de stockage** : spécifie le compte de stockage à utiliser pour le stockage de votre machine virtuelle. Vous pouvez utiliser un compte de stockage existant ou en créer un nouveau.
+   * **Compte de stockage**: Spécifie toouse de compte de stockage hello pour le stockage de votre machine virtuelle. Vous pouvez utiliser un compte de stockage existant ou en créer un nouveau.
 
-   * **Réseau virtuel** et **sous-réseau** : spécifient le réseau virtuel et le sous-réseau auquel se connectera votre machine virtuelle. Vous pouvez utiliser un réseau et un sous-réseau existants, ou créer un réseau et un sous-réseau. Si vous sélectionnez **Créer**, la boîte de dialogue suivante s’affiche :
+   * **Réseau virtuel** et **sous-réseau**: Spécifie le réseau virtuel de hello et sous-réseau que votre machine virtuelle se connecte à. Vous pouvez utiliser un réseau et un sous-réseau existants, ou créer un réseau et un sous-réseau. Si vous sélectionnez **nouvel**, hello suivant la boîte de dialogue s’affiche :
 
-      ![La boîte de dialogue Créer un réseau virtuel][CR06]
+      ![boîte de dialogue Créer un nouveau réseau virtuel Hello][CR06]
 
-9. Dans la fenêtre **Ressources associées**, entrez les informations suivantes :
+9. Bonjour **associés des ressources** fenêtre, entrez hello informations suivantes :
 
-   * **Adresse IP publique** : spécifie l’adresse IP externe de votre machine virtuelle. Vous pouvez choisir de créer une adresse IP ou, si votre machine virtuelle n’a pas besoin d’adresse IP publique, vous pouvez sélectionner **(Aucune)**.
+   * **Adresse IP publique** : spécifie l’adresse IP externe de votre machine virtuelle. Vous pouvez choisir toocreate une nouvelle adresse IP ou, si votre machine virtuelle ne disposent pas d’une adresse IP publique, vous pouvez sélectionner **(aucun)**.
 
    * **Groupe de sécurité réseau** : spécifie un pare-feu réseau facultatif pour votre machine virtuelle. Vous pouvez sélectionner un pare-feu existant ou, si votre machine virtuelle n’a pas besoin de pare-feu réseau, vous pouvez sélectionner **(Aucun)**.
 
-   * **Groupe à haute disponibilité** : spécifie un groupe à haute disponibilité auquel votre machine virtuelle peut appartenir. Vous pouvez sélectionner un groupe à haute disponibilité, créer un groupe à haute disponibilité ou, si votre machine virtuelle ne doit pas appartenir à un groupe à haute disponibilité, vous pouvez sélectionner **(Aucun)**.
+   * **Groupe à haute disponibilité** : spécifie un groupe à haute disponibilité auquel votre machine virtuelle peut appartenir. Vous pouvez sélectionner un ensemble de disponibilité existant ou créer un nouvel ensemble de disponibilité ou, si votre machine virtuelle appartiendra pas tooan à haute disponibilité, vous pouvez sélectionner **(aucun)**.
 
-   ![Fenêtre ressources associées][CR07]
+   ![fenêtre de Hello associées de ressources][CR07]
 
 9. Cliquez sur **Terminer**.  
-  Votre nouvelle machine virtuelle s’affiche dans la fenêtre de l’outil Explorateur Azure.
+  Votre nouvel ordinateur virtuel s’affiche dans la fenêtre d’outil Explorateur Azure hello.
 
    ![Nouvelle machine virtuelle][CR08]
 
 ## <a name="restart-a-virtual-machine-in-eclipse"></a>Redémarrage d’une machine virtuelle dans Eclipse
 
-Pour redémarrer une machine virtuelle à l’aide de l’Explorateur Azure dans Eclipse, procédez comme suit :
+toorestart un ordinateur virtuel à l’aide de hello Explorateur Azure dans Eclipse, hello suivant :
 
-1. Dans l’affichage **Explorateur Azure**, cliquez avec le bouton droit sur la machine virtuelle, puis sélectionnez **Redémarrer**.
+1. Bonjour **Explorateur Azure** afficher, avec le bouton droit hello virtual machine, puis sélectionnez **redémarrer**.
 
-   ![Commande Redémarrer de la machine virtuelle][RE01]
+   ![commande de redémarrage Hello à une machine virtuelle][RE01]
 
-2. Dans la fenêtre de confirmation, cliquez sur **Oui**.
+2. Dans la fenêtre de confirmation hello, cliquez sur **Oui**.
 
-   ![La fenêtre de confirmation de redémarrage][RE02]
+   ![fenêtre de confirmation du redémarrage Hello][RE02]
 
 ## <a name="shut-down-a-virtual-machine-in-eclipse"></a>Arrêt d’une machine virtuelle dans Eclipse
 
-Pour arrêter une machine virtuelle en cours d’exécution à l’aide de l’Explorateur Azure dans Eclipse, procédez comme suit :
+tooshut vers le bas d’une machine virtuelle en cours d’exécution à l’aide de hello Explorateur Azure dans Eclipse, hello suivant :
 
-1. Dans l’affichage **Explorateur Azure**, cliquez avec le bouton droit sur la machine virtuelle, puis sélectionnez **Arrêter**.
+1. Bonjour **Explorateur Azure** afficher, avec le bouton droit hello virtual machine, puis sélectionnez **arrêt**.
 
-   ![Commande Arrêter de la machine virtuelle][SH01]
+   ![commande d’arrêt d’une machine virtuelle Hello][SH01]
 
-2. Dans la fenêtre de confirmation, cliquez sur **Oui**.
+2. Dans la fenêtre de confirmation hello, cliquez sur **Oui**.
 
-   ![La fenêtre de confirmation d’arrêt de machine virtuelle][SH02]
+   ![fenêtre de confirmation de l’arrêt des machines virtuelles Hello][SH02]
 
 ## <a name="delete-a-virtual-machine-in-eclipse"></a>Suppression d’une machine virtuelle dans Eclipse
 
-Pour supprimer une machine virtuelle à l’aide de l’Explorateur Azure dans Eclipse, procédez comme suit :
+toodelete un ordinateur virtuel à l’aide de hello Explorateur Azure dans Eclipse, hello suivant :
 
-1. Dans l’affichage **Explorateur Azure**, cliquez avec le bouton droit sur la machine virtuelle, puis sélectionnez **Supprimer**.
+1. Bonjour **Explorateur Azure** afficher, avec le bouton droit hello virtual machine, puis sélectionnez **supprimer**.
 
-   ![Commande Supprimer de la machine virtuelle][DE01]
+   ![commande de suppression d’une machine virtuelle Hello][DE01]
 
-2. Dans la fenêtre de confirmation, cliquez sur **Oui**.
+2. Dans la fenêtre de confirmation hello, cliquez sur **Oui**.
 
-   ![La fenêtre de confirmation de suppression de machine virtuelle][DE02]
+   ![fenêtre de confirmation de suppression de la machine virtuelle Hello][DE02]
 
 ## <a name="next-steps"></a>Étapes suivantes
-Pour plus d’informations sur les tailles et tarifications des machines virtuelles Azure, voir les ressources suivantes :
+Pour plus d’informations sur les tailles de machine virtuelle Azure et la tarification, consultez hello suivant des ressources :
 
 * Tailles des machines virtuelles Azure
   * [Tailles des machines virtuelles Windows dans Azure]
@@ -148,33 +148,33 @@ Pour plus d’informations sur les tailles et tarifications des machines virtuel
   * [Tarification des machines virtuelles Windows]
   * [Tarification des machines virtuelles Linux]
 
-Pour plus d’informations sur les boîtes à outils Azure pour les environnements de développement intégré Java, voir les ressources suivantes :
+Pour plus d’informations sur hello boîtes à outils Azure pour Java IDE, consultez hello suivant des ressources :
 
-* [Kit de ressources Azure pour Eclipse]
-  * [Nouveautés du Kit de ressources Azure pour Eclipse]
-  * [Installation du kit de ressources Azure pour Eclipse]
-  * [Instructions de connexion pour le Kit de ressources Azure pour Eclipse]
+* [boîte à outils Azure pour Eclipse]
+  * [Nouveautés de hello boîte à outils Azure pour Eclipse]
+  * [Lors de l’installation hello boîte à outils Azure pour Eclipse]
+  * [instructions connectez-vous pour hello boîte à outils Azure pour Eclipse]
   * [Créer une application web Hello World pour Azure dans Eclipse]
 * [Kit de ressources Azure pour IntelliJ]
-  * [Nouveautés du Kit de ressources Azure pour IntelliJ]
-  * [Installation du kit de ressources Azure pour IntelliJ]
-  * [Instructions de connexion pour le Kit de ressources Azure pour IntelliJ]
+  * [Quelles sont les nouveautés Bonjour Azure Toolkit pour IntelliJ]
+  * [Lors de l’installation Bonjour Azure Toolkit pour IntelliJ]
+  * [Instructions d’authentification pour hello boîte à outils Azure pour IntelliJ]
   * [Créer une application web Hello World pour Azure dans IntelliJ]
 
 Pour plus d’informations sur l’utilisation d’Azure avec Java, consultez [Centre de développement Java pour Azure] et [Outils Java pour Visual Studio Team Services].
 
 <!-- URL List -->
 
-[Kit de ressources Azure pour Eclipse]: ./azure-toolkit-for-eclipse.md
+[boîte à outils Azure pour Eclipse]: ./azure-toolkit-for-eclipse.md
 [Kit de ressources Azure pour IntelliJ]: ./azure-toolkit-for-intellij.md
 [Créer une application web Hello World pour Azure dans Eclipse]: ./app-service-web/app-service-web-eclipse-create-hello-world-web-app.md
 [Créer une application web Hello World pour Azure dans IntelliJ]: ./app-service-web/app-service-web-intellij-create-hello-world-web-app.md
-[Installation du kit de ressources Azure pour Eclipse]: ./azure-toolkit-for-eclipse-installation.md
-[Installation du kit de ressources Azure pour IntelliJ]: ./azure-toolkit-for-intellij-installation.md
-[Instructions de connexion pour le Kit de ressources Azure pour Eclipse]: ./azure-toolkit-for-eclipse-sign-in-instructions.md
-[Instructions de connexion pour le Kit de ressources Azure pour IntelliJ]: ./azure-toolkit-for-intellij-sign-in-instructions.md
-[Nouveautés du Kit de ressources Azure pour Eclipse]: ./azure-toolkit-for-eclipse-whats-new.md
-[Nouveautés du Kit de ressources Azure pour IntelliJ]: ./azure-toolkit-for-intellij-whats-new.md
+[Lors de l’installation hello boîte à outils Azure pour Eclipse]: ./azure-toolkit-for-eclipse-installation.md
+[Lors de l’installation Bonjour Azure Toolkit pour IntelliJ]: ./azure-toolkit-for-intellij-installation.md
+[instructions connectez-vous pour hello boîte à outils Azure pour Eclipse]: ./azure-toolkit-for-eclipse-sign-in-instructions.md
+[Instructions d’authentification pour hello boîte à outils Azure pour IntelliJ]: ./azure-toolkit-for-intellij-sign-in-instructions.md
+[Nouveautés de hello boîte à outils Azure pour Eclipse]: ./azure-toolkit-for-eclipse-whats-new.md
+[Quelles sont les nouveautés Bonjour Azure Toolkit pour IntelliJ]: ./azure-toolkit-for-intellij-whats-new.md
 
 [Centre de développement Java pour Azure]: https://azure.microsoft.com/develop/java/
 [Outils Java pour Visual Studio Team Services]: https://java.visualstudio.com/

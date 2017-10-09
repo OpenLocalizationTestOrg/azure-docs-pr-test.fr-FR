@@ -1,4 +1,4 @@
-<a name="virtual-networking-limits-classic"></a>Les limites suivantes s’appliquent uniquement aux ressources de réseau gérées par le biais du modèle de déploiement classique par abonnement.
+<a name="virtual-networking-limits-classic"></a>Hello limites suivantes s’appliquent uniquement à la mise en réseau des ressources gérées par le modèle de déploiement classique hello par abonnement.
 
 | Ressource | Limite par défaut | Limite maximale |
 | --- | --- | --- |
@@ -18,7 +18,7 @@
 | Listes de contrôle d'accès (ACL) par point de terminaison |50 |50 |
 
 #### <a name="azure-resource-manager-virtual-networking-limits"></a>Limites de mise en réseau – Azure Resource Manager
-Les limites suivantes s’appliquent uniquement aux ressources de réseau gérées par le biais d’Azure Resource Manager par région et par abonnement.
+Hello limites suivantes s’appliquent uniquement à la mise en réseau des ressources gérées par le biais du Gestionnaire de ressources Azure par des régions par abonnement.
 
 | Ressource | Limite par défaut | Limite maximale |
 | --- | --- | --- |
@@ -42,7 +42,7 @@ Les limites suivantes s’appliquent uniquement aux ressources de réseau géré
 | Protocole Internet frontal privé par équilibreur de charge |10 |contacter le support technique |
 | Homologations VNet par réseau virtuel |10 |50 |
 | Certificats racines point à site pour chaque passerelle VPN |20 |20 |
-| Configurations IP secondaires par réseau virtuel |1 000 |contacter le support |
+| Configurations IP secondaires par réseau virtuel |1 000 |contacter le support technique |
 
-Pour accroître les limites par défaut, [contactez le support technique](../articles/azure-supportability/resource-manager-core-quotas-request.md ).
+[Contactez le support technique](../articles/azure-supportability/resource-manager-core-quotas-request.md ) en cas de besoin tooincrease des limites à partir de la valeur par défaut.
 

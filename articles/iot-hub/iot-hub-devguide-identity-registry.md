@@ -1,6 +1,6 @@
 ---
-title: "Comprendre le registre des identités d’Azure IoT Hub | Microsoft Docs"
-description: "Guide du développeur - Description du registre des identités IoT Hub et de la manière de l’utiliser pour gérer vos appareils. Contient des informations sur l’importation et l’exportation d’identités d’appareils en bloc."
+title: "Registre des identités de Azure IoT Hub hello aaaUnderstand | Documents Microsoft"
+description: "Guide du développeur - description de hello Registre des identités IoT Hub et la manière dont toouse il toomanage vos appareils. Inclut des informations sur l’importation de hello et l’exportation des identités de l’appareil en bloc."
 services: iot-hub
 documentationcenter: .net
 author: dominicbetts
@@ -15,112 +15,112 @@ ms.workload: na
 ms.date: 08/08/2017
 ms.author: dobett
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: b6e9c7b71fa6fc78f97c0144c735fc44778181d8
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: c9fe3730a4608e28c47807ecb42e13e73f6a2e80
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="understand-the-identity-registry-in-your-iot-hub"></a>Comprendre le registre des identités dans votre IoT Hub
+# <a name="understand-hello-identity-registry-in-your-iot-hub"></a>Comprendre le Registre des identités hello dans votre IoT hub
 
-Chaque IoT Hub a un registre des identités contenant des informations sur les appareils autorisés à se connecter à l’IoT Hub. Pour qu’un appareil puisse se connecter à un Hub, une entrée correspondant à cet appareil doit figurer dans le registre des identités de l’IoT Hub. Un appareil doit également s’authentifier auprès de l’IoT Hub à l’aide des informations d’identification stockées dans le registre des identités.
+Chaque hub IoT a un registre des identités qui stocke des informations sur les périphériques hello autorisés tooconnect toohello IoT hub. Avant de connecter un appareil tooan IoT hub, il doit y avoir une entrée pour ce périphérique dans le Registre des identités de concentrateur hello IoT. Un appareil doit également s’authentifier avec hello IoT hub basé sur les informations d’identification stockées dans le Registre des identités hello.
 
-L’ID d’appareil stocké dans le registre des identités respecte la casse.
+ID de périphérique Hello stockée dans le Registre des identités hello respecte la casse.
 
-À un niveau supérieur, le registre des identités est une collection compatible REST de ressources d’identité d’appareil. Lorsque vous ajoutez une entrée au registre des identités, IoT Hub crée un jeu de ressources par appareil, comme une file d’attente contenant des messages cloud vers appareil en transit.
+À un niveau élevé, Registre des identités hello est une collection prenant en charge de REST identité de ressources de périphérique. Lorsque vous ajoutez une entrée dans le Registre des identités hello, IoT Hub crée un ensemble de ressources de chaque appareil comme file d’attente hello qui contient des messages cloud-à-appareil en cours.
 
-### <a name="when-to-use"></a>Quand utiliser
+### <a name="when-toouse"></a>Lorsque toouse
 
-Utilisez le registre des identités lorsque vous avez besoin d’effectuer les actions suivantes :
+Utilisez le Registre des identités hello lorsque vous avez besoin :
 
-* Approvisionner des appareils qui se connectent à votre IoT Hub.
-* Contrôler l’accès par appareil aux points de terminaison côté appareil de votre concentrateur.
+* Configurer des appareils qui se connectent tooyour IoT hub.
+* Contrôler les points de terminaison de périphérique du concentrateur de tooyour accès par périphérique.
 
 > [!NOTE]
-> Le registre des identités ne contient pas de métadonnées spécifiques de l’application.
+> Registre des identités Hello ne contient pas toutes les métadonnées spécifiques à l’application.
 
 ## <a name="identity-registry-operations"></a>Opérations du registre d’identité
 
-Le registre des identités IoT Hub expose les opérations suivantes :
+Hello Registre des identités IoT Hub expose hello opérations suivantes :
 
 * Création d’une identité d’appareil
 * Mise à jour d’une identité d’appareil
 * Récupération d’une identité d’appareil par ID
 * Suppression d’une identité d’appareil
-* Création de listes contenant jusqu’à 1 000 identités
-* Exportation de toutes les identités vers le stockage Blob Azure
+* Liste des identités de too1000
+* Exporter le stockage d’objets blob tooAzure toutes les identités
 * Importation de toutes les identités depuis le stockage Blob Azure
 
 Toutes ces opérations peuvent utiliser un accès concurrentiel optimiste, comme spécifié dans [RFC7232][lnk-rfc7232].
 
 > [!IMPORTANT]
-> La seule façon de récupérer toutes les identités dans une registre des identités d’IoT Hub consiste à utiliser la fonctionnalité [Exporter][lnk-export].
+> Hello tooretrieve de façon seulement toutes les identités dans le Registre des identités d’un hub IoT est toouse hello [exporter] [ lnk-export] fonctionnalité.
 
 Un registre des identités IoT Hub :
 
 * ne contient pas de métadonnées de l’application ;
-* est accessible en tant que dictionnaire à l’aide de la clé **deviceId** .
+* Est accessible comme un dictionnaire, à l’aide de hello **deviceId** en tant que clé de hello.
 * ne prend pas en charge les requêtes expressives.
 
-Une solution IoT possède généralement une zone de stockage distincte spécifique à la solution qui contient les métadonnées propres à l’application. Dans une solution de développement intelligente, par exemple, la zone de stockage spécifique à la solution doit enregistrer l’espace dans lequel un capteur de température sera déployé.
+Une solution IoT possède généralement une zone de stockage distincte spécifique à la solution qui contient les métadonnées propres à l’application. Par exemple, hello magasin spécifique à la solution dans une solution de génération de smart doit enregistrer salle hello dans lequel un capteur de température est déployé.
 
 > [!IMPORTANT]
-> Utilisez le registre des identités uniquement pour les opérations de gestion et d’approvisionnement. Les opérations à haut débit ne doivent pas dépendre de l’exécution d’opérations dans le registre des identités au moment de leur exécution. Par exemple, la vérification de l’état de la connexion d’un appareil avant l’envoi d’une commande n’est pas un modèle pris en charge. Veillez à vérifier les [taux de limitation][lnk-quotas] pour le registre des identités et le modèle de [pulsation de l’appareil][lnk-guidance-heartbeat].
+> Utilisez uniquement Registre des identités hello pour la gestion des périphériques et opérations de configuration. Opérations de débit élevé au moment de l’exécution ne doivent pas dépendre de l’exécution d’opérations dans le Registre des identités hello. Par exemple, la vérification de l’état de connexion hello d’un appareil avant d’envoyer une commande n’est pas un modèle pris en charge. Assurez-vous que toocheck hello [taux de limitation] [ lnk-quotas] pour le Registre des identités hello et hello [pulsation de l’appareil] [ lnk-guidance-heartbeat] modèle.
 
 ## <a name="disable-devices"></a>Désactivation d’appareils
 
-Vous pouvez désactiver les appareils en mettant à jour la propriété **status** d’une identité dans le registre des identités. Généralement, cette propriété est utilisée dans deux scénarios :
+Vous pouvez désactiver les périphériques en mettant à jour hello **état** propriété d’une identité dans le Registre des identités hello. Généralement, cette propriété est utilisée dans deux scénarios :
 
 * Au cours d’un processus d’orchestration d’approvisionnement. Pour plus d’informations, voir [Approvisionnement des appareils][lnk-guidance-provisioning].
 * Si, pour une raison quelconque, vous pensez qu’un appareil est compromis ou non autorisé.
 
 ## <a name="import-and-export-device-identities"></a>Importer et exporter les identités des appareils
 
-Vous pouvez exporter des identités d’appareils en bloc à partir du registre des identités d’un IoT Hub, par le biais d’opérations asynchrones sur le [point de terminaison d’un fournisseur de ressources IoT Hub][lnk-endpoints]. Les exportations sont des tâches à long terme qui utilisent un conteneur d’objets blob fourni par le client pour enregistrer les données relatives à l’identité des appareils lues dans le registre des identités.
+Vous pouvez exporter les identités des appareils en bloc à partir du Registre des identités d’un hub IoT, à l’aide des opérations asynchrones sur hello [point de terminaison IoT Hub ressource fournisseur][lnk-endpoints]. Les exportations sont longs travaux qui utilisent un données d’identité d’appareil fourni par le client de blob conteneur toosave lire à partir du Registre des identités hello.
 
-Vous pouvez importer des identités d’appareils en bloc dans le registre des identités d’un IoT Hub, par le biais d’opérations asynchrones sur le [point de terminaison d’un fournisseur de ressources IoT Hub][lnk-endpoints]. Les importations sont des tâches à long terme qui utilisent des données dans un conteneur d’objets blob, fourni par le client, pour écrire les données relatives à l’identité des appareils dans le registre des identités.
+Vous pouvez importer des identités d’appareil dans le Registre des identités du hub IoT en bloc tooan, à l’aide des opérations asynchrones sur hello [point de terminaison IoT Hub ressource fournisseur][lnk-endpoints]. Les importations sont des travaux à long terme qui utilisent des données dans un blob de fourni par le client conteneur toowrite appareil identité de données dans le Registre des identités hello.
 
-* Pour plus d’informations sur l’importation et l’exportation d’API, voir [IoT Hub - API REST de fournisseur de ressources][lnk-resource-provider-apis].
-* Pour en savoir plus sur l’exécution de tâches d’importation et d’exportation, voir [Gestion en bloc des identités d’appareils IoT Hub][lnk-bulk-identity].
+* Pour obtenir des informations détaillées sur l’importation de hello et d’exportation des API, consultez [fournisseur de ressources IoT Hub API REST][lnk-resource-provider-apis].
+* toolearn plus d’informations sur l’exécution importent et exporter les tâches, consultez [en bloc de gestion des identités des appareils IoT Hub][lnk-bulk-identity].
 
 ## <a name="device-provisioning"></a>Approvisionnement des appareils
 
-Les données d’appareil qu’une solution IoT donnée stocke dépendent des exigences spécifiques de cette solution. Mais une solution doit au minimum stocker les clés d’authentification et les identités des appareils. Azure IoT Hub inclut un registre d’identité qui peut stocker des valeurs pour chaque appareil, comme les ID, les clés d’authentification et les codes d’état. Une solution peut utiliser d’autres services Azure, tels que le stockage de tables, le stockage Blob ou Cosmos DB pour stocker des données d’appareil supplémentaires.
+données de l’appareil Hello contenant une solution IoT donnée dépendent hello spécifique de cette solution. Mais une solution doit au minimum stocker les clés d’authentification et les identités des appareils. Azure IoT Hub inclut un registre d’identité qui peut stocker des valeurs pour chaque appareil, comme les ID, les clés d’authentification et les codes d’état. Une solution peut utiliser des autres services Azure tels que le stockage de table, stockage d’objets blob ou Cosmos DB toostore toutes les données d’appareil supplémentaires.
 
-*Approvisionnement des appareils* est le processus d'ajout des données d'appareil initial aux magasins dans votre solution. Pour permettre à un nouvel appareil de se connecter à votre hub, vous devez ajouter un ID et des clés d’appareil au registre des identités d’IoT Hub. Dans le cadre du processus d’approvisionnement, vous devrez peut-être initialiser les données spécifiques à l’appareil dans d’autres magasins de la solution.
+*Configuration du périphérique* est hello des processus d’ajout de banques de toohello données hello initiale de l’appareil dans votre solution. tooenable un nouveau concentrateur de tooyour tooconnect de périphérique, vous devez ajouter un toohello ID et les clés appareil Registre des identités IoT Hub. Dans le cadre du processus d’approvisionnement de hello, vous devrez peut-être tooinitialize des données dans d’autres banques de la solution.
 
 ## <a name="device-heartbeat"></a>Pulsation des appareils
 
-Le registre des identités IoT Hub contient un champ appelé **connectionState**. Vous ne devez utiliser le champ **connectionState** que pendant le développement et le débogage. Les solutions IoT ne doivent pas interroger le champ au moment de l’exécution. Par exemple, n’interrogez pas le champ **connectionState** pour vérifier si un appareil est connecté avant d’envoyer un message cloud vers appareil ou un SMS.
+Registre des identités IoT Hub Hello contient un champ appelé **connectionState**. Utilisez uniquement hello **connectionState** champ pendant le développement et le débogage. IoT solutions doivent interroger pas de champ de hello en cours d’exécution. Par exemple, ne pas interroger hello **connectionState** toocheck champ si un appareil est connecté avant d’envoyer un message cloud-à-appareil ou un SMS.
 
-Si votre solution IoT a besoin de savoir si un appareil est connecté, vous devez implémenter le *modèle de pulsation*.
+Si votre solution IoT doit tooknow si un appareil est connecté, vous devez implémenter hello *modèle de pulsation*.
 
-Dans le modèle par pulsations, l’appareil envoie des messages appareil-à-cloud au moins une fois par durée fixe (par exemple, au moins une fois par heure). Ainsi, même si un appareil n’a pas de données à envoyer, il envoie toujours un message appareil-à-cloud vide (généralement avec une propriété qui l’identifie comme pulsation). Côté service, la solution gère un mappage avec la dernière pulsation reçue pour chaque appareil. Si la solution ne reçoit pas de message de pulsation dans le temps imparti de la part de l’appareil, elle suppose qu’il y a un problème avec l’appareil.
+Dans le modèle de pulsation hello, appareil de hello envoie des messages de l’appareil-à-cloud au moins une fois chaque quantité fixe de temps (par exemple, au moins une fois par heure). Par conséquent, même si un appareil ne dispose pas de n’importe quel toosend de données, il envoie toujours un message vide de périphérique dans le cloud (généralement avec une propriété qui l’identifie comme une pulsation). Sur le côté du service hello, solution de hello gère un mappage avec hello dernière pulsation reçue pour chaque périphérique. Si la solution de hello ne reçoit pas d’un message de pulsation dans délai hello prévu à partir de l’appareil de hello, il part du principe qu’il existe un problème avec le périphérique de hello.
 
-Une implémentation plus complexe pourrait inclure les informations de la [surveillance des opérations][lnk-devguide-opmon] pour identifier les appareils qui ne parviennent pas à se connecter ou à communiquer. Quand vous implémentez le modèle par pulsations, veillez à vérifier les [quotas et limitations IoT Hub][lnk-quotas].
+Une implémentation plus complexe peut inclure des informations de hello des [surveillance des opérations] [ lnk-devguide-opmon] périphériques tooidentify essaient tooconnect ou communiquent mais échouent. Lorsque vous implémentez le modèle de pulsation hello, assurez-vous que toocheck [IoT Hub Quotas et les accélérateurs][lnk-quotas].
 
 > [!NOTE]
-> Si une solution IoT utilise uniquement l’état de la connexion de l’appareil pour déterminer si elle doit envoyer des messages cloud vers appareil, et que ces messages ne sont pas diffusés à de larges groupes d’appareils, envisagez d’utiliser un modèle de *délai d’expiration court* plus simple. Ce modèle permet d’obtenir le même résultat qu’en maintenant l’état de la connexion de l’appareil avec sa pulsation, tout en étant plus efficace. Si vous demandez des accusés de réception des messages, IoT Hub peut vous informer sur les appareils en mesure de recevoir des messages et ceux qui ne le sont pas.
+> Si une connexion de hello IoT solution utilise état toodetermine uniquement si les messages cloud-à-appareil toosend, et les messages ne sont pas toolarge des ensembles de périphériques de diffusion, envisagez d’utiliser le plus simple de hello *court délai d’expiration* modèle. Ce modèle permet d’obtenir hello même résultat que la gestion d’un Registre état de connexion de périphérique à l’aide du modèle de pulsation hello, tout en étant plus efficace. Si vous demandez les accusés de réception de message, IoT Hub peut vous informer sur les appareils qui sont en mesure de tooreceive messages et qui ne sont pas.
 
 ## <a name="device-lifecycle-notifications"></a>Notifications de cycle de vie des appareils
 
-IoT Hub peut avertir votre solution IoT lorsqu’une identité d’appareil est créée ou supprimée, en envoyant des notifications de cycle de vie des appareils. Pour ce faire, votre solution IoT doit créer un itinéraire et définir la source de données *DeviceLifecycleEvents*. Par défaut, aucune notification du cycle de vie n’est envoyée. Autrement dit, aucun itinéraire n’existe préalablement. Le message de notification inclut le corps et les propriétés.
+IoT Hub peut avertir votre solution IoT lorsqu’une identité d’appareil est créée ou supprimée, en envoyant des notifications de cycle de vie des appareils. toodo, votre solution IoT doit donc toocreate un itinéraire et égal de Source de données tooset hello trop*DeviceLifecycleEvents*. Par défaut, aucune notification du cycle de vie n’est envoyée. Autrement dit, aucun itinéraire n’existe préalablement. message de notification Hello inclut le corps et les propriétés.
 
-Propriétés : les propriétés système du message ont pour préfixe le symbole `'$'`.
+Propriétés : Propriétés des messages système sont précédées hello `'$'` symbole.
 
 | Nom | Valeur |
 | --- | --- |
 $content-type | application/json |
-$iothub-enqueuedtime |  Heure d’envoi de la notification |
+$iothub-enqueuedtime |  Heure à laquelle la notification de hello a été envoyée |
 $iothub-message-source | deviceLifecycleEvents |
 $content-encoding | utf-8 |
 opType | **createDeviceIdentity** ou **deleteDeviceIdentity** |
 hubName | Nom de l’IoT Hub |
-deviceId | ID de l’appareil |
+deviceId | ID de périphérique de hello |
 operationTimestamp | Horodatage ISO8601 de l’opération |
 iothub-message-schema | deviceLifecycleNotification |
 
-Corps : cette section est au format JSON et représente le double de l’identité d’appareil créé. Par exemple,
+Corps : Cette section est au format JSON et représente le double de hello Hello créé l’identité de l’appareil. Par exemple,
 
 ```json
 {
@@ -143,51 +143,51 @@ Corps : cette section est au format JSON et représente le double de l’identi
 }
 ```
 
-## <a name="reference-topics"></a>Rubriques de référence :
+## <a name="reference-topics"></a>Rubriques de référence :
 
-Les rubriques de référence suivantes fournissent des informations supplémentaires sur le registre des identités.
+Hello rubriques de référence suivantes vous fournissent plus d’informations sur le Registre des identités hello.
 
 ## <a name="device-identity-properties"></a>Propriétés d’identité des appareils
 
-Les identités des appareils sont représentées sous forme de documents JSON avec les propriétés suivantes :
+Identités de l’appareil sont représentées en tant que documents JSON par hello propriétés suivantes :
 
 | Propriété | Options | Description |
 | --- | --- | --- |
-| deviceId |obligatoire, en lecture seule sur les mises à jour |Une chaîne qui respecte la casse (jusqu’à 128 caractères) de caractères alphanumériques 7 bits ASCII + `{'-', ':', '.', '+', '%', '_', '#', '*', '?', '!', '(', ')', ',', '=', '@', ';', '$', '''}`. |
-| generationId |obligatoire, en lecture seule |Une chaîne qui respecte la casse, générée par IoT Hub, d’une longueur maximale de 128 caractères. Cette valeur permet de distinguer les appareils dotés du même **deviceId**lorsqu’ils ont été supprimés et recréés. |
-| etag |obligatoire, en lecture seule |Une chaîne représentant un ETag faible pour l’identité d’appareil, conformément à [RFC7232][lnk-rfc7232]. |
+| deviceId |obligatoire, en lecture seule sur les mises à jour |Une chaîne qui respecte la casse (haut too128 caractères) de caractères ASCII 7 bits + `{'-', ':', '.', '+', '%', '_', '#', '*', '?', '!', '(', ')', ',', '=', '@', ';', '$', '''}`. |
+| generationId |obligatoire, en lecture seule |Une IoT respectant la casse, générées par le concentrateur, chaîne des caractères too128. Cette valeur est toodistinguish utilisé pour les appareils avec hello même **deviceId**, lorsqu’ils ont été supprimés et recréés. |
+| etag |obligatoire, en lecture seule |Chaîne représentant un ETag faible pour l’identité de l’appareil hello, comme par [RFC7232][lnk-rfc7232]. |
 | auth |facultatif |Un objet composite contenant des informations d’authentification et des éléments de sécurité. |
 | auth.symkey |facultatif |Un objet composite contenant une clé primaire et une clé secondaire, stockées au format base64. |
-| status |required |Un indicateur d’accès. Peut être **Activé** ou **Désactivé**. Si la propriété est définie sur **Activé**, l’appareil est autorisé à se connecter. Si la propriété est définie sur **Désactivé**, cet appareil ne peut pas accéder à un point de terminaison de l’appareil. |
-| statusReason |facultatif |Une chaîne de 128 caractères qui stocke le motif de l’état de l’identité de l’appareil. Tous les caractères UTF-8 sont autorisés. |
-| statusUpdateTime |en lecture seule |Un indicateur temporel, indiquant la date et l’heure de la dernière mise à jour de l’état. |
-| connectionState |en lecture seule |Un champ indiquant l’état de la connexion : **Connecté** ou **Déconnecté**. Ce champ représente la vue IoT Hub de l’état de connexion de l’appareil. **Important**  : ce champ doit être utilisé uniquement à des fins de développement et de débogage. L’état de la connexion est mis à jour uniquement pour les appareils utilisant les protocoles AMQP ou MQTT. Cet état est basé sur les pings au niveau du protocole (tests ping MQTT ou AMQP) et peut avoir un délai maximum de 5 minutes seulement. Pour ces raisons, de faux positifs peuvent survenir. Par exemple : un appareil peut être signalé comme étant connecté, alors qu’il est déconnecté. |
-| connectionStateUpdatedTime |en lecture seule |Un indicateur temporel, indiquant la date et la dernière heure de mise à jour de l’état de la connexion. |
-| lastActivityTime |en lecture seule |Un indicateur temporel, indiquant la date et la dernière heure de connexion de l’appareil, de réception d’un message ou d’envoi d’un message. |
+| status |required |Un indicateur d’accès. Peut être **Activé** ou **Désactivé**. Si **activé**, hello est autorisé tooconnect. Si la propriété est définie sur **Désactivé**, cet appareil ne peut pas accéder à un point de terminaison de l’appareil. |
+| statusReason |facultatif |Un 128 caractères de longueur de chaîne magasins hello raison hello appareil statut d’identité. Tous les caractères UTF-8 sont autorisés. |
+| statusUpdateTime |en lecture seule |Un indicateur temporel, indiquant la date de hello et l’heure de mise à jour de statut dernière hello. |
+| connectionState |en lecture seule |Un champ indiquant l’état de la connexion : **Connecté** ou **Déconnecté**. Ce champ représente hello vue IoT Hub du statut de connexion de périphérique hello. **Important**  : ce champ doit être utilisé uniquement à des fins de développement et de débogage. état de la connexion Hello est mise à jour uniquement pour les appareils à l’aide de MQTT ou AMQP. Cet état est basé sur les pings au niveau du protocole (tests ping MQTT ou AMQP) et peut avoir un délai maximum de 5 minutes seulement. Pour ces raisons, de faux positifs peuvent survenir. Par exemple : un appareil peut être signalé comme étant connecté, alors qu’il est déconnecté. |
+| connectionStateUpdatedTime |en lecture seule |Un indicateur temporel, indiquant la date de hello et l’état de la connexion dernière heure hello a été mis à jour. |
+| lastActivityTime |en lecture seule |Un indicateur temporel, indiquant la date de hello et dernière hello appareil connecté, reçu ou envoyé un message. |
 
 > [!NOTE]
-> L’état de la connexion peut uniquement représenter la vue IoT Hub de l’état de la connexion. Les mises à jour à cet état peuvent être différées en fonction des conditions et des configurations du réseau.
+> État de la connexion peut représenter uniquement hello vue IoT Hub du statut hello de connexion de hello. État de toothis mises à jour peut être retardée, en fonction des configurations et des conditions réseau.
 
 ## <a name="additional-reference-material"></a>Matériel de référence supplémentaire
 
-Les autres rubriques de référence dans le Guide du développeur IoT Hub comprennent :
+Les autres rubriques de référence de hello guide du développeur IoT Hub sont les suivantes :
 
-* La rubrique [Points de terminaison IoT Hub][lnk-endpoints] décrit les différents points de terminaison que chaque IoT Hub expose pour les opérations d’exécution et de gestion.
-* La rubrique [Référence - Quotas et limitation IoT Hub][lnk-quotas] décrit les quotas et le comportement de limitation qui s’appliquent au service IoT Hub.
-* La section [Azure IoT device et service SDK][lnk-sdks] répertorie les Kits de développement logiciel (SDK) en différents langages que vous pouvez utiliser pour le développement d’applications d’appareil et de service qui interagissent avec IoT Hub.
-* La rubrique [Référence - Langage de requête IoT Hub pour les jumeaux d’appareil, les travaux et le routage des messages][lnk-query] décrit le langage de requête permettant de récupérer à partir d’IoT Hub des informations sur des jumeaux d’appareil et des travaux.
-* La rubrique [Prise en charge de MQTT au niveau d’IoT Hub][lnk-devguide-mqtt] fournit des informations supplémentaires sur la prise en charge du protocole MQTT par IoT Hub.
+* [Points de terminaison IoT Hub] [ lnk-endpoints] décrit hello différents points de terminaison qui expose de chaque IoT hub pour les opérations de gestion et d’exécution.
+* [Limitation et les quotas] [ lnk-quotas] décrit les quotas hello et la limitation des comportements qui s’appliquent toohello IoT Hub service.
+* [Azure IoT périphérique et service kits de développement logiciel] [ lnk-sdks] listes hello langue différents kits de développement logiciel vous pouvez utiliser lorsque vous développez des applications de périphérique et le service qui interagissent avec IoT Hub.
+* [Langage de requête IoT Hub] [ lnk-query] décrit le langage de requête hello vous pouvez utiliser les informations de tooretrieve à partir de IoT Hub sur votre jumeaux de périphérique et les travaux.
+* [Prise en charge IoT Hub MQTT] [ lnk-devguide-mqtt] fournit plus d’informations sur la prise en charge IoT Hub pour le protocole MQTT hello.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-À présent que vous savez comment utiliser le registre des identités IoT Hub, vous serez peut-être intéressé par les rubriques suivantes du Guide du développeur Iot Hub :
+Maintenant, vous avez appris comment Registre des identités toouse hello IoT Hub, vous pouvez être intéressé hello IoT Hub développeur guide rubriques suivantes :
 
-* [Contrôler l’accès à IoT Hub][lnk-devguide-security]
-* [Utiliser des représentations d’appareil pour synchroniser les données d’état et de configuration][lnk-devguide-device-twins]
+* [Contrôle l’accès tooIoT Hub][lnk-devguide-security]
+* [Utiliser les configurations et état du périphérique jumeaux toosynchronize][lnk-devguide-device-twins]
 * [Appeler une méthode directe sur un appareil][lnk-devguide-directmethods]
 * [Planifier des travaux sur plusieurs appareils][lnk-devguide-jobs]
 
-Si vous souhaitez tenter de mettre en pratique certains des concepts décrits dans cet article, vous serez peut-être intéressé par les didacticiels IoT Hub suivants :
+Si vous souhaitez que tootry certains des concepts hello décrits dans cet article, peut vous intéresser hello suivant IoT Hub didacticiel :
 
 * [Mise en route d’Azure IoT Hub][lnk-getstarted-tutorial]
 

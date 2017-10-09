@@ -1,6 +1,6 @@
 ---
-title: "Disponibilité et cohérence dans Azure Event Hubs | Microsoft Docs"
-description: "Découvrez comment obtenir la quantité maximale de disponibilité et de cohérence avec Azure Event Hubs à l’aide de partitions."
+title: "aaaAvailability et la cohérence dans Azure Event Hubs | Documents Microsoft"
+description: "Comment tooprovide hello maximum de disponibilité et la cohérence avec les concentrateurs d’événements Azure à l’aide de partitions."
 services: event-hubs
 documentationcenter: na
 author: sethmanheim
@@ -14,41 +14,41 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/15/2017
 ms.author: sethm
-ms.openlocfilehash: 681a9d1636d547492f6f827461c6b2494b918778
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: a8ededaae1589830da21cb8910ca694d2d628bd2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="availability-and-consistency-in-event-hubs"></a>Disponibilité et cohérence dans Event Hubs
 
 ## <a name="overview"></a>Vue d'ensemble
-Azure Event Hubs utilise un [modèle de partitionnement](event-hubs-features.md#partitions) pour améliorer la disponibilité et la parallélisation dans un concentrateur d’événements unique. Par exemple, si un concentrateur d’événements a quatre partitions et que l’une de ces partitions est déplacée d’un serveur à l’autre dans une opération d’équilibrage de charge, vous pouvez quand même envoyer et recevoir à partir des trois autres partitions. En outre, avoir davantage de partitions vous permet d’avoir plus lecteurs pour traiter vos données simultanément, ce qui améliore le débit global. Comprendre les implications en matière de partitionnement et de classement dans un système distribué est un aspect essentiel de la conception de la solution.
+Azure Event Hubs utilise un [modèle de partitionnement](event-hubs-features.md#partitions) tooimprove disponibilité et la parallélisation au sein d’un concentrateur d’événements unique. Par exemple, si un concentrateur d’événements a quatre partitions, et l’une de ces partitions est déplacée à partir de tooanother d’un serveur dans une opération d’équilibrage de charge, vous pouvez toujours envoyer et recevoir des trois autres partitions. En outre, avoir davantage de partitions permet toohave lecteurs simultanés plus le traitement de vos données, améliorer le débit d’agrégation. Comprendre les implications en matière de hello de partitionnement et l’ordre dans un système distribué est un aspect essentiel de la conception de la solution.
 
-Pour expliquer le compromis entre classement et disponibilité, reportez-vous au [théorème CAP](https://en.wikipedia.org/wiki/CAP_theorem), également connu sous le nom de théorème de Brewer. Ce théorème discute le choix entre la cohérence, la disponibilité et la tolérance de la partition.
+toohelp expliquent les compromis de hello entre la commande et la disponibilité, consultez hello [théorème de CAP](https://en.wikipedia.org/wiki/CAP_theorem), également connue sous le théorème de Brewer. Cette théorème de traite des choix hello entre la cohérence, la disponibilité et la tolérance de partition.
 
 Le théorème de Brewer définit la cohérence et la disponibilité de la façon suivante :
-* Tolérance de la partition : la capacité d’un système de traitement de données à continuer le traitement des données même en cas de défaillance d’une partition.
+* La tolérance de panne de partition : hello la capacité d’un toocontinue de système de traitement des données du traitement des données même en cas d’une défaillance de la partition.
 * Disponibilité : un nœud sans échec renvoie une réponse raisonnable dans un délai raisonnable (sans erreurs ou expirations de délai).
-* Cohérence : une lecture renvoie toujours la dernière écriture pour un client donné.
+* Cohérence : une lecture est garantie tooreturn hello dernière inscription pour un client donné.
 
 ## <a name="partition-tolerance"></a>Tolérance de la partition
-Event Hubs repose sur un modèle de données partitionné. Vous pouvez configurer le nombre de partitions dans votre concentrateur d’événements pendant l’installation, mais vous ne pouvez pas modifier cette valeur par la suite. Étant donné que vous devez utiliser des partitions avec Event Hubs, vous devez prendre une décision concernant la disponibilité et la cohérence de votre application.
+Event Hubs repose sur un modèle de données partitionné. Vous pouvez configurer le nombre hello de partitions dans votre concentrateur d’événements pendant l’installation, mais vous ne pouvez pas modifier cette valeur ultérieurement. Étant donné que vous devez utiliser des partitions avec des concentrateurs d’événements, vous devez toomake une décision sur la disponibilité et la cohérence de votre application.
 
-## <a name="availability"></a>Availability
-La méthode la plus simple pour se familiariser avec Event Hubs est d’utiliser le comportement par défaut. Si vous créez un `EventHubClient` et que vous utilisez la méthode `Send`, les événements sont automatiquement distribués entre les partitions de votre concentrateur d’événements. Ce comportement offre le meilleur temps d’activité.
+## <a name="availability"></a>Disponibilité
+Hello tooget de façon la plus simple en main de concentrateurs d’événements est le comportement par défaut de hello toouse. Si vous créez un nouveau `EventHubClient` de l’objet et utilisez hello `Send` (méthode), les événements sont automatiquement distribués entre des partitions dans votre concentrateur d’événements. Ce comportement permet hello plus grande partie du temps d’activité.
 
-Pour les cas d’utilisation qui exigent un temps d’activité maximum, ce modèle est conseillé.
+Pour les cas d’usage qui nécessitent maximum hello le temps, ce modèle est préféré.
 
 ## <a name="consistency"></a>Cohérence
-Dans certains scénarios, l’ordre des événements peut être important. Par exemple, vous souhaiterez peut-être que votre système principal traite une commande de mise à jour avant une commande de suppression. Dans ce cas, vous pouvez définir la clé de partition sur un événement, ou utiliser un objet `PartitionSender` pour envoyer uniquement les événements à une certaine partition. Cela garantit que ces événements sont lus dans l’ordre lorsqu’ils sont lus à partir de la partition.
+Dans certains scénarios, hello classement d’événements peut être important. Par exemple, vous souhaiterez peut-être votre tooprocess système back-end une commande de mise à jour avant qu’une commande delete. Dans ce cas, vous pouvez définir la clé de partition hello sur un événement, ou utiliser un `PartitionSender` objet tooonly envoyer les événements tooa certaine partition. Cela garantit que lorsque ces événements sont lus à partir de la partition de hello, ils sont lus dans l’ordre.
 
-Avec cette configuration, gardez à l’esprit que si la partition particulière à laquelle vous envoyez les événements n’est pas disponible, vous recevrez une réponse d’erreur. À titre de comparaison, si vous n’avez pas d’affinité avec une partition unique, le service Event Hubs envoie votre événement à la prochaine partition disponible.
+Avec cette configuration, gardez à l’esprit que si toowhich de partition particulière hello que vous envoyez n’est pas disponible, vous recevrez une réponse d’erreur. En tant que point de comparaison, si vous ne disposez pas d’une partition unique tooa d’affinité, hello service Event Hubs envoie votre partition disponible suivante événement toohello.
 
-Pour garantir le classement tout en optimisant aussi le temps d’activité, vous pouvez regrouper les événements dans le cadre de votre application de traitement des événements. Pour cela, le moyen le plus simple consiste à marquer votre événement avec une propriété de numéro de séquence personnalisée. Le code suivant montre un exemple :
+Une solution possible tooensure classement, tout en optimisant également le temps, serait tooaggregate événements dans le cadre de votre application de traitement des événements. Hello tooaccomplish de façon plus simple de cela est toostamp votre événement avec une propriété de numéro de séquence personnalisée. Hello suivant de code illustre un exemple :
 
 ```csharp
-// Get the latest sequence number from your application
+// Get hello latest sequence number from your application
 var sequenceNumber = GetNextSequenceNumber();
 // Create a new EventData object by encoding a string as a byte array
 var data = new EventData(Encoding.UTF8.GetBytes("This is my message..."));
@@ -58,10 +58,10 @@ data.Properties.Add("SequenceNumber", sequenceNumber);
 await eventHubClient.SendAsync(data);
 ```
 
-L’exemple envoie votre événement à l’une des partitions disponibles dans votre concentrateur d’événements et définit le numéro de séquence correspondant à partir de votre application. Cette solution nécessite que l’état soit conservé par votre application de traitement, mais offre à vos expéditeurs un point de terminaison plus susceptible d’être disponible.
+Cet exemple envoie votre tooone d’événement des partitions disponibles de hello dans votre concentrateur d’événements et définit le numéro de séquence hello correspondant à partir de votre application. Cette solution requiert toobe état conservé par votre application de traitement, mais il donne à votre expéditeurs un point de terminaison qui est plus probable toobe disponible.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Vous pouvez en apprendre plus sur Event Hubs en consultant les liens suivants :
+Vous pouvez plus d’informations sur les concentrateurs d’événements en visitant hello suivant liens :
 
 * [Présentation du service Event Hubs](event-hubs-what-is-event-hubs.md)
 * [Créer un concentrateur d’événements](event-hubs-create.md)

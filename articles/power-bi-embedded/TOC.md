@@ -12,7 +12,7 @@
 ### [Scénarios courants](power-bi-embedded-scenarios.md)
 
 ## Gérer
-### [Se connecter à une source de données](power-bi-embedded-connect-datasource.md)
+### [Connectez la source de données tooa](power-bi-embedded-connect-datasource.md)
 ### [Incorporer un rapport Power BI](power-bi-embedded-embed-report.md)
 ### [Interagir avec les rapports](power-bi-embedded-interact-with-reports.md)
 ### [Créer un rapport à partir d’un jeu de données](power-bi-embedded-create-report-from-dataset.md)

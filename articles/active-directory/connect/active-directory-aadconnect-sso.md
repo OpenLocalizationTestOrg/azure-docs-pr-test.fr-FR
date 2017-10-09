@@ -1,6 +1,6 @@
 ---
 title: 'Azure AD Connect : authentification unique transparente | Microsoft Docs'
-description: "Cette rubrique décrit l’authentification unique transparente Azure Active Directory (Azure AD) et explique comment cette fonction vous permet de fournir une véritable authentification unique aux utilisateurs du réseau d’entreprise."
+description: "Cette rubrique décrit l’Azure Active Directory (Azure AD) transparente l’authentification unique et comment elle permet de vous tooprovide true l’authentification unique pour les utilisateurs du bureau d’entreprise à l’intérieur de votre réseau d’entreprise."
 services: active-directory
 keywords: "Qu’est-ce qu’Azure AD Connect, Installation d’Active Directory, Composants requis pour Azure AD, SSO, Authentification unique"
 documentationcenter: 
@@ -14,43 +14,43 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/04/2017
 ms.author: billmath
-ms.openlocfilehash: 5a390208f4b7c22e96d7888bcbbd14d8b27667eb
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 11c778c37ee39866dcc3a14ab648cfcd8e322e47
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-seamless-single-sign-on"></a>Authentification unique transparente Azure Active Directory
 
 ## <a name="what-is-azure-active-directory-seamless-single-sign-on"></a>Qu’est-ce que l’authentification unique transparente Azure Active Directory ?
 
-L’authentification unique transparente Azure Active Directory connecte automatiquement les utilisateurs lorsque leurs appareils d’entreprise sont connectés au réseau de l’entreprise. Lorsque cette fonctionnalité est activée, les utilisateurs n’ont plus besoin de taper leur mot de passe pour se connecter à Azure AD ni même, dans la plupart des cas, leur nom d’utilisateur. Cette fonctionnalité offre à vos utilisateurs un accès facilité à vos applications cloud sans nécessiter de composants locaux supplémentaires.
+Azure Active Directory transparente Single Sign-On (Azure AD transparente l’authentification unique) connecte automatiquement les utilisateurs lorsqu’ils sont sur des appareils d’entreprise connectés tooyour réseau de l’entreprise. Lorsque activé, les utilisateurs ne doivent tootype dans leur toosign des mots de passe dans tooAzure AD et en règle générale, de même type dans leurs noms d’utilisateurs. Cette fonctionnalité fournit à vos utilisateurs un accès facile tooyour les applications cloud sans avoir besoin de tous les composants de site supplémentaires.
 
-L’authentification unique transparente peut être combinée avec la [synchronisation de hachage de mot de passe](active-directory-aadconnectsync-implement-password-synchronization.md) et [l’authentification directe](active-directory-aadconnect-pass-through-authentication.md).
+L’authentification unique transparente peut être combiné avec deux hello [synchronisation du hachage de mot de passe](active-directory-aadconnectsync-implement-password-synchronization.md) ou [authentification directe](active-directory-aadconnect-pass-through-authentication.md) méthodes de connexion.
 
 ![Authentification unique transparente](./media/active-directory-aadconnect-sso/sso1.png)
 
 >[!IMPORTANT]
->L’authentification unique transparente est actuellement en préversion. Cette fonctionnalité n’est _pas_ applicable aux services de fédération Active Directory (AD FS).
+>L’authentification unique transparente est actuellement en préversion. Cette fonctionnalité est _pas_ tooActive applicable Directory Federation Services (ADFS).
 
 ## <a name="key-benefits"></a>Principaux avantages
 
 - *Une meilleure expérience utilisateur*
   - Les utilisateurs sont automatiquement connectés aux applications cloud et locales.
-  - Les utilisateurs n’ont pas à saisir leur mot de passe plusieurs fois.
-- *Facile à déployer et à gérer*
-  - Aucun composant local supplémentaire n’est nécessaire pour que cela fonctionne.
+  - Les utilisateurs n’aient tooenter leurs mots de passe à plusieurs reprises.
+- *Toodeploy facile & administrer*
+  - Aucun composant supplémentaire ne nécessaire sur site toomake ce travail.
   - Fonctionne avec n’importe quelle méthode d’authentification cloud - [Synchronisation de hachage de mot de passe](active-directory-aadconnectsync-implement-password-synchronization.md) ou [Authentification directe](active-directory-aadconnect-pass-through-authentication.md).
-  - Peut être déployée pour certains utilisateurs ou pour l’ensemble de vos utilisateurs à l’aide d’une stratégie de groupe.
-  - Inscrivez des appareils non-Windows 10 auprès d’Azure AD sans avoir besoin d’une infrastructure AD FS. Cette fonctionnalité exige que vous utilisiez la version 2.1 ou supérieure du [client workplace-join](https://www.microsoft.com/download/details.aspx?id=53554).
+  - Peut être déployée toosome ou tous vos utilisateurs à l’aide de la stratégie de groupe.
+  - Inscrire des appareils non Windows 10 avec Azure AD sans avoir besoin de hello de n’importe quelle infrastructure AD FS. Cette fonctionnalité doit toouse version 2.1 ou ultérieure de hello [client de jonction](https://www.microsoft.com/download/details.aspx?id=53554).
 
 ## <a name="feature-highlights"></a>Présentation des fonctionnalités
 
-- Le nom d’utilisateur peut être soit le nom d’utilisateur local par défaut (`userPrincipalName`), soit un autre attribut configuré dans Azure AD Connect (`Alternate ID`). Les deux cas d’utilisation fonctionnent car l’authentification unique transparente utilise la revendication `securityIdentifier` dans le ticket Kerberos pour rechercher l’objet utilisateur correspondant dans Azure AD.
-- L’authentification unique transparente est une fonctionnalité opportuniste. Si elle échoue pour une raison quelconque, l’expérience de connexion utilisateur retrouve son comportement normal (l’utilisateur doit alors entrer son mot de passe dans la page de connexion).
-- Si une application transfère un paramètre `domain_hint` (OpenID Connect) ou `whr` (SAML), correspondant à votre locataire, ou encore un paramètre `login_hint`, correspondant à l’utilisateur, dans sa demande de connexion Azure AD, les utilisateurs sont automatiquement connectés, sans qu’ils n’aient à entrer leurs nom d’utilisateur et mot de passe.
+- Nom d’utilisateur de connexion peut être un nom d’utilisateur de hello local par défaut (`userPrincipalName`) ou un autre attribut configuré dans Azure AD Connect (`Alternate ID`). Les deux utilisent le travail de cas étant donné que l’authentification unique transparente utilise hello `securityIdentifier` revendication hello toolook de ticket Kerberos de l’objet utilisateur correspondant de hello dans Azure AD.
+- L’authentification unique transparente est une fonctionnalité opportuniste. Si elle échoue pour une raison quelconque, expérience d’authentification de l’utilisateur du hello repasse comportement normal de tooits - c'est-à-dire, hello utilisateur doit tooenter leur mot de passe sur la page de connexion hello.
+- Si une application transfère un `domain_hint` (OpenID Connect) ou `whr` paramètre (SAML) - identifier votre locataire, ou `login_hint` paramètre - identifiant utilisateur de hello, dans sa demande de connexion Azure AD, les utilisateurs sont automatiquement connectés sans les Saisie des noms d’utilisateurs ou des mots de passe.
 - L’authentification unique transparente peut être activée par le biais d’Azure AD Connect.
-- Cette fonctionnalité est gratuite et il est inutile de disposer des éditions payantes d’Azure AD pour l’utiliser.
+- Il s’agit d’une fonctionnalité gratuite et vous n’avez pas besoin des éditions payantes d’Azure AD toouse il.
 - L’authentification unique est prise en charge par les clients basés sur le navigateur web et les clients Office qui prennent en charge [l’authentification moderne](https://aka.ms/modernauthga) sur les plateformes et navigateurs compatibles avec l’authentification Kerberos :
 
 | Système d’exploitation\Navigateur |Internet Explorer|Edge|Google Chrome|Mozilla Firefox|Safari|
@@ -64,15 +64,15 @@ L’authentification unique transparente peut être combinée avec la [synchroni
 \*Nécessite une [configuration supplémentaire](active-directory-aadconnect-sso-quick-start.md#browser-considerations)
 
 >[!IMPORTANT]
->Nous avons récemment restauré la prise en charge de Edge afin d’examiner les problèmes signalés par le client.
+>Nous avons récemment restaurée prise en charge de bord tooinvestigate problèmes signalés par le client.
 
 >[!NOTE]
->Concernant Windows 10, il est recommandé d’utiliser [Azure AD Join](../active-directory-azureadjoin-overview.md) pour une expérience optimale d’authentification unique dans Azure AD.
+>Pour Windows 10, il est recommandé de hello toouse [Azure AD Join](../active-directory-azureadjoin-overview.md) pour hello optimale unique sur l’authentification auprès d’Azure AD.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
 - [**Démarrage rapide**](active-directory-aadconnect-sso-quick-start.md) : découvrez l’authentification unique transparente Azure AD.
 - [**Immersion technique**](active-directory-aadconnect-sso-how-it-works.md) : découvrez comment fonctionne cette fonctionnalité.
-- [**Forum aux questions**](active-directory-aadconnect-sso-faq.md) : réponses aux questions fréquentes.
-- [**Résolution des problèmes**](active-directory-aadconnect-troubleshoot-sso.md) : découvrez comment résoudre les problèmes courants susceptibles de survenir avec cette fonctionnalité.
+- [**Forum aux Questions** ](active-directory-aadconnect-sso-faq.md) -réponses elles sonttrop aux questions.
+- [**Résoudre les problèmes** ](active-directory-aadconnect-troubleshoot-sso.md) -en savoir comment tooresolve commun problèmes avec la fonctionnalité de hello.
 - [**UserVoice**](https://feedback.azure.com/forums/169401-azure-active-directory/category/160611-directory-synchronization-aad-connect) : pour le dépôt de nouvelles demandes de fonctionnalités.

@@ -1,6 +1,6 @@
 ---
-title: "E-mail de solde dû de la part d’Azure | Microsoft Docs"
-description: "Décrit comment procéder au paiement si votre abonnement Azure présente un solde impayé."
+title: "aaaPast en raison de la messagerie de solde à partir d’Azure | Documents Microsoft"
+description: "Décrit comment toomake paiement si votre abonnement Azure a un passé solde dû"
 services: 
 documentationcenter: 
 author: genlin
@@ -15,32 +15,32 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/28/2017
 ms.author: genli
-ms.openlocfilehash: b3942541e603824023c7f216b1840e8bed642a01
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ddae2106911fb598c54be8e02485b0df7ce51dcb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="resolve-past-due-balance-for-your-azure-subscription"></a>Résoudre un solde impayé pour votre abonnement Azure 
-Si votre paiement n’a pas été reçu ou que nous ne pouvons pas traiter votre paiement, vous pouvez recevoir un e-mail ou une alerte dans le [centre des comptes Azure](https://account.windowsazure.com) ou le [portail Azure](https://portal.azure.com). Si vous ne recevez pas de notifications de facturation par courrier électronique et que vous êtes l’administrateur du compte, [vérifiez l’adresse e-mail dans le profil de l’administrateur de compte Azure](billing-how-to-change-azure-account-profile.md). Nous vous recommandons d’utiliser une adresse e-mail que vous consultez régulièrement.
+Si votre paiement n’est pas reçu ou que nous ne pouvons pas traiter votre paiement, vous pourrez recevoir un e-mail ou d’alerte Bonjour [centre des comptes Azure](https://account.windowsazure.com) ou hello [portail Azure](https://portal.azure.com). Si vous n’obtenez pas facturation des notifications par courrier électronique et que vous hello administrateur de compte [Vérifiez hello adresse de messagerie dans le profil de l’administrateur du compte Azure](billing-how-to-change-azure-account-profile.md). Nous vous recommandons d’utiliser une adresse e-mail que vous consultez régulièrement.
 
 Si nous ne pouvons pas traiter votre paiement, vous pouvez recevoir un e-mail similaire à celui-ci :
 
-**Nous n’avons pas pu débiter votre carte de crédit pour votre abonnement. Pour éviter toute interruption de service, mettez à jour vos informations de paiement.**
+**Nous avons été toocharge Impossible de la carte du crédit pour votre abonnement. tooprevent toute interruption de service, mettez à jour vos informations de paiement.**
 
-## <a name="if-you-forget-to-pay-what-happens"></a>Que se passe-t-il si vous oubliez de payer ?
-Le service est annulé et vos ressources ne sont plus disponibles. Vos données Azure sont supprimées 90 jours après l’arrêt du service.
+## <a name="if-you-forget-toopay-what-happens"></a>Si vous oubliez toopay, que se passe-t-il ?
+service de Hello est annulée et vos ressources ne sont plus disponibles. Vos données Azure sont supprimées 90 jours après la fin de service de hello.
 
-## <a name="how-to-resolve-the-issue"></a>Que pouvez-vous faire pour résoudre le problème ?
+## <a name="how-tooresolve-hello-issue"></a>Comment tooresolve hello problème
 Payez votre solde en souffrance dans son intégralité.
 
-* Si vous payez à réception d’une facture, envoyez votre paiement à l’endroit indiqué au bas de votre facture. Si vous avez besoin d’aide, contactez le [support Azure](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade).
+* Si vous êtes sur un moyen de paiement par facture, envoyer votre emplacement de toohello paiement répertoriée au bas de hello de votre facture. Si vous avez besoin d’aide, contactez le [support Azure](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade).
 
-* Si la carte bancaire enregistrée a été refusée ou a expiré, [utilisez une autre carte bancaire pour payer l’abonnement](billing-how-to-change-credit-card.md) ou contactez votre banque pour résoudre le problème. Lorsque vous mettez à jour le mode de paiement, Azure traite immédiatement le paiement des frais en attente. Le paiement est également traité pour les autres services Microsoft comprenant des frais en attente.
+* Si votre carte de crédit hello est refusée ou a expiré, [modifier toopay de carte de crédit utilisée hello pour l’abonnement de hello](billing-how-to-change-credit-card.md) ou contactez votre problème de hello tooresolve bank. Lorsque vous mettez à jour le paiement hello, Azure traite immédiatement paiement hello pour tous les frais en attente. Le paiement est également traité pour les autres services Microsoft comprenant des frais en attente.
 
-* Si vous ne voyez pas la facture, car l’administrateur de compte a quitté l’entreprise ou assume un autre rôle, contactez le [support Azure](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade) pour résoudre le problème.
+* Si vous n’avez pas voir une facture car hello compte administrateur a quitté société de hello ou rôles modifiés, contactez [prise en charge Azure](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade) problème de hello tooresolve.
 
 Si vous savez que votre paiement a été effectué mais que votre abonnement est toujours désactivé, consultez [Réactiver un abonnement Azure désactivé](billing-subscription-become-disable.md).
 
 ## <a name="need-help-contact-support"></a>Vous avez besoin d’aide ? Contactez le support technique.
-Si vous avez besoin d’aide, [contactez le support technique](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) pour obtenir une prise en charge rapide de votre problème.
+Si vous avez besoin d’aide, [contactez le support technique](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) tooget votre problème résolu rapidement.

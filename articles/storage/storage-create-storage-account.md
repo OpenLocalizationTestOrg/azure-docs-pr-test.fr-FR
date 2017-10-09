@@ -1,6 +1,6 @@
 ---
-title: "Création, gestion ou suppression d’un compte de stockage à l’aide du Portail Azure | Microsoft Docs"
-description: "Créez un compte de stockage, gérez vos clés d’accès au compte ou supprimez un compte de stockage dans le Portail Azure. En savoir plus sur les comptes de stockage standard et Premium."
+title: "aaaHow toocreate, gérer ou supprimer un compte de stockage Bonjour portail Azure | Documents Microsoft"
+description: "Créer un nouveau compte de stockage, gérez vos clés d’accès de compte ou supprimer un compte de stockage Bonjour portail Azure. En savoir plus sur les comptes de stockage standard et Premium."
 services: storage
 documentationcenter: 
 author: robinsh
@@ -15,11 +15,11 @@ ms.topic: get-started-article
 f1_keywords: sql13.swb.windowsazurestorage.connect.f1
 ms.date: 01/23/2017
 ms.author: robinsh
-ms.openlocfilehash: 0a59bc29581b870d8aee07ed4e77df2be576361a
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: c11c6509e192170db4812f47c389fc1009b94daf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="about-azure-storage-accounts"></a>À propos des comptes de stockage Azure
 [!INCLUDE [storage-selector-portal-create-storage-account](../../includes/storage-selector-portal-create-storage-account.md)]
@@ -27,7 +27,7 @@ ms.lasthandoff: 08/03/2017
 [!INCLUDE [storage-table-cosmos-db-tip-include](../../includes/storage-table-cosmos-db-tip-include.md)]
 
 ## <a name="overview"></a>Vue d'ensemble
-Un compte de stockage Azure fournit un espace de noms unique pour stocker vos objets de données Azure Storage et y accéder. Tous les objets d’un compte de stockage sont facturés ensemble en tant que groupe. Par défaut, les données de votre compte sont uniquement accessibles par vous, le propriétaire du compte.
+Un compte de stockage Azure fournit un toostore de l’espace de noms unique et accéder à vos objets de données de stockage Azure. Tous les objets d’un compte de stockage sont facturés ensemble en tant que groupe. Par défaut, les données de salutation dans votre compte sont disponible tooyou uniquement, propriétaire du compte hello.
 
 [!INCLUDE [storage-account-types-include](../../includes/storage-account-types-include.md)]
 
@@ -35,14 +35,14 @@ Un compte de stockage Azure fournit un espace de noms unique pour stocker vos ob
 [!INCLUDE [storage-account-billing-include](../../includes/storage-account-billing-include.md)]
 
 > [!NOTE]
-> Lorsque vous créez une machine virtuelle Azure, un compte de stockage est créé automatiquement pour vous sur le lieu de déploiement si vous ne disposez pas déjà de ce type de compte à cet emplacement. Il n’est donc pas nécessaire de suivre les étapes ci-dessous pour créer un compte de stockage pour vos disques de machines virtuelles. Le nom du compte de stockage dépend du nom de la machine virtuelle. Pour plus d’informations, consultez la [documentation relative aux machines virtuelles Azure](https://azure.microsoft.com/documentation/services/virtual-machines/) .
+> Lorsque vous créez une machine virtuelle Azure, un compte de stockage est créé pour vous automatiquement dans l’emplacement de déploiement hello si vous n’avez pas déjà un compte de stockage à cet emplacement. Par conséquent, il n’est pas nécessaire toofollow les étapes de hello ci-dessous toocreate un compte de stockage pour vos disques de machine virtuelle. nom de compte de stockage Hello doit reposer sur le nom d’ordinateur virtuel hello. Consultez hello [des Machines virtuelles Azure documentation](https://azure.microsoft.com/documentation/services/virtual-machines/) pour plus d’informations.
 > 
 > 
 
 ## <a name="storage-account-endpoints"></a>Points de terminaison d'un compte de stockage
-Chaque objet que vous stockez dans Azure Storage possède une adresse URL unique. Le nom du compte de stockage constitue le sous-domaine de cette adresse. La combinaison sous-domaine/nom du domaine, qui est propre à chaque service, forme un *point de terminaison* pour votre compte de stockage.
+Chaque objet que vous stockez dans Azure Storage possède une adresse URL unique. formulaires de nom de compte de stockage Hello hello sous-domaine de cette adresse. Hello combinaison de sous-domaine et nom de domaine, qui est un service de tooeach spécifique, forme un *point de terminaison* pour votre compte de stockage.
 
-Par exemple, si le nom de votre compte de stockage est *mystorageaccount*, les points de terminaison par défaut de votre compte de stockage sont les suivants :
+Par exemple, si votre compte de stockage nommé *mystorageaccount*, sont des points de terminaison hello par défaut pour votre compte de stockage :
 
 * Service BLOB : http://*mystorageaccount*.blob.core.windows.net
 * Service de Table : http://*moncomptedestockage*.table.core.windows.net
@@ -50,114 +50,114 @@ Par exemple, si le nom de votre compte de stockage est *mystorageaccount*, les p
 * Service de fichiers : http://*mystorageaccount*.file.core.windows.net
 
 > [!NOTE]
-> Un compte de stockage d’objets blob expose uniquement le point de terminaison de service blob.
+> Un compte de stockage d’objets Blob expose uniquement un point de terminaison de service hello Blob.
 > 
 > 
 
-L’URL permettant d’accéder à un objet dans un compte de stockage est constituée de l’ajout de l’emplacement de l’objet dans le compte de stockage au point de terminaison. Par exemple, une adresse d’objet blob peut avoir ce format : http://*moncomptedestockage*.blob.core.windows.net/*monconteneur*/*monobjetblob*.
+URL de Hello pour accéder à un objet dans un compte de stockage est créé en ajoutant l’emplacement de l’objet hello dans le point de terminaison toohello hello stockage compte. Par exemple, une adresse d’objet blob peut avoir ce format : http://*moncomptedestockage*.blob.core.windows.net/*monconteneur*/*monobjetblob*.
 
-Vous pouvez aussi configurer un nom de domaine personnalisé à utiliser avec votre compte de stockage. Dans le cas de comptes de stockage classiques, consultez la page [Configurer un nom de domaine personnalisé pour un point de terminaison Blob Storage](storage-custom-domain-name.md) pour plus d’informations. Pour les comptes de stockage Resource Manager, cette fonctionnalité n’a pas encore été ajoutée au [Portail Azure](https://portal.azure.com) , mais vous pouvez la configurer avec PowerShell. Pour plus d’informations, référez-vous à l’applet de commande [Set-AzureRmStorageAccount](https://msdn.microsoft.com/library/mt607146.aspx) .  
+Vous pouvez également configurer un toouse de nom de domaine personnalisé avec votre compte de stockage. Dans le cas de comptes de stockage classiques, consultez la page [Configurer un nom de domaine personnalisé pour un point de terminaison Blob Storage](storage-custom-domain-name.md) pour plus d’informations. Pour les comptes de stockage du Gestionnaire de ressources, cette fonctionnalité n’a pas été ajoutée toohello [portail Azure](https://portal.azure.com) encore, mais vous pouvez le configurer avec PowerShell. Pour plus d’informations, consultez hello [Set-AzureRmStorageAccount](https://msdn.microsoft.com/library/mt607146.aspx) applet de commande.  
 
 ## <a name="create-a-storage-account"></a>Créez un compte de stockage.
-1. Connectez-vous au [portail Azure](https://portal.azure.com).
-2. Dans le menu Hub, sélectionnez **Nouveau** -> **Stockage** -> **Compte de stockage**.
-3. Entrez un nom pour votre compte de stockage. Pour plus d’informations sur l’utilisation du nom de compte de stockage pour adresser les objets que vous stockez dans Azure Storage, consultez [Points de terminaison d’un compte de stockage](#storage-account-endpoints) .
+1. Connectez-vous à toohello [portail Azure](https://portal.azure.com).
+2. Dans le menu du Hub hello, sélectionnez **nouveau** -> **stockage** -> **compte de stockage**.
+3. Entrez un nom pour votre compte de stockage. Consultez [points de terminaison de stockage compte](#storage-account-endpoints) pour des détails sur comment le nom de compte de stockage hello sera utilisé tooaddress vos objets dans le stockage Azure.
    
    > [!NOTE]
    > Les noms des comptes de stockage doivent comporter entre 3 et 24 caractères, uniquement des lettres minuscules et des chiffres.
    > 
-   > Le nom de votre compte de stockage doit être unique dans Azure. Le portail Azure indique si le nom du compte de stockage sélectionné est déjà utilisé.
+   > Le nom de votre compte de stockage doit être unique dans Azure. Hello portail Azure indique si le nom de compte de stockage hello que vous sélectionnez est déjà en cours d’utilisation.
    > 
    > 
-4. Sélectionnez le modèle de déploiement à utiliser : **Resource Manager** ou **Classique**. **Resource Manager** est le modèle de déploiement recommandé. Pour plus d’informations, consultez [Présentation du déploiement de Resource Manager et du déploiement classique](../azure-resource-manager/resource-manager-deployment-model.md).
+4. Spécifiez toobe de modèle de déploiement hello utilisé : **le Gestionnaire de ressources** ou **classique**. **Le Gestionnaire de ressources** hello est recommandé de modèle de déploiement. Pour plus d’informations, consultez [Présentation du déploiement de Resource Manager et du déploiement classique](../azure-resource-manager/resource-manager-deployment-model.md).
    
    > [!NOTE]
-   > Les comptes de stockage d’objets blob peuvent être créés uniquement avec le modèle de déploiement Resource Manager.
+   > Comptes de stockage d’objets BLOB ne peuvent être créés à l’aide du modèle de déploiement du Gestionnaire de ressources hello.
    > 
    > 
-5. Sélectionnez le type de compte de stockage : **Usage général** ou **Stockage Blob**. **Usage général** .
+5. Sélectionnez le type hello du compte de stockage : **usage général** ou **stockage d’objets Blob**. **Usage général** est la valeur par défaut hello.
    
-    Si **Usage général** est sélectionné, spécifiez le niveau de performances **Standard** ou **Premium**. Le niveau par défaut est **Standard**. Pour plus d’informations sur les comptes de stockage standard et premium, consultez [Introduction au Stockage Microsoft Azure](storage-introduction.md) et [Stockage Premium : stockage hautes performances pour les charges de travail des Machines Virtuelles Azure](storage-premium-storage.md).
+    Si **usage général** a été sélectionné, puis spécifiez le niveau de performances de hello : **Standard** ou **Premium**. valeur par défaut Hello est **Standard**. Pour plus d’informations sur les comptes de stockage standard et premium, consultez [Introduction tooMicrosoft Azure Storage](storage-introduction.md) et [stockage Premium : stockage hautes performances pour les charges de travail de Machine virtuelle Azure](storage-premium-storage.md).
    
-    Si **Stockage Blob** est sélectionné, spécifiez le niveau d’accès **Chaud** ou **Froid**. Le niveau par défaut est **Chaud**. Pour plus d’informations, voir [Stockage d’objets blob Azure : niveaux froid et chaud](storage-blob-storage-tiers.md) .
-6. Sélectionnez l’option de réplication du compte de stockage : **LRS**, **GRS**, **RA-GRS** ou **ZRS**. La valeur par défaut est **RA-GRS**. Pour plus d’informations sur les options de réplication d’Azure Storage, consultez [Réplication Azure Storage](storage-redundancy.md).
-7. Sélectionnez l’abonnement dans lequel vous souhaitez créer le compte de stockage.
+    Si **stockage d’objets Blob** a été sélectionné, puis spécifiez le niveau d’accès hello : **à chaud** ou **froid**. valeur par défaut Hello est **à chaud**. Pour plus d’informations, voir [Stockage d’objets blob Azure : niveaux froid et chaud](storage-blob-storage-tiers.md) .
+6. Sélectionnez l’option de réplication hello pour le compte de stockage hello : **LRS**, **GRS**, **RA-GRS**, ou **ZRS**. valeur par défaut Hello est **RA-GRS**. Pour plus d’informations sur les options de réplication d’Azure Storage, consultez [Réplication Azure Storage](storage-redundancy.md).
+7. Sélectionnez l’abonnement hello dans lequel vous souhaitez toocreate hello nouveau compte de stockage.
 8. Spécifiez un nouveau groupe de ressources ou sélectionnez un groupe de ressources existant. Pour plus d’informations sur les groupes de ressources, consultez [Vue d’ensemble d’Azure Resource Manager](../azure-resource-manager/resource-group-overview.md).
-9. Sélectionnez l’emplacement géographique de votre compte de stockage. Pour plus d’informations sur les services disponibles dans chaque région, voir [Régions Azure](https://azure.microsoft.com/regions/#services) .
-10. Cliquez sur **Créer** pour créer le compte de stockage.
+9. Sélectionnez l’emplacement géographique de hello pour votre compte de stockage. Pour plus d’informations sur les services disponibles dans chaque région, voir [Régions Azure](https://azure.microsoft.com/regions/#services) .
+10. Cliquez sur **créer** compte de stockage toocreate hello.
 
 ## <a name="manage-your-storage-account"></a>Gérer votre compte de stockage
 ### <a name="change-your-account-configuration"></a>Modifier la configuration de votre compte
-Après avoir créé votre compte de stockage, vous pouvez modifier sa configuration, notamment modifier l’option de réplication utilisée pour le compte ou modifier le niveau d’accès pour un compte de stockage d’objets blob. Dans le [Portail Azure](https://portal.azure.com), accédez à votre compte de stockage, localisez l’option **Configuration** sous **PARAMÈTRES**, puis cliquez dessus pour afficher et/ou modifier la configuration du compte.
+Après avoir créé votre compte de stockage, vous pouvez modifier sa configuration, telles que la modification d’option de réplication hello utilisée pour le compte de hello ou de la couche d’accès aux variables hello pour un compte de stockage d’objets Blob. Bonjour [portail Azure](https://portal.azure.com), accédez de compte de stockage tooyour, recherchez et cliquez sur **Configuration** sous **paramètres** tooview et/ou de la modification de configuration de compte hello.
 
 > [!NOTE]
-> Selon le niveau de performances que vous avez choisi lors de la création du compte de stockage, certaines options de réplication peuvent ne pas être disponibles.
+> Selon le niveau de performances hello choisis lors de la création du compte de stockage hello, certaines options de réplication n’est peut-être pas disponibles.
 > 
 > 
 
-La modification de l’option de réplication entraîne une modification de vos tarifs. Pour plus d’informations, voir [Tarification Azure Storage](https://azure.microsoft.com/pricing/details/storage/) .
+L’option de réplication hello modification affecte la tarification. Pour plus d’informations, voir [Tarification Azure Storage](https://azure.microsoft.com/pricing/details/storage/) .
 
-Pour les comptes de stockage d’objets blob, changer le niveau d’accès peut entraîner des frais, outre la modification des prix appliqués. Pour plus d’informations, voir [Stockage des objets blob Azure - section Tarification et facturation](storage-blob-storage-tiers.md#pricing-and-billing) .
+Pour l’objet Blob de comptes de stockage, la modification du niveau d’accès hello peuvent entraîner une baisse des frais pour hello modifier en plus toochanging le tarif. Consultez hello [comptes - tarification et facturation de stockage d’objets Blob](storage-blob-storage-tiers.md#pricing-and-billing) pour plus d’informations.
 
 ### <a name="manage-your-storage-access-keys"></a>Gérer vos clés d’accès de stockage
-Lorsque vous créez un compte de stockage, Azure génère deux clés d'accès de stockage de 512 bits, qui servent à l'authentification lors de l'accès au compte de stockage. En fournissant deux clés d'accès de stockage, Azure vous permet de régénérer les clés sans interrompre votre service de stockage ni l'accès à ce service.
+Lorsque vous créez un compte de stockage, Azure génère deux clés d’accès stockage 512 bits, qui sont utilisées pour l’authentification lors de l’accès au compte de stockage hello. En fournissant deux clés d’accès de stockage, Azure vous permet de clés de hello tooregenerate avec aucun service de stockage tooyour d’interruption ou le service d’accès toothat.
 
 > [!NOTE]
-> Nous vous recommandons d’éviter de partager vos clés d’accès de stockage avec qui que ce soit. Pour autoriser l'accès aux ressources de stockage sans donner vos clés d'accès, vous pouvez utiliser une *signature d'accès partagé*. Celle-ci donne accès à votre compte à une ressource pendant une durée que vous déterminez et avec les autorisations que vous spécifiez. Pour plus d’informations, consultez [Utilisation des signatures d’accès partagé (SAP)](storage-dotnet-shared-access-signature-part-1.md) .
+> Nous vous recommandons d’éviter de partager vos clés d’accès de stockage avec qui que ce soit. toopermit accès toostorage ressources sans vous communiquez vos clés d’accès, vous pouvez utiliser un *signature d’accès partagé*. Une signature d’accès partagé fournit des ressources de tooa d’accès dans votre compte pour un intervalle que vous définissez et avec les autorisations hello que vous spécifiez. Pour plus d’informations, consultez [Utilisation des signatures d’accès partagé (SAP)](storage-dotnet-shared-access-signature-part-1.md) .
 > 
 > 
 <a id="view-and-copy-storage-access-keys"/></a>
 #### <a name="view-and-copy-storage-access-keys"></a>Afficher et copier les clés d’accès de stockage
-Dans le [Portail Azure](https://portal.azure.com), accédez à votre compte de stockage, cliquez sur **Tous les paramètres**, puis cliquez sur **Clés d’accès** pour visualiser, copier et régénérer les clés d’accès de votre compte. Le panneau **Clés d’accès** inclut également des chaînes de connexion préconfigurées utilisant vos clés principales et secondaires, que vous pouvez copier pour utilisation dans vos applications.
+Bonjour [portail Azure](https://portal.azure.com), accédez de compte de stockage tooyour, cliquez sur **tous les paramètres** puis cliquez sur **clés d’accès** tooview, copier et régénérer vos clés d’accès de compte. Hello **clés d’accès** panneau inclut également des chaînes de connexion préconfigurée de manière à l’aide de vos clés primaires et secondaires, vous pouvez ainsi copier toouse dans vos applications.
 
 #### <a name="regenerate-storage-access-keys"></a>Régénération des clés d'accès de stockage
-Nous vous recommandons de modifier périodiquement les clés d’accès à votre compte de stockage pour garantir la sécurité des connexions de stockage. Vous bénéficiez de deux clés d’accès, ce qui vous permet de conserver des connexions au compte de stockage à l’aide d’une clé d’accès lorsque vous régénérez l’autre clé.
+Nous vous recommandons de modifier les clés d’accès hello tooyour du compte de stockage régulièrement conserver toohelp vos connexions de stockage sécurisé. Deux clés d’accès sont affectés afin que vous pouvez conserver compte de stockage toohello de connexions à l’aide d’une clé d’accès pendant la régénération de hello autre clé d’accès.
 
 > [!WARNING]
-> La régénération des clés d’accès peut affecter les services dans Azure, ainsi que vos applications qui dépendent du compte de stockage. Tous les clients qui utilisent la clé d'accès pour accéder au compte de stockage doivent être mis à jour pour utiliser la nouvelle clé.
+> Régénérer vos clés d’accès peut affecter les services dans Azure, ainsi que vos propres applications qui dépendent de compte de stockage hello. Tous les clients qui utilisent le compte de stockage hello hello accès tooaccess clé doivent être mis à jour toouse clé hello.
 > 
 > 
 
-**Media Services** : si des services de médias sont liés à votre compte de stockage, vous devez resynchroniser les clés d’accès avec ces services après avoir régénéré les clés.
+**Les services de support** -si vous avez des services de support qui dépendent de votre compte de stockage, vous devez resynchroniser les clés d’accès hello avec votre service multimédia après avoir régénéré les clés de hello.
 
-**Applications** : si des applications web ou des services cloud utilisent le compte de stockage, vous perdez les connexions en régénérant les clés, à moins de les substituer.
+**Applications** : Si vous possédez des applications web ou de services de cloud computing que hello utiliser le compte de stockage, vous allez perdre les connexions hello si vous régénérez des clés, sauf si vous régénérez vos clés.
 
-**Explorateurs de stockage** : si vous utilisez des [applications d’explorateur de stockage](storage-explorers.md), vous devrez probablement mettre à jour la clé de stockage utilisée par ces applications.
+**Explorateurs de stockage** : Si vous utilisez une [applications de l’Explorateur de stockage](storage-explorers.md), vous devrez probablement tooupdate hello la clé utilisée par ces applications.
 
-Voici le processus de rotation de vos clés d’accès de stockage :
+Voici le processus de hello rotation de vos clés d’accès de stockage :
 
-1. Mettez à jour les chaînes de connexion dans votre code d'application pour désigner la clé d'accès secondaire du compte de stockage.
-2. Régénérez la clé d'accès principale de votre compte de stockage. Dans le panneau **Clés d’accès**, cliquez sur **Régénérer Key1**, puis sur **Oui** pour confirmer que vous souhaitez générer une nouvelle clé.
-3. Mettez à jour les chaînes de connexion dans votre code pour désigner la nouvelle clé d’accès principale.
-4. Régénérez la clé d’accès secondaire de la même manière.
+1. Mettre à jour les chaînes de connexion hello dans votre clé d’accès secondaire application code tooreference hello hello du compte de stockage.
+2. Régénérer la clé d’accès primaire hello pour votre compte de stockage. Sur hello **clés d’accès** panneau, cliquez sur **Key1 de régénérer**, puis cliquez sur **Oui** tooconfirm que vous souhaitez toogenerate une nouvelle clé.
+3. Mettre à jour les chaînes de connexion hello dans votre code tooreference hello nouvelle clé primaire.
+4. Accès secondaire de hello régénérer la clé Bonjour même manière.
 
 ## <a name="delete-a-storage-account"></a>Suppression d'un compte de stockage
-Pour supprimer un compte de stockage que vous n’utilisez plus, accédez au compte de stockage dans le [portail Azure](https://portal.azure.com), puis cliquez sur **Supprimer**. La suppression d’un compte de stockage supprime l’intégralité du compte, y compris toutes les données qu’il contient.
+tooremove un compte de stockage que vous n’utilisez plus, accédez à compte de stockage toohello Bonjour [portail Azure](https://portal.azure.com), puis cliquez sur **supprimer**. Suppression d’un compte de stockage supprime de compte hello, y compris toutes les données dans le compte de hello.
 
 > [!WARNING]
-> Il n’est pas possible de restaurer un compte de stockage supprimé ou son contenu avant la suppression. Veillez à sauvegarder tout ce que vous souhaitez conserver avant de supprimer le compte. Ceci vaut également pour toutes les ressources du compte : dès que vous supprimez un objet blob, une table, une file d’attente ou un fichier, la suppression est irréversible.
+> Il est toorestore n’est pas possible à un compte de stockage supprimé ou récupérer le contenu hello qu’il contenait avant la suppression. Être tooback que rien souhaité toosave avant de supprimer le compte de hello. Cela est également vrai pour toutes les ressources dans le compte de hello, lorsque vous supprimez un objet blob, table, file d’attente ou un fichier, celui-ci est définitivement supprimé.
 > 
 > 
 
-Pour supprimer un compte de stockage qui est associé à une machine virtuelle Azure, vous devez tout d’abord vous assurer que tous les disques des machines virtuelles ont été supprimés. Si vous ne commencez pas par supprimer les disques des machines virtuelles, vous voyez un message d’erreur semblable au suivant lorsque vous essayez de supprimer votre compte de stockage :
+toodelete un compte de stockage qui est associé à une machine virtuelle Azure, vous devez tout d’abord vous assurer que tous les disques virtuels ont été supprimées. Si vous ne supprimez pas tout d’abord vos disques de machine virtuelle, puis lorsque vous essayez de toodelete votre compte de stockage, vous verrez un message d’erreur semblable à :
 
-    Failed to delete storage account <vm-storage-account-name>. Unable to delete storage account <vm-storage-account-name>: 'Storage account <vm-storage-account-name> has some active image(s) and/or disk(s). Ensure these image(s) and/or disk(s) are removed before deleting this storage account.'.
+    Failed toodelete storage account <vm-storage-account-name>. Unable toodelete storage account <vm-storage-account-name>: 'Storage account <vm-storage-account-name> has some active image(s) and/or disk(s). Ensure these image(s) and/or disk(s) are removed before deleting this storage account.'.
 
-Si le compte de stockage utilise le modèle de déploiement Classic, vous pouvez supprimer le disque de machine virtuelle en procédant comme suit dans le [portail Azure](https://manage.windowsazure.com):
+Si le compte de stockage hello utilise un modèle de déploiement classique de hello, vous pouvez supprimer le disque de machine virtuelle hello en suivant ces étapes Bonjour [portail Azure](https://manage.windowsazure.com):
 
-1. Accédez au [portail Azure Classic](https://manage.windowsazure.com).
-2. Accédez à l’onglet Virtual Machines.
-3. Cliquez sur l’onglet Disques.
+1. Accédez toohello [portail Azure classic](https://manage.windowsazure.com).
+2. Accédez à onglet de Machines virtuelles toohello.
+3. Cliquez sur onglet de disques hello.
 4. Sélectionnez votre disque de données, puis cliquez sur Supprimer le disque.
-5. Pour supprimer des images de disque, accédez à l’onglet Images et supprimez les images qui sont stockées dans le compte.
+5. toodelete des images de disque, accédez d’onglet d’Images toohello et supprimez toutes les images sont stockées dans le compte de hello.
 
-Pour plus d’informations, voir la [documentation sur les machines virtuelles Azure](http://azure.microsoft.com/documentation/services/virtual-machines/).
+Pour plus d’informations, consultez hello [documentation de la Machine virtuelle Azure](http://azure.microsoft.com/documentation/services/virtual-machines/).
 
 ## <a name="next-steps"></a>Étapes suivantes
-* [Microsoft Azure Storage Explorer](../vs-azure-tools-storage-manage-with-storage-explorer.md) est une application autonome et gratuite de Microsoft qui vous permet d’exploiter visuellement les données de Stockage Azure sur Windows, macOS et Linux.
+* [Microsoft Azure Storage Explorer](../vs-azure-tools-storage-manage-with-storage-explorer.md) est une application autonome gratuit, à partir de Microsoft qui vous permet de toowork visuellement avec des données de stockage Azure sur Windows, Mac OS et Linux.
 * [Stockage d’objets blob Azure : niveaux froid et chaud](storage-blob-storage-tiers.md)
 * [Réplication Azure Storage](storage-redundancy.md)
 * [Configuration des chaînes de connexion Azure Storage](storage-configure-connection-string.md)
-* [Transfert de données avec l'utilitaire de ligne de commande AzCopy](storage-use-azcopy.md)
-* Consultez le [Blog de l'équipe Azure Storage](http://blogs.msdn.com/b/windowsazurestorage/).
+* [Transfert de données avec l’utilitaire de ligne de commande AzCopy de hello](storage-use-azcopy.md)
+* Visitez hello [Blog de l’équipe stockage Azure](http://blogs.msdn.com/b/windowsazurestorage/).
 

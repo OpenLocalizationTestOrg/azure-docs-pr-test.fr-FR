@@ -1,6 +1,6 @@
 ---
-title: "À propos des disques et des VHD pour les machines virtuelles Microsoft Azure Windows | Microsoft Docs"
-description: "Découvrez les notions de base relatives aux disques et aux VHD pour les machines virtuelles Windows dans Azure."
+title: aaaAbout disques et les disques durs virtuels pour les machines virtuelles Windows de Microsoft Azure | Documents Microsoft
+description: "Découvrez les principes de base hello des disques et des machines virtuelles disques durs virtuels pour Windows Azure."
 services: storage
 documentationcenter: 
 author: robinsh
@@ -14,71 +14,71 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/15/2017
 ms.author: robinsh
-ms.openlocfilehash: 34a4d8fa176484fbadb1b385d794cada5be607c8
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 859e564dc74240bd7c70fec33255b8d071c4acf7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="about-disks-and-vhds-for-azure-windows-vms"></a>À propos des disques et des VHD pour les machines virtuelles Azure Windows
-Comme tout autre ordinateur, les machines virtuelles dans Azure utilisent des disques comme emplacement de stockage pour un système d’exploitation, des applications et des données. Toutes les machines virtuelles Azure possèdent au moins deux disques : un disque de système d’exploitation Windows et un disque temporaire. Le disque de système d’exploitation est créé à partir d’une image. Le disque de système d’exploitation et l’image sont des disques durs virtuels (VHD) stockés dans un compte de stockage Azure. Les machines virtuelles peuvent également disposer d’un ou plusieurs disques de données, également stockés sur les VHD. 
+Comme tout autre ordinateur, machines virtuelles dans Azure utilisent des disques comme un toostore place un système d’exploitation, des applications et des données. Toutes les machines virtuelles Azure possèdent au moins deux disques : un disque de système d’exploitation Windows et un disque temporaire. disque de système d’exploitation Hello est créé à partir d’une image et disque de système d’exploitation hello et image de hello sont des disques durs virtuels (VHD) stockées dans un compte de stockage Azure. Les machines virtuelles peuvent également disposer d’un ou plusieurs disques de données, également stockés sur les VHD. 
 
-Dans cet article, nous parlons des différentes utilisations pour les disques, puis nous abordons les types de disques que vous pouvez créer et utiliser. Cet article est également disponible pour les [machines virtuelles Linux](storage-about-disks-and-vhds-linux.md).
+Dans cet article, nous parlons de différentes utilisations de hello pour les disques de hello et puis discuter hello différents types de disques, vous pouvez créer et utiliser. Cet article est également disponible pour les [machines virtuelles Linux](storage-about-disks-and-vhds-linux.md).
 
 [!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-both-include.md)]
 
 ## <a name="disks-used-by-vms"></a>Disques utilisés par les machines virtuelles
 
-Examinons comment les disques sont utilisés par les machines virtuelles.
+Jetons un œil sur l’utilisation des disques de hello par hello machines virtuelles.
 
 ### <a name="operating-system-disk"></a>Disque de système d’exploitation
-Chaque machine virtuelle dispose d’un disque de système d’exploitation attaché. Il est enregistré comme disque SATA et porte par défaut le nom de lecteur C:. Ce disque a une capacité maximale de 2048 gigaoctets (Go). 
+Chaque machine virtuelle dispose d’un disque de système d’exploitation attaché. Il a enregistré en tant que lecteur SATA et étiqueté en tant que lecteur C: de hello par défaut. Ce disque a une capacité maximale de 2048 gigaoctets (Go). 
 
 ### <a name="temporary-disk"></a>Disque temporaire
-Chaque machine virtuelle contient un disque temporaire. Il fournit un stockage à court terme pour les applications et les processus, et est destiné à stocker seulement des données comme les fichiers de pagination ou d’échange. Les données présentes sur le disque temporaire peuvent être perdues lors d’un [événement de maintenance](../virtual-machines/windows/manage-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json#understand-vm-reboots---maintenance-vs-downtime) ou quand vous [redéployez une machine virtuelle](../virtual-machines/windows/redeploy-to-new-node.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). Lors d’un redémarrage standard de la machine virtuelle, les données présentes sur le disque temporaire doivent normalement être conservées.
+Chaque machine virtuelle contient un disque temporaire. disque temporaire de Hello fournit le stockage à court terme pour les applications et les processus et données du magasin prévue tooonly tels que des fichiers d’échange. Données sur le disque temporaire de hello peuvent être perdues pendant un [événement de maintenance](../virtual-machines/windows/manage-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json#understand-vm-reboots---maintenance-vs-downtime) ou lorsque vous [redéployer une machine virtuelle](../virtual-machines/windows/redeploy-to-new-node.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json). Lors du redémarrage de hello machine virtuelle standard données hello sur lecteur temporaire de hello doivent rendre persistant.
 
-Le disque temporaire est étiqueté lecteur D: par défaut, et utilisé pour le stockage de pagefile.sys. Pour remapper ce disque à une autre lettre de lecteur, voir [Modification de la lettre de lecteur du disque temporaire Windows](../virtual-machines/windows/change-drive-letter.md). La taille du disque temporaire varie en fonction de la taille de la machine virtuelle. Pour plus d’informations, voir [Tailles des machines virtuelles Windows](../virtual-machines/windows/sizes.md).
+disque temporaire de Hello porte hello lecteur D: par défaut et il est utilisé pour stocker le fichier pagefile.sys. tooremap cette lettre de lecteur différente tooa de disque, consultez [modifier la lettre de lecteur hello du disque temporaire de Windows hello](../virtual-machines/windows/change-drive-letter.md). taille de Hello du disque temporaire de hello varie selon la taille hello de machine virtuelle de hello. Pour plus d’informations, voir [Tailles des machines virtuelles Windows](../virtual-machines/windows/sizes.md).
 
-Pour plus d’informations sur l’utilisation du disque temporaire par Azure, voir [Understanding the temporary drive on Microsoft Azure Virtual Machines](https://blogs.msdn.microsoft.com/mast/2013/12/06/understanding-the-temporary-drive-on-windows-azure-virtual-machines/)
+Pour plus d’informations sur la façon dont Azure utilise le disque temporaire de hello, consultez [présentation lecteur temporaire de hello sur des Machines virtuelles Microsoft Azure](https://blogs.msdn.microsoft.com/mast/2013/12/06/understanding-the-temporary-drive-on-windows-azure-virtual-machines/)
 
 
 ### <a name="data-disk"></a>Disque de données
-Un disque de données est un VHD attaché à une machine virtuelle pour stocker des données d’application ou d’autres données que vous devez conserver. Les disques de données sont enregistrés en tant que disques SCSI et sont nommés avec la lettre de votre choix. Chaque disque de données offre une capacité maximale de 4095 Go. La taille de la machine virtuelle détermine le nombre de disques de données que vous pouvez attacher et le type de stockage que vous pouvez utiliser pour héberger les disques.
+Un disque de données est un disque dur virtuel est les données d’application toostore tooa attaché machine virtuelle ou d’autres données que vous devez tookeep. Les disques de données sont enregistrés en tant que disques SCSI et sont nommés avec la lettre de votre choix. Chaque disque de données offre une capacité maximale de 4095 Go. taille de machine virtuelle de hello Hello détermine le nombre de disques données vous pouvez associer un type tooit et hello de stockage, vous pouvez utiliser des disques toohost hello.
 
 > [!NOTE]
 > Pour plus d’informations sur les capacités des machines virtuelles, consultez [Tailles des machines virtuelles Windows](../virtual-machines/windows/sizes.md).
 > 
 
-Lorsque vous créez une machine virtuelle à partir d’une image, Azure crée un disque de système d’exploitation. Si vous utilisez une image incluant des disques de données, Azure crée également ces derniers lors de la création de la machine virtuelle. Vous pouvez également ajouter des disques de données après avoir créé la machine virtuelle.
+Lorsque vous créez une machine virtuelle à partir d’une image, Azure crée un disque de système d’exploitation. Si vous utilisez une image qui inclut des disques de données, Azure crée également hello disques de données lorsqu’il crée la machine virtuelle de hello. Sinon, vous ajoutez des disques de données après avoir créé l’ordinateur virtuel de hello.
 
-Vous pouvez ajouter un disque de données à une machine virtuelle à tout moment, **en attachant** le disque à la machine virtuelle. Vous pouvez utiliser un VHD que vous avez chargé ou copié sur votre compte de stockage, ou qui a été créé pour vous par Azure. Le fait d’attacher un disque de données associe le fichier VHD à la machine virtuelle en plaçant un « bail » sur le VHD afin qu’il ne puisse pas être supprimé du stockage tant qu’il est attaché.
+Vous pouvez ajouter par machine virtuelle de données disques tooa à tout moment, **attachement** hello toohello de disque virtuels. Vous pouvez utiliser un disque dur virtuel que vous avez téléchargé ou copié le compte de stockage tooyour ou une qu’Azure crée pour vous. Attachement d’un disque de données associe fichier de disque dur virtuel hello hello machine virtuelle en plaçant un « bail » sur le disque dur virtuel de hello afin qu’il ne peut pas être supprimé du stockage s’il est toujours attaché.
 
 
 [!INCLUDE [storage-about-vhds-and-disks-windows-and-linux](../../includes/storage-about-vhds-and-disks-windows-and-linux.md)]
 
 ## <a name="one-last-recommendation-use-trim-with-unmanaged-standard-disks"></a>Une dernière recommandation : utilisez TRIM avec des disques standard non gérés 
 
-Si vous utilisez les disques standard non gérés (disque dur), vous devez activer TRIM. TRIM ignore les blocs inutilisés sur le disque afin que vous soyez facturé uniquement pour le stockage que vous utilisez réellement. Vous pouvez ainsi faire des économies si vous créez des fichiers volumineux, puis les supprimez. 
+Si vous utilisez les disques standard non gérés (disque dur), vous devez activer TRIM. La fonction TRIM ignore les blocs inutilisés sur le disque de hello afin de vous êtes facturé uniquement pour le stockage que vous utilisez réellement. Vous pouvez ainsi faire des économies si vous créez des fichiers volumineux, puis les supprimez. 
 
-Vous pouvez exécuter cette commande pour vérifier le paramètre TRIM. Ouvrez une invite de commandes sur votre machine virtuelle Windows et saisissez :
+Vous pouvez exécuter ce paramètre de découpage hello commande toocheck. Ouvrez une invite de commandes sur votre machine virtuelle Windows et saisissez :
 
 
 ```
 fsutil behavior query DisableDeleteNotify
 ```
 
-Si la commande renvoie 0, TRIM est bien activé. Si la valeur 1 est renvoyée, exécutez la commande suivante pour activer TRIM :
+Si la commande hello retourne 0, la fonction TRIM est activée correctement. Si elle retourne 1, exécutez hello suivant commande tooenable d’ajustement :
 
 ```
 fsutil behavior set DisableDeleteNotify 0
 ```
 
 > [!NOTE]
-> Remarque : la prise en charge de Trim démarre avec Windows Server 2012 / Windows 8 et versions ultérieures. Voir [La nouvelle API permet aux applications d’envoyer des indications « TRIM et Unmap » au support de stockage](https://msdn.microsoft.com/windows/compatibility/new-api-allows-apps-to-send-trim-and-unmap-hints).
+> Remarque : Prise en charge Trim démarre avec Windows Server 2012 / Windows 8 et versions ultérieures, consultez Voir [nouvelle API permet aux applications media de toostorage indicateurs « TRIM et annuler le mappage de » toosend](https://msdn.microsoft.com/windows/compatibility/new-api-allows-apps-to-send-trim-and-unmap-hints).
 > 
 
-<!-- Might want to match next-steps from overview of managed disks -->
+<!-- Might want toomatch next-steps from overview of managed disks -->
 ## <a name="next-steps"></a>Étapes suivantes
-* [Attacher un disque](../virtual-machines/windows/attach-managed-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) pour ajouter un stockage supplémentaire pour votre machine virtuelle.
-* [Changer la lettre de lecteur du disque temporaire Windows](../virtual-machines/windows/change-drive-letter.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json) pour que votre application puisse utiliser le lecteur D: pour les données.
+* [Attacher un disque](../virtual-machines/windows/attach-managed-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) tooadd de stockage supplémentaire pour votre machine virtuelle.
+* [Modifier la lettre de lecteur hello du disque temporaire de Windows hello](../virtual-machines/windows/change-drive-letter.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json) pour votre application peut utiliser le lecteur D: de hello pour les données.
 

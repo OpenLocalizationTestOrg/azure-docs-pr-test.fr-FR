@@ -1,6 +1,6 @@
 ---
-title: "Notifications Push sécurisées avec Azure Notification Hubs"
-description: "Découvrez comment envoyer des notifications Push sécurisées à une application iOS depuis Azure. Code samples written in Objective-C and C#."
+title: aaaAzure Notification Hubs Secure Push.
+description: "Découvrez comment toosend sécurisée push notifications tooan iOS application à partir d’Azure. Code samples written in Objective-C and C#."
 documentationcenter: ios
 author: ysxu
 manager: erikre
@@ -14,11 +14,11 @@ ms.devlang: objective-c
 ms.topic: article
 ms.date: 06/29/2016
 ms.author: yuaxu
-ms.openlocfilehash: e5f09fb3716303bb21fe7442aa6fa8832174838e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 86dd8d7042e5b9e55d2d7ff41cb42f23831fc575
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-notification-hubs-secure-push"></a>Notifications Push sécurisées avec Azure Notification Hubs
 > [!div class="op_single_selector"]
@@ -29,22 +29,22 @@ ms.lasthandoff: 07/11/2017
 > 
 
 ## <a name="overview"></a>Vue d'ensemble
-La prise en charge des notifications Push dans Microsoft Azure vous permet d’accéder à une infrastructure Push conviviale, multiplateforme avec montée en charge qui simplifie fortement l’implémentation des notifications Push pour les applications grand public et d’entreprise destinées aux plateformes mobiles.
+Prise en charge des notifications push dans Microsoft Azure vous permet de tooaccess une infrastructure push facile à utiliser, multiplateforme, à grande échelle, ce qui simplifie considérablement l’implémentation hello de notifications push pour les applications consommateur et d’entreprise mobile plateformes.
 
-En raison de contraintes liées à la réglementation ou à la sécurité, une application peut avoir besoin d'inclure dans la notification des informations qui ne peuvent pas être transmises via l'infrastructure de notification Push standard. Ce didacticiel montre comment procéder en envoyant des informations sensibles par l'intermédiaire d'une connexion authentifiée sécurisée entre l'appareil client et le serveur principal de l'application.
+En raison de contraintes de sécurité ou tooregulatory, une application peut parfois tooinclude quelque chose dans la notification hello ne peut pas être transmis au moyen de l’infrastructure de notification push standard hello. Ce didacticiel explique comment tooachieve hello la même expérience en envoyant des informations sensibles via une connexion sécurisée, authentifiée entre le périphérique de hello client et serveur principal d’application hello.
 
-Globalement, le processus est le suivant :
+À un niveau élevé, les flux hello sont comme suit :
 
-1. Le serveur principal de l'application :
+1. Hello serveur principal d’application :
    * stocke la charge utile sécurisée dans la base de données principale ;
-   * envoie l'ID de cette notification à l'appareil (aucune information sécurisée n'est envoyée).
-2. L'application qui se trouve sur l'appareil, lorsqu'elle reçoit la notification :
-   * L'appareil contacte le serveur principal en demandant la charge utile sécurisée.
-   * L'application peut afficher la charge utile sous la forme d'une notification sur l'appareil.
+   * Envoie un ID hello de cet appareil toohello de notification (aucune information sécurisée est envoyée).
+2. application Hello sur périphérique hello, lors de la réception de notification de hello :
+   * Appareil de Hello contacte hello principal demande hello sécurisé charge utile.
+   * application Hello peut afficher la charge utile de hello en tant que notification sur l’appareil de hello.
 
-Veuillez noter que dans le flux précédent (et dans ce didacticiel), nous partons du principe que l’appareil stocke un jeton d’authentification dans un stockage local, une fois l’utilisateur connecté. Cela simplifie nettement l’expérience, car l’appareil peut récupérer la charge utile sécurisée en utilisant ce jeton. Si votre application ne stocke pas les jetons d'authentification sur l'appareil, ou si ces jetons sont susceptibles d'expirer, lorsque l'application sur l'appareil reçoit la notification, elle doit afficher une notification générique demandant à l'utilisateur de lancer l'application. L'application authentifie alors l'utilisateur et affiche la charge utile de la notification.
+Il est important de toonote que Bonjour précédant le flux (et, dans ce didacticiel), nous supposons que cet appareil hello stocke un jeton d’authentification dans le stockage local, une fois hello utilisateur se connecte. Cela garantit une expérience entièrement transparente, comme périphérique de hello peut récupérer de données de la notification hello sécurisé à l’aide de ce jeton. Si votre application n’enregistre pas les jetons d’authentification sur l’appareil de hello, ou si ces jetons peuvent avoir expiré, hello application d’appareil, à la réception de notification de hello doit afficher une notification générique invitant hello utilisateur toolaunch hello application. application Hello puis authentifie l’utilisateur de hello et montre la charge utile de notification hello.
 
-Ce didacticiel sur les notifications Push sécurisées montre comment envoyer une notification Push en toute sécurité. Il s’appuie sur le didacticiel [Envoi de notifications à des utilisateurs](notification-hubs-aspnet-backend-ios-apple-apns-notification.md). Vous devez donc suivre ce dernier au préalable.
+Ce didacticiel de Push de sécuriser montre comment toosend une notification push en toute sécurité. didacticiel de Hello s’appuie sur hello [avertir les utilisateurs](notification-hubs-aspnet-backend-ios-apple-apns-notification.md) (didacticiel), donc vous devez effectuer les étapes de hello tout d’abord dans ce didacticiel.
 
 > [!NOTE]
 > Ce didacticiel repose sur l'hypothèse que vous avez créé et configuré votre hub de notification comme décrit dans [Prise en main de Notification Hubs (iOS)](notification-hubs-ios-apple-push-notification-apns-get-started.md).
@@ -53,20 +53,20 @@ Ce didacticiel sur les notifications Push sécurisées montre comment envoyer un
 
 [!INCLUDE [notification-hubs-aspnet-backend-securepush](../../includes/notification-hubs-aspnet-backend-securepush.md)]
 
-## <a name="modify-the-ios-project"></a>Modification du projet iOS
-Maintenant que vous avez modifié le serveur principal de votre application pour qu'il n'envoie que l' *id* des notifications, vous devez modifier votre application iOS pour gérer cette notification et rappeler votre serveur pour récupérer le message sécurisé à afficher.
+## <a name="modify-hello-ios-project"></a>Modifier le projet iOS de hello
+Maintenant que vous avez modifié votre hello simplement d’application back-end toosend *id* d’une notification, vous avez toochange votre toohandle d’application iOS notification et rappeler votre hello principal tooretrieve secure toobe message affiché.
 
-Pour cela, nous devons écrire la logique permettant de récupérer le contenu sécurisé auprès du serveur principal de l'application.
+tooachieve cet objectif, nous avons toowrite hello logique tooretrieve hello contenu sécurisé de hello du serveur principal d’application.
 
-1. Dans **AppDelegate.m**, assurez-vous que l’application s’inscrit aux notifications sans assistance afin qu’elle traite l’ID de notification envoyé à partir du serveur principal. Ajoutez l’option **UIRemoteNotificationTypeNewsstandContentAvailability** dans didFinishLaunchingWithOptions :
+1. Dans **AppDelegate.m**, assurez-vous que registres d’application hello pour les notifications en mode silencieux afin qu’il traite les id de notification hello envoyé à partir de hello principal. Ajouter hello **UIRemoteNotificationTypeNewsstandContentAvailability** option dans didFinishLaunchingWithOptions :
    
         [[UIApplication sharedApplication] registerForRemoteNotificationTypes: UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeNewsstandContentAvailability];
-2. Dans **AppDelegate.m** , ajoutez une section d'implémentation au début, avec la déclaration qui suit :
+2. Dans votre **AppDelegate.m** ajouter une section d’implémentation haut hello avec hello suit déclaration :
    
         @interface AppDelegate ()
         - (void) retrieveSecurePayloadWithId:(int)payloadId completion: (void(^)(NSString*, NSError*)) completion;
         @end
-3. Ensuite, ajoutez le code qui suit dans la section d’implémentation, en remplaçant l’espace réservé `{back-end endpoint}` par le point de terminaison de votre serveur principal que vous avez obtenu précédemment :
+3. Puis ajoutez Bonjour de section hello implémentation suivante de code, en remplaçant les espaces réservés de hello `{back-end endpoint}` avec point de terminaison hello pour votre serveur principal obtenu précédemment :
 
 ```
         NSString *const GetNotificationEndpoint = @"{back-end endpoint}/api/notifications";
@@ -115,13 +115,13 @@ Pour cela, nous devons écrire la logique permettant de récupérer le contenu s
         }
 ```
 
-    This method calls your app back-end to retrieve the notification content using the credentials stored in the shared preferences.
+    This method calls your app back-end tooretrieve hello notification content using hello credentials stored in hello shared preferences.
 
-1. Maintenant, nous devons gérer la notification entrante et utiliser la méthode ci-dessus pour récupérer le contenu à afficher. Nous devons tout d'abord permettre à l'application iOS de s'exécuter en arrière-plan lorsqu'elle reçoit une notification Push. Dans **XCode**, sélectionnez votre projet d’application dans le volet gauche, puis cliquez sur votre cible d’application principale dans la section **Cibles** du volet central.
-2. Cliquez ensuite sur l’onglet **Capacités** en haut du volet central et cochez la case **Notifications distantes**.
+1. Maintenant nous qu’une notification de toohandle hello entrants et utiliser la méthode hello ci-dessus toodisplay de contenu tooretrieve hello. Tout d’abord, nous avons tooenable votre toorun d’application iOS en arrière-plan de hello lors de la réception d’une notification push. Dans **XCode**, sélectionnez votre projet d’application sur le panneau gauche hello, puis cliquez sur la cible de votre application principale Bonjour **cibles** section à partir du volet central de hello.
+2. Puis cliquez sur votre **fonctionnalités** haut hello de votre volet central et vérifiez hello **des Notifications à distance** case à cocher.
    
     ![][IOS1]
-3. Dans **AppDelegate.m** , ajoutez la méthode suivante pour gérer les notifications Push :
+3. Dans **AppDelegate.m** ajouter hello suivant des notifications push de méthode toohandle :
    
         -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
         {
@@ -144,13 +144,13 @@ Pour cela, nous devons écrire la logique permettant de récupérer le contenu s
    
         }
    
-    Notez qu'il est préférable de gérer les cas de refus ou les cas concernant les propriétés d'en-tête d'authentification manquantes au niveau du serveur. La gestion spécifique de ces cas dépend surtout de l'expérience utilisateur souhaitée. Une possibilité est d'afficher une notification avec une invite générique demandant à l'utilisateur de s'authentifier afin de récupérer la notification elle-même.
+    Notez qu’il s’agit de cas de hello toohandle préférable de propriété d’en-tête d’authentification manquante ou du rejet par hello back-end. gestion spécifique de Hello de ces cas dépendent principalement de votre expérience d’utilisateur cible. Une option consiste à toodisplay une notification avec un message générique pour hello tooauthenticate tooretrieve hello réel notification à l’utilisateur.
 
-## <a name="run-the-application"></a>Exécution de l'application
-Pour exécuter l'application, procédez comme suit :
+## <a name="run-hello-application"></a>Exécutez hello Application
+toorun hello application, procédez comme hello suivant :
 
-1. Dans XCode, exécutez l’application sur un appareil iOS physique (les notifications Push ne fonctionnent pas dans le simulateur).
-2. Dans l'interface utilisateur de l'application iOS, entrez un nom d'utilisateur et un mot de passe. La valeur peut être une chaîne quelconque, mais elle doit être identique pour les deux.
-3. Dans l'interface utilisateur de l'application iOS, cliquez sur **Log in**. Cliquez ensuite sur **Send push**. Vous devriez voir la notification sécurisée affichée dans le centre de notifications.
+1. Dans XCode, exécutez l’application hello sur un appareil iOS physiques (push notifications ne fonctionnera pas dans le simulateur de hello).
+2. Dans une application iOS de hello l’interface utilisateur, entrez un nom d’utilisateur et un mot de passe. Il peuvent être n’importe quelle chaîne, mais ils doivent être hello la même valeur.
+3. Dans une application iOS de hello l’interface utilisateur, cliquez sur **connecter**. Cliquez ensuite sur **Send push**. Vous devez voir les notification sécurisée hello s’affiche dans le centre de notification.
 
 [IOS1]: ./media/notification-hubs-aspnet-backend-ios-secure-push/secure-push-ios-1.png

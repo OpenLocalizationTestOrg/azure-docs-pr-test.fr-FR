@@ -1,6 +1,6 @@
 ## <a name="java-sample-code-repositories"></a>Exemples de référentiel de code Java
 
-Voici la liste de tous nos exemples de référentiel pour la bibliothèque cliente Java du stockage Azure.
+Voici une liste de tous les référentiels de notre exemple de bibliothèque de client hello Java de stockage Azure.
 
 * [Getting Started with Storage - Manage Storage Account in Java (Prise en main de Stockage Azure : gérer un compte de stockage en Java)](https://azure.microsoft.com/resources/samples/storage-java-manage-storage-accounts/)
 * [Getting Started with Azure Blob Service in Java (Prise en main du service Azure Blob en Java)](https://azure.microsoft.com/resources/samples/storage-blob-java-getting-started/)

@@ -14,28 +14,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: billmath
-ms.openlocfilehash: 926f52ef64eb79205dbfb344edc7d9bece2a6947
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: fbe0df856ca2efda965650fb85c7e831a0be32c2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-ad-connect-sync-functions-reference"></a>Azure AD Connect Sync : Référence aux fonctions
-Dans Azure AD Connect, les fonctions servent à manipuler une valeur d’attribut pendant la synchronisation.  
-La syntaxe des fonctions s’exprime selon le format suivant :   
+Dans Azure AD Connect, les fonctions sont utilisée toomanipulate une valeur d’attribut lors de la synchronisation.  
+Hello syntaxe des fonctions de hello est exprimée à l’aide de hello suivant le format :  
 `<output type> FunctionName(<input type> <position name>, ..)`
 
 Si une fonction est surchargée et accepte plusieurs syntaxes, toutes les syntaxes valides sont répertoriées.  
-Les fonctions sont fortement typées et vérifient que le type passé correspond au type documenté.  
-Une erreur est renvoyée si le type ne correspond pas.
+les fonctions Hello sont fortement typées et elles vérifient que le type de hello passé dans le type de hello documentée de correspondances.  
+Si le type de hello ne correspond pas, une erreur est générée.
 
-Les types s’expriment avec la syntaxe suivante :
+types de Hello sont exprimées par hello selon la syntaxe :
 
 * **bin** : binaire
 * **bool** : booléen
 * **dt** : date/heure UTC
 * **enum** : énumération des constantes connues
-* **exp** : expression, qui est censée correspondre à une valeur booléenne
+* **EXP** – Expression, qui est attendu tooevaluate tooa booléen
 * **mvbin** : binaire à valeurs multiples
 * **mvstr** : chaîne à valeurs multiples
 * **mvref** : référence à valeurs multiples
@@ -45,7 +45,7 @@ Les types s’expriment avec la syntaxe suivante :
 * **var** : variante de (quasiment) tout autre type
 * **void** : ne retourne aucune valeur
 
-Les fonctions ayant pour type **mvbin**, **mvstr** et **mvref** ne peuvent fonctionner que sur les attributs à valeurs multiples. Les fonctions avec **bin**, **str** et **ref** fonctionnent sur des attributs à valeur unique et à valeurs multiples.
+Hello fonctions avec les types hello **mvbin**, **mvstr**, et **mvref** ne fonctionnent sur des attributs à valeurs multiples. Les fonctions avec **bin**, **str** et **ref** fonctionnent sur des attributs à valeur unique et à valeurs multiples.
 
 ## <a name="functions-reference"></a>Référence des fonctions
 | Liste des fonctions |  |  |  |  |
@@ -88,7 +88,7 @@ Les fonctions ayant pour type **mvbin**, **mvstr** et **mvref** ne peuvent fonct
 - - -
 ### <a name="bitand"></a>BitAnd
 **Description :**  
-la fonction BitAnd définit des bits spécifiés sur une valeur.
+Hello fonction BitAnd définit des bits spécifiés sur une valeur.
 
 **Syntaxe :**  
 `num BitAnd(num value1, num value2)`
@@ -96,21 +96,21 @@ la fonction BitAnd définit des bits spécifiés sur une valeur.
 * value1, value2 : valeurs numériques qui doivent être liées par AND.
 
 **Remarques :**  
-Cette fonction convertit les deux paramètres de la représentation binaire et définit un bit sur :
+Cette fonction convertit les deux paramètres toohello binaire et définit un bit :
 
-* 0 - si un des bits, ou les deux bits correspondants dans *masque* et *indicateur* ont pour valeur 0
-* 1 - si les deux bits correspondants sont définis sur 1.
+* 0 - si une ou les deux bits correspondants dans hello *masque* et *indicateur* sont 0
+* 1 - si les deux bits correspondants de hello sont 1.
 
-En d’autres termes, elle renvoie 0 dans tous les cas, sauf si les bits correspondants de ces deux paramètres sont définis sur 1.
+En d’autres termes, elle retourne 0 dans tous les cas sauf si les bits correspondants de hello des deux paramètres sont 1.
 
 **Exemple :**  
 `BitAnd(&HF, &HF7)`  
-Renvoie 7, car les valeurs hexadécimales « F » ET « F7 » donnent cette valeur.
+Retourne 7, car hexadécimale « F » et « F7 » prendre la valeur de toothis.
 
 - - -
 ### <a name="bitor"></a>BitOr
 **Description :**  
-La fonction BitOr définit des bits spécifiés sur une valeur.
+Hello fonction BitOr définit des bits spécifiés sur une valeur.
 
 **Syntaxe :**  
 `num BitOr(num value1, num value2)`
@@ -118,28 +118,28 @@ La fonction BitOr définit des bits spécifiés sur une valeur.
 * value1, value2 : valeurs numériques qui doivent être liées par OR
 
 **Remarques :**  
-Cette fonction convertit les deux paramètres en la représentation binaire et définit un bit sur 1 si l’un des bits ou les deux bits correspondants dans le masque et l’indicateur ont pour valeur 1, ou sur 0 si les deux bits correspondants ont la valeur 0. En d’autres termes, elle renvoie 1 dans tous les cas, sauf si les bits correspondants de ces deux paramètres ont pour valeur 0.
+Cette fonction convertit les deux paramètres toohello binaire et définit un bit de too1 si une ou les deux bits correspondants hello masque et l’indicateur sont 1 et too0 si les deux bits correspondants de hello sont 0. En d’autres termes, elle retourne 1 dans tous les cas sauf si les bits correspondants de hello des deux paramètres égalent 0.
 
 - - -
 ### <a name="cbool"></a>CBool
 **Description :**  
-La fonction CBool renvoie une valeur booléenne basée sur l’expression évaluée.
+Hello fonction CBool retourne qu'une valeur booléenne en fonction de l’expression de hello évaluée
 
 **Syntaxe :**  
 `bool CBool(exp Expression)`
 
 **Remarques :**  
-Si l’expression renvoie une valeur autre que zéro, CBool renvoie la valeur True, sinon elle renvoie False.
+Si l’expression de hello évalue tooa différent de zéro, CBool retourne True, sinon elle retourne False.
 
 **Exemple :**  
 `CBool([attrib1] = [attrib2])`  
 
-Retourne True si les attributs ont la même valeur.
+Retourne True si les deux attributs ont hello la même valeur.
 
 - - -
 ### <a name="cdate"></a>CDate
 **Description :**  
-La fonction CDate renvoie une valeur DateTime UTC à partir d’une chaîne. DateTime n’est pas un type d’attribut natif dans Sync, mais il est utilisé par certaines fonctions.
+Hello fonction CDate retourne une valeur DateTime UTC à partir d’une chaîne. DateTime n’est pas un type d’attribut natif dans Sync, mais il est utilisé par certaines fonctions.
 
 **Syntaxe :**  
 `dt CDate(str value)`
@@ -147,11 +147,11 @@ La fonction CDate renvoie une valeur DateTime UTC à partir d’une chaîne. Dat
 * Valeur : chaîne comportant une date, une heure, et éventuellement, un fuseau horaire
 
 **Remarques :**  
-La chaîne renvoyée est toujours au format UTC.
+Hello retourné de chaîne est toujours en UTC.
 
 **Exemple :**  
 `CDate([employeeStartTime])`  
-Renvoie une valeur DateTime à partir de l’heure de début de l’employé.
+Retourne une valeur DateTime basée sur l’heure de début de l’employé hello
 
 `CDate("2013-01-10 4:00 PM -8")`  
 Renvoie une valeur DateTime représentant « 2013-01-11 12:00 AM ».
@@ -166,198 +166,198 @@ Renvoie une valeur DateTime représentant « 2013-01-11 12:00 AM ».
 - - -
 ### <a name="certextensionoids"></a>CertExtensionOids
 **Description :**  
-Retourne les valeurs OID de toutes les extensions critiques d’un objet certificat.
+Retourne hello Oid des valeurs de toutes les extensions critiques hello d’un objet de certificat.
 
 **Syntaxe :**  
 `mvstr CertExtensionOids(binary certificateRawData)`  
-*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. Le tableau d’octets peut contenir des données X.509 codées en binaire (DER) ou en Base64.
+*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. tableau d’octets Hello peut être codés en binaire (DER) ou des données encodées en Base64 X.509.
 
 - - -
 ### <a name="certformat"></a>CertFormat
 **Description :**  
-Retourne le nom du format de ce certificat X.509v3.
+Retourne hello nom du format de hello de ce certificat X.509v3.
 
 **Syntaxe :**  
 `str CertFormat(binary certificateRawData)`  
-*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. Le tableau d’octets peut contenir des données X.509 codées en binaire (DER) ou en Base64.
+*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. tableau d’octets Hello peut être codés en binaire (DER) ou des données encodées en Base64 X.509.
 
 - - -
 ### <a name="certfriendlyname"></a>CertFriendlyName
 **Description :**  
-Retourne l’alias associé à un certificat.
+Retourne hello associé alias pour un certificat.
 
 **Syntaxe :**  
 `str CertFriendlyName(binary certificateRawData)`  
-*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. Le tableau d’octets peut contenir des données X.509 codées en binaire (DER) ou en Base64.
+*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. tableau d’octets Hello peut être codés en binaire (DER) ou des données encodées en Base64 X.509.
 
 - - -
 ### <a name="certhashstring"></a>CertHashString
 **Description :**  
-Retourne la valeur de hachage SHA1 du certificat x.509v.3 sous forme de chaîne hexadécimale.
+Retourne hello la valeur de hachage SHA1 pour le certificat X.509v3 de hello sous forme de chaîne hexadécimale.
 
 **Syntaxe :**  
 `str CertHashString(binary certificateRawData)`  
-*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. Le tableau d’octets peut contenir des données X.509 codées en binaire (DER) ou en Base64.
+*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. tableau d’octets Hello peut être codés en binaire (DER) ou des données encodées en Base64 X.509.
 
 - - -
 ### <a name="certissuer"></a>CertIssuer
 **Description :**  
-Retourne le nom de l’autorité de certification qui a émis le certificat x.509v.3.
+Retourne hello nom de l’autorité de certification hello qui a émis le certificat x.509v.3 de hello.
 
 **Syntaxe :**  
 `str CertIssuer(binary certificateRawData)`  
-*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. Le tableau d’octets peut contenir des données X.509 codées en binaire (DER) ou en Base64.
+*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. tableau d’octets Hello peut être codés en binaire (DER) ou des données encodées en Base64 X.509.
 
 - - -
 ### <a name="certissuerdn"></a>CertIssuerDN
 **Description :**  
-Retourne le nom unique de l’émetteur de certificat.
+Retourne hello nom unique de l’émetteur du certificat hello.
 
 **Syntaxe :**  
 `str CertIssuerDN(binary certificateRawData)`  
-*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. Le tableau d’octets peut contenir des données X.509 codées en binaire (DER) ou en Base64.
+*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. tableau d’octets Hello peut être codés en binaire (DER) ou des données encodées en Base64 X.509.
 
 - - -
 ### <a name="certissueroid"></a>CertIssuerOid
 **Description :**  
-Retourne l’OID de l’émetteur de certificat.
+Retourne hello Oid de l’émetteur du certificat hello.
 
 **Syntaxe :**  
 `str CertIssuerOid(binary certificateRawData)`  
-*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. Le tableau d’octets peut contenir des données X.509 codées en binaire (DER) ou en Base64.
+*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. tableau d’octets Hello peut être codés en binaire (DER) ou des données encodées en Base64 X.509.
 
 - - -
 ### <a name="certkeyalgorithm"></a>CertKeyAlgorithm
 **Description :**  
-Retourne les informations d’algorithme de clé du certificat x.509v.3 sous forme de chaîne.
+Retourne des informations d’algorithme de clé hello pour ce certificat x.509v.3 sous forme de chaîne.
 
 **Syntaxe :**  
 `str CertKeyAlgorithm(binary certificateRawData)`  
-*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. Le tableau d’octets peut contenir des données X.509 codées en binaire (DER) ou en Base64.
+*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. tableau d’octets Hello peut être codés en binaire (DER) ou des données encodées en Base64 X.509.
 
 - - -
 ### <a name="certkeyalgorithmparams"></a>CertKeyAlgorithmParams
 **Description :**  
-Retourne les paramètres d’algorithme de clé du certificat x.509v.3 sous forme de chaîne hexadécimale.
+Retourne les paramètres d’algorithme de clé hello du certificat x.509v.3 hello sous forme de chaîne hexadécimale.
 
 **Syntaxe :**  
 `str CertKeyAlgorithm(binary certificateRawData)`  
-*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. Le tableau d’octets peut contenir des données X.509 codées en binaire (DER) ou en Base64.
+*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. tableau d’octets Hello peut être codés en binaire (DER) ou des données encodées en Base64 X.509.
 
 - - -
 ### <a name="certnameinfo"></a>CertNameInfo
 **Description :**  
-Retourne le nom du sujet et de l’émetteur d’un certificat.
+Retourne l’émetteur et l’objet de hello noms à partir d’un certificat.
 
 **Syntaxe :**  
 `str CertNameInfo(binary certificateRawData, str x509NameType, bool includesIssuerName)`  
-*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. Le tableau d’octets peut contenir des données X.509 codées en binaire (DER) ou en Base64.
-*   X509NameType : valeur X509NameType du sujet.
-*   includesIssuerName : true pour inclure le nom de l’émetteur ; sinon, false.
+*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. tableau d’octets Hello peut être codés en binaire (DER) ou des données encodées en Base64 X.509.
+*   X509NameType : hello valeur X509NameType pour l’objet de hello.
+*   includesIssuerName : nom de l’émetteur de hello tooinclude true ; Sinon, false.
 
 - - -
 ### <a name="certnotafter"></a>CertNotAfter
 **Description :**  
-Retourne la date en heure locale après laquelle un certificat n’est plus valide.
+Retourne la date de hello en heure locale après laquelle un certificat n’est plus valide.
 
 **Syntaxe :**  
 `dt CertNotAfter(binary certificateRawData)`  
-*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. Le tableau d’octets peut contenir des données X.509 codées en binaire (DER) ou en Base64.
+*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. tableau d’octets Hello peut être codés en binaire (DER) ou des données encodées en Base64 X.509.
 
 - - -
 ### <a name="certnotbefore"></a>CertNotBefore
 **Description :**  
-Retourne la date en heure locale à partir de laquelle un certificat devient valide.
+Retourne la date de hello en heure locale à laquelle un certificat devient valide.
 
 **Syntaxe :**  
 `dt CertNotBefore(binary certificateRawData)`  
-*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. Le tableau d’octets peut contenir des données X.509 codées en binaire (DER) ou en Base64.
+*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. tableau d’octets Hello peut être codés en binaire (DER) ou des données encodées en Base64 X.509.
 
 - - -
 ### <a name="certpublickeyoid"></a>CertPublicKeyOid
 **Description :**  
-Retourne l’OID de la clé publique du certificat x.509v.3.
+Retourne hello Oid de la clé publique hello du certificat x.509v.3 hello.
 
 **Syntaxe :**  
 `str CertKeyAlgorithm(binary certificateRawData)`  
-*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. Le tableau d’octets peut contenir des données X.509 codées en binaire (DER) ou en Base64.
+*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. tableau d’octets Hello peut être codés en binaire (DER) ou des données encodées en Base64 X.509.
 
 - - -
 ### <a name="certpublickeyparametersoid"></a>CertPublicKeyParametersOid
 **Description :**  
-Retourne l’OID des paramètres de clé publique du certificat x.509v.3.
+Retourne hello Oid hello paramètres de clé publique pour le certificat X.509v3 de hello.
 
 **Syntaxe :**  
 `str CertPublicKeyParametersOid(binary certificateRawData)`  
-*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. Le tableau d’octets peut contenir des données X.509 codées en binaire (DER) ou en Base64.
+*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. tableau d’octets Hello peut être codés en binaire (DER) ou des données encodées en Base64 X.509.
 
 - - -
 ### <a name="certserialnumber"></a>CertSerialNumber
 **Description :**  
-Retourne le numéro de série du certificat X.509v3.
+Retourne le numéro de série hello du certificat X.509v3 de hello.
 
 **Syntaxe :**  
 `str CertSerialNumber(binary certificateRawData)`  
-*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. Le tableau d’octets peut contenir des données X.509 codées en binaire (DER) ou en Base64.
+*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. tableau d’octets Hello peut être codés en binaire (DER) ou des données encodées en Base64 X.509.
 
 - - -
 ### <a name="certsignaturealgorithmoid"></a>CertSignatureAlgorithmOid
 **Description :**  
-Retourne l’OID de l’algorithme utilisé pour créer la signature d’un certificat.
+Retourne hello Oid de l’algorithme de hello utilisé signature de hello toocreate d’un certificat.
 
 **Syntaxe :**  
 `str CertSignatureAlgorithmOid(binary certificateRawData)`  
-*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. Le tableau d’octets peut contenir des données X.509 codées en binaire (DER) ou en Base64.
+*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. tableau d’octets Hello peut être codés en binaire (DER) ou des données encodées en Base64 X.509.
 
 - - -
 ### <a name="certsubject"></a>CertSubject
 **Description :**  
-Obtient le nom unique du sujet du certificat.
+Obtient hello nom unique du sujet d’un certificat.
 
 **Syntaxe :**  
 `str CertSubject(binary certificateRawData)`  
-*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. Le tableau d’octets peut contenir des données X.509 codées en binaire (DER) ou en Base64.
+*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. tableau d’octets Hello peut être codés en binaire (DER) ou des données encodées en Base64 X.509.
 
 - - -
 ### <a name="certsubjectnamedn"></a>CertSubjectNameDN
 **Description :**  
-Retourne le nom unique du sujet du certificat.
+Retourne hello nom unique du sujet d’un certificat.
 
 **Syntaxe :**  
 `str CertSubjectNameDN(binary certificateRawData)`  
-*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. Le tableau d’octets peut contenir des données X.509 codées en binaire (DER) ou en Base64.
+*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. tableau d’octets Hello peut être codés en binaire (DER) ou des données encodées en Base64 X.509.
 
 - - -
 ### <a name="certsubjectnameoid"></a>CertSubjectNameOid
 **Description :**  
-Retourne l’OID du nom du sujet d’un certificat.
+Retourne hello Oid de nom de l’objet hello à partir d’un certificat.
 
 **Syntaxe :**  
 `str CertSubjectNameOid(binary certificateRawData)`  
-*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. Le tableau d’octets peut contenir des données X.509 codées en binaire (DER) ou en Base64.
+*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. tableau d’octets Hello peut être codés en binaire (DER) ou des données encodées en Base64 X.509.
 
 - - -
 ### <a name="certthumbprint"></a>CertThumbprint
 **Description :**  
-Retourne l’empreinte d’un certificat.
+Hello retourne l’empreinte numérique d’un certificat.
 
 **Syntaxe :**  
 `str CertThumbprint(binary certificateRawData)`  
-*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. Le tableau d’octets peut contenir des données X.509 codées en binaire (DER) ou en Base64.
+*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. tableau d’octets Hello peut être codés en binaire (DER) ou des données encodées en Base64 X.509.
 
 - - -
 ### <a name="certversion"></a>CertVersion
 **Description :**  
-Retourne la version de format X.509 d’un certificat.
+Retourne hello version du format d’un certificat X.509.
 
 **Syntaxe :**  
 `str CertThumbprint(binary certificateRawData)`  
-*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. Le tableau d’octets peut contenir des données X.509 codées en binaire (DER) ou en Base64.
+*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. tableau d’octets Hello peut être codés en binaire (DER) ou des données encodées en Base64 X.509.
 
 - - -
 ### <a name="cguid"></a>CGuid
 **Description :**  
-La fonction CGuid convertit la représentation sous forme de chaîne d’un GUID en sa représentation binaire.
+Hello fonction CGuid convertit la représentation sous forme de chaîne hello d’une représentation binaire de GUID tooits.
 
 **Syntaxe :**  
 `bin CGuid(str GUID)`
@@ -367,31 +367,31 @@ La fonction CGuid convertit la représentation sous forme de chaîne d’un GUID
 - - -
 ### <a name="contains"></a>Contains
 **Description :**  
-La fonction Contains détecte une chaîne à l’intérieur d’un attribut à valeurs multiples.
+fonction de Hello Contains recherche une chaîne à l’intérieur d’un attribut à valeurs multiples
 
 **Syntaxe :**  
 `num Contains (mvstring attribute, str search)` - sensible à la casse  
 `num Contains (mvstring attribute, str search, enum Casetype)`  
 `num Contains (mvref attribute, str search)` - sensible à la casse
 
-* attribut : attribut à valeurs multiples à rechercher.
-* recherche : chaîne à rechercher dans l’attribut.
+* attribut : hello attribut à valeurs multiples toosearch.
+* recherche : chaîne toofind dans l’attribut de hello.
 * Casetype : CaseInsensitive ou CaseSensitive.
 
-Renvoie l’indice dans l’attribut à plusieurs valeurs où la chaîne a été trouvée. Si la chaîne est introuvable, la valeur renvoyée est 0.
+Retourne les index dans l’attribut à valeurs multiples hello où la chaîne de hello a été trouvé. 0 est retourné si la chaîne de hello est introuvable.
 
 **Remarques :**  
-Pour les attributs de chaîne à valeurs multiples, la recherche détecte des sous-chaînes dans les valeurs.  
-Pour les attributs de référence, la chaîne recherchée doit correspondre exactement à la valeur pour être considérée comme une correspondance.
+Pour les attributs de chaîne à valeurs multiples, hello recherche sous-chaînes dans les valeurs hello.  
+Pour les attributs de référence, hello chaîne recherchée doit correspondre exactement hello valeur toobe est considérée comme une correspondance.
 
 **Exemple :**  
 `IIF(Contains([proxyAddresses],"SMTP:")>0,[proxyAddresses],Error("No primary SMTP address found."))`  
-Si l’attribut proxyAddresses a une adresse de messagerie principale (indiquée par « SMTP : »), cette fonction renvoie l’attribut proxyAddress. Sinon, elle renvoie une erreur.
+Si l’attribut proxyAddresses de hello possède une adresse de messagerie principale (indiqué en majuscules « SMTP : »), puis revenez attribut proxyAddress de hello, sinon renvoie une erreur.
 
 - - -
 ### <a name="convertfrombase64"></a>ConvertFromBase64
 **Description :**  
-La fonction ConvertFromBase64 convertit la valeur encodée en base64 en chaîne régulière.
+Hello ConvertFromBase64 fonction convertit hello spécifié chaîne régulière du tooa valeur codée en base64.
 
 **Syntaxe :**  
 `str ConvertFromBase64(str source)` - part du principe que l’encodage utilisé est Unicode  
@@ -409,7 +409,7 @@ Les deux exemples renvoient «*Hello world!*»
 - - -
 ### <a name="convertfromutf8hex"></a>ConvertFromUTF8Hex
 **Description :**  
-La fonction ConvertFromUTF8Hex convertit la valeur encodée hexadécimale UTF8 spécifiée en chaîne.
+Hello ConvertFromUTF8Hex fonction convertit hello spécifié la chaîne de tooa valeur encodée en UTF8 hexadécimal.
 
 **Syntaxe :**  
 `str ConvertFromUTF8Hex(str source)`
@@ -417,7 +417,7 @@ La fonction ConvertFromUTF8Hex convertit la valeur encodée hexadécimale UTF8 s
 * source : chaîne encodée sur 2 octets UTF8
 
 **Remarques :**  
-La différence entre cette fonction et ConvertFromBase64(,UTF8) est que le résultat est convivial pour l’attribut DN.  
+Hello différence entre cette fonction et ConvertFromBase64([],UTF8) dans ce résultat hello est convivial pour l’attribut de nom unique hello.  
 Ce format est utilisé par Azure Active Directory en tant que nom de domaine.
 
 **Exemple :**  
@@ -427,8 +427,8 @@ Renvoie «*Hello world!*».
 - - -
 ### <a name="converttobase64"></a>ConvertToBase64
 **Description :**  
-La fonction ConvertToBase64 convertit une chaîne en chaîne Unicode base64.  
-Convertit la valeur d’un tableau d’entiers en sa représentation sous forme de chaîne équivalente encodée avec des chiffres en base 64.
+Hello fonction ConvertToBase64 convertit une chaîne de tooa la chaîne Unicode en base64.  
+Convertit la valeur hello d’un tableau d’entiers tooits équivalent représentation encodée en chiffres base 64.
 
 **Syntaxe :**  
 `str ConvertToBase64(str source)`
@@ -440,13 +440,13 @@ Renvoie « SABlAGwAbABvACAAdwBvAHIAbABkACEA ».
 - - -
 ### <a name="converttoutf8hex"></a>ConvertToUTF8Hex
 **Description :**  
-La fonction ConvertToUTF8Hex convertit une chaîne en valeur hexadécimale encodée UTF8.
+Hello ConvertToUTF8Hex fonction convertit une chaîne de tooa les valeur encodée en UTF8 hexadécimal.
 
 **Syntaxe :**  
 `str ConvertToUTF8Hex(str source)`
 
 **Remarques :**  
-Le format de sortie de cette fonction est utilisé par Azure Active Directory en tant que format d’attribut de nom de domaine.
+le format de sortie Hello de cette fonction est utilisé par Azure Active Directory en tant que format d’attribut DN.
 
 **Exemple :**  
 `ConvertToUTF8Hex("Hello world!")`  
@@ -455,7 +455,7 @@ Renvoie 48656C6C6F20776F726C6421.
 - - -
 ### <a name="count"></a>Count
 **Description :**  
-La fonction Count renvoie le nombre d’éléments dans un attribut à valeurs multiples.
+Hello fonction Count retourne le nombre de hello d’éléments dans un attribut à valeurs multiples
 
 **Syntaxe :**  
 `num Count(mvstr attribute)`
@@ -463,7 +463,7 @@ La fonction Count renvoie le nombre d’éléments dans un attribut à valeurs m
 - - -
 ### <a name="cnum"></a>CNum
 **Description :**  
-La fonction CNum prend une chaîne et renvoie un type de données numérique.
+Hello fonction CNum prend une chaîne et retourne un type de données numérique.
 
 **Syntaxe :**  
 `num CNum(str value)`
@@ -471,7 +471,7 @@ La fonction CNum prend une chaîne et renvoie un type de données numérique.
 - - -
 ### <a name="cref"></a>CRef
 **Description :**  
-Convertit une chaîne en attribut de référence.
+Convertit un attribut de chaîne de référence tooa
 
 **Syntaxe :**  
 `ref CRef(str value)`
@@ -482,7 +482,7 @@ Convertit une chaîne en attribut de référence.
 - - -
 ### <a name="cstr"></a>CStr
 **Description :**  
-La fonction CStr convertit en un type de données de chaîne.
+Hello pour la fonction CStr convertit le type de données de chaîne de tooa.
 
 **Syntaxe :**  
 `str CStr(num value)`  
@@ -498,12 +498,12 @@ Peut renvoyer « cn=Joe,dc=contoso,dc=com ».
 - - -
 ### <a name="dateadd"></a>DateAdd
 **Description :**  
-Renvoie un objet Date contenant une date à laquelle un intervalle de temps spécifié a été ajouté.
+Retourne une valeur Date contenant une toowhich date qu'un intervalle de temps spécifié a été ajouté.
 
 **Syntaxe :**  
 `dt DateAdd(str interval, num value, dt date)`
 
-* intervalle : expression de chaîne correspondant l’intervalle de temps que vous souhaitez ajouter. La chaîne doit avoir une des valeurs suivantes :
+* intervalle : expression qui est l’intervalle de salutation pendant laquelle vous souhaitez que tooadd de chaîne. chaîne de Hello doit avoir une des valeurs suivantes de hello :
   * yyyy Année
   * q Trimestre
   * m Mois
@@ -514,8 +514,8 @@ Renvoie un objet Date contenant une date à laquelle un intervalle de temps spé
   * h Heure
   * n Minute
   * s Seconde
-* valeur : nombre d’unités que vous souhaitez ajouter. Elle peut être positive (pour obtenir des dates dans le futur) ou négative (pour obtenir des dates dans le passé).
-* date : DateTime représentant la date à laquelle l’intervalle est ajouté.
+* valeur : hello du nombre d’unités que tooadd. Il peut être positif (dates tooget Bonjour futures) ou négatif (dates tooget Bonjour passées).
+* date : DateTime représentant date toowhich hello intervalle est ajouté.
 
 **Exemple :**  
 `DateAdd("m", 3, CDate("2001-01-01"))`  
@@ -524,7 +524,7 @@ Ajoute 3 mois et renvoie une valeur DateTime représentant « 2001-04-01 ».
 - - -
 ### <a name="datefromnum"></a>DateFromNum
 **Description :**  
-La fonction DateFromNum convertit une valeur au format de date AD en un type DateTime.
+Hello les fonction DateFromNum convertit une valeur dans tooa de format de date du AD type DateTime.
 
 **Syntaxe :**  
 `dt DateFromNum(num value)`
@@ -537,13 +537,13 @@ Renvoie une valeur DateTime représentant 2012-01-01 23:00:00.
 - - -
 ### <a name="dncomponent"></a>DNComponent
 **Description :**  
-La fonction DNComponent renvoie la valeur d’un composant de nom de domaine spécifié en partant de la gauche.
+Hello les fonction DNComponent retourne la valeur hello un composant DN spécifié à partir de la gauche.
 
 **Syntaxe :**  
 `str DNComponent(ref dn, num ComponentNumber)`
 
-* dn : attribut de référence à interpréter
-* ComponentNumber : composant du nom de domaine à renvoyer
+* nom unique : hello référence attribut toointerpret
+* ComponentNumber : composant hello hello DN tooreturn
 
 **Exemple :**  
 `DNComponent([dn],1)`  
@@ -552,14 +552,14 @@ Si dn est « cn=Joe,ou=… », la fonction renvoie Joe.
 - - -
 ### <a name="dncomponentrev"></a>DNComponentRev
 **Description :**  
-La fonction DNComponentRev renvoie la valeur d’un composant de nom de domaine spécifié en partant de la droite (fin).
+Hello DNComponentRev fonction retourne la valeur hello d’un composant DN spécifié à partir de la droite (fin hello).
 
 **Syntaxe :**  
 `str DNComponentRev(ref dn, num ComponentNumber)`  
 `str DNComponentRev(ref dn, num ComponentNumber, enum Options)`
 
-* dn : attribut de référence à interpréter
-* ComponentNumber - composant du nom de domaine à retourner
+* nom unique : hello référence attribut toointerpret
+* ComponentNumber - composant hello dans hello DN tooreturn
 * Options : contrôleur de domaine – ignorer tous les composants avec « dc = »
 
 **Exemple :**  
@@ -571,40 +571,40 @@ Renvoient US.
 - - -
 ### <a name="error"></a>Error
 **Description :**  
-La fonction Error sert à renvoyer une erreur personnalisée.
+Hello fonction Error est utilisée tooreturn une erreur personnalisée.
 
 **Syntaxe :**  
 `void Error(str ErrorMessage)`
 
 **Exemple :**  
 `IIF(IsPresent([accountName]),[accountName],Error("AccountName is required"))`  
-Si l’attribut accountName n’est pas présent, renvoie une erreur sur l’objet.
+Si hello attribut accountName n’est pas présent, provoquent une erreur sur l’objet de hello.
 
 - - -
 ### <a name="escapedncomponent"></a>EscapeDNComponent
 **Description :**  
-La fonction EscapeDNComponent prend un composant de nom de domaine et l’isole pour qu’il puisse être représenté dans l’annuaire LDAP.
+Hello fonction EscapeDNComponent prend un composant d’un nom unique et l’échappe afin qu’il peut être représentée dans l’annuaire LDAP.
 
 **Syntaxe :**  
 `str EscapeDNComponent(str value)`
 
 **Exemple :**  
 `EscapeDNComponent("cn=" & [displayName]) & "," & %ForestLDAP%)`  
-Permet de s’assurer que l’objet peut être créé dans un annuaire LDAP, même si l’attribut displayName comporte des caractères d’échappement dans LDAP.
+Garantit que l’objet de hello peut être créé dans un annuaire LDAP même si l’attribut displayName de hello comporte des caractères qui doivent être échappés dans l’annuaire LDAP.
 
 - - -
 ### <a name="formatdatetime"></a>FormatDateTime
 **Description :**  
-La fonction FormatDateTime sert à mettre en forme une valeur DateTime en chaîne dans le format spécifié.
+fonction FormatDateTime de Hello est utilisé tooformat une chaîne de tooa date/heure au format spécifié.
 
 **Syntaxe :**  
 `str FormatDateTime(dt value, str format)`
 
-* valeur : valeur au format DateTime
-* format : chaîne représentant le format à convertir.
+* valeur : une valeur au format de DateTime hello
+* format : une chaîne représentant le tooconvert de format hello pour.
 
 **Remarques :**  
-Vous trouverez les valeurs de format possibles ici : [Formats de date/heure définis par l’utilisateur (fonction Format)](http://msdn2.microsoft.com/library/73ctwf33\(VS.90\).aspx)
+Hello les valeurs possibles pour le format de hello se trouve ici : [Formats de Date/heure définis par l’utilisateur (fonction Format)](http://msdn2.microsoft.com/library/73ctwf33\(VS.90\).aspx)
 
 **Exemple :**  
 
@@ -617,7 +617,7 @@ Peut donner comme résultat « 20140905081453.0Z ».
 - - -
 ### <a name="guid"></a>GUID
 **Description :**  
-La fonction GUID génère un nouveau GUID aléatoire.
+fonction de Hello GUID génère un nouveau GUID aléatoire.
 
 **Syntaxe :**  
 `str GUID()`
@@ -625,23 +625,23 @@ La fonction GUID génère un nouveau GUID aléatoire.
 - - -
 ### <a name="iif"></a>IIF
 **Description :**  
-La fonction IIF renvoie une valeur parmi un ensemble de valeurs possibles en fonction d’une condition spécifiée.
+Hello fonction IIF renvoie l’un d’un ensemble de valeurs possibles selon une condition spécifiée.
 
 **Syntaxe :**  
 `var IIF(exp condition, var valueIfTrue, var valueIfFalse)`
 
-* condition : toute valeur ou expression qui peut être évaluée à true ou false.
-* valueIfTrue : la valeur renvoyée si la condition prend la valeur true.
-* valueIfFalse : la valeur renvoyée si la condition prend la valeur false.
+* condition : toute valeur ou expression qui peut être évaluée tootrue ou false.
+* valueIfTrue : si la condition de hello a la valeur tootrue, hello a retourné la valeur.
+* valueIfFalse : si la condition de hello a la valeur toofalse, hello a retourné la valeur.
 
 **Exemple :**  
 `IIF([employeeType]="Intern","t-" & [alias],[alias])`  
- Renvoie l’alias d’un utilisateur avec le préfixe « t- » si l’utilisateur est stagiaire. Sinon, l’alias reste inchangé.
+ Si l’utilisateur hello est intern, retourne l’alias hello d’un utilisateur avec « t- » ajouté toohello début, sinon retourne hello alias de l’utilisateur en l’état.
 
 - - -
 ### <a name="instr"></a>InStr
 **Description :**  
-La fonction InStr recherche la première occurrence d’une sous-chaîne dans une chaîne.
+Hello fonction InStr hello première occurrence d’une sous-chaîne dans une chaîne
 
 **Syntaxe :**  
 
@@ -649,38 +649,38 @@ La fonction InStr recherche la première occurrence d’une sous-chaîne dans un
 `num InStr(str stringcheck, str stringmatch, num start)`  
 `num InStr(str stringcheck, str stringmatch, num start , enum compare)`
 
-* stringcheck : chaîne à rechercher
-* stringmatch : chaîne à trouver
-* start : position de départ pour trouver la sous-chaîne
+* contrôle de chaîne : toobe recherchée de chaîne
+* correspondance de chaîne : chaîne toobe trouvé
+* Démarrer : démarrage de position toofind hello sous-chaîne
 * compare : vbTextCompare ou vbBinaryCompare
 
 **Remarques :**  
-Renvoie la position à laquelle la sous-chaîne a été trouvée, ou 0 si elle est introuvable.
+Position de hello retourne où la sous-chaîne de hello a été trouvée ou 0 si introuvable.
 
 **Exemple :**  
-`InStr("The quick brown fox","quick")`  
-Prend la valeur 5.
+`InStr("hello quick brown fox","quick")`  
+Dans la liste too5
 
 `InStr("repEated","e",3,vbBinaryCompare)`  
-Prend la valeur 7.
+Prend la valeur too7
 
 - - -
 ### <a name="instrrev"></a>InStrRev
 **Description :**  
-La fonction InStrRev recherche la dernière occurrence d’une sous-chaîne dans une chaîne.
+Hello fonction InStrRev trouve hello dernière occurrence d’une sous-chaîne dans une chaîne
 
 **Syntaxe :**  
 `num InstrRev(str stringcheck, str stringmatch)`  
 `num InstrRev(str stringcheck, str stringmatch, num start)`  
 `num InstrRev(str stringcheck, str stringmatch, num start, enum compare)`
 
-* stringcheck : chaîne à rechercher
-* stringmatch : chaîne à trouver
-* start : position de départ pour trouver la sous-chaîne
+* contrôle de chaîne : toobe recherchée de chaîne
+* correspondance de chaîne : chaîne toobe trouvé
+* Démarrer : démarrage de position toofind hello sous-chaîne
 * compare : vbTextCompare ou vbBinaryCompare
 
 **Remarques :**  
-Renvoie la position à laquelle la sous-chaîne a été trouvée, ou 0 si elle est introuvable.
+Position de hello retourne où la sous-chaîne de hello a été trouvée ou 0 si introuvable.
 
 **Exemple :**  
 `InStrRev("abbcdbbbef","bb")`  
@@ -689,40 +689,40 @@ Renvoie 7.
 - - -
 ### <a name="isbitset"></a>IsBitSet
 **Description :**  
-La fonction IsBitSet vérifie si un bit est ou non défini.
+fonction de Hello IsBitSet teste si un bit est défini ou non.
 
 **Syntaxe :**  
 `bool IsBitSet(num value, num flag)`
 
-* value : valeur numérique évaluée. flag : valeur numérique contenant le bit à évaluer
+* valeur : valeur numérique qui est évaluée. Flag : valeur numérique qui a hello bit toobe évaluée
 
 **Exemple :**  
 `IsBitSet(&HF,4)`  
-Renvoie True, car le bit « 4 » est défini dans la valeur hexadécimale « F ».
+Renvoie la valeur True, car le bit « 4 » est défini dans la valeur hexadécimale de hello « F »
 
 - - -
 ### <a name="isdate"></a>IsDate
 **Description :**  
-La fonction IsDate prend la valeur True si l’expression peut être évaluée à un type DateTime.
+Si l’expression de hello peut être évalue en un type DateTime, hello fonction IsDate prend la valeur tooTrue.
 
 **Syntaxe :**  
 `bool IsDate(var Expression)`
 
 **Remarques :**  
-Permet de déterminer si CDate() peut aboutir.
+Utilisé toodetermine si CDate() peut aboutir.
 
 - - -
 ### <a name="iscert"></a>IsCert
 **Description :**  
-Retourne la valeur true si les données brutes peuvent être sérialisées en un objet certificat .NET X509Certificate2.
+Retourne la valeur true si les données brutes hello peuvent être sérialisées en objet de certificat .NET X509Certificate2.
 
 **Syntaxe :**  
 `bool CertThumbprint(binary certificateRawData)`  
-*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. Le tableau d’octets peut contenir des données X.509 codées en binaire (DER) ou en Base64.
+*   certificateRawData : représentation en tableau d’octets d’un certificat X.509. tableau d’octets Hello peut être codés en binaire (DER) ou des données encodées en Base64 X.509.
 - - -
 ### <a name="isempty"></a>IsEmpty
 **Description :**  
-La fonction IsEmpty prend la valeur True si l’attribut est présent dans CS ou MV mais qu’il est évalué à une chaîne vide.
+Si l’attribut de hello est présent dans hello CS ou MV mais prend la valeur tooan une chaîne vide, puis hello IsEmpty évalue tooTrue.
 
 **Syntaxe :**  
 `bool IsEmpty(var Expression)`
@@ -730,7 +730,7 @@ La fonction IsEmpty prend la valeur True si l’attribut est présent dans CS ou
 - - -
 ### <a name="isguid"></a>IsGuid
 **Description :**  
-La fonction IsGuid renvoie la valeur True si la chaîne peut être convertie en GUID.
+Si la chaîne de hello a pu être converti tooa GUID, fonction IsGuid prend hello évaluée tootrue.
 
 **Syntaxe :**  
 `bool IsGuid(str GUID)`
@@ -738,75 +738,75 @@ La fonction IsGuid renvoie la valeur True si la chaîne peut être convertie en 
 **Remarques :**  
 Un GUID est défini en tant que chaîne en fonction de l’un de ces modèles : xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx or {xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}.
 
-Utilisé pour déterminer si CGuid() peut aboutir.
+Utilisé toodetermine si la fonction CGuid() peut aboutir.
 
 **Exemple :**  
 `IIF(IsGuid([strAttribute]),CGuid([strAttribute]),NULL)`  
-Si StrAttribute est au format GUID, renvoie une représentation binaire. Sinon, renvoie la valeur Null.
+Si la valeur StrAttribute de hello a un format de GUID, renvoie une représentation binaire, sinon retourne une valeur Null.
 
 - - -
 ### <a name="isnull"></a>IsNull
 **Description :**  
-La fonction IsNull renvoie true si l’expression correspond à la valeur Null.
+Si hello expression tooNull, IsNull (fonction) hello retourne true.
 
 **Syntaxe :**  
 `bool IsNull(var Expression)`
 
 **Remarques :**  
-Dans le cas d’un attribut, la valeur Null est exprimée par l’absence de ce dernier.
+Pour un attribut, une valeur Null est exprimée par l’absence de hello d’attribut de hello.
 
 **Exemple :**  
 `IsNull([displayName])`  
-Renvoie True si l’attribut est absent dans CS ou MV.
+Renvoie la valeur True si l’attribut de hello n’est pas présent dans hello CS ou MV.
 
 - - -
 ### <a name="isnullorempty"></a>IsNullOrEmpty
 **Description :**  
-La fonction IsNullOrEmpty renvoie la valeur true si l’expression a pour valeur Null ou s’il s’agit d’une chaîne vide.
+Si l’expression de hello est une chaîne null ou vide, fonction de hello IsNullOrEmpty retourne true.
 
 **Syntaxe :**  
 `bool IsNullOrEmpty(var Expression)`
 
 **Remarques :**  
-Dans le cas d’un attribut, cela donne la valeur True si l’attribut est absent ou est présent mais qu’il s’agit d’une chaîne vide.  
-L’inverse de cette fonction est nommé IsPresent.
+Pour un attribut, il évaluait tooTrue si l’attribut de hello est absent ou n’est présent, mais est une chaîne vide.  
+inverse Hello de cette fonction s’appelle IsPresent.
 
 **Exemple :**  
 `IsNullOrEmpty([displayName])`  
-Renvoie True si l’attribut est absent dans CS ou MV ou s’il s’agit d’une chaîne vide.
+Renvoie la valeur True si l’attribut de hello n’est pas présent ou est une chaîne vide dans hello CS ou MV.
 
 - - -
 ### <a name="isnumeric"></a>IsNumeric
 **Description :**  
-La fonction IsNumeric renvoie une valeur booléenne indiquant si une expression peut être évaluée en tant que type de nombre.
+Hello fonction IsNumeric retourne une valeur booléenne indiquant si une expression peut être évaluée comme un type de nombre.
 
 **Syntaxe :**  
 `bool IsNumeric(var Expression)`
 
 **Remarques :**  
-Permet de déterminer si CNum() peut parvenir à analyser l’expression.
+Utilisé toodetermine si CNum() peut être l’expression de hello tooparse réussie.
 
 - - -
 ### <a name="isstring"></a>IsString
 **Description :**  
-La fonction IsString prend la valeur True si l’expression peut être évaluée en tant que type de chaîne.
+Si l’expression de hello peut être évaluée tooa type chaîne, puis hello fonction IsString prend tooTrue.
 
 **Syntaxe :**  
 `bool IsString(var expression)`
 
 **Remarques :**  
-Permet de déterminer si CStr() peut parvenir à analyser l’expression.
+Utilisé toodetermine si CStr() peut être l’expression de hello tooparse réussie.
 
 - - -
 ### <a name="ispresent"></a>IsPresent
 **Description :**  
-La fonction IsPresent renvoie true si l’expression correspond à une chaîne qui n’a pas la valeur Null et n’est pas vide.
+Si hello expression chaîne tooa qui n’est pas Null et n’est pas vide, puis hello IsPresent fonction retourne la valeur true.
 
 **Syntaxe :**  
 `bool IsPresent(var expression)`
 
 **Remarques :**  
-L’inverse de cette fonction est appelé IsNullOrEmpty.
+inverse Hello de cette fonction s’appelle IsNullOrEmpty.
 
 **Exemple :**  
 `Switch(IsPresent([directManager]),[directManager], IsPresent([skiplevelManager]),[skiplevelManager], IsPresent([director]),[director])`
@@ -814,53 +814,53 @@ L’inverse de cette fonction est appelé IsNullOrEmpty.
 - - -
 ### <a name="item"></a>Item
 **Description :**  
-La fonction Item renvoie un élément à partir d’une chaîne/d’un attribut à valeurs multiples.
+Hello fonction Item retourne un élément à partir d’un chaîne/attribut à valeurs multiples.
 
 **Syntaxe :**  
 `var Item(mvstr attribute, num index)`
 
 * attribute : attribut à valeurs multiples
-* index : index vers un élément dans la chaîne à valeurs multiples.
+* index : élément de tooan d’index dans la chaîne à valeurs multiples hello.
 
 **Remarques :**  
-la fonction Item est utile si utilisée avec la fonction Contains, car cette dernière renvoie l’index à un élément de l’attribut à valeurs multiples.
+Hello fonction Item est utile avec hello fonction Contains comme fonction de ce dernier hello retourne tooan élément index du hello dans un attribut à valeurs multiples hello.
 
 Génère une erreur si l’index est hors limites.
 
 **Exemple :**  
 `Mid(Item([proxyAddress],Contains([proxyAddress], "SMTP:")),6)`  
-Renvoie l’adresse de messagerie principale.
+Retourne hello adresse de messagerie principale.
 
 - - -
 ### <a name="itemornull"></a>ItemOrNull
 **Description :**  
-La fonction ItemOrNull renvoie un élément à partir d’une chaîne/d’un attribut à valeurs multiples.
+Hello fonction ItemOrNull retourne un élément à partir d’un chaîne/attribut à valeurs multiples.
 
 **Syntaxe :**  
 `var ItemOrNull(mvstr attribute, num index)`
 
 * attribute : attribut à valeurs multiples
-* index : index vers un élément dans la chaîne à valeurs multiples.
+* index : élément de tooan d’index dans la chaîne à valeurs multiples hello.
 
 **Remarques :**  
-La fonction ItemOrNull est utile avec la fonction Contains, car cette dernière renvoie l’index à un élément de l’attribut à valeurs multiples.
+Hello fonction ItemOrNull est utile avec hello fonction Contains comme fonction de ce dernier hello retourne tooan élément index du hello dans un attribut à valeurs multiples hello.
 
 Renvoie une valeur Null si l’index est hors limites.
 
 - - -
 ### <a name="join"></a>Join
 **Description :**  
-La fonction Join prend une chaîne à valeurs multiples et renvoie une chaîne à valeur unique avec le séparateur spécifié inséré entre chaque élément.
+fonction de jointure Hello prend une chaîne à valeurs multiples et retourne une chaîne à valeur unique avec séparateur spécifié inséré entre chaque élément.
 
 **Syntaxe :**  
 `str Join(mvstr attribute)`  
 `str Join(mvstr attribute, str Delimiter)`
 
-* attribute : attribut à valeurs multiples contenant des chaînes à joindre.
-* délimiter : toute chaîne utilisée pour séparer les sous-chaînes dans la chaîne renvoyée. En cas d’omission, le caractère espace (" ") est utilisé. Si le délimiteur est une chaîne de longueur nulle ("") ou Nothing, tous les éléments de la liste sont concaténés sans délimiteurs.
+* attribut : attribut à valeurs multiples contenant des chaînes toobe joint.
+* délimiteur : toute chaîne tooseparate utilisé les sous-chaînes de hello Bonjour a retourné une chaîne. Si omis, hello caractère espace (« ») est utilisé. Si le délimiteur est une chaîne de longueur nulle (" ») ou rien du tout, tous les éléments de liste de hello sont concaténés sans délimiteurs.
 
 **Remarques**  
-Il existe une parité entre les fonctions Join et Split. La fonction Join prend un tableau de chaînes et les joint à l’aide d’une chaîne de délimiteur, pour renvoyer une chaîne unique. La fonction Split accepte une chaîne et la sépare au niveau du délimiteur, pour renvoyer un tableau de chaînes. Toutefois, la principale différence est que Join peut concaténer des chaînes avec n’importe quelle chaîne de délimiteur, Split peut uniquement séparer des chaînes à l’aide d’un délimiteur de caractère unique.
+Il existe une parité entre hello jointure et des fonctions de fractionnement. Hello fonction Join prend un tableau de chaînes et les joint à l’aide d’une chaîne de délimiteur, tooreturn une chaîne unique. Hello fonction Split prend une chaîne et la sépare au niveau du délimiteur hello, tooreturn un tableau de chaînes. Toutefois, la principale différence est que Join peut concaténer des chaînes avec n’importe quelle chaîne de délimiteur, Split peut uniquement séparer des chaînes à l’aide d’un délimiteur de caractère unique.
 
 **Exemple :**  
 `Join([proxyAddresses],",")`  
@@ -869,7 +869,7 @@ Peut retourner : « SMTP:john.doe@contoso.com,smtp:jd@contoso.com »
 - - -
 ### <a name="lcase"></a>LCase
 **Description :**  
-La fonction LCase convertit tous les caractères d’une chaîne en minuscules.
+Hello fonction LCase convertit tous les caractères dans un cas de toolower de chaîne.
 
 **Syntaxe :**  
 `str LCase(str value)`
@@ -881,22 +881,22 @@ Renvoie « test ».
 - - -
 ### <a name="left"></a>Left
 **Description :**  
-La fonction Left renvoie un nombre spécifié de caractères en partant de la gauche d’une chaîne.
+fonction gauche Hello retourne un nombre spécifié de caractères à partir de la gauche hello d’une chaîne.
 
 **Syntaxe :**  
 `str Left(str string, num NumChars)`
 
-* string : chaîne à partir de laquelle les caractères sont renvoyés
-* NumChars : nombre identifiant le nombre de caractères à retourner du début (à gauche) de la chaîne
+* chaîne : hello caractères tooreturn de chaîne à partir de
+* NumChars : nombre identifiant le nombre hello de tooreturn de caractères à partir du début hello (gauche) de chaîne
 
 **Remarques :**  
-Chaîne contenant les numChars premiers caractères de la chaîne :
+Chaîne contenant les caractères numChars première hello dans la chaîne :
 
 * Si numChars = 0, retourne une chaîne vide.
 * Si numChars < 0, retourne une chaîne d’entrée.
 * Si la chaîne est null, retourne une chaîne vide.
 
-Si la chaîne contient moins de caractères que le nombre spécifié dans numChars, une chaîne identique à la chaîne (c’est-à-dire, contenant tous les caractères du paramètre 1) est renvoyée.
+Si la chaîne contient moins de caractères que le nombre de hello spécifié dans numChars, une chaîne de toostring identiques (c'est-à-dire, contenant tous les caractères dans le paramètre 1) est retournée.
 
 **Exemple :**  
 `Left("John Doe", 3)`  
@@ -905,7 +905,7 @@ Renvoie « Joh ».
 - - -
 ### <a name="len"></a>Len
 **Description :**  
-La fonction Len renvoie le nombre de caractères contenus dans une chaîne.
+Hello fonction Len renvoie le nombre de caractères dans une chaîne.
 
 **Syntaxe :**  
 `num Len(str value)`
@@ -917,7 +917,7 @@ Renvoie 8.
 - - -
 ### <a name="ltrim"></a>LTrim
 **Description :**  
-La fonction LTrim supprime les espaces blancs situés au début d’une chaîne.
+Hello fonction LTrim supprime les espaces de début d’une chaîne.
 
 **Syntaxe :**  
 `str LTrim(str value)`
@@ -929,14 +929,14 @@ Renvoie « Test ».
 - - -
 ### <a name="mid"></a>Mid
 **Description :**  
-La fonction Mid renvoie un nombre donné de caractères à partir d’une position spécifiée dans une chaîne.
+Hello Mid, fonction retourne un nombre spécifié de caractères à partir d’une position spécifiée dans une chaîne.
 
 **Syntaxe :**  
 `str Mid(str string, num start, num NumChars)`
 
-* string : chaîne à partir de laquelle les caractères sont renvoyés
-* start : nombre identifiant la position de départ dans la chaîne à partir de laquelle les caractères sont renvoyés
-* NumChars : nombre identifiant le nombre de caractères à retourner à partir de la position dans la chaîne
+* chaîne : hello caractères tooreturn de chaîne à partir de
+* Démarrer : nombre identifiant hello en caractères tooreturn de chaîne à partir de la position de début
+* NumChars : nombre identifiant le nombre de hello de tooreturn de caractères à partir de la position dans la chaîne
 
 **Remarques :**  
 Renvoie numChars caractères à partir de la position de départ dans la chaîne.  
@@ -944,7 +944,7 @@ Chaîne contenant numChars caractères à partir de la position de départ dans 
 
 * Si numChars = 0, retourne une chaîne vide.
 * Si numChars < 0, retourne une chaîne d’entrée.
-* Si start > la longueur de la chaîne, retourne une chaîne d’entrée.
+* Si Démarrer > hello longueur de chaîne, retourne la chaîne d’entrée.
 * Si start < = 0, retourne une chaîne d’entrée.
 * Si la chaîne est null, retourne une chaîne vide.
 
@@ -960,7 +960,7 @@ Renvoie « Doe ».
 - - -
 ### <a name="now"></a>Now
 **Description :**  
-La fonction Now renvoie une valeur DateTime indiquant la date et l’heure actuelles qui correspondent à la date et à l’heure système de votre ordinateur.
+Hello maintenant fonction retourne une valeur DateTime spécifiant hello date et l’heure, en fonction de tooyour date l’ordinateur et heure système.
 
 **Syntaxe :**  
 `dt Now()`
@@ -968,7 +968,7 @@ La fonction Now renvoie une valeur DateTime indiquant la date et l’heure actue
 - - -
 ### <a name="numfromdate"></a>NumFromDate
 **Description :**  
-La fonction NumFromDate renvoie une date au format de date AD.
+Hello fonction NumFromDate renvoie une date dans le format de date AD.
 
 **Syntaxe :**  
 `num NumFromDate(dt value)`
@@ -980,23 +980,23 @@ Renvoie 129699324000000000.
 - - -
 ### <a name="padleft"></a>PadLeft
 **Description :**  
-La fonction PadLeft remplit par la gauche une chaîne sur une longueur spécifiée à l’aide d’un caractère de remplissage fourni.
+Hello PadLeft fonction gauche remplit un tooa de chaîne spécifiée à l’aide d’un caractère de remplissage fourni de longueur.
 
 **Syntaxe :**  
 `str PadLeft(str string, num length, str padCharacter)`
 
-* string : chaîne à remplir.
-* length : entier représentant la longueur de chaîne souhaitée.
-* padCharacter : chaîne constituée d’un seul caractère à utiliser comme caractère de remplissage
+* chaîne : hello toopad de chaîne.
+* longueur : un nombre entier représentant hello souhaité de longueur de chaîne.
+* padCharacter : chaîne composée d’un toouse caractère unique en tant que caractère de remplissage hello
 
 **Remarques :**
 
-* Si la longueur de chaîne est inférieure à la longueur length, padCharacter est ajouté à plusieurs reprises au début (à gauche) de la chaîne jusqu’à ce qu’à atteindre la longueur length.
+* Si la longueur de chaîne hello est inférieure à la longueur, padCharacter est ajouté à plusieurs reprises toohello début (gauche) de la chaîne jusqu'à ce qu’il a un toolength égale longueur.
 * PadCharacter peut être un caractère d’espacement, mais il ne peut pas s’agir de la valeur null.
-* Si la longueur de chaîne est égale ou supérieure à la longueur length, la chaîne est renvoyée inchangée.
-* Si la longueur de la chaîne est supérieure ou égale à la longueur length, une chaîne identique est renvoyée.
-* Si la longueur de chaîne est inférieure à la longueur length, une nouvelle chaîne de longueur souhaitée est retournée, et contient une chaîne remplie avec un padCharacter.
-* Si la chaîne est null, la fonction retourne une chaîne vide.
+* Si la longueur de chaîne hello est égal tooor supérieure à la longueur, la chaîne est retournée sans modification.
+* Si la chaîne a une longueur supérieure à ou un toolength égal, un toostring identiques de chaîne est retournée.
+* Si la longueur de chaîne hello est inférieure à la longueur, une nouvelle chaîne Hello souhaité longueur est retournée contenant string remplie avec un padCharacter.
+* Si la chaîne est null, la fonction hello retourne une chaîne vide.
 
 **Exemple :**  
 `PadLeft("User", 10, "0")`  
@@ -1005,23 +1005,23 @@ Renvoie « 000000User ».
 - - -
 ### <a name="padright"></a>PadRight
 **Description :**  
-La fonction PadRight remplit par la droite une chaîne sur une longueur spécifiée à l’aide d’un caractère de remplissage fourni.
+Hello PadRight fonction droite remplit un tooa de chaîne spécifiée à l’aide d’un caractère de remplissage fourni de longueur.
 
 **Syntaxe :**  
 `str PadRight(str string, num length, str padCharacter)`
 
-* string : chaîne à remplir.
-* length : entier représentant la longueur de chaîne souhaitée.
-* padCharacter : chaîne constituée d’un seul caractère à utiliser comme caractère de remplissage
+* chaîne : hello toopad de chaîne.
+* longueur : un nombre entier représentant hello souhaité de longueur de chaîne.
+* padCharacter : chaîne composée d’un toouse caractère unique en tant que caractère de remplissage hello
 
 **Remarques :**
 
-* Si la longueur de chaîne est inférieure à la longueur length, padCharacter est ajouté à plusieurs reprises à la fin (à droite) de la chaîne jusqu’à ce qu’à atteindre la longueur length.
+* Si la longueur de chaîne hello est inférieure à la longueur, padCharacter est ajouté à plusieurs reprises toohello fin (droite) de la chaîne jusqu'à ce qu’il a un toolength égale longueur.
 * PadCharacter peut être un caractère d’espacement, mais il ne peut pas s’agir de la valeur null.
-* Si la longueur de chaîne est égale ou supérieure à la longueur length, la chaîne est renvoyée inchangée.
-* Si la longueur de la chaîne est supérieure ou égale à la longueur length, une chaîne identique est renvoyée.
-* Si la longueur de chaîne est inférieure à la longueur length, une nouvelle chaîne de longueur souhaitée est retournée, et contient une chaîne remplie avec un padCharacter.
-* Si la chaîne est null, la fonction retourne une chaîne vide.
+* Si la longueur de chaîne hello est égal tooor supérieure à la longueur, la chaîne est retournée sans modification.
+* Si la chaîne a une longueur supérieure à ou un toolength égal, un toostring identiques de chaîne est retournée.
+* Si la longueur de chaîne hello est inférieure à la longueur, une nouvelle chaîne Hello souhaité longueur est retournée contenant string remplie avec un padCharacter.
+* Si la chaîne est null, la fonction hello retourne une chaîne vide.
 
 **Exemple :**  
 `PadRight("User", 10, "0")`  
@@ -1030,14 +1030,14 @@ Renvoie « User000000 ».
 - - -
 ### <a name="pcase"></a>PCase
 **Description :**  
-La fonction PCase met en majuscule le premier caractère de chaque mot délimité par un espace dans une chaîne, et tous les autres caractères sont convertis en minuscules.
+Hello fonction PCase convertit hello premier caractère de chaque mot délimité par des espaces dans un cas de tooupper de chaîne, et tous les autres caractères sont converties en cas de toolower.
 
 **Syntaxe :**  
 `String PCase(string)`
 
 **Remarques :**
 
-* Cette fonction ne fournit pas pour le moment de casse appropriée pour convertir un mot qui est entièrement en majuscules, par exemple un sigle.
+* Cette fonction ne fournit pas actuellement une casse appropriée tooconvert un mot qui est entièrement en majuscule, par exemple un acronyme.
 
 **Exemple :**  
 `PCase("TEsT")`  
@@ -1049,13 +1049,13 @@ Renvoie « Test ».
 - - -
 ### <a name="randomnum"></a>RandomNum
 **Description :**  
-La fonction RandomNum renvoie un nombre aléatoire dans un intervalle spécifié.
+Hello fonction RandomNum retourne un nombre aléatoire entre un intervalle spécifié.
 
 **Syntaxe :**  
 `num RandomNum(num start, num end)`
 
-* start : nombre identifiant la limite inférieure de la valeur aléatoire à générer
-* end : nombre identifiant la limite supérieure de la valeur aléatoire à générer
+* Démarrer : une identification hello inférieure limite de hello valeur aléatoire toogenerate
+* fin : une identification hello supérieur limite de hello valeur aléatoire toogenerate
 
 **Exemple :**  
 `Random(100,999)`  
@@ -1064,7 +1064,7 @@ Peut renvoyer 734.
 - - -
 ### <a name="removeduplicates"></a>RemoveDuplicates
 **Description :**  
-La fonction RemoveDuplicates prend une chaîne à valeurs multiples et vérifie que chaque valeur est unique.
+Hello fonction RemoveDuplicates prend une chaîne à valeurs multiples et assurez-vous que chaque valeur est unique.
 
 **Syntaxe :**  
 `mvstr RemoveDuplicates(mvstr attribute)`
@@ -1076,17 +1076,17 @@ Renvoie un attribut proxyAddress expurgé duquel toutes les valeurs en double on
 - - -
 ### <a name="replace"></a>Replace
 **Description :**  
-La fonction Replace remplace toutes les occurrences d’une chaîne par une autre chaîne.
+Hello fonction Replace remplace toutes les occurrences d’une chaîne tooanother de chaîne.
 
 **Syntaxe :**  
 `str Replace(str string, str OldValue, str NewValue)`
 
-* string : chaîne dans laquelle les caractères sont remplacés.
-* OldValue : chaîne à rechercher et remplacer.
-* NewValue : chaîne de remplacement.
+* chaîne : les valeurs dans un tooreplace de chaîne.
+* Ancienne valeur : tooreplace et toosearch de chaîne hello pour.
+* NewValue : hello chaîne tooreplace à.
 
 **Remarques :**  
-La fonction reconnaît les monikers spéciaux suivants :
+fonction Hello reconnaît hello suivant monikers spéciaux suivants :
 
 * \n – Nouvelle ligne
 * \r – Retour chariot
@@ -1094,31 +1094,31 @@ La fonction reconnaît les monikers spéciaux suivants :
 
 **Exemple :**  
 `Replace([address],"\r\n",", ")`  
-Remplace CRLF par une virgule et un espace, et peut générer « One Microsoft Way, Redmond, WA, USA ».
+Remplace CRLF par une virgule et un espace et peut entraîner une trop « One Microsoft Way, Redmond, WA, États-Unis »
 
 - - -
 ### <a name="replacechars"></a>ReplaceChars
 **Description :**  
-La fonction ReplaceChars remplace toutes les occurrences des caractères trouvés dans la chaîne ReplacePattern.
+Hello fonction ReplaceChars remplace toutes les occurrences des caractères trouvés dans hello chaîne ReplacePattern.
 
 **Syntaxe :**  
 `str ReplaceChars(str string, str ReplacePattern)`
 
-* string : chaîne dans laquelle les caractères sont remplacés.
-* ReplacePattern : chaîne contenant un dictionnaire avec des caractères à remplacer.
+* chaîne : un tooreplace de chaîne de caractères dans.
+* ReplacePattern : une chaîne qui contient un dictionnaire avec tooreplace de caractères.
 
-Le format est {source1}: {target1}, {source2}: {target2}, {sourceN}, {targetN}, source étant le caractère à rechercher et la cible, la chaîne à remplacer.
+Hello format est {source1} : {cible1}, {source2} : {cible2}, {sourceN}, {Ciblen} où source est hello caractère toofind et cible hello chaîne tooreplace avec.
 
 **Remarques :**
 
-* La fonction prend chaque occurrence de sources définies et la remplace par les cibles.
-* La source doit être exactement un caractère (unicode).
-* La source ne peut pas être vide ou dépasser un caractère (erreur d’analyse).
-* La cible peut comporter plusieurs caractères, par exemple ö:oe, β:ss.
-* La cible peut être vide, indiquant que le caractère doit être supprimé.
-* La source respecte la casse et il doit s’agir d’une correspondance exacte.
-* La , (Virgule) et : (deux-points) sont des caractères réservés et ne peuvent pas être remplacés avec cette fonction.
-* Les espaces et autres caractères blancs dans la chaîne ReplacePattern sont ignorés.
+* fonction Hello prend chaque occurrence des sources définies et les remplace par les cibles hello.
+* source de Hello doit être exactement un caractère (unicode).
+* source de Hello ne peut pas être vide ni dépasser un caractère (erreur d’analyse).
+* cible de Hello peut avoir plusieurs caractères, par exemple ö : oe, β : ss.
+* cible de Hello peut être vide, indiquant que les caractères hello doivent être supprimés.
+* source de Hello respecte la casse et doit être une correspondance exacte.
+* Bonjour, (virgule) et : (deux-points) sont des caractères réservés et ne peut pas être remplacé à l’aide de cette fonction.
+* Les espaces et autres caractères blancs Bonjour chaîne ReplacePattern sont ignorés.
 
 **Exemple :**  
 `%ReplaceString% = ’:,Å:A,Ä:A,Ö:O,å:a,ä:a,ö,o`
@@ -1127,29 +1127,29 @@ Le format est {source1}: {target1}, {source2}: {target2}, {sourceN}, {targetN}, 
 Renvoie Raksmorgas.
 
 `ReplaceChars("O’Neil",%ReplaceString%)`  
-Renvoie « ONeil », l’apostrophe est définie comme étant à supprimer.
+Retourne « ONeil », graduation hello est défini toobe supprimé.
 
 - - -
 ### <a name="right"></a>Right
 **Description :**  
-La fonction Right renvoie un nombre spécifié de caractères en partant de la droite (fin) d’une chaîne.
+fonction Hello retourne un nombre spécifié de caractères à partir de hello droite (fin) d’une chaîne.
 
 **Syntaxe :**  
 `str Right(str string, num NumChars)`
 
-* string : chaîne à partir de laquelle les caractères sont renvoyés
-* numChars : nombre identifiant le nombre de caractères à retourner à partir de la fin (à droite) de la chaîne
+* chaîne : hello caractères tooreturn de chaîne à partir de
+* NumChars : nombre identifiant le nombre de hello de tooreturn caractères de fin hello (à droite) de chaîne
 
 **Remarques :**  
-Les numChars caractères sont renvoyés à partir de la dernière position de la chaîne.
+Les caractères NumChars sont retournées à partir de la dernière position de hello de chaîne.
 
-Chaîne contenant les numChars derniers caractères de la chaîne :
+Chaîne contenant les caractères numChars dernière hello dans la chaîne :
 
 * Si numChars = 0, retourne une chaîne vide.
 * Si numChars < 0, retourne une chaîne d’entrée.
 * Si la chaîne est null, retourne une chaîne vide.
 
-Si la chaîne contient un nombre de caractères inférieur au nombre spécifié dans numChars, une chaîne identique est renvoyée.
+Si la chaîne contient moins de caractères hello nombre spécifié dans NumChars, une toostring identiques de chaîne est retournée.
 
 **Exemple :**  
 `Right("John Doe", 3)`  
@@ -1158,7 +1158,7 @@ Renvoie « Doe ».
 - - -
 ### <a name="rtrim"></a>RTrim
 **Description :**  
-La fonction RTrim supprime les espaces blancs situés à la fin d’une chaîne.
+Hello RTrim (fonction) supprime les espaces de fin d’une chaîne.
 
 **Syntaxe :**  
 `str RTrim(str value)`
@@ -1176,36 +1176,36 @@ Traite toutes les valeurs d’un attribut à valeurs multiples (ou la sortie d�
 `mvattr Select(variable item, mvattr attribute, func function)`  
 `mvattr Select(variable item, exp expression, func function)`
 
-* item : représente un élément de l’attribut à valeurs multiples
-* attribute : l’attribut à valeurs multiples
+* élément : représente un élément dans un attribut à valeurs multiples hello
+* attribut : attribut à valeurs multiples hello
 * expression : expression qui retourne une collection de valeurs
-* condition : toute fonction pouvant traiter un élément de l’attribut
+* condition : n’importe quelle fonction qui peut traiter un élément dans l’attribut de hello
 
 **Exemples :**  
 `Select($item,[otherPhone],Replace($item,“-”,“”))`  
-Retourne toutes les valeurs de l’attribut à valeurs multiples otherPhone après suppression des traits d’union (-).
+Retourner toutes les valeurs hello dans donnez d’attribut à valeurs multiples hello après la suppression des traits d’union (-).
 
 - - -
 ### <a name="split"></a>Split
 **Description :**  
-La fonction Split prend une chaîne séparée par un délimiteur et en fait une chaîne à valeurs multiples.
+Hello fonction Split prend une chaîne séparée par un délimiteur et le rend une chaîne à valeurs multiples.
 
 **Syntaxe :**  
 `mvstr Split(str value, str delimiter)`  
 `mvstr Split(str value, str delimiter, num limit)`
 
-* value : chaîne contenant un caractère délimiteur pour assurer la séparation.
-* delimiter : caractère unique à utiliser comme délimiteur.
+* valeur : hello chaîne avec un tooseparate de caractère délimiteur.
+* délimiteur : unique toobe de caractère utilisé comme séparateur de hello.
 * limit : nombre maximal de valeurs qu’il est possible de renvoyer.
 
 **Exemple :**  
 `Split("SMTP:john.doe@contoso.com,smtp:jd@contoso.com",",")`  
-Renvoie une chaîne à valeurs multiples avec 2 éléments utiles pour l’attribut proxyAddress.
+Retourne une chaîne à valeurs multiples comprenant 2 éléments utiles pour l’attribut proxyAddress de hello.
 
 - - -
 ### <a name="stringfromguid"></a>StringFromGuid
 **Description :**  
-La fonction StringFromGuid prend un GUID binaire et le convertit en chaîne.
+Hello fonction StringFromGuid prend un GUID binaire et il convertit la chaîne de tooa
 
 **Syntaxe :**  
 `str StringFromGuid(bin GUID)`
@@ -1213,7 +1213,7 @@ La fonction StringFromGuid prend un GUID binaire et le convertit en chaîne.
 - - -
 ### <a name="stringfromsid"></a>StringFromSid
 **Description :**  
-La fonction StringFromSid convertit en chaîne un tableau d’octets contenant un identificateur de sécurité.
+Hello les fonction StringFromSid convertit un tableau d’octets contenant la chaîne tooa d’identification de sécurité.
 
 **Syntaxe :**  
 `str StringFromSid(bin ObjectSID)`  
@@ -1221,36 +1221,36 @@ La fonction StringFromSid convertit en chaîne un tableau d’octets contenant u
 - - -
 ### <a name="switch"></a>Switch
 **Description :**  
-La fonction Switch est utilisée pour renvoyer une valeur unique en fonction des conditions évaluées.
+fonction Switch de Hello est tooreturn utilisé une valeur unique en fonction des conditions évaluées.
 
 **Syntaxe :**  
 `var Switch(exp expr1, var value1[, exp expr2, var value … [, exp expr, var valueN]])`
 
-* expr : expression de variante à évaluer.
-* value : valeur à retourner si l’expression correspondante a la valeur True.
+* expr : expression de type Variant tooevaluate.
+* valeur : valeur toobe retournée si l’expression correspondante hello est True.
 
 **Remarques :**  
-La liste d’arguments de la fonction Switch se compose de paires d’expressions et de valeurs. Les expressions sont évaluées de gauche à droite et la valeur associée à la première expression à évoluer à True est renvoyée. Si les parties ne sont pas correctement couplées, une erreur d’exécution se produit.
+Hello argument de la fonction Switch liste se compose de paires d’expressions et de valeurs. expressions de Hello sont évaluées de gauche tooright et valeur hello associée hello première expression tooevaluate tooTrue est retournée. Si les parties hello ne sont pas correctement appariées, une erreur d’exécution se produit.
 
 Par exemple, si expr1 est True, Switch renvoie la valeur1. Si expr-1 est False, mais expr-2 est True, Switch renvoie la valeur 2, et ainsi de suite.
 
 Switch ne renvoie rien si :
 
-* Aucune des expressions n’est vraie.
-* La première expression True possède une valeur correspondante Null.
+* Aucune des expressions de hello ont la valeur True.
+* première expression de True Hello possède une valeur correspondante qui a la valeur Null.
 
-Switch évalue toutes les expressions, même si elle n’en renvoie qu’une. Pour cette raison, il est conseillé de surveiller les éventuels effets secondaires. Par exemple, si l’évaluation d’une expression entraîne une division par zéro, une erreur se produit.
+Switch évalue toutes les expressions, même si elle n’en renvoie qu’une. Pour cette raison, il est conseillé de surveiller les éventuels effets secondaires. Par exemple, si l’évaluation de hello d’une expression entraîne une division par zéro, une erreur se produit.
 
-La valeur peut être également la fonction Error qui renvoie une chaîne personnalisée.
+Valeur peut être également la fonction d’erreur hello, qui retourne une chaîne personnalisée.
 
 **Exemple :**  
 `Switch([city] = "London", "English", [city] = "Rome", "Italian", [city] = "Paris", "French", True, Error("Unknown city"))`  
-Renvoie la langue parlée dans certaines grandes villes ; sinon, renvoie une erreur.
+Renvoie la langue de hello parlée dans certaines grandes villes, sinon retourne une erreur.
 
 - - -
 ### <a name="trim"></a>Trim
 **Description :**  
-La fonction Trim supprime les espaces blancs situés au début et à la fin d’une chaîne.
+fonction Trim Hello supprime les espaces à gauche et blanc à partir d’une chaîne.
 
 **Syntaxe :**  
 `str Trim(str value)`  
@@ -1260,12 +1260,12 @@ La fonction Trim supprime les espaces blancs situés au début et à la fin d’
 Renvoie « test ».
 
 `Trim([proxyAddresses])`  
-Supprime les espaces blancs de début et de fin pour chaque valeur contenue dans l’attribut proxyAddress.
+Supprime les espaces à gauche et pour chaque valeur de l’attribut proxyAddress de hello.
 
 - - -
 ### <a name="ucase"></a>UCase
 **Description :**  
-La fonction UCase convertit tous les caractères d’une chaîne en majuscules.
+Hello fonction UCase convertit tous les caractères dans un cas de tooupper de chaîne.
 
 **Syntaxe :**  
 `str UCase(str string)`
@@ -1283,23 +1283,23 @@ Retourne un sous-ensemble de valeurs d’un attribut à valeurs multiples (ou la
 **Syntaxe :**  
 `mvattr Where(variable item, mvattr attribute, exp condition)`  
 `mvattr Where(variable item, exp expression, exp condition)`  
-* item : représente un élément de l’attribut à valeurs multiples
-* attribute : l’attribut à valeurs multiples
-* condition : toute expression pouvant avoir la valeur true ou false
+* élément : représente un élément dans un attribut à valeurs multiples hello
+* attribut : attribut à valeurs multiples hello
+* condition : toute expression qui peut être évaluée tootrue ou false
 * expression : expression qui retourne une collection de valeurs
 
 **Exemple :**  
 `Where($item,[userCertificate],CertNotAfter($item)>Now())`  
-Retourne les valeurs de certificat de l’attribut à valeurs multiples userCertificate qui n’ont pas expiré.
+Retourner des valeurs de certificat hello dans userCertificate d’attribut à valeurs multiples hello qui ne sont pas expiré.
 
 - - -
 ### <a name="with"></a>With
 **Description :**  
-La fonction With permet de simplifier une expression complexe en utilisant une variable pour représenter une sous-expression qui apparaît une ou plusieurs fois dans l’expression complexe.
+Hello avec fonction fournit une toosimplify de façon à une expression complexe à l’aide d’une variable toorepresent une sous-expression qui apparaît une ou plusieurs fois dans une expression complexe de hello.
 
 **Syntaxe**
 `With(var variable, exp subExpression, exp complexExpression)` :  
-* variable : représente la sous-expression.
+* variable : représente hello sous-expression.
 * subExpression : sous-expression représentée par une variable.
 * complexExpression : expression complexe.
 
@@ -1307,23 +1307,23 @@ La fonction With permet de simplifier une expression complexe en utilisant une v
 `With($unExpiredCerts,Where($item,[userCertificate],CertNotAfter($item)>Now()),IIF(Count($unExpiredCerts)>0,$unExpiredCerts,NULL))`  
 Fonctionnellement équivalent à :  
 `IIF (Count(Where($item,[userCertificate],CertNotAfter($item)>Now()))>0, Where($item,[userCertificate],CertNotAfter($item)>Now()),NULL)`  
-Qui retourne uniquement les valeurs de certificat non expirées de l’attribut userCertificate.
+Qui retourne uniquement les valeurs de certificat valide dans l’attribut userCertificate de hello.
 
 
 - - -
 ### <a name="word"></a>Word
 **Description :**  
-La fonction Word retourne un mot contenu dans une chaîne, en fonction des paramètres qui décrivent les délimiteurs à utiliser et le nombre de mots à retourner.
+Hello fonction Word renvoie un mot contenu dans la chaîne, en fonction des paramètres décrivant hello délimiteurs toouse et tooreturn nombre du mot hello.
 
 **Syntaxe :**  
 `str Word(str string, num WordNumber, str delimiters)`
 
-* string : chaîne à partir de laquelle le mot est renvoyé.
+* chaîne : hello chaîne tooreturn un mot.
 * WordNumber : nombre identifiant le nombre de mots à renvoyer.
-* delimiters : chaîne représentant le ou les délimiteur(s) à utiliser pour identifier les mots
+* délimiteurs : une chaîne représentant un ou plusieurs délimiteurs hello qui doivent être utilisés tooidentify mots
 
 **Remarques :**  
-Chaque chaîne de caractères contenue dans la chaîne séparée par l’un des caractères figurant dans delimiters est identifiée en tant que mot :
+Chaque chaîne de caractères dans une chaîne séparée par hello un des caractères hello dans les délimiteurs sont identifiés en tant que mots :
 
 * Si number < 1, retourne une chaîne vide.
 * Si string a la valeur null, renvoie une chaîne vide.
@@ -1331,7 +1331,7 @@ Chaque chaîne de caractères contenue dans la chaîne séparée par l’un des 
 Si la chaîne contient moins de mots ou ne contient pas les mots identifiés par les séparateurs, une chaîne vide est renvoyée.
 
 **Exemple :**  
-`Word("The quick brown fox",3," ")`  
+`Word("hello quick brown fox",3," ")`  
 Retourne « brown ».
 
 `Word("This,string!has&many separators",3,",!&#")`  

@@ -1,9 +1,9 @@
 <!--author=SharS last changed: 9/16/15-->
 
-#### <a name="to-delete-a-volume-container"></a>Pour supprimer un conteneur de volumes
-1. Sur la page **Appareils**, sélectionnez l’appareil, double-cliquez dessus, puis cliquez sur l’onglet **Conteneurs de volumes**.
-2. Sélectionnez le conteneur de volumes à supprimer.
-3. Si un conteneur de volumes n’est associé à aucun volume, il peut être supprimé. Cliquez sur **Supprimer** en bas de la page pour supprimer ce conteneur. Cliquez sur **Oui**lorsque vous êtes invité à confirmer l’opération. Le conteneur de volumes est supprimé.
+#### <a name="toodelete-a-volume-container"></a>toodelete un conteneur de volume
+1. Sur hello **périphériques** page, sélectionnez le périphérique de hello, double-cliquez dessus, puis cliquez sur hello **conteneurs de volumes** onglet.
+2. Sélectionnez hello conteneur de volume toodelete.
+3. Si un conteneur de volumes n’est associé à aucun volume, il peut être supprimé. Cliquez sur **supprimer** à hello bas de hello page toodelete ce conteneur. Cliquez sur **Oui**lorsque vous êtes invité à confirmer l’opération. Cette opération supprimera le conteneur de volume hello.
 
-Si le conteneur de volumes est associé à des volumes, vous devez d’abord mettre ces volumes hors connexion en suivant la procédure décrite dans [Mettre un volume hors connexion](../articles/storsimple/storsimple-manage-volumes.md#take-a-volume-offline). Une fois les volumes hors connexion, vous pouvez les supprimer. Lorsque le conteneur de volumes n’est associé à aucun volume, supprimez-le en procédant comme indiqué ci-avant.
+Si le conteneur de volume hello comporte des volumes associés, vous devez abord tootake ces volumes hors connexion en suivant les étapes de hello dans [mettre un volume hors connexion](../articles/storsimple/storsimple-manage-volumes.md#take-a-volume-offline). Une fois les volumes hello hors connexion, vous pouvez les supprimer. Lorsque conteneur de volume hello ne possède aucun volumes associés, supprimer le conteneur de volume hello comme décrit ci-dessus.
 

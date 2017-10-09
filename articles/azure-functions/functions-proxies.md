@@ -1,6 +1,6 @@
 ---
-title: Utilisation des proxys dans Azure Functions | Microsoft Docs
-description: "Présentation de l’utilisation de Azure Functions Proxies"
+title: aaaWork avec les serveurs proxy dans les fonctions de Azure | Documents Microsoft
+description: "Vue d’ensemble de la procédure toouse Proxies de fonctions Azure"
 services: functions
 documentationcenter: 
 author: mattchenderson
@@ -14,107 +14,107 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 04/11/2017
 ms.author: mahender
-ms.openlocfilehash: 102e54627a8fee721d3ed85e86a8009e706bb5b1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4d94c89e8f8f2d2c771b01bae142bf9a4f3b7f2a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="work-with-azure-functions-proxies-preview"></a>Utilisation de Azure Functions Proxies (version préliminaire)
 
 > [!NOTE] 
-> Azure Functions Proxies est actuellement disponible en version préliminaire. La version préliminaire est proposée gratuitement, mais une facturation standard s’applique à l’exécution des proxys. Pour plus d’informations, consultez [Tarification d’Azure Functions](https://azure.microsoft.com/pricing/details/functions/).
+> Azure Functions Proxies est actuellement disponible en version préliminaire. C’est gratuit tandis que dans l’aperçu, mais les fonctions standard facturation applique tooproxy exécutions. Pour plus d’informations, consultez [Tarification d’Azure Functions](https://azure.microsoft.com/pricing/details/functions/).
 
-Cet article vous explique comment configurer et utiliser Azure Functions Proxies. Cette fonctionnalité vous permet de spécifier des points de terminaison sur votre Function App implémentés par une autre ressource. Vous pouvez utiliser ces proxys pour diviser une API de grande taille en plusieurs applications Function (comme dans une architecture microservice), tout en continuant à présenter une surface API unique aux clients.
+Cet article explique comment tooconfigure et fonctionnent avec les proxys de fonctions Azure. Cette fonctionnalité vous permet de spécifier des points de terminaison sur votre Function App implémentés par une autre ressource. Vous pouvez utiliser ces toobreak proxys une API volumineuse dans plusieurs applications de fonction (par exemple, une architecture de microservice), tout en présentant une surface API unique pour les clients.
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
 
 ## <a name="enable"></a>Activation d’Azure Functions Proxies
 
-Les proxies ne sont pas activés par défaut. Vous pouvez créer des proxys lorsque la fonctionnalité est désactivée, mais ils ne s’exécuteront pas. Pour activer les proxys, procédez comme suit :
+Les proxies ne sont pas activés par défaut. Vous pouvez créer des proxys lors de la fonctionnalité de hello est désactivée, mais ils ne seront exécute pas. les proxys tooenable, hello suivant :
 
-1. Ouvrez le [portail Azure] et accédez à votre Function App.
+1. Ouvrez hello [portail Azure], puis passez tooyour fonction app.
 2. Sélectionnez **Paramètres Function App**.
-3. Réglez **Activer les proxys Azure Functions (préversion)** sur **Activé**.
+3. Commutateur **activer des proxys de fonctions Azure (aperçu)** trop**sur**.
 
-Vous pouvez également revenir ici pour mettre à jour le runtime proxy lorsque de nouvelles fonctionnalités sont disponibles.
+Vous pouvez également revenir ici tooupdate hello proxy runtime que de nouvelles fonctionnalités sont disponibles.
 
 
 ## <a name="create"></a>Création d’un proxy
 
-Cette section vous explique comment créer un proxy dans le portail Functions.
+Cette section vous montre comment toocreate un proxy dans hello portal de fonctions.
 
-1. Ouvrez le [portail Azure] et accédez à votre Function App.
-2. Dans le volet gauche, sélectionnez **Nouveau proxy**.
+1. Ouvrez hello [portail Azure], puis passez tooyour fonction app.
+2. Dans le volet gauche de hello, sélectionnez **nouveau proxy**.
 3. Entrez un nom pour votre proxy.
-4. Configurez le point de terminaison exposé sur cette Function App en spécifiant le **modèle de routage** et les **méthodes HTTP**. Ces paramètres se comportent selon les règles des [déclencheurs HTTP].
-5. Définissez l’**URL principale** sur un autre point de terminaison. Il peut s’agir d’une fonction dans une autre Function App ou bien de n’importe quelle autre API. La valeur ne doit pas nécessairement être statique et peut faire référence aux [paramètres de l’application] et aux [paramètres de la demande client d’origine].
-6. Cliquez sur **Create**.
+4. Configurer des hello de point de terminaison qui est exposé sur cette application de la fonction en spécifiant hello **modèle d’itinéraire** et **méthodes HTTP**. Ces paramètres comportent en fonction des règles de toohello pour [HTTP déclencheurs].
+5. Ensemble hello **URL principal** tooanother le point de terminaison. Il peut s’agir d’une fonction dans une autre Function App ou bien de n’importe quelle autre API. Hello valeur ne doit pas toobe statique, et il peut référencer [paramètres de l’application] et [paramètres à partir de la demande du client d’origine hello].
+6. Cliquez sur **Créer**.
 
-Votre proxy existe désormais sous la forme d’un nouveau point de terminaison de votre application de fonction. Du point de vue du client, cela équivaut à un HttpTrigger dans Azure Functions. Vous pouvez essayer votre nouveau proxy en copiant l’URL de proxy et en le testant avec le client HTTP de votre choix.
+Votre proxy existe désormais sous la forme d’un nouveau point de terminaison de votre application de fonction. À partir d’un point de vue du client, il est équivalent tooan HttpTrigger dans les fonctions d’Azure. Vous pouvez essayer votre nouveau proxy en copiant hello URL de Proxy et de test avec votre client HTTP favori.
 
 ## <a name="modify-requests-responses"></a>Modification de demandes et de réponses
 
-La fonctionnalité Proxys Azure Functions vous permet de modifier les demandes envoyées sur le serveur principal et les réponses reçues de ce dernier. Ces transformations peuvent impliquer l’utilisation de variables, comme décrit dans la section [Utilisation de variables].
+Avec les serveurs proxy de fonctions Azure, vous pouvez modifier les requêtes tooand réponses de back-end hello. Ces transformations peuvent impliquer l’utilisation de variables, comme décrit dans la section [Utilisation de variables].
 
-### <a name="modify-backend-request"></a>Modification de la demande du serveur principal
+### <a name="modify-backend-request"></a>Modifier hello principal demande
 
-Par défaut, la demande du serveur principal est initialisée comme une copie de la demande d’origine. Outre la définition de l’URL du serveur principal, vous pouvez apporter des modifications à la méthode HTTP, aux en-têtes et aux paramètres de chaîne de requête. Les valeurs modifiées peuvent faire référence aux [paramètres de l’application] et aux [paramètres de la demande client d’origine].
+Par défaut, demande de back-end hello est initialisée comme une copie de la demande d’origine de hello. En outre vous toosetting hello principal URL, vous pouvez apporter modifications toohello HTTP méthode, les en-têtes et les paramètres de chaîne de requête. Hello valeurs modifiées peuvent référencer [paramètres de l’application] et [paramètres à partir de la demande du client d’origine hello].
 
-Il n’est actuellement pas possible de modifier les demandes du serveur principal via un portail. Consultez la section [Définition d’un objet requestOverrides] pour savoir comment appliquer cette fonctionnalité avec un fichier proxies.json.
+Il n’est actuellement pas possible de modifier les demandes du serveur principal via un portail. toolearn tooapply cette fonctionnalité à partir de proxies.json, voir [définir un objet requestOverrides].
 
-### <a name="modify-response"></a>Modification de la réponse
+### <a name="modify-response"></a>Modifier la réponse de hello
 
-Par défaut, la réponse client est initialisée comme une copie de la réponse du serveur principal. Vous pouvez apporter des modifications au code d’état, au motif, aux en-têtes et au corps. Les valeurs modifiées peuvent faire référence aux [paramètres de l’application], aux [paramètres de la demande client d’origine] et aux [paramètres de la réponse du serveur principal].
+Par défaut, la réponse hello du client est initialisé comme une copie de la réponse du serveur principal hello. Vous pouvez apporter de code d’état de la réponse de modifications toohello, phrase de motif, en-têtes et corps. Hello valeurs modifiées peuvent référencer [paramètres de l’application], [paramètres à partir de la demande du client d’origine hello], et [paramètres de réponse du serveur principal hello].
 
-Il n’est actuellement pas possible de modifier les réponses. Consultez la section [Définition d’un objet responseOverrides] pour savoir comment appliquer cette fonctionnalité avec un fichier proxies.json.
+Il n’est actuellement pas possible de modifier les réponses. toolearn tooapply cette fonctionnalité à partir de proxies.json, voir [définir un objet responseOverrides].
 
 ## <a name="using-variables"></a>Utilisation de variables
 
-La configuration d’un proxy ne doit pas nécessairement être statique. Vous pouvez définir comme condition l’utilisation des variables de la demande d’origine, de la réponse du serveur principal ou des paramètres de l’application.
+configuration Hello pour un serveur proxy n’a pas besoin toobe statique. Vous pouvez que celle-ci variables toouse à partir de la demande d’origine de hello, réponse de back-end hello ou paramètres de l’application.
 
 ### <a name="request-parameters"></a>Référencement des paramètres de la demande
 
-Les paramètres de la demande peuvent être entrés au niveau de la propriété d’URL du serveur principal ou peuvent être utilisés lors de la modification des demandes et des réponses. Certains paramètres peuvent être liés à partir du modèle de routage spécifié dans la configuration du proxy de base, alors que d’autres proviennent des propriétés de la demande entrante.
+Vous pouvez utiliser les paramètres de la demande comme entrées de propriété de l’URL principale toohello ou dans le cadre de la modification des demandes et réponses. Certains paramètres peuvent être liés à partir du modèle d’itinéraire hello qui est spécifié dans la configuration du proxy base hello et d’autres peuvent provenir de propriétés de la demande entrante de hello.
 
 #### <a name="route-template-parameters"></a>Paramètres de modèle de routage
-Les paramètres utilisés dans le modèle de routage peuvent être référencés par nom. Les noms des paramètres sont placés entre accolades ({}).
+Paramètres qui sont utilisés dans le modèle d’itinéraire hello sont disponible toobe référencée par son nom. les noms de paramètre Hello sont placés entre accolades ({}).
 
-Par exemple, si un proxy dispose d’un modèle de routage du type `/pets/{petId}`, l’URL du serveur principal peut inclure la valeur de `{petId}`, comme dans `https://<AnotherApp>.azurewebsites.net/api/pets/{petId}`. Si le modèle de routage prend fin dans un caractère générique, tel que `/api/{*restOfPath}`, la valeur `{restOfPath}` est une chaîne représentant les autres segments de chemin d’accès de la demande entrante.
+Par exemple, si un proxy dispose d’un modèle d’itinéraire, tel que `/pets/{petId}`, hello principal URL peut inclure la valeur hello `{petId}`, comme dans `https://<AnotherApp>.azurewebsites.net/api/pets/{petId}`. Si modèle d’itinéraire hello se termine dans un caractère générique, tel que `/api/{*restOfPath}`, hello valeur `{restOfPath}` est une représentation de chaîne de hello restant de segments de chemin d’accès à partir de la demande entrante de hello.
 
 #### <a name="additional-request-parameters"></a>Paramètres de demande supplémentaires
-Outre les paramètres de modèle de routage, les valeurs suivantes peuvent être utilisées dans les valeurs de configuration :
+En outre toohello les paramètres de modèle d’itinéraire, hello valeurs suivantes peut être utilisée dans les valeurs de configuration :
 
-* **{request.method}** : méthode HTTP utilisée lors de la demande d’origine.
-* **{request.headers.\<HeaderName\>}** : un en-tête qui peut être lu à partir de la demande d’origine. Remplacez *\<HeaderName\>* par le nom de l’en-tête que vous souhaitez lire. Si l’en-tête n’est pas inclus dans la demande, la valeur sera une chaîne vide.
-* **{request.querystring.\<ParameterName\>}** : un paramètre de chaîne de requête qui peut être lu à partir de la demande d’origine. Remplacez *\<ParameterName\>* par le nom de l’en-tête que vous souhaitez lire. Si le paramètre n’est pas inclus dans la demande, la valeur sera une chaîne vide.
+* **{request.method}** : hello méthode HTTP qui est utilisé à la demande d’origine de hello.
+* **{request.headers. \<HeaderName\>}**: un en-tête qui peut être lu à partir de la demande d’origine de hello. Remplacez  *\<HeaderName\>*  avec nom hello d’en-tête hello que vous souhaitez tooread. Si l’en-tête de hello n’est pas inclus dans la demande de hello, valeur de hello sera une chaîne vide hello.
+* **{request.querystring. \<Nom_paramètre\>}**: un paramètre de chaîne de requête permettre être lus à partir de la demande d’origine de hello. Remplacez  *\<nom_paramètre\>*  avec nom hello du paramètre hello que vous souhaitez tooread. Si le paramètre hello n’est pas inclus dans la demande de hello, valeur de hello sera une chaîne vide hello.
 
 ### <a name="response-parameters"></a>Référencement des paramètres de réponse du serveur principal
 
-Les paramètres de réponse peuvent être utilisés lors de la modification de la réponse au client. Les valeurs suivantes peuvent être utilisées dans la configuration :
+Paramètres de réponse peuvent être utilisés dans le cadre de la modification de client de toohello réponse hello. Hello valeurs suivantes sont utilisables dans les valeurs de configuration :
 
-* **{backend.response.statusCode}** : code d’état HTTP renvoyé dans la réponse du serveur principal.
-* **{backend.response.statusReason}** : motif HTTP renvoyé dans la réponse du serveur principal.
-* **{backend.response.headers.\<HeaderName\>}** : en-tête pouvant être lu à partir de la réponse du serveur principal. Remplacez *\<HeaderName\>* par le nom de l’en-tête que vous souhaitez lire. Si l’en-tête n’est pas inclus dans la demande, la valeur sera une chaîne vide.
+* **{backend.response.statusCode}** : hello le code d’état HTTP retourné de réponse du serveur principal hello.
+* **{backend.response.statusReason}** : phrase de motif hello HTTP qui est renvoyée en cas de réponse du serveur principal hello.
+* **{backend.response.headers. \<HeaderName\>}**: un en-tête qui peut être lu à partir de la réponse du serveur principal hello. Remplacez  *\<HeaderName\>*  avec nom hello d’en-tête de hello souhaité tooread. Si l’en-tête de hello n’est pas inclus dans la demande de hello, valeur de hello sera une chaîne vide hello.
 
 ### <a name="use-appsettings"></a>Référencement des paramètres de l’application
 
-Vous pouvez également référencer les [paramètres de l’application définis pour la Function App](https://docs.microsoft.com/azure/azure-functions/functions-how-to-use-azure-function-app-settings#develop) en mettant le nom du paramètre entre signes de pourcentage (%).
+Vous pouvez également référencer [paramètres d’application définis pour l’application de fonction hello](https://docs.microsoft.com/azure/azure-functions/functions-how-to-use-azure-function-app-settings#develop) en entourant le nom du paramètre hello avec des signes de pourcentage (%).
 
-Par exemple, dans une URL de serveur principal de *https://%ORDER_PROCESSING_HOST%/api/orders*, %ORDER_PROCESSING_HOST% sera remplacé par la valeur du paramètre ORDER_PROCESSING_HOST.
+Par exemple, une URL principale *https://%ORDER_PROCESSING_HOST%/api/orders* aurait « ORDER_PROCESSING_HOST % » remplacé par la valeur hello du paramètre de ORDER_PROCESSING_HOST hello.
 
 > [!TIP] 
-> Utilisez des paramètres d’application pour les hôtes de serveur principal lorsque vous avez plusieurs déploiements ou environnements de test. De cette façon, vous avez l’assurance de toujours parler au serveur principal adapté à cet environnement.
+> Utilisez des paramètres d’application pour les hôtes de serveur principal lorsque vous avez plusieurs déploiements ou environnements de test. De cette façon, vous pouvez vous assurer que vous vous entretenez toujours toohello immédiatement fin pour cet environnement.
 
 ## <a name="advanced-configuration"></a>Configuration avancée
 
-Les serveurs proxy que vous configurez sont stockés dans un fichier proxies.json, situé à la racine d’un répertoire de Function App. Vous pouvez modifier manuellement ce fichier et le déployer dans le cadre de votre application lors de l’utilisation de l’une des [méthodes de déploiement](https://docs.microsoft.com/azure/azure-functions/functions-continuous-deployment) prises en charge par Functions. La fonctionnalité doit être [activée](#enable) pour permettre le traitement du fichier. 
+les proxys Hello que vous configurez sont stockés dans un fichier proxies.json, qui se trouve dans un répertoire d’application de fonction racine hello. Vous pouvez manuellement modifier ce fichier et le déployer dans le cadre de votre application quand vous utilisez une des hello [méthodes de déploiement](https://docs.microsoft.com/azure/azure-functions/functions-continuous-deployment) qui prend en charge des fonctions. fonctionnalité de Hello doit être [activé](#enable) pour toobe de fichier hello traité. 
 
 > [!TIP] 
-> Si vous n’avez pas défini l’une des méthodes de déploiement, vous pouvez également utiliser le fichier proxies.json dans le portail. Accédez à votre Function App et sélectionnez **Fonctionnalités de la plateforme**, puis **Éditeur App Service**. Cela vous permettra d’afficher l’ensemble de la structure de fichiers de votre Function App et d’y apporter des modifications.
+> Si vous n’avez pas défini un hello des méthodes de déploiement, vous pouvez également travailler avec fichier de proxies.json hello dans le portail de hello. Application de fonction tooyour accédez, sélectionnez **fonctionnalités de plateforme**, puis sélectionnez **éditeur de Service d’applications**. En procédant ainsi, vous pouvez afficher la structure de fichiers complète hello de votre application de la fonction et apporter des modifications.
 
-Proxies.json est défini par un objet proxy, composé de proxys nommés et de leurs définitions. Vous pouvez éventuellement référencer un [schéma JSON](http://json.schemastore.org/proxies) de complétion de code si votre éditeur est compatible. Voici un exemple de fichier :
+Proxies.json est défini par un objet proxy, composé de proxys nommés et de leurs définitions. Vous pouvez éventuellement référencer un [schéma JSON](http://json.schemastore.org/proxies) de complétion de code si votre éditeur est compatible. Un exemple de fichier peut se présenter comme hello suivantes :
 
 ```json
 {
@@ -131,29 +131,29 @@ Proxies.json est défini par un objet proxy, composé de proxys nommés et de le
 }
 ```
 
-Chaque proxy a un nom convivial, tel que *proxy1* dans l’exemple ci-dessus. L’objet de définition de proxy correspondant est défini par les propriétés suivantes :
+Chaque proxy a un nom convivial, tel que *proxy1* Bonjour précédent exemple. objet de définition de proxy Hello correspondant est défini par hello propriétés suivantes :
 
-* **matchCondition** : Obligatoire - un objet définissant les demandes qui déclenchent l’exécution de ce proxy. Il contient deux propriétés partagées avec les [déclencheurs HTTP] :
-    * _méthodes_ : un tableau des méthodes HTTP auxquelles le proxy répond. À défaut de spécification, le proxy répond à toutes les méthodes HTTP sur le routage.
-    * _route_ : Obligatoire - définit le modèle de routage, en contrôlant les URL de demande auxquelles votre proxy répond. Contrairement aux déclencheurs HTTP, il n’y a pas de valeur par défaut.
-* **backendUri** : l’URL de la ressource principale à laquelle la demande doit être transmise par proxy. Cette valeur peut faire référence aux paramètres de l’application et à ceux de la demande client d’origine. Si cette propriété n’est pas incluse, Azure Functions répond avec un message HTTP 200 OK.
-* **requestOverrides** : un objet définissant les transformations apportées à la demande du serveur principal. Consultez la section [Définition d’un objet requestOverrides].
-* **responseOverrides** : un objet définissant les transformations apportées à la réponse client. Consultez la section [Définition d’un objet responseOverrides].
+* **matchCondition**: obligatoire : un objet définissant les demandes hello qui déclenchent l’exécution de hello du proxy. Il contient deux propriétés partagées avec les [HTTP déclencheurs] :
+    * _méthodes_: un tableau de méthodes hello HTTP qui hello proxy répond à. S’il n’est pas spécifié, le proxy de hello répond tooall les méthodes HTTP sur l’itinéraire de hello.
+    * _itinéraire_: obligatoire : définit le modèle d’itinéraire hello, contrôle qui demande les URL de votre proxy répond à. Contrairement aux déclencheurs HTTP, il n’y a pas de valeur par défaut.
+* **backendUri**: URL hello hello principal toowhich hello de demande de ressource doit être traitée. Cette valeur peut référencer des paramètres d’application et les paramètres à partir de la demande du client d’origine hello. Si cette propriété n’est pas incluse, Azure Functions répond avec un message HTTP 200 OK.
+* **requestOverrides**: un objet qui définit la demande de transformations toohello back-end. Consultez la section [définir un objet requestOverrides].
+* **responseOverrides**: un objet qui définit la réponse de transformations toohello client. Consultez la section [définir un objet responseOverrides].
 
 > [!NOTE] 
-> La propriété de routage Proxys Azure Functions n’honore pas la propriété routePrefix de la configuration d’hôte de Functions. Si vous souhaitez inclure un préfixe tel que /api, il doit être inclus dans la propriété de routage.
+> propriété d’itinéraire Hello Proxies de fonctions Azure ne respecte pas la propriété de préfixe d’itinéraire hello de configuration de l’hôte fonctions hello. Si vous voulez tooinclude un préfixe tel que/API, il doit être inclus dans la propriété d’itinéraire hello.
 
 ### <a name="requestOverrides"></a>Définition d’un objet requestOverrides
 
-L’objet requestOverrides définit les modifications apportées à la demande lors de l’appel de la ressource du serveur principal. L’objet est défini par les propriétés suivantes :
+objet de requestOverrides Hello définit les modifications apportées toohello demande lors de la ressource principale de hello est appelée. objet de Hello est défini par hello propriétés suivantes :
 
-* **backend.request.method** : la méthode HTTP qui est utilisée pour appeler le serveur principal.
-* **backend.request.querystring.\<ParameterName\>** : un paramètre de chaîne de requête pouvant être défini pour l’appel au serveur principal. Remplacez *\<ParameterName\>* par le nom de l’en-tête que vous souhaitez définir. Si une chaîne vide est fournie, le paramètre n’est pas inclus dans la demande du serveur principal.
-* **backend.request.headers.\<HeaderName\>** : un en-tête qui peut être défini pour l’appel au serveur principal. Remplacez *\<HeaderName\>* par le nom de l’en-tête que vous souhaitez définir. Si vous fournissez une chaîne vide, l’en-tête n’est pas inclus dans la demande du serveur principal.
+* **backend.Request.Method**: hello méthode HTTP qui a utilisé le principal hello toocall.
+* **backend.Request.QueryString. \<Nom_paramètre\>**: un paramètre de chaîne de requête qui peut être défini pour hello appel toohello back-end. Remplacez  *\<nom_paramètre\>*  avec nom hello du paramètre hello que vous souhaitez tooset. Si une chaîne vide hello est fournie, le paramètre hello n’est pas inclus à la demande de back-end hello.
+* **backend.Request.Headers. \<HeaderName\>**: un en-tête qui peut être défini pour hello appel toohello back-end. Remplacez  *\<HeaderName\>*  avec nom hello d’en-tête hello que vous souhaitez tooset. Si vous fournissez une chaîne vide hello, en-tête de hello n’est pas inclus à la demande de back-end hello.
 
-Les valeurs peuvent faire référence aux paramètres de l’application et aux paramètres de la demande client d’origine.
+Valeurs peuvent référencer des paramètres d’application et de paramètres à partir de la demande du client d’origine hello.
 
-Voici un exemple de configuration :
+Un exemple de configuration peut se présenter comme hello suivantes :
 
 ```json
 {
@@ -176,16 +176,16 @@ Voici un exemple de configuration :
 
 ### <a name="responseOverrides"></a>Définition d’un objet responseOverrides
 
-L’objet requestOverrides définit les modifications apportées à la réponse retransmise au client. L’objet est défini par les propriétés suivantes :
+objet de requestOverrides Hello définit les modifications apportées à réponse toohello qui a passé arrière toohello client. objet de Hello est défini par hello propriétés suivantes :
 
-* **response.statusCode** : code d’état HTTP à renvoyer au client.
-* **response.statusReason** : motif HTTP à renvoyer au client.
-* **response.body** : la représentation sous forme de chaîne du corps à renvoyer au client.
-* **response.headers.\<HeaderName\>** : un en-tête pouvant être défini pour la réponse au client. Remplacez *\<HeaderName\>* par le nom de l’en-tête que vous souhaitez définir. Si vous fournissez une chaîne vide, l’en-tête n’est pas inclus dans la réponse.
+* **response.statusCode**: toobe de code d’état HTTP de hello retourné toohello client.
+* **response.statusReason**: toobe de phrase de motif hello HTTP retourné toohello client.
+* **Response.Body**: représentation sous forme de chaîne hello de hello corps toobe retourné toohello client.
+* **Response.Headers. \<HeaderName\>**: un en-tête qui peut être défini pour le client de toohello réponse hello. Remplacez  *\<HeaderName\>*  avec nom hello d’en-tête hello que vous souhaitez tooset. Si vous fournissez une chaîne vide hello, en-tête de hello n’est pas inclus dans la réponse de hello.
 
-Les valeurs peuvent faire référence aux paramètres de l’application, aux paramètres de la demande client d’origine et aux paramètres de la réponse du serveur principal.
+Valeurs peuvent référencer des paramètres d’application, les paramètres de demande du client d’origine hello et les paramètres de réponse du serveur principal hello.
 
-Voici un exemple de configuration :
+Un exemple de configuration peut se présenter comme hello suivantes :
 
 ```json
 {
@@ -205,15 +205,15 @@ Voici un exemple de configuration :
 }
 ```
 > [!NOTE] 
-> Dans cet exemple, le corps est défini directement. Aucune propriété `backendUri` n’est nécessaire. Cet exemple illustre comment utiliser les Proxys Azure Functions pour simuler des API.
+> Dans cet exemple, corps de hello est définie directement, etc. `backendUri` propriété est nécessaire. Hello montre comment vous pouvez utiliser des proxys de fonctions Azure pour la simulation d’API.
 
 [portail Azure]: https://portal.azure.com
-[déclencheurs HTTP]: https://docs.microsoft.com/azure/azure-functions/functions-bindings-http-webhook#http-trigger
-[Modify the back-end request]: #modify-backend-request
-[Modify the response]: #modify-response
-[Définition d’un objet requestOverrides]: #requestOverrides
-[Définition d’un objet responseOverrides]: #responseOverrides
+[HTTP déclencheurs]: https://docs.microsoft.com/azure/azure-functions/functions-bindings-http-webhook#http-trigger
+[Modify hello back-end request]: #modify-backend-request
+[Modify hello response]: #modify-response
+[définir un objet requestOverrides]: #requestOverrides
+[définir un objet responseOverrides]: #responseOverrides
 [paramètres de l’application]: #use-appsettings
 [Utilisation de variables]: #using-variables
-[paramètres de la demande client d’origine]: #request-parameters
-[paramètres de la réponse du serveur principal]: #response-parameters
+[paramètres à partir de la demande du client d’origine hello]: #request-parameters
+[paramètres de réponse du serveur principal hello]: #response-parameters

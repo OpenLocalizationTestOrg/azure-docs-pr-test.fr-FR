@@ -1,6 +1,6 @@
 ---
-title: "Connecter un périphérique à l’aide de C sous Linux | Microsoft Docs"
-description: "Explique comment connecter un appareil à la solution de surveillance à distance Azure IoT Suite préconfigurée à l’aide d’une application écrite en C et exécutée sous Linux."
+title: "aaaConnect un appareil à l’aide de C sur Linux | Documents Microsoft"
+description: "Décrit comment tooconnect un toohello appareil Azure IoT Suite préconfiguré solution d’analyse à distance à l’aide d’une application écrite en C en cours d’exécution sur Linux."
 services: 
 suite: iot-suite
 documentationcenter: na
@@ -15,55 +15,55 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: dobett
-ms.openlocfilehash: 9adbc9cc13f0b4cafa3a3a7703c46f8085b15232
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 57393817d40d3555177956a01fa71058bc256988
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-your-device-to-the-remote-monitoring-preconfigured-solution-linux"></a>Connexion de votre appareil à la solution préconfigurée de surveillance à distance (Linux)
+# <a name="connect-your-device-toohello-remote-monitoring-preconfigured-solution-linux"></a>Se connecter à votre solution préconfigurée (Linux) de surveillance à distance de toohello périphérique
 [!INCLUDE [iot-suite-selector-connecting](../../includes/iot-suite-selector-connecting.md)]
 
 ## <a name="build-and-run-a-sample-c-client-linux"></a>Création et exécution d’un exemple de client Linux C
-Les étapes suivantes vous montrent comment créer une application cliente qui communique avec la solution préconfigurée de surveillance à distance. Cette application est écrite en C, générée et exécutée sur Ubuntu Linux.
+Hello suit vous montre comment toocreate une application cliente qui communique avec le contrôle à distance hello solution préconfigurée. Cette application est écrite en C, générée et exécutée sur Ubuntu Linux.
 
-Pour effectuer ces étapes, vous avez besoin d’un appareil exécutant Ubuntu version 15.04 ou 15.10. Avant de continuer, installez les packages requis sur votre appareil Ubuntu à l’aide de la commande suivante :
+toocomplete ces étapes, vous devez un périphérique qui exécute la version 15.04 ou 15.10 d’Ubuntu. Avant de continuer, installez les packages de composants requis hello sur votre appareil Ubuntu à l’aide de hello de commande suivante :
 
 ```
 sudo apt-get install cmake gcc g++
 ```
 
-## <a name="install-the-client-libraries-on-your-device"></a>Installation des bibliothèques clientes sur votre appareil
-Les bibliothèques clientes Azure IoT Hub sont disponibles sous la forme d’un package que vous pouvez installer sur votre appareil Ubuntu à l’aide de la commande **apt-get** . Procédez comme suit pour installer le package contenant les fichiers d’en-tête et de bibliothèque du client IoT Hub sur votre ordinateur Ubuntu :
+## <a name="install-hello-client-libraries-on-your-device"></a>Installer les bibliothèques clientes hello sur votre appareil
+Bonjour Azure IoT Hub bibliothèques clientes sont disponibles sous forme de package que vous pouvez installer sur votre appareil Ubuntu à l’aide de hello **apt-get** commande. Hello complet suivant les étapes tooinstall hello package contenant hello bibliothèque cliente de IoT Hub et les fichiers d’en-tête sur votre ordinateur Ubuntu :
 
-1. Dans un interpréteur de commandes, ajoutez le référentiel AzureIoT sur votre ordinateur :
+1. Dans un interpréteur de commandes, ajouter de hello AzureIoT référentiel tooyour :
    
     ```
     sudo add-apt-repository ppa:aziotsdklinux/ppa-azureiot
     sudo apt-get update
     ```
-2. Installation du package azure-iot-sdk-c-dev
+2. Installer le package d’azure-iot-sdk-c-dev hello
    
     ```
     sudo apt-get install -y azure-iot-sdk-c-dev
     ```
 
-## <a name="install-the-parson-json-parser"></a>Installation de l’analyseur JSON Parson JSON
-Les bibliothèques clientes IoT Hub utilisent l’analyseur JSON Parson pour analyser les charges utiles des messages. Dans un dossier approprié sur votre ordinateur, clonez le référentiel GitHub Parson à l’aide de la commande suivante :
+## <a name="install-hello-parson-json-parser"></a>Installer hello Analyseur de Parson JSON
+Hello client IoT Hub bibliothèques utilisent hello charges de message tooparse Parson JSON analyseur. Dans un dossier approprié sur votre ordinateur, cloner le référentiel de Parson GitHub hello à l’aide de hello de commande suivante :
 
 ```
 git clone https://github.com/kgabis/parson.git
 ```
 
 ## <a name="prepare-your-project"></a>Préparation du projet
-Sur votre ordinateur Ubuntu, créez un dossier nommé **remote\_monitoring**. Dans le dossier **remote\_monitoring** :
+Sur votre ordinateur Ubuntu, créez un dossier nommé **remote\_monitoring**. Bonjour **distant\_analyse** dossier :
 
-- Créez quatre fichiers : **main.c**, **remote\_monitoring.c**, **remote\_monitoring.h** et **CMakeLists.txt**.
+- Créer des quatre fichiers hello **main.c**, **distant\_monitoring.c**, **distant\_monitoring.h**, et **CMakeLists.txt**.
 - Créez un dossier nommé **parson**.
 
-Copiez les fichiers **parson.c** et **parson.h** à partir de votre copie locale du référentiel Parson dans le dossier **remote\_monitoring/parson**.
+Copiez les fichiers hello **parson.c** et **parson.h** à partir de votre copie locale du référentiel de Parson hello en hello **distant\_analyse/parson** dossier.
 
-Dans un éditeur de texte, ouvrez le fichier **remote\_monitoring.c**. Ajoutez les instructions `#include` suivantes :
+Dans un éditeur de texte, ouvrez hello **distant\_monitoring.c** fichier. Ajoutez hello suit `#include` instructions :
    
 ```
 #include "iothubtransportmqtt.h"
@@ -78,14 +78,14 @@ Dans un éditeur de texte, ouvrez le fichier **remote\_monitoring.c**. Ajoutez l
 
 [!INCLUDE [iot-suite-connecting-code](../../includes/iot-suite-connecting-code.md)]
 
-## <a name="call-the-remotemonitoringrun-function"></a>Appel de la fonction remote\_monitoring\_run
-Dans un éditeur de texte, ouvrez le fichier **remote_monitoring.h**. Ajoutez le code suivant :
+## <a name="call-hello-remotemonitoringrun-function"></a>Appelez hello distant\_analyse\_exécuter (fonction)
+Dans un éditeur de texte, ouvrez hello **remote_monitoring.h** fichier. Ajoutez hello suivant de code :
 
 ```
 void remote_monitoring_run(void);
 ```
 
-Dans un éditeur de texte, ouvrez le fichier **main.c** . Ajoutez le code suivant :
+Dans un éditeur de texte, ouvrez hello **main.c** fichier. Ajoutez hello suivant de code :
 
 ```
 #include "remote_monitoring.h"
@@ -98,12 +98,12 @@ int main(void)
 }
 ```
 
-## <a name="build-and-run-the-application"></a>Génération et exécution de l’application
-Les étapes suivantes décrivent comment utiliser *CMake* pour créer votre application cliente.
+## <a name="build-and-run-hello-application"></a>Générer et exécuter l’application hello
+Hello étapes suivantes décrivent comment toouse *CMake* toobuild votre application cliente.
 
-1. Dans un éditeur de texte, ouvrez le fichier **CMakeLists.txt** dans le dossier **remote_monitoring**.
+1. Dans un éditeur de texte, ouvrez hello **CMakeLists.txt** fichier Bonjour **remote_monitoring** dossier.
 
-1. Ajoutez les instructions suivantes pour définir comment créer votre application cliente :
+1. Ajouter hello suivant les instructions toodefine comment toobuild votre application cliente :
    
     ```
     macro(compileAsC99)
@@ -151,7 +151,7 @@ Les étapes suivantes décrivent comment utiliser *CMake* pour créer votre appl
         m
     )
     ```
-1. Dans le dossier **remote_monitoring**, créez un dossier pour stocker les fichiers *make* générés par CMake, puis exécutez les commandes **cmake** et **make** comme suit :
+1. Bonjour **remote_monitoring** dossier, créez un Bonjour toostore de dossier *rendre* fichiers que CMake génère et puis exécutez hello **cmake** et **rendre** commandes comme suit :
    
     ```
     mkdir cmake
@@ -160,7 +160,7 @@ Les étapes suivantes décrivent comment utiliser *CMake* pour créer votre appl
     make
     ```
 
-1. Exécutez l’application cliente et envoyez les données de télémétrie à IoT Hub :
+1. Exécuter l’application cliente de hello et envoyer des données de télémétrie tooIoT Hub :
    
     ```
     ./sample_app

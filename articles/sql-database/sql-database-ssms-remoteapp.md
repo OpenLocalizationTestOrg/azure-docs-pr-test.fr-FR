@@ -1,6 +1,6 @@
 ---
-title: "Se connecter à la base de données SQL avec SQL Server Management Studio dans Azure RemoteApp | Microsoft Docs"
-description: "Utilisez ce didacticiel pour apprendre à utiliser SQL Server Management Studio dans Azure RemoteApp pour la sécurité et les performances lors de la connexion à la base de données SQL"
+title: "aaaConnect tooSQL de base de données à l’aide de SQL Server Management Studio dans Azure RemoteApp | Documents Microsoft"
+description: "Utilisez ce didacticiel toolearn comment toouse SQL Server Management Studio dans Azure RemoteApp pour la sécurité et les performances lors de la connexion tooSQL de base de données"
 services: sql-database
 documentationcenter: 
 author: adhurwit
@@ -14,109 +14,109 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/01/2016
 ms.author: adhurwit
-ms.openlocfilehash: ae1f2fa38d38fe6c10bc7960fddb07ae330d1eeb
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 73994f9a1eb3e48efa5d7c4f976b00cfcbc88d75
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-sql-server-management-studio-in-azure-remoteapp-to-connect-to-sql-database"></a>Connexion à une base de données SQL à l’aide de SQL Server Management Studio dans Azure RemoteApp
+# <a name="use-sql-server-management-studio-in-azure-remoteapp-tooconnect-toosql-database"></a>Utilisez SQL Server Management Studio dans Azure RemoteApp tooconnect tooSQL base de données
 
 > [!IMPORTANT]
-> Azure RemoteApp n’est plus disponible. Pour plus d’informations, lisez [l’annonce](https://go.microsoft.com/fwlink/?linkid=821148) .
+> Azure RemoteApp n’est plus disponible. Hello de lecture [annonce](https://go.microsoft.com/fwlink/?linkid=821148) pour plus d’informations.
 >
 
 ## <a name="introduction"></a>Introduction
-Ce didacticiel vous montre comment utiliser SQL Server Management Studio (SSMS) dans Azure RemoteApp pour vous connecter à une base de données SQL. Il vous guide tout au long de la configuration de SQL Server Management Studio dans Azure RemoteApp, vous en décrit les avantages, et indique les fonctionnalités de sécurité que vous pouvez utiliser dans Azure Active Directory.
+Ce didacticiel vous montre comment toouse SQL Server Management Studio (SSMS) dans Azure RemoteApp tooconnect tooSQL base de données. Il vous guide tout au long des processus de hello de configuration SQL Server Management Studio dans Azure RemoteApp, explique les avantages de hello et montre les fonctionnalités de sécurité que vous pouvez utiliser dans Azure Active Directory.
 
-**Durée estimée :** 45 minutes
+**Estimation du temps toocomplete :** 45 minutes
 
 ## <a name="ssms-in-azure-remoteapp"></a>SSMS dans Azure RemoteApp
 Azure RemoteApp est un service RDS d’Azure, qui fournit des applications. Vous pouvez obtenir plus d’informations sur ce service ici : [Qu’est-ce que RemoteApp ?](../remoteapp/remoteapp-whatis.md)
 
-L’exécution de SSMS dans Azure RemoteApp et l’exécution locale de SSMS vous donnent la même expérience.
+En cours d’exécution dans Azure RemoteApp donne SSMS vous hello même expérience en exécutant SSMS localement.
 
 ![Capture d’écran illustrant SSMS en cours d’exécution dans Azure RemoteApp][1]
 
 ## <a name="benefits"></a>Avantages
-Les avantages liés à l’utilisation de SSMS dans Azure RemoteApp sont nombreux :
+Il existe de nombreux avantages toousing SSMS dans Azure RemoteApp, y compris :
 
-* Le port 1433 sur Azure SQL Server ne doit pas être exposé en externe (en dehors d’Azure).
-* Il est inutile de continuer à ajouter et à supprimer des adresses IP dans le pare-feu d’Azure SQL Server.
+* Le port 1433 sur le serveur SQL Azure n’a pas de toobe exposé en externe (en dehors d’Azure).
+* Aucun tookeep besoin, ajout et suppression d’adresses IP dans le pare-feu de serveur SQL Azure hello.
 * Toutes les connexions Azure RemoteApp ont lieu via HTTPS sur le port 443 à l’aide du protocole RDP (Remote Desktop Protocol) chiffré.
 * SSMS est multi-utilisateur et évolutif.
-* Posséder SSMS dans la même région que la base de données SQL permet d’obtenir des gains de performances.
-* Vous pouvez auditer l’utilisation d’Azure RemoteApp avec l’édition Premium d’Azure Active Directory qui propose des rapports d’activité utilisateur.
+* Il existe un gain de performances de l’utilisation de SSMS Bonjour même région que hello de base de données SQL.
+* Vous pouvez auditer l’utilisation d’Azure RemoteApp avec l’édition Premium d’Azure Active Directory qui a des rapports d’activité utilisateur hello.
 * Vous pouvez activer l’authentification multifacteur (MFA).
-* Vous pouvez accéder à SSMS où que vous soyez à l’aide de l’un des clients Azure RemoteApp pris en charge, notamment iOS, Android, Mac, Windows Phone et PC Windows.
+* Accès SSMS n’importe où lorsque vous utilisez une de hello clients pris en charge Azure RemoteApp qui inclut iOS, Android, Mac, Windows Phone et les PC Windows.
 
-## <a name="create-the-azure-remoteapp-collection"></a>Créer la collection Azure RemoteApp
-Voici la procédure à suivre pour créer votre collection Azure RemoteApp avec SSMS :
+## <a name="create-hello-azure-remoteapp-collection"></a>Créer la collection de hello Azure RemoteApp
+Voici votre collection Azure RemoteApp avec SSMS hello étapes toocreate :
 
 ### <a name="1-create-a-new-windows-vm-from-image"></a>1. Créer une machine virtuelle Windows à partir d’une image
-Utilisez l’image « Windows Server 2012 R2 Hôte de session Bureau à distance Windows Server » de la galerie pour créer votre machine virtuelle.
+Utilisez hello Image « Windows Server à distance Bureau Session hôte Windows Server 2012 R2 » à partir de hello galerie toomake votre nouvelle machine virtuelle.
 
 ### <a name="2-install-ssms-from-sql-express"></a>2. Installer SSMS à partir de SQL Express
-Accédez à la nouvelle machine virtuelle et à cette page de téléchargement : [Microsoft® SQL Server® 2014 Express](https://www.microsoft.com/download/details.aspx?id=42299)
+Accédez à hello nouvelle machine virtuelle et de parcourir la page de téléchargement toothis : [Microsoft® SQL Server® 2014 Express](https://www.microsoft.com/download/details.aspx?id=42299)
 
-Une option permet de télécharger uniquement SSMS. À l’issue du téléchargement, accédez au répertoire d’installation et exécutez le programme d’installation de SSMS.
+Il existe un téléchargement de tooonly option SSMS. Après le téléchargement, allez dans le répertoire d’installation hello et exécuter le programme d’installation tooinstall SSMS.
 
-Vous devez également installer SQL Server 2014 Service Pack 1. Vous pouvez le télécharger ici : [Microsoft SQL Server 2014 Service Pack 1 (SP1)](https://www.microsoft.com/download/details.aspx?id=46694)
+Vous devez également tooinstall SQL Server 2014 Service Pack 1. Vous pouvez le télécharger ici : [Microsoft SQL Server 2014 Service Pack 1 (SP1)](https://www.microsoft.com/download/details.aspx?id=46694)
 
 SQL Server 2014 Service Pack 1 inclut des fonctionnalités essentielles pour l’utilisation de la base de données SQL Azure.
 
 ### <a name="3-run-validate-script-and-sysprep"></a>3. Exécuter le script de validation et Sysprep
-Un script PowerShell de validation figure sur le Bureau de la machine virtuelle. Exécutez-le en double-cliquant dessus. Il vérifie que la machine virtuelle est prête à être utilisée pour l’hébergement distant des applications. À l’issue de la vérification, il demande d’exécuter Sysprep. Choisissez de l’exécuter.
+Sur hello bureau Hello machine virtuelle est un script PowerShell appelé Validate. Exécutez-le en double-cliquant dessus. Il vérifie que hello machine virtuelle est prête toobe utilisé pour l’hébergement à distance des applications. Lors de la vérification est terminée, il demande toorun sysprep - choisissez toorun il.
 
-Lorsque l’exécution de Sysprep est terminée, il arrête la machine virtuelle.
+Quand sysprep se termine, il s’arrêtera hello machine virtuelle.
 
-Pour en savoir plus sur la création d'une image Azure RemoteApp, consultez la page [Création d'une image de modèle RemoteApp dans Azure](http://blogs.msdn.com/b/rds/archive/2015/03/17/how-to-create-a-remoteapp-template-image-in-azure.aspx)
+toolearn savoir plus sur la création d’une image Azure RemoteApp, consultez : [comment toocreate un modèle RemoteApp de l’image dans Azure](http://blogs.msdn.com/b/rds/archive/2015/03/17/how-to-create-a-remoteapp-template-image-in-azure.aspx)
 
 ### <a name="4-capture-image"></a>4. Capturer l’image
-Lorsque l’exécution de la machine virtuelle est arrêtée, recherchez-la dans le portail actuel et capturez-la.
+Lorsque hello machine virtuelle est arrêtée, recherchez-le dans le portail actuel de hello et capturer.
 
-Pour en savoir plus sur la capture d’une image, consultez [Capturer l’image d’une machine virtuelle Windows Azure créée avec le modèle de déploiement classique](../virtual-machines/windows/classic/capture-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
+toolearn savoir plus sur la capture d’une image, consultez [capturer une image d’une machine virtuelle de Microsoft Azure créée avec le modèle de déploiement classique de hello](../virtual-machines/windows/classic/capture-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
-### <a name="5-add-to-azure-remoteapp-template-images"></a>5. Ajouter des images de modèle à Azure RemoteApp
-Dans la section Azure RemoteApp du portail actuel, cliquez sur l’onglet Images de modèle, puis sur Ajouter. Dans la zone contextuelle, sélectionnez Importez une image depuis votre bibliothèque de machines virtuelles, puis choisissez l’image que vous venez de créer.
+### <a name="5-add-tooazure-remoteapp-template-images"></a>5. Ajouter des images de modèle RemoteApp tooAzure
+Bonjour section Azure RemoteApp du portail en cours de hello, onglet des Images de modèle toohello, cliquez sur Ajouter. Dans la boîte de hello, sélectionnez « Importer une image à partir de votre bibliothèque de Machines virtuelles », puis choisissez hello Image que vous venez de créer.
 
 ### <a name="6-create-cloud-collection"></a>6. Créer une collection cloud
-Dans le portail actuel, créez une collection cloud Azure RemoteApp. Choisissez l’image de modèle que vous venez d’importer avec SSMS installé dessus.
+Dans le portail actuel hello, créez une nouvelle Collection de Cloud de RemoteApp Azure. Choisissez hello Image de modèle que vous venez d’importer avec SSMS installé dessus.
 
 ![Créer une collection cloud][2]
 
 ### <a name="7-publish-ssms"></a>7. Publier SSMS
-Dans l’onglet Publication de votre nouvelle collection cloud, sélectionnez Publier une application dans le menu Démarrer, puis choisissez SSMS dans la liste.
+Sur la publication d’onglet de votre nouvelle collection cloud, cliquez sur Publier une application à partir de hello hello Menu Démarrer, puis choisissez SSMS à partir de la liste de hello.
 
 ![Publier une application][5]
 
 ### <a name="8-add-users"></a>8. Ajouter des utilisateurs
-Dans l’onglet Accès utilisateur, vous pouvez sélectionner les utilisateurs qui auront accès à cette collection Azure RemoteApp qui inclut uniquement SSMS.
+Sur l’onglet de l’accès utilisateur hello, vous pouvez sélectionner les utilisateurs de hello qui auront accès toothis Azure RemoteApp ensemble qui inclut uniquement les SSMS.
 
 ![Ajouter un utilisateur][6]
 
-### <a name="9-install-the-azure-remoteapp-client-application"></a>9. Installer l’application cliente Azure RemoteApp
+### <a name="9-install-hello-azure-remoteapp-client-application"></a>9. Installer l’application de client hello Azure RemoteApp
 Vous pouvez télécharger et installer un client Azure RemoteApp ici : [Télécharger | Azure RemoteApp](https://www.remoteapp.windowsazure.com/en/clients.aspx)
 
 ## <a name="configure-azure-sql-server"></a>Configuration d’Azure SQL Server
-La seule configuration nécessaire est de s’assurer qu’Azure Services est activé pour le pare-feu. Si vous utilisez cette solution, vous n’avez pas besoin d’ajouter des adresses IP pour ouvrir le pare-feu. Le trafic réseau autorisé vers le serveur SQL Server provient d’autres services Azure.
+Hello uniquement de la configuration requise est tooensure Services Azure est activée pour le pare-feu hello. Si vous utilisez cette solution, puis il est inutile tooadd toutes les adresses IP tooopen le pare-feu hello. le trafic réseau Hello autorisé toohello SQL Server est à partir d’autres services Azure.
 
 ![Autoriser dans Azure][4]
 
 ## <a name="multi-factor-authentication-mfa"></a>Multi-Factor Authentication (MFA)
-La MFA peut être activée spécifiquement pour cette application. Accédez à l’onglet Applications d’Azure Active Directory. Vous trouverez une entrée correspondant à Microsoft Azure RemoteApp. Si vous cliquez sur cette application et que vous la configurez, la page suivante s’affiche et vous permet d’activer la MFA pour cette application.
+La MFA peut être activée spécifiquement pour cette application. Accédez à onglet d’Applications toohello d’Azure Active Directory. Vous trouverez une entrée correspondant à Microsoft Azure RemoteApp. Si vous cliquez sur cette application, puis configurez, vous verrez la page hello ci-dessous vous permet d’activer l’authentification Multifacteur pour cette application.
 
 ![Activer la MFA][3]
 
 ## <a name="audit-user-activity-with-azure-active-directory-premium"></a>Auditer l’activité utilisateur avec Azure Active Directory Premium
-Si vous ne possédez pas Azure AD Premium, vous devez alors l’activer dans la section Licences de votre annuaire. L’édition Premium étant activée, vous pouvez affecter des utilisateurs au niveau Premium.
+Si vous n’avez pas d’Azure AD Premium, vous devez tooturn il sur dans hello section des licences de votre annuaire. Premium est activé, vous pouvez assigner des utilisateurs au niveau du toohello Premium.
 
-Lorsque vous accédez à un utilisateur dans Azure Active Directory, vous pouvez cliquer sur l’onglet Activité pour afficher les informations de connexion pour Azure RemoteApp.
+Lorsque vous passez tooa utilisateur dans Azure Active Directory, vous pouvez ensuite accéder toohello activité onglet toosee connexion informations tooAzure RemoteApp.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Après avoir effectué toutes les étapes ci-dessus, vous serez en mesure d’exécuter le client Azure RemoteApp et de vous connecter avec un utilisateur affecté. SSMS est présenté comme étant l’une de vos applications, et vous pouvez l’exécuter comme s’il était installé sur votre ordinateur avec un accès à Azure SQL Server.
+Après avoir effectué hello toutes les étapes ci-dessus, vous être en mesure de toorun hello Azure RemoteApp client et reconnectez-vous avec un utilisateur affecté. Vous n’aurez SSMS comme l’un de vos applications, et vous pouvez l’exécuter comme vous le feriez s’il était installé sur votre ordinateur avec tooAzure accéder à SQL server.
 
-Pour plus d'informations sur l'établissement d'une connexion avec la base de données SQL, consultez la page [Se connecter à la base de données SQL avec SQL Server Management Studio et exécuter un exemple de requête T-SQL](sql-database-connect-query-ssms.md).
+Pour plus d’informations sur la façon dont toomake hello tooSQL de connexion de base de données, consultez [connecter tooSQL de base de données avec SQL Server Management Studio et exécuter un exemple de requête T-SQL](sql-database-connect-query-ssms.md).
 
 C’est tout pour le moment. Vous n’avez plus qu’à l’utiliser !
 

@@ -1,6 +1,6 @@
 ---
-title: "Configuration de l’inscription automatique auprès d’Azure Active Directory d’appareils Windows joints à un domaine | Microsoft Docs"
-description: "Configurez vos appareils Windows joints à un domaine pour les inscrire automatiquement et en mode silencieux auprès d’Azure Active Directory."
+title: "aaaHow tooconfigure l’inscription automatique des périphériques joints au domaine de Windows avec Azure Active Directory | Documents Microsoft"
+description: "Configurer votre tooregister d’appareils Windows joints automatiquement et silencieusement avec Azure Active Directory."
 services: active-directory
 documentationcenter: 
 author: MarkusVi
@@ -15,70 +15,70 @@ ms.topic: article
 ms.date: 06/16/2017
 ms.author: markvi
 ms.reviewer: jairoc
-ms.openlocfilehash: dccd7df6a5f85df4179c7ea7cfc476cfb57f48c0
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 6a1aab753f5456ed06ba7979ab05f70f29b4ddee
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-configure-automatic-registration-of-windows-domain-joined-devices-with-azure-active-directory"></a>Configuration de l’inscription automatique auprès d’Azure Active Directory d’appareils Windows joints à un domaine
+# <a name="how-tooconfigure-automatic-registration-of-windows-domain-joined-devices-with-azure-active-directory"></a>Comment tooconfigure l’inscription automatique de Windows appartenant au domaine des appareils avec Azure Active Directory
 
-Pour utiliser [l’accès conditionnel à Azure Active Directory en fonction de l’appareil](active-directory-conditional-access-azure-portal.md), vos ordinateurs doivent être inscrits auprès d’Azure Active Directory (Azure AD). Vous pouvez obtenir la liste des appareils inscrits dans votre organisation en utilisant l’applet de commande [Get-MsolDevice](https://docs.microsoft.com/powershell/msonline/v1/get-msoldevice) dans le [module Azure Active Directory PowerShell](/powershell/azure/install-msonlinev1?view=azureadps-2.0). 
+toouse [accès conditionnel périphérique Azure Active Directory](active-directory-conditional-access-azure-portal.md), vos ordinateurs doivent être inscrit auprès d’Azure Active Directory (Azure AD). Vous pouvez obtenir une liste des appareils inscrits dans votre organisation à l’aide de hello [Get-MsolDevice](https://docs.microsoft.com/powershell/msonline/v1/get-msoldevice) applet de commande Bonjour [module Azure Active Directory PowerShell](/powershell/azure/install-msonlinev1?view=azureadps-2.0). 
 
-Cet article vous présente les étapes de configuration de l’inscription automatique auprès d’Azure Active Directory d’appareils Windows joints à un domaine dans votre organisation.
+Cet article vous fournit les étapes hello pour la configuration de l’inscription automatique des périphériques joints au domaine de Windows hello avec Azure AD dans votre organisation.
 
 
 Le cas échéant, consultez les références suivantes :
 
 - Pour plus d’informations sur l’accès conditionnel, consultez l’article [Accès conditionnel dans Azure Active Directory](active-directory-conditional-access-azure-portal.md). 
-- Pour plus d’informations sur les appareils Windows 10 dans l’espace de travail et sur les expériences améliorées après inscription auprès d’Azure AD, consultez l’article [Windows 10 pour l’entreprise : plusieurs manières d’utiliser des appareils professionnels](active-directory-azureadjoin-windows10-devices-overview.md).
-- Windows 10 Entreprise E3 dans CSP. Consultez la [Vue d’ensemble de Windows 10 Entreprise E3 dans CSP](https://docs.microsoft.com/en-us/windows/deployment/windows-10-enterprise-e3-overview).
+- Les appareils Windows 10 dans l’espace de travail hello et expériences hello améliorée lorsque inscrit auprès d’Azure AD, consultez [Windows 10 pour les entreprises hello : utiliser des périphériques pour les travaux](active-directory-azureadjoin-windows10-devices-overview.md).
+- Windows 10 entreprise E3 dans CSP, consultez hello [Windows 10 entreprise E3 dans vue d’ensemble du fournisseur de services cryptographiques](https://docs.microsoft.com/en-us/windows/deployment/windows-10-enterprise-e3-overview).
 
 
 ## <a name="before-you-begin"></a>Avant de commencer
 
-Avant de commencer à configurer l’inscription automatique des appareils Windows joints à un domaine dans votre environnement, vous devez vous familiariser avec les scénarios pris en charge et avec les contraintes.  
+Avant de commencer à configurer l’inscription automatique des périphériques joints au domaine de Windows hello dans votre environnement, vous devez vous familiariser avec les scénarios hello pris en charge et des contraintes de hello.  
 
-Pour améliorer la lisibilité des descriptions, cet article utilise les termes suivants : 
+une meilleure lisibilité des hello tooimprove des descriptions de hello, cette rubrique utilise hello suivant le terme : 
 
-- **Appareils Windows actuels** : ce terme désigne les appareils joints à un domaine qui exécutent Windows 10 ou Windows Server 2016.
-- **Appareils Windows de bas niveau** : ce terme fait référence à tous les appareils Windows joints à un domaine **pris en charge** qui n’exécutent ni Windows 10 ni Windows Server 2016.  
+- **Les appareils Windows actuels** -ce terme fait référence à des appareils appartenant à un toodomain exécutant Windows 10 ou Windows Server 2016.
+- **Les appareils Windows de bas niveau** -ce terme fait référence tooall **pris en charge** appareils Windows joints à un domaine qui sont en cours d’exécution Windows 10 ni Windows Server 2016.  
 
 
 ### <a name="windows-current-devices"></a>Appareils Windows actuels
 
-- Pour les appareils qui exécutent le système d’exploitation d’ordinateur Windows, nous recommandons d’utiliser Mise à jour anniversaire Windows 10 (version 1607) ou une version ultérieure. 
-- L’inscription des appareils Windows actuels **est** prise en charge dans les environnements non fédérés tels que les configurations de synchronisation du hachage de mot de passe.  
+- Pour les périphériques exécutant le système d’exploitation de bureau Windows hello, nous vous recommandons d’à l’aide de la mise à jour de la date anniversaire Windows 10 (version 1607) ou version ultérieure. 
+- Hello d’inscription d’appareils en cours de Windows **est** pris en charge dans les environnements non fédérées telles que les configurations de synchronisation de hachage de mot de passe.  
 
 
 ### <a name="windows-down-level-devices"></a>Appareils Windows de bas niveau
 
-- Les appareils Windows de bas niveau pris en charge sont les suivants :
+- Hello suivant de périphériques de bas niveau de Windows est prises en charge :
     - Windows 8.1
     - Windows 7
     - Windows Server 2012 R2
     - Windows Server 2012
     - Windows Server 2008 R2
-- L’inscription d’appareils de bas niveau Windows **est** prise en charge dans les environnements non fédérés via l’authentification unique transparente [Authentification unique transparente d’Azure Active Directory](https://aka.ms/hybrid/sso).
-- L’inscription des appareils Windows de bas niveau **n’est pas** prise en charge pour les appareils utilisant des profils d’itinérance. Si vous vous appuyez sur l’itinérance de profils ou de paramètres, utilisez Windows 10.
+- Hello d’inscription d’appareils de bas niveau Windows **est** pris en charge dans les environnements non fédérées via transparente Single Sign On [Azure Active Directory transparente l’authentification unique sur](https://aka.ms/hybrid/sso).
+- Hello d’inscription d’appareils de bas niveau Windows **n’est pas** pris en charge pour les appareils à l’aide de profils itinérants. Si vous vous appuyez sur l’itinérance de profils ou de paramètres, utilisez Windows 10.
 
 
 
-## <a name="prerequisites"></a>Prérequis
+## <a name="prerequisites"></a>Composants requis
 
-Avant de commencer à activer l’inscription automatique d’appareils joints à un domaine dans votre organisation, vous devez vous assurer que vous exécutez une version à jour d’Azure AD Connect.
+Avant de commencer l’activation hello-d’enregistrement automatique des appareils de joints au domaine de votre organisation, vous devez toomake que que vous exécutez une version à jour d’Azure AD se connecter.
 
 Azure AD Connect :
 
-- Conserve l’association entre le compte d’ordinateur dans votre service Active Directory (AD) local et l’objet appareil dans Azure AD. 
+- Conserve l’association hello entre le compte d’ordinateur hello dans vos locaux Active Directory (AD) et un objet de périphérique hello dans Azure AD. 
 - Permet d’utiliser d’autres fonctionnalités liées aux appareils telles que Windows Hello Entreprise.
 
 
 
 ## <a name="configuration-steps"></a>Configuration
 
-Cet article inclut les étapes requises pour tous les scénarios de configuration classiques.  
-Pour obtenir une vue d’ensemble des étapes requises par votre scénario, utilisez le tableau ci-après :  
+Cette rubrique comprend les étapes hello requis pour tous les scénarios courants de configuration.  
+Utilisez hello suivant table tooget une vue d’ensemble des étapes hello qui sont requis pour votre scénario :  
 
 
 
@@ -94,20 +94,20 @@ Pour obtenir une vue d’ensemble des étapes requises par votre scénario, util
 
 ## <a name="step-1-configure-service-connection-point"></a>Étape 1 : Configuration du point de connexion de service
 
-Vos appareils utilisent l’objet point de connexion de service (SCP) lors de l’inscription pour détecter les informations de client Azure AD. Dans votre service Active Directory (AD) local, l’objet SCP pour l’inscription automatique des appareils joints à un domaine doit exister dans la partition de contexte d’appellation de configuration de la forêt de l’ordinateur. Il n’existe qu’un seul contexte d’appellation de configuration par forêt. Dans une configuration Active Directory à forêts multiples, le point de connexion de service doit exister dans toutes les forêts qui contiennent des ordinateurs joints à un domaine.
+objet de point de connexion de service Hello est utilisé par vos périphériques pendant l’inscription de hello toodiscover informations du locataire Azure AD. Dans vos locaux Active Directory (AD), objet SCP hello hello-d’enregistrement automatique des appareils joints au domaine doit exister dans hello d’affectation de noms contexte partition de configuration de la forêt de l’ordinateur hello. Il n’existe qu’un seul contexte d’appellation de configuration par forêt. Dans une configuration d’Active Directory de forêts multiples, le point de connexion de service hello doit exister dans toutes les forêts contenant des ordinateurs joints au domaine.
 
-Pour récupérer le contexte d’appellation de configuration de votre forêt, vous pouvez utiliser l’applet de commande [**Get-ADRootDSE**](https://technet.microsoft.com/library/ee617246.aspx).  
+Vous pouvez utiliser hello [ **Get-ADRootDSE** ](https://technet.microsoft.com/library/ee617246.aspx) applet de commande tooretrieve hello configuration contexte d’appellation de votre forêt.  
 
-Pour une forêt avec le nom de domaine Active Directory *fabrikam.com*, le contexte d’appellation de configuration est le suivant :
+Pour une forêt avec le nom de domaine Active Directory hello *fabrikam.com*, contexte d’appellation de configuration hello est :
 
 `CN=Configuration,DC=fabrikam,DC=com`
 
-Dans votre forêt, l’objet SCP pour l’inscription automatique des appareils joints à un domaine se trouve à l’emplacement suivant :  
+Dans votre forêt, objet hello SCP pour hello auto-inscription de périphériques joints au domaine se trouve dans :  
 
 `CN=62a0ff2e-97b9-4513-943f-0d221bd30080,CN=Device Registration Configuration,CN=Services,[Your Configuration Naming Context]`
 
-Selon la façon dont vous avez déployé Azure AD Connect, il est possible que l’objet SCP ait déjà été configuré.
-Vous pouvez vérifier l’existence de l’objet et récupérer les valeurs de détection à l’aide du script Windows PowerShell suivant : 
+Selon la façon dont vous avez déployé Azure AD Connect, objet de SCP hello peut ont déjà été configurée.
+Vous pouvez vérifier l’existence de hello d’objet de hello et récupérer des valeurs de découverte hello à l’aide de hello Windows PowerShell script suivant : 
 
     $scp = New-Object System.DirectoryServices.DirectoryEntry;
 
@@ -115,19 +115,19 @@ Vous pouvez vérifier l’existence de l’objet et récupérer les valeurs de d
 
     $scp.Keywords;
 
-La sortie de **$scp.Keywords** présente les informations de client Azure AD, par exemple :
+Hello **$scp. Mots clés** sortie affiche les informations du locataire hello Azure AD, par exemple :
 
     azureADName:microsoft.com
     azureADId:72f988bf-86f1-41af-91ab-2d7cd011db47
 
-Si le point de connexion de service n’existe pas, vous pouvez le créer en exécutant l’applet de commande `Initialize-ADSyncDomainJoinedComputerSync` sur votre serveur Azure AD Connect. Des informations d’identification d’administrateur d’entreprise sont requises pour exécuter cette applet de commande.  
-Cette applet de commande :
+Si le point de connexion de service hello n’existe pas, vous pouvez le créer en exécutant hello `Initialize-ADSyncDomainJoinedComputerSync` applet de commande sur votre serveur Azure AD Connect. Informations d’identification de Enterprise admin est obligatoire toorun cette applet de commande.  
+applet de commande Hello :
 
-- Crée le point de connexion de service dans la forêt Active Directory à laquelle Azure AD Connect est connecté. 
-- Vous demande de spécifier le paramètre `AdConnectorAccount`. Il s’agit du compte configuré en tant que compte de connecteur Active Directory dans Azure AD Connect. 
+- Crée le point de connexion de service hello dans la forêt Active Directory de hello À qu'azure AD Connect est connecté. 
+- Requiert que vous toospecify hello `AdConnectorAccount` paramètre. Il s’agit de compte hello qui est configuré en tant que compte de connecteur dans Azure AD de se connecter de Active Directory. 
 
 
-Le script ci-après présente un exemple d’utilisation de l’applet de commande. Dans ce script, la chaîne `$aadAdminCred = Get-Credential` exige que vous tapiez un nom d’utilisateur. Vous devez indiquer le nom d’utilisateur au format de nom d’utilisateur principal (UPN) (`user@example.com`). 
+Hello script suivant montre un exemple d’utilisation d’applet de commande hello. Dans ce script, `$aadAdminCred = Get-Credential` nécessite que vous tootype un nom d’utilisateur. Vous avez besoin de nom d’utilisateur hello tooprovide hello format nom utilisateur principal (UPN) (`user@example.com`). 
 
 
     Import-Module -Name "C:\Program Files\Microsoft Azure Active Directory Connect\AdPrep\AdSyncPrep.psm1";
@@ -136,14 +136,14 @@ Le script ci-après présente un exemple d’utilisation de l’applet de comman
 
     Initialize-ADSyncDomainJoinedComputerSync –AdConnectorAccount [connector account name] -AzureADCredentials $aadAdminCred;
 
-L’applet de commande `Initialize-ADSyncDomainJoinedComputerSync` :
+Hello `Initialize-ADSyncDomainJoinedComputerSync` applet de commande :
 
-- utilise le module Active Directory PowerShell qui s’appuie sur les services Web Active Directory s’exécutant sur un contrôleur de domaine. Les services Web Active Directory sont pris en charge sur les contrôleurs de domaine exécutant Windows Server 2008 R2 et les versions ultérieures.
-- Est pris en charge seulement par le **module MSOnline PowerShell version 1.1.166.0**. Pour télécharger ce module, utilisez ce [lien](http://connect.microsoft.com/site1164/Downloads/DownloadDetails.aspx?DownloadID=59185).   
+- Utilise le module Active Directory PowerShell hello, qui s’appuie sur les Services Web Active Directory s’exécutant sur un contrôleur de domaine. Les services Web Active Directory sont pris en charge sur les contrôleurs de domaine exécutant Windows Server 2008 R2 et les versions ultérieures.
+- Est uniquement pris en charge par hello **MSOnline PowerShell version du module 1.1.166.0**. toodownload ce module, utilisez cette [lien](http://connect.microsoft.com/site1164/Downloads/DownloadDetails.aspx?DownloadID=59185).   
 
-Pour les contrôleurs de domaine exécutant Windows Server 2008 ou des versions antérieures, utilisez le script ci-après pour créer le point de connexion de service.
+Pour les contrôleurs de domaine exécutant Windows Server 2008 ou versions antérieures, utilisez le script de hello sous le point de connexion de service toocreate hello.
 
-Dans une configuration à forêts multiples, vous devez utiliser le script ci-dessous pour créer le point de connexion de service dans chacune des forêts contenant des ordinateurs :
+Dans une configuration à plusieurs forêts, vous devez utiliser hello suivant le point de connexion de service script toocreate hello dans chaque forêt où les ordinateurs existent :
  
     $verifiedDomain = "contoso.com"    # Replace this with any of your verified domain names in Azure AD
     $tenantID = "72f988bf-86f1-41af-91ab-2d7cd011db47"    # Replace this with you tenant ID
@@ -164,42 +164,42 @@ Dans une configuration à forêts multiples, vous devez utiliser le script ci-de
 
 ## <a name="step-2-setup-issuance-of-claims"></a>Étape 2 : Configuration de l’émission de revendications
 
-Dans une configuration Azure AD fédérée, les appareils s’appuient sur les services de fédération Active Directory (AD FS) ou sur un service de fédération local tiers pour s’authentifier auprès d’Azure AD. Les appareils s’authentifient pour obtenir un jeton d’accès afin de s’inscrire auprès du service Azure Active Directory Device Registration Service (Azure DRS).
+Dans Azure fédéré configuration d’Active Directory, les appareils s’appuient sur les Services de fédération Active Directory (AD FS) ou un tiers 3e localement tooAzure de tooauthenticate service de fédération Active Directory. Les appareils s’authentifient tooget un tooregister de jeton d’accès contre hello Azure Active Directory Device Registration Service (DRS Azure).
 
-Les appareils Windows actuels s’authentifient à l’aide de l’authentification Windows intégrée auprès d’un point de terminaison WS-Trust actif (version 1.3 ou 2005) hébergé par le service de fédération local.
+Les appareils en cours s’authentifient à l’aide de l’authentification Windows intégrée tooan WS-Trust point de terminaison actif (versions 1.3 ou 2005) hébergé par le service de fédération local hello de Windows.
 
 > [!NOTE]
-> En cas d’utilisation d’AD FS, il est nécessaire d’activer **adfs/services/trust/13/windowstransport** ou **adfs/services/trust/2005/windowstransport**. Si vous utilisez le proxy d’authentification web, vérifiez également que ce point de terminaison est publié via le proxy. Vous pouvez visualiser les points de terminaison qui sont activés par le biais de la console de gestion AD FS sous **Service > Points de terminaison**.
+> En cas d’utilisation d’AD FS, il est nécessaire d’activer **adfs/services/trust/13/windowstransport** ou **adfs/services/trust/2005/windowstransport**. Si vous utilisez hello Web d’authentification Proxy, vérifiez également que ce point de terminaison est publié via le proxy hello. Vous pouvez voir les points d’arrêt sont activés via la console de gestion hello AD FS sous **Service > points de terminaison**.
 >
->Si vous n’utilisez pas AD FS en tant que service de fédération local, suivez les instructions de votre fournisseur pour vous assurer que celui-ci prend en charge les points de terminaison WS-Trust 1.3 ou 2005 et que ces derniers sont publiés par le biais du fichier Metadata Exchange (MEX).
+>Si vous n’avez pas AD FS en tant que votre service de fédération local, suivez les instructions de hello de votre fournisseur de toomake assurer qu’ils prennent en charge WS-Trust 1.3 ou des points de terminaison 2005 et qu’ils sont publiés via hello fichier d’échange de métadonnées (MEX).
 
-Pour que l’inscription d’appareils puisse s’effectuer, les revendications ci-après doivent exister dans le jeton reçu par Azure DRS. Azure DRS crée un objet appareil dans Azure AD avec certaines de ces informations, qu’Azure AD Connect utilise ensuite pour associer l’objet appareil nouvellement créé au compte d’ordinateur local.
+Hello revendications suivantes doivent exister dans le jeton hello reçue par le service DRS Azure pour toocomplete d’inscription de périphérique. DRS Azure crée un objet de périphérique dans Azure AD avec certaines de ces informations sont ensuite utilisées par l’objet de périphérique Azure AD Connect tooassociate hello nouvellement créée avec hello ordinateur compte local.
 
 * `http://schemas.microsoft.com/ws/2012/01/accounttype`
 * `http://schemas.microsoft.com/identity/claims/onpremobjectguid`
 * `http://schemas.microsoft.com/ws/2008/06/identity/claims/primarysid`
 
-Si vous disposez de plusieurs noms de domaine vérifiés, vous devez fournir la revendication ci-après pour les ordinateurs :
+Si vous avez plusieurs noms de domaine vérifié, vous devez hello tooprovide suivant revendication pour les ordinateurs :
 
 * `http://schemas.microsoft.com/ws/2008/06/identity/claims/issuerid`
 
-Si vous émettez déjà une revendication ImmutableID (par exemple, un ID de connexion alternatif), vous devez fournir une seule revendication correspondante pour les ordinateurs :
+Si vous émettez déjà une revendication ImmutableID (par exemple, les ID de connexion de substitution), vous devez tooprovide une revendication correspondante pour les ordinateurs :
 
 * `http://schemas.microsoft.com/LiveID/Federation/2008/05/ImmutableID`
 
-Dans les sections ci-après, vous trouverez des informations concernant :
+Dans les sections suivantes de hello, trouver des informations sur :
  
-- Les valeurs requises pour chaque revendication
+- les valeurs Hello chaque revendication doit avoir.
 - L’aspect d’une définition dans AD FS
 
-La définition vous permet de vérifier si les valeurs sont présentes ou si vous devez les créer.
+définition de Hello vous aide à tooverify si les valeurs hello sont présentes, ou si vous avez besoin de toocreate les.
 
 > [!NOTE]
-> Si vous n’utilisez pas AD FS pour votre serveur de fédération local, suivez les instructions de votre fournisseur afin de créer la configuration appropriée pour l’émission de ces revendications.
+> Si vous n’utilisez pas AD FS pour votre serveur de fédération local, suivez tooissue de configuration approprié de votre fournisseur instructions toocreate hello ces revendications.
 
 ### <a name="issue-account-type-claim"></a>Émission de la revendication du type de compte
 
-**`http://schemas.microsoft.com/ws/2012/01/accounttype`** : cette revendication doit contenir la valeur **DJ**, qui identifie l’appareil en tant qu’ordinateur joint à un domaine. Dans AD FS, vous pouvez ajouter une règle de transformation d’émission ressemblant à ceci :
+**`http://schemas.microsoft.com/ws/2012/01/accounttype`**-Cette revendication doit contenir une valeur de **DJ**, qui identifie le périphérique hello en tant qu’un ordinateur joint au domaine. Dans AD FS, vous pouvez ajouter une règle de transformation d’émission ressemblant à ceci :
 
     @RuleName = "Issue account type for domain-joined computers"
     c:[
@@ -212,9 +212,9 @@ La définition vous permet de vérifier si les valeurs sont présentes ou si vou
         Value = "DJ"
     );
 
-### <a name="issue-objectguid-of-the-computer-account-on-premises"></a>Émission de la valeur ObjectGUID du compte d’ordinateur local
+### <a name="issue-objectguid-of-hello-computer-account-on-premises"></a>ObjectGUID de problème de hello ordinateur compte local
 
-**`http://schemas.microsoft.com/identity/claims/onpremobjectguid`** : cette revendication doit contenir la valeur **objectGUID** du compte d’ordinateur local. Dans AD FS, vous pouvez ajouter une règle de transformation d’émission ressemblant à ceci :
+**`http://schemas.microsoft.com/identity/claims/onpremobjectguid`**-Cette revendication doit contenir hello **objectGUID** valeur Hello local compte d’ordinateur. Dans AD FS, vous pouvez ajouter une règle de transformation d’émission ressemblant à ceci :
 
     @RuleName = "Issue object GUID for domain-joined computers"
     c1:[
@@ -234,9 +234,9 @@ La définition vous permet de vérifier si les valeurs sont présentes ou si vou
         param = c2.Value
     );
  
-### <a name="issue-objectsid-of-the-computer-account-on-premises"></a>Émission de la valeur objectSID du compte d’ordinateur local
+### <a name="issue-objectsid-of-hello-computer-account-on-premises"></a>Émettre objectSID de hello ordinateur compte local
 
-**`http://schemas.microsoft.com/ws/2008/06/identity/claims/primarysid`** : cette revendication doit contenir la valeur **objectSid** du compte d’ordinateur local. Dans AD FS, vous pouvez ajouter une règle de transformation d’émission ressemblant à ceci :
+**`http://schemas.microsoft.com/ws/2008/06/identity/claims/primarysid`**-Cette revendication doit contenir Bonjour Bonjour **objectSid** valeur Hello local compte d’ordinateur. Dans AD FS, vous pouvez ajouter une règle de transformation d’émission ressemblant à ceci :
 
     @RuleName = "Issue objectSID for domain-joined computers"
     c1:[
@@ -253,9 +253,9 @@ La définition vous permet de vérifier si les valeurs sont présentes ou si vou
 
 ### <a name="issue-issuerid-for-computer-when-multiple-verified-domain-names-in-azure-ad"></a>Émission de la valeur issuerID pour l’ordinateur s’il existe plusieurs noms de domaine vérifiés dans Azure AD
 
-**`http://schemas.microsoft.com/ws/2008/06/identity/claims/issuerid`** : cette revendication doit contenir l’URI (Uniform Resource Identifier) des noms de domaine vérifiés qui se connectent avec le service de fédération local (AD FS ou tiers) émettant le jeton. Dans AD FS, vous pouvez ajouter des règles de transformation d’émission qui ressemblent à celles ci-dessous dans l’ordre indiqué après les règles mentionnées ci-dessus. Notez qu’il doit exister une règle régissant l’émission explicite de la règle pour les utilisateurs. Dans les règles ci-dessous, une première règle est ajoutée afin d’identifier l’authentification d’un utilisateur plutôt que d’un ordinateur.
+**`http://schemas.microsoft.com/ws/2008/06/identity/claims/issuerid`**-Cette revendication doit contenir hello identificateur URI (Uniform Resource) de n’importe quel Hello vérifié les noms de domaine qui se connectent avec hello localement le jeton de hello émettrice federation Services (AD FS ou 3e partie). Dans AD FS, vous pouvez ajouter des règles de transformation d’émission qui ressemblent à celles hello ci-dessous dans la mesure où un ordre spécifique après ceux hello ci-dessus. Notez qu’un tooexplicitly problème hello la règle pour les utilisateurs est nécessaire. Dans les règles de hello ci-dessous, une première règle identifiant utilisateur ou l’authentification d’ordinateur est ajoutée.
 
-    @RuleName = "Issue account type with the value User when its not a computer"
+    @RuleName = "Issue account type with hello value User when its not a computer"
     NOT EXISTS(
     [
         Type == "http://schemas.microsoft.com/ws/2012/01/accounttype", 
@@ -267,7 +267,7 @@ La définition vous permet de vérifier si les valeurs sont présentes ou si vou
         Value = "User"
     );
     
-    @RuleName = "Capture UPN when AccountType is User and issue the IssuerID"
+    @RuleName = "Capture UPN when AccountType is User and issue hello IssuerID"
     c1:[
         Type == "http://schemas.xmlsoap.org/claims/UPN"
     ]
@@ -297,15 +297,15 @@ La définition vous permet de vérifier si les valeurs sont présentes ou si vou
     );
 
 
-Dans la revendication ci-dessus,
+Dans la revendication hello ci-dessus,
 
-- `$<domain>` est l’URL des services AD FS
-- `<verified-domain-name>` est un espace réservé que vous devez remplacer par un de vos noms de domaine vérifiés dans Azure AD
+- `$<domain>`est l’URL du service hello AD FS
+- `<verified-domain-name>`est un espace réservé que vous avez besoin de tooreplace avec l’un de vos noms de domaine vérifié dans Azure AD
 
 
 
-Pour plus d’informations sur la vérification du domaine, consultez [Ajouter un nom de domaine personnalisé à Azure Active Directory](active-directory-add-domain.md).  
-Pour obtenir une liste de vos domaines d’entreprise vérifiés, vous pouvez utiliser l’applet de commande [Get-MsolDomain](/powershell/module/msonline/get-msoldomain?view=azureadps-1.0). 
+Pour plus d’informations sur les noms de domaine vérifié, consultez [ajouter un tooAzure de nom de domaine personnalisé Active Directory](active-directory-add-domain.md).  
+tooget une liste de vos domaines de société vérifiés, vous pouvez utiliser hello [Get-MsolDomain](/powershell/module/msonline/get-msoldomain?view=azureadps-1.0) applet de commande. 
 
 ![Get-MsolDomain](./media/active-directory-conditional-access-automatic-device-registration-setup/01.png)
 
@@ -331,9 +331,9 @@ Pour obtenir une liste de vos domaines d’entreprise vérifiés, vous pouvez ut
         param = c2.Value
     );
 
-### <a name="helper-script-to-create-the-ad-fs-issuance-transform-rules"></a>Script d’assistance pour la création des règles de transformation d’émission AD FS
+### <a name="helper-script-toocreate-hello-ad-fs-issuance-transform-rules"></a>Règles de transformation d’émission d’application d’assistance script toocreate hello AD FS
 
-Le script ci-après vous aide à créer les règles de transformation d’émission décrites ci-dessus.
+Hello script suivant vous aide à avec création de hello d’émission de hello transformer les règles décrites ci-dessus.
 
     $multipleVerifiedDomainNames = $false
     $immutableIDAlreadyIssuedforUsers = $false
@@ -383,7 +383,7 @@ Le script ci-après vous aide à créer les règles de transformation d’émiss
 
     $rule4 = ''
     if ($multipleVerifiedDomainNames -eq $true) {
-    $rule4 = '@RuleName = "Issue account type with the value User when it is not a computer"
+    $rule4 = '@RuleName = "Issue account type with hello value User when it is not a computer"
     NOT EXISTS(
     [
         Type == "http://schemas.microsoft.com/ws/2012/01/accounttype", 
@@ -395,7 +395,7 @@ Le script ci-après vous aide à créer les règles de transformation d’émiss
         Value = "User"
     );
     
-    @RuleName = "Capture UPN when AccountType is User and issue the IssuerID"
+    @RuleName = "Capture UPN when AccountType is User and issue hello IssuerID"
     c1:[
         Type == "http://schemas.xmlsoap.org/claims/UPN"
     ]
@@ -456,129 +456,129 @@ Le script ci-après vous aide à créer les règles de transformation d’émiss
 
 ### <a name="remarks"></a>Remarques 
 
-- Ce script ajoute les règles aux règles existantes. N’exécutez pas le script à deux reprises, car l’ensemble de règles serait alors ajouté deux fois. Avant de réexécuter le script, assurez-vous qu’il n’existe aucune règle correspondante pour ces revendications (sous les conditions associées).
+- Ce script ajoute des règles existantes de hello règles toohello. N’exécutez ne pas hello script à deux reprises car hello ensemble de règles est ajouté à deux reprises. Assurez-vous qu’aucune règle correspondant n’existe pour ces revendications (dans des conditions hello) avant de réexécuter le script de hello.
 
-- Si vous disposez de plusieurs noms de domaine vérifiés (comme indiqué dans le portail Azure AD ou par le biais de l’applet de commande Get-MsolDomains), définissez l’élément **$multipleVerifiedDomainNames** du script sur la valeur **$true**. Veillez également à supprimer toute revendication issuerid existante pouvant avoir été créée par Azure AD Connect ou par d’autres moyens. Voici un exemple de cette règle :
+- Si vous avez plusieurs noms de domaine vérifié (comme indiqué dans le portail de hello Azure AD ou via l’applet de commande Get-MsolDomains de hello), valeur hello **$multipleVerifiedDomainNames** Bonjour script trop**$true**. Veillez également à supprimer toute revendication issuerid existante pouvant avoir été créée par Azure AD Connect ou par d’autres moyens. Voici un exemple de cette règle :
 
 
         c:[Type == "http://schemas.xmlsoap.org/claims/UPN"]
         => issue(Type = "http://schemas.microsoft.com/ws/2008/06/identity/claims/issuerid", Value = regexreplace(c.Value, ".+@(?<domain>.+)",  "http://${domain}/adfs/services/trust/")); 
 
-- Si vous avez déjà émis une revendication **ImmutableID** pour les comptes d’utilisateurs, définissez l’élément **$immutableIDAlreadyIssuedforUsers** du script sur la valeur **$true**.
+- Si vous avez déjà émis un **ImmutableID** de revendication pour les comptes d’utilisateur, la valeur hello **$immutableIDAlreadyIssuedforUsers** Bonjour script trop**$true**.
 
 ## <a name="step-3-enable-windows-down-level-devices"></a>Étape 3 : Activation des appareils Windows de bas niveau
 
 Si certains de vos appareils joints à un domaine sont des appareils Windows de bas niveau, vous devez :
 
-- Définir une stratégie dans Azure AD pour permettre aux utilisateurs d’inscrire des appareils
+- Définir une stratégie dans Azure AD tooenable tooregister les appareils des utilisateurs.
  
-- Configurer votre service de fédération local pour l’émission de revendications afin de prendre en charge **l’authentification Windows intégrée (IWA)** pour l’inscription des appareils
+- Configurer votre toosupport revendications tooissue de service de fédération local **l’authentification Windows (intégrée)** pour l’inscription de périphérique.
  
-- Ajouter le point de terminaison d’authentification d’appareil Azure AD aux zones Intranet local afin d’éviter les invites de certificat lors de l’authentification des appareils
+- Ajoutez des hello Azure AD appareil authentification point de terminaison toohello local Intranet zones tooavoid certificat invite lors de l’authentification d’appareil de hello.
 
-### <a name="set-policy-in-azure-ad-to-enable-users-to-register-devices"></a>Définir une stratégie dans Azure AD pour permettre aux utilisateurs d’inscrire des appareils
+### <a name="set-policy-in-azure-ad-tooenable-users-tooregister-devices"></a>Définir la stratégie dans Azure AD tooenable tooregister les appareils des utilisateurs
 
-Pour inscrire des appareils Windows de bas niveau, vous devez vous assurer que le paramètre permettant aux utilisateurs d’inscrire des appareils dans Azure AD est défini. Dans le Portail Azure, ce paramètre est disponible à l’emplacement suivant :
+périphériques de bas niveau tooregister Windows, vous devez toomake que ce hello définissant tooallow utilisateurs tooregister appareils dans Azure AD est défini. Bonjour portail Azure, vous pouvez trouver ce paramètre sous :
 
 `Azure Active Directory > Users and groups > Device settings`
     
-La stratégie ci-après doit être définie sur la valeur **Tous** : **Les utilisateurs peuvent inscrire leurs appareils sur Azure AD**.
+Hello stratégie suivante doit être défini trop**tous les**: **les utilisateurs peuvent inscrire leurs appareils auprès d’Azure AD**
 
 ![Inscrire des appareils](./media/active-directory-conditional-access-automatic-device-registration-setup/23.png)
 
 
 ### <a name="configure-on-premises-federation-service"></a>Configurer le service de fédération local 
 
-Votre service de fédération local doit prendre en charge l’émission des revendications **authenticationmehod** et **wiaormultiauthn** lors de la réception d’une demande d’authentification auprès de la partie de confiance Azure AD qui contient un paramètre resouce_params avec une valeur encodée comme indiqué ci-dessous :
+Votre service de fédération local doit prendre en charge hello émettrice **authenticationmehod** et **wiaormultiauthn** revendications lors de la réception d’une authentification demande toohello Azure AD de confiance contenant un resouce_params paramètre avec une valeur codée comme indiqué ci-dessous :
 
     eyJQcm9wZXJ0aWVzIjpbeyJLZXkiOiJhY3IiLCJWYWx1ZSI6IndpYW9ybXVsdGlhdXRobiJ9XX0
 
     which decoded is {"Properties":[{"Key":"acr","Value":"wiaormultiauthn"}]}
 
-Lorsqu’une telle demande est reçue, le service de fédération local doit authentifier l’utilisateur à l’aide de l’authentification Windows intégrée et, en cas de réussite, doit émettre les deux revendications suivantes :
+Lorsqu’une telle demande est fourni, service de fédération local hello doit authentifier l’utilisateur hello à l’aide de l’authentification Windows intégrée et en cas de réussite, elle doit émettre hello suivant deux revendications :
 
     http://schemas.microsoft.com/ws/2008/06/identity/authenticationmethod/windows
     http://schemas.microsoft.com/claims/wiaormultiauthn
 
-Dans AD FS, vous devez ajouter une règle de transformation d’émission qui est transmise directement par le biais de la méthode d’authentification.  
+Dans AD FS, vous devez ajouter une règle de transformation d’émission de cette méthode d’authentification transmet via hello.  
 
-**Pour ajouter cette règle :**
+**tooadd cette règle :**
 
-1. Dans la console de gestion AD FS, accédez à `AD FS > Trust Relationships > Relying Party Trusts`.
-2. Cliquez avec le bouton droit sur l’objet d’approbation de partie de confiance de la plateforme d’identité Microsoft Office 365 et sélectionnez **Modifier les règles de revendication**.
-3. Sous l’onglet **Règles de transformation d’émission**, sélectionnez **Ajouter une règle**.
-4. Sélectionnez **Envoyer les revendications en utilisant une règle personnalisée** dans la liste de modèles **Règle de revendication**.
+1. Dans la console de gestion hello AD FS, accédez trop`AD FS > Trust Relationships > Relying Party Trusts`.
+2. Objet d’approbation de partie de confiance de plateforme d’identité Microsoft Office 365 hello d’avec le bouton droit et sélectionnez **modifier les règles de revendication**.
+3. Sur hello **règles de transformation d’émission** onglet, sélectionnez **ajouter une règle**.
+4. Bonjour **règle de revendication** liste des modèles, sélectionnez **envoyer des revendications à l’aide d’une règle personnalisée**.
 5. Sélectionnez **Suivant**.
-6. Dans la zone **Nom de la règle de revendication**, tapez **Règle de revendication de méthode d’authentification**.
-7. Dans la zone **Règle de revendication**, tapez la règle suivante :
+6. Bonjour **nom de règle de revendication** , tapez **règle de revendication de méthode d’authentification**.
+7. Bonjour **règle de revendication** boîte, hello type règle :
 
     `c:[Type == "http://schemas.microsoft.com/claims/authnmethodsreferences"] => issue(claim = c);`
 
-8. Sur votre serveur de fédération, tapez la commande PowerShell ci-dessous après avoir remplacé **\<RPObjectName\>** par le nom d’objet de partie de confiance de votre objet Approbation de partie de confiance Azure AD. Cet objet est généralement nommé **plateforme d’identité Microsoft Office 365**.
+8. Sur votre serveur de fédération, tapez la commande PowerShell de hello ci-dessous après le remplacement  **\<RPObjectName\>**  avec hello partie de confiance nom de l’objet pour votre objet Azure AD approbation de partie de confiance. Cet objet est généralement nommé **plateforme d’identité Microsoft Office 365**.
    
     `Set-AdfsRelyingPartyTrust -TargetName <RPObjectName> -AllowedAuthenticationClassReferences wiaormultiauthn`
 
-### <a name="add-the-azure-ad-device-authentication-end-point-to-the-local-intranet-zones"></a>Ajouter le point de terminaison d’authentification d’appareil Azure AD aux zones Intranet local
+### <a name="add-hello-azure-ad-device-authentication-end-point-toohello-local-intranet-zones"></a>Ajouter des zones Intranet Local de hello Azure AD appareil authentification point d’arrêt toohello
 
-Pour éviter les invites de certificat lorsque les utilisateurs des appareils inscrits s’authentifient auprès d’Azure AD, vous pouvez transmettre une stratégie à vos appareils joints à un domaine pour ajouter l’URL ci-après à la zone Intranet local dans Internet Explorer :
+certificat de tooavoid invite lorsque les utilisateurs de périphériques de Registre authentifient tooAzure AD, vous pouvez transmettre un Bonjour de tooadd stratégie tooyour périphériques joints au domaine suivant la zone d’Intranet Local toohello URL dans Internet Explorer :
 
 `https://device.login.microsoftonline.com`
 
 ## <a name="step-4-control-deployment-and-rollout"></a>Étape 4 : Contrôle du déploiement et du lancement
 
-Une fois que vous avez exécuté les étapes requises, les appareils joints à un domaine sont prêts à s’inscrire automatiquement auprès d’Azure AD. Tous les appareils joints à un domaine qui exécutent Mise à jour anniversaire Windows 10 et Windows Server 2016 s’inscrivent automatiquement auprès d’Azure AD lors du redémarrage des appareils ou de la connexion des utilisateurs. Les nouveaux appareils s’inscrivent auprès d’Azure AD au moment de leur redémarrage une fois l’opération de jonction de domaine effectuée.
+Lorsque vous avez terminé les étapes de hello requis, les périphériques joints au domaine sont register tooautomatically prêt avec Azure AD. Tous les appareils joints à un domaine qui exécutent Mise à jour anniversaire Windows 10 et Windows Server 2016 s’inscrivent automatiquement auprès d’Azure AD lors du redémarrage des appareils ou de la connexion des utilisateurs. Nouveaux périphériques s’inscrire auprès d’Azure AD quand les appareils hello redémarre après que l’opération de jointure de domaine hello est terminée.
 
-Les appareils qui ont fait précédemment l’objet d’une jonction d’espace de travail à Azure AD (par exemple pour Intune) passent à « *Joint au domaine, Enregistré avec AAD* ». Cependant, un certain temps est nécessaire pour que ce processus soit effectué sur tous les appareils, en raison du flux normal de l’activité du domaine et des utilisateurs.
+Les appareils qui ont été précédemment appartenant à un espace de travail tooAzure AD (par exemple pour Windows Intune) transition trop »*joints à un domaine, enregistré avec AAD*« ; toutefois il prend un certain temps pour toocomplete de ce processus sur tous les périphériques en raison de toohello normal flux d’activité des utilisateurs et de domaine.
 
 ### <a name="remarks"></a>Remarques
 
-- Vous pouvez utiliser un objet de stratégie de groupe pour contrôler le déploiement de l’inscription automatique des ordinateurs Windows 10 et Windows Server 2016 joints à un domaine.
+- Vous pouvez utiliser un déploiement de hello de toocontrol d’objet stratégie de groupe de l’inscription automatique de Windows 10 et les ordinateurs joints à un domaine Windows Server 2016.
 
-- La mise à jour de novembre 2015 de Windows 10 s’inscrit automatiquement auprès d’Azure AD **uniquement** si l’objet de stratégie de groupe de lancement est défini.
+- Windows 10 novembre 2015 mise à jour automatiquement inscrit auprès d’Azure AD **uniquement** si l’objet de stratégie de groupe de déploiement hello est définie.
 
-- Pour lancer l’inscription automatique des ordinateurs Windows de bas niveau, vous pouvez déployer un [package Windows Installer](#windows-installer-packages-for-non-windows-10-computers) sur les ordinateurs que vous sélectionnez.
+- toorollout hello l’inscription automatique des ordinateurs de bas niveau de Windows, vous pouvez déployer un [package Windows Installer](#windows-installer-packages-for-non-windows-10-computers) toocomputers que vous sélectionnez.
 
-- Si vous transmettez l’objet de stratégie de groupe à des appareils Windows 8.1 joints à un domaine, l’inscription sera tentée ; toutefois, il est recommandé d’utiliser le [package Windows Installer](#windows-installer-packages-for-non-windows-10-computers) pour inscrire tous vos appareils Windows de bas niveau. 
+- Si vous envoyez des appareils joints au domaine hello stratégie de groupe objet tooWindows 8.1, l’inscription est tentée ; Il est toutefois recommandé d’utiliser hello [package Windows Installer](#windows-installer-packages-for-non-windows-10-computers) tooregister tous vos appareils de bas niveau de Windows. 
 
 ### <a name="create-a-group-policy-object"></a>Créer un objet de stratégie de groupe 
 
-Pour contrôler le lancement de l’inscription automatique des ordinateurs Windows actuels, vous devez déployer l’objet de stratégie de groupe **Enregistrer les ordinateurs appartenant à un domaine en tant qu’appareils** sur les appareils que vous souhaitez inscrire. Par exemple, vous pouvez déployer la stratégie sur un groupe de sécurité ou sur une unité organisationnelle.
+lancement de hello toocontrol l’enregistrement automatique des ordinateurs en cours de Windows, vous devez déployer hello **inscrire des ordinateurs joints au domaine en tant qu’appareils** stratégie de groupe objet toohello périphériques tooregister. Par exemple, vous pouvez déployer hello stratégie tooan unité ou le groupe de sécurité tooa.
 
-**Pour configurer la stratégie :**
+**stratégie tooset hello :**
 
-1. Ouvrez **Gestionnaire de serveur**, puis accédez à `Tools > Group Policy Management`.
-2. Accédez au nœud de domaine qui correspond au domaine dans lequel vous souhaitez activer l’inscription automatique d’ordinateurs Windows actuels.
+1. Ouvrez **le Gestionnaire de serveur**, puis passez trop`Tools > Group Policy Management`.
+2. Atteindre le nœud de domaine toohello correspondant toohello domaine dans lequel tooactivate-d’enregistrement automatique des ordinateurs en cours de Windows.
 3. Cliquez avec le bouton droit sur **Objets de stratégie de groupe**, puis sélectionnez **Nouveau**.
-4. Entrez un nom pour votre objet de stratégie de groupe. Par exemple, *Inscription automatique dans Azure AD*. Sélectionnez **OK**.
+4. Entrez un nom pour votre objet de stratégie de groupe. Par exemple, *l’inscription automatique tooAzure AD*. Sélectionnez **OK**.
 5. Cliquez avec le bouton droit sur votre nouvel objet de stratégie de groupe, puis sélectionnez **Modifier**.
-6. Accédez à **Configuration ordinateur** > **Stratégies** > **Modèles d’administration** > **Composants Windows** > **Enregistrement d’appareil**. Cliquez avec le bouton droit sur **Enregistrer les ordinateurs appartenant à un domaine en tant qu’appareils**, puis sélectionnez **Modifier**.
+6. Accédez trop**Configuration ordinateur** > **stratégies** > **modèles d’administration** > **Windows Composants** > **DRS**. Cliquez avec le bouton droit sur **Enregistrer les ordinateurs appartenant à un domaine en tant qu’appareils**, puis sélectionnez **Modifier**.
    
    > [!NOTE]
-   > Ce modèle de stratégie de groupe a été renommé par rapport aux versions précédentes de la Console de gestion des stratégies de groupe. Si vous utilisez une version antérieure de la console, accédez à `Computer Configuration > Policies > Administrative Templates > Windows Components > Workplace Join > Automatically workplace join client computers`. 
+   > Ce modèle de stratégie de groupe a été renommé à partir de versions antérieures de la console de gestion des stratégies de groupe hello. Si vous utilisez une version antérieure de la console de hello, passez trop`Computer Configuration > Policies > Administrative Templates > Windows Components > Workplace Join > Automatically workplace join client computers`. 
 
 7. Sélectionnez **Activé**, puis **Appliquer**.
 8. Sélectionnez **OK**.
-9. Liez l’objet de stratégie de groupe à un emplacement de votre choix. Par exemple, vous pouvez le lier à une unité organisationnelle spécifique. Vous pouvez également le lier à un groupe de sécurité spécifique d’ordinateurs qui s’inscrivent automatiquement auprès d’Azure AD. Pour définir cette stratégie pour tous les ordinateurs Windows 10 ou Windows Server 2016 joints à un domaine de votre organisation, liez l’objet de stratégie de groupe au domaine.
+9. Hello lien emplacement de tooa d’objet de stratégie de groupe de votre choix. Par exemple, vous pouvez le lier tooa unité d’organisation spécifique. Vous également pouvez lier le groupe de sécurité spécifique tooa des ordinateurs qui inscrivent automatiquement auprès d’Azure AD. tooset cette stratégie pour tous les ordinateurs joints au domaine Windows 10 et Windows Server 2016 dans votre organisation, le domaine toohello objet lien hello stratégie de groupe.
 
 ### <a name="windows-installer-packages-for-non-windows-10-computers"></a>Packages Windows Installer pour les ordinateurs autres que Windows 10
 
-Pour inscrire des ordinateurs Windows de bas niveau joints à un domaine dans un environnement fédéré, vous pouvez télécharger et installer ce package Windows Installer (.msi) à partir du Centre de téléchargement au niveau de la page [Microsoft Workplace Join for non-Windows 10 computers](https://www.microsoft.com/en-us/download/details.aspx?id=53554) (Microsoft Workplace pour les ordinateurs non-Windows 10).
+ordinateurs de bas niveau Windows appartenant au domaine tooregister dans un environnement fédéré, vous pouvez télécharger et installer ces packages Windows Installer (.msi) à partir du centre de téléchargement à hello [Microsoft jonction d’espace pour les ordinateurs non Windows 10](https://www.microsoft.com/en-us/download/details.aspx?id=53554) page.
 
-Vous pouvez déployer le package à l’aide d’un système de distribution de logiciels comme System Center Configuration Manager. Le package prend en charge les options d’installation en mode silencieux standard avec le paramètre *quiet*. System Center Configuration Manager Current Branch offre des avantages supplémentaires par rapport aux versions précédentes, comme la possibilité d’effectuer le suivi des inscriptions terminées. Pour plus d’informations, consultez l’article [System Center Configuration Manager](https://www.microsoft.com/cloud-platform/system-center-configuration-manager).
+Vous pouvez déployer le package de hello à l’aide d’un système de distribution de logiciels tels que System Center Configuration Manager. Hello package prend en charge les options d’installation silencieuse standard hello avec hello *silencieux* paramètre. Branche actuelle de System Center Configuration Manager offre des avantages supplémentaires à partir de versions antérieures, telles que les enregistrements de hello capacité tootrack s’est terminée. Pour plus d’informations, consultez l’article [System Center Configuration Manager](https://www.microsoft.com/cloud-platform/system-center-configuration-manager).
 
-Le programme d’installation crée une tâche planifiée sur le système, qui s’exécute dans le contexte de l’utilisateur. La tâche est déclenchée lorsque l’utilisateur se connecte à Windows. La tâche inscrit l’appareil en mode silencieux auprès d’Azure AD avec les informations d’identification de l’utilisateur après l’avoir authentifié à l’aide de l’authentification Windows intégrée. Pour visualiser la tâche planifiée, sélectionnez sur l’appareil **Microsoft** > **Rattacher à l’espace de travail**, puis accédez à la bibliothèque du Planificateur de tâches.
+programme d’installation Hello crée une tâche planifiée sur le système hello qui s’exécute dans le contexte de l’utilisateur hello. tâche Hello est déclenchée lorsque l’utilisateur de hello se connecte tooWindows. tâche Hello inscrit en mode silencieux les appareils hello avec Azure AD avec des informations d’identification utilisateur de hello après avoir authentifié à l’aide de l’authentification Windows intégrée. toosee la tâche planifiée de hello, dans l’unité de hello, accédez trop**Microsoft** > **jonction**, puis passez la bibliothèque du Planificateur de tâches toohello.
 
 ## <a name="step-5-verify-registered-devices"></a>Étape 5 : Vérification des appareils inscrits
 
-Vous pouvez vérifier les appareils qui ont été correctement inscrits dans votre organisation en utilisant l’applet de commande [Get-MsolDevice](https://docs.microsoft.com/powershell/msonline/v1/get-msoldevice) dans le [module Azure Active Directory PowerShell](/powershell/azure/install-msonlinev1?view=azureadps-2.0).
+Vous pouvez vérifier la réussite appareils inscrits dans votre organisation à l’aide de hello [Get-MsolDevice](https://docs.microsoft.com/powershell/msonline/v1/get-msoldevice) applet de commande Bonjour [module Azure Active Directory PowerShell](/powershell/azure/install-msonlinev1?view=azureadps-2.0).
 
-La sortie de cette applet de commande affiche les appareils inscrits dans Azure AD. Pour obtenir tous les appareils, utilisez le paramètre **-All**, puis filtrez-les à l’aide de la propriété **deviceTrustType**. Les appareils joints à un domaine présentent la valeur **Joint au domaine**.
+sortie Hello de cette applet de commande affiche les appareils inscrits dans Azure AD. tooget tous les appareils, utilisez hello **-tous les** paramètre, puis filtre les à l’aide de hello **deviceTrustType** propriété. Les appareils joints à un domaine présentent la valeur **Joint au domaine**.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
 * [FAQ sur l’inscription d’appareils automatique](active-directory-device-registration-faq.md)
-* [Résolution des problèmes de l’inscription automatique des ordinateurs joints au domaine à Azure AD – Windows 10 et Windows Server 2016](active-directory-device-registration-troubleshoot-windows.md)
-* [Résolution des problèmes d’inscription automatique des ordinateurs non-Windows 10 joints à un domaine auprès d’Azure AD](active-directory-device-registration-troubleshoot-windows-legacy.md)
+* [Résolution des problèmes d’enregistrement automatique du domaine joint ordinateurs tooAzure AD – Windows 10 et Windows Server 2016](active-directory-device-registration-troubleshoot-windows.md)
+* [Résolution des problèmes d’enregistrement automatique du domaine joint ordinateurs tooAzure AD-non Windows 10](active-directory-device-registration-troubleshoot-windows-legacy.md)
 * [Accès conditionnel Azure Active Directory](active-directory-conditional-access-azure-portal.md)
 
 

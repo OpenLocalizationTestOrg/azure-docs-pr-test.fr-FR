@@ -1,5 +1,5 @@
 ---
-title: "Débogage d’applications à l’aide d’Azure Application Insights dans Visual Studio | Microsoft Docs"
+title: applications aaaDebug avec Azure Application Insights dans Visual Studio | Documents Microsoft
 description: "Analyse des performances d’application web et diagnostics en phase de débogage et de production."
 services: application-insights
 documentationcenter: .net
@@ -13,63 +13,63 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/7/2017
 ms.author: bwren
-ms.openlocfilehash: e0ac2bf01992520cdbea22a232dc42d678d77c7f
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 20491fbe4505bf719039e5d1c220b1afec01db25
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="debug-your-applications-with-azure-application-insights-in-visual-studio"></a>Débogage d’applications à l’aide d’Azure Application Insights dans Visual Studio
 Visual Studio 2015 (et versions ultérieures) vous permet d’analyser les performances et de diagnostiquer les problèmes au niveau de votre application web ASP.NET aussi bien en phase de débogage qu’en production, à l’aide des données de télémétrie [d’Azure Application Insights](app-insights-overview.md).
 
-Si vous avez créé votre application web ASP.NET à l’aide de Visual Studio 2017 ou version ultérieure, celle-ci possède déjà le kit de développement logiciel (SDK) Application Insights. Sinon, si vous ne l’avez pas encore fait, [ajoutez Application Insights à votre application](app-insights-asp-net.md).
+Si vous avez créé votre application de web ASP.NET à l’aide de Visual Studio 2017 ou une version ultérieure, il a déjà hello Application Insights SDK. Sinon, si vous n’avez pas déjà fait, [ajouter Application Insights tooyour application](app-insights-asp-net.md).
 
-Pour analyser votre application lorsqu’elle se trouve dans un environnement de production actif, vous affichez normalement les données de télémétrie Application Insights dans le [portail Azure](https://portal.azure.com), où vous pouvez définir des alertes et utiliser des outils d’analyse puissants. Mais pour le débogage, vous pouvez également rechercher et analyser les données de télémétrie dans Visual Studio. Vous pouvez utiliser Visual Studio pour analyser les données de télémétrie à la fois à partir de votre site de production et de votre environnement de débogage sur votre machine de développement. Dans ce cas, vous pouvez analyser les opérations de débogage même si vous n’avez pas encore configuré le kit de développement logiciel pour que les données de télémétrie soient envoyées au portail Azure. 
+toomonitor votre application lorsqu’il est dans un environnement de production, vous normalement Affichez les données de télémétrie Application Insights hello Bonjour [portail Azure](https://portal.azure.com), où vous pouvez définir des alertes et appliquer des outils d’analyse puissants. Mais, pour le débogage, vous pouvez également rechercher et analysez la télémétrie hello dans Visual Studio. Vous pouvez utiliser les données de télémétrie tooanalyze Visual Studio de votre site de production et de débogage s’exécute sur votre ordinateur de développement. Dans ce dernier cas de hello, vous pouvez analyser les séries de débogage même si vous n’avez pas encore configuré hello SDK toosend télémétrie toohello portail Azure. 
 
 ## <a name="run"></a> Débogage de votre projet
-Exécutez votre application web en mode de débogage local à l’aide de la touche F5. Ouvrez différentes pages pour générer des données de télémétrie.
+Exécutez votre application web en mode de débogage local à l’aide de la touche F5. Ouvrir des pages différentes toogenerate certaines données de télémétrie.
 
-Dans Visual Studio, vous voyez un décompte des événements qui ont été consignés par le module Application Insights dans votre projet.
+Dans Visual Studio, vous consultez un nombre d’événements de hello qui ont été consignés par le module d’Application Insights hello dans votre projet.
 
-![Dans Visual Studio, le bouton Application Insights apparaît pendant le débogage.](./media/app-insights-visual-studio/appinsights-09eventcount.png)
+![Dans Visual Studio, le bouton d’Application Insights hello montre pendant le débogage.](./media/app-insights-visual-studio/appinsights-09eventcount.png)
 
-Cliquez sur ce bouton pour rechercher vos données de télémétrie. 
+Cliquez sur ce bouton toosearch votre télémétrie. 
 
 ## <a name="application-insights-search"></a>Recherche Application Insights
-La fenêtre de recherche Application Insights affiche les événements qui ont été consignés. (Si vous étiez connecté à Azure au moment de l’installation d’Application Insights, vous pouvez rechercher ces mêmes événements sur le portail Azure.)
+fenêtre de recherche Application Insights Hello présente les événements qui ont été enregistrés. (Si vous connecté tooAzure lorsque vous installez Application Insights, vous pouvez rechercher hello les mêmes événements Bonjour portail Azure.)
 
-![Cliquez avec le bouton droit sur le projet et sélectionnez Application Insights, Rechercher.](./media/app-insights-visual-studio/34.png)
+![Droit hello projet, puis choisissez Application Insights, recherche](./media/app-insights-visual-studio/34.png)
 
 > [!NOTE] 
-> Une fois que vous avez sélectionné ou désélectionné les filtres, cliquez sur le bouton Rechercher en regard du champ de recherche de texte.
+> Une fois que vous sélectionnez ou désélectionnez les filtres, cliquez sur le bouton de recherche hello à fin hello du champ de recherche de texte hello.
 >
 
-La recherche en texte libre fonctionne sur tous les champs des événements. Par exemple, vous pouvez effectuer une recherche sur une partie de l’URL d’une page, sur la valeur d’une propriété telle que la ville du client, ou encore sur des termes spécifiques contenus dans un journal de suivi.
+recherche en texte libre Hello fonctionne sur tous les champs dans les événements hello. Par exemple, rechercher une partie de l’URL de hello d’une page ; ou valeur hello d’une propriété telle que ville du client ; ou des mots spécifiques dans un journal des traces.
 
-Cliquez sur n’importe quel événement pour afficher le détail de ses propriétés.
+Cliquez sur n’importe quel toosee événement ses propriétés détaillées.
 
-Pour afficher les requêtes envoyées à votre application web, vous pouvez parcourir le code.
+Pour les demandes tooyour web app, vous pouvez cliquer sur toohello code.
 
-![Sous Request Details (Détails des requêtes), parcourez le code](./media/app-insights-visual-studio/31.png)
+![Sous Détails de la demande, cliquez sur dans le code de toohello](./media/app-insights-visual-studio/31.png)
 
-Vous pouvez également ouvrir l’onglet Éléments connexes pour analyser les requêtes ayant échoué ou les exceptions.
+Vous pouvez également ouvrir des éléments connexes toohelp diagnostiquer les échecs de demandes ou des exceptions.
 
-![Sous Request Details (Détails des requêtes), accédez à Éléments connexes](./media/app-insights-visual-studio/41.png)
+![Sous Détails de la demande, faites défiler la liste des éléments toorelated](./media/app-insights-visual-studio/41.png)
 
 ## <a name="view-exceptions-and-failed-requests"></a>Afficher les exceptions et les requêtes ayant échoué
-Les rapports d’exceptions s’affichent dans la fenêtre de recherche. (Pour certains anciens types d’application ASP.NET, vous devez [configurer l’analyse des exceptions](app-insights-asp-net-exceptions.md) pour afficher les exceptions gérées par le framework.)
+Exception afficher de rapports dans la fenêtre de recherche hello. (Dans certains types plus anciens d’application ASP.NET, vous avez trop[configurer l’analyse des exceptions](app-insights-asp-net-exceptions.md) toosee les exceptions qui sont gérées par le framework de hello.)
 
-Cliquez sur une exception pour obtenir une trace de pile. Si le code de l’application est ouvert dans Visual Studio, vous pouvez utiliser la trace de pile pour accéder à la ligne de code recherchée.
+Cliquez sur une exception de tooget une trace de pile. Si le code hello de l’application hello est ouvert dans Visual Studio, vous pouvez cliquer à partir de hello pile trace toohello ligne appropriée du code de hello.
 
 ![Arborescence des appels de procédure d’exception](./media/app-insights-visual-studio/17.png)
 
-## <a name="view-request-and-exception-summaries-in-the-code"></a>Afficher les résumés des requêtes et des exceptions dans le code
-Le nombre de requêtes et d’exceptions consignées par Application Insights dans les dernières 24 heures est indiqué dans la ligne de filtre Code au-dessus de chaque méthode de gestionnaire.
+## <a name="view-request-and-exception-summaries-in-hello-code"></a>Afficher les récapitulatifs de demande et de l’exception dans le code hello
+Dans la ligne de Code thématique au-dessus de chaque méthode de gestionnaire de hello, vous consultez un nombre de demandes de hello et exceptions consignées par Application Insights Bonjour dernières 24 heures.
 
 ![Arborescence des appels de procédure d’exception](./media/app-insights-visual-studio/21.png)
 
 > [!NOTE] 
-> Le filtre Code affiche les données Application Insights uniquement si vous avez [configuré votre application pour que les données de télémétrie soient envoyées au portail Application Insights](app-insights-asp-net.md).
+> Codelens affiche uniquement les données d’Application Insights si vous avez [configuré votre portail Application Insights toohello de télémétrie de toosend application](app-insights-asp-net.md).
 >
 
 [En savoir plus sur Application Insights dans le filtre Code](app-insights-visual-studio-codelens.md)
@@ -77,30 +77,30 @@ Le nombre de requêtes et d’exceptions consignées par Application Insights da
 ## <a name="trends"></a>Trends
 Trends est un outil permettant de visualiser le comportement de votre application au fil du temps. 
 
-Sélectionnez **Explorer les tendances de la télémétrie** à partir du bouton de la barre d’outils Application Insights ou de la fenêtre de recherche d’Application Insights. Sélectionnez l’une des cinq requêtes courantes pour commencer. Vous pouvez analyser différents jeux de données en fonction des types de télémétrie, des intervalles de temps ainsi que d’autres propriétés. 
+Choisissez **Explorer les tendances de télémétrie** à partir de bouton de barre d’outils Application Insights hello ou recherche Application Insights. Choisissez une des cinq tooget de requêtes courantes a démarré. Vous pouvez analyser différents jeux de données en fonction des types de télémétrie, des intervalles de temps ainsi que d’autres propriétés. 
 
-Pour rechercher des anomalies dans vos données, sélectionnez l’une des options d’anomalie dans la liste déroulante « Type de vue ». Les options de filtrage en bas de la fenêtre facilitent l’obtention de sous-ensembles spécifiques de votre télémétrie.
+anomalies toofind dans vos données, choisissez une des options d’anomalie hello sous la liste déroulante du « Type d’affichage » hello. options de filtrage Hello bas hello de fenêtre hello qu’il soit facile toohone dans sur des sous-ensembles spécifiques de votre télémétrie.
 
 ![Trends](./media/app-insights-visual-studio/51.png)
 
 [En savoir plus sur Tendances](app-insights-visual-studio-trends.md).
 
 ## <a name="local-monitoring"></a>Surveillance locale
-(À partir de Visual Studio 2015 Mise à jour 2) Si vous n’avez pas configuré le Kit de développement logiciel pour envoyer les données de télémétrie au portail Application Insights (et qu’il n’existe donc aucune clé d’instrumentation dans ApplicationInsights.config), la fenêtre de diagnostic affiche les données de télémétrie de votre dernière session de débogage. 
+(À partir de Visual Studio 2015 Update 2) Si vous n’avez pas configuré le portail Application Insights de hello SDK toosend télémétrie toohello (pour qu’il n’y a aucune clé d’instrumentation dans ApplicationInsights.config) puis hello diagnostics affiche télémétrie à partir de votre session de débogage plus récentes. 
 
-C’est le comportement adéquat si vous avez déjà publié une version antérieure de votre application. Vous ne voulez pas que les données de télémétrie de vos sessions de débogage soient confondues avec les données de télémétrie sur le portail Application Insights de l’application publiée.
+C’est le comportement adéquat si vous avez déjà publié une version antérieure de votre application. Vous ne souhaitez pas que votre toobe de sessions de débogage télémétrie hello confondues télémétrie hello sur hello portail Application Insights à partir de l’application publiée hello.
 
-Cela est également utile si vous disposez de [données de télémétrie personnalisées](app-insights-api-custom-events-metrics.md) que vous souhaitez déboguer avant de les envoyer sur le portail.
+Il est également utile si vous disposez d’un [une télémétrie personnalisée](app-insights-api-custom-events-metrics.md) que vous souhaitez toodebug avant d’envoyer le portail de toohello de télémétrie.
 
-* *Dans un premier temps, j’ai entièrement configuré Application Insights pour envoyer des données de télémétrie au portail. À présent, j’aimerais afficher ces données uniquement dans Visual Studio.*
+* *Dans un premier temps, j’ai configuré entièrement portail de toohello télémétrie Application Insights toosend. Mais maintenant je souhaite que les données de télémétrie toosee hello uniquement dans Visual Studio.*
   
-  * Dans les paramètres de la fenêtre de recherche, il existe une option permettant de rechercher des diagnostics locaux même si votre application envoie des données de télémétrie au portail.
-  * Pour arrêter l’envoi de données de télémétrie au portail, commentez la ligne `<instrumentationkey>...` du fichier ApplicationInsights.config. Lorsque vous êtes prêt à envoyer de nouveau les données de télémétrie au portail, supprimez les commentaires.
+  * Paramètres de la fenêtre de recherche hello, est une option toosearch local de diagnostic même si votre application envoie un portail toohello de télémétrie.
+  * télémétrie toostop envoyée portail toohello, commentez la ligne de hello `<instrumentationkey>...` à partir de ApplicationInsights.config. Lorsque vous êtes à nouveau portail de toohello toosend prêt télémétrie, supprimez les commentaires.
 
 
 ## <a name="next-steps"></a>Étapes suivantes
 |  |  |
 | --- | --- |
 | **[Ajouter des données](app-insights-asp-net-more.md)**<br/>Analysez l’utilisation, la disponibilité, les dépendances et les exceptions. Intégrer des traces à partir des frameworks de journalisation. Écrire des données de télémétrie personnalisées. |![Visual Studio](./media/app-insights-visual-studio/64.png) |
-| **[Utilisation du portail Application Insights](app-insights-dashboards.md)**<br/>Affichez les tableaux de bord, les puissants outils de diagnostic et d’analyse, les alertes, le mappage direct des dépendances de votre application et les données de télémétrie exportées. |![Visual Studio](./media/app-insights-visual-studio/62.png) |
+| **[Utilisation de portail d’Application Insights hello](app-insights-dashboards.md)**<br/>Affichez les tableaux de bord, les puissants outils de diagnostic et d’analyse, les alertes, le mappage direct des dépendances de votre application et les données de télémétrie exportées. |![Visual Studio](./media/app-insights-visual-studio/62.png) |
 

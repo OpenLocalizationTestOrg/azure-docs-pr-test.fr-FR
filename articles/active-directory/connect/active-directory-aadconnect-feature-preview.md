@@ -14,37 +14,37 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/13/2017
 ms.author: billmath
-ms.openlocfilehash: cbf8f729d0ebfb271bb0d8702ac043442b42c262
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: bcfc710861b19d8f86f094ced0d1c691e0911f08
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="more-details-about-features-in-preview"></a>Plus de détails sur les fonctionnalités de la version préliminaire
-Cette rubrique décrit l’utilisation des fonctionnalités disponibles dans la version préliminaire.
+Cette rubrique décrit comment toouse fonctionnalités actuellement en version préliminaire.
 
 ## <a name="group-writeback"></a>Écriture différée de groupe
-L’option pour l’écriture différée de groupe dans les fonctionnalités facultatives permet l’écriture différée de **groupes dans Office 365** vers une forêt avec Exchange installé. Il s’agit d’un nouveau type de groupe qui est toujours contrôlé dans le cloud. Si Exchange est installé sur site, vous pouvez réécrire ces groupes en local afin que les utilisateurs disposant d’une boîte aux lettres Exchange locale puissent envoyer et recevoir des e-mails de la part de ces groupes.
+option Hello pour l’écriture différée de groupe dans des fonctionnalités facultatives vous permet de toowriteback **les groupes Office 365** forêt tooa avec Exchange est installé. Il s’agit d’un groupe qui est toujours masterisé dans le cloud de hello. Si vous avez Exchange sur site, puis vous pouvez écrire dans ces groupes tooon locaux pour les utilisateurs disposant d’une boîte aux lettres Exchange de local peuvent envoyer et recevoir des courriers électroniques à partir de ces groupes.
 
-Vous trouverez [ici](http://aka.ms/O365g)d’autres informations sur les groupes Office 365 et la façon de les utiliser.
+Plus d’informations sur les groupes Office 365 et comment toouse les trouverez [ici](http://aka.ms/O365g).
 
-Un groupe Office 365 est représenté comme un groupe de distribution dans les versions locales d’AD DS. Votre serveur Exchange local doit être au niveau de la mise à jour cumulative 8 d’Exchange 2013 (publiée en mars 2015) ou d’Exchange 2016 pour pouvoir reconnaître ce nouveau type de groupe.
+Un groupe Office 365 est représenté comme un groupe de distribution dans les versions locales d’AD DS. Votre Exchange server sur site doit être sur Exchange 2013 mise à jour cumulative 8 (publiée en mars 2015) ou Exchange 2016 toorecognize ce nouveau type de groupe.
 
-**Notes relatives à la version préliminaire**
+**Notes de version préliminaire hello**
 
-* L’attribut de carnet d’adresses n’est pas rempli pour l’instant dans la version préliminaire. Sans cet attribut, le groupe n’est pas visible dans la liste d’adresses globale. Le moyen le plus simple de renseigner cet attribut est d’utiliser l’applet de commande Exchange PowerShell `update-recipient`.
-* Seules les forêts dotées du schéma Exchange constituent des cibles valides pour les groupes. Si aucune version d’Exchange n’est détectée, il est impossible d’activer l’écriture différée de groupe.
-* Seuls les déploiements d’entreprise basés sur une seule forêt Exchange sont actuellement pris en charge. Si vous avez plusieurs organisations Exchange en local, vous avez besoin d’une solution GALSync locale pour que ces groupes s’affichent dans vos autres forêts.
-* La fonctionnalité d’écriture différée de groupe ne prend pas en charge les groupes de sécurité ou les groupes de distribution.
+* attribut de carnet d’adresses Hello n’est actuellement pas remplie dans l’aperçu de hello. Sans cet attribut, groupe de hello n’est pas visible dans la liste d’adresses globale de hello. Hello toopopulate de façon plus simple cet attribut est l’applet de commande PowerShell Exchange toouse hello `update-recipient`.
+* Seules les forêts avec schéma de Exchange hello sont des cibles valides pour les groupes. Si aucun Exchange a été détecté, l’écriture différée de groupe n’est pas possible tooenable.
+* Seuls les déploiements d’entreprise basés sur une seule forêt Exchange sont actuellement pris en charge. Si vous avez plusieurs Exchange organisation sur site, vous devez une solution GALSync établit un local pour tooappear de ces groupes dans vos autres forêts.
+* fonctionnalité d’écriture différée de groupe de Hello ne gère pas les groupes de sécurité ou des groupes de distribution.
 
 > [!NOTE]
-> L’écriture différée des groupes nécessite un abonnement Azure AD Premium.
+> Un tooAzure abonnement Premium d’Active Directory est requis pour l’écriture différée de groupe.
 > 
 >
 
 ## <a name="user-writeback"></a>Écriture différée de l’utilisateur
 > [!IMPORTANT]
-> La fonctionnalité d’écriture différée utilisateur en version préliminaire a été supprimée lors de la mise à jour d’Azure AD Connect en août 2015. Si vous l'avez activée, vous devez désactiver cette fonctionnalité.
+> fonctionnalité d’aperçu de l’écriture différée d’utilisateur Hello a été supprimée dans tooAzure de mise à jour d’août 2015 hello AD Connect. Si vous l'avez activée, vous devez désactiver cette fonctionnalité.
 >
 >
 

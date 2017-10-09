@@ -1,6 +1,6 @@
 ---
-title: "Visualisation en temps réel des données de capteur depuis Azure IoT Hub : Power BI | Documents Microsoft"
-description: "Power BI permet d’afficher des données sur les températures et l’humidité collectées par le capteur et envoyées à votre instance Azure IoT Hub."
+title: "temps d’aaaReal visualisation des données de capteur à partir d’Azure IoT Hub – Power BI | Documents Microsoft"
+description: "Utilisez les données de température et humidité de toovisualize Power BI qui sont collectées à partir de capteur de hello et envoyées tooyour Azure IoT hub."
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: xshi
-ms.openlocfilehash: b190fea06ffc2406d781c7edad091f097cca9c2d
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: d79ce757a9f2ab7a4744e8a0c523106e0f72cecd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="visualize-real-time-sensor-data-from-azure-iot-hub-using-power-bi"></a>Visualiser des données de capteur en temps réel depuis Azure IoT Hub, à l’aide de Power BI
 
@@ -30,20 +30,20 @@ ms.lasthandoff: 08/29/2017
 
 ## <a name="what-you-learn"></a>Contenu
 
-Vous apprenez à visualiser les données de capteur en temps réel que votre instance Azure IoT Hub reçoit par l’intermédiaire de Power BI. Si vous souhaitez essayer de visualiser les données dans votre instance IoT Hub avec Web Apps, consultez la rubrique [Utiliser Azure Web Apps pour visualiser les données de capteur en temps réel à partir d’Azure IoT Hub](iot-hub-live-data-visualization-in-web-apps.md).
+Vous apprendrez comment les données des capteurs en temps réel toovisualize votre concentrateur Azure IoT reçoit par Power BI. Si vous souhaitez tootry visualiser les données de hello dans votre IoT hub avec des applications Web, consultez [données de capteur en temps réel toovisualize utilisation Azure Web Apps dans Azure IoT Hub](iot-hub-live-data-visualization-in-web-apps.md).
 
 ## <a name="what-you-do"></a>Procédure
 
-- Préparation de votre instance IoT Hub pour l’accès aux données via l’ajout d’un groupe de consommateurs.
-- Création, configuration et exécution d’un travail Stream Analytics pour le transfert de données depuis votre instance IoT Hub vers votre compte Power BI.
-- Création et publication d’un rapport Power BI pour visualiser les données.
+- Préparez votre instance IoT Hub pour l’accès aux données via l’ajout d’un groupe de consommateurs.
+- Créer, configurer et exécuter une tâche de flux de données Analytique pour le transfert de données à partir de votre tooyour de hub IoT compte Power BI.
+- Créer et publier des données hello toovisualize d’un rapport Power BI.
 
 ## <a name="what-you-need"></a>Ce dont vous avez besoin
 
-- Le didacticiel [Configurer votre appareil](iot-hub-raspberry-pi-kit-node-get-started.md) terminé, qui traite des exigences suivantes :
+- Didacticiel [configurer votre appareil](iot-hub-raspberry-pi-kit-node-get-started.md) terminé qui couvre hello suivant les exigences :
   - Un abonnement Azure actif.
   - Une instance Azure IoT Hub associée à votre abonnement.
-  - Une application cliente qui envoie des messages à votre instance Azure IoT Hub.
+  - Une application cliente qui envoie le concentrateur de messages tooyour Azure IoT.
 - Un compte Microsoft Power BI. ([Essayez Power BI gratuitement](https://powerbi.microsoft.com/)).
 
 [!INCLUDE [iot-hub-get-started-create-consumer-group](../../includes/iot-hub-get-started-create-consumer-group.md)]
@@ -52,110 +52,110 @@ Vous apprenez à visualiser les données de capteur en temps réel que votre ins
 
 ### <a name="create-a-stream-analytics-job"></a>Création d’un travail Stream Analytics
 
-1. Dans le portail Azure, cliquez sur Nouveau > Internet des objets > Travail Stream Analytics.
-1. Saisissez les informations ci-après concernant le travail.
+1. Dans l’hello portail Azure, cliquez sur Nouveau > Internet of Things > tâche de flux de données Analytique.
+1. Entrez hello informations pour le travail de hello suivantes.
 
-   **Nom du travail** : nom du travail. Le nom doit être globalement unique.
+   **Nom de la tâche**: nom hello du travail de hello. nom de Hello doit être globalement unique.
 
-   **Groupe de ressources** : utilisez le groupe de ressources que votre instance IoT Hub exploite.
+   **Groupe de ressources**: utilisez hello même groupe de ressources qui utilise de votre hub IoT.
 
-   **Emplacement** : utilisez le même emplacement que votre groupe de ressources.
+   **Emplacement**: utilisez hello même emplacement que votre groupe de ressources.
 
-   **Épingler au tableau de bord** : cochez cette option pour pouvoir accéder facilement à votre instance IoT Hub à partir du tableau de bord.
+   **Code confidentiel toodashboard**: Activez cette option pour le hub de IoT tooyour accéder facilement à partir du tableau de bord hello.
 
    ![Créer un travail Stream Analytics dans Azure](media/iot-hub-live-data-visualization-in-power-bi/2_create-stream-analytics-job-azure.png)
 
-1. Cliquez sur **Create**.
+1. Cliquez sur **Créer**.
 
-### <a name="add-an-input-to-the-stream-analytics-job"></a>Ajouter une entrée au travail Stream Analytics
+### <a name="add-an-input-toohello-stream-analytics-job"></a>Ajouter une tâche de flux de données Analytique toohello d’entrée
 
-1. Ouvrez le travail Stream Analytics.
+1. Tâche de flux de données Analytique hello ouvert.
 1. Sous **Topologie du travail**, cliquez sur **Entrées**.
-1. Dans le volet **Entrées**, cliquez sur **Ajouter**, puis saisissez les informations suivantes :
+1. Bonjour **entrées** volet, cliquez sur **ajouter**, puis entrez hello informations suivantes :
 
-   **Alias d’entrée** : alias unique de l’entrée.
+   **Alias d’entrée**: alias unique de hello pour l’entrée de hello.
 
    **Source** : sélectionnez **IoT Hub**.
 
-   **Groupe de consommateurs** : sélectionnez le groupe de consommateurs que vous venez de créer.
-1. Cliquez sur **Create**.
+   **Groupe de consommateurs**: groupe de consommateurs hello sélectionnez vous venez de créer.
+1. Cliquez sur **Créer**.
 
-   ![Ajouter une entrée à un travail Stream Analytics dans Azure](media/iot-hub-live-data-visualization-in-power-bi/3_add-input-to-stream-analytics-job-azure.png)
+   ![Ajouter une tâche de flux de données Analytique tooa d’entrée dans Azure](media/iot-hub-live-data-visualization-in-power-bi/3_add-input-to-stream-analytics-job-azure.png)
 
-### <a name="add-an-output-to-the-stream-analytics-job"></a>Ajouter une sortie au travail Stream Analytics
+### <a name="add-an-output-toohello-stream-analytics-job"></a>Ajouter une tâche de flux de données Analytique toohello sortie
 
 1. Sous **Topologie du travail**, cliquez sur **Sorties**.
-1. Dans le volet **Sorties**, cliquez sur **Ajouter**, puis saisissez les informations suivantes :
+1. Bonjour **sorties** volet, cliquez sur **ajouter**, puis entrez hello informations suivantes :
 
-   **Alias de sortie** : alias unique de la sortie.
+   **Alias de sortie**: alias unique de hello pour la sortie de hello.
 
    **Section sink**: sélectionnez **Power BI**.
 1. Cliquez sur **Autoriser**, puis connectez-vous à votre compte Power BI.
-1. Une fois authentifié, saisissez les informations suivantes :
+1. Une fois autorisé, entrez hello informations suivantes :
 
    **Espace de travail de groupe** : sélectionnez l’espace de travail de groupe cible.
 
    **Nom du jeu de données** : saisissez le nom de jeu de données.
 
    **Nom de la table** : saisissez le nom de la table.
-1. Cliquez sur **Create**.
+1. Cliquez sur **Créer**.
 
-   ![Ajouter une sortie à un travail Stream Analytics dans Azure](media/iot-hub-live-data-visualization-in-power-bi/4_add-output-to-stream-analytics-job-azure.png)
+   ![Ajouter une tâche de flux de données Analytique sortie tooa dans Azure](media/iot-hub-live-data-visualization-in-power-bi/4_add-output-to-stream-analytics-job-azure.png)
 
-### <a name="configure-the-query-of-the-stream-analytics-job"></a>Configurer la requête du travail Stream Analytics
+### <a name="configure-hello-query-of-hello-stream-analytics-job"></a>Configurer la requête hello de tâche de flux de données Analytique hello
 
 1. Sous **Topologie du travail**, cliquez sur **Requête**.
-1. Remplacez `[YourInputAlias]` par l’alias d’entrée du travail.
-1. Remplacez `[YourOutputAlias]` par l’alias de sortie du travail.
-1. Cliquez sur **Save**.
+1. Remplacez `[YourInputAlias]` avec alias hello d’entrée de tâche de hello.
+1. Remplacez `[YourOutputAlias]` avec l’alias de sortie hello du travail de hello.
+1. Cliquez sur **Enregistrer**.
 
-   ![Ajouter une requête à un travail Stream Analytics dans Azure](media/iot-hub-live-data-visualization-in-power-bi/5_add-query-stream-analytics-job-azure.png)
+   ![Ajouter une tâche de flux de données Analytique requête tooa dans Azure](media/iot-hub-live-data-visualization-in-power-bi/5_add-query-stream-analytics-job-azure.png)
 
-### <a name="run-the-stream-analytics-job"></a>Exécuter la tâche Stream Analytics
+### <a name="run-hello-stream-analytics-job"></a>Exécuter la tâche de flux de données Analytique hello
 
-Dans le travail Stream Analytics, cliquez sur **Démarrer** > **Maintenant** > **Démarrer**. Une fois le travail lancé, l’état correspondant passe de **Arrêté** à **Exécution**.
+Dans la tâche de flux de données Analytique hello, cliquez sur **Démarrer** > **maintenant** > **Démarrer**. Une fois le travail de hello démarre avec succès, état de la tâche hello passe de **arrêté** trop**en cours d’exécution**.
 
 ![Exécuter un travail Stream Analytics dans Azure](media/iot-hub-live-data-visualization-in-power-bi/6_run-stream-analytics-job-azure.png)
 
-## <a name="create-and-publish-a-power-bi-report-to-visualize-the-data"></a>Créer et publier un rapport Power BI pour visualiser les données
+## <a name="create-and-publish-a-power-bi-report-toovisualize-hello-data"></a>Créer et publier des données hello toovisualize d’un rapport Power BI
 
-1. Vérifiez que l’exemple d’application s’exécute correctement sur votre appareil. Si ce n’est pas le cas, vous pouvez consulter les didacticiels sous [Configurer votre appareil](https://docs.microsoft.com/azure/iot-hub/iot-hub-raspberry-pi-kit-node-get-started).
-1. Connectez-vous à votre compte [Power BI](https://powerbi.microsoft.com/en-us/).
-1. Accédez à l’espace de travail de groupe que vous définissez lors de la création de la sortie du travail Stream Analytics.
+1. Vérifiez l’application d’exemple hello est en cours d’exécution sur votre appareil. Si non, vous pouvez faire référence à des didacticiels toohello sous [configurer votre appareil](https://docs.microsoft.com/azure/iot-hub/iot-hub-raspberry-pi-kit-node-get-started).
+1. Connectez-vous à tooyour [Power BI](https://powerbi.microsoft.com/en-us/) compte.
+1. Atteindre l’espace de travail toohello groupe que vous définissez lors de la création de la sortie de hello pour la tâche de flux de données Analytique hello.
 1. Cliquez sur **Jeux de données de diffusion en continu**.
 
-   Vous devez voir apparaître le jeu de données répertorié que vous avez indiqué lors de la création de la sortie du travail Stream Analytics.
-1. Sous **ACTIONS**, cliquez sur la première icône pour créer un rapport.
+   Vous devez voir hello répertorié de jeu de données que vous avez spécifié lors de la création de hello de sortie pour la tâche de flux de données Analytique hello.
+1. Sous **ACTIONS**, cliquez sur hello première icône toocreate un rapport.
 
    ![Créer un rapport Microsoft Power BI](media/iot-hub-live-data-visualization-in-power-bi/7_create-power-bi-report-microsoft.png)
 
-1. Créez un graphique en courbes pour afficher la température en temps réel et au fil du temps.
-   1. Sur la page de création du rapport, ajoutez un graphique en courbes.
-   1. Sur le volet **Champs**, développez la table que vous avez indiquée lors de la création de la sortie du travail Stream Analytics.
-   1. Faites glisser **EventEnqueuedUtcTime** vers **Axe** dans le volet **Visualisations**.
-   1. Faites glisser **Température** vers **Valeurs**.
+1. Créer une ligne graphique tooshow en temps réel de la température au fil du temps.
+   1. Sur la page de création de rapports hello, ajoutez un graphique en courbes.
+   1. Sur hello **champs** volet, développez la table hello que vous avez spécifié lors de la création de sortie hello pour la tâche de flux de données Analytique hello.
+   1. Faites glisser **EventEnqueuedUtcTime** trop**axe** sur hello **visualisations** volet.
+   1. Faites glisser **température** trop**valeurs**.
 
-      Le graphique en courbes est désormais créé. L’axe des abscisses affiche la date et l’heure du fuseau horaire UTC. Quant à l’axe des ordonnées, il affiche la température fournie par le capteur.
+      Le graphique en courbes est désormais créé. axe des abscisses Hello affiche la date et heure dans le fuseau horaire de hello UTC. l’axe des y Hello affiche la température du capteur de hello.
 
-      ![Ajouter un graphique en courbes sur la température dans un rapport Microsoft Power BI](media/iot-hub-live-data-visualization-in-power-bi/8_add-line-chart-for-temperature-to-power-bi-report-microsoft.png)
+      ![Ajouter un graphique en courbes pour température tooa rapport Microsoft Power BI](media/iot-hub-live-data-visualization-in-power-bi/8_add-line-chart-for-temperature-to-power-bi-report-microsoft.png)
 
-1. Créez un autre graphique en courbes pour afficher l’humidité en temps réel, au fil du temps. Pour ce faire, suivez la procédure ci-dessus et placez **EventEnqueuedUtcTime** sur l’axe des abscisses et **Humidité** sur l’axe des ordonnées.
+1. Créer un autre humidité en temps réel ligne graphique tooshow au fil du temps. toodo, suivez hello même les étapes ci-dessus et placez **EventEnqueuedUtcTime** sur l’axe des abscisses hello et **humidité** sur l’axe des y hello.
 
-   ![Ajouter un graphique en courbes sur l’humidité dans un rapport Microsoft Power BI](media/iot-hub-live-data-visualization-in-power-bi/9_add-line-chart-for-humidity-to-power-bi-report-microsoft.png)
+   ![Ajouter un graphique en courbes pour humidité tooa rapport Microsoft Power BI](media/iot-hub-live-data-visualization-in-power-bi/9_add-line-chart-for-humidity-to-power-bi-report-microsoft.png)
 
-1. Cliquez sur **Enregistrer** pour enregistrer le rapport.
-1. Cliquez sur **Fichier** > **Publier sur le web**.
+1. Cliquez sur **enregistrer** rapport de hello toosave.
+1. Cliquez sur **fichier** > **publier tooweb**.
 1. Cliquez sur **Créer le code incorporé**, puis cliquez sur **Publier**.
 
-Vous obtenez le lien d’accès au rapport, que vous pouvez partager avec les utilisateurs pour leur permettre d’y accéder, ainsi qu’un extrait de code, qui permet d’intégrer le rapport dans votre blog ou site web.
+Vous bénéficiez de lien de rapport hello que vous pouvez partager avec quiconque pour accéder au rapport et un rapport de hello toointegrate code extrait de code dans votre blog ou d’un site Web.
 
 ![Publier un rapport Microsoft Power BI](media/iot-hub-live-data-visualization-in-power-bi/10_publish-power-bi-report-microsoft.png)
 
-Microsoft propose également des [applications mobiles Power BI](https://powerbi.microsoft.com/en-us/documentation/powerbi-power-bi-apps-for-mobile-devices/), qui permettent d’afficher les tableaux de bord et rapports Power BI sur votre appareil mobile et d’interagir avec eux.
+Microsoft propose également hello [applications mobiles Power BI](https://powerbi.microsoft.com/en-us/documentation/powerbi-power-bi-apps-for-mobile-devices/) pour afficher et interagir avec vos tableaux de bord Power BI et les rapports sur votre appareil mobile.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Vous avez correctement utilisé Power BI pour visualiser les données de capteur en temps réel, à partir de votre instance Azure IoT Hub.
-Cela dit, il existe un autre moyen de visualiser ces données depuis Azure IoT Hub. Voir [Utiliser Azure Web Apps pour visualiser les données de capteur en temps réel à partir d’Azure IoT Hub](iot-hub-live-data-visualization-in-web-apps.md).
+Vous avez utilisé avec succès données de capteur en temps réel toovisualize Power BI à partir de votre concentrateur Azure IoT.
+Donnée une autre façon toovisualize à partir d’Azure IoT Hub. Consultez [données de capteur en temps réel toovisualize utilisation Azure Web Apps dans Azure IoT Hub](iot-hub-live-data-visualization-in-web-apps.md).
 
 [!INCLUDE [iot-hub-get-started-next-steps](../../includes/iot-hub-get-started-next-steps.md)]

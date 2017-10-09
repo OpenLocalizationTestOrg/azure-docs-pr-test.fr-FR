@@ -1,7 +1,7 @@
 ---
 redirect_url: /azure/azure-stack/azure-stack-provision-vm
-title: "Tâches clés de preuve de concept de pile Azure | Documents Microsoft"
-description: "Apprenez à créer un plan et une offre, puis abonnez-vous à cette offre et utilisez les services offerts pour créer une machine virtuelle."
+title: "tâches clés de preuve de concept de pile aaaAzure | Documents Microsoft"
+description: "Découvrez comment toocreate un plan offrent et s’abonner toothat offre et utiliser hello services fournis toocreate une machine virtuelle."
 services: azure-stack
 documentationcenter: 
 author: ErikjeMS
@@ -15,14 +15,14 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 09/26/2016
 ms.author: erikje
-ms.openlocfilehash: b7d0c788d74e595eeb3b420be05b5d82cfc9f3bb
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e258b4a06a8fd230b172a8182b971558a0b40beb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-stack-poc-first-tasks"></a>Premières tâches de la preuve de concept Azure Stack
-Maintenant que vous avez [déployé](azure-stack-deploy.md) et [connecté](azure-stack-connect-azure-stack.md) à la pile de preuve de concept Azure, vous pouvez créer des ressources.
+Maintenant que vous avez [déployé](azure-stack-deploy.md) et [connecté](azure-stack-connect-azure-stack.md) tooAzure preuve de concept de pile, vous pouvez créer des ressources.
 
 1. [Configurer un ordinateur virtuel](azure-stack-provision-vm.md).
 2. [Créer un compte de stockage](azure-stack-provision-storage-account.md).

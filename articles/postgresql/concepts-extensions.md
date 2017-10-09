@@ -1,6 +1,6 @@
 ---
-title: "Utiliser les extensions PostgreSQL dans une base de données Azure pour PostgreSQL | Microsoft Docs"
-description: "Décrit la capacité à étendre les fonctionnalités d’une base de données à l’aide des extensions de la base de données Azure pour PostgreSQL."
+title: "extensions de PostgreSQL aaaUsing dans la base de données Azure pour PostgreSQL | Documents Microsoft"
+description: "Décrit les fonctionnalités de hello tooextend hello capacité de votre base de données à l’aide des extensions dans la base de données Azure pour PostgreSQL."
 services: postgresql
 author: SaloniSonpal
 ms.author: salonis
@@ -9,22 +9,22 @@ editor: jasonwhowell
 ms.service: postgresql
 ms.topic: article
 ms.date: 06/29/2017
-ms.openlocfilehash: 755d1cf1a921f6be8f28a4a8ae515db08d904fcd
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: af2462d7a923b934bc0329153be7079ba86e8856
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="postgresql-extensions-in-azure-database-for-postgresql"></a>Extensions PostgreSQL dans une base de données Azure pour PostgreSQL
-PostgreSQL offre la possibilité d’étendre les fonctionnalités d’une base de données à l’aide des extensions. Les extensions permettent de regrouper plusieurs objets SQL liés dans un package unique ; elles peuvent être chargées ou supprimées de votre base de données d’une seule commande. Une fois chargées dans la base de données, les extensions fonctionnent de la même façon que les fonctions prédéfinies. Pour plus d’informations sur les extensions PostgreSQL, consultez la page [Empaqueter des objets liés dans une extension](https://www.postgresql.org/docs/9.6/static/extend-extensions.html).
+PostgreSQL fournit des fonctionnalités de hello hello capacité tooextend de votre base de données à l’aide des extensions. Extensions permettant à plusieurs toobe objets SQL associée regroupée dans un package unique et peuvent être chargées ou supprimées de votre base de données avec une seule commande. Une fois chargées dans la base de données hello des extensions peuvent fonctionner comme des fonctionnalités qui sont intégrées dans. Pour plus d’informations sur les extensions PostgreSQL, consultez la page [Empaqueter des objets liés dans une extension](https://www.postgresql.org/docs/9.6/static/extend-extensions.html).
 
-## <a name="how-to-use-postgresql-extensions"></a>Comment utiliser les extensions PostgreSQL ?
-Les extensions PostgreSQL doivent être installées pour votre base de données pour être utilisables. Pour installer une extension donnée, exécutez la commande [CRÉER UNE EXTENSION](https://www.postgresql.org/docs/9.6/static/sql-createextension.html) dans l’outil psql pour charger les objets empaquetés dans votre base de données.
+## <a name="how-toouse-postgresql-extensions"></a>Comment les extensions PostgreSQL toouse ?
+Les extensions de PostgreSQL doivent toobe installé pour votre base de données avant de les utiliser. tooinstall une extension particulière, exécutez le [créer une EXTENSION](https://www.postgresql.org/docs/9.6/static/sql-createextension.html) commande à partir de tooload d’outil psql hello objets empaquetées dans votre base de données.
 
-La base de données Azure pour PostgreSQL prend en charge un sous-ensemble d’extensions clés, comme indiqué ici. Les extensions non répertoriées ne sont pas prises en charge. Vous ne pouvez pas créer votre propre extension avec le service de base de données Azure pour PostgreSQL.
+La base de données Azure pour PostgreSQL prend en charge un sous-ensemble d’extensions clés, comme indiqué ici. Au-delà de ceux qui sont répertoriés de hello, les autres extensions ne sont pas pris en charge. Vous ne pouvez pas créer votre propre extension avec le service de base de données Azure pour PostgreSQL.
 
 ## <a name="extensions-supported-by-azure-database-for-postgresql"></a>Extensions prises en charge par la base de données Azure pour PostgreSQL
-Les tables suivantes répertorient les extensions PostgreSQL standard actuellement prises en charge par la base de données Azure pour PostgreSQL. Vous pouvez également obtenir ces informations en interrogeant pg\_available\_extensions. 
+les tables suivantes de Hello liste hello PostgreSQL extensions standard qui sont actuellement pris en charge par la base de données Azure pour PostgreSQL. Vous pouvez également obtenir ces informations en interrogeant pg\_available\_extensions. 
 
 ### <a name="data-types-extensions"></a>Extensions de types de données
 
@@ -39,11 +39,11 @@ Les tables suivantes répertorient les extensions PostgreSQL standard actuelleme
 > [!div class="mx-tableFixed"]
 | **Extension** | **Description** |
 |---|---|
-| [fuzzystrmatch](https://www.postgresql.org/docs/9.6/static/fuzzystrmatch.html) | Fournit plusieurs fonctions permettant de déterminer les ressemblances et la distance entre des chaînes. |
+| [fuzzystrmatch](https://www.postgresql.org/docs/9.6/static/fuzzystrmatch.html) | Fournit plusieurs similitudes toodetermine de fonctions et la distance entre des chaînes. |
 | [intarray](https://www.postgresql.org/docs/9.6/static/intarray.html) | Fournit des fonctions et des opérateurs permettant de manipuler des tableaux d’entiers non Null. |
 | [pgcrypto](https://www.postgresql.org/docs/9.6/static/pgcrypto.html) | Fournit des fonctions de chiffrement. |
 | [pg\_partman](https://pgxn.org/dist/pg_partman/doc/pg_partman.html) | Gère les tables partitionnées par date ou par ID. |
-| [pg\_trgm](https://www.postgresql.org/docs/9.6/static/pgtrgm.html) | Fournit des fonctions et des opérateurs permettant de déterminer la similarité entre des textes alphanumériques par rapprochement de trigrammes. |
+| [pg\_trgm](https://www.postgresql.org/docs/9.6/static/pgtrgm.html) | Fournit des fonctions et des opérateurs pour déterminer la similarité hello du texte alphanumérique basée sur la correspondance de TRIGRAMME |
 | [uuid-ossp](https://www.postgresql.org/docs/9.6/static/uuid-ossp.html) | Génère des identificateurs uniques universels (UUID). |
 
 ### <a name="full-text-search-extensions"></a>Extensions de recherche en texte intégral
@@ -73,10 +73,10 @@ Les tables suivantes répertorient les extensions PostgreSQL standard actuelleme
 > [!div class="mx-tableFixed"]
 | **Extension** | **Description** |
 |---|---|
-| [pg\_buffercache](https://www.postgresql.org/docs/9.6/static/pgbuffercache.html) | Fournit un moyen d’examiner ce qui se passe dans le cache partagé des tampons en temps réel. |
-| [pg\_prewarm](https://www.postgresql.org/docs/9.6/static/pgprewarm.html) | Fournit un moyen de charger les données de relation dans le cache des tampons. |
+| [pg\_buffercache](https://www.postgresql.org/docs/9.6/static/pgbuffercache.html) | Fournit un moyen pour examiner ce qui se passe dans le cache des tampons hello partagé en temps réel. |
+| [pg\_prewarm](https://www.postgresql.org/docs/9.6/static/pgprewarm.html) | Fournit un moyen tooload relation de données dans le cache des tampons hello. |
 | [pg\_stat\_statements](https://www.postgresql.org/docs/9.6/static/pgstatstatements.html) | Fournit un moyen de suivre les statistiques d’exécution de toutes les instructions SQL exécutées par un serveur. |
-| [postgres\_fdw](https://www.postgresql.org/docs/9.6/static/postgres-fdw.html) | Wrapper de données externes permettant d’accéder aux données stockées dans des serveurs externes PostgreSQL. |
+| [postgres\_fdw](https://www.postgresql.org/docs/9.6/static/postgres-fdw.html) | Wrapper de données à l’étranger utilisé tooaccess les données stockées dans des serveurs externes PostgreSQL |
 
 ### <a name="postgis"></a>PostGIS
 
@@ -84,8 +84,8 @@ Les tables suivantes répertorient les extensions PostgreSQL standard actuelleme
 | **Extension** | **Description** |
 |---|---|
 | [PostGIS](http://www.postgis.net/), postgis\_topology, postgis\_tiger\_geocoder, postgis\_sfcgal | Objets spatiaux et géographiques pour PostgreSQL. |
-| address\_standardizer, address\_standardizer\_data\_us | Utilisé pour analyser une adresse et la décomposer en éléments constitutifs, Utilisé pour prendre en charge l’étape de normalisation des adresses par géocodage. |
-| [pgrouting](http://pgrouting.org/) | Étend la base de données géospatiale PostGIS / PostgreSQL pour offrir une fonctionnalité de routage géospatial. |
+| address\_standardizer, address\_standardizer\_data\_us | Tooparse utilisé une adresse en éléments constituants. Utilisé l’étape de normalisation toosupport géocodage adresse. |
+| [pgrouting](http://pgrouting.org/) | Étend hello PostGIS / fonctionnalités de routage de geospatial tooprovide de base de données PostgreSQL géographiques. |
 
 ## <a name="next-steps"></a>Étapes suivantes
-Il y a une extension que vous souhaitez utiliser et que vous ne trouvez pas ? Dites-le-nous. Votez pour les demandes existantes ou envoyez de nouveaux commentaires et souhaits dans notre [Forum de commentaires client](https://feedback.azure.com/forums/597976-azure-database-for-postgresql).
+Ne voyez pas une extension que vous souhaitez que toouse ? Dites-le-nous. Votez pour les demandes existantes ou envoyez de nouveaux commentaires et souhaits dans notre [Forum de commentaires client](https://feedback.azure.com/forums/597976-azure-database-for-postgresql).

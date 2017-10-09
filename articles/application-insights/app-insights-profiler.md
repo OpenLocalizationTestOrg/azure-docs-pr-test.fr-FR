@@ -1,6 +1,6 @@
 ---
-title: Profilage des applications web dynamiques sur Azure avec Application Insights | Microsoft Docs
-description: "Identifiez le chemin réactif dans le code de votre serveur web avec un profileur de faible encombrement."
+title: les applications web en direct aaaProfiling sur Azure avec Application Insights | Documents Microsoft
+description: "Identifier le chemin réactif hello dans votre code de serveur web avec un faible encombrement profileur."
 services: application-insights
 documentationcenter: 
 author: CFreemanwa
@@ -12,202 +12,202 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/04/2017
 ms.author: bwren
-ms.openlocfilehash: ff39f9a84b86c14859aaee50ee368643fb2848ea
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 3c7f21076f19335e0f006327932e13623ec9526b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="profiling-live-azure-web-apps-with-application-insights"></a>Profilage des applications web dynamiques Azure avec Application Insights
 
 *Cette fonctionnalité d’Application Insights est disponible pour les App Services, et disponible en aperçu pour Compute.*
 
-Découvrez combien de temps vous consacrez à chaque méthode dans votre application web dynamique à l’aide de l’outil de profilage [d’Azure Application Insights](app-insights-overview.md). Cet outil vous montre les profils détaillés des requêtes dynamiques qui ont été traitées par votre application et met en évidence le « chemin réactif » qui est le plus souvent utilisé. Il sélectionne automatiquement des exemples associés à des temps de réponse différents. Le profileur utilise diverses techniques pour réduire la charge.
+Découvrez combien de temps passé dans chaque méthode dans votre application web dynamique à l’aide de hello profilage de l’outil de [Azure Application Insights](app-insights-overview.md). Il vous montre les profils détaillés d’en direct les demandes qui ont été pris en charge par votre application et met en évidence hello 'chemin réactif » qui est à l’aide de hello essentiel du temps. Il sélectionne automatiquement des exemples associés à des temps de réponse différents. Générateur de profils Hello utilise la surcharge de toominimize différentes techniques.
 
-Le profileur fonctionne actuellement pour les applications web ASP.NET s’exécutant sur Azure App Services, au moins au niveau tarifaire de base. 
+Hello profileur actuellement fonctionne pour ASP.NET web applications qui s’exécutent sur des Services d’application Azure au moins hello Basic niveau tarifaire. 
 
 <a id="installation"></a>
-## <a name="enable-the-profiler"></a>Activer le profileur
+## <a name="enable-hello-profiler"></a>Activer le Générateur de profils hello
 
-[Installez Application Insights](app-insights-asp-net.md) dans votre code. S’il est déjà installé, assurez-vous que vous disposez de la version la plus récente. (Pour ce faire, cliquez avec le bouton droit sur votre projet dans l'Explorateur de solutions, puis sélectionnez Gérer les packages NuGet. Sélectionnez Mises à jour et mettez à jour tous les packages.) Redéployez votre application.
+[Installez Application Insights](app-insights-asp-net.md) dans votre code. S’il est déjà installé, assurez-vous que vous avez la version la plus récente hello. (toodo, avec le bouton droit de votre projet dans l’Explorateur de solutions, choisissez Gérer les packages NuGet. Sélectionnez Mises à jour et mettez à jour tous les packages.) Redéployez votre application.
 
 *Vous utilisez ASP.NET Core ? [Cliquez ici](#aspnetcore).*
 
-Dans [https://portal.azure.com](https://portal.azure.com), ouvrez la ressource Application Insights correspondant à votre application web. Ouvrez **Performances** et cliquez sur **Activer Application Insights Profiler...**.
+Dans [https://portal.azure.com](https://portal.azure.com), ouvrez la ressource d’Application Insights hello pour votre application web. Ouvrez **Performances** et cliquez sur **Activer Application Insights Profiler...**.
 
-![Cliquez sur la bannière « Activer le profileur »][enable-profiler-banner]
+![Cliquez sur la bannière de profileur hello activer][enable-profiler-banner]
 
-Sinon, vous pouvez toujours cliquer sur **Configurer** pour afficher l’état de Profiler, pour l’activer ou le désactiver.
+Ou bien, vous pouvez toujours cliquer sur **configurer** tooview état, activer ou désactiver hello du Générateur de profils.
 
-![Dans le panneau Performances, cliquez sur Configurer.][performance-blade]
+![Dans le panneau de performances hello, cliquez sur Configurer][performance-blade]
 
-Les applications web configurées avec Application Insights sont listées dans le panneau Configurer. Suivez les instructions pour installer l’agent profileur si nécessaire. Si aucune application web n’est encore configurée avec Application Insights, cliquez sur *Ajouter des applications liées*.
+Les applications web configurées avec Application Insights sont listées dans le panneau Configurer. Suivez les instructions tooinstall hello Profiler l’agent si nécessaire. Si aucune application web n’est encore configurée avec Application Insights, cliquez sur *Ajouter des applications liées*.
 
-Utilisez les boutons *Activer le profileur* ou *Désactiver le profileur* dans le panneau Configurer pour contrôler le profileur dans toutes vos applications web liées.
+Hello d’utilisation *activer le Générateur de profils* ou *désactiver le Générateur de profils* boutons dans hello configurer panneau toocontrol hello Profiler sur toutes vos applications web lié.
 
 
 
 ![Panneau Configurer][linked app services]
 
-Pour arrêter ou redémarrer le profileur pour une App Service individuelle, vous devez vous rendre **dans la ressource App Service**, sous **Tâches web**. Pour le supprimer, allez dans **Extensions**.
+profiler hello toostop ou redémarrage d’une instance du Service d’applications individuelles, vous la trouverez **Bonjour ressource du Service d’application**, dans **tâches Web**. toodelete il, consultez sous **Extensions**.
 
 ![Désactiver le profileur pour des tâches web][disable-profiler-webjob]
 
-Nous vous recommandons d’activer, dès que possible, le profileur sur toutes vos applications web afin de découvrir d’éventuels problèmes de performance.
+Nous vous recommandons d’avoir hello Profiler activé sur tous les toodiscover de vos applications web des performances des problèmes dès que possible.
 
-Si vous utilisez WebDeploy pour déployer des modifications sur votre application web, veillez à ne pas supprimer le dossier **App_Data** lors du déploiement. Dans le cas contraire, les fichiers de l’extension du profileur seront supprimés lorsque vous déploierez ensuite l’application web dans Azure.
+Si vous utilisez l’application web tooyour WebDeploy toodeploy modifications, vérifiez que vous excluez hello **App_Data** dossier soient supprimés lors du déploiement. Dans le cas contraire, hello les fichiers de l’extension du Générateur de profils sont supprimés lorsque vous déployez ensuite hello web application tooAzure.
 
 ### <a name="using-profiler-with-azure-vms-and-compute-resources-preview"></a>En utilisant le profileur avec les machines virtuelles Azure et les ressources de calcul (version préliminaire)
 
-Lorsque vous [activez Application Insights pour les services d’application Azure en cours d’exécution](app-insights-azure-web-apps.md#run-time-instrumentation-with-application-insights), le profileur est automatiquement disponible. (Si vous avez déjà activé Application Insights pour la ressource, vous devrez peut-être mettre à jour vers la dernière version disponible via l’Assistant **Configuration**).
+Lorsque vous [activez Application Insights pour les services d’application Azure en cours d’exécution](app-insights-azure-web-apps.md#run-time-instrumentation-with-application-insights), le profileur est automatiquement disponible. (Si vous déjà activé l’Application Insights pour la ressource de hello, vous devrez peut-être tooupdate toohello TVA version via hello **configurer** Assistant.)
 
-Il existe une [version préliminaire du profileur pour les ressources de calcul Azure](https://go.microsoft.com/fwlink/?linkid=848155).
+Il existe un [version d’évaluation de hello du Générateur de profils pour les ressources de calcul Azure](https://go.microsoft.com/fwlink/?linkid=848155).
 
 
-## <a name="limits"></a>Limites
+## <a name="limits"></a>limites
 
-Par défaut, la durée de rétention des données est de 5 jours. 10 Go maximum reçus par jour.
+rétention des données Hello par défaut est 5 jours. 10 Go maximum reçus par jour.
 
-Aucuns frais ne s’appliquent pour le service de profileur. Votre application web doit être hébergée au moins au niveau de base de App Services.
+Il n’existe aucun frais pour le service de profil hello. Votre application web doit être hébergée dans au moins hello niveau de base des Services d’application.
 
 ## <a name="viewing-profiler-data"></a>Affichage des données du profileur
 
-Ouvrez le panneau Performances et faites défiler jusqu’à la liste des opérations.
+Ouvrez le panneau de performances hello et faites défiler la liste des opérations toohello.
 
 
 
 
 ![Colonne Exemples du panneau Performances d’Application Insights][performance-blade-examples]
 
-Le tableau contient les colonnes suivantes :
+les colonnes dans la table de hello Hello sont :
 
-* **Nombre** : le nombre de ces requêtes dans l’intervalle de temps du panneau.
-* **Médiane** : délai standard de votre application pour répondre à une requête. La moitié de toutes les réponses étaient plus rapides que cela.
-* **95e centile** : 95 % des réponses étaient plus rapides que cela. Si ce chiffre est très différent de la valeur médiane, il existe peut-être un problème intermittent au niveau de votre application. (Cette différence peut aussi s’expliquer par une fonctionnalité de conception, telle que la mise en cache.)
-* **Exemples** : une icône indique que le profileur a capturé des arborescences d’appels de procédure pour cette opération.
+* **Nombre de** -hello nombre de ces requêtes dans la plage de temps hello du Panneau de hello.
+* **Valeur médiane** -hello classique temps votre application toorespond tooa demande. La moitié de toutes les réponses étaient plus rapides que cela.
+* **95e centile** : 95 % des réponses étaient plus rapides que cela. Si ce chiffre est très différent de la valeur médiane de hello, il peut y avoir un problème intermittent avec votre application. (Cette différence peut aussi s’expliquer par une fonctionnalité de conception, telle que la mise en cache.)
+* **Exemples** -une icône indique ce profileur hello a capturé les traces de pile pour cette opération.
 
-Cliquez sur l’icône Exemples pour ouvrir l’Explorateur de trace. L’Explorateur affiche plusieurs exemples que le profileur a capturés, classés par temps de réponse.
+Cliquez sur Explorateur de la trace hello exemples icône tooopen hello. Hello l’Explorateur affiche plusieurs exemples qui hello du profileur a capturé, classés par temps de réponse.
 
-Sélectionnez un exemple pour afficher, au niveau du code, une répartition du temps d’exécution de la requête.
+Sélectionnez un tooshow exemple une répartition au niveau du code de temps passé à la demande de hello en cours d’exécution.
 
 ![Explorateur de trace d’Application Insights][trace-explorer]
 
-**Afficher le chemin réactif** : ouvre le plus grand nœud feuille, ou du moins un élément qui s’en rapproche. Dans la plupart des cas, ce nœud est adjacent à un goulot d’étranglement.
+**Afficher le chemin réactif** s’ouvre hello majeurs nœud terminal ou fermez au moins un problème. Dans la plupart des cas, ce nœud sera tooa adjacents goulot d’étranglement.
 
 
 
-* **Étiquette** : nom de la fonction ou de l’événement. L’arborescence affiche une combinaison des codes et des événements qui se sont produits (par exemple, des événements SQL et http). L’événement supérieur représente la durée globale de la requête.
-* **Métrique** : intervalle de temps entre le début de l’opération et la fin.
-* **Quand** : indique à quel moment la fonction/l’événement était en cours d’exécution par rapport à d’autres fonctions.
+* **Étiquette**: nom hello de fonction hello ou un événement. arborescence de Hello affiche une combinaison de code et les événements qui s’est produite (par exemple, les événements SQL et http). les événements supérieur Hello représente hello globale durée de la demande.
+* **Écoulé**: intervalle de temps hello entre hello opération début de hello et à la fin de hello.
+* **Lorsque**: montre lorsque événement de la fonction hello était en cours d’exécution dans les fonctions de tooother de relation.
 
-## <a name="how-to-read-performance-data"></a>Comment lire les données de performances
+## <a name="how-tooread-performance-data"></a>Comment les données de performances tooread
 
-Le profileur de service Microsoft utilise à la fois une méthode d’échantillonnage et une instrumentation pour analyser les performances de votre application.
-Lorsque la collecte détaillée est en cours, le profileur de service échantillonne le pointeur d’instruction de chaque processeur de l’ordinateur à chaque milliseconde.
-Chaque exemple capture la pile des appels complète du thread en cours d’exécution, en donnant des informations utiles et détaillées sur l’activité du thread à des niveaux d’abstraction faibles et élevés. Le profileur de service collecte également d’autres événements tels que les événements de changement de contexte, les événements TPL et les événements de pool de threads afin de suivre la corrélation et la causalité des activités.
+Générateur de profils Microsoft service utilise une combinaison d’échantillonnage des performances de hello tooanalyze (méthode) et l’instrumentation de votre application.
+Lors de la collection détaillée est en cours d’exécution, profileur service hello pointeur d’instruction de chaque UC de l’ordinateur hello dans toutes les millisecondes.
+Chaque exemple capture la pile des appels complète hello du thread hello actuellement l’exécution, en donnant des informations utiles et détaillées sur les éléments que thread en cours d’exécution sur les deux serveurs haute et basse des niveaux d’abstraction. Profileur de service collecte également les autres événements tels que les événements de changement de contexte, des événements de la bibliothèque parallèle de tâches et de corrélation de pool de threads événements tootrack activité et causalité.
 
-La pile des appels présentée dans l’affichage chronologique est le résultat de l’échantillonnage et de l’instrumentation décrits ci-dessus. Étant donné que chaque échantillon capture la pile des appels complète du thread, il inclut le code du framework .NET, ainsi que les autres infrastructures que vous référencez.
+pile des appels Hello indiquée dans l’affichage de la chronologie hello est résultat hello Hello au-dessus d’échantillonnage et l’instrumentation. Étant donné que chaque exemple capture la pile des appels complète hello du thread de hello, elle inclut du code à partir de hello .NET framework, ainsi que les autres infrastructures que vous faites référence.
 
 ### <a id="jitnewobj"></a>Allocation d’objets (`clr!JIT\_New or clr!JIT\_Newarr1`)
-Les fonctions d’assistance `clr!JIT\_New and clr!JIT\_Newarr1` intégrées au framework .NET allouent la mémoire à partir du segment de mémoire géré. `clr!JIT\_New` est appelé lorsqu’un objet est alloué. `clr!JIT\_Newarr1` est appelé lorsqu’un tableau d’objets est alloué. Ces deux fonctions sont généralement très rapides et s’exécutent en relativement peu de temps. Si vous constatez que `clr!JIT\_New` ou `clr!JIT\_Newarr1` prend un certain temps dans votre scénario, cela indique que le code alloue peut-être de nombreux objets et qu’il consomme une quantité importante de mémoire.
+Les fonctions d’assistance `clr!JIT\_New and clr!JIT\_Newarr1` intégrées au framework .NET allouent la mémoire à partir du segment de mémoire géré. `clr!JIT\_New` est appelé lorsqu’un objet est alloué. `clr!JIT\_Newarr1` est appelé lorsqu’un tableau d’objets est alloué. Ces deux fonctions sont généralement très rapides et s’exécutent en relativement peu de temps. Si vous voyez `clr!JIT\_New` ou `clr!JIT\_Newarr1` prendre un certain temps dans votre scénario, il s’agit d’une indication que le code de hello peut-être être allocation d’objets et consomme beaucoup de mémoire.
 
 ### <a id="theprestub"></a>Code de chargement (`clr!ThePreStub`)
-`clr!ThePreStub` est une fonction d’assistance intégrée au framework .NET qui prépare le code en vue de sa première exécution. Elle implique en général au moins une compilation JIT (juste à temps). Pour chaque méthode C#, `clr!ThePreStub` doit être appelé au maximum une fois pendant la durée de vie d’un processus.
+`clr!ThePreStub`est une fonction d’assistance à l’intérieur de .NET framework qui prépare tooexecute de code hello pour hello la première fois. Elle implique en général au moins une compilation JIT (juste à temps). Pour chaque méthode c#, `clr!ThePreStub` doit être appelé au maximum une fois pendant la durée de vie hello d’un processus.
 
-Si vous constatez que `clr!ThePreStub` prend beaucoup de temps pour le traitement d’une requête, cela indique que cette requête est la première à exécuter cette méthode, et que le runtime du framework .NET prend beaucoup de temps pour charger cette méthode. Vous pouvez envisager un processus de mise en route qui exécute cette partie du code avant que vos utilisateurs y accèdent, ou encore envisager d’exécuter NGen sur vos assemblys.
+Si vous voyez `clr!ThePreStub` prend beaucoup de temps pour une demande, il indique cette demande est hello premier celui qui exécute cette méthode et l’heure de hello pour tooload de runtime .NET framework que la méthode est importante. Vous pouvez envisager un processus de mise en route qui s’exécute de la partie du code de hello avant que vos utilisateurs y accéder, ou envisagez d’exécuter NGen sur vos assemblys.
 
 ### <a id="lockcontention"></a>Contention de verrouillage (`clr!JITutil\_MonContention` ou `clr!JITutil\_MonEnterWorker`)
-`clr!JITutil\_MonContention` ou `clr!JITutil\_MonEnterWorker` indique que le thread actuel attend qu’un verrou soit libéré. Cela se produit généralement lors de l’exécution d’une instruction lock C#, lors de l’appel de méthode Monitor.Enter, ou encore lors de l’appel d’une méthode avec l’attribut MethodImplOptions.Synchronized. La contention de verrouillage se produit généralement lorsque le thread A acquiert un verrou et que le thread B tente d’acquérir le même verrou avant qu’il ne soit libéré par le thread A.
+`clr!JITutil\_MonContention`ou `clr!JITutil\_MonEnterWorker` indiquer le thread en cours de hello est en attente pour un toobe verrou libéré. Cela se produit généralement lors de l’exécution d’une instruction lock C#, lors de l’appel de méthode Monitor.Enter, ou encore lors de l’appel d’une méthode avec l’attribut MethodImplOptions.Synchronized. Contention de verrouillage se produit généralement lorsque le thread A acquiert un verrou, et le thread B tente d’hello tooacquire même verrouiller avant que le thread A le libère.
 
 ### <a id="ngencold"></a>Code de chargement (`[COLD]`)
-Si le nom de la méthode contient `[COLD]`, par exemple `mscorlib.ni![COLD]System.Reflection.CustomAttribute.IsDefined`, cela signifie que le runtime du framework .NET exécute pour la première fois du code qui n’utilise pas une <a href="https://msdn.microsoft.com/library/e7k32f4k.aspx">optimisation guidée par profil</a>. Pour chaque méthode, il doit s’afficher au maximum une fois pendant la durée de vie du processus.
+Si le nom de la méthode hello contient `[COLD]`, tel que `mscorlib.ni![COLD]System.Reflection.CustomAttribute.IsDefined`, cela signifie que hello .NET framework runtime exécute le code qui n’est pas optimisé par <a href="https://msdn.microsoft.com/library/e7k32f4k.aspx">l’optimisation guidée par profil</a> pour hello première fois. Pour chaque méthode, il doit s’afficher au maximum une fois pendant la durée de vie hello de hello.
 
-Si le code de chargement de code prend beaucoup de temps pour traiter une requête, cela indique que cette requête est la première à exécuter la partie non optimisée de la méthode. Vous pouvez envisager un processus de mise en route qui exécute cette partie du code avant que vos utilisateurs y accèdent.
+Si le chargement de code prend beaucoup de temps pour une demande, il indique que cette demande est hello premier tooexecute un hello non optimisée partie de la méthode hello. Vous pouvez envisager un processus qui exécute cette partie du code de hello avant que vos utilisateurs y accéder de préchauffage.
 
 ### <a id="httpclientsend"></a>Envoyer une requête HTTP
-Les méthodes telles que `HttpClient.Send` indiquent que le code attend l’exécution d’une requête HTTP.
+Les méthodes telles que `HttpClient.Send` indiquent les code hello attend un toocomplete de demande HTTP.
 
 ### <a id="sqlcommand"></a>Opération de base de données
-Une méthode telle que SqlCommand.Execute indique que le code attend l’exécution d’une opération de base de données.
+Méthode telle que SqlCommand.Execute indique le code de hello est en attente d’un toocomplete d’opération de base de données.
 
 ### <a id="await"></a>En attente (`AWAIT\_TIME`)
-`AWAIT\_TIME` indique que le code attend la fin de l’exécution d’une autre tâche. Cela se produit généralement avec l’instruction C# « await ». Lorsque le code exécute une instruction C# « await », le thread se déroule et redonne le contrôle au pool de threads : aucun thread n’est bloqué en attendant la fin de l’exécution de l’instruction « await ». Toutefois, le thread qui a exécuté l’instruction « await » est logiquement « bloqué » en attendant que l’opération se termine. `AWAIT\_TIME` indique le temps de blocage dans l’attente d’exécution de la tâche.
+`AWAIT\_TIME`Indique le code de hello est en attente d’une autre tâche toocomplete. Cela se produit généralement avec l’instruction C# « await ». Lorsque le code de hello ne c# 'await', se déroule hello thread et retourne le contrôle toohello-pool de threads et il n’existe aucun thread est bloqué en attente de toofinish de 'await' hello. Toutefois, logiquement hello de thread qu’avez-vous hello await est « bloqué » en attente de hello opération toocomplete. La `AWAIT\_TIME` indique le temps de hello bloqué en attente de toocomplete de tâche hello.
 
 ### <a id="block"></a>Temps de blocage
-`BLOCKED_TIME` indique que le code attend qu’une autre ressource soit disponible ; c’est le cas par exemple d’une attente d’un objet de synchronisation, d’une attente de disponibilité d’un thread ou d’une attente de fin d’exécution d’une requête.
+`BLOCKED_TIME`Indique le code de hello est en attente d’un autre toobe de ressources disponible, comme en attente pour un objet de synchronisation, en attente pour un toobe thread disponible, ou en attente pour un toofinish de demande.
 
 ### <a id="cpu"></a>Temps processeur
-Le processeur est occupé à exécuter les instructions.
+Hello du processeur est occupé à exécuter des instructions de hello.
 
 ### <a id="disk"></a>Temps du disque
-L’application effectue les opérations de disque.
+application Hello effectue les opérations de disque.
 
 ### <a id="network"></a>Temps réseau
-L’application effectue les opérations réseau.
+application Hello effectue les opérations de réseau.
 
 ### <a id="when"></a>Colonne « When » (Quand)
-Cette colonne permet de voir comment les exemples INCLUSIFS collectés pour un nœud varient au fil du temps. La plage totale de la requête est divisée en 32 compartiments de temps et les exemples inclusifs pour ce nœud sont accumulés dans ces 32 compartiments. Chaque compartiment est ensuite représenté par une barre dont la hauteur reflète une valeur à l’échelle. Pour les nœuds marqués de `CPU_TIME` ou `BLOCKED_TIME`, ou lorsqu’il existe une relation évidente de consommation d’une ressource (processeur, disque, thread), la barre représente la consommation d’une de ces ressources pendant la période de temps de ce compartiment. Pour ces mesures, vous pouvez dépasser le seuil de 100 % en consommant plusieurs ressources. Par exemple, si vous utilisez en moyenne deux processeurs sur un intervalle donné, vous obtenez 200 %.
+Il s’agit d’une visualisation de la manière dont les échantillons INCLUSIFS hello collectées pour un nœud peuvent varier au fil du temps. Hello total plage de demande de hello est divisée de 32 plages de temps et les échantillons inclusifs les hello pour ce nœud sont accumulent dans les compartiments de 32. Chaque compartiment est ensuite représenté par une barre dont la hauteur reflète une valeur à l’échelle. Pour les nœuds marquées `CPU_TIME` ou `BLOCKED_TIME`, ou s’il existe une relation évidente d’utilisation d’une ressource (UC, disque, de thread), hello barre représente consommant une de ces ressources pour la période hello de compartiment. Pour ces mesures, vous pouvez dépasser le seuil de 100 % en consommant plusieurs ressources. Par exemple, si vous utilisez en moyenne deux processeurs sur un intervalle donné, vous obtenez 200 %.
 
 
 ## <a id="troubleshooting"></a>Résolution des problèmes
 
 ### <a name="how-can-i-know-whether-application-insights-profiler-is-running"></a>Comment savoir si le profileur d’Application Insights est en cours d’exécution ?
 
-Le profileur s’exécute comme une tâche web en continu dans Web App. Vous pouvez ouvrir la ressource Web App dans https://portal.azure.com et vérifier l’état « ApplicationInsightsProfiler » dans le panneau Tâches Web. S’il n’est pas en cours d’exécution, ouvrez les **Journaux** pour en savoir plus.
+Générateur de profils Hello s’exécute comme une tâche web continue dans l’application Web. Vous pouvez ouvrir des ressources d’application Web hello dans https://portal.azure.com et vérifier l’état « ApplicationInsightsProfiler » dans le panneau des tâches Web hello. Si elle n’est pas en cours d’exécution, ouvrez **journaux** toofind plus d’informations.
 
-### <a name="why-cant-i-find-any-stack-examples-even-though-the-profiler-is-running"></a>Pourquoi aucun exemple de pile ne s’affiche même si le profileur est en cours d’exécution ?
+### <a name="why-cant-i-find-any-stack-examples-even-though-hello-profiler-is-running"></a>Je ne trouve pas les exemples de pile même si le Générateur de profils hello est en cours d’exécution ?
 
 Vous pouvez vérifier plusieurs points.
 
 1. Assurez-vous que votre plan Web App Service est au moins au niveau tarifaire De base.
 2. Assurez-vous que le SDK Application Insights 2.2 Bêta ou version supérieure est activé sur votre application web.
-3. Vérifiez dans votre application web que le paramètre APPINSIGHTS_INSTRUMENTATIONKEY utilise la même clé d’instrumentation que celle utilisée par le SDK Application Insights.
+3. Assurez-vous que votre application Web a le paramètre hello APPINSIGHTS_INSTRUMENTATIONKEY hello utilisé de la même clé d’instrumentation par Application Insights SDK.
 4. Assurez-vous que votre application web s’exécute sur .Net Framework 4.6.
-5. S’il s’agit d’une application ASP.NET Core, vérifiez également [les dépendances requises](#aspnetcore).
+5. S’il est une application ASP.NET Core, également vérifier [hello les dépendances requises](#aspnetcore).
 
-Après le démarrage du profileur, vous devez vous attendre à une courte période de mise en route au cours de laquelle le profileur collecte activement plusieurs traces de performances. Après cela, le profileur collecte des traces de performances pendant deux minutes, toutes les heures.  
+Après le démarrage du Générateur de profils hello, il existe une période de préchauffage court lorsque le Générateur de profils hello activement pour collecter les traces de performances plusieurs. Après cela, Générateur de profils hello collecte des traces de performances pendant deux minutes dans toutes les heures.  
 
-### <a name="i-was-using-azure-service-profiler-what-happened-to-it"></a>J’utilisais avant l’agent Azure Service Profiler. Qu’est-il devenu ?  
+### <a name="i-was-using-azure-service-profiler-what-happened-tooit"></a>J’utilisais avant l’agent Azure Service Profiler. Quelles tooit s’est produit ?  
 
 Lorsque vous activez le profileur d’Application Insights, l’agent Azure Service Profiler est désactivé.
 
 ### <a id="double-counting"></a>Double comptage dans des threads parallèles
 
-Dans certains cas, la mesure du temps total dans la visionneuse de pile est supérieure à la durée réelle de la requête.
+Dans certains hello cas métrique de temps total dans la visionneuse de pile hello est supérieure à la durée réelle de hello de demande de hello.
 
-Cela peut se produire lorsque deux threads au moins sont associés à une requête et qu’ils s’exécutent en parallèle. Le temps total de threads est alors supérieur au temps écoulé. Dans de nombreux cas, un thread peut être en attente le temps que l’autre se termine. La visionneuse tente de détecter et d’omettre les attentes sans intérêt, mais se trompe en affichant trop d’informations plutôt qu’en omettant ce qui pourrait être des informations critiques.  
+Cela peut se produire lorsque deux threads au moins sont associés à une requête et qu’ils s’exécutent en parallèle. temps total de threads de Hello est alors plus de temps écoulé de hello. Dans de nombreux cas, un thread peut être en attente sur hello autres toocomplete. Hello visionneuse tentatives toodetect cela et omettre les attente inintéressants hello, mais pêche par excès côté hello de l’affichage trop plutôt que l’omission de ce qui peut être informations critiques.  
 
-Lorsque vous voyez des threads parallèles dans vos traces, vous devez identifier les threads en attente afin de déterminer le chemin critique pour la requête. Dans la plupart des cas, le thread qui passe rapidement à un état d’attente attend simplement les autres threads. Concentrez-vous sur ces autres threads et ignorez le temps dans les threads en attente.
+Lorsque vous voyez des threads parallèles dans vos traces, vous devez toodetermine threads en attente afin de déterminer le chemin d’accès critique de hello pour demande de hello. Dans la plupart des cas, le thread hello rapidement passe en état d’attente en attente simplement sur hello autres threads. Se concentrer sur d’autres hello et ignorer les temps hello dans les threads en attente hello.
 
 ### <a id="issue-loading-trace-in-viewer"></a>Aucune donnée de profilage
 
-1. Si les données que vous essayez d’afficher datent d’il y a plus de deux semaines, essayez de limiter votre filtre de temps puis réessayez.
+1. Si les données de salutation que vous essayez tooview est antérieure à deux semaines, essayez de limiter votre filtre de temps, puis réessayez.
 
-2. Vérifiez que votre proxy ou pare-feu n’a pas bloqué l’accès à https://gateway.azureserviceprofiler.net.
+2. Vérifiez que l’accès toohttps://gateway.azureserviceprofiler.net n’ont pas bloqué par un pare-feu ou proxy.
 
-3. Vérifiez que la clé d’instrumentation Application Insights que vous utilisez dans votre application est identique à celle de la ressource Application Insights avec laquelle vous avez activé le profilage. La clé figure généralement dans ApplicationInsights.config, mais vous pouvez également la trouver dans le fichier web.config ou app.config.
+3. Vérifiez que hello Application Insights, vous utilisez dans votre application clé d’instrumentation est même hello en tant que ressource Application Insights vous avez activé le profilage à l’aide de hello. clé de Hello est généralement dans ApplicationInsights.config, mais il peut également être trouvé dans le fichier web.config ou app.config.
 
-### <a name="error-report-in-the-profiling-viewer"></a>Rapport d’erreurs dans la visionneuse de profilage
+### <a name="error-report-in-hello-profiling-viewer"></a>Rapport d’erreurs de hello visionneuse de profilage
 
-Émettez un ticket de support à partir du portail. Pensez à indiquer l’ID de corrélation du message d’erreur.
+Un ticket de support à partir du portail de hello du fichier. Veuillez inclure hello les ID de corrélation du message d’erreur hello.
 
 ## <a name="manual-installation"></a>Installation manuelle
 
-Lorsque vous configurez le profileur, les mises à jour suivantes sont appliquées aux paramètres de Web App. Vous pouvez les effectuer manuellement par vous-même si votre environnement le requiert, par exemple, si votre application s’exécute dans l’environnement Azure App Service (ASE) :
+Lorsque vous configurez le Générateur de profils hello, hello suivantes sont mises à jour les paramètres de l’application toohello Web. Vous pouvez les effectuer manuellement par vous-même si votre environnement le requiert, par exemple, si votre application s’exécute dans l’environnement Azure App Service (ASE) :
 
-1. Dans le panneau de contrôle de l’application web, ouvrez Paramètres.
-2. Définissez « Version du .NET Framework » sur 4.6.
-3. Activez l’option « Toujours actif ».
-4. Ajoutez le paramètre d’application « __APPINSIGHTS_INSTRUMENTATIONKEY__ » et définissez la valeur sur la même clé d’instrumentation que celle utilisée par le Kit de développement logiciel (SDK).
+1. Dans le panneau de contrôle web application hello, ouvrez les paramètres.
+2. Définissez « .net Framework version « toov4.6.
+3. Définissez tooOn « Always On ».
+4. Ajouter le paramètre d’application «__APPINSIGHTS_INSTRUMENTATIONKEY__» et le jeu hello valeur toohello même clé d’instrumentation utilisé par hello SDK.
 5. Ouvrez Outils avancés.
-6. Cliquez sur « Go » pour ouvrir le site web Kudu.
-7. Sur le site web Kudu, sélectionnez « Site extensions » (Extensions de site).
+6. Cliquez sur « Go » tooopen hello Kudu site Web.
+7. Dans le site Web de Kudu hello, sélectionnez « Extensions de Site ».
 8. Installez « __Application Insights__ »à partir de la galerie.
-9. Redémarrez l’application web.
+9. Redémarrage de l’application web de hello.
 
 ## <a id="aspnetcore"></a>Prise en charge d’ASP.NET Core
 
-L’application ASP.NET Core doit installer le package Nuget Microsoft.ApplicationInsights.AspNetCore 2.1.0-beta6 ou une version supérieure pour fonctionner avec le profileur. Les versions antérieures au 27/06/2017 ne sont plus prises en charge.
+Application ASP.NET Core doit tooinstall 2.1.0-beta6 de package Nuget de Microsoft.ApplicationInsights.AspNetCore ou supérieur toowork avec hello du Générateur de profils. Nous n’est plus en charge les versions inférieures hello après 6/27/2017.
 
 ## <a name="next-steps"></a>Étapes suivantes
 

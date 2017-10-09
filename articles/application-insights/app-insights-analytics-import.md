@@ -1,6 +1,6 @@
 ---
-title: "Importer vos données dans Analytics dans Azure Application Insights | Microsoft Docs"
-description: "Importez des données statiques à associer à la télémétrie de l’application ou importez un flux de données distinct à interroger avec Analytics."
+title: "aaaImport tooAnalytics de vos données dans Azure Application Insights | Documents Microsoft"
+description: "Importer des toojoin de données statiques avec les données de télémétrie application, ou importer une tooquery de flux de données distinct avec Analytique."
 services: application-insights
 keywords: "schéma ouvert, importation de données"
 documentationcenter: 
@@ -13,35 +13,35 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/20/2017
 ms.author: bwren
-ms.openlocfilehash: aa855a9050ec4e5e7c5db88b7209b8bb48bdba51
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 7a3a3c9155adc1885dd366ddb13dda80bb894adb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="import-data-into-analytics"></a>Importer des données dans Analytics
 
-Importez des données tabulaires dans [Analytics](app-insights-analytics.md) pour les associer à la télémétrie [Application Insights](app-insights-overview.md) à partir de votre application ou pour les analyser comme un flux distinct. Analytics est un langage de requête puissant et bien adapté à l’analyse de gros volumes de flux horodatés de télémétrie.
+Importer des données tabulaires dans [Analytique](app-insights-analytics.md), soit toojoin avec [Application Insights](app-insights-overview.md) télémétrie à partir de votre application, ou que vous pouvez les analyser comme un flux séparé. Analytique est un flux de haut volume horodaté de requête puissantes language tooanalyzing convient parfaitement de télémétrie.
 
-Vous pouvez importer des données dans Analytics à l’aide de votre propre schéma. Il n’est pas nécessaire d’utiliser les schémas Application Insights standard tels qu’une requête ou une trace.
+Vous pouvez importer des données dans Analytics à l’aide de votre propre schéma. Il n’a pas toouse hello Application Insights des schémas standard telles que la demande ou de trace.
 
 Vous pouvez importer des fichiers JSON ou DSV (valeurs séparées par des délimiteurs : virgule, point-virgule ou tabulation).
 
-L’importation de données dans Analytics peut être utile dans les trois situations suivantes :
+Il existe trois situations où il est utile de l’importation tooAnalytics :
 
-* **Association avec la télémétrie de l’application.** Par exemple, vous pouvez importer une table qui mappe des URL de votre site Web à des titres de page plus lisibles. Dans Analytics, vous pouvez créer un rapport graphique de tableau de bord qui affiche les dix pages les plus consultées de votre site Web. Maintenant, il peut afficher les titres des pages plutôt que les URL.
+* **Association avec la télémétrie de l’application.** Par exemple, vous pouvez importer une table qui mappe des URL à partir de vos titres de page lisible toomore site Web. Dans Analytique, vous pouvez créer un rapport de graphique du tableau de bord qui affiche des pages les plus populaires dix hello dans votre site Web. Il peut désormais afficher hello titres des pages au lieu de l’URL de hello.
 * **Mettre en corrélation la télémétrie de votre application** avec d’autres sources telles que le trafic réseau, les données de serveur ou les fichiers journaux CDN.
-* **Appliquer Analytics à un flux de données distinct.** Application Insights Analytics est un outil puissant, qui fonctionne bien avec les flux horodatés partiellement alloués, et même beaucoup mieux que SQL dans la plupart des cas. Si vous avez un flux de ce type issu d’une autre source, vous pouvez l’analyser avec Analytics.
+* **Appliquer le flux de données distinct tooa Analytique.** Application Insights Analytics est un outil puissant, qui fonctionne bien avec les flux horodatés partiellement alloués, et même beaucoup mieux que SQL dans la plupart des cas. Si vous avez un flux de ce type issu d’une autre source, vous pouvez l’analyser avec Analytics.
 
-Il est facile d’envoyer des données à votre source de données. 
+Envoi source de données tooyour est facile. 
 
-1. (Une fois) Définissez le schéma de vos données dans une « source de données ».
-2. (Régulièrement) Chargez vos données dans le stockage Azure et appelez l’API REST pour nous informer que de nouvelles données sont en attente d’ingestion. Après quelques minutes, les données sont disponibles pour être interrogées dans Analytics.
+1. (Une fois) Définir le schéma hello de vos données dans une source de données.
+2. (Périodiquement) Télécharger des tooAzure de stockage de données, puis appelez hello API REST toonotify nouvelles données en attente pour l’ingestion. Dans quelques minutes, les données de salutation soient disponibles pour la requête Analytique.
 
-Vous définissez la fréquence du chargement et la rapidité à laquelle vous souhaitez que vos données soient disponibles pour les requêtes. Nous vous recommandons de charger des données dans des segments plus grands, mais d’une taille inférieure à 1 Go.
+fréquence de téléchargement de hello Hello est définie par vous et la vitesse à laquelle vous souhaitez que votre toobe de données disponible pour les requêtes. Il est plus efficace des données tooupload en blocs plus volumineux, mais pas supérieure à 1 Go.
 
 > [!NOTE]
-> *Vous avez un grand nombre de sources de données à analyser ?* [*Envisagez d’utiliser* logstash *pour envoyer vos données dans Application Insights.*](https://github.com/Microsoft/logstash-output-application-insights)
+> *Vous avez un grand nombre de tooanalyze des sources de données ?* [*Envisagez d’utiliser* logstash *tooship vos données dans Application Insights.*](https://github.com/Microsoft/logstash-output-application-insights)
 > 
 
 ## <a name="before-you-start"></a>Avant de commencer
@@ -50,52 +50,52 @@ Ce dont vous avez besoin :
 
 1. Une ressource Application Insights dans Microsoft Azure.
 
- * Si vous voulez analyser vos données séparément de la télémétrie, [créez une ressource Application Insights](app-insights-create-new-resource.md).
- * Si vous associez ou comparez vos données à la télémétrie d’une application qui est déjà configurée avec Application Insights, vous pouvez utiliser la ressource pour cette application.
- * Accès du propriétaire ou du contributeur à cette ressource.
+ * Si vous souhaitez tooanalyze vos données séparément à partir de toutes les autres données de télémétrie, [créer une ressource Application Insights](app-insights-create-new-resource.md).
+ * Si vous utilisez jointure ou la comparaison de vos données avec les données de télémétrie à partir d’une application qui est déjà configurée avec Application Insights, vous pouvez utiliser les ressources hello pour cette application.
+ * Ressource de toothat accès contributeur ou propriétaire.
  
-2. stockage Azure. Vous chargez les données dans le stockage Azure et Analytics les récupère. 
+2. stockage Azure. Vous téléchargez tooAzure stockage et Analytique obtienne de vos données à partir de là. 
 
- * Nous vous recommandons de créer un compte de stockage dédié pour vos blobs. Si vos blobs sont partagés avec d’autres processus, nos processus prendront plus de temps pour lire vos blobs.
+ * Nous vous recommandons de créer un compte de stockage dédié pour vos blobs. Si vos objets BLOB est partagés avec d’autres processus, il est plus long pour notre tooread processus vos objets BLOB.
 
 
 ## <a name="define-your-schema"></a>Définir votre schéma
 
-Avant de pouvoir importer des données, vous devez définir une *source de données,* qui spécifie le schéma de vos données.
-Vous pouvez avoir jusqu'à 50 sources de données dans une seule ressource Application Insights
+Vous pouvez importer des données, vous devez au préalable définir une *source de données,* qui spécifie le schéma hello de vos données.
+Vous pouvez avoir des sources de données too50 dans une seule ressource Application Insights
 
-1. Démarrez l’Assistant Source de données. Utilisez le bouton Ajouter une nouvelle source de données. Vous pouvez également cliquer sur le bouton Paramètres en haut à droite, puis choisir Sources de données dans le menu déroulant.
+1. Démarrer l’Assistant source de données hello. Utilisez le bouton Ajouter une nouvelle source de données. Vous pouvez également cliquer sur le bouton Paramètres en haut à droite, puis choisir Sources de données dans le menu déroulant.
 
     ![Ajouter une source de données](./media/app-insights-analytics-import/add-new-data-source.png)
 
     Entrez un nom pour votre nouvelle source de données.
 
-2. Définissez le format des fichiers que vous allez charger.
+2. Définir le format des fichiers hello que vous allez télécharger.
 
-    Vous pouvez définir le format manuellement, ou télécharger un exemple de fichier.
+    Vous pouvez définir le format de hello manuellement, ou télécharger un exemple de fichier.
 
-    Si les données sont au format CSV, la première ligne de l’exemple peut être des en-têtes de colonne. Vous pouvez modifier le nom des champs à l’étape suivante.
+    Si les données de salutation sont au format CSV, hello de première ligne d’exemple hello permettre être des en-têtes de colonne. Vous pouvez modifier les noms de champs hello dans l’étape suivante de hello.
 
-    L’exemple doit inclure au moins 10 lignes ou enregistrements de données.
+    exemple Hello doit inclure au moins 10 lignes ou des enregistrements de données.
 
     Les noms de colonnes ou de champs doivent avoir des noms alphanumériques (sans espaces ni ponctuation).
 
     ![Charger un exemple de fichier](./media/app-insights-analytics-import/sample-data-file.png)
 
 
-3. Examinez le schéma de l’Assistant. S’il a déduit les types à partir d’un exemple, vous devrez probablement modifier les types déduits des colonnes.
+3. Schéma hello révision hello Assistant a. Si il déduit les types hello à partir d’un échantillon, vous devrez peut-être tooadjust des types de hello déduit des colonnes de hello.
 
-    ![Examiner le schéma déduit](./media/app-insights-analytics-import/data-source-review-schema.png)
+    ![Schéma de hello déduit de révision](./media/app-insights-analytics-import/data-source-review-schema.png)
 
- * (Facultatif.) Téléchargez une définition de schéma. Consultez le format ci-dessous.
+ * (Facultatif.) Téléchargez une définition de schéma. Voir format hello ci-dessous.
 
- * Sélectionnez un horodatage. Toutes les données dans Analytics doivent avoir un champ d’horodatage. Il doit être de type `datetime`, mais il ne doit pas forcément être nommé « Horodatage ». Si vos données comportent une colonne contenant une date et une heure au format ISO, choisissez celle-ci en tant que colonne d’horodatage. Sinon, choisissez « à mesure que les données sont arrivées », et le processus d’importation ajoutera un champ d’horodatage.
+ * Sélectionnez un horodatage. Toutes les données dans Analytics doivent avoir un champ d’horodatage. Elle doit être de type `datetime`, mais il n’est pas toobe nommé « timestamp ». Si vos données possèdent une colonne contenant une date et une heure au format ISO, choisissez cette option en tant que colonne de type timestamp hello. Sinon, choisissez « en tant que données arrivé » et les processus d’importation hello ajoute un champ d’horodatage.
 
-5. Créez la source de données.
+5. Créer la source de données hello.
 
 ### <a name="schema-definition-file-format"></a>Format de fichier de définition de schéma
 
-Au lieu de modifier le schéma dans l’interface utilisateur, vous pouvez charger la définition de schéma à partir d’un fichier. Le format de définition de schéma est le suivant : 
+Plutôt que de modifier le schéma de hello dans l’interface utilisateur, vous pouvez charger la définition de schéma hello à partir d’un fichier. format de définition de schéma Hello est comme suit : 
 
 Format délimité 
 ```
@@ -115,34 +115,34 @@ Format JSON
 ]
 ```
  
-Chaque colonne est identifiée par l’emplacement, le nom et le type. 
+Chaque colonne est identifié par type, nom et l’emplacement de hello. 
 
-* Emplacement : pour le format de fichier délimité, il s’agit de la position de la valeur mappée. Pour le format JSON, il s’agit du jpath de la clé mappée.
-* Nom : nom affiché de la colonne.
-* Type : type de données de cette colonne.
+* Emplacement – pour le format de fichier délimité, il est position hello de valeur de hello mappé. Pour le format JSON, il est jpath hello de clé de hello mappé.
+* Nom : hello affiche le nom de colonne de hello.
+* Type : type de données hello de cette colonne.
  
-Si un exemple de données a été utilisé et que le format de fichier est délimité, la définition de schéma doit mapper toutes les colonnes et ajouter de nouvelles colonnes à la fin. 
+Au cas où un exemple de données a été utilisé et format de fichier est délimité, définition de schéma hello doit mapper toutes les colonnes et ajouter de nouvelles colonnes à la fin de hello. 
 
-JSON permet un mappage partiel des données, par conséquent la définition de schéma du format JSON n’a pas besoin de mapper toutes les clés trouvées dans un exemple de données. Il peut également mapper les colonnes qui ne font pas partie de l’exemple de données. 
+JSON permet un mappage partiel des données de hello, par conséquent hello définition de schéma du format JSON ne dispose pas toomap toutes les clés qui se trouve dans les exemples de données. Il peut également mapper des colonnes qui ne font pas partie des données d’exemple hello. 
 
 ## <a name="import-data"></a>Importer des données
 
-Pour importer des données, chargez-les dans le stockage Azure, créez une clé d’accès qui leur est associée, puis appelez une API REST.
+tooimport des données, vous téléchargez-le tooAzure stockage, créer une clé d’accès pour celle-ci et appeler une API REST.
 
 ![Ajouter une source de données](./media/app-insights-analytics-import/analytics-upload-process.png)
 
-Vous pouvez effectuer l’opération suivante manuellement ou configurer un système automatisé pour qu’il le fasse à intervalles réguliers. Vous devez suivre ces étapes pour chaque bloc de données à importer.
+Vous pouvez effectuer hello suivant le processus manuellement, ou définir d’une toodo automatique du système à intervalles réguliers. Vous devez toofollow ces étapes pour chaque bloc de données que vous souhaitez tooimport.
 
-1. Chargez les données dans le [stockage Blob Azure](../storage/blobs/storage-dotnet-how-to-use-blobs.md). 
+1. Télécharger les données de salutation trop[stockage d’objets blob Azure](../storage/blobs/storage-dotnet-how-to-use-blobs.md). 
 
- * La taille maximum des blobs est de 1 Go (sans compression). Les blobs d’une centaine de Mo sont parfaits, du point de vue des performances.
- * Vous pouvez les compresser avec Gzip pour améliorer le temps de chargement et la latence de disponibilité des données pour interrogation. Utilisez l’extension de nom de fichier `.gz`.
- * Il est préférable d’utiliser un compte de stockage distinct à cet effet, afin d’éviter que les appels provenant de différents services ralentissent les performances.
- * Lors de l’envoi de données à des fréquences élevées, toutes les quelques secondes, il est recommandé d’utiliser plusieurs comptes de stockage, pour des raisons de performances.
+ * Objets BLOB peuvent être n’importe quelle taille des too1GB non compressé. Les blobs d’une centaine de Mo sont parfaits, du point de vue des performances.
+ * Vous pouvez les compresser avec le temps de téléchargement tooimprove Gzip et la latence pour hello toobe de données disponible pour la requête. Hello d’utilisation `.gz` extension de nom de fichier.
+ * Il est meilleure toouse un compte de stockage distinct à cet effet, les appels de tooavoid à partir de différents services ralentit les performances.
+ * Lors de l’envoi des données de haute fréquence, après quelques secondes, il est recommandé de toouse plus que d’un compte de stockage, pour des raisons de performances.
 
  
-2. [Créez une clé de signature d’accès partagé pour le blob](../storage/blobs/storage-dotnet-shared-access-signature-part-2.md). Le délai d’expiration de la clé doit être d’un jour et celle-ci doit fournir un accès en lecture.
-3. Effectuez un appel REST pour indiquer à Application Insights que les données sont en attente.
+2. [Créer une clé de Signature d’accès partagé pour l’objet blob de hello](../storage/blobs/storage-dotnet-shared-access-signature-part-2.md). clé de Hello doit disposer d’un délai d’expiration d’un jour et fournir un accès en lecture.
+3. Rendre un toonotify d’appel REST Application Insights qui attendant des données.
 
  * Point de terminaison : `https://dc.services.visualstudio.com/v2/track`
  * Méthode HTTP : POST
@@ -167,32 +167,32 @@ Vous pouvez effectuer l’opération suivante manuellement ou configurer un syst
     }
 ```
 
-Les espaces réservés sont :
+espaces réservés de Hello sont :
 
-* `Blob URI with Shared Access Key` : cet élément est obtenu à partir de la procédure de création d’une clé. Il est spécifique au blob.
-* `Schema ID` : l’ID de schéma généré pour votre schéma défini. Les données de ce blob doivent respecter le schéma que vous avez défini pour cette source.
-* `DateTime` : l’heure à laquelle la demande est soumise, UTC. Nous acceptons les formats suivants : ISO8601 (comme « 2016-01-01 13:45:01 ») ; RFC822 (« Mer, 14 déc 16 14:57:01 +0000 ») ; RFC850 (« Mercredi, 14-déc-16 14:57:00 UTC ») ; RFC1123 (« Mer, 14 déc 2016 14:57:00 +0000 »).
+* `Blob URI with Shared Access Key`: Vous obtenez cette procédure de hello pour la création d’une clé. Il s’agit d’objet blob de toohello spécifique.
+* `Schema ID`: hello ID schéma généré pour votre schéma défini. données Hello dans cet objet blob doivent être conforme toohello schéma.
+* `DateTime`: heure de hello à quels hello demande est soumise, UTC. Nous acceptons les formats suivants : ISO8601 (comme « 2016-01-01 13:45:01 ») ; RFC822 (« Mer, 14 déc 16 14:57:01 +0000 ») ; RFC850 (« Mercredi, 14-déc-16 14:57:00 UTC ») ; RFC1123 (« Mer, 14 déc 2016 14:57:00 +0000 »).
 * `Instrumentation key` de votre ressource Application Insights.
 
-Les données sont disponibles dans Analytics après quelques minutes.
+les données de salutation sont disponibles dans Analytique après quelques minutes.
 
 ## <a name="error-responses"></a>Réponses d’erreur
 
-* **400 Demande incorrecte** : indique que la charge utile de la demande n’est pas valide. Vérifiez les points suivants :
+* **400 demande incorrecte**: indique cette charge utile de demande hello n’est pas valide. Vérifiez les points suivants :
  * Clé d’instrumentation correcte.
- * Valeur de temps valide. Il s’agit de l’heure actuelle au format UTC.
- * Le format JSON de l’événement est conforme au schéma.
-* **403 Interdit** : le blob que vous avez envoyé n’est pas accessible. Assurez-vous que la clé d’accès partagé est valide et n’a pas expiré.
+ * Valeur de temps valide. Il doit être hello maintenant en heure UTC.
+ * JSON d’événement de hello est conforme toohello schéma.
+* **403 Interdit**: blob hello que vous avez envoyé n’est pas accessible. Assurez-vous que cette clé d’accès partagé hello est valide et n’a pas expiré.
 * **404 Introuvable** :
- * Le blob n’existe pas.
- * L’ID source est incorrect.
+ * objet blob de Hello n’existe pas.
+ * Hello sourceId est incorrecte.
 
-Des informations plus détaillées sont disponibles dans le message d’erreur de réponse.
+Des informations plus détaillées sont disponibles dans le message d’erreur de réponse de hello.
 
 
 ## <a name="sample-code"></a>Exemple de code
 
-Ce code utilise le package NuGet [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/9.0.1).
+Ce code utilise hello [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/9.0.1) package NuGet.
 
 ### <a name="classes"></a>Classes
 
@@ -365,5 +365,5 @@ Utilisez ce code pour chaque blob.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* [Présentation du langage de requête Log Analytics](app-insights-analytics-tour.md)
-* [Use *Logstash* to send data to Application Insights (Utiliser Logstash pour envoyer des données à Application Insights)](https://github.com/Microsoft/logstash-output-application-insights)
+* [Visite guidée de hello langage de requête Analytique de journal](app-insights-analytics-tour.md)
+* [Utilisez *Logstash* toosend données tooApplication Insights](https://github.com/Microsoft/logstash-output-application-insights)

@@ -1,6 +1,6 @@
 ---
-title: "Utilisation de partenaires pour fournir des licences Widevine à Azure Media Services | Microsoft Docs"
-description: "Cet article décrit comment vous pouvez utiliser Azure Media Services (AMS) pour fournir un flux chiffré dynamiquement par AMS avec des DRM PlayReady et Widevine. La licence PlayReady provient du serveur de licences Media Services PlayReady et la licence Widevine est délivrée par le serveur de licences castLabs."
+title: aaaUsing partenaires toodeliver Widevine licences tooAzure Media Services | Documents Microsoft
+description: "Cet article décrit comment vous pouvez utiliser Azure Media Services (AMS) toodeliver un flux qui est chiffré dynamiquement par AMS avec PlayReady et Widevine DRMs. la licence PlayReady Hello est fourni à partir du serveur de licences PlayReady de Media Services et les licences Widevine sont remis par le serveur de licences castLabs."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,23 +14,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: juliako
-ms.openlocfilehash: 6867e4f910970121df3858516c6bab3114c3c6f9
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 3c18a8a22ced239931dea5385020194bd6d83f28
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="using-partners-to-deliver-widevine-licenses-to-azure-media-services"></a>Utilisation de partenaires pour fournir des licences Widevine à Azure Media Services
+# <a name="using-partners-toodeliver-widevine-licenses-tooazure-media-services"></a>À l’aide de partenaires toodeliver Widevine licences tooAzure Media Services
 ## <a name="overview"></a>Vue d'ensemble
-Microsoft Azure Media Services vous permet de diffuser du contenu MPEG-DASH protégé par Widevine DRM, qui est chiffré conformément à la spécification du chiffrement commun (CENC).
+Microsoft Azure Media Services permet toodeliver QUE MPEG-DASH protégée par DRM Widevine, laquelle est chiffrée par hello spécification de chiffrement commun (CENC).
 
-En commençant par le kit de développement logiciel (SDK) Media Services .NET version 3.5.2, Media Services vous permet de configurer le modèle de licence Widevine et d’obtenir des licences Widevine. Vous pouvez également utiliser les partenaires AMS suivants pour vous aider à distribuer des licences Widevine : [Axinom](http://www.axinom.com/press/ibc-axinom-drm-6/), [EZDRM](http://ezdrm.com/), [castLabs](http://castlabs.com/company/partners/azure/).
+À compter de hello Media Services .NET SDK version 3.5.2, Media Services permet de vous tooconfigure Widevine modèle de licence et obtenir des licences Widevine. Vous pouvez également utiliser hello suivant toohelp de partenaires AMS vous fournir des licences Widevine : [Axinom](http://www.axinom.com/press/ibc-axinom-drm-6/), [EZDRM](http://ezdrm.com/), [castLabs](http://castlabs.com/company/partners/azure/).
 
 ## <a name="castlabs"></a>castLabs
-Vous pouvez utiliser [castLabs](http://castlabs.com/company/partners/azure/) pour fournir des licences Widevine. Pour plus d’informations, consultez [Utilisation de castLabs pour fournir des licences DRM à Azure Media Services](media-services-castlabs-integration.md)
+Vous pouvez utiliser [castLabs](http://castlabs.com/company/partners/azure/) toodeliver Widevine licences. Pour plus d’informations, consultez [à l’aide de castLabs toodeliver DRM licences tooAzure Media Services](media-services-castlabs-integration.md)
 
 ## <a name="axinom"></a>Axinom
-Vous pouvez utiliser [Axinom](http://www.axinom.com/press/ibc-axinom-drm-6/) pour fournir des licences Widevine. Pour plus d’informations, consultez [Utilisation d’Axinom pour fournir des licences DRM à Azure Media Services](media-services-axinom-integration.md)
+Vous pouvez utiliser [Axinom](http://www.axinom.com/press/ibc-axinom-drm-6/) toodeliver Widevine licences. Pour plus d’informations, consultez [à l’aide de Axinom toodeliver DRM licences tooAzure Media Services](media-services-axinom-integration.md)
 
 ## <a name="media-services-learning-paths"></a>Parcours d’apprentissage de Media Services
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

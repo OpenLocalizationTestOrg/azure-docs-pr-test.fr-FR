@@ -1,5 +1,5 @@
 ---
-title: "Accéder à des ressources locales à l’aide de connexions hybrides dans Azure App Service"
+title: "aaaAccess des ressources locales à l’aide de connexions hybrides dans Azure App Service"
 description: "Créer une connexion entre une application web dans Azure App Service et une ressource locale utilisant un port TCP statique"
 services: app-service
 documentationcenter: 
@@ -14,59 +14,59 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/03/2016
 ms.author: cephalin
-ms.openlocfilehash: fbd22e6e285c5ddaef2a473671d4a06a97384b4a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: de7c57b94f4bd6250a93757817178e8455daae4a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="access-on-premises-resources-using-hybrid-connections-in-azure-app-service"></a>Accéder à des ressources locales à l’aide de connexions hybrides dans Azure App Service
-Vous pouvez connecter une application Azure App Service à n’importe quelle ressource locale utilisant un port TCP statique, par exemple, SQL Server, MySQL, les API web HTTP et la plupart des services web personnalisés. Cet article vous explique comment créer une connexion hybride entre une application App Service et une base de données SQL Server locale.
+Vous pouvez connecter une ressource locale tooany application Azure App Service qui utilise un port TCP statique, telles que SQL Server, MySQL, API Web de HTTP et la plupart des Services Web personnalisés. Cet article vous montre comment toocreate une connexion hybride entre le Service d’applications et une base de données SQL Server locale.
 
 > [!NOTE]
-> La partie Web Apps de la fonctionnalité Connexions hybrides n’est disponible que dans le [portail Azure](https://portal.azure.com). Pour créer une connexion dans BizTalk Services, consultez la page [Connexions hybrides](http://go.microsoft.com/fwlink/p/?LinkID=397274). 
+> partie des applications Web Hello de fonctionnalité de connexions hybrides hello est uniquement disponible dans hello [Azure Portal](https://portal.azure.com). toocreate une connexion dans les Services BizTalk, consultez [connexions hybrides](http://go.microsoft.com/fwlink/p/?LinkID=397274). 
 > 
-> Ce contenu s'applique également aux applications mobiles dans Azure App Service. 
+> Ce contenu s’applique également à tooMobile des applications dans Azure App Service. 
 > 
 > 
 
 ## <a name="prerequisites"></a>Composants requis
 * Un abonnement Azure. Pour un abonnement gratuit, consultez la page [Version d'évaluation gratuite d'Azure](https://azure.microsoft.com/pricing/free-trial/). 
   
-    Si vous voulez vous familiariser avec Azure App Service avant d’ouvrir un compte Azure, accédez à la page [Essayer App Service](https://azure.microsoft.com/try/app-service/), où vous pourrez créer immédiatement une application web temporaire dans App Service. Aucune carte de crédit n’est requise ; vous ne prenez aucun engagement.
-* Pour utiliser une base de données SQL Server ou SQL Server Express locale avec une connexion hybride, TCP/IP doit être activé sur un port statique. L’utilisation d’une instance par défaut sur SQL Server est recommandée, car elle utilise le port statique 1433. Pour plus d’informations sur l’installation et la configuration de SQL Server Express en vue de son utilisation avec des connexions hybrides, consultez la page [Connexion à une instance SQL Server locale à partir d’un site Web Azure au moyen de connexions hybrides](http://go.microsoft.com/fwlink/?LinkID=397979).
-* L'ordinateur sur lequel vous installez l'agent Gestionnaire de connexions hybrides local décrit plus loin dans cet article :
+    Si vous souhaitez tooget démarré avec le Service d’application Azure avant de s’inscrire pour un compte Azure, accédez trop[essayez du Service d’applications](https://azure.microsoft.com/try/app-service/), où vous pouvez créer une application web de courte durée de démarrage immédiatement dans le Service d’applications. Aucune carte de crédit n’est requise ; vous ne prenez aucun engagement.
+* toouse un local SQL Server ou la base de données SQL Server Express avec une connexion hybride, TCP/IP doit toobe activé sur un port statique. L’utilisation d’une instance par défaut sur SQL Server est recommandée, car elle utilise le port statique 1433. Pour plus d’informations sur l’installation et configuration de SQL Server Express pour une utilisation avec les connexions hybrides, consultez [tooan de se connecter localement SQL Server à partir d’un site web Azure à l’aide de connexions hybrides](http://go.microsoft.com/fwlink/?LinkID=397979).
+* ordinateur Hello sur lequel vous installez l’agent Gestionnaire de connexions hybrides hello local décrite plus loin dans cet article :
   
-  * doit être capable de se connecter à Azure sur le port 5671 ;
-  * doit être capable d'accéder au *hostname*:*numéro_de_port* de votre ressource locale. 
+  * Doit être en mesure de tooconnect tooAzure sur le port 5671
+  * Doit être en mesure de tooreach hello *nom d’hôte*:*numéro_port* de votre ressource locale. 
 
 > [!NOTE]
-> Les étapes décrites dans cet article partent du principe que vous utilisez le navigateur à partir de l'ordinateur qui hébergera l'agent de connexion hybride local.
+> Hello dans cet article suppose que vous utilisez le navigateur hello à partir de l’ordinateur hello qui hébergera l’agent de connexion hybride hello localement.
 > 
 > 
 
-## <a name="create-a-web-app-in-the-azure-portal"></a>Créer une application web dans le portail Azure
+## <a name="create-a-web-app-in-hello-azure-portal"></a>Créer une application web Bonjour portail Azure
 > [!NOTE]
-> Si vous avez déjà créé dans le portail Azure une application web ou un backend d’application mobile que vous voulez utiliser pour ce didacticiel, passez directement à la section [Création d’une connexion hybride et d’un service BizTalk](#CreateHC) .
+> Si vous avez déjà créé une application web ou le principal de l’application Mobile Bonjour portail Azure que vous souhaitez toouse pour ce didacticiel, vous pouvez passer trop[créer une connexion hybride et un BizTalk Service](#CreateHC) et démarrer à partir de là.
 > 
 > 
 
-1. Dans le coin supérieur gauche du [portail Azure](https://portal.azure.com), cliquez sur **Nouveau**  > **Web + mobile** > **Application web**.
+1. Dans le coin supérieur gauche hello Hello [Azure Portal](https://portal.azure.com), cliquez sur **nouveau** > **Web + Mobile** > **application Web**.
    
     ![New web app][NewWebsite]
-2. Dans le panneau **Application web**, indiquez une URL et cliquez sur **Créer**. 
+2. Sur hello **application Web** panneau, fournir une URL et cliquez sur **créer**. 
    
     ![Website name][WebsiteCreationBlade]
-3. Après quelques instants, l’application web est créée et son panneau apparaît. Le volet est un tableau de bord vertical qu'il est possible de faire défiler et qui vous permet de gérer votre site.
+3. Après quelques instants, l’application hello web est créée et son panneau de l’application web s’affiche. Panneau de Hello est un tableau de bord permettant le défilement vertical qui vous permet de gérer votre site.
    
     ![Website running][WebSiteRunningBlade]
-4. Pour vérifier que le site est actif, cliquez sur l'icône **Parcourir** afin d'afficher la page par défaut.
+4. tooverify hello site est en ligne, vous pouvez cliquer sur hello **Parcourir** page par défaut d’icône toodisplay hello.
    
-    ![Click browse to see your web app][Browse]
+    ![Cliquez sur Parcourir toosee votre application web][Browse]
    
     ![Default web app page][DefaultWebSitePage]
 
-Vous allez ensuite créer une connexion hybride et un service BizTalk pour l’application web.
+Ensuite, vous allez créer une connexion hybride et un service BizTalk pour l’application web de hello.
 
 <a name="CreateHC"></a>
 
@@ -74,97 +74,97 @@ Vous allez ensuite créer une connexion hybride et un service BizTalk pour l’a
 1. Dans le panneau Application web, cliquez sur **Tous les paramètres** > **Mise en réseau** > **Configurer vos points de terminaison de connexion hybride**.
    
     ![Connexions hybrides][CreateHCHCIcon]
-2. Dans le volet Connexions hybrides, cliquez sur **Ajouter**.
+2. Dans le panneau de connexions hybrides hello, cliquez sur **ajouter**.
    
     <!-- ![Add a hybrid connnection][CreateHCAddHC]
    -->
-3. Le volet **Ajouter une connexion hybride** s'ouvre.  Comme il s'agit de votre première connexion hybride, l'option **Nouvelle connexion hybride** est présélectionnée, et le volet **Créer une connexion hybride** s'ouvre.
+3. Hello **ajouter une connexion hybride** panneau s’ouvre.  Dans la mesure où il s’agit de votre première connexion hybride, hello **connexion hybride** option est présélectionnée et hello **créer la connexion hybride** panneau s’ouvre pour vous.
    
     ![Create a hybrid connection][TwinCreateHCBlades]
    
-    Dans le volet **Créer une connexion hybride**:
+    Sur hello **Panneau de connexion hybride créer**:
    
-   * Sous **Nom**, entrez un nom pour la connexion.
-   * Sous **Nom d'hôte**, entrez le nom de l'ordinateur local qui héberge votre ressource.
-   * Sous **Port**, entrez le numéro du port utilisé par votre ressource locale (1433 pour une instance par défaut SQL Server).
+   * Pour **nom**, fournissez un nom pour la connexion de hello.
+   * Pour **nom d’hôte**, entrez le nom hello de l’ordinateur local hello qui héberge votre ressource.
+   * Pour **Port**, entrez le numéro de port hello que votre ressource locale utilise (1433 pour une instance par défaut de SQL Server).
    * Cliquez sur **Service BizTalk**
-4. Le panneau **Créer un service BizTalk** s’affiche. Entrez un nom pour le service BizTalk, puis cliquez sur **OK**.
+4. Hello **créer un BizTalk Service** panneau s’ouvre. Entrez un nom pour hello service BizTalk, puis cliquez sur **OK**.
    
     ![Créer un service BizTalk][CreateHCCreateBTS]
    
-    Le panneau **Créer un service BizTalk** se ferme et vous revenez au panneau **Créer une connexion hybride**.
-5. Dans le volet Créer une connexion hybride, cliquez sur **OK**. 
+    Hello **créer un BizTalk Service** panneau se ferme et vous revenez toohello **créer la connexion hybride** panneau.
+5. Dans le panneau de connexion hybride hello créer, cliquez sur **OK**. 
    
-    ![Click OK][CreateBTScomplete]
-6. Une fois le processus terminé, la zone des notifications du portail vous informe que la connexion a été créée.
+    ![Cliquez sur OK][CreateBTScomplete]
+6. Lors de la fin du processus de hello, zone de notification hello Bonjour portail vous informe que les connexions hello a été créée avec succès.
    
     <!--- TODO
    
-    Everything fails at this step. I can't create a BizTalk service in the dogfood portal. I switch to the classic portal
-    (full portal) and created the BizTalk service but it doesn't seem to let you connnect them - When you finish the
-    Create hybrid conn step, you get the following error
-    Failed to create hybrid connection RelecIoudHC. The 
-    resource type could not be found in the namespace 
+    Everything fails at this step. I can't create a BizTalk service in hello dogfood portal. I switch toohello classic portal
+    (full portal) and created hello BizTalk service but it doesn't seem toolet you connnect them - When you finish the
+    Create hybrid conn step, you get hello following error
+    Failed toocreate hybrid connection RelecIoudHC. hello 
+    resource type could not be found in hello namespace 
     'Microsoft.BizTaIkServices for api version 2014-06-01'.
    
-    The error indicates it couldn't find the type, not the instance.
+    hello error indicates it couldn't find hello type, not hello instance.
     ![Success notification][CreateHCSuccessNotification]
     -->
-7. Dans le panneau de l’application web, l’icône **Connexions hybrides** indique à présent qu’une connexion hybride a été créée.
+7. Sur le panneau de l’application hello web, hello **connexions hybrides** icône indique maintenant que la connexion hybride 1 a été créée.
    
     ![One hybrid connection created][CreateHCOneConnectionCreated]
 
-À ce stade, vous avez terminé une partie importante de l'infrastructure de connexion hybride cloud. Vous allez ensuite créer un élément local.
+À ce stade, vous avez terminé une partie importante de l’infrastructure de connexion hello cloud hybride. Vous allez ensuite créer un élément local.
 
 <a name="InstallHCM"></a>
 
-## <a name="install-the-on-premises-hybrid-connection-manager-to-complete-the-connection"></a>Installation du Gestionnaire de connexions hybrides local pour terminer la connexion
-1. Dans le panneau Application web, cliquez sur **Tous les paramètres** > **Mise en réseau** > **Configurer vos points de terminaison de connexion hybride**. 
+## <a name="install-hello-on-premises-hybrid-connection-manager-toocomplete-hello-connection"></a>Installer la fonctionnalité connexion hello toocomplete hello local gestionnaire de connexions hybrides
+1. Dans le panneau de l’application hello web, cliquez sur **tous les paramètres** > **réseau** > **configurer vos points de terminaison de connexion hybride**. 
    
     ![Hybrid connections icon][HCIcon]
-2. Dans le volet **Connexions hybrides**, la colonne **Statut** correspondant au point de terminaison ajouté récemment indique **Non connecté**. Cliquez sur la connexion pour la configurer.
+2. Sur hello **connexions hybrides** panneau, hello **état** colonne hello récemment ajouté montre de point de terminaison **non connecté**. Cliquez sur hello connexion tooconfigure il.
    
     ![Non connecté][NotConnected]
    
-    Le volet Connexion hybride s'ouvre.
+    Panneau de connexion hybride Hello s’ouvre.
    
     ![NotConnectedBlade][NotConnectedBlade]
-3. Dans le volet, cliquez sur **Configuration de l'écouteur**.
+3. Dans le panneau de hello, cliquez sur **écouteur le programme d’installation**.
    
     ![Click Listener Setup][ClickListenerSetup]
-4. Le volet **Propriétés de la connexion hybride** s'ouvre. Sous **Gestionnaire de connexions hybrides local**, cliquez sur **Cliquez ici pour l'installer**.
+4. Hello **propriétés de connexion hybride** panneau s’ouvre. Sous **Gestionnaire de connexions hybrides local**, choisissez **cliquez ici tooinstall**.
    
-    ![Cliquez ici pour l'installer][ClickToInstallHCM]
-5. Dans la boîte de dialogue Exécution de l'application - Avertissement de sécurité, cliquez sur **Exécuter** pour continuer.
+    ![Cliquez ici tooinstall][ClickToInstallHCM]
+5. Dans hello Application sécurité avertissement boîte de dialogue Exécuter, choisissez **exécuter** toocontinue.
    
-    ![Choose Run to continue][ApplicationRunWarning]
-6. Dans la boîte de dialogue **Contrôle de compte d'utilisateur**, cliquez sur **Oui**.
+    ![Choisissez d’exécuter toocontinue][ApplicationRunWarning]
+6. Bonjour **contrôle de compte d’utilisateur** boîte de dialogue, choisissez **Oui**.
    
    ![Choose Yes][UAC]
-7. Le Gestionnaire de connexion hybride est téléchargé et installé pour vous. 
+7. Gestionnaire de connexions hybrides de Hello est téléchargé et installé pour vous. 
    
     ![Installation][HCMInstalling]
-8. Une fois l'installation terminée, cliquez sur **Fermer**.
+8. Fin de l’installation de hello, cliquez sur **fermer**.
    
     ![Click Close][HCMInstallComplete]
    
-    Dans le panneau **Connexions hybrides**, la colonne **Statut** indique à présent **Connecté**. 
+    Sur hello **connexions hybrides** panneau, hello **état** colonne affiche à présent **connecté**. 
    
     ![Connected Status][HCStatusConnected]
 
-Maintenant que l'infrastructure de connexion hybride est terminée, vous pouvez créer une application hybride qui l'utilise. 
+Cette infrastructure de connexion hybride hello est terminée, vous pouvez créer une application hybride qui l’utilise. 
 
 > [!NOTE]
-> Les sections suivantes vous montrent comment utiliser une connexion hybride avec un projet de backend d'applications mobiles .NET.
+> Hello sections suivantes vous montrent comment toouse une connexion hybride avec un projet de service principal .NET des applications mobiles.
 > 
 > 
 
-## <a name="configure-the-mobile-app-net-backend-project-to-connect-to-the-sql-server-database"></a>Configuration du projet principal d'application mobile .NET pour la connexion à la base de données SQL Server
-Dans App Service, un projet de backend d’applications mobiles .NET. est simplement une application web ASP.NET comportant un SDK d'applications Mobile supplémentaire installé et initialisé. Pour utiliser votre application web comme backend d'applications mobiles, vous devez [télécharger et initialiser le SDK du backend d’applications mobiles .NET](../app-service-mobile/app-service-mobile-dotnet-backend-how-to-use-server-sdk.md#install-sdk).  
+## <a name="configure-hello-mobile-app-net-backend-project-tooconnect-toohello-sql-server-database"></a>Configurer hello Mobile application .NET principal projet tooconnect toohello base de données SQL
+Dans App Service, un projet de backend d’applications mobiles .NET. est simplement une application web ASP.NET comportant un SDK d'applications Mobile supplémentaire installé et initialisé. toouse votre application web en tant qu’un serveur principal d’applications mobiles, vous devez [télécharger et initialiser hello Kit de développement logiciel de serveur principal .NET des applications mobiles](../app-service-mobile/app-service-mobile-dotnet-backend-how-to-use-server-sdk.md#install-sdk).  
 
-Pour Mobile Apps, vous devez également définir une chaîne de connexion pour la base de données locale et modifier le serveur principal afin d'utiliser cette connexion. 
+Pour les applications mobiles, vous devez toodefine une chaîne de connexion de base de données locale hello et modifiez hello principal toouse cette connexion. 
 
-1. Dans l'Explorateur de solutions de Visual Studio, ouvrez le fichier Web.config pour votre backend d'application mobile .NET, recherchez la section **connectionStrings** , ajoutez une nouvelle entrée SqlClient comme suit, pointant vers la base de données SQL Server locale :
+1. Dans l’Explorateur de solutions dans Visual Studio, le fichier Web.config de hello ouvert pour votre serveur principal Mobile application .NET, recherchez hello **connectionStrings** section, ajoutez une nouvelle entrée SqlClient hello suivants, les points de toohello SQL local Base de données du serveur :
    
         <add name="OnPremisesDBConnection"
          connectionString="Data Source=OnPremisesServer,1433;
@@ -174,15 +174,15 @@ Pour Mobile Apps, vous devez également définir une chaîne de connexion pour l
          MultipleActiveResultSets=True"
          providerName="System.Data.SqlClient" />
    
-    N’oubliez pas de remplacer `<**secure_password**>` dans cette chaîne par le mot de passe que vous avez créé pour *HybridConnectionLogin*.
-2. Cliquez sur **Enregistrer** dans Visual Studio pour enregistrer le fichier Web.config.
+    N’oubliez pas de tooreplace `<**secure_password**>` dans cette chaîne avec le mot de passe hello créé pour *HybridConnectionLogin*.
+2. Cliquez sur **enregistrer** dans le fichier Web.config de Visual Studio toosave hello.
    
    > [!NOTE]
-   > Ce paramètre de connexion est utilisé lors de l'exécution sur l'ordinateur local. Lors de l'exécution dans Azure, ce paramètre est remplacé par le paramètre de connexion défini dans le portail.
+   > Ce paramètre de connexion est utilisé lors de l’exécution sur l’ordinateur local de hello. Lors de l’exécution dans Azure, ce paramètre est remplacé par le paramètre de connexion hello défini dans le portail de hello.
    > 
    > 
-3. Développez le dossier **Modèles** et ouvrez le fichier de modèle de données, se terminant par *Context.cs*.
-4. Modifiez le constructeur d'instance **DbContext** pour transmettre la valeur `OnPremisesDBConnection` au constructeur **DbContext** de base, similaire à l'extrait de code suivant :
+3. Développez hello **modèles** dossier et le fichier de modèle de données ouvert hello, qui se termine par *Context.cs*.
+4. Modifier hello **DbContext** toopass de constructeur d’instance hello valeur `OnPremisesDBConnection` toohello base **DbContext** constructeur, toohello similaire suivant extrait de code :
    
         public class hybridService1Context : DbContext
         {
@@ -192,25 +192,25 @@ Pour Mobile Apps, vous devez également définir une chaîne de connexion pour l
             }
         }
    
-    Le service utilise désormais la nouvelle connexion à la base de données SQL Server.
+    service de Hello utiliseront hello nouvelle connexion toohello base de données SQL.
 
-## <a name="update-the-mobile-app-backend-to-use-the-on-premises-connection-string"></a>Mise à jour du backend d’application mobile pour utiliser la chaîne de connexion en local
-À présent, vous devez ajouter un paramètre d'application pour cette nouvelle chaîne de connexion afin qu'elle puisse être utilisée à partir d'Azure.  
+## <a name="update-hello-mobile-app-backend-toouse-hello-on-premises-connection-string"></a>Jour toouse principal de hello application Mobile hello locale une chaîne de connexion
+Ensuite, vous devez tooadd un paramètre d’application pour cette nouvelle chaîne de connexion afin qu’elle peut être utilisée à partir d’Azure.  
 
-1. Dans le [portail Azure](https://portal.azure.com) dans le code principal d’application web de votre application mobile, cliquez sur **Tous les paramètres**, puis sur **Paramètres de l’application**.
-2. Dans le panneau **Paramètres d'application web**, faites défiler jusqu'à **Chaînes de connexion** et ajoutez une chaîne de connexion **SQL Server** nommée `OnPremisesDBConnection` avec une valeur telle que `Server=OnPremisesServer,1433;Database=OnPremisesDB;User ID=HybridConnectionsLogin;Password=<**secure_password**>`.
+1. Dans hello [portail Azure](https://portal.azure.com) dans le code hello web application principale pour votre application Mobile, cliquez sur **tous les paramètres**, puis **paramètres de l’Application**.
+2. Bonjour **paramètres d’application Web** panneau, faites défiler trop**les chaînes de connexion** et ajouter un nouveau **SQL Server** chaîne de connexion nommée `OnPremisesDBConnection` avec une valeur telle que `Server=OnPremisesServer,1433;Database=OnPremisesDB;User ID=HybridConnectionsLogin;Password=<**secure_password**>`.
    
-    Remplacez `<**secure_password**>` par le mot de passe sécurisé de votre base de données locale.
+    Remplacez `<**secure_password**>` avec le mot de passe sécurisé hello pour votre base de données locale.
    
     ![Chaîne de connexion pour la base de données locale](./media/web-sites-hybrid-connection-get-started/set-sql-server-database-connection.png)
-3. Appuyez sur **Enregistrer** pour enregistrer la connexion hybride et la chaîne de connexion que vous venez de créer.
+3. Appuyez sur **enregistrer** toosave la connexion hybride hello et la chaîne de connexion vous venez de créer.
 
-À ce stade, vous pouvez republier le projet de serveur et tester la nouvelle connexion avec vos clients mobiles actuels. Les données seront lues et écrites dans la base de données locale à l'aide de la connexion hybride.
+À ce stade, vous pouvez republier le projet de serveur hello et tester une nouvelle connexion hello avec vos clients d’applications mobiles existants. Données seront être lues et écrites de base de données sur site toohello à l’aide de la connexion hybride hello.
 
 <a name="NextSteps"></a>
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Pour des informations sur la création d'une application web ASP.NET utilisant une connexion hybride, consultez la page [Connexion à une instance SQL Server locale à partir d'un site web Azure au moyen de connexions hybrides](http://go.microsoft.com/fwlink/?LinkID=397979). 
+* Pour plus d’informations sur la création d’une application web ASP.NET qui utilise une connexion hybride, consultez [tooan de se connecter localement SQL Server à partir d’un site web Azure à l’aide de connexions hybrides](http://go.microsoft.com/fwlink/?LinkID=397979). 
 
 ### <a name="additional-resources"></a>Ressources supplémentaires
 [Aperçu des connexions hybrides](http://go.microsoft.com/fwlink/p/?LinkID=397274)
@@ -223,10 +223,10 @@ Pour Mobile Apps, vous devez également définir une chaîne de connexion pour l
 
 [Création d’un cloud hybride réel avec la portabilité transparente des applications (vidéo Channel 9)](http://channel9.msdn.com/events/TechEd/NorthAmerica/2014/DCIM-B323#fbid=)
 
-[Connexion à une instance SQL Server locale à partir d’Azure Mobile Services au moyen de connexions hybrides (vidéo Channel 9)](http://channel9.msdn.com/Series/Windows-Azure-Mobile-Services/Connect-to-an-on-premises-SQL-Server-from-Azure-Mobile-Services-using-Hybrid-Connections)
+[Se connecter tooan local SQL Server à partir d’Azure Mobile Services à l’aide de connexions de hybrides (vidéo Channel 9)](http://channel9.msdn.com/Series/Windows-Azure-Mobile-Services/Connect-to-an-on-premises-SQL-Server-from-Azure-Mobile-Services-using-Hybrid-Connections)
 
 ## <a name="whats-changed"></a>Changements apportés
-* Pour obtenir un guide présentant les modifications apportées dans le cadre de la transition entre Sites Web et App Service, consultez la page [Azure App Service et les services Azure existants](http://go.microsoft.com/fwlink/?LinkId=529714)
+* Pour un toohello guide voir changer à partir de sites Web tooApp Service : [Azure App Service et son Impact sur les Services Azure existants](http://go.microsoft.com/fwlink/?LinkId=529714)
 
 <!-- IMAGES -->
 [New]:./media/web-sites-hybrid-connection-get-started/B01New.png

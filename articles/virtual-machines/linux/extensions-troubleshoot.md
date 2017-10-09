@@ -1,5 +1,5 @@
 ---
-title: "Résolution des défaillances des extensions de machine virtuelle Linux | Microsoft Docs"
+title: "aaaTroubleshooting Linux VM échecs d’extension | Documents Microsoft"
 description: "En savoir plus sur la résolution des défaillances des extensions de machine virtuelle Azure Linux"
 services: virtual-machines-linux
 documentationcenter: 
@@ -15,17 +15,17 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 03/29/2016
 ms.author: kundanap
-ms.openlocfilehash: 589890de379d0b729de1f1ba9e604e0ec0496f50
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 29a0ca34207421e0014380000a313d3c44e7e594
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshooting-azure-linux-vm-extension-failures"></a>Dépannage des échecs d’extension de machine virtuelle Azure Linux
 [!INCLUDE [virtual-machines-common-extensions-troubleshoot](../../../includes/virtual-machines-common-extensions-troubleshoot.md)]
 
 ## <a name="viewing-extension-status"></a>Affichage de l’état de l’extension
-Les modèles Azure Resource Manager peuvent être exécutés à partir de l’interface de ligne de commande Azure. Une fois que le modèle est exécuté, l'état de l'extension peut être affiché à partir d'Azure Resource Explorer ou des outils de ligne de commande.
+Les modèles de gestionnaire de ressources Azure peuvent être exécutés à partir de hello CLI d’Azure. Une fois le modèle de hello est exécuté, l’état de l’extension hello peut être affiché à partir des outils de ligne de commande de l’Explorateur de ressources Azure ou hello.
 
 Voici un exemple :
 
@@ -34,7 +34,7 @@ Interface de ligne de commande Azure :
       azure vm get-instance-view
 
 
-Voici l'exemple de sortie :
+Voici le résultat de l’exemple hello :
 
       Extensions:  {
       "ExtensionType": "Microsoft.Compute.CustomScriptExtension",
@@ -60,14 +60,14 @@ Voici l'exemple de sortie :
   ]
 
 ## <a name="troubleshooting-extenson-failures"></a>Dépannage des échecs d'extension :
-### <a name="re-running-the-extension-on-the-vm"></a>Réexécution de l’extension sur la machine virtuelle
-Si vous exécutez des scripts sur la machine virtuelle à l’aide de l’extension de script personnalisé, cela peut générer une erreur indiquant que la machine virtuelle a été créée avec succès mais que le script a échoué. Dans ces conditions, la méthode recommandée pour corriger cette erreur consiste à supprimer l'extension et exécuter le modèle à nouveau.
-Remarque : à l'avenir, cette fonctionnalité sera améliorée pour supprimer le besoin de désinstaller l'extension.
+### <a name="re-running-hello-extension-on-hello-vm"></a>Extension de hello nouveau en cours d’exécution sur la machine virtuelle de hello
+Si vous exécutez des scripts sur hello machine virtuelle à l’aide d’Extension de Script personnalisé, vous pourriez parfois rencontrer une erreur dans lequel la machine virtuelle a été créé avec succès mais hello script a échoué. Dans ces conditions, hello recommandé toorecover de façon à partir de cette erreur est tooremove hello extension et le nouveau modèle de hello.
+Remarque : Dans le futur, cette fonctionnalité serait tooremove étendu hello besoin de désinstaller l’extension de hello.
 
-#### <a name="remove-the-extension-from-azure-cli"></a>Suppression de l’extension de l’interface de ligne de commande Azure
+#### <a name="remove-hello-extension-from-azure-cli"></a>Supprimer une extension de hello de CLI d’Azure
       azure vm extension set --resource-group "KPRG1" --vm-name "kundanapdemo" --publisher-name "Microsoft.Compute.CustomScriptExtension" --name "myCustomScriptExtension" --version 1.4 --uninstall
 
-Où « publsher-name » correspond au type d'extension à partir de la sortie de « azure vm get-instance-view » et name est le nom de la ressource d'extension à partir du modèle
+Où « de Publisher-name » correspond toohello type d’extension à partir de la sortie de hello de « get-instance-view de la machine virtuelle azure » et est nom hello de ressource d’extension hello à partir du modèle de hello
 
-Une fois que l'extension a été supprimée, le modèle peut être réexécuté pour exécuter les scripts sur la machine virtuelle.
+Une fois que l’extension de hello a été supprimée, modèle de hello peut être réexécuté toorun hello scripts hello machine virtuelle.
 

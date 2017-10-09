@@ -1,6 +1,6 @@
 ---
-title: "Création d’un IoT Hub Azure à l’aide de l’API REST du fournisseur de ressources | Microsoft Docs"
-description: "Utilisation de l’API REST du fournisseur de ressources pour créer un IoT Hub."
+title: "un hub IoT d’Azure à l’aide d’aaaCreate hello fournisseur de ressources API REST | Documents Microsoft"
+description: Comment toouse hello toocreate de API REST de fournisseur de ressources un IoT Hub.
 services: iot-hub
 documentationcenter: .net
 author: dominicbetts
@@ -14,22 +14,22 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/08/2017
 ms.author: dobett
-ms.openlocfilehash: e443259507aacbefca141be4c9c1688ab19bf6ec
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 98d240ccce47dec13a255bce28943b40f5354ecf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-an-iot-hub-using-the-resource-provider-rest-api-net"></a>Création d’un IoT Hub à l’aide de l’API REST du fournisseur de ressources (.NET)
+# <a name="create-an-iot-hub-using-hello-resource-provider-rest-api-net"></a>Créez un IoT hub à l’aide du fournisseur de ressources hello REST API (.NET)
 
 [!INCLUDE [iot-hub-resource-manager-selector](../../includes/iot-hub-resource-manager-selector.md)]
 
-Vous pouvez utiliser [l’API REST du fournisseur de ressources IoT Hub][lnk-rest-api] pour créer et gérer des IoT Hubs Azure par programme. Ce didacticiel vous montre comment utiliser l’API REST du fournisseur de ressources IoT Hub pour créer un IoT Hub à partir d’un programme C#.
+Vous pouvez utiliser hello [fournisseur de ressources IoT Hub API REST] [ lnk-rest-api] toocreate et gérer les hubs Azure IoT par programme. Ce didacticiel vous montre comment toouse hello toocreate de API REST de fournisseur de ressources IoT Hub un IoT hub à partir d’un programme c#.
 
 > [!NOTE]
-> Azure dispose de deux modèles de déploiement pour créer et utiliser des ressources : [Azure Resource Manager et classique](../azure-resource-manager/resource-manager-deployment-model.md).  Cet article traite de l’utilisation du modèle de déploiement Azure Resource Manager.
+> Azure dispose de deux modèles de déploiement pour créer et utiliser des ressources : [Azure Resource Manager et classique](../azure-resource-manager/resource-manager-deployment-model.md).  Cet article décrit à l’aide du modèle de déploiement du Gestionnaire de ressources Azure hello.
 
-Pour réaliser ce didacticiel, vous avez besoin des éléments suivants :
+toocomplete ce didacticiel, vous devez hello suivant :
 
 * Visual Studio 2015 ou Visual Studio 2017.
 * Un compte Azure actif. <br/>Si vous ne possédez pas de compte, vous pouvez créer un [compte gratuit][lnk-free-trial] en quelques minutes.
@@ -39,15 +39,15 @@ Pour réaliser ce didacticiel, vous avez besoin des éléments suivants :
 
 ## <a name="prepare-your-visual-studio-project"></a>Préparer votre projet Visual Studio
 
-1. Dans Visual Studio, créez un projet Visual C# Bureau classique Windows en utilisant le modèle de projet **Application console (.NET Framework)**. Nommez ce projet **CreateIoTHubREST**.
+1. Dans Visual Studio, créez un projet Visual c# bureau classique de Windows à l’aide de hello **l’application Console (.NET Framework)** modèle de projet. Projet de hello nom **CreateIoTHubREST**.
 
 2. Dans l’Explorateur de solutions, cliquez avec le bouton droit sur votre projet, puis cliquez sur **GÉRER LES PACKAGES NUGET**.
 
-3. Dans le gestionnaire de packages NuGet, activez **Inclure la version préliminaire** et sur la page **Parcourir**, recherchez **Microsoft.Azure.Management.ResourceManager**. Sélectionnez le package et cliquez sur **Installer**. Sous **Réviser les modifications**, cliquez sur **OK**, puis sur **J’accepte** pour accepter les licences.
+3. Dans le Gestionnaire de Package NuGet, vérifiez **inclure la version préliminaire**et sur hello **Parcourir** recherche de page pour **Microsoft.Azure.Management.ResourceManager**. Sélectionnez le package de hello, cliquez sur **installer**, dans **réviser les modifications** cliquez sur **OK**, puis cliquez sur **J’accepte** tooaccept des licences hello.
 
-4. Dans le gestionnaire de packages NuGet, recherchez **Microsoft.IdentityModel.Clients.ActiveDirectory**.  Cliquez sur **Installer**, dans **Réviser les modifications**, cliquez sur **OK**, puis cliquez sur **J’accepte** pour accepter la licence.
+4. Dans le gestionnaire de packages NuGet, recherchez **Microsoft.IdentityModel.Clients.ActiveDirectory**.  Cliquez sur **installer**, dans **réviser les modifications** cliquez sur **OK**, puis cliquez sur **J’accepte** licence de hello tooaccept.
 
-5. Dans Program.cs, remplacez les instructions **using** existantes par le code suivant :
+5. Dans le fichier Program.cs, remplacer hello **à l’aide de** instructions avec hello suivant de code :
 
     ```csharp
     using System;
@@ -63,7 +63,7 @@ Pour réaliser ce didacticiel, vous avez besoin des éléments suivants :
     using System.Threading;
     ```
 
-6. Dans Program.cs, ajoutez les variables statiques suivantes en remplaçant les valeurs des espaces réservés. Vous avez noté les éléments **ApplicationId**, **SubscriptionId**, **TenantId** et **Password** précédemment dans ce didacticiel. **Nom du groupe de ressources** est le nom du groupe de ressources que vous utiliserez pour créer le hub IoT. Vous pouvez utiliser un groupe de ressources nouveau ou préexistant. **Nom du hub IoT** est le nom de l’IoT Hub que vous créez, par exemple **MonIoTHub**. Le nom de votre IoT Hub doit être globalement unique. **Nom du déploiement** est le nom du déploiement, par exemple **Déploiement_01**.
+6. Dans Program.cs, ajoutez hello suivant en remplaçant les valeurs d’espace réservé hello de variables statiques. Vous avez noté les éléments **ApplicationId**, **SubscriptionId**, **TenantId** et **Password** précédemment dans ce didacticiel. **Nom de groupe de ressources** est le nom hello hello du groupe de ressources vous utilisez quand vous créez hello IoT hub. Vous pouvez utiliser un groupe de ressources nouveau ou préexistant. **Nom d’IoT Hub** hello désigne hello IoT Hub, vous créez, tel que **MyIoTHub**. nom de Hello de votre IoT hub doit être globalement unique. **Nom du déploiement** est un nom pour le déploiement de hello, tel que **Deployment_01**.
 
     ```csharp
     static string applicationId = "{Your ApplicationId}";
@@ -78,11 +78,11 @@ Pour réaliser ce didacticiel, vous avez besoin des éléments suivants :
 
 [!INCLUDE [iot-hub-get-access-token](../../includes/iot-hub-get-access-token.md)]
 
-## <a name="use-the-resource-provider-rest-api-to-create-an-iot-hub"></a>Utilisation de l’API REST du fournisseur de ressources pour créer un IoT Hub
+## <a name="use-hello-resource-provider-rest-api-toocreate-an-iot-hub"></a>Utilisez toocreate d’API REST de fournisseur de ressources hello un IoT hub
 
-Utilisez [l’API REST du fournisseur de ressources IoT Hub][lnk-rest-api] pour créer un IoT Hub dans votre groupe de ressources. Vous pouvez également utiliser l’API REST du fournisseur de ressources pour apporter des modifications à un IoT Hub existant.
+Hello d’utilisation [fournisseur de ressources IoT Hub API REST] [ lnk-rest-api] toocreate un IoT hub dans votre groupe de ressources. Vous pouvez également utiliser hello ressource fournisseur API REST toomake modifications tooan existant IoT hub.
 
-1. Ajoutez la méthode suivante au fichier Program.cs :
+1. Ajoutez hello suivant tooProgram.cs de méthode :
 
     ```csharp
     static void CreateIoTHub(string token)
@@ -91,14 +91,14 @@ Utilisez [l’API REST du fournisseur de ressources IoT Hub][lnk-rest-api] pour 
     }
     ```
 
-2. Ajoutez le code suivant à la méthode **CreateIoTHub**. Ce code crée un objet **HttpClient** avec le jeton d’authentification dans les en-têtes :
+2. Ajouter hello suivant code toohello **CreateIoTHub** (méthode). Ce code crée un **HttpClient** objet avec le jeton d’authentification hello dans les en-têtes de hello :
 
     ```csharp
     HttpClient client = new HttpClient();
     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
     ```
 
-3. Ajoutez le code suivant à la méthode **CreateIoTHub**. Ce code décrit l’IoT Hub à créer et génère une représentation JSON. Pour obtenir la liste des emplacements qui prennent en charge IoT Hub, consultez [Statut Azure][lnk-status] :
+3. Ajouter hello suivant code toohello **CreateIoTHub** (méthode). Ce code explique hello IoT hub toocreate et génère une représentation JSON. Pour la liste actuelle des emplacements qui prennent en charge de IoT Hub hello consultez [Azure Status][lnk-status]:
 
     ```csharp
     var description = new
@@ -116,7 +116,7 @@ Utilisez [l’API REST du fournisseur de ressources IoT Hub][lnk-rest-api] pour 
     var json = JsonConvert.SerializeObject(description, Formatting.Indented);
     ```
 
-4. Ajoutez le code suivant à la méthode **CreateIoTHub**. Ce code envoie la demande REST à Azure. Il vérifie ensuite la réponse et récupère l’URL que vous pouvez utiliser pour surveiller l’état de la tâche de déploiement :
+4. Ajouter hello suivant code toohello **CreateIoTHub** (méthode). Ce code soumet hello reste demande tooAzure. code de Hello, puis vérifie la réponse de hello et récupère les URL hello vous pouvez utiliser l’état de hello de toomonitor de la tâche de déploiement hello :
 
     ```csharp
     var content = new StringContent(JsonConvert.SerializeObject(description), Encoding.UTF8, "application/json");
@@ -132,7 +132,7 @@ Utilisez [l’API REST du fournisseur de ressources IoT Hub][lnk-rest-api] pour 
     var asyncStatusUri = result.Headers.GetValues("Azure-AsyncOperation").First();
     ```
 
-5. Ajoutez le code suivant à la fin de la méthode **CreateIoTHub**. Ce code utilise l’adresse **asyncStatusUri** récupérée à l’étape précédente pour attendre la fin du déploiement :
+5. Ajouter hello suivant fin toohello de code Hello **CreateIoTHub** (méthode). Ce code utilise hello **asyncStatusUri** adresse récupérée dans hello précédente étape toowait pour hello déploiement toocomplete :
 
     ```csharp
     string body;
@@ -144,7 +144,7 @@ Utilisez [l’API REST du fournisseur de ressources IoT Hub][lnk-rest-api] pour 
     } while (body == "{\"status\":\"Running\"}");
     ```
 
-6. Ajoutez le code suivant à la fin de la méthode **CreateIoTHub**. Ce code récupère les clés de l’IoT Hub que vous avez créé et les imprime sur la console :
+6. Ajouter hello suivant fin toohello de code Hello **CreateIoTHub** (méthode). Ce code récupère les clés hello Hello IoT hub, vous avez créé et imprime les toohello console :
 
     ```csharp
     var listKeysUri = string.Format("https://management.azure.com/subscriptions/{0}/resourceGroups/{1}/providers/Microsoft.Devices/IotHubs/{2}/IoTHubKeys/listkeys?api-version=2016-02-03", subscriptionId, rgName, iotHubName);
@@ -153,11 +153,11 @@ Utilisez [l’API REST du fournisseur de ressources IoT Hub][lnk-rest-api] pour 
     Console.WriteLine("Keys: {0}", keysresults.Content.ReadAsStringAsync().Result);
     ```
 
-## <a name="complete-and-run-the-application"></a>Terminer et exécuter l’application
+## <a name="complete-and-run-hello-application"></a>Application hello complet et exécution
 
-Vous pouvez maintenant terminer l’application en appelant la méthode **CreateIoTHub** avant sa génération et son exécution.
+Vous pouvez maintenant terminer application hello en appelant hello **CreateIoTHub** méthode avant de générer et exécutez-le.
 
-1. Ajoutez le code suivant à la fin de la méthode **Main** :
+1. Ajouter hello suivant fin toohello de code Hello **Main** méthode :
 
     ```csharp
     CreateIoTHub(token.AccessToken);
@@ -166,25 +166,25 @@ Vous pouvez maintenant terminer l’application en appelant la méthode **Create
 
 2. Cliquez sur **Build**, puis sur **Générer la solution**. Corrigez les éventuelles erreurs.
 
-3. Cliquez sur **Déboguer**, puis **Démarrer le débogage** pour exécuter l’application. Le déploiement peut prendre plusieurs minutes.
+3. Cliquez sur **déboguer** , puis **démarrer le débogage** application hello de toorun. Il peut prendre plusieurs minutes pour hello déploiement toorun.
 
-4. Pour vérifier que votre application a bien ajouté le nouvel IoT Hub, accédez au [portail Azure][lnk-azure-portal] et affichez votre liste de ressources. Vous pouvez également utiliser l’applet de commande PowerShell **Get-AzureRmResource**.
+4. tooverify votre application ajoutée hello nouveau hub IoT, visitez hello [portail Azure] [ lnk-azure-portal] et afficher la liste des ressources. Vous pouvez également utiliser hello **Get-AzureRmResource** applet de commande PowerShell.
 
 > [!NOTE]
-> Cet exemple d’application ajoute un IoT Hub S1 Standard qui vous est facturé. Lorsque vous avez terminé, vous pouvez supprimer le IoT Hub par le biais du [portail Azure][lnk-azure-portal] ou à l’aide de l’applet de commande PowerShell **Remove-AzureRmResource**.
+> Cet exemple d’application ajoute un IoT Hub S1 Standard qui vous est facturé. Lorsque vous avez terminé, vous pouvez supprimer hello IoT hub via hello [portail Azure] [ lnk-azure-portal] ou à l’aide de hello **Remove-AzureRmResource** applet de commande PowerShell lorsque vous avez terminé.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Maintenant que vous avez déployé un IoT Hub à l’aide de l’API REST du fournisseur de ressources, vous pouvez aller encore plus loin :
+Maintenant vous avez déployé un IoT hub à l’aide du fournisseur de ressources hello API REST, vous souhaiterez peut-être tooexplore supplémentaire :
 
-* Découvrez les capacités de [l’API REST du fournisseur de ressources IoT Hub][lnk-rest-api].
-* Pour plus d’informations sur les capacités d’Azure Resource Manager, voir [Vue d’ensemble d’Azure Resource Manager][lnk-azure-rm-overview].
+* En savoir plus sur les fonctions hello Hello [fournisseur de ressources IoT Hub API REST][lnk-rest-api].
+* Lecture [vue d’ensemble du Gestionnaire de ressources Azure] [ lnk-azure-rm-overview] toolearn plus sur les fonctionnalités du Gestionnaire de ressources Azure hello.
 
-Pour en savoir plus sur le développement pour IoT Hub, consultez les articles suivants :
+toolearn plus sur le développement pour IoT Hub, consultez hello suivant des articles :
 
-* [Présentation du Kit de développement logiciel (SDK) C][lnk-c-sdk]
+* [Introduction tooC SDK][lnk-c-sdk]
 * [Kits de développement logiciel (SDK) Azure IoT][lnk-sdks]
 
-Pour explorer davantage les capacités de IoT Hub, consultez :
+toofurther Explorez les fonctionnalités de hello d’IoT Hub, consultez :
 
 * [Simulation d’un appareil avec Azure IoT Edge][lnk-iotedge]
 

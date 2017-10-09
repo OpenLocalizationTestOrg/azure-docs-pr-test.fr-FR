@@ -1,5 +1,5 @@
 ---
-title: "En savoir plus sur la limitation dans BizTalk Services | Microsoft Docs"
+title: aaaLearn sur la limitation dans BizTalk Services | Documents Microsoft
 description: "En savoir plus sur les seuils de limitation et les comportements qui s'ensuivent lors de l'exécution pour BizTalk Services. La limitation est basée sur l'utilisation de la mémoire et le nombre de messages. MABS, WABS"
 services: biztalk-services
 documentationcenter: 
@@ -14,51 +14,51 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/07/2016
 ms.author: mandia
-ms.openlocfilehash: 145e7470bbc01c676a1fb5856c0f9a8726e667fc
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 46c8806c3a1f4eeb793f721f849771e0ec155197
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="biztalk-services-throttling"></a>Limitation BizTalk Services
 
 > [!INCLUDE [BizTalk Services is being retired, and replaced with Azure Logic Apps](../../includes/biztalk-services-retirement.md)]
 
-Azure BizTalk Services met en place un service de limitation basé sur deux conditions : l’utilisation de la mémoire et le nombre de messages traités simultanément. Cette rubrique répertorie les seuils de limitation et décrit le comportement d’exécution lorsque les conditions de limitation sont réunies.
+Les Services BizTalk Azure implémente la basée sur les deux conditions de limitation de service : numéro hello et l’utilisation de mémoire de traitement de messages simultanés. Cette rubrique répertorie les seuils de limitation de hello et décrit le comportement d’exécution hello lorsqu’une condition de limitation se produit.
 
 ## <a name="throttling-thresholds"></a>Seuils de limitation
-Le tableau suivant répertorie les sources et seuils de limitation :
+Hello tableau ci-dessous répertorie hello limitation source et les seuils :
 
 |  | Description | Seuil minimum | Seuil maximum |
 | --- | --- | --- | --- |
-| Mémoire |Pourcentage de la mémoire système totale disponible/PageFileBytes (octets de fichier de page). <p><p>Le total de PageFileBytes disponible correspond environ à 2 fois la mémoire RAM du système. |60 % |70 % |
+| Mémoire |Pourcentage de la mémoire système totale disponible/PageFileBytes (octets de fichier de page). <p><p>PageFileBytes disponible totale est d’environ 2 fois hello RAM du système de hello. |60 % |70 % |
 | Traitement de message |Nombre de messages traités simultanément |40 * nombre de cœurs |100 * nombre de cœurs |
 
-Lorsqu'un seuil maximal est atteint, Azure BizTalk Services active les limitations. La limitation s'arrête une fois le seuil minimal atteint. Par exemple, votre service utilise 65 % de la mémoire système. Dans ce cas, le service n'utilise pas de limitation. Votre service monte à 70 % d'utilisation de mémoire système. Dans ce cas, le service lance une limitation et continue de l'appliquer jusqu'à ce que le service utilise 60 % (seuil minimal) de la mémoire système.
+Lorsqu’un seuil élevé est atteint, Azure BizTalk Services démarre toothrottle. La limitation s’arrête lorsque hello faible est atteint. Par exemple, votre service utilise 65 % de la mémoire système. Dans ce cas, le service de hello ne limite pas. Votre service monte à 70 % d'utilisation de mémoire système. Dans ce cas, service de hello limite et continue toothrottle jusqu'à ce que le service de hello utilise la mémoire de système de 60 % (seuil faible).
 
-Azure BizTalk Services assure le suivi du statut de la limitation (état normal contre état limité) et de la durée de la limitation.
+Azure BizTalk Services effectue le suivi hello (état normal et l’état d’accélérée) d’état de limitation et hello durée de limitation.
 
 ## <a name="runtime-behavior"></a>Comportement d'exécution
-Lorsque Azure BizTalk Services passe en mode limitation, les actions suivantes se produisent :
+Quand Azure BizTalk Services entre dans un état de limitation, hello événements suivants se produisent :
 
 * La limitation s'effectue par instance de rôle. Par exemple :<br/>
-  L'instance RoleInstanceA est limitée. L'instance RoleInstanceB ne l'est pas. Dans ce cas, les messages dans RoleInstanceB sont traités normalement. Les messages dans RoleInstanceA sont ignorés et le message d'erreur suivant est affiché :<br/><br/>
+  L'instance RoleInstanceA est limitée. L'instance RoleInstanceB ne l'est pas. Dans ce cas, les messages dans RoleInstanceB sont traités normalement. Messages dans RoleInstanceA sont ignorés et échouent avec hello l’erreur suivante :<br/><br/>
   **Le serveur est occupé. Réessayez.**<br/><br/>
 * Les sources d'extraction cessent d'interroger et de télécharger les messages. Par exemple : <br/>
-  Un pipeline extrait les messages depuis une source FTP externe. L'instance de rôle responsable de l'extraction passe en mode limité. Dans cette situation, le pipeline cesse de télécharger de nouveaux messages tant que l'instance de rôle est limitée.
-* Une réponse est envoyée au client afin qu'il puisse soumettre le message de nouveau.
-* Vous devez patienter jusqu'à la fin de la limitation. Plus précisément, vous devez attendre que le seuil minimal soit atteint.
+  Un pipeline extrait les messages depuis une source FTP externe. instance de rôle Hello effectuant l’extraction de hello Obtient dans un état de limitation. Dans ce cas, le pipeline de hello arrête le téléchargement des messages supplémentaires jusqu'à ce que l’instance de rôle hello arrête la limitation.
+* Une réponse est envoyée toohello client pour le client de hello peut renvoyer le message de type hello.
+* Vous devez attendre jusqu'à ce que la limitation de hello est résolue. Plus précisément, vous devez attendre jusqu'à ce que hello faible est atteint.
 
 ## <a name="important-notes"></a>Remarques importantes
 * Il n'est pas possible de désactiver la limitation.
 * Il n'est pas possible de modifier les seuils de limitation.
 * La limitation est déployée sur l'ensemble du système.
-* Le serveur de base de données SQL d'Azure comporte également un dispositif de limitation intégré.
+* Hello, serveur de base de données SQL Azure a également la limitation intégrés.
 
 ## <a name="additional-azure-biztalk-services-topics"></a>Autres rubriques Azure BizTalk Services
-* [Installation du Kit de développement logiciel (SDK) Azure BizTalk Services](http://go.microsoft.com/fwlink/p/?LinkID=241589)<br/>
+* [Lors de l’installation Bonjour Azure BizTalk Services SDK](http://go.microsoft.com/fwlink/p/?LinkID=241589)<br/>
 * [Didacticiels : Azure BizTalk Services](http://go.microsoft.com/fwlink/p/?LinkID=236944)<br/>
-* [Utilisation du Kit de développement logiciel (SDK) Azure BizTalk Services](http://go.microsoft.com/fwlink/p/?LinkID=302335)<br/>
+* [Comment puis-je démarrer à l’aide de hello SDK des Services BizTalk Azure](http://go.microsoft.com/fwlink/p/?LinkID=302335)<br/>
 * [Azure BizTalk Services](http://go.microsoft.com/fwlink/p/?LinkID=303664)<br/>
 
 ## <a name="see-also"></a>Voir aussi

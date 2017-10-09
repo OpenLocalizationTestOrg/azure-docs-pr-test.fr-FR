@@ -1,6 +1,6 @@
 ---
-title: "Migration de vos données vers SQL Data Warehouse | Microsoft Docs"
-description: "Conseils relatifs à la migration de vos données vers Microsoft Azure SQL Data Warehouse, dans le cadre du développement de solutions."
+title: "aaaMigrate votre tooSQL de données Data Warehouse | Documents Microsoft"
+description: "Conseils pour migrer votre tooAzure de données SQL Data Warehouse pour développer des solutions."
 services: sql-data-warehouse
 documentationcenter: NA
 author: sqlmojo
@@ -15,140 +15,140 @@ ms.workload: data-services
 ms.custom: migrate
 ms.date: 06/29/2017
 ms.author: joeyong;barbkess
-ms.openlocfilehash: dbdf1696cd169aa7e5e23f116027a1170347f4ea
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: fe4c6b7e82094c59c45e06be6da225fee1b707ba
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="migrate-your-data"></a>Migration de vos données
-Les données peuvent être déplacées à partir de différentes sources dans SQL Data Warehouse avec divers outils.  Les solutions ADF Copy, SSIS et bcp peuvent toutes être utilisées à cette fin. Toutefois, à mesure de l’augmentation du volume des données, vous avez tout intérêt à réfléchir à un moyen de diviser le processus de migration des données en étapes. Ce faisant, vous vous donnez les moyens d’optimiser chacune des phases en matière de performance et de résilience afin de garantir une migration sans heurts des données.
+Les données peuvent être déplacées à partir de différentes sources dans SQL Data Warehouse avec divers outils.  Copie de la définition d’application SSIS et bcp peuvent tous être utilisé tooachieve cet objectif. Toutefois, comme la quantité hello des données augmente, vous devez considérer sur la décomposition des processus de migration de données hello en étapes. Cela vous offre hello opportunité toooptimize chaque étape aussi bien pour les performances et résilience tooensure une migration régulier des données.
 
-Cet article s’intéresse tout d’abord aux scénarios simples de migration d’ADF Copy, de SSIS et de bcp. Nous évoquons ensuite de manière plus approfondie les différents moyens d’optimiser la migration.
+Cet article explique tout d’abord les scénarios de migration simple hello de copie de la définition d’application, SSIS et bcp. Il rechercher un peu plus loin dans la migration de hello peut être optimisée.
 
 ## <a name="azure-data-factory-adf-copy"></a>Azure Data Factory (ADF) Copy
-[ADF Copy][ADF Copy] fait partie intégrante d’[Azure Data Factory][Azure Data Factory]. ADF Copy peut être utilisée pour exporter vos données vers des fichiers plats hébergés sur un espace de stockage local, vers des fichiers plats distants conservés dans un espace de stockage d’objets Blob Microsoft Azure ou directement vers SQL Data Warehouse.
+[ADF Copy][ADF Copy] fait partie intégrante d’[Azure Data Factory][Azure Data Factory]. Vous pouvez utiliser ADF copie tooexport vos fichiers tooflat de données résidant sur le stockage local, les fichiers plats tooremote conservées dans le stockage blob Azure, ou directement dans l’entrepôt de données SQL.
 
-Si vos données sont hébergées initialement dans des fichiers plats, il vous faudra dans un premier temps les transférer vers un espace de stockage d’objets Blob Azure avant de lancer le chargement dans SQL Data Warehouse. Une fois que les données sont transférées dans Stockage Blob Azure, vous pouvez utiliser de nouveau [ADF Copy][ADF Copy] pour les charger dans SQL Data Warehouse.
+Si vos données commencent dans les fichiers plats, vous devez tout d’abord tootransfer il tooAzure objet blob de stockage avant de lancer une charge dans l’entrepôt de données SQL. Une fois que les données de salutation sont transférées vers le stockage d’objets blob Azure, vous pouvez choisir toouse [ADF copie] [ ADF Copy] toopush à nouveau les données hello dans SQL Data Warehouse.
 
-PolyBase propose également une option hautes performances dédiée au chargement des données. Si vous optez pour cette solution, cela ne signifie pas que vous utilisez deux outils au lieu d’un. Si vous avez besoin de performances optimales, utilisez PolyBase. Si vous souhaitez profiter d’une expérience valorisant un outil unique (et que le volume de données n’est pas considérable), tournez-vous vers ADF.
+PolyBase fournit également une option de hautes performances pour le chargement des données de salutation. Si vous optez pour cette solution, cela ne signifie pas que vous utilisez deux outils au lieu d’un. Si vous avez besoin des performances optimales hello, utilisez PolyBase. Si vous souhaitez une expérience unique outil (et les données de salutation ne sont pas massives) ADF est la solution.
 
 
 > 
 > 
 
-Consultez l’article suivant afin de découvrir de formidables [exemples ADF][ADF samples].
+Principal sur toohello article à une grande suivant [exemples d’ADF][ADF samples].
 
 ## <a name="integration-services"></a>Integration Services
-Integration Services (SSIS) est un outil puissant et flexible d’extraction, de transformation et de chargement (ETL, Extract Transform and Load) qui prend en charge des workflows complexes, la transformation des données et diverses options de chargement des données. Utilisez SSIS afin de procéder à un transfert simple de données vers Microsoft Azure, ou dans le cadre d’une migration plus importante.
+Integration Services (SSIS) est un outil puissant et flexible d’extraction, de transformation et de chargement (ETL, Extract Transform and Load) qui prend en charge des workflows complexes, la transformation des données et diverses options de chargement des données. Utiliser SSIS toosimply transfert données tooAzure ou dans le cadre d’une migration plus large.
 
 > [!NOTE]
-> SSIS peut exporter des données vers le format UTF-8 sans laisser de marque d’ordre d’octet dans le fichier. Pour procéder à la configuration adéquate, vous devez tout d’abord utiliser le composant de colonne dérivée afin de convertir les données caractères dans le flux de données pour utiliser la page de code UTF-8 65001. Une fois que les colonnes ont été converties, procédez à l’écriture des données sur l’adaptateur de destination du fichier plat en vérifiant que la page de code 65001 a été sélectionnée pour le fichier.
+> SSIS peut exporter tooUTF-8 sans marque d’ordre d’octet dans le fichier de hello hello. tooconfigure cela vous devez d’abord utiliser hello dérivées des données colonne composant tooconvert hello caractère dans hello page de codes données flux toouse hello 65001 UTF-8. Une fois que les colonnes hello ont été convertis, écrivez hello données toohello fichier plat destination adaptateur en vérifiant que 65001 a également été sélectionné en tant que page de code hello pour le fichier de hello.
 > 
 > 
 
-La solution SSIS se connecte à SQL Data Warehouse de la manière dont elle se connecte à un déploiement SQL Server. Cependant, vos connexions doivent utiliser un gestionnaire de connexions ADO.NET. Vous devez également vous assurer de configurer le paramètre « Utiliser l’insertion de bloc lorsqu’elle est disponible » afin d’optimiser le débit. Pour en savoir plus sur cette propriété, consultez l’article [Adaptateur de destination ADO.NET][ADO.NET destination adapter].
+SSIS connecte tooSQL l’entrepôt de données comme il se connecte le déploiement de SQL Server tooa. Toutefois, vos connexions devrez toobe à l’aide d’un gestionnaire de connexions ADO.NET. Vous devez également prendre soin tooconfigure hello « Utiliser bulk insert lorsqu’il est disponible » débit toomaximize de paramètre. Reportez-vous toohello [adaptateur de destination ADO.NET] [ ADO.NET destination adapter] toolearn article plus d’informations sur cette propriété.
 
 > [!NOTE]
-> La connexion à Microsoft Azure SQL Data Warehouse à l’aide d’OLEDB n’est pas prise en charge.
+> Connexion tooAzure SQL Data Warehouse à l’aide d’OLE DB n’est pas pris en charge.
 > 
 > 
 
-Par ailleurs, il est toujours possible qu’un package soit mis en échec en raison d’une limitation ou de problèmes réseau. Concevez les packages afin qu’ils puissent être repris à partir du point de défaillance, sans avoir à réitérer les tâches accomplies avant la mise en échec.
+En outre, il est toujours possible de hello qu’un package peut échouer en raison de problèmes réseau ou toothrottling. Conception de packages afin qu’ils peuvent reprendre à hello point de défaillance, sans répétition de travail qui sont terminés avant la défaillance de hello.
 
-Pour en savoir plus, consultez la [documentation relative à SSIS][SSIS documentation].
+Pour plus d’informations, consultez hello [documentation de SSIS][SSIS documentation].
 
 ## <a name="bcp"></a>bcp
-bcp est un utilitaire de ligne de commande qui est conçu pour l’importation et l’exportation des données des fichiers plats. Des activités de transformation peuvent avoir lieu durant l’exportation des données. Pour effectuer des transformations simples, utilisez une requête afin de sélectionner et de transformer les données. Une fois qu’ils sont exportés, les fichiers plats peuvent être directement chargés dans la base de données cible SQL Data Warehouse.
+bcp est un utilitaire de ligne de commande qui est conçu pour l’importation et l’exportation des données des fichiers plats. Des activités de transformation peuvent avoir lieu durant l’exportation des données. transformations de simple tooperform utilisent une requête tooselect et transforment des données de hello. Une fois exporté, les fichiers plats hello peuvent ensuite être chargées directement dans la base de données SQL Data Warehouse hello cible hello.
 
 > [!NOTE]
-> Il est souvent judicieux d’encapsuler les transformations utilisées durant l’exportation des données dans une vue sur le système source. Cela vous garantit que la logique est conservée et que le processus est répétable.
+> Il est souvent une bonne idée tooencapsulate hello exporter des transformations utilisées au cours des données dans une vue de système de source de hello. Cela garantit que la logique hello est conservée et les processus hello sont répétée.
 > 
 > 
 
 Les avantages de bcp sont les suivants :
 
-* Simplicité. Les commandes bcp sont simples à concevoir et à exécuter.
-* Processus de chargement redémarrable. Une fois que les données ont été exportées, le chargement peut être exécuté un nombre illimité de fois.
+* Simplicité. commandes de bcp sont toobuild simple et exécuter
+* Processus de chargement redémarrable. Une fois exporté hello de charge peut être exécutée un nombre de fois
 
 Les limites de l’utilitaire bcp sont les suivantes :
 
 * bcp fonctionne avec des fichiers plats en format tableau uniquement. Cette solution ne prend pas en charge les fichiers aux formats xml ou JSON.
-* Les fonctionnalités de transformation de données sont utilisables durant la phase d’exportation uniquement, et sont simples par nature.
-* L’utilitaire bcp n’a pas été modifié afin d’offrir une fiabilité acceptable durant le chargement des données sur Internet. Toute instabilité du réseau peut provoquer une erreur de chargement.
-* bcp s’appuie sur le schéma initialement présent dans la base de données cible avant le chargement.
+* Fonctionnalités de transformation de données sont limitées toohello étape d’exportation uniquement et sont de nature simples
+* bcp n’a pas été adapté toobe fiable lorsque le chargement des données sur hello internet. Toute instabilité du réseau peut provoquer une erreur de chargement.
+* bcp s’appuie sur le schéma hello être présents dans la base de données toohello préalable charger hello cible
 
-Pour en savoir plus, consultez la rubrique [Utilisation de bcp pour charger des données dans SQL Data Warehouse][Use bcp to load data into SQL Data Warehouse].
+Pour plus d’informations, consultez [utiliser des données de tooload bcp dans SQL Data Warehouse][Use bcp tooload data into SQL Data Warehouse].
 
 ## <a name="optimizing-data-migration"></a>Optimisation de la migration des données
 Un processus de migration des données SQLDW peut être efficacement divisé en trois étapes distinctes :
 
 1. Exportation des données sources
-2. Transfert des données vers Microsoft Azure
-3. Chargement dans la base de données SQLDW
+2. Transfert de données tooAzure
+3. Charger dans la base de données SQLDW hello cible
 
-Chaque étape peut être optimisée de manière isolée afin de concevoir un processus fiable, redémarrable et résistant de migration qui génère de hautes performances à chaque phase.
+Chaque étape peut être optimisée individuellement toocreate un processus de migration solide, redémarrés et fiable qui optimise les performances à chaque étape.
 
 ## <a name="optimizing-data-load"></a>Optimisation du chargement des données
-Si nous prenons le processus dans l’ordre inverse, nous constatons que PolyBase procure le moyen le plus rapide de charger des données. L’optimisation nécessaire à un processus de chargement PolyBase ajoutant des phases préalables à l’exécution des étapes précédentes, vous avez tout intérêt à comprendre ces phases supplémentaires en amont. Les voici :
+En examinant ces valeurs dans l’ordre inverse pour un instant ; Hello plus rapide des tooload données sont via PolyBase. Optimisation pour un processus de chargement de PolyBase impose des conditions préalables sur hello étapes précédentes afin qu’il soit meilleures toounderstand cela initial. Il s'agit de :
 
 1. Encodage des fichiers de données
 2. Formatage des fichiers de données
 3. Définition de l’emplacement des fichiers de données
 
 ### <a name="encoding"></a>Encodage
-PolyBase nécessite d’utiliser des fichiers de données au format UTF-8 ou UTF-16FE. 
+PolyBase requiert toobe de fichiers de données UTF-8 ou UTF-16FE. 
 
 
 
 ### <a name="format-of-data-files"></a>Formatage des fichiers de données
-PolyBase requiert un terminateur de ligne fixe \n ou un renvoi à la ligne. Vos fichiers de données doivent être conformes à cette directive. Il n’existe aucune restriction relative aux terminateurs de chaînes ou de colonnes.
+PolyBase requiert un terminateur de ligne fixe \n ou un renvoi à la ligne. Les fichiers de données doivent respecter les toothis standard. Il n’existe aucune restriction relative aux terminateurs de chaînes ou de colonnes.
 
-Vous devrez définir chacune des colonnes du fichier en tant que composante de table externe dans PolyBase. Vérifiez que l’ensemble des colonnes exportées sont requises et que les types définis sont conformes aux normes requises.
+Vous devez toodefine toutes les colonnes dans le fichier de hello en tant que partie de la table externe dans PolyBase. Assurez-vous que toutes les colonnes exportées sont requis et que les types hello sont conformes à des normes toohello requis.
 
-Veuillez vous référer à l’article [Migration de votre schéma] pour en savoir plus sur les types de données pris en charge.
+Veuillez référer toohello [migrer votre schéma] article pour plus de détails sur les types de données pris en charge.
 
 ### <a name="location-of-data-files"></a>Définition de l’emplacement des fichiers de données
-SQL Data Warehouse utilise PolyBase pour charger des données exclusivement à partir d’objets Blob Microsoft Azure Storage. De fait, les données doivent avoir été préalablement transférées dans des objets Blob.
+SQL Data Warehouse utilise exclusivement les données de tooload PolyBase à partir du stockage d’objets Blob Azure. Par conséquent, les données de salutation doivent avoir été tout d’abord transférées vers le stockage d’objets blob.
 
 ## <a name="optimizing-data-transfer"></a>Optimisation du transfert des données
-Le transfert des données vers Microsoft Azure est l’une des phases les plus lentes de la migration des données. Cette étape peut être associée à une problématique de bande passante et entraver la progression, en réduisant la fiabilité du réseau. Par défaut, la migration des données vers Microsoft Azure s’effectue via Internet. Ainsi, la probabilité d’erreurs de transfert est raisonnablement élevée. Toutefois, ces erreurs peuvent nécessiter le renvoi complet ou partiel des données.
+Une des parties de la migration des données les plus lentes hello est transfert hello de hello données tooAzure. Cette étape peut être associée à une problématique de bande passante et entraver la progression, en réduisant la fiabilité du réseau. Par défaut, migration tooAzure de données est sur internet hello ainsi le risque d’erreurs de transfert en cours sont relativement peu susceptibles de hello. Toutefois, ces erreurs peuvent nécessiter toobe données envoyée à nouveau en totalité ou en partie.
 
-Fort heureusement, vous disposez de plusieurs options permettant d’améliorer la rapidité et la résilience de ce processus :
+Heureusement, vous avez plusieurs vitesse de hello tooimprove options et la résilience de ce processus :
 
 ### <a name="expressrouteexpressroute"></a>[ExpressRoute][ExpressRoute]
-Vous pouvez éventuellement vous tourner vers [ExpressRoute][ExpressRoute] afin d’accélérer la vitesse de transfert. [ExpressRoute][ExpressRoute] vous procure une connexion exclusivement privée avec Azure, pour que la connexion ne passe pas par l’Internet public. Vous n’êtes aucunement obligé de recourir à cette option. Toutefois, sachez qu’elle améliore le débit de transfert des données à partir d’une installation sur site ou d’un emplacement de colocalisation vers Microsoft Azure.
+Vous souhaiterez peut-être à l’aide de tooconsider [ExpressRoute] [ ExpressRoute] toospeed de transfert de hello. [ExpressRoute] [ ExpressRoute] fournit vous avec un tooAzure connexion privée hello afin de la connexion de hello ne passe pas par internet public. Vous n’êtes aucunement obligé de recourir à cette option. Toutefois, cela permettra d’accroître le débit lors de la distribution des données tooAzure à partir d’un site local ou de colocalisation.
 
-Les avantages procurés par [ExpressRoute][ExpressRoute] sont les suivants :
+avantages de l’utilisation de Hello [ExpressRoute] [ ExpressRoute] sont :
 
 1. Accroissement de la fiabilité
 2. Augmentation de la vitesse du réseau
 3. Réduction de la latence du réseau
 4. Amélioration de la sécurité du réseau
 
-[ExpressRoute][ExpressRoute] profite à de nombreux scénarios, pas uniquement à la migration.
+[ExpressRoute] [ ExpressRoute] est bénéfique pour plusieurs scénarios ; hello non seulement de migration.
 
-Vous êtes intéressé ? Pour plus d’informations et pour consulter la tarification, accédez à la [documentation ExpressRoute][ExpressRoute documentation].
+Vous êtes intéressé ? Pour plus d’informations et la tarification, visitez hello [documentation d’ExpressRoute][ExpressRoute documentation].
 
 ### <a name="azure-import-and-export-service"></a>Azure Import Export Service
-Azure Import and Export Service est un processus de transfert de données conçu pour les transferts importants (plusieurs Go) à massifs (plusieurs To) de données dans Microsoft Azure. Il implique l’écriture de vos données sur des disques et leur transfert vers un centre de données Microsoft Azure. Ensuite, le contenu des disques est chargé dans des objets Blob Microsoft Storage en votre nom.
+Bonjour Azure Service d’importation et exportation est un processus de transfert de données conçu pour les grandes (en Go ++) toomassive (To ++) les transferts de données dans Azure. Elle implique l’écriture de votre toodisks de données et copie les centre de données Azure tooan. contenu du disque Hello est ensuite chargées dans les objets BLOB de stockage Azure à votre place.
 
-Voici une vue de niveau supérieur du processus d’importation-exportation :
+Une vue d’ensemble du processus d’exportation importation hello est comme suit :
 
-1. Configuration d’un conteneur d’objets Blob Microsoft Storage dédié à la réception des données
-2. Exportation de vos données vers le stockage local
-3. Copie de vos données sur des disques durs 3,5 pouces SATA II/III à l’aide de [l’outil Azure Import/Export]
-4. Création d’une tâche d’importation à l’aide du service Azure Import Export, avec les fichiers journaux produits par [l’outil Azure Import/Export]
-5. Livraison des disques à votre centre de données Microsoft Azure désigné
-6. Transfert de vos données vers votre conteneur d’objets Blob Microsoft Azure Storage
-7. Chargement de vos données dans SQLDW à l’aide de PolyBase
+1. Configurer un stockage d’objets Blob Azure conteneur tooreceive hello de données
+2. Exportation de stockage de données toolocal
+3. Copiez hello données too3.5 pouce SATA II/III lecteurs de disque dur à l’aide de hello [outil d’importation/exportation Azure]
+4. Créer un travail d’importation à l’aide de hello Azure Import Service et exportation qui fournit les fichiers de journal hello produits par hello [outil d’importation/exportation Azure]
+5. Expédier les disques de hello votre centre de données Azure désigné
+6. Vos données sont le conteneur de stockage d’objets Blob Azure tooyour transférés
+7. Charger des données de hello dans SQLDW à l’aide de PolyBase
 
 ### <a name="azcopyazcopy-utility"></a>Utilitaire [AZCopy][AZCopy]
-L’utilitaire [AZCopy][AZCopy] est l’outil idéal pour transférer vos données dans des objets blob de stockage Azure. Il est conçu pour des transferts de données modestes (plusieurs Mo) à très importants (plusieurs Go). [AZCopy] a également été conçu pour fournir un débit efficace et robuste lors du transfert de données vers Azure. Par conséquent, cette solution convient parfaitement au transfert de données. Une fois que le transfert a été effectué, vous pouvez charger les données dans SQL Data Warehouse à l’aide de PolyBase. Vous pouvez également intégrer AZCopy dans vos packages SSIS, en appliquant une tâche d’exécution du processus.
+Hello [AZCopy][AZCopy] utilitaire est un excellent outil pour obtenir vos données transférées dans les objets BLOB de stockage Azure. Il est conçu pour les petites (Mo ++) toovery volumineux (en Go ++) des transferts de données. [AZCopy] a été conçue tooprovide bon résilient débit lorsque le transfert de données tooAzure, de sorte qu’est la solution idéale pour l’étape de transfert de données hello. Une fois transférées, vous pouvez charger des données hello à l’aide de PolyBase dans SQL Data Warehouse. Vous pouvez également intégrer AZCopy dans vos packages SSIS, en appliquant une tâche d’exécution du processus.
 
-Il vous faudra dans un premier temps télécharger et installer AZCopy. Une [version de production][production version] et une [préversion][preview version] sont disponibles.
+toouse AZCopy, vous allez tout d’abord besoin toodownload et installez-le. Une [version de production][production version] et une [préversion][preview version] sont disponibles.
 
-Pour charger un fichier à partir de votre système de fichier, vous devrez recourir à une commande de ce type :
+tooupload un fichier à partir de votre système de fichiers que vous devez une commande telle que hello une ci-dessous :
 
 ```
 AzCopy /Source:C:\myfolder /Dest:https://myaccount.blob.core.windows.net/mycontainer /DestKey:key /Pattern:abc.txt
@@ -156,30 +156,30 @@ AzCopy /Source:C:\myfolder /Dest:https://myaccount.blob.core.windows.net/myconta
 
 Voici les étapes possibles d’un processus de niveau supérieur :
 
-1. Configuration d’un conteneur de stockage d’objets Blob Microsoft Azure dédié à la réception des données
-2. Exportation de vos données vers le stockage local
-3. Traitement de vos données à l’aide d’AZCopy dans le contenu de stockage d’objets Blob Microsoft Azure
-4. Charger les données dans SQL Data Warehouse à l’aide de PolyBase
+1. Configurer un stockage Azure blob conteneur tooreceive hello de données
+2. Exportation de stockage de données toolocal
+3. AZCopy vos données dans le conteneur de stockage d’objets Blob Azure hello
+4. Charger des données de hello dans l’entrepôt de données SQL à l’aide de PolyBase
 
 Documentation complète disponible : [AZCopy][AZCopy].
 
 ## <a name="optimizing-data-export"></a>Optimisation de l’exportation des données
-En plus d’assurer la conformité de l’exportation avec les exigences associées à PolyBase, vous pouvez également chercher à optimiser l’exportation des données afin d’améliorer davantage le processus.
+En outre tooensuring qu’exportation de hello est conforme toohello besoins par PolyBase vous peut également demander à exporter de hello toooptimize hello tooimprove hello du processus de données supplémentaires.
 
 
 
 ### <a name="data-compression"></a>Compression des données
-PolyBase peut lire les données compressées au format gzip. Si vous n’êtes pas en mesure de compresser vos données au format gzip, il vous faudra réduire le volume de données transmis sur le réseau.
+PolyBase peut lire les données compressées au format gzip. Si vous êtes en mesure de toocompress votre toogzip des fichiers de données, puis vous serez minimiser hello données poussées dans le réseau de hello.
 
 ### <a name="multiple-files"></a>Fichiers multiples
-La fragmentation de gros tableaux en plusieurs fichiers vous permet d’accélérer la vitesse d’exportation, mais facilite également le redémarrage des transferts et améliore la gestion globale des données transférées vers le stockage d’objets Blob Microsoft Azure. PolyBase permet notamment de lire l’ensemble des fichiers stockés dans un dossier et de les traiter en tant que tableau unique. Par conséquent, il est avisé de conserver les fichiers associés à un tableau dans un dossier séparé.
+Avec rupture des tables volumineuses en plusieurs fichiers permet non seulement d’exporter la vitesse tooimprove, mais également avec transfert re-startability et hello facilité de gestion globale des données hello qu’une seule fois dans le stockage d’objets blob Azure hello. Une des hello de nombreuses fonctionnalités intéressantes de PolyBase est sa capacité à lire tous les fichiers à l’intérieur d’un dossier hello et traiter en tant qu’une seule table. Il est donc une bonne idée tooisolate hello des fichiers pour chaque table dans son propre dossier.
 
-PolyBase prend également en charge une fonction appelée « balayage de dossier récursif ». Vous pouvez la mettre à profit pour optimiser l’organisation de vos données exportées et ainsi améliorer la gestion de vos données.
+PolyBase prend également en charge une fonction appelée « balayage de dossier récursif ». Vous pouvez utiliser cette fonctionnalité toofurther améliorer votre gestion des données d’organisation hello de tooimprove de vos données exportées.
 
-Pour en savoir plus sur le chargement des données à l’aide de PolyBase, consultez la section [Utilisation de PolyBase pour charger des données dans SQL Data Warehouse][Use PolyBase to load data into SQL Data Warehouse].
+toolearn en savoir plus sur le chargement des données avec PolyBase, consultez [PolyBase d’utilisation des données de tooload dans SQL Data Warehouse][Use PolyBase tooload data into SQL Data Warehouse].
 
 ## <a name="next-steps"></a>Étapes suivantes
-Pour en savoir plus sur la migration, consultez la section [Migration de votre solution vers SQL Data Warehouse][Migrate your solution to SQL Data Warehouse].
+Pour plus d’informations sur la migration, consultez [migrer votre entrepôt de données de tooSQL solution][Migrate your solution tooSQL Data Warehouse].
 Pour obtenir des conseils supplémentaires en matière de développement, consultez la [vue d’ensemble du développement][development overview].
 
 <!--Image references-->
@@ -190,10 +190,10 @@ Pour obtenir des conseils supplémentaires en matière de développement, consul
 [ADF samples]: ../data-factory/data-factory-samples.md
 [ADF Copy examples]: ../data-factory/data-factory-copy-activity-tutorial-using-visual-studio.md
 [development overview]: sql-data-warehouse-overview-develop.md
-[Migrate your solution to SQL Data Warehouse]: sql-data-warehouse-overview-migrate.md
+[Migrate your solution tooSQL Data Warehouse]: sql-data-warehouse-overview-migrate.md
 [SQL Data Warehouse development overview]: sql-data-warehouse-overview-develop.md
-[Use bcp to load data into SQL Data Warehouse]: sql-data-warehouse-load-with-bcp.md
-[Use PolyBase to load data into SQL Data Warehouse]: sql-data-warehouse-get-started-load-with-polybase.md
+[Use bcp tooload data into SQL Data Warehouse]: sql-data-warehouse-load-with-bcp.md
+[Use PolyBase tooload data into SQL Data Warehouse]: sql-data-warehouse-get-started-load-with-polybase.md
 
 
 <!--MSDN references-->

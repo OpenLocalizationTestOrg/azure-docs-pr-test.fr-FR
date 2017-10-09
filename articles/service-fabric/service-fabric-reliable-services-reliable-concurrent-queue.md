@@ -1,5 +1,5 @@
 ---
-title: ReliableConcurrentQueue dans Azure Service Fabric
+title: aaaReliableConcurrentQueue dans Azure Service Fabric
 description: "ReliableConcurrentQueue est une file d’attente à débit élevé qui permet des mises en file d’attente et retraits de file d’attente parallèles."
 services: service-fabric
 documentationcenter: .net
@@ -14,14 +14,14 @@ ms.tgt_pltfrm: na
 ms.workload: required
 ms.date: 5/1/2017
 ms.author: sangarg
-ms.openlocfilehash: 122cb48149477f295a65b8ee623c647b6db10a86
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 78a9905996b9ab265c1288d2b49753638d7bc445
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-reliableconcurrentqueue-in-azure-service-fabric"></a>Présentation de ReliableConcurrentQueue dans Azure Service Fabric
-Une file d’attente simultanée fiable est une file d’attente asynchrone, transactionnelle et répliquée, qui permet d’effectuer des opérations de mise en file d’attente et de retrait de file d’attente avec un niveau élevé de simultanéité. Elle est conçue pour offrir un débit élevé et une latence faible en assouplissant la séquence stricte de premier entré, premier sorti fournie par une [file d’attente fiable](https://msdn.microsoft.com/library/azure/dn971527.aspx), et fournit à la place un classement selon le principe de l’effort optimal.
+# <a name="introduction-tooreliableconcurrentqueue-in-azure-service-fabric"></a>TooReliableConcurrentQueue introduction dans Azure Service Fabric
+Une file d’attente simultanée fiable est une file d’attente asynchrone, transactionnelle et répliquée, qui permet d’effectuer des opérations de mise en file d’attente et de retrait de file d’attente avec un niveau élevé de simultanéité. Il est conçu toodeliver un débit élevé et une faible latence en assouplissant hello FIFO ordre strict fournie par [file d’attente fiable](https://msdn.microsoft.com/library/azure/dn971527.aspx) et fournit à la place un classement du meilleur effort.
 
 ## <a name="apis"></a>API
 
@@ -33,20 +33,20 @@ Une file d’attente simultanée fiable est une file d’attente asynchrone, tra
 
 ## <a name="comparison-with-reliable-queuehttpsmsdnmicrosoftcomlibraryazuredn971527aspx"></a>Comparaison avec un [File d’attente fiable](https://msdn.microsoft.com/library/azure/dn971527.aspx)
 
-Une file d’attente simultanée fiable est proposée en guise d’alternative à une [file d’attente fiable](https://msdn.microsoft.com/library/azure/dn971527.aspx). Elle doit être utilisée dans les cas où la séquence stricte de premier entré, premier sorti n’est pas requise, celle-ci nécessitant un compromis sur le plan de la simultanéité.  Une [File d’attente fiable](https://msdn.microsoft.com/library/azure/dn971527.aspx) utilise des verrous pour appliquer la séquence de premier entré, premier sorti, avec au plus une transaction autorisée pour la mise en file d’attente et une transaction autorisée pour le retrait de file d’attente à la fois. En comparaison, une file d’attente simultanée fiable assouplit la contrainte de séquence et permet qu’un nombre quelconque de transactions simultanées entrelacent leurs opérations de mise en file d’attente et de retrait de file d’attente. Un classement selon le principe de l’effort optimal est fourni, mais l’ordre relatif de deux valeurs dans une file d’attente simultanée fiable ne peut jamais être garanti.
+File d’attente simultanées fiable est proposé comme alternative trop[file d’attente fiable](https://msdn.microsoft.com/library/azure/dn971527.aspx). Elle doit être utilisée dans les cas où la séquence stricte de premier entré, premier sorti n’est pas requise, celle-ci nécessitant un compromis sur le plan de la simultanéité.  [File d’attente fiable](https://msdn.microsoft.com/library/azure/dn971527.aspx) utilise des verrous tooenforce FIFO classement, avec au maximum une transaction autorisée tooenqueue et une transaction au maximum autorisé toodequeue à la fois. En comparaison, fiable de file d’attente simultanée assouplit hello classement de contrainte et permet de n’importe quel nombre toointerleave de transactions simultanées leur file d’attente et les opérations de retrait. Classement du meilleur effort n’est fourni, toutefois hello l’ordre relatif de deux valeurs dans une file d’attente simultanées fiable peut ne jamais être garantie.
 
 Une file d’attente simultanée fiable offre un débit supérieur et une latence moindre qu’une [file d’attente fiable](https://msdn.microsoft.com/library/azure/dn971527.aspx) chaque fois que plusieurs transactions simultanées effectuent des mises en file d’attente ou des retraits de file d’attente.
 
-Un exemple de cas d’utilisation de ReliableConcurrentQueue est le scénario de la [File d’attente des messages](https://en.wikipedia.org/wiki/Message_queue). Dans ce scénario, un ou plusieurs producteurs de messages créent et ajoutent des éléments à la file d’attente, et un ou plusieurs consommateurs de messages extraient des messages de la file d’attente et les traitent. Plusieurs producteurs et consommateurs peuvent travailler de façon indépendante, en utilisant des transactions simultanées pour traiter la file d’attente.
+Un exemple de cas d’usage pour hello ReliableConcurrentQueue est hello [file d’attente de Message](https://en.wikipedia.org/wiki/Message_queue) scénario. Dans ce scénario, un ou plusieurs producteurs de message créer et ajouter des éléments toohello file et un ou plusieurs consommateurs de message des messages à partir de la file d’attente hello et les traitent. Plusieurs producteurs et consommateurs peuvent travailler indépendamment, à l’aide de transactions simultanées dans la file d’attente de commande tooprocess hello.
 
 ## <a name="usage-guidelines"></a>Instructions d’utilisation
-* La file d’attente attend que la période de rétention des éléments qu’elle contient soit courte. Autrement dit, ces éléments ne sont pas supposés rester longtemps dans la file d’attente.
-* La file d’attente ne garantit pas le respect strict de la séquence de premier entré, premier sorti.
-* La file d’attente ne lit pas ses propres écritures. Si un élément est mis en file d’attente dans le cadre d’une transaction, il n’est pas visible pour un retrait de file d’attente dans le cadre de la même transaction.
-* Les retraits de file d’attente ne sont pas isolés les uns des autres. Si un élément *A* est retiré d’une file d’attente dans le cadre d’une transaction *txnA*, même si la transaction *txnA* n’est pas validée, l’élément *A* n’est pas visible pour une transaction simultanée *txnB*.  Si la transaction *txnA* est abandonnée, l’élément *A* devient immédiatement visible pour la transaction *txnB*.
-* Le comportement *TryPeekAsync* peut être implémenté à l’aide de *TryDequeueAsync* puis abandonner la transaction. Cela est illustré dans la section Modèles de programmation.
-* Count est non transactionnel. Il peut être utilisé pour obtenir une idée du nombre d’éléments présents dans la file d’attente, mais représente un point dans le temps non fiable.
-* Un traitement coûteux sur les éléments retirés de la file d’attente ne doit pas être effectué pendant que la transaction est active, afin d’éviter des transactions à long terme qui peuvent avoir une incidence sur les performances du système.
+* file d’attente Hello attend que les éléments de hello dans la file d’attente hello ont une période de rétention basse. Autrement dit, les éléments de hello ne seraient pas restent dans la file d’attente hello pendant une longue période.
+* file d’attente Hello ne garantit pas l’ordre de FIFO strict.
+* file d’attente Hello ne lit pas sa propre écritures. Si un élément est placé dans une transaction, il ne sera pas dequeuer tooa visible dans hello même transaction.
+* Les retraits de file d’attente ne sont pas isolés les uns des autres. Si l’élément *A* est dépilé dans transaction *txnA*, même si *txnA* n’est pas validée, élément *A* ne serait pas visible tooa simultanées transaction *txnB*.  Si *txnA* est abandonnée, *A* deviennent visibles trop*txnB* immédiatement.
+* *TryPeekAsync* comportement peut être implémenté à l’aide un *TryDequeueAsync* et l’abandon de la transaction de hello puis. Vous trouverez un exemple de cette Bonjour section des modèles de programmation.
+* Count est non transactionnel. Il peut être utilisé tooget une idée du nombre de hello d’éléments dans la file d’attente de hello, mais représente un point dans le temps et ne peut pas être fiables.
+* Coûteux hello de traitement des éléments de file d’attente ne doivent pas être effectuées lors de la transaction de hello est active, les transactions longues tooavoid qui peuvent avoir un impact sur les performances sur le système de hello.
 
 ## <a name="code-snippets"></a>Extraits de code
 Examinons quelques extraits de code et leurs sorties attendues. La gestion des exceptions est ignorée dans cette section.
@@ -66,7 +66,7 @@ using (var txn = this.StateManager.CreateTransaction())
 }
 ```
 
-Supposons que la tâche s’est achevée correctement et qu’aucune transaction simultanée ne modifiait la file d’attente. L’utilisateur peut s’attendre à ce que la file d’attente contienne les éléments dans n’importe lequel des ordres suivants :
+Supposons que cette tâche hello s’est terminée correctement, et qui n’a aucune modification de file d’attente hello des transactions simultanées. utilisateur de Hello peut s’attendre à hello file d’attente toocontain hello des éléments dans un des hello suivant de commandes :
 
 > 10, 20
 
@@ -95,11 +95,11 @@ using (var txn = this.StateManager.CreateTransaction())
 }
 ```
 
-Supposons que les tâches aient été accomplies avec succès, qu’elles aient été exécutées en parallèle et qu’aucune autre transaction simultanée modifiant la file d’attente n’ait eu lieu. Il n’est pas possible d’inférer l’ordre des éléments dans la file d’attente. Pour cet extrait de code, les éléments peuvent apparaître dans un de 4 ! classements possibles.  La file d’attente essaie de conserver les éléments dans l’ordre (de mise en file d’attente) d’origine, mais peut être obligée à les réorganiser en raison d’opérations simultanées ou d’erreurs.
+Supposons que hello tâches terminées avec succès, que les tâches hello se sont exécutées en parallèle et qu’aucune autre transaction simultanée modification de file d’attente hello. Aucune inférence ne peut être effectuée sur l’ordre des éléments dans la file d’attente hello hello. Pour cet extrait de code, les éléments de hello peuvent apparaître dans un des 4 de hello ! classements possibles.  file d’attente Hello tentera d’éléments de hello tookeep par ordre hello d’origine (en attente), mais peut être forcé tooreorder leur échéance tooconcurrent opérations ou des erreurs.
 
 
 ### <a name="dequeueasync"></a>DequeueAsync
-Voici quelques extraits de code pour l’utilisation de TryDequeueAsync, suivis des résultats attendus. Supposons que la file d’attente contient déjà les éléments suivants :
+Voici quelques extraits de code pour l’utilisation de TryDequeueAsync suivie de sorties de hello attendu. Supposons que cette file d’attente hello est déjà remplie avec hello éléments dans la file d’attente hello suivants :
 > 10, 20, 30, 40, 50, 60
 
 - *Cas 1 : simple tâche de retrait de file d’attente*
@@ -115,7 +115,7 @@ using (var txn = this.StateManager.CreateTransaction())
 }
 ```
 
-Supposons que la tâche s’est achevée correctement et qu’aucune transaction simultanée ne modifiait la file d’attente. Dans la mesure où aucune inférence ne peut être effectuée concernant l’ordre des éléments dans la file d’attente, trois éléments quelconques peuvent être retirés de celle-ci, dans n’importe quel ordre. La file d’attente essaie de conserver les éléments dans l’ordre (de mise en file d’attente) d’origine, mais peut être obligée à les réorganiser en raison d’opérations simultanées ou d’erreurs.  
+Supposons que cette tâche hello s’est terminée correctement, et qui n’a aucune modification de file d’attente hello des transactions simultanées. Dans la mesure où aucune inférence n’est possible sur l’ordre des éléments hello dans la file d’attente hello hello, trois des éléments de hello peut dépilé dans n’importe quel ordre. file d’attente Hello tentera d’éléments de hello tookeep par ordre hello d’origine (en attente), mais peut être forcé tooreorder leur échéance tooconcurrent opérations ou des erreurs.  
 
 - *Cas 2 : tâche de retrait de file d’attente parallèle*
 
@@ -141,13 +141,13 @@ using (var txn = this.StateManager.CreateTransaction())
 }
 ```
 
-Supposons que les tâches aient été accomplies avec succès, qu’elles aient été exécutées en parallèle et qu’aucune autre transaction simultanée modifiant la file d’attente n’ait eu lieu. Dans la mesure où aucune inférence ne peut être effectuée concernant l’ordre des éléments dans la file d’attente, les listes *dequeue1* et *dequeue2* contiennent chacune deux éléments quelconques, dans n’importe quel ordre.
+Supposons que hello tâches terminées avec succès, que les tâches hello se sont exécutées en parallèle et qu’aucune autre transaction simultanée modification de file d’attente hello. Dans la mesure où aucune inférence n’est possible sur l’ordre des éléments hello dans la file d’attente hello hello, hello listes *dequeue1* et *dequeue2* chacun contient tous les éléments de deux, dans n’importe quel ordre.
 
-Un même élément n’apparaît *pas* dans les deux listes. Par conséquent, si la liste dequeue1 comprend *10* et *30*, la liste dequeue2 contient *20* et *40*.
+Hello sera du même élément *pas* s’affichent dans les deux listes. Par conséquent, si la liste dequeue1 comprend *10* et *30*, la liste dequeue2 contient *20* et *40*.
 
 - *Cas 3 : ordre de retrait de file d’attente avec abandon de transaction*
 
-L’abandon d’une transaction avec des retraits de file d’attente a pour effet de remettre les éléments en tête de la file d’attente. L’ordre dans lequel les éléments sont remis en tête de la file d’attente n’est pas garanti. Examinons le code suivant :
+Abandon de la transaction en cours avec l’enlève les éléments hello replace sur head hello de file d’attente hello. commande Hello dans lequel les éléments hello sont remis sur head hello de file d’attente hello n’est pas garantie. Examinons hello suivant de code :
 
 ```
 using (var txn = this.StateManager.CreateTransaction())
@@ -155,25 +155,25 @@ using (var txn = this.StateManager.CreateTransaction())
     await this.Queue.TryDequeueAsync(txn, cancellationToken);
     await this.Queue.TryDequeueAsync(txn, cancellationToken);
 
-    // Abort the transaction
+    // Abort hello transaction
     await txn.AbortAsync();
 }
 ```
-Supposons que les éléments ont été retirés de la file d’attente dans l’ordre suivant :
+Partons du principe que les éléments hello ont été dépilés Bonjour suivant l’ordre :
 > 10, 20
 
-Lors de l’abandon de la transaction, les éléments seraient rajoutés en tête de la file d’attente dans l’un des ordres suivants :
+Lorsque nous abandonner la transaction de hello, les éléments hello sont ajoutés head toohello précédent de la file d’attente hello dans un des hello suivant de commandes :
 > 10, 20
 
 > 20, 10
 
-Il en va de même dans tous les cas où la transaction n’a pas été *validée*.
+Hello est également vrai pour tous les cas où les transactions hello n’a pas été *validé*.
 
 ## <a name="programming-patterns"></a>Modèles de programmation
 Dans cette section, nous examinons quelques modèles de programmation qui peuvent s’avérer utiles lors de l’utilisation de ReliableConcurrentQueue.
 
 ### <a name="batch-dequeues"></a>Retraits de file d’attente par lot
-Un modèle de programmation recommandé est que la tâche cliente traite en lots les retraits de file d’attente au lieu d’effectuer un retrait à la fois. L’utilisateur peut choisir de limiter les délais entre chaque lot ou la taille des lots. L’extrait de code suivant illustre ce modèle de programmation.  Notez que, dans cet exemple, le traitement est effectué une fois la transaction validée. Dès lors, si une erreur se produit lors du traitement, les éléments non traités sont perdus sans avoir été traités.  Le traitement peut également être effectué dans l’étendue de la transaction, mais cela peut avoir une incidence négative sur les performances et nécessiter de gérer les éléments déjà traités.
+Recommandée est de modèle de programmation pour hello consommateur tâche toobatch son enlève au lieu d’effectuer un retrait à la fois. utilisateur de Hello peut choisir des retards toothrottle entre chaque lot ou hello la taille du lot. Hello extrait de code suivant illustre ce modèle de programmation.  Notez que dans cet exemple, le traitement de hello est effectué une fois hello transaction est validée, donc si une erreur a été toooccur lors du traitement, hello éléments non traités seront perdus sans avoir été traitée.  Vous pouvez également le traitement de hello peut être effectué dans l’étendue de la transaction hello, toutefois, cela peut avoir un impact négatif sur les performances et nécessite un traitement d’éléments de hello déjà traitement.
 
 ```
 int batchSize = 5;
@@ -194,12 +194,12 @@ while(!cancellationToken.IsCancellationRequested)
 
             if (ret.HasValue)
             {
-                // If an item was dequeued, add to the buffer for processing
+                // If an item was dequeued, add toohello buffer for processing
                 processItems.Add(ret.Value);
             }
             else
             {
-                // else break the for loop
+                // else break hello for loop
                 break;
             }
         }
@@ -207,7 +207,7 @@ while(!cancellationToken.IsCancellationRequested)
         await txn.CommitAsync();
     }
 
-    // Process the dequeues
+    // Process hello dequeues
     for (int i = 0; i < processItems.Count; ++i)
     {
         Console.WriteLine("Value : " + processItems[i]);
@@ -219,7 +219,7 @@ while(!cancellationToken.IsCancellationRequested)
 ```
 
 ### <a name="best-effort-notification-based-processing"></a>Traitement basé sur une notification d’effort optimal
-Un autre modèle de programmation intéressant utilise l’API Count. Ici, nous pouvons implémenter un traitement basé sur une notification d’effort optimal pour la file d’attente. Le dénombrement (Count) des éléments contenus dans la file d’attente permet de limiter une tâche de mise en file d’attente ou de retrait de file d’attente.  Notez que, comme dans l’exemple précédent, le traitement se produisant en dehors de la transaction, les éléments non traités peuvent être perdus si une erreur se produit en cours de traitement.
+Un autre modèle de programmation intéressant utilise hello nombre d’API. Ici, nous pouvons implémenter le traitement meilleur effort notification pour la file d’attente hello. la file d’attente de Hello nombre peut être utilisé toothrottle une file d’attente ou une tâche de retrait.  Notez que dans l’exemple précédent de hello, étant donné que le traitement de hello se produit en dehors de la transaction de hello, des éléments non traités peuvent être perdues si une erreur se produit lors du traitement.
 
 ```
 int threshold = 5;
@@ -231,11 +231,11 @@ while(!cancellationToken.IsCancellationRequested)
     {
         cancellationToken.ThrowIfCancellationRequested();
 
-        // If the queue does not have the threshold number of items, delay the task and check again
+        // If hello queue does not have hello threshold number of items, delay hello task and check again
         await Task.Delay(TimeSpan.FromMilliseconds(delayMs), cancellationToken);
     }
 
-    // If there are approximately threshold number of items, try and process the queue
+    // If there are approximately threshold number of items, try and process hello queue
 
     // Buffer for dequeued items
     List<int> processItems = new List<int>();
@@ -250,7 +250,7 @@ while(!cancellationToken.IsCancellationRequested)
 
             if (ret.HasValue)
             {
-                // If an item was dequeued, add to the buffer for processing
+                // If an item was dequeued, add toohello buffer for processing
                 processItems.Add(ret.Value);
             }
         } while (processItems.Count < threshold && ret.HasValue);
@@ -258,7 +258,7 @@ while(!cancellationToken.IsCancellationRequested)
         await txn.CommitAsync();
     }
 
-    // Process the dequeues
+    // Process hello dequeues
     for (int i = 0; i < processItems.Count; ++i)
     {
         Console.WriteLine("Value : " + processItems[i]);
@@ -267,9 +267,9 @@ while(!cancellationToken.IsCancellationRequested)
 ```
 
 ### <a name="best-effort-drain"></a>Drainage d’effort optimal
-Un drainage de la file d’attente ne peut pas être garanti en raison de la nature simultanée de la structure de données.  Il se peut que, même si aucune opération d’utilisateur sur la file d’attente n’est en cours, un appel particulier de TryDequeueAsync ne retourne pas un élément précédemment mis en file d’attente et validé.  Il est garanti que l’élément en file d’attente deviendra *finalement* visible pour retrait de la file d’attente. Toutefois, à défaut d’un mécanisme de communication hors bande, un client indépendant ne peut pas savoir que la file d’attente a atteint un état stable, même si tous les producteurs ont été arrêtés et si aucune nouvelle opération de mise en file d’attente n’est autorisée. Par conséquent, l’opération de drainage est implémentée selon le principe de l’effort optimal, comme ci-dessous.
+Ne garantit pas un drainage de file d’attente hello en raison de la nature de simultanées toohello de structure de données hello.  Il est possible que, même si aucune opération de l’utilisateur sur la file d’attente hello n’est en cours, une tooTryDequeueAsync appel particulier peut retourner pas un élément qui était auparavant en file d’attente et validée.  élément en file d’attente de Hello est garantie trop*finalement* deviennent visible toodequeue, mais sans un mécanisme de communication d’out-of-band, un consommateur indépendant ne peut pas savoir à cette file d’attente hello a atteint un état stable même si toutes les producteurs ont été arrêtés et aucune nouvelle opération de file d’attente n’est autorisées. Par conséquent, opération de vidange hello est mieux implémenté ci-dessous.
 
-L’utilisateur doit arrêter toutes les tâches de producteur et de client, et attendre que toutes les transactions en cours soient validées ou abandonnées, avant de tenter de drainer la file d’attente.  Si l’utilisateur connaît le nombre attendu d’éléments dans la file d’attente, il peut définir une notification qui signale que tous les éléments ont été retirés de la file d’attente.
+Hello utilisateur doit arrêter toutes les autres producteurs et les tâches du consommateur et attendre que n’importe quel toocommit des transactions en cours ou l’abandon, avant de tenter de file d’attente de toodrain hello.  Si l’utilisateur de hello sait nombre hello attendu d’éléments dans la file d’attente hello, ils peuvent définir une notification qui signale que tous les éléments ont été dépilés.
 
 ```
 int numItemsDequeued;
@@ -289,7 +289,7 @@ do
 
             if(ret.HasValue)
             {
-                // Buffer the dequeues
+                // Buffer hello dequeues
                 processItems.Add(ret.Value);
             }
         } while (ret.HasValue && processItems.Count < batchSize);
@@ -297,7 +297,7 @@ do
         await txn.CommitAsync();
     }
 
-    // Process the dequeues
+    // Process hello dequeues
     for (int i = 0; i < processItems.Count; ++i)
     {
         Console.WriteLine("Value : " + processItems[i]);
@@ -306,7 +306,7 @@ do
 ```
 
 ### <a name="peek"></a>Aperçu
-ReliableConcurrentQueue ne fournit pas l’API *TryPeekAsync*. Les utilisateurs peuvent obtenir la sémantique d’aperçu en utilisant *TryDequeueAsync*, puis en abandonnant la transaction. Dans cet exemple, les retraits de file d’attente sont traités uniquement si la valeur est supérieure à *10*.
+ReliableConcurrentQueue ne fournit pas de hello *TryPeekAsync* api. Les utilisateurs peuvent obtenir une lecture de hello sémantique en utilisant un *TryDequeueAsync* et l’abandon de la transaction de hello puis. Dans cet exemple, enlève sont traitées uniquement si la valeur de l’élément hello est supérieur à *10*.
 
 ```
 using (var txn = this.StateManager.CreateTransaction())
@@ -318,7 +318,7 @@ using (var txn = this.StateManager.CreateTransaction())
     {
         if (ret.Value > 10)
         {
-            // Process the item
+            // Process hello item
             Console.WriteLine("Value : " + ret.Value);
             valueProcessed = true;
         }
@@ -342,5 +342,5 @@ using (var txn = this.StateManager.CreateTransaction())
 * [Sauvegarde et restauration de Reliable Services (récupération d’urgence)](service-fabric-reliable-services-backup-restore.md)
 * [Configuration du Gestionnaire d’état fiable](service-fabric-reliable-services-configuration.md)
 * [Prise en main des services API Web de Service Fabric](service-fabric-reliable-services-communication-webapi.md)
-* [Utilisation avancée du modèle de programmation de Reliable Services](service-fabric-reliable-services-advanced-usage.md)
+* [Utilisation avancée de hello modèle de programmation des Services fiables](service-fabric-reliable-services-advanced-usage.md)
 * [Référence du développeur pour les Collections fiables](https://msdn.microsoft.com/library/azure/microsoft.servicefabric.data.collections.aspx)

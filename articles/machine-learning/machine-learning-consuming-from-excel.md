@@ -1,5 +1,5 @@
 ---
-title: "Utilisation d’un service web Machine Learning à partir de Microsoft Excel | Microsoft Docs"
+title: "aaaConsume un Service de Web Machine Learning à partir d’Excel | Documents Microsoft"
 description: "Utilisation d’un service web Microsoft Azure Machine Learning à partir de Microsoft Excel."
 services: machine-learning
 documentationcenter: 
@@ -14,60 +14,60 @@ ms.devlang: na
 ms.topic: article
 ms.date: 2/13/2017
 ms.author: tedway
-ms.openlocfilehash: 9f1aac04d54221888ee9374317be339400dcf085
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e2e8bbf7ba75b6618a0285539555ce175ec03c1a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="consuming-an-azure-machine-learning-web-service-from-excel"></a>Utilisation d’un service web Microsoft Azure Machine Learning à partir de Microsoft Excel.
- Microsoft Azure Machine Learning Studio permet d’appeler facilement des services web directement à partir de Microsoft Excel sans qu’il soit nécessaire d’écrire du code.
+ Azure Machine Learning Studio rend toocall facilement les services web directement à partir d’Excel sans hello besoin toowrite n’importe quel code.
 
-Si vous utilisez Excel 2013 (ou une version ultérieure) ou Excel Online, nous vous recommandons d’utiliser la [macro complémentaire Excel](machine-learning-excel-add-in-for-web-services.md).
+Si vous utilisez Excel 2013 (ou version ultérieure) ou Excel Online, nous vous recommandons d’utiliser hello Excel [complément Excel](machine-learning-excel-add-in-for-web-services.md).
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 ## <a name="steps"></a>Étapes
-Publiez un service web. [Cette page](machine-learning-walkthrough-5-publish-web-service.md) explique comment procéder. Actuellement, la fonctionnalité de classeur Excel est uniquement prise en charge pour les services de requête/réponse qui produisent une seule sortie (autrement dit, une étiquette de notation unique). 
+Publiez un service web. [Cette page](machine-learning-walkthrough-5-publish-web-service.md) explique comment toodo il. Fonctionnalité de classeur Excel hello est actuellement uniquement pris en charge pour les services de demande/réponse qui ont une seule sortie (autrement dit, une étiquette de score unique). 
 
-Quand vous disposez d’un service web, cliquez sur la section **WEB SERVICES** située sur la partie gauche de Microsoft Azure Machine Learning Studio, puis sélectionnez le service web à utiliser à partir de Microsoft Excel.
+Une fois que vous avez un service web, cliquez sur hello **SERVICES WEB** section sur la gauche hello de studio de hello et sélectionnez hello web service tooconsume à partir d’Excel.
 
 **Service web classique**
 
-1. Sur l’onglet **TABLEAU DE BORD** du service web figure une ligne pour le service **REQUÊTE/RÉPONSE**. Si ce service produit une sortie unique, le lien **Télécharger un classeur Excel** doit apparaître sur cette ligne.
+1. Sur hello **tableau de bord** onglet service web de hello est une ligne pour hello **demande/réponse** service. Si ce service dispose d’une sortie unique, vous devez voir hello **télécharger un classeur Excel** lien de la ligne.
    
     ![][1]
 2. Cliquez sur **Télécharger un classeur Excel**.
 
 **Nouveau service web**
 
-1. Dans le portail Service web Azure Machine Learning, sélectionnez **Consommer**.
-2. Dans la page Consommer, dans les **options de consommation de service Web** cliquez sur l’icône Excel.
+1. Dans le portail du Service Web de Azure Machine Learning hello, sélectionnez **consommer**.
+2. Hello consommer dans la page hello **options de la consommation de service Web** , cliquez sur icône Excel de hello.
 
-**Utilisation du classeur**
+**À l’aide du classeur de hello**
 
-1. Ouvrez le classeur.
-2. Un avertissement de sécurité s’affiche. Cliquez sur le bouton **Activer la modification**.
+1. Classeur de hello ouvert.
+2. Un avertissement de sécurité s’affiche ; Cliquez sur hello **activer la modification** bouton.
    
     ![][2]
-3. Un avertissement de sécurité apparaît. Cliquez sur le bouton **Activer le contenu** pour pouvoir exécuter des macros sur votre feuille de calcul.
+3. Un avertissement de sécurité apparaît. Cliquez sur hello **activer le contenu** bouton toorun macros de votre feuille de calcul.
    
     ![][3]
-4. Une fois les macros activées, une table est générée. Les valeurs des colonnes en bleu sont requises en tant qu’entrées dans le service web RRS (Request/Response Service), ou en tant que **PARAMÈTRES**. Notez la sortie du service RRS, appelée **VALEURS PRÉDITES** et affichée en vert. Lorsque toutes les colonnes d’une ligne donnée sont remplies, le classeur appelle automatiquement l’API de notation et affiche les notes résultantes.
+4. Une fois les macros activées, une table est générée. Les colonnes en bleu sont requises en tant qu’entrée dans hello service web d’enregistrements de ressources, ou **paramètres**. Notez la sortie hello Hello service RR **valeurs prédites** en vert. Lorsque toutes les colonnes d’une ligne donnée sont remplis, hello classeur automatiquement appelle hello API de calcul de score et affiche hello résultats évalué.
    
     ![][4]
-5. Pour noter plusieurs lignes, remplissez la deuxième ligne avec les données ; des valeurs prédites sont produites. Vous pouvez même coller plusieurs lignes à la fois.
+5. tooscore plus d’une ligne, remplissage hello deuxième ligne avec des données et hello prévisible de valeurs sont produites. Vous pouvez même coller plusieurs lignes à la fois.
 
-Vous pouvez utiliser toutes les fonctionnalités de Microsoft Excel (graphiques, Power Map, mise en forme conditionnelle, etc.) avec les valeurs prédites pour visualiser les données.    
+Vous pouvez utiliser une des fonctionnalités d’Excel hello (graphiques, mappage de l’alimentation, conditionnelle mise en forme, etc.) avec hello prédit les valeurs toohelp visualiser les données de hello.    
 
 ## <a name="sharing-your-workbook"></a>Partage de votre classeur
-Pour que les macros fonctionnent, votre Clé API doit faire partie de la feuille de calcul. Cela signifie que vous devez uniquement partager le classeur avec des entités/personnes de confiance.
+Pour hello macros toowork, votre clé API doit être la partie de la feuille de calcul hello. Cela signifie que vous devez partager le classeur de hello uniquement avec les entités/personnes de que confiance.
 
 ## <a name="automatic-updates"></a>Mises à jour automatiques
 Un appel RRS est initié dans les deux cas suivants :
 
-1. la première fois que du contenu apparaît dans l’ensemble des **PARAMÈTRES**
-2. chaque fois que l’un ou l’autre des **PARAMÈTRES** change dans une ligne dont l’ensemble des **PARAMÈTRES** a été entré.
+1. Hello la première fois une ligne a contenu dans toutes ses **paramètres**
+2. Chaque fois qu’un des hello **paramètres** modifications d’une ligne qui a toutes ses **paramètres** entré.
 
 [1]: ./media/machine-learning-consuming-from-excel/excellink.png
 [2]: ./media/machine-learning-consuming-from-excel/enableeditting.png

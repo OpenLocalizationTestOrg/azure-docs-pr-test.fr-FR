@@ -1,31 +1,31 @@
-## <a name="view-the-telemetry"></a>Afficher les données de télémétrie
+## <a name="view-hello-telemetry"></a>Télémétrie des consultations de hello
 
-Le Raspberry Pi prend désormais en charge l’envoi de données de télémétrie à la solution de surveillance à distance. Vous pouvez afficher les données de télémétrie sur le tableau de bord de la solution. Vous pouvez également envoyer des messages à votre Raspberry Pi à partir du tableau de bord de la solution.
+Hello framboises Pi envoie désormais une solution d’analyse à distance toohello télémétrie. Vous pouvez afficher les données de télémétrie hello sur le tableau de bord de solution hello. Vous pouvez également envoyer des messages tooyour framboises Pi à partir du tableau de bord de solution hello.
 
-- Accédez au tableau de bord de la solution.
-- Sélectionnez votre appareil dans la liste déroulante **Appareil à afficher**.
-- Les données de télémétrie du Raspberry Pi s’affichent sur le tableau de bord.
+- Accédez à tableau de bord toohello solution.
+- Sélectionnez votre appareil dans hello **tooView de périphérique** liste déroulante.
+- télémétrie Hello hello framboises Pi affiche sur le tableau de bord hello.
 
-![Afficher les données de télémétrie depuis le Raspberry Pi][img-telemetry-display]
+![Afficher les données de télémétrie de hello framboises Pi][img-telemetry-display]
 
-## <a name="act-on-the-device"></a>Action sur l’appareil
+## <a name="act-on-hello-device"></a>Agir sur les appareils hello
 
-À partir du tableau de bord de la solution, vous pouvez appeler des méthodes sur votre Raspberry Pi. Lorsque le Raspberry Pi se connecte à la solution de surveillance à distance, il envoie des informations sur les méthodes qu’il prend en charge.
+À partir du tableau de bord hello solution, vous pouvez appeler des méthodes sur votre Pi framboises. Lorsque hello framboises Pi connecte à une solution d’analyse à distance toohello, il envoie des informations sur les méthodes hello qu'il prend en charge.
 
-- Dans le tableau de bord de la solution, cliquez sur **Appareils** pour accéder à la page **Appareils**. Sélectionnez votre Raspberry Pi dans la **Liste des appareils**. Ensuite, choisissez **Méthodes** :
+- Dans le tableau de bord hello solution, cliquez sur **périphériques** toovisit hello **périphériques** page. Sélectionnez votre Pi framboises Bonjour **liste des appareils**. Ensuite, choisissez **Méthodes** :
 
-    ![Répertorier les appareils dans le tableau de bord][img-list-devices]
+    ![Liste des appareils dans le tableau de bord][img-list-devices]
 
-- Dans la page **Appeler une méthode**, choisissez **LightBlink** dans la liste déroulante **Méthode**.
+- Sur hello **appeler une méthode** choisissez **LightBlink** Bonjour **méthode** liste déroulante.
 
-- Choisissez **InvokeMethod**. Le simulateur imprime un message dans la console sur le Raspberry Pi. L’application sur le Raspberry Pi renvoie un accusé de réception sur le tableau de bord de la solution :
+- Choisissez **InvokeMethod**. Simulateur de Hello imprime un message dans la console hello sur hello framboises Pi. application Hello sur hello framboises Pi envoie un tableau de bord d’accusé de réception différé toohello solution :
 
-    ![Afficher l’historique des méthodes][img-method-history]
+    ![Afficher l’historique de la méthode][img-method-history]
 
-- Vous pouvez allumer et éteindre le voyant en utilisant la méthode **ChangeLightStatus** et en définissant le paramètre **LightStatusValue** sur la valeur **1** pour l’allumer, ou sur la valeur **0** pour l’éteindre.
+- Vous pouvez basculer les DEL hello et désactiver à l’aide de hello **ChangeLightStatus** méthode avec un **LightStatusValue** défini trop**1** pour sur ou **0** pour désactiver.
 
 > [!WARNING]
-> Si vous laissez la solution de surveillance à distance s’exécuter dans votre compte Azure, vous serez facturé pour son temps d’exécution. Pour plus d’informations sur la manière de réduire votre consommation pendant l’exécution de la solution de surveillance à distance, consultez [Configuring Azure IoT Suite preconfigured solutions for demo purposes][lnk-demo-config] (Configuration des solutions préconfigurées Azure IoT Suite à des fins de démonstration). Supprimez la solution préconfigurée de votre compte Azure lorsque vous avez fini de l’utiliser.
+> Si vous laissez hello solution en cours d’exécution dans votre compte Azure de surveillance à distance, vous êtes facturé pour hello exécution. Pour plus d’informations sur la réduction de la consommation lors hello s’exécute la solution de surveillance à distance, consultez [configuration Azure IoT Suite préconfiguré des solutions à des fins de démonstration][lnk-demo-config]. Supprimer la solution de hello préconfiguré à partir de votre compte Azure lorsque vous avez terminé.
 
 
 [img-telemetry-display]: media/iot-suite-raspberry-pi-kit-view-telemetry-simulator/telemetry.png

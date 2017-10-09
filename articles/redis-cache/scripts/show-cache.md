@@ -1,5 +1,5 @@
 ---
-title: "Exemple de script Azure CLI - Obtenir les détails d’un cache Redis Azure | Microsoft Docs"
+title: "aaaAzure exemple de Script CLI - obtenir les détails d’un cache Azure Redis Cache | Documents Microsoft"
 description: "Exemple de script Azure CLI - Obtenir les détails d’un cache Redis Azure"
 services: redis-cache
 documentationcenter: 
@@ -15,25 +15,25 @@ ms.tgt_pltfrm: na
 ms.workload: tbd
 ms.date: 04/14/2017
 ms.author: sdanie
-ms.openlocfilehash: 9f4eb32227bd8a68837eabd58b9d058bc4995d17
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a3ad1fdf000bbab52e84dbf9f002a5e9fa6d347a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-details-of-an-azure-redis-cache"></a>Obtenir les détails d’un cache Redis Azure
 
-Dans ce scénario, vous allez apprendre à récupérer les détails d’une instance de cache Redis Azure, y compris son état d’approvisionnement.
+Dans ce scénario, vous découvrez comment tooretrieve hello d’un cache Azure Redis Cache instance des détails, notamment l’état de sa configuration.
 
 [!INCLUDE [sample-cli-install](../../../includes/sample-cli-install.md)]
 
 ## <a name="sample-script"></a>Exemple de script
 
-[!code-azurecli[main](../../../cli_scripts/redis-cache/show-cache/show-cache.sh "Cache Redis Azure")]
+[!code-azurecli[main](../../../cli_scripts/redis-cache/show-cache/show-cache.sh "Azure Redis Cache")]
 
 ## <a name="script-explanation"></a>Explication du script
 
-Ce script utilise les commandes suivantes pour récupérer les détails d’une instance du cache Redis Azure. Chaque commande du tableau renvoie à une documentation spécifique.
+Ce script utilise hello les commandes tooretrieve hello détails d’une instance de Cache Redis Azure suivants. Chaque commande figurant dans la documentation spécifique du toocommand liens table hello.
 
 | Commande | Remarques |
 |---|---|
@@ -42,6 +42,6 @@ Ce script utilise les commandes suivantes pour récupérer les détails d’une 
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Pour plus d’informations sur l’interface Azure CLI, consultez la [documentation relative à l’interface Azure CLI](https://docs.microsoft.com/cli/azure/overview).
+Pour plus d’informations sur hello CLI d’Azure, consultez [documentation relative à Azure CLI](https://docs.microsoft.com/cli/azure/overview).
 
-Vous pouvez trouver des exemples supplémentaires de scripts CLI de cache Redis Azure dans la [documentation du cache Redis Azure](../cli-samples.md).
+Vous trouverez des exemples supplémentaires de script CLI de Cache Redis Azure Bonjour [documentation du Cache Redis Azure](../cli-samples.md).

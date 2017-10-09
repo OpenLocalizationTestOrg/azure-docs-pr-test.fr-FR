@@ -1,6 +1,6 @@
 ---
-title: "Interface utilisateur d’Azure Mobile Engagement - Critère Reach"
-description: "Utilisation des critères de ciblage pour envoyer des campagnes push à un sous-ensemble donné de vos utilisateurs à l’aide d’Azure Mobile Engagement"
+title: "aaaAzure l’Interface utilisateur Mobile Engagement - atteindre un critère"
+description: "Découvrez comment toouse ciblage critères toosend push campagnes tooa sélectionner le sous-ensemble de vos utilisateurs à l’aide d’Azure Mobile Engagement"
 services: mobile-engagement
 documentationcenter: 
 author: piyushjo
@@ -14,39 +14,39 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 803b44721d0ab1ac7b5a8074e18857fc57adb724
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d956add1b7edc1d49451596019c5a4dec098d724
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-targeting-criteria-to-send-push-campaigns-to-a-select-subset-of-your-users"></a>Utilisation des critères de ciblage pour envoyer des campagnes push à un sous-ensemble donné de vos utilisateurs
-Le ciblage de votre audience suivant des critères spécifiques à l'aide du bouton « Nouveau critère » est l'un des concepts les plus performants d'Azure Mobile Engagement qui vous permet d'envoyer des notifications Push pertinentes auxquelles les clients répondront, au lieu d'envoyer des courriers indésirables à tout le monde. Vous pouvez limiter votre audience selon des critères standard et simuler des notifications Push pour déterminer combien de personnes recevront ces notifications.
+# <a name="how-toouse-targeting-criteria-toosend-push-campaigns-tooa-select-subset-of-your-users"></a>Comment toouse ciblage critères toosend push campagnes tooa sélectionner le sous-ensemble de vos utilisateurs
+Cibler votre audience en fonction de critères spécifique avec un bouton « Nouveau critère » hello est un des concepts plus puissantes hello dans Azure Mobile Engagement que vous aide à que vous envoyez pertinentes push notifications que les clients hello répondra tooinstead de courrier indésirable tout le monde. Vous pouvez limiter votre audience en fonction de critères standards et simuler push toodetermine nombre de personnes qui reçoivent une notification de hello.
 
 **Voir aussi :**
 
 * [Documentation de l’interface utilisateur - Reach - Nouvelle campagne Push][Link 27]
 
 ## <a name="audience-criteria-can-include"></a>Les critères d’audience peuvent inclure :
-* ** Technicals : ** vous pouvez cibler basé sur les mêmes informations techniques que vous pouvez voir dans les sections Analytique et d’analyse. **Voir aussi :** [Documentation de l’interface utilisateur - Analyse][Link 15], [Documentation de l’interface utilisateur - Moniteur][Link 16]
-* **Emplacement :** les applications qui utilisent un « rapport de localisation en temps réel » avec géorepérage peuvent utiliser l’emplacement géographique en tant que critère pour cibler une audience à partir de l’emplacement GPS. Un « rapport de localisation de zone différé » peut également être utilisé pour cibler une audience à partir de la localisation du téléphone cellulaire (Le « rapport de localisation en temps réel » et le « rapport de localisation de zone différé » doivent être activés à partir du Kit de développement logiciel (SDK)). **Consultez également :** [Documentation du Kit de développement logiciel (SDK) - iOS - Intégration][Link 5], [Documentation relative au Kit de développement logiciel (SDK) - Android - Intégration][Link 5]
-* **Commentaire Reach :** vous pouvez cibler votre audience selon les commentaires des précédentes notifications Reach via les commentaires Reach dans les sections Annonces, Sondages et Push de données. Cela vous permet de mieux cibler votre audience après deux ou trois campagnes Reach, en comparaison à la première. Cela peut aussi être utilisé pour filtrer les utilisateurs qui ont déjà reçu une notification avec un contenu similaire, en définissant une campagne à NE PAS envoyer aux utilisateurs ayant déjà reçu une campagne spécifique précédente. Vous pouvez même exclure les utilisateurs faisant partie d’une campagne spécifique toujours active, afin qu’ils ne reçoivent pas de nouvelles notifications Push. **Consultez également :** [Documentation sur l’interface utilisateur - Reach - Contenu Push][Link 29]
-* **Installation du suivi :** vous pouvez suivre des informations selon l’emplacement où les utilisateurs ont installé votre application. **Consultez également :** [Documentation sur l’interface utilisateur - Paramètres][Link 20]
-* **Profil utilisateur :** vous pouvez cibler votre audience en fonction des informations d’utilisateur standard et des informations d’application personnalisées que vous avez créées. Cela inclut les utilisateurs qui sont actuellement connectés et les utilisateurs qui ont répondu à des questions spécifiques que vous leur avez demandé de définir dans l’application même, plutôt que leurs réponses aux campagnes précédentes. Toutes les informations définies pour votre application sont indiquées dans cette liste.
-* Segments : vous pouvez également cibler votre audience en fonction des segments que vous avez créés suivant le comportement spécifique des utilisateurs et contenant des critères multiples. Tous les segments définis pour votre application sont indiqués dans cette liste. **Consultez également :** [Documentation sur l’interface utilisateur - Segments][Link 18]
-* **Informations relatives à l’application :** les balises d’informations personnalisées relatives à l’application peuvent être créées depuis la section « Paramètres » afin de suivre le comportement des utilisateurs. **Consultez également :** [Documentation sur l’interface utilisateur - Paramètres][Link 20]
+* ** Technicals : ** vous pouvez cibler hello en fonction des mêmes informations techniques que vous pouvez voir dans hello Analytique et les sections de l’analyse. **Voir aussi :**[Documentation de l’interface utilisateur - Analyse][Link 15], [Documentation de l’interface utilisateur - Moniteur][Link 16]
+* **Emplacement :** permet aux Applications qui utilisent « signalisation de l’emplacement en temps réel » avec la délimitation géographique emplacement géographique comme un tootarget critères une audience à partir de la position de hello. Appel de « Paresseux zone emplacement Reporting » également être utilisé tootarget une audience à partir de l’emplacement de téléphone cellulaire hello (« en temps réel emplacement reporting » et « Paresseux zone emplacement Reporting » doivent être activé à partir de hello SDK). **Consultez également :**[Documentation du Kit de développement logiciel (SDK) - iOS - Intégration][Link 5], [Documentation relative au Kit de développement logiciel (SDK) - Android - Intégration][Link 5]
+* **Commentaire Reach :** vous pouvez cibler votre audience selon les commentaires des précédentes notifications Reach via les commentaires Reach dans les sections Annonces, Sondages et Push de données. Cela vous permet de cible toobetter votre audience après que deux ou trois atteindre campagnes que vous pouvez hello première fois. Il peut également être utilisé toofilter les utilisateurs qui ont déjà reçu une notification avec un contenu similaire, en définissant un tooNOT campagne envoyé toousers qui ont déjà reçu une campagne précédente spécifique. Vous pouvez même exclure les utilisateurs faisant partie d’une campagne spécifique toujours active, afin qu’ils ne reçoivent pas de nouvelles notifications Push. **Consultez également :**[Documentation sur l’interface utilisateur - Reach - Contenu Push][Link 29]
+* **Installation du suivi :** vous pouvez suivre des informations selon l’emplacement où les utilisateurs ont installé votre application. **Consultez également :**[Documentation sur l’interface utilisateur - Paramètres][Link 20]
+* **Profil utilisateur :** vous pouvez cibler en fonction des informations d’utilisateur standard et vous pouvez cible en fonction des informations d’application personnalisée hello que vous avez créés. Cela inclut les utilisateurs qui sont actuellement connectés et les utilisateurs qui ont des questions spécifiques, vous avez demandé les tooset dans l’application hello lui-même au lieu de simplement comment ils ont répondu tooprevious campagnes ayant obtenu une réponse. Toutes les informations définies pour votre application sont indiquées dans cette liste.
+* Segments : vous pouvez également cibler votre audience en fonction des segments que vous avez créés suivant le comportement spécifique des utilisateurs et contenant des critères multiples. Tous les segments définis pour votre application sont indiqués dans cette liste. **Consultez également :**[Documentation sur l’interface utilisateur - Segments][Link 18]
+* **Informations sur l’application :** Custom application Info balises peuvent être créés à partir de comportement de l’utilisateur tootrack « Paramètres ». **Consultez également :**[Documentation sur l’interface utilisateur - Paramètres][Link 20]
 
 ## <a name="example"></a>Exemple :
-Si vous souhaitez effectuer une transmission de type Push pour faire une annonce uniquement à un sous-ensemble de vos utilisateurs qui ont réalisé un achat dans l’application.
+Si vous voulez toopush un ensemble de sous-système toohello uniquement annonce de vos utilisateurs qui ont effectué dans l’application d’achat action.
 
-1. Rendez-vous sur la page des paramètres de l’application, sélectionnez le menu « Informations relatives à l’application » puis sélectionnez « Nouvelle information relative à l’application ».
+1. Atteindre la page de paramètres d’application tooyour et sélectionnez le menu de « Info de l’application » hello « Nouvelle app info »
 2. Enregistrez une nouvelle information booléenne relative à l'application appelée « inAppPurchase ».
-3. Cette information relative à l’application doit être définie sur « true » par votre application lorsque l’utilisateur réussit à réaliser un achat dans l’application (à l’aide de la fonction sendAppInfo (« inAppPurchase », ...)).
-4. Si vous ne souhaitez pas faire cela depuis votre application, vous pouvez le faire depuis le serveur principal à l'aide de l'API de l'appareil.
-5. Vous n'aurez ensuite qu'à créer votre annonce avec un critère limitant votre audience aux utilisateurs ayant « inAppPurchase » défini sur « vrai ».
+3. Rendre votre application définir les informations de cette application trop « true » lorsque l’utilisateur de hello effectue avec succès un achat dans l’application (à l’aide de hello sendAppInfo (« inAppPurchase »,...) fonction)
+4. Si vous ne souhaitez pas toodo cela à partir de votre application, vous pouvez le faire à partir de votre serveur principal à l’aide des API de l’appareil hello)
+5. Ensuite, vous devez simplement toocreate l’annonce, avec un critère de limiter votre toousers public ayant « inAppPurchase » défini trop « true »)
 
 > [!NOTE]
-> Le ciblage basé sur un autre critère que les balises d'informations relatives à l'application nécessite un regroupement d'informations par Azure Mobile Engagement à partir des appareils de vos utilisateurs avant que la notification Push ne soit envoyée et qu'elle n'entraîne un retard. Les options de configuration de notifications Push complexes (telles que la mise à jour des badges) peuvent également entraîner des retards. L'utilisation de la campagne unique depuis l'API Push est la méthode Push la plus rapide dans Azure Mobile Engagement. L'utilisation des balises d'informations relatives à l'application en tant que critères Push pour une campagne Reach (depuis l'API Reach ou l'IU) est la deuxième méthode la plus rapide puisque ces balises d'informations sont stockées côté serveur. L'utilisation d'autres critères de ciblage pour une campagne Push est la méthode la plus flexible mais la plus lente, car Azure Mobile Engagement doit interroger les appareils afin d'envoyer la campagne.
+> Ciblage en fonction de critères autres que les balises d’informations sur application nécessite des informations de toogather Azure Mobile Engagement à partir d’appareils de vos utilisateurs avant de push de hello est envoyé et risque d’entraîner un retard. Les options de configuration de notifications Push complexes (telles que la mise à jour des badges) peuvent également entraîner des retards. À l’aide d’une campagne « une seule opération » à partir de l’API de Push de hello est hello absolu push méthode la plus rapide dans Azure Mobile Engagement. L’utilisation d’uniquement les balises d’informations sur application comme critère de push pour une couverture campagne (soit dans hello API couverture ou hello UI) d’est la méthode la plus rapide suivant hello, car les balises info application sont stockés côté serveur de hello. À l’aide d’autres critères de ciblage pour une campagne de push d’est hello méthode la plus souple, mais les plus lents par émission de données, car Azure Mobile Engagement dispose d’appareils de hello tooquery de campagne de commande toosend hello.
 
 ![Reach-Criterion1][29] 
 

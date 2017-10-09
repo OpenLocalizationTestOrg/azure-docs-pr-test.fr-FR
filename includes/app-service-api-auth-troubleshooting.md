@@ -1,0 +1,21 @@
+La plupart des erreurs au moment de l’authentification hello résultat des paramètres de configuration incorrect ou incohérent. Voici quelques suggestions spécifiques pour les éléments toocheck.
+
+* Assurez-vous que vous n’avez pas de manquer hello **enregistrer** bouton en tout lieu. Cela est souvent toodo facile, et hello résultat est que vous consulterez les valeurs correctes hello sur une page de portail, mais ils n’ont pas été réellement enregistrées dans hello environnement Azure ou une application Azure AD.
+* Pour les paramètres configurés dans hello **paramètres de l’Application** Panneau de hello portail Azure, assurez-vous que ce hello correct d’application API ou application web a été sélectionnée lorsque les paramètres hello ont été entrés.  Assurez-vous également que les paramètres de hello ont été entrés en tant que **paramètres de l’application** et non **les chaînes de connexion**, comme le format de hello de sections de hello deux est similaire.
+* Pour l’authentification tooa système frontal JavaScript, hello du téléchargement du manifeste à nouveau tooverify qui `oauth2AllowImplicitFlow` a été modifiée correctement trop`true`.
+* Vérifiez que vous avez utilisé HTTPS à chaque fois que vous avez configuré les URL :
+  
+  * Dans le code de projet
+  * Dans CORS
+  * Dans les paramètres de l’application de l’environnement Azure pour chaque application API et application web
+  * Dans les paramètres de l’application Azure AD.
+    
+    Notez que si vous copiez l’URL de l’application d’une API à partir du portail de hello, il souvent a `http://` et vous avez toomanually également le modifier`https://`.
+* Vérifiez que les modifications de code ont été déployées avec succès. Par exemple, dans une solution à projets multiples, il est possible de toochange un projet de code, accidentellement choisissez une hello d’autres lorsque vous avez l’intention de modification de hello toodeploy.
+* Assurez-vous que vous allez tooHTTPS URL dans votre navigateur, pas les URL HTTP. Par défaut, Visual Studio crée des profils avec des URL HTTP de publication, et c’est ce qui s’ouvre dans le navigateur de hello une fois que vous déployez un projet.
+* Pour l’authentification tooa JavaScript frontale, assurez-vous que CORS est correctement configuré sur l’application API hello qui hello appelle du code JavaScript. En cas de doute, si le problème de hello est associées à CORS, essayez « * » comme hello autorisé l’URL d’origine. 
+* Pour un système frontal JavaScript, ouvrez tooget d’onglet de votre navigateur Console des outils de développement plus d’informations sur l’erreur et examiner les requêtes HTTP sur le réseau de hello. Toutefois, les messages d’erreur de la console peuvent être trompeurs. Si vous obtenez un message indiquant une erreur CORS, problème réel de hello peut-être l’authentification. Vous pouvez vérifier si cela vaut hello en exécutant l’application hello avec authentification temporairement temporairement désactivée.
+* Pour une application API .NET, assurez-vous que vous obtenez plus d’informations dans les messages d’erreur que possible en définissant [customErrors mode tooOff](../articles/app-service-web/web-sites-dotnet-troubleshoot-visual-studio.md#remoteview).
+* Pour une application API .NET, démarrez une [à distance la session de débogage](../articles/app-service-web/web-sites-dotnet-troubleshoot-visual-studio.md#remotedebug)et examiner les valeurs de hello de variables hello passés toocode qui utilise la bibliothèque ADAL tooacquire un jeton de support, ou un code qui vérifie les revendications par rapport à l’ID principal de service hello attendu. Notez que votre code peut récupérer les valeurs de configuration à partir de nombreuses sources différentes, il est possible toofind surprises de cette manière. Par exemple, si vous orthographiez mal `ida:ClientId` en tant que `ida:ClientID` lors de la configuration des paramètres d’environnement du Service d’applications Azure, code de hello peut obtenir hello `ida:ClientId` valeur qu’il recherche à partir du fichier Web.config de hello, en ignorant le paramètre de Service d’applications Azure hello. 
+* Si les choses ne fonctionnent pas dans une fenêtre Internet Explorer normale, il est possible qu’une connexion existante soit la cause du problème. Essayez InPrivate et Chrome ou Firefox.
+

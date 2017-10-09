@@ -1,10 +1,10 @@
-# <a name="platform-supported-migration-of-iaas-resources-from-classic-to-azure-resource-manager"></a>Migration prise en charge par la plateforme de ressources IaaS Classic vers Azure Resource Manager
-Cet article décrit la manière dont nous activons les ressources IaaS (infrastructure as a service) de l’environnement Classic pour les modèles de déploiement de Resource Manager. Pour en savoir plus, voir [Fonctionnalités et avantages d’Azure Resource Manager](../articles/azure-resource-manager/resource-group-overview.md). Nous décrivons en détail comment connecter des ressources dans les deux modèles de déploiement qui coexistent dans votre abonnement en utilisant des passerelles intersites de réseau virtuel.
+# <a name="platform-supported-migration-of-iaas-resources-from-classic-tooazure-resource-manager"></a>Plateforme prise en charge la migration des ressources IaaS de classique tooAzure Gestionnaire de ressources
+Dans cet article, nous décrivons comment nous autorisons migration de l’infrastructure en tant qu’une ressource de service (IaaS) à partir de modèles de déploiement hello classique tooResource Manager. Pour en savoir plus, voir [Fonctionnalités et avantages d’Azure Resource Manager](../articles/azure-resource-manager/resource-group-overview.md). Nous avons décrit en détail tooconnect ressources hello deux modèles de déploiement qui coexistent dans votre abonnement à l’aide de virtual réseau passerelles de site à site.
 
 ## <a name="goal-for-migration"></a>Objectif de la migration
-Resource Manager autorise le déploiement d’applications complexes à l’aide de modèles, configure les machines virtuelles au moyen d’extensions de machines virtuelles et intègre la gestion des accès et le balisage. Azure Resource Manager inclut un déploiement extensible, en parallèle, de machines virtuelles dans des groupes à haute disponibilité. Le nouveau modèle de déploiement assure également la gestion de façon indépendante du cycle de vie des services de calcul, de réseau et de stockage. Enfin, il applique la sécurité par défaut grâce à la mise en œuvre de machines virtuelles dans un réseau virtuel.
+Resource Manager autorise le déploiement d’applications complexes à l’aide de modèles, configure les machines virtuelles au moyen d’extensions de machines virtuelles et intègre la gestion des accès et le balisage. Azure Resource Manager inclut un déploiement extensible, en parallèle, de machines virtuelles dans des groupes à haute disponibilité. nouveau modèle de déploiement Hello fournit également la gestion du cycle de vie de calcul, réseau et stockage de l’indépendamment. Enfin, il existe un focus sur l’activation de la sécurité par défaut avec l’application hello des machines virtuelles dans un réseau virtuel.
 
-Pratiquement toutes les fonctionnalités du modèle de déploiement Classic sont prises en charge pour le calcul, le réseau et le stockage dans Azure Resource Manager. Pour bénéficier des nouvelles fonctionnalités d’Azure Resource Manager, vous pouvez migrer des déploiements existants à partir du modèle de déploiement classique.
+Presque toutes les fonctionnalités de hello à partir du modèle de déploiement classique de hello sont pris en charge pour le calcul, réseau et de stockage sous Azure Resource Manager. toobenefit à partir de capacités de nouveau hello dans Azure Resource Manager, vous pouvez migrer existante des déploiements à partir du modèle de déploiement classique hello.
 
 ## <a name="supported-resources-for-migration"></a>Ressources prises en charge pour la migration
 Ces ressources IaaS classiques sont prises en charge lors de la migration
@@ -15,13 +15,13 @@ Ces ressources IaaS classiques sont prises en charge lors de la migration
 * Comptes de stockage
 * Virtual Network
 * Passerelles VPN
-* Passerelles ExpressRoute _(dans le même abonnement que Réseau virtuel uniquement)_
-* Groupes de sécurité réseau 
+* Express Route passerelles _(Bonjour même abonnement que réseau virtuel uniquement)_
+* Network Security Group 
 * Tables de routage 
 * IP réservées 
 
 ## <a name="supported-scopes-of-migration"></a>Étendues de migration prises en charge
-Il existe 4 façons différentes de migrer les ressources de calcul, de réseau et de stockage. Les voici : 
+Il existe 4 façons toocomplete la migration des ressources de calcul, réseau et de stockage. Les voici : 
 
 * Migration de machines virtuelles (ne figurant PAS dans un réseau virtuel)
 * Migration de machines virtuelles (dans un réseau virtuel)
@@ -29,69 +29,69 @@ Il existe 4 façons différentes de migrer les ressources de calcul, de réseau
 * Ressources non attachées (groupes de sécurité réseau, tables de routage et adresses IP réservées)
 
 ### <a name="migration-of-virtual-machines-not-in-a-virtual-network"></a>Migration de machines virtuelles (ne figurant PAS dans un réseau virtuel)
-Dans le modèle de déploiement Resource Manager, nous appliquons par défaut la sécurité de vos applications. Toutes les machines virtuelles doivent donc figurer dans un réseau virtuel du modèle Resource Manager. La plateforme Azure redémarre (`Stop`, `Deallocate`, et `Start`) les machines virtuelles dans le cadre de la migration. Vous avez deux options pour les réseaux virtuels vers lesquels les machines virtuelles seront migrées :
+Dans le modèle de déploiement du Gestionnaire de ressources hello, la sécurité est appliquée pour vos applications par défaut. Toutes les machines virtuelles doivent toobe dans un réseau virtuel dans le modèle de gestionnaire de ressources hello. Hello redémarrage de la plateforme Azure (`Stop`, `Deallocate`, et `Start`) hello des machines virtuelles dans le cadre de la migration de hello. Vous avez deux options pour les réseaux virtuels hello hello des Machines virtuelles vont être migrés vers :
 
-* Vous pouvez demander à la plateforme de créer un réseau virtuel et de procéder à la migration de la machine virtuelle vers ce réseau.
-* Vous pouvez effectuer la migration de la machine virtuelle vers un réseau virtuel existant dans Resource Manager.
+* Vous pouvez demander des hello plateforme toocreate un nouveau réseau virtuel et migration hello virtuels dans le réseau virtuel hello.
+* Vous pouvez migrer des machines virtuelles de hello dans un réseau virtuel existant dans le Gestionnaire de ressources.
 
 > [!NOTE]
-> Dans cette étendue de migration, les opérations plan de gestion et du plan de données peuvent ne pas être autorisées pendant un certain laps de temps durant la migration.
+> Dans cette portée de la migration, les deux hello des opérations de plan de gestion et opérations de données-plan hello ne soyez pas autorisées pendant une période de temps pendant la migration de hello.
 >
 >
 
 ### <a name="migration-of-virtual-machines-in-a-virtual-network"></a>Migration de machines virtuelles (dans un réseau virtuel)
-Pour la plupart des configurations de machines virtuelles, seules les métadonnées sont migrées entre le modèle de déploiement classique et le modèle de déploiement Resource Manager. Les machines virtuelles sous-jacentes s’exécutent sur le même matériel, dans le même réseau et avec le même stockage. Il se peut que les opérations du plan de gestion ne soient pas autorisées pendant un certain laps de temps durant la migration. Toutefois, le plan de données continue à fonctionner. Cela signifie que vos applications s’exécutant par dessus les machines virtuelles (Classic) ne subissent aucun temps d’arrêt lors de la migration.
+Pour la plupart des configurations de machine virtuelle, migre uniquement les métadonnées hello entre les modèles de déploiement classique et le Gestionnaire de ressources hello. Hello sous-jacent de machines virtuelles s’exécutent sur hello même matériel, Bonjour même réseau et avec hello même stockage. opérations de gestion-plan Hello ne peuvent pas être autorisées pour une certaine période de temps pendant la migration de hello. Toutefois, le plan de données hello continue toowork. Autrement dit, vos applications en cours d’exécution sur des machines virtuelles (classiques) n’entraînent pas de temps d’arrêt pendant la migration de hello.
 
-Les configurations non prises en charge actuellement sont les suivantes. En cas de prise en charge à l’avenir, certaines machines virtuelles de cette configuration connaîtront peut-être un temps d’arrêt (avec exécution des opérations d’arrêt, de désallocation et de redémarrage des machines virtuelles).
+Hello, suivant les configurations n’est pas pris en charge actuellement. Si la prise en charge est ajoutée dans hello future, certains ordinateurs virtuels dans cette configuration peuvent entraîner des temps d’arrêt (accédez à arrêter, libérer et redémarrer les opérations de machine virtuelle).
 
 * Vous disposez de plus d’un groupe à haute disponibilité dans un seul service cloud.
 * Vous disposez d’un ou de plusieurs groupes à haute disponibilité et de machines virtuelles ne figurant pas dans un groupe à haute disponibilité dans un seul service cloud.
 
 > [!NOTE]
-> Dans cette étendue de migration, le plan de gestion peut ne pas être utilisable pendant un certain laps de temps lors de la migration. Certaines configurations décrites ci-dessus entraînent un temps d’arrêt du forfait de données.
+> Dans cette portée de la migration, plan de gestion hello ne peut pas autorisé pendant une période de temps pendant la migration de hello. Certaines configurations décrites ci-dessus entraînent un temps d’arrêt du forfait de données.
 >
 >
 
 ### <a name="storage-accounts-migration"></a>Migration des comptes de stockage
-Pour permettre une migration fluide, vous pouvez déployer des machines virtuelles Resource Manager dans un compte de stockage classique. Cette fonctionnalité permet d’effectuer la migration des ressources de calcul et de réseau indépendamment des comptes de stockage. Après avoir migré vos machines virtuelles et votre réseau virtuel, vous devrez migrer vos comptes de stockage pour achever le processus de migration.
+migration transparente de tooallow, vous pouvez déployer des machines virtuelles du Gestionnaire de ressources dans un compte de stockage classique. Cette fonctionnalité permet d’effectuer la migration des ressources de calcul et de réseau indépendamment des comptes de stockage. Une fois la migration sur vos Machines virtuelles et le réseau virtuel, vous devez toomigrate de votre processus de migration de stockage comptes toocomplete hello.
 
 > [!NOTE]
-> Le modèle de déploiement Resource Manager n’intègre pas le concept d’images et de disques classiques. Une fois le compte de stockage migré, les images et disques classiques ne sont pas visibles dans la pile Resource Manager, mais les disques durs virtuels de secours restent dans le compte de stockage.
+> modèle de déploiement du Gestionnaire de ressources Hello ne concept hello des images de standard et des disques. Lorsque le compte de stockage hello est migrés, classiques des images et disques ne sont pas visibles dans la pile du Gestionnaire de ressources hello mais hello sauvegarde disques durs virtuels restent dans le compte de stockage hello.
 >
 >
 
 ### <a name="unattached-resources-network-security-groups-route-tables--reserved-ips"></a>Ressources non attachées (groupes de sécurité réseau, tables de routage et adresses IP réservées)
-Les groupes de sécurité réseau, tables de routage et adresses IP réservées qui ne sont pas rattachés à des machines virtuelles et des réseaux virtuels peuvent être migrés indépendamment.
+Groupes de sécurité réseau, les Tables d’itinéraires et des adresses IP réservées qui ne sont pas attachés tooany Machines virtuelles et des réseaux virtuels peuvent être migrés indépendamment.
 
 <br>
 
 ## <a name="unsupported-features-and-configurations"></a>Fonctionnalités et configurations non prises en charge
-À ce stade, nous ne gérons pas encore certaines fonctionnalités et configurations. Les sections suivantes décrivent nos recommandations les concernant.
+À ce stade, nous ne gérons pas encore certaines fonctionnalités et configurations. Hello les sections suivantes décrire des nos recommandations autour d’elles.
 
 ### <a name="unsupported-features"></a>Fonctionnalités non prises en charge
-Les fonctionnalités non prises en charge actuellement sont les suivantes. Si vous le souhaitez, vous pouvez supprimer ces paramètres, effectuer la migration des machines virtuelles, puis réactiver les paramètres dans le modèle de déploiement Resource Manager.
+Hello suivant les fonctionnalités n’est pas pris en charge actuellement. Vous pouvez éventuellement supprimer ces paramètres, migrer des machines virtuelles de hello et réactivez les paramètres hello dans le modèle de déploiement du Gestionnaire de ressources hello.
 
 | Fournisseur de ressources | Fonctionnalité | Recommandation |
 | --- | --- | --- |
-| Calcul |Disques de machine virtuelle non associés. | Les objets BLOB VHD derrière ces disques seront migrés lors de la migration du compte de stockage |
-| Calcul |Images de machine virtuelle. | Les objets BLOB VHD derrière ces disques seront migrés lors de la migration du compte de stockage |
+| Calcul |Disques de machine virtuelle non associés. | objets BLOB de disque dur virtuel Hello derrière ces disques est obtenir migrés lors de la migration hello compte de stockage |
+| Calcul |Images de machine virtuelle. | objets BLOB de disque dur virtuel Hello derrière ces disques est obtenir migrés lors de la migration hello compte de stockage |
 | Réseau |Listes de contrôle d’accès de points de terminaison. | Supprimez les listes de contrôle d’accès des points de terminaison et réessayez la migration. |
-| Réseau |Réseau virtuel doté d’une passerelle ExpressRoute et d’une passerelle VPN  | Supprimez la passerelle VPN avant de commencer la migration, puis recréez la passerelle VPN une fois la migration terminée. En savoir plus sur la [migration ExpressRoute](../articles/expressroute/expressroute-migration-classic-resource-manager.md).|
-| Réseau |ExpressRoute avec des liens d’autorisation  | Supprimez le circuit ExpressRoute vers la connexion de réseau virtuel avant de commencer la migration, puis recréez la connexion une fois la migration terminée. En savoir plus sur la [migration ExpressRoute](../articles/expressroute/expressroute-migration-classic-resource-manager.md). |
-| Réseau |Application Gateway | Supprimez l’Application Gateway avant de commencer la migration, puis recréez l’Application Gateway une fois la migration terminée. |
-| Réseau |Réseaux virtuels à l’aide de l’homologation de réseaux virtuels (VNet Peering). | Migrez le réseau virtuel vers Resource Manager, puis homologuez-le. Apprenez-en plus sur l’[Homologation de réseaux virtuels](../articles/virtual-network/virtual-network-peering-overview.md). | 
+| Réseau |Réseau virtuel doté d’une passerelle ExpressRoute et d’une passerelle VPN  | Supprimer hello passerelle VPN avant de commencer la migration, puis recréez les hello passerelle VPN une fois la migration est terminée. En savoir plus sur la [migration ExpressRoute](../articles/expressroute/expressroute-migration-classic-resource-manager.md).|
+| Réseau |ExpressRoute avec des liens d’autorisation  | Supprimer la connexion de réseau hello ExpressRoute circuit toovirtaul avant de commencer la migration, puis recréez les connexions de hello une fois la migration est terminée. En savoir plus sur la [migration ExpressRoute](../articles/expressroute/expressroute-migration-classic-resource-manager.md). |
+| Réseau |Application Gateway | Supprimer hello passerelle d’Application avant de commencer la migration, puis recréez les hello passerelle d’Application une fois la migration est terminée. |
+| Réseau |Réseaux virtuels à l’aide de l’homologation de réseaux virtuels (VNet Peering). | Migrer le réseau virtuel tooResource Manager, puis d’homologues. Apprenez-en plus sur l’[Homologation de réseaux virtuels](../articles/virtual-network/virtual-network-peering-overview.md). | 
 
 ### <a name="unsupported-configurations"></a>Configurations non prises en charge
-Les configurations non prises en charge actuellement sont les suivantes.
+Hello, suivant les configurations n’est pas pris en charge actuellement.
 
-| de diffusion en continu | Configuration | Recommandation |
+| Service | Configuration | Recommandation |
 | --- | --- | --- |
-| Gestionnaire de ressources |Contrôle d’accès en fonction du rôle (RBAC) pour les ressources Classic |L’URI des ressources étant modifié après la migration, il est recommandé de planifier les mises à jour de stratégie RBAC à exécuter après la migration. |
-| Calcul |Plusieurs sous-réseaux associés à une machine virtuelle |Mettez à jour la configuration du sous-réseau afin de référencer uniquement des sous-réseaux. |
-| Calcul |Machines virtuelles appartenant à un réseau virtuel, mais auxquelles aucun sous-réseau n’est affecté de manière explicite |Si vous le souhaitez, vous pouvez supprimer la machine virtuelle. |
-| Calcul |Machines virtuelles dotées d’alertes et de stratégies de mise à l’échelle automatique |La migration a lieu et ces paramètres sont ignorés. Il est vivement recommandé d’évaluer votre environnement avant de procéder à la migration. Vous pouvez également choisir de reconfigurer les paramètres d’alerte une fois la migration terminée. |
-| Calcul |Extensions XML de machines virtuelles (BGInfo 1.*, débogueur Visual Studio, Web Deploy et débogage à distance) |Ce n’est pas pris en charge. Il est recommandé de supprimer ces extensions de la machine virtuelle pour continuer la migration ; sinon, elles seront automatiquement supprimées pendant le processus de migration. |
-| Calcul |Diagnostics de démarrage avec le stockage Premium |Désactivez la fonctionnalité Diagnostics de démarrage pour les machines virtuelles avant de poursuivre la migration. Vous pouvez réactiver les Diagnostics de démarrage dans la pile Resource Manager une fois la migration terminée. En outre, les objets Blob utilisés pour la capture d’écran et les journaux de série doivent être supprimés afin que vous ne soyez plus facturé pour ces objets Blob. |
+| Gestionnaire de ressources |Contrôle d’accès en fonction du rôle (RBAC) pour les ressources Classic |Hello URI des ressources de hello est modifié après la migration, il est recommandé que vous envisagez de hello RBAC stratégie mises à jour nécessitant toohappen après la migration. |
+| Calcul |Plusieurs sous-réseaux associés à une machine virtuelle |Mettre à jour hello sous-réseau configuration tooreference uniquement sous-réseaux. |
+| Calcul |Machines virtuelles qui font partie du réseau virtuel de tooa mais n’avez pas un sous-réseau explicit affecté |Vous pouvez éventuellement supprimer hello machine virtuelle. |
+| Calcul |Machines virtuelles dotées d’alertes et de stratégies de mise à l’échelle automatique |migration de Hello traverse et ces paramètres sont supprimés. Il est fortement recommandé que vous évaluez votre environnement avant de vous hello migration. Ou bien, vous pouvez reconfigurer les paramètres d’alerte hello après la migration. |
+| Calcul |Extensions XML de machines virtuelles (BGInfo 1.*, débogueur Visual Studio, Web Deploy et débogage à distance) |Ce n’est pas pris en charge. Il est recommandé que vous supprimez ces extensions à partir de la migration de toocontinue hello des machines virtuelles, ou elles sont supprimées automatiquement durant le processus de migration hello. |
+| Calcul |Diagnostics de démarrage avec le stockage Premium |Désactiver la fonctionnalité Diagnostics de démarrage pour hello machines virtuelles avant de poursuivre la migration. Vous pouvez réactiver les diagnostics de démarrage dans la pile du Gestionnaire de ressources hello après la migration de hello. En outre, les objets Blob utilisés pour la capture d’écran et les journaux de série doivent être supprimés afin que vous ne soyez plus facturé pour ces objets Blob. |
 | Calcul |Services cloud contenant des rôles Web/de travail |Non pris en charge actuellement. |
 | Réseau |Réseaux virtuels contenant des machines virtuelles et des rôles Web/de travail |Non pris en charge actuellement. |
 | Azure App Service |Réseaux virtuels contenant des environnements App Service |Non pris en charge actuellement. |
@@ -99,6 +99,6 @@ Les configurations non prises en charge actuellement sont les suivantes.
 | Services de cycle de vie Microsoft Dynamics |Réseaux virtuel contenant des machines virtuelles gérées par Dynamics Lifecycle Services |Non pris en charge actuellement. |
 | Services de domaine Azure AD |Réseaux virtuels contenant des services de domaine Azure AD |Non pris en charge actuellement. |
 | Azure RemoteApp |Réseaux virtuels contenant des déploiements Azure RemoteApp |Non pris en charge actuellement. |
-| Gestion des API Azure |Réseaux virtuels contenant des déploiements Gestion des API Azure |Non pris en charge actuellement. Pour migrer le réseau virtuel IaaS, modifiez le réseau virtuel du déploiement Gestion des API. Il s’agit d’une opération sans temps d’arrêt. |
-| Calcul |Extensions Azure Security Center avec un réseau virtuel disposant d’une passerelle VPN dans une connectivité en transit ou d’une passerelle ExpressRoute avec serveur DNS local |Azure Security Center installe automatiquement les extensions sur vos machines virtuelles pour contrôler leur sécurité et déclencher des alertes. Ces extensions sont généralement installées automatiquement si la stratégie d’Azure Security Center est activée sur l’abonnement. La migration de la passerelle ExpressRoute n’est pas prise en charge actuellement et les passerelles VPN avec connectivité de transit perdent l’accès local. Si vous supprimez la passerelle ExpressRoute ou migrez la passerelle VPN avec connectivité de transit, l’accès à internet au compte de stockage de la machine virtuelle est perdu lors de la validation de la migration. La migration ne se produit pas dans ce cas, car l’objet blob d’état de l’agent invité ne peut pas être rempli. Il est recommandé de désactiver la stratégie d’Azure Security Center de l’abonnement 3 heures avant de procéder à la migration. |
+| Gestion des API Azure |Réseaux virtuels contenant des déploiements Gestion des API Azure |Non pris en charge actuellement. toomigrate hello IaaS VNET, modifiez hello réseau virtuel de hello déploiement de gestion des API qui n’est pas une opération de temps d’arrêt. |
+| Calcul |Extensions Azure Security Center avec un réseau virtuel disposant d’une passerelle VPN dans une connectivité en transit ou d’une passerelle ExpressRoute avec serveur DNS local |Centre de sécurité Azure installe les extensions sur vos Machines virtuelles de toomonitor leur sécurité automatiquement et déclencher des alertes. Ces extensions généralement installées automatiquement si hello stratégie du centre de sécurité Azure est activé sur les abonnement hello. La migration de la passerelle ExpressRoute n’est pas prise en charge actuellement et les passerelles VPN avec connectivité de transit perdent l’accès local. Vous supprimez ExpressRoute passerelle ou migration de passerelle VPN avec connectivité de transit, compte de stockage du tooVM internet access toobe perdue lors de la poursuite de la validation de la migration hello. migration de Hello ne va pas dans ce cas comme objet blob d’état agent hello invité ne peuvent pas être rempli. Il est recommandé toodisable stratégie Azure Security Center sur les abonnement hello 3 heures avant de procéder à la migration. |
 

@@ -1,6 +1,6 @@
 ---
-title: "Stratégies avancées de la Gestion des API Azure | Microsoft Docs"
-description: "Découvrez les stratégies avancées disponibles dans la Gestion des API Azure."
+title: "aaaAzure avancée des stratégies de gestion des API | Documents Microsoft"
+description: "Découvrez hello avancée des stratégies disponibles pour une utilisation dans la gestion des API Azure."
 services: api-management
 documentationcenter: 
 author: vladvino
@@ -14,78 +14,78 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/09/2017
 ms.author: apimpm
-ms.openlocfilehash: 0c65ac74316421a0258f01143baa25ffecb5be3b
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 8245e7a4c9d432b7b4d362192e357829fcabad55
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="api-management-advanced-policies"></a>Stratégies avancées de la Gestion des API
-Cette rubrique est une ressource de référence au sujet des stratégies Gestion des API suivantes. Pour plus d'informations sur l'ajout et la configuration des stratégies, consultez la page [Stratégies dans Gestion des API](http://go.microsoft.com/fwlink/?LinkID=398186).  
+Cette rubrique fournit une référence pour hello suivant des stratégies de gestion des API. Pour plus d'informations sur l'ajout et la configuration des stratégies, consultez la page [Stratégies dans Gestion des API](http://go.microsoft.com/fwlink/?LinkID=398186).  
   
 ##  <a name="AdvancedPolicies"></a> Stratégies avancées  
   
--   [Control flow](api-management-advanced-policies.md#choose) : applique de manière conditionnelle les instructions de stratégie en fonction des résultats de l’évaluation des [expressions](api-management-policy-expressions.md) booléennes.  
+-   [Flux de contrôle](api-management-advanced-policies.md#choose) - conditionnellement applique les instructions de stratégie basées sur les résultats d’évaluation hello booléen hello [expressions](api-management-policy-expressions.md).  
   
--   [Forward request](#ForwardRequest) : transfère la demande vers le service principal.
+-   [Transférer la demande](#ForwardRequest) -transfère le service principal de hello demande toohello.
 
--   [Limit concurrency](#LimitConcurrency) : empêche les stratégies incluses d’exécuter plus de requêtes simultanées que le nombre spécifié.
+-   [Limiter l’accès concurrentiel](#LimitConcurrency) -empêche entre les stratégies à partir de l’exécution en plus de hello du nombre spécifié de demandes à la fois.
   
--   [Log to Event Hub](#log-to-eventhub) : envoie des messages au format spécifié à un Event Hub défini par une entité Enregistreur d’événements. 
+-   [Journal tooEvent Hub](#log-to-eventhub) -envoie des messages hello spécifié tooan format concentrateur d’événements défini par une entité de l’enregistreur d’événements. 
 
--   [Mock response](#mock-response) : abandonne l’exécution du pipeline et renvoie une réponse factice indiquée directement à l’appelant.
+-   [Simuler la réponse](#mock-response) -abandons de l’exécution du pipeline et renvoie une réponse factices directement toohello appelant.
   
--   [Retry](#Retry) : effectue une nouvelle tentative d’exécution des instructions de stratégie incluses, si la condition est remplie et jusqu’à ce qu’elle le soit. L’exécution se répète à intervalles réguliers et ce jusqu’au nombre de tentatives défini.  
+-   [Recommencez](#Retry) -l’exécution de nouvelles tentatives de hello placé entre les instructions de stratégie, si et jusqu'à ce que hello condition est remplie. L’exécution est répété à hello des intervalles de temps spécifié de toohello spécifié le nombre de tentatives.  
   
--   [Return response](#ReturnResponse) : abandonne l’exécution du pipeline et renvoie la réponse indiquée directement à l’appelant. 
+-   [Retourner une réponse](#ReturnResponse) -hello retourne et de l’exécution du pipeline abandons spécifié réponse directement toohello appelant. 
   
--   [Send one way request](#SendOneWayRequest) : envoie une demande à l’URL indiquée sans attendre de réponse.  
+-   [Envoyer une demande unidirectionnelle](#SendOneWayRequest) -envoie une demande toohello spécifié des URL sans attendre une réponse.  
   
--   [Send request](#SendRequest) : envoie une demande à l’URL indiquée.  
+-   [Envoyer la demande](#SendRequest) -envoie une demande toohello spécifié l’URL.  
 
--   [Définir le proxy HTTP](#SetHttpProxy) : vous permet de router les demandes transférées via un proxy HTTP.  
+-   [Définir le proxy HTTP](#SetHttpProxy) -vous permet de demandes tooroute transmis via un proxy HTTP.  
 
--   [Set request method](#SetRequestMethod) : permet de modifier la méthode HTTP d’une demande.  
+-   [Définir la méthode de demande](#SetRequestMethod) -vous permet de méthode de hello HTTP toochange pour une demande.  
   
--   [Set status code](#SetStatus) : permet de donner la valeur spécifiée au code d’état HTTP.  
+-   [Définir le code d’état](#SetStatus) -modifications hello HTTP état code toohello de valeur spécifiée.  
   
 -   [Set variable](api-management-advanced-policies.md#set-variable) : conserve une valeur dans une variable de [contexte](api-management-policy-expressions.md#ContextVariables) nommée pour permettre d’y accéder ultérieurement.  
 
--   [Trace](#Trace) : ajoute une chaîne à la sortie de l’[inspecteur d’API](https://azure.microsoft.com/en-us/documentation/articles/api-management-howto-api-inspector/).  
+-   [Trace](#Trace) -ajoute une chaîne en hello [API inspecteur](https://azure.microsoft.com/en-us/documentation/articles/api-management-howto-api-inspector/) sortie.  
   
--   [Wait](#Wait) : attend l’exécution des stratégies incluses [Send request](api-management-advanced-policies.md#SendRequest), [Get value from cache](api-management-caching-policies.md#GetFromCacheByKey) et [Control flow](api-management-advanced-policies.md#choose) pour continuer.  
+-   [Attente](#Wait) -attend placée entre [demande d’envoi](api-management-advanced-policies.md#SendRequest), [obtenir la valeur à partir du cache](api-management-caching-policies.md#GetFromCacheByKey), ou [flux de contrôle](api-management-advanced-policies.md#choose) toocomplete stratégies avant de continuer.  
   
 ##  <a name="choose"></a> Control flow  
- La stratégie `choose` applique les instructions de stratégie incluses en fonction du résultat de l’évaluation d’expressions booléennes, de façon similaire à une construction de type if-then-else ou commutateur dans un langage de programmation.  
+ Hello `choose` stratégie applique la stratégie entre crochets de construisent des instructions en fonction de résultat hello d’évaluation des expressions booléennes, similaires tooan if-then-else ou un commutateur dans un langage de programmation.  
   
 ###  <a name="ChoosePolicyStatement"></a> Instruction de la stratégie  
   
 ```xml  
 <choose>   
     <when condition="Boolean expression | Boolean constant">   
-        <!— one or more policy statements to be applied if the above condition is true  -->  
+        <!— one or more policy statements toobe applied if hello above condition is true  -->  
     </when>   
     <when condition="Boolean expression | Boolean constant">   
-        <!— one or more policy statements to be applied if the above condition is true  -->  
+        <!— one or more policy statements toobe applied if hello above condition is true  -->  
     </when>   
     <otherwise>   
-        <!— one or more policy statements to be applied if none of the above conditions are true  -->  
+        <!— one or more policy statements toobe applied if none of hello above conditions are true  -->  
 </otherwise>   
 </choose>  
 ```  
   
- La stratégie de flux de contrôle doit contenir au moins un élément `<when/>`. L’élément `<otherwise/>` est facultatif. Les conditions dans les éléments `<when/>` sont évaluées par ordre d’apparition dans la stratégie. La ou les déclarations de stratégie incluses dans le premier élément `<when/>` avec attribut de condition égal à `true` seront appliquées. Les stratégies incluses dans l’élément `<otherwise/>`, le cas échéant, seront appliquées si tous les attributs de condition de l’élément `<when/>` sont `false`.  
+ Hello stratégie de flux de contrôle doit contenir au moins un `<when/>` élément. Hello `<otherwise/>` élément est facultatif. Dans les conditions `<when/>` éléments sont évalués dans leur ordre d’apparition dans la stratégie de hello. Déclarations de stratégie incluses dans hello tout d’abord `<when/>` élément avec l’attribut de condition est égal à `true` seront appliqués. Stratégies encadrées hello `<otherwise/>` élément, le cas échéant, est appliquée si tous les Hello `<when/>` sont des attributs de l’élément condition `false`.  
   
 ### <a name="examples"></a>Exemples  
   
 ####  <a name="ChooseExample"></a> Exemple  
- L’exemple suivant montre une stratégie [set-variable](api-management-advanced-policies.md#set-variable) ainsi que deux stratégies de contrôle de flux.  
+ Hello exemple suivant montre un [set-variable](api-management-advanced-policies.md#set-variable) stratégie et deux stratégies de flux de contrôle.  
   
- La stratégie set variable se trouve dans la section inbound et crée une variable de [contexte](api-management-policy-expressions.md#ContextVariables) `isMobile` booléenne qui a la valeur true si l’en-tête de demande `User-Agent` contient le texte `iPad` ou `iPhone`.  
+ stratégie de variable Hello définie est dans hello section entrante et crée un `isMobile` booléenne [contexte](api-management-policy-expressions.md#ContextVariables) variable a la valeur tootrue si hello `User-Agent` demande en-tête contient le texte hello `iPad` ou `iPhone`.  
   
- La première stratégie de flux de contrôle se trouve également dans la section inbound et applique de manière conditionnelle une des deux stratégies [Set query string parameter](api-management-transformation-policies.md#SetQueryStringParameter) selon la valeur de la variable de contexte `isMobile`.  
+ stratégie de flux de contrôle de première Hello est également dans hello section entrante et applique de manière conditionnelle une des deux [définir le paramètre de chaîne de requête](api-management-transformation-policies.md#SetQueryStringParameter) stratégies en fonction de la valeur hello hello `isMobile` variable contextuelle.  
   
- La deuxième stratégie de flux de contrôle se trouve dans la section outbound et applique de manière conditionnelle la stratégie [Convert XML to JSON](api-management-transformation-policies.md#ConvertXMLtoJSON) si `isMobile` a la valeur `true`.  
+ stratégie de flux de contrôle de deuxième Hello est dans la section sortante de hello et applique de façon conditionnelle hello [tooJSON de convertir le XML](api-management-transformation-policies.md#ConvertXMLtoJSON) stratégie lorsque `isMobile` est défini trop`true`.  
   
 ```xml  
 <policies>  
@@ -117,10 +117,10 @@ Cette rubrique est une ressource de référence au sujet des stratégies Gestion
 ```  
   
 #### <a name="example"></a>Exemple  
- Cet exemple montre comment effectuer un filtrage du contenu en supprimant des éléments de données de la réponse reçue du service principal en cas d’utilisation du produit `Starter`. Pour une démonstration de la configuration et de l’utilisation de cette stratégie, consultez la page [Cloud Cover Episode 177: More API Management Features with Vlad Vinogradsky](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/) (Cloud Cover, épisode 177 : Plus de fonctionnalités de la Gestion des API avec Vlad Vinogradsky) et rendez-vous directement à 34 min 30 s. Commencez à 31 min 50 s pour voir une présentation de [l’API The Dark Sky Forecast](https://developer.forecast.io/) utilisée pour cette démonstration.  
+ Cet exemple montre comment tooperform le filtrage de contenu en supprimant des éléments de données à partir de la réponse de hello reçu hello principal service lors de l’utilisation de hello `Starter` produit. Pour une démonstration de la configuration et l’utilisation de cette stratégie, consultez [Cloud couvrent épisode 177 : plus les fonctionnalités de gestion des API avec Vlad Vinogradsky](https://azure.microsoft.com/documentation/videos/episode-177-more-api-management-features-with-vlad-vinogradsky/) et avançons too34:30. Démarrer à 31:50 toosee une vue d’ensemble de [hello API de prévision ciel foncé](https://developer.forecast.io/) utilisée pour cette démonstration.  
   
 ```xml  
-<!-- Copy this snippet into the outbound section to remove a number of data elements from the response received from the backend service based on the name of the api product -->  
+<!-- Copy this snippet into hello outbound section tooremove a number of data elements from hello response received from hello backend service based on hello name of hello api product -->  
 <choose>  
   <when condition="@(context.Response.StatusCode == 200 && context.Product.Name.Equals("Starter"))">  
     <set-body>@{  
@@ -140,27 +140,27 @@ Cette rubrique est une ressource de référence au sujet des stratégies Gestion
 |Élément|Description|Requis|  
 |-------------|-----------------|--------------|  
 |choose|Élément racine.|Oui|  
-|when|Condition à utiliser pour les parties `if` ou `ifelse` de la stratégie `choose`. Si la stratégie `choose` possède plusieurs sections `when`, elles sont évaluées de façon séquentielle. Une fois la `condition` d’un élément when évaluée à `true`, aucune autre condition `when` n’est évaluée.|Oui|  
-|otherwise|Contient l’extrait de stratégie à utiliser si aucune des conditions `when` n’est évaluée à `true`.|Non|  
+|when|Hello toouse condition pour hello `if` ou `ifelse` parties Hello `choose` stratégie. Si hello `choose` stratégie possède plusieurs `when` sections, elles sont évaluées de façon séquentielle. Une fois hello `condition` d’une lorsqu’élément évalue trop`true`, aucune autre `when` conditions sont évaluées.|Oui|  
+|otherwise|Contient des hello stratégie extrait toobe est utilisé si aucun des hello `when` conditions ont trop`true`.|Non|  
   
 ### <a name="attributes"></a>Attributs  
   
 |Attribut|Description|Requis|  
 |---------------|-----------------|--------------|  
-|condition="Boolean expression &#124; Boolean constant"|Constante ou expression booléenne à évaluer lorsque la déclaration de stratégie `when` qui l’englobe est évaluée.|Oui|  
+|condition="Boolean expression &#124; Boolean constant"|expression booléenne de Hello ou constante tooevaluated lorsque hello contenant `when` l’instruction de stratégie est évaluée.|Oui|  
   
 ###  <a name="ChooseUsage"></a> Utilisation  
- Cette stratégie peut être utilisée dans les [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) de stratégie suivantes.  
+ Cette stratégie peut être utilisée dans hello suivant stratégie [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Sections de la stratégie :** inbound, outbound, backend, on-error  
   
 -   **Étendues de la stratégie :** toutes les étendues  
   
 ##  <a name="ForwardRequest"></a> Forward request  
- La stratégie `forward-request` transfère la demande entrante au service principal spécifié dans le [contexte](api-management-policy-expressions.md#ContextVariables) de la demande. L’URL du service principal est spécifiée dans les [paramètres](https://azure.microsoft.com/documentation/articles/api-management-howto-create-apis/#configure-api-settings) de l’API et peut être modifiée à l’aide de la stratégie [set backend service](api-management-transformation-policies.md).  
+ Hello `forward-request` stratégie transfère hello entrants demande toohello service principal spécifié dans la demande de hello [contexte](api-management-policy-expressions.md#ContextVariables). URL du service principal Hello est spécifié dans hello API [paramètres](https://azure.microsoft.com/documentation/articles/api-management-howto-create-apis/#configure-api-settings) et peuvent être modifiés à l’aide de hello [définir le service principal](api-management-transformation-policies.md) stratégie.  
   
 > [!NOTE]
->  En cas de suppression cette stratégie, la demande n’est pas transférée au service principal et les stratégies de la section outbound sont évaluées immédiatement après la réussite des stratégies de la section inbound.  
+>  Supprimer les résultats de cette stratégie de demande hello ne pas transmis principal toohello service et hello des stratégies dans la section sortante de hello sont évaluées immédiatement à l’achèvement réussi de hello de stratégies de hello hello entrants de section.  
   
 ### <a name="policy-statement"></a>Instruction de la stratégie  
   
@@ -171,7 +171,7 @@ Cette rubrique est une ressource de référence au sujet des stratégies Gestion
 ### <a name="examples"></a>Exemples  
   
 #### <a name="example"></a>Exemple  
- La stratégie au niveau de l’API suivante transfère toutes les demandes au service principal avec un délai d’expiration de 60 secondes.  
+ Hello stratégie au niveau d’API suivante transfère toutes les demandes de service principal de toohello avec un intervalle de délai d’attente de 60 secondes.  
   
 ```xml  
 <!-- api level -->  
@@ -190,7 +190,7 @@ Cette rubrique est une ressource de référence au sujet des stratégies Gestion
 ```  
   
 #### <a name="example"></a>Exemple  
- Cette stratégie au niveau de l’opération utilise l’élément `base` pour hériter de la stratégie backend de l’étendue au niveau de l’API parente.  
+ Stratégie de niveau de cette opération utilise hello `base` stratégie de serveur principal élément tooinherit hello à partir de l’étendue de niveau parent API hello.  
   
 ```xml  
 <!-- operation level -->  
@@ -209,7 +209,7 @@ Cette rubrique est une ressource de référence au sujet des stratégies Gestion
 ```  
   
 #### <a name="example"></a>Exemple  
- Cette stratégie au niveau de l’opération transfère explicitement toutes les demandes au service principal avec un délai d’expiration de 120 secondes et n’hérite pas de la stratégie principale au niveau de l’API parente.  
+ Stratégie de niveau de cette opération transfère tous les service principal toohello de demandes avec un délai d’attente de 120 explicitement et n’hérite pas de parent de hello stratégie principales au niveau d’API.  
   
 ```xml  
 <!-- operation level -->  
@@ -219,7 +219,7 @@ Cette rubrique est une ressource de référence au sujet des stratégies Gestion
     </inbound>  
     <backend>  
         <forward-request timeout="120"/>   
-        <!-- effective policy. note the absence of <base/> -->  
+        <!-- effective policy. note hello absence of <base/> -->  
     </backend>  
     <outbound>  
         <base/>          
@@ -229,7 +229,7 @@ Cette rubrique est une ressource de référence au sujet des stratégies Gestion
 ```  
   
 #### <a name="example"></a>Exemple  
- Cette stratégie au niveau de l’opération ne transmet pas de demandes au service principal.  
+ Stratégie de niveau de cette opération ne transfère pas les demandes de service principal de toohello.  
   
 ```xml  
 <!-- operation level -->  
@@ -238,7 +238,7 @@ Cette rubrique est une ressource de référence au sujet des stratégies Gestion
         <base/>  
     </inbound>  
     <backend>  
-        <!-- no forwarding to backend -->  
+        <!-- no forwarding toobackend -->  
     </backend>  
     <outbound>  
         <base/>          
@@ -257,18 +257,18 @@ Cette rubrique est une ressource de référence au sujet des stratégies Gestion
   
 |Attribut|Description|Requis|Default|  
 |---------------|-----------------|--------------|-------------|  
-|timeout="integer"|Délai d’expiration en secondes avant l’échec de l’appel au service principal.|Non|Aucun délai d’expiration|  
-|follow-redirects="true &#124; false"|Indique si les redirections à partir du service principal sont suivies par la passerelle ou renvoyées à l’appelant.|Non|false|  
+|timeout="integer"|intervalle de délai d’attente Hello en secondes avant que le service principal de hello appel toohello échoue.|Non|Aucun délai d’expiration|  
+|follow-redirects="true &#124; false"|Spécifie si les redirections à partir du service principal de hello sont suivies par la passerelle de hello ou retournées toohello appelant.|Non|false|  
   
 ### <a name="usage"></a>Usage  
- Cette stratégie peut être utilisée dans les [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) de stratégie suivantes.  
+ Cette stratégie peut être utilisée dans hello suivant stratégie [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Sections de la stratégie :** backend  
   
 -   **Étendues de la stratégie :** toutes les étendues  
   
 ##  <a name="LimitConcurrency"></a> Limit concurrency  
- La stratégie `limit-concurrency` empêche les stratégies incluses d’exécuter plus de requêtes simultanées que le nombre spécifié. En cas de dépassement du seuil, les requêtes sont ajoutées à la file d’attente jusqu’à ce que la longueur maximale de cette dernière soit atteinte. Lorsque la file est pleine, les nouvelles requêtes échouent immédiatement.
+ Hello `limit-concurrency` stratégie empêche entre les stratégies de s’exécuter par plusieurs hello du nombre spécifié de demandes à un moment donné. Fonction dépassant le seuil de hello, nouvelles demandes sont ajoutés tooa file d’attente jusqu'à ce que la longueur de file d’attente maximale hello est atteint. Lorsque la file est pleine, les nouvelles requêtes échouent immédiatement.
   
 ###  <a name="LimitConcurrencyStatement"></a> Instruction de la stratégie  
   
@@ -281,7 +281,7 @@ Cette rubrique est une ressource de référence au sujet des stratégies Gestion
 ### <a name="examples"></a>Exemples  
   
 ####  <a name="ChooseExample"></a> Exemple  
- L’exemple suivant montre comment limiter le nombre de requêtes transmises à un serveur principal en fonction de la valeur d’une variable contextuelle.
+ Hello exemple suivant montre comment nombre toolimit de demandes transmises principal tooa selon la valeur hello d’une variable contextuelle.
  
 ```xml  
 <policies>
@@ -305,35 +305,35 @@ Cette rubrique est une ressource de référence au sujet des stratégies Gestion
   
 |Attribut|Description|Requis|Default|  
 |---------------|-----------------|--------------|--------------|  
-|key|Une chaîne. Expression autorisée. Spécifie l’étendue de la simultanéité. Peut être partagée par plusieurs stratégies.|Oui|N/A|  
-|max-count|Nombre entier. Spécifie le nombre maximal de requêtes autorisées à entrer dans la stratégie.|Oui|N/A|  
-|timeout|Nombre entier. Expression autorisée. Spécifie le nombre de secondes pendant lesquelles une requête doit attendre avant d’échouer avec l’erreur « 403 Too Many Requests » (Trop de requêtes).|Non|Infini|  
-|max-queue-length|Nombre entier. Expression autorisée. Spécifie la longueur maximale de la file d’attente. Les requêtes entrantes essayant d’entrer dans cette stratégie échouent avec l’erreur « 403 Too Many Request » (Trop de requêtes) dès que la file est pleine.|Non|Infini|  
+|key|Une chaîne. Expression autorisée. Spécifie l’étendue d’accès concurrentiel hello. Peut être partagée par plusieurs stratégies.|Oui|N/A|  
+|max-count|Nombre entier. Spécifie un nombre maximal de demandes autorisées stratégie de hello tooenter.|Oui|N/A|  
+|timeout|Nombre entier. Expression autorisée. Spécifie le nombre de hello de secondes pendant lesquelles une demande doit attendre tooenter avant d’échouer avec une étendue de « 403 trop grand nombre de demandes »|Non|Infini|  
+|max-queue-length|Nombre entier. Expression autorisée. Spécifie la longueur de file d’attente maximale hello. Les demandes entrantes lors de la tentative tooenter cette stratégie va se terminer avec « 403 trop grand nombre de demandes « immédiatement lorsque la file d’attente hello est épuisée.|Non|Infini|  
   
 ###  <a name="ChooseUsage"></a> Utilisation  
- Cette stratégie peut être utilisée dans les [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) de stratégie suivantes.  
+ Cette stratégie peut être utilisée dans hello suivant stratégie [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Sections de la stratégie :** inbound, outbound, backend, on-error  
   
 -   **Étendues de la stratégie :** toutes les étendues  
 
-##  <a name="log-to-eventhub"></a> Log to Event Hub  
- La stratégie `log-to-eventhub` envoie des messages au format spécifié à un Event Hub défini par une entité Enregistreur d’événements. Comme son nom l’indique, la stratégie est utilisée pour enregistrer certaines informations sur le contexte de la réponse ou de la demande à des fins d’analyse en ligne ou hors ligne.  
+##  <a name="log-to-eventhub"></a>Journal tooEvent Hub  
+ Hello `log-to-eventhub` envoie stratégie messages Bonjour spécifiés format tooan concentrateur d’événements définis par une entité de l’enregistreur d’événements. Comme son nom l’indique, la stratégie de hello est utilisé pour l’enregistrement sélectionné demande ou réponse les informations de contexte pour l’analyse en ligne ou hors connexion.  
   
 > [!NOTE]
->  Vous trouverez un guide de configuration étape par étape d’un Event Hub et des événements de journalisation à la page [Guide pratique de l’enregistrement d’événements de la Gestion des API avec Azure Event Hubs](https://azure.microsoft.com/documentation/articles/api-management-howto-log-event-hubs/).  
+>  Pour obtenir un guide pas à pas sur la configuration d’un concentrateur d’événements et de journalisation des événements, consultez [comment toolog les événements de gestion des API avec Azure Event Hubs](https://azure.microsoft.com/documentation/articles/api-management-howto-log-event-hubs/).  
   
 ### <a name="policy-statement"></a>Instruction de la stratégie  
   
 ```xml  
-<log-to-eventhub logger-id="id of the logger entity" partition-id="index of the partition where messages are sent" partition-key="value used for partition assignment">  
-  Expression returning a string to be logged  
+<log-to-eventhub logger-id="id of hello logger entity" partition-id="index of hello partition where messages are sent" partition-key="value used for partition assignment">  
+  Expression returning a string toobe logged  
 </log-to-eventhub>  
   
 ```  
   
 ### <a name="example"></a>Exemple  
- Toute chaîne peut être utilisée comme valeur à consigner dans Event Hubs. Dans cet exemple, la date et l’heure, le nom de service de déploiement, l’ID de la demande, l’adresse IP et le nom de l’opération de tous les appels inbound sont consignés dans l’Enregistreur d’événements Event Hubs avec l’ID `contoso-logger`.  
+ Toute chaîne peut être utilisée en tant que hello valeur toobe est enregistré dans les concentrateurs d’événements. Dans cet exemple hello date et l’heure, le nom de service de déploiement, id de demande, adresse ip et nom de l’opération pour tous les appels entrants sont concentrateur d’événements connecté toohello journal enregistré avec hello `contoso-logger` id.  
   
 ```xml  
 <policies>  
@@ -351,25 +351,25 @@ Cette rubrique est une ressource de référence au sujet des stratégies Gestion
   
 |Élément|Description|Requis|  
 |-------------|-----------------|--------------|  
-|log-to-eventhub|Élément racine. La valeur de cet élément est la chaîne à consigner dans votre Event Hub.|Oui|  
+|log-to-eventhub|Élément racine. valeur Hello de cet élément est un concentrateur d’événements hello chaîne toolog tooyour.|Oui|  
   
 ### <a name="attributes"></a>Attributs  
   
 |Attribut|Description|Requis|  
 |---------------|-----------------|--------------|  
-|logger-id|ID de l’Enregistreur d’événements inscrit auprès de votre service Gestion des API.|Oui|  
-|partition-id|Spécifie l’index de la partition où les messages sont envoyés.|facultatif. Cet attribut peut ne pas être utilisé si `partition-key` est utilisé.|  
-|partition-key|Spécifie la valeur utilisée pour l’affectation de partitions lorsque des messages sont envoyés.|facultatif. Cet attribut peut ne pas être utilisé si `partition-id` est utilisé.|  
+|logger-id|id de Hello Hello enregistreur d’événements inscrits auprès du service Gestion des API.|Oui|  
+|partition-id|Spécifie l’index hello de partition hello où les messages sont envoyés.|facultatif. Cet attribut peut ne pas être utilisé si `partition-key` est utilisé.|  
+|partition-key|Spécifie la valeur hello utilisé pour l’attribution de partition lorsque des messages sont envoyés.|facultatif. Cet attribut peut ne pas être utilisé si `partition-id` est utilisé.|  
   
 ### <a name="usage"></a>Usage  
- Cette stratégie peut être utilisée dans les [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) de stratégie suivantes.  
+ Cette stratégie peut être utilisée dans hello suivant stratégie [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Sections de la stratégie :** inbound, outbound, backend, on-error  
   
 -   **Étendues de la stratégie :** toutes les étendues  
 
 ##  <a name="mock-response"></a> Réponse factice  
-La `mock-response`, comme le nom l’indique, est utilisée pour simuler des API et des opérations. Elle interrompt l’exécution du pipeline et retourne une réponse factice à l’appelant. La stratégie essaie toujours de renvoyer des réponses de la plus haute fidélité. Elle préfère les exemples de contenu de réponse, le cas échéant. Elle génère des exemples de réponses à partir de schémas, lorsque les schémas sont fournis et les exemples ne le sont pas. Si aucun exemple ou schéma n’est trouvé, des réponses sans contenu sont retournées.
+Hello `mock-response`, en tant que nom de hello implique, est utilisé toomock API et les opérations. Il interrompt l’exécution du pipeline normal et retourne un appelant toohello de réponse factices. stratégie de Hello tente toujours de réponses tooreturn de plus haute fidélité. Elle préfère les exemples de contenu de réponse, le cas échéant. Elle génère des exemples de réponses à partir de schémas, lorsque les schémas sont fournis et les exemples ne le sont pas. Si aucun exemple ou schéma n’est trouvé, des réponses sans contenu sont retournées.
   
 ### <a name="policy-statement"></a>Instruction de la stratégie  
   
@@ -382,11 +382,11 @@ La `mock-response`, comme le nom l’indique, est utilisée pour simuler des API
   
 ```xml  
 <!-- Returns 200 OK status code. Content is based on an example or schema, if provided for this 
-status code. First found content type is used. If no example or schema is found, the content is empty. -->
+status code. First found content type is used. If no example or schema is found, hello content is empty. -->
 <mock-response/>
 
 <!-- Returns 200 OK status code. Content is based on an example or schema, if provided for this 
-status code and media type. If no example or schema found, the content is empty. -->
+status code and media type. If no example or schema found, hello content is empty. -->
 <mock-response status-code='200' content-type='application/json'/>  
 ```  
   
@@ -400,18 +400,18 @@ status code and media type. If no example or schema found, the content is empty.
   
 |Attribut|Description|Requis|Default|  
 |---------------|-----------------|--------------|--------------|  
-|status-code|Spécifie le code d’état de réponse et permet de sélectionner l’exemple ou le schéma correspondant.|Non|200|  
-|content-type|Spécifie la valeur d’état de réponse `Content-Type` et permet de sélectionner l’exemple ou le schéma correspondant.|Non|Aucune|  
+|status-code|Spécifie le code d’état de réponse et exemple tooselect utilisé ou le schéma.|Non|200|  
+|content-type|Spécifie `Content-Type` valeur d’en-tête de réponse et est utilisé tooselect exemple ou le schéma.|Non|Aucune|  
   
-### <a name="usage"></a>Utilisation  
- Cette stratégie peut être utilisée dans les [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) de stratégie suivantes.  
+### <a name="usage"></a>Usage  
+ Cette stratégie peut être utilisée dans hello suivant stratégie [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Sections de la stratégie :** inbound, outbound, on-error  
   
 -   **Étendues de la stratégie :** toutes les étendues
 
 ##  <a name="Retry"></a> Retry  
- La stratégie `retry` exécute ses stratégies enfants une fois, puis retente leur exécution jusqu’à ce que la `condition` de la nouvelle tentative devienne `false` ou que le `count` de nouvelles tentatives soit épuisé.  
+ Hello `retry` stratégie exécute une fois les stratégies de ses enfants et puis de tentatives de leur exécution jusqu'à ce que la nouvelle tentative de hello `condition` devient `false` ou réessayez `count` est épuisé.  
   
 ### <a name="policy-statement"></a>Instruction de la stratégie  
   
@@ -430,7 +430,7 @@ status code and media type. If no example or schema found, the content is empty.
 ```  
   
 ### <a name="example"></a>Exemple  
- Dans l’exemple suivant, le transfert de la demande est retenté jusqu’à dix fois suivant un algorithme de nouvelles tentatives exponentiel. Étant donné que `first-fast-retry` a la valeur false, toutes les nouvelles tentatives sont soumises à l’algorithme de nouvelles tentatives exponentiel.  
+ Bonjour suivant exemple demande forewarding est retentée des tooten heures à l’aide d’algorithme de tentative exponentielle. Étant donné que `first-fast-retry` a la valeur toofalse, toutes les nouvelles tentatives sont l’algorithme de tentative de sujet toohello exponsntial.  
   
 ```xml  
   
@@ -457,26 +457,26 @@ status code and media type. If no example or schema found, the content is empty.
 |Attribut|Description|Requis|Default|  
 |---------------|-----------------|--------------|-------------|  
 |condition|[Expression](api-management-policy-expressions.md) ou littéral booléen spécifiant si les nouvelles tentatives doivent être arrêtées (`false`) ou poursuivies (`true`).|Oui|N/A|  
-|count|Nombre positif spécifiant le nombre maximal de nouvelles tentatives à effectuer.|Oui|N/A|  
-|interval|Nombre positif en secondes spécifiant le délai d’attente entre les tentatives.|Oui|N/A|  
-|max-interval|Nombre positif en secondes spécifiant le délai d’attente maximal entre les tentatives. Il est utilisé pour implémenter un algorithme de nouvelles tentatives exponentiel.|Non|N/A|  
-|delta|Nombre positif en secondes spécifiant l’incrément du délai d’attente. Il est utilisé pour implémenter les algorithmes de nouvelles tentatives linéaires et exponentiels.|Non|N/A|  
-|first-fast-retry|S’il a la valeur `true`, la première des nouvelles tentatives est effectuée immédiatement.|Non|`false`|  
+|count|Un nombre positif spécifiant hello le nombre maximal de nouvelles tentatives tooattempt.|Oui|N/A|  
+|interval|Un nombre positif, en secondes, en spécifiant le délai d’attente hello entre chaque tentative hello.|Oui|N/A|  
+|max-interval|Un nombre positif, en secondes, en spécifiant le délai d’attente maximal du hello entre chaque tentative hello. Il est tooimplement utilisé un algorithme de nouvelle tentative exponentielle.|Non|N/A|  
+|delta|Un nombre positif, en secondes spécifiant l’incrément d’intervalle d’attente hello. Il s’agit des algorithmes de nouvelle tentative linéaire et exponentielle hello tooimplement utilisé.|Non|N/A|  
+|first-fast-retry|Si défini trop `true` , hello première nouvelle tentative est effectuée immédiatement.|Non|`false`|  
   
 > [!NOTE]
->  Lorsque seul `interval` est spécifié, les nouvelles tentatives sont effectuées à intervalles **fixes**.  
->  Lorsque seuls `interval` et `delta` sont spécifiés, un algorithme de nouvelles tentatives à intervalle **linéaire** est utilisé, suivant lequel le temps d’attente entre les tentatives est calculé selon la formule suivante : `interval + (count - 1)*delta`.  
->  Lorsque `interval`, `max-interval` et `delta` sont spécifiés, l’algorithme de nouvelles tentatives à intervalle **exponentiel** s’applique, suivant lequel le temps d’attente entre les tentatives augmente de façon exponentielle entre la valeur `interval` et la valeur `max-interval` selon la formule suivante : `min(interval + (2^count - 1) * random(delta * 0.8, delta * 1.2), max-interval)`.  
+>  Lorsque uniquement hello `interval` est spécifié, **fixe** nouvelles tentatives d’intervalle sont effectuées.  
+>  Lorsque uniquement hello `interval` et `delta` sont spécifiés, un **linéaire** algorithme de tentative d’intervalle est utilisé, où les temps d’attente entre deux tentatives est calculé hello en fonction de formule - suivante `interval + (count - 1)*delta`.  
+>  Hello lorsque `interval`, `max-interval` et `delta` sont spécifiés, **exponentielle** algorithme de tentative d’intervalle est appliqué, où les temps d’attente hello entre les tentatives de hello augmentent de manière exponentielle à partir de la valeur hello `interval`toohello valeur `max-interval` selon toohello suivant forumula - `min(interval + (2^count - 1) * random(delta * 0.8, delta * 1.2), max-interval)`.  
   
 ### <a name="usage"></a>Usage  
- Cette stratégie peut être utilisée dans les [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) de stratégie suivantes. Notez que des restrictions d’utilisation des stratégies enfants seront héritées par cette stratégie.  
+ Cette stratégie peut être utilisée dans hello suivant stratégie [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) . Notez que des restrictions d’utilisation des stratégies enfants seront héritées par cette stratégie.  
   
 -   **Sections de la stratégie :** inbound, outbound, backend, on-error  
   
 -   **Étendues de la stratégie :** toutes les étendues  
   
 ##  <a name="ReturnResponse"></a> Return response  
- La stratégie `return-response` abandonne l’exécution du pipeline et renvoie une réponse par défaut ou personnalisée à l’appelant. La réponse par défaut est `200 OK` sans corps. La réponse personnalisée peut être spécifiée par le biais d’instructions de stratégie ou d’une variable de contexte. Lorsque les deux sont fournies, la réponse contenue dans la variable de contexte est modifiée par les instructions de stratégie avant d’être renvoyée à l’appelant.  
+ Hello `return-response` stratégie interrompt l’exécution du pipeline et retourne une valeur par défaut ou un appelant toohello de réponse personnalisée. La réponse par défaut est `200 OK` sans corps. La réponse personnalisée peut être spécifiée par le biais d’instructions de stratégie ou d’une variable de contexte. Lorsque les deux sont fournis, réponse hello contenue dans la variable de contexte hello est modifié par les instructions de stratégie hello avant d’être retourné à l’appelant de toohello.  
   
 ### <a name="policy-statement"></a>Instruction de la stratégie  
   
@@ -514,17 +514,17 @@ status code and media type. If no example or schema found, the content is empty.
   
 |Attribut|Description|Requis|  
 |---------------|-----------------|--------------|  
-|response-variable-name|Nom de la variable de contexte référencée à partir, par exemple, d’une stratégie [send-request](api-management-advanced-policies.md#SendRequest) en amont et contenant un objet `Response`.|facultatif.|  
+|response-variable-name|Hello nom de variable de contexte hello référencé à partir, par exemple, un en amont [demande d’envoi](api-management-advanced-policies.md#SendRequest) stratégie et contenant un `Response` objet|facultatif.|  
   
 ### <a name="usage"></a>Usage  
- Cette stratégie peut être utilisée dans les [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) de stratégie suivantes.  
+ Cette stratégie peut être utilisée dans hello suivant stratégie [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Sections de la stratégie :** inbound, outbound, backend, on-error  
   
 -   **Étendues de la stratégie :** toutes les étendues  
   
 ##  <a name="SendOneWayRequest"></a> Send one way request  
- La stratégie `send-one-way-request` envoie une demande à l’URL indiquée sans attendre de réponse.  
+ Hello `send-one-way-request` stratégie envoie la demande hello fourni toohello spécifié des URL sans attendre une réponse.  
   
 ### <a name="policy-statement"></a>Instruction de la stratégie  
   
@@ -539,7 +539,7 @@ status code and media type. If no example or schema found, the content is empty.
 ```  
   
 ### <a name="example"></a>Exemple  
- Cet exemple de stratégie montre un exemple d’utilisation de la stratégie `send-one-way-request` pour envoyer un message à une salle de conversation Slack si le code de la réponse HTTP est supérieur ou égal à 500. Pour plus d’informations sur cet exemple, consultez la page [Utilisation de services externes à partir du service Gestion des API Azure](https://azure.microsoft.com/documentation/articles/api-management-sample-send-request/).  
+ Cette stratégie de l’exemple montre un exemple d’utilisation hello `send-one-way-request` stratégie toosend message tooa Slack salle de conversation si hello code de réponse HTTP est supérieur ou égal too500. Pour plus d’informations sur cet exemple, consultez [à l’aide des services externes à partir de hello service de gestion des API Azure](https://azure.microsoft.com/documentation/articles/api-management-sample-send-request/).  
   
 ```xml  
 <choose>  
@@ -572,28 +572,28 @@ status code and media type. If no example or schema found, the content is empty.
 |Élément|Description|Requis|  
 |-------------|-----------------|--------------|  
 |send-one-way-request|Élément racine.|Oui|  
-|url|URL de la demande.|Non si mode=copy ; sinon, oui.|  
-|statique|Méthode HTTP de la demande.|Non si mode=copy ; sinon, oui.|  
+|url|Hello l’URL de demande de hello.|Non si mode=copy ; sinon, oui.|  
+|method|méthode HTTP pour la demande de hello de Hello.|Non si mode=copy ; sinon, oui.|  
 |en-tête|En-tête de demande. Utilisez un élément d’en-tête pour chaque en-tête de demande.|Non|  
-|body|Corps de la demande.|Non|  
+|body|corps de la demande Hello.|Non|  
   
 ### <a name="attributes"></a>Attributs  
   
 |Attribut|Description|Requis|Default|  
 |---------------|-----------------|--------------|-------------|  
-|mode="string"|Détermine s’il s’agit d’une nouvelle demande ou d’une copie de la demande actuelle. En mode outbound, mode=copy n’initialise pas le corps de la demande.|Non|Nouveau|  
-|name|Spécifie le nom de l’en-tête à définir.|Oui|N/A|  
-|exists-action|Spécifie l’action à entreprendre lorsque l’en-tête est déjà spécifié. Cet attribut doit avoir une des valeurs suivantes.<br /><br /> - override : remplace la valeur de l’en-tête actuel.<br />- skip : ne remplace pas la valeur de l’en-tête actuel.<br />- append : ajoute la valeur à celle de l’en-tête actuel.<br />- delete : supprime l’en-tête de la demande.<br /><br /> S’il a la valeur `override`, l’inscription de plusieurs entrées portant le même nom fait que l’en-tête est défini selon toutes les entrées (qui figurent plusieurs fois) ; seules les valeurs listées seront définies dans le résultat.|Non|override|  
+|mode="string"|Détermine s’il s’agit d’une nouvelle demande ou une copie de la demande en cours de hello. En mode de sortie, mode = copie n’initialise pas le corps de la demande hello.|Non|Nouveau|  
+|name|Spécifie le nom hello de hello en-tête toobe ensemble.|Oui|N/A|  
+|exists-action|Spécifie quelles tootake action lorsque hello en-tête est déjà spécifié. Cet attribut doit avoir une des valeurs suivantes de hello.<br /><br /> -remplacer - valeur de hello remplace d’en-tête existant de hello.<br />-ignorer - ne remplace pas la valeur d’en-tête hello existant.<br />-Ajouter - ajoute la valeur d’en-tête existant hello valeur toohello.<br />-Supprimer - supprime les en-tête de hello de demande de hello.<br /><br /> Lorsque la valeur trop`override` l’inscription de plusieurs entrées avec hello même nom que les résultats dans l’en-tête de hello en cours en fonction tooall entrées (qui apparaissent plusieurs fois) ; seules les valeurs inscrites seront définies dans le résultat de hello.|Non|override|  
   
 ### <a name="usage"></a>Usage  
- Cette stratégie peut être utilisée dans les [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) de stratégie suivantes.  
+ Cette stratégie peut être utilisée dans hello suivant stratégie [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Sections de la stratégie :** inbound, outbound, backend, on-error  
   
 -   **Étendues de la stratégie :** toutes les étendues  
   
 ##  <a name="SendRequest"></a> Send request  
- La stratégie `send-request` envoie la demande fournie à l’URL spécifiée, sans attendre plus longtemps que la valeur du délai d’expiration définie.  
+ Hello `send-request` stratégie envoie la demande hello fourni toohello spécifié l’URL, en attente n’est plus que hello définie la valeur de délai d’attente.  
   
 ### <a name="policy-statement"></a>Instruction de la stratégie  
   
@@ -609,14 +609,14 @@ status code and media type. If no example or schema found, the content is empty.
 ```  
   
 ### <a name="example"></a>Exemple  
- Cet exemple montre un moyen de vérifier un jeton de référence avec un serveur d’autorisation. Pour plus d’informations sur cet exemple, consultez la page [Utilisation de services externes à partir du service Gestion des API Azure](https://azure.microsoft.com/documentation/articles/api-management-sample-send-request/).  
+ Cet exemple montre une façon tooverify un jeton de référence avec un serveur d’autorisation. Pour plus d’informations sur cet exemple, consultez [à l’aide des services externes à partir de hello service de gestion des API Azure](https://azure.microsoft.com/documentation/articles/api-management-sample-send-request/).  
   
 ```xml  
 <inbound>  
   <!-- Extract Token from Authorization header parameter -->  
   <set-variable name="token" value="@(context.Request.Headers.GetValueOrDefault("Authorization","scheme param").Split(' ').Last())" />  
   
-  <!-- Send request to Token Server to validate token (see RFC 7662) -->  
+  <!-- Send request tooToken Server toovalidate token (see RFC 7662) -->  
   <send-request mode="new" response-variable-name="tokenstate" timeout="20" ignore-error="true">  
     <set-url>https://microsoft-apiappec990ad4c76641c6aea22f566efc5a4e.azurewebsites.net/introspection</set-url>  
     <set-method>POST</set-method>  
@@ -651,31 +651,31 @@ status code and media type. If no example or schema found, the content is empty.
 |Élément|Description|Requis|  
 |-------------|-----------------|--------------|  
 |send-request|Élément racine.|Oui|  
-|url|URL de la demande.|Non si mode=copy ; sinon, oui.|  
-|statique|Méthode HTTP de la demande.|Non si mode=copy ; sinon, oui.|  
+|url|Hello l’URL de demande de hello.|Non si mode=copy ; sinon, oui.|  
+|method|méthode HTTP pour la demande de hello de Hello.|Non si mode=copy ; sinon, oui.|  
 |en-tête|En-tête de demande. Utilisez un élément d’en-tête pour chaque en-tête de demande.|Non|  
-|body|Corps de la demande.|Non|  
+|body|corps de la demande Hello.|Non|  
   
 ### <a name="attributes"></a>Attributs  
   
 |Attribut|Description|Requis|Default|  
 |---------------|-----------------|--------------|-------------|  
-|mode="string"|Détermine s’il s’agit d’une nouvelle demande ou d’une copie de la demande actuelle. En mode outbound, mode=copy n’initialise pas le corps de la demande.|Non|Nouveau|  
+|mode="string"|Détermine s’il s’agit d’une nouvelle demande ou une copie de la demande en cours de hello. En mode de sortie, mode = copie n’initialise pas le corps de la demande hello.|Non|Nouveau|  
 |response-variable-name="string"|En son absence, `context.Response` est utilisé.|Non|N/A|  
-|timeout="integer"|Délai d’expiration en secondes avant l’échec de l’appel à l’URL.|Non|60|  
-|ignore-error|S’il a la valeur true et que la demande aboutit à une erreur :<br /><br /> - Si response-variable-name a été spécifié, il contiendra une valeur Null.<br />- Si response-variable-nam n’est pas spécifié, context.Request ne sera pas mis à jour.|Non|false|  
-|name|Spécifie le nom de l’en-tête à définir.|Oui|N/A|  
-|exists-action|Spécifie l’action à entreprendre lorsque l’en-tête est déjà spécifié. Cet attribut doit avoir une des valeurs suivantes.<br /><br /> - override : remplace la valeur de l’en-tête actuel.<br />- skip : ne remplace pas la valeur de l’en-tête actuel.<br />- append : ajoute la valeur à celle de l’en-tête actuel.<br />- delete : supprime l’en-tête de la demande.<br /><br /> S’il a la valeur `override`, l’inscription de plusieurs entrées portant le même nom fait que l’en-tête est défini selon toutes les entrées (qui figurent plusieurs fois) ; seules les valeurs listées seront définies dans le résultat.|Non|override|  
+|timeout="integer"|intervalle de délai d’attente Hello en secondes avant l’appel de hello toohello URL échoue.|Non|60|  
+|ignore-error|Si la valeur true et hello demande entraîne une erreur :<br /><br /> - Si response-variable-name a été spécifié, il contiendra une valeur Null.<br />- Si response-variable-nam n’est pas spécifié, context.Request ne sera pas mis à jour.|Non|false|  
+|name|Spécifie le nom hello de hello en-tête toobe ensemble.|Oui|N/A|  
+|exists-action|Spécifie quelles tootake action lorsque hello en-tête est déjà spécifié. Cet attribut doit avoir une des valeurs suivantes de hello.<br /><br /> -remplacer - valeur de hello remplace d’en-tête existant de hello.<br />-ignorer - ne remplace pas la valeur d’en-tête hello existant.<br />-Ajouter - ajoute la valeur d’en-tête existant hello valeur toohello.<br />-Supprimer - supprime les en-tête de hello de demande de hello.<br /><br /> Lorsque la valeur trop`override` l’inscription de plusieurs entrées avec hello même nom que les résultats dans l’en-tête de hello en cours en fonction tooall entrées (qui apparaissent plusieurs fois) ; seules les valeurs inscrites seront définies dans le résultat de hello.|Non|override|  
   
 ### <a name="usage"></a>Usage  
- Cette stratégie peut être utilisée dans les [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) de stratégie suivantes.  
+ Cette stratégie peut être utilisée dans hello suivant stratégie [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Sections de la stratégie :** inbound, outbound, backend, on-error  
   
 -   **Étendues de la stratégie :** toutes les étendues  
   
 ##  <a name="SetHttpProxy"></a> Définir le proxy HTTP  
- La stratégie `proxy` vous permet de router les demandes transférées aux back-ends via un proxy HTTP. Seul HTTP (et pas HTTPS) est pris en charge entre la passerelle et le proxy. Authentification de base et NTLM uniquement.
+ Hello `proxy` stratégie vous permet de tooroute les toobackends de demandes transmises via un proxy HTTP. Seul le protocole HTTP (pas le protocole HTTPS) est prise en charge entre hello et de proxy de hello. Authentification de base et NTLM uniquement.
   
 ### <a name="policy-statement"></a>Instruction de la stratégie  
   
@@ -685,7 +685,7 @@ status code and media type. If no example or schema found, the content is empty.
 ```  
   
 ### <a name="example"></a>Exemple  
-Notez l’utilisation de [propriétés](api-management-howto-properties.md) en tant que valeurs du nom d’utilisateur et du mot de passe pour éviter de stocker des informations sensibles dans le document de stratégie.  
+Notez que hello [propriétés](api-management-howto-properties.md) en tant que valeurs de hello tooavoid nom d’utilisateur et mot de passe le stockage des informations sensibles dans le document de stratégie hello.  
   
 ```xml  
 <proxy url="http://192.168.1.1:8080" username={{username}} password={{password}} />
@@ -702,19 +702,19 @@ Notez l’utilisation de [propriétés](api-management-howto-properties.md) en t
   
 |Attribut|Description|Requis|Default|  
 |---------------|-----------------|--------------|-------------|  
-|url="chaîne"|URL du proxy sous la forme http://host:port.|Oui|N/A |  
-|username="chaîne"|Nom d’utilisateur à utiliser pour l’authentification auprès du proxy.|Non|N/A |  
-|password="chaîne"|Mot de passe à utiliser pour l’authentification auprès du proxy.|Non|N/A |  
+|url="chaîne"|URL du proxy sous forme http://Host :port) hello.|Oui|N/A |  
+|username="chaîne"|Toobe de nom d’utilisateur utilisé pour l’authentification avec le proxy hello.|Non|N/A |  
+|password="chaîne"|Toobe de mot de passe utilisé pour l’authentification avec le proxy hello.|Non|N/A |  
 
 ### <a name="usage"></a>Usage  
- Cette stratégie peut être utilisée dans les [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) de stratégie suivantes.  
+ Cette stratégie peut être utilisée dans hello suivant stratégie [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Sections de la stratégie :** inbound  
   
 -   **Étendues de la stratégie :** toutes les étendues  
 
 ##  <a name="SetRequestMethod"></a> Set request method  
- La stratégie `set-method` permet de modifier la méthode d’une requête HTTP.  
+ Hello `set-method` stratégie vous permet de méthode de demande toochange hello HTTP pour une demande.  
   
 ### <a name="policy-statement"></a>Instruction de la stratégie  
   
@@ -724,7 +724,7 @@ Notez l’utilisation de [propriétés](api-management-howto-properties.md) en t
 ```  
   
 ### <a name="example"></a>Exemple  
- Cet exemple de stratégie, qui utilise la stratégie `set-method`, montre un exemple d’envoi d’un message à une salle de conversation Slack si le code de la réponse HTTP est supérieur ou égal à 500. Pour plus d’informations sur cet exemple, consultez la page [Utilisation de services externes à partir du service Gestion des API Azure](https://azure.microsoft.com/documentation/articles/api-management-sample-send-request/).  
+ Cet exemple de stratégie qui utilise hello `set-method` stratégie montre un exemple d’envoi d’une salle de conversation Slack message tooa si hello code de réponse HTTP est supérieur à ou égal too500. Pour plus d’informations sur cet exemple, consultez [à l’aide des services externes à partir de hello service de gestion des API Azure](https://azure.microsoft.com/documentation/articles/api-management-sample-send-request/).  
   
 ```xml  
 <choose>  
@@ -756,17 +756,17 @@ Notez l’utilisation de [propriétés](api-management-howto-properties.md) en t
   
 |Élément|Description|Requis|  
 |-------------|-----------------|--------------|  
-|set-method|Élément racine. La valeur de l’élément spécifie la méthode HTTP.|Oui|  
+|set-method|Élément racine. valeur Hello d’élément de hello spécifie la méthode HTTP de hello.|Oui|  
   
 ### <a name="usage"></a>Usage  
- Cette stratégie peut être utilisée dans les [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) de stratégie suivantes.  
+ Cette stratégie peut être utilisée dans hello suivant stratégie [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Sections de la stratégie :** inbound, on-error  
   
 -   **Étendues de la stratégie :** toutes les étendues  
   
 ##  <a name="SetStatus"></a> Set status code  
- La stratégie `set-status` permet de donner la valeur spécifiée au code d’état HTTP.  
+ Hello `set-status` stratégie jeux hello HTTP état code toohello de valeur spécifiée.  
   
 ### <a name="policy-statement"></a>Instruction de la stratégie  
   
@@ -776,7 +776,7 @@ Notez l’utilisation de [propriétés](api-management-howto-properties.md) en t
 ```  
   
 ### <a name="example"></a>Exemple  
- Cet exemple montre comment renvoyer une réponse 401 si le jeton d’autorisation n’est pas valide. Pour plus d’informations, consultez la page [Utiliser des services externes à partir du service Gestion des API Azure](https://azure.microsoft.com/documentation/articles/api-management-sample-send-request/).  
+ Cet exemple montre comment tooreturn une réponse 401 si le jeton d’autorisation hello n’est pas valide. Pour plus d’informations, consultez [à l’aide des services externes à partir de hello service de gestion des API Azure](https://azure.microsoft.com/documentation/articles/api-management-sample-send-request/)  
   
 ```xml  
 <choose>  
@@ -802,18 +802,18 @@ Notez l’utilisation de [propriétés](api-management-howto-properties.md) en t
   
 |Attribut|Description|Requis|Default|  
 |---------------|-----------------|--------------|-------------|  
-|code="integer"|Code d’état HTTP à renvoyer.|Oui|N/A|  
-|reason="string"|Description du motif pour lequel le code d’état est renvoyé.|Oui|N/A|  
+|code="integer"|tooreturn de code de statut HTTP de Hello.|Oui|N/A|  
+|reason="string"|Description du motif hello pour retourner le code d’état hello.|Oui|N/A|  
   
 ### <a name="usage"></a>Usage  
- Cette stratégie peut être utilisée dans les [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) de stratégie suivantes.  
+ Cette stratégie peut être utilisée dans hello suivant stratégie [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Sections de la stratégie :** outbound, backend, on-error  
   
 -   **Étendues de la stratégie :** toutes les étendues  
 
 ##  <a name="set-variable"></a> Set variable  
- La stratégie `set-variable` déclare une variable de [contexte](api-management-policy-expressions.md#ContextVariables) et lui affecte une valeur spécifiée par le biais d’une [expression](api-management-policy-expressions.md) ou d’un littéral chaîne. Si l’expression contient un littéral, il sera converti en chaîne et le type de la valeur sera `System.String`.  
+ Hello `set-variable` stratégie déclare un [contexte](api-management-policy-expressions.md#ContextVariables) variable et lui assigne une valeur spécifiée via une [expression](api-management-policy-expressions.md) ou un littéral de chaîne. Si expression de hello contient un littéral, il sera converti tooa hello et la chaîne de valeur de hello sera `System.String`.  
   
 ###  <a name="set-variablePolicyStatement"></a> Instruction de la stratégie  
   
@@ -822,7 +822,7 @@ Notez l’utilisation de [propriétés](api-management-howto-properties.md) en t
 ```  
   
 ###  <a name="set-variableExample"></a> Exemple  
- L’exemple suivant montre une stratégie set variable dans la section inbound. Cette stratégie set variable crée une variable de [contexte](api-management-policy-expressions.md#ContextVariables) `isMobile` booléenne qui a la valeur true si l’en-tête de demande `User-Agent` contient le texte `iPad` ou `iPhone`.  
+ exemple Hello illustre une stratégie de variable définie dans hello entrants de section. Cette stratégie de variable définie crée un `isMobile` booléenne [contexte](api-management-policy-expressions.md#ContextVariables) variable a la valeur tootrue si hello `User-Agent` demande en-tête contient le texte hello `iPad` ou `iPhone`.  
   
 ```xml  
 <set-variable name="IsMobile" value="@(context.Request.Headers["User-Agent"].Contains("iPad") || context.Request.Headers["User-Agent"].Contains("iPhone"))" />  
@@ -838,18 +838,18 @@ Notez l’utilisation de [propriétés](api-management-howto-properties.md) en t
   
 |Attribut|Description|Requis|  
 |---------------|-----------------|--------------|  
-|name|Nom de la variable.|Oui|  
-|value|Valeur de la variable. Peut être une expression ou une valeur littérale.|Oui|  
+|name|nom de Hello de variable de hello.|Oui|  
+|value|valeur de Hello de variable de hello. Peut être une expression ou une valeur littérale.|Oui|  
   
 ### <a name="usage"></a>Usage  
- Cette stratégie peut être utilisée dans les [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) de stratégie suivantes.  
+ Cette stratégie peut être utilisée dans hello suivant stratégie [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Sections de la stratégie :** inbound, outbound, backend, on-error  
   
 -   **Étendues de la stratégie :** toutes les étendues  
   
 ###  <a name="set-variableAllowedTypes"></a> Types autorisés  
- Les expressions utilisées dans la stratégie `set-variable` doivent renvoyer un des types de base suivants.  
+ Les expressions utilisées dans hello `set-variable` stratégie doit retourner hello les types de base suivants.  
   
 -   System.Boolean  
   
@@ -914,7 +914,7 @@ Notez l’utilisation de [propriétés](api-management-howto-properties.md) en t
 -   System.DateTime?  
 
 ##  <a name="Trace"></a> Trace  
- La stratégie `trace` ajoute une chaîne à la sortie de [l’Inspecteur d’API](https://azure.microsoft.com/en-us/documentation/articles/api-management-howto-api-inspector/). La stratégie s’exécute uniquement lorsque le traçage est déclenché, c’est-à-dire que l’en-tête de la demande `Ocp-Apim-Trace` est présent et a la valeur `true` et que l’en-tête de la demande `Ocp-Apim-Subscription-Key` est présent et contient une clé valide associée au compte Administrateur.  
+ Hello `trace` stratégie ajoute une chaîne en hello [API inspecteur](https://azure.microsoft.com/en-us/documentation/articles/api-management-howto-api-inspector/) sortie. Hello s’appliquera uniquement lorsque le traçage est déclenché, c'est-à-dire `Ocp-Apim-Trace` en-tête de demande est présent et défini trop`true` et `Ocp-Apim-Subscription-Key` en-tête de demande est présent et contient une clé valide associée au compte d’administrateur hello.  
   
 ### <a name="policy-statement"></a>Instruction de la stratégie  
   
@@ -936,17 +936,17 @@ Notez l’utilisation de [propriétés](api-management-howto-properties.md) en t
   
 |Attribut|Description|Requis|Default|  
 |---------------|-----------------|--------------|-------------|  
-|source|Littéral chaîne significatif pour la visionneuse de trace, qui spécifie la source du message.|Oui|N/A|  
+|source|Visionneuse de trace toohello explicite littéral de chaîne et en spécifiant source hello de message de type hello.|Oui|N/A|  
   
 ### <a name="usage"></a>Usage  
- Cette stratégie peut être utilisée dans les [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) de stratégie suivantes.  
+ Cette stratégie peut être utilisée dans hello suivant stratégie [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) .  
   
 -   **Sections de la stratégie :** inbound, outbound, backend, on-error  
   
 -   **Étendues de la stratégie :** toutes les étendues  
   
 ##  <a name="Wait"></a> Wait  
- La stratégie `wait` exécute ses stratégies enfants immédiates en parallèle et attend la fin de la totalité ou de l’une de ses stratégies enfants immédiates pour se terminer. La stratégie d’attente peut avoir comme stratégies enfants immédiates les stratégies [Send request](api-management-advanced-policies.md#SendRequest), [Get value from cache](api-management-caching-policies.md#GetFromCacheByKey) et [Control flow](api-management-advanced-policies.md#choose).  
+ Hello `wait` stratégie exécute ses stratégies enfants immédiats en parallèle et attend que tout ou une de ses toocomplete de stratégies enfants immédiats avant la fin. Hello attente stratégie peut posséder ses stratégies enfants immédiats [demande d’envoi](api-management-advanced-policies.md#SendRequest), [obtenir la valeur à partir du cache](api-management-caching-policies.md#GetFromCacheByKey), et [flux de contrôle](api-management-advanced-policies.md#choose) stratégies.  
   
 ### <a name="policy-statement"></a>Instruction de la stratégie  
   
@@ -959,7 +959,7 @@ Notez l’utilisation de [propriétés](api-management-howto-properties.md) en t
 ```  
   
 ### <a name="example"></a>Exemple  
- Dans l’exemple suivant, deux stratégies `choose` sont les stratégies enfants immédiates de la stratégie `wait`. Ces deux stratégies `choose` s’exécutent en parallèle. Chaque stratégie `choose` essaie de récupérer une valeur en cache. En cas d’échec de cache, un service principal est appelé pour fournir la valeur. Dans cet exemple, la stratégie `wait` ne se termine pas tant que toutes ses stratégies enfants immédiates ne sont pas terminées, car l’attribut `for` a la valeur `all`.   Dans cet exemple, les variables de contexte (`execute-branch-one`, `value-one`, `execute-branch-two` et `value-two`) sont déclarées hors de l’étendue de cet exemple de stratégie.  
+ Bonjour exemple il y a deux `choose` stratégies en tant que stratégies des enfants immédiats de hello `wait` stratégie. Ces deux stratégies `choose` s’exécutent en parallèle. Chaque `choose` stratégie tente tooretrieve une valeur mise en cache. S’il existe une absence dans le cache, un service principal est tooprovide hello appelée « valeur ». Dans cette hello exemple `wait` stratégie ne se termine pas tant que toutes les stratégies de ses enfants immédiats d’effectuent, car hello `for` attribut est défini trop`all`.   Dans cette variables de contexte exemple hello (`execute-branch-one`, `value-one`, `execute-branch-two`, et `value-two`) sont déclarés en dehors de la portée de hello de cet exemple de stratégie.  
   
 ```xml  
 <wait for="all">  
@@ -1003,10 +1003,10 @@ Notez l’utilisation de [propriétés](api-management-howto-properties.md) en t
   
 |Attribut|Description|Requis|Default|  
 |---------------|-----------------|--------------|-------------|  
-|for|Détermine si la stratégie `wait` attend la fin de toutes les stratégies enfants immédiates ou d’une seule. Les valeurs autorisées sont les suivantes :<br /><br /> -   `all` : attend la fin de toutes les stratégies enfants immédiates.<br />- any : attend la fin d’une stratégie enfant immédiate. Une fois la première stratégie enfant immédiate terminée, la stratégie `wait` se termine et l’exécution de toutes les autres stratégies enfants immédiates est arrêtée.|Non|tout|  
+|for|Détermine si hello `wait` stratégie attend que tous les enfants immédiats stratégies toobe est terminée ou qu’un seul. Les valeurs autorisées sont les suivantes :<br /><br /> -   `all`-attendre toocomplete de stratégies tous les enfants immédiats<br />-any - attendre tout toocomplete de stratégie enfants immédiats. Une fois la stratégie enfant immédiat de la première hello terminée, hello `wait` stratégie se termine et l’exécution de toutes les autres stratégies enfant immédiat est terminée.|Non|tout|  
   
 ### <a name="usage"></a>Usage  
- Cette stratégie peut être utilisée dans les [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes) de stratégie suivantes.  
+ Cette stratégie peut être utilisée dans hello suivant stratégie [sections](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#sections) et [étendues](http://azure.microsoft.com/documentation/articles/api-management-howto-policies/#scopes).  
   
 -   **Sections de la stratégie :** inbound, outbound, backend  
   

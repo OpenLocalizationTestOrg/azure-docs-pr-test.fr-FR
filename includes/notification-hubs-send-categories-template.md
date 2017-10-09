@@ -1,28 +1,28 @@
 
-Cette section montre comment envoyer les dernières nouvelles sous forme de notifications modèles avec balises à partir de l’application console .NET.
+Cette section montre comment toosend dernières actualités comme marquées notifications de modèle à partir d’une application de console .NET.
 
-Si vous utilisez Mobile Apps, reportez-vous au didacticiel [Add push notifications for Mobile Apps] (Ajouter des notifications Push pour Mobile Apps).
+Si vous utilisez des applications mobiles, consultez toohello [ajouter des notifications de push pour les applications mobiles] didacticiel et sélectionner votre plateforme haut hello.
 
-Si vous souhaitez utiliser Java ou PHP, consultez la rubrique [How to use Notification Hubs from Java/PHP]. Vous pouvez envoyer des notifications à partir d’un serveur principal à l’aide de [l’interface REST des Notification Hubs].
+Si vous souhaitez toouse Java ou PHP font référence trop[comment toouse concentrateurs de Notification à partir de Java/PHP]. Vous pouvez envoyer des notifications à partir d’un serveur principal à l’aide de [l’interface REST des Notification Hubs].
 
-Ignorez les étapes 1 à 3 si vous avez créé l’application de console pour l’envoi des notifications lorsque vous avez effectué la [prise en main des Notification Hubs].
+Ignorez les étapes 1 à 3 Si vous avez créé l’application de console hello pour envoyer des notifications lorsque vous avez rempli [prise en main des concentrateurs de Notification].
 
 1. Dans Visual Studio, créez une application console Visual C# :
    
        ![][13]
-2. Dans le menu principal de Visual Studio, cliquez sur **Outils**, **Gestionnaire de package de bibliothèques** et **Console du gestionnaire de package**, puis dans la fenêtre de la console, tapez la ligne suivante et appuyez sur **Entrée** :
+2. Dans le menu principal de hello Visual Studio, cliquez sur **outils**, **Gestionnaire de Package de bibliothèque**, et **Package Manager Console**, puis dans la fenêtre de console hello tapez la commande suivante et appuyez sur **Entrez**:
    
         Install-Package Microsoft.Azure.NotificationHubs
    
-    Cette opération ajoute une référence au Kit de développement logiciel (SDK) Azure Notification Hubs à l’aide du [package NuGet Microsoft.Azure.Notification Hubs].
-3. Ouvrez le fichier Program.cs et ajoutez l’instruction `using` suivante :
+    Cette opération ajoute une référence de toohello Azure Notification Hubs SDK à l’aide de hello [package NuGet de concentrateurs Microsoft.Azure.Notification].
+3. Ouvrez le fichier de hello Program.cs et ajoutez les éléments suivants de hello `using` instruction :
    
         using Microsoft.Azure.NotificationHubs;
-4. Dans la classe `Program` , ajoutez la méthode suivante ou remplacez-la si elle existe déjà :
+4. Bonjour `Program` classe, ajouter hello suivant de méthode ou remplacez-le si elle existe déjà :
    
         private static async void SendTemplateNotificationAsync()
         {
-            // Define the notification hub.
+            // Define hello notification hub.
             NotificationHubClient hub =
                 NotificationHubClient.CreateClientFromConnectionString(
                     "<connection string with full access>", "<hub name>");
@@ -31,8 +31,8 @@ Ignorez les étapes 1 à 3 si vous avez créé l’application de console pour
             var categories = new string[] { "World", "Politics", "Business",
                                             "Technology", "Science", "Sports"};
    
-            // Sending the notification as a template notification. All template registrations that contain
-            // "messageParam" and the proper tags will receive the notifications.
+            // Sending hello notification as a template notification. All template registrations that contain
+            // "messageParam" and hello proper tags will receive hello notifications.
             // This includes APNS, GCM, WNS, and MPNS template registrations.
    
             Dictionary<string, string> templateParams = new Dictionary<string, string>();
@@ -44,20 +44,20 @@ Ignorez les étapes 1 à 3 si vous avez créé l’application de console pour
             }
          }
    
-    Ce code envoie une notification de modèle pour chacune des six balises du tableau de chaînes. L’utilisation des balises permet d’envoyer les notifications uniquement aux appareils des catégories inscrites.
-5. Dans le code ci-dessus, remplacez les espaces réservés `<hub name>` et `<connection string with full access>` par le nom de votre hub de notification et par la chaîne de connexion pour *DefaultFullSharedAccessSignature* du tableau de bord de votre hub de notifications.
-6. Ajoutez les lignes suivantes à la méthode **Main** :
+    Ce code envoie une notification de modèle pour chacun des balises de six hello dans le tableau de chaînes hello. utilisation de Hello de balises permet de s’assurer que les appareils reçoivent des notifications uniquement pour les catégories de hello inscrit.
+5. Bonjour au-dessus de code, remplacez hello `<hub name>` et `<connection string with full access>` des espaces réservés avec votre notification hub hello et nom de chaîne de connexion pour *DefaultFullSharedAccessSignature* à partir du tableau de bord hello de votre concentrateur de notification .
+6. Ajouter des lignes Bonjour suivantes de hello **Main** méthode :
    
          SendTemplateNotificationAsync();
          Console.ReadLine();
-7. Générez l’application console.
+7. Générez l’application de console hello.
 
 <!-- Images. -->
 [13]: ./media/notification-hubs-back-end/notification-hub-create-console-app.png
 
 <!-- URLs. -->
-[prise en main des Notification Hubs]: ../articles/notification-hubs/notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md
+[prise en main des concentrateurs de Notification]: ../articles/notification-hubs/notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md
 [l’interface REST des Notification Hubs]: http://msdn.microsoft.com/library/windowsazure/dn223264.aspx
-[Add push notifications for Mobile Apps]: ../articles/app-service-mobile/app-service-mobile-windows-store-dotnet-get-started-push.md
-[How to use Notification Hubs from Java/PHP]: ../articles/notification-hubs/notification-hubs-java-push-notification-tutorial.md
-[package NuGet Microsoft.Azure.Notification Hubs]: http://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/
+[ajouter des notifications de push pour les applications mobiles]: ../articles/app-service-mobile/app-service-mobile-windows-store-dotnet-get-started-push.md
+[comment toouse concentrateurs de Notification à partir de Java/PHP]: ../articles/notification-hubs/notification-hubs-java-push-notification-tutorial.md
+[package NuGet de concentrateurs Microsoft.Azure.Notification]: http://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/

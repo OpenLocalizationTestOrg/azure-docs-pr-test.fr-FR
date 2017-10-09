@@ -1,5 +1,5 @@
 ---
-title: "Créer un service fiable Azure Service Fabric avec C#"
+title: aaaCreate un service fiable Azure Service Fabric avec c#
 description: "Créer, déployer et déboguer une application Reliable Service basée sur Azure Service Fabric avec Visual Studio."
 services: service-fabric
 documentationcenter: .net
@@ -14,120 +14,120 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/28/2017
 ms.author: ryanwi
-ms.openlocfilehash: f93298e6483fd8c9dfda835964aeebd1a430af69
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 740c866da6e639219b529fe92ed63cbeaa702a35
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-your-first-c-service-fabric-stateful-reliable-services-application"></a>Création de votre première application de services fiables avec état c# Service Fabric
 
-Découvrez comment déployer votre première application Service Fabric pour .NET sur Windows en quelques minutes. Une fois l’opération terminée, vous obtenez un cluster local fonctionnant avec une application de service fiable.
+Découvrez comment toodeploy votre première application de Service Fabric pour .NET sur Windows dans quelques minutes. Une fois l’opération terminée, vous obtenez un cluster local fonctionnant avec une application de service fiable.
 
 ## <a name="prerequisites"></a>Composants requis
 
-Avant de commencer, assurez-vous que vous avez bien [configuré votre environnement de développement](service-fabric-get-started.md). Cela inclut l’installation du SDK de Service Fabric et de Visual Studio 2017 ou 2015.
+Avant de commencer, assurez-vous que vous avez bien [configuré votre environnement de développement](service-fabric-get-started.md). Cela inclut l’installation de type hello Service Fabric SDK et Visual Studio 2017 ou 2015.
 
-## <a name="create-the-application"></a>Création de l'application
+## <a name="create-hello-application"></a>Créer l’application hello
 
 Lancez Visual Studio en tant qu’**administrateur**.
 
 Créer un projet avec `CTRL`+`SHIFT`+`N`
 
-Dans la boîte de dialogue **Nouveau projet**, sélectionnez **Cloud > Application Service Fabric**.
+Bonjour **nouveau projet** boîte de dialogue, choisissez **Cloud > Application Service Fabric**.
 
-Appelez l’application **MonApplication**, puis cliquez sur **OK**.
+Nommez l’application hello **MyApplication** et appuyez sur **OK**.
 
    
 ![Boîte de dialogue Nouveau projet dans Visual Studio][1]
 
-Vous pouvez créer n’importe quel type d’application Service Fabric à partir de la boîte de dialogue suivante. Pour ce démarrage rapide, choisissez **Service avec état**.
+Vous pouvez créer n’importe quel type d’application de Service Fabric à partir de la boîte de dialogue suivante hello. Pour ce démarrage rapide, choisissez **Service avec état**.
 
-Appelez le service **MyStatefulService**, puis cliquez sur **OK**.
+Nom de votre service de hello **MyStatefulService** et appuyez sur **OK**.
 
 ![Boîte de dialogue Nouveau service dans Visual Studio.][2]
 
 
-Visual Studio crée le projet d’application et le projet de service avec état et les affiche dans l’Explorateur de solutions.
+Visual Studio crée le projet d’application hello et de projet de service avec état hello et les affiche dans l’Explorateur de solutions.
 
 ![Explorateur de solutions après la création de l’application de service avec état][3]
 
-Le projet d’application (**MyApplication**) ne contient pas de code directement. Au lieu de cela, il fait référence à un ensemble de projets de service. En outre, il contient trois autres types de contenu :
+projet d’application Hello (**MyApplication**) ne contient pas de code directement. Au lieu de cela, il fait référence à un ensemble de projets de service. En outre, il contient trois autres types de contenu :
 
 * **Profils de publication**  
-Profils pour le déploiement sur différents environnements.
+Profils pour le déploiement d’environnements de toodifferent.
 
 * **Scripts**  
 Script PowerShell de déploiement/mise à niveau de votre application.
 
 * **Définition d’application**  
-Inclut le fichier ApplicationManifest.xml sous *ApplicationPackageRoot* qui décrit la composition de votre application. Les fichiers de paramètres d’application associés se trouvent sous le dossier *ApplicationParameters*, qui peut être utilisé pour spécifier des paramètres spécifiques à l’environnement. Visual Studio sélectionne un fichier de paramètres d’application qui est spécifié dans le profil de publication associé au cours du déploiement dans un environnement spécifique.
+Inclut le fichier ApplicationManifest.xml hello *ApplicationPackageRoot* qui décrit la composition de votre application. Fichiers de paramètres d’application associée sont sous *ApplicationParameters*, qui peut être utilisé toospecify paramètres spécifiques à l’environnement. Profil de publication Visual sélectionne Studio associé d’un fichier de paramètres d’application qui est spécifié dans hello au cours de l’environnement de déploiement tooa spécifique.
     
-Pour avoir une vue d’ensemble du contenu du projet de service, consultez l’article [Prise en main de Reliable Services](service-fabric-reliable-services-quick-start.md).
+Pour une vue d’ensemble du contenu hello hello du projet de service, consultez [prise en main des Services fiables](service-fabric-reliable-services-quick-start.md).
 
-## <a name="deploy-and-debug-the-application"></a>Déployer et déboguer l’application.
+## <a name="deploy-and-debug-hello-application"></a>Déployer et déboguer l’application hello
 
 Maintenant que vous disposez d’une application, exécutez-la.
 
-Appuyez sur `F5` dans Visual Studio pour déployer l’application en vue d’un débogage.
+Dans Visual Studio, appuyez sur `F5` application hello de toodeploy pour le débogage.
 
 >[!NOTE]
->La première fois que vous exécutez et déployez l’application localement, Visual Studio crée un cluster local pour le débogage. Cette opération peut prendre un certain temps. L’état de la création du cluster est affiché dans la fenêtre Sortie de Visual Studio.
+>Hello la première fois que vous exécutez et déployez l’application hello localement, Visual Studio crée un cluster local pour le débogage. Cette opération peut prendre un certain temps. état de la création de cluster Hello s’affiche dans la fenêtre de sortie de Visual Studio hello.
 
-Une fois le cluster prêt, vous obtenez une notification de la part de l’application de gestionnaire de la barre d’état système de cluster local incluse avec le kit de développement logiciel.
+Lorsque le cluster de hello est prêt, vous recevez une notification d’une application hello cluster local système bac manager incluse avec le Kit de développement logiciel de hello.
    
 ![Notification de barre d’état système de cluster local][4]
 
-Une fois que l’application a démarré, Visual Studio affiche automatiquement **l’Observateur d’événements de diagnostic**, où vous pouvez voir la sortie de suivi depuis vos services.
+Une fois hello démarrage de l’application, Visual Studio appelle automatiquement hello **Observateur d’événements de diagnostic**, où vous pouvez consulter la sortie de trace à partir de vos services.
    
 ![Observateur d’événements de diagnostic][5]
 
-Le modèle de service avec état que nous avons utilisé indique simplement une valeur du compteur incrémentée dans la méthode `RunAsync` de **MyStatefulService.cs**.
+Hello modèle de service avec état nous utilisés affiche simplement une valeur de compteur incrémenté Bonjour `RunAsync` méthode **MyStatefulService.cs**.
 
-Pour plus d’informations, développez un des événements, et notamment le nœud sur lequel le code s’exécute. Dans ce cas, il s’agit du \_Node\_2, bien que cela puisse être différent sur votre ordinateur.
+Développez un des hello événements toosee de plus de détails, y compris le nœud hello où hello code est exécuté. Dans ce cas, il s’agit du \_Node\_2, bien que cela puisse être différent sur votre ordinateur.
    
 ![Détails de l’Observateur d’événements de diagnostic][6]
 
-Le cluster local contient cinq nœuds hébergés sur un seul ordinateur. Dans un environnement de production, chaque nœud est hébergé sur une machine virtuelle ou physique distincte. Pour simuler la perte d’une machine tout en testant le débogueur Visual Studio, examinons l’un des nœuds du cluster local.
+le cluster local Hello contient cinq nœuds hébergés sur un seul ordinateur. Dans un environnement de production, chaque nœud est hébergé sur une machine virtuelle ou physique distincte. débogueur de perte de hello toosimulate d’un ordinateur lors de l’exercice hello Visual Studio au hello même temps, nous allons prendre un des nœuds hello sur le cluster local de hello.
 
-Dans la fenêtre de **l’Explorateur de solutions**, ouvrez **MyStatefulService.cs**. 
+Bonjour **l’Explorateur de solutions** fenêtre, ouvrez **MyStatefulService.cs**. 
 
-Recherchez la méthode `RunAsync` et définissez un point d’arrêt sur la première ligne de la méthode.
+Recherche hello `RunAsync` (méthode) et définissez un point d’arrêt sur la première ligne de hello de méthode hello.
 
 ![Point d’arrêt dans la méthode RunAsync de service avec état][7]
 
-Lancez l’outil **Service Fabric Explorer** en faisant un clic droit sur l’application du **gestionnaire du cluster local** dans la zone de notification, puis choisissez **Gérer le cluster local**.
+Lancez hello **Service Fabric Explorer** outil en cliquant sur hello **le Gestionnaire du Cluster Local** application de barre d’état système et choisissez **gérer un Cluster Local**.
 
-![Lancer l’Explorateur de Fabric Service à partir du Gestionnaire de cluster Local.][systray-launch-sfx]
+![Lancer le Service Fabric Explorer à partir de hello Gestionnaire du Cluster Local][systray-launch-sfx]
 
-[**Service Fabric Explorer** ](service-fabric-visualizing-your-cluster.md) offre une représentation visuelle d’un cluster. Il inclut l’ensemble des applications qui y sont déployées, ainsi que le jeu de nœuds physiques qui le composent.
+[**Service Fabric Explorer**](service-fabric-visualizing-your-cluster.md) offre une représentation visuelle d’un cluster. Elle inclut ensemble hello des applications déployées tooit et ensemble hello nœuds physiques qui le composent.
 
-Dans le volet de gauche, développez **Cluster > Nœuds** et recherchez le nœud sur lequel votre code s’exécute.
+Dans le volet gauche de hello, développez **Cluster > nœuds** et nœud de hello rechercher où votre code est en cours d’exécution.
 
-Cliquez sur **Actions > Désactiver (Redémarrer)** pour simuler le redémarrage de l’ordinateur.
+Cliquez sur **Actions > désactiver (Redémarrer)** toosimulate un redémarrage de l’ordinateur.
 
 ![Arrêter un nœud Service Fabric Explorer][sfx-stop-node]
 
-Vous devez voir momentanément le point d’arrêt atteint dans Visual Studio, car le calcul vous faisiez sur un nœud bascule en toute transparence vers un autre.
+Bientôt, vous devez voir votre point d’arrêt atteint dans Visual Studio que vous faisiez en toute transparence sur un nœud de calcul de hello bascule tooanother.
 
 
-Revenez ensuite à l’Observateur d’événements de diagnostic et prenez connaissance des messages. Le compteur a continué de s’incrémenter, même si les événements proviennent en fait d’un autre nœud.
+Ensuite, retourner toohello Observateur d’événements de Diagnostic et observez les messages de type hello. compteur de Hello a continué à incrémentation, même si les événements hello réellement provenant d’un autre nœud.
 
 ![Observateur d’événements de diagnostic après basculement][diagnostic-events-viewer-detail-post-failover]
 
-## <a name="cleaning-up-the-local-cluster-optional"></a>Nettoyage du cluster local (facultatif)
+## <a name="cleaning-up-hello-local-cluster-optional"></a>Nettoyage de cluster local de hello (facultatif)
 
-N’oubliez pas que ce cluster local est réel. L’arrêt du débogueur supprime votre instance d’application et annule l’inscription du type d’application. Le cluster continue toutefois de s’exécuter en arrière-plan. Lorsque vous êtes prêt à arrêter le cluster local, vous avez le choix entre deux options.
+N’oubliez pas que ce cluster local est réel. L’arrêt du débogueur de hello supprime l’instance d’application et annule l’inscription du type de l’application hello. Toutefois, le cluster de hello continue toorun en arrière-plan de hello. Lorsque vous êtes le cluster local de prêt toostop hello, il existe deux options.
 
 ### <a name="keep-application-and-trace-data"></a>Conserver les données d’application et de trace
 
-Fermez le cluster en effectuant un clic droit sur l’application de **gestionnaire du cluster local** dans la barre système, puis sélectionnez **Arrêter le cluster local**.
+Arrêter le cluster de hello en cliquant sur hello **le Gestionnaire du Cluster Local** application de barre d’état système, puis **arrêter le Cluster Local**.
 
-### <a name="delete-the-cluster-and-all-data"></a>Supprimer le cluster et toutes les données
+### <a name="delete-hello-cluster-and-all-data"></a>Supprimer le cluster de hello et toutes les données
 
-Supprimez le cluster en effectuant un clic droit sur l’application de **gestionnaire du cluster local** dans la barre système, puis sélectionnez **Supprimer le cluster local**. 
+Supprimer le cluster de hello en cliquant sur hello **le Gestionnaire du Cluster Local** application de barre d’état système, puis **supprimer le Cluster Local**. 
 
-Si vous choisissez cette option, Visual Studio redéploiera le cluster la prochaine fois que vous exécuterez l’application. Optez pour cette option si vous n’envisagez pas d’utiliser le cluster local pendant un certain temps ou si vous avez besoin de libérer des ressources.
+Si vous choisissez cette option, Visual Studio redéployer hello de cluster hello prochaine fois que vous exécutez hello application. Choisissez cette option si vous n’envisagez pas cluster local de hello toouse pendant un certain temps, ou si vous avez besoin des ressources de tooreclaim.
 
 ## <a name="next-steps"></a>Étapes suivantes
 En savoir plus sur les [services fiables](service-fabric-reliable-services-introduction.md).

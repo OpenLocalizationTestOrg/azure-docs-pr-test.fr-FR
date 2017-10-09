@@ -1,6 +1,6 @@
 ---
-title: "Créer des flux de travail d’encodage avancé avec le Concepteur de flux de travail | Microsoft Docs"
-description: "Découvrez comment créer des flux de travail d’encodage avancé avec le Concepteur de flux de travail."
+title: "aaaCreate avancée d’encodage des flux de travail avec le Concepteur de flux de travail | Documents Microsoft"
+description: "Découvrez comment toocreate avancé codage des flux de travail avec le Concepteur de flux de travail."
 services: media-services
 documentationcenter: 
 author: anilmur
@@ -14,37 +14,37 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/19/2017
 ms.author: juliako;johndeu;anilmur
-ms.openlocfilehash: ef277710713d342eb9aaaf119e2985e8c1d82d0c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 3744cde54c78bec7c7b586962ec1a8fe9529c1d2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-advanced-encoding-workflows-with-workflow-designer"></a>Créer des flux de travail d’encodage avancé avec le Concepteur de flux de travail
 ## <a name="overview"></a>Vue d'ensemble
-Le **Concepteur de flux de travail** est un outil de bureau Windows qui permet de concevoir et de générer des flux de travail personnalisés à encoder avec **Media Encoder Premium Workflow**.
-À l'aide de la puissance de l'outil de conception de flux de travail, vous pouvez concevoir et créer des flux de travail complexes qui seront exécutés dans **Media Encoder Premium**.  
+Hello **le Concepteur de flux de travail** est un outil de bureau Windows qui est utilisé toodesign build et flux de travail personnalisés pour l’encodage avec **Workflow d’encodeur multimédia Premium**.
+À l’aide des hello de l’outil Concepteur de flux de travail hello, vous pouvez concevoir et créer des flux de travail complexes qui s’exécutera dans **Media Encoder Premium**.  
 
-Les flux de travail peuvent inclure la logique de décision et le branchement client basés sur les propriétés du fichier source d'entrée. Vous pouvez créer des flux de travail avec des propriétés substituables et des valeurs dynamiques pour rendre même les tâches d'encodage les plus complexes faciles à répéter et à personnaliser dans le cloud.
+Les workflows peuvent inclure la logique de décision de client et créer une branche basée sur les propriétés du fichier de source d’entrée hello. Vous pouvez créer des flux de travail avec des propriétés substituables et les valeurs dynamiques toomake même hello plus complexes encodage tâches facile toorepeat et personnaliser dans le cloud de hello.
 
 Exemples de flux de travail que vous pouvez créer :
 
-* Flux de travail basés sur décision qui inspectent le contenu source pour la résolution et codent uniquement les pistes de sortie souhaitées.  Ceci sert à éliminer les pistes gaspillées générées par le dimensionnement par inadvertance du contenu source.
-* Des fichiers d'entrée multiples peuvent être utilisés pour prendre en charge des légendes, des superpositions et pour assembler le contenu. 
+* La décision des flux de travail qui contrôlent le contenu source hello pour la résolution et d’encode les pistes de sortie de hello souhaité uniquement.  Il s’agit helfpul en éliminant les pistes hello gaspillé qui sont générés par l’interpolation source de hello contenu par inadvertance.
+* Plusieurs fichiers d’entrée peuvent être utilisé toosupport légendes, superpositions et liaison contenu ensemble. 
 
-Cet outil permet aussi de modifier nos [flux de travail publiés](media-services-workflow-designer.md#existing_workflows). 
+Cet outil peut également être toomodify utilisé notre [publié le flux de travail](media-services-workflow-designer.md#existing_workflows). 
 
 > [!NOTE]
-> Pour obtenir une copie de l'outil Concepteur de flux de travail, contactez mepd@microsoft.com.
+> tooget votre copie de l’outil du Concepteur de Workflow hello, veuillez contacter mepd@microsoft.com.
 > 
 > 
 
-Une fois créé, un fichier de flux de travail peut être téléchargé comme ressource et être utilisé pour l'encodage de fichiers multimédias. Pour plus d'informations sur l'encodage avec **Media Encoder Premium Workflow** en utilisant **.NET**, consultez la page [Encodage avancé avec Media Encoder Premium Workflow](media-services-encode-with-premium-workflow.md).
+Une fois créé, un fichier de flux de travail peut être téléchargé comme ressource et être utilisé pour l'encodage de fichiers multimédias. Pour plus d’informations sur la façon de tooencode avec **Workflow d’encodeur multimédia Premium** à l’aide de **.NET**, consultez [avancé encodage avec Workflow d’encodeur multimédia Premium](media-services-encode-with-premium-workflow.md).
 
 ## <a id="existing_workflows"></a>Modifier des flux de travail existants
-Les [flux de travail publiés](media-services-workflow-designer.md#existing_workflows) par défaut peuvent être modifiés à l'aide de l'outil Concepteur. Vous pouvez vous procurer les fichiers de flux de travail par défaut [ici](https://github.com/Azure/azure-media-services-samples/tree/master/Encoding%20Presets/VoD/MediaEncoderPremiumWorkfows). Le dossier contient aussi la description de ces fichiers.
+Hello par défaut [publié le flux de travail](media-services-workflow-designer.md#existing_workflows) peut être modifié à l’aide du Concepteur de hello. Vous pouvez obtenir par défaut de hello les fichiers de flux de travail [ici](https://github.com/Azure/azure-media-services-samples/tree/master/Encoding%20Presets/VoD/MediaEncoderPremiumWorkfows). dossier de Hello contient également la description hello de ces fichiers.
 
-Les vidéos suivantes vous indiquent comment utiliser le concepteur.
+Hello suivant vidéos montrent comment toouse hello concepteur.
 
 ### <a name="day-1--getting-started"></a>Jour 1 : prise en main
 La vidéo du jour 1 présente :
@@ -72,7 +72,7 @@ La vidéo du jour 2 présente :
 La vidéo du jour 3 présente :
 
 * Création de scripts de flux de travail/de modèles
-* Restrictions de l'encodeur actuel
+* Restrictions avec hello encodeur actuel
 * Questions et réponses  
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/Azure-Premium-Encoder-Workflow-Designer-Training-Videos-Day-3/player]
@@ -87,7 +87,7 @@ Consultez les parcours d’apprentissage de Media Services.
 ## <a name="provide-feedback"></a>Fournir des commentaires
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-Si vous avez besoin d'aide ou si vous avez des questions à propos de la création de flux de travail personnalisés dans l'outil Concepteur de flux de travail, envoyez un courrier électronique à mepd@microsoft.com.
+Si vous devez prendre en charge ou avez des questions sur la création de flux de travail personnalisés dans le Concepteur de flux de travail hello, envoyez un courrier électronique toomepd@microsoft.com.
 
 ## <a name="see-also"></a>Voir aussi
 [Vidéos de formation pour le Concepteur de flux de travail Azure Premium Encoder](http://johndeutscher.com/2015/07/06/azure-premium-encoder-workflow-designer-training-videos/)

@@ -1,6 +1,6 @@
 ---
-title: Services cloud et certificats de gestion | Microsoft Docs
-description: "Découvrez comment créer et utiliser des certificats avec Microsoft Azure."
+title: certificats de gestion et de Services aaaCloud | Documents Microsoft
+description: "Découvrez comment toocreate et l’utilisation des certificats avec Microsoft Azure"
 services: cloud-services
 documentationcenter: .net
 author: Thraka
@@ -14,57 +14,57 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/19/2017
 ms.author: adegeo
-ms.openlocfilehash: f760bfd93b19c43d12889b5dd38015c5eba0a8ac
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 69cb5467ece58a91dae06b4120954aeb2826bde1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="certificates-overview-for-azure-cloud-services"></a>Vue d’ensemble des certificats pour Azure Cloud Services
-Dans Azure, des certificats sont utilisés pour les services cloud ([certificats de service](#what-are-service-certificates)) et pour l’authentification auprès de l’API de gestion ([certificats de gestion](#what-are-management-certificates) lorsque vous utilisez le portail Azure Classic et non classique). Cette rubrique offre une vue d’ensemble de ces deux types de certificats et vous explique comment les [créer](#create) et les [déployer](#deploy) dans Azure.
+Les certificats sont utilisés dans Azure pour les services cloud ([certificats de service](#what-are-service-certificates)) et pour l’authentification avec l’API de gestion hello ([certificats de gestion](#what-are-management-certificates) lorsque l’utilisation hello portail Azure classic et non Hello non classique portail Azure). Cette rubrique donne une vue d’ensemble des deux types de certificat, comment trop[créer](#create) et [déployer](#deploy) les tooAzure.
 
 Les certificats utilisés dans Azure sont des certificats x.509 v3 et peuvent être signés par un autre certificat approuvé ou être auto-signés. Un certificat auto-signé est signé par son propre créateur et n’est donc pas approuvé par défaut. La plupart des navigateurs peuvent ignorer ce problème. Les certificats auto-signés ne doivent être utilisés que par vous au moment où vous développez et testez vos services cloud. 
 
-Les certificats utilisés par Azure peuvent contenir une clé privée ou publique. Les certificats comportent une empreinte numérique qui permet de les identifier sans ambiguïté. Cette empreinte numérique est utilisée dans le [fichier de configuration](cloud-services-configure-ssl-certificate.md) Azure pour identifier le certificat qu’un service cloud doit utiliser. 
+Les certificats utilisés par Azure peuvent contenir une clé privée ou publique. Les certificats ont une empreinte numérique qui fournit un moyen tooidentify leur de façon non ambiguë. Cette empreinte numérique est utilisée dans hello Azure [fichier de configuration](cloud-services-configure-ssl-certificate.md) tooidentify lequel un service cloud du certificat doit utiliser. 
 
 ## <a name="what-are-service-certificates"></a>Que sont les certificats de service ?
-Les certificats de service sont associés aux services cloud et sécurisent les communications à destination et en provenance du service. Par exemple, si vous avez déployé un rôle web, vous pouvez fournir un certificat qui peut authentifier un point de terminaison HTTPS exposé. Les certificats de service, définis dans votre définition de service, sont déployés automatiquement sur la machine virtuelle qui exécute une instance de votre rôle. 
+Certificats de service sont des services toocloud attaché et activer tooand de sécuriser la communication à partir du service de hello. Par exemple, si vous avez déployé un rôle web, vous pouvez toosupply un certificat qui peut authentifier un point de terminaison HTTPS exposé. Certificats de service, définis dans votre définition de service, sont toohello automatiquement déployé l’ordinateur virtuel qui exécute une instance de votre rôle. 
 
-Vous pouvez charger les certificats de service dans le portail Azure Classic par l’intermédiaire de ce portail ou à l’aide du modèle de déploiement classique. Les certificats de service sont associés à un service cloud spécifique. Ils sont attribués à un déploiement dans le fichier de définition de service.
+Vous pouvez télécharger classique de tooAzure de certificats de service portail à l’aide de hello classique Azure portail ou à l’aide du modèle de déploiement classique hello. Les certificats de service sont associés à un service cloud spécifique. Ils sont attribués déploiement tooa dans le fichier de définition de service hello.
 
-Les certificats de service peuvent être gérés séparément de vos services et par différentes personnes. Par exemple, un développeur peut charger un package de services qui fait référence à un certificat précédemment chargé dans Azure par un responsable informatique. Un responsable informatique peut gérer et renouveler ce certificat (en modifiant la configuration du service) sans avoir à charger un nouveau package de services. La mise à jour sans nouveau package de service est possible par le fait que le nom logique, ainsi que le nom et l’emplacement du magasin du certificat sont spécifiés dans le fichier de définition de service, alors que l’empreinte numérique du certificat est spécifiée dans le fichier de configuration de service. Pour mettre à jour le certificat, il est uniquement nécessaire de charger un nouveau certificat et de modifier la valeur d’empreinte numérique dans le fichier de configuration de service.
+Les certificats de service peuvent être gérés séparément de vos services et par différentes personnes. Par exemple, un développeur peut télécharger un package de service qui fait référence de certificat tooa qu’un responsable informatique a téléchargé précédemment tooAzure. Un responsable informatique peut gérer et renouveler le certificat (modification de configuration de hello du service de hello) sans avoir besoin de tooupload un nouveau package de service. Il est possible de mettre à jour sans un nouveau package de service, car le nom logique de hello, nom du magasin et l’emplacement du certificat de hello est dans un fichier de définition de service hello et lors de l’empreinte numérique du certificat hello est spécifié dans le fichier de configuration de service hello. certificat de hello tooupdate, il est uniquement nécessaire tooupload un nouveau certificat et l’empreinte numérique hello de modification de valeur dans le fichier de configuration de service hello.
 
 >[!Note]
->L’article [Forum aux questions sur Cloud Services](cloud-services-faq.md) comporte des informations utiles sur les certificats.
+>Hello [FAQ sur les Services de Cloud](cloud-services-faq.md) article comporte des informations utiles sur les certificats.
 
 ## <a name="what-are-management-certificates"></a>Que sont les certificats de gestion ?
-Les certificats de gestion vous permettent de vous authentifier dans le modèle de déploiement classique. De nombreux programmes et outils (tels que Visual Studio ou le Kit de développement logiciel (SDK) Azure) utilisent ces certificats pour automatiser la configuration et le déploiement de divers services Azure. Ces certificats ne sont pas réellement associés aux services cloud. 
+Certificats de gestion permettent de tooauthenticate avec le modèle de déploiement classique hello. Plusieurs des programmes et des outils (tels que Visual Studio ou hello Azure SDK) utilisent ces tooautomate configuration des certificats et le déploiement des services Azure différents. Ils ne sont pas vraiment connexes toocloud services. 
 
 > [!WARNING]
-> Soyez prudent ! Ces types de certificat permettent à toute personne qui s’authentifie par leur biais de gérer l’abonnement auquel ils sont associés. 
+> Soyez prudent ! Ces types de certificats autorisent tout le monde qui s’authentifie avec les abonnements de hello toomanage auxquels ils sont associés. 
 > 
 > 
 
-### <a name="limitations"></a>Limitations
-Le nombre de certificats de gestion est limité à 100 par abonnement. Il existe également une limite de 100 certificats de gestion pour l’ensemble des abonnements figurant sous un identificateur d’utilisateur d’administrateur de service spécifique. Si l’identificateur d’utilisateur de l’administrateur de compte a déjà été utilisé pour ajouter 100 certificats de gestion et que d’autres certificats sont nécessaires, vous pouvez ajouter un coadministrateur pour disposer des certificats supplémentaires. 
+### <a name="limitations"></a>Limites
+Le nombre de certificats de gestion est limité à 100 par abonnement. Il existe également une limite de 100 certificats de gestion pour l’ensemble des abonnements figurant sous un identificateur d’utilisateur d’administrateur de service spécifique. Si hello ID d’utilisateur pour l’administrateur de compte hello a déjà été utilisé tooadd 100 les certificats de gestion et il est nécessaire pour les certificats de plus, vous pouvez ajouter un coadministrateur tooadd hello autres certificats. 
 
-Avant d’ajouter plus de 100 certificats, regardez si vous pouvez réutiliser un certificat existant. L’utilisation de coadministrateurs complique parfois inutilement votre processus de gestion des certificats.
+Avant d’ajouter plus de 100 certificats, regardez si vous pouvez réutiliser un certificat existant. L’utilisation de coadministrateurs ajoute des processus de gestion de certificat tooyour complexité éventuellement inutile.
 
 <a name="create"></a>
 ## <a name="create-a-new-self-signed-certificate"></a>Création d’un certificat auto-signé
-Vous pouvez créer un certificat auto-signé au moyen de n’importe quel outil disponible, à condition qu’il remplisse les conditions suivantes :
+Vous pouvez utiliser n’importe quel un certificat auto-signé du outil disponible toocreate tant qu’ils respectent les paramètres toothese :
 
 * Certificat X.509.
 * Contient une clé privée.
 * Créé pour l’échange de clés (fichier .pfx).
-* Le nom du sujet doit correspondre au domaine servant à accéder au service cloud.
+* Nom du sujet doit correspondre au service de cloud hello domaine utilisé tooaccess hello.
 
-    > Vous ne pouvez pas acquérir un certificat SSL pour le domaine cloudapp.net (ou pour tout domaine lié à Azure). Le nom d'objet du certificat doit correspondre au nom de domaine personnalisé utilisé pour accéder à votre application. Par exemple, **contoso.net**, mais pas **contoso.cloudapp.net**.
+    > Impossible d’acquérir un certificat SSL pour hello cloudapp.net (ou liées à Azure) domaine ; nom du sujet du certificat Hello doit correspondre à hello domaine personnalisé nom utilisé tooaccess votre application. Par exemple, **contoso.net**, mais pas **contoso.cloudapp.net**.
 
 * Chiffrement à 2 048 bits au minimum.
-* **Certificat de service uniquement**: le certificat côté client doit résider dans le magasin de certificats *personnel* .
+* **Certificat de service uniquement**: certificat côté Client doit résider dans hello *personnel* magasin de certificats.
 
-Vous disposez de deux méthodes simples pour créer un certificat sur Windows : avec l’utilitaire `makecert.exe` ou avec IIS.
+Il existe deux moyens faciles toocreate un certificat sur Windows, avec hello `makecert.exe` utilitaire ou IIS.
 
 ### <a name="makecertexe"></a>Makecert.exe
 Cet utilitaire a été déconseillé et n’est plus documenté ici. Pour plus d’informations, consultez [cet article MSDN](https://msdn.microsoft.com/library/windows/desktop/aa386968).
@@ -77,26 +77,26 @@ Export-PfxCertificate -Cert $cert -FilePath ".\my-cert-file.pfx" -Password $pass
 ```
 
 > [!NOTE]
-> Pour utiliser le certificat avec une adresse IP au lieu d’un domaine, utilisez l’adresse IP dans le paramètre -DnsName.
+> Si vous souhaitez que le certificat de hello toouse avec une adresse IP au lieu d’un domaine, utiliser l’adresse IP de hello dans le paramètre de DnsName - hello.
 
 
-Si vous souhaitez utiliser ce [certificat avec le portail de gestion](../azure-api-management-certs.md), exportez-le vers un fichier **.cer** :
+Si vous le souhaitez toouse [certificat avec le portail de gestion hello](../azure-api-management-certs.md), exportez-le tooa **.cer** fichier :
 
 ```powershell
 Export-Certificate -Type CERT -Cert $cert -FilePath .\my-cert-file.cer
 ```
 
 ### <a name="internet-information-services-iis"></a>Internet Information Services (IIS)
-De nombreuses pages sur Internet vous expliquent comment procéder avec IIS. [ici](https://www.sslshopper.com/article-how-to-create-a-self-signed-certificate-in-iis-7.html) une procédure détaillée particulièrement claire. 
+Il existe de nombreuses pages sur hello internet qui couvrent la toodo avec IIS. [ici](https://www.sslshopper.com/article-how-to-create-a-self-signed-certificate-in-iis-7.html) une procédure détaillée particulièrement claire. 
 
 ### <a name="java"></a>Java
-Vous pouvez utiliser Java pour [créer un certificat](../app-service-web/java-create-azure-website-using-java-sdk.md#create-a-certificate).
+Vous pouvez utiliser Java trop[créer un certificat](../app-service-web/java-create-azure-website-using-java-sdk.md#create-a-certificate).
 
 ### <a name="linux"></a>Linux
-[Cet](../virtual-machines/linux/mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) article décrit comment créer des certificats avec SSH.
+[Cela](../virtual-machines/linux/mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) article décrit l’utilisation des certificats toocreate avec SSH.
 
 ## <a name="next-steps"></a>Étapes suivantes
-[Chargez votre certificat de service sur le portail Azure Classic](cloud-services-configure-ssl-certificate.md) (ou sur le [portail Azure](cloud-services-configure-ssl-certificate-portal.md)).
+[Télécharger votre toohello de certificat de service portail Azure classic](cloud-services-configure-ssl-certificate.md) (ou hello [portail Azure](cloud-services-configure-ssl-certificate-portal.md)).
 
-Chargez un [certificat d’API de gestion](../azure-api-management-certs.md) dans le portail Azure Classic. Le portail Azure n’utilise pas de certificats de gestion pour l’authentification.
+Télécharger un [certificat de l’API de gestion](../azure-api-management-certs.md) toohello portail Azure classic. Hello portail Azure n’utilise pas de certificats de gestion pour l’authentification.
 

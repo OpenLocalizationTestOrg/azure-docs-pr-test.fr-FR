@@ -1,6 +1,6 @@
 ---
-title: Comparaison entre Azure IoT Hub et Azure Event Hub | Microsoft Docs
-description: "Comparaison des services Azure IoT Hub et Azure Event Hubs mettant en avant les différences de fonction et des exemples d’utilisation. La comparaison inclut les protocoles pris en charge, la surveillance, la gestion des appareils et les téléchargements de fichiers."
+title: "aaaCompare Azure IoT Hub tooAzure concentrateurs d’événements | Documents Microsoft"
+description: "Comparaison de hello IoT Hub et les services Azure de concentrateurs d’événements mettant en surbrillance les différences fonctionnelles et cas d’usage. comparaison de Hello inclut les protocoles pris en charge, la gestion des périphériques, surveillance, et les téléchargements de fichiers."
 services: iot-hub
 documentationcenter: 
 author: fsautomata
@@ -14,37 +14,37 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: elioda
-ms.openlocfilehash: a37df79a38a35b61cca72918d4d893a4bfc83b7e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: e5f546b54e29860498d540abfc86a41c4662c0df
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="comparison-of-azure-iot-hub-and-azure-event-hubs"></a>Comparaison entre Azure IoT Hub et Azure Event Hub
-L’une des principales utilisations IoT Hub consiste à rassembler des mesures de télémétrie relevées par des appareils. Pour cette raison, IoT Hub est souvent comparé à [Azure Event Hubs][Azure Event Hubs]. Tout comme IoT Hub, les hubs d’événements constituent un service de traitement des événements. Celui-ci fournit des entrées d’événements et de télémétrie vers le cloud à grande échelle, avec une faible latence et une grande fiabilité.
+Un des cas d’usage principaux hello pour IoT Hub est télémétrie toogather à partir d’appareils. Pour cette raison, IoT Hub est souvent comparé trop[Azure Event Hubs][Azure Event Hubs]. IoT Hub, comme les concentrateurs d’événements est un service qui permet l’entrée d’événements et les données de télémétrie de traitement des événements cloud toohello à très grande échelle, avec une latence faible et une haute fiabilité.
 
-Toutefois, les services présentent de nombreuses différences répertoriées dans le tableau suivant :
+Toutefois, les services de hello ont beaucoup de différences qui est décrites en détail dans hello tableau suivant :
 
 | Domaine | IoT Hub | Event Hubs |
 | --- | --- | --- |
 | Modèles de communication | Active [device-to-cloud communications][lnk-d2c-guidance] (messagerie, chargements de fichiers et propriétés signalées) et [cloud-to-device communications][lnk-c2d-guidance] (méthodes directes, propriétés désirées). |Permet uniquement une entrée d’événement (en général utilisé pour les scénarios appareil-à-cloud). |
 | Informations d’état de l’appareil | Des [jumeaux d’appareils][lnk-twins] peuvent stocker et interroger les informations d’état de l’appareil. | Aucune information d’état de l’appareil ne peut être stockée. |
-| Prise en charge du protocole d’appareil |Prend en charge MQTT, MQTT sur WebSockets, AMQP, AMQP sur WebSocket et HTTP. En outre, IoT Hub fonctionne avec la [passerelle de protocole Azure IoT][lnk-azure-protocol-gateway], une implémentation de passerelle de protocole personnalisable pour prendre en charge les protocoles personnalisés. |Prend en charge AMQP, AMQP sur WebSocket et HTTP. |
-| Sécurité |Fournit une identité par appareil et le contrôle d’accès révocable. Consultez la [section Sécurité du guide du développeur IoT Hub]. |Fournit des [stratégies d’accès partagé][Event Hubs - security] à l’échelle d’Event Hubs, avec une prise en charge de révocation limitée par le biais de [stratégies de l’éditeur][Event Hubs publisher policies]. Les solutions IoT sont souvent nécessaires pour implémenter une solution personnalisée afin de prendre en charge les informations d’identification par appareil et les mesures de lutte contre l’usurpation d’identité. |
-| Surveillance des opérations |Permet aux solutions IoT de s’abonner à un vaste ensemble d’événements de gestion d’identité d’appareil et de connectivité tels que des erreurs d’authentification de chaque appareil, la limitation et les exceptions de format incorrect. Ces événements permettent d’identifier rapidement les problèmes de connectivité au niveau de chaque appareil. |Expose uniquement les mesures d’agrégation. |
-| Scale |est optimisé pour prendre en charge des millions d’appareils connectés simultanément. |Limite les connexions tel que défini dans [Quotas Event Hubs][Azure Event Hubs quotas]. En revanche, Event Hubs vous permet de spécifier une partition pour chaque message envoyé. |
-| Kits de développement logiciel (SDK) d’appareil |fournissent des [appareils SDK][Azure IoT SDKs] pour une grande variété de plateformes et de langages, ainsi que MQTT direct, AMQP et les API HTTP. |sont pris en charge sur .NET, Java et C en plus des interfaces d’envoi HTTP et AMQP. |
-| Chargement de fichiers |Permet à des solutions IoT de charger des fichiers à partir d’appareils vers le cloud. Comprend un point de terminaison de notification de fichier pour l’intégration du workflow et une catégorie de surveillance des opérations pour le débogage de la prise en charge. | Non pris en charge. |
-| Router des messages vers plusieurs points de terminaison | Un maximum de 10 points de terminaison personnalisés sont pris en charge. Les règles déterminent la façon dont les messages sont routés vers les points de terminaison personnalisés. Pour plus d’informations, consultez [Envoyer et recevoir des messages avec IoT Hub][lnk-devguide-messaging]. | Nécessite l’écriture et l’hébergement de code supplémentaire pour la distribution des messages. |
+| Prise en charge du protocole d’appareil |Prend en charge MQTT, MQTT sur WebSockets, AMQP, AMQP sur WebSocket et HTTP. En outre, IoT Hub fonctionne avec hello [passerelle de protocole Azure IoT][lnk-azure-protocol-gateway], un protocole personnalisable implémentation toosupport personnalisé les protocoles de passerelle. |Prend en charge AMQP, AMQP sur WebSocket et HTTP. |
+| Sécurité |Fournit une identité par appareil et le contrôle d’accès révocable. Consultez hello [section sécurité de hello guide du développeur IoT Hub]. |Fournit des [stratégies d’accès partagé][Event Hubs - security] à l’échelle d’Event Hubs, avec une prise en charge de révocation limitée par le biais de [stratégies de l’éditeur][Event Hubs publisher policies]. IoT solutions sont souvent des informations d’identification requises tooimplement une solution personnalisée toosupport par périphérique et les mesures de détection d’usurpation. |
+| Surveillance des opérations |Propose IoT solutions toosubscribe tooa nombreux événements de périphériques identity management et connectivité telles que des erreurs d’authentification de chaque périphérique, la limitation et les exceptions de format incorrect. Ces événements permettent tooquickly identifient les problèmes de connectivité au niveau de chaque périphérique hello. |Expose uniquement les mesures d’agrégation. |
+| Mettre à l'échelle |Est optimisé toosupport des millions d’appareils connectés simultanément. |Compteurs hello connexions en tant que par [les quotas Azure Event Hubs][Azure Event Hubs quotas]. Sur hello autre part, les concentrateurs d’événements vous permet de partition de hello toospecify pour chaque message envoyé. |
+| Kits de développement logiciel (SDK) d’appareil |Fournit des [appareil kits de développement logiciel] [ Azure IoT SDKs] pour de nombreuses plateformes et les langues, plus toodirect MQTT et AMQP APIs HTTP. |Prend en charge sur .NET, Java et C, ajout tooAMQP et les interfaces d’envoi HTTP. |
+| Chargement de fichiers |Permet que IoT solutions tooupload fichiers du cloud toohello de périphériques. Comprend un point de terminaison de notification de fichier pour l’intégration du workflow et une catégorie de surveillance des opérations pour le débogage de la prise en charge. | Non pris en charge. |
+| Itinéraire des messages toomultiple de points de terminaison | Jusqu'à too10 points de terminaison personnalisés sont pris en charge. Les règles déterminent comment les messages sont routés toocustom de points de terminaison. Pour plus d’informations, consultez [Envoyer et recevoir des messages avec IoT Hub][lnk-devguide-messaging]. | Nécessite un code supplémentaire toobe écrit et hébergés pour la distribution des messages. |
 
-Pour résumer, même si le seul cas d’utilisation est l’entrée de mesures de télémétrie appareil-à-cloud, IoT Hub offre un service conçu pour la connectivité d’appareil IoT. Les propositions de valeur pour ces scénarios continuent à se développer avec des fonctionnalités spécifiques à IoT. Event Hubs est conçu pour les entrées d’événements à grande échelle, dans les contextes inter et intra centres de données.
+En résumé, même si les cas d’usage uniquement hello est entrée de télémétrie de l’appareil-à-cloud, IoT Hub fournit un service qui est conçu pour la connectivité d’appareils IoT. Il continue des propositions de valeur tooexpand hello pour ces scénarios avec des fonctionnalités spécifiques à IoT. Concentrateurs d’événements est conçu pour l’entrée d’événement à une très grande échelle, à la fois dans le contexte de hello de scénarios de centres de données entre réseaux virtuels et intra-centre de données.
 
-Il n’est pas rare d’utiliser IoT Hub et Event Hubs dans la même solution. IoT Hub gère les communications appareil-à-cloud et Event Hubs assure l’entrée des événements dans des moteurs de traitement en temps réel dans les étapes ultérieures.
+Il n’est pas rare toouse IoT Hub et concentrateurs d’événements dans hello même solution. IoT Hub gère la communication de périphérique dans le cloud de hello et concentrateurs d’événements gère l’entrée d’événement d’étape ultérieure dans les moteurs de traitement en temps réel.
 
 ### <a name="next-steps"></a>Étapes suivantes
-Pour en savoir plus sur la planification de votre déploiement IoT Hub, consultez [Mise à l’échelle, HA et DR][lnk-scaling].
+toolearn savoir plus sur la planification de votre déploiement IoT Hub, consultez [mise à l’échelle, la haute disponibilité et récupération d’urgence][lnk-scaling].
 
-Pour explorer davantage les capacités de IoT Hub, consultez :
+toofurther Explorez les fonctionnalités de hello d’IoT Hub, consultez :
 
 * [Guide du développeur IoT Hub][lnk-devguide]
 * [Simulation d’un appareil avec IoT Edge][lnk-iotedge]
@@ -54,7 +54,7 @@ Pour explorer davantage les capacités de IoT Hub, consultez :
 [lnk-d2c-guidance]: iot-hub-devguide-d2c-guidance.md
 
 [Azure Event Hubs]: ../event-hubs/event-hubs-what-is-event-hubs.md
-[section Sécurité du guide du développeur IoT Hub]: iot-hub-devguide-security.md
+[section sécurité de hello guide du développeur IoT Hub]: iot-hub-devguide-security.md
 [Event Hubs - security]: ../event-hubs/event-hubs-authentication-and-security-model-overview.md
 [Event Hubs publisher policies]: ../event-hubs/event-hubs-features.md#event-publishers
 [Azure Event Hubs quotas]: ../event-hubs/event-hubs-quotas.md

@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d'Azure Active Directory à Questetra BPM Suite | Microsoft Docs"
-description: "Découvrez comment configurer l'authentification unique entre Azure Active Directory et Questetra BPM Suite."
+description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et Questetra BPM Suite."
 services: active-directory
 documentationcenter: 
 author: jeevansd
@@ -14,262 +14,262 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/14/2017
 ms.author: jeedes
-ms.openlocfilehash: 7ae75446c9d19ce15a82caa9604658a528ab9941
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4907e3b5751cd79f994fbd2ebcb7faec4eac34e9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-questetra-bpm-suite"></a>Didacticiel : Intégration d'Azure Active Directory avec Questetra BPM Suite
-L’objectif de ce didacticiel est de vous montrer comment intégrer Questetra BPM Suite à Azure Active Directory (Azure AD).  
-L’intégration de Questetra BPM Suite à Azure AD offre les avantages suivants : 
+objectif Hello de ce didacticiel est tooshow vous comment toointegrate Suite de BPM Questetra avec Azure Active Directory (Azure AD).  
+Intégration Questetra BPM Suite à Azure AD offre hello avantages suivants : 
 
-* Dans Azure AD, vous pouvez contrôler qui a accès à Questetra BPM Suite. 
-* Vous pouvez autoriser les utilisateurs à se connecter automatiquement à Questetra BPM Suite (via l'authentification unique) avec leur compte Azure AD.
-* Vous pouvez gérer vos comptes à un emplacement central : le portail Azure Classic.
+* Vous pouvez contrôler dans Azure AD qui a accès tooQuestetra Suite BPM 
+* Vous pouvez activer vos utilisateurs tooautomatically get connecté tooQuestetra Suite BPM (Single Sign-On) avec leurs comptes Azure AD
+* Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure classic
 
-Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
+Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Composants requis
-Pour configurer l'intégration d'Azure AD avec Questetra BPM Suite, vous avez besoin des éléments suivants :
+tooconfigure intégration d’Azure AD avec Questetra BPM Suite, vous devez hello éléments suivants :
 
 * Un abonnement Azure AD
 * Un abonnement [Questetra BPM Suite](https://senbon-imadegawa-988.questetra.net/) pour lequel l’authentification unique est activée
 
 > [!NOTE]
-> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
+> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
 > 
 > 
 
-Vous devez en outre suivre les recommandations ci-dessous :
+tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
 
 * Vous ne devez pas utiliser votre environnement de production, sauf si cela est nécessaire.
 * Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/). 
 
 ## <a name="scenario-description"></a>Description du scénario
-Ce didacticiel vise à vous permettre de tester l’authentification unique Azure AD dans un environnement de test.  
-Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
+objectif Hello de ce didacticiel est tooenable vous tootest Azure AD l’authentification unique dans un environnement de test.  
+scénario Hello décrite dans ce didacticiel se compose de trois blocs de construction principaux :
 
-1. Ajout de Questetra BPM Suite à partir de la galerie 
+1. Ajout de Questetra BPM Suite à partir de la galerie de hello 
 2. Configuration et test de l’authentification unique Azure AD
 
-## <a name="adding-questetra-bpm-suite-from-the-gallery"></a>Ajout de Questetra BPM Suite à partir de la galerie
-Pour configurer l'intégration de Questetra BPM Suite avec Azure AD, vous devez ajouter Questetra BPM Suite, disponible dans la galerie, à votre liste d'applications SaaS gérées.
+## <a name="adding-questetra-bpm-suite-from-hello-gallery"></a>Ajout de Questetra BPM Suite à partir de la galerie de hello
+intégration de hello tooconfigure de Questetra BPM Suite dans Azure AD, vous devez tooadd Questetra BPM Suite à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
 
-**Pour ajouter Questetra BPM Suite à partir de la galerie, procédez comme suit :**
+**tooadd Suite BPM de Questetra à partir de la galerie hello, procédez hello comme suit :**
 
-1. Dans le volet de navigation gauche du **portail Azure Classic**, cliquez sur **Active Directory**. 
+1. Bonjour **portail Azure classic**, on hello du volet de navigation gauche, cliquez sur **Active Directory**. 
    
     ![Active Directory][1]
 
-2. Dans la liste **Annuaire** , sélectionnez l'annuaire pour lequel vous voulez activer l'intégration d'annuaire.
+2. À partir de hello **répertoire** liste, répertoire sélectionnez hello pour lequel vous souhaitez tooenable intégration d’annuaire.
 
-3. Pour ouvrir la vue des applications, dans la vue d'annuaire, cliquez sur **Applications** dans le menu du haut.
+3. vue d’applications de hello tooopen, dans la vue active de hello, cliquez sur **Applications** dans le menu du haut hello.
    
     ![Applications][2]
 
-4. Cliquez sur **Ajouter** en bas de la page.
+4. Cliquez sur **ajouter** bas hello de page de hello.
    
     ![Applications][3]
 
-5. Dans la boîte de dialogue **Que voulez-vous faire ?**, cliquez sur **Ajouter une application à partir de la galerie**.
+5. Sur hello **comment vous souhaitez toodo** boîte de dialogue, cliquez sur **ajouter une application à partir de la galerie de hello**.
    
     ![Applications][4]
 
-6. Dans la zone de recherche, tapez **Questetra BPM Suite**.
+6. Dans la zone de recherche de hello, tapez **Questetra BPM Suite**.
    
     ![Applications][5]
 
-7. Dans le volet de résultats, sélectionnez **Questetra BPM Suite**, puis cliquez sur **Terminer** pour ajouter l’application.
+7. Dans le volet de résultats hello, sélectionnez **Questetra BPM Suite**, puis cliquez sur **Complete** application hello de tooadd.
 
 ## <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configuration et test de l’authentification unique Azure AD
-L'objectif de cette section est de vous montrer comment configurer et tester l'authentification unique Azure AD avec Questetra BPM Suite avec un utilisateur de test appelé « Britta Simon ».
+objectif Hello de cette section est tooshow comment tooconfigure et test Azure AD l’authentification unique avec Questetra BPM Suite en fonction d’un utilisateur de test appelé « Britta Simon ».
 
-Pour que l'authentification unique fonctionne, Azure AD a besoin de savoir qui est l'utilisateur Questetra BPM Suite équivalent dans Azure AD. En d’autres termes, un lien entre un utilisateur Azure AD et l’utilisateur Questetra BPM Suite associé doit être établi.  
-Pour cela, affectez la valeur de **nom d'utilisateur** dans Azure AD en tant que valeur du **nom d'utilisateur** dans Questetra BPM Suite.
+Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello utilisateur de tooan Questetra BPM Suite dans Azure AD est. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans Questetra BPM Suite doit toobe établie.  
+Cette relation de lien est établie en assignant la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** dans Questetra BPM Suite.
 
-Pour configurer et tester l'authentification unique Azure AD avec Questetra BPM Suite, vous devez suivre les indications des sections suivantes :
+tooconfigure et test Azure AD l’authentification unique avec Questetra BPM Suite, vous devez hello toocomplete suivant des blocs de construction :
 
-1. **[Configuration de l’authentification unique Azure AD](#configuring-azure-ad-single-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
-2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l'authentification unique Azure AD avec Britta Simon.
-3. **[Création d'un utilisateur de test Questetra BPM Suite](#creating-a-questetra-bpm-suite-test-user)** pour avoir un équivalent de Britta Simon dans Questetra BPM Suite qui soit lié à la représentation Azure AD associée.
-4. **[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d'utiliser l'authentification unique Azure AD.
-5. **[Test de l’authentification unique](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.
+1. **[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
+2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
+3. **[Création d’un utilisateur de test Questetra BPM Suite](#creating-a-questetra-bpm-suite-test-user)**  -toohave de Britta Simon dans Suite BPM Questetra qui est la représentation sous forme de toohello lié Azure AD de sa contrepartie.
+4. **[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
+5. **[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configuration de l’authentification unique Azure AD
-L’objectif de cette section est d’activer l’authentification unique Azure AD dans le portail Azure Classic et de configurer l’authentification unique dans votre application Questetra BPM Suite.
+Hello cette section vise tooenable Azure AD l’authentification unique sur Bonjour portail Azure classic et tooconfigure l’authentification unique dans votre application Questetra BPM Suite.
 
-**Pour configurer l'authentification unique Azure AD avec Questetra BPM Suite, procédez comme suit :**
+**tooconfigure Azure AD l’authentification unique avec Questetra BPM Suite, procédez hello comme suit :**
 
-1. Dans le portail Azure Classic, dans la page d’intégration d’application **Questetra BPM Suite**, cliquez sur **Configurer l’authentification unique** pour ouvrir la boîte de dialogue **Configurer l’authentification unique**.
+1. Bonjour portail Azure classic sur hello **Questetra BPM Suite** page d’intégration d’application, cliquez sur **configurer l’authentification unique sur** tooopen hello **configurer l’authentification unique sur**  boîte de dialogue.
    
     ![Configurer l’authentification unique][8]
 
-2. Dans la page **Comment voulez-vous que les utilisateurs se connectent à Questetra BPM Suite ?**, sélectionnez **Authentification unique Azure AD**, puis cliquez sur **Suivant**.
+2. Sur hello **Comment souhaitez-vous toosign utilisateurs sur tooQuestetra Suite BPM** page, sélectionnez **Azure AD Single Sign-On**, puis cliquez sur **suivant**.
    
     ![Authentification unique Azure AD][9]
 
 3. Dans une autre fenêtre de navigateur web, connectez-vous à votre site d'entreprise **Questetra BPM Suite** en tant qu'administrateur.
 
-4. Dans le menu situé en haut, cliquez sur **Paramètres système**. 
+4. Dans le menu hello haut de hello, cliquez sur **paramètres système**. 
    
     ![Authentification unique Azure AD][10]
 
-5. Pour ouvrir la page **SingleSignOnSAML**, cliquez sur **SSO (SAML)**. 
+5. tooopen hello **SingleSignOnSAML** , cliquez sur **SSO (SAML)**. 
    
     ![Authentification unique Azure AD][11]
 
-6. Dans la page **Configurer les paramètres de l’application** du portail Azure Classic, procédez comme suit : 
+6. Bonjour portail Azure classic sur hello **configurer les paramètres de l’application** boîte de dialogue de page, effectuer hello comme suit : 
    
-    ![Configurer les paramètres de l’application][13]
+    ![Configurer les paramètres d’application][13]
    
-    a. Sur votre site d'entreprise **Questetra BPM Suite**, dans la section des informations SP, copiez **l'URL ACS** et collez-la dans la zone de texte **Sign On URL**.
+    a. Vous **Questetra BPM Suite** site d’entreprise, Bonjour section d’informations SP, hello de copie **URL ACS**, puis collez-la dans hello **URL de connexion** zone de texte.
    
-    b. Sur votre site d'entreprise **Questetra BPM Suite**, dans la section des informations SP, copiez **l'ID d'entité** et collez-le dans la zone de texte **URL de l'émetteur**.
+    b. Vous **Questetra BPM Suite** site d’entreprise, Bonjour section d’informations SP, hello de copie **ID d’entité**, puis collez-la dans hello **URL de l’émetteur** zone de texte.
    
-    c. Sur votre site d'entreprise **Questetra BPM Suite**, dans la section des informations SP, copiez **l'URL ACS** et collez-la dans la zone de texte **Reply URL**.
+    c. Vous **Questetra BPM Suite** site d’entreprise, Bonjour section d’informations SP, hello de copie **URL ACS**, puis collez-la dans hello **URL de réponse** zone de texte.
    
     d. Cliquez sur **Suivant**.
 
-7. Dans la page **Configurer l’authentification unique à Questetra BPM Suite**, cliquez sur **Télécharger le certificat**, puis enregistrez le fichier de certificat localement sur votre ordinateur.
+7. Sur hello **configurer l’authentification unique à la Suite de BPM Questetra** , cliquez sur **télécharger le certificat**, puis enregistrez le fichier de certificat hello localement sur votre ordinateur.
    
     ![Configurer l’authentification unique][14]
 
-8. Sur votre site d’entreprise **Questetra BPM Suite** , procédez comme suit : 
+8. Vous **Questetra BPM Suite** site d’entreprise, effectuez hello comme suit : 
    
     ![Configurer l’authentification unique][15]
    
     a. Sélectionnez **Activer l'authentification unique**.
    
-    b. Dans le portail Azure Classic, copiez la valeur **URL de l’émetteur** et collez-la dans la zone de texte **Entity ID**.
+    b. Sur hello portail Azure classic, copiez hello **URL de l’émetteur** valeur, puis collez-le dans hello **ID d’entité** zone de texte.
    
-    c. Dans le portail Azure Classic, copiez la valeur **URL du service d’authentification unique**, puis collez-la dans la zone de texte **Sign-in page URL**.
+    c. Sur hello portail Azure classic, copiez hello **-Service URL d’authentification** valeur, puis collez-le dans hello **URL de la page connexion** zone de texte.
    
-    d. Dans le portail Azure Classic, copiez la valeur **URL du service de déconnexion unique**, puis collez-la dans la zone de texte **Sign-out page URL**.
+    d. Sur hello portail Azure classic, copiez hello **URL de Service de déconnexion unique** valeur, puis collez-le dans hello **URL de la page de déconnexion** zone de texte.
    
-    e. Dans la zone de texte **Format NameID**, entrez **urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress**.
+    e. Bonjour **NameID format** zone de texte, type **urn : oasis : noms : tc : SAML:1.1:nameid-format : emailAddress**.
 
     f. Créez un fichier encodé en base 64 à partir du certificat téléchargé. 
 
     >[!TIP] 
-    >Pour plus d'informations, consultez [Comment convertir un certificat binaire en fichier texte](http://youtu.be/PlgrzUZ-Y1o).
+    >Pour plus d’informations, consultez [comment tooconvert un fichier binaire du certificat dans un fichier texte](http://youtu.be/PlgrzUZ-Y1o).
 
-    g. Ouvrez votre certificat encodé en base 64 dans le Bloc-notes, copiez son contenu dans le Presse-papiers et collez-le dans la zone de texte **Certificat de validation** . 
+    g. Ouvrez votre certificat codé en base 64 dans le bloc-notes, hello copie contenu de celui-ci dans le Presse-papiers et le coller ensuite dans hello **certificat de Validation** zone de texte. 
 
-    h. Cliquez sur **Save**.
+    h. Cliquez sur **Enregistrer**.
 
-1. Dans le portail Azure Classic, sélectionnez la confirmation de la configuration de l’authentification unique, puis cliquez sur **Suivant**. 
+1. Sur le portail Azure classic de hello, sélectionnez la confirmation de la configuration de l’authentification unique hello, puis cliquez sur **suivant**. 
    
     ![Qu’est-ce qu’Azure AD Connect ?][17]
 
-2. Sur la page **Confirmation de l’authentification unique**, cliquez sur **Terminer**.  
+2. Sur hello **Single sign-on confirmation** , cliquez sur **Complete**.  
    
     ![Qu’est-ce qu’Azure AD Connect ?][18]
 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Création d’un utilisateur de test Azure AD
-L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure Classic.
+objectif Hello de cette section est toocreate un utilisateur de test dans le portail Azure classic appelé Britta Simon de hello.
 
-**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
+**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
 
-1. Dans le volet de navigation gauche du **portail Azure Classic**, cliquez sur **Active Directory**.
+1. Bonjour **portail Azure classic**, on hello du volet de navigation gauche, cliquez sur **Active Directory**.
    
     ![Créer un utilisateur de test Azure AD][100] 
 
-2. Dans la liste **Annuaire** , sélectionnez l'annuaire pour lequel vous voulez activer l'intégration d'annuaire.
+2. À partir de hello **répertoire** liste, répertoire sélectionnez hello pour lequel vous souhaitez tooenable intégration d’annuaire.
 
-3. Pour afficher la liste des utilisateurs, dans le menu du haut, cliquez sur **Utilisateurs**.
+3. liste de hello toodisplay d’utilisateurs, dans le menu hello haut de hello, cliquez sur **utilisateurs**.
    
     ![Créer un utilisateur de test Azure AD][101] 
 
-4. Pour ouvrir la boîte de dialogue **Ajouter un utilisateur**, cliquez sur l’option **Ajouter un utilisateur** figurant dans la barre d’outils du bas. 
+4. tooopen hello **ajouter un utilisateur** boîte de dialogue, dans la barre d’outils de hello en bas de hello, cliquez sur **ajouter un utilisateur**. 
    
     ![Créer un utilisateur de test Azure AD][102] 
 
-5. Sur la page de boîte de dialogue **Dites-nous en plus sur cet utilisateur** , procédez comme suit :
+5. Sur hello **faites-nous part de cet utilisateur** boîte de dialogue de page, effectuer hello comme suit :
    
     ![Créer un utilisateur de test Azure AD][103]
    
     a. Dans **Type d’utilisateur**, sélectionnez **Nouvel utilisateur dans votre organisation**.
    
-    b. Dans la zone de texte **Nom d’utilisateur**, entrez **BrittaSimon**.
+    b. Bonjour, nom d’utilisateur **zone de texte**, type **BrittaSimon**.
    
     c. Cliquez sur Suivant.
 
-6. Sur la page **Profil utilisateur** , procédez comme suit : 
+6. Sur hello **profil utilisateur** boîte de dialogue de page, effectuer hello comme suit : 
    
     ![Créer un utilisateur de test Azure AD][104] 
    
-    a. Dans la zone de texte **First Name**, tapez **Britta**. 
+    a. Bonjour **prénom** zone de texte, type **Brian**. 
    
-    b. Dans la zone de texte **Last Name**, tapez **Simon**.
+    b. Bonjour **nom** zone de texte, type, **Simon**.
    
-    c. Dans la zone de texte **Nom d’affichage**, entrez **Britta Simon**.
+    c. Bonjour **nom d’affichage** zone de texte, type **Britta Simon**.
    
-    d. Dans la liste **Rôle**, sélectionnez **Utilisateur**.
+    d. Bonjour **rôle** liste, sélectionnez **utilisateur**.
    
     e. Cliquez sur **Suivant**.
 
-7. Sur la page de boîte de dialogue **Obtenir un mot de passe temporaire**, cliquez sur **Créer**.
+7. Sur hello **mot de passe temporaire Get** page de boîte de dialogue, cliquez sur **créer**.
    
     ![Créer un utilisateur de test Azure AD][105]  
 
-8. Sur la page de boîte de dialogue **Obtenir un mot de passe temporaire** , procédez comme suit :
+8. Sur hello **mot de passe temporaire Get** boîte de dialogue de page, effectuer hello comme suit :
    
     ![Créer un utilisateur de test Azure AD][106]   
    
-    a. Notez la valeur du **Nouveau mot de passe**.
+    a. Notez la valeur hello hello **nouveau mot de passe**.
    
     b. Cliquez sur **Terminé**.   
 
 ### <a name="creating-a-questetra-bpm-suite-test-user"></a>Création d'un utilisateur de test Questetra BPM Suite
-L'objectif de cette section est de créer un utilisateur appelé Britta Simon dans Questetra BPM Suite.
+objectif Hello de cette section est toocreate un utilisateur appelé Britta Simon dans Questetra BPM Suite.
 
-**Pour créer un utilisateur appelé Britta Simon dans Questetra BPM Suite, procédez comme suit :**
+**toocreate un utilisateur appelé Britta Simon Questetra BPM suite effectuer hello comme suit :**
 
-1. Connectez-vous à votre site d'entreprise Questetra BPM Suite en tant qu'administrateur.
-2. Accédez à **Paramètres système > Liste des utilisateurs > Nouvel utilisateur**. 
-3. Dans la boîte de dialogue Nouvel utilisateur, procédez comme suit : 
+1. Site d’entreprise Questetra BPM Suite tooyour ouverture de session en tant qu’administrateur.
+2. Accédez trop**paramètres système > liste de l’utilisateur > nouvel utilisateur**. 
+3. Dans la boîte de dialogue Nouvel utilisateur hello, procédez hello comme suit : 
    
     ![Créer un utilisateur de test][300] 
    
-    a. Dans la zone de texte **Nom** , entrez le nom d'utilisateur de Britta dans Azure AD.
+    a. Bonjour **nom** zone de texte, tapez le nom d’utilisateur de Brian dans Azure AD.
    
-    b. Dans la zone de texte **Adresse de messagerie** , entrez le nom d'utilisateur de Britta dans Azure AD.
+    b. Bonjour **messagerie** zone de texte, tapez le nom d’utilisateur de Brian dans Azure AD.
    
-    c. Dans la zone de texte **Mot de passe** , entrez un mot de passe.
+    c. Bonjour **mot de passe** zone de texte, tapez un mot de passe.
 
 4. Cliquez sur **Ajouter un nouvel utilisateur**.
 
-### <a name="assigning-the-azure-ad-test-user"></a>Affectation de l’utilisateur de test Azure AD
-L’objectif de cette section est de permettre à Britta Simon d’utiliser l’authentification unique Azure en lui accordant l’accès à Questetra BPM Suite.
+### <a name="assigning-hello-azure-ad-test-user"></a>Affectation d’utilisateur de test hello Azure AD
+objectif Hello de cette section est tooenabling toouse Britta Simon Azure l’authentification unique en accordant son tooQuestetra accès Suite BPM.
 
 ![Qu’est-ce qu’Azure AD Connect ?][200]
 
-**Pour attribuer Britta Simon à Questetra BPM Suite, procédez comme suit :**
+**tooassign Britta Simon tooQuestetra Suite BPM, effectuez hello comme suit :**
 
-1. Pour ouvrir la vue des applications dans le portail Azure Classic, cliquez dans la vue de répertoire sur **Applications** dans le menu du haut.
+1. Dans hello Azure portail classique, la vue applications hello tooopen, dans la vue active de hello, cliquez sur **Applications** dans le menu du haut hello.
    
     ![Qu’est-ce qu’Azure AD Connect ?][201]
-2. Dans la liste des applications, sélectionnez **Questetra BPM Suite**.
+2. Dans la liste des applications hello, sélectionnez **Questetra BPM Suite**.
    
     ![Qu’est-ce qu’Azure AD Connect ?][205]
-3. Dans le menu situé en haut, cliquez sur **Utilisateurs**.
+3. Dans le menu hello haut de hello, cliquez sur **utilisateurs**.
    
     ![Qu’est-ce qu’Azure AD Connect ?][202]
-4. Dans la liste Utilisateurs, sélectionnez **Britta Simon**.
+4. Dans la liste des utilisateurs hello, sélectionnez **Britta Simon**.
    
     ![Qu’est-ce qu’Azure AD Connect ?][203]
-5. Dans la barre d’outils située en bas, cliquez sur **Attribuer**.
+5. Dans la barre d’outils de hello en bas de hello, cliquez sur **affecter**.
    
     ![Qu’est-ce qu’Azure AD Connect ?][204]
 
 ### <a name="testing-single-sign-on"></a>Test de l’authentification unique
-L’objectif de cette section est de tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.  
-Lorsque vous cliquez sur la vignette Questetra BPM Suite dans le volet d'accès, vous devez être connecté automatiquement à votre application Questetra BPM Suite.
+objectif Hello de cette section est tootest votre configuration de l’authentification unique Azure AD à l’aide de hello panneau d’accès.  
+Lorsque vous cliquez sur mosaïque Questetra BPM Suite hello hello volet d’accès, vous devez obtenir l’application de Questetra BPM Suite automatiquement signé sur tooyour.
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
-* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->

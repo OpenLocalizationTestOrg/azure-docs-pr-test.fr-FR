@@ -1,6 +1,6 @@
 ---
-title: "Analyser la sécurité réseau avec la vue Groupe de sécurité réseau Network Watcher - Azure CLI 1.0 | Microsoft Docs"
-description: "Cet article décrit comment utiliser Azure CLI 1.0 pour analyser la sécurité des machines virtuelles par le biais de la vue Groupe de sécurité."
+title: "sécurité du réseau aaaAnalyze avec vue groupe de sécurité dans Azure réseau Observateur - Azure CLI 1.0 | Documents Microsoft"
+description: "Cet article décrit comment tooanalyze toouse Azure CLI 1.0 a virtual machines de sécurité avec l’affichage du groupe de sécurité."
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 2c4c494dcc4fe1a85c5feb29506c35fb03066479
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 96383a734b94d215d5b0f3d47339e46940d700b5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="analyze-your-virtual-machine-security-with-security-group-view-using-azure-cli-10"></a>Analyser la sécurité de votre machine virtuelle par le biais de la vue Groupe de sécurité dans Azure CLI 1.0
 
@@ -28,27 +28,27 @@ ms.lasthandoff: 07/11/2017
 > - [CLI 2.0](network-watcher-security-group-view-cli.md)
 > - [API REST](network-watcher-security-group-view-rest.md)
 
-La vue Groupe de sécurité renvoie des règles de sécurité de réseau configurées et efficaces, appliquées à une machine virtuelle. Cette fonctionnalité permet d’auditer et de diagnostiquer les groupes de sécurité réseau ainsi que les règles configurées sur une machine virtuelle afin de garantir l’autorisation ou le refus appropriés du trafic. Dans cet article, nous vous montrons comment récupérer des règles de sécurité configurées et efficaces pour une machine virtuelle à l’aide de l’interface de ligne de commande Azure
+Affichage de groupe de sécurité retourne les règles de sécurité réseau configurée et efficace qui sont appliqués tooa l’ordinateur virtuel. Cette fonctionnalité est utile tooaudit et diagnostiquer les groupes de sécurité réseau et les règles qui sont configurés sur un trafic tooensure de machine virtuelle est correctement autorisé ou refusé. Dans cet article, nous vous indiquons comment tooretrieve hello configuré et sécurité efficace règles tooa machine virtuelle Azure CLI
 
 Cet article utilise l’interface Azure CLI 1.0 interplateforme, disponible pour Windows, Mac et Linux. Network Watcher utilise actuellement Azure CLI 1.0 pour la prise en charge d’interface CLI.
 
 ## <a name="before-you-begin"></a>Avant de commencer
 
-Ce scénario suppose que vous ayez déjà suivi la procédure décrite dans [Create a Network Watcher (Créer une instance Network Watcher)](network-watcher-create.md) pour créer une instance Network Watcher.
+Ce scénario suppose que vous avez déjà suivi les étapes hello dans [créer un observateur réseau](network-watcher-create.md) toocreate un observateur réseau.
 
 ## <a name="scenario"></a>Scénario
 
-Le scénario décrit dans cet article récupère des règles de sécurité configurées et efficaces pour une machine virtuelle donnée.
+scénario Hello abordée dans cet article récupère hello configuré et les règles de sécurité efficace pour un ordinateur virtuel donné.
 
 ## <a name="get-a-vm"></a>Obtenir une machine virtuelle
 
-Une machine virtuelle est requise pour l’exécution de l’applet de commande `vm list`. La commande suivante répertorie les machines virtuelles dans un groupe de ressources :
+Un ordinateur virtuel est requis toorun hello `vm list` applet de commande. Hello commande suivante répertorie hello machinese virtuel dans un groupe de ressources :
 
 ```azurecli
 azure vm list -g resourceGroupName
 ```
 
-Une fois que vous connaissez la machine virtuelle, vous pouvez utiliser l’applet de commande `vm show` pour obtenir son identifiant de ressource :
+Une fois que vous connaissez hello virtual machine, vous pouvez utiliser hello `vm show` tooget de l’applet de commande son Id de ressource :
 
 ```azurecli
 azure vm show -g resourceGroupName -n virtualMachineName
@@ -56,15 +56,15 @@ azure vm show -g resourceGroupName -n virtualMachineName
 
 ## <a name="retrieve-security-group-view"></a>Récupérer la vue Groupe de sécurité
 
-L’étape suivante consiste à récupérer le résultat de la vue Groupe de sécurité. L’ajout de l’indicateur « --json » convertit les résultats au format json.
+étape suivante de Hello est le résultat de vue du groupe de sécurité tooretrieve hello. Ajout de hello »--json « indicateur met en forme les résultats hello dans json.
 
 ```azurecli
 azure network watcher security-group-view -g resourceGroupName -n networkWatcherName -t targetResourceId --json
 ```
 
-## <a name="viewing-the-results"></a>Affichage des résultats
+## <a name="viewing-hello-results"></a>Affichage des résultats de hello
 
-L’exemple suivant est une réponse abrégée des résultats renvoyés. Les résultats présentent toutes les règles de sécurité efficaces et appliquées sur la machine virtuelle, réparties en plusieurs groupes : **NetworkInterfaceSecurityRules**, **DefaultSecurityRules** et **EffectiveSecurityRules**.
+Hello exemple suivant est une réponse raccourcie de hello les résultats retournés. Hello résultats affichent toutes les règles de sécurité efficace et appliquées hello sur l’ordinateur virtuel de hello réparti dans les groupes **NetworkInterfaceSecurityRules**, **DefaultSecurityRules**, et  **EffectiveSecurityRules**.
 
 ```json
 {
@@ -115,6 +115,6 @@ L’exemple suivant est une réponse abrégée des résultats renvoyés. Les ré
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Consultez la page [Auditing Network Security Groups (NSG) with Network Watcher (Audit des groupes de sécurité réseau avec Network Watcher)](network-watcher-nsg-auditing-powershell.md) pour découvrir comment automatiser la validation des groupes de sécurité réseau.
+Visitez [audit réseau sécurité groupes (NSG) avec l’Observateur réseau](network-watcher-nsg-auditing-powershell.md) toolearn comment tooautomate la validation de groupes de sécurité réseau.
 
-Pour en savoir plus sur les règles de sécurité appliquées à vos ressources réseau, consultez la page [Security group view overview (Vue d’ensemble de la vue Groupe de sécurité)](network-watcher-security-group-view-overview.md)
+En savoir plus sur les règles de sécurité hello qui sont des ressources du réseau tooyour appliqué en vous rendant sur [présentation du mode de groupe de sécurité](network-watcher-security-group-view-overview.md)

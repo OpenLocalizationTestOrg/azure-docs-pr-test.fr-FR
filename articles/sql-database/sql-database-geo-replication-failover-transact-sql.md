@@ -15,79 +15,79 @@ ms.tgt_pltfrm: NA
 ms.workload: data-management
 ms.date: 01/10/2017
 ms.author: carlrab
-ms.openlocfilehash: 459941d2c82e5d4ef62beab4ccf775ab8f5efce4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 418953e044ba84ce758063d56a371af45d5cdfe1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="initiate-a-planned-or-unplanned-failover-for-azure-sql-database-with-transact-sql"></a>Lancer un basculement planifié ou non planifié pour une base de données SQL Azure avec Transact-SQL
 
-Cet article montre comment lancer le basculement vers une base de données SQL secondaire avec Transact-SQL. Pour configurer la géoréplication, voir [Configurer la géoréplication pour Azure SQL Database](sql-database-geo-replication-transact-sql.md).
+Cet article vous montre comment tooinitiate basculement tooa base de données SQL secondaire à l’aide de Transact-SQL. tooconfigure géo-réplication, consultez [configurer géo-réplication pour la base de données SQL Azure](sql-database-geo-replication-transact-sql.md).
 
-Pour lancer le basculement, vous devez disposer de ce qui suit :
+basculement de tooinitiate, hello éléments suivants sont nécessaires :
 
-* ID de connexion DBManager sur le serveur principal
-* Droits db_ownership sur la base de données locale que vous allez géorépliquer
-* Rôle DBManager sur les serveurs partenaires sur lesquels vous voulez configurer la géoréplication
+* Une connexion qui est un DBManager sur hello principal
+* Ont db_ownership de base de données locale hello que vous allez géo-réplication
+* Être DBManager sur hello partenaire ou les serveurs toowhich, vous allez configurer la géo-réplication
 * Dernière version de SQL Server Management Studio (SSMS)
 
 > [!IMPORTANT]
-> Nous vous recommandons d’utiliser systématiquement la dernière version de Management Studio afin de rester en cohérence avec les mises à jour de Microsoft Azure et Base de données SQL. [Mettre à jour SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx).
+> Il est recommandé de toujours utiliser hello dernière version de Management Studio tooremain synchronisés avec les mises à jour tooMicrosoft Azure et base de données SQL. [Mettre à jour SQL Server Management Studio](https://msdn.microsoft.com/library/mt238290.aspx).
 >  
 
-## <a name="initiate-a-planned-failover-promoting-a-secondary-database-to-become-the-new-primary"></a>Initier un basculement planifié en assurant la promotion d’une base de données secondaire, pour qu’il devienne le nouveau réplica principal
-Vous pouvez utiliser l’instruction **ALTER DATABASE** pour promouvoir une base de données secondaire afin qu’elle devienne la nouvelle base de données primaire de manière planifiée, et rétrogradant l’élément primaire existant pour qu’elle devienne secondaire. Cette instruction est exécutée sur la base de données master sur le serveur logique de base de données SQL Azure sur lequel réside la base secondaire géo-répliquée promue. Cette fonctionnalité est conçue pour le basculement planifié, comme pendant les exercices de récupération d’urgence et nécessite que la base de données primaire soit disponible.
+## <a name="initiate-a-planned-failover-promoting-a-secondary-database-toobecome-hello-new-primary"></a>Initiez un basculement planifié promouvoir un base de données secondaire toobecome hello nouveau réplica principal
+Vous pouvez utiliser hello **ALTER DATABASE** instruction toopromote un base de données secondaire toobecome hello nouveau principal de base de données de manière planifiée, la rétrogradation toobecome principal existant de hello une base de données secondaire. Cette instruction est exécutée sur la base de données master hello sur serveur de logique de base de données SQL Azure hello dans le hello géorépliqué base de données secondaire qui est promu réside. Cette fonctionnalité est conçue pour le basculement planifié, comme pendant les exercices de récupération d’urgence de hello et requiert que cette base de données primaire hello soient disponibles.
 
-La commande exécute le flux de travail suivant :
+commande Hello exécute hello suivant du flux de travail :
 
-1. Bascule provisoirement la réplication en mode synchrone, ce qui fait que toutes les transactions en attente doivent être vidées vers le serveur secondaire et toutes les nouvelles transactions bloquées ;
-2. Inverse les rôles des deux bases de données du partenariat de géoréplication.  
+1. Temporairement les commutateurs toosynchronous mode de réplication à l’origine de toutes les transactions en attente toobe vidées toohello secondaire et le blocage de toutes les nouvelles transactions ;
+2. Commutateurs hello rôles hello deux bases de données en partenariat de géo-réplication hello.  
 
-Cette séquence garantit que les deux bases de données sont synchronisées avant le basculement des rôles et que, par conséquent, aucune perte de données ne se produira. Il existe une courte période pendant laquelle les deux bases de données ne sont pas disponibles (de l’ordre de 0 à 25 secondes) pendant que les rôles sont activés. Si la base de données primaire comporte plusieurs bases de données secondaires, la commande reconfigure automatiquement les autres bases de données secondaires pour qu’elles se connectent à la nouvelle base de données primaire.  Toute l’opération devrait prendre moins d’une minute pour se terminer dans des circonstances normales. Pour plus d’informations, consultez [ALTER DATABASE (Transact-SQL)](https://msdn.microsoft.com/library/mt574871.aspx) et [Niveaux de service](sql-database-service-tiers.md).
+Cette séquence garantit que hello deux bases de données sont synchronisées avant que les rôles hello basculer et par conséquent, aucune perte de données ne se produit. Il existe une courte période pendant laquelle les deux bases de données ne sont pas disponibles (dans l’ordre hello de 0 seconde too25) pendant le basculement des rôles de hello. Si la base de données primaire hello a plusieurs bases de données secondaires, commande hello sera automatiquement reconfigure hello autres bases de données secondaires tooconnect toohello nouveau réplica principal.  toute l’opération Hello doit prendre moins d’une minute toocomplete dans des circonstances normales. Pour plus d’informations, consultez [ALTER DATABASE (Transact-SQL)](https://msdn.microsoft.com/library/mt574871.aspx) et [Niveaux de service](sql-database-service-tiers.md).
 
-Utilisez les étapes suivantes pour initier un basculement planifié.
+Utilisez hello suivant les étapes tooinitiate un basculement planifié.
 
-1. Dans Management Studio, connectez-vous à un serveur logique de base de données SQL Azure dans lesquels réside une base de données secondaire répliquée.
-2. Ouvrez le dossier Bases de données, développez **Bases de données système**, cliquez avec le bouton droit sur **Master**, puis cliquez sur **Nouvelle requête**.
-3. Utilisez l’instruction **ALTER DATABASE** suivante pour basculer la base de données secondaire vers le rôle primaire.
+1. Dans Management Studio, connectez-vous serveur logique de toohello base de données SQL Azure dans lequel réside une base de données secondaire géo-répliquées.
+2. Ouvrez le dossier de bases de données hello, développez hello **bases de données système** dossier, avec le bouton droit sur **master**, puis cliquez sur **nouvelle requête**.
+3. Utilisez hello suivante **ALTER DATABASE** rôle principal toohello de base de données secondaire hello instruction tooswitch.
    
         ALTER DATABASE <MyDB> FAILOVER;
-4. Cliquez sur **Exécuter** pour exécuter la requête.
+4. Cliquez sur **Execute** requête de hello toorun.
 
 > [!NOTE]
-> Dans de rares cas, il est possible que l’opération ne puisse pas s’achever et semble bloquée. Dans ce cas, l’utilisateur peut exécuter la commande de basculement forcé et accepter la perte de données.
+> Dans de rares cas, il est possible que les opération hello ne peut pas terminer et qu’il peuvent apparaître bloquée. Dans ce cas, utilisateur de hello peut exécuter la commande de basculement de force hello et accepter la perte de données.
 > 
 > 
 
-## <a name="initiate-an-unplanned-failover-from-the-primary-database-to-the-secondary-database"></a>Toute l’opération devrait prendre moins d’une minute pour se terminer dans des circonstances normales
-Vous pouvez utiliser l’instruction **ALTER DATABASE** pour promouvoir une base de données secondaire afin qu’elle devienne la nouvelle base de données primaire de façon non planifiée, en forçant la rétrogradation de la base de données primaire existante pour qu’elle devienne secondaire dans l’hypothèse où elle cesserait d’être disponible. Cette instruction est exécutée sur la base de données master sur le serveur logique de base de données SQL Azure sur lequel réside la base secondaire géo-répliquée promue.
+## <a name="initiate-an-unplanned-failover-from-hello-primary-database-toohello-secondary-database"></a>Initier un basculement non planifié à partir de la base de données secondaire de toohello base de données primaire hello
+Vous pouvez utiliser hello **ALTER DATABASE** instruction toopromote un base de données secondaire toobecome hello nouveau principal de base de données de façon non planifiée, en forçant la rétrogradation de toobecome principal existant de hello hello une base de données secondaire à la fois lorsque hello base de données primaire n’est plus disponible. Cette instruction est exécutée sur la base de données master hello sur serveur de logique de base de données SQL Azure hello dans le hello géorépliqué base de données secondaire qui est promu réside.
 
-Cette fonctionnalité est conçue pour la récupération d’urgence lorsque la restauration de la disponibilité de la base de données est essentielle et une perte de données est acceptable. Lorsque le basculement forcé est appelé, la base de données secondaire devient la base de données primaire immédiatement et commence à accepter des transactions d’écriture. Dès que la base de données primaire d’origine est en mesure de se reconnecter à cette base de données primaire, une sauvegarde incrémentielle s’effectue sur la base de données primaire d’origine et l’ancienne base de données primaire est transformée en base de données secondaire de la nouvelle base de données primaire ; par la suite, il s’agit d’un simple réplica de la nouvelle base de données primaire.
+Cette fonctionnalité est conçue pour la récupération d’urgence lors de la disponibilité de restauration de base de données hello est importante et une perte de données est acceptable. Lorsque le basculement forcé est appelé, hello spécifié de base de données secondaire devient la base de données primaire hello immédiatement et commence à accepter les transactions d’écriture. Dès que la base de données primaire d’origine hello est en mesure de tooreconnect avec cette nouvelle base de données primaire, une sauvegarde incrémentielle est effectuée sur la base de données primaire d’origine hello et base de données primaire ancien hello est effectuée dans une base de données secondaire pour hello nouvelle base de données primaire ; par la suite, il est simplement un réplica de synchroniser de nouveau réplica principal de hello.
 
-Toutefois, étant donné que la limite de restauration n’est pas prise en charge sur les bases de données secondaires, si l’utilisateur souhaite récupérer les données validées dans l’ancienne base de données primaire qui n’ont pas été répliquées dans la nouvelle base de données primaire avant le basculement forcé, l’utilisateur devra faire appel à l’assistance technique pour récupérer les données perdues.
+Toutefois, étant donné que la limite de temps de restauration n'est pas pris en charge sur les bases de données secondaires hello, si hello glissière toorecover les données validées toohello ancienne base de données primaire qui n’avait pas été répliquées toohello base de données primaire avant hello forcé basculement s’est produite, Hello devra tooengage prise en charge toorecover cette perte de données.
 
-Si la base de données primaire comporte plusieurs bases de données secondaires, la commande reconfigure automatiquement les autres bases de données secondaires pour qu’elles se connectent à la nouvelle base de données primaire.
+Si la base de données primaire hello a plusieurs bases de données secondaires, commande hello sera automatiquement reconfigure hello autres bases de données secondaires tooconnect toohello nouveau réplica principal.
 
-Utilisez les étapes suivantes pour lancer un basculement non planifié.
+Utilisez hello suivant les étapes tooinitiate un basculement non planifié.
 
-1. Dans Management Studio, connectez-vous à un serveur logique de base de données SQL Azure dans lesquels réside une base de données secondaire répliquée.
-2. Ouvrez le dossier Bases de données, développez **Bases de données système**, cliquez avec le bouton droit sur **Master**, puis cliquez sur **Nouvelle requête**.
-3. Utilisez l’instruction **ALTER DATABASE** suivante pour basculer la base de données secondaire vers le rôle primaire.
+1. Dans Management Studio, connectez-vous serveur logique de toohello base de données SQL Azure dans lequel réside une base de données secondaire géo-répliquées.
+2. Ouvrez le dossier de bases de données hello, développez hello **bases de données système** dossier, avec le bouton droit sur **master**, puis cliquez sur **nouvelle requête**.
+3. Utilisez hello suivante **ALTER DATABASE** rôle principal toohello de base de données secondaire hello instruction tooswitch.
    
         ALTER DATABASE <MyDB>   FORCE_FAILOVER_ALLOW_DATA_LOSS;
-4. Cliquez sur **Exécuter** pour exécuter la requête.
+4. Cliquez sur **Execute** requête de hello toorun.
 
 > [!NOTE]
-> Si la commande est émise lorsque les bases de données primaire et secondaire sont en ligne, l’ancienne base de données primaire devient immédiatement la nouvelle base de données secondaire, sans synchronisation des données. Si la base de données primaire valide des transactions lorsque la commande est émise, une perte de données peut se produire.
+> Si la commande hello est émis lorsque le principal et secondaire sont en ligne ancien serveur principal de hello deviendra hello nouveau serveur secondaire immédiatement, sans la synchronisation des données. Si hello principal est la validation des transactions lors de la commande hello est émise une perte de données peuvent se produire.
 > 
 > 
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Après le basculement, assurez-vous que les exigences d’authentification de votre serveur et de votre base de données sont configurées sur la nouvelle base de données primaire. Pour plus d’informations, consultez [Gestion de la sécurité de la base de données SQL Azure après la récupération d’urgence](sql-database-geo-replication-security-config.md).
-* Pour en savoir plus sur la récupération après sinistre à l’aide de la géoréplication active, notamment les étapes de pré/post-récupération et l’organisation d’un exercice de récupération d’urgence, voir [Récupération d’urgence](sql-database-disaster-recovery.md).
+* Après le basculement, vérifiez les conditions d’authentification hello pour votre serveur et de la base de données sont configurées sur le nouveau réplica principal de hello. Pour plus d’informations, consultez [Gestion de la sécurité de la base de données SQL Azure après la récupération d’urgence](sql-database-geo-replication-security-config.md).
+* toolearn reprise après un sinistre à l’aide de géo-réplication active, y compris les étapes de récupération avant et après la reprise et l’exécution d’un exercice de récupération d’urgence, consultez [la récupération d’urgence](sql-database-disaster-recovery.md)
 * Consultez le billet de blog publié par Sasha Nosov concernant la géoréplication active : [Coup de projecteur sur les nouvelles fonctionnalités de géoréplication](https://azure.microsoft.com/blog/spotlight-on-new-capabilities-of-azure-sql-database-geo-replication/).
-* Pour plus d’informations sur la conception d’applications cloud afin d’utiliser la géoréplication active, voir [Conception d’applications cloud pour la continuité d’activité à l’aide de la géoréplication](sql-database-designing-cloud-solutions-for-disaster-recovery.md).
+* Pour plus d’informations sur la conception de cloud applications toouse géo-réplication active, consultez [conception d’applications cloud pour la continuité d’activité à l’aide de géo-réplication](sql-database-designing-cloud-solutions-for-disaster-recovery.md)
 * Pour plus d’informations sur la géoréplication active avec des pools élastiques, voir [Stratégies de récupération d’urgence de pool élastique](sql-database-disaster-recovery-strategies-for-applications-with-elastic-pool.md).
 * Pour une vue d’ensemble de la continuité des activités, voir [Vue d’ensemble de la continuité des activités](sql-database-business-continuity.md).
 

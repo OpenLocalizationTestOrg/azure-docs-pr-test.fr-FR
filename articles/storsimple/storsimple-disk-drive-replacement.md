@@ -1,6 +1,6 @@
 ---
-title: Remplacer un lecteur de disque sur un appareil StorSimple | Microsoft Docs
-description: "Explique comment remplacer un lecteur de disque sur un boîtier principal ou EBOD StorSimple."
+title: aaaReplace un lecteur de disque sur un appareil StorSimple | Documents Microsoft
+description: "Explique comment tooreplace un disque du lecteur sur un boîtier principal StorSimple ou d’un boîtier EBOD."
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,33 +14,33 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 08/17/2016
 ms.author: alkohli
-ms.openlocfilehash: 0659ab9d304dbfcce72e8c3c79edad68e70b9630
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d2c78a6d951b0f00ac42e74a34cf1bc83952a3c8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="replace-a-disk-drive-on-your-storsimple-device"></a>Remplacer un lecteur de disque sur votre appareil StorSimple
 ## <a name="overview"></a>Vue d'ensemble
-Ce didacticiel explique comment vous pouvez retirer et remplacer un lecteur de disque dur défectueux ou défaillant sur un appareil Microsoft Azure StorSimple. Pour remplacer un lecteur de disque, vous devez :
+Ce didacticiel explique comment vous pouvez retirer et remplacer un lecteur de disque dur défectueux ou défaillant sur un appareil Microsoft Azure StorSimple. tooreplace un lecteur de disque, vous devez :
 
-* Désengager le verrou anti-effraction
-* Retirer le lecteur de disque
-*     Installez le lecteur de disque de remplacement
+* Désactiver le dispositif de sécurisation hello
+* Supprimer le lecteur de disque hello
+* Installer le lecteur de disque de remplacement hello
 
 > [!IMPORTANT]
-> Avant de retirer et de remplacer un lecteur de disque, passez en revue les informations de sécurité dans [Remplacement de composants matériels StorSimple](storsimple-hardware-component-replacement.md).
+> Avant de retrait et le remplacement d’un disque dur, passez en revue les informations de sécurité hello dans [remplacement de composant matériel StorSimple](storsimple-hardware-component-replacement.md).
 > 
 > 
 
-## <a name="disengage-the-antitamper-lock"></a>Désengager le verrou anti-effraction
-Cette procédure explique comment les verrous anti-effraction sur votre appareil StorSimple peuvent être engagés ou désengagés quand vous remplacez les lecteurs de disque. Les verrous anti-effraction sont montés dans les poignées du support de lecteur et ils sont accessibles via une petite ouverture dans la partie verrou de la poignée. Les lecteurs sont fournis avec les verrous en position verrouillée.
+## <a name="disengage-hello-antitamper-lock"></a>Désactiver le dispositif de sécurisation hello
+Cette procédure explique comment dispositifs de hello sur votre appareil StorSimple peuvent verrouiller ou déverrouiller lorsque vous remplacez les lecteurs de disque hello. dispositifs de Hello sont montés dans des poignées de transport de lecteur hello et ils sont accessibles via une petite ouverture dans hello loquet de handle de hello. Les lecteurs sont fournis avec les verrous hello définir la position toohello verrouillé.
 
-#### <a name="to-unlock-the-antitamper-lock"></a>Pour déverrouiller le verrou anti-effraction
-1. Insérez soigneusement la clé de verrouillage (un tournevis « anti-effraction » T10 fourni par Microsoft) dans l’ouverture de la poignée et dans son emplacement. 
+#### <a name="toounlock-hello-antitamper-lock"></a>Dispositif de sécurisation de toounlock hello
+1. Insérez soigneusement la clé de verrouillage de hello (tournevis « infalsifiables « T10 fourni par Microsoft) en ouverture hello du handle hello et le socket. 
    
    > [!NOTE]
-   > Si le verrou anti-effraction est activé, l’indicateur rouge est visible dans l’ouverture.
+   > Si le dispositif de sécurisation hello est activé, indicateur de hello rouge est visible dans l’ouverture de hello.
    > 
    > 
    
@@ -52,63 +52,63 @@ Cette procédure explique comment les verrous anti-effraction sur votre appareil
    |:--- |:--- |
    | 1 |Ouverture de l’indicateur |
    | 2 |Verrou anti-effraction |
-2. Faites tourner la clé dans le sens inverse des aiguilles d’une montre jusqu’à ce que l’indicateur rouge ne soit plus visible dans l’ouverture au-dessus de la clé.
-3. Retirez la clé.
+2. Clé de rotation hello dans un sens inverse des aiguilles jusqu'à ce que l’indicateur de hello rouge n’est pas visible dans l’ouverture de hello au-dessus de la clé de hello.
+3. Supprimez la clé de hello.
    
     ![ : Lecteur de disque déverrouillé](./media/storsimple-disk-drive-replacement/IC741057.png)
    
     **Figure 2** : Lecteur de disque déverrouillé
-4. Le lecteur de disque peut maintenant être retiré.
+4. lecteur de disque Hello peut maintenant être supprimée.
 
-Suivez les étapes en sens inverse pour engager le verrou.
+Suivez les étapes de hello de verrou de hello tooengage inverse.
 
-## <a name="remove-the-disk-drive"></a>Retirer le lecteur de disque
+## <a name="remove-hello-disk-drive"></a>Supprimer le lecteur de disque hello
 Votre appareil StorSimple prend en charge une configuration des espaces de stockage en RAID 10. Ceci implique qu’il peut fonctionner normalement avec un disque défectueux, qui peut être un disque SSD ou un disque dur. 
 
 > [!IMPORTANT]
-> * Si votre système a plusieurs disques défectueux, ne retirez jamais en même temps plusieurs disques SSD ou disques durs du système. Ceci peut entraîner la perte de données.
+> * Si votre système a plus d’un disque en panne, ne supprimez pas plus d’un disque SSD ou HDD système hello à n’importe quel point dans le temps. Ceci peut entraîner la perte de données.
 > * Veillez à placer un disque SSD de remplacement à un emplacement qui contenait auparavant un disque SSD. De même, veillez à placer un disque dur de remplacement à un emplacement qui contenait auparavant un disque dur.
-> * Dans le portail Azure Classic, les emplacements sont numérotés de 0 à 11. Par conséquent, si le portail indique qu’un disque à l’emplacement 2 est défectueux, sur l’appareil, vous trouvez le disque défectueux au troisième emplacement à partir du coin supérieur gauche.
+> * Bonjour portail Azure classic, les emplacements sont numérotés de 0 à 11. Par conséquent, si le portail de hello montre qu’un disque dans l’emplacement 2 a échoué sur l’appareil de hello, recherchez hello disque en panne dans l’emplacement de tiers hello hello en haut à gauche.
 > 
 > 
 
-Les lecteurs peuvent être retirés et remplacés pendant que le système fonctionne.
+Lecteurs peuvent être supprimés et remplacés pendant le fonctionnement du système de hello.
 
-#### <a name="to-remove-a-drive"></a>Pour retirer un lecteur
-1. Pour identifier le disque défectueux, accédez dans le Portail Azure Classic à **Appareils** > **Maintenance** > **Statut du matériel**. Comme un disque défectueux peut se trouver dans le boîtier principal et/ou dans un boîtier EBOD (si vous utilisez un modèle 8600), vérifiez l’état des disques sous **Composants partagés** et sous **Composants partagés du boîtier EBOD**. Un disque défectueux dans un des boîtiers est affiché avec un état rouge.
-2. Recherchez les lecteurs à l’avant du boîtier principal ou du boîtier EBOD. 
-3. Si le disque est déverrouillé, passez à l’étape suivante. Si le disque est verrouillé, déverrouillez-le en suivant la procédure décrite dans [Désengager le verrou anti-effraction](#disengage-the-antitamper-lock).
-4. Appuyez sur le verrou noir du module de support de lecteur et tirez sur la poignée du support de lecteur vers l’avant du châssis. 
+#### <a name="tooremove-a-drive"></a>tooremove un lecteur
+1. tooidentify hello disque défaillant hello portail Azure classic, dans accédez trop**périphériques** > **Maintenance** > **état du matériel**. Car un disque peut échouer dans le boîtier principal de hello et/ou un boîtier EBOD (si vous utilisez un modèle 8600), examinez état hello de disques hello sous **composants partagés** et sous **EBOD composants partagés du boîtier**. Un disque défectueux dans un des boîtiers est affiché avec un état rouge.
+2. Recherchez hello lecteurs à l’avant du boîtier principal de hello ou boîtiers hello hello. 
+3. Si le disque de hello est déverrouillé, passez toohello prochaine étape. Si le disque de hello est verrouillé, déverrouillez-le en suivant la procédure hello dans [désactiver le dispositif de sécurisation hello](#disengage-the-antitamper-lock).
+4. Appuyez sur hello noir de verrous internes sur le module de transport hello et extraient retirer poignée hello avant de hello du châssis de hello. 
    
     ![Libération de la poignée du lecteur de disque](./media/storsimple-disk-drive-replacement/IC741051.png)
    
-    **Figure 3** : Libération de la poignée du lecteur
-5. Quand la poignée du support de lecteur est entièrement en extension, faites glisser le support de lecteur hors du châssis. 
+    **Figure 3** poignée hello libération
+5. Lors de la poignée du lecteur hello est entièrement développée, faites glisser hello lecteur hors du châssis de hello. 
    
     ![Retrait du disque hors du lecteur de disque](./media/storsimple-disk-drive-replacement/IC741052.png)
    
-    **Figure 4** : Retrait du lecteur de disque hors du châssis
+    **Figure 4** glissante disque hello en dehors de l’opérateur de hello
 
-## <a name="install-the-replacement-disk-drive"></a>    Installez le lecteur de disque de remplacement
-Quand un lecteur est défectueux dans votre appareil StorSimple et que vous l’avez retiré, suivez cette procédure pour le remplacer par un nouveau lecteur.
+## <a name="install-hello-replacement-disk-drive"></a>Installer le lecteur de disque de remplacement hello
+Après un lecteur de disque défectueux dans votre appareil StorSimple et vous l’avez supprimé, suivez cette procédure tooreplace avec un nouveau lecteur.
 
-#### <a name="to-insert-a-drive"></a>Pour insérer un lecteur
-1. Assurez-vous que la poignée du support de lecteur est entièrement en extension, comme illustré dans l’image suivante.
+#### <a name="tooinsert-a-drive"></a>tooinsert un lecteur
+1. Vérifiez la poignée hello est entièrement développée, comme indiqué dans hello suivant l’image.
    
     ![Lecteur de disque avec la poignée en extension](./media/storsimple-disk-drive-replacement/IC741044.png)
    
     **Figure 5** : Lecteur avec la poignée en extension
-2. Faites glisser le support de lecteur jusqu’au bout dans le châssis. 
+2. Faites glisser hello lecteur moyen de tous les hello dans le châssis de hello. 
    
     ![Insertion du disque dans le support de lecteur disque](./media/storsimple-disk-drive-replacement/IC741045.png)
    
-    **Figure 6** : Insertion du support de lecteur dans le châssis
-3. Le support de lecteur étant inséré, fermez la poignée du support de lecteur tout en continuant à pousser le support de lecteur dans le châssis, jusqu’à ce que la poignée du support de lecteur s’enclenche en position verrouillée.
-4. Utilisez la clé de verrouillage qui a été fournie par Microsoft (tournevis Torx anti-effraction) pour sécuriser la poignée du support à son emplacement en tournant la vis de verrouillage d’un quart de tour dans le sens des aiguilles d’une montre.
-5. Vérifiez que le remplacement a réussi et que le lecteur est opérationnel en accédant au portail Azure Classic, puis à **Maintenance** > **Statut du matériel**. Sous **Composants partagés** ou **Composants partagés du boîtier EBOD**, l’état du disque doit être en vert, indiquant qu’il est intègre.
+    **Figure 6** support hello décalé dans le châssis de hello
+3. Avec hello lecteur transporteur hello inséré, fermez sa poignée lors de la poursuite de l’opération toopush hello support dans le châssis hello, jusqu'à ce que la poignée du lecteur hello s’aligne en position verrouillée.
+4. Utilisez hello clé de verrouillage a été fournie par la poignée du support Microsoft (tournevis de Torx inviolable) toosecure hello en place en activant le hello verrou vis un quart de tour dans le sens horaire.
+5. Vérifiez que hello remplacement a fonctionné et que lecteur de hello est opérationnel en accédant, via hello portail Azure classic, trop**Maintenance** > **état du matériel**. Sous **composants partagés** ou **composants partagés du boîtier EBOD**, état du lecteur hello doit être vert, indiquant qu’il est sain.
    
    > [!NOTE]
-   > Plusieurs heures peuvent être nécessaires pour que l’état du disque passe en vert après le remplacement.
+   > Il peut prendre plusieurs heures hello disque état tooturn vert après le remplacement de hello.
    > 
    > 
 

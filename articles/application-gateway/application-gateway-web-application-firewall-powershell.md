@@ -1,6 +1,6 @@
 ---
-title: "Configurer un pare-feu d’applications web : passerelle Application Gateway Azure | Microsoft Docs"
-description: "Cet article explique comment utiliser un pare-feu d’applications web sur une passerelle Application Gateway nouvelle ou existante."
+title: "pare-feu d’applications web aaaConfigure - passerelle d’Application Azure | Documents Microsoft"
+description: "Cet article fournit des conseils sur comment toostart à l’aide de web des pare-feu d’applications sur une passerelle d’Application existant ou nouveau."
 documentationcenter: na
 services: application-gateway
 author: georgewallace
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/03/2017
 ms.author: gwallace
-ms.openlocfilehash: dab489a1c9fb7d4a51b9ccbce543b209bec23575
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: bd2a69901f0ec0d6551d633e2588b74c3ab59a71
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-web-application-firewall-on-a-new-or-existing-application-gateway"></a>Configurer un pare-feu d’application web sur une passerelle Application Gateway nouvelle ou existante
 
@@ -27,81 +27,81 @@ ms.lasthandoff: 08/18/2017
 > * [PowerShell](application-gateway-web-application-firewall-powershell.md)
 > * [Interface de ligne de commande Azure](application-gateway-web-application-firewall-cli.md)
 
-Découvrez comment créer une passerelle Application Gateway avec un pare-feu d’applications web activé ou comment ajouter des pare-feu d’applications web à une passerelle Application Gateway existante.
+Découvrez comment toocreate un pare-feu d’applications web activé la passerelle d’Application, ou ajoutez des tooan de pare-feu d’application web existante de passerelle d’Application.
 
-Le pare-feu d’applications web (WAF, Web Application Firewall) d’Azure Application Gateway protège les applications web des attaques basées sur le web courantes comme l’injection de code SQL, les attaques de script de site à site et les piratages de session.
+pare-feu d’applications Hello web (WAF) dans la passerelle d’Application Azure protège les applications web à partir des attaques courantes basée sur le web telles que l’injection SQL, les attaques de script entre sites et des détournements de session.
 
-La passerelle Azure Application Gateway est un équilibreur de charge de couche 7. Elle assure l’exécution des requêtes HTTP de basculement et de routage des performances entre serveurs locaux ou dans le cloud. Application Gateway offre de nombreuses fonctionnalités de contrôleur de livraison d’applications (ADC) : équilibrage de charge HTTP, affinité de session basée sur les cookies, déchargement de protocole SSL, sondes d’intégrité personnalisées, prise en charge multisite, etc. Pour obtenir une liste complète des fonctionnalités prises en charge, consultez : [Vue d’ensemble d’Application Gateway](application-gateway-introduction.md).
+La passerelle Azure Application Gateway est un équilibreur de charge de couche 7. Il fournit un basculement, routage des performances des requêtes HTTP entre différents serveurs, qu’ils soient sur le cloud de hello ou localement. Application Gateway offre de nombreuses fonctionnalités de contrôleur de livraison d’applications (ADC) : équilibrage de charge HTTP, affinité de session basée sur les cookies, déchargement de protocole SSL, sondes d’intégrité personnalisées, prise en charge multisite, etc. toofind une liste complète des fonctionnalités prises en charge, visitez : [vue d’ensemble de la passerelle d’Application](application-gateway-introduction.md).
 
-L’article suivant montre comment [ajouter un pare-feu d’applications web à une passerelle Application Gateway existante](#add-web-application-firewall-to-an-existing-application-gateway) et comment [créer une passerelle Application Gateway qui utilise le pare-feu d’applications web](#create-an-application-gateway-with-web-application-firewall).
+Hello ci-dessous montre comment trop[ajouter tooan de pare-feu d’application web existante Application Gateway](#add-web-application-firewall-to-an-existing-application-gateway) et [créer une passerelle d’Application qui utilise le pare-feu d’applications web](#create-an-application-gateway-with-web-application-firewall).
 
 ![image du scénario][scenario]
 
 ## <a name="waf-configuration-differences"></a>Différences de configuration WAF
 
-Si vous avez lu la rubrique [Création d’une passerelle Application Gateway avec PowerShell](application-gateway-create-gateway-arm.md), vous connaissez les paramètres de référence (SKU) à configurer lors de la création d’une passerelle Application Gateway. WAF inclut des paramètres supplémentaires à définir lors de la configuration de la référence SKU sur une passerelle Application Gateway. Aucune autre modification n’est nécessaire sur la passerelle Application Gateway elle-même.
+Si vous avez lu [créer une passerelle d’Application avec PowerShell](application-gateway-create-gateway-arm.md), vous comprenez tooconfigure de paramètres de référence (SKU) hello lors de la création d’une passerelle d’Application. WAF fournit des paramètres supplémentaires toodefine lors de la configuration de référence (SKU) de hello sur une passerelle d’Application. Il n’y a aucune modification supplémentaire que vous apportez sur hello passerelle d’Application lui-même.
 
 | **Paramètre** | **Détails**
 |---|---|
-|**Référence (SKU)** |Une passerelle Application Gateway normale sans WAF prend en charge les tailles **Standard\_Small**, **Standard\_Medium** et **Standard\_Large**. Avec l’introduction de WAF, deux autres SKU sont disponibles : **WAF\_Medium** et **WAF\_Large**. WAF n’est pas pris en charge sur les petites passerelles Application Gateway.|
-|**Niveau** | Les valeurs disponibles sont **Standard** ou **WAF**. Lorsque vous utilisez un pare-feu d’applications web, vous devez choisir **WAF**.|
-|**Mode** | Ce paramètre indique le mode de WAF. Les valeurs autorisées sont **Détection** et **Prévention**. Lorsque WAF est configuré en mode de détection, toutes les menaces sont stockées dans un fichier journal. En mode de prévention, les événements sont toujours consignés, mais l’attaquant reçoit une erreur d’autorisation de type 403 de la part de la passerelle Application Gateway.|
+|**Référence (SKU)** |Une passerelle Application Gateway normale sans WAF prend en charge les tailles **Standard\_Small**, **Standard\_Medium** et **Standard\_Large**. Avec l’introduction de hello de WAF, il existe deux références supplémentaires, **WAF\_support** et **WAF\_grande**. WAF n’est pas pris en charge sur les petites passerelles Application Gateway.|
+|**Niveau** | les valeurs disponibles Hello sont **Standard** ou **WAF**. Lorsque vous utilisez un pare-feu d’applications web, vous devez choisir **WAF**.|
+|**Mode** | Ce paramètre est le mode de WAF hello. Les valeurs autorisées sont **Détection** et **Prévention**. Lorsque WAF est configuré en mode de détection, toutes les menaces sont stockées dans un fichier journal. En mode de prévention, les événements sont toujours enregistrés, mais les intrus hello reçoive une réponse non autorisé 403 hello passerelle d’Application.|
 
-## <a name="add-web-application-firewall-to-an-existing-application-gateway"></a>Ajout d’un pare-feu d’applications web à une passerelle Application Gateway existante
+## <a name="add-web-application-firewall-tooan-existing-application-gateway"></a>Ajouter tooan de pare-feu d’application web existante Application Gateway
 
-Assurez-vous que vous disposez de la version la plus récente d’Azure PowerShell. Pour plus d’informations, voir [Utilisation de Windows PowerShell avec Azure Resource Manager](../powershell-azure-resource-manager.md).
+Assurez-vous que vous utilisez la version la plus récente d’Azure PowerShell hello. Pour plus d’informations, voir [Utilisation de Windows PowerShell avec Azure Resource Manager](../powershell-azure-resource-manager.md).
 
-1. Connectez-vous à votre compte Azure.
+1. Ouvrez une session dans tooyour compte Azure.
 
     ```powershell
     Login-AzureRmAccount
     ```
 
-2. Sélectionnez l’abonnement à utiliser pour ce scénario.
+2. Sélectionnez toouse d’abonnement hello pour ce scénario.
 
     ```powershell
     Select-AzureRmSubscription -SubscriptionName "<Subscription name>"
     ```
 
-3. Récupérez la passerelle à laquelle vous ajoutez un pare-feu d’applications web.
+3. Récupérer la passerelle hello que vous ajoutez au pare-feu d’applications web.
 
     ```powershell
     $gw = Get-AzureRmApplicationGateway -Name "AdatumGateway" -ResourceGroupName "MyResourceGroup"
     ```
 
-1. Configurez la référence SKU du pare-feu d’applications web. Les tailles disponibles sont **WAF\_Large** et **WAF\_Medium**. Lorsque le pare-feu d’application web est utilisé, le niveau doit être **WAF**, la capacité doit être confirmée lors de la définition de la référence (SKU).
+1. Configurer la référence (SKU) de hello web application pare-feu. les tailles disponibles Hello sont **WAF\_grande** et **WAF\_support**. Pare-feu d’applications web est utilisé lors de la couche de hello doit être **WAF**, capacité de hello doit être confirmée lors de la configuration de référence (SKU) hello.
 
     ```powershell
     $gw | Set-AzureRmApplicationGatewaySku -Name WAF_Large -Tier WAF -Capacity 2
     ```
 
-1. Configurez les paramètres WAF comme indiqué dans l’exemple suivant :
+1. Configurer les paramètres de hello WAF tel que défini dans hello l’exemple suivant :
 
-   Pour **FirewallMode**, les valeurs disponibles sont Prévention et Détection.
+   Pour **FirewallMode**, les valeurs disponibles hello sont la détection et la prévention.
 
     ```powershell
     $gw | Set-AzureRmApplicationGatewayWebApplicationFirewallConfiguration -Enabled $true -FirewallMode Prevention
     ```
 
-1. Mettez à jour la passerelle Application Gateway avec les paramètres définis à l’étape précédente.
+1. Mettre à jour hello passerelle d’Application avec les paramètres de hello définis dans hello précédant l’étape.
 
     ```powershell
     Set-AzureRmApplicationGateway -ApplicationGateway $gw
     ```
 
-Cette commande met à jour la passerelle Application Gateway avec le pare-feu d’applications web. Consultez [Diagnostics Application Gateway](application-gateway-diagnostics.md) pour comprendre comment afficher les journaux de votre passerelle Application Gateway. En raison des critères de sécurité inhérents à WAF, les journaux doivent être régulièrement examinés pour comprendre la politique de sécurité appliquée à vos applications web.
+Cette commande met à jour hello passerelle d’Application avec le pare-feu d’applications web. Visitez [diagnostics de la passerelle d’Application](application-gateway-diagnostics.md) toounderstand comment tooview se connecte pour la passerelle de votre Application. En raison de la nature de sécurité toohello de WAF, journaux besoin toobe révisé régulièrement posture de sécurité hello toounderstand de vos applications web.
 
 ## <a name="create-an-application-gateway-with-web-application-firewall"></a>Créer une passerelle Application Gateway avec le pare-feu d’applications web
 
-Les étapes suivantes vous guident lors du processus de création d’une passerelle Application Gateway avec un pare-feu d’applications web et ce, du début à la fin.
+Hello étapes suivantes vous guident tout processus de hello de tooend de début pour la création d’une passerelle d’Application avec le pare-feu d’applications web.
 
-Assurez-vous que vous disposez de la version la plus récente d’Azure PowerShell. Pour plus d’informations, voir [Utilisation de Windows PowerShell avec Azure Resource Manager](../powershell-azure-resource-manager.md).
+Assurez-vous que vous utilisez la version la plus récente d’Azure PowerShell hello. Pour plus d’informations, voir [Utilisation de Windows PowerShell avec Azure Resource Manager](../powershell-azure-resource-manager.md).
 
-1. Connectez-vous à Azure en exécutant `Login-AzureRmAccount`. Vous êtes invité à vous authentifier avec vos informations d’identification.
+1. Connectez-vous à tooAzure en exécutant `Login-AzureRmAccount`, vous êtes invité à tooauthenticate avec vos informations d’identification.
 
-1. Vérifiez les abonnements pour le compte en exécutant `Get-AzureRmSubscription`.
+1. Vérifier les abonnements hello pour le compte de hello en exécutant`Get-AzureRmSubscription`
 
-1. Parmi vos abonnements Azure, choisissez celui que vous souhaitez utiliser.
+1. Choisissez parmi vos toouse abonnements Azure.
 
     ```powershell
     Select-AzureRmsubscription -SubscriptionName "<Subscription name>"
@@ -109,92 +109,92 @@ Assurez-vous que vous disposez de la version la plus récente d’Azure PowerShe
 
 ### <a name="create-a-resource-group"></a>Créer un groupe de ressources
 
-Créez un groupe de ressources pour la passerelle Application Gateway.
+Créer un groupe de ressources pour hello passerelle d’Application.
 
 ```powershell
 New-AzureRmResourceGroup -Name appgw-rg -Location "West US"
 ```
 
-Azure Resource Manager requiert que tous les groupes de ressources spécifient un emplacement. Celui-ci est utilisé comme emplacement par défaut des ressources de ce groupe. Assurez-vous que toutes les commandes pour la création d’une passerelle Application Gateway utilisent le même groupe de ressources.
+Azure Resource Manager requiert que tous les groupes de ressources spécifient un emplacement. Cet emplacement est utilisé comme emplacement par défaut de hello pour les ressources dans ce groupe de ressources. Assurez-vous que toutes les commandes toocreate une passerelle d’Application utilise hello même groupe de ressources.
 
-Dans l’exemple précédent, nous avons créé un groupe de ressources appelé « appgw-RG », ainsi que l’emplacement « West US ».
+Bonjour précédent exemple, nous avons créé un groupe de ressources appelé « Appgw-RG » et l’emplacement « ouest des États-Unis. »
 
 > [!NOTE]
-> Si vous devez configurer une sonde personnalisée pour votre passerelle Application Gateway, consultez [Création d’une passerelle Application Gateway avec des sondes personnalisées à l’aide de PowerShell](application-gateway-create-probe-ps.md). Pour plus d’informations, découvrez les [sondes personnalisées et l’analyse du fonctionnement](application-gateway-probe-overview.md) .
+> Si vous devez tooconfigure une sonde personnalisée pour votre passerelle d’Application, consultez [créer une passerelle d’Application en testant personnalisé à l’aide de PowerShell](application-gateway-create-probe-ps.md). Pour plus d’informations, découvrez les [sondes personnalisées et l’analyse du fonctionnement](application-gateway-probe-overview.md) .
 
 ### <a name="configure-virtual-network"></a>Configurer un réseau virtuel
 
-Application Gateway nécessite son propre sous-réseau. Dans cette étape, vous allez créer un réseau virtuel avec un espace d’adressage de 10.0.0.0/16 et deux sous-réseaux, un pour la passerelle Application Gateway et un pour les membres du pool backend.
+Application Gateway nécessite son propre sous-réseau. Dans cette étape, vous créez un réseau virtuel avec un espace d’adressage de 10.0.0.0/16 et deux sous-réseaux, un pour hello passerelle d’Application et l’autre pour les membres du pool principal.
 
 ```powershell
-# Create a subnet configuration object for the Application Gateway subnet. A subnet for an application should have a minimum of 28 mask bits. This value leaves 10 available addresses in the subnet for Application Gateway instances. With a smaller subnet, you may not be able to add more instance of your Application Gateway in the future.
+# Create a subnet configuration object for hello Application Gateway subnet. A subnet for an application should have a minimum of 28 mask bits. This value leaves 10 available addresses in hello subnet for Application Gateway instances. With a smaller subnet, you may not be able tooadd more instance of your Application Gateway in hello future.
 $gwSubnet = New-AzureRmVirtualNetworkSubnetConfig -Name 'appgwsubnet' -AddressPrefix 10.0.0.0/24
 
-# Create a subnet configuration object for the backend pool members subnet
+# Create a subnet configuration object for hello backend pool members subnet
 $nicSubnet = New-AzureRmVirtualNetworkSubnetConfig  -Name 'appsubnet' -AddressPrefix 10.0.2.0/24
 
-# Create the virtual network with the previous created subnets
+# Create hello virtual network with hello previous created subnets
 $vnet = New-AzureRmvirtualNetwork -Name 'appgwvnet' -ResourceGroupName appgw-rg -Location "West US" -AddressPrefix 10.0.0.0/16 -Subnet $gwSubnet, $nicSubnet
 ```
 
 ### <a name="configure-public-ip-address"></a>Configurer une adresse IP publique
 
-Pour pouvoir traiter les demandes externes, Application Gateway a besoin d’une adresse IP publique. Cette adresse IP publique ne doit pas avoir un `DomainNameLabel` défini pour être utilisé par la passerelle Application Gateway.
+Dans l’ordre toohandle les demandes externes, passerelle d’Application requiert une adresse IP publique. Cette adresse IP publique ne doit pas avoir un `DomainNameLabel` défini toobe utilisé par hello passerelle d’Application.
 
 ```powershell
-# Create a public IP address for use with the Application Gateway. Defining the domainnamelabel during creation is not supported for use with Application Gateway
+# Create a public IP address for use with hello Application Gateway. Defining hello domainnamelabel during creation is not supported for use with Application Gateway
 $publicip = New-AzureRmPublicIpAddress -ResourceGroupName appgw-rg -name 'appgwpip' -Location "West US" -AllocationMethod Dynamic
 ```
 
-### <a name="configure-the-application-gateway"></a>Configurer la passerelle Application Gateway
+### <a name="configure-hello-application-gateway"></a>Configurer hello Application Gateway
 
 ```powershell
-# Create a IP configuration. This configures what subnet the Application Gateway uses. When Application Gateway starts, it picks up an IP address from the subnet configured and routes network traffic to the IP addresses in the back-end IP pool.
+# Create a IP configuration. This configures what subnet hello Application Gateway uses. When Application Gateway starts, it picks up an IP address from hello subnet configured and routes network traffic toohello IP addresses in hello back-end IP pool.
 $gipconfig = New-AzureRmApplicationGatewayIPConfiguration -Name 'gwconfig' -Subnet $gwSubnet
 
-# Create a backend pool to hold the addresses or NICs for the application that Application Gateway is protecting.
+# Create a backend pool toohold hello addresses or NICs for hello application that Application Gateway is protecting.
 $pool = New-AzureRmApplicationGatewayBackendAddressPool -Name 'pool01' -BackendIPAddresses 1.1.1.1, 2.2.2.2, 3.3.3.3
 
-# Upload the authenication certificate that will be used to communicate with the backend servers
-$authcert = New-AzureRmApplicationGatewayAuthenticationCertificate -Name 'whitelistcert1' -CertificateFile <full path to .cer file>
+# Upload hello authenication certificate that will be used toocommunicate with hello backend servers
+$authcert = New-AzureRmApplicationGatewayAuthenticationCertificate -Name 'whitelistcert1' -CertificateFile <full path too.cer file>
 
-# Conifugre the backend HTTP settings to be used to define how traffic is routed to the backend pool. The authenication certificate used in the previous step is added to the backend http settings.
+# Conifugre hello backend HTTP settings toobe used toodefine how traffic is routed toohello backend pool. hello authenication certificate used in hello previous step is added toohello backend http settings.
 $poolSetting = New-AzureRmApplicationGatewayBackendHttpSettings -Name 'setting01' -Port 443 -Protocol Https -CookieBasedAffinity Enabled -AuthenticationCertificates $authcert
 
-# Create a frontend port to be used by the listener.
+# Create a frontend port toobe used by hello listener.
 $fp = New-AzureRmApplicationGatewayFrontendPort -Name 'port01'  -Port 443
 
-# Create a frontend IP configuration to associate the public IP address with the Application Gateway
+# Create a frontend IP configuration tooassociate hello public IP address with hello Application Gateway
 $fipconfig = New-AzureRmApplicationGatewayFrontendIPConfig -Name 'fip01' -PublicIPAddress $publicip
 
-# Configure the certificate for the Application Gateway. This certificate is used to decrypt and re-encrypt the traffic on the Application Gateway.
-$cert = New-AzureRmApplicationGatewaySslCertificate -Name cert01 -CertificateFile <full path to .pfx file> -Password <password for certificate file>
+# Configure hello certificate for hello Application Gateway. This certificate is used toodecrypt and re-encrypt hello traffic on hello Application Gateway.
+$cert = New-AzureRmApplicationGatewaySslCertificate -Name cert01 -CertificateFile <full path too.pfx file> -Password <password for certificate file>
 
-# Create the HTTP listener for the Application Gateway. Assign the front-end ip configuration, port, and ssl certificate to use.
+# Create hello HTTP listener for hello Application Gateway. Assign hello front-end ip configuration, port, and ssl certificate toouse.
 $listener = New-AzureRmApplicationGatewayHttpListener -Name listener01 -Protocol Https -FrontendIPConfiguration $fipconfig -FrontendPort $fp -SslCertificate $cert
 
-#Create a load balancer routing rule that configures the load balancer behavior. In this example, a basic round robin rule is created.
+#Create a load balancer routing rule that configures hello load balancer behavior. In this example, a basic round robin rule is created.
 $rule = New-AzureRmApplicationGatewayRequestRoutingRule -Name 'rule01' -RuleType basic -BackendHttpSettings $poolSetting -HttpListener $listener -BackendAddressPool $pool
 
-# Configure the SKU of the Application Gateway
+# Configure hello SKU of hello Application Gateway
 $sku = New-AzureRmApplicationGatewaySku -Name WAF_Medium -Tier WAF -Capacity 2
 
-# Define the SSL policy to use
+# Define hello SSL policy toouse
 $policy = New-AzureRmApplicationGatewaySslPolicy -PolicyType Predefined -PolicyName AppGwSslPolicy20170401S
 
-#Configure the waf configuration settings.
+#Configure hello waf configuration settings.
 $config = New-AzureRmApplicationGatewayWebApplicationFirewallConfiguration -Enabled $true -FirewallMode "Prevention"
 
-# Create the Application Gateway utilizing all the previously created configuration objects
+# Create hello Application Gateway utilizing all hello previously created configuration objects
 $appgw = New-AzureRmApplicationGateway -Name appgwtest -ResourceGroupName appgw-rg -Location "West US" -BackendAddressPools $pool -BackendHttpSettingsCollection $poolSetting -FrontendIpConfigurations $fipconfig  -GatewayIpConfigurations $gipconfig -FrontendPorts $fp -HttpListeners $listener -RequestRoutingRules $rule -Sku $sku -WebApplicationFirewallConfig $config -SslCertificates $cert -AuthenticationCertificates $authcert
 ```
 
 > [!NOTE]
-> Les passerelles Application Gateway créées avec la configuration de pare-feu d’application web de base sont définies avec la solution CRS 3.0 dédiée aux protections.
+> Passerelles d’application créés avec la configuration du pare-feu application hello web de base sont configurés avec CRS 3.0 pour les protections.
 
 ## <a name="get-application-gateway-dns-name"></a>Obtenir le nom DNS d’une passerelle Application Gateway
 
-Une fois la passerelle créée, l’étape suivante consiste à configurer le serveur frontal pour la communication. Lorsque vous utilisez une adresse IP publique, la passerelle Application Gateway requiert un nom DNS attribué dynamiquement, ce qui n’est pas convivial. Pour s’assurer que les utilisateurs finaux peuvent atteindre la passerelle Application Gateway, un enregistrement CNAME peut être utilisé pour pointer vers le point de terminaison public de la passerelle Application Gateway. [Configuration d’un nom de domaine personnalisé pour Azure](../cloud-services/cloud-services-custom-domain-name-portal.md). Pour configurer un alias, récupérez les détails de la passerelle Application Gateway et de son nom IP/DNS associé à l’aide de l’élément PublicIPAddress attaché à la passerelle Application Gateway. Le nom DNS de la passerelle Application Gateway doit être utilisé pour créer un enregistrement CNAME qui pointe les deux applications web sur ce nom DNS. L’utilisation de A-records n’est pas recommandée étant donné que l’adresse IP virtuelle peut changer lors du redémarrage de la passerelle Application Gateway.
+Après la création de la passerelle de hello, hello prochaine étape consiste tooconfigure hello frontal pour la communication. Lorsque vous utilisez une adresse IP publique, la passerelle Application Gateway requiert un nom DNS attribué dynamiquement, ce qui n’est pas convivial. les utilisateurs finaux de tooensure pouvez atteindre hello passerelle d’Application, un enregistrement CNAME peut être le point de terminaison utilisé toopoint toohello public de hello passerelle d’Application. [Configuration d’un nom de domaine personnalisé pour Azure](../cloud-services/cloud-services-custom-domain-name-portal.md). tooconfigure un alias, de récupérer les détails de hello passerelle d’Application et son nom IP/DNS associé à l’aide de hello PublicIPAddress élément attaché toohello passerelle d’Application. nom DNS de la passerelle d’Application Hello doit être utilisé toocreate un enregistrement CNAME, le nom DNS de points hello deux web applications toothis. les utilisation de Hello d’enregistrements d’un n’est pas recommandée étant donné que l’adresse IP virtuelle hello peut changer lors du redémarrage de la passerelle d’Application.
 
 ```powershell
 Get-AzureRmPublicIpAddress -ResourceGroupName appgw-RG -Name publicIP01
@@ -224,6 +224,6 @@ DnsSettings              : {
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Apprenez à configurer la journalisation des diagnostics et à consigner les événements détectés ou bloqués par le pare-feu d’application web en consultant la rubrique [Diagnostics de la passerelle Application Gateway](application-gateway-diagnostics.md).
+Découvrez comment tooconfigure journalisation des diagnostics, événements de hello toolog détectés ou prévenir pare-feu d’applications web en vous rendant sur [Diagnostics de passerelle d’Application](application-gateway-diagnostics.md)
 
 [scenario]: ./media/application-gateway-web-application-firewall-powershell/scenario.png

@@ -1,6 +1,6 @@
 ---
-title: "Configurer des webhooks sur des alertes de métrique Azure | Microsoft Docs"
-description: "Rediriger des alertes Azure vers d’autres systèmes non-Azure"
+title: "webhooks aaaConfigure sur les alertes de métrique Azure | Documents Microsoft"
+description: "Rediriger les systèmes non-Azure tooother alertes Azure."
 author: johnkemnetz
 manager: carmonm
 editor: 
@@ -14,29 +14,29 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/03/2017
 ms.author: johnkem
-ms.openlocfilehash: 1a885166e5c71f13da222bfc22b0fc579096c52f
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: bc4153ccdcff41c5b9d3c081e59a1bf260d8a283
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-a-webhook-on-an-azure-metric-alert"></a>Configurer un webhook sur une alerte de métrique Azure
-Les webhooks vous permettent d’acheminer une notification d’alerte Azure vers d’autres systèmes à des fins de post-traitement ou d’exécution d’actions personnalisées. Vous pouvez utiliser un webhook sur une alerte pour acheminer cette dernière vers des services qui envoient un SMS, consignent les bogues, avertissent une équipe par le biais de services de conversation instantanée/messagerie ou exécutent diverses autres actions. Cet article décrit la procédure de définition d’un webhook sur une alerte de métrique Azure, ainsi que l’aspect de la charge utile de la requête HTTP POST vers un webhook. Pour plus d’informations sur la configuration et le schéma d’une alerte de journal d’activité Azure (alertes sur les événements), [consultez plutôt cette page](insights-auditlog-to-webhook-email.md).
+Autoriser le Webhooks vous tooroute Azure pour les actions de post-traitement ou personnalisées, les systèmes de notification tooother d’alerte. Vous pouvez utiliser un webhook sur une alerte tooroute il tooservices qui envoient des SMS, enregistrer les bogues, notifier une équipe via les services de messagerie/conversation qui ou n’importe quel nombre d’autres actions. Cet article décrit comment tooset un webhook sur une alerte de métrique Azure et le charge hello hello HTTP POST tooa webhook ressemble. Pour plus d’informations sur le programme d’installation hello et le schéma d’une alerte de journal des activités Azure (alerte sur les événements), [cette page s’affiche à la place](insights-auditlog-to-webhook-email.md).
 
-Les alertes Azure exécutent une requête HTTP POST transmettant le contenu de l’alerte au format JSON, avec le schéma défini ci-après, vers un URI de webhook que vous fournissez lors de la création de l’alerte. Cet URI doit être un point de terminaison HTTP ou HTTPS valide. Azure publie une entrée par demande lorsqu’une alerte est activée.
+Azure alertes HTTP POST hello contenu de l’alerte au format JSON, schéma défini ci-dessous, tooa webhook URI que vous fournissez lors de la création d’alerte de hello. Cet URI doit être un point de terminaison HTTP ou HTTPS valide. Azure publie une entrée par demande lorsqu’une alerte est activée.
 
-## <a name="configuring-webhooks-via-the-portal"></a>Configuration de webhooks par le biais du portail
-Vous pouvez ajouter ou mettre à jour l’URI du webhook dans l’écran Créer/mettre à jour des alertes du [Portail](https://portal.azure.com/).
+## <a name="configuring-webhooks-via-hello-portal"></a>Configuration des webhooks via le portail de hello
+Vous pouvez ajouter ou mettre à jour hello webhook URI sur l’écran hello créer/mettre à jour les alertes Bonjour [portal](https://portal.azure.com/).
 
 ![Ajouter une règle d’alerte](./media/insights-webhooks-alerts/Alertwebhook.png)
 
-Vous pouvez également configurer une alerte à publier vers un URI de webhook à l’aide des [applets de commande Azure PowerShell](insights-powershell-samples.md#create-metric-alerts), de [l’interface de ligne de commande multiplateforme](insights-cli-samples.md#work-with-alerts) ou de [l’API REST Azure Monitor](https://msdn.microsoft.com/library/azure/dn933805.aspx).
+Vous pouvez également configurer un webhook de tooa toopost alerte URI à l’aide de hello [applets de commande PowerShell Azure](insights-powershell-samples.md#create-metric-alerts), [inter-plateformes CLI](insights-cli-samples.md#work-with-alerts), ou [API REST de Azure analyse](https://msdn.microsoft.com/library/azure/dn933805.aspx).
 
-## <a name="authenticating-the-webhook"></a>Authentification du webhook
-Le webhook peut s’authentifier à l’aide de l’autorisation basée sur un jeton. L’URI du webhook est enregistré avec un ID de jeton, par exemple `https://mysamplealert/webcallback?tokenid=sometokenid&someparameter=somevalue`
+## <a name="authenticating-hello-webhook"></a>Authentification hello webhook
+Hello webhook peut s’authentifier à l’aide d’autorisation basée sur le jeton. Hello webhook URI est, par exemple enregistré avec un ID de jeton. `https://mysamplealert/webcallback?tokenid=sometokenid&someparameter=somevalue`
 
 ## <a name="payload-schema"></a>Schéma de la charge utile
-L’opération POST contient le schéma et la charge utile JSON ci-après pour toutes les alertes basées sur des métriques.
+Hello opération POST contient hello suivant charge utile JSON et schéma pour toutes les alertes métrique.
 
 ```JSON
 {
@@ -74,38 +74,38 @@ L’opération POST contient le schéma et la charge utile JSON ci-après pour t
 
 | Champ | Obligatoire | Ensemble fixe de valeurs | Remarques |
 |:--- |:--- |:--- |:--- |
-| status |O |"Activated", "Resolved" |État de l’alerte en fonction des conditions que vous avez définies. |
-| context |O | |Contexte de l’alerte. |
-| timestamp |O | |Heure à laquelle l’alerte a été déclenchée. |
+| status |O |"Activated", "Resolved" |État d’alerte de hello basés sur les conditions de hello que vous avez défini. |
+| context |O | |contexte de l’alerte Hello. |
+| timestamp |O | |heure de Hello à quels hello alerte a été déclenchée. |
 | id |O | |Chaque règle d’alerte possède un ID unique. |
-| name |O | |Nom de l’alerte. |
-| description |O | |Description de l’alerte. |
-| conditionType |O |"Metric", "Event" |Deux types d’alertes sont pris en charge. L’un repose sur une condition de métrique, et l’autre sur un événement dans le journal d’activité. Utilisez cette valeur pour vérifier si l’alerte est basée sur une métrique ou sur un événement. |
-| condition |O | |Champs à vérifier en fonction du champ conditionType. |
-| metricName |Pour les alertes de métrique | |Nom de la métrique qui définit ce que la règle surveille |
-| metricUnit |Pour les alertes de métrique |« Bytes », « BytesPerSecond », « Count », « CountPerSecond », « Percent », « Seconds » |Unité autorisée dans la métrique [Les valeurs autorisées sont répertoriées ici](https://msdn.microsoft.com/library/microsoft.azure.insights.models.unit.aspx). |
-| metricValue |Pour les alertes de métrique | |Valeur réelle de la métrique ayant entraîné l’alerte. |
-| threshold |Pour les alertes de métrique | |Valeur de seuil en fonction de laquelle l’alerte est activée. |
-| windowSize |Pour les alertes de métrique | |Période de temps qui est utilisée pour surveiller l’activité d’alerte en fonction du seuil. Doit être comprise entre 5 minutes et 1 jour. Le format de la durée répond à la norme ISO 8601. |
-| timeAggregation |Pour les alertes de métrique |« Average », « Last », « Maximum », « Minimum », « None », « Total » |Détermine la façon dont les données collectées doivent être combinées au fil du temps. La valeur par défaut est Average. [Les valeurs autorisées sont répertoriées ici](https://msdn.microsoft.com/library/microsoft.azure.insights.models.aggregationtype.aspx). |
-| operator |Pour les alertes de métrique | |Opérateur utilisé pour la comparaison des données de métrique actuelles au seuil défini. |
+| name |O | |nom de l’alerte Hello. |
+| description |O | |Description de l’alerte de hello. |
+| conditionType |O |"Metric", "Event" |Deux types d’alertes sont pris en charge. L’une basée sur une condition de métriques et hello autres en fonction d’un événement dans le journal d’activité de hello. Utilisez cette valeur toocheck si alerte de hello est basée sur la mesure ou un événement. |
+| condition |O | |Bonjour toocheck des champs spécifiques pour selon hello conditionType. |
+| metricName |Pour les alertes de métrique | |analyse du nom Hello de métrique hello qui définit quelle règle hello. |
+| metricUnit |Pour les alertes de métrique |« Bytes », « BytesPerSecond », « Count », « CountPerSecond », « Percent », « Seconds » |unité de Hello autorisée dans la mesure de hello. [Les valeurs autorisées sont répertoriées ici](https://msdn.microsoft.com/library/microsoft.azure.insights.models.unit.aspx). |
+| metricValue |Pour les alertes de métrique | |valeur réelle de Hello de métrique hello ayant provoqué l’alerte de hello. |
+| threshold |Pour les alertes de métrique | |valeur de seuil Hello à quels hello alerte est activée. |
+| windowSize |Pour les alertes de métrique | |Hello période de temps qui est l’activité d’alerte toomonitor utilisé selon le seuil de hello. Doit être comprise entre 5 minutes et 1 jour. Le format de la durée répond à la norme ISO 8601. |
+| timeAggregation |Pour les alertes de métrique |« Average », « Last », « Maximum », « Minimum », « None », « Total » |Comment les données de hello collectées doivent être combinées au fil du temps. valeur par défaut de Hello est moyenne. [Les valeurs autorisées sont répertoriées ici](https://msdn.microsoft.com/library/microsoft.azure.insights.models.aggregationtype.aspx). |
+| operator |Pour les alertes de métrique | |Hello opérateur utilisé toocompare hello actuel données métriques toohello seuil défini. |
 | subscriptionId |O | |ID d’abonnement Azure. |
-| resourceGroupName |O | |Nom du groupe de ressources de la ressource affectée. |
-| resourceName |O | |Nom de la ressource affectée. |
-| resourceType |O | |Type de la ressource affectée. |
-| resourceId |O | |ID de ressource de la ressource affectée. |
-| resourceRegion |O | |Région ou emplacement de la ressource affectée. |
-| portalLink |O | |Lien direct vers la page de résumé de la ressource sur le Portail. |
-| properties |N |Facultatif |Ensemble de paires `<Key, Value>` (par exemple, `Dictionary<String, String>`) incluant des détails sur l’événement. Le champ properties est facultatif. Dans un workflow basé sur une application logique ou une interface utilisateur personnalisée, les utilisateurs peuvent entrer des paires clé/valeur transmissibles par le biais de la charge utile. L’autre manière de passer des propriétés personnalisées au webhook consiste à utiliser l’URI du webhook (sous la forme de paramètres de requête). |
+| resourceGroupName |O | |Nom du groupe de ressources hello pour hello incidence sur la ressource. |
+| resourceName |O | |Nom de ressource de hello affectées les ressources. |
+| resourceType |O | |Type de ressource de hello affectées les ressources. |
+| resourceId |O | |ID de ressource de hello affectées les ressources. |
+| resourceRegion |O | |Région ou l’emplacement du hello affectées des ressources. |
+| portalLink |O | |Page Résumé lien direct toohello ressource portail. |
+| properties |N |Facultatif |Jeu de `<Key, Value>` paires (c'est-à-dire `Dictionary<String, String>`) qui inclut des détails sur l’événement hello. champ de propriétés Hello est facultatif. Dans une interface utilisateur ou à une logique basée sur une application flux de travail personnalisé, les utilisateurs peuvent entrer clé/valeur qui peut être passée via la charge utile de hello. Hello autre façon toopass propriétés personnalisées toohello arrière webhook est via l’uri du webhook hello elle-même (en tant que paramètres de requête) |
 
 > [!NOTE]
-> Le champ properties est uniquement définissable à l’aide de [l’API REST Azure Monitor](https://msdn.microsoft.com/library/azure/dn933805.aspx).
+> champ de propriétés Hello ne peut être définie à l’aide de hello [API REST de Azure analyse](https://msdn.microsoft.com/library/azure/dn933805.aspx).
 >
 >
 
 ## <a name="next-steps"></a>Étapes suivantes
-* En savoir plus sur les alertes Azure et sur les webhooks par le biais de la vidéo décrivant [l’intégration d’alertes Azure à PagerDuty](http://go.microsoft.com/fwlink/?LinkId=627080)
+* En savoir plus sur les alertes de Azure et de webhooks vidéo de hello [intégrer Azure Alerts à PagerDuty](http://go.microsoft.com/fwlink/?LinkId=627080)
 * [Exécuter des scripts Azure Automation (Runbooks) sur des alertes Azure](http://go.microsoft.com/fwlink/?LinkId=627081)
-* [Utiliser une application logique pour envoyer un SMS par le biais de Twilio à partir d’une alerte Azure](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-text-message-with-logic-app)
-* [Utiliser une application logique pour envoyer un message Slack à partir d’une alerte Azure](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-slack-with-logic-app)
-* [Utiliser une application logique pour envoyer un message à une file d’attente Azure à partir d’une alerte Azure](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-queue-with-logic-app)
+* [Utilisez l’application logique toosend SMS via Twilio à partir d’une alerte Azure](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-text-message-with-logic-app)
+* [Utilisez l’application logique toosend un message de marge d’une alerte Azure](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-slack-with-logic-app)
+* [Utilisez l’application logique toosend un tooan message file d’attente Azure à partir d’une alerte Azure](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-queue-with-logic-app)

@@ -1,12 +1,12 @@
 ---
-title: "Connecter Arduino (C) à Azure IoT - Leçon 3 : Déploiement de modèle | Microsoft Docs"
-description: "L’application de fonction Azure écoute les événements d’Azure IoT Hub, traite les messages entrants et les écrit dans le stockage Table Azure."
+title: "Connect Arduino (C) tooAzure IoT - leçon 3 : déploiement d’un modèle | Documents Microsoft"
+description: "application de fonction Azure Hello écoute les événements de hub IoT tooAzure, traite les messages entrants et les écrit tooAzure le stockage de Table."
 services: iot-hub
 documentationcenter: 
 author: shizn
 manager: timtl
 tags: 
-keywords: "stockage de données dans le cloud, les données stockées dans le cloud, service cloud iot"
+keywords: "le stockage des données dans le cloud hello, les données stockées dans le cloud, service de cloud computing iot"
 ROBOTS: NOINDEX
 redirect_url: /azure/iot-hub/iot-hub-adafruit-feather-m0-wifi-kit-arduino-get-started
 ms.assetid: 9c8f4cd1-9511-4601-ad7e-51761a986753
@@ -17,32 +17,32 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: be6105927645ae2ec56f6885c61dbcb6faf5b11f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6a84a6d3c5263a85c8997cf69fe446d73ab7a5fc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-azure-function-app-and-azure-storage-account"></a>Créer une application de fonction Azure et un compte de Stockage Azure
-[Azure Functions](../../articles/azure-functions/functions-overview.md) est une solution conçue pour exécuter facilement des petits morceaux de code (« *functions* ») dans le cloud. Une application de fonction Azure héberge l’exécution de vos fonctions dans Azure.
+[Les fonctions Azure](../../articles/azure-functions/functions-overview.md) est une solution pour l’exécution de facilement *fonctions* (petits segments de code) dans le cloud de hello. Une application de la fonction Azure héberge l’exécution de hello de vos fonctions dans Azure.
 
 ## <a name="what-will-you-do"></a>Ce que vous allez faire
-Utilisez un modèle Azure Resource Manager pour créer une application de fonction Azure et un compte de Stockage Azure. L’application de fonction Azure écoute les événements d’Azure IoT Hub, traite les messages entrants et les écrit dans le stockage Table Azure.
+Utiliser un toocreate de modèle Azure Resource Manager, une application de la fonction Azure et un compte de stockage Azure. application de fonction Azure Hello écoute les événements de hub IoT tooAzure, traite les messages entrants et les écrit tooAzure le stockage de Table.
 
-Si vous rencontrez des problèmes, recherchez une solution sur la [page Résolution des problèmes pour la carte Adafruit Feather M0 WiFi Arduino](iot-hub-adafruit-feather-m0-wifi-kit-arduino-troubleshooting.md).
+Si vous rencontrez des problèmes, recherchez des solutions sur hello [page de votre carte mère Adafruit estompe M0 Wi-Fi Arduino dépannage](iot-hub-adafruit-feather-m0-wifi-kit-arduino-troubleshooting.md).
 
 ## <a name="what-will-you-learn"></a>Ce que vous allez apprendre
 Cet article portera sur les éléments suivants :
-* Commet utiliser [Azure Resource Manager](../../articles/azure-resource-manager/resource-group-overview.md) pour déployer des ressources Azure.
-* Comment utiliser une application de fonction Azure pour traiter les messages de l’IoT Hub et les écrire dans une table du stockage Table Azure.
+* Comment toouse [Azure Resource Manager](../../articles/azure-resource-manager/resource-group-overview.md) toodeploy Azure ressources.
+* Comment toouse Azure application tooprocess messages de hub IoT de fonction et les écrire tooa table dans le stockage Azure Table.
 
 ## <a name="what-do-you-need"></a>Ce dont vous avez besoin
 Vous devez avoir accompli avec succès les étapes :
 - [Bien démarrer avec la carte Arduino][get-started]
 - [Créer votre Azure IoT Hub][create-iot-hub]
 
-## <a name="open-the-sample-app"></a>Ouvrir l’exemple d’application
-Ouvrez l’exemple de projet dans Visual Studio Code en exécutant les commandes suivantes :
+## <a name="open-hello-sample-app"></a>Exemple d’application hello ouvert
+Ouvrez hello exemple de projet dans Visual Studio Code en exécutant hello suivant de commandes :
 
 ```bash
 cd Lesson3
@@ -51,33 +51,33 @@ code .
 
 ![Structure du référentiel][repo-structure]
 
-* Le fichier `app.ino` se trouvant dans le sous-dossier `app` est le fichier source clé. Ce fichier source contient le code pour envoyer un message 20 fois à votre IoT hub et faire clignoter la LED pour chaque message envoyé.
-* Le fichier `config.json` contient les paramètres de configuration requis.
-* Le fichier `arm-template.json` est le modèle Azure Resource Manager qui contient une application de fonction Azure et un compte de Stockage Azure.
-* Le fichier `arm-template-param.json` est le fichier de configuration utilisé par le modèle Azure Resource Manager.
-* Le sous-dossier `ReceiveDeviceMessages` contient le code Node.js pour la fonction Azure.
+* Hello `app.ino` fichier Bonjour `app` sous-dossier est le fichier de source de la clé hello. Ce fichier source contient hello code toosend un message 20 fois tooyour IoT hub et blink hello DEL pour chaque message qu’elle envoie.
+* Hello `config.json` contient les paramètres de configuration requis.
+* Hello `arm-template.json` fichier est le modèle Azure Resource Manager hello qui contient une application de la fonction Azure et un compte de stockage Azure.
+* Hello `arm-template-param.json` fichier est hello configuration utilisé par le modèle de gestionnaire de ressources Azure hello.
+* Hello `ReceiveDeviceMessages` sous-dossier contient du code de Node.js hello pour hello fonction Azure.
 
 ## <a name="configure-azure-resource-manager-templates-and-create-resources-in-azure"></a>Configurer des modèles Azure Resource Manager et créer des ressources dans Azure
-Mettez à jour le fichier `arm-template-param.json` dans Visual Studio Code.
+Hello de mise à jour `arm-template-param.json` fichier dans Visual Studio Code.
 
 ![Paramètres de modèle Azure Resource Manager][arm-template-params]
 
 * Remplacez **[nom de votre IoT Hub]** par **{nom de mon hub}** que vous avez spécifié lorsque vous [avez créé votre IoT Hub et inscrit votre carte Arduino][created-iot-hub-and-registered-arduino-board].
-* Remplacez la **[chaîne de préfixe pour les nouvelles ressources]** par un préfixe de votre choix quelconque. Le préfixe vous assure que le nom de ressource est globalement unique pour éviter tout conflit. N’utilisez pas de tiret ni de chiffre initial dans le préfixe.
+* Remplacez la **[chaîne de préfixe pour les nouvelles ressources]** par un préfixe de votre choix quelconque. préfixe de Hello garantit que ce nom de ressource hello est globalement unique tooavoid conflit. N’utilisez pas un numéro initial en préfixe de hello ou un tiret.
 
-Une fois que vous avez mis à jour le fichier `arm-template-param.json`, déployez les ressources dans Azure en exécutant la commande suivante :
+Une fois que vous mettez à jour hello `arm-template-param.json` file, déployer hello ressources tooAzure en exécutant hello de commande suivante :
 
 ```bash
 az group deployment create --template-file arm-template.json --parameters @arm-template-param.json -g iot-sample
 ```
 
-La création de ces ressources prend environ cinq minutes. Pendant la création de ressources, vous pouvez passer à l’article suivant.
+Il prend environ cinq minutes toocreate ces ressources. Lors de la création de la ressource hello est en cours d’exécution, vous pouvez déplacer sur l’article suivant de toohello.
 
 ## <a name="summary"></a>Résumé
-Vous avez créé votre application de fonction Azure pour traiter les messages de l’IoT Hub et un compte de Stockage Azure pour stocker ces messages. Vous pouvez désormais déployer et exécuter l’exemple pour envoyer des messages appareil-à-cloud sur votre carte Arduino.
+Vous avez créé votre tooprocess d’application Azure fonction messages de hub IoT et un stockage Azure compte toostore ces messages. Vous pouvez désormais déployer et exécuter des messages appareil-à-cloud de hello exemple toosend sur votre carte mère Arduino.
 
 ## <a name="next-steps"></a>Étapes suivantes
-[Exécuter un exemple d’application pour envoyer des messages appareil-à-cloud sur votre carte Arduino][send-device-to-cloud-messages]
+[Exécuter un toosend d’application exemple messages appareil-à-cloud sur votre carte mère Arduino][send-device-to-cloud-messages]
 
 <!-- Images and links -->
 

@@ -14,45 +14,45 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/29/2017
 ms.author: vturecek
-ms.openlocfilehash: c182cc2062ada40029504de5b2b64b021c614ce6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4a8f941c1e8e641384a9ee3a1149dabaaf9983cc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="service-fabric-testability-scenarios-service-communication"></a>Scénarios de testabilité de Service Fabric : communication de service
-Les microservices et les styles architecturaux orientés services émergent naturellement dans Azure Service Fabric. Dans ces types d’architectures distribuées, les applications de microservices compartimentés sont généralement composées de plusieurs services qui interagissent entre eux. Même dans le cas le plus simple, vous disposez habituellement d’au moins un service web sans état et d’un service de stockage de données avec état qui communiquent.
+Les microservices et les styles architecturaux orientés services émergent naturellement dans Azure Service Fabric. Dans ces types d’architectures distribuées, les applications basées sur des composants microservice sont généralement composées de plusieurs services qui doivent tootalk tooeach autres. Dans les cas les plus simples hello même, vous avez généralement au moins un service web sans état et un service de stockage de données avec état qui doivent toocommunicate.
 
-La communication de service à service constitue un point d’intégration critique d’une application, car chaque service expose une API distante aux autres services. L’utilisation d’un ensemble de limites d’API impliquant un trafic d’E/S nécessite bien souvent une attention particulière, secondée par de solides méthodes de test et de validation.
+Les communications de service sont un point d’intégration critiques d’une application, car chaque service expose un tooother les services API à distance. L’utilisation d’un ensemble de limites d’API impliquant un trafic d’E/S nécessite bien souvent une attention particulière, secondée par de solides méthodes de test et de validation.
 
-Lorsque ces limites de services sont liées au sein d’un système distribué, de nombreux aspects sont à prendre en compte :
+Il existe plusieurs considérations toomake lorsque ces limites de service sont reliées entre elles dans un système distribué :
 
 * *Protocole de transfert*. Allez-vous utiliser le protocole HTTP, pour une interopérabilité améliorée, ou un protocole binaire personnalisé favorisant un débit optimal ?
-* *Gestion des erreurs*. Comment les erreurs permanentes et temporaires sont-elles traitées ? Que se passe-t-il quand un service se déplace vers un autre nœud ?
-* *Délais d’attente et latence*. Dans les applications multiniveaux, comment chaque couche de service traite-t-elle la latence de bout en bout, au sein de la pile jusqu’à l’utilisateur ?
+* *Gestion des erreurs*. Comment les erreurs permanentes et temporaires sont-elles traitées ? Que se passe-t-il lorsqu’un service déplace tooa autre nœud ?
+* *Délais d’attente et latence*. Dans les applications multicouches, comment chaque couche de service gère latence par un utilisateur de la pile et toohello hello ?
 
-Vous utilisez l’un des composants de communication de service intégrés de Service Fabric ? Vous développez le vôtre ? Pour garantir la résilience de votre application, il est primordial de tester l’interaction entre vos services.
+Si vous utilisez un des composants de communication hello service intégré fournis par l’infrastructure de Service ou si vous générez votre propre, interactions hello entre vos services de test est résilience tooensuring critiques dans votre application.
 
-## <a name="prepare-for-services-to-move"></a>Préparation des services à déplacer
-Les instances de service peuvent se déplacer au fil du temps. Ce déplacement est particulièrement avéré quand elles sont configurées avec des mesures de charge dédiées à l’équilibrage personnalisé optimal des ressources. Service Fabric déplace vos instances de service à des fins de disponibilité maximale, même pendant les mises à niveau, les basculements, les augmentations de la taille des instances et d’autres situations ponctuant le cycle de vie d’un système distribué.
+## <a name="prepare-for-services-toomove"></a>Préparer les services toomove
+Les instances de service peuvent se déplacer au fil du temps. Ce déplacement est particulièrement avéré quand elles sont configurées avec des mesures de charge dédiées à l’équilibrage personnalisé optimal des ressources. Service Fabric déplace votre toomaximize d’instances de service leur disponibilité même pendant les mises à niveau, les basculements, montée en puissance parallèle et d’autres situations qui se produisent sur la durée de vie hello d’un système distribué.
 
-Quand les services se déplacent dans le cluster, vos clients et les autres services doivent envisager deux scénarios d’interaction avec ces derniers :
+Services de se déplacement dans un cluster de hello, vos clients et autres services doivent être préparée toohandle deux scénarios lorsqu’ils parlent tooa service :
 
-* L’instance de service ou le réplica de partition ont subi un déplacement depuis votre dernière interaction. Cette configuration, qui fait partie du cycle de vie normal du service, se produit naturellement au cours de la vie d’une application.
-* L’instance de service ou le réplica de partition est en cours de déplacement. Le basculement d’un service entre deux nœuds se produit très rapidement dans Service Fabric, mais vous pouvez constater un délai de mise à disposition en cas de démarrage lent du composant de communication de votre service.
+* réplica de partition ou instance de service Hello a été déplacée depuis hello heure de la dernière, nous vous avons tooit. Il s’agit d’un composant normal d’un cycle de vie du service, et il doit être toohappen attendu pendant la durée de vie hello de votre application.
+* réplica de partition ou instance de service Hello est en cours de hello de déplacement. Bien que le basculement d’un service à partir d’un nœud tooanother s’effectue très rapidement dans l’infrastructure de Service, il peut avoir un délai de disponibilité si le composant de communication hello de votre service est lente toostart.
 
-Pour bénéficier d’un système pleinement fonctionnel, il est nécessaire de gérer ces scénarios de manière appropriée. Pour cela, n’oubliez pas que :
+Pour bénéficier d’un système pleinement fonctionnel, il est nécessaire de gérer ces scénarios de manière appropriée. toodo, gardez à l’esprit que :
 
-* Chaque service pouvant faire l’objet d’une connexion présente une *adresse* d’écoute (par exemple, HTTP ou WebSockets). Quand une instance ou partition de service se déplace, le point de terminaison de son adresse change. (Elle se déplace vers un autre nœud dont l’adresse IP est différente.) Si vous utilisez des composants de communication intégrés, ils traitent pour vous la nouvelle résolution des adresses de service.
-* Vous pourrez observer une augmentation temporaire de la latence du service étant donné que l’instance de service redémarre son écouteur. Cette latence dépend de la vitesse à laquelle le service ouvre l’écouteur une fois l’instance de service déplacée.
-* Toutes les connexions existantes doivent être fermées, puis rouvertes une fois que le service s’ouvre sur un nouveau nœud. Un arrêt ou redémarrage approprié du nœud laisse suffisamment de temps aux connexions existantes pour s’arrêter correctement.
+* Tous les services qui peuvent être connectés toohas un *adresse* qu’il écoute sur (par exemple, HTTP ou WebSocket). Quand une instance ou partition de service se déplace, le point de terminaison de son adresse change. (Il déplace tooa autre nœud avec une autre adresse IP.) Si vous utilisez des composants de communication intégrée hello, ils gèrent ré-résolution des adresses de service pour vous.
+* Il peut y avoir une augmentation de latence de service en tant qu’instance de service hello démarre son écouteur à nouveau. Cela dépend de la rapidité avec laquelle le service de hello ouvre à un écouteur de hello après le déplacement de l’instance de service hello.
+* Toutes les connexions existantes doivent toobe fermée et rouverte après ouverture du service de hello sur un nouveau nœud. Un arrêt correct de nœuds ou redémarrage permet pour toobe de connexions existant s’arrête.
 
 ### <a name="test-it-move-service-instances"></a>Test : déplacement des instances de service
-À l’aide des outils de testabilité de Service Fabric, vous pouvez établir un scénario test afin d’évaluer ces situations dans des contextes différents :
+À l’aide des outils de test de Service Fabric, vous pouvez créer un tootest de scénario de test à ces situations de différentes façons :
 
 1. Déplacez un réplica principal de service avec état.
    
-    Le réplica principal d’une partition de service avec état peut être déplacé pour diverses raisons. Appliquez ce scénario pour cibler le réplica principal d’une partition spécifique et examiner la réaction de vos services à ce déplacement, dans un cadre très strict.
+    Hello réplica principal d’une partition de service avec état peut être déplacé pour différentes raisons. Utilisez cet tootarget hello un réplica principal d’un toosee partition spécifique comment votre toohello réagissent de services se déplacent de façon très contrôlée.
    
     ```powershell
    
@@ -61,9 +61,9 @@ Pour bénéficier d’un système pleinement fonctionnel, il est nécessaire de 
     ```
 2. Arrêtez un nœud.
    
-    Quand un nœud est arrêté, Service Fabric déplace l’ensemble des instances ou partitions de service positionnées sur ce nœud vers l’un des autres nœuds disponibles dans le cluster. Utilisez ce scénario pour tester une configuration où un nœud de votre cluster est perdu et l’ensemble de vos instances et réplicas de service sur ce nœud doivent être déplacés.
+    Lorsqu’un nœud est arrêté, se déplace le Service Fabric tous hello service instances ou les partitions qui étaient présents sur ce tooone de nœud de hello autres nœuds disponibles dans le cluster de hello. Utilisez cette tootest une situation où un nœud est perdu à partir de votre cluster et des instances de service hello et les réplicas sur le nœud toomove.
    
-    Vous pouvez arrêter un nœud à l’aide de l’applet de commande PowerShell **Stop-ServiceFabricNode** :
+    Vous pouvez arrêter un nœud à l’aide de hello PowerShell **Stop-ServiceFabricNode** applet de commande :
    
     ```powershell
    
@@ -72,14 +72,14 @@ Pour bénéficier d’un système pleinement fonctionnel, il est nécessaire de 
     ```
 
 ## <a name="maintain-service-availability"></a>Maintenir la disponibilité du service
-En tant que plateforme, Service Fabric est conçu pour assurer la haute disponibilité de vos services. Mais dans des cas extrêmes, les problèmes liés à l’infrastructure sous-jacente peuvent quand même entraîner une indisponibilité. Il est important de tester ces scénarios également.
+En tant que plateforme, Service Fabric est conçue tooprovide haute disponibilité de vos services. Mais dans des cas extrêmes, les problèmes liés à l’infrastructure sous-jacente peuvent quand même entraîner une indisponibilité. Il est trop important tootest pour ces scénarios.
 
-Les services avec état utilisent un système avec quorum pour répliquer l’état à des fins de haute disponibilité. Cela signifie qu’un quorum de réplicas doit être disponible pour l’exécution des opérations d’écriture. Dans de rares cas, comme celui d’une défaillance matérielle étendue, aucun quorum de réplicas ne peut être disponible. Le cas échéant, vous ne pourrez pas exécuter d’opérations d’écriture, mais disposerez des opérations de lecture.
+Les services avec état utiliser un état de tooreplicate système basé sur le quorum pour la haute disponibilité. Cela signifie qu’un quorum de réplicas doit toobe tooperform disponibles les opérations d’écriture. Dans de rares cas, comme celui d’une défaillance matérielle étendue, aucun quorum de réplicas ne peut être disponible. Dans ce cas, vous ne serez pas en mesure de tooperform les opérations d’écriture, mais vous serez toujours en mesure de tooperform des opérations de lecture.
 
 ### <a name="test-it-write-operation-unavailability"></a>Test : écriture de l’indisponibilité des opérations
-En utilisant les outils de testabilité de Service Fabric, vous pouvez injecter une erreur qui entraîne une perte de quorum en guise de test. Même si ce scénario est rare, les clients et les entités qui dépendent d’un service avec état doivent néanmoins s’y préparer. Que faire quand les requêtes d’écriture sur le service avec état sont impossibles ? Il est également essentiel que le service avec état ait conscience de cette possibilité, et qu’il en fasse part de manière adaptée aux appelants.
+À l’aide des outils de testabilité hello dans l’infrastructure de Service, vous pouvez injecter une erreur qui induit une perte de quorum en tant que test. Bien que ce cas soit rare, il est important que les clients et les services qui dépendent d’un service avec état sont préparés toohandle les situations où ils ne peuvent pas apporter tooit de demandes d’écriture. Il est également important que hello avec état service tient compte de cette possibilité et peut le communiquer en douceur toocallers.
 
-Vous pouvez provoquer une perte de quorum à l’aide de l’applet de commande PowerShell **Invoke-ServiceFabricPartitionQuorumLoss** :
+Vous est susceptible d’entraîner une perte de quorum à l’aide de hello PowerShell **Invoke-ServiceFabricPartitionQuorumLoss** applet de commande :
 
 ```powershell
 
@@ -87,7 +87,7 @@ PS > Invoke-ServiceFabricPartitionQuorumLoss -ServiceName fabric:/Myapplication/
 
 ```
 
-Dans cet exemple, nous avons défini `QuorumLossMode` sur `QuorumReplicas` pour indiquer que nous voulons provoquer une perte de quorum sans retirer tous les réplicas. Ainsi, les opérations de lecture sont toujours possibles. Pour tester ce scénario avec l’intégralité de la partition indisponible, définissez ce commutateur sur `AllReplicas`.
+Dans cet exemple, nous avons défini `QuorumLossMode` trop`QuorumReplicas` tooindicate que nous souhaitons perte de quorum tooinduce sans arrêter tous les réplicas. Ainsi, les opérations de lecture sont toujours possibles. tootest un scénario où un ensemble de la partition est indisponible, vous pouvez définir ce commutateur trop`AllReplicas`.
 
 ## <a name="next-steps"></a>Étapes suivantes
 [En savoir plus sur les actions de testabilité](service-fabric-testability-actions.md)

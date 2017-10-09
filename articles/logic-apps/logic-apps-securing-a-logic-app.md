@@ -1,6 +1,6 @@
 ---
-title: "Sécuriser l’accès à Azure Logic Apps | Microsoft Docs"
-description: "Renforcez la sécurité pour protéger l’accès aux déclencheurs, aux entrées et sorties, aux paramètres d’action et aux services utilisés avec des workflows dans Azure Logic Apps."
+title: "aaaSecure accéder aux applications de la logique de tooAzure | Documents Microsoft"
+description: "Ajoutez la sécurité pour la protection d’accès tootriggers, entrées et sorties, paramètres d’action et services utilisés avec les flux de travail dans Azure Logic Apps."
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: jeffhollan
@@ -14,80 +14,80 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 11/22/2016
 ms.author: LADocs; jehollan
-ms.openlocfilehash: 0528d660f590e106f61729f10f8f68da3fe58cb7
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: abda2179e4cc2d2295cd8332ec017c848a456264
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="secure-access-to-your-logic-apps"></a>Sécurisation de l’accès à vos applications logiques
+# <a name="secure-access-tooyour-logic-apps"></a>Sécuriser l’accès aux applications de la logique de tooyour
 
-De nombreux outils sont disponibles pour vous aider à sécuriser votre application logique.
+Il existe des nombreux toohelp disponible outils vous sécurisez votre application logique.
 
-* Sécurisation de l’accès au déclencheur d’une application logique (Déclencheur de requête HTTP)
-* Sécurisation de l’accès pour gérer, modifier ou lire une application logique
-* Sécurisation de l’accès au contenu des entrées et sorties d’une exécution
+* Sécurisation des accès tootrigger une logique d’application (déclencheur de demande HTTP)
+* Sécurisation des accès toomanage, modifier, ou une application de la logique de lecture
+* Sécurisation de toocontents d’accès d’entrées et sorties pour une exécution
 * Sécurisation des paramètres ou des entrées dans des actions d’un flux de travail
-* Sécurisation de l’accès aux services recevant des requêtes d’un flux de travail
+* Sécurisation des accès tooservices qui reçoivent des requêtes à partir d’un flux de travail
 
-## <a name="secure-access-to-trigger"></a>Sécuriser l’accès au déclencheur
+## <a name="secure-access-tootrigger"></a>Sécuriser l’accès tootrigger
 
-Lorsque vous utilisez une application logique déclenchée par une requête HTTP ([Requête](../connectors/connectors-native-reqres.md) ou [Webhook](../connectors/connectors-native-webhook.md)), vous pouvez limiter l’accès de sorte que seuls les clients autorisés puissent déclencher l’application logique. Toutes les requêtes dans une application logique sont chiffrées et sécurisées via SSL.
+Lorsque vous travaillez avec une application de la logique qui se déclenche sur une requête HTTP ([demande](../connectors/connectors-native-reqres.md) ou [Webhook](../connectors/connectors-native-webhook.md)), vous pouvez restreindre l’accès afin que seuls les clients autorisés peuvent déclencher l’application logique de hello. Toutes les requêtes dans une application logique sont chiffrées et sécurisées via SSL.
 
 ### <a name="shared-access-signature"></a>Signature d’accès partagé
 
-Chaque point de terminaison de requête pour une application logique inclut une partie [Signature d’accès partagé](../storage/common/storage-dotnet-shared-access-signature-part-1.md) (SAP) dans l’URL. Chaque URL contient un paramètre de requête `sp`, `sv` et `sig`. Les autorisations sont spécifiées par `sp` et correspondent aux méthodes HTTP autorisées, `sv` est la version utilisée pour générer et `sig` est utilisé pour authentifier l’accès au déclencheur. La signature est générée à l’aide de l’algorithme SHA 256 avec une clé secrète sur tous les chemins d’accès à l’URL et les propriétés. La clé secrète n’est jamais exposée et publiée, et est chiffrée et stockée dans l’application logique. Votre application logique autorise uniquement les déclencheurs contenant une signature valide créée avec la clé secrète.
+Chaque point de terminaison de demande pour une application logique inclut un [Signature d’accès partagé (SAS)](../storage/common/storage-dotnet-shared-access-signature-part-1.md) dans le cadre de l’URL de hello. Chaque URL contient un paramètre de requête `sp`, `sv` et `sig`. Les autorisations sont spécifiées par `sp`, et elles correspondent à des méthodes tooHTTP autorisées, `sv` est hello version utilisée toogenerate, et `sig` est tootrigger d’accès tooauthenticate utilisé. signature de Hello est généré à l’aide d’algorithme de hello SHA256 avec une clé secrète sur tous les chemins d’accès des URL hello et propriétés. clé secrète de Hello n’est jamais exposée et publiée et sont chiffrées et stockées dans le cadre de l’application logique de hello. Votre application logique autorise uniquement les déclencheurs qui contiennent une signature valide créée avec une clé secrète hello.
 
 #### <a name="regenerate-access-keys"></a>Régénération de clés d'accès
 
-Vous pouvez régénérer une nouvelle clé sécurisée à tout moment via l’API REST ou le portail Azure. Toutes les URL actuelles, qui ont été générées précédemment à l’aide de l’ancienne clé, sont invalidées et ne sont plus autorisées pour déclencher l’application logique.
+Vous pouvez régénérer une clé sécurisée au niveau à tout moment via le portail d’API REST ou Azure hello. Toutes les URL actuelles qui ont été créés précédemment à l’aide de la clé d’anciens hello sont application logique de hello toofire invalidé et ne sont plus autorisés.
 
-1. Dans le portail Azure, ouvrez l’application logique dont vous souhaitez régénérer une clé
-1. Cliquez sur l’élément de menu **Clés d’accès** sous **Paramètres**
-1. Choisissez la clé à régénérer et terminez le processus
+1. Bonjour portail Azure, ouvrez hello logique application tooregenerate une clé
+1. Cliquez sur hello **clés d’accès** élément de menu sous **paramètres**
+1. Choisissez tooregenerate de clé hello et processus de hello terminée
 
-Les URL que vous récupérez après la régénération sont signées avec la nouvelle clé d’accès.
+Après la régénération de récupérer les URL sont signés avec la nouvelle clé d’accès hello.
 
 #### <a name="creating-callback-urls-with-an-expiration-date"></a>Création d’URL de rappel avec une date d’expiration
 
-Si vous partagez l’URL avec d’autres utilisateurs, vous pouvez générer des URL avec des clés et des dates d’expiration spécifiques si nécessaire. Vous pouvez alors déployer des clés de manière transparente, ou de garantir que l’accès pour déclencher une application est limité à un intervalle de temps donné. Vous pouvez spécifier une date d’expiration pour une URL via l’[API REST de Logic Apps](https://docs.microsoft.com/rest/api/logic/workflowtriggers) :
+Si vous partagez avec d’autres parties hello URL, vous pouvez générer des URL avec des clés spécifiques et les dates d’expiration en fonction des besoins. Vous pouvez accéder en toute transparence substituer les clés, ou vérifiez toofire d’accès à une application est restreint tooa certaine timespan. Vous pouvez spécifier une date d’expiration pour une URL via hello [logique applications API REST](https://docs.microsoft.com/rest/api/logic/workflowtriggers):
 
 ``` http
 POST 
 /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/triggers/{triggerName}/listCallbackUrl?api-version=2016-06-01
 ```
 
-Dans le corps, incluez la propriété `NotAfter` en tant que chaîne de date JSON, qui renvoie une URL de rappel qui n’est valide que jusqu’à ce que la date et l’heure `NotAfter`.
+Dans le corps de hello, inclure la propriété de hello `NotAfter` comme une chaîne de date JSON, qui retourne une URL de rappel qui est uniquement valide jusqu'à hello `NotAfter` date et heure.
 
 #### <a name="creating-urls-with-primary-or-secondary-secret-key"></a>Création d’URL avec une clé de secret principale ou secondaire
 
-Lorsque vous générez ou répertoriez des URL de rappel pour des déclencheurs basés sur une requête, vous pouvez également spécifier la clé à utiliser pour signer l’URL.  Vous pouvez générer une URL signée par une clé spécifique via l’[API REST de Logic Apps](https://docs.microsoft.com/rest/api/logic/workflowtriggers) comme suit :
+Lorsque vous générez ou répertoriez les URL de rappel pour les déclencheurs de demande de, vous pouvez également spécifier des URL hello toosign toouse clé.  Vous pouvez générer une URL signée par une clé spécifique via hello [logique applications API REST](https://docs.microsoft.com/rest/api/logic/workflowtriggers) comme suit :
 
 ``` http
 POST 
 /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows/{workflowName}/triggers/{triggerName}/listCallbackUrl?api-version=2016-06-01
 ```
 
-Dans le corps, incluez la propriété `KeyType` en tant que `Primary` ou `Secondary`.  Cela renvoie une URL signée par la clé sécurisée spécifiée.
+Dans le corps de hello, inclure la propriété de hello `KeyType` en tant que `Primary` ou `Secondary`.  Cela retourne une URL signée par hello de clé sécurisée spécifiée.
 
 ### <a name="restrict-incoming-ip-addresses"></a>Limiter les adresses IP entrantes
 
-En plus de la signature d’accès partagé, vous pouvez souhaiter limiter l’appel d’une application logique à partir de clients spécifiques uniquement.  Par exemple, si vous gérez votre point de terminaison via gestion des API Azure, vous pouvez limiter l’application logique à n’accepter la requête que lorsqu’elle provient de l’adresse IP d’instance de gestion des API.
+En outre toohello Signature d’accès partagé, vous pouvez toorestrict appelant une application logique uniquement à partir de clients spécifiques.  Par exemple, si vous gérez votre point de terminaison via la gestion des API Azure, vous pouvez limiter la logique de hello application tooonly accepter la demande de hello lors de la demande de hello provient hello adresse IP d’instance gestion des API.
 
-Ce paramètre peut être configuré dans les paramètres d’application logique :
+Ce paramètre peut être configuré dans les paramètres de l’application hello logique :
 
-1. Dans le portail Azure, ouvrez l’application logique à laquelle vous souhaitez ajouter des restrictions d’adresse IP
-1. Cliquez sur l’élément de menu **Configuration du contrôle d’accès** sous **Paramètres**
-1. Spécifier la liste des plages d’adresses IP acceptées par le déclencheur
+1. Bonjour portail Azure, ouvrez hello logique application tooadd restrictions par adresse IP
+1. Cliquez sur hello **configuration de contrôle d’accès** élément de menu sous **paramètres**
+1. Spécifiez la liste hello de toobe de plages d’adresses IP accepté par le déclencheur de hello
 
-Une plage d’adresses IP valide se présente au format `192.168.1.1/255`. Si vous souhaitez que l’application logique ne soit déclenchée que comme une application logique imbriquée, sélectionnez l’option **Autres applications logiques uniquement**. Cette option écrit un tableau vide est écrit sur la ressource, ce qui signifie que seuls les appels du service lui-même (applications logiques parentes) entraînent un déclenchement.
+Une plage IP valide prend le format de hello `192.168.1.1/255`. Si vous souhaitez hello logique application tooonly incendie comme application logique imbriquées, sélectionnez hello **seulement d’autres applications logique** option. Cette option écrit une ressource de toohello tableau vide, ce qui signifie que seuls les appels à partir de hello service proprement dit (applications de logique parent) incendie avec succès.
 
 > [!NOTE]
-> Vous pouvez toujours exécuter une application logique avec un déclencheur de requête via l’API REST / Gestion `/triggers/{triggerName}/run`, quelle que soit l’adresse IP. Ce scénario nécessite une authentification auprès de l’API REST Azure, et tous les événements apparaissent dans le journal d’audit Azure. Définissez les stratégies de contrôle d’accès en conséquence.
+> Vous pouvez toujours exécuter une application logique avec un déclencheur de la demande via l’API REST de hello / gestion `/triggers/{triggerName}/run` , quelle que soit l’IP. Ce scénario requiert une authentification par rapport à hello API REST Azure, et tous les événements apparaît dans les journaux d’Audit Azure de hello. Définissez les stratégies de contrôle d’accès en conséquence.
 
-#### <a name="setting-ip-ranges-on-the-resource-definition"></a>Définition de plages d’adresses IP sur la définition de ressource
+#### <a name="setting-ip-ranges-on-hello-resource-definition"></a>Définition de plages d’adresses IP sur la définition de ressource hello
 
-Si vous utilisez un [modèle de déploiement](logic-apps-create-deploy-template.md) pour automatiser vos déploiements, les paramètres de plage d’adresses IP peuvent être configurés sur le modèle de ressource.  
+Si vous utilisez un [modèle de déploiement](logic-apps-create-deploy-template.md) tooautomate vos déploiements, les paramètres des plages IP hello peuvent être configurés sur le modèle de ressource hello.  
 
 ``` json
 {
@@ -115,32 +115,32 @@ Si vous utilisez un [modèle de déploiement](logic-apps-create-deploy-template.
 
 ### <a name="adding-azure-active-directory-oauth-or-other-security"></a>Ajout d’Azure Active Directory, d’OAuth ou d’une autre sécurité
 
-Pour ajouter davantage de protocoles d’autorisation sur une application logique, la [Gestion des API Azure](https://azure.microsoft.com/services/api-management/) offre des fonctions évoluées de surveillance, la sécurité, la stratégie et la documentation pour n’importe quel point de terminaison avec la possibilité d’exposer une application logique en tant qu’API. La Gestion des API Azure peut exposer un point de terminaison public ou privé de l’application logique, permettant ainsi d’utiliser d’Azure Active Directory, d’un certificat, d’OAuth ou d’autres normes de sécurité. Lorsqu’une requête est reçue, la Gestion des API Azure la transmet à l’application logique (en effectuant à la volée les transformations ou les restrictions nécessaires). Vous pouvez utiliser les paramètres de plage d’adresses IP entrantes sur l’application logique pour autoriser le déclenchement de l’application logique à partir de la Gestion des API uniquement.
+tooadd d’autorisation de plusieurs protocoles sur une application logique, [gestion des API Azure](https://azure.microsoft.com/services/api-management/) offre riche analyse, sécurité, la stratégie et documentation pour n’importe quel point de terminaison avec hello fonctionnalité tooexpose une application logique en tant qu’une API. Gestion des API Azure peuvent exposer un point de terminaison public ou privé pour l’application hello logique, pouvant utiliser Azure Active Directory, certificat, OAuth ou autres normes de sécurité. Lorsqu’une demande est reçue, gestion des API Azure transfère hello demande toohello logique application (exécution de toutes les transformations nécessaires ou les restrictions en cours). Vous pouvez utiliser la plage IP entrant de hello paramètres hello logique application tooonly autorisent hello logique application toobe déclenchée à partir de la gestion des API.
 
-## <a name="secure-access-to-manage-or-edit-logic-apps"></a>Sécuriser l’accès pour gérer ou modifier des applications logiques
+## <a name="secure-access-toomanage-or-edit-logic-apps"></a>Sécuriser l’accès aux applications de logique toomanage ou modifier
 
-Vous pouvez limiter l’accès aux opérations de gestion sur une application logique de sorte que seuls des utilisateurs ou groupes spécifiques soient en mesure d’effectuer des opérations sur la ressource. Les applications logiques utilisent la fonctionnalité [Contrôle d’accès basé sur les rôles (RBAC)](../active-directory/role-based-access-control-configure.md), et peuvent être personnalisées avec les mêmes outils.  Vous pouvez également affecter des rôles intégrés aux membres de votre abonnement :
+Vous pouvez limiter les opérations d’accès toomanagement sur une logique d’application afin que seuls des utilisateurs ou groupes soient tooperform en mesure des opérations sur les ressources hello. Les applications de logique utilisent hello Azure [contrôle d’accès en fonction du rôle (RBAC)](../active-directory/role-based-access-control-configure.md) fonctionnalité et peut être personnalisée avec hello mêmes outils.  Il existe quelques rôles intégrés, que vous pouvez affecter des membres de votre abonnement de tooas bien :
 
-* **Collaborateur d’application logique** : accorde un accès pour afficher, modifier et mettre à jour une application logique.  Il ne peut pas supprimer la ressource ou effectuer des opérations d’administration.
-* **Opérateur d’application logique** : peut afficher l’application logique et l’historique d’exécution, et activer/désactiver.  Il ne peut pas modifier ou mettre à jour la définition.
+* **Collaboration d’application logique** -fournit l’accès tooview, modifier et mettre à jour une application logique.  Impossible de supprimer la ressource de hello ou effectuer des opérations d’administration.
+* **Opérateur d’application logique** : peut afficher l’application logique de hello et l’historique d’exécution et activer ou désactiver.  Impossible de modifier ou de mettre à jour de définition de hello.
 
-Vous pouvez également utiliser le [Verrouillage de la ressource Azure](../azure-resource-manager/resource-group-lock-resources.md) pour empêcher la modification ou suppression des applications logiques. Cette fonctionnalité est utile pour éviter que des ressources de production ne soient modifiées ou supprimées.
+Vous pouvez également utiliser [verrou de ressource Azure](../azure-resource-manager/resource-group-lock-resources.md) tooprevent changement ou suppression d’applications de la logique. Cette fonctionnalité est tooprevent précieuses ressources de production à partir de la modification ou suppression.
 
-## <a name="secure-access-to-contents-of-the-run-history"></a>Sécuriser l’accès au contenu de l’historique d’exécution
+## <a name="secure-access-toocontents-of-hello-run-history"></a>Toocontents de sécuriser l’accès de l’historique d’exécution de hello
 
-Vous pouvez limiter l’accès au contenu des entrées ou sorties d’exécutions précédentes à des plages d’adresses IP spécifiques.  
+Vous pouvez limiter toocontents d’accès de l’entrée ni sortie à partir de précédentes plages d’adresses IP toospecific s’exécute.  
 
-Toutes les données de l’exécution d’un flux de travail sont chiffrées pendant le transit et au repos. Lorsque l’historique d’exécution est appelé, le service authentifie la requête et fournit des liens vers les entrées et sorties de la requête et de la réponse. Ces liens peuvent être protégés afin que seules les requêtes d’affichage du contenu provenant d’une plage d’adresses IP désignée renvoient le contenu. Vous pouvez utiliser cette fonctionnalité pour obtenir un contrôle d’accès supplémentaire. Vous pouvez également spécifier une adresse IP telle que `0.0.0.0` afin que personne ne puisse accéder aux entrées/sorties. Seul un utilisateur disposant d’autorisations d’administrateur peut supprimer cette restriction, permettant ainsi d’obtenir un accès « juste-à-temps » au contenu du flux de travail.
+Toutes les données de l’exécution d’un flux de travail sont chiffrées pendant le transit et au repos. Lors de l’appel toorun historique, service de hello authentifie hello demande et fournit des liens toohello demande et les entrées de la réponse et les sorties. Ce lien peut être protégé par conséquent, seules les demandes tooview le contenu à partir d’une plage d’adresses IP désigné retourner le contenu de hello. Vous pouvez utiliser cette fonctionnalité pour obtenir un contrôle d’accès supplémentaire. Vous pouvez également spécifier une adresse IP telle que `0.0.0.0` afin que personne ne puisse accéder aux entrées/sorties. Seule une personne disposant d’autorisations d’administrateur a supprimer cette restriction, en fournissant la possibilité de hello pour le contenu tooworkflow d’accès de « juste-à-temps ».
 
-Ce paramètre peut être configuré dans les paramètres de ressource du portail Azure :
+Ce paramètre peut être configuré dans les paramètres de ressource hello Hello portail Azure :
 
-1. Dans le portail Azure, ouvrez l’application logique à laquelle vous souhaitez ajouter des restrictions d’adresse IP
-1. Cliquez sur l’élément de menu **Configuration du contrôle d’accès** sous **Paramètres**
-1. Spécifier la liste des plages d’adresses IP pour accéder au contenu
+1. Bonjour portail Azure, ouvrez hello logique application tooadd restrictions par adresse IP
+1. Cliquez sur hello **configuration de contrôle d’accès** élément de menu sous **paramètres**
+1. Spécifiez la liste hello de plages d’adresses IP pour un accès toocontent
 
-#### <a name="setting-ip-ranges-on-the-resource-definition"></a>Définition de plages d’adresses IP sur la définition de ressource
+#### <a name="setting-ip-ranges-on-hello-resource-definition"></a>Définition de plages d’adresses IP sur la définition de ressource hello
 
-Si vous utilisez un [modèle de déploiement](logic-apps-create-deploy-template.md) pour automatiser vos déploiements, les paramètres de plage d’adresses IP peuvent être configurés sur le modèle de ressource.  
+Si vous utilisez un [modèle de déploiement](logic-apps-create-deploy-template.md) tooautomate vos déploiements, les paramètres des plages IP hello peuvent être configurés sur le modèle de ressource hello.  
 
 ``` json
 {
@@ -167,19 +167,19 @@ Si vous utilisez un [modèle de déploiement](logic-apps-create-deploy-template.
 
 ## <a name="secure-parameters-and-inputs-within-a-workflow"></a>Sécuriser les paramètres et les entrées dans un flux de travail
 
-Vous souhaiterez peut-être paramétrer certains aspects d’une définition de flux de travail pour le déploiement dans divers environnements. Certains de ces paramètres peuvent également être des paramètres sécurisés que vous ne souhaitez pas voir apparaître lors de la modification d’un flux de travail, comme un ID client et la clé secrète client pour l’[authentification Azure Active Directory](../connectors/connectors-native-http.md#authentication) d’une action HTTP.
+Vous pourriez tooparameterize certains aspects d’une définition de flux de travail pour le déploiement dans des environnements. En outre, certains paramètres peuvent être des paramètres sécurisés, vous ne souhaitez pas tooappear lors de la modification d’un flux de travail, telles qu’un ID client et la clé secrète du client pour [l’authentification Azure Active Directory](../connectors/connectors-native-http.md#authentication) d’une action HTTP.
 
 ### <a name="using-parameters-and-secure-parameters"></a>Utilisation des paramètres et des paramètres sécurisés
 
-Le [langage de définition de flux de travail](http://aka.ms/logicappsdocs) fournit une opération `@parameters()` pour accéder à la valeur d’un paramètre de ressource lors de l’exécution. Vous pouvez également [spécifier des paramètres dans le modèle de déploiement de ressource](../azure-resource-manager/resource-group-authoring-templates.md#parameters). Mais si vous spécifiez le type de paramètre `securestring`, le paramètre n’est pas renvoyé avec la définition de la ressource, et n’est donc pas accessible en consultant la ressource après le déploiement.
+hello tooaccess hello valeur d’un paramètre de ressource lors de l’exécution, [langage de définition de flux de travail](http://aka.ms/logicappsdocs) fournit une `@parameters()` opération. En outre, vous pouvez [spécifier les paramètres de modèle de déploiement de ressources hello](../azure-resource-manager/resource-group-authoring-templates.md#parameters). Mais si vous spécifiez le type de paramètre hello en tant que `securestring`, paramètre hello ne sera pas renvoyée avec rest hello de définition de ressource hello et ne seront pas accessible en consultant les ressources hello après le déploiement.
 
 > [!NOTE]
-> Si votre paramètre est utilisé dans les en-têtes ou le corps d’une requête, il peut être visible en accédant à l’historique d’exécution et à la requête HTTP sortante. Veillez à définir vos stratégies d’accès au contenu en conséquence.
-> Les en-têtes d’autorisation ne sont jamais visibles par le biais d’entrées ou de sorties. Si la clé secrète est utilisée ici, elle n’est pas récupérable.
+> Si votre paramètre est utilisé dans les en-têtes de hello ou de corps d’une requête, le paramètre hello peut être visible en accédant à l’historique de hello exécuter et de la demande HTTP sortante. Assurez-vous que tooset vos stratégies d’accès au contenu en conséquence.
+> Les en-têtes d’autorisation ne sont jamais visibles par le biais d’entrées ou de sorties. Par conséquent, si le secret de hello il est utilisé, secret de hello n’est pas récupérable.
 
 #### <a name="resource-deployment-template-with-secrets"></a>Modèle de déploiement de ressource avec des clés secrètes
 
-Voici un exemple de déploiement qui fait référence à un paramètre sécurisé de `secret` lors de l’exécution. Dans un fichier de paramètres distinct, vous pouvez spécifier la valeur d’environnement pour `secret` ou utiliser le [Coffre de clés Azure Resource Manager](../azure-resource-manager/resource-manager-keyvault-parameter.md) pour récupérer vos clés secrètes au moment du déploiement.
+Hello suivant montre un déploiement qui fait référence à un paramètre sécurisé de `secret` lors de l’exécution. Dans un fichier de paramètres distincts, vous pouvez spécifier la valeur d’environnement hello pour hello `secret`, ou utilisez [Azure Resource Manager KeyVault](../azure-resource-manager/resource-manager-keyvault-parameter.md) secrets tooretrieve au niveau du déploiement.
 
 ``` json
 {
@@ -210,7 +210,7 @@ Voici un exemple de déploiement qui fait référence à un paramètre sécuris�
                 "headers": {
                   "Authorization": "@parameters('secret')"
                 },
-                "body": "This is the request"
+                "body": "This is hello request"
               },
               "runAfter": {}
             }
@@ -244,33 +244,33 @@ Voici un exemple de déploiement qui fait référence à un paramètre sécuris�
 }
 ```
 
-## <a name="secure-access-to-services-receiving-requests-from-a-workflow"></a>Sécuriser l’accès aux services recevant des requêtes d’un flux de travail
+## <a name="secure-access-tooservices-receiving-requests-from-a-workflow"></a>Sécuriser l’accès aux demandes de réception tooservices à partir d’un flux de travail
 
-De nombreuses méthodes sont possibles pour sécuriser un point de terminaison auquel l’application logique doit accéder.
+Il existe de nombreuses façons toohelp sécurisé que tooaccess a besoin de n’importe quelle application de la logique de point de terminaison hello.
 
 ### <a name="using-authentication-on-outbound-requests"></a>Utilisation de l’authentification sur les requêtes sortantes
 
-Lorsque vous utilisez une action HTTP, HTTP + Swagger (API ouverte) ou Webhook, vous pouvez ajouter l’authentification à la requête envoyée. Vous pouvez inclure l’authentification de base, l’authentification par certificat ou l’authentification Azure Active Directory. Des détails sur la configuration cette authentification se fournis [dans cet article](../connectors/connectors-native-http.md#authentication).
+Lorsque vous travaillez avec un HTTP, HTTP + Swagger (API Open) ou l’opération de Webhook, vous pouvez ajouter l’authentification toohello envoyé. Vous pouvez inclure l’authentification de base, l’authentification par certificat ou l’authentification Azure Active Directory. Plus d’informations sur comment tooconfigure cette authentification peut être détectée [dans cet article](../connectors/connectors-native-http.md#authentication).
 
-### <a name="restricting-access-to-logic-app-ip-addresses"></a>Limitation de l’accès aux adresses IP d’application logique
+### <a name="restricting-access-toologic-app-ip-addresses"></a>Limitation des adresses IP de l’accès toologic application
 
-Tous les appels d’applications logiques proviennent d’un ensemble spécifique d’adresses IP par région. Vous pouvez ajouter un filtrage supplémentaire afin d’accepter ces adresses IP désignées uniquement. Pour obtenir la liste de ces adresses IP, consultez [Limites et configuration des applications logiques](logic-apps-limits-and-config.md#configuration).
+Tous les appels d’applications logiques proviennent d’un ensemble spécifique d’adresses IP par région. Vous pouvez ajouter un filtrage supplémentaire tooonly accepter les demandes de celles désigné des adresses IP. Pour obtenir la liste de ces adresses IP, consultez [Limites et configuration des applications logiques](logic-apps-limits-and-config.md#configuration).
 
 ### <a name="on-premises-connectivity"></a>Connectivité locale
 
-Logic Apps permet l’intégration plusieurs services afin de fournir une communication locale sécurisée et fiable.
+Logique applications fournissent l’intégration avec plusieurs services tooprovide, sécurisée et fiable local communication.
 
 #### <a name="on-premises-data-gateway"></a>Passerelle de données locale
 
-De nombreux connecteurs gérés d’applications logiques fournissent une connectivité sécurisée aux systèmes locaux, notamment le système de fichiers, SQL, SharePoint, DB2 et bien d’autres encore. La passerelle transmet des données à partir de sources locales sur des canaux chiffrés via Azure Service Bus. Tout le trafic est initialisé en tant que trafic sortant de l’agent de passerelle sécurisé. En savoir plus sur le [fonctionnement de la passerelle de données](logic-apps-gateway-install.md#gateway-cloud-service).
+Plusieurs connecteurs gérés pour les applications de la logique fournissent une connectivité sécurisée des systèmes de site tooon, y compris le système de fichiers, SQL, SharePoint, DB2 et bien plus encore. passerelle de Hello transmet des données à partir de sources locales sur des canaux chiffrés via hello Azure Service Bus. Tout le trafic provient sécurisé trafic sortant à partir de l’agent de passerelle hello. En savoir plus sur [le fonctionnement de la passerelle de données hello](logic-apps-gateway-install.md#gateway-cloud-service).
 
 #### <a name="azure-api-management"></a>Gestion des API Azure
 
-[Gestion des API Azure](https://azure.microsoft.com/services/api-management/) inclut des options de connectivité locale, notamment l’intégration VPN de site à site et ExpressRoute pour un proxy et une communication sécurisés vers les systèmes locaux. Dans le concepteur d’application logique, vous pouvez sélectionner rapidement une API exposée à partir de la Gestion des API Azure dans un flux de travail, offrant ainsi un accès rapide aux systèmes locaux.
+[Gestion des API Azure](https://azure.microsoft.com/services/api-management/) a des options de connectivité locale, y compris l’intégration de site à site VPN et ExpressRoute pour les systèmes de site tooon proxy et la communication sécurisées. Dans le Concepteur d’application logique de hello, vous pouvez sélectionner rapidement une API exposée à partir de la gestion des API Azure dans un flux de travail, les systèmes de site tooon fournissent un accès rapide.
 
 #### <a name="hybrid-connections-from-azure-app-service"></a>Connexions hybrides à partir des services d’application Azure
 
-Vous pouvez utiliser la fonctionnalité de connexion hybride locale pour que l’API Azure et les applications web communiquent en local.  Des détails sur les connexions hybrides et leur configuration sont fournis [dans cet article](../app-service-web/web-sites-hybrid-connection-get-started.md).
+Vous pouvez utiliser la fonctionnalité de connexion hybride hello local pour API Azure et Web apps toocommunicate local.  Plus d’informations sur les connexions hybrides et comment vous pouvez trouver tooconfigure [dans cet article](../app-service-web/web-sites-hybrid-connection-get-started.md).
 
 ## <a name="next-steps"></a>Étapes suivantes
 [Créer un modèle de déploiement](logic-apps-create-deploy-template.md)  

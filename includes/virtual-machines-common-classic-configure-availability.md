@@ -1,74 +1,74 @@
 
 
 
-Un groupe à haute disponibilité maintient la disponibilité de vos machines virtuelles pendant une interruption (par exemple, en cas de maintenance). Le placement de deux machines virtuelles ou plus dans un groupe à haute disponibilité crée les conditions de redondance indispensables au maintien de la disponibilité des applications ou des services exécutés par votre machine virtuelle. Pour plus d’informations sur cette procédure, voir la rubrique [Gestion de la disponibilité des machines virtuelles][Manage the availability of virtual machines].
+Un groupe à haute disponibilité maintient la disponibilité de vos machines virtuelles pendant une interruption (par exemple, en cas de maintenance). Placer deux ou plusieurs machines virtuelles configurées de manière similaire dans un ensemble de disponibilité crée hello redondance nécessitée toomaintain disponibilité hello services ou applications qui s’exécute de votre machine virtuelle. Pour plus d’informations sur cette procédure, consultez [gérer la disponibilité hello des machines virtuelles][Manage hello availability of virtual machines].
 
-Il est recommandé d’utiliser des groupes à haute disponibilité et des points de terminaison à équilibrage de charge pour garantir que votre application soit toujours disponible et qu’elle s’exécute correctement. Pour plus d’informations sur les points de terminaison à équilibrage de la charge, consultez la page [Équilibrage de charge pour les services d’infrastructure Azure][Load balancing for Azure infrastructure services].
+Il s’agit d’une meilleure toouse de pratique à haute disponibilité et l’équilibrage de charge de toohelp de points de terminaison vous assurer que votre application est toujours disponible et en cours d’exécution efficace. Pour plus d’informations sur les points de terminaison à équilibrage de la charge, consultez la page [Équilibrage de charge pour les services d’infrastructure Azure][Load balancing for Azure infrastructure services].
 
 Vous pouvez ajouter des machines virtuelles classiques dans un groupe à haute disponibilité en utilisant l’une des deux options suivantes :
 
-* [Option 1 : Créer simultanément une machine virtuelle et un groupe à haute disponibilité][Option 1: Create a virtual machine and an availability set at the same time]. Ensuite, ajouter de nouvelles machines virtuelles à l’ensemble lorsque vous créez ces ordinateurs virtuels.
-* [Option 2 : Ajouter une machine virtuelle existante à un groupe à haute disponibilité][Option 2: Add an existing virtual machine to an availability set].
+* [Option 1 : Créer un ordinateur virtuel et un ensemble de disponibilité à hello même temps][Option 1: Create a virtual machine and an availability set at hello same time]. Ensuite, ajoutez de nouvelles machines virtuelles toohello définie lorsque vous créez ces ordinateurs virtuels.
+* [Option 2 : Ajout d’un ensemble de disponibilité tooan machine virtuelle existante][Option 2: Add an existing virtual machine tooan availability set].
 
 > [!NOTE]
-> Dans le modèle classique, les machines virtuelles que vous voulez placer dans le même groupe à haute disponibilité doivent appartenir au même service cloud.
+> Dans le modèle classique de hello, les machines virtuelles que vous voulez tooput dans hello même groupe à haute disponibilité doit appartenir toohello même service cloud.
 > 
 > 
 
-## <a id="createset"> </a>Option 1 : Créer simultanément une machine virtuelle et un groupe à haute disponibilité.
-Pour cela, vous pouvez utiliser le portail Azure ou des commandes Azure PowerShell.
+## <a id="createset"></a>Option 1 : créer un ordinateur virtuel et un ensemble de disponibilité à hello même temps
+Vous pouvez utiliser soit hello portail Azure ou Azure PowerShell des commandes toodo cela.
 
-Pour utiliser le portail Azure :
+hello toouse portail Azure :
 
-1. Si ce n’est pas déjà fait, connectez-vous au [portail Azure](https://portal.azure.com).
-2. Dans le menu hub, cliquez sur **+ Nouveau**, puis sur **Machine virtuelle**.
+1. Si vous n’avez pas déjà fait, connectez-vous à toohello [portail Azure](https://portal.azure.com).
+2. Dans le menu du hub hello, cliquez sur **+ nouveau**, puis cliquez sur **Machine virtuelle**.
    
     ![Texte de remplacement d’image](./media/virtual-machines-common-classic-configure-availability/ChooseVMImage.png)
-3. Sélectionner l’image de machine virtuelle Marketplace que vous voulez utiliser. Vous pouvez choisir de créer une machine virtuelle Linux ou Windows.
-4. Pour la machine virtuelle sélectionnée, vérifiez que le modèle de déploiement est défini sur **Classique**, puis cliquez sur **Créer**.
+3. Sélectionnez l’image de machine virtuelle Marketplace hello toouse vous le souhaitez. Vous pouvez choisir toocreate une machine virtuelle Linux ou Windows.
+4. Pour hello sélectionné un ordinateur virtuel, vérifiez que ce modèle de déploiement hello est défini trop**classique** puis cliquez sur **créer**
    
     ![Texte de remplacement d’image](./media/virtual-machines-common-classic-configure-availability/ChooseClassicModel.png)
 5. Entrez le nom de la machine virtuelle, le nom d’utilisateur et le mot de passe (pour les machines Windows) ou la clé publique SSH (pour les machines Linux). 
-6. Choisissez une taille de machine virtuelle, puis cliquez sur **Sélectionner** pour continuer.
-7. Choisissez **Configuration facultative > Groupe à haute disponibilité**, puis sélectionnez le groupe à haute disponibilité auquel vous voulez ajouter la machine virtuelle.
+6. Taille de machine virtuelle hello et cliquez sur **sélectionnez** toocontinue.
+7. Choisissez **Configuration facultative > haute disponibilité**, puis vous le souhaitez tooadd hello ordinateur virtuel à haute disponibilité hello.
    
     ![Texte de remplacement d’image](./media/virtual-machines-common-classic-configure-availability/ChooseAvailabilitySet.png) 
 8. Passez en revue vos paramètres de configuration. Une fois ces opérations effectuées, cliquez sur **Créer**.
-9. Pendant qu’Azure crée votre machine virtuelle, vous pouvez suivre la progression de cette opération dans le menu Hub, sous **Machines virtuelles** .
+9. Alors que Azure crée votre machine virtuelle, vous pouvez suivre la progression de hello sous **virtuels** dans le menu du hub hello.
 
-Pour plus d’informations sur l’utilisation des commandes Azure PowerShell pour créer une machine virtuelle Azure et l’ajouter à un groupe à haute disponibilité nouveau ou existant, consultez l’article [Utiliser Azure PowerShell pour créer et préconfigurer des machines virtuelles Windows](../articles/virtual-machines/windows/classic/create-powershell.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json).
+toouse Azure PowerShell commandes toocreate une machine virtuelle Azure et ajoutez-le tooa à haute disponibilité de nouvelle ou existante, consultez [toocreate d’utiliser Azure PowerShell et préconfigurer des machines virtuelles basées sur Windows](../articles/virtual-machines/windows/classic/create-powershell.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
-## <a id="addmachine"> </a>Option 2 : Ajouter une machine virtuelle existante à un groupe à haute disponibilité
-Dans le portail Azure, vous pouvez ajouter des machines virtuelles classiques existantes à un groupe à haute disponibilité existant, ou en créer un pour ces machines. (N’oubliez pas que les machines virtuelles dans un même groupe à haute disponibilité doivent appartenir au même service cloud). Les opérations à effectuer sont pratiquement identiques. Avec Azure PowerShell, vous pouvez ajouter la machine virtuelle à un groupe à haute disponibilité existant.
+## <a id="addmachine"></a>Option 2 : ajouter un ensemble de disponibilité tooan ordinateur virtuel existant
+Bonjour portail Azure, vous pouvez ajouter des existant tooan de machines virtuelles classiques existantes du groupe à haute disponibilité ou créez-en un pour les. (N’oubliez pas que les machines virtuelles hello hello même groupe à haute disponibilité doit appartenir toohello même service cloud.) étapes de Hello sont presque hello même. Avec Azure PowerShell, vous pouvez ajouter hello machine virtuelle tooan à haute disponibilité existant.
 
-1. Si ce n’est pas déjà fait, connectez-vous au [portail Azure](https://portal.azure.com).
-2. Dans le menu Hub, cliquez sur **Machines virtuelles (classiques)**.
+1. Si vous ne le n'avez pas déjà fait, connectez-vous à toohello [portail Azure](https://portal.azure.com).
+2. Dans le menu du Hub hello, cliquez sur **Machines virtuelles (classiques)**.
    
     ![Texte de remplacement d’image](./media/virtual-machines-common-classic-configure-availability/ChooseClassicVM.png)
-3. Dans la liste des machines virtuelles, sélectionnez le nom de la machine virtuelle que vous voulez ajouter au groupe.
-4. Choisissez **Groupe à haute disponibilité** dans les **Paramètres** de machine virtuelle.
+3. À partir de la liste de hello des machines virtuelles, sélectionnez le nom de hello de machine virtuelle de hello que vous souhaitez tooadd toohello ensemble.
+4. Choisissez **à haute disponibilité** de la machine virtuelle de hello **paramètres**.
    
     ![Texte de remplacement d’image](./media/virtual-machines-common-classic-configure-availability/AvailabilitySetSettings.png)
-5. Sélectionner le groupe à haute disponibilité auquel vous voulez ajouter la machine virtuelle. La machine virtuelle doit appartenir au même service cloud que le groupe à haute disponibilité.
+5. Sélectionnez vous souhaitez tooadd hello ordinateur virtuel à haute disponibilité hello. machine virtuelle de Hello doit appartenir toohello même service cloud en tant que groupe à haute disponibilité hello.
    
     ![Texte de remplacement d’image](./media/virtual-machines-common-classic-configure-availability/AvailabilitySetPicker.png)
-6. Cliquez sur **Save**.
+6. Cliquez sur **Enregistrer**.
 
-Pour utiliser les commandes Azure PowerShell, ouvrez une session Azure PowerShell de niveau administrateur et exécutez la commande suivante. Pour les espaces réservés (tels que &lt;VmCloudServiceName&gt;), remplacez tout ce qui se trouve entre guillemets, y compris les caractères < et >, par les noms adéquats.
+commandes Azure PowerShell de toouse, ouvrir une session Azure PowerShell de niveau administrateur et exécutez hello commande suivante. Pour les espaces réservés de hello (tel que &lt;VmCloudServiceName&gt;), remplacer tous les éléments entre guillemets hello, y compris hello < et >, avec hello corriger les noms.
 
     Get-AzureVM -ServiceName "<VmCloudServiceName>" -Name "<VmName>" | Set-AzureAvailabilitySet -AvailabilitySetName "<AvSetName>" | Update-AzureVM
 
 > [!NOTE]
-> Il se peut que la machine virtuelle doive être redémarrée pour terminer son ajout au groupe à haute disponibilité.
+> machine virtuelle de Hello peut-être toofinish toobe redémarré ajoutant toohello à haute disponibilité.
 > 
 > 
 
 <!-- LINKS -->
-[Option 1: Create a virtual machine and an availability set at the same time]: #createset
-[Option 2: Add an existing virtual machine to an availability set]: #addmachine
+[Option 1: Create a virtual machine and an availability set at hello same time]: #createset
+[Option 2: Add an existing virtual machine tooan availability set]: #addmachine
 
 [Load balancing for Azure infrastructure services]: ../articles/virtual-machines/virtual-machines-linux-load-balance.md
-[Manage the availability of virtual machines]:../articles/virtual-machines/linux/manage-availability.md
+[Manage hello availability of virtual machines]:../articles/virtual-machines/linux/manage-availability.md
 
 [Create a virtual machine running Windows]: ../articles/virtual-machines/virtual-machines-windows-hero-tutorial.md
 [Virtual Network overview]: ../articles/virtual-network/virtual-networks-overview.md

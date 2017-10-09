@@ -1,6 +1,6 @@
 ## <a name="next-steps"></a>Étapes suivantes
 
-Après avoir activé Azure Key Vault Integration, vous pouvez activer le chiffrement SQL Server sur votre machine virtuelle SQL. Tout d'abord, vous devez créer une clé asymétrique à l'intérieur de votre coffre de clés et une clé symétrique dans SQL Server sur votre machine virtuelle. Ensuite, vous serez en mesure d'exécuter les instructions T-SQL pour activer le chiffrement pour vos bases de données et sauvegardes.
+Après avoir activé Azure Key Vault Integration, vous pouvez activer le chiffrement SQL Server sur votre machine virtuelle SQL. Tout d’abord, vous devez toocreate une clé asymétrique à l’intérieur de votre coffre de clés et une clé symétrique dans SQL Server sur votre machine virtuelle. Ensuite, vous serez cryptage de tooenable instructions tooexecute en mesure de T-SQL pour vos bases de données et les sauvegardes.
 
 Il existe plusieurs types de chiffrement que vous pouvez exploiter :
 
@@ -8,11 +8,11 @@ Il existe plusieurs types de chiffrement que vous pouvez exploiter :
 * [Sauvegardes chiffrées](https://msdn.microsoft.com/library/dn449489.aspx)
 * [Chiffrement au niveau des colonnes (CLE)](https://msdn.microsoft.com/library/ms173744.aspx)
 
-Les scripts Transact-SQL suivants fournissent des exemples pour chacune de ces options.
+Hello des scripts Transact-SQL suivantes fournissent des exemples pour chacun de ces domaines.
 
 ### <a name="prerequisites-for-examples"></a>Configuration requise pour les exemples
 
-Chaque exemple est basé sur les deux conditions préalables : une clé asymétrique de votre coffre de clés appelée **CONTOSO_KEY** et une information d’identification créée par le biais de la fonctionnalité AKV Integration appelée **Azure_EKM_TDE_cred**. Les commandes Transact-SQL suivantes installent cette configuration requise pour l’exécution des exemples.
+Chaque exemple est basé sur la configuration requise de hello deux : une clé asymétrique à partir de votre coffre de clés appelé **CONTOSO_KEY** et les informations d’identification créé par la fonctionnalité d’intégration de AKV hello appelée **Azure_EKM_TDE_cred**. Hello commandes Transact-SQL suivantes d’installation ces conditions préalables pour exécuter les exemples hello.
 
 ``` sql
 USE master;
@@ -53,25 +53,25 @@ CREATION_DISPOSITION = OPEN_EXISTING;
 
 ### <a name="transparent-data-encryption-tde"></a>Chiffrement transparent des données (TDE)
 
-1. Créez une connexion SQL Server utilisable par le moteur de base de données pour le chiffrement transparent des données, puis ajoutez-lui les informations d'identification.
+1. Créer un toobe de connexion SQL Server utilisé par hello du moteur de base de données pour le chiffrement transparent des données, puis ajouter tooit des informations d’identification hello.
 
    ``` sql
    USE master;
-   -- Create a SQL Server login associated with the asymmetric key
-   -- for the Database engine to use when it loads a database
+   -- Create a SQL Server login associated with hello asymmetric key
+   -- for hello Database engine toouse when it loads a database
    -- encrypted by TDE.
    CREATE LOGIN TDE_Login
    FROM ASYMMETRIC KEY CONTOSO_KEY;
    GO
 
-   -- Alter the TDE Login to add the credential for use by the
-   -- Database Engine to access the key vault
+   -- Alter hello TDE Login tooadd hello credential for use by the
+   -- Database Engine tooaccess hello key vault
    ALTER LOGIN TDE_Login
    ADD CREDENTIAL Azure_EKM_TDE_cred;
    GO
    ```
 
-1. Créez la clé de chiffrement de base de données qui sera utilisée pour le chiffrement transparent des données.
+1. Créer la clé de chiffrement de base de données hello qui sera utilisé pour le chiffrement transparent des données.
 
    ``` sql
    USE ContosoDatabase;
@@ -82,7 +82,7 @@ CREATION_DISPOSITION = OPEN_EXISTING;
    ENCRYPTION BY SERVER ASYMMETRIC KEY CONTOSO_KEY;
    GO
 
-   -- Alter the database to enable transparent data encryption.
+   -- Alter hello database tooenable transparent data encryption.
    ALTER DATABASE ContosoDatabase
    SET ENCRYPTION ON;
    GO
@@ -90,29 +90,29 @@ CREATION_DISPOSITION = OPEN_EXISTING;
 
 ### <a name="encrypted-backups"></a>Sauvegardes chiffrées
 
-1. Créez une connexion SQL Server utilisable par le moteur de base de données pour les sauvegardes chiffrées, puis ajoutez-lui les informations d'identification.
+1. Créer un toobe de connexion SQL Server utilisé par hello du moteur de base de données pour le chiffrement des sauvegardes et ajoutez tooit des informations d’identification hello.
 
    ``` sql
    USE master;
-   -- Create a SQL Server login associated with the asymmetric key
-   -- for the Database engine to use when it is encrypting the backup.
+   -- Create a SQL Server login associated with hello asymmetric key
+   -- for hello Database engine toouse when it is encrypting hello backup.
    CREATE LOGIN Backup_Login
    FROM ASYMMETRIC KEY CONTOSO_KEY;
    GO
 
-   -- Alter the Encrypted Backup Login to add the credential for use by
-   -- the Database Engine to access the key vault
+   -- Alter hello Encrypted Backup Login tooadd hello credential for use by
+   -- hello Database Engine tooaccess hello key vault
    ALTER LOGIN Backup_Login
    ADD CREDENTIAL Azure_EKM_Backup_cred ;
    GO
    ```
 
-1. Sauvegardez le chiffrement spécifiant la spécification de base de données avec la clé asymétrique stockée dans le coffre de clés.
+1. Base de données de sauvegarde hello en spécifiant le chiffrement à clé asymétrique de hello stockée dans le coffre de clés hello.
 
    ``` sql
    USE master;
    BACKUP DATABASE [DATABASE_TO_BACKUP]
-   TO DISK = N'[PATH TO BACKUP FILE]'
+   tooDISK = N'[PATH tooBACKUP FILE]'
    WITH FORMAT, INIT, SKIP, NOREWIND, NOUNLOAD,
    ENCRYPTION(ALGORITHM = AES_256, SERVER ASYMMETRIC KEY = [CONTOSO_KEY]);
    GO
@@ -120,7 +120,7 @@ CREATION_DISPOSITION = OPEN_EXISTING;
 
 ### <a name="column-level-encryption-cle"></a>Chiffrement au niveau des colonnes (CLE)
 
-Ce script crée une clé symétrique protégée par la clé asymétrique dans le coffre de clés et utilise ensuite la clé symétrique pour chiffrer les données dans la base de données.
+Ce script crée une clé symétrique protégée par hello la clé asymétrique dans le coffre de clés hello et utilise ensuite les données de salutation tooencrypt clé symétrique dans la base de données hello.
 
 ``` sql
 CREATE SYMMETRIC KEY DATA_ENCRYPTION_KEY
@@ -129,22 +129,22 @@ ENCRYPTION BY ASYMMETRIC KEY CONTOSO_KEY;
 
 DECLARE @DATA VARBINARY(MAX);
 
---Open the symmetric key for use in this session
+--Open hello symmetric key for use in this session
 OPEN SYMMETRIC KEY DATA_ENCRYPTION_KEY
 DECRYPTION BY ASYMMETRIC KEY CONTOSO_KEY;
 
 --Encrypt syntax
-SELECT @DATA = ENCRYPTBYKEY(KEY_GUID('DATA_ENCRYPTION_KEY'), CONVERT(VARBINARY,'Plain text data to encrypt'));
+SELECT @DATA = ENCRYPTBYKEY(KEY_GUID('DATA_ENCRYPTION_KEY'), CONVERT(VARBINARY,'Plain text data tooencrypt'));
 
 -- Decrypt syntax
 SELECT CONVERT(VARCHAR, DECRYPTBYKEY(@DATA));
 
---Close the symmetric key
+--Close hello symmetric key
 CLOSE SYMMETRIC KEY DATA_ENCRYPTION_KEY;
 ```
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-Pour plus d'informations sur l'utilisation de ces fonctionnalités de chiffrement, consultez [Utilisation d'EKM avec les fonctionnalités de chiffrement SQL Server (en Anglais)](https://msdn.microsoft.com/library/dn198405.aspx#UsesOfEKM).
+Pour plus d’informations sur comment toouse ces fonctionnalités de chiffrement, consultez [à l’aide de gestion de clés extensible avec les fonctionnalités de chiffrement SQL Server](https://msdn.microsoft.com/library/dn198405.aspx#UsesOfEKM).
 
-Notez que cet article suppose que vous disposez déjà de SQL Server exécuté sur une machine virtuelle Azure. Dans le cas contraire, consultez l’article [Approvisionnement d’une machine virtuelle SQL Server dans Azure](../articles/virtual-machines/windows/sql/virtual-machines-windows-portal-sql-server-provision.md). Pour d’autres conseils sur l’utilisation de SQL Server sur des machines virtuelles Azure, consultez l’article [Présentation de SQL Server sur les machines virtuelles Azure](../articles/virtual-machines/windows/sql/virtual-machines-windows-sql-server-iaas-overview.md).
+Notez que hello dans cet article suppose que vous avez déjà SQL Server s’exécutant sur une machine virtuelle Azure. Dans le cas contraire, consultez l’article [Approvisionnement d’une machine virtuelle SQL Server dans Azure](../articles/virtual-machines/windows/sql/virtual-machines-windows-portal-sql-server-provision.md). Pour d’autres conseils sur l’utilisation de SQL Server sur des machines virtuelles Azure, consultez l’article [Présentation de SQL Server sur les machines virtuelles Azure](../articles/virtual-machines/windows/sql/virtual-machines-windows-sql-server-iaas-overview.md).

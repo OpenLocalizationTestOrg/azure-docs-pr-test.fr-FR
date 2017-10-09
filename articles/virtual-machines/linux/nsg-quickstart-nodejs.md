@@ -1,6 +1,6 @@
 ---
-title: "Ouvrir des ports sur une machine virtuelle Linux avec Azure CLI 1.0 | Microsoft Docs"
-description: "Découvrez comment ouvrir un port / créer un point de terminaison sur votre machine virtuelle Linux à l’aide du modèle de déploiement Azure Resource Manager et de l’interface de ligne de commande Azure 1.0"
+title: aaaOpen ports tooa VM Linux avec Azure CLI 1.0 | Documents Microsoft
+description: "Découvrez comment tooopen un port / créer un point de terminaison de tooyour Linux VM à l’aide de déploiement du Gestionnaire de ressources Azure hello modéliser et hello Azure CLI 1.0"
 services: virtual-machines-linux
 documentationcenter: 
 author: iainfoulds
@@ -13,33 +13,33 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 05/11/2017
 ms.author: iainfou
-ms.openlocfilehash: 847bc76c37ed929851712ba1c12463a01032e267
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 337c37d151f527b43d4852291159b2f70a00accc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="opening-ports-and-endpoints-to-a-linux-vm-in-azure-using-the-azure-cli-10"></a>Ouverture de ports et de points de terminaison sur une machine virtuelle Linux dans Azure à l’aide d’Azure CLI 1.0
-Pour ouvrir un port ou créer un point de terminaison sur une machine virtuelle dans Azure, créez un filtre réseau sur un sous-réseau ou une interface réseau de machine virtuelle. Vous placez ces filtres, qui contrôlent le trafic entrant et sortant, dans un groupe de sécurité réseau associé à la ressource qui reçoit le trafic. Nous allons utiliser un exemple courant de trafic web sur le port 80. Cet article vous montre comment ouvrir un port sur une machine virtuelle à l’aide de l’interface de ligne de commande Azure 1.0.
+# <a name="opening-ports-and-endpoints-tooa-linux-vm-in-azure-using-hello-azure-cli-10"></a>Ouvrir les ports et les points de terminaison tooa Linux VM dans Azure à l’aide hello Azure CLI 1.0
+Vous ouvrez un port ou créer un point de terminaison, tooa machine virtuelle (VM) dans Azure en créant un filtre de réseau sur un sous-réseau ou une interface réseau de machine virtuelle. Vous placez ces filtres, qui contrôlent le trafic entrant et sortant, sur une ressource de toohello de groupe de sécurité réseau associé qui reçoit le trafic de hello. Nous allons utiliser un exemple courant de trafic web sur le port 80. Cet article vous montre comment une machine virtuelle tooa port à l’aide de tooopen hello Azure CLI 1.0.
 
 
-## <a name="cli-versions-to-complete-the-task"></a>Versions de l’interface de ligne de commande permettant d’effectuer la tâche
-Vous pouvez exécuter la tâche en utilisant l’une des versions suivantes de l’interface de ligne de commande (CLI) :
+## <a name="cli-versions-toocomplete-hello-task"></a>Tâche de hello CLI versions toocomplete
+Vous pouvez exécuter la tâche hello à l’aide de hello CLI versions suivantes :
 
-- [Azure CLI 1.0](#quick-commands) : notre interface de ligne de commande pour les modèles de déploiement Classique et Resource Manager (cet article)
-- [Azure CLI 2.0](nsg-quickstart.md) : notre interface Azure CLI nouvelle génération pour le modèle de déploiement Resource Manager
+- [Azure CLI 1.0](#quick-commands) – notre CLI pour hello classique et la ressource gestion des modèles de déploiement (cet article)
+- [Azure CLI 2.0](nsg-quickstart.md) -notre prochaine génération CLI pour le modèle de déploiement de gestion de ressources hello
 
 
 ## <a name="quick-commands"></a>Commandes rapides
-Pour créer un groupe de sécurité réseau et des règles, vous devez installer[l’interface de ligne de commande Azure 1.0](../../cli-install-nodejs.md) et utiliser le mode Resource Manager :
+toocreate un groupe de sécurité réseau et des règles [hello Azure CLI 1.0](../../cli-install-nodejs.md) installé et utilise le mode Gestionnaire de ressources :
 
 ```azurecli
 azure config mode arm
 ```
 
-Dans les exemples suivants, remplacez les exemples de noms de paramètre par vos propres valeurs. Les exemples de noms de paramètre comprennent *myResourceGroup*, *myNetworkSecurityGroup* et *myVMnet*.
+Bonjour les exemples suivants, remplacez les exemples de noms de paramètre par vos propres valeurs. Les exemples de noms de paramètre comprennent *myResourceGroup*, *myNetworkSecurityGroup* et *myVMnet*.
 
-Créez votre groupe de sécurité réseau en entrant votre nom et votre emplacement en conséquence. L’exemple suivant crée un groupe de sécurité réseau nommé *myNetworkSecurityGroup* à l’emplacement *eastus* :
+Créez votre groupe de sécurité réseau en entrant votre nom et votre emplacement en conséquence. Hello exemple suivant crée un groupe de sécurité réseau nommé *myNetworkSecurityGroup* Bonjour *eastus* emplacement :
 
 ```azurecli
 azure network nsg create \
@@ -48,7 +48,7 @@ azure network nsg create \
     --name myNetworkSecurityGroup
 ```
 
-Ajoutez une règle pour autoriser le trafic HTTP sur votre serveur Web (ou ajustez une règle en fonction de votre propre scénario, notamment l’accès SSH ou la connectivité de base de données). L’exemple suivant crée une règle nommée *myNetworkSecurityGroupRule* pour autoriser le trafic TCP sur le port 80 :
+Ajouter un serveur Web de règle tooallow HTTP trafic tooyour (ou ajuster pour votre propre scénario, tel que de la connectivité de base de données ou de l’accès SSH). Hello exemple suivant crée une règle nommée *myNetworkSecurityGroupRule* tooallow TCP du trafic sur le port 80 :
 
 ```azurecli
 azure network nsg rule create \
@@ -62,7 +62,7 @@ azure network nsg rule create \
     --access allow
 ```
 
-Associez un groupe de sécurité réseau associé à l’interface réseau (NIC) de vos machines virtuelles. L’exemple suivant associe une carte réseau existante nommée *myNic* au groupe de sécurité réseau nommé *myNetworkSecurityGroup* :
+Hello groupe de sécurité réseau associé disposant d’interface réseau (NIC) de votre machine virtuelle. exemple Hello associe une carte réseau nommée *myNic* avec hello groupe de sécurité réseau nommé *myNetworkSecurityGroup*:
 
 ```azurecli
 azure network nic set \
@@ -71,7 +71,7 @@ azure network nic set \
     --name myNic
 ```
 
-Vous pouvez également associer votre groupe de sécurité réseau à un sous-réseau de réseau virtuel et non uniquement à l’interface réseau d’une seule machine virtuelle. L’exemple suivant associe un sous-réseau existant nommé *mySubnet* dans le réseau virtuel *myVnet* au groupe de sécurité réseau nommé *myNetworkSecurityGroup* :
+Vous pouvez également associer votre groupe de sécurité réseau avec un sous-réseau de réseau virtuel plutôt que simplement toohello interface de réseau sur une seule machine virtuelle. exemple Hello associe un sous-réseau existant nommé *mySubnet* Bonjour *myVnet* réseau virtuel avec hello groupe de sécurité réseau nommé *myNetworkSecurityGroup*:
 
 ```azurecli
 azure network vnet subnet set \
@@ -81,14 +81,14 @@ azure network vnet subnet set \
 ```
 
 ## <a name="more-information-on-network-security-groups"></a>En savoir plus sur les groupes de sécurité réseau
-Les commandes rapides vous permettent d’être opérationnel avec le trafic entrant vers votre machine virtuelle. Les groupes de sécurité réseau fournissent un grand nombre de fonctionnalités intéressantes et une granularité pour contrôler l’accès à vos ressources. Découvrez plus d’informations sur la [création d’un groupe de sécurité réseau et de règles de liste de contrôle d’accès ici](../../virtual-network/virtual-networks-create-nsg-arm-cli.md).
+Hello rapide commandes vous permettent de tooget haut et en cours d’exécution avec tooyour de flux de trafic VM. Groupes de sécurité réseau fournissent de nombreuses fonctionnalités et granularité pour contrôler les ressources tooyour accès. Découvrez plus d’informations sur la [création d’un groupe de sécurité réseau et de règles de liste de contrôle d’accès ici](../../virtual-network/virtual-networks-create-nsg-arm-cli.md).
 
 Vous pouvez définir des groupes de sécurité réseau et des règles de liste de contrôle d’accès dans le cadre de modèles Azure Resource Manager. En savoir plus sur la [création de groupes de sécurité réseau avec des modèles](../../virtual-network/virtual-networks-create-nsg-arm-template.md).
 
-Si vous devez utiliser le réacheminement de port pour mapper un seul port externe sur un port interne de votre machine virtuelle, utilisez un équilibreur de charge et des règles de traduction d’adresses réseau (NAT). Par exemple, vous souhaitez peut-être exposer le port TCP 8080 en externe et diriger le trafic vers le port TCP 80 sur une machine virtuelle. En savoir plus sur [la création d'un équilibreur de charge accessible sur Internet](../../load-balancer/load-balancer-get-started-internet-arm-cli.md)
+Si vous avez besoin de réacheminement de port de toouse toomap un unique externe tooan port interne sur votre machine virtuelle, utilisez un équilibrage de charge et les règles de traduction d’adresses réseau (NAT). Par exemple, vous pouvez tooexpose le port TCP 8080 en externe et souhaitez le trafic est dirigé tooTCP port 80 sur un ordinateur virtuel. En savoir plus sur [la création d'un équilibreur de charge accessible sur Internet](../../load-balancer/load-balancer-get-started-internet-arm-cli.md)
 
 ## <a name="next-steps"></a>Étapes suivantes
-Dans cet exemple, vous avez créé une règle simple pour autoriser le trafic HTTP. Vous trouverez plus d’informations sur la création d’environnements plus détaillés dans les articles suivants :
+Dans cet exemple, vous avez créé un trafic de tooallow HTTP règle simple. Vous trouverez des informations sur la création d’environnements plus Bonjour suivant des articles :
 
 * [Présentation d’Azure Resource Manager](../../azure-resource-manager/resource-group-overview.md)
 * [Présentation du groupe de sécurité réseau](../../virtual-network/virtual-networks-nsg.md)

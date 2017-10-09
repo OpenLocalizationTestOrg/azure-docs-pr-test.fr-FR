@@ -1,6 +1,6 @@
 ---
-title: "H264 – Vitesse de transmission unique – 4 K – Audio 5.1 | Microsoft Docs"
-description: "Cette rubrique offre une vue d’ensemble de la présélection de tâches **H264 – Vitesse de transmission unique – 4 K – Audio 5.1**."
+title: "aaaH264 de transmission unique – 4K – Audio 5.1 | Documents Microsoft"
+description: "rubrique de Hello donne une vue d’ensemble de hello ** h264 – vitesse de transmission unique – 4K – Audio 5.1* * présélection de tâches."
 author: Juliako
 manager: cfowler
 editor: 
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: juliako
-ms.openlocfilehash: d34fb5b640dbdbfc4d3d6b716fdd46176826a318
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 8ed5d85a0c58eaa9b076be667f4499659d90b19e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="h264-single-bitrate-4k-audio-51"></a>H264 – Vitesse de transmission unique – 4 K – Audio 5.1
-`Media Encoder Standard` définit un ensemble de présélections d’encodage à utiliser lors de la création de travaux d’encodage. Vous pouvez utiliser un `preset name` afin de spécifier le format dans lequel vous souhaitez encoder votre fichier multimédia. Sinon, vous pouvez créer vos propres présélections basées sur JSON ou XML (à l’aide de l’encodage UTF-8 ou UTF-16). Vous pouvez ensuite transmettre la présélection personnalisée à l’encodeur. Pour obtenir la liste de tous les noms de présélections pris en charge par cet encodeur `Media Encoder Standard`, consultez [Présélections de tâches pour Media Encoder Standard](media-services-mes-presets-overview.md).  
+`Media Encoder Standard` définit un ensemble de présélections d’encodage à utiliser lors de la création de travaux d’encodage. Vous pouvez utiliser un `preset name` toospecify dans le format que tooencode votre fichier multimédia. Sinon, vous pouvez créer vos propres présélections basées sur JSON ou XML (à l’aide de l’encodage UTF-8 ou UTF-16). Vous pouvez ensuite transmettre encodeur personnalisé toohello prédéfini de hello. Pour la liste de tous les hello hello présélection noms pris en charge par ce `Media Encoder Standard` encodeur, consultez [Présélections de tâches pour Media Encoder Standard](media-services-mes-presets-overview.md).  
   
- Cette rubrique présente la présélection `H264 Single Bitrate 4K Audio 5.1` (aux formats XML et JSON).  
+ Cette rubrique montre hello `H264 Single Bitrate 4K Audio 5.1` prédéfini (au format XML et JSON).  
   
- Cette présélection produit un fichier MP4 unique avec une vitesse de transmission de 18 000 kbit/s, et de l’audio AAC 5.1. Pour plus d’informations sur le profil, la vitesse de transmission, la fréquence d’échantillonnage, etc. de cette présélection, examinez le code XML ou JSON présenté ci-dessous. Pour connaître la signification des différents éléments et les valeurs valides pour chaque élément, consultez [Schéma Media Encoder Standard](media-services-mes-schema.md).  
+ Cette présélection produit un fichier MP4 unique avec une vitesse de transmission de 18 000 kbit/s, et de l’audio AAC 5.1. Pour obtenir des informations détaillées sur le profil, vitesse de transmission, d’échantillonnage, le taux, etc. cela prédéfinies, examiner hello XML ou JSON défini ci-dessous. Pour des explications signifie de chaque élément et les valeurs valides de hello pour chaque élément, consultez hello [schéma Media Encoder Standard](media-services-mes-schema.md).  
   
 > [!NOTE]
->  Pour les encodages 4K, vous devez obtenir le type d’unité réservée Premium. Pour plus d’informations, consultez [Mise à l’échelle de l’encodage](https://azure.microsoft.com/en-us/documentation/articles/media-services-portal-encoding-units).  
+>  Vous devez obtenir hello prime réservé encode du type d’unité avec 4 Ko. Pour plus d’informations, consultez [comment tooScale codage](https://azure.microsoft.com/en-us/documentation/articles/media-services-portal-encoding-units).  
   
  XML  
   

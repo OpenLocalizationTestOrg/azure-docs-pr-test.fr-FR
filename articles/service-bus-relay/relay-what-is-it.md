@@ -1,5 +1,5 @@
 ---
-title: "Présentation Qu’est-ce qu’Azure Relay et pourquoi l’utiliser | Microsoft Docs"
+title: "aaaWhat est Azure relais et pourquoi utiliser vue d’ensemble | Documents Microsoft"
 description: "Présentation d’Azure Relay"
 services: service-bus-relay
 documentationcenter: .net
@@ -14,28 +14,28 @@ ms.devlang: multiple
 ms.topic: get-started-article
 ms.date: 08/23/2017
 ms.author: sethm
-ms.openlocfilehash: 77ee85db0bcc701514a1a98da9405a79d658d49d
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4cfd77048210a435c446b908b7896737cad0edbf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="what-is-azure-relay"></a>Qu’est-ce qu’Azure Relay ?
 
-Le service Azure Relay facilite les applications hybrides en offrant la possibilité d’exposer les services qui résident dans un réseau d’entreprise sur le cloud public en toute sécurité, sans avoir à ouvrir une connexion de pare-feu ni à exiger des modifications intrusives dans une infrastructure de réseau d’entreprise. Azure Relay prend en charge une grande variété de protocoles de transport et normes de services web.
+Hello relais Azure service facilite hybride applications en activant toosecurely vous exposent des services qui résident dans un cloud entreprise réseau toohello public, sans avoir tooopen connexion via un pare-feu, ou nécessitent contraignant change tooa infrastructure de réseau d’entreprise. Azure Relay prend en charge une grande variété de protocoles de transport et normes de services web.
 
-Le service de relais prend en charge le trafic unidirectionnel standard, le trafic de demande/réponse et le trafic d’homologue à homologue. Il prend également en charge la distribution des événements sur Internet pour activer les scénarios de publication/abonnement et la communication par socket bidirectionnelle pour une efficacité accrue de point à point. 
+service de relais Hello prend en charge traditionnelle à sens unique, de demande/réponse et le trafic de pair à pair. Il prend également en charge la distribution des événements sur les scénarios de publication/abonnement tooenable étendue d’internet et de communication de socket bidirectionnelle pour une efficacité accrue de point à point. 
 
-Dans le modèle de transfert de données par relais, un service local se connecte au service de relais via un port sortant et crée un socket bidirectionnel pour la communication liée à des adresses de rendez-vous spécifiques. Le client peut ensuite communiquer avec le service local en envoyant le trafic vers le service de relais ciblant l’adresse de rendez-vous. Le service de relais « relaie » ensuite les données au service local via le socket bidirectionnel dédié à chaque client. Le client n’a pas besoin d’une connexion directe au service local ni de savoir où se trouve le service, et le service local n’a pas besoin d’ouvrir de ports entrants sur le pare-feu.
+Dans le modèle de transfert de données hello relayée, un service local connecte de service de relais toohello via un port sortant et crée un socket bidirectionnel pour l’adresse de communication liée tooa rendezvous particulier. Hello client peut ensuite communiquer avec service local de hello en envoyant le service de relais du trafic toohello ciblant hello rendezvous adresse. service de relais Hello « relaie ensuite « service local toohello des données via un client dédié tooeach de socket bidirectionnel. Hello client ne requiert un connexion directe toohello local service, il n’est pas requis tooknow hello service réside, alors que service local de hello n’a pas besoin de ports entrants ouverts sur les pare-feu hello.
 
-Les principaux éléments de fonctionnalité d’Azure Relay sont la communication bidirectionnelle, non mise en mémoire tampon à travers les limites du réseau avec limitation de type TCP, la découverte de point de terminaison, l’état de la connectivité et la sécurité des points de terminaison superposés. Les fonctionnalités d’Azure Relay diffèrent des technologies d’intégration au niveau du réseau telles que le réseau VPN, car le relais peut être limité à un point de terminaison d’application unique sur un ordinateur unique, alors que la technologie VPN est beaucoup plus intrusive, car elle repose sur la modification de l’environnement réseau.
+les éléments de fonctionnalité clé Hello fournies par relais sont une communication bidirectionnelle, tamponnée au-delà des limites du réseau avec TCP semblable à la limitation, découverte de point de terminaison, le statut de connectivité et à superposer de sécurité du point de terminaison. capacités de relais Hello diffèrent des technologies d’intégration au niveau du réseau telles que VPN, dans ce relais peut être étendue tooa application unique point de terminaison sur un seul ordinateur, alors que la technologie VPN est beaucoup plus contraignant comme il s’appuie sur la modification d’environnement de réseau hello .
 
 Azure Relay comprend deux fonctionnalités :
 
-1. [Connexions hybrides](#hybrid-connections) : utilise les sockets web standard ouverts permettant des scénarios multi-plateformes.
-2. [Relais WCF](#wcf-relays) : utilise Windows Communication Foundation (WCF) pour activer les appels de procédure à distance. Le relais WCF est l’offre de relais héritée que de nombreux clients utilisent déjà avec leurs modèles de programmation WCF.
+1. [Connexions hybrides](#hybrid-connections) - sockets d’ouvrir un site web standard hello utilise des scénarios de multi-plateforme.
+2. [WCF relais](#wcf-relays) -appels de procédure distante tooenable utilise Windows Communication Foundation (WCF). Relais de WCF est relais hérité de hello offre que de nombreux clients utilisent déjà avec leur modèles de programmation de WCF.
 
-Les connexions hybrides et relais WCF permettent une connexion sécurisée aux actifs existants au sein d’un réseau d’entreprise. L’utilisation de l’un par rapport à l’autre dépend de vos besoins particuliers, comme décrit dans le tableau suivant :
+Connexions hybrides et les relais WCF activer tooassets de connexion sécurisée qui existent au sein d’un réseau d’entreprise. Utilisation d’une par rapport à hello autres est dépend de vos besoins, comme décrit dans hello tableau suivant :
 
 |  | Relais WCF | les connexions hybrides |
 | --- |:---:|:---:|
@@ -48,20 +48,20 @@ Les connexions hybrides et relais WCF permettent une connexion sécurisée aux a
 
 ## <a name="hybrid-connections"></a>les connexions hybrides
 
-La fonctionnalité de [connexions hybrides Azure Relay](relay-hybrid-connections-protocol.md) est une évolution de protocole ouvert sécurisé des fonctionnalités existantes du relais, qui peut être implémentée sur n’importe quelle plateforme et dans n’importe quel langage incluant une fonctionnalité WebSocket de base, ce qui comprend explicitement l’API WebSocket dans les navigateurs web courants. Les connexions hybrides sont basées sur HTTP et WebSockets.
+Hello [connexions hybrides de relais Azure](relay-hybrid-connections-protocol.md) fonctionnalité est une évolution sécurisée, protocole ouvert de hello existants des fonctionnalités de relais qui peuvent être implémentées sur n’importe quelle plateforme et dans n’importe quel langage qui dispose d’une fonctionnalité WebSocket de base, qui n’inclut pas explicitement hello API WebSocket dans les navigateurs web. Les connexions hybrides sont basées sur HTTP et WebSockets.
 
 ### <a name="service-history"></a>Historique des services
 
-Les connexions hybrides remplacent l’ancienne fonctionnalité appelée « BizTalk Services » qui a été créée sur le relais WCF Azure Service Bus. La nouvelle fonctionnalité de connexions hybrides vient compléter la fonction de relais WCF existante, et ces deux possibilités de service cohabitent dans le service Azure Relay. Elles partagent une passerelle commune, mais ont des implémentations différentes.
+Connexions HYBRIDES remplace l’ancienne hello, nommées fonctionnalité « Services BizTalk » qui a été générée hello Azure Service Bus Relay WCF de façon similaire. nouvelle fonctionnalité de connexions hybrides Hello complète la fonctionnalité de relais de WCF existante hello et ces deux fonctionnalités existent côte à côte dans le service de relais d’Azure hello. Elles partagent une passerelle commune, mais ont des implémentations différentes.
 
 ## <a name="wcf-relays"></a>Relais WCF
 
-Le relais WCF fonctionne pour l’ensemble de .NET Framework (NETFX) et pour WCF. Vous lancez la connexion entre votre service local et le service de relais à l’aide d’une suite de liaisons de « relais » WCF. En coulisses, les liaisons de relais se mappent à de nouveaux éléments de liaison de transport destinés à créer des composants de canal WCF qui s'intègrent à Service Bus dans le cloud.
+fonctionnement de relais de WCF Hello pour hello complet .NET Framework (NETFX) et pour WCF. Vous lancez la connexion hello entre votre service local et le service de relais hello à l’aide d’une suite de « relais » des liaisons WCF. Coulisses de hello, les liaisons de relais hello mappent toonew transport liaison éléments conçus toocreate canal composants WCF qui s’intègrent à Service Bus dans le cloud de hello.
 
 ## <a name="architecture-processing-of-incoming-relay-requests"></a>Architecture : Traitement des requêtes de relais entrantes
-Lorsqu’un client envoie une requête au service [Azure Relay](/azure/service-bus-relay/), Azure Load Balancer la transmet à l’un des nœuds de passerelle. Si la requête est une requête d'écoute, le nœud de passerelle crée un relais. Si la requête est une requête de connexion à un relais spécifique, le nœud de passerelle transfère la requête de connexion au nœud de passerelle qui possède le relais. Le nœud de passerelle qui possède le relais envoie une requête de rendez-vous au client d'écoute, lui demandant de créer un canal temporaire au nœud de passerelle qui a reçu la requête de connexion.
+Lorsqu’un client envoie une demande toohello [Azure relais](/azure/service-bus-relay/) tooany de nœuds de passerelle hello achemine service, équilibrage de charge Azure hello. Si la demande de hello est une demande à l’écoute, nœud de passerelle hello crée un relais. Si la demande de hello est un relais spécifique de tooa de demande de connexion, nœud de passerelle hello transfère hello demande toohello passerelle nœud de connexion qui possède les relais hello. nœud de passerelle Hello qui possède les relais hello envoie un rendezvous demande toohello écoute client, demandant hello écouteur toocreate un nœud de passerelle toohello canal temporaire qui a reçu la demande de connexion hello.
 
-Lorsque la connexion au relais est établie, les clients peuvent échanger des messages via le nœud de passerelle utilisé pour le rendez-vous.
+Lors de la connexion de relais hello est établie, les clients de hello peuvent échanger des messages via le nœud de passerelle hello qui est utilisé pour les rendezvous hello.
 
 ![Traitement des requêtes WCF Relay entrantes](./media/relay-what-is-it/ic690645.png)
 

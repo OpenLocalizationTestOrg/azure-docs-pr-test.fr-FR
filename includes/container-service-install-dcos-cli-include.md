@@ -1,6 +1,6 @@
 ---
-title: "Installer l’interface de ligne de commande DC/OS | Microsoft Docs"
-description: "Installer l’interface de ligne de commande DC/OS."
+title: "aaaInstall hello CLI de contrôleur de domaine/système d’exploitation | Documents Microsoft"
+description: "Installez hello CLI de contrôleur de domaine/système d’exploitation."
 services: container-service
 documentationcenter: 
 author: rgardler
@@ -15,18 +15,18 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/10/2016
 ms.author: rogardle
-ms.openlocfilehash: a8ea47f158c0d666340815d2e039995c7483257f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b077c05beff9a5638486ea5efe9df31089e32701
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 > [!NOTE]
-> Cela concerne l’utilisation des clusters ACS basés sur DC/OS. Cette opération est inutile pour les clusters ACS à base de Swarm.
+> Cela concerne l’utilisation des clusters ACS basés sur DC/OS. Il n’existe aucune toodo besoin cela pour ACS de base essaim clusters.
 > 
 > 
 
-Commencez par [vous connecter à votre cluster ACS basé sur DC/OS](../articles/container-service/container-service-connect.md). Une fois cette opération terminée, installez l’interface de ligne de commande DC/OS sur votre ordinateur client à l’aide des commandes ci-dessous :
+Tout d’abord, [connecter tooyour basé sur le système d’exploitation contrôleur de domaine de ACS cluster](../articles/container-service/container-service-connect.md). Une fois que vous avez fait, vous pouvez installer hello CLI de contrôleur de domaine/système d’exploitation sur votre ordinateur client avec les commandes hello ci-dessous :
 
 ```bash
 sudo pip install virtualenv
@@ -38,7 +38,7 @@ chmod +x install-optout-dcos-cli.sh
 
 Si vous utilisez une ancienne version de Python, vous remarquerez peut-être des messages « InsecurePlatformWarning ». Vous pouvez ignorer ces erreurs.
 
-Pour démarrer sans avoir à relancer votre interpréteur de commandes, exécutez la commande suivante :
+Dans tooget commande démarré sans avoir à redémarrer votre interpréteur de commandes, exécutez :
 
 ```bash
 source ~/.bashrc
@@ -46,7 +46,7 @@ source ~/.bashrc
 
 Cette étape n’est pas nécessaire lorsque vous lancez de nouveaux interpréteurs de commandes.
 
-À présent, vous pouvez confirmer l’installation de l’interface de ligne de commande :
+Maintenant, vous pouvez vérifier que hello que CLI est installé :
 
 ```bash
 dcos --help

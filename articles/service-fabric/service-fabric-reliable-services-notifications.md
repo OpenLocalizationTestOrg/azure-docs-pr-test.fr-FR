@@ -1,5 +1,5 @@
 ---
-title: "Notifications Reliable Services | Microsoft Docs"
+title: notifications de Services aaaReliable | Documents Microsoft
 description: Documentation conceptuelle relative aux notifications Reliable Services Service Fabric
 services: service-fabric
 documentationcenter: .net
@@ -14,24 +14,24 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 6/29/2017
 ms.author: mcoskun
-ms.openlocfilehash: c6a53d851510ed5e6eec1f3ac0f636ad034a6d4c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8c43190d31dbe82d1dc7fa1c228128bdcc3684f6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="reliable-services-notifications"></a>Notifications Reliable Services
-Les notifications permettent aux clients de suivre les modifications apportées à un objet qui les intéresse. Deux types d’objets prennent en charge les notifications : *Gestionnaire d’état fiable* et *Dictionnaire fiable*.
+Notifications d’autorisent les clients modifications hello tootrack qui font objet tooan qui les intéresse. Deux types d’objets prennent en charge les notifications : *Gestionnaire d’état fiable* et *Dictionnaire fiable*.
 
 Raisons courantes d’utiliser les notifications :
 
-* Construction de vues matérialisées, comme des index secondaires ou des vues filtrées agrégées de l’état du réplica. Par exemple, un index trié de toutes les clés d’un dictionnaire fiable.
-* Envoi de données de surveillance comme le nombre d’utilisateurs ajoutés durant la dernière heure.
+* Construction matérialisée, tels que les index secondaires ou agrégées des vues filtrées de l’état du réplica hello. Par exemple, un index trié de toutes les clés d’un dictionnaire fiable.
+* Envoi de données analyse, tels que quantité, hello pour les utilisateurs ajoutés Bonjour dernière heure.
 
 Les notifications sont déclenchées dans le cadre de l’application d’opérations. Pour cette raison, les notifications doivent être traitées le plus rapidement possible, et les événements synchrones ne doivent pas inclure d’opérations coûteuses.
 
 ## <a name="reliable-state-manager-notifications"></a>Notifications du Gestionnaire d’état fiable
-Le Gestionnaire d’état fiable fournit des notifications pour les événements suivants :
+Gestionnaire d’état de fiable fournit des notifications pour hello suivant des événements :
 
 * Transaction
   * Validation
@@ -40,16 +40,16 @@ Le Gestionnaire d’état fiable fournit des notifications pour les événements
   * Ajout d’un état fiable
   * Suppression d’un état fiable
 
-Le Gestionnaire d’état fiable effectue le suivi à la volée des transactions en cours. Le seul changement d’état de transaction qui déclenche une notification est une transaction en cours de validation.
+Gestionnaire d’état de Reliable assure le suivi des hello actuel séquentiels. Hello de seule modification dans l’état de transaction qui provoque un toobe notification déclenché est une transaction en cours de validation.
 
-Le Gestionnaire d’état fiable tient à jour une collection d’états fiables comme Dictionnaire fiable et File d’attente fiable. Le Gestionnaire d’état fiable déclenche des notifications quand cette collection est modifiée : un état fiable est ajouté, supprimé, ou la collection entière est reconstruite.
-La collection du Gestionnaire d’état fiable est reconstruite dans trois cas :
+Le Gestionnaire d’état fiable tient à jour une collection d’états fiables comme Dictionnaire fiable et File d’attente fiable. Gestionnaire d’état de Reliable déclenche des notifications lors de la modification de cette collection : un état fiable est ajouté ou supprimé, ou ensemble de la collection hello est reconstruit.
+Hello collection du Gestionnaire d’état fiable est reconstruit dans trois cas :
 
-* Récupération : quand un réplica démarre, il récupère son état précédent à partir du disque. À la fin de la récupération, il utilise **NotifyStateManagerChangedEventArgs** pour déclencher un événement qui contient l’ensemble des états fiables récupérés.
-* Copie complète : avant qu’un réplica puisse rejoindre le jeu de configuration, il doit être créé. Dans certains cas, il est nécessaire d’appliquer une copie complète de l’état du Gestionnaire d’état fiable du réplica principal au réplica secondaire inactif. Le Gestionnaire d’état fiable sur le réplica secondaire utilise **NotifyStateManagerChangedEventArgs** pour déclencher un événement qui contient l’ensemble des états fiables qu’il a acquis à partir du réplica principal.
-* Restauration : dans les scénarios de récupération d’urgence, vous pouvez restaurer l’état du réplica à partir d’une sauvegarde par le biais de **RestoreAsync**. Dans ces cas-là, le Gestionnaire d’état fiable sur le réplica secondaire utilise **NotifyStateManagerChangedEventArgs** pour déclencher un événement qui contient l’ensemble des états fiables qu’il a restauré à partir de la sauvegarde.
+* Récupération : Démarrage d’un réplica, il récupère son état précédent à partir du disque de hello. À la fin hello de la récupération, il utilise **NotifyStateManagerChangedEventArgs** toofire un événement qui contient le jeu hello des États fiables récupérées.
+* Copie complète : avant un réplica peut joindre le jeu de configuration hello, il a toobe généré. Dans certains cas, cela nécessite une copie complète de l’état du Gestionnaire d’état fiable hello réplica principal toobe toohello appliqué inactif réplica secondaire. Gestionnaire d’état de la fiable sur les utilisations de réplica secondaire hello **NotifyStateManagerChangedEventArgs** toofire un événement qui contient le jeu hello des États fiables dont elle a acquis à partir du réplica principal de hello.
+* Restauration : Dans les scénarios de récupération d’urgence, état du réplica hello peut être restaurée à partir d’une sauvegarde via **RestoreAsync**. Dans ce cas, le Gestionnaire d’état fiable sur le réplica principal de hello utilise **NotifyStateManagerChangedEventArgs** toofire un événement qui contient le jeu hello des États fiables dont il est restauré à partir de la sauvegarde de hello.
 
-Pour vous inscrire aux notifications de transactions et/ou notifications du Gestionnaire d’état, vous devez vous inscrire auprès de l’événement **TransactionChanged** ou **StateManagerChanged** sur le Gestionnaire d’état fiable. Le constructeur de votre élément StatefulService est un endroit courant où s’inscrire auprès de ces gestionnaires d’événements. Si vous êtes inscrit dans le constructeur, vous ne manquerez aucune notification due à une modification pendant la durée de vie de **IReliableStateManager**.
+tooregister pour les notifications de transactions et/ou notifications de gestionnaire d’état, vous devez tooregister avec hello **TransactionChanged** ou **StateManagerChanged** événements sur le Gestionnaire d’état fiable. Un emplacement commun tooregister avec ces gestionnaires d’événements est le constructeur hello de votre service avec état. Lorsque vous enregistrez sur le constructeur de hello, toute notification qui est provoquée par une modification au cours de la durée de vie hello de ne pas perdre **IReliableStateManager**.
 
 ```C#
 public MyService(StatefulServiceContext context)
@@ -60,10 +60,10 @@ public MyService(StatefulServiceContext context)
 }
 ```
 
-Le gestionnaire d’événements **TransactionChanged** utilise **NotifyTransactionChangedEventArgs** pour fournir des détails sur l’événement. Il contient la propriété d’action (par exemple, **NotifyTransactionChangedAction.Commit**) qui spécifie le type de modification. Il contient également la propriété de transaction qui fournit une référence à la transaction qui a changé.
+Hello **TransactionChanged** Gestionnaire d’événements **NotifyTransactionChangedEventArgs** tooprovide plus d’informations sur l’événement hello. Il contient la propriété d’action hello (par exemple, **NotifyTransactionChangedAction.Commit**) qui spécifie le type hello de modification. Il contient également la propriété transaction hello qui fournit une transaction toohello de référence qui a modifié.
 
 > [!NOTE]
-> Aujourd’hui, les événements **TransactionChanged** sont déclenchés uniquement si la transaction est validée. L’action est alors égale à **NotifyTransactionChangedAction.Commit**. Mais à l’avenir, des événements pourront être déclenchés pour d’autres types de modifications d’état de transaction. Nous vous recommandons de vérifier l’action et de traiter l’événement uniquement s’il correspond à ce que vous attendez.
+> Aujourd'hui, **TransactionChanged** sont déclenchés uniquement si hello transaction est validée. Hello action est alors égale trop**NotifyTransactionChangedAction.Commit**. Mais dans hello future, des événements peuvent être levées pour les autres types de modifications d’état de transaction. Nous vous recommandons de vérifier l’action de hello et le traitement d’événement de hello uniquement si c’est un que vous attendez.
 > 
 > 
 
@@ -82,9 +82,9 @@ private void OnTransactionChangedHandler(object sender, NotifyTransactionChanged
 }
 ```
 
-Le gestionnaire d’événements **StateManagerChanged** utilise **NotifyStateManagerChangedEventArgs** pour fournir des détails sur l’événement.
+Hello **StateManagerChanged** Gestionnaire d’événements **NotifyStateManagerChangedEventArgs** tooprovide plus d’informations sur l’événement hello.
 **NotifyStateManagerChangedEventArgs** comporte deux sous-classes : **NotifyStateManagerRebuildEventArgs** et **NotifyStateManagerSingleEntityChangedEventArgs**.
-Vous utilisez la propriété d’action dans **NotifyStateManagerChangedEventArgs** pour convertir **NotifyStateManagerChangedEventArgs** en la sous-classe correcte :
+Vous utilisez la propriété d’action hello dans **NotifyStateManagerChangedEventArgs** toocast **NotifyStateManagerChangedEventArgs** sous-classe correcte de toohello :
 
 * **NotifyStateManagerChangedAction.Rebuild** : **NotifyStateManagerRebuildEventArgs**
 * **NotifyStateManagerChangedAction.Add** et **NotifyStateManagerChangedAction.Remove** : **NotifyStateManagerSingleEntityChangedEventArgs**
@@ -106,16 +106,16 @@ public void OnStateManagerChangedHandler(object sender, NotifyStateManagerChange
 ```
 
 ## <a name="reliable-dictionary-notifications"></a>Notifications Dictionnaire fiable
-Dictionnaire fiable fournit des notifications pour les événements suivants :
+Dictionnaire fiable fournit des notifications pour hello suivant des événements :
 
 * Reconstruction : appelée quand **ReliableDictionary** a récupéré son état à partir d’une sauvegarde ou d’un état local récupéré ou copié.
-* Effacement : appelée quand l’état de **ReliableDictionary** a été effacé par le biais de la méthode **ClearAsync**.
-* Ajout : appelée quand un élément a été ajouté à **ReliableDictionary**.
+* Effacer : Appelée quand hello état de **ReliableDictionary** a été effacé via hello **ClearAsync** (méthode).
+* Ajouter : Appelée quand un élément a été ajouté trop**ReliableDictionary**.
 * Mise à jour : appelée quand un élément de **IReliableDictionary** a été mis à jour.
 * Suppression : appelée quand un élément de **IReliableDictionary** a été supprimé.
 
-Pour obtenir des notifications Dictionnaire fiable, vous devez vous inscrire auprès du gestionnaire d’événements **DictionaryChanged** sur **IReliableDictionary**. La notification d’ajout **ReliableStateManager.StateManagerChanged** est une situation courante au cours de laquelle l’utilisateur s’inscrit auprès de ces gestionnaires d’événements.
-L’inscription quand **IReliableDictionary** est ajouté à **IReliableStateManager** permet de s’assurer que vous ne manquerez aucune notification.
+notifications de dictionnaire fiable tooget, vous devez tooregister avec hello **DictionaryChanged** Gestionnaire d’événements **IReliableDictionary**. Un emplacement commun tooregister avec ces gestionnaires d’événements est Bonjour **ReliableStateManager.StateManagerChanged** ajouter la notification.
+L’inscription lorsque **IReliableDictionary** est ajouté trop**IReliableStateManager** permet de s’assurer que vous ne perdrez toutes les notifications.
 
 ```C#
 private void ProcessStateManagerSingleEntityNotification(NotifyStateManagerChangedEventArgs e)
@@ -136,11 +136,11 @@ private void ProcessStateManagerSingleEntityNotification(NotifyStateManagerChang
 ```
 
 > [!NOTE]
-> **ProcessStateManagerSingleEntityNotification** est l’exemple de méthode appelée par l’exemple **OnStateManagerChangedHandler** précédent.
+> **ProcessStateManagerSingleEntityNotification** est méthode d’échantillonnage hello que hello précédent **OnStateManagerChangedHandler** exemple appelle.
 > 
 > 
 
-Le code précédent définit l’interface **IReliableNotificationAsyncCallback**, ainsi que **DictionaryChanged**. Étant donné que **NotifyDictionaryRebuildEventArgs** contient une interface **IAsyncEnumerable** qui doit être énumérée de façon asynchrone, des notifications de reconstruction sont déclenchées par le biais de **RebuildNotificationAsyncCallback** au lieu de **OnDictionaryChangedHandler**.
+Hello code précédent définit hello **IReliableNotificationAsyncCallback** de l’interface, ainsi que par **DictionaryChanged**. Étant donné que **NotifyDictionaryRebuildEventArgs** contient un **IAsyncEnumerable** interface--qui nécessite le toobe énuméré de façon asynchrone--reconstruction notifications sont déclenchées par le biais  **RebuildNotificationAsyncCallback** au lieu de **OnDictionaryChangedHandler**.
 
 ```C#
 public async Task OnDictionaryRebuildNotificationHandlerAsync(
@@ -158,12 +158,12 @@ public async Task OnDictionaryRebuildNotificationHandlerAsync(
 ```
 
 > [!NOTE]
-> Dans le code précédent, dans le cadre du traitement de la notification de reconstruction, l’état agrégé est d’abord effacé. La collection fiable étant en cours de reconstruction avec un nouvel état, toutes les notifications précédentes sont sans intérêt.
+> Bonjour précédant le code, dans le cadre de la notification de traitement hello rebuild, première hello conservées États agrégés est désactivée. Étant donné que la collection fiable de hello est reconstruite avec un nouvel état, toutes les notifications précédentes sont sans importance.
 > 
 > 
 
-Le gestionnaire d’événements **DictionaryChanged** utilise **NotifyDictionaryChangedEventArgs** pour fournir des détails sur l’événement.
-**NotifyDictionaryChangedEventArgs** a cinq sous-classes. Utilisez la propriété d’action dans **NotifyDictionaryChangedEventArgs** pour convertir **NotifyDictionaryChangedEventArgs** en la sous-classe correcte :
+Hello **DictionaryChanged** Gestionnaire d’événements **NotifyDictionaryChangedEventArgs** tooprovide plus d’informations sur l’événement hello.
+**NotifyDictionaryChangedEventArgs** a cinq sous-classes. Utilisez la propriété d’action hello dans **NotifyDictionaryChangedEventArgs** toocast **NotifyDictionaryChangedEventArgs** sous-classe correcte de toohello :
 
 * **NotifyDictionaryChangedAction.Rebuild** : **NotifyDictionaryRebuildEventArgs**
 * **NotifyDictionaryChangedAction.Clear** : **NotifyDictionaryClearEventArgs**
@@ -205,15 +205,15 @@ public void OnDictionaryChangedHandler(object sender, NotifyDictionaryChangedEve
 ## <a name="recommendations"></a>Recommandations
 * *Complétez* les événements de notification le plus rapidement possible.
 * *N’exécutez aucune* opération coûteuse (par exemple des opérations d’E/S) dans le cadre d’événements synchrones.
-* *Vérifiez* le type d’action avant de traiter l’événement. De nouveaux types d’actions pourront être ajoutés à l’avenir.
+* *Faire* vérifier le type d’action hello avant de traiter les événements hello. Nouveaux types d’action peuvent être ajoutées dans hello futures.
 
-Voici quelques points à retenir :
+Voici certains tookeep choses à l’esprit :
 
-* Les notifications sont déclenchées dans le cadre de l’exécution d’une opération. Par exemple, une notification de restauration est déclenchée comme dernière étape d’une opération de restauration. Une restauration ne se termine pas tant que l’événement de notification n’a pas été traité.
-* Les notifications étant déclenchées dans le cadre des opérations d’application, les clients ne voient que les notifications des opérations validées localement. De plus, dans la mesure où les opérations sont garanties uniquement pour être validées localement (en d’autres termes consignées), elles risquent de ne pas pouvoir être annulées par la suite.
-* Lors d’une opération de rétablissement, une seule notification est déclenchée pour chaque opération appliquée. Cela signifie que si la transaction T1 inclut Create(X), Delete(X) et Create(X), vous obtiendrez une notification pour la création de X, une autre pour sa suppression et une autre pour sa création, dans cet ordre.
-* Pour les transactions qui contiennent plusieurs opérations, les opérations sont appliquées dans l’ordre dans lequel elles ont été reçues sur le réplica principal.
-* Lors du traitement d’une mauvaise progression, certaines opérations peuvent être annulées. Des notifications sont déclenchées pour ces opérations d’annulation afin de ramener le réplica à un état stable. Les notifications d’annulation présentent une importante différence. En effet, les événements avec des clés en double sont agrégés. Par exemple, si la transaction T1 est annulée, vous ne verrez qu’une seule notification Delete(X).
+* Les notifications sont déclenchées dans le cadre de l’exécution de hello d’une opération. Par exemple, une notification de restauration est déclenchée comme hello dernière étape d’une opération de restauration. Une restauration ne se termine pas tant qu’événement de notification hello est traité.
+* Étant donné que les notifications sont déclenchées dans le cadre de hello appliquant opérations, les clients voient uniquement les notifications pour les opérations validées localement. Et parce que les opérations sont garanties uniquement les toobe validée localement (en d’autres termes, connecté), elles peuvent ou ne peuvent pas être annulées dans hello futures.
+* Sur le chemin d’accès de la restauration par progression hello, une seule notification est déclenchée pour chaque opération appliquée. Cela signifie que si la transaction T1 inclut Create(X), Delete(X) et Create(X), vous recevrez une notification pour la création de hello de X, une pour la suppression de hello et une pour la création de hello, dans cet ordre.
+* Pour les transactions qui contiennent plusieurs opérations, les opérations sont appliquées dans l’ordre de hello dans lequel ils ont été reçus sur le réplica principal à partir de l’utilisateur de hello de hello.
+* Lors du traitement d’une mauvaise progression, certaines opérations peuvent être annulées. Pour des opérations d’annulation, état hello hello réplica tooa arrière stable point de restauration, les notifications sont déclenchées. Les notifications d’annulation présentent une importante différence. En effet, les événements avec des clés en double sont agrégés. Par exemple, si la transaction T1 est annulée, vous verrez un tooDelete(X) notification unique.
 
 ## <a name="next-steps"></a>Étapes suivantes
 * [Collections fiables](service-fabric-work-with-reliable-collections.md)

@@ -1,6 +1,6 @@
 ---
-title: "Ajout du déclencheur de périodicité dans des applications logiques | Microsoft Docs"
-description: "Vue d’ensemble du déclencheur de périodicité et de son utilisation avec une application logique Azure."
+title: "déclencheur de périodicité aaaAdd hello dans les applications logique | Documents Microsoft"
+description: "Vue d’ensemble du déclencheur de périodicité hello et comment toouse avec une application Azure logique."
 services: 
 documentationcenter: 
 author: jeffhollan
@@ -15,49 +15,49 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/18/2016
 ms.author: jehollan
-ms.openlocfilehash: fe558958c316c8dba42163e277ae01451f712e5a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e7c625c382a88a1e7cdfff4ddc0caf55727232bd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-recurrence-trigger"></a>Prise en main du déclencheur de périodicité
-En utilisant le déclencheur de périodicité, vous pouvez créer des workflows puissants dans le cloud.
+# <a name="get-started-with-hello-recurrence-trigger"></a>Prise en main déclencheur de périodicité hello
+À l’aide de déclencheur de périodicité hello, vous pouvez créer puissants flux de travail dans le cloud de hello.
 
 Vous pouvez par exemple afficher :
 
-* Planifier un workflow pour l’exécution quotidienne d’une procédure SQL stockée.
-* Envoyer par e-mail un résumé de tous les tweets de la semaine écoulée sur la base d’un hashtag spécifique.
+* Planifier un toorun de flux de travail une procédure stockée SQL tous les jours.
+* Envoyer par courrier électronique un résumé de tous les tweet dans hello sur une certaine #sqlhelp la semaine dernière.
 
-Pour commencer à utiliser le déclencheur de périodicité dans une application logique, consultez [Créer une application logique](../logic-apps/logic-apps-create-a-logic-app.md).
+tooget démarré à l’aide de déclencheur de périodicité hello dans une application logique, consultez [créer une application logique](../logic-apps/logic-apps-create-a-logic-app.md).
 
 ## <a name="use-a-recurrence-trigger"></a>Utilisation d’un déclencheur de périodicité
-Un déclencheur est un événement qui peut être utilisé pour lancer le flux de travail défini dans une application logique. [En savoir plus sur les déclencheurs](connectors-overview.md).
+Un déclencheur est un événement qui peut être utilisé toostart hello flux de travail qui est défini dans une application logique. [En savoir plus sur les déclencheurs](connectors-overview.md).
 
-Voici un exemple de séquence de configuration d’un déclencheur de périodicité dans une application logique :
+Voici un exemple de séquence de comment déclencher des tooset d’une périodicité dans une application de logique :
 
-1. Ajoutez le déclencheur **Périodicité** en tant que première étape dans une application logique.
-2. Renseignez les paramètres pour l’intervalle de périodicité.
+1. Ajouter hello **périodicité** déclencheur en tant que première étape de hello dans une application logique.
+2. Renseignez les paramètres hello hello intervalle de périodicité.
 
-L’application logique est exécutée après l’écoulement de chaque intervalle de temps.
+application de la logique de Hello commence désormais une exécution après chaque intervalle de temps.
 
 ![Déclencheur HTTP](./media/connectors-native-recurrence/using-trigger.png)
 
 ## <a name="trigger-details"></a>Détails du déclencheur
-Le déclencheur de périodicité a les propriétés suivantes qui peuvent être configurées.
+déclencheur de périodicité Hello a hello propriétés que vous pouvez configurer suivantes.
 
 Il déclenche une application logique après un intervalle de temps spécifié.
 A * désigne est un champ obligatoire.
 
 | Nom complet | Nom de la propriété | Description |
 | --- | --- | --- |
-| Frequency (Fréquence)* |frequency |L’unité de temps : `Second`, `Minute`, `Hour`, `Day` ou `Year`. |
-| Interval (Intervalle)* |interval |L'intervalle de la fréquence donnée pour la récurrence. |
+| Frequency (Fréquence)* |frequency |unité de Hello de temps : `Second`, `Minute`, `Hour`, `Day`, ou `Year`. |
+| Interval (Intervalle)* |interval |intervalle de salutation Hello attribué à la fréquence de récurrence de hello. |
 | Time Zone (Fuseau horaire) |timeZone |Si une heure de début (startTime) est spécifiée sans décalage UTC, ce fuseau horaire est utilisé. |
-| Heure de début |startTime |L'heure de début au [format ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations). |
+| Heure de début |startTime |heure de début Hello [format ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Combined_date_and_time_representations). |
 
 <br>
 
 ## <a name="next-steps"></a>Étapes suivantes
-Essayez maintenant la plateforme et [créez une application logique](../logic-apps/logic-apps-create-a-logic-app.md). Vous pouvez explorer les autres connecteurs disponibles dans les applications logiques en examinant notre [liste d’API](apis-list.md).
+Maintenant, essayez de plate-forme de hello et [créer une application logique](../logic-apps/logic-apps-create-a-logic-app.md). Vous pouvez Explorer hello tous les autres connecteurs disponibles dans les applications de la logique en consultant notre [liste des API](apis-list.md).
 

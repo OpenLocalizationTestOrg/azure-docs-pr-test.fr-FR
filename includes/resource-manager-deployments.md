@@ -1,14 +1,14 @@
 ## <a name="incremental-and-complete-deployments"></a>Déploiements incrémentiels et complets
-Lorsque vous déployez vos ressources, vous spécifiez que le déploiement est soit une mise à jour incrémentielle, soit une mise à jour complète. La principale différence entre ces deux modes réside dans la manière dont Resource Manager gère les ressources existantes dans le groupe de ressources qui ne se trouvent pas dans le modèle :
+Lors du déploiement de vos ressources, vous spécifiez que le déploiement de hello est une mise à jour incrémentielle ou une mise à jour terminée. Hello principale différence entre ces deux modes est comment le Gestionnaire de ressources gère les ressources existantes dans le groupe de ressources hello qui ne sont pas dans le modèle de hello :
 
-* En mode complet, Resource Manager **supprime** les ressources qui existent dans le groupe de ressources, mais qui ne sont pas spécifiées dans le modèle. 
-* En mode incrémentiel, Resource Manager **conserve telles quelles** les ressources qui existent dans le groupe de ressources, mais qui ne sont pas spécifiées dans le modèle.
+* En mode complet, le Gestionnaire de ressources **supprime** ressources qui existent dans le groupe de ressources hello mais qui ne sont pas spécifiés dans le modèle de hello. 
+* En mode incrémentiel, le Gestionnaire de ressources **laisse inchangée** ressources qui existent dans le groupe de ressources hello mais qui ne sont pas spécifiés dans le modèle de hello.
 
-Pour les deux modes, Resource Manager tente de configurer toutes les ressources spécifiées dans le modèle. Si la ressource existe déjà dans le groupe de ressources et si ses paramètres sont conservés, l’opération n’entraîne aucune modification. Si vous modifiez les paramètres d’une ressource, la ressource est configurée avec ces nouveaux paramètres. Si vous tentez de mettre à jour l’emplacement ou le type d’une ressource existante, le déploiement échoue avec une erreur. Vous devez dans ce cas déployer une nouvelle ressource avec l’emplacement ou le type dont vous avez besoin.
+Pour les deux modes, le Gestionnaire de ressources tente tooprovision toutes les ressources spécifiées dans le modèle de hello. Si les ressources hello existant déjà dans le groupe de ressources hello et ses paramètres sont identiques, hello opération entraîne aucune modification. Si vous modifiez les paramètres de hello pour une ressource, les ressources hello sont configuré avec ces nouveaux paramètres. Si vous essayez d’emplacement de hello tooupdate ou le type d’une ressource existante, le déploiement de hello échoue avec une erreur. Au lieu de cela, déployer une nouvelle ressource avec l’emplacement de hello ou type que vous avez besoin.
 
-Par défaut, Resource Manager utilise le mode incrémentiel.
+Par défaut, le Gestionnaire de ressources utilise le mode incrémentiel de hello.
 
-Pour illustrer la différence entre les modes incrémentiel et complet, examinez le scénario suivant.
+différence de hello tooillustrate entre les modes incrémentielles et complètes, envisagez de hello scénario.
 
 Un **groupe de ressources existant** contient :
 
@@ -22,14 +22,14 @@ Un **modèle** définit :
 * Ressource B
 * Ressource D
 
-Lors du déploiement en mode **incrémentiel**, le groupe de ressources contient :
+Lors du déploiement dans **incrémentielle** mode, le groupe de ressources hello contient :
 
 * Ressource A
 * Ressource B
 * Ressource C
 * Ressource D
 
-Lors du déploiement en mode **complet**, la ressource C est supprimée. Le groupe de ressources contient :
+Lors du déploiement en mode **complet**, la ressource C est supprimée. groupe de ressources Hello contient :
 
 * Ressource A
 * Ressource B

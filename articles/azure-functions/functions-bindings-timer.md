@@ -1,6 +1,6 @@
 ---
-title: "Déclencheur de minuteur Azure Functions| Microsoft Docs"
-description: "Découvrez comment utiliser des déclencheurs de minuteur dans Azure Functions."
+title: "déclencheur de minuteur fonctions aaaAzure | Documents Microsoft"
+description: "Comprendre comment toouse minuteur déclenche dans les fonctions d’Azure."
 services: functions
 documentationcenter: na
 author: christopheranderson
@@ -17,26 +17,26 @@ ms.workload: na
 ms.date: 02/27/2017
 ms.author: glenga
 ms.custom: 
-ms.openlocfilehash: 6a97ab8508f889b77d064a5da70e3c726d62900c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 17fca22372dbc55d4684c8c099cc97923a7d3cf3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-functions-timer-trigger"></a>Déclencheur de minuteur Azure Functions
 
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-Cet article explique comment configurer et coder des déclencheurs de minuteur dans Azure Functions. Azure Functions offre une liaison de déclencheur de minuteur qui vous permet d’exécuter votre code de fonction selon une planification définie. 
+Cet article explique comment tooconfigure et le code de minuteur déclenche dans les fonctions d’Azure. Azure Functions offre une liaison de déclencheur de minuteur qui vous permet d’exécuter votre code de fonction selon une planification définie. 
 
-Le déclencheur du minuteur prend en charge la montée en charge multi-instance. Une instance unique d’une fonction de minuteur spécifique est exécutée sur toutes les instances.
+déclencheur de minuteur Hello prend en charge plusieurs instances montée en puissance parallèle. Une instance unique d’une fonction de minuteur spécifique est exécutée sur toutes les instances.
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
 <a id="trigger"></a>
 
 ## <a name="timer-trigger"></a>Déclencheur de minuteur
-Le déclencheur de minuteur d’une fonction utilise l’objet JSON suivant dans le tableau `bindings` de function.json :
+Hello du minuteur déclencheur tooa (fonction) utilise hello objet JSON Bonjour `bindings` tableau de function.json :
 
 ```json
 {
@@ -47,22 +47,22 @@ Le déclencheur de minuteur d’une fonction utilise l’objet JSON suivant dans
 }
 ```
 
-La valeur de `schedule` est une [expression CRON](http://en.wikipedia.org/wiki/Cron#CRON_expression) qui contient les six champs suivants : 
+Hello valeur `schedule` est un [expression CRON](http://en.wikipedia.org/wiki/Cron#CRON_expression) qui inclut ces six champs : 
 
     {second} {minute} {hour} {day} {month} {day-of-week}
 &nbsp;
 >[!NOTE]   
->De nombreuses expressions CRON disponibles en ligne omettent le champ `{second}`. Si vous effectuez une copie à partir de l’une d’entre elles, vous devez l’adapter de façon à prendre en compte le champ `{second}` supplémentaire. Pour obtenir des exemples spécifiques, consultez la section [Exemples de planification](#examples) plus bas.
+>La plupart des expressions de cron hello vous trouvez omettre hello `{second}` champ. Si vous copiez à partir d’un d’eux, vous devez tooadjust pour hello supplémentaire `{second}` champ. Pour obtenir des exemples spécifiques, consultez la section [Exemples de planification](#examples) plus bas.
 
-Le fuseau horaire par défaut utilisé avec les expressions CRON est le Temps universel coordonné (UTC). Pour baser votre expression CRON sur un autre fuseau horaire, créez un nouveau paramètre d’application nommé `WEBSITE_TIME_ZONE` pour votre application de fonction. Définissez la valeur sur le nom du fuseau horaire souhaité comme indiqué dans l’[index des fuseaux horaires de Microsoft](https://msdn.microsoft.com/library/ms912391.aspx). 
+fuseau horaire de Hello par défaut utilisé avec des expressions CRON hello est le temps universel coordonné (UTC). toohave votre expression CRON basée sur un autre fuseau horaire, créer un nouveau paramètre d’application pour votre application de la fonction nommée `WEBSITE_TIME_ZONE`. Hello valeur toohello le nom du hello souhaité fuseau horaire, comme indiqué dans hello [Index de fuseau horaire Microsoft](https://msdn.microsoft.com/library/ms912391.aspx). 
 
-Par exemple, *l’heure de l’Est* correspond à UTC-05:00. Pour que votre déclencheur de minuteur se déclenche chaque jour à 10 h 00 (heure de l’Est), vous pouvez utiliser l’expression CRON suivante, qui tient compte du fuseau horaire UTC :
+Par exemple, *l’heure de l’Est* correspond à UTC-05:00. toohave votre minuterie déclencher incendie à 10:00 AM EST chaque jour, hello Utilisez expression CRON qui tient compte de fuseau horaire UTC suivante :
 
 ```json
 "schedule": "0 0 15 * * *",
 ``` 
 
-Sinon, vous pouvez ajouter un nouveau paramètre d’application pour votre application de fonction nommé `WEBSITE_TIME_ZONE` et définir la valeur sur **Est**.  L’expression CRON suivante peut alors être utilisée pour 10h00 EST : 
+Ou bien, vous pouvez ajouter un nouveau paramètre d’application pour votre application de la fonction nommée `WEBSITE_TIME_ZONE` et la valeur hello trop**l’heure**.  Ensuite, hello suivant expression CRON peut être utilisée pour 10:00 AM EST : 
 
 ```json
 "schedule": "0 0 10 * * *",
@@ -72,39 +72,39 @@ Sinon, vous pouvez ajouter un nouveau paramètre d’application pour votre appl
 <a name="examples"></a>
 
 ## <a name="schedule-examples"></a>Exemples de planification :
-Voici quelques exemples d’expressions CRON que vous pouvez utiliser pour la propriété `schedule`. 
+Voici quelques exemples d’expressions CRON que vous pouvez utiliser pour hello `schedule` propriété. 
 
-Pour déclencher la fonction toutes les cinq minutes :
+tootrigger toutes les cinq minutes :
 
 ```json
 "schedule": "0 */5 * * * *"
 ```
 
-Pour déclencher la fonction toutes les heures :
+tootrigger qu’une seule fois haut hello de toutes les heures :
 
 ```json
 "schedule": "0 0 * * * *",
 ```
 
-Pour déclencher la fonction toutes les deux heures:
+tootrigger toutes les deux heures :
 
 ```json
 "schedule": "0 0 */2 * * *",
 ```
 
-Pour déclencher la fonction toutes les heures entre 9h et 17h :
+tootrigger toutes les heures de too5 de 9 : 00 PM :
 
 ```json
 "schedule": "0 0 9-17 * * *",
 ```
 
-Pour déclencher la fonction à 9h30 tous les jours :
+tootrigger à 9 h 30 tous les jours :
 
 ```json
 "schedule": "0 30 9 * * *",
 ```
 
-Pour déclencher la fonction à 9h30 tous les jours de la semaine :
+tootrigger à 9 h 30 tous les jours ouvrables :
 
 ```json
 "schedule": "0 30 9 * * 1-5",
@@ -113,7 +113,7 @@ Pour déclencher la fonction à 9h30 tous les jours de la semaine :
 <a name="usage"></a>
 
 ## <a name="trigger-usage"></a>Utilisation du déclencheur
-Lorsqu’une fonction de déclenchement du minuteur est appelée, [l’objet minuteur](https://github.com/Azure/azure-webjobs-sdk-extensions/blob/master/src/WebJobs.Extensions/Extensions/Timers/TimerInfo.cs) est transmis à la fonction. Le code JSON suivant est un exemple de représentation de l’objet minuteur. 
+Lorsqu’une fonction de déclenchement du minuteur est appelée, hello [objet timer](https://github.com/Azure/azure-webjobs-sdk-extensions/blob/master/src/WebJobs.Extensions/Extensions/Timers/TimerInfo.cs) a été passée dans la fonction hello. Bonjour JSON suivant est un exemple de représentation d’objet de minuterie hello. 
 
 ```json
 {
@@ -130,7 +130,7 @@ Lorsqu’une fonction de déclenchement du minuteur est appelée, [l’objet min
 <a name="sample"></a>
 
 ## <a name="trigger-sample"></a>Exemple de déclencheur
-Supposez que le tableau `bindings` de function.json contient le déclencheur de minuteur suivant :
+Supposez que vous avez hello suivant déclencheur du minuteur Bonjour `bindings` tableau de function.json :
 
 ```json
 {
@@ -141,7 +141,7 @@ Supposez que le tableau `bindings` de function.json contient le déclencheur de 
 }
 ```
 
-Consultez l’exemple, dans le langage de votre choix, où l’objet minuteur est lu pour déterminer s’il s’exécute avec du retard.
+Voir exemple hello spécifiques au langage qui lit le minuteur de hello toosee de l’objet si elle s’exécute plus tard.
 
 * [C#](#triggercsharp)
 * [F#](#triggerfsharp)

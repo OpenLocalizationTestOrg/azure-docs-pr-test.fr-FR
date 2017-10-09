@@ -1,10 +1,10 @@
-Vous pouvez vous connecter à une machine virtuelle déployée sur votre réseau virtuel en créant une connexion Bureau à distance à votre machine virtuelle. La meilleure méthode pour vérifier initialement que vous pouvez vous connecter à votre machine virtuelle consiste à vous connecter à l’aide de son adresse IP privée, plutôt qu’avec le nom d’ordinateur. Vous testez ainsi si vous pouvez vous connecter, que la résolution de nom soit configurée correctement ou non.
+Vous pouvez vous connecter tooa machine virtuelle qui est déployé tooyour réseau virtuel en créant une machine virtuelle de tooyour connexion Bureau à distance. Hello meilleure manière tooinitially vérifier que vous pouvez vous connecter à tooyour machine virtuelle est tooconnect par à l’aide de son IP privé d’adresses, au lieu du nom de l’ordinateur. De cette façon, vous testez toosee si vous pouvez vous connecter, pas si la résolution de noms est configurée correctement.
 
-1. Recherchez l’adresse IP privée. L’adresse IP privée d’une machine virtuelle peut être trouvée en étudiant les propriétés de la machine virtuelle dans le portail Azure ou à l’aide de PowerShell.
+1. Recherchez l’adresse IP privée de hello. Vous trouverez les adresse IP privée hello d’une machine virtuelle soit propriétés hello pour hello VM Bonjour portail Azure, ou à l’aide de PowerShell.
 
-  - Portail Azure : recherchez votre machine virtuelle dans le portail Azure. Affichez les propriétés de la machine virtuelle. L’adresse IP privée est répertoriée.
+  - Portail Azure - recherchez votre machine virtuelle Bonjour portail Azure. Afficher les propriétés de hello de hello machine virtuelle. adresse IP privée de Hello est répertorié.
 
-  - PowerShell : utilisez l’exemple pour afficher la liste des machines virtuelles et adresses IP privées de vos groupes de ressources. Vous n’avez pas besoin de modifier cet exemple pour pouvoir l’utiliser.
+  - PowerShell - utilisation hello exemple tooview une liste des ordinateurs virtuels et des adresses IP privées à partir de vos groupes de ressources. Vous n’avez pas besoin toomodify cet exemple avant de l’utiliser.
 
     ```powershell
     $VMs = Get-AzureRmVM
@@ -19,17 +19,17 @@ Vous pouvez vous connecter à une machine virtuelle déployée sur votre réseau
     }
     ```
 
-2. Vérifiez que vous êtes connecté à votre réseau virtuel à l’aide de la connexion VPN point à site.
-3. Ouvrez une **connexion Bureau à distance** en saisissant « RDP » ou « Connexion Bureau à distance » dans la zone de recherche de la barre des tâches, puis sélectionnez la connexion Bureau à distance. Vous pouvez également ouvrir une connexion Bureau à distance à l’aide de la commande « mstsc » dans PowerShell. 
-4. Dans Connexion Bureau à distance, entrez l’adresse IP privée de la machine virtuelle. Vous pouvez cliquer sur « Afficher les Options » pour définir des paramètres supplémentaires, puis connectez-vous.
+2. Vérifiez que vous êtes connecté tooyour virtuel à l’aide de hello Point-to-Site VPN connexion.
+3. Ouvrez **connexion Bureau à distance** en tapant « RDP » ou « Connexion Bureau à distance » dans la zone de recherche de hello sur la barre des tâches hello, puis sélectionnez Connexion Bureau à distance. Vous pouvez également ouvrir la connexion Bureau à distance à l’aide de la commande « mstsc » hello dans PowerShell. 
+4. Connexion Bureau à distance, entrez les adresse IP privée hello Hello machine virtuelle. Vous pouvez cliquez sur « Afficher les Options » tooadjust les paramètres supplémentaires, puis vous connecter.
 
-### <a name="to-troubleshoot-an-rdp-connection-to-a-vm"></a>Pour résoudre une connexion RDP à une machine virtuelle
+### <a name="tootroubleshoot-an-rdp-connection-tooa-vm"></a>tootroubleshoot un tooa de connexion RDP machine virtuelle
 
-Si vous rencontrez des problèmes de connexion à une machine virtuelle sur votre connexion VPN, vérifiez les points suivants :
+Si vous rencontrez des problèmes de connexion d’ordinateur virtuel de tooa sur votre connexion VPN, vérifiez suivantes de hello :
 
 - Vérifiez que votre connexion VPN aboutit.
-- Vérifiez que vous vous connectez à l’adresse IP privée de la machine virtuelle.
-- Utilisez « ipconfig » pour vérifier l’adresse IPv4 attribuée à l’adaptateur Ethernet sur l’ordinateur à partir duquel vous vous connectez. Si l’adresse IP est comprise dans la plage d’adresses du réseau virtuel auquel vous vous connectez, ou dans la plage d’adresses de votre VPNClientAddressPool, cette situation est désignée sous le terme d’espaces d’adressage qui se chevauchent. Lorsque vos espaces d’adressage se chevauchent de cette façon, le trafic réseau n’atteint pas Azure et reste sur le réseau local.
-- Si vous pouvez vous connecter à la machine virtuelle à l’aide de l’adresse IP privée, mais pas à l’aide du nom d’ordinateur, vérifiez que vous avez correctement configuré DNS. Pour plus d’informations sur le fonctionnement de la résolution de noms pour les machines virtuelles, consultez [Résolution de noms pour les machines virtuelles](../articles/virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md).
-- Vérifiez que le package de configuration du client VPN a été généré après que les adresses IP du serveur DNS ont été spécifiées pour le réseau virtuel. Si vous avez mis à jour les adresses IP du serveur DNS, générez et installez un package de configuration du client VPN.
-- Pour plus d’informations sur les connexions RDP, consultez [Résoudre des problèmes de connexion Bureau à distance à une machine virtuelle](../articles/virtual-machines/windows/troubleshoot-rdp-connection.md).
+- Vérifiez que vous vous connectez toohello une adresse IP privée pour hello machine virtuelle.
+- Utilisez « ipconfig » toocheck hello adresse IPv4 attribuée la carte Ethernet toohello ordinateur hello à partir de laquelle vous vous connectez. Adresse IP de hello est dans la plage d’adresses hello Hello réseau virtuel que vous vous connectez à ou au sein de la plage d’adresses hello de votre VPNClientAddressPool, il s’agit tooas auxquels un espace d’adressage qui se chevauchent. Lorsque votre espace d’adressage chevauche de cette façon, Azure n’atteint pas le trafic réseau de hello, il reste sur le réseau local de hello.
+- Si vous pouvez vous connecter toohello machine virtuelle à l’aide d’IP privé de hello adresse, mais ne Hello pas de nom de l’ordinateur, vérifiez que vous avez correctement configuré DNS. Pour plus d’informations sur le fonctionnement de la résolution de noms pour les machines virtuelles, consultez [Résolution de noms pour les machines virtuelles](../articles/virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md).
+- Vérifiez que ce package de configuration de client VPN hello a été généré une fois que les adresses IP de serveur DNS hello ont été spécifiées pour hello réseau virtuel. Si vous mises à jour des adresses IP de serveur DNS hello, générer et installer un nouveau package de configuration de client VPN.
+- Pour plus d’informations sur les connexions RDP, consultez [tooa de connexions de résoudre les problèmes de bureau à distance VM](../articles/virtual-machines/windows/troubleshoot-rdp-connection.md).

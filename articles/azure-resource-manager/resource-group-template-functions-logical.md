@@ -1,6 +1,6 @@
 ---
-title: "Fonctions de modèle Azure Resource Manager - logiques | Documents Microsoft"
-description: "Décrit les fonctions à utiliser dans un modèle Azure Resource Manager pour déterminer les valeurs logiques."
+title: "aaaAzure Gestionnaire de ressources fonctions de modèle - logiques | Documents Microsoft"
+description: "Décrit toouse de fonctions hello dans un gestionnaire de ressources Azure modèle toodetermine les valeurs logiques."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/01/2017
 ms.author: tomfitz
-ms.openlocfilehash: 313601ad99cdc12c4b50f5469959d37a9fa70d35
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: aec6341fbde00b4eba3b4539ff9a9aec774333fd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="logical-functions-for-azure-resource-manager-templates"></a>Fonctions logiques pour les modèles Azure Resource Manager
 
@@ -39,8 +39,8 @@ Vérifie si les deux valeurs de paramètres sont true.
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| arg1 |Oui |booléenne |La première valeur pour vérifier si c’est true. |
-| arg2 |Oui |booléenne |La deuxième valeur pour vérifier si c’est true. |
+| arg1 |Oui |booléenne |Hello première valeur toocheck si a la valeur true. |
+| arg2 |Oui |booléenne |Hello deuxième valeur toocheck si a la valeur true. |
 
 ### <a name="return-value"></a>Valeur de retour
 
@@ -48,7 +48,7 @@ Retourne **True** si les valeurs sont true ; sinon, renvoie **False**.
 
 ### <a name="examples"></a>Exemples
 
-L’exemple suivant montre comment utiliser des fonctions logiques.
+Hello suivant montre l’exemple de comment toouse les fonctions logiques.
 
 ```json
 {
@@ -72,7 +72,7 @@ L’exemple suivant montre comment utiliser des fonctions logiques.
 }
 ```
 
-La sortie de l’exemple précédent est :
+est résultat Hello hello précédant l’exemple suivant :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -84,20 +84,20 @@ La sortie de l’exemple précédent est :
 ## <a name="bool"></a>bool
 `bool(arg1)`
 
-Convertit le paramètre en valeur booléenne.
+Convertit hello tooa de paramètre boolean.
 
 ### <a name="parameters"></a>Paramètres
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| arg1 |Oui |chaîne ou entier |La valeur à convertir en booléen. |
+| arg1 |Oui |chaîne ou entier |Hello tooa tooconvert de valeur booléenne. |
 
 ### <a name="return-value"></a>Valeur de retour
-Valeur booléenne de la valeur convertie.
+Une valeur booléenne de hello de valeur convertie.
 
 ### <a name="examples"></a>Exemples
 
-L’exemple suivant montre comment utiliser le booléen avec une chaîne ou un entier.
+Hello suivant montre l’exemple de comment bool toouse par une chaîne ou un entier.
 
 ```json
 {
@@ -125,7 +125,7 @@ L’exemple suivant montre comment utiliser le booléen avec une chaîne ou un e
 }
 ```
 
-La sortie de l’exemple précédent avec les valeurs par défaut se présente comme suit :
+Hello de sortie à partir de hello précédent exemple hello valeurs par défaut est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -143,9 +143,9 @@ Retourne une valeur indiquant si une condition est true ou false.
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| condition |Oui |booléenne |La valeur pour vérifier si c’est true. |
-| trueValue |Oui | chaîne, int, objet ou tableau |La valeur à retourner lorsque la condition est true. |
-| falseValue |Oui | chaîne, int, objet ou tableau |La valeur à retourner lorsque la condition est false. |
+| condition |Oui |booléenne |Bonjour valeur toocheck si elle a la valeur true. |
+| trueValue |Oui | chaîne, int, objet ou tableau |valeur de Hello tooreturn quand hello condition est vraie. |
+| falseValue |Oui | chaîne, int, objet ou tableau |valeur de Hello tooreturn lorsque hello condition est false. |
 
 ### <a name="return-value"></a>Valeur de retour
 
@@ -153,7 +153,7 @@ Retourne le deuxième paramètre lorsque le premier paramètre est **True** ; s
 
 ### <a name="remarks"></a>Remarques
 
-Vous pouvez utiliser cette fonction pour définir de manière conditionnelle une propriété de ressource. L’exemple suivant n’est pas un modèle complet, mais il affiche les parties pertinentes pour la définition de manière conditionnelle du groupe à haute disponibilité.
+Vous pouvez utiliser cet ensemble de tooconditionally de fonction à une propriété de ressource. Hello suivant n’est pas un modèle complet, mais il montre les parties pertinentes d’hello pour la définition de manière conditionnelle hello à haute disponibilité.
 
 ```json
 {
@@ -199,7 +199,7 @@ Vous pouvez utiliser cette fonction pour définir de manière conditionnelle une
 
 ### <a name="examples"></a>Exemples
 
-L’exemple suivant explique comment utiliser la fonction `if`.
+Hello suivant montre l’exemple de comment toouse hello `if` (fonction).
 
 ```json
 {
@@ -220,7 +220,7 @@ L’exemple suivant explique comment utiliser la fonction `if`.
 }
 ```
 
-La sortie de l’exemple précédent est :
+est résultat Hello hello précédant l’exemple suivant :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -231,13 +231,13 @@ La sortie de l’exemple précédent est :
 ## <a name="not"></a>not
 `not(arg1)`
 
-Convertit la valeur booléenne à sa valeur opposée.
+Convertit la valeur booléenne tooits inverse la valeur.
 
-### <a name="parameters"></a>parameters
+### <a name="parameters"></a>Paramètres
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| arg1 |Oui |booléenne |La valeur à convertir. |
+| arg1 |Oui |booléenne |Hello tooconvert de valeur. |
 
 
 ### <a name="return-value"></a>Valeur de retour
@@ -246,7 +246,7 @@ Retourne **True** lorsque le paramètre est **False**. Retourne **False** lorsqu
 
 ### <a name="examples"></a>Exemples
 
-L’exemple suivant montre comment utiliser des fonctions logiques.
+Hello suivant montre l’exemple de comment toouse les fonctions logiques.
 
 ```json
 {
@@ -270,7 +270,7 @@ L’exemple suivant montre comment utiliser des fonctions logiques.
 }
 ```
 
-La sortie de l’exemple précédent est :
+est résultat Hello hello précédant l’exemple suivant :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -278,7 +278,7 @@ La sortie de l’exemple précédent est :
 | orExampleOutput | Bool | true |
 | notExampleOutput | Bool | False |
 
-L’exemple suivant utilise **non** avec[égal à](resource-group-template-functions-comparison.md#equals).
+Hello exemple suivant utilise **pas** avec [est égal à](resource-group-template-functions-comparison.md#equals).
 
 ```json
 {
@@ -294,7 +294,7 @@ L’exemple suivant utilise **non** avec[égal à](resource-group-template-funct
     }
 ```
 
-La sortie de l’exemple précédent est :
+est résultat Hello hello précédant l’exemple suivant :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -310,8 +310,8 @@ Vérifie si l’une des valeurs du paramètre est true.
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| arg1 |Oui |booléenne |La première valeur pour vérifier si c’est true. |
-| arg2 |Oui |booléenne |La deuxième valeur pour vérifier si c’est true. |
+| arg1 |Oui |booléenne |Hello première valeur toocheck si a la valeur true. |
+| arg2 |Oui |booléenne |Hello deuxième valeur toocheck si a la valeur true. |
 
 ### <a name="return-value"></a>Valeur de retour
 
@@ -319,7 +319,7 @@ Retourne **True** si la valeur est true ; sinon, **False**.
 
 ### <a name="examples"></a>Exemples
 
-L’exemple suivant montre comment utiliser des fonctions logiques.
+Hello suivant montre l’exemple de comment toouse les fonctions logiques.
 
 ```json
 {
@@ -343,7 +343,7 @@ L’exemple suivant montre comment utiliser des fonctions logiques.
 }
 ```
 
-La sortie de l’exemple précédent est :
+est résultat Hello hello précédant l’exemple suivant :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -353,8 +353,8 @@ La sortie de l’exemple précédent est :
 
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Pour obtenir une description des sections d’un modèle Azure Resource Manager, consultez [Création de modèles Azure Resource Manager](resource-group-authoring-templates.md).
-* Pour fusionner plusieurs modèles, consultez [Utilisation de modèles liés avec Azure Resource Manager](resource-group-linked-templates.md).
-* Pour itérer un nombre de fois spécifié lors de la création d'un type de ressource, consultez [Création de plusieurs instances de ressources dans Azure Resource Manager](resource-group-create-multiple.md).
-* Pour savoir comment déployer le modèle que vous avez créé, consultez [Déploiement d’une application avec un modèle Azure Resource Manager](resource-group-template-deploy.md).
+* Pour obtenir une description des sections de hello dans un modèle Azure Resource Manager, consultez [les modèles de programmation Azure Resource Manager](resource-group-authoring-templates.md).
+* consultez de plusieurs modèles toomerge [à l’aide de modèles liés avec Azure Resource Manager](resource-group-linked-templates.md).
+* tooiterate un nombre spécifié de fois lors de la création d’un type de ressource, consultez [créer plusieurs instances de ressources dans Azure Resource Manager](resource-group-create-multiple.md).
+* toosee modèle de hello toodeploy que vous avez créé, voir [déployer une application avec le modèle Azure Resource Manager](resource-group-template-deploy.md).
 

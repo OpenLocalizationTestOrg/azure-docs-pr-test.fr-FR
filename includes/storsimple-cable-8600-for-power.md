@@ -1,25 +1,25 @@
 <!--author=alkohli last changed: 9/16/15-->
 
 
-#### <a name="to-cable-your-device-for-power"></a>Raccorder votre appareil à l'alimentation électrique
+#### <a name="toocable-your-device-for-power"></a>toocable votre appareil pour l’alimentation
 > [!NOTE]
-> Les deux boîtiers sur votre appareil StorSimple incluent des PCM redondants. Pour chaque boîtier, les PCM doivent être installés et connectés à des sources d'alimentation différentes pour garantir une haute disponibilité.
+> Les deux boîtiers sur votre appareil StorSimple incluent des PCM redondants. Pour chaque boîtier, hello PCM doit être installé et connecté toodifferent power sources tooensure haut niveau de disponibilité.
 > 
 > 
 
-1. Assurez-vous que les commutateurs d’alimentation sont en position d’arrêt sur tous les PCM.
-2. Dans le boîtier principal, branchez les câbles d'alimentation aux deux PCM. Les câbles d'alimentation sont représentés en rouge dans le schéma de branchement des câbles d'alimentation suivant.
-3. Vérifiez que les deux PCM du boîtier principal utilisent des sources d'alimentation distinctes.
-4. Fixez les câbles d'alimentation aux unités de distribution de l'alimentation du rack, comme illustré sur le schéma de branchement des câbles d'alimentation suivant.
-5. Répétez les étapes 2 à 4 pour le boîtier EBOD.
-6. Activez le boîtier EBOD en positionnant les commutateurs d'alimentation de chaque PCM sur ON.
-7. Assurez-vous que le boîtier EBOD est activé en vérifiant que les LED vertes à l'arrière du contrôleur EBOD sont allumées.
-8. Activez le boîtier principal en positionnant chaque commutateur d'alimentation de PCM sur ON.
-9. Assurez-vous que le système fonctionne en vérifiant que les LED du contrôleur sont allumés.
-10. Assurez-vous que la connexion entre le contrôleur EBOD et le contrôleur de l'appareil est active en vérifiant que les quatre LED à côté du port SAS sur le contrôleur du boîtier EBOD sont vertes.
+1. Vous assurer que les interrupteurs d’alimentation hello sur tous les hello PCM sont en position OFF de hello.
+2. Sur le boîtier principal de hello, se connecter tooboth de câbles d’alimentation hello PCM. cordons d’alimentation Hello sont indiqués en rouge dans hello câblage d’alimentation diagramme, ci-dessous.
+3. Vérifiez que hello deux PCM sources d’alimentation distinctes utilisez hello boîtier principal.
+4. Attachez hello power câbles toohello mise sous tension hello unités de distribution comme indiqué dans le diagramme de câblage de hello.
+5. Répétez les étapes 2 à 4 pour hello boîtiers.
+6. Activer les boîtiers hello en interrupteur hello sur chaque position de ON toohello PCM.
+7. Vérifiez que hello boîtiers est activé en vérifiant que hello arrière du contrôleur EBOD hello hello vert voyants sont allumés.
+8. Allumez le boîtier principal de hello en basculant chaque position de PCM commutateur toohello ON.
+9. Vérifiez que le système de hello est sur en veillant à ce contrôleur de l’appareil hello que DEL ont activé.
+10. Vérifiez que cette connexion hello entre le contrôleur EBOD hello et contrôleur de l’appareil hello est actif en vérifiant que hello quatre DEL suivant toohello port SAS du contrôleur EBOD hello sont verts.
     
     > [!IMPORTANT]
-    > Pour garantir une haute disponibilité de votre système, nous vous recommandons de vous conformer strictement au schéma de branchement des câbles d'alimentation illustré dans le diagramme suivant.
+    > tooensure haute disponibilité pour votre système, nous vous recommandons de respecter strictement toohello les schéma illustré hello suivant schéma de câblage.
     > 
     > 
     

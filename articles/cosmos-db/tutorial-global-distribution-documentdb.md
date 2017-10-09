@@ -1,6 +1,6 @@
 ---
-title: "Didacticiel de distribution mondiale d’Azure Cosmos DB pour l’API DocumentDB | Microsoft Docs"
-description: "Découvrez comment configurer la distribution mondiale d’Azure Cosmos DB à l’aide de l’API DocumentDB."
+title: "didacticiel de distribution globale aaaAzure Cosmos DB pour l’API DocumentDB | Documents Microsoft"
+description: "Découvrez comment à l’aide de distribution globale de base de données Azure Cosmos toosetup hello des API DocumentDB."
 services: cosmos-db
 keywords: distribution mondiale, documentdb
 documentationcenter: 
@@ -15,51 +15,51 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/10/2017
 ms.author: mimig
-ms.openlocfilehash: f4d8efe9814bd28bb902567a23b541bc9b5414a1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a1d5f01faa62407fbbc9c078ef4a9589a1a29219
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-setup-azure-cosmos-db-global-distribution-using-the-documentdb-api"></a>Configuration de la distribution mondiale d’Azure Cosmos DB à l’aide de l’API DocumentDB
+# <a name="how-toosetup-azure-cosmos-db-global-distribution-using-hello-documentdb-api"></a>À l’aide de distribution globale de base de données Azure Cosmos toosetup comment hello des API DocumentDB
 
-Dans cet article, nous expliquons comment utiliser le portail Azure pour configurer la distribution globale d’Azure Cosmos DB, puis établir une connexion à l’aide de l’API DocumentDB.
+Dans cet article, nous montrons comment toouse hello toosetup portail Azure distribution globale de base de données Azure Cosmos et connectez-vous à l’aide de hello API DocumentDB.
 
-Cet article décrit les tâches suivantes : 
+Cet article traite des hello tâches suivantes : 
 
 > [!div class="checklist"]
-> * Configurer la distribution mondiale à l’aide du portail Azure
-> * Configurer la distribution mondiale à l’aide de l’[API DocumentDB](documentdb-introduction.md)
+> * Configurer la distribution globale à l’aide de hello portail Azure
+> * Configurer la distribution globale à l’aide de hello [APIs DocumentDB](documentdb-introduction.md)
 
 <a id="portal"></a>
 [!INCLUDE [cosmos-db-tutorial-global-distribution-portal](../../includes/cosmos-db-tutorial-global-distribution-portal.md)]
 
 
-## <a name="connecting-to-a-preferred-region-using-the-documentdb-api"></a>Connexion à une région de prédilection avec l’API DocumentDB
+## <a name="connecting-tooa-preferred-region-using-hello-documentdb-api"></a>Connexion tooa la région préférée à l’aide de hello API DocumentDB
 
-Pour tirer parti de la [distribution mondiale](distribute-data-globally.md), les applications clientes peuvent spécifier la liste ordonnée de préférences de régions à utiliser pour effectuer des opérations sur les documents. Pour cela, vous devez configurer la stratégie de connexion. Selon la configuration du compte Azure Cosmos DB, la disponibilité régionale actuelle et la liste de préférences spécifiée, le Kit de développement logiciel (SDK) DocumentDB choisit le point de terminaison optimal pour les opérations de lecture et d’écriture.
+Dans l’avantage de tootake d’ordre de [distribution globale](distribute-data-globally.md), les applications clientes peuvent spécifier hello classés de liste de préférence des régions toobe utilisé tooperform les opérations de document. Pour ce faire, vous pouvez définir la stratégie de connexion hello. Selon la configuration du compte de base de données Azure Cosmos hello, disponibilité régionale en cours et la liste de préférence hello spécifié, hello la plupart des point de terminaison optimale est sélectionnée par hello DocumentDB SDK tooperform écrire et lire des opérations.
 
-Cette liste de préférences est spécifiée lors de l’initialisation d’une connexion à l’aide des SDK DocumentDB. Les SDK acceptent un paramètre facultatif « PreferredLocations » qui est une liste ordonnée des régions Azure.
+Cette liste de préférence est spécifiée lors de l’initialisation d’une connexion à l’aide de kits de développement logiciel hello DocumentDB. Hello kits de développement logiciel accepte un paramètre facultatif « PreferredLocations » qui est une liste ordonnée des régions Azure.
 
-Le SDK envoie automatiquement toutes les écritures vers la région d’écriture en cours.
+Hello Kit de développement logiciel enverra automatiquement région pour l’écriture de toutes les écritures toohello actuelle.
 
-Toutes les lectures sont envoyées vers la première région disponible dans la liste PreferredLocations. Si la demande échoue, le client passe à la région suivante dans la liste et ainsi de suite.
+Toutes les lectures seront envoyés toohello de première région disponibles dans la liste de PreferredLocations hello. En cas de demande de hello, client de hello échouer la région de hello liste toohello suivante et ainsi de suite.
 
-Les SDK tentent des opérations de lecture uniquement à partir des régions spécifiées dans PreferredLocations. Ainsi, par exemple, si le compte de base de données est disponible dans trois régions, mais que le client spécifie uniquement deux des régions sans écriture de PreferredLocations, aucune lecture n’est traitée hors de la région d’écriture, même en cas de basculement.
+Hello kits de développement logiciel tente uniquement tooread de régions hello spécifié dans PreferredLocations. Ainsi, par exemple, si hello compte de base de données est disponible dans trois régions, mais le client de hello spécifie uniquement deux des régions de non-écriture hello pour PreferredLocations, puis aucune lecture ne sera utilisée en dehors de la région d’écriture hello, même dans les cas de hello de basculement.
 
-L’application peut vérifier le point de terminaison d’écriture et le point de terminaison de lecture actuels choisis par le SDK en vérifiant deux propriétés, WriteEndpoint et ReadEndpoint, disponibles dans le SDK version 1.8 et ultérieure.
+application Hello peut vérifier le point de terminaison hello actuel écriture et lecture de point de terminaison choisi par hello SDK par la vérification deux propriétés, WriteEndpoint et ReadEndpoint, disponible dans la version du Kit de développement logiciel 1.8 et versions ultérieures.
 
-Si la propriété PreferredLocations n’est pas définie, toutes les demandes seront traitées par la zone d’écriture en cours.
+Si hello PreferredLocations propriété n’est pas définie, toutes les demandes seront pris en charge à partir de la zone d’écriture en cours hello.
 
 ## <a name="net-sdk"></a>Kit de développement logiciel (SDK) .NET
-Le SDK peut être utilisé sans aucune modification du code. Dans ce cas, le SDK dirige automatiquement les lectures et les écritures vers la région d’écriture en cours.
+Hello SDK peut servir sans aucune modification du code. Dans ce cas, hello SDK dirige les opérations de lecture automatiquement et écrit la zone d’écriture en cours toohello.
 
-Dans la version 1.8 et ultérieure du SDK .NET, le paramètre ConnectionPolicy du constructeur DocumentClient comporte une propriété appelée Microsoft.Azure.Documents.ConnectionPolicy.PreferredLocations. Cette propriété est de type Collection `<string>` et doit contenir une liste des noms de région. Les valeurs de chaîne sont mises en forme par la colonne Nom de la région, sur la page [Régions Azure][regions], sans espaces avant ou après le premier et le dernier caractère, respectivement.
+Dans la version 1.8 de hello .NET SDK, hello ConnectionPolicy paramètre de constructeur de DocumentClient hello est une propriété appelée Microsoft.Azure.Documents.ConnectionPolicy.PreferredLocations. Cette propriété est de type Collection `<string>` et doit contenir une liste des noms de région. les valeurs de chaîne Hello sont mis en forme par colonne de nom de la région de hello sur hello [régions Azure] [ regions] page, sans espaces avant ou après hello premier et dernier caractère respectivement.
 
-Les points de terminaison d’écriture et de lecture en cours sont disponibles dans DocumentClient.WriteEndpoint et DocumentClient.ReadEndpoint, respectivement.
+écriture en cours de Hello et lecture des points de terminaison sont disponibles dans DocumentClient.WriteEndpoint et DocumentClient.ReadEndpoint respectivement.
 
 > [!NOTE]
-> Les URL des points de terminaison ne doivent pas être considérées comme des constantes à long terme. Le service peut les mettre à jour à tout moment. Le SDK gère ce changement automatiquement.
+> URL de Hello pour les points de terminaison hello ne doivent pas être considérés comme des constantes de longue durées. service de Hello peut mettre à jour à tout moment. Hello SDK gère cette modification automatiquement.
 >
 >
 
@@ -81,44 +81,44 @@ DocumentClient docClient = new DocumentClient(
     accountKey,
     connectionPolicy);
 
-// connect to DocDB
+// connect tooDocDB
 await docClient.OpenAsync().ConfigureAwait(false);
 ```
 
 ## <a name="nodejs-javascript-and-python-sdks"></a>SDK Node.js, JavaScript et Python
-Le SDK peut être utilisé sans aucune modification du code. Dans ce cas, le SDK dirige automatiquement les lectures et les écritures vers la région d’écriture en cours.
+Hello SDK peut servir sans aucune modification du code. Dans ce cas, hello que SDK dirigera automatiquement à la fois lit et écrit la zone d’écriture en cours toohello.
 
-Dans la version 1.8 et ultérieure de chaque SDK, le paramètre ConnectionPolicy du constructeur DocumentClient comporte une nouvelle propriété appelée DocumentClient.ConnectionPolicy.PreferredLocations. Ce paramètre est un tableau de chaînes qui prend une liste de noms de régions. Les noms sont mis en forme en fonction de la colonne Nom de la région, sur la page [Régions Azure][regions]. Vous pouvez également utiliser des constantes prédéfinies dans l’objet de commodité AzureDocuments.Regions
+Dans la version 1.8 et version ultérieure de chaque SDK, hello ConnectionPolicy paramètre hello DocumentClient constructeur une nouvelle propriété nommée DocumentClient.ConnectionPolicy.PreferredLocations. Ce paramètre est un tableau de chaînes qui prend une liste de noms de régions. les noms de Hello sont mis en forme par colonne de nom de la région de hello Bonjour [régions Azure] [ regions] page. Vous pouvez également utiliser des constantes de hello prédéfini dans l’objet de commodité hello AzureDocuments.Regions
 
-Les points de terminaison d’écriture et de lecture en cours sont disponibles dans DocumentClient.getWriteEndpoint et DocumentClient.getReadEndpoint, respectivement.
+écriture en cours de Hello et lecture des points de terminaison sont disponibles dans DocumentClient.getWriteEndpoint et DocumentClient.getReadEndpoint respectivement.
 
 > [!NOTE]
-> Les URL des points de terminaison ne doivent pas être considérées comme des constantes à long terme. Le service peut les mettre à jour à tout moment. Le SDK gère ce changement automatiquement.
+> URL de Hello pour les points de terminaison hello ne doivent pas être considérés comme des constantes de longue durées. service de Hello peut mettre à jour à tout moment. Hello SDK gère automatiquement ce changement.
 >
 >
 
-Voici un exemple de code pour NodeJS/Javascript. Python et Java suivent le même modèle.
+Voici un exemple de code pour NodeJS/Javascript. Python et Java suivront hello même modèle.
 
 ```java
 // Creating a ConnectionPolicy object
 var connectionPolicy = new DocumentBase.ConnectionPolicy();
 
-// Setting read region selection preference, in the following order -
+// Setting read region selection preference, in hello following order -
 // 1 - West US
 // 2 - East US
 // 3 - North Europe
 connectionPolicy.PreferredLocations = ['West US', 'East US', 'North Europe'];
 
-// initialize the connection
+// initialize hello connection
 var client = new DocumentDBClient(host, { masterKey: masterKey }, connectionPolicy);
 ```
 
 ## <a name="rest"></a>REST
-Une fois qu’un compte de base de données est mis à disposition dans plusieurs régions, les clients peuvent interroger sa disponibilité en exécutant une requête GET sur l’URI suivant.
+Une fois qu’un compte de base de données a mis à disposition dans plusieurs régions, les clients peuvent interroger sa disponibilité en effectuant une requête GET sur hello suivant l’URI.
 
     https://{databaseaccount}.documents.azure.com/
 
-Le service renvoie une liste des régions et leurs URI de points de terminaison Azure Cosmos DB correspondants pour les réplicas. La région d’écriture en cours est indiquée dans la réponse. Le client peut ensuite sélectionner le point de terminaison approprié pour toutes les autres requêtes d’API REST, comme suit.
+service de Hello renvoie la liste des régions et de leur base de données Azure Cosmos point de terminaison correspondant URI pour les réplicas de hello. zone d’écriture en cours Hello est indiqué dans la réponse de hello. client de Hello peut ensuite sélectionner point de terminaison approprié hello pour toutes les autres demandes d’API REST comme suit.
 
 Exemple de réponse
 
@@ -153,27 +153,27 @@ Exemple de réponse
     }
 
 
-* Les requêtes PUT, POST et DELETE doivent accéder à l’URI d’écriture indiqué
-* Toutes les requêtes GET et autres demandes en lecture seule (par ex., Requêtes) peuvent accéder à n’importe quel point de terminaison choisi par le client
+* PUT, POST et DELETE de toutes les demandes doivent passer toohello indiqué écrire URI
+* Obtient tous les et les autres demandes en lecture seule (par exemple les requêtes) peuvent être tooany de point de terminaison de choix du client hello
 
-L’écriture de demandes dans les régions en lecture seule échoue avec le code d’erreur HTTP 403 (« Interdit »).
+Écriture des régions tooread uniquement les demandes échouent avec le code d’erreur HTTP 403 (« interdit »).
 
-Si la région d’écriture change après la phase de découverte initiale du client, les écritures suivantes dans la région d’écriture précédente échouent avec le code d’erreur HTTP 403 (« Interdit »). Le client doit alors exécuter à nouveau la requête GET sur la liste des régions pour obtenir la région d’écriture mise à jour.
+Si la zone d’écriture hello change après phase de la découverte initiale du client hello, ultérieur écrit toohello précédente région d’écriture échoue avec le code d’erreur HTTP 403 (« interdit »). client de Hello doit ensuite obtenir la liste des régions hello nouveau tooget hello écriture mis à jour la région.
 
-C’est ici que s’achève ce didacticiel. Découvrez comment gérer la cohérence de votre compte répliqué à l’échelle mondiale en lisant l’article [Niveaux de cohérence dans Azure Cosmos DB](consistency-levels.md). Pour plus d’informations sur le fonctionnement de la réplication de base de données à l’échelle mondiale dans Azure Cosmos DB, voir [Diffuser des données à l’échelle mondiale avec Azure Cosmos DB](distribute-data-globally.md).
+C’est ici que s’achève ce didacticiel. Vous pouvez apprendre comment toomanage hello la cohérence de votre compte de réplication globale en lisant [niveaux de cohérence dans la base de données Azure Cosmos](consistency-levels.md). Pour plus d’informations sur le fonctionnement de la réplication de base de données à l’échelle mondiale dans Azure Cosmos DB, voir [Diffuser des données à l’échelle mondiale avec Azure Cosmos DB](distribute-data-globally.md).
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Dans ce didacticiel, vous avez effectué les tâches suivantes :
+Dans ce didacticiel, vous avez effectué les éléments suivants de hello :
 
 > [!div class="checklist"]
-> * Configurer la distribution mondiale à l’aide du portail Azure
-> * Configurer la distribution mondiale à l’aide des API DocumentDB
+> * Configurer la distribution globale à l’aide de hello portail Azure
+> * Configurer la distribution globale à l’aide de hello APIs DocumentDB
 
-Vous pouvez maintenant passer au didacticiel suivant pour apprendre à développer en local à l’aide de l’émulateur local Azure Cosmos DB.
+Vous pouvez maintenant toolearn de didacticiel suivant toohello comment toodevelop localement à l’aide de hello émulateur local de base de données Azure Cosmos.
 
 > [!div class="nextstepaction"]
-> [Développer en local avec l’émulateur](local-emulator.md)
+> [Développer localement avec l’émulateur de hello](local-emulator.md)
 
 [regions]: https://azure.microsoft.com/regions/
 

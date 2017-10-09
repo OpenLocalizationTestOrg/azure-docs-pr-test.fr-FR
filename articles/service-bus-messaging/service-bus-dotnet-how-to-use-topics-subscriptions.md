@@ -1,5 +1,5 @@
 ---
-title: Prise en main des rubriques et abonnements Azure Service Bus | Microsoft Docs
+title: "aaaGet a démarré avec des rubriques et abonnements Azure Service Bus | Documents Microsoft"
 description: "Écrivez une application console C# qui utilise les rubriques et les abonnements de messageries Service Bus."
 services: service-bus-messaging
 documentationcenter: .net
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: dotnet
 ms.workload: na
 ms.date: 06/30/2017
 ms.author: sethm
-ms.openlocfilehash: 9401ada519f600b0d2817f06a396e16607a24129
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 619d602599d97ecff2ded0681a383b19f1a8b7ad
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-service-bus-topics"></a>Prise en main des rubriques Service Bus
 
@@ -26,74 +26,74 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="what-will-be-accomplished"></a>Les opérations que nous allons effectuer
 
-Ce didacticiel couvre les étapes suivantes :
+Ce didacticiel couvre hello comme suit :
 
-1. Créer un espace de noms Service Bus à l’aide du Portail Azure.
-2. Créer une rubrique Service Bus à l’aide du Portail Azure.
-3. Créer un abonnement Service Bus vers cette rubrique à l’aide du Portail Azure.
-4. Écrire une application de console pour envoyer un message vers la rubrique.
-5. Écrivez une application console pour recevoir ce message depuis l’abonnement.
+1. Créer un espace de noms Service Bus, à l’aide de hello portail Azure.
+2. Créez une rubrique Service Bus, à l’aide de hello portail Azure.
+3. Créer une abonnement toothat la rubrique Service Bus, à l’aide de hello portail Azure.
+4. Écrire un toosend d’application console une rubrique toohello de message.
+5. Écrire un tooreceive d’application console qu’un message d’abonnement de hello.
 
 ## <a name="prerequisites"></a>Composants requis
 
-1. [Visual Studio 2015 ou une version ultérieure](http://www.visualstudio.com). Les exemples de ce didacticiel utilisent Visual Studio 2017.
+1. [Visual Studio 2015 ou une version ultérieure](http://www.visualstudio.com). exemples de Hello dans ce didacticiel utilisent Visual Studio 2017.
 2. Un abonnement Azure.
 
 [!INCLUDE [create-account-note](../../includes/create-account-note.md)]
 
-## <a name="1-create-a-namespace-using-the-azure-portal"></a>1. Créer un espace de noms à l’aide du Portail Azure
+## <a name="1-create-a-namespace-using-hello-azure-portal"></a>1. Créer un espace de noms à l’aide de hello portail Azure
 
-Si vous avez déjà créé un espace de noms Service Bus Messaging, passez directement à la section [Créer une rubrique à l’aide du portail Azure](#2-create-a-topic-using-the-azure-portal).
+Si vous avez déjà créé un espace de noms de messagerie Service Bus, raccourcis toohello [créer une rubrique à l’aide de hello portail Azure](#2-create-a-topic-using-the-azure-portal) section.
 
 [!INCLUDE [service-bus-create-namespace-portal](../../includes/service-bus-create-namespace-portal.md)]
 
-## <a name="2-create-a-topic-using-the-azure-portal"></a>2. Créer une rubrique à l’aide du Portail Azure
+## <a name="2-create-a-topic-using-hello-azure-portal"></a>2. Créez une rubrique à l’aide de hello portail Azure
 
-1. Connectez-vous au [portail Azure][azure-portal].
-2. Dans le volet de navigation gauche du portail, cliquez sur **Service Bus** (si vous ne voyez pas **Service Bus**, cliquez sur **Plus de services**).
-3. Cliquez sur l’espace de noms dans lequel vous souhaitez créer la rubrique. Le panneau de vue d’ensemble d’espace de noms s’affiche :
+1. Ouvrez une session sur toohello [portail Azure][azure-portal].
+2. Dans le volet de navigation gauche hello du portail de hello, cliquez sur **Service Bus** (si vous ne voyez pas **Service Bus**, cliquez sur **davantage de services**).
+3. Cliquez sur hello espace de noms dans lequel vous souhaitez que rubrique de hello toocreate. Panneau de vue d’ensemble d’espace de noms Hello s’affiche :
    
     ![Création d'une rubrique][createtopic1]
-4. Dans le panneau de **l’espace de noms Service Bus**, sélectionnez **Rubriques**, puis cliquez sur **Ajouter une rubrique**.
+4. Bonjour **espace de noms Service Bus** panneau, cliquez sur **rubriques**, puis cliquez sur **ajouter rubrique**.
    
     ![Sélectionnez les rubriques][createtopic2]
-5. Entrez un nom pour la rubrique et désélectionnez l’option **Activer le partitionnement**. Conservez les valeurs par défaut des autres options.
+5. Entrez un nom pour la rubrique de hello et décochez hello **activer leur partitionnement** option. Laissez hello autres options avec leurs valeurs par défaut.
    
     ![Sélectionner Nouveau][createtopic3]
-6. Au bas du panneau, cliquez sur **Créer**.
+6. Au bas de hello du Panneau de hello, cliquez sur **créer**.
 
-## <a name="3-create-a-subscription-to-the-topic"></a>3. Créer un abonnement à la rubrique
+## <a name="3-create-a-subscription-toohello-topic"></a>3. Créer une rubrique toohello d’abonnement
 
-1. Dans le volet ressources du portail, cliquez sur l’espace de noms que vous avez créé à l’étape 1, puis cliquez sur le nom de la rubrique que vous avez créée à l’étape 2.
-2. Sur la partie supérieure du volet Vue d’ensemble, cliquez sur le signe plus à côté de l’option **Abonnement** pour ajouter un abonnement à cette rubrique.
+1. Dans le volet du portail de ressources hello, cliquez sur espace de noms hello créé à l’étape 1, puis cliquez sur le nom de rubrique hello créé à l’étape 2.
+2. Top hello du volet de présentation hello, cliquez sur hello plus se connecter ensuite trop**abonnement** tooadd une rubrique toothis d’abonnement.
 
     ![Créer un abonnement][createtopic4]
 
-3. Entrez un nom pour l’abonnement. Conservez les valeurs par défaut des autres options.
+3. Entrez un nom pour l’abonnement de hello. Laissez hello autres options avec leurs valeurs par défaut.
 
-## <a name="4-send-messages-to-the-topic"></a>4. Envoyez des messages à la rubrique
+## <a name="4-send-messages-toohello-topic"></a>4. Rubrique toohello de messages d’envoi
 
-Pour envoyer des messages vers la rubrique, nous écrivons une application de console C# à l’aide de Visual Studio.
+rubrique de toohello toosend messages, nous écrire une application console c# à l’aide de Visual Studio.
 
 ### <a name="create-a-console-application"></a>Création d’une application console
 
 Ouvrez Visual Studio et créez un projet **Application de console (.NET Framework)**.
 
-### <a name="add-the-service-bus-nuget-package"></a>Ajout du package NuGet Service Bus
+### <a name="add-hello-service-bus-nuget-package"></a>Ajoutez le package NuGet Service Bus de hello
 
-1. Cliquez avec le bouton droit sur le projet créé et sélectionnez **Gérer les packages NuGet**.
-2. Cliquez sur l’onglet **Parcourir**, recherchez **Microsoft Azure Service Bus**, puis sélectionnez l’élément **WindowsAzure.ServiceBus**. Cliquez sur **Installer** pour terminer l’installation, puis fermez cette boîte de dialogue.
+1. Avec le bouton droit de projet de hello nouvellement créé et sélectionnez **gérer les Packages NuGet**.
+2. Cliquez sur hello **Parcourir** onglet, recherchez **Microsoft Azure Service Bus**, puis sélectionnez hello **WindowsAzure.ServiceBus** élément. Cliquez sur **installer** toocomplete hello installation, puis fermez cette boîte de dialogue.
    
     ![Sélectionner un package NuGet][nuget-pkg]
 
-### <a name="write-some-code-to-send-a-message-to-the-topic"></a>Écrire du code pour envoyer un message vers la rubrique
+### <a name="write-some-code-toosend-a-message-toohello-topic"></a>Écrire certaines toosend code une rubrique toohello de message
 
-1. Ajoutez l’instruction `using` suivante au début du fichier Program.cs.
+1. Ajoutez hello suit `using` haut de toohello instruction du fichier Program.cs de hello.
    
     ```csharp
     using Microsoft.ServiceBus.Messaging;
     ```
-2. Ajoutez le code suivant à la méthode `Main` . Configurez la variable `connectionString` en tant que chaîne de connexion obtenue lors de la création de l’espace de noms, puis configurez `topicName` en tant que nom utilisé lors de la création de la rubrique.
+2. Ajouter hello suivant code toohello `Main` (méthode). Ensemble hello `connectionString` que vous avez obtenu lors de la création d’espace de noms hello et définir de chaîne de connexion de la variable toohello `topicName` toohello nom que vous avez utilisé lors de la création de la rubrique hello.
    
     ```csharp
     var connectionString = "<your connection string>";
@@ -107,7 +107,7 @@ Ouvrez Visual Studio et créez un projet **Application de console (.NET Framewo
 
     client.Send(message);
 
-    Console.WriteLine("Message successfully sent! Press ENTER to exit program");
+    Console.WriteLine("Message successfully sent! Press ENTER tooexit program");
     Console.ReadLine();
     ```
    
@@ -138,25 +138,25 @@ Ouvrez Visual Studio et créez un projet **Application de console (.NET Framewo
 
                 client.Send(message);
 
-                Console.WriteLine("Message successfully sent! Press ENTER to exit program");
+                Console.WriteLine("Message successfully sent! Press ENTER tooexit program");
                 Console.ReadLine();
             }
         }
     }
     ```
-3. Exécutez le programme et consultez le portail Azure : cliquez sur le nom de votre rubrique dans le panneau de l’espace de noms **Vue d’ensemble**. Le panneau de rubrique **Fondamentaux** est affiché. Dans les abonnements répertoriés au bas du panneau, notez que la valeur **Nombre de messages** de chaque abonnement doit désormais être égale à 1. Chaque fois que vous exécutez l’application de l’expéditeur sans récupérer les messages (tel que décrit que la section suivante), cette valeur augmente de 1. Notez également que la taille actuelle de la rubrique incrémente la valeur **Actuel** sur le panneau **Fondamentaux** chaque fois que l’application ajoute un message à la rubrique/l’abonnement.
+3. Exécuter le programme de hello et vérifier hello portail Azure : cliquez sur nom hello de votre rubrique dans l’espace de noms hello **vue d’ensemble** panneau. rubrique de Hello **Essentials** panneau s’affiche. Dans les abonnements hello répertoriés bas hello du Panneau de hello, notez que hello **nombre de messages** valeur pour chaque abonnement doit maintenant être 1. Chaque fois que vous exécutez l’application d’expédition hello sans récupérer les messages de type hello (comme décrit dans la section suivante de hello), cette valeur augmente de 1. Notez également que taille actuelle de hello Hello d’incréments hello rubrique **actuel** valeur sur hello **Essentials** panneau chaque fois application hello ajoute un message toohello rubrique / d’abonnement.
    
       ![Taille des messages][topic-message]
 
-## <a name="5-receive-messages-from-the-subscription"></a>5. Réception des messages de l’abonnement
+## <a name="5-receive-messages-from-hello-subscription"></a>5. Recevoir des messages à partir de l’abonnement de hello
 
-1. Pour recevoir le ou les messages que vous venez d’envoyer, créez une application console et ajoutez une référence au package NuGet Service Bus, identique à l’application de l’expéditeur précédente.
-2. Ajoutez l’instruction `using` suivante au début du fichier Program.cs.
+1. hello tooreceive ou les messages que vous venez d’envoyer, créer une nouvelle application console et ajouter un package NuGet Service Bus toohello référence, l’application expéditeur précédente toohello similaire.
+2. Ajoutez hello suit `using` haut de toohello instruction du fichier Program.cs de hello.
    
     ```csharp
     using Microsoft.ServiceBus.Messaging;
     ```
-3. Ajoutez le code suivant à la méthode `Main` . Configurez la variable `connectionString` en tant que chaîne de connexion obtenue lors de la création de l’espace de noms, puis configurez `topicName` en tant que nom utilisé lors de la création de la rubrique.
+3. Ajouter hello suivant code toohello `Main` (méthode). Ensemble hello `connectionString` vous obtenu lors de la création d’espace de noms hello et définir de chaîne de connexion de la variable toohello `topicName` toohello nom que vous avez utilisé lors de la création de la rubrique hello.
    
     ```csharp
     var connectionString = "<your connection string>";
@@ -170,7 +170,7 @@ Ouvrez Visual Studio et créez un projet **Application de console (.NET Framewo
       Console.WriteLine(String.Format("Message id: {0}", message.MessageId));
     });
    
-    Console.WriteLine("Press ENTER to exit program");
+    Console.WriteLine("Press ENTER tooexit program");
     Console.ReadLine();
     ```
    
@@ -197,13 +197,13 @@ Ouvrez Visual Studio et créez un projet **Application de console (.NET Framewo
             Console.WriteLine(String.Format("Message id: {0}", message.MessageId));
           });
 
-          Console.WriteLine("Press ENTER to exit program");   
+          Console.WriteLine("Press ENTER tooexit program");   
           Console.ReadLine();
         }
       }
     }
     ```
-4. Réexécutez le programme et vérifiez le portail. Notez que les valeurs **Nombre de messages** et **Actuel** sont à présent de 0.
+4. Exécuter le programme de hello et vérifiez de nouveau portail de hello. Notez que hello **nombre de messages** et **actuel** les valeurs sont désormais 0.
    
     ![Longueur de la rubrique][topic-message-receive]
 
@@ -211,7 +211,7 @@ Félicitations ! Vous avez créé une rubrique et un abonnement, envoyé un mes
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Consultez les [référentiels GitHub accompagnés d’exemples](https://github.com/Azure/azure-service-bus/tree/master/samples) qui illustrent certaines des fonctionnalités les plus avancées de la messagerie Service Bus.
+Découvrez notre [référentiel GitHub avec des exemples](https://github.com/Azure/azure-service-bus/tree/master/samples) qui illustrent certaines hello plus avancés des fonctionnalités de messagerie Service Bus.
 
 <!--Image references-->
 

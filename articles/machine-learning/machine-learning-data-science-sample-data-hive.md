@@ -1,5 +1,5 @@
 ---
-title: "Échantillonner des données dans des tables Hive Azure HDInsight | Microsoft Docs"
+title: "aaaSample des données dans les tables de la ruche de HDInsight Azure | Documents Microsoft"
 description: "Sous-échantillonnage de données dans des tables Hive Azure HDInsight (Hadoop)"
 services: machine-learning,hdinsight
 documentationcenter: 
@@ -14,33 +14,33 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: hangzh;bradsev
-ms.openlocfilehash: d46297dfaf85976114fbf610803e5f1a997041e0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5f86df9b5a18facc875f437abfb004dbe3a06ea4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sample-data-in-azure-hdinsight-hive-tables"></a>Échantillonner des données dans des tables Hive Azure HDInsight
-Dans cet article, nous décrivons à présent la procédure de sous-échantillonnage des données stockées dans des tables Hive Azure HDInsight à l'aide de requêtes Hive. Nous abordons trois méthodes d’échantillonnage communément utilisées :
+Dans cet article, nous décrivons comment toodown-exemples de données stockées dans les tables de la ruche HDInsight Azure à l’aide de requêtes Hive. Nous abordons trois méthodes d’échantillonnage communément utilisées :
 
 * Échantillonnage aléatoire uniforme
 * Échantillonnage aléatoire par groupe
 * Échantillonnage stratifié
 
-Le **menu** ci-après pointe vers des rubriques qui expliquent comment échantillonner des données dans différents environnements de stockage.
+suivant de Hello **menu** lie tootopics qui décrivent comment toosample des données à partir de différents environnements de stockage.
 
 [!INCLUDE [cap-sample-data-selector](../../includes/cap-sample-data-selector.md)]
 
 **Pourquoi échantillonner vos données ?**
-Si vous prévoyez d’analyser un jeu de données volumineux, il est généralement recommandé de sous-échantillonner les données afin de réduire leur taille sous une forme plus facilement exploitable, mais toujours représentative. Cette opération facilite la compréhension et l’exploration des données, ainsi que la conception de fonctionnalités. Son rôle dans le processus TDSP (Team Data Science Process) consiste à permettre le prototypage rapide des fonctions de traitement des données et des modèles d’apprentissage automatique.
+Si dataset hello vous envisagez de tooanalyze est grand, il est généralement un tooreduce de données recommandé toodown-exemple hello il tooa plus petite mais représentatif et plus facile à gérer la taille. Cette opération facilite la compréhension et l’exploration des données, ainsi que la conception de fonctionnalités. Son rôle dans hello processus de science des données équipe est tooenable le prototypage rapide des fonctions de traitement des données de hello et modèles d’apprentissage automatique.
 
-Cette tâche d’échantillonnage est une étape du [processus TDSP (Team Data Science Process)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/).
+Cette tâche d’échantillonnage est une étape Bonjour [processus de science des données équipe (TDSP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/).
 
-## <a name="how-to-submit-hive-queries"></a>Envoi de requêtes Hive
-Les requêtes Hive peuvent être envoyées à partir de console de ligne de commande Hadoop, sur le nœud principal du cluster Hadoop. Pour effectuer cette opération, connectez-vous au nœud principal du cluster Hadoop, ouvrez la console de ligne de commande Hadoop, puis soumettez les requêtes Hive à cet emplacement. Pour plus d’informations sur la soumission de requêtes Hive dans la console de ligne de commande Hadoop, voir [Envoi de requêtes Hive](machine-learning-data-science-move-hive-tables.md#submit).
+## <a name="how-toosubmit-hive-queries"></a>Comment les requêtes Hive toosubmit
+Requêtes Hive peuvent être envoyés à partir de la console de ligne de commande Hadoop hello sur le nœud principal de hello du cluster Hadoop de hello. toodo cela, ouvrez une session sur le nœud principal de hello du cluster Hadoop de hello, ouvrez hello console de ligne de commande Hadoop et soumettre des requêtes de ruche hello à partir de là. Pour obtenir des instructions sur la soumission de requêtes Hive dans la console de ligne de commande Hadoop hello, consultez [comment tooSubmit requêtes Hive](machine-learning-data-science-move-hive-tables.md#submit).
 
 ## <a name="uniform"></a> Échantillonnage aléatoire uniforme
-Le terme « échantillonnage aléatoire uniforme » signifie que chaque ligne du jeu de données a la même chance d’être échantillonnée que les autres. Vous pouvez implémenter cette méthode en ajoutant un champ supplémentaire rand() au jeu de données dans la requête « select » interne et dans la requête « select » externe conditionnant ce champ aléatoire.
+Échantillonnage aléatoire uniforme signifie que chaque ligne dans le jeu de données hello autant de chance d’échantillonnage. Cela peut être implémentée en ajoutant un jeu de données de champ supplémentaire rand() toohello dans la requête « select » interne de hello et dans hello la requête « select » externe cette condition sur un champ aléatoire.
 
 Voici un exemple de requête :
 
@@ -55,11 +55,11 @@ Voici un exemple de requête :
         )a
     where samplekey<='${hiveconf:sampleRate}'
 
-Dans cet exemple, la chaîne `<sample rate, 0-1>` spécifie la proportion d’enregistrements que les utilisateurs veulent échantillonner.
+Ici, `<sample rate, 0-1>` spécifie la proportion de hello d’enregistrements que les utilisateurs de hello souhaitent toosample.
 
 ## <a name="group"></a> Échantillonnage aléatoire par groupe
-Lorsque vous échantillonnez des données catégorielles, vous pouvez choisir d’inclure ou d’exclure toutes les instances d’une valeur spécifique d’une valeur catégorielle. C’est ce que signifie le terme « échantillonnage par groupe ».
-Par exemple, si vous disposez d’une valeur catégorielle « État », qui présente les valeurs NY, MA, CA, NJ, PA, etc., vous voulez que les enregistrements du même État soient toujours regroupés, qu’ils soient ou non échantillonnés.
+Lorsque les données catégoriques d’échantillonnage, vous pouvez tooeither inclure ou exclure toutes les instances de hello d’une valeur particulière d’une variable par catégorie. C’est ce que signifie le terme « échantillonnage par groupe ».
+Par exemple, si vous avez une variable catégorique « État », qui a des valeurs NY, MA, autorité de certification, NJ, PA, etc., vous souhaitez que les enregistrements de hello même état toujours être ensemble, si elles sont échantillonnées ou non.
 
 Voici un exemple de requête effectuant un échantillonnage par groupe :
 
@@ -88,7 +88,7 @@ Voici un exemple de requête effectuant un échantillonnage par groupe :
     on b.catfield=c.catfield
 
 ## <a name="stratified"></a>Échantillonnage stratifié
-L’échantillonnage aléatoire est stratifié par rapport à une variable catégorielle lorsque les échantillons obtenus comportent des valeurs de cette catégorie qui existent dans la même proportion que dans la population parente à partir de laquelle les échantillons ont été obtenus. En considérant le même exemple que ci-dessus, supposons que vos données comportent des sous-populations par État. Par exemple, NJ présente 100 observations, NY 60 observations et WA 300 observations. Si vous spécifiez un taux d’échantillonnage stratifié de 0,5, l’échantillon obtenu pour NJ, NY et WA sera respectivement d’environ 50, 30 et 150 observations.
+Échantillonnage aléatoire est stratifié avec égard tooa variable catégorielle lorsque des échantillons hello obtenus ont des valeurs catégorielles qui qui se trouvent dans hello même rapport, comme le remplissage de parent hello à partir de quels hello exemples ont été obtenues. À l’aide de hello même exemple que ci-dessus, supposons que vos données ont des alimentations sous-chemin par les États, par exemple NJ a 100 observations, NY a 60 observations, et WA a 300 observations. Si vous spécifiez le taux de hello de stratifié d’échantillonnage toobe 0,5, puis hello échantillon obtenu doit avoir environ 50, 30 et 150 observations NJ NY et WA respectivement.
 
 Voici un exemple de requête :
 

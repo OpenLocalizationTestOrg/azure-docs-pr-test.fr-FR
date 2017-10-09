@@ -1,6 +1,6 @@
 ---
-title: API REST Resource Manager | Microsoft Docs
-description: "Une vue d’ensemble des exemples d’authentification et de cas d’utilisation des API REST Resource Manager"
+title: "API REST du Gestionnaire d’aaaResource | Documents Microsoft"
+description: "Une vue d’ensemble de hello authentification de l’API REST du Gestionnaire de ressources et des exemples d’utilisation"
 services: azure-resource-manager
 documentationcenter: na
 author: navalev
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/13/2017
 ms.author: navale;tomfitz;
-ms.openlocfilehash: 2f7ba23775545637de865f9ef63680ae22c62164
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3ccc3575c5e06c41f2fdc5317711980fc6a2f649
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="resource-manager-rest-apis"></a>API REST Resource Manager
 > [!div class="op_single_selector"]
@@ -29,22 +29,22 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-Derrière chaque appel à Azure Resource Manager, derrière chaque modèle déployé, derrière chaque compte de stockage configuré se trouvent un ou plusieurs appels à une API RESTful de l’Azure Resource Manager. Cette rubrique est consacrée à ces API et à la manière dont vous pouvez les appeler sans utiliser aucun kit SDK. Cette approche est utile si vous souhaitez un contrôle total des requêtes à Azure ou si le kit SDK pour votre langue par défaut n’est pas disponible ou ne prend pas en charge les opérations dont vous avez besoin.
+Derrière chaque tooAzure d’appel de gestionnaire de ressources derrière chaque modèle déployé, derrière chaque compte de stockage configurés sont les API RESTful un ou plusieurs appels toohello Azure du Gestionnaire de ressources. Cette rubrique est consacrée toothose API et comment vous pouvez les appeler sans utiliser un kit de développement logiciel du tout. Cette approche est utile si vous souhaitez que le contrôle total de demandes tooAzure ou si hello Kit de développement logiciel pour votre langue par défaut n’est pas disponible ou ne prend pas en charge les opérations que vous devez hello.
 
-Cet article ne traite pas chaque API exposée dans Azure, mais en utilise certaines comme exemple pour vous montrer comment vous y connecter. Si vous comprenez les notions de base, vous pouvez lire la [Référence de l’API REST Azure Resource Manager](https://docs.microsoft.com/rest/api/resources/) (en anglais) pour trouver des informations détaillées sur la manière d’utiliser les autres API.
+Cet article ne passe pas par le biais des API qui sont exposée dans Azure, mais qu’il utilise certaines opérations sont des exemples de la façon dont vous vous connectez toothem. Une fois que vous comprenez les notions de base hello, vous pouvez lire hello [référence d’API REST Azure Resource Manager](https://docs.microsoft.com/rest/api/resources/) toofind des informations détaillées sur comment reste hello toouse hello API.
 
 ## <a name="authentication"></a>Authentification
-L’authentification pour Resource Manager est gérée par Azure Active Directory (AD). Pour vous connecter à une API quelconque, vous devez tout d’abord vous authentifier auprès d’Azure AD pour recevoir un jeton d’authentification que vous pouvez transmettre à chaque requête. Comme nous décrivons un appel pur directement à l’API REST, nous partons du principe que vous ne souhaitez pas vous authentifier en étant invité à entrer un nom d’utilisateur et un mot de passe. Nous supposons également que vous n’utilisez pas les mécanismes d’authentification à deux facteurs. Pour cette raison, nous créons ce que l’on appelle une application Azure AD et un principal du service qui sont utilisés pour la connexion. Mais n’oubliez pas qu’Azure AD prend en charge plusieurs procédures d’authentification et qu’elles peuvent toutes être utilisées pour récupérer le jeton d’authentification dont nous avons besoin pour les requêtes API ultérieures.
+L’authentification pour Resource Manager est gérée par Azure Active Directory (AD). tooconnect tooany API, vous devez tout d’abord tooauthenticate avec Azure AD tooreceive un jeton d’authentification que vous pouvez passer à la demande de tooevery. Comme nous décrivons un appel pur directement toohello API REST, nous partons du principe que vous ne souhaitez pas tooauthenticate à être invité à entrer un nom d’utilisateur et un mot de passe. Nous supposons également que vous n’utilisez pas les mécanismes d’authentification à deux facteurs. Par conséquent, nous créons ce que l'on appelle une Application Azure AD et un principal de service qui sont utilisé toolog dans. Mais rappelez-vous que Azure AD prend en charge plusieurs procédures d’authentification et tous les peut être utilisé tooretrieve ce jeton d’authentification nécessaire pour les demandes API suivantes.
 Pour connaître la procédure détaillée, suivez les instructions figurant dans [Créer une application Azure AD et un principal du service](resource-group-create-service-principal-portal.md).
 
 ### <a name="generating-an-access-token"></a>Génération d’un jeton d’accès
-L’authentification auprès d’Azure AD est effectuée en appelant Azure AD à l’adresse login.microsoftonline.com. Pour vous authentifier, vous devez disposer des informations suivantes :
+L’authentification auprès d’Azure AD est effectuée en appelant tooAzure AD, situé à login.microsoftonline.com. tooauthenticate, vous devez hello toohave informations suivantes :
 
-* l’ID de client Azure AD (le nom de l’Azure AD que vous utilisez pour vous connecter, souvent celui de votre entreprise, mais pas nécessairement) ;
-* l’ID de l’application (récupéré au cours de l’étape de création de l’application Azure AD) ;
-* le mot de passe (que vous avez choisi lors de la création de l’application Azure AD).
+* ID de locataire Azure AD (hello nom de qu’Azure AD à l’aide de toolog dans, souvent hello identique à votre entreprise mais n’est pas nécessaire)
+* ID d’application (effectuée au cours de l’étape de la création de l’application hello Azure AD)
+* Mot de passe (que vous avez sélectionné lors de la création de hello Application Azure AD)
 
-Dans la requête HTTP suivante, veillez à remplacer l’« Azure AD Tenant ID (ID de client Azure AD) », l’« Application ID (ID de l’application) » et le « Password (Mot de passe) » par des valeurs correctes.
+Bonjour suivant la requête HTTP, assurez-vous que tooreplace « ID de locataire Azure AD, » « ID d’Application » et « Password » avec les valeurs correctes hello.
 
 **Requête HTTP générique :**
 
@@ -57,7 +57,7 @@ Content-Type: application/x-www-form-urlencoded
 grant_type=client_credentials&resource=https%3A%2F%2Fmanagement.core.windows.net%2F&client_id=<Application ID>&client_secret=<Password>
 ```
 
-... générera (une fois l’authentification réussie) une réponse similaire à celle-ci :
+... va (si l’authentification réussit) entraîne un toohello similaire de réponse suivant la réponse :
 
 ```json
 {
@@ -69,7 +69,7 @@ grant_type=client_credentials&resource=https%3A%2F%2Fmanagement.core.windows.net
   "access_token": "eyJ0eXAiOiJKV1QiLCJhb...86U3JI_0InPUk_lZqWvKiEWsayA"
 }
 ```
-(L’access_token dans la réponse précédente a été raccourci pour une meilleure lisibilité)
+(access_token hello Bonjour précédant la réponse ont été raccourcie tooincrease lisibilité)
 
 **Génération du jeton d’accès à l’aide d’un interpréteur de commandes (Bash) :**
 
@@ -84,16 +84,16 @@ Invoke-RestMethod -Uri https://login.microsoftonline.com/<Azure AD Tenant ID>/oa
  -Body @{"grant_type" = "client_credentials"; "resource" = "https://management.core.windows.net/"; "client_id" = "<application id>"; "client_secret" = "<password you selected for authentication>" }
 ```
 
-La réponse contient un jeton d’accès, des informations sur la durée de validité du jeton est valide et sur la ressource pour laquelle vous pouvez utiliser ce jeton.
-Le jeton d’accès que vous avez reçu dans le précédent appel HTTP doit être transmis pour toutes les demandes à l’API Resource Manager. Vous le transmettez comme une valeur d’en-tête nommée « Authorization » avec la valeur « Bearer YOUR_ACCESS_TOKEN ». Notez l’espace entre « Bearer » et votre jeton d’accès.
+Hello réponse contient un jeton d’accès, d’informations sur la durée pendant laquelle ce jeton est valide et plus d’informations sur la ressource que vous pouvez utiliser ce jeton pour.
+jeton d’accès Hello que vous avez reçu dans l’appel HTTP de la précédente hello doit être transmise pour toohello demande toutes les API du Gestionnaire de ressources. Passez-le en tant qu’une valeur d’en-tête nommée « Authorization » avec la valeur de hello « Support YOUR_ACCESS_TOKEN ». Notez l’espace hello entre « Support » et votre jeton d’accès.
 
-Comme vous pouvez le voir à partir du résultat HTTP ci-dessus, le jeton est valide pendant un délai spécifique au cours duquel vous devez mettre en cache et réutiliser ce même jeton. Même s’il est possible de s’authentifier auprès d’Azure AD pour chaque appel d’API, cette procédure serait peu efficace.
+Comme vous pouvez voir à partir de hello ci-dessus HTTP, jeton de hello est valide pour une période spécifique au cours de laquelle vous devez mettre en cache et réutiliser ce même jeton. Même s’il est possible tooauthenticate auprès d’Azure AD pour chaque appel d’API, il est peu efficace.
 
 ## <a name="calling-resource-manager-rest-apis"></a>Appel d'API REST Resource Manager
-Cette rubrique utilise uniquement quelques API pour expliquer l’utilisation basique des opérations REST. Pour plus d’informations sur la totalité des opérations, consultez la rubrique [API REST Azure Resource Manager](https://docs.microsoft.com/rest/api/resources/).
+Cette rubrique utilise uniquement quelques API tooexplain hello l’utilisation de base des opérations REST de hello. Pour plus d’informations sur toutes les opérations de hello, consultez [API REST de Azure Resource Manager](https://docs.microsoft.com/rest/api/resources/).
 
 ### <a name="list-all-subscriptions"></a>Répertorier tous les abonnements
-L’une des opérations plus simples à exécuter consiste à répertorier les abonnements disponibles auxquels vous pouvez accéder. Dans la requête suivante, vous pouvez voir comment le jeton d’accès est transmis en tant qu’en-tête :
+Une des opérations de la plus simple de hello que faire est toolist hello disponibles les abonnements auxquels vous pouvez accéder. Bonjour demande, vous consultez Comment jeton d’accès hello est passée comme un en-tête de :
 
 (Remplacez YOUR_ACCESS_TOKEN par votre véritable jeton d’accès.)
 
@@ -104,7 +104,7 @@ Authorization: Bearer YOUR_ACCESS_TOKEN
 Content-Type: application/json
 ```
 
-... et vous obtenez comme résultat une liste des abonnements auxquels ce principal du service est autorisé à accéder
+... et par conséquent, vous obtenez une liste des abonnements que ce principal du service est autorisé tooaccess
 
 (Les ID d’abonnement ont été raccourcis pour une meilleure lisibilité)
 
@@ -126,7 +126,7 @@ Content-Type: application/json
 ```
 
 ### <a name="list-all-resource-groups-in-a-specific-subscription"></a>Répertorier tous les groupes de ressources dans un abonnement spécifique
-Toutes les ressources disponibles avec les API Resource Manager sont imbriquées dans un groupe de ressources. Vous pouvez interroger Resource Manager pour connaître les groupes de ressources existants dans votre abonnement à l’aide de la requête HTTP GET suivante. Notez que, cette fois, l’ID d’abonnement est transmis comme élément de l’URL.
+Toutes les ressources disponibles avec les API du Gestionnaire de ressources de hello sont imbriqués à l’intérieur d’un groupe de ressources. Vous pouvez interroger le Gestionnaire de ressources pour les groupes de ressources existants dans votre abonnement à l’aide de hello suivant demande HTTP GET. Notez comment hello ID d’abonnement est passé en tant que partie de l’URL de hello instant.
 
 (Remplacez YOUR_ACCESS_TOKEN et SUBSCRIPTION_ID par vos véritables jetons d’accès et ID d’abonnement)
 
@@ -137,7 +137,7 @@ Authorization: Bearer YOUR_ACCESS_TOKEN
 Content-Type: application/json
 ```
 
-La réponse dépend de la définition ou non de groupes de ressources définis et, le cas échéant, de leur nombre.
+Hello réponse varie selon que vous disposez d’aucun groupe de ressources défini et si tel est le cas, combien.
 
 (Les ID d’abonnement ont été raccourcis pour une meilleure lisibilité)
 
@@ -168,9 +168,9 @@ La réponse dépend de la définition ou non de groupes de ressources définis e
 ```
 
 ### <a name="create-a-resource-group"></a>Créer un groupe de ressources
-Jusqu’ici, nous avons interrogé uniquement les API Resource Manager pour obtenir des informations. Il est temps de créer des ressources, en commençant par la plus simple de toutes : un groupe de ressources. La demande HTTP suivante crée un groupe de ressources dans une région/un emplacement de votre choix et y ajoute une balise.
+Jusqu'à présent, nous avons été interrogeant uniquement hello API du Gestionnaire de ressources pour plus d’informations. Il est temps de créer des ressources et nous commençons par hello plus simple d'entre eux tous, un groupe de ressources. Hello requête HTTP suivante crée un groupe de ressources dans une région de votre choix et ajoute un tooit de balise.
 
-(Remplacez YOUR_ACCESS_TOKEN, SUBSCRIPTION_ID et RESOURCE_GROUP_NAME par votre jeton d’accès réel, votre ID d’abonnement et nom du groupe de ressources à créer)
+(Remplacez YOUR_ACCESS_TOKEN, ID_ABONNEMENT, nom_groupe_ressource avec votre réel jeton d’accès, ID d’abonnement et le nom de groupe de ressources que vous voulez toocreate de hello)
 
 ```HTTP
 PUT /subscriptions/SUBSCRIPTION_ID/resourcegroups/RESOURCE_GROUP_NAME?api-version=2015-01-01 HTTP/1.1
@@ -186,7 +186,7 @@ Content-Type: application/json
 }
 ```
 
-Si l’opération réussit, vous obtenez une réponse semblable à celle-ci :
+En cas de réussite, vous obtenez une réponse similaire toohello suivant la réponse :
 
 ```json
 {
@@ -204,14 +204,14 @@ Si l’opération réussit, vous obtenez une réponse semblable à celle-ci :
 
 Vous avez créé un groupe de ressources dans Azure ! Félicitations !
 
-### <a name="deploy-resources-to-a-resource-group-using-a-resource-manager-template"></a>Déployer des ressources dans un groupe de ressources à l’aide d’un modèle Resource Manager
-Avec Resource Manager, vous pouvez déployer vos ressources à l’aide de modèles. Un modèle définit plusieurs ressources et leurs dépendances. Pour cette section, nous supposons que vous êtes familiarisé avec les modèles Resource Manager et vous montrons simplement comment effectuer l’appel d’API pour en commencer le déploiement. Pour en savoir plus sur la création de modèles, voir [Création de modèles Azure Resource Manager](resource-group-authoring-templates.md).
+### <a name="deploy-resources-tooa-resource-group-using-a-resource-manager-template"></a>Déployer le groupe de ressources tooa de ressources à l’aide d’un modèle de gestionnaire de ressources
+Avec Resource Manager, vous pouvez déployer vos ressources à l’aide de modèles. Un modèle définit plusieurs ressources et leurs dépendances. Dans cette section, nous supposons que vous êtes familiarisé avec les modèles de gestionnaire de ressources, et nous vous montrer comment toomake hello API appeler toostart déploiement. Pour en savoir plus sur la création de modèles, voir [Création de modèles Azure Resource Manager](resource-group-authoring-templates.md).
 
-Le déploiement d’un modèle ne diffère pas beaucoup de la manière dont vous appelez d’autres API. Un aspect important est le fait que le déploiement d’un modèle peut prendre beaucoup de temps. L’appel de l’API retourne et c’est à vous, en tant que développeur, de déterminer l’état du déploiement pour savoir à quel moment le déploiement s’effectue. Pour plus d’informations, consultez la rubrique [Suivre les opérations asynchrones Azure](resource-manager-async-operations.md).
+Déploiement d’un modèle ne diffère beaucoup toohow vous appelez d’autres API. Un aspect important est le fait que le déploiement d’un modèle peut prendre beaucoup de temps. appel d’API de Hello retourne simplement et c’est tooyou comme tooquery de développeur pour l’état de toofind de déploiement hello out fois hello déploiement terminé. Pour plus d’informations, consultez la rubrique [Suivre les opérations asynchrones Azure](resource-manager-async-operations.md).
 
-Pour cet exemple, nous utilisons un modèle exposé publiquement disponible sur [GitHub](https://github.com/Azure/azure-quickstart-templates). Le modèle que nous utilisons déploie une machine virtuelle Linux pour la région États-Unis de l'Ouest. Bien que cet exemple utilise un modèle disponible dans un référentiel public tel que GitHub, vous pouvez transmettre le modèle complet dans le cadre de la requête. Notez que nous fournissons des valeurs de paramètre dans la requête qui sera utilisée dans le modèle déployé.
+Pour cet exemple, nous utilisons un modèle exposé publiquement disponible sur [GitHub](https://github.com/Azure/azure-quickstart-templates). modèle Hello que nous utilisons déploie une région ouest des États-Unis de toohello Linux VM. Bien que cet exemple utilise un modèle disponible dans un référentiel public comme GitHub, vous pouvez passer à la place les modèle complet de hello dans le cadre de la demande de hello. Notez que nous fournissons des valeurs de paramètre dans la demande de hello qui servent à l’intérieur de hello déployé le modèle.
 
-(Remplacez SUBSCRIPTION_ID, RESOURCE_GROUP_NAME, DEPLOYMENT_NAME, YOUR_ACCESS_TOKEN, GLOBALY_UNIQUE_STORAGE_ACCOUNT_NAME, ADMIN_USER_NAME,ADMIN_PASSWORD et DNS_NAME_FOR_PUBLIC_IP par des valeurs appropriées pour votre requête)
+(Remplacez toovalues ID_ABONNEMENT, nom_groupe_ressource, DEPLOYMENT_NAME, YOUR_ACCESS_TOKEN, GLOBALY_UNIQUE_STORAGE_ACCOUNT_NAME, ADMIN_USER_NAME, ADMIN_PASSWORD et DNS_NAME_FOR_PUBLIC_IP appropriés pour votre demande)
 
 ```HTTP
 PUT /subscriptions/SUBSCRIPTION_ID/resourcegroups/RESOURCE_GROUP_NAME/providers/microsoft.resources/deployments/DEPLOYMENT_NAME?api-version=2015-01-01 HTTP/1.1
@@ -247,8 +247,8 @@ Content-Type: application/json
 }
 ```
 
-La réponse JSON longue pour cette requête a été omise afin d’améliorer la lisibilité de cette documentation. La réponse contient des informations sur le déploiement basé sur un modèle que vous avez créé.
+Hello temps de réponse JSON pour cette demande a été lisibilité tooimprove omis de cette documentation. réponse de Hello contient des informations sur le déploiement basé sur un modèle hello que vous avez créé.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-- Pour en savoir plus sur la gestion des opérations REST asynchrones, consultez [Suivre les opérations asynchrones Azure](resource-manager-async-operations.md).
+- toolearn sur la gestion des opérations asynchrones de REST, consultez [le suivi des opérations asynchrones Azure](resource-manager-async-operations.md).

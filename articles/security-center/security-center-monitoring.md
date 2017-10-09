@@ -1,6 +1,6 @@
 ---
-title: "Surveillance de la sécurité dans Azure Security Center | Microsoft Docs"
-description: "Cet article a pour but de vous aider à vous familiariser avec les fonctionnalités de surveillance d’Azure Security Center."
+title: "aaaSecurity analyse dans le centre de sécurité Azure | Documents Microsoft"
+description: "Cet article vous aide à vous tooget démarré avec l’analyse des fonctionnalités dans le centre de sécurité Azure."
 services: security-center
 documentationcenter: na
 author: YuriDio
@@ -14,30 +14,30 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/09/2017
 ms.author: yurid
-ms.openlocfilehash: 93fff129afb04e3a1896d275551f585f45658d6d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 43c2a8864d5fe27ba44b0d7bc979db970305ec17
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="security-health-monitoring-in-azure-security-center"></a>Surveillance de l’intégrité de la sécurité dans le Centre de sécurité Azure
-Cet article a pour but de vous aider à utiliser les fonctionnalités de surveillance d’Azure Security Center, afin de contrôler la conformité aux stratégies.
+Cet article vous permet d’utiliser hello capacités d’analyse dans le centre de sécurité Azure toomonitor respect des stratégies.
 
 ## <a name="what-is-security-health-monitoring"></a>Qu’est-ce que la surveillance de l’intégrité de la sécurité ?
-Nous pensons souvent que la surveillance consiste à veiller et à attendre qu’un événement se produise pour y répondre. Ici, la surveillance de la sécurité fait référence à une stratégie proactive qui audite vos ressources afin d’identifier les systèmes qui ne répondent pas aux normes organisationnelles ou aux meilleures pratiques.
+Nous pensons que souvent de l’analyse en tant que la surveillance et d’attendre un événement toooccur afin que nous pouvons réagir toohello situation. Surveillance de la sécurité fait référence toohaving une stratégie proactive des audits de vos systèmes de tooidentify de ressources qui ne répondent pas aux normes de l’organisation ou les meilleures pratiques.
 
 ## <a name="monitoring-security-health"></a>Surveillance de l’intégrité de la sécurité
-Une fois que vous avez activé les [stratégies de sécurité](security-center-policies.md) pour les ressources d’un abonnement, Azure Security Center analyse la sécurité de vos ressources afin d’identifier les vulnérabilités potentielles. Les informations sur la configuration du réseau sont instantanément disponibles. L’affichage des informations concernant la configuration des machines virtuelles (telles que l’état des mises à jour de sécurité ou la configuration du système d’exploitation) peut prendre une heure ou plus. Vous pouvez visualiser l’état de sécurité de vos ressources et les problèmes éventuels dans la section **Prévention**. Vous pouvez également afficher une liste de ces problèmes dans la mosaïque **Recommandations** .
+Après avoir activé [des stratégies de sécurité](security-center-policies.md) pour les ressources d’un abonnement, le centre de sécurité analyse la sécurité de hello des vulnérabilités potentielles tooidentify ressources. Les informations sur la configuration du réseau sont instantanément disponibles. Peut prendre une heure ou plus pour plus d’informations sur la configuration de l’ordinateur virtuel, telles que la sécurité mise à jour le statut et configuration de système d’exploitation, toobecome disponible. Vous pouvez afficher l’état de la sécurité de vos ressources et les problèmes hello Bonjour **prévention** section. Vous pouvez également afficher une liste de ces problèmes sur hello **recommandations** vignette.
 
-Pour plus d’informations sur la façon d’appliquer des recommandations, consultez [Implémentation des recommandations de sécurité dans Azure Security Center](security-center-recommendations.md).
+Pour plus d’informations sur la façon tooapply recommandations, lire [mise en œuvre des recommandations de sécurité dans le centre de sécurité Azure](security-center-recommendations.md).
 
-Dans la section **Prévention**, vous pouvez surveiller l’état de sécurité de vos ressources. Dans l’exemple suivant, vous pouvez voir dans la vignette de chaque ressource (Compute, Mise en réseau, Stockage et données et Application) le nombre total de problèmes qui ont été identifiés.
+Sous hello **prévention** section, vous pouvez surveiller état hello de la sécurité de vos ressources. Dans l’exemple suivant de hello, vous pouvez voir que dans la vignette de chaque ressource (calcul, mise en réseau, stockage & données et l’Application) a le nombre total de hello de problèmes qui ont été identifiées.
 
 ![Mosaïque Intégrité de la sécurité des ressources](./media/security-center-monitoring/security-center-monitoring-fig1-newUI-2017.png)
 
 
 ### <a name="monitor-compute"></a>Suivre les calculs
-Lorsque vous cliquez sur la mosaïque **Compute**, le panneau **Compute** qui s’ouvre affiche trois onglets :
+Lorsque vous cliquez sur **de calcul** vignette, hello **de calcul** panneau qui s’ouvre affiche trois onglets :
 
 - **Vue d’ensemble** : recommandations relatives aux machines virtuelles et à la surveillance.
 - **Machines virtuelles** : liste de toutes les machines virtuelles et informations relatives à l’intégrité de leur sécurité.
@@ -45,86 +45,86 @@ Lorsque vous cliquez sur la mosaïque **Compute**, le panneau **Compute** qui s�
 
 ![Mise à jour système manquante par machine virtuelle](./media/security-center-monitoring/security-center-monitoring-fig1-new002-2017.png)
 
-Chaque onglet peut contenir plusieurs sections, et dans chaque section vous pouvez sélectionner une option afin d’afficher plus de détails sur les étapes recommandées pour résoudre le problème en question. 
+Dans chaque onglet, vous pouvez avoir plusieurs sections, et dans chaque section, vous pouvez sélectionner une option individuelle de toosee plus de détails sur hello recommandé étapes tooaddress ce problème particulier. 
 
 #### <a name="monitoring-recommendations"></a>Recommandations concernant la surveillance
-Cette section indique la quantité totale de machines virtuelles qui ont été initialisées pour la collecte des données et leur état actuel. Une fois la collecte des données initialisée sur toutes les machines virtuelles, cette dernière est prête à recevoir les stratégies de sécurité d’Azure Security Center. Lorsque vous cliquez sur cette entrée, le panneau **L’agent de machine virtuelle est manquant ou ne répond ne pas** s’ouvre. 
+Cette section indique le nombre total de hello d’ordinateurs virtuels qui ont été initialisés pour la collecte de données et leur état actuel. Après la collecte de données initialisée, tous les ordinateurs virtuels, il sera prêt tooreceive des stratégies de sécurité Centre de sécurité. Lorsque vous cliquez sur cette entrée, hello **Agent de machine virtuelle est manquant ou ne répond ne pas** panneau s’ouvre. 
 
 ![Mise à jour système manquante par machine virtuelle](./media/security-center-monitoring/security-center-monitoring-fig1-new003-2017.png)
 
 
 #### <a name="virtual-machine-recommendations"></a>Recommandations pour machines virtuelles
-Cette section contient une série de [recommandations pour chaque machine virtuelle](security-center-virtual-machine-recommendations.md) surveillée par Azure Security Center. La première colonne indique la recommandation. La deuxième colonne indique le nombre total de machines virtuelles qui sont affectées par cette recommandation. La troisième colonne indique la gravité du problème, comme illustré dans la capture d’écran suivante.
+Cette section contient une série de [recommandations pour chaque machine virtuelle](security-center-virtual-machine-recommendations.md) surveillée par Azure Security Center. Hello première colonne répertorie les recommandation hello. deuxième colonne de Hello montre le nombre total de hello d’ordinateurs virtuels qui sont affectés par cette recommandation. Hello troisième colonne affiche la gravité hello du problème de hello comme illustré dans hello suivant capture d’écran.
 
 ![Recommandations pour machines virtuelles](./media/security-center-monitoring/security-center-monitoring-fig1-new004-2017.png)
 
 > [!NOTE]
-> Seules les machines virtuelles ayant au moins un point de terminaison public sont affichées dans le panneau **Intégrité de mise en réseau** dans la liste **Topologie du réseau**.
+> Seules les machines virtuelles qui ont au moins un point de terminaison public sont affichés dans hello **mise en réseau de contrôle d’intégrité** panneau Bonjour **topologie de réseau** liste.
 >
 >
 
-Chaque recommandation dispose d’un ensemble d’actions pouvant être effectuées après avoir cliqué dessus. Par exemple, si vous cliquez sur **Mises à jour système manquantes**, le panneau **Mises à jour système manquantes** s’ouvre. Ce dernier répertorie les machines virtuelles auxquelles il manque des correctifs ainsi que le niveau de gravité de la mise à jour manquante, comme illustré dans la capture d’écran suivante.
+Chaque recommandation dispose d’un ensemble d’actions pouvant être effectuées après avoir cliqué dessus. Par exemple, si vous cliquez sur **mises à jour système manquantes**, hello **mises à jour système manquantes** panneau s’ouvre. Il répertorie les ordinateurs virtuels hello qui sont des correctifs manquants et hello gravité de la mise à jour manquante de hello, comme indiqué dans les éléments suivants de hello capture d’écran.
 
 ![Mise à jour système manquante pour les machines virtuelles](./media/security-center-monitoring/security-center-monitoring-fig5-ga.png)
 
-Le panneau **Mises à jour système manquantes** affiche un tableau contenant les informations suivantes :
+Hello **mises à jour système manquantes** panneau affiche un tableau avec hello informations suivantes :
 
-* **MACHINE VIRTUELLE**: nom de la machine virtuelle sur laquelle il manque des mises à jour.
-* **MISES À JOUR SYSTÈME**: quantité de mises à jour système manquantes.
-* **HEURE DE LA DERNIÈRE ANALYSE** : heure de la dernière analyse de la machine virtuelle par Azure Security Center, afin de contrôler les mises à jour.
-* **ÉTAT**: état actuel de la recommandation :
-  * **Ouverte** : la recommandation n’a pas encore été prise en compte.
-  * **En cours** : la recommandation est actuellement appliquée à ces ressources ; aucune action de votre part n’est nécessaire.
-  * **Résolue** : la recommandation a déjà été achevée. (Une fois problème résolu, l’entrée a été grisée).
-* **GRAVITÉ**: donne le niveau de gravité de chaque recommandation :
+* **MACHINE virtuelle**: nom hello de machine virtuelle hello auquel il manque des mises à jour.
+* **Mises à jour système**: hello du nombre de mises à jour système manquantes.
+* **DERNIÈRE analyse**: hello lecture que le centre de sécurité dernier ordinateur virtuel de hello pour les mises à jour.
+* **ÉTAT**: hello l’état actuel de la recommandation de hello :
+  * **Ouvrez**: recommandation de hello n’a pas encore été traitée.
+  * **En cours d’exécution**: recommandation de hello est en train de ressources de toothose appliqués et aucune action n’est requise par vous.
+  * **Résolu**: recommandation de hello était déjà terminée. (Lorsque hello est résolu, entrée de hello est grisée).
+* **GRAVITÉ**: décrit la gravité hello de cette recommandation particulier :
   * **Élevée** : existence d’une vulnérabilité sur une ressource importante (application, machine virtuelle, groupe de sécurité réseau). Le problème doit être analysé.
-  * **Moyenne** : certaines étapes supplémentaires sont nécessaires pour terminer un processus ou éliminer une vulnérabilité.
-  * **Faible**: existence d’une vulnérabilité devant être prise en compte, mais qui ne nécessite aucune attention immédiate. Par défaut, les recommandations de niveau Faible ne sont pas affichées, mais vous pouvez filtrer les recommandations pour les faire apparaître.
+  * **Support**: Non critiques ou d’autres étapes sont requise toocomplete un processus ou éliminer une vulnérabilité.
+  * **Faible**: existence d’une vulnérabilité devant être prise en compte, mais qui ne nécessite aucune attention immédiate. (Par défaut, les recommandations faibles ne sont pas présentées, mais vous pouvez filtrer sur les recommandations faibles si vous souhaitez tooview les.)
 
-Pour afficher des informations détaillées sur les recommandations, cliquez sur le nom de la machine virtuelle. Un nouveau panneau s’ouvre pour cette machine virtuelle. Il contient une liste des mises à jour, comme illustré dans la capture d’écran suivante.
+Détails de la recommandation tooview hello, cliquez sur nom hello hello virtual machine. Un nouveau panneau pour que l’ordinateur virtuel s’ouvre avec liste hello des mises à jour comme indiqué dans hello suivant capture d’écran.
 
 ![Mise à jour système manquante pour une machine virtuelle spécifique](./media/security-center-monitoring/security-center-monitoring-fig6-ga.png)
 
 > [!NOTE]
-> Les recommandations de sécurité de ce panneau sont les mêmes que celles figurant dans le panneau **Recommandations**. Pour plus d’informations sur la résolution des recommandations, consultez l’article [Implémentation des recommandations de sécurité dans le Centre de sécurité Azure](security-center-recommendations.md). Cela s’applique non seulement aux machines virtuelles, mais aussi à toutes les ressources qui sont disponibles dans la mosaïque **Intégrité des ressources**.
+> Hello ici les recommandations de sécurité sont hello identiques à ceux de hello **recommandations** panneau. Consultez hello [mise en œuvre des recommandations de sécurité dans le centre de sécurité Azure](security-center-recommendations.md) article pour plus d’informations sur les recommandations tooresolve. Cela s’applique non seulement pour les machines virtuelles, mais également pour toutes les ressources qui sont disponibles dans hello **l’intégrité des ressources** vignette.
 >
 >
 
 #### <a name="virtual-machines-section"></a>Section Machines virtuelles
-La section Machines virtuelles vous fournit un aperçu de toutes les machines virtuelles et des recommandations. Chaque colonne représente un ensemble de recommandations, comme illustré dans la capture d’écran suivante :
+section de machines virtuelles Hello vous donne une vue d’ensemble de tous les ordinateurs virtuels et des recommandations. Chaque colonne représente un ensemble de recommandations, comme indiqué dans hello suivant capture d’écran :
 
 ![Vue d’ensemble des machines virtuelles et des recommandations](./media/security-center-monitoring/security-center-monitoring-fig1-new005-2017.png)
 
-L’icône qui s’affiche sous chaque recommandation vous aide à identifier rapidement les machines virtuelles qui requièrent votre attention, ainsi que le type de recommandation.
+icône Hello qui s’affiche sous chaque permet de recommandation tooquickly vous identifier les machines virtuelles hello qui nécessitent une attention et hello du type de recommandation.
 
-Dans l’exemple précédent, une machine virtuelle a une recommandation critique concernant la protection de point de terminaison. Pour obtenir plus d’informations sur la machine virtuelle, cliquez dessus. Le nouveau panneau qui s’ouvre représente cette machine virtuelle, comme illustré dans la capture d’écran suivante.
+Dans l’exemple précédent de hello, un ordinateur virtuel possède une recommandation critiques en matière de protection de point de terminaison. tooget plus d’informations sur l’ordinateur virtuel de hello, cliquez dessus. Ouvre un nouveau panneau représente cet ordinateur virtuel comme indiqué dans hello suivant capture d’écran.
 
 ![Informations détaillées sur la sécurité de la machine virtuelle](./media/security-center-monitoring/security-center-monitoring-fig8-ga.png)
 
-Ce panneau comporte des informations détaillées sur la sécurité de la machine virtuelle. L’action recommandée et le niveau de gravité de chaque recommandation sont affichés en bas du panneau.
+Ce panneau comporte les détails de sécurité hello pour la machine virtuelle de hello. Au bas de hello de ce panneau, vous pouvez voir hello recommandé d’action et gravité hello de chaque problème.
 
 #### <a name="cloud-services-section"></a>Section Services cloud
-Pour les services cloud, une recommandation est créée lorsque la version du système d’exploitation est obsolète, comme illustré dans la capture d’écran suivante :
+Services de cloud computing, une recommandation est créée lors de la version du système d’exploitation hello est périmée comme indiqué dans hello suivant capture d’écran :
 
 ![État d’intégrité des services cloud](./media/security-center-monitoring/security-center-monitoring-fig1-new006-2017.png)
 
-Si vous avez une recommandation (qui n’est pas le cas dans l’exemple précédent), vous devez suivre les étapes de la recommandation pour mettre à jour la version du système d’exploitation. Lorsqu’une mise à jour est disponible, vous recevez une alerte (rouge ou orange en fonction de la gravité du problème). Lorsque vous cliquez sur cette alerte rouge dans les lignes WebRole1 (exécute Windows Server avec votre application web automatiquement déployée sur IIS) ou WorkerRole1 (exécute Windows Server avec votre application web automatiquement déployée sur IIS), un nouveau panneau s’ouvre et affiche des informations détaillées sur cette recommandation, comme illustré dans la capture d’écran suivante :
+Dans un scénario où vous possédez recommandation (qui n’est pas les cas de hello pour hello l’exemple précédent), vous devez toofollow des étapes de hello dans la version de système d’exploitation hello recommandation tooupdate hello. Lorsqu’une mise à jour est disponible, vous aurez une alerte (rouge ou orange - dépend de gravité hello du problème de hello). Lorsque vous cliquez sur cette alerte dans les lignes hello WebRole1 (exécute Windows Server avec votre tooIIS d’application déployée automatiquement web) ou WorkerRole1 (exécute Windows Server avec votre tooIIS d’application déployée automatiquement web), un nouveau panneau s’ouvre avec plus de détails recommandation comme indiqué dans hello suivant capture d’écran :
 
 ![Détails du service cloud](./media/security-center-monitoring/security-center-monitoring-fig8-new3.png)
 
-Pour voir une explication plus normative concernant cette recommandation, cliquez sur **Mettre à jour la version du système d’exploitation** sous la colonne **DESCRIPTION**. Le panneau **Mettre à jour la version du système d’exploitation (aperçu)** s’ouvre et affiche des informations détaillées.
+toosee obtenir une explication plus normative sur cette recommandation, cliquez sur **version de mise à jour du système d’exploitation** sous hello **DESCRIPTION** colonne. Hello **version de système d’exploitation de la mise à jour (version préliminaire)** panneau s’ouvre avec plus de détails.
 
 ![Recommandations de services cloud](./media/security-center-monitoring/security-center-monitoring-fig8-new4.png)  
 
 ### <a name="monitor-virtual-networks"></a>Surveillance des réseaux virtuels
-Lorsque vous cliquez sur la mosaïque **Mise en réseau**, le panneau **Mise en réseau** s’ouvre et affiche des informations détaillées, comme illustré dans la capture d’écran suivante :
+Lorsque vous cliquez sur **réseau** vignette, hello **réseau** panneau s’ouvre avec plus de détails comme dans hello suivant capture d’écran :
 
 ![Panneau Mise en réseau](./media/security-center-monitoring/security-center-monitoring-fig9-new3.png)
 
 #### <a name="networking-recommendations"></a>Recommandations pour la mise en réseau
-En haut du panneau se trouve un récapitulatif des problèmes et au bas du panneau, la liste des réseaux surveillés. Ces informations sont similaires à celles qui figurent dans les informations sur l’intégrité des ressources.
+Comme hello les informations de contrôle d’intégrité de ressources de l’ordinateur virtuel, ce panneau fournit une liste récapitulative des problèmes à haut hello du Panneau de hello et une liste des réseaux analysés sous hello.
 
-La section de répartition des états du réseau répertorie les problèmes de sécurité potentiels et propose des [recommandations](security-center-network-recommendations.md)pour leur résolution. Voici des exemples de problèmes potentiels :
+Hello mise en réseau de la section de détail d’état répertorie les problèmes potentiels de sécurité et offre [recommandations](security-center-network-recommendations.md). Voici des exemples de problèmes potentiels :
 
 * Absence d’installation d’un pare-feu de nouvelle génération
 * Non-activation des groupes de sécurité réseau
@@ -132,27 +132,27 @@ La section de répartition des états du réseau répertorie les problèmes de s
 * Restriction de l’accès externe via le point de terminaison externe public
 * Intégrité des points de terminaison exposés à Internet
 
-Lorsque vous cliquez sur une recommandation, un nouveau panneau s’ouvre avec plus de détails sur la recommandation comme indiqué dans l’exemple suivant.
+Lorsque vous cliquez sur une recommandation, un nouveau panneau s’ouvre avec plus de détails sur la recommandation de hello comme indiqué dans hello l’exemple suivant.
 
-![Détails d’une recommandation dans le panneau Mise en réseau](./media/security-center-monitoring/security-center-monitoring-fig9-ga.png)
+![Détails d’une recommandation dans le panneau de mise en réseau hello](./media/security-center-monitoring/security-center-monitoring-fig9-ga.png)
 
-Dans cet exemple, le panneau **Configurer les groupes de sécurité réseau manquants pour les sous-réseaux** contient une liste de sous-réseaux et de machines virtuelles sur lesquels la protection des groupes de sécurité réseau fait défaut. Si vous cliquez sur le sous-réseau auquel vous souhaitez appliquer le groupe de sécurité réseau, un autre panneau s’ouvre.
+Dans cet exemple, hello **configurer manquant groupes de sécurité réseau pour les sous-réseaux** panneau a une liste de sous-réseaux et de protection du groupe de sécurité du réseau de machines virtuelles qui sont manquants. Si vous cliquez sur toowhich de sous-réseau hello souhaité d’un groupe de sécurité réseau tooapply hello, un autre panneau s’ouvre.
 
-Dans le panneau **Choisir un groupe de sécurité réseau**, vous pouvez sélectionner le groupe de sécurité réseau le mieux adapté au sous-réseau, ou bien vous pouvez créer un groupe de sécurité réseau.
+Bonjour **choisir un groupe de sécurité réseau** panneau, vous pouvez sélectionner le groupe de sécurité de réseau plus approprié hello pour le sous-réseau de hello, ou vous pouvez créer un nouveau groupe de sécurité réseau.
 
 #### <a name="internet-facing-endpoints-section"></a>Section des points de terminaison accessibles sur Internet
-La section **Points de terminaison accessibles sur Internet** présente les machines virtuelles qui sont actuellement configurées avec un point de terminaison accessible sur Internet, ainsi que leur état actuel.
+Bonjour **Internet faisant face à des points de terminaison** section, vous pouvez voir des machines virtuelles hello actuellement configurés via une connexion Internet d’accès au point de terminaison et son état actuel.
 
 ![Les machines virtuelles configurées avec un point de terminaison accessible sur Internet et son état](./media/security-center-monitoring/security-center-monitoring-fig10-ga.png)
 
-Ce tableau indique le nom du point de terminaison qui représente la machine virtuelle, l’adresse IP Internet et l’état de gravité actuel du groupe de sécurité réseau et du pare-feu nouvelle génération. Le tableau est trié par niveau de gravité :
+Cette table a le nom de point de terminaison hello représentant hello virtual machine, hello exposés à l’adresse IP, Internet et hello actuels de gravité du groupe de sécurité réseau hello et hello Conviction. tableau de Hello est trié par niveau de gravité :
 
 * Rouge (en haut) : priorité élevée ; doivent être traités immédiatement
 * Orange : priorité moyenne ; doivent être traités dès que possible
 * Vert (le dernier) : état d’intégrité
 
 #### <a name="networking-topology-section"></a>Section de topologie de mise en réseau
-La section **Topologie de mise en réseau** contient une vue hiérarchique des ressources, comme illustré dans la capture d’écran suivante :
+Hello **topologie de réseau** section comporte une vue hiérarchique des ressources de hello comme illustré dans hello suivant capture d’écran :
 
 ![Vue hiérarchique des ressources dans la section Topologie de mise en réseau](./media/security-center-monitoring/security-center-monitoring-fig121-new4.png)
 
@@ -162,55 +162,55 @@ Ce tableau est trié (machines virtuelles et sous-réseaux) par niveau de gravit
 * Orange : priorité moyenne ; doivent être traités dès que possible
 * Vert (le dernier) : état d’intégrité
 
-Dans cette topologie, le premier niveau se décompose comme suit : [réseaux virtuels](../virtual-network/virtual-networks-overview.md), [passerelles de réseau virtuel](/vpn-gateway/vpn-gateway-site-to-site-create.md) et [réseaux virtuels (classiques)](/virtual-network/virtual-networks-create-vnet-classic-pportal.md). Le deuxième niveau comprend des sous-réseaux et le troisième niveau regroupe les machines virtuelles appartenant à ces sous-réseaux. La colonne de droite présente l’état actuel du groupe de sécurité réseau pour ces ressources, comme illustré dans l’exemple suivant :
+Dans cette vue de la topologie, le premier niveau de hello a [réseaux virtuels](../virtual-network/virtual-networks-overview.md), [passerelles de réseau virtuel](/vpn-gateway/vpn-gateway-site-to-site-create.md), et [des réseaux virtuels (classiques)](/virtual-network/virtual-networks-create-vnet-classic-pportal.md). au niveau du deuxième Hello a des sous-réseaux, et au niveau du troisième hello a hello virtuels appartenant aux sous-réseaux de toothose. colonne de droite Hello a état actuel de hello du groupe de sécurité réseau hello pour ces ressources, comme illustré dans hello l’exemple suivant :
 
-![État du groupe de sécurité réseau dans la section Topologie de mise en réseau](./media/security-center-monitoring/security-center-monitoring-fig12-ga.png)
+![État du groupe de sécurité réseau hello dans la section topologie de mise en réseau](./media/security-center-monitoring/security-center-monitoring-fig12-ga.png)
 
-La partie inférieure de ce panneau regroupe les recommandations pour cette machine virtuelle, similaires celles décrites ci-dessus. Vous pouvez cliquer sur une recommandation pour en savoir plus, ou appliquer la configuration ou le contrôle de sécurité nécessaire.
+recommandations hello pour cet ordinateur virtuel, qui est similaire a Hello partie inférieure de ce panneau toowhat est décrite précédemment. Vous pouvez cliquez sur une recommandation toolearn plus ou appliquer hello nécessité pour contrôler la sécurité ou configuration.
 
 ### <a name="monitor-storage--data"></a>Analyse de Stockage et données
 
-Lorsque vous cliquez sur **Stockage et données** dans la section **Prévention**, le panneau **Ressources de données** s’ouvre avec des recommandations pour SQL et le stockage. Il contient également des [recommandations](security-center-sql-service-recommendations.md) pour l’état général de la base de données. Pour plus d’informations sur le chiffrement du stockage, consultez [Enable encryption for Azure storage account in Azure Security Center (Activer le chiffrement pour le compte de stockage Azure dans Azure Security Center)](security-center-enable-encryption-for-storage-account.md).
+Lorsque vous cliquez sur **stockage & données** Bonjour **prévention** section hello **ressources de données** panneau s’ouvre avec les recommandations pour le stockage et SQL. Il a également [recommandations](security-center-sql-service-recommendations.md) hello général États d’intégrité de base de données hello. Pour plus d’informations sur le chiffrement du stockage, consultez [Enable encryption for Azure storage account in Azure Security Center (Activer le chiffrement pour le compte de stockage Azure dans Azure Security Center)](security-center-enable-encryption-for-storage-account.md).
 
 ![Ressources de données](./media/security-center-monitoring/security-center-monitoring-fig13-newUI-2017.png)
 
-Sous **Recommandations SQL**, vous pouvez cliquer sur une recommandation et obtenir des informations sur les actions permettant de résoudre un problème. L’exemple suivant montre le détail de la recommandation **Database Auditing & Threat detection on SQL databases (Audit de base de données et détection des menaces sur les bases de données SQL)**.
+Sous **recommandations SQL**, vous pouvez cliquer sur n’importe quel recommandation et obtenir plus d’informations sur l’autre action tooresolve un problème. Hello suivant montre l’expansion de hello hello **détection de menace et de l’audit de base de données sur les bases de données SQL** recommandation.
 
 ![Détails relatifs à une recommandation SQL](./media/security-center-monitoring/security-center-monitoring-fig14-ga-new.png)
 
-Le panneau **Enable Auditing & Threat detection on SQL databases (Activer l’audit et la détection des menaces sur les bases de données SQL)** fournit les informations suivantes :
+Hello **activer l’audit et menace pour la détection sur les bases de données SQL** panneau a hello informations suivantes :
 
 * Une liste des bases de données SQL.
-* Le serveur sur lequel elles se trouvent.
-* Des informations indiquant si ce paramètre a été hérité du serveur ou s’il est unique dans cette base de données.
-* L’état actuel du problème.
-* Le niveau de gravité du problème.
+* serveur Hello sur lequel ils se trouvent
+* Plus d’informations sur si ce paramètre a été hérité hello serveur ou si elle est unique dans cette base de données
+* état actuel de Hello
+* gravité Hello du problème de hello
 
-Lorsque vous cliquez sur la base de données pour suivre cette recommandation, le panneau **Audit et détection des menaces** s’ouvre, comme illustré dans la capture d’écran suivante.
+Lorsque vous cliquez sur tooaddress de base de données hello cette recommandation, hello **détection d’audit et de menaces** panneau s’ouvre, comme indiqué dans hello suivant l’écran.
 
 ![Panneau Audit et détection des menaces](./media/security-center-monitoring/security-center-monitoring-fig15-ga.png)
 
-Pour activer l’audit, sélectionnez **ACTIVÉ** sous **Audit**.
+tooenable l’audit, sélectionnez **ON** sous hello **audit** option.
 
 ### <a name="monitor-applications"></a>Surveillance des applications
 
-Si votre charge de travail Azure comprend des applications situées sur des [machines virtuelles (créées via Azure Resource Manager)](../azure-resource-manager/resource-manager-deployment-model.md) comportant des ports web exposés (ports TCP 80 et 443), Azure Security Center peut les surveiller pour identifier les problèmes de sécurité potentiels et recommander des étapes de résolution. Lorsque vous cliquez sur la mosaïque **Applications**, le panneau **Applications** s’ouvre et affiche des recommandations dans la section **Recommandations relatives aux applications**. Il montre également la répartition des applications par hôte/IP virtuelle, comme illustré dans la capture d’écran suivante.
+Si votre charge de travail Azure a des applications situées dans [machines virtuelles (créées via Azure Resource Manager)](../azure-resource-manager/resource-manager-deployment-model.md) ports web exposé (ports TCP 80 et 443), le centre de sécurité permet de surveiller les problèmes potentiels de sécurité tooidentify et recommandant des étapes de mise à jour. Lorsque vous cliquez sur hello **Applications** vignette, hello **Applications** panneau s’ouvre avec une série de recommandations de hello **recommandations** section. Il montre également la décomposition d’application hello par adresse IP virtuelle/hôte comme indiqué dans hello suivant capture d’écran.
 
 ![État de sécurité des applications](./media/security-center-monitoring/security-center-monitoring-fig16-ga.png)
 
-Comme pour les recommandations précédentes, vous pouvez cliquer sur l’une d’entre elles pour afficher des informations détaillées sur le problème et la procédure à suivre pour le résoudre. L’exemple illustré ci-dessus représente une application ayant été identifiée comme une application web non sécurisée. Quand vous sélectionnez une application considérée comme non sécurisée, un autre panneau s’ouvre avec l’option suivante disponible :
+Tout comme vous avec hello autres recommandations, vous pouvez cliquer sur une recommandation toosee plus de détails sur le problème de hello et comment tooremediate. exemple Hello hello figure suivante est une application qui a été identifiée comme une application web non sécurisée. Lorsque vous sélectionnez application hello qui a été considérée comme sûre, un autre panneau s’ouvre avec hello option disponible suivante :
 
 ![Détails relatifs à une application non sécurisée](./media/security-center-monitoring/security-center-monitoring-fig17-ga.png)
 
-Ce panneau répertorie toutes les recommandations pour cette application. Lorsque vous cliquez sur la recommandation **Ajouter un pare-feu d’applications web**, le panneau **Ajouter un pare-feu d’applications web** s’ouvre en affichant des options vous permettant d’installer le pare-feu d’applications web (WAF) d’un partenaire, comme illustré dans la capture d’écran suivante.
+Ce panneau répertorie toutes les recommandations pour cette application. Lorsque vous cliquez sur hello **ajouter un pare-feu d’applications web** recommendation, hello **ajouter un pare-feu d’applications Web** panneau s’ouvre, avec des options pour vous tooinstall, un pare-feu d’applications web (WAF) à partir d’un partenaire en tant que illustré hello suivant capture d’écran.
 
 ![Boîte de dialogue Ajouter un pare-feu d’applications web](./media/security-center-monitoring/security-center-monitoring-fig18-ga.png)
 
 ## <a name="see-also"></a>Voir aussi
-Dans cet article, vous avez vu comment utiliser les fonctionnalités de surveillance d’Azure Security Center. Pour plus d’informations sur le Centre de sécurité Azure, consultez les rubriques suivantes :
+Dans cet article, vous avez appris comment toouse ses fonctionnalités dans le centre de sécurité Azure de surveillance. toolearn en savoir plus sur Azure Security Center, voir hello :
 
-* [Définition des stratégies de sécurité dans Azure Security Center](security-center-policies.md) : découvrez comment configurer des paramètres de sécurité dans Azure Security Center.
-* [Gestion et résolution des alertes de sécurité dans Azure Security Center](security-center-managing-and-responding-alerts.md) : découvrez comment gérer et résoudre les alertes de sécurité.
-* [Surveillance des solutions partenaires avec Azure Security Center](security-center-partner-solutions.md) : découvrez comment surveiller l’état d’intégrité de vos solutions partenaires.
-* [FAQ Azure Security Center](security-center-faq.md) : forum aux questions concernant l’utilisation de ce service.
+* [Définition des stratégies de sécurité dans le centre de sécurité Azure](security-center-policies.md): Découvrez comment tooconfigure les paramètres de sécurité dans le centre de sécurité Azure.
+* [Toosecurity répond et de la gestion des alertes dans le centre de sécurité Azure](security-center-managing-and-responding-alerts.md): Découvrez comment les alertes toosecurity toomanage et y répondre.
+* [Surveillance des solutions de partenaire avec Azure Security Center](security-center-partner-solutions.md): Découvrez comment toomonitor hello état d’intégrité de vos solutions de partenaire.
+* [Forum aux questions sur Azure Security Center](security-center-faq.md): Forum aux questions sur l’utilisation hello service de recherche.
 * [Blog sur la sécurité Azure](http://blogs.msdn.com/b/azuresecurity/) : accédez à des billets de blog sur la sécurité et la conformité Azure.

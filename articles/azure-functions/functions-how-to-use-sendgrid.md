@@ -1,6 +1,6 @@
 ---
-title: "Guide d’utilisation de SendGrid dans Azure Functions | Microsoft Docs"
-description: "Cet article décrit l’utilisation de SendGrid dans Azure Functions"
+title: aaaHow toouse SendGrid dans les fonctions de Azure | Documents Microsoft
+description: "Montre comment toouse SendGrid dans les fonctions d’Azure"
 services: functions
 documentationcenter: na
 author: rachelappel
@@ -12,35 +12,35 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 01/31/2017
 ms.author: rachelap
-ms.openlocfilehash: 05c9f4e4a4351219da68af8b702c25f21d7d4d02
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a0ffdae04e5924c773d2d26427626fc1f570f7ba
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-sendgrid-in-azure-functions"></a>Guide d’utilisation de SendGrid dans Azure Functions
+# <a name="how-toouse-sendgrid-in-azure-functions"></a>Comment toouse SendGrid dans les fonctions d’Azure
 
 ## <a name="sendgrid-overview"></a>Présentation de SendGrid
 
-Azure Functions prend en charge les liaisons de SendGrid, afin de permettre à vos fonctions d’envoyer des messages électroniques avec quelques lignes de codes et un compte SendGrid.
+Prend en charge des fonctions Azure SendGrid sortie liaisons tooenable vos messages de messagerie fonctions toosend avec quelques lignes de code et un compte SendGrid.
 
-Pour utiliser l’API SendGrid dans une fonction d’Azure, vous devez avoir un [compte SendGrid](http://SendGrid.com). En outre, vous devez disposer d’une clé d’API SendGrid. Connectez-vous à votre compte SendGrid et cliquez sur **Paramètres** puis **Clé API** pour générer une clé API. Gardez cette clé sous la main, car vous l’utiliserez dans une étape à venir.
+toouse hello des API SendGrid dans une fonction d’Azure, vous devez avoir un [compte SendGrid](http://SendGrid.com). En outre, vous devez disposer d’une clé d’API SendGrid. Connectez-vous à tooyour compte SendGrid, puis cliquez sur **paramètres** puis **clé API** toogenerate une API clé. Gardez cette clé sous la main, car vous l’utiliserez dans une étape à venir.
 
-Vous êtes maintenant prêt à créer une application Azure Function.
+Vous êtes maintenant prêt toocreate une application de la fonction d’Azure.
 
 ## <a name="create-an-azure-function-app"></a>Création d’une application Azure Function 
 
-Les applications Azure Function sont des conteneurs pour une ou plusieurs fonctions Azure. Les fonctions Azure sont exactement cela : des fonctions. Chaque fonction Azure est liée à un déclencheur, qui est un événement qui lance la fonction.
-Chaque fonction peut contenir un nombre quelconque de liaisons d’entrée ou de sortie. Les liaisons sont des services que vous pouvez utiliser dans une fonction. SendGrid est une liaison de sortie que vous pouvez utiliser pour envoyer des messages électroniques. 
+Les applications Azure Function sont des conteneurs pour une ou plusieurs fonctions Azure. Les fonctions Azure sont exactement cela : des fonctions. Chaque fonction Azure est liée tooone déclencheur, qui est un événement qui provoque hello fonction toorun.
+Chaque fonction peut contenir un nombre quelconque de liaisons d’entrée ou de sortie. Les liaisons sont des services que vous pouvez utiliser dans une fonction. SendGrid est une sortie liaison vous pouvez utiliser toosend e-mail. 
 
-1. Connectez-vous au portail Azure et [créez une Azure Function App](https://docs.microsoft.com/azure/azure-functions/functions-create-first-azure-function) ou ouvrez-en une existante. 
-2. Créez une fonction Azure. Pour faire simple, choisissez un déclencheur manuel et C#. 
+1. Connectez-vous à toohello portail Azure et [créer une application de la fonction Azure](https://docs.microsoft.com/azure/azure-functions/functions-create-first-azure-function) ou ouvrir une application existante de la fonction. 
+2. Créez une fonction Azure. tookeep il simple, choisissez un déclencheur manuel et c#. 
 
  ![Création d’une fonction Azure](./media/functions-how-to-use-sendgrid/functions-new-function-manual-trigger-page.png)
 
 ## <a name="configure-sendgrid-for-use-in-an-azure-function-app"></a>Configuration de SendGrid pour une utilisation dans une application Azure Function
 
-Vous devez stocker votre clé d’API SendGrid comme paramètre d’application pour l’utiliser dans une fonction. Le champ ApiKey n’est pas votre clé d’API SendGrid réelle, mais un paramètre d’application que vous définissez et qui représente votre clé d’API réelle. Votre clé est stockée de cette façon à des fins de sécurité, car elle est séparée de tout code et tous fichiers qui peuvent être consultés avec le contrôle de code source.
+Vous devez stocker votre clé d’API SendGrid comme un toouse de paramètre d’application dans une fonction. champ de ApiKey Hello n’est pas votre clé API SendGrid réel, mais une application de paramètre, vous définissez et qui représente votre clé API réel. Votre clé est stockée de cette façon à des fins de sécurité, car elle est séparée de tout code et tous fichiers qui peuvent être consultés avec le contrôle de code source.
 
 - Créez une clé **AppSettings** dans les **Paramètres de l’application** de votre application de fonction.
 
@@ -48,15 +48,15 @@ Vous devez stocker votre clé d’API SendGrid comme paramètre d’application 
 
 ## <a name="configure-sendgrid-output-bindings"></a>Configuration des liaisons de sortie SendGrid
 
-SendGrid est disponible en tant que liaison de sortie de fonction Azure. Pour créer une liaison de sortie SendGrid :
+SendGrid est disponible en tant que liaison de sortie de fonction Azure. liaison de sortie toocreate un SendGrid :
 
-1. Accédez à l’onglet **Intégrer** de la fonction dans le portail Azure.
-2. Cliquez sur **Nouvelle sortie** pour créer une liaison de sortie SendGrid.
-3. Renseignez les propriétés **Clé API** et **Nom du paramètre de message**. Si vous le souhaitez, vous pouvez entrer d’autres propriétés maintenant, ou les coder à la place. Ces paramètres peuvent être utilisés comme valeurs par défaut.
+1. Accédez toohello **intégrer** onglet de la fonction hello Bonjour portail Azure.
+2. Cliquez sur **nouvelle sortie** toocreate un SendGrid liaison de sortie.
+3. Renseignez hello **clé API** et **nom de paramètre de Message** propriétés. Si vous le souhaitez, vous pouvez entrer hello maintenant les autres propriétés, ou à la place de leur code. Ces paramètres peuvent être utilisés comme valeurs par défaut.
 
  ![Configuration des liaisons de sortie SendGrid](./media/functions-how-to-use-sendgrid/functions-configure-sendgrid-output-bindings.png)
 
-L’ajout d’une liaison à une fonction crée un fichier appelé **function.json** dans le dossier de votre fonction. Ce fichier contient les mêmes informations que celles que vous voyez dans l’onglet **Intégrer** de la fonction Azure, mais au format Json. Le réglage des champs **clé API**, **message**, et **de** crée les entrées suivantes dans le fichier **function.json** : 
+Ajout d’une fonction de tooa liaison crée un fichier appelé **function.json** dans le dossier de votre fonction. Ce fichier contient tous les hello les mêmes informations que vous voyez dans hello la fonction Azure **intégrer** onglet, mais dans Json de format. Hello du paramètre **ApiKey**, **message**, et **de** champs créent hello suivant entrées Bonjour **function.json** fichier : 
 
 ```json
 {
@@ -75,13 +75,13 @@ L’ajout d’une liaison à une fonction crée un fichier appelé **function.js
 
 Si vous préférez, vous pouvez modifier ce fichier vous-même directement.
 
-Maintenant que vous avez créé et configuré Function App et la fonction, vous pouvez écrire le code pour envoyer un message électronique.
+Maintenant que vous avez créé et configuré les hello application de la fonction et la fonction, vous pouvez écrire un message électronique toosend de code hello.
 
 ## <a name="write-code-that-creates-and-sends-email"></a>Écriture du code qui crée et envoie un message électronique
 
-L’API SendGrid contient toutes les commandes dont vous avez besoin pour créer et envoyer un message électronique.  
+Hello API SendGrid contient toutes les commandes de hello vous devez toocreate et envoyez un courrier électronique.  
 
-- Remplacez le code dans la fonction par le code suivant :
+- Remplacez le code hello fonction hello avec hello suivant de code :
 
 ```cs
 #r "SendGrid"
@@ -96,7 +96,7 @@ public static void Run(TraceWriter log, string input, out Mail message)
     };
 
     var personalization = new Personalization();
-    // change to email of recipient
+    // change tooemail of recipient
     personalization.AddTo(new Email("MoreEmailPlease@contoso.com"));   
 
     Content content = new Content
@@ -109,20 +109,20 @@ public static void Run(TraceWriter log, string input, out Mail message)
 }
 ```
 
-Notez que la première ligne contient la directive ```#r``` qui fait référence à l’assembly SendGrid. Après cela, vous pouvez utiliser une instruction ```using``` pour accéder plus facilement aux objets dans cet espace de noms. Dans le code, créez des instances des objets ```Mail```, ```Personalization``` et ```Content``` qui composent le message électronique à partir de l’API SendGrid. Lorsque vous renvoyez le message, SendGrid le livre. 
+Avis hello première ligne contient hello ```#r``` directive qui référence l’assembly SendGrid de hello. Après cela, vous pouvez utiliser un ```using``` instruction toomore accéder facilement aux objets hello dans cet espace de noms. Dans le code hello, créer des instances de ```Mail```, ```Personalization```, et ```Content``` objets hello API SendGrid à partir de rédiger un message électronique de hello. Lorsque vous renvoyez le message de type hello, SendGrid effectue sa remise. 
 
-La signature de la fonction contient également un paramètre de sortie supplémentaire de type ```Mail``` nommé ```message```. Les liaisons d’entrée et de sortie s’expriment elles-mêmes en tant que paramètres de fonction dans le code. 
+Hello signature de la fonction contient également un supplémentaire, le paramètre de type out ```Mail``` nommé ```message```. Les liaisons d’entrée et de sortie s’expriment elles-mêmes en tant que paramètres de fonction dans le code. 
 
-2. Testez votre code en cliquant sur **Test** et en entrant un message dans le champ **Corps de la requête**, puis en cliquant sur le bouton **Exécuter**.
+2. Testez votre code en cliquant sur **Test** et en entrant un message en hello **corps de la demande** champ, puis en cliquant sur hello **exécuter** bouton.
 
  ![Test de votre code](./media/functions-how-to-use-sendgrid/functions-develop-test-sendgrid.png)
 
-3. Consultez votre messagerie électronique pour vérifier que SendGrid a envoyé le message électronique. Il devrait être livré à l’adresse dans le code de l’étape 1 et contenir le message du **Corps de la requête**.
+3. Vérifiez tooverify par courrier électronique que SendGrid envoyées par courrier électronique hello. Il doit atteindre l’adresse toohello dans le code hello à l’étape 1 et contient le message de type hello de hello **corps de la demande**.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Cet article a montré comment utiliser le service SendGrid pour créer et envoyer du courrier électronique. Pour plus d’informations sur l’utilisation d’Azure Functions dans vos applications, consultez les rubriques suivantes : 
+Cet article a montré comment toouse hello SendGrid service toocreate et envoyer un courrier électronique. toolearn savoir plus sur l’utilisation de fonctions de Azure dans vos applications, consultez hello rubriques suivantes : 
 
-- [Meilleures pratiques pour Azure Functions](functions-best-practices.md) répertorie les meilleures pratiques à utiliser lors de la création de fonctions d’Azure.
+- [Meilleures pratiques pour les fonctions Azure](functions-best-practices.md) répertorie certains meilleures toouse de pratiques lors de la création de fonctions d’Azure.
 
 - [Référence du développeur Azure Functions](functions-reference.md) Référence du programmeur pour le codage de fonctions et la définition de déclencheurs et de liaisons.
 

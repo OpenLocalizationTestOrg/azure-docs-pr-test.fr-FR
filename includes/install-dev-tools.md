@@ -1,8 +1,8 @@
 
 > [!NOTE]
-> Pour terminer cette section, vous devez avoir installé Node.js et le Kit de développement logiciel (SDK) Azure pour Node.js sur votre plateforme.
+> toosuccessfully terminer cette section, vous devez disposer d’une installation active de Node.js et hello Azure SDK pour Node.js pour votre plateforme.
 > 
-> * Installez le kit de développement logiciel (SDK) Windows Azure pour Node.js : [Programme d’installation Windows](http://go.microsoft.com/fwlink/?LinkId=254279) | [Programme d’installation Mac](http://go.microsoft.com/fwlink/?LinkId=253471) | [Téléchargement pour Linux](http://go.microsoft.com/fwlink/?LinkId=253472)
-> * Si vous êtes sous Mac ou sous Linux, installez Node.js à partir de [http://nodejs.org](http://nodejs.org). Le programme d’installation Windows contient déjà Node.js.
+> * Installer hello Azure SDK pour Node.js : [Windows installer](http://go.microsoft.com/fwlink/?LinkId=254279) | [programme d’installation Mac](http://go.microsoft.com/fwlink/?LinkId=253471) | [téléchargement Linux](http://go.microsoft.com/fwlink/?LinkId=253472)
+> * Si vous utilisez Mac ou Linux, installer Node.js à partir de [http://nodejs.org](http://nodejs.org). programme d’installation de Windows hello inclut déjà Node.js.
 > 
 > 

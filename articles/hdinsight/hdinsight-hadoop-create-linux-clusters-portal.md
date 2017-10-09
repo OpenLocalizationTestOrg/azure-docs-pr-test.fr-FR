@@ -1,6 +1,6 @@
 ---
-title: "Créer des clusters Hadoop à l’aide d’un navigateur web - Azure HDInsight | Microsoft Docs"
-description: "Découvrez comment créer des clusters Hadoop, HBase, Storm ou Spark sur Linux pour HDInsight avec un navigateur web et le portail Azure en version préliminaire."
+title: "aaaCreate Hadoop clusters à l’aide d’un navigateur web - Azure HDInsight | Documents Microsoft"
+description: "Découvrez comment toocreate Hadoop, HBase, tempête ou Spark clusters sur Linux pour HDInsight à l’aide d’un navigateur web et hello portail Azure preview."
 services: hdinsight
 documentationcenter: 
 author: nitinme
@@ -16,136 +16,136 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/10/2017
 ms.author: nitinme
-ms.openlocfilehash: d002e362cda2f0ca991b2a13d41c01c13929cdba
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 63027e35e2d66dd76218aff3e0c085fc811736ec
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-linux-based-clusters-in-hdinsight-using-the-azure-portal"></a>Créer des clusters Linux dans HDInsight à l’aide du portail Azure
+# <a name="create-linux-based-clusters-in-hdinsight-using-hello-azure-portal"></a>Créer des clusters basés sur Linux dans HDInsight à l’aide de hello portail Azure
 [!INCLUDE [selector](../../includes/hdinsight-create-linux-cluster-selector.md)]
 
-Le portail Azure est un outil web qui permet de gérer les services et les ressources hébergés dans le cloud Microsoft Azure. Dans cet article, vous apprendrez à créer des clusters HDInsight Linux avec le portail.
+Hello portail Azure est un outil de gestion basée sur le web pour les services et ressources hébergées dans le cloud de Microsoft Azure hello. Dans cet article, vous allez apprendre comment toocreate HDInsight de basés sur Linux clusters à l’aide du portail de hello.
 
 ## <a name="prerequisites"></a>Composants requis
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
 * **Un abonnement Azure**. Consultez la page [Obtention d’un essai gratuit d’Azure](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/).
-* **Un navigateur Web moderne**. Le portail Azure utilise les langages HTML5 et Javascript. Il est possible qu’il ne fonctionne pas correctement sur les anciens navigateurs web.
+* **Un navigateur Web moderne**. Hello portail Azure utilise HTML5 et Javascript et peut ne pas fonctionne correctement dans les anciens navigateurs web.
 
 ## <a name="create-clusters"></a>Créer des clusters
-Le portail Azure expose la plupart des propriétés du cluster. Avec le modèle Azure Resource Manager, vous pouvez masquer de nombreux détails. Pour plus d’informations, consultez [Création de clusters Hadoop basés sur Linux dans HDInsight à l’aide de modèles Azure Resource Manager](hdinsight-hadoop-create-linux-clusters-arm-templates.md).
+Hello portail Azure expose la plupart des propriétés du cluster hello. Avec le modèle Azure Resource Manager, vous pouvez masquer de nombreux détails. Pour plus d’informations, consultez [Création de clusters Hadoop basés sur Linux dans HDInsight à l’aide de modèles Azure Resource Manager](hdinsight-hadoop-create-linux-clusters-arm-templates.md).
 
 [!INCLUDE [secure-transfer-enabled-storage-account](../../includes/hdinsight-secure-transfer.md)]
 
 
-1. Connexion au [portail Azure](https://portal.azure.com).
+1. Connectez-vous à toohello [portail Azure](https://portal.azure.com).
 2. Cliquez sur **+**, **Données + Analyse**, puis sur **HDInsight**.
    
-    ![Création d’un nouveau cluster dans le portail Azure](./media/hdinsight-hadoop-create-linux-cluster-portal/hdinsight-create-cluster.png "Création d’un nouveau cluster dans le portail Azure")
+    ![Création d’un nouveau cluster Bonjour Azure portal](./media/hdinsight-hadoop-create-linux-cluster-portal/hdinsight-create-cluster.png "création d’un nouveau cluster Bonjour portail Azure")
 
-3. Dans le panneau **HDInsight**, cliquez sur **Personnalisé (taille, paramètres, applications)**, cliquez sur **Paramètres de base**, puis entrez les informations suivantes.
+3. Bonjour **HDInsight** panneau, cliquez sur **personnalisé (taille, paramètres, applications)**, cliquez sur **notions de base**, puis entrez hello informations suivantes.
 
-    ![Création d’un nouveau cluster dans le portail Azure](./media/hdinsight-hadoop-create-linux-cluster-portal/hdinsight-create-cluster-basics.png "Création d’un nouveau cluster dans le portail Azure")
+    ![Création d’un nouveau cluster Bonjour Azure portal](./media/hdinsight-hadoop-create-linux-cluster-portal/hdinsight-create-cluster-basics.png "création d’un nouveau cluster Bonjour portail Azure")
 
     * Entrez le **nom du cluster**: ce nom doit être globalement unique.
 
-    * Cliquez sur **Abonnement** dans la liste déroulante pour sélectionner l’abonnement Azure qui sera utilisé pour le cluster.
+    * À partir de hello **abonnement** hello de liste déroulante, sélectionnez un abonnement Azure qui sera utilisé pour le cluster de hello.
 
     * Cliquez sur **Type de cluster**, puis choisissez :
    
-        * **Type de cluster** : si vous ne savez pas lequel choisir, sélectionnez **Hadoop**. Il s’agit du type de cluster le plus répandu.
+        * **Type de cluster**: Si vous ne savez pas quel toochoose, sélectionnez **Hadoop**. Il est le type de cluster les plus populaires hello.
      
             > [!IMPORTANT]
-            > Il existe différents types de clusters HDInsight, correspondant aux différentes charges de travail ou technologies pour lesquelles ils sont utilisés. Il n’existe aucune méthode prise en charge pour créer un cluster combinant plusieurs types, tels que Storm et HBase sur un seul cluster. 
+            > HDInsight clusters sont disponibles dans une variété de types, qui correspondent toohello la charge de travail ou la technologie hello cluster est réglée pour. Il n’a aucun toocreate méthode prise en charge un cluster qui combine plusieurs types, tels que Storm et HBase sur un seul cluster. 
             > 
             > 
         
         * **Système d’exploitation** : sélectionnez **Linux**.
         
-        * **Version**: utilisez la version par défaut si vous ne savez pas laquelle choisir. Pour plus d’informations, consultez [Versions de clusters HDInsight](hdinsight-component-versioning.md).
-        * **Niveau de cluster**: Azure HDInsight propose deux catégories d’offres de cloud Big Data : Niveau Standard et Niveau Premium. Pour plus d’informations, consultez [Niveaux de cluster](hdinsight-hadoop-provision-linux-clusters.md#cluster-tiers).
+        * **Version**: utiliser la version par défaut de hello si vous ne savez pas quel toochoose. Pour plus d’informations, consultez [Versions de clusters HDInsight](hdinsight-component-versioning.md).
+        * **Niveau de cluster**: Azure HDInsight fournit les offres de cloud de données volumineuses hello dans deux catégories : les niveaux Standard et Premium. Pour plus d’informations, consultez [Niveaux de cluster](hdinsight-hadoop-provision-linux-clusters.md#cluster-tiers).
 
-    * Pour **Nom d’utilisateur de connexion du cluster** et **Mot de passe de connexion du cluster**, saisissez le nom d’utilisateur et le mot de passe (respectivement) de l’utilisateur administrateur.
+    * Pour **nom d’utilisateur Cluster** et **mot de passe de connexion Cluster**, fournir le nom d’utilisateur hello et le mot de passe pour l’utilisateur admin hello.
 
-    * Entrez un **Nom d’utilisateur SSH** et, si vous souhaitez que le mot de passe SSH soit le même que le mot de passe administrateur que vous avez spécifié précédemment, cochez la case **Utiliser le même mot de passe que pour la connexion au cluster**. Sinon, fournissez un **MOT DE PASSE** ou une **CLÉ PUBLIQUE**, qui seront utilisés pour authentifier l’utilisateur SSH. L'utilisation d'une clé publique est l'approche recommandée. Cliquez sur **Sélectionner** en bas de l’écran pour enregistrer la configuration des informations d’identification.
+    * Entrez un **nom d’utilisateur SSH** et si vous souhaitez que le mot de passe SSH de hello toohave identique hello mot de passe administrateur vous avez spécifié précédemment, sélectionnez hello **utiliser le même mot de passe en tant que compte de connexion de cluster** case à cocher. Dans le cas contraire, fournissent une **mot de passe** ou **clé publique**, qui sera un utilisateur SSH hello tooauthenticate utilisé. À l’aide d’une clé publique est hello approche recommandée. Cliquez sur **sélectionnez** lors de la configuration de hello bas toosave hello informations d’identification.
    
         Pour en savoir plus, voir [Utilisation de SSH avec HDInsight (Hadoop) depuis Bash (l’interpréteur de commande) sur Windows 10, Linux, Unix ou OS X](hdinsight-hadoop-linux-use-ssh-unix.md).
 
-    * Pour **Groupe de ressources**, indiquez si vous souhaitez créer un groupe de ressources Azure ou sélectionnez un groupe existant.
+    * Pour **groupe de ressources**, spécifiez si vous voulez toocreate un groupe de ressources ou utilisez un existant.
 
-    * Spécifiez un **emplacement** de centre de données dans lequel le cluster sera créé.
+    * Spécifiez un centre de données **emplacement** où hello cluster sera créé.
 
     * Cliquez sur **Suivant**.
 
-4. Dans le panneau **Stockage**, spécifiez si vous souhaitez utiliser Azure Storage (WASB) ou Data Lake Store comme stockage par défaut. Consultez le tableau ci-dessous pour plus d’informations.
+4. Sur hello **stockage** panneau, spécifier si vous souhaitez Data Lake Store ou stockage Azure (WASB) en tant que votre espace de stockage par défaut. Examinez la table hello ci-dessous pour plus d’informations.
 
-    ![Création d’un nouveau cluster dans le portail Azure](./media/hdinsight-hadoop-create-linux-cluster-portal/hdinsight-create-cluster-storage.png "Création d’un nouveau cluster dans le portail Azure")
+    ![Création d’un nouveau cluster Bonjour Azure portal](./media/hdinsight-hadoop-create-linux-cluster-portal/hdinsight-create-cluster-storage.png "création d’un nouveau cluster Bonjour portail Azure")
 
     | Storage                                      | Description |
     |----------------------------------------------|-------------|
-    | **Objets blob de stockage Azure comme stockage par défaut**   | <ul><li>Pour **Type de stockage principal**, sélectionnez **Stockage Azure**. Ensuite, pour **Méthode de sélection**, vous pouvez choisir **Mes abonnements** si vous souhaitez spécifier un compte de stockage qui fait partie de votre abonnement Azure, puis sélectionner le compte de stockage. Sinon, cliquez sur **Clé d’accès** et fournissez les informations du compte de stockage que vous souhaitez choisir en dehors de votre abonnement Azure.</li><li>Pour **Conteneur par défaut**, vous pouvez choisir d’utiliser le nom de conteneur par défaut suggéré par le portail ou spécifier le vôtre.</li><li>Si vous utilisez WASB comme stockage par défaut, vous pouvez éventuellement cliquer sur **Comptes de stockage supplémentaires** pour spécifier les comptes de stockage supplémentaires à associer au cluster. Dans le panneau **Clés de stockage Azure**, cliquez sur **Ajouter une clé de stockage**, puis fournissez un compte de stockage à partir de vos abonnements Azure ou d’autres abonnements (en fournissant la clé d’accès du compte de stockage).</li><li>Si vous utilisez WASB comme stockage par défaut, vous pouvez éventuellement cliquer sur **Accès Data Lake Store** pour spécifier Azure Data Lake Store comme stockage supplémentaire. Pour plus d’informations, consultez [Créer un cluster HDInsight avec Data Lake Store à l’aide du portail Azure](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md).</li></ul> |
-    | **Azure Data Lake Store en tant que stockage par défaut** | Pour **Type de stockage principal**, sélectionnez **Data Lake Store**, puis consultez l’article [Créer un cluster HDInsight avec Data Lake Store à l'aide du portail Azure](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md) pour plus d’instructions. |
-    | **Metastores externes**                      | Spécifiez éventuellement une base de données SQL pour stocker les métadonnées Hive et Oozie associées au cluster. Pour **Sélectionner une base de données SQL pour Hive**, sélectionnez une base de données SQL, puis indiquez le nom d’utilisateur/mot de passe pour la base de données. Répétez ces étapes pour les métadonnées d’Oozie.<br><br>Des points à prendre en compte lors de l’utilisation d’une base de données Azure SQL pour les metastores. <ul><li>La base de données SQL Azure utilisée pour le metastore doit autoriser la connectivité aux autres services Azure, y compris Azure HDInsight. Sur le côté droit du tableau de bord de la base de données Azure SQL, cliquez sur le nom du serveur. Il s'agit du serveur sur lequel l'instance de base de données SQL est exécutée. Une fois sur l’écran du serveur, cliquez sur **Configurer**, puis pour **Services Azure**, cliquez sur **Oui**, puis sur **Enregistrer**.</li><li>Lors de la création d’un metastore, n’utilisez pas de nom de base de données contenant des traits d’union ou des tirets, car cela risque d’entraîner l’échec du processus de création du cluster.</li></ul>                                                                                                                                                                       |
+    | **Objets blob de stockage Azure comme stockage par défaut**   | <ul><li>Pour **Type de stockage principal**, sélectionnez **Stockage Azure**. Après cela, pour **méthode de sélection**, vous pouvez choisir **Mes abonnements** si vous souhaitez toospecify un compte de stockage qui fait partie de votre abonnement Azure et compte de stockage puis hello. Sinon, cliquez sur **clé d’accès** et fournissent des informations de hello hello compte de stockage que vous souhaitez toochoose à partir d’à l’extérieur de votre abonnement Azure.</li><li>Pour **conteneur par défaut**, vous pouvez choisir toogo avec hello nom de conteneur par défaut suggérée par le portail de hello ou spécifier votre propre.</li><li>Si vous utilisez WASB comme stockage par défaut, vous pouvez (facultatif) cliquez sur **des comptes de stockage supplémentaires** tooassociate avec cluster de hello les comptes de stockage supplémentaires de toospecify. Bonjour **clés de stockage Azure** panneau, cliquez sur **ajouter une clé de stockage**, et puis vous pouvez fournir un compte de stockage à partir de vos abonnements Azure ou d’autres abonnements (en fournissant le compte de stockage hello clé d’accès).</li><li>Si vous utilisez WASB comme stockage par défaut, vous pouvez (facultatif) cliquez sur **l’accès Data Lake Store** toospecify Azure Data Lake Store en tant qu’espace de stockage supplémentaire. Pour plus d’informations, consultez [Créer un cluster HDInsight avec Data Lake Store à l’aide du portail Azure](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md).</li></ul> |
+    | **Azure Data Lake Store en tant que stockage par défaut** | Pour **type de stockage principal**, sélectionnez **Data Lake Store** puis consultez l’article de toohello [créer un cluster HDInsight à l’aide du portail Azure Data Lake Store](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md) pour obtenir des instructions. |
+    | **Metastores externes**                      | Si vous le souhaitez, vous pouvez spécifier une base de données toosave Hive et Oozie métadonnées SQL associée hello cluster. Pour **sélectionner une base de données SQL pour la ruche** sélectionner une base de données SQL, puis indiquez hello nom d’utilisateur/mot de passe pour la base de données hello. Répétez ces étapes pour les métadonnées d’Oozie.<br><br>Des points à prendre en compte lors de l’utilisation d’une base de données Azure SQL pour les metastores. <ul><li>base de données SQL Azure Hello utilisé pour le magasin de métadonnées hello doit autoriser tooother de connectivité des services Azure, y compris Azure HDInsight. Tableau de bord de base de données SQL Azure hello, sur le côté droit de hello, cliquez sur le nom du serveur hello. Il s’agit de serveur hello sur quel hello SQL instance de base de données est en cours d’exécution. Une fois que vous êtes dans la vue du serveur hello, cliquez sur **configurer**, puis **Services Azure**, cliquez sur **Oui**, puis cliquez sur **enregistrer**.</li><li>Lors de la création d’un magasin de métadonnées, n’utilisez pas un nom de base de données qui contient des tirets ou des traits d’union, cela peut entraîner des toofail de processus de création de cluster hello.</li></ul>                                                                                                                                                                       |
 
     Cliquez sur **Suivant**. 
 
     > [!WARNING]
-    > L’utilisation d’un compte de stockage supplémentaire dans un autre emplacement que le cluster HDInsight n’est pas prise en charge.
+    > À l’aide d’un compte de stockage supplémentaire dans un emplacement autre que le cluster HDInsight de hello n’est pas pris en charge.
 
-5. Cliquez éventuellement sur **Applications** pour installer les applications qui fonctionnent avec les clusters HDInsight. Ces applications peuvent être développées par Microsoft, par des éditeurs de logiciels indépendants (ISV) ou par vous-même. Pour plus d’informations, consultez [Installer des applications HDInsight](hdinsight-apps-install-applications.md#install-applications-during-cluster-creation).
+5. Si vous le souhaitez, cliquez sur **Applications** tooinstall les applications qui fonctionnent avec des clusters HDInsight. Ces applications peuvent être développées par Microsoft, par des éditeurs de logiciels indépendants (ISV) ou par vous-même. Pour plus d’informations, consultez [Installer des applications HDInsight](hdinsight-apps-install-applications.md#install-applications-during-cluster-creation).
 
 
-6. Cliquez sur **Taille de cluster** pour afficher des informations sur les nœuds qui seront créés pour ce cluster. Définissez le nombre de nœuds worker dont vous avez besoin pour le cluster. Le coût estimé du cluster s'affiche dans le panneau.
+6. Cliquez sur **taille de Cluster** toodisplay plus d’informations sur les nœuds hello qui sera créé pour ce cluster. Définir le nombre hello de nœuds de travail dont vous avez besoin pour le cluster de hello. Hello estimation de coût de cluster de hello s’affichera dans le panneau de hello.
    
     ![Panneau des niveaux de tarification du nœud](./media/hdinsight-hadoop-create-linux-cluster-portal/hdinsight-create-cluster-nodes.png "Spécifier le nombre de nœuds de cluster")
    
    > [!IMPORTANT]
-   > Si vous envisagez d’utiliser plus de 32 nœuds de travail lors de la création du cluster ou en faisant évoluer le cluster après sa création, vous devez sélectionner une taille de nœud principal avec au moins 8 cœurs et 14 Go de RAM.
+   > Si vous prévoyez plus de 32 nœuds de travail, à la création du cluster ou par mise à l’échelle les cluster hello après sa création, vous devez sélectionner une taille de nœud principal avec au moins 8 cœurs et 14 Go de ram.
    > 
    > Pour plus d’informations sur les tailles de nœud et les coûts associés, consultez [Tarification HDInsight](https://azure.microsoft.com/pricing/details/hdinsight/).
    > 
    > 
    
-   Cliquez sur **Suivant** pour enregistrer la configuration de tarification du nœud.
+   Cliquez sur **suivant** nœud de hello toosave configuration de la tarification.
 
-7. Cliquez sur **Paramètres avancés** pour configurer d’autres paramètres facultatifs, comme les **Actions de script** pour personnaliser un cluster et installer des composants personnalisés ou joindre un **Réseau virtuel**. Consultez le tableau ci-dessous pour plus d’informations.
+7. Cliquez sur **paramètres avancés** tooconfigure autres paramètres facultatifs, telles que l’utilisation **Actions de Script** toocustomize un tooinstall cluster des composants personnalisés ou joindre un **deréseauvirtuel**. Examinez la table hello ci-dessous pour plus d’informations.
 
     ![Panneau des niveaux de tarification du nœud](./media/hdinsight-hadoop-create-linux-cluster-portal/hdinsight-create-cluster-advanced.png "Spécifier le nombre de nœuds de cluster")
 
     | Option | Description |
     |--------|-------------|
-    | **Actions de script** | Utilisez cette option si vous voulez utiliser un script personnalisé pour personnaliser un cluster au moment de sa création. Pour plus d’informations sur les actions de script, consultez l’article [Personnaliser des clusters HDInsight à l’aide d’une d’action de script](hdinsight-hadoop-customize-cluster-linux.md). |
-    | **Réseau virtuel** | Sélectionnez un réseau virtuel Azure et le sous-réseau si vous souhaitez placer le cluster dans un réseau virtuel. Pour plus d’informations sur l’utilisation de HDInsight avec un réseau virtuel, notamment la configuration spécifique requise pour le réseau virtuel, consultez [Étendre les capacités de HDInsight en utilisant un réseau virtuel Azure](hdinsight-extend-hadoop-virtual-network.md). |
+    | **Actions de script** | Utilisez cette option si vous voulez toouse un script personnalisé de toocustomize un cluster, lors de la création de cluster de hello. Pour plus d’informations sur les actions de script, consultez l’article [Personnaliser des clusters HDInsight à l’aide d’une d’action de script](hdinsight-hadoop-customize-cluster-linux.md). |
+    | **Réseau virtuel** | Sélectionnez un sous-réseau hello et de réseau virtuel Azure si vous souhaitez que le cluster de hello tooplace dans un réseau virtuel. Pour plus d’informations sur l’utilisation de HDInsight avec un réseau virtuel, y compris la configuration spécifique requise pour hello réseau virtuel, consultez [HDInsight d’étendre les fonctionnalités à l’aide d’un réseau virtuel Azure](hdinsight-extend-hadoop-virtual-network.md). |
 
     Cliquez sur **Suivant**.
 
-8. Dans le panneau **Résumé**, vérifiez les informations que vous avez saisies précédemment, puis cliquez sur **Créer**.
+8. Sur hello **Résumé** panneau, vérifiez les informations de hello que vous avez entrées précédemment, puis **créer**.
 
     ![Panneau des niveaux de tarification du nœud](./media/hdinsight-hadoop-create-linux-cluster-portal/hdinsight-create-cluster-summary.png "Spécifier le nombre de nœuds de cluster")
     
     > [!NOTE]
-    > La création du cluster prend un certain temps (en règle générale, environ 15 minutes). Utilisez la mosaïque du tableau d’accueil ou l’entrée **Notifications** à gauche de la page pour vérifier le processus d’approvisionnement.
+    > Il prend un certain temps pour hello toobe de cluster créé, généralement environ 15 minutes. Utilisez hello vignette sur hello tableau d’accueil ou hello **Notifications** entrée sur hello restant de hello page toocheck sur hello processus de configuration.
     > 
     > 
-12. Une fois la création terminée, cliquez sur la vignette du cluster dans le tableau d’accueil pour lancer le volet du cluster. Le panneau de cluster fournit les informations suivantes.
+12. Une fois que le processus de création de hello terminée, cliquez sur mosaïque hello pour cluster hello à partir du Panneau de cluster hello tableau d’accueil toolaunch hello. Panneau de cluster Hello fournit hello informations suivantes.
     
     ![Panneau de cluster](./media/hdinsight-hadoop-create-linux-cluster-portal/hdinsight-create-cluster-completed.png "Propriétés du Cluster")
     
-    Utilisez ce qui suit pour comprendre les icônes affichées en haut de ce panneau.
+    Utilisez hello suivant des icônes de hello toounderstand haut hello de ce panneau.
     
-    * L’onglet **Vue d’ensemble** fournit toutes les informations essentielles sur le cluster, notamment son nom, le groupe de ressources auquel il appartient, son emplacement, le système d'exploitation, l'URL vers le tableau de bord de cluster, etc.
-    * Le **Tableau de bord** vous redirige vers le portail Ambari associé au cluster.
-    * **Secure Shell**: informations nécessaires à l’accès au cluster à l’aide de SSH.
-    * **Mise à l’échelle de cluster** vous permet d’augmenter et diminuer le nombre de nœuds de travail associés au cluster.
-    * **Supprimer**: permet de supprimer le cluster HDInsight.
+    * **Vue d’ensemble** onglet fournit toutes les informations essentielles hello sur cluster hello telles que nom hello, groupe de ressources hello il appartient, emplacement hello, système d’exploitation de hello, URL de tableau de bord de cluster hello, etc..
+    * **Tableau de bord** vous dirige le portail de Ambari toohello associé hello cluster.
+    * **Secure Shell**: informations requises de cluster de hello tooaccess à l’aide de SSH.
+    * **Cluster de la mise à l’échelle** vous permet de vous augmentez le nombre hello de nœuds de travail associé hello cluster.
+    * **Supprimer**: cluster de suppressions hello HDInsight.
     
 
 ## <a name="customize-clusters"></a>Personnalisation des clusters
 * Consultez [Personnalisation de clusters HDInsight à l’aide de Bootstrap](hdinsight-hadoop-customize-cluster-bootstrap.md).
 * Consultez [Personnalisation de clusters HDInsight à l’aide d’une action de script](hdinsight-hadoop-customize-cluster-linux.md).
 
-## <a name="delete-the-cluster"></a>Suppression du cluster
+## <a name="delete-hello-cluster"></a>Supprimer le cluster de hello
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
 ## <a name="troubleshoot"></a>Résolution des problèmes
@@ -153,7 +153,7 @@ Le portail Azure expose la plupart des propriétés du cluster. Avec le modèle 
 Si vous rencontrez des problèmes lors de la création de clusters HDInsight, reportez-vous aux [exigences de contrôle d’accès](hdinsight-administer-use-portal-linux.md#create-clusters).
 
 ## <a name="next-steps"></a>Étapes suivantes
-Vous avez créé un cluster HDInsight. Pour apprendre à l’utiliser, consultez les rubriques ci-dessous :
+Maintenant que vous avez créé un cluster HDInsight, utilisez hello suivant toolearn comment toowork avec votre cluster :
 
 ### <a name="hadoop-clusters"></a>Clusters Hadoop
 * [Utilisation de Hive avec HDInsight](hdinsight-use-hive.md)
@@ -173,6 +173,6 @@ Vous avez créé un cluster HDInsight. Pour apprendre à l’utiliser, consultez
 * [Créer une application autonome avec Scala](hdinsight-apache-spark-create-standalone-application.md)
 * [Exécution de travaux à distance avec Livy sur un cluster Spark](hdinsight-apache-spark-livy-rest-interface.md)
 * [Spark avec BI : effectuez une analyse interactive des données à l’aide de Spark dans HDInsight avec des outils BI](hdinsight-apache-spark-use-bi-tools.md)
-* [Spark avec Machine Learning : utilisez Spark dans HDInsight pour prédire les résultats de l’inspection des aliments](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
-* [Streaming Spark : utilisez Spark dans HDInsight pour créer des applications de streaming en continu en temps réel](hdinsight-apache-spark-eventhub-streaming.md)
+* [Spark avec Machine Learning : Spark utilisation dans résultats de l’inspection alimentaires toopredict HDInsight](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
+* [Streaming Spark : Utiliser Spark dans HDInsight pour créer des applications de diffusion en continu en temps réel](hdinsight-apache-spark-eventhub-streaming.md)
 

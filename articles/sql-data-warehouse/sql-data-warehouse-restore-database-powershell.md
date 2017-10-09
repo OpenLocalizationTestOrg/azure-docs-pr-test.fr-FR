@@ -1,5 +1,5 @@
 ---
-title: "Restauration d’un entrepôt de données Azure SQL Data Warehouse (PowerShell) | Microsoft Docs"
+title: "aaaRestore un entrepôt de données SQL Azure (PowerShell) | Documents Microsoft"
 description: "Tâches PowerShell permettant de restaurer un Azure SQL Data Warehouse."
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: backup-restore
 ms.date: 10/31/2016
 ms.author: lakshmir;barbkess
-ms.openlocfilehash: 6286c0e682bae2d3bf0435a25b8077a53b117b25
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: aa29a315080b1ed477cc6a051ce15a3202630cfa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="restore-an-azure-sql-data-warehouse-powershell"></a>Restauration d’un Azure SQL Data Warehouse (PowerShell)
 > [!div class="op_single_selector"]
@@ -30,24 +30,24 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-Dans cet article, vous allez apprendre à restaurer un Azure SQL Data Warehouse à l’aide de PowerShell.
+Dans cet article, vous allez apprendre comment toorestore un Azure SQL Data Warehouse à l’aide de PowerShell.
 
 ## <a name="before-you-begin"></a>Avant de commencer
-**Vérifiez votre capacité de DTU.** Chaque SQL Data Warehouse est hébergé par un serveur SQL (par exemple, myserver.database.windows.net) qui dispose d’un quota DTU par défaut.  Avant de pouvoir restaurer un SQL Data Warehouse, vérifiez que le quota DTU restant sur le serveur SQL est suffisant pour la base de données en cours de restauration. Pour savoir comment calculer la capacité DTU nécessaire ou pour demander davantage de capacité DTU, consultez la rubrique [Demander une modification du quota DTU][Request a DTU quota change].
+**Vérifiez votre capacité de DTU.** Chaque SQL Data Warehouse est hébergé par un serveur SQL (par exemple, myserver.database.windows.net) qui dispose d’un quota DTU par défaut.  Avant de pouvoir restaurer un entrepôt de données SQL, vérifiez que hello que votre SQL server dispose d’assez restantes du quota UDBD pour base de données hello en cours de restauration. toolearn comment toocalculate DTU nécessaire ou toorequest plus DTU, consultez [demander une modification du quota DTU][Request a DTU quota change].
 
 ### <a name="install-powershell"></a>Installer PowerShell
-Pour utiliser Azure PowerShell avec SQL Data Warehouse, vous devez installer Azure PowerShell version 1.0 ou supérieure.  Vous pouvez vérifier la version en exécutant **Get-Module -ListAvailable -Name AzureRM**.  La version la plus récente peut être installée à partir de [Microsoft Web Platform Installer][Microsoft Web Platform Installer].  Pour plus d’informations sur l’installation de la dernière version, consultez la page [Installation et configuration d’Azure PowerShell][How to install and configure Azure PowerShell].
+Dans l’ordre toouse Azure PowerShell avec l’entrepôt de données SQL, vous devez tooinstall Azure PowerShell version 1.0 ou supérieure.  Vous pouvez vérifier la version en exécutant **Get-Module -ListAvailable -Name AzureRM**.  version la plus récente Hello peut être installée à partir de [Microsoft Web Platform Installer][Microsoft Web Platform Installer].  Pour plus d’informations sur l’installation de version la plus récente hello, consultez [comment tooinstall et configurer Azure PowerShell][How tooinstall and configure Azure PowerShell].
 
 ## <a name="restore-an-active-or-paused-database"></a>Restauration d’une base de données active ou en pause
-Pour restaurer une base de données à partir d’un instantané, utilisez l’applet de commande PowerShell [Restore-AzureRmSqlDatabase][Restore-AzureRmSqlDatabase].
+une base de données à partir d’un instantané de toorestore utiliser hello [restauration-AzureRmSqlDatabase] [ Restore-AzureRmSqlDatabase] applet de commande PowerShell.
 
 1. Ouvrez Windows PowerShell.
-2. Connectez-vous à votre compte Azure et répertoriez tous les abonnements associés à votre compte.
-3. Sélectionnez l’abonnement contenant la base de données à restaurer.
-4. Répertoriez les points de restauration pour la base de données.
-5. Sélectionnez le point de restauration souhaité à l’aide de l’élément RestorePointCreationDate.
-6. Restaurez la base de données au niveau du point de restauration souhaité.
-7. Vérifiez que la base de données restaurée est en ligne.
+2. Se connecter tooyour compte Azure et répertorier tous les abonnements hello associés à votre compte.
+3. Sélectionnez l’abonnement hello contenant hello toobe de base de données restaurée.
+4. Hello de la liste des points de la base de données hello de restauration.
+5. Choisissez un point de restauration hello souhaité à l’aide de hello RestorePointCreationDate.
+6. Point de restauration toohello souhaité hello de base de données de restauration.
+7. Vérifiez que cette base de données hello restaurée est en ligne.
 
 ```Powershell
 
@@ -61,13 +61,13 @@ Login-AzureRmAccount
 Get-AzureRmSubscription
 Select-AzureRmSubscription -SubscriptionName $SubscriptionName
 
-# List the last 10 database restore points
+# List hello last 10 database restore points
 ((Get-AzureRMSqlDatabaseRestorePoints -ResourceGroupName $ResourceGroupName -ServerName $ServerName -DatabaseName ($DatabaseName).RestorePointCreationDate)[-10 .. -1]
 
 # Or list all restore points
 Get-AzureRmSqlDatabaseRestorePoints -ResourceGroupName $ResourceGroupName -ServerName $ServerName -DatabaseName $DatabaseName
 
-# Get the specific database to restore
+# Get hello specific database toorestore
 $Database = Get-AzureRmSqlDatabase -ResourceGroupName $ResourceGroupName -ServerName $ServerName -DatabaseName $DatabaseName
 
 # Pick desired restore point using RestorePointCreationDate
@@ -76,25 +76,25 @@ $PointInTime="<RestorePointCreationDate>"
 # Restore database from a restore point
 $RestoredDatabase = Restore-AzureRmSqlDatabase –FromPointInTimeBackup –PointInTime $PointInTime -ResourceGroupName $Database.ResourceGroupName -ServerName $Database.$ServerName -TargetDatabaseName $NewDatabaseName –ResourceId $Database.ResourceID
 
-# Verify the status of restored database
+# Verify hello status of restored database
 $RestoredDatabase.status
 
 ```
 
 > [!NOTE]
-> Une fois la restauration terminée, vous pouvez configurer votre base de données restaurée en suivant les instructions de la section [Configurer votre base de données après récupération][Configure your database after recovery].
+> Une fois la restauration de hello est terminée, vous pouvez configurer votre base de données récupérée en suivant [configurer votre base de données après récupération][Configure your database after recovery].
 > 
 > 
 
 ## <a name="restore-a-deleted-database"></a>restauration d’une base de données supprimée.
-Pour restaurer une base de données supprimée, utilisez l’applet de commande [Restore-AzureRmSqlDatabase][Restore-AzureRmSqlDatabase].
+toorestore une base de données supprimée, utilisez hello [restauration-AzureRmSqlDatabase] [ Restore-AzureRmSqlDatabase] applet de commande.
 
 1. Ouvrez Windows PowerShell.
-2. Connectez-vous à votre compte Azure et répertoriez tous les abonnements associés à votre compte.
-3. Sélectionnez l’abonnement contenant la base de données supprimée à restaurer.
-4. Accédez à la base de données supprimée.
-5. Restaurez la base de données supprimée.
-6. Vérifiez que la base de données restaurée est en ligne.
+2. Se connecter tooyour compte Azure et répertorier tous les abonnements hello associés à votre compte.
+3. Sélectionnez l’abonnement hello contenant hello supprimé toobe de base de données restaurée.
+4. Obtenir de la base de données spécifique de hello supprimé.
+5. Restaurer la base de données de hello supprimé.
+6. Vérifiez que cette base de données hello restaurée est en ligne.
 
 ```Powershell
 $SubscriptionName="<YourSubscriptionName>"
@@ -107,55 +107,55 @@ Login-AzureRmAccount
 Get-AzureRmSubscription
 Select-AzureRmSubscription -SubscriptionName $SubscriptionName
 
-# Get the deleted database to restore
+# Get hello deleted database toorestore
 $DeletedDatabase = Get-AzureRmSqlDeletedDatabaseBackup -ResourceGroupName $ResourceGroupName -ServerName $ServerName -DatabaseName $DatabaseName
 
 # Restore deleted database
 $RestoredDatabase = Restore-AzureRmSqlDatabase –FromDeletedDatabaseBackup –DeletionDate $DeletedDatabase.DeletionDate -ResourceGroupName $DeletedDatabase.ResourceGroupName -ServerName $DeletedDatabase.ServerName -TargetDatabaseName $NewDatabaseName –ResourceId $DeletedDatabase.ResourceID
 
-# Verify the status of restored database
+# Verify hello status of restored database
 $RestoredDatabase.status
 ```
 
 > [!NOTE]
-> Une fois la restauration terminée, vous pouvez configurer votre base de données restaurée en suivant les instructions de la section [Configurer votre base de données après récupération][Configure your database after recovery].
+> Une fois la restauration de hello est terminée, vous pouvez configurer votre base de données récupérée en suivant [configurer votre base de données après récupération][Configure your database after recovery].
 > 
 > 
 
 ## <a name="restore-from-an-azure-geographical-region"></a>Restauration à partir d’une région géographique Azure
-Pour récupérer une base de données, utilisez l’applet de commande [Restore-AzureRmSqlDatabase][Restore-AzureRmSqlDatabase].
+toorecover une base de données, utilisez hello [restauration-AzureRmSqlDatabase] [ Restore-AzureRmSqlDatabase] applet de commande.
 
 1. Ouvrez Windows PowerShell.
-2. Connectez-vous à votre compte Azure et répertoriez tous les abonnements associés à votre compte.
-3. Sélectionnez l’abonnement contenant la base de données à restaurer.
-4. Obtenez la base de données à récupérer.
-5. Créez la demande de récupération de la base de données.
-6. Vérifiez l’état de la base de données affectée par la géo-restauration.
+2. Se connecter tooyour compte Azure et répertorier tous les abonnements hello associés à votre compte.
+3. Sélectionnez l’abonnement hello contenant hello toobe de base de données restaurée.
+4. Obtenir des toorecover hello base de données.
+5. Créer la demande de récupération hello pour la base de données hello.
+6. Vérifiez l’état hello de base de données de géo-restauration hello.
 
 ```Powershell
 Login-AzureRmAccount
 Get-AzureRmSubscription
 Select-AzureRmSubscription -SubscriptionName "<Subscription_name>"
 
-# Get the database you want to recover
+# Get hello database you want toorecover
 $GeoBackup = Get-AzureRmSqlDatabaseGeoBackup -ResourceGroupName "<YourResourceGroupName>" -ServerName "<YourServerName>" -DatabaseName "<YourDatabaseName>"
 
 # Recover database
 $GeoRestoredDatabase = Restore-AzureRmSqlDatabase –FromGeoBackup -ResourceGroupName "<YourResourceGroupName>" -ServerName "<YourTargetServer>" -TargetDatabaseName "<NewDatabaseName>" –ResourceId $GeoBackup.ResourceID
 
-# Verify that the geo-restored database is online
+# Verify that hello geo-restored database is online
 $GeoRestoredDatabase.status
 ```
 
 > [!NOTE]
-> Pour configurer votre base de données une fois la restauration terminée, consultez la page [Configurer votre base de données après récupération][Configure your database after recovery].
+> consultez de votre base de données après restauration de hello, tooconfigure [configurer votre base de données après récupération][Configure your database after recovery].
 > 
 > 
 
-La base de données récupérée sera compatible avec le chiffrement transparent des données si la base de données source l’est aussi.
+base de données récupérée Hello sera activée de chiffrement transparent des données à si la base de données source hello est activé de chiffrement transparent des données.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Pour plus d’informations sur les fonctionnalités de continuité d’activité des éditions d’Azure SQL Database, consultez la rubrique [Vue d’ensemble de la continuité des activités Azure SQL Database][Azure SQL Database business continuity overview].
+toolearn sur les fonctionnalités de continuité d’activité d’entreprise hello des éditions de base de données SQL Azure, lisez hello [vue d’ensemble de base de données SQL Azure business la continuité des activités][Azure SQL Database business continuity overview].
 
 <!--Image references-->
 
@@ -163,7 +163,7 @@ Pour plus d’informations sur les fonctionnalités de continuité d’activité
 [Azure SQL Database business continuity overview]: ../sql-database/sql-database-business-continuity.md
 [Request a DTU quota change]: ./sql-data-warehouse-get-started-create-support-ticket.md#request-quota-change
 [Configure your database after recovery]: ../sql-database/sql-database-disaster-recovery.md#configure-your-database-after-recovery
-[How to install and configure Azure PowerShell]: /powershell/azureps-cmdlets-docs
+[How tooinstall and configure Azure PowerShell]: /powershell/azureps-cmdlets-docs
 [Overview]: ./sql-data-warehouse-restore-database-overview.md
 [Portal]: ./sql-data-warehouse-restore-database-portal.md
 [PowerShell]: ./sql-data-warehouse-restore-database-powershell.md

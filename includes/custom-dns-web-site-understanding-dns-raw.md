@@ -1,58 +1,58 @@
-Le DNS (Domain Name System) permet de localiser des ressources sur Internet. Par exemple, lorsque vous entrez une adresse d’application web dans votre navigateur ou cliquez sur un lien dans une page web, le DNS est utilisé pour traduire le domaine en adresse IP. L'adresse IP joue le même rôle qu'une adresse postale, tout en étant moins significative. Par exemple, il est bien plus facile de se souvenir d'un nom DNS tel que **contoso.com** que d'une adresse IP telle que 192.168.1.88 ou 2001:0:4137:1f67:24a2:3888:9cce:fea3.
+Hello système DNS (Domain Name) est utilisé toolocate ressources hello internet. Par exemple, lorsque vous entrez une adresse d’application web dans votre navigateur, ou cliquez sur un lien sur une page web, il utilise domaine de hello tootranslate DNS en adresse IP. adresse IP de Hello est comme une adresse postale, mais il n’est pas très humaine convivial. Par exemple, il est beaucoup plus facile tooremember un nom DNS, tel que **contoso.com** que celui qu’elle est tooremember une adresse IP comme 192.168.1.88 ou 2001:0:4137:1f67:24a2:3888:9cce:fea3.
 
-Le système DNS est basé sur des *enregistrements*. Les enregistrements associent un *nom*spécifique, tel que **contoso.com**, à une adresse IP ou un autre nom DNS. Lorsqu'une application (par exemple, un navigateur Web) recherche un nom dans le DNS, elle trouve l'enregistrement et utilise sa cible comme adresse. Si la valeur ciblée correspond à une adresse IP, le navigateur l'utilise. Si la cible est un autre nom DNS, l'application doit à nouveau procéder à une résolution. En fin de compte, toute résolution de nom génère une adresse IP.
+Hello système DNS est basé sur *enregistrements*. Les enregistrements associent un *nom*spécifique, tel que **contoso.com**, à une adresse IP ou un autre nom DNS. Lorsqu’une application, comme un navigateur web, recherche un nom dans DNS, il trouve hello enregistrement et utilise ce que qu’elle pointe tooas hello adresse. Si hello valeur points toois une adresse IP, navigateur de hello utilise cette valeur. S’il pointe le nom DNS de tooanother, puis application hello a toodo résolution à nouveau. En fin de compte, toute résolution de nom génère une adresse IP.
 
-Lorsque vous créez une application web dans App Service, un nom DNS lui est automatiquement attribué. Ce nom se présente comme suit : **&lt;nomdevotreapplicationweb&gt;.azurewebsites.net**. Il existe également une adresse IP virtuelle utilisable lors de la création des enregistrements DNS. Vous pouvez donc soit créer des enregistrements pointant vers **.azurewebsites.net**, soit pointer vers l’adresse IP.
+Lorsque vous créez une application web dans le Service d’application, un nom DNS est automatiquement attribué toohello l’application web. Ce nom prend la forme hello  **&lt;yourwebappname&gt;. azurewebsites.net**. Il est également une adresse IP virtuelle disponible pour une utilisation lors de la création de DNS d’enregistrements, vous pouvez créer les enregistrements toohello de ce point de **. azurewebsites.net**, ou vous pouvez pointer toohello adresse.
 
 > [!NOTE]
-> L’adresse IP de votre application web est modifiée si vous supprimez et recréez votre application web. Elle l’est aussi si vous redéfinissez le mode de plan App Service sur **Gratuit** après l’avoir défini sur **De base**, **Partagé** ou **Standard**.
+> adresse IP de Hello de votre application web change si vous supprimez et recréez votre application web ou modifiez hello en mode plan de Service de l’application trop**libre** une fois qu’elle a été définie trop**base**, **Shared**, ou **Standard**.
 > 
 > 
 
 Il existe également plusieurs types d’enregistrements, présentant chacun ses propres fonctions et limites, mais les applications web n’en utilisent que deux : les enregistrements *A* et *CNAME*.
 
 ### <a name="address-record-a-record"></a>Enregistrement d'adresse (enregistrement A)
-Un enregistrement A mappe un domaine, tel que **contoso.com** ou **www.contoso.com**, *ou un nom de domaine générique* comme **\*.contoso.com**, sur une adresse IP. Dans le cas d’une application web dans App Service, il s’agit de l’adresse IP virtuelle du service ou d’une adresse IP spécifique que vous avez achetée pour votre application web.
+Un enregistrement A mappe à un domaine, tel que **contoso.com** ou **www.contoso.com**, *ou un domaine générique* comme  **\*. contoso.com**, adresse IP de tooan. Dans les cas de hello d’une application web dans le Service d’applications, soit hello adresse IP virtuelle du service de hello ou une adresse IP spécifique que vous avez achetées pour votre application web.
 
-Les principaux avantages d'un enregistrement A par rapport à un enregistrement CNAME sont les suivants :
+Hello principaux avantages d’un enregistrement sur un enregistrement CNAME existe :
 
-* Vous pouvez mapper un domaine racine tel que **contoso.com** sur une adresse IP. De nombreux bureaux d’enregistrement n’autorisent cette action qu’avec des enregistrements A.
+* Vous pouvez mapper un domaine racine, tel que **contoso.com** adresse IP de tooan ; bureaux d’enregistrement de nombreux autorise uniquement à l’aide d’enregistrements A
 * L’une de vos entrées peut utiliser un caractère générique (**\*.contoso.com**, par exemple) afin de gérer les demandes pour plusieurs sous-domaines, tels que **mail.contoso.com**, **blogs.contoso.com** ou **www.contoso.com**.
 
 > [!NOTE]
-> L’enregistrement A étant mappé à une adresse IP statique, les changements d’adresse IP de votre application web ne sont donc pas pris en compte automatiquement. Une adresse IP à utiliser avec les enregistrements A est fournie lorsque vous configurez les paramètres de nom de domaine personnalisé pour votre application web. Toutefois, cette valeur est susceptible d’être modifiée si vous supprimez et recréez votre application web ou que vous repassez en mode de plan App Service **Gratuit**.
+> Dans la mesure où un enregistrement est mappé tooa adresse IP, il ne peut pas résoudre automatiquement les modifications toohello IP adresse de votre application web. Une adresse IP pour une utilisation avec un enregistrement est fournie lorsque vous configurez les paramètres de nom de domaine personnalisé pour votre application web ; Toutefois, cette valeur peut changer si vous supprimez et recréez votre application web ou modifiez hello tooback de mode plan App Service trop**libre**.
 > 
 > 
 
 ### <a name="alias-record-cname-record"></a>Enregistrement d'alias (enregistrement CNAME)
-Un enregistrement CNAME mappe un nom DNS *spécifique*, tel que **mail.contoso.com** ou **www.contoso.com**, sur un autre nom de domaine (canonique). Dans le cas d’App Service Web Apps, le nom de domaine canonique est le nom de domaine **&lt;nomdevotreapplicationweb>.azurewebsites.net** de votre application web. Une fois créé, l’enregistrement CNAME crée un alias pour le nom de domaine **&lt;nomdevotreapplicationweb>.azurewebsites.net**. L’entrée CNAME devient automatiquement l’adresse IP de votre nom de domaine **&lt;nomdevotreapplicationweb>.azurewebsites.net**. Ainsi, même si l’adresse IP de l’application web change, vous n’avez aucune action à effectuer.
+Un enregistrement CNAME associe un *spécifique* nom DNS, tel que **mail.contoso.com** ou **www.contoso.com**, nom de domaine (canonique) tooanother. Dans les cas de hello d’application de Service Web Apps, nom de domaine canonique hello est hello  **&lt;yourwebappname >. azurewebsites.net** nom de domaine de votre application web. Une fois créé, hello CNAME crée un alias pour hello  **&lt;yourwebappname >. azurewebsites.net** nom de domaine. Hello entrée CNAME peut résoudre l’adresse IP de toohello de votre  **&lt;yourwebappname >. azurewebsites.net** nom de domaine automatiquement, donc si l’adresse IP de hello de hello web application change, vous n’avez pas n’importe quelle action aux tootake.
 
 > [!NOTE]
-> Certains bureaux d’enregistrement de domaines n’autorisent le mappage de sous-domaines qu’en cas d’utilisation d’un enregistrement CNAME (par exemple, **www.contoso.com**), et non d’un nom racine (tel que **contoso.com**). Pour plus d'informations sur les enregistrements CNAME, consultez la documentation fournie par votre bureau d'enregistrement, la <a href="http://en.wikipedia.org/wiki/CNAME_record">page Wikipédia sur l'enregistrement CNAME</a> ou le document <a href="http://tools.ietf.org/html/rfc1035">Noms de domaine IETF - Implémentation et spécification</a>.
+> Des bureaux d’enregistrement de domaine vous permettre uniquement de sous-domaines de toomap lors de l’utilisation d’un enregistrement CNAME, tel que **www.contoso.com**et non racine, les noms tels que **contoso.com**. Pour plus d’informations sur les enregistrements CNAME, consultez la documentation hello fournie par votre bureau d’enregistrement, <a href="http://en.wikipedia.org/wiki/CNAME_record">hello Wikipédia sur l’enregistrement CNAME</a>, ou hello <a href="http://tools.ietf.org/html/rfc1035">IETF de noms de domaine - implémentation et spécification</a> document.
 > 
 > 
 
 ### <a name="web-app-dns-specifics"></a>Spécifications DNS des applications web
-L’utilisation d’un enregistrement A avec Web Apps exige que vous créiez d’abord l’un des enregistrements TXT suivants :
+À l’aide d’un enregistrement A avec Web Apps nécessite que vous toofirst créer l’un des hello les enregistrements TXT suivants :
 
-* **Pour le domaine racine** : enregistrement TXT DNS A de **@** défini sur **&lt;nomdevotreapplicationweb&gt;.azurewebsites.net**.
-* **Pour un sous-domaine spécifique** : nom DNS A de **&lt;sous-domaine>** défini sur **&lt;nomdevotreapplicationweb&gt;.azurewebsites.net**. Par exemple, **blogs** si l’enregistrement A est destiné à **blogs.contoso.com**.
-* **Pour les sous-domaines génériques** : enregistrement TXT DNS A de ***** défini sur **&lt;nomdevotreapplicationweb&gt;.azurewebsites.net**.
+* **Pour le domaine racine de hello** -enregistrement A DNS TXT de  **@**  trop  **&lt;yourwebappname&gt;. azurewebsites.net**.
+* **Pour un sous-domaine spécifique** -nom DNS d’un de  **&lt;sous-domaine >** trop**&lt;yourwebappname&gt;. azurewebsites.net**. Par exemple, **blogs** si un enregistrement de hello concerne **blogs.contoso.com**.
+* **Pour les caractères génériques de hello sub-dodmains** -enregistrement A DNS TXT de *** trop  **&lt;yourwebappname&gt;. azurewebsites.net**.
 
-Cet enregistrement TXT permet de vérifier que vous détenez bien le domaine que vous tentez d’utiliser. Cette opération s’ajoute à la création d’un enregistrement A pointant vers l’adresse IP virtuelle de votre application web.
+Cet enregistrement TXT est tooverify utilisé que vous possédez le domaine hello vous essayez de toouse. Il s’agit en outre toocreating un un enregistrement qui pointe de toohello une adresse IP virtuelle de votre application web.
 
-Pour connaître l’adresse IP ainsi que les noms **.azurewebsites.net** de votre application web, procédez comme suit :
+Vous pouvez trouver d’adresse IP de hello et **. azurewebsites.net** hello de noms pour votre application web en procédant comme suit :
 
-1. Dans votre navigateur, ouvrez le [portail Azure](https://portal.azure.com).
-2. Dans le panneau **Web Apps**, cliquez sur le nom de votre application web, puis sélectionnez **Domaines personnalisés** au bas de la page.
+1. Dans votre navigateur, ouvrez hello [Azure Portal](https://portal.azure.com).
+2. Bonjour **Web Apps** panneau, cliquez sur nom hello de votre application web, puis sélectionnez **les domaines personnalisés** bas hello de page de hello.
    
     ![](./media/custom-dns-web-site/dncmntask-cname-6.png)
-3. Dans le panneau **Domaines personnalisés** , vous voyez l’adresse IP virtuelle. Enregistrez ces informations, car elles serviront lors de la création d’enregistrements DNS.
+3. Bonjour **les domaines personnalisés** panneau, vous verrez hello adresse IP virtuelle. Enregistrez ces informations, car elles serviront lors de la création d’enregistrements DNS.
    
     ![](./media/custom-dns-web-site/virtual-ip-address.png)
    
    > [!NOTE]
-   > Vous ne pouvez pas utiliser de noms de domaines personnalisés avec une application web en mode **Gratuit**. Vous devez donc mettre à niveau le plan App Service vers le niveau **Partagé**, **De base**, **Standard** ou **Premium**. Pour plus d’informations sur les niveaux tarifaires du plan App Service, notamment sur la modification du niveau tarifaire de votre application web, consultez l’article [Mise à l’échelle des applications web](../articles/app-service-web/web-sites-scale.md).
+   > Vous ne pouvez pas utiliser des noms de domaine personnalisé avec un **libre** application web et doit mettre à niveau hello plan App Service trop**Shared**, **base**, **Standard**, ou **Premium** couche. Pour plus d’informations sur hello du Service d’applications plan de tarification niveaux, y compris comment toochange hello niveau tarifaire de votre application web, consultez [tooscale comment les applications web](../articles/app-service-web/web-sites-scale.md).
    > 
    > 
 

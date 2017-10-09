@@ -1,6 +1,6 @@
 ---
-title: "Protéger les données personnelles dans Microsoft Azure | Microsoft Docs"
-description: "Premier article d’une série visant à vous aider à utiliser Azure pour protéger des données personnelles"
+title: "aaaProtect des données personnelles dans Microsoft Azure | Documents Microsoft"
+description: "Tout d’abord l’article dans une série d’articles toohelp vous utilisez Azure tooprotect des données personnelles"
 services: security
 documentationcenter: na
 author: Barclayn
@@ -15,21 +15,21 @@ ms.workload: na
 ms.date: 08/22/2017
 ms.author: barclayn
 ms.custom: 
-ms.openlocfilehash: dfb046374397c8a19672ce6b67741903fff6e178
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: cbffd3872552cbd0f12539535898c41ecf7789e8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="protect-personal-data-in-microsoft-azure"></a>Protéger les données personnelles dans Microsoft Azure
 
-Cet article présente une série d’articles qui vous aident à utiliser les services et technologies de sécurité Azure pour protéger des données personnelles. La sécurité est une exigence clé pour un grand nombre d’initiatives en matière de gouvernance et de mise en conformité des entreprises et de leurs activités. Le scénario, la définition du problème et les objectifs de l’entreprise sont inclus ici.
+Cet article présente une série d’articles qui vous aident à utiliser les données personnelles tooprotect services et technologies de sécurité Azure. La sécurité est une exigence clé pour un grand nombre d’initiatives en matière de gouvernance et de mise en conformité des entreprises et de leurs activités. scénario de Hello, objectifs d’entreprise et d’instruction problème sont inclus ici.
 
 ## <a name="scenario-and-problem-statement"></a>Scénario et définition du problème
 
-Une importante compagnie de croisière, dont le siège se situe aux États-Unis, étend ses opérations afin de proposer des circuits dans les Mers Méditerranée, Adriatique et Baltique, ainsi que dans les îles Britanniques. Pour soutenir cet effort, elle a fait l’acquisition de plusieurs lignes de croisière plus petites basées en Italie, en Allemagne, au Danemark et au Royaume-Uni.
+Une société de croisière volumineux en hello États-Unis, étend ses itinéraires de toooffer d’opérations dans hello Méditerranée, Adriatique et mer Baltique, ainsi que hello britanniques. toosupport ces efforts, elle a acquis plusieurs lignes croisière plus petits exercées en Italie, Allemagne, Danemark et hello Royaume-Uni
 
-La compagnie utilise Microsoft Azure pour stocker les données d’entreprise dans le cloud. Cela peut concerner des employés ou des informations sur les clients tels que :
+la société de Hello utilise des données d’entreprise de Microsoft Azure toostore dans le cloud de hello. Cela peut concerner des employés ou des informations sur les clients tels que :
 
 - Adresses
 - Numéros de téléphone
@@ -37,23 +37,23 @@ La compagnie utilise Microsoft Azure pour stocker les données d’entreprise da
 - informations médicales
 - Informations de carte de crédit
 
-La société doit protéger la confidentialité des données d’employé et client lors de la rendre les données accessibles à ces services qui en ont besoin. (Notamment, les services de paie et de réservation.)
+société de Hello doit protection hello des données d’employé et client tout en effectuant des départements toothose accessible de données qui en ont besoin. (Notamment, les services de paie et de réservation.)
 
 ## <a name="company-goals"></a>Objectifs de l’entreprise 
 
 - Les sources de données qui contiennent des données personnelles sont chiffrées quand elles se trouvent dans le stockage cloud.
 
-- Les données personnelles transférées d’un emplacement à un autre sont chiffrées pendant le transit. Ce chiffrement a lieu si les données sont transmises sur le réseau virtuel ou sur Internet entre le centre de données d’entreprise et le cloud Azure.
+- Les données personnelles qui sont transférées à partir d’un emplacement tooanother sont chiffrées pendant le transit. Cela est vrai si hello données circulent entre les réseaux virtuels hello ou entre hello Internet entre hello de centre de données d’entreprise et hello cloud Azure.
 
 - La confidentialité et l’intégrité des données personnelles sont protégées contre tout accès non autorisé par de puissantes technologies de gestion des identités et de contrôle d’accès.
 
 - Les données personnelles sont protégées contre toute exposition par violation de la sécurité au moyen d’une surveillance des vulnérabilités et des menaces.
 
-- L’état de la sécurité des services Azure qui stockent ou transmettent des données personnelles est évalué pour identifier les opportunités de mieux protéger les données personnelles.
+- Hello état de la sécurité des services Azure qui stockent ou transmettre des données personnelles est évaluée tooidentify opportunités toobetter protéger les données personnelles.
 
 ## <a name="data-protection-guidance"></a>Conseils de protection des données
 
-Les articles suivants contiennent des instructions techniques qui vous aideront à atteindre les objectifs de protection des données personnelles indiqués ci-dessus :
+Hello suivant articles contiennent des technique tooguidance procédure qui vous aideront à atteindre les objectifs de protection des données personnelles hello répertoriées ci-dessus :
 
 - [Technologies de chiffrement Azure](protect-personal-data-at-rest.md)
 

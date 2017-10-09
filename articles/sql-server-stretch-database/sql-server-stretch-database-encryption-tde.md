@@ -1,5 +1,5 @@
 ---
-title: Activer Transparent Data Encryption pour Stretch Database - Azure | Microsoft Docs
+title: "aaaEnable chiffrement Transparent des données pour Stretch Database - Azure | Documents Microsoft"
 description: "Activer le chiffrement transparent des données (TDE) pour SQL Server Stretch Database sur Azure"
 services: sql-server-stretch-database
 documentationcenter: 
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/14/2016
 ms.author: douglasl
-ms.openlocfilehash: ceb355d2ba872ed5d3886c6dc82ca75b1854db0a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1d6bff455030ac8851b2184c1e8097afd61361d9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="enable-transparent-data-encryption-tde-for-stretch-database-on-azure"></a>Activer le chiffrement transparent des données (TDE) pour Stretch Database sur Azure
 > [!div class="op_single_selector"]
@@ -27,26 +27,26 @@ ms.lasthandoff: 07/11/2017
 >
 >
 
-Le chiffrement transparent des données (Transparent Data Encryption, TDE) protège le système contre toute menace d’activité malveillante, en effectuant un chiffrement et un déchiffrement en temps réel de la base de données, des sauvegardes associées et des fichiers journaux de transactions au repos, sans qu’il soit nécessaire de modifier l’application.
+Chiffrement transparent des données (TDE) vous aide à protéger contre les menaces hello d’activités malveillantes en effectuant le chiffrement en temps réel et le déchiffrement de la base de données de hello, les sauvegardes associées et les fichiers journaux des transactions au repos sans nécessiter de modifications toohello application.
 
-Le chiffrement transparent des données chiffre le stockage d’une base de données entière à l’aide d’une clé symétrique appelée clé de chiffrement de base de données. La clé de chiffrement de base de données est protégée par un certificat de serveur intégré. Le certificat de serveur intégré est unique pour chaque serveur Azure. Microsoft alterne automatiquement ces certificats au moins tous les 90 jours. Pour obtenir une description générale du chiffrement transparent des données, consultez [Chiffrement transparent des données (TDE)].
+Stockage hello d’une base de données entière est chiffré à l’aide d’une clé de chiffrement de base de données hello appelée de clé symétrique. clé de chiffrement de base de données Hello est protégé par un certificat de serveur intégré. certificat de serveur intégré Hello est unique pour chaque serveur Azure. Microsoft alterne automatiquement ces certificats au moins tous les 90 jours. Pour obtenir une description générale du chiffrement transparent des données, consultez [Chiffrement transparent des données (TDE)].
 
 ## <a name="enabling-encryption"></a>Activation du chiffrement
-Pour activer le chiffrement transparent des données pour une base de données Azure qui stocke les données migrées à partir d’une base de données SQL Server compatible avec Stretch, procédez comme suit :
+tooenable chiffrement transparent des données pour une base de données Azure stocke hello les données migrées à partir d’une base de données SQL Server compatible Stretch, hello suivant choses :
 
-1. Ouvrez la base de données dans le [portail Azure](https://portal.azure.com)
-2. Dans le panneau de la base de données, cliquez sur le bouton **Paramètres**
-3. Sélectionnez l’option **Chiffrement transparent des données**![][1]
-4. Sélectionnez le paramètre **Activé**, puis **Enregistrer**
+1. Base de données ouverte hello Bonjour [portail Azure](https://portal.azure.com)
+2. Dans le panneau de la base de données hello, cliquez sur hello **paramètres** bouton
+3. Sélectionnez hello **chiffrement Transparent des données** option![][1]
+4. Sélectionnez hello **sur** définition, puis sélectionnez **enregistrer**
    ![][2]
 
 ## <a name="disabling-encryption"></a>Désactivation du chiffrement
-Pour désactiver le chiffrement transparent des données pour une base de données Azure qui stocke les données migrées à partir d’une base de données SQL Server compatible avec Stretch, procédez comme suit :
+toodisable chiffrement transparent des données pour une base de données Azure stocke hello les données migrées à partir d’une base de données SQL Server compatible Stretch, hello suivant choses :
 
-1. Ouvrez la base de données dans le [portail Azure](https://portal.azure.com)
-2. Dans le panneau de la base de données, cliquez sur le bouton **Paramètres**
-3. Sélectionnez l’option **Chiffrement transparent des données**
-4. Sélectionnez le paramètre **Désactivé**, puis **Enregistrer**
+1. Base de données ouverte hello Bonjour [portail Azure](https://portal.azure.com)
+2. Dans le panneau de la base de données hello, cliquez sur hello **paramètres** bouton
+3. Sélectionnez hello **chiffrement Transparent des données** option
+4. Sélectionnez hello **hors** définition, puis sélectionnez **enregistrer**
 
 <!--Anchors-->
 [Chiffrement transparent des données (TDE)]: https://msdn.microsoft.com/library/bb934049.aspx

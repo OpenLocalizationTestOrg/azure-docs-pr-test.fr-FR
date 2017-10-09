@@ -1,5 +1,5 @@
 ---
-title: "Prise en main d’Azure Search dans Node.js | Microsoft Docs"
+title: "aaaGet main d’Azure Search dans Node.js | Documents Microsoft"
 description: "Guide de création d’une application de recherche sur un service de recherche Azure hébergé dans le cloud en utilisant le langage de programmation Node.js."
 services: search
 documentationcenter: 
@@ -14,11 +14,11 @@ ms.topic: hero-article
 ms.tgt_pltfrm: na
 ms.date: 04/26/2017
 ms.author: evboyle
-ms.openlocfilehash: 32865ed986f5eea961ef2c3813dcc6531498c90a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e9c7d756c2ea191ee2a285485c90439b96aa73b2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-azure-search-in-nodejs"></a>Prise en main d’Azure Search dans Node.js
 > [!div class="op_single_selector"]
@@ -27,71 +27,71 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-Apprenez à créer une application de recherche Node.js personnalisée, qui utilise Azure Search pour ses fonctionnalités de recherche. Ce didacticiel utilise l’ [API REST du service Azure Search](https://msdn.microsoft.com/library/dn798935.aspx) pour créer les objets et opérations utilisés dans cet exercice.
+Découvrez comment toobuild un Node.js personnalisé recherche application qui utilise Azure Search pour son expérience de recherche. Ce didacticiel utilise hello [API REST de Service Azure Search](https://msdn.microsoft.com/library/dn798935.aspx) tooconstruct hello des objets et les opérations utilisées dans cet exercice.
 
-Nous avons utilisé [Node.js](https://Nodejs.org) et NPM, [Sublime Text 3](http://www.sublimetext.com/3) et Windows PowerShell sur Windows 8.1 pour développer et tester ce code.
+Nous avons utilisé [Node.js](https://Nodejs.org) et NPM, [Sublime texte 3](http://www.sublimetext.com/3)et Windows PowerShell sur Windows 8.1 toodevelop et tester ce code.
 
-Pour exécuter cet exemple, vous devez disposer d’un service Azure Search auquel vous pouvez vous connecter dans le [portail Azure](https://portal.azure.com). Consultez [Création d’un service Azure Search dans le portail](search-create-service-portal.md) pour obtenir des instructions pas-à-pas.
+toorun cet exemple, vous devez disposer un service Azure Search, vous pouvez vous connecter à hello [portail Azure](https://portal.azure.com). Consultez [créer un service Azure Search dans le portail de hello](search-create-service-portal.md) pour obtenir des instructions pas à pas.
 
-## <a name="about-the-data"></a>À propos des données
-Cet exemple d'application utilise des données de l’ [USGS (United States Geological Services)](http://geonames.usgs.gov/domestic/download_data.htm), concernant l'État de Rhode Island pour réduire la taille du jeu de données. Nous allons utiliser ces données pour créer une application de recherche qui renvoie des bâtiments repères, tels que les hôpitaux et les écoles, ainsi que des caractéristiques géologiques, telles que les ruisseaux, les lacs et les sommets.
+## <a name="about-hello-data"></a>Sur les données de salutation
+Cet exemple d’application utilise des données de hello [États-Unis géologique Services (USG)](http://geonames.usgs.gov/domestic/download_data.htm), filtrée sur la taille du jeu de données hello état de Rhode Island tooreduce hello. Nous utiliserons cette toobuild données une application de recherche qui retourne les bâtiments repère telles que le nombre et écoles, ainsi que les fonctionnalités géologiques, flux, lacs et sommets.
 
-Dans cette application, le programme **DataIndexer** crée et charge l'index à l'aide d'une construction de type [Index](https://msdn.microsoft.com/library/azure/dn798918.aspx) , en récupérant le jeu de données USGS filtré à partir d'une base de données SQL Azure publique. Les informations d'identification et de connexion à la source de données en ligne sont fournies dans le code du programme. Aucune configuration supplémentaire n'est nécessaire.
+Dans cette application, hello **DataIndexer** programme génère et charges hello à l’aide de l’index une [indexeur](https://msdn.microsoft.com/library/azure/dn798918.aspx) construction, la récupération hello filtré des groupes universels de sécurité de groupe de données à partir d’une base de données SQL Azure publique. Informations d’identification et de connexion de source de données en ligne d’informations toohello est fourni dans le code de programme hello. Aucune configuration supplémentaire n'est nécessaire.
 
 > [!NOTE]
-> Nous avons appliqué un filtre à ce jeu de données pour ne pas dépasser la limite de 10 000 documents du niveau de tarification gratuit. Si vous utilisez le niveau standard, cette limite ne s'applique pas. Pour plus d’informations sur la capacité de chaque niveau de tarification, consultez la page [Limites de service d’Azure Search](search-limits-quotas-capacity.md).
+> Nous avons appliqué un filtre sur cette toostay dataset sous limite de document 10 000 hello Hello libre niveau tarifaire. Si vous utilisez le niveau standard de hello, cette limite ne s’applique pas. Pour plus d’informations sur la capacité de chaque niveau de tarification, consultez la page [Limites de service d’Azure Search](search-limits-quotas-capacity.md).
 > 
 > 
 
 <a id="sub-2"></a>
 
-## <a name="find-the-service-name-and-api-key-of-your-azure-search-service"></a>Rechercher le nom et la clé API de votre service Azure Search
-Une fois le service créé, revenez au portail pour obtenir l'URL ou `api-key`. Pour vous connecter à votre service de recherche, vous devez saisir l'URL et une `api-key` afin d’authentifier l'appel.
+## <a name="find-hello-service-name-and-api-key-of-your-azure-search-service"></a>Rechercher le nom du service hello et la clé api de votre service Azure Search
+Après avoir créé le service de hello, retourner toohello tooget portail hello URL ou `api-key`. Connexions tooyour service de recherche nécessitent que vous avez les deux URL hello et un `api-key` appel de hello tooauthenticate.
 
-1. Connectez-vous au [portail Azure](https://portal.azure.com).
-2. Dans la barre d’index, cliquez sur **Service de recherche** pour obtenir la liste des services Azure Search approvisionnés pour votre abonnement.
-3. Sélectionnez le service que vous souhaitez utiliser.
-4. Le tableau de bord des services affiche des vignettes contenant des informations essentielles, ainsi que l’icône de clé permettant d’accéder aux clés administrateur.
-5. Copiez l'URL du service, une clé d’administration et une clé de requête. Vous en aurez besoin plus tard, pour les ajouter au fichier config.js.
+1. Connectez-vous à toohello [portail Azure](https://portal.azure.com).
+2. Dans la barre de saut hello, cliquez sur **service de recherche** toolist tous les services Azure Search est configurés pour votre abonnement.
+3. Sélectionnez le service hello toouse.
+4. Tableau de bord de service hello, vous devez voir les vignettes pour des informations essentielles, telles que de l’icône de clé hello pour accéder aux clés d’administration hello.
+5. Copiez l’URL du service hello, une clé d’administration et une clé de requête. Vous avez besoin de trois lorsque vous les ajoutez toohello config.js fichier.
 
-## <a name="download-the-sample-files"></a>Télécharger les fichiers exemples
-Utilisez l'une des approches suivantes pour télécharger l'exemple.
+## <a name="download-hello-sample-files"></a>Télécharger les fichiers d’exemple hello
+Utilisez l’un des hello suivant approches toodownload hello, exemple.
 
-1. Accédez à [AzureSearchNodeJSIndexerDemo](https://github.com/AzureSearch/AzureSearchNodejsIndexerDemo).
-2. Cliquez sur **Download ZIP**, enregistrez le fichier ZIP sur le disque, puis extrayez tous les fichiers qu'il contient.
+1. Accédez trop[AzureSearchNodeJSIndexerDemo](https://github.com/AzureSearch/AzureSearchNodejsIndexerDemo).
+2. Cliquez sur **ZIP de téléchargement**, enregistrez le fichier .zip de hello, puis extraire tous les fichiers hello qu’il contient.
 
 Toutes les modifications et instructions d’exécution ultérieures seront effectuées sur les fichiers de ce dossier.
 
-## <a name="update-the-configjs-with-your-search-service-url-and-api-key"></a>Mettre à jour le fichier config.js. avec l’URL et la clé API du service de recherche
-À l'aide de l'URL et des clés API que vous avez copiées précédemment, spécifiez l'URL, la clé d’administration et la clé de requête dans le fichier de configuration.
+## <a name="update-hello-configjs-with-your-search-service-url-and-api-key"></a>Mettre à jour hello config.js. avec l’URL et la clé API du service de recherche
+À l’aide de hello URL et la clé d’api que vous avez copiée précédemment, spécifier des URL hello, clé d’administration et de clé de requête dans le fichier de configuration.
 
-Les clés d’administration octroient un contrôle total sur les opérations du service, notamment la création ou la suppression d'un index et le chargement de documents. En revanche, les clés de requête sont réservées aux opérations en lecture seule, généralement utilisées par les applications clientes qui se connectent à Azure Search.
+Les clés d’administration octroient un contrôle total sur les opérations du service, notamment la création ou la suppression d'un index et le chargement de documents. En revanche, les clés de requête sont pour les opérations en lecture seule, généralement utilisées par les applications clientes qui se connectent tooAzure recherche.
 
-Dans cet exemple, nous incluons la clé de requête pour renforcer la bonne pratique consistant à utiliser la clé de requête dans les applications clientes.
+Dans cet exemple, nous incluons requête hello toohelp clé renforcer hello meilleure pratique qui consiste à l’aide de la clé de requête hello dans les applications clientes.
 
-La capture d'écran suivante montre le fichier **config.js** ouvert dans un éditeur de texte, avec les entrées appropriées encadrées en rouge pour que vous puissiez voir où mettre à jour le fichier avec les valeurs correspondant à votre service de recherche.
+Hello ci-dessous capture d’écran illustre **config.js** ouvert dans un éditeur de texte avec hello pertinentes entrées délimitées afin que vous puissiez voir où le fichier hello tooupdate hello valeurs qui sont valides pour votre service de recherche.
 
 ![][5]
 
-## <a name="host-a-runtime-environment-for-the-sample"></a>Héberger un environnement d’exécution pour l’exemple
-Cet exemple nécessite un serveur HTTP, que vous pouvez installer globalement à l'aide de npm.
+## <a name="host-a-runtime-environment-for-hello-sample"></a>Héberger un environnement d’exécution de l’exemple hello
+exemple Hello nécessite un serveur HTTP, que vous pouvez installer globalement à l’aide de npm.
 
-Exécutez les commandes suivantes dans une fenêtre PowerShell :
+Utiliser une fenêtre PowerShell pour hello suivant les commandes.
 
-1. Accédez au dossier qui contient le fichier **package.json** .
+1. Exploration du dossier toohello contenant hello **package.json** fichier.
 2. Saisissez `npm install`.
 3. Saisissez `npm install -g http-server`.
 
-## <a name="build-the-index-and-run-the-application"></a>Générer l’index et exécuter l'application
+## <a name="build-hello-index-and-run-hello-application"></a>Créer des index de hello et exécuter l’application hello
 1. Saisissez `npm run indexDocuments`.
 2. Saisissez `npm run build`.
 3. Saisissez `npm run start_server`.
 4. Dans votre navigateur, accédez à `http://localhost:8080/index.html`
 
 ## <a name="search-on-usgs-data"></a>Exécuter une recherche sur les données USGS
-Le jeu de données USGS comprend les enregistrements qui correspondent à l'État de Rhode Island. Si vous cliquez sur **Recherche** et que le champ de recherche est vide, vous obtiendrez les 50 premières entrées, ce qui correspond au paramétrage par défaut.
+jeu de données de groupes universels de sécurité Hello comprend les enregistrements qui sont pertinentes toohello état de Rhode Island. Si vous cliquez sur **recherche** sur une zone de recherche vide, vous obtenez hello 50 premières entrées, qui est la valeur par défaut hello.
 
-Saisissez un terme pour que le moteur de recherche puisse travailler. Essayez d'entrer le nom d’une figure locale. « Roger Williams » fut le premier gouverneur de Rhode Island. De nombreux parcs, bâtiments et écoles portent son nom.
+Entrer un terme de recherche donne moteur de recherche hello quelque chose toogo sur. Essayez d'entrer le nom d’une figure locale. « Roger Williams » a été gouverneur de première hello de Rhode Island. De nombreux parcs, bâtiments et écoles portent son nom.
 
 ![][9]
 
@@ -102,11 +102,11 @@ Vous pouvez également essayer les termes suivants :
 * goose +cape
 
 ## <a name="next-steps"></a>Étapes suivantes
-Ceci est le premier didacticiel Azure Search basé sur Node.js et le jeu de données USGS. Au fil du temps, nous le compléterons avec des fonctionnalités de recherche supplémentaires que vous souhaiterez peut-être utiliser dans vos solutions personnalisées.
+Il s’agit de premier didacticiel Azure Search hello, en fonction de Node.js et hello dataset des groupes universels de sécurité. Au fil du temps, nous allons étendre ce didacticiel toodemonstrate les fonctionnalités de recherche supplémentaires vous pourriez toouse dans vos solutions personnalisées.
 
-Si vous connaissez déjà Azure Search, vous pouvez utiliser cet exemple comme tremplin pour tester des générateurs de suggestions (requêtes prédictives ou à saisie semi-automatique), des filtres et la navigation à facettes. Vous pouvez également améliorer la page des résultats de la recherche en ajoutant des décomptes et en traitant les documents par lots afin que les utilisateurs puissent parcourir les résultats.
+Si vous connaissez déjà Azure Search, vous pouvez utiliser cet exemple comme tremplin pour tester des générateurs de suggestions (requêtes prédictives ou à saisie semi-automatique), des filtres et la navigation à facettes. Vous pouvez également améliorer sur la page de résultats hello en ajoutant des nombres et le traitement par lot des documents afin que les utilisateurs peuvent parcourir les résultats de hello.
 
-Vous découvrez Azure Search ? Nous vous recommandons de suivre les autres didacticiels pour comprendre ce que vous pouvez créer. Consultez les autres ressources disponibles dans notre [page de documentation](https://azure.microsoft.com/documentation/services/search/) . Vous pouvez également cliquer sur les liens dans notre [liste de vidéos et de didacticiels](search-video-demo-tutorial-list.md) pour obtenir des informations supplémentaires.
+TooAzure nouvelle recherche ? Nous vous recommandons d’essayer d’autres toodevelop didacticiels comprendre ce que vous pouvez créer. Visitez notre [page de documentation](https://azure.microsoft.com/documentation/services/search/) toofind davantage de ressources. Vous pouvez également afficher les liens hello dans notre [liste vidéo et didacticiel](search-video-demo-tutorial-list.md) tooaccess plus d’informations.
 
 <!--Image references-->
 [1]: ./media/search-get-started-Nodejs/create-search-portal-1.PNG

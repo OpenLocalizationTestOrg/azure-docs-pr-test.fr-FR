@@ -1,5 +1,5 @@
 ---
-title: "Application Insights pour les applications Microsoft Azure | Microsoft Docs"
+title: aaaApplication Insights pour les applications de Microsoft Azure | Documents Microsoft
 description: "Analysez l’utilisation et les performances de votre application Azure avec Application Insights."
 services: application-insights
 documentationcenter: windows
@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: bwren
-ms.openlocfilehash: a78ee0877de717210d5c9140c6957d271a2b2453
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 978c1657573c6edbf6ed60499889097289156fb5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="application-insights-for-microsoft-azure-apps"></a>Application Insights pour les applications Microsoft Azure
 

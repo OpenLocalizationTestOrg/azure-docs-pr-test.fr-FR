@@ -1,6 +1,6 @@
 ---
-title: "Charger des données à partir de SQL Server dans Azure SQL Data Warehouse (PolyBase) | Microsoft Docs"
-description: "Utilise BCP pour exporter des données à partir de SQL Server vers des fichiers plats, AZCopy pour importer des données dans le stockage d’objets blob Azure et PolyBase pour recevoir les données dans Azure SQL Data Warehouse."
+title: "données aaaLoad à partir de SQL Server dans Azure SQL Data Warehouse (PolyBase) | Documents Microsoft"
+description: "Utilise les données de tooexport bcp à partir de fichiers tooflat de SQL Server, le stockage blob tooAzure AZCopy tooimport données et les données de salutation tooingest PolyBase dans Azure SQL Data Warehouse."
 services: sql-data-warehouse
 documentationcenter: NA
 author: ckarst
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: loading
 ms.date: 10/31/2016
 ms.author: cakarst;barbkess
-ms.openlocfilehash: 966100094f98bae41bf90df500d005fa78b31ec3
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 1346fb016e0538a44426671bf4e29358cb24f7ab
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="load-data-with-polybase-in-sql-data-warehouse"></a>Télécharger des données avec PolyBase dans SQL Data Warehouse
 > [!div class="op_single_selector"]
@@ -29,32 +29,32 @@ ms.lasthandoff: 08/29/2017
 > 
 > 
 
-Ce didacticiel explique comment charger des données dans SQL Data Warehouse avec AzCopy et PolyBase. À la fin de ce didacticiel, vous saurez comment :
+Ce didacticiel montre comment les données de tooload dans SQL Data Warehouse à l’aide de AzCopy et PolyBase. À la fin de ce didacticiel, vous saurez comment :
 
-* Utilisez AzCopy pour copier des données vers le stockage d’objets blobs Azure
-* Créer des objets de base de données pour définir les données
-* Exécuter une requête T-SQL pour charger les données
+* Utiliser le stockage d’objets blob tooAzure AzCopy toocopy données
+* Créer des objets de base de données les données de salutation toodefine
+* Exécuter une requête T-SQL tooload des données hello
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/Loading-data-with-PolyBase-in-Azure-SQL-Data-Warehouse/player]
 > 
 > 
 
 ## <a name="prerequisites"></a>Composants requis
-Pour parcourir ce didacticiel, vous avez besoin des éléments suivants
+toostep dans ce didacticiel, vous avez besoin
 
 * Une base de données SQL Data Warehouse
 * Un compte de stockage Azure de type stockage redondant local standard (LRS-Standard), stockage géo-redondant Standard (Standard-GRS) ou stockage géo-redondant avec accès en lecture Standard (Standard-RAGRS)
-* L’utilitaire de ligne de commande AzCopy Téléchargez et installez la [version la plus récente d’AzCopy][latest version of AzCopy] qui est installée avec les outils Stockage Microsoft Azure.
+* L’utilitaire de ligne de commande AzCopy Téléchargez et installez hello [version la plus récente de AzCopy] [ latest version of AzCopy] qui est installé avec hello de stockage Microsoft Azure Tools.
   
     ![Outils Azure Storage](./media/sql-data-warehouse-get-started-load-with-polybase/install-azcopy.png)
 
-## <a name="step-1-add-sample-data-to-azure-blob-storage"></a>Étape 1 : ajouter les données exemple au stockage d’objets blobs Azure
-Pour charger des données, nous devons placer des exemples de données dans un stockage d’objets blobs Azure. Lors de cette étape, nous allons remplir un objet blob Azure Storage avec des exemples de données. Plus tard, nous allons utiliser PolyBase pour charger ces exemples de données dans votre base de données SQL Data Warehouse.
+## <a name="step-1-add-sample-data-tooazure-blob-storage"></a>Étape 1 : Ajouter le stockage d’objets blob tooAzure échantillon de données
+Données de commandes tooload, nous devons tooput quelques exemples de données dans un stockage d’objets blob Azure. Lors de cette étape, nous allons remplir un objet blob Azure Storage avec des exemples de données. Une version ultérieure, nous allons utiliser PolyBase tooload ces exemples de données dans votre base de données SQL Data Warehouse.
 
-### <a name="a-prepare-a-sample-text-file"></a>A. Préparer un exemple de fichier texte
-Pour préparer un exemple de fichier texte :
+### <a name="a-prepare-a-sample-text-file"></a>R : Préparer un exemple de fichier texte
+tooprepare un exemple de fichier texte :
 
-1. Ouvrez le Bloc-notes et copiez les lignes de données suivantes dans un nouveau fichier. Enregistrez-les dans votre répertoire temporaire local %temp%\DimDate2.txt.
+1. Ouvrez le bloc-notes, puis copiez hello après des lignes de données dans un nouveau fichier. Enregistrez ce répertoire temporaire local de tooyour sous % temp%\DimDate2.txt.
 
 ```
 20150301,1,3
@@ -72,11 +72,11 @@ Pour préparer un exemple de fichier texte :
 ```
 
 ### <a name="b-find-your-blob-service-endpoint"></a>B. Recherchez votre point de terminaison de service blob
-Pour trouver votre point de terminaison de service blob :
+toofind votre point de terminaison de service blob :
 
-1. Dans le portail Azure, sélectionnez **Parcourir** > **Comptes de stockage**.
-2. Cliquez sur le compte de stockage que vous souhaitez utiliser.
-3. Dans le panneau du compte de stockage, cliquez sur Objets blobs.
+1. Sélectionnez hello Azure Portal **Parcourir** > **comptes de stockage**.
+2. Cliquez sur le compte de stockage hello souhaité toouse.
+3. Dans le panneau de compte de stockage hello, cliquez sur objets BLOB
    
     ![Cliquer sur les objets blobs](./media/sql-data-warehouse-get-started-load-with-polybase/click-blobs.png)
 4. Enregistrez votre URL de point de terminaison du service blob pour l’utiliser à une date ultérieure.
@@ -84,67 +84,67 @@ Pour trouver votre point de terminaison de service blob :
     ![Point de terminaison de service blob](./media/sql-data-warehouse-get-started-load-with-polybase/blob-service.png)
 
 ### <a name="c-find-your-azure-storage-key"></a>C. Rechercher votre clé de stockage Azure
-Pour trouver votre clé de stockage Azure :
+toofind votre clé de stockage Azure :
 
-1. Dans le portail Azure, sélectionnez **Parcourir** > **Comptes de stockage**.
-2. Cliquez sur le compte de stockage que vous souhaitez utiliser.
+1. À partir de hello portail Azure, sélectionnez **Parcourir** > **comptes de stockage**.
+2. Cliquez sur le compte de stockage hello souhaité toouse.
 3. Sélectionnez **Tous les paramètres** > **Clés d’accès**.
-4. Cliquez sur la zone de copie pour copier l’une de vos clés d’accès dans le presse-papiers.
+4. Cliquez sur hello copie boîte toocopy une du Presse-papiers toohello accès aux clés.
    
     ![Copier la clé de stockage Azure](./media/sql-data-warehouse-get-started-load-with-polybase/access-key.png)
 
-### <a name="d-copy-the-sample-file-to-azure-blob-storage"></a>D. Copiez l’exemple de fichier de données dans le stockage d’objets blobs Azure.
-Pour copier vos données dans le stockage d’objets blob Azure :
+### <a name="d-copy-hello-sample-file-tooazure-blob-storage"></a>D. Copiez le stockage d’objets blob hello exemple fichier tooAzure
+toocopy votre stockage d’objets blob de données tooAzure :
 
-1. Ouvrez une invite de commandes, puis changez de répertoire pour le répertoire d’installation AzCopy. Cette commande passe au répertoire d’installation par défaut sur un client Windows 64 bits.
+1. Ouvrez une invite de commandes et modifiez le répertoire d’installation des répertoires toohello AzCopy. Cette commande modifie le répertoire d’installation par défaut toohello sur un client de Windows 64 bits.
    
     ```
     cd /d "%ProgramFiles(x86)%\Microsoft SDKs\Azure\AzCopy"
     ```
-2. Exécutez la commande suivante pour télécharger le fichier. Spécifiez l’URL du point de terminaison de votre service d’objets blobs pour <blob service endpoint URL> et votre clé de compte de stockage Azure pour <azure_storage_account_key>.
+2. Exécutez hello suivant du fichier de commandes tooupload hello. Spécifiez l’URL du point de terminaison de votre service d’objets blobs pour <blob service endpoint URL> et votre clé de compte de stockage Azure pour <azure_storage_account_key>.
    
     ```
     .\AzCopy.exe /Source:C:\Temp\ /Dest:<blob service endpoint URL> /datacontainer/datedimension/ /DestKey:<azure_storage_account_key> /Pattern:DimDate2.txt
     ```
 
-Consultez également [Prise en main de l’utilitaire de ligne de commande AzCopy][latest version of AzCopy].
+Voir aussi [prise en main de l’utilitaire de ligne de commande AzCopy de hello][latest version of AzCopy].
 
 ### <a name="e-explore-your-blob-storage-container"></a>E. Explorer votre conteneur de stockage d’objets blobs
-Pour voir le fichier que vous avez téléchargé vers le stockage d’objets blobs :
+fichier de hello toosee vous avez téléchargé tooblob stockage :
 
-1. Revenez au panneau de votre service d’objets blobs.
+1. Retournez dans le panneau de service Blob tooyour.
 2. Sous Conteneurs, double-cliquez sur **datacontainer**.
-3. Pour explorer le chemin d’accès à vos données, cliquez sur le dossier **datedimension** et vous verrez votre fichier **DimDate2.txt** chargé.
-4. Pour afficher les propriétés, cliquez sur **DimDate2.txt**.
-5. Le panneau de propriétés d’objets blobs vous permet de télécharger ou de supprimer le fichier.
+3. tooexplore hello chemin d’accès tooyour données, cliquez sur le dossier de hello **datedimension** et vous verrez votre fichier téléchargé **DimDate2.txt**.
+4. tooview propriétés, cliquez sur **DimDate2.txt**.
+5. Notez que dans le panneau des propriétés hello Blob, vous pouvez télécharger ou supprimer le fichier de hello.
    
     ![Afficher le stockage blob Azure](./media/sql-data-warehouse-get-started-load-with-polybase/view-blob.png)
 
-## <a name="step-2-create-an-external-table-for-the-sample-data"></a>Étape 2 : Créer une table externe pour les exemples de données
-Dans cette section, nous allons créer une table externe qui définit les exemples de données.
+## <a name="step-2-create-an-external-table-for-hello-sample-data"></a>Étape 2 : Créer une table externe de données d’exemple hello
+Dans cette section, nous créons une table externe qui définit les données d’exemple hello.
 
-PolyBase utilise les tables externes pour accéder des données dans le stockage d’objets blobs Azure. Étant donné que les données ne sont pas stockées dans SQL Data Warehouse, PolyBase gère l’authentification pour les données externes à l’aide des informations d’identification de niveau base de données.
+PolyBase utilise les données tooaccess de tables externes dans le stockage blob Azure. Car les données de salutation ne sont pas stockées dans l’entrepôt de données SQL, PolyBase gère les données externes de l’authentification toohello à l’aide d’une information d’identification de l’étendue de base de données.
 
-Dans cette étape, l’exemple utilise les instructions Transact-SQL pour créer une table externe.
+exemple Hello dans cette étape utilise ces toocreate d’instructions Transact-SQL une table externe.
 
-* [Créer une clé principale (Transact-SQL)][Create Master Key (Transact-SQL)] pour chiffrer le secret de vos informations d’identification de niveau base de données.
-* [Créer des informations d’identification de niveau base de données (Transact-SQL)][Create Database Scoped Credential (Transact-SQL)] pour spécifier les informations d’authentification de votre compte de stockage Azure.
-* [Créer une source de données externe (Transact-SQL)][Create External Data Source (Transact-SQL)] pour spécifier l’emplacement de votre stockage d’objets blob Azure.
-* [Créer un format de fichier externe (Transact-SQL)][Create External File Format (Transact-SQL)] pour spécifier le format de vos données.
-* [Créer une table externe (Transact-SQL)][Create External Table (Transact-SQL)] pour spécifier la définition de la table et l’emplacement des données.
+* [Create Master Key (Transact-SQL)] [ Create Master Key (Transact-SQL)] secret de hello tooencrypt de votre base de données d’une étendue d’informations d’identification.
+* [Création d’informations d’identification d’une étendue de base de données (Transact-SQL)] [ Create Database Scoped Credential (Transact-SQL)] toospecify les informations d’authentification pour votre compte de stockage Azure.
+* [Créer la Source de données externe (Transact-SQL)] [ Create External Data Source (Transact-SQL)] emplacement de hello toospecify de votre stockage d’objets blob Azure.
+* [Créer un Format de fichier externe (Transact-SQL)] [ Create External File Format (Transact-SQL)] format de hello toospecify de vos données.
+* [Créer une Table externe (Transact-SQL)] [ Create External Table (Transact-SQL)] toospecify la définition de table hello et l’emplacement de hello des données.
 
-Exécutez cette requête sur votre base de données SQL Data Warehouse. Il crée une table externe nommée DimDate2External dans le schéma dbo qui pointe vers les données d’exemple DimDate2.txt dans le stockage d’objets blobs Azure.
+Exécutez cette requête sur votre base de données SQL Data Warehouse. Il crée une table externe nommée DimDate2External dans le schéma dbo hello qui pointe toohello DimDate2.txt exemples de données dans le stockage d’objets blob Azure hello.
 
 ```sql
 -- A: Create a master key.
 -- Only necessary if one does not already exist.
--- Required to encrypt the credential secret in the next step.
+-- Required tooencrypt hello credential secret in hello next step.
 
 CREATE MASTER KEY;
 
 
 -- B: Create a database scoped credential
--- IDENTITY: Provide any string, it is not used for authentication to Azure storage.
+-- IDENTITY: Provide any string, it is not used for authentication tooAzure storage.
 -- SECRET: Provide your Azure storage account key.
 
 
@@ -156,9 +156,9 @@ WITH
 
 
 -- C: Create an external data source
--- TYPE: HADOOP - PolyBase uses Hadoop APIs to access data in Azure blob storage.
+-- TYPE: HADOOP - PolyBase uses Hadoop APIs tooaccess data in Azure blob storage.
 -- LOCATION: Provide Azure storage account name and blob container name.
--- CREDENTIAL: Provide the credential created in the previous step.
+-- CREDENTIAL: Provide hello credential created in hello previous step.
 
 CREATE EXTERNAL DATA SOURCE AzureStorage
 WITH (
@@ -180,10 +180,10 @@ WITH (
 );
 
 
--- E: Create the external table
--- Specify column names and data types. This needs to match the data in the sample file.
--- LOCATION: Specify path to file or directory that contains the data (relative to the blob container).
--- To point to all files under the blob container, use LOCATION='.'
+-- E: Create hello external table
+-- Specify column names and data types. This needs toomatch hello data in hello sample file.
+-- LOCATION: Specify path toofile or directory that contains hello data (relative toohello blob container).
+-- toopoint tooall files under hello blob container, use LOCATION='.'
 
 CREATE EXTERNAL TABLE dbo.DimDate2External (
     DateId INT NOT NULL,
@@ -197,25 +197,25 @@ WITH (
 );
 
 
--- Run a query on the external table
+-- Run a query on hello external table
 
 SELECT count(*) FROM dbo.DimDate2External;
 
 ```
 
 
-Dans l’Explorateur d’objets SQL Server dans Visual Studio, vous pouvez voir le format de fichier externe, la source de données externe et la table DimDate2External.
+Dans l’Explorateur d’objets SQL Server dans Visual Studio, vous pouvez voir le format de fichier externe hello, source de données externe et hello DimDate2External table.
 
 ![Afficher les tables externes](./media/sql-data-warehouse-get-started-load-with-polybase/external-table.png)
 
 ## <a name="step-3-load-data-into-sql-data-warehouse"></a>Étape 3 : Charger des données dans SQL Data Warehouse
-Une fois la table externe créée, vous pouvez charger les données dans une nouvelle table ou les insérer dans une table existante.
+Une fois qu’une table externe hello est créée, vous pouvez charger des données de hello dans une nouvelle table ou insérer dans une table existante.
 
-* Pour charger les données dans une nouvelle table, exécutez l’instruction [CREATE TABLE AS SELECT (Transact-SQL)][CREATE TABLE AS SELECT (Transact-SQL)]. La nouvelle table contient des colonnes nommées dans la requête. Les types de données présentes dans les colonnes correspondent à des types de données dans la définition de la table externe.
-* Pour charger les données dans une table existante, utilisez l’instruction [INSERT...SELECT (Transact-SQL)][INSERT...SELECT (Transact-SQL)].
+* les données de salutation tooload dans une nouvelle table, exécutez hello [CREATE TABLE AS SELECT (Transact-SQL)] [ CREATE TABLE AS SELECT (Transact-SQL)] instruction. nouvelle table de Hello aura colonnes hello nommées dans la requête de hello. types de données Hello de colonnes de hello correspondra à des types de données hello dans la définition de la table externe hello.
+* les données de salutation tooload dans une table existante, utilisez hello [INSERT... SELECT (Transact-SQL)] [ INSERT...SELECT (Transact-SQL)] instruction.
 
 ```sql
--- Load the data from Azure blob storage to SQL Data Warehouse
+-- Load hello data from Azure blob storage tooSQL Data Warehouse
 
 CREATE TABLE dbo.DimDate2
 WITH
@@ -228,9 +228,9 @@ SELECT * FROM [dbo].[DimDate2External];
 ```
 
 ## <a name="step-4-create-statistics-on-your-newly-loaded-data"></a>Étape 4 : Créer des statistiques sur vos données nouvellement chargées
-SQL Data Warehouse ne prend pas en charge les statistiques de création ou de mise à jour automatiques. Par conséquent, pour obtenir des performances élevées pour les requêtes, il est important de créer des statistiques pour chaque colonne de chaque table après le premier chargement. Il est également important de mettre à jour les statistiques après des modifications importantes des données.
+SQL Data Warehouse ne prend pas en charge les statistiques de création ou de mise à jour automatiques. Par conséquent, les performances de requête tooachieve, il est important de statistiques toocreate sur chaque colonne de chaque table après hello d’abord chargement. Il est également important tooupdate statistiques après des modifications importantes dans les données de salutation.
 
-Cet exemple crée des statistiques de colonne unique sur la nouvelle table DimDate2.
+Cet exemple crée des statistiques de colonne unique sur la nouvelle table de DimDate2 hello.
 
 ```sql
 CREATE STATISTICS [DateId] on [DimDate2] ([DateId]);
@@ -238,10 +238,10 @@ CREATE STATISTICS [CalendarQuarter] on [DimDate2] ([CalendarQuarter]);
 CREATE STATISTICS [FiscalQuarter] on [DimDate2] ([FiscalQuarter]);
 ```
 
-Pour en savoir plus, consultez la section [Statistiques][Statistics].  
+toolearn, voir [statistiques][Statistics].  
 
 ## <a name="next-steps"></a>Étapes suivantes
-Consultez le [guide PolyBase][PolyBase guide] pour obtenir d’autres informations sur le développement d’une solution utilisant PolyBase.
+Consultez hello [guide de PolyBase] [ PolyBase guide] pour plus d’informations à connaître lorsque vous développez une solution qui utilise PolyBase.
 
 <!--Image references-->
 

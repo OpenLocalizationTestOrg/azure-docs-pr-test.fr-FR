@@ -1,6 +1,6 @@
 ---
-title: "Copie répétable dans Azure Data Factory | Microsoft Docs"
-description: "Découvrez comment éviter les doublons, même si une tranche qui copie des données est exécutée plusieurs fois."
+title: copie aaaRepeatable dans Azure Data Factory | Documents Microsoft
+description: "Découvrez comment tooavoid doublons même si un secteur qui copie des données est exécuté plusieurs fois."
 services: data-factory
 documentationcenter: 
 author: linda33wj
@@ -13,21 +13,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/20/2017
 ms.author: jingwang
-ms.openlocfilehash: 5b88a235915bf35fec701eee4a5f80beb4a67632
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 79a3fde2b700bf0a0e167479d6a86c5bee1bf7ec
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="repeatable-copy-in-azure-data-factory"></a>Copie répétable dans Azure Data Factory
 
 ## <a name="repeatable-read-from-relational-sources"></a>Lecture renouvelée de sources relationnelles
-Lorsque vous copiez des données à partir de magasins de données relationnels, gardez à l’esprit la répétabilité de l’opération, afin d’éviter des résultats imprévus. Dans Azure Data Factory, vous pouvez réexécuter une tranche manuellement. Vous pouvez également configurer une stratégie de nouvelles tentatives pour un jeu de données, afin qu’une tranche soit réexécutée en cas de défaillance. Lorsqu’une tranche est réexécutée d’une manière ou d’une autre, vous devez vous assurer que les mêmes données sont lues et ce, quel que soit le nombre d’exécutions de la tranche.  
+Lors de la copie des données à partir de banques de données relationnelles, conserver la répétabilité dans l’esprit tooavoid des résultats inattendus. Dans Azure Data Factory, vous pouvez réexécuter une tranche manuellement. Vous pouvez également configurer une stratégie de nouvelles tentatives pour un jeu de données, afin qu’une tranche soit réexécutée en cas de défaillance. Lorsqu’une tranche est exécuté à nouveau dans les deux cas, vous devez toomake vraiment qui hello des mêmes données n’est en lecture aucune question comment plusieurs fois une tranche est exécutée.  
  
 > [!NOTE]
-> Les exemples suivants concernent SQL Azure, mais sont applicables à tout autre magasin de données prenant en charge les jeux de données rectangulaires. Vous pouvez avoir besoin d’ajuster le **type** de source et la propriété de **requête** (par exemple : query au lieu de sqlReaderQuery) pour le magasin de données.   
+> Hello exemples suivants sont pour SQL Azure, mais banque de données applicable tooany qui prend en charge les jeux de données rectangulaire. Vous avez peut-être tooadjust hello **type** de source et hello **requête** propriété (par exemple : requête au lieu de sqlReaderQuery) pour les données de salutation stocker.   
 
-En général, vous souhaitez lire uniquement les données des magasins relationnels qui correspondent à cette tranche. Pour cela, vous pouvez utiliser les variables système WindowStart et WindowEnd disponibles dans Azure Data Factory. Pour en savoir plus sur les variables et les fonctions dans Azure Data Factory, lisez l’article intitulé [Azure Data Factory - Variables système et fonctions](data-factory-functions-variables.md). Exemple : 
+En règle générale, lors de la lecture à partir de magasins relationnelles, vous souhaitez tooread uniquement les données de hello correspondant toothat tranche. Un moyen toodo serait donc à l’aide de hello WindowStart et WindowEnd variables système disponibles dans Azure Data Factory. En savoir plus sur les variables de hello et les fonctions dans Azure Data Factory ici Bonjour [Azure Data Factory - fonctions et Variables système](data-factory-functions-variables.md) l’article. Exemple : 
 
 ```json
 "source": {
@@ -35,9 +35,9 @@ En général, vous souhaitez lire uniquement les données des magasins relationn
     "sqlReaderQuery": "$$Text.Format('select * from MyTable where timestampcolumn >= \\'{0:yyyy-MM-dd HH:mm\\' AND timestampcolumn < \\'{1:yyyy-MM-dd HH:mm\\'', WindowStart, WindowEnd)"
 },
 ```
-Cette requête lit des données qui figurent dans la plage de durée de tranche (WindowStart -> WindowEnd) à partir de la table MyTable. Par ailleurs, la réexécution de cette tranche garantit toujours la lecture des mêmes données. 
+Cette requête lit les données qui se situe à partir de la table de hello MyTable hello durée de la tranche (WindowStart -> WindowEnd). Réexécutez de cette tranche s’assurent également que ce hello mêmes données sont en lecture. 
 
-Dans d’autres cas, vous souhaitez lire l’intégralité de la table. Vous pouvez alors définir sqlReaderQuery comme suit :
+Dans d’autres cas, vous souhaiterez peut-être tooread hello totalité de la table et pouvez définir hello sqlReaderQuery comme suit :
 
 ```json
 "source": 
@@ -47,10 +47,10 @@ Dans d’autres cas, vous souhaitez lire l’intégralité de la table. Vous pou
 },
 ```
 
-## <a name="repeatable-write-to-sqlsink"></a>Écriture répétable dans SqlSink
-Lors de la copie de données vers **SQL Azure/SQL Server** à partir d’autres magasins de données, vous devez garder la répétabilité à l’esprit afin d’éviter des résultats inattendus. 
+## <a name="repeatable-write-toosqlsink"></a>Écriture REPEATABLE tooSqlSink
+Lors de la copie des données trop**Azure SQL/SQL Server** provenant d’autres banques de données, vous devez l’esprit tooavoid tookeep répétabilité des résultats inattendus. 
 
-Lors de la copie de données sur une base de données Azure SQL/SQL Server, l’activité de copie ajoute des données à la table de récepteur par défaut. Par exemple, vous copiez des données à partir d’un fichier CSV (valeurs séparées par des virgules) contenant deux enregistrements et les collez dans la table suivante d’une base de données Azure SQL/SQL Server. Lorsqu’une tranche est exécutée, les deux enregistrements sont copiés dans la table SQL. 
+Lors de la copie des données tooAzure base de données SQL/SQL Server, l’activité de copie hello ajoute la table de données toohello récepteur par défaut. Par exemple, vous copiez des données à partir d’un format CSV (valeurs séparées par des virgules) fichier contenant deux enregistrements toohello suivant de table dans une base de données Azure SQL/SQL Server. Lorsqu’une tranche s’exécute, hello deux enregistrements sont copiés toohello SQL table. 
 
 ```
 ID    Product        Quantity    ModifiedDate
@@ -59,7 +59,7 @@ ID    Product        Quantity    ModifiedDate
 7     Down Tube    2            2015-05-01 00:00:00
 ```
 
-Supposons que vous trouviez des erreurs dans le fichier source et mettiez à jour la quantité de Down Tube, la faisant passer de 2 à 4. Si vous réexécutez manuellement la tranche de données pour cette période, vous trouvez deux nouveaux enregistrements ajoutés à la base de données SQL Azure/SQL Server. Cet exemple suppose qu’aucune des colonnes de la table ne présente de contrainte de clé primaire.
+Supposons que vous a détecté des erreurs dans le fichier source et quantité hello du Tube vers le bas à partir de 2 too4 mise à jour. Si vous réexécutez la tranche de données hello pour cette période manuellement, vous trouverez deux nouveaux enregistrements ajoutés tooAzure base de données SQL/SQL Server. Cet exemple suppose qu’aucune des colonnes hello dans la table de hello de contrainte de clé primaire hello.
 
 ```
 ID    Product        Quantity    ModifiedDate
@@ -70,10 +70,10 @@ ID    Product        Quantity    ModifiedDate
 7     Down Tube    4            2015-05-01 00:00:00
 ```
 
-Pour éviter ce problème, vous devez spécifier la sémantique UPSERT en utilisant l’une des deux mécanismes suivants :
+tooavoid ce comportement, vous avez besoin d’une sémantique UPSERT toospecify en utilisant l’une des hello suivant deux mécanismes :
 
 ### <a name="mechanism-1-using-sqlwritercleanupscript"></a>Mécanisme 1 : utilisation de la propriété sqlWriterCleanupScript
-Vous pouvez utiliser la propriété **sqlWriterCleanupScript** pour nettoyer les données à partir de la table du récepteur avant d’insérer les données lors de l’exécution d’une tranche. 
+Vous pouvez utiliser hello **sqlWriterCleanupScript** tooclean de propriété des données à partir de la table de récepteur de hello avant l’insertion de données de hello lors de l’exécution d’une tranche. 
 
 ```json
 "sink":  
@@ -83,7 +83,7 @@ Vous pouvez utiliser la propriété **sqlWriterCleanupScript** pour nettoyer les
 }
 ```
 
-Lorsqu’une tranche s’exécute, le script de nettoyage est d’abord exécuté pour supprimer les données correspondant à la tranche dans la table SQL. Ensuite, l’activité de copie insère les données dans la table SQL. Si la tranche est réexécutée, la quantité est mise à jour comme vous le souhaitez.
+Lorsqu’une tranche s’exécute, le script de nettoyage hello est exécuté premières données toodelete correspondant tranche toohello à partir de la table SQL de hello. activité de copie Hello insère ensuite les données dans hello Table SQL. En cas de réexécution de la tranche de hello, la quantité de hello est mise à jour comme vous le souhaitez.
 
 ```
 ID    Product        Quantity    ModifiedDate
@@ -92,7 +92,7 @@ ID    Product        Quantity    ModifiedDate
 7     Down Tube    4            2015-05-01 00:00:00
 ```
 
-Supposons que l’enregistrement Flat Washer soit supprimé du fichier csv d’origine. Une nouvelle exécution de la tranche entraînerait le résultat suivant : 
+Supposons que hello enregistrement de laver plat est supprimé de volume partagé de cluster hello d’origine. Puis réexécuter la tranche de hello produirait hello suivant des résultats : 
 
 ```
 ID    Product        Quantity    ModifiedDate
@@ -100,17 +100,17 @@ ID    Product        Quantity    ModifiedDate
 7     Down Tube    4            2015-05-01 00:00:00
 ```
 
-L’activité de copie a exécuté le script de nettoyage pour supprimer les données correspondant à cette tranche. Elle a ensuite lu l’entrée du fichier csv (qui ne contenait qu’un enregistrement) avant de l’insérer dans la table. 
+activité de copie Hello s’exécutaient hello nettoyage script toodelete hello données correspondantes pour ce secteur. Puis il lire l’entrée de hello de csv hello (qui puis ne contenus qu’un seul enregistrement) et inséré dans la Table de hello. 
 
 ### <a name="mechanism-2-using-sliceidentifiercolumnname"></a>Mécanisme 2 : utilisation du paramètre sliceIdentifierColumnName
 > [!IMPORTANT]
 > Pour le moment, le paramètre sliceIdentifierColumnName n’est pas pris en charge par Azure SQL Data Warehouse. 
 
-Un deuxième mécanisme pour obtenir la répétabilité consiste à disposer d’une colonne dédiée (sliceIdentifierColumnName) dans la table cible. Cette colonne peut être utilisée par Azure Data Factory pour s’assurer que la source et la destination restent synchronisées. Cette approche fonctionne s’il existe une flexibilité dans la modification ou la définition du schéma de table SQL de destination. 
+répétabilité de tooachieve Hello deuxième mécanisme est en ayant une colonne dédiée (sliceIdentifierColumnName) dans la cible de hello Table. Cette colonne peut être utilisée par Azure Data Factory tooensure hello source et destination reste synchronisé. Cette approche fonctionne quand il existe une grande souplesse dans la modification ou la définition de schéma de Table SQL de destination hello. 
 
-Cette colonne est utilisée par Azure Data Factory à des fins de répétabilité. Au cours du processus, Azure Data Factory n’apporte aucune modification de schéma à la table. Façon d’utiliser cette approche :
+Cette colonne est utilisée par la fabrique de données Azure à des fins de répétabilité et dans les processus hello Azure Data Factory ne fait pas de n’importe quel schéma change toohello Table. Méthode toouse cette approche :
 
-1. Définissez une colonne de type **binaire (32)** dans la table SQL de destination. Aucune contrainte ne doit exister sur cette colonne. Pour les besoins de cet exemple, nommons cette colonne « AdfSliceIdentifier ».
+1. Définir une colonne de type **binary (32)** dans Table SQL de destination hello. Aucune contrainte ne doit exister sur cette colonne. Pour les besoins de cet exemple, nommons cette colonne « AdfSliceIdentifier ».
 
 
     Table source :
@@ -132,7 +132,7 @@ Cette colonne est utilisée par Azure Data Factory à des fins de répétabil
     )
     ```
 
-2. Utilisez-la dans l’activité de copie comme suit :
+2. Utiliser dans l’activité de copie hello comme suit :
    
     ```json
     "sink":  
@@ -143,12 +143,12 @@ Cette colonne est utilisée par Azure Data Factory à des fins de répétabil
     }
     ```
 
-Azure Data Factory renseigne cette colonne conformément à ses besoins pour s’assurer que la source et la destination restent synchronisées. Les valeurs de cette colonne ne doivent pas être utilisées en dehors de ce contexte. 
+Azure Data Factory remplit cette colonne en fonction de son besoin tooensure hello source et destination restent synchronisés. valeurs Hello cette colonne ne doivent pas être utilisées en dehors de ce contexte. 
 
-Comme pour le mécanisme 1, l’activité de copie nettoie automatiquement les données de la tranche spécifiée dans la table SQL de destination. Ensuite, elle insère les données de la source dans la table de destination. 
+Toomechanism similaires 1, l’activité de copie nettoie automatiquement les données hello pour hello donné tranche à partir de destination hello Table SQL. Il insère ensuite les données à partir de la source de table de destination toohello. 
 
 ## <a name="next-steps"></a>Étapes suivantes
-Pour accéder à des exemples JSON complets, consultez les articles suivants sur les connecteurs : 
+Passez en revue hello suivant connecteur articles pour exécuter les exemples JSON : 
 
 - [Azure SQL Database](data-factory-azure-sql-connector.md)
 - [Azure SQL Data Warehouse](data-factory-azure-sql-data-warehouse-connector.md)

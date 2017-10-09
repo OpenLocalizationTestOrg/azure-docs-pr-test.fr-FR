@@ -1,6 +1,6 @@
 ---
-title: "Comment créer des images de machines virtuelles Azure Linux avec Packer | Microsoft Docs"
-description: "Découvrez comment utiliser Packer pour créer des images de machines virtuelles Linux dans Azure"
+title: aaaHow toocreate Images de machine virtuelle Azure Linux avec compression | Documents Microsoft
+description: "Découvrez comment les images toocreate toouse GARNITURE d’ordinateurs virtuels Linux dans Azure"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: iainfoulds
@@ -15,20 +15,20 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 08/18/2017
 ms.author: iainfou
-ms.openlocfilehash: 49a74648bd3953647d581c4e7c548985c5000f17
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 5990598859e73efac477884bc8de5fd5138bf6e3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-packer-to-create-linux-virtual-machine-images-in-azure"></a>Comment utiliser Packer pour créer des images de machines virtuelles Linux dans Azure
-Chaque machine virtuelle dans Azure est créée à partir d’une image qui définit la distribution Linux et la version du système d’exploitation. Les images peuvent inclure des configurations et des applications pré-installées. La Place de marché Microsoft Azure fournit de nombreuses images internes et de tiers pour les distributions et environnements d’application les plus courants. Vous pouvez également créer vos propres images personnalisées selon vos besoins. Cet article explique comment utiliser l’outil open source [Packer](https://www.packer.io/) pour définir et générer des images personnalisées dans Azure.
+# <a name="how-toouse-packer-toocreate-linux-virtual-machine-images-in-azure"></a>Comment une machine virtuelle Linux toouse GARNITURE toocreate images dans Azure
+Chaque ordinateur virtuel (VM) dans Azure est créé à partir d’une image qui définit hello distribution Linux et la version du système d’exploitation. Les images peuvent inclure des configurations et des applications pré-installées. Hello Azure Marketplace fournit des images de premier et le tiers pour distributions courantes et les environnements de l’application, ou vous pouvez créer vos propres besoins de tooyour adaptés des images personnalisées. Cet article décrit en détail comment toouse hello ouvrir outil source [GARNITURE](https://www.packer.io/) toodefine et créer des images personnalisées dans Azure.
 
 
 ## <a name="create-azure-resource-group"></a>Créer un groupe de ressources Azure
-Pendant le processus de génération, Packer crée des ressources Azure temporaires lorsqu’il génère la machine virtuelle source. Pour capturer cette machine virtuelle source afin de l’utiliser en tant qu’image, vous devez définir un groupe de ressources. La sortie du processus de génération Packer est stockée dans ce groupe de ressources.
+Pendant le processus de génération hello, GARNITURE crée des ressources Azure temporaires lorsqu’il crée l’ordinateur virtuel source de hello. toocapture qui de source pour une utilisation en tant qu’image de machine virtuelle, vous devez définir un groupe de ressources. Hello sortie à partir de processus de génération du programme de compression hello est stockée dans ce groupe de ressources.
 
-Créez un groupe de ressources avec la commande [az group create](/cli/azure/group#create). L’exemple suivant crée un groupe de ressources nommé *myResourceGroup* à l’emplacement *eastus* :
+Créez un groupe de ressources avec la commande [az group create](/cli/azure/group#create). Hello exemple suivant crée un groupe de ressources nommé *myResourceGroup* Bonjour *eastus* emplacement :
 
 ```azurecli
 az group create -n myResourceGroup -l eastus
@@ -36,15 +36,15 @@ az group create -n myResourceGroup -l eastus
 
 
 ## <a name="create-azure-credentials"></a>Créer des informations d’identification Azure
-Packer s’authentifie auprès d’Azure à l’aide d’un principal de service. Un principal de service Azure est une identité de sécurité que vous pouvez utiliser avec des applications, des services et des outils d’automatisation comme Packer. Vous contrôlez et définissez les opérations que le principal de service est autorisé à effectuer dans Azure.
+Packer s’authentifie auprès d’Azure à l’aide d’un principal de service. Un principal de service Azure est une identité de sécurité que vous pouvez utiliser avec des applications, des services et des outils d’automatisation comme Packer. Contrôler et de définir des autorisations de hello comme principal du service hello toowhat opérations réalisables dans Azure.
 
-Créez un principal de service avec la commande [az ad sp create-for-rbac](/cli/azure/ad/sp#create-for-rbac) et affichez les informations d’identification nécessaires à Packer :
+Créer un service principal avec [az ad sp créer-de-rbac](/cli/azure/ad/sp#create-for-rbac) et informations d’identification de hello sortie GARNITURE doit :
 
 ```azurecli
 az ad sp create-for-rbac --query [appId,password,tenant]
 ```
 
-Voici un exemple de sortie issue des commandes précédentes :
+Voici un exemple de sortie de hello de hello précédant les commandes :
 
 ```azurecli
 "f5b6a5cf-fbdf-4a9f-b3b8-3c2cd00225a4",
@@ -52,28 +52,28 @@ Voici un exemple de sortie issue des commandes précédentes :
 "72f988bf-86f1-41af-91ab-2d7cd011db47"
 ```
 
-Pour s’authentifier sur Azure, vous devez également obtenir votre ID d’abonnement Azure avec [az account show](/cli/azure/account#show) :
+tooauthenticate tooAzure, vous devez également tooobtain avec l’ID de votre abonnement Azure [afficher de compte az](/cli/azure/account#show):
 
 ```azurecli
 az account show --query [id] --output tsv
 ```
 
-Vous utiliserez la sortie de ces deux commandes à l’étape suivante.
+Vous utilisez la sortie hello à partir de ces deux commandes à l’étape suivante de hello.
 
 
 ## <a name="define-packer-template"></a>Définition du modèle Packer
-Pour générer les images, vous devez créer un modèle en tant que fichier JSON. Dans le modèle, vous définissez des générateurs et des fournisseurs pour mener à bien le processus de génération réel. Packer possède un [fournisseur pour Azure](https://www.packer.io/docs/builders/azure.html) qui vous permet de définir des ressources Azure, telles que les informations d’identification du principal de service créées à l’étape précédente.
+toobuild images, vous créez un modèle en tant qu’un fichier JSON. Dans le modèle de hello, vous définissez des générateurs et provisioners mener à bien hello réel des processus de génération. Programme de compression a un [un fournisseur pour Azure](https://www.packer.io/docs/builders/azure.html) qui vous permet de toodefine Azure ressources, telles que hello principal des références de service créés dans hello précédant l’étape.
 
-Créez un fichier nommé *ubuntu.json* et collez le contenu suivant : Saisissez vos propres valeurs comme suit :
+Créez un fichier nommé *ubuntu.json* et coller hello suivant le contenu. Entrez vos propres valeurs pour les éléments suivants de hello :
 
-| Paramètre                           | Emplacement |
+| Paramètre                           | Où tooobtain |
 |-------------------------------------|----------------------------------------------------|
 | *client_id*                         | Première ligne de la sortie de la commande create `az ad sp` - *appId* |
 | *client_secret*                     | Deuxième ligne de la sortie de la commande create `az ad sp` - *password* |
 | *tenant_id*                         | Troisième ligne de la sortie de la commande create `az ad sp` - *tenant* |
 | *subscription_id*                   | Sortie de la commande `az account show` |
-| *managed_image_resource_group_name* | Nom du groupe de ressources créé lors de la première étape |
-| *managed_image_name*                | Nom de l’image de disque géré créée |
+| *managed_image_resource_group_name* | Nom du groupe de ressources que vous avez créé dans la première étape de hello |
+| *managed_image_name*                | Nom d’image de disque géré hello qui est créé |
 
 
 ```json
@@ -117,23 +117,23 @@ Créez un fichier nommé *ubuntu.json* et collez le contenu suivant : Saisissez
 }
 ```
 
-Ce modèle génère une image Ubuntu 16.04 LTS, installe NGINX, puis déprovisionne la machine virtuelle.
+Ce modèle génère une image Ubuntu 16.04 LTS, installe NGINX, puis arrête la machine virtuelle de hello.
 
 > [!NOTE]
-> Si vous développez ce modèle pour approvisionner les informations d’identification utilisateur, définissez la commande du fournisseur qui déprovisionne l’agent Azure de sorte qu’elle indique `-deprovision` et non `deprovision+user`.
-> L’indicateur `+user` supprime tous les comptes d’utilisateur de la machine virtuelle source.
+> Si vous développez ce informations d’identification d’utilisateur tooprovision de modèle, ajuster la commande d’un fournisseur hello qu’arrête hello agent Azure tooread `-deprovision` plutôt que `deprovision+user`.
+> Hello `+user` indicateur supprime tous les comptes d’utilisateur de machine virtuelle de la source hello.
 
 
 ## <a name="build-packer-image"></a>Génération de l’image Packer
-Si Packer n’est pas encore installé sur votre ordinateur local, [suivez les instructions d’installation de Packer](https://www.packer.io/docs/install/index.html).
+Si vous n’avez pas encore installé sur votre ordinateur local, un programme de compression [suivez les instructions d’installation du programme de compression hello](https://www.packer.io/docs/install/index.html).
 
-Générez l’image en spécifiant votre fichier de modèle Packer comme suit :
+Créer hello image en spécifiant votre programme de compression des fichiers de modèle comme suit :
 
 ```bash
 ./packer build ubuntu.json
 ```
 
-Voici un exemple de la sortie des commandes précédentes :
+Voici un exemple de sortie de hello de hello précédant les commandes :
 
 ```bash
 azure-arm output will be in this color.
@@ -152,21 +152,21 @@ azure-arm output will be in this color.
 ==> azure-arm: Deploying deployment template ...
 ==> azure-arm:  -> ResourceGroupName : ‘packer-Resource-Group-swtxmqm7ly’
 ==> azure-arm:  -> DeploymentName    : ‘pkrdpswtxmqm7ly’
-==> azure-arm: Getting the VM’s IP address ...
+==> azure-arm: Getting hello VM’s IP address ...
 ==> azure-arm:  -> ResourceGroupName   : ‘packer-Resource-Group-swtxmqm7ly’
 ==> azure-arm:  -> PublicIPAddressName : ‘packerPublicIP’
 ==> azure-arm:  -> NicName             : ‘packerNic’
 ==> azure-arm:  -> Network Connection  : ‘PublicEndpoint’
 ==> azure-arm:  -> IP Address          : ‘40.76.218.147’
-==> azure-arm: Waiting for SSH to become available...
-==> azure-arm: Connected to SSH!
+==> azure-arm: Waiting for SSH toobecome available...
+==> azure-arm: Connected tooSSH!
 ==> azure-arm: Provisioning with shell script: /var/folders/h1/ymh5bdx15wgdn5hvgj1wc0zh0000gn/T/packer-shell868574263
-    azure-arm: WARNING! The waagent service will be stopped.
+    azure-arm: WARNING! hello waagent service will be stopped.
     azure-arm: WARNING! Cached DHCP leases will be deleted.
-    azure-arm: WARNING! root password will be disabled. You will not be able to login as root.
+    azure-arm: WARNING! root password will be disabled. You will not be able toologin as root.
     azure-arm: WARNING! /etc/resolvconf/resolv.conf.d/tail and /etc/resolvconf/resolv.conf.d/original will be deleted.
     azure-arm: WARNING! packer account and entire home directory will be deleted.
-==> azure-arm: Querying the machine’s properties ...
+==> azure-arm: Querying hello machine’s properties ...
 ==> azure-arm:  -> ResourceGroupName : ‘packer-Resource-Group-swtxmqm7ly’
 ==> azure-arm:  -> ComputeName       : ‘pkrvmswtxmqm7ly’
 ==> azure-arm:  -> Managed OS Disk   : ‘/subscriptions/guid/resourceGroups/packer-Resource-Group-swtxmqm7ly/providers/Microsoft.Compute/disks/osdisk’
@@ -182,11 +182,11 @@ azure-arm output will be in this color.
 ==> azure-arm:  -> Image Location            : ‘eastus’
 ==> azure-arm: Deleting resource group ...
 ==> azure-arm:  -> ResourceGroupName : ‘packer-Resource-Group-swtxmqm7ly’
-==> azure-arm: Deleting the temporary OS disk ...
+==> azure-arm: Deleting hello temporary OS disk ...
 ==> azure-arm:  -> OS Disk : skipping, managed disk was used...
 Build ‘azure-arm’ finished.
 
-==> Builds finished. The artifacts of successful builds are:
+==> Builds finished. hello artifacts of successful builds are:
 --> azure-arm: Azure.ResourceManagement.VMImage:
 
 ManagedImageResourceGroupName: myResourceGroup
@@ -196,7 +196,7 @@ ManagedImageLocation: eastus
 
 
 ## <a name="create-vm-from-azure-image"></a>Création d’une machine virtuelle à partir d’une image Azure
-Vous pouvez à présent créer une machine virtuelle à partir de votre image à l’aide de la commande [az vm create](/cli/azure/vm#create). Spécifiez l’image que vous avez créée avec le paramètre `--image`. L’exemple suivant crée une machine virtuelle nommée *myVM* à partir de *myPackerImage* et génère des clés SSH si elles n’existent pas déjà :
+Vous pouvez à présent créer une machine virtuelle à partir de votre image à l’aide de la commande [az vm create](/cli/azure/vm#create). Spécifiez hello Image que vous avez créé avec hello `--image` paramètre. Hello exemple suivant crée un ordinateur virtuel nommé *myVM* de *myPackerImage* et génère des clés SSH s’ils n’existent pas déjà :
 
 ```azurecli
 az vm create \
@@ -207,9 +207,9 @@ az vm create \
     --generate-ssh-keys
 ```
 
-La création de la machine virtuelle ne nécessite que quelques minutes. Une fois la machine virtuelle créée, notez la valeur de `publicIpAddress` qui s’affiche dans l’interface Azure CLI. Cette adresse est utilisée pour accéder au site NGINX à l’aide d’un navigateur web.
+Il prend quelques minutes de toocreate hello machine virtuelle. Une fois que hello machine virtuelle a été créé, prenez note de hello `publicIpAddress` affiché par hello CLI d’Azure. Cette adresse est un site NGINX hello tooaccess utilisées via un navigateur web.
 
-Pour autoriser le trafic web à accéder à votre machine virtuelle, ouvrez le port 80 à partir d’Internet à l’aide de la commande [az vm open-port](/cli/azure/vm#open-port) :
+tooallow web tooreach de trafic de votre machine virtuelle, ouvrez port 80 du hello Internet avec [ouvrir un ordinateur virtuel az-port](/cli/azure/vm#open-port):
 
 ```azurecli
 az vm open-port \
@@ -219,12 +219,12 @@ az vm open-port \
 ```
 
 ## <a name="test-vm-and-nginx"></a>Test de la machine virtuelle et de NGINX
-Vous pouvez maintenant ouvrir un navigateur web et entrer `http://publicIpAddress` dans la barre d’adresse. Indiquez votre propre adresse IP publique à partir du processus de création de la machine virtuelle. La page NGINX par défaut s’affiche comme dans l’exemple suivant :
+Vous pouvez désormais ouvrir un navigateur web et entrez `http://publicIpAddress` dans la barre d’adresses hello. Fournissez vos propres adresse IP à partir de la machine virtuelle de hello créer le processus. page NGINX Hello par défaut s’affiche comme dans hello l’exemple suivant :
 
 ![Site par défaut NGINX](./media/build-image-with-packer/nginx.png) 
 
 
 ## <a name="next-steps"></a>Étapes suivantes
-Dans cet exemple, NGINX était déjà installé et vous avez utilisé Packer pour créer une image de machine virtuelle. Vous pouvez utiliser cette image de machine virtuelle avec les flux de travail de déploiement existants, par exemple pour déployer votre application sur les machines virtuelles créées à partir de l’image avec Ansible, Chef ou Puppet.
+Dans cet exemple, vous avez utilisé le programme de compression toocreate une image de machine virtuelle avec NGINX déjà installé. Vous pouvez utiliser cette image de machine virtuelle en même temps que les workflows existants de déploiement, telles que toodeploy tooVMs de votre application créé à partir de hello Image avec Ansible, Chef ou Puppet.
 
 Pour obtenir d’autres exemples de modèles Packer pour d’autres distributions Linux, consultez [ce référentiel GitHub](https://github.com/hashicorp/packer/tree/master/examples/azure).

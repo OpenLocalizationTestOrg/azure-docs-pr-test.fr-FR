@@ -1,6 +1,6 @@
 ---
-title: "Services et schémas pris en charge par les journaux de diagnostic Azure | Microsoft Docs"
-description: "Découvrez les services pris en charge et le schéma d’événement pour les journaux de diagnostic Azure."
+title: "aaaAzure prise en charge des Services de Diagnostic des journaux et des schémas | Documents Microsoft"
+description: "Comprendre hello pris en charge les services et le schéma d’événement pour les journaux de Diagnostic Azure."
 author: johnkemnetz
 manager: orenr
 editor: 
@@ -14,18 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/21/2017
 ms.author: johnkem
-ms.openlocfilehash: aa4fa6e0310b2725005dfa34e3225c89fb4282d6
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a3cbf5267e1bd0dc257f4fb4f42c323644046a6a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="supported-services-schemas-and-categories-for-azure-diagnostic-logs"></a>Services, schémas et catégories pris en charge pour les journaux de diagnostic Azure
 
-Les [journaux de diagnostic des ressources Azure](monitoring-overview-of-diagnostic-logs.md) sont des journaux générés par vos ressources Azure qui décrivent le fonctionnement de cette ressource. Ces journaux sont spécifiques au type de ressource. Dans cet article, nous présentons l’ensemble des services pris en charge et le schéma d’événement des événements générés par chaque service. Cet article inclut également une liste complète des catégories de journal disponibles par type de ressource.
+[Les journaux de diagnostic de ressources Azure](monitoring-overview-of-diagnostic-logs.md) sont émis par vos ressources Azure qui décrivent le fonctionnement de hello d’une ressource de journaux. Ces journaux sont spécifiques au type de ressource. Dans cet article, nous décrivons ensemble hello du schéma de services et les événements pris en charge pour les événements émis par chaque service. Cet article inclut également une liste complète des catégories de journal disponibles par type de ressource.
 
 ## <a name="supported-services-and-schemas-for-resource-diagnostic-logs"></a>Services et schémas pris en charge pour les journaux de diagnostic des ressources
-Le schéma des journaux de diagnostic des ressources varie en fonction de la ressource et de la catégorie de journal.   
+schéma Hello pour les journaux de diagnostic de ressources varie en fonction de la catégorie de ressource et le journal hello.   
 
 | Service | Schéma et documentation |
 | --- | --- |
@@ -52,12 +52,12 @@ Le schéma des journaux de diagnostic des ressources varie en fonction de la res
 ## <a name="supported-log-categories-per-resource-type"></a>Catégories de journaux prises en charge par type de ressource
 |Type de ressource|Catégorie|Nom d’affichage de la catégorie|
 |---|---|---|
-|Microsoft.ApiManagement/service|GatewayLogs|Journaux relatifs à la passerelle ApiManagement|
+|Microsoft.ApiManagement/service|GatewayLogs|Journaux liés tooApiManagement passerelle|
 |Microsoft.Automation/automationAccounts|JobLogs|Journaux de travail|
 |Microsoft.Automation/automationAccounts|JobStreams|Flux de travail|
 |Microsoft.Automation/automationAccounts|DscNodeStatus|État du nœud DSC|
 |Microsoft.Batch/batchAccounts|ServiceLog|Journaux de service|
-|Microsoft.Cdn/profiles/endpoints|CoreAnalytics|Obtient les métriques du point de terminaison, par exemple, la bande passante, la sortie, etc.|
+|Microsoft.Cdn/profiles/endpoints|CoreAnalytics|Obtient les métriques hello du point de terminaison hello, par exemple, la bande passante, sortie, etc..|
 |Microsoft.CustomerInsights/hubs|AuditEvents|AuditEvents|
 |Microsoft.DataLakeAnalytics/accounts|Audit|Journaux d’audit|
 |Microsoft.DataLakeAnalytics/accounts|Requêtes|Journaux de requête|
@@ -89,6 +89,6 @@ Le schéma des journaux de diagnostic des ressources varie en fonction de la res
 ## <a name="next-steps"></a>Étapes suivantes
 
 * [En savoir plus sur les journaux de diagnostic](monitoring-overview-of-diagnostic-logs.md)
-* [Diffuser en continu les journaux de diagnostic des ressources vers **Event Hubs**](monitoring-stream-diagnostic-logs-to-event-hubs.md)
-* [Modifier les paramètres de diagnostic des ressources via l’API REST Azure Monitor](https://msdn.microsoft.com/library/azure/dn931931.aspx)
+* [Flux des journaux de diagnostic de ressource trop**concentrateurs d’événements**](monitoring-stream-diagnostic-logs-to-event-hubs.md)
+* [Modifier les paramètres de diagnostic de ressources à l’aide de hello API REST du moniteur de Azure](https://msdn.microsoft.com/library/azure/dn931931.aspx)
 * [Analyser les journaux du stockage Azure avec Log Analytics](../log-analytics/log-analytics-azure-storage.md)

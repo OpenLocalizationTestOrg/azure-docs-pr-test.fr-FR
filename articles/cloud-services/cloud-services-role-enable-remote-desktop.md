@@ -1,6 +1,6 @@
 ---
-title: "Activation du Bureau à distance dans Service cloud Azure | Microsoft Docs"
-description: "Configuration de l’application de service cloud Azure pour autoriser les connexions Bureau à distance"
+title: "aaaEnable Bureau à distance dans un Service Cloud Azure | Documents Microsoft"
+description: "Tooconfigure votre azure cloud service connexions Bureau à distance tooallow d’application"
 services: cloud-services
 documentationcenter: 
 author: thraka
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/05/2017
 ms.author: adegeo
-ms.openlocfilehash: 413e72e9a39fcde84f56bfc61a6bc72dbadf1c97
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: b3c0180bf5ad29cb77e5303ccbd6f9ccc44b7b0a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="enable-remote-desktop-connection-for-a-role-in-azure-cloud-services"></a>Activer une connexion Bureau à distance pour un rôle dans Azure Cloud Services
 
@@ -28,66 +28,66 @@ ms.lasthandoff: 08/18/2017
 > * [PowerShell](cloud-services-role-enable-remote-desktop-powershell.md)
 > * [Visual Studio](../vs-azure-tools-remote-desktop-roles.md)
 
-Vous pouvez activer une connexion Bureau à distance dans votre rôle pendant le développement en incluant les modules Bureau à distance dans votre définition de service. Vous pouvez aussi activer le Bureau à distance via l’extension Bureau à distance. Cette deuxième approche est recommandée, car elle vous permet d’activer le Bureau à distance sans avoir à redéployer votre application.
+Vous pouvez activer une connexion Bureau à distance dans votre rôle pendant le développement en incluant les modules de bureau à distance hello dans votre définition de service, ou vous pouvez choisir tooenable Bureau à distance via hello Extension Bureau à distance. Hello approche par défaut est toouse hello Bureau à distance extension que vous pouvez activer le Bureau à distance même après que l’application hello est déployée sans tooredeploy votre application.
 
-## <a name="configure-remote-desktop-from-the-azure-classic-portal"></a>Configurer le Bureau à distance à partir du portail Azure Classic
-Le portail Azure Classic utilise l’approche basée sur l’extension Bureau à distance, ce qui vous permet d’activer le Bureau à distance même après déployé l’application. La page **Configurer** de votre service cloud vous permet d’activer le Bureau à distance, de changer le compte Administrateur local utilisé pour la connexion aux machines virtuelles ou le certificat employé dans l’authentification, et de définir la date d’expiration.
+## <a name="configure-remote-desktop-from-hello-azure-classic-portal"></a>Configurer le Bureau à distance à partir de hello portail Azure classic
+Hello portail Azure classic utilise approche d’Extension Bureau à distance hello même après que l’application hello est déployée, vous pouvez activer Bureau à distance. Hello **configurer** page pour votre service cloud vous permet de tooenable Bureau à distance, modifier le compte d’administrateur local hello utilisé tooconnect toohello virtuels, les certificats hello utilisés dans l’authentification et définir hello date d’expiration.
 
-1. Cliquez sur **Cloud Services**, cliquez sur le nom du service cloud, puis cliquez sur **Configurer**.
-2. Cliquez sur le bouton **Distant** en bas de la page.
+1. Cliquez sur **Services de cloud computing**, cliquez sur nom hello du service de cloud hello, puis cliquez sur **configurer**.
+2. Cliquez sur hello **distant** bouton bas hello.
 
     ![Services cloud à distance](./media/cloud-services-role-enable-remote-desktop/CloudServices_Remote.png)
 
    > [!WARNING]
-   > toutes les instances de rôle sont redémarrées lorsque vous activez pour la première fois le Bureau à distance et cliquez sur OK (coche). Pour éviter un redémarrage, le certificat utilisé pour chiffrer le mot de passe doit être installé sur le rôle. Pour éviter un redémarrage, [téléchargez un certificat pour le service cloud](cloud-services-configure-ssl-certificate.md#step-3-upload-a-certificate) , puis revenez à cette boîte de dialogue.
+   > toutes les instances de rôle sont redémarrées lorsque vous activez pour la première fois le Bureau à distance et cliquez sur OK (coche). tooprevent un redémarrage, le mot de passe hello hello certificat tooencrypt utilisé doit être installé sur le rôle de hello. tooprevent un redémarrage, [télécharger un certificat pour le service cloud hello](cloud-services-configure-ssl-certificate.md#step-3-upload-a-certificate) , puis revenez toothis la boîte de dialogue.
 
-3. Dans **Roles**, sélectionnez le rôle que vous voulez mettre à jour ou sélectionnez **Tous** pour tous les rôles.
-4. Effectuez les modifications suivantes :
+3. Dans **rôles**, sélectionnez rôle hello souhaité tooupdate **tous les** pour tous les rôles.
+4. Apportez hello modifications suivantes :
 
-   * Pour activer le Bureau à distance, activez la case à cocher **Enable Remote Desktop** . Pour désactiver le Bureau à distance, désactivez la case à cocher.
-   * Créez un compte pour utiliser les connexions Bureau à distance aux instances de rôle.
-   * Mettez à jour le mot de passe du compte existant.
-   * Sélectionnez le certificat téléchargé à utiliser pour l’authentification (téléchargez le certificat en utilisant la commande **Télécharger** sur la page **Certificats**) ou créez un certificat.
-   * Changez la date d'expiration de la configuration du Bureau à distance.
+   * tooenable Bureau à distance, sélectionnez hello **activer le Bureau à distance** case à cocher. toodisable Bureau à distance, hello désactivez case à cocher.
+   * Créer un compte toouse dans les connexions Bureau à distance toohello les instances de rôle.
+   * Mettre à jour de mot de passe hello compte hello.
+   * Sélectionnez un toouse certificat chargé pour l’authentification (à l’aide de téléchargement hello certificat **télécharger** sur hello **certificats** page) ou créer un nouveau certificat.
+   * Modifier la date d’expiration de hello pour la configuration du Bureau à distance hello.
 
 5. Lorsque les mises à jour de la configuration sont terminées, cliquez sur **OK** (coche).
 
 ## <a name="remote-into-role-instances"></a>À distance dans les instances de rôle
-Une fois le Bureau à distance activé sur les rôles, vous pouvez vous connecter à distance à une instance de rôle via divers outils.
+Une fois que Bureau à distance est activé sur les rôles de hello, vous pouvez à distance dans une instance de rôle via divers outils.
 
-Pour vous connecter à une instance de rôle à partir du portail Azure Classic :
+tooconnect tooa une instance de rôle à partir de hello portail Azure classic :
 
-1. Cliquez sur **Instances** pour ouvrir la page **Instances**.
+1. Cliquez sur **Instances** tooopen hello **Instances** page.
 2. Sélectionnez une instance de rôle pour laquelle la fonctionnalité Bureau à distance est configurée.
-3. Cliquez sur **Connecter**et suivez les instructions pour ouvrir le Bureau.
-4. Cliquez sur **Ouvrir**, puis sur **Connecter** pour démarrer la connexion Bureau à distance.
+3. Cliquez sur **connexion**et suivez le bureau de hello instructions tooopen hello.
+4. Cliquez sur **ouvrir** , puis **Connect** toostart hello connexion Bureau à distance.
 
-### <a name="use-visual-studio-to-remote-into-a-role-instance"></a>Utiliser Visual Studio pour se connecter à distance à une instance de rôle
+### <a name="use-visual-studio-tooremote-into-a-role-instance"></a>Utilisez Visual Studio tooremote dans une instance de rôle
 Dans l’Explorateur de serveurs Visual Studio :
 
-1. Développez le nœud **Azure** > **Cloud Services** > **[nom du service cloud]**.
+1. Développez hello **Azure** > **Services de cloud computing** > **[nom du service cloud]** nœud.
 2. Développez **Intermédiaire** ou **Production**.
-3. Développez le rôle individuel.
-4. Cliquez avec le bouton droit sur l’une des instances de rôle, cliquez sur **Connexion à l’aide de Bureau à distance**, puis entrez le nom d’utilisateur et le mot de passe.
+3. Développez le rôle individuel de hello.
+4. Cliquez sur une des instances de rôle hello, cliquez sur **se connecter à l’aide du Bureau à distance...** , puis entrez le nom d’utilisateur hello et le mot de passe.
 
 ![Bureau à distance de l’Explorateur de serveurs](./media/cloud-services-role-enable-remote-desktop/ServerExplorer_RemoteDesktop.png)
 
-### <a name="use-powershell-to-get-the-rdp-file"></a>Utiliser PowerShell pour récupérer le fichier RDP
-Vous pouvez utiliser l’applet de commande [Get-AzureRemoteDesktopFile](https://msdn.microsoft.com/library/azure/dn495261.aspx) pour récupérer le fichier RDP. Vous pouvez ensuite utiliser le fichier RDP avec Connexion Bureau à distance pour accéder au service cloud.
+### <a name="use-powershell-tooget-hello-rdp-file"></a>Utilisez le fichier RDP de PowerShell tooget hello
+Vous pouvez utiliser hello [Get-AzureRemoteDesktopFile](https://msdn.microsoft.com/library/azure/dn495261.aspx) fichier RDP d’applet de commande tooretrieve hello. Vous pouvez ensuite utiliser fichier RDP de hello avec service de cloud de connexion Bureau à distance tooaccess hello.
 
-### <a name="programmatically-download-the-rdp-file-through-the-service-management-rest-api"></a>Télécharger par programme le fichier RDP via l’API REST de gestion des services
-Vous pouvez utiliser l’opération REST [Télécharger le fichier RDP](https://msdn.microsoft.com/library/jj157183.aspx) pour télécharger le fichier RDP.
+### <a name="programmatically-download-hello-rdp-file-through-hello-service-management-rest-api"></a>Télécharger le fichier RDP de hello via hello API REST Service Management par programmation
+Vous pouvez utiliser hello [télécharger le fichier RDP](https://msdn.microsoft.com/library/jj157183.aspx) le fichier RDP hello reste opération toodownload.
 
-## <a name="to-configure-remote-desktop-in-the-service-definition-file"></a>Pour configurer le Bureau à distance dans le fichier de définition de service
-Cette méthode vous permet d’activer le Bureau à distance pour l’application pendant le développement. Cette approche exige que les mots de passe chiffrés soient stockés dans le fichier de configuration de service. Par ailleurs, toute mise à jour apportée à la configuration du Bureau à distance nécessite un redéploiement de l’application. Pour éviter ces inconvénients, suivez l’approche basée sur l’extension Bureau à distance décrite précédemment.  
+## <a name="tooconfigure-remote-desktop-in-hello-service-definition-file"></a>tooconfigure Bureau à distance dans le fichier de définition de service hello
+Cette méthode vous permet de tooenable Bureau à distance pour une application hello lors du développement. Cette approche requiert des mots de passe chiffrés être stockées dans votre configuration du service fichier et toute configuration du Bureau à distance toohello mises à jour nécessitent un redéploiement de l’application hello. Si vous souhaitez tooavoid ces inconvénients, vous devez utiliser l’extension hello de bureau à distance en fonction d’approche décrite ci-dessus.  
 
-Vous pouvez utiliser Visual Studio pour [activer une connexion Bureau à distance](../vs-azure-tools-remote-desktop-roles.md) à l’aide de l’approche basée sur le fichier de définition de service.  
-La procédure ci-dessous décrit les modifications qui doivent être apportées aux fichiers de modèle de service pour activer le Bureau à distance. Visual Studio effectue automatiquement ces modifications lors de la publication.
+Vous pouvez utiliser Visual Studio trop[activer une connexion Bureau à distance](../vs-azure-tools-remote-desktop-roles.md) à l’aide d’approche de fichiers de définition de service hello.  
+les étapes de Hello ci-dessous décrivent hello modifications nécessaires toohello service modèle fichiers tooenable Bureau à distance. Visual Studio effectue automatiquement ces modifications lors de la publication.
 
-### <a name="set-up-the-connection-in-the-service-model"></a>Configurer la connexion dans le modèle de service
-Utilisez l’élément **Importations** pour importer les modules **RemoteAccess** et **RemoteForwarder** dans le fichier [ServiceDefinition.csdef](cloud-services-model-and-package.md#csdef).
+### <a name="set-up-hello-connection-in-hello-service-model"></a>Configurer la connexion hello dans le modèle de service hello
+Hello d’utilisation **importations** hello de tooimport élément **RemoteAccess** module et hello **RemoteForwarder** module toohello [ServiceDefinition.csdef](cloud-services-model-and-package.md#csdef) fichier.
 
-Ce fichier de définition de service doit être similaire à l’exemple suivant avec l’élément `<Imports>` ajouté.
+Hello fichier de définition de service doit être similaire toohello exemple avec hello suivant `<Imports>` élément ajouté.
 
 ```xml
 <ServiceDefinition name="<name-of-cloud-service>" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2013-03.2.0">
@@ -110,7 +110,7 @@ Ce fichier de définition de service doit être similaire à l’exemple suivant
     </WebRole>
 </ServiceDefinition>
 ```
-Le fichier [ServiceConfiguration.cscfg](cloud-services-model-and-package.md#cscfg) doit être semblable à l’exemple suivant. Notez les éléments `<ConfigurationSettings>` et `<Certificates>`. Le certificat spécifié doit être [téléchargé dans le service cloud](cloud-services-how-to-create-deploy.md#how-to-upload-a-certificate-for-a-cloud-service).
+Hello [ServiceConfiguration.cscfg](cloud-services-model-and-package.md#cscfg) fichier doit être similaire toohello l’exemple suivant, notez hello `<ConfigurationSettings>` et `<Certificates>` éléments. Hello certificat spécifié doit être [téléchargé le service de cloud computing toohello](cloud-services-how-to-create-deploy.md#how-to-upload-a-certificate-for-a-cloud-service).
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -133,5 +133,5 @@ Le fichier [ServiceConfiguration.cscfg](cloud-services-model-and-package.md#cscf
 
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
-[Configuration des services cloud](cloud-services-how-to-configure.md)
-[FAQ relative aux services cloud : Bureau à distance](cloud-services-faq.md)
+[Comment tooConfigure Services de cloud computing](cloud-services-how-to-configure.md)
+[Cloud FAQ - des services Bureau à distance](cloud-services-faq.md)

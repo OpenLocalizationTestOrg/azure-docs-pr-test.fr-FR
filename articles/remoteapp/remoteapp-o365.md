@@ -1,5 +1,5 @@
 ---
-title: "Utilisation d’Office avec Azure RemoteApp | Microsoft Docs"
+title: aaaUsing Office avec Azure RemoteApp | Documents Microsoft
 description: "Découvrez comment Office et Azure RemoteApp fonctionnent ensemble"
 services: remoteapp
 documentationcenter: 
@@ -13,44 +13,44 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/26/2017
 ms.author: mbaldwin
-ms.openlocfilehash: a776d877c764109f15c1025db2be3114eea2130a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d065c1a0a2191c9e2e405264a835cecf791d6ab7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="using-office-with-azure-remoteapp"></a>Utilisation d'Office avec Azure RemoteApp
 > [!IMPORTANT]
-> Azure RemoteApp ne sera plus disponible à partir du 31 août 2017. Pour plus d’informations, lisez [l’annonce](https://go.microsoft.com/fwlink/?linkid=821148) .
+> Azure RemoteApp ne sera plus disponible à partir du 31 août 2017. Hello de lecture [annonce](https://go.microsoft.com/fwlink/?linkid=821148) pour plus d’informations.
 > 
 > 
 
 Vous avez deux possibilités pour l'hébergement des applications Office dans Azure RemoteApp : Office 365 ProPlus ou la version d'évaluation d'Office 2013 Professionnel Plus.
 
-**Bonjour, saviez-vous que nous avons un nouvel article amélioré qui va bientôt remplacer celui-ci ? Découvrez [Utilisation de votre abonnement Office 365 avec Azure RemoteApp](remoteapp-officesubscription.md). Il couvre toutes les informations dont vous avez besoin pour utiliser Office 365 + Azure RemoteApp.**
+**Bonjour, saviez-vous que nous avons un nouvel article amélioré qui va bientôt remplacer celui-ci ? Extraire [comment toouse votre abonnement Office 365 avec Azure RemoteApp](remoteapp-officesubscription.md). Elle traite toutes les informations de hello que vous avez besoin pour l’utilisation d’Office 365 + Azure RemoteApp.**
 
 ## <a name="office-365-proplus"></a>Office 365 ProPlus
-Vous pouvez créer une collection RemoteApp à l'aide de l'image de modèle Office 365 ProPlus. Cette option vous permet d'étendre votre service Office 365 à RemoteApp. Vous devez déjà disposer d’un plan d’abonnement et vos utilisateurs doivent bénéficier d’une licence pour le service Office 365 ProPlus (en version autonome ou avec les plans de service Office 365).
+Vous pouvez créer une collection RemoteApp à l’aide d’image de modèle Office 365 ProPlus hello. Cette option vous permet de tooextend votre tooRemoteApp du service Office 365. Vous devez disposer d’un plan d’abonnement existant et que vos utilisateurs doivent avoir une licence pour hello service Office 365 ProPlus, soit autonome ou par le biais des plans de service hello Office 365.
 
-RemoteApp prend en charge l'activation d’ordinateurs partagés Office 365. Quand vous autorisez l'activation d’ordinateurs partagés et que vous utilisez [l’outil de déploiement Office](http://www.microsoft.com/download/details.aspx?id=36778) pour l'installation, Office 365 ProPlus s'installe sans s'activer. Quand un utilisateur se connecte à une collection qui contient Office 365, Office vérifie s'il a été approvisionné pour Office 365 ProPlus. Si c'est le cas, Office active temporairement Office 365 ProPlus. Cette activation perdure tant que l'utilisateur ne se déconnecte pas du service.
+RemoteApp prend en charge l'activation d’ordinateurs partagés Office 365. Lorsque vous activez l’activation de l’ordinateur partagé et que vous utilisez hello [outil de déploiement Office](http://www.microsoft.com/download/details.aspx?id=36778) pour l’installation, Office 365 ProPlus installe sans être activé. Lorsqu’un utilisateur s’inscrit dans une collection qui contient d’Office 365, Office vérifie toosee si l’utilisateur de hello a été configuré pour Office 365 ProPlus. Si, par conséquent, Office active temporairement Office 365 ProPlus - cette activation persiste jusqu'à ce que ce signe utilisateurs hors service de hello.
 
-Pour utiliser l'activation d’ordinateurs partagés Office 365, vous devez créer un [modèle personnalisé](remoteapp-create-custom-image.md) et y installer Office 365 ProPlus, en suivant [ces instructions](https://technet.microsoft.com/library/dn782858.aspx).
+toouse activation de l’ordinateur Office 365 partagé, vous devez toocreate une [modèle personnalisé](remoteapp-create-custom-image.md) et installer Office 365 ProPlus suivant, [ces instructions](https://technet.microsoft.com/library/dn782858.aspx).
 
-Vous pouvez gérer les licences Office 365 de vos utilisateurs dans le [portail d'administration Office 365](https://portal.office365.com/). En savoir plus sur les [plans de service Office 365](http://technet.microsoft.com/library/office-365-plan-options.aspx).  
+Vous pouvez gérer les licences d’Office 365 de vos utilisateurs à hello [portail d’administration Office 365](https://portal.office365.com/). En savoir plus sur les [plans de service Office 365](http://technet.microsoft.com/library/office-365-plan-options.aspx).  
 
 ## <a name="office-2013-professional-plus-trial"></a>Version d'évaluation d'Office Professionnel Plus 2013
-Pendant la période d'évaluation de 30 jours de RemoteApp, vous pouvez utiliser l'image de modèle Office Professionnel Plus 2013 (version d'évaluation) pour créer une collection RemoteApp. Vous pouvez attribuer des utilisateurs à cette collection d'évaluation à l'aide de leurs comptes professionnels Azure Active Directory ou comptes Microsoft. Aucun abonnement supplémentaire n’est nécessaire.
+Au cours d’une version d’évaluation de 30 jours de RemoteApp, vous pouvez utiliser hello Office 2013 Professionnel Plus (version d’évaluation) modèle image toocreate une collection RemoteApp. Vous pouvez affecter des utilisateurs toothis collection d’évaluation à l’aide de leurs comptes de travail Azure Active Directory ou des comptes Microsoft. Aucun abonnement supplémentaire n’est nécessaire.
 
-C'est l'option idéale pour débuter et tester l'utilisation d'Office dans RemoteApp. Toutefois, cette option est destinée à des fins d'évaluation et de test uniquement. Les collections RemoteApp créées à l'aide de l'image de modèle Office Professionnel Plus 2013 (version d'évaluation) ne peuvent pas être passées en mode de production et seront désactivées à la fin de la période d'évaluation.
+Ceci est un pneus de hello tookick option intéressante et obtenir une bonne idée Office de RemoteApp. Toutefois, cette option est destinée à des fins d'évaluation et de test uniquement. Les collections RemoteApp créées à l’aide d’image de modèle hello Office 2013 Professionnel Plus (version d’évaluation) ne peut pas être passé tooproduction mode et seront désactivées à la fin de hello de période d’évaluation de hello.
 
-## <a name="switching-from-trial-to-production"></a>Passage de la version d'évaluation au mode de production
-Quand vous commencez votre période d'évaluation gratuite de 30 jours, une note dans la section RemoteApp du portail vous indique combien de temps il vous reste avant de basculer sur un compte payant. Vous pouvez activer votre compte et passer en mode de production à l'aide du lien figurant dans cette note.
+## <a name="switching-from-trial-tooproduction"></a>Basculement à partir de la version d’évaluation tooproduction
+Lorsque vous démarrez votre version d’évaluation gratuite de 30 jours, une note dans hello section RemoteApp du portail de hello vous indiquent la durée pendant laquelle vous avez laissées dans la version d’évaluation hello avant tooa tootransition payé compte. Vous pouvez activer le mode tooproduction votre compte et le commutateur à l’aide du lien de hello dans cette note.
 
-L'activation de votre compte concerne toutes les collections RemoteApp de votre compte.
+Lorsque vous activez votre compte, cela affectera toutes les collections de RemoteApp hello dans votre compte.
 
-* Les collections exécutées dans Windows Server 2012 R2 ou les images de modèle Office 365 ProPlus passent naturellement en mode de production. Tous les paramètres et données utilisateur, y compris les sessions en cours, restent intacts.
+* Les collections qui sont en cours d’exécution avec hello Windows Server 2012 R2 ou des images de modèle Office 365 ProPlus hello passera tooproduction en toute transparence. Tous les paramètres et données utilisateur, y compris les sessions en cours, restent intacts.
 * Si vous avez téléchargé des images de modèle personnalisées, les collections qui utilisent ces images sont également transférées naturellement.
-* L'image de modèle Office Professionnel Plus 2013 (version d'évaluation) est destinée à des fins d'évaluation uniquement. Les collections qui s'exécutent dans cette image de modèle ne peuvent pas être passées en mode de production. Elles sont mises en état « désactivé ».
+* image de modèle Hello Office 2013 Professionnel Plus (version d’évaluation) est prévu pour évaluation uniquement. Collections qui s’exécutent avec cette image de modèle ne peut pas être tooproduction passée. Elles sont mises en état « désactivé ».
 
-Si vous ne passez pas en mode de production à l'expiration de votre version d'évaluation, vos collections RemoteApp sont désactivées. Ne vous inquiétez pas, vos paramètres et données utilisateur sont enregistrés pendant 90 jours supplémentaires, vous pouvez donc toujours activer votre service et passer en mode de production sans perte de données.
+Si vous ne pas passer tooproduction mode par expiration hello de votre période d’évaluation, vos collections RemoteApp seront désactivées. Ne vous inquiétez pas, vos paramètres et les données des utilisateurs sont enregistrées pour une autre 90 jours, donc vous pouvez toujours l’activer le mode de tooproduction service et le commutateur sans perte de données.
 

@@ -1,5 +1,5 @@
 ---
-title: "Créer et optimiser des tables pour une importation en parallèle rapide des données dans un serveur SQL Server sur une machine virtuelle Azure | Microsoft Docs"
+title: "aaaBuild et optimiser des tables pour l’importation parallèle rapide des données dans un serveur SQL Server sur une machine virtuelle Azure | Documents Microsoft"
 description: "Importer des données en parallèle et en bloc à l’aide de tables de partition SQL"
 services: machine-learning
 documentationcenter: 
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/29/2017
 ms.author: bradsev
-ms.openlocfilehash: aae4e4f59e76bf48b00a2ee92aedd7d5643ba91a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ab748c47348ec6ca3b98ba39e27181bba5d36fc0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="parallel-bulk-data-import-using-sql-partition-tables"></a>Importer des données en parallèle et en bloc à l’aide de tables de partition SQL
-Ce document décrit comment créer une ou plusieurs tables partitionnées pour importer des données rapidement, en parallèle et en bloc dans une base de données SQL Server. Dans le cas d’un chargement ou d’un transfert volumineux dans une base de données SQL, les *vues et tables partitionnées*permettent d’améliorer l’importation des données et le traitement des requêtes. 
+Ce document décrit le mode de partition des tables pour l’importation d’accélérée parallèle en bloc de base de données SQL Server de données tooa toobuild. Pour base de données volumineuses chargement/transfert tooa SQL, l’importation de données toohello base de données SQL et les requêtes suivantes peut être améliorée à l’aide de *Partitioned Tables et vues*. 
 
 ## <a name="create-a-new-database-and-a-set-of-filegroups"></a>Créer une base de données et un ensemble de groupes de fichiers
 * [Créez une base de données](https://technet.microsoft.com/library/ms176061.aspx) (si elle n’existe pas).
-* Ajoutez des groupes de fichiers de base de données à la base de données qui contiendra les fichiers physiques partitionnés. Pour cette opération, utilisez [CREATE DATABASE](https://technet.microsoft.com/library/ms176061.aspx) si la base de données n’existe pas ou [ALTER DATABASE](https://msdn.microsoft.com/library/bb522682.aspx) si elle existe.
-* Ajoutez un ou plusieurs fichiers (selon le cas) dans chaque groupe de fichiers de base de données.
+* Ajouter la base de données toohello de groupes de fichiers de base de données qui contiendra les fichiers physiques hello partitionnée. Cela peut être fait avec [CREATE DATABASE](https://technet.microsoft.com/library/ms176061.aspx) si de nouveaux ou [ALTER DATABASE](https://msdn.microsoft.com/library/bb522682.aspx) si la base de données hello existe déjà.
+* Ajoutez un ou plusieurs fichiers de base de données tooeach de fichiers (si nécessaire).
   
   > [!NOTE]
-  > Spécifiez le groupe de fichiers cible qui contiennent les données de cette partition, ainsi que le nom du ou des fichiers physiques de base de données qui stockeront les données du groupe de fichiers.
+  > Spécifiez le groupe de fichiers hello cible qui contient les données de cette partition et hello physique de la base de données fichier nom (s) où les données du groupe de fichiers hello seront stockées.
   > 
   > 
 
-L’exemple suivant crée une base de données avec trois groupes de fichiers autres que le groupe principal et le groupe de journalisation, chacun contenant un fichier physique Les fichiers de la base de données sont créés dans le dossier de données SQL Server par défaut configuré dans l’instance SQL Server. Pour plus d’informations sur les emplacements par défaut des fichiers, consultez l’article [Emplacement des fichiers pour les instances par défaut et nommées de SQL Server](https://msdn.microsoft.com/library/ms143547.aspx).
+Hello exemple suivant crée une nouvelle base de données avec trois groupes de fichiers autres que hello principal et les groupes de journaux, qui contient un fichier physique dans chacun. fichiers de base de données de Hello sont créés dans le dossier de données SQL Server par défaut hello, tel que configuré dans l’instance de SQL Server hello. Pour plus d’informations sur les emplacements de fichier par défaut hello, consultez [emplacements des fichiers pour la valeur par défaut et nommé d’Instances de SQL Server](https://msdn.microsoft.com/library/ms143547.aspx).
 
     DECLARE @data_path nvarchar(256);
     SET @data_path = (SELECT SUBSTRING(physical_name, 1, CHARINDEX(N'master.mdf', LOWER(physical_name)) - 1)
@@ -55,26 +55,26 @@ L’exemple suivant crée une base de données avec trois groupes de fichiers a
     ')
 
 ## <a name="create-a-partitioned-table"></a>Créer une table partitionnée
-Créez une ou plusieurs tables partitionnées, selon le schéma de données, et mappez-les aux groupes de fichiers de base de données créés à l’étape précédente. Une fois les données importées en bloc dans la ou les tables partitionnées, les enregistrements sont répartis dans les groupes de fichiers selon un schéma de partition, comme indiqué ci-dessous.
+Créer une ou plusieurs tables partitionnées selon le schéma de données toohello, groupes de fichiers de base de données mappé toohello créé à l’étape précédente de hello. Lorsque les données sont importées en bloc toohello partitionné une ou plusieurs tables, les enregistrements sont répartis entre les groupes de fichiers hello selon le schéma de partition tooa, comme décrit ci-dessous.
 
-**Pour créer une table de partition, vous devez :**
+**toocreate une table de partition, vous devez :**
 
-* [Créer une fonction de partition](https://msdn.microsoft.com/library/ms187802.aspx) qui définit la plage de valeurs/limites à inclure dans chaque table de partition, par exemple, pour limiter les partitions mensuelles (some\_datetime\_field) de l’année 2013 :
+* [Créer une fonction de partition](https://msdn.microsoft.com/library/ms187802.aspx) qui définit la plage des valeurs/limites toobe hello inclus dans chaque table de partition individuelle, par exemple, les partitions toolimit par mois (certains\_datetime\_champ) dans l’année hello 2013 :
   
         CREATE PARTITION FUNCTION <DatetimeFieldPFN>(<datetime_field>)  
         AS RANGE RIGHT FOR VALUES (
             '20130201', '20130301', '20130401',
             '20130501', '20130601', '20130701', '20130801',
             '20130901', '20131001', '20131101', '20131201' )
-* [Créer un schéma de partition](https://msdn.microsoft.com/library/ms179854.aspx) qui mappe chaque plage de la fonction de partition à un groupe de fichiers physique, par exemple :
+* [Créer un schéma de partition](https://msdn.microsoft.com/library/ms179854.aspx) qui mappe chaque plage de partition dans hello partition fonction tooa groupe de fichiers physique, par exemple :
   
         CREATE PARTITION SCHEME <DatetimeFieldPScheme> AS  
-        PARTITION <DatetimeFieldPFN> TO (
+        PARTITION <DatetimeFieldPFN> too(
         <filegroup_1>, <filegroup_2>, <filegroup_3>, <filegroup_4>,
         <filegroup_5>, <filegroup_6>, <filegroup_7>, <filegroup_8>,
         <filegroup_9>, <filegroup_10>, <filegroup_11>, <filegroup_12> )
   
-  pour vérifier les plages de chaque partition selon la fonction et le schéma, exécutez la requête suivante :
+  plages de hello tooverify en vigueur dans chaque conséquente toohello fonction/schéma de partition, exécutez hello suivant la requête :
   
         SELECT psch.name as PartitionScheme,
             prng.value AS ParitionValue,
@@ -83,26 +83,26 @@ Créez une ou plusieurs tables partitionnées, selon le schéma de données, et 
         INNER JOIN sys.partition_schemes psch ON pfun.function_id = psch.function_id
         INNER JOIN sys.partition_range_values prng ON prng.function_id=pfun.function_id
         WHERE pfun.name = <DatetimeFieldPFN>
-* [Créer une ou plusieurs tables partitionnées](https://msdn.microsoft.com/library/ms174979.aspx)selon votre schéma de données, puis spécifiez le schéma de partition et le champ de contrainte utilisé pour partitionner la table, par exemple :
+* [Créer une table partitionnée](https://msdn.microsoft.com/library/ms174979.aspx)(s) en fonction du schéma de données tooyour et indiquer le champ de schéma et de contrainte de partition hello utilisé toopartition table de hello, par exemple :
   
         CREATE TABLE <table_name> ( [include schema definition here] )
         ON <TablePScheme>(<partition_field>)
 
 Pour plus d’informations, consultez l’article [Créer des tables partitionnées et des index](https://msdn.microsoft.com/library/ms188730.aspx).
 
-## <a name="bulk-import-the-data-for-each-individual-partition-table"></a>Importer les données en bloc dans chaque table de partition
-* Vous pouvez utiliser BCP, BULK INSERT ou d’autres méthodes telles que l’ [Assistant Migration SQL Server](http://sqlazuremw.codeplex.com/). L’exemple fourni utilise la méthode BCP.
-* [Modifiez la base de données](https://msdn.microsoft.com/library/bb522682.aspx) en remplaçant le schéma de journalisation des transactions par BULK_LOGGED pour minimiser le temps de traitement de la journalisation, par exemple :
+## <a name="bulk-import-hello-data-for-each-individual-partition-table"></a>Importer en bloc hello des données pour chaque table de partition individuelle
+* Vous pouvez utiliser BCP, BULK INSERT ou d’autres méthodes telles que l’ [Assistant Migration SQL Server](http://sqlazuremw.codeplex.com/). exemple Hello fourni utilise la méthode BCP hello.
+* [Modifier la base de données hello](https://msdn.microsoft.com/library/bb522682.aspx) transaction toochange schéma tooBULK_LOGGED toominimize surcharge de la journalisation, par exemple, d’enregistrement :
   
         ALTER DATABASE <database_name> SET RECOVERY BULK_LOGGED
-* Pour accélérer le chargement des données, lancez plusieurs importations en bloc en parallèle. Pour obtenir des conseils sur l’accélération de l’importation en bloc de volumes importants dans des bases de données SQL Server, consultez l’article [Charger 1 To en moins d’une heure](http://blogs.msdn.com/b/sqlcat/archive/2006/05/19/602142.aspx).
+* données tooexpedite du chargement, lancer des opérations d’importation en bloc hello en parallèle. Pour obtenir des conseils sur l’accélération de l’importation en bloc de volumes importants dans des bases de données SQL Server, consultez l’article [Charger 1 To en moins d’une heure](http://blogs.msdn.com/b/sqlcat/archive/2006/05/19/602142.aspx).
 
-Le script PowerShell suivant est un exemple de chargement de données en parallèle avec BCP.
+Hello script PowerShell suivant est un exemple parallèles de chargement de données à l’aide de BCP.
 
     # Set database name, input data directory, and output log directory
     # This example loads comma-separated input data files
-    # The example assumes the partitioned data files are named as <base_file_name>_<partition_number>.csv
-    # Assumes the input data files include a header line. Loading starts at line number 2.
+    # hello example assumes hello partitioned data files are named as <base_file_name>_<partition_number>.csv
+    # Assumes hello input data files include a header line. Loading starts at line number 2.
 
     $dbname = "<database_name>"
     $indir  = "<path_to_data_files>"
@@ -111,15 +111,15 @@ Le script PowerShell suivant est un exemple de chargement de données en parall�
     # Select authentication mode
     $sqlauth = 0
 
-    # For SQL authentication, set the server and user credentials
+    # For SQL authentication, set hello server and user credentials
     $sqlusr = "<user@server>"
     $server = "<tcp:serverdns>"
     $pass   = "<password>"
 
-    # Set number of partitions per table - Should match the number of input data files per table
+    # Set number of partitions per table - Should match hello number of input data files per table
     $numofparts = <number_of_partitions>
 
-    # Set table name to be loaded, basename of input data files, input format file, and number of partitions
+    # Set table name toobe loaded, basename of input data files, input format file, and number of partitions
     $tbname = "<table_name>"
     $basename = "<base_input_data_filename_no_extension>"
     $fmtfile = "<full_path_to_format_file>"
@@ -161,9 +161,9 @@ Le script PowerShell suivant est un exemple de chargement de données en parall�
     date
 
 
-## <a name="create-indexes-to-optimize-joins-and-query-performance"></a>Créer des index pour optimiser les jointures et le traitement des requêtes
-* Si vous extrayez des données de plusieurs tables à des fins de modélisation, créez des index sur les clés de jointure pour améliorer les performances des jointures.
-* [Créez des index](https://technet.microsoft.com/library/ms188783.aspx) (clusterisés ou non) ciblant le même groupe de fichiers de chaque partition, par exemple :
+## <a name="create-indexes-toooptimize-joins-and-query-performance"></a>Créer des index toooptimize jointures et des performances des requêtes
+* Si vous extraira les données pour la modélisation de plusieurs tables, créer des index sur les clés de jointure hello performance de la jointure tooimprove hello.
+* [Créer des index](https://technet.microsoft.com/library/ms188783.aspx) (en cluster ou non cluster) ciblant hello même groupe de fichiers pour chaque partition, pour, par exemple :
   
         CREATE CLUSTERED INDEX <table_idx> ON <table_name>( [include index columns here] )
         ON <TablePScheme>(<partition)field>)
@@ -173,10 +173,10 @@ Le script PowerShell suivant est un exemple de chargement de données en parall�
         ON <TablePScheme>(<partition)field>)
   
   > [!NOTE]
-  > Vous pouvez créer les index avant d’importer les données en bloc. Mais la création des index avant l’opération d’importation ralentira le chargement des données.
+  > Vous pouvez choisir toocreate index hello avant l’importation des données de salutation en bloc. La création d’index avant l’importation en bloc ralentit le chargement des données hello.
   > 
   > 
 
 ## <a name="advanced-analytics-process-and-technology-in-action-example"></a>Exemple de processus d’analyse avancé et technologie en action
-Pour obtenir un exemple de procédure pas à pas complet utilisant le processus Cortana Analytics avec un jeu de données public, consultez [Processus Cortana Analytics en action : utilisation de SQL Server](machine-learning-data-science-process-sql-walkthrough.md).
+Pour obtenir un exemple de procédure pas à pas de bout en bout à l’aide de hello Cortana Analytique processus avec un jeu de données public, consultez [processus Analytique de Cortana en Action : à l’aide de SQL Server](machine-learning-data-science-process-sql-walkthrough.md).
 

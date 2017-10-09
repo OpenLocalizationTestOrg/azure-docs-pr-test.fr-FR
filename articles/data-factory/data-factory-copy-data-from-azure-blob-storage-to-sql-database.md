@@ -1,6 +1,6 @@
 ---
-title: "Copie de données à partir du Stockage Blob vers une base de données SQ - Azure | Microsoft Docs"
-description: "Ce didacticiel vous montre comment utiliser l’activité de copie dans un pipeline Azure Data Factory pour copier des données depuis Blob Storage vers une base de données SQL Azure."
+title: "aaaCopy des données à partir du stockage d’objets Blob tooSQL de base de données - Azure | Documents Microsoft"
+description: "Ce didacticiel vous montre comment toouse l’activité de copie dans une fabrique de données Azure pipeline toocopy des données à partir de la base de données tooSQL de stockage Blob."
 keywords: "blob sql, blob storage, copie de données"
 services: data-factory
 documentationcenter: 
@@ -15,13 +15,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/19/2017
 ms.author: spelluru
-ms.openlocfilehash: 730140d15f4dec7ddc1280c2e4da1d247902fe4a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a2c3fb8a4ddd63b0b6b3e75903b7a7eaf188fda4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-copy-data-from-blob-storage-to-sql-database-using-data-factory"></a>Didacticiel : Copie de données de Stockage Blob vers SQL Database à l’aide de Data Factory
+# <a name="tutorial-copy-data-from-blob-storage-toosql-database-using-data-factory"></a>Didacticiel : Copier des données à partir du stockage d’objets Blob tooSQL de base de données à l’aide de la fabrique de données
 > [!div class="op_single_selector"]
 > * [Vue d’ensemble et étapes préalables requises](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)
 > * [Assistant de copie](data-factory-copy-data-wizard-tutorial.md)
@@ -32,68 +32,68 @@ ms.lasthandoff: 08/29/2017
 > * [API REST](data-factory-copy-activity-tutorial-using-rest-api.md)
 > * [API .NET](data-factory-copy-activity-tutorial-using-dotnet-api.md)
 
-Dans ce didacticiel, vous allez créer une fabrique de données avec un pipeline afin de copier des données entre Blob Storage et la base de données SQL.
+Dans ce didacticiel, vous créez une fabrique de données comportant des données à partir de la base de données tooSQL de stockage Blob toocopy pipeline.
 
-L’activité de copie effectue le déplacement des données dans Azure Data Factory. Elle est mise en œuvre par un service disponible dans le monde entier, capable de copier des données entre différents magasins de données de façon sécurisée, fiable et évolutive. Pour plus d’informations sur l’activité de copie, consultez l’article [Activités de déplacement des données](data-factory-data-movement-activities.md) .  
+Activité de copie de Hello effectue le déplacement des données de hello dans Azure Data Factory. Elle est mise en œuvre par un service disponible dans le monde entier, capable de copier des données entre différents magasins de données de façon sécurisée, fiable et évolutive. Consultez [les activités de déplacement des données](data-factory-data-movement-activities.md) article pour plus d’informations sur l’activité de copie de hello.  
 
 > [!NOTE]
-> Pour obtenir une présentation détaillée du service Data Factory, consultez l’article [Présentation d’Azure Data Factory](data-factory-introduction.md) .
+> Pour obtenir une présentation détaillée de hello service Data Factory, consultez hello [Introduction tooAzure Data Factory](data-factory-introduction.md) l’article.
 >
 >
 
-## <a name="prerequisites-for-the-tutorial"></a>Configuration requise pour le didacticiel
-Avant de commencer ce didacticiel, vous devez disposer des éléments suivants :
+## <a name="prerequisites-for-hello-tutorial"></a>Configuration requise pour le didacticiel de hello
+Avant de commencer ce didacticiel, vous devez disposer de hello suivant des conditions préalables :
 
-* **Abonnement Azure**.  Si vous n'êtes pas abonné, vous pouvez créer un compte d'essai gratuit en quelques minutes. Consultez l'article [Essai gratuit](http://azure.microsoft.com/pricing/free-trial/) pour plus d'informations.
-* **Compte Azure Storage**. Dans le cadre de ce didacticiel, le stockage d’objets blob est utilisé comme magasin de données **source** . Si vous n’avez pas de compte de stockage Azure, consultez l’article [Créer un compte de stockage](../storage/common/storage-create-storage-account.md#create-a-storage-account) pour découvrir comment en créer un.
-* **Base de données SQL Azure**. Vous allez utiliser une base de données SQL Azure comme magasin de données **cible** dans ce didacticiel. Si vous n'avez pas de base de données SQL Azure pouvant être utilisée pour le didacticiel, consultez [Comment créer et configurer une base de données SQL Azure](../sql-database/sql-database-get-started.md) pour en créer une.
-* **SQL Server 2012/2014 ou Visual Studio 2013**. Vous allez utiliser SQL Server Management Studio ou Visual Studio pour créer un exemple de base de données et afficher les données de résultat dans la base de données.  
+* **Abonnement Azure**.  Si vous n'êtes pas abonné, vous pouvez créer un compte d'essai gratuit en quelques minutes. Consultez hello [version d’évaluation gratuite](http://azure.microsoft.com/pricing/free-trial/) article pour plus d’informations.
+* **Compte Azure Storage**. Vous utilisez le stockage d’objets blob hello comme un **source** stocker des données dans ce didacticiel. Si vous n’avez pas un compte de stockage Azure, consultez hello [créer un compte de stockage](../storage/common/storage-create-storage-account.md#create-a-storage-account) toocreate suit un article.
+* **Base de données SQL Azure**. Vous allez utiliser une base de données SQL Azure comme magasin de données **cible** dans ce didacticiel. Si vous n’avez pas une base de données SQL Azure que vous pouvez utiliser dans le didacticiel hello, voir [comment toocreate et configurer une base de données SQL Azure](../sql-database/sql-database-get-started.md) toocreate une.
+* **SQL Server 2012/2014 ou Visual Studio 2013**. Vous utilisez SQL Server Management Studio ou Visual Studio toocreate une base de données exemple et les données de résultat de salutation tooview dans la base de données hello.  
 
 ## <a name="collect-blob-storage-account-name-and-key"></a>Récupération du nom de compte Blob Storage et de la clé d'accès
-Pour réaliser ce didacticiel, vous avez besoin du nom et de la clé de votre compte de stockage Azure. Notez le **nom** et la **clé** de votre compte de stockage Azure.
+Vous devez compte hello clé et le nom de votre stockage Azure compte toodo ce didacticiel. Notez le **nom** et la **clé** de votre compte de stockage Azure.
 
-1. Connectez-vous au [portail Azure](https://portal.azure.com/).
-2. Cliquez sur **Plus de services** sur le menu de gauche, puis sélectionnez **Comptes de stockage**.
+1. Connectez-vous à toohello [portail Azure](https://portal.azure.com/).
+2. Cliquez sur **davantage de services** sur hello gauche menu et sélectionnez **comptes de stockage**.
 
     ![Parcourir - Comptes de stockage](media/data-factory-copy-data-from-azure-blob-storage-to-sql-database/browse-storage-accounts.png)
-3. Dans le panneau **Comptes de stockage**, sélectionnez le **compte de stockage Azure** que vous souhaitez utiliser dans ce didacticiel.
+3. Bonjour **comptes de stockage** panneau, sélectionnez hello **compte de stockage Azure** que vous souhaitez toouse dans ce didacticiel.
 4. Sélectionnez le lien **Clés d’accès** sous **PARAMÈTRES**.
-5. Cliquez sur le bouton **copier** (image) situé en regard de la zone de texte **Nom du compte de stockage** et enregistrez/collez-la quelque part (dans un fichier texte, par exemple).
-6. Répétez l'étape précédente pour copier ou noter la **clé1**.
+5. Cliquez sur **copie** (image) bouton ensuite trop**nom de compte de stockage** texte zone et d’enregistrer/coller il quelque part (par exemple : dans un fichier texte).
+6. Répétez hello précédente étape toocopy ou notez hello **key1**.
 
     ![Clé d’accès de stockage](media/data-factory-copy-data-from-azure-blob-storage-to-sql-database/storage-access-key.png)
-7. Fermez tous les panneaux en cliquant sur **X**.
+7. Fermer tous les panneaux de hello en cliquant sur **X**.
 
 ## <a name="collect-sql-server-database-user-names"></a>Récupérer les noms de serveur SQL, de base de données et d’utilisateur
-Pour réaliser ce didacticiel, vous avez besoin des noms du serveur SQL Azure, de la base de données et de l’utilisateur. Notez les noms du **serveur**, de la **base de données** et de **l’utilisateur** pour votre base de données SQL Azure.
+Vous devez les noms hello du serveur SQL Azure, de base de données et de toodo de l’utilisateur de ce didacticiel. Notez les noms du **serveur**, de la **base de données** et de **l’utilisateur** pour votre base de données SQL Azure.
 
-1. Dans le **portail Azure**, cliquez sur **Plus de services** dans le volet gauche et sélectionnez **Bases de données SQL**.
-2. Dans le panneau **Bases de données SQL**, sélectionnez la **base de données** que vous souhaitez utiliser dans le cadre de ce didacticiel. Notez le **nom de la base de données**.  
-3. Dans le panneau **Base de données SQL**, cliquez sur la vignette **Propriétés** sous **PARAMÈTRES**.
-4. Notez les valeurs de **NOM DU SERVEUR** et de **CONNEXION D'ADMINISTRATEUR DU SERVEUR**.
-5. Fermez tous les panneaux en cliquant sur **X**.
+1. Bonjour **portail Azure**, cliquez sur **davantage de services** sur hello gauche et sélectionnez **bases de données SQL**.
+2. Bonjour **Panneau de bases de données SQL**, sélectionnez hello **base de données** que vous souhaitez toouse dans ce didacticiel. Notez les hello **nom de la base de données**.  
+3. Bonjour **base de données SQL** panneau, cliquez sur **propriétés** sous **paramètres**.
+4. Notez les valeurs hello pour **nom du serveur** et **ouverture de session de serveur ADMIN**.
+5. Fermer tous les panneaux de hello en cliquant sur **X**.
 
-## <a name="allow-azure-services-to-access-sql-server"></a>Autoriser les services Azure à accéder au serveur
-Vérifiez que le paramètre **Autoriser l’accès aux services Azure** est **ACTIVÉ** pour votre serveur SQL Azure pour que le service Data Factory puisse accéder à votre serveur SQL Azure. Pour vérifier et activer ce paramètre, procédez comme suit :
+## <a name="allow-azure-services-tooaccess-sql-server"></a>Autoriser les services Azure tooaccess SQL server
+Vérifiez que **autoriser l’accès des services de tooAzure** paramètre désactivé **ON** pour votre serveur SQL Azure pour que ce service Data Factory hello peut accéder à votre serveur SQL Azure. tooverify et activer ce paramètre, hello comme suit :
 
-1. Cliquez sur le hub **Plus de services** situé à gauche, puis sur **Serveurs SQL**.
+1. Cliquez sur **davantage de services** hub dans hello gauche, cliquez sur **serveurs SQL**.
 2. Sélectionnez votre serveur, puis cliquez sur **Pare-feu** sous **PARAMÈTRES**.
-3. Dans le panneau **Paramètres de pare-feu**, cliquez sur **ACTIVER** pour **Autoriser l’accès aux services Azure**.
-4. Fermez tous les panneaux en cliquant sur **X**.
+3. Bonjour **des paramètres de pare-feu** panneau, cliquez sur **ON** pour **autoriser l’accès des services de tooAzure**.
+4. Fermer tous les panneaux de hello en cliquant sur **X**.
 
 ## <a name="prepare-blob-storage-and-sql-database"></a>Préparer Blob Storage et la Base de données SQL
-À présent, préparez votre stockage d'objets blob Azure et votre base de données SQL Azure pour ce didacticiel, en procédant comme suit :  
+À présent, préparer votre stockage d’objets blob Azure et de la base de données SQL Azure hello en effectuant hello comme suit :  
 
-1. Lancez le Bloc-notes. Copiez le texte suivant puis enregistrez-le sous le nom **emp.txt** dans le dossier **C:\ADFGetStarted** sur votre disque dur.
+1. Lancez le Bloc-notes. Copier hello après le texte et l’enregistrer en tant que **emp.txt** trop**C:\ADFGetStarted** dossier sur votre disque dur.
 
     ```
     John, Doe
     Jane, Doe
     ```
-2. Utilisez des outils tels que [l’Explorateur de stockage Azure](http://storageexplorer.com/) pour créer le conteneur **adftutorial** et télécharger le fichier **emp.txt** vers ce dernier.
+2. Utiliser des outils tels que [Azure Storage Explorer](http://storageexplorer.com/) toocreate hello **adftutorial** hello conteneur et tooupload **emp.txt** conteneur toohello de fichier.
 
-    ![Azure Storage Explorer. Copie de données Blob Storage vers une base de données SQL](./media/data-factory-copy-data-from-azure-blob-storage-to-sql-database/getstarted-storage-explorer.png)
-3. Utilisez le script SQL suivant pour créer la table **emp** dans votre base de données SQL Azure.  
+    ![Azure Storage Explorer. Copier des données à partir de la base de données tooSQL de stockage Blob](./media/data-factory-copy-data-from-azure-blob-storage-to-sql-database/getstarted-storage-explorer.png)
+3. Hello utilisation suivant hello SQL script toocreate **emp** table dans votre base de données SQL Azure.  
 
     ```SQL
     CREATE TABLE dbo.emp
@@ -107,12 +107,12 @@ Vérifiez que le paramètre **Autoriser l’accès aux services Azure** est **AC
     CREATE CLUSTERED INDEX IX_emp_ID ON dbo.emp (ID);
     ```
 
-    **Si vous avez installé SQL Server 2012/2014 sur votre ordinateur :** suivez les instructions de l’article [Gestion d’Azure SQL Database à l’aide de SQL Server Management Studio](../sql-database/sql-database-manage-azure-ssms.md) pour vous connecter à votre serveur SQL Azure et exécuter le script SQL. Cet article utilise le [portail Azure Classic](http://manage.windowsazure.com), et non le [nouveau portail Azure](https://portal.azure.com), pour configurer le pare-feu d’un serveur SQL Azure.
+    **Si vous disposez de SQL Server 2012/2014 installé sur votre ordinateur :** suivez les instructions à partir de [la gestion de Azure SQL Database à l’aide de SQL Server Management Studio](../sql-database/sql-database-manage-azure-ssms.md) tooconnect tooyour Azure SQL server et exécutez hello SQL script. Cet article utilise hello [portail Azure classic](http://manage.windowsazure.com), pas hello [nouveau portail Azure](https://portal.azure.com), pare-feu tooconfigure pour un serveur SQL Azure.
 
-    Si votre client n’est pas autorisé à accéder au serveur SQL Azure, vous devez configurer le pare-feu pour votre serveur SQL Azure afin d’autoriser l’accès à partir de votre ordinateur (adresse IP). Consultez [cet article](../sql-database/sql-database-configure-firewall-settings.md) pour savoir comment configurer le pare-feu de votre serveur SQL Azure.
+    Si votre client n’est pas autorisé serveur SQL Azure de hello tooaccess, vous devez tooconfigure pare-feu pour votre accès tooallow du serveur SQL Azure à partir de votre ordinateur (adresse IP). Consultez [cet article](../sql-database/sql-database-configure-firewall-settings.md) pour le pare-feu étapes tooconfigure hello pour votre serveur SQL Azure.
 
 ## <a name="create-a-data-factory"></a>Créer une fabrique de données
-Vous avez terminé les étapes préalables requises. Créez une fabrique de données à l’aide de l’une des manières suivantes. Cliquez sur l’une des options de la liste déroulante en haut ou sur les liens suivants pour suivre le didacticiel.     
+Vous avez terminé la configuration requise de hello. Vous pouvez créer une fabrique de données à l’aide de hello suivant façons. Cliquez sur une des options de hello dans la liste déroulante de hello au haut de hello ou hello suivant liens tooperform hello didacticiel.     
 
 * [Assistant de copie](data-factory-copy-data-wizard-tutorial.md)
 * [Portail Azure](data-factory-copy-activity-tutorial-using-azure-portal.md)
@@ -123,6 +123,6 @@ Vous avez terminé les étapes préalables requises. Créez une fabrique de donn
 * [API .NET](data-factory-copy-activity-tutorial-using-dotnet-api.md)
 
 > [!NOTE]
-> Dans ce didacticiel, le pipeline de données copie les données d’un magasin de données source vers un magasin de données de destination. Il ne transforme pas les données d’entrée pour produire des données de sortie. Pour un didacticiel sur la transformation des données à l’aide d’Azure Data Factory, voir [Didacticiel : Générer votre premier pipeline pour traiter les données à l’aide du cluster Hadoop](data-factory-build-your-first-pipeline.md).
+> le pipeline de données Hello dans ce didacticiel copie des données à partir d’un magasin de données de destination source données magasin tooa. Il ne transforme pas les données de sortie de données d’entrée tooproduce. Pour obtenir un didacticiel sur la façon de tootransform les données à l’aide d’Azure Data Factory, consultez [didacticiel : créer vos premières données tootransform de pipeline à l’aide de cluster Hadoop](data-factory-build-your-first-pipeline.md).
 > 
-> Vous pouvez chaîner deux activités (une après l’autre) en configurant le jeu de données de sortie d’une activité en tant que jeu de données d’entrée de l’autre activité. Pour des informations détaillées, consultez [Planification et exécution avec Data Factory](data-factory-scheduling-and-execution.md). 
+> Vous pouvez chaîner les deux activités (exécutée une activité après l’autre) en définissant le dataset de sortie hello d’une activité hello d’entrée dataset Hello autre activité. Pour plus d’informations, voir [Planification et exécution dans Data Factory](data-factory-scheduling-and-execution.md). 

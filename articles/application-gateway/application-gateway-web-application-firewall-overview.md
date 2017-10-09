@@ -1,5 +1,5 @@
 ---
-title: "Présentation du pare-feu d’applications web (WAF) pour la passerelle Application Gateway Azure | Microsoft Docs"
+title: "pare-feu d’applications aaaIntroduction tooweb (WAF) pour la passerelle d’Application Azure | Documents Microsoft"
 description: "Cette page fournit une vue d’ensemble du pare-feu d’applications web (WAF) pour la passerelle Application Gateway"
 documentationcenter: na
 services: application-gateway
@@ -14,45 +14,45 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/03/2017
 ms.author: amsriva
-ms.openlocfilehash: 50863b60f2843f033bdb07f4564d937cd6f0b7be
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5a42ce0fb2bd12a391844099e2de8fa2571195e6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="web-application-firewall-waf"></a>Pare-feu d’applications web (WAF)
 
 Le pare-feu d’applications Web (WAF) est une fonctionnalité de passerelle d’application qui protège vos applications web de manière centralisée contre les vulnérabilités et exploits courants. 
 
-Le pare-feu d’applications web suit les règles des [Ensembles de règles de base OWASP](https://www.owasp.org/index.php/Category:OWASP_ModSecurity_Core_Rule_Set_Project) 3.0 ou 2.2.9. Les applications Web sont de plus en plus la cible d’attaques malveillantes qui exploitent des vulnérabilités connues. Les types d’attaques les plus courantes sont l’injection de code SQL, les attaques de script site à site, entre autres. Empêcher ces attaques dans le code d’application peut se révéler difficile et nécessiter une maintenance rigoureuse, des mises à jour correctives ainsi que la surveillance au niveau de plusieurs couches de la topologie de l’application. Un pare-feu d’applications web centralisé facilite grandement la gestion de la sécurité et offre une meilleure garantie de protection aux administrateurs de l’application contre les menaces ou les intrusions. Une solution WAF peut également réagir plus rapidement à une menace de sécurité en exécutant la mise à jour corrective d’une vulnérabilité connue dans un emplacement central plutôt que de sécuriser individuellement chacune des applications web. Les passerelles d’application existantes peuvent être facilement converties en une passerelle d’application avec un pare-feu d’applications web.
+Pare-feu d’applications Web est basé sur les règles de hello [OWASP avoir des ensembles de règles principales](https://www.owasp.org/index.php/Category:OWASP_ModSecurity_Core_Rule_Set_Project) 3.0 ou 2.2.9. Les applications Web sont de plus en plus la cible d’attaques malveillantes qui exploitent des vulnérabilités connues. Communs à ces attaques sont des attaques par injection SQL, l’écriture de scripts entre sites attaques tooname quelques exemples. Prévention de telles attaques dans le code d’application peut être difficile et peut nécessiter rigoureuse maintenance, mise à jour corrective et la surveillance de plusieurs couches de la topologie de l’application hello. Un pare-feu d’applications web centralisé permet de simplifier la gestion de la sécurité et offre une meilleure assurance aux administrateurs de tooapplication contre les menaces ou les intrusions. Une solution WAF peut réagir également de menace pour la sécurité tooa plus rapide par la mise à jour corrective une vulnérabilité connue à un emplacement central par rapport à la sécurisation de chacune des applications web individuelles. Les passerelles d’application existant peuvent être converti tooa web application pare-feu est activé application passerelle facilement.
 
 ![imageURLroute](./media/application-gateway-web-application-firewall-overview/WAF1.png)
 
-Application Gateway fonctionne comme un Application Delivery Controller (ADC) et offre une terminaison SSL, une affinité de session basée sur les cookies, une distribution de charge par tourniquet (round robin), un routage basé sur le contenu, la possibilité d’héberger plusieurs sites web et des améliorations de sécurité. Les améliorations de sécurité offertes par la passerelle Application Gateway incluent la gestion des stratégies SSL ainsi que prise en charge du chiffrement SSL de bout en bout. La sécurité de l’application est désormais renforcée par l’intégration directe du pare-feu d’applications web (WAF) à l’offre ADC. Vous bénéficiez ainsi d’un emplacement central facile à configurer, capable de gérer et protéger vos applications web contre les vulnérabilités web courantes.
+Passerelle d’application fonctionne comme une remise contrôleur et des offres SSL arrêt de l’application, d’affinité de session basée sur un cookie, distribution de la charge de tourniquet, le routage basé sur le contenu, capacité toohost plusieurs améliorations de sécurité et de sites Web. Améliorations de la sécurité offertes par la passerelle d’Application incluent la gestion de stratégie SSL, tooend fin prennent en charge de SSL. Sécurité de l’application est désormais fournie par WAF (pare-feu d’applications web) offre de hello ADC intégré directement. Cela fournit un toomanage d’emplacement central tooconfigure facile et protéger vos applications web contre les vulnérabilités de web courantes.
 
 ## <a name="benefits"></a>Avantages
 
-Voici les principaux avantages liés à Application Gateway et au pare-feu d’applications web :
+Hello Voici les principaux avantages hello qui fournissent des pare-feu d’applications web et de la passerelle d’Application :
 
 ### <a name="protection"></a>Protection
 
-* Protection de votre application web contre les vulnérabilités et les attaques web sans modification du code principal.
+* Protéger votre application web contre les vulnérabilités de web et sans code toobackend de modification.
 
-* Protection simultanée de plusieurs applications web derrière une passerelle d’application. La passerelle d’application peut héberger jusqu’à 20 sites web derrière une passerelle unique, protégeant ainsi tous ces sites contre les attaques web avec le pare-feu d’applications web.
+* Protéger web plusieurs applications à hello même moment derrière une passerelle d’application. Passerelle d’application prend en charge l’hébergement des sites Web de too20 derrière une passerelle unique qui pourrait être protégée contre les attaques de web avec WAF.
 
 ### <a name="monitoring"></a>Surveillance
 
-* Analysez les attaques contre votre application web à l’aide d’un journal WAF en temps réel. Ce journal est intégré à [Azure Monitor](../monitoring-and-diagnostics/monitoring-overview.md) pour effectuer le suivi des journaux et alertes WAF et analyser facilement les tendances.
+* Analysez les attaques contre votre application web à l’aide d’un journal WAF en temps réel. Ce journal est intégré à [moniteur Azure](../monitoring-and-diagnostics/monitoring-overview.md) tootrack WAF alertes et se connecte et analyser facilement les tendances.
 
-* WAF sera bientôt intégré à Azure Security Center. Azure Security Center vous offre un aperçu central de l’état de sécurité de toutes vos ressources Azure.
+* WAF sera bientôt intégré à Azure Security Center. Centre de sécurité Azure permet une vue centralisée de l’état de sécurité hello de toutes vos ressources Azure.
 
 ### <a name="customization"></a>Personnalisation
 
-* Possibilité de personnaliser des règles et groupes de règles WAF pour les besoins de votre application et éliminer les faux positifs.
+* Hello capacité toocustomize WAF règles et règle regroupe les spécifications de votre application toosuit et éliminer les faux positifs.
 
 ## <a name="features"></a>Caractéristiques
 
-Le pare-feu d’applications web est préconfiguré avec CRS 3.0 par défaut. Vous pouvez aussi d’utiliser la version 2.2.9. CRS 3.0 permet une réduction des faux positifs au-delà de la version 2.2.9. Il est possible de [personnaliser des règles en fonction de vos besoins](application-gateway-customize-waf-rules-portal.md). Le pare-feu d’applications web protège notamment des vulnérabilités web courantes suivantes :
+Pare-feu d’applications Web est préconfiguré avec CRS 3.0 par défaut, ou vous pouvez choisir toouse 2.2.9. CRS 3.0 permet une réduction des faux positifs au-delà de la version 2.2.9. Hello capacité trop[personnaliser les règles toosuit vos besoins](application-gateway-customize-waf-rules-portal.md) est fourni. Parmi le pare-feu d’applications web protège contre les vulnérabilités web courantes hello inclut :
 
 * Protection contre les injections de code SQL
 * Protection de l’exécution de script de site à site
@@ -62,7 +62,7 @@ Le pare-feu d’applications web est préconfiguré avec CRS 3.0 par défaut. V
 * Protection contre les robots, les crawlers et les scanneurs
 * Détection des erreurs de configuration d’application courantes (par exemple, Apache, IIS, etc.)
 
-Pour une liste plus détaillée des règles et de leurs protections, consultez les [ensembles de règles de base](#core-rule-sets).
+Pour une liste plus détaillée des règles et les protections Voir hello [ensembles de règles de base](#core-rule-sets).
 
 ### <a name="core-rule-sets"></a>Ensembles de règles de base
 
@@ -70,61 +70,61 @@ Application Gateway prend en charge les ensembles de règles CRS 3.0 et CRS 2.
 
 #### <a name="owasp30"></a>OWASP_3.0
 
-L’ensemble de règles de base 3.0 fourni dispose de 13 groupes de règles comme indiqué dans le tableau suivant. Chacun de ces groupes de règles contient plusieurs règles, qui peuvent être désactivées.
+ensemble de règles Hello 3.0 core fourni comporte des groupes de règles 13 comme illustré dans hello tableau suivant. Chacun de ces groupes de règles contient plusieurs règles, qui peuvent être désactivées.
 
 |RuleGroup|Description|
 |---|---|
-|**[REQUEST-910-IP-REPUTATION](application-gateway-crs-rulegroups-rules.md#crs910)**|Contient des règles de protection contre les expéditeurs de courrier indésirable ou les activités malveillantes connues.|
-|**[REQUEST-911-METHOD-ENFORCEMENT](application-gateway-crs-rulegroups-rules.md#crs911)**|Contient des règles de verrouillage des méthodes (PUT, PATCH< ..)|
-|**[REQUEST-912-DOS-PROTECTION](application-gateway-crs-rulegroups-rules.md#crs912)**| Contient des règles de protection contre les attaques par déni de service (DoS).|
-|**[REQUEST-913-SCANNER-DETECTION](application-gateway-crs-rulegroups-rules.md#crs913)**| Contient des règles de protection contre les scanneurs de port et d’environnement.|
-|**[REQUEST-920-PROTOCOL-ENFORCEMENT](application-gateway-crs-rulegroups-rules.md#crs920)**|Contient des règles de protection contre les problèmes de protocole et d’encodage.|
-|**[REQUEST-921-PROTOCOL-ATTACK](application-gateway-crs-rulegroups-rules.md#crs921)**|Contient des règles de protection contre les attaques par injection d’en-tête, dissimulation de requête et fractionnement de réponse|
-|**[REQUEST-930-APPLICATION-ATTACK-LFI](application-gateway-crs-rulegroups-rules.md#crs930)**|Contient des règles de protection contre les attaques par fichier et chemin d’accès.|
-|**[REQUEST-931-APPLICATION-ATTACK-RFI](application-gateway-crs-rulegroups-rules.md#crs931)**|Contient des règles de protection contre les attaques par inclusion de fichier distant (RFI)|
-|**[REQUEST-932-APPLICATION-ATTACK-RCE](application-gateway-crs-rulegroups-rules.md#crs932)**|Contient des règles de protection contre les attaques par exécution de code à distance.|
-|**[REQUEST-933-APPLICATION-ATTACK-PHP](application-gateway-crs-rulegroups-rules.md#crs933)**|Contient des règles de protection contre les attaques par injection de code PHP.|
+|**[REQUEST-910-IP-REPUTATION](application-gateway-crs-rulegroups-rules.md#crs910)**|Contient des tooprotect de règles par rapport aux expéditeurs connus ou des activités malveillantes.|
+|**[REQUEST-911-METHOD-ENFORCEMENT](application-gateway-crs-rulegroups-rules.md#crs911)**|Contient des toolock règles méthodes (PUT, PATCH <..)|
+|**[REQUEST-912-DOS-PROTECTION](application-gateway-crs-rulegroups-rules.md#crs912)**| Contient les règles des tooprotect contre les attaques par déni de Service (DoS).|
+|**[REQUEST-913-SCANNER-DETECTION](application-gateway-crs-rulegroups-rules.md#crs913)**| Contient des tooprotect de règles par rapport à des analyseurs de port et l’environnement.|
+|**[REQUEST-920-PROTOCOL-ENFORCEMENT](application-gateway-crs-rulegroups-rules.md#crs920)**|Contient tooprotect règles contre le protocole et les problèmes de codage.|
+|**[REQUEST-921-PROTOCOL-ATTACK](application-gateway-crs-rulegroups-rules.md#crs921)**|Contient des tooprotect de règles par rapport à l’injection de l’en-tête, demande de piratage et fractionnement de réponse|
+|**[REQUEST-930-APPLICATION-ATTACK-LFI](application-gateway-crs-rulegroups-rules.md#crs930)**|Contient tooprotect règles contre les attaques de fichier et chemin d’accès.|
+|**[REQUEST-931-APPLICATION-ATTACK-RFI](application-gateway-crs-rulegroups-rules.md#crs931)**|Contient des règles tooprotect contre d’Inclusion de fichier distant (RFI)|
+|**[REQUEST-932-APPLICATION-ATTACK-RCE](application-gateway-crs-rulegroups-rules.md#crs932)**|Contient des règles tooprotect à nouveau l’exécution de Code.|
+|**[REQUEST-933-APPLICATION-ATTACK-PHP](application-gateway-crs-rulegroups-rules.md#crs933)**|Contient tooprotect règles contre les attaques par injection de PHP.|
 |**[REQUEST-941-APPLICATION-ATTACK-XSS](application-gateway-crs-rulegroups-rules.md#crs941)**|Contient des règles de protection de l’exécution de script de site à site.|
 |**[REQUEST-942-APPLICATION-ATTACK-SQLI](application-gateway-crs-rulegroups-rules.md#crs942)**|Contient des règles de protection contre les attaques par injection de code SQL.|
-|**[REQUEST-943-APPLICATION-ATTACK-SESSION-FIXATION](application-gateway-crs-rulegroups-rules.md#crs943)**|Contient des règles de protection contre les attaques par fixation de session.|
+|**[REQUEST-943-APPLICATION-ATTACK-SESSION-FIXATION](application-gateway-crs-rulegroups-rules.md#crs943)**|Contient tooprotect règles contre les attaques de Fixation de Session.|
 
 #### <a name="owasp229"></a>OWASP_2.2.9
 
-L’ensemble de règles de base 2.2.9 fourni dispose de 10 groupes de règles comme indiqué dans le tableau suivant. Chacun de ces groupes de règles contient plusieurs règles, qui peuvent être désactivées.
+ensemble de règles de base Hello 2.2.9 fourni comporte 10 groupes de règles comme illustré dans hello tableau suivant. Chacun de ces groupes de règles contient plusieurs règles, qui peuvent être désactivées.
 
 |RuleGroup|Description|
 |---|---|
-|**[crs_20_protocol_violations](application-gateway-crs-rulegroups-rules.md#crs20)**|Contient des règles de protection contre les violations de protocole (caractères non valides, GET avec un corps de requête, etc..)|
-|**[crs_21_protocol_anomalies](application-gateway-crs-rulegroups-rules.md#crs21)**|Contient des règles de protection contre les informations d’en-tête incorrectes.|
-|**[crs_23_request_limits](application-gateway-crs-rulegroups-rules.md#crs23)**|Contient des règles de protection contre les arguments ou les fichiers qui dépassent les limites.|
-|**[crs_30_http_policy](application-gateway-crs-rulegroups-rules.md#crs30)**|Contient des règles de protection contre les types de fichiers, les en-têtes et les méthodes restreints. |
-|**[crs_35_bad_robots](application-gateway-crs-rulegroups-rules.md#crs35)**|Contient des règles de protection contre les analyseurs et les scanneurs de sites web.|
-|**[crs_40_generic_attacks](application-gateway-crs-rulegroups-rules.md#crs40)**|Contient des règles de protection contre les attaques génériques (par fixation de session, inclusion de fichier distant, injection de code PHP etc.).|
-|**[crs_41_sql_injection_attacks](application-gateway-crs-rulegroups-rules.md#crs41sql)**|Contient des règles de protection contre les attaques par injection de code SQL.|
-|**[crs_41_xss_attacks](application-gateway-crs-rulegroups-rules.md#crs41xss)**|Contient des règles de protection de l’exécution de script de site à site.|
-|**[crs_42_tight_security](application-gateway-crs-rulegroups-rules.md#crs42)**|Contient une règle de protection contre les attaques par traversée de chemin|
-|**[crs_45_trojans](application-gateway-crs-rulegroups-rules.md#crs45)**|Contient des règles de protection contre les chevaux de Troie.|
+|**[crs_20_protocol_violations](application-gateway-crs-rulegroups-rules.md#crs20)**|Contient les règles des tooprotect contre les violations de protocole (caractères non valides, GET avec un corps de la demande, un etc..)|
+|**[crs_21_protocol_anomalies](application-gateway-crs-rulegroups-rules.md#crs21)**|Contient des tooprotect de règles par rapport aux informations d’en-tête incorrect.|
+|**[crs_23_request_limits](application-gateway-crs-rulegroups-rules.md#crs23)**|Contient des tooprotect de règles par rapport à des arguments ou des fichiers qui dépassent les limites.|
+|**[crs_30_http_policy](application-gateway-crs-rulegroups-rules.md#crs30)**|Contient des tooprotect de règles par rapport aux méthodes restreintes, les en-têtes et les types de fichiers. |
+|**[crs_35_bad_robots](application-gateway-crs-rulegroups-rules.md#crs35)**|Contient des tooprotect de règles par rapport à des robots et des scanneurs.|
+|**[crs_40_generic_attacks](application-gateway-crs-rulegroups-rules.md#crs40)**|Contient les règles des tooprotect contre les attaques de génériques (fixation de session, d’inclusion de fichiers distant, injection de PHP, etc.)|
+|**[crs_41_sql_injection_attacks](application-gateway-crs-rulegroups-rules.md#crs41sql)**|Contient les règles des tooprotect contre les attaques par injection SQL|
+|**[crs_41_xss_attacks](application-gateway-crs-rulegroups-rules.md#crs41xss)**|Contient tooprotect règles contre cross-site scripting.|
+|**[crs_42_tight_security](application-gateway-crs-rulegroups-rules.md#crs42)**|Contient un tooprotect règle contre les attaques de parcours d’un chemin d’accès|
+|**[crs_45_trojans](application-gateway-crs-rulegroups-rules.md#crs45)**|Contient des tooprotect de règles par rapport aux chevaux de Troie de porte dérobée.|
 
 ### <a name="waf-modes"></a>Modes WAF
 
-Application Gateway WAF peut être configuré pour s’exécuter dans les deux modes suivants :
+WAF de passerelle d’application peut être configurée toorun Bonjour suivant deux modes :
 
-* **Mode de détection** – Lorsqu’il est configuré pour s’exécuter en mode de détection, Application Gateway WAF surveille et consigne toutes les alertes de menaces dans un fichier journal. L’enregistrement des diagnostics pour la passerelle Application Gateway doit être activé à l’aide de la section **Diagnostics**. Vous devez également vérifier que le journal WAF est sélectionné et activé. Le pare-feu d’applications web exécuté en mode de détection ne bloque pas les requêtes entrantes.
-* **Mode de prévention** – Lorsqu’il est configuré pour s’exécuter en mode de prévention, la passerelle Application Gateway bloque de façon active les intrusions et les et attaques détectées par les règles définies. L’attaquant reçoit une exception d’accès non autorisé de type 403 et la connexion prend fin. Le mode de prévention continue de consigner ce type d’attaques dans les journaux WAF.
+* **Mode de détection** : lorsque toorun configuré en mode de détection, Application passerelle WAF surveille et enregistre toutes les alertes de menaces dans le fichier de journal tooa. Journalisation des diagnostics pour la passerelle d’Application ne doit être activées à l’aide de hello **Diagnostics** section. Vous devez également tooensure qui hello WAF journal est sélectionné et activé. Le pare-feu d’applications web exécuté en mode de détection ne bloque pas les requêtes entrantes.
+* **Mode de prévention** – lorsque toorun configuré en mode de prévention, Application Gateway bloque activement les intrusions et les attaques détectées par les règles. les intrus Hello reçoit une exception d’accès non autorisé 403 et hello connexion est interrompue. Mode de prévention continue toolog ces attaques dans les journaux hello WAF.
 
 ### <a name="application-gateway-waf-reports"></a>Surveillance du pare-feu d’applications web
 
-Il est important de surveiller l’état de votre passerelle d’application. La journalisation et l’intégration à Azure Monitor, Azure Security Center (à venir), et Log Analytics permet de surveiller l’état de votre pare-feu d’applications web et des applications qu’il protège.
+Il est important de surveiller la santé de votre passerelle d’application hello. Surveillance de l’intégrité de hello de vos applications d’application web du pare-feu et hello qu’il protège sont fournis par la journalisation et l’intégration avec le moniteur de Windows Azure, Azure Security Center (prochainement) et Analytique de journal.
 
 ![diagnostics](./media/application-gateway-web-application-firewall-overview/diagnostics.png)
 
 #### <a name="azure-monitor"></a>Azure Monitor
 
-Chaque journal de passerelle d’application est intégré à [Azure Monitor](../monitoring-and-diagnostics/monitoring-overview.md).  Cela vous permet d’effectuer le suivi des informations de diagnostic, y compris des alertes et des journaux WAF.  Cette fonctionnalité est proposée dans la ressource Application Gateway sous l’onglet **Diagnostics** du portail ou directement via le service Azure Monitor. Pour en savoir plus sur l’activation des journaux de diagnostic pour la passerelle d’application, rendez-vous sur la page [Diagnostics Application Gateway](application-gateway-diagnostics.md)
+Chaque journal de passerelle d’application est intégré à [Azure Monitor](../monitoring-and-diagnostics/monitoring-overview.md).  Cela vous permet de tootrack des informations de diagnostic, y compris les journaux et alertes de WAF.  Cette fonctionnalité est fournie dans hello ressource passerelle d’Application de portail hello sous hello **Diagnostics** onglet ou directement via hello Azure moniteur service. toolearn plus d’informations sur l’activation des journaux de diagnostic pour la passerelle d’application visitez [diagnostics de la passerelle d’Application](application-gateway-diagnostics.md)
 
-#### <a name="azure-security-center"></a>Centre de sécurité Azure
+#### <a name="azure-security-center"></a>Azure Security Center
 
-[Azure Security Center](../security-center/security-center-intro.md) vous aide à prévenir, détecter et résoudre les menaces grâce à une visibilité et un contrôle accrus de la sécurité de vos ressources Azure. Désormais, Application Gateway [s’intègre à Azure Security Center](application-gateway-integration-security-center.md). Le service Azure Security Center analyse votre environnement pour détecter les applications web non protégées. Il peut à présent recommander à Application Gateway WAF de protéger ces ressources vulnérables. Vous pouvez créer des instances Application Gateway WAF directement à partir d’Azure Security Center.  Ces instances WAF sont intégrées à Azure Security Center et renverront des alertes et des informations d’intégrité à Azure Security Center à des fins de création de rapports.
+[Centre de sécurité Azure](../security-center/security-center-intro.md) vous aide à vous empêchez, détectez et répondre toothreats avec une meilleure visibilité et contrôler hello la sécurité de vos ressources Azure. Désormais, Application Gateway [s’intègre à Azure Security Center](application-gateway-integration-security-center.md). Centre de sécurité Azure analyse les applications web votre environnement toodetect non protégé. Il peut maintenant vous recommander application passerelle WAF tooprotect ces ressources vulnérables. Vous pouvez créer directement WAF de passerelle d’application à partir de hello Azure Security Center.  Ces instances WAF sont intégrées à Azure Security Center et seront renvoyer des alertes et les informations de contrôle d’intégrité tooAzure le centre de sécurité pour les rapports.
 
 ![figure 1](./media/application-gateway-web-application-firewall-overview/figure1.png)
 
@@ -164,11 +164,11 @@ Application Gateway WAF fournit des rapports détaillés sur chaque menace déte
 
 ## <a name="application-gateway-waf-sku-pricing"></a>Tarification de la référence SKU Application Gateway WAF
 
-Le pare-feu d’applications web est disponible sous une nouvelle référence WAF. Cette référence est disponible uniquement dans le modèle d’approvisionnement Azure Resource Manager et non sous le modèle de déploiement classique. Par ailleurs, la référence WAF est proposée uniquement dans les instances de passerelle d’application de moyenne et grande taille. Toutes les limites relatives à la passerelle d’application s’appliquent également à la référence WAF. La tarification est basée sur les frais d’instance de passerelle par heure et les frais de traitement des données. La tarification par heure de la passerelle pour la référence WAF diffère des frais de référence Standard et est accessible sur [Détails de tarification Application Gateway](https://azure.microsoft.com/pricing/details/application-gateway/). Les frais de traitement des données restent inchangés. Il n’existe aucun frais par règle ou groupe de règles. Vous pouvez protéger plusieurs applications web derrière le même pare-feu d’applications web sans frais supplémentaires pour la prise en charge de plusieurs applications. 
+Le pare-feu d’applications web est disponible sous une nouvelle référence WAF. Cette référence est disponible uniquement dans le modèle de déploiement Azure Resource Manager et non sous le modèle de déploiement classique hello. Par ailleurs, la référence WAF est proposée uniquement dans les instances de passerelle d’application de moyenne et grande taille. Toutes les limites de hello pour la passerelle d’application s’appliquent également à toohello WAF référence (SKU). La tarification est basée sur les frais d’instance de passerelle par heure et les frais de traitement des données. La tarification par heure de la passerelle pour la référence WAF diffère des frais de référence Standard et est accessible sur [Détails de tarification Application Gateway](https://azure.microsoft.com/pricing/details/application-gateway/). Le traitement des données des frais restent hello identiques. Il n’existe aucun frais par règle ou groupe de règles. Vous pouvez protéger plusieurs applications web derrière hello même web pare-feu d’applications et pas de frais supplémentaires pour prendre en charge de plusieurs applications. 
 
-La facturation relative au pare-feu d’applications web démarre à compter du 5/5/2017. Jusque-là les passerelles de référence SKU WAF sont facturées au tarif standard.
+La facturation pour WAF commence efficacement 5/5/2017, jusqu'à ce que hello puis les passerelles de référence (SKU) WAF continue toobe facturée au tarif standard.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Après avoir découvert les fonctionnalités de WAF, consultez la rubrique sur la [configuration du pare-feu d’applications web sur la passerelle Application Gateway](application-gateway-web-application-firewall-portal.md).
+Après avoir plus d’informations sur les fonctionnalités de WAF hello de formation, visitez [comment tooconfigure web pare-feu d’applications sur la passerelle d’Application](application-gateway-web-application-firewall-portal.md).
 

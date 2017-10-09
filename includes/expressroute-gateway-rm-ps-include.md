@@ -1,4 +1,4 @@
-Les étapes de cette tâche utilisent un réseau virtuel basé sur les valeurs figurant dans la liste de référence de configuration suivante. Les noms et paramètres supplémentaires sont également présentés dans cette liste. Nous n’utilisons pas cette liste directement dans la procédure, mais nous ajoutons des variables en fonction des valeurs dans cette liste. Vous pouvez copier la liste et l’utiliser en tant que référence, en remplaçant les valeurs par les vôtres.
+étapes Hello pour cette tâche, utilisez un réseau virtuel en fonction des valeurs hello hello suivant liste de référence de configuration. Les noms et paramètres supplémentaires sont également présentés dans cette liste. Nous n’utilisons cette liste directement dans une des étapes de hello, bien que nous ajoutez des variables en fonction des valeurs hello dans cette liste. Vous pouvez copier hello liste toouse en tant que référence, en remplaçant les valeurs hello par les vôtres.
 
 **Liste de référence de configuration**
 
@@ -17,14 +17,14 @@ Les étapes de cette tâche utilisent un réseau virtuel basé sur les valeurs f
 * Nom d’adresse IP publique de passerelle = « gwpip »
 
 ## <a name="add-a-gateway"></a>Ajout d’une passerelle
-1. Connectez-vous à votre abonnement Azure.
+1. Se connecter tooyour abonnement Azure.
 
   ```powershell 
   Login-AzureRmAccount
   Get-AzureRmSubscription 
   Select-AzureRmSubscription -SubscriptionName "Name of subscription"
   ```
-2. Déclarez vos variables pour cet exercice. Veillez à modifier l’exemple pour refléter les paramètres que vous souhaitez utiliser.
+2. Déclarez vos variables pour cet exercice. Être tooedit vraiment hello exemple tooreflect hello de paramètres que vous souhaitez toouse.
 
   ```powershell 
   $RG = "TestRG"
@@ -34,54 +34,54 @@ Les étapes de cette tâche utilisent un réseau virtuel basé sur les valeurs f
   $GWIPconfName = "gwipconf"
   $VNetName = "TestVNet"
   ```
-3. Stockez l’objet de réseau virtuel en tant que variable.
+3. Stocker l’objet de réseau virtuel hello comme une variable.
 
   ```powershell
   $vnet = Get-AzureRmVirtualNetwork -Name $VNetName -ResourceGroupName $RG
   ```
-4. Ajoutez un sous-réseau de passerelle à votre réseau virtuel. Le sous-réseau de passerelle doit être nommé « GatewaySubnet ». Vous devez créer un sous-réseau de passerelle défini sur /27 ou plus (/26, /25, etc.).
+4. Ajouter un tooyour de sous-réseau de passerelle réseau virtuel. sous-réseau de passerelle Hello doit être nommé « GatewaySubnet ». Vous devez créer un sous-réseau de passerelle défini sur /27 ou plus (/26, /25, etc.).
 
   ```powershell
   Add-AzureRmVirtualNetworkSubnetConfig -Name GatewaySubnet -VirtualNetwork $vnet -AddressPrefix 192.168.200.0/26
   ```
-5. Définissez la configuration.
+5. Définir la configuration hello.
 
   ```powershell
   Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
   ```
-6. Stockez le sous-réseau de passerelle en tant que variable.
+6. Stocker le sous-réseau de passerelle hello comme une variable.
 
   ```powershell
   $subnet = Get-AzureRmVirtualNetworkSubnetConfig -Name 'GatewaySubnet' -VirtualNetwork $vnet
   ```
-7. Demandez une adresse IP publique L’adresse IP est demandée avant de créer la passerelle. Vous ne pouvez pas spécifier l’adresse IP que vous souhaitez utiliser, car elle est allouée de façon dynamique. Vous utiliserez cette adresse IP dans la section de configuration suivante. La méthode AllocationMethod doit être dynamique.
+7. Demandez une adresse IP publique une adresse IP Hello est requise avant de créer la passerelle de hello. Vous ne pouvez pas spécifier hello adresse IP que toouse ; elle est allouée dynamiquement. Vous utiliserez cette adresse IP dans la section de configuration suivante hello. Hello AllocationMethod doit être dynamiques.
 
   ```powershell
   $pip = New-AzureRmPublicIpAddress -Name $GWIPName  -ResourceGroupName $RG -Location $Location -AllocationMethod Dynamic
   ```
-8. Créez la configuration de votre passerelle. La configuration de la passerelle définit le sous-réseau et l’adresse IP publique à utiliser. Dans cette étape, vous spécifiez la configuration qui sera utilisée lors de la création de la passerelle. Cette étape ne crée pas réellement l’objet de passerelle. Utilisez l’exemple ci-dessous pour créer la configuration de votre passerelle.
+8. Créer la configuration hello pour votre passerelle. configuration de la passerelle Hello définit le sous-réseau de hello et toouse adresse IP publique de hello. Dans cette étape, vous spécifiez configuration hello qui sera utilisée lors de la création de la passerelle de hello. Cette étape ne crée pas réellement l’objet de passerelle hello. Utilisez exemple hello ci-dessous toocreate votre configuration de la passerelle.
 
   ```powershell
   $ipconf = New-AzureRmVirtualNetworkGatewayIpConfig -Name $GWIPconfName -Subnet $subnet -PublicIpAddress $pip
   ```
-9. Créez la passerelle. Dans cette étape, le type **-GatewayType** est particulièrement important. Vous devez utiliser la valeur **ExpressRoute**. Après l’exécution de ces cmdlets, la création de la passerelle peut prendre 45 minutes ou plus.
+9. Créer la passerelle de hello. Dans cette étape, hello **- le type de passerelle** est particulièrement important. Vous devez utiliser la valeur de hello **ExpressRoute**. Après l’exécution de ces applets de commande, passerelle de hello peut prendre entre 45 minutes ou plus toocreate.
 
   ```powershell
   New-AzureRmVirtualNetworkGateway -Name $GWName -ResourceGroupName $RG -Location $Location -IpConfigurations $ipconf -GatewayType Expressroute -GatewaySku Standard
   ```
 
-## <a name="verify-the-gateway-was-created"></a>Vérification de la création de la passerelle
-Utilisez les commandes suivantes pour vérifier que la passerelle a été créée :
+## <a name="verify-hello-gateway-was-created"></a>Vérifiez les passerelle hello a été créé.
+Utilisez hello suivant les commandes tooverify qui hello passerelle a été créé :
 
 ```powershell
 Get-AzureRmVirtualNetworkGateway -ResourceGroupName $RG
 ```
 
 ## <a name="resize-a-gateway"></a>Redimensionner une passerelle
-Il existe un certain nombre de [Références (SKU) de passerelle](../articles/expressroute/expressroute-about-virtual-network-gateways.md). Vous pouvez utiliser la commande suivante pour modifier la référence de passerelle à tout moment.
+Il existe un certain nombre de [Références (SKU) de passerelle](../articles/expressroute/expressroute-about-virtual-network-gateways.md). Vous pouvez utiliser hello suivant commande toochange hello SKU de passerelle à tout moment.
 
 > [!IMPORTANT]
-> Cette commande ne fonctionne pas pour la passerelle UltraPerformance. Pour modifier votre passerelle en passerelle UltraPerformance, commencez par supprimer la passerelle ExpressRoute, puis créez une passerelle UltraPerformance. Pour mettre à niveau votre passerelle à partir d’une passerelle UltraPerformance, commencez par supprimer la passerelle UltraPerformance, puis créez-en une.
+> Cette commande ne fonctionne pas pour la passerelle UltraPerformance. toochange votre passerelle tooan UltraPerformance passerelle, supprimez d’abord hello existant passerelle ExpressRoute et puis créer une passerelle UltraPerformance. toodowngrade votre passerelle à partir d’une passerelle UltraPerformance, supprimez d’abord hello UltraPerformance passerelle, puis créer une passerelle.
 > 
 > 
 
@@ -91,7 +91,7 @@ Resize-AzureRmVirtualNetworkGateway -VirtualNetworkGateway $gw -GatewaySku HighP
 ```
 
 ## <a name="remove-a-gateway"></a>Supprimer une passerelle
-Pour supprimer une passerelle, utilisez la commande suivante :
+Hello suivant commande tooremove une passerelle, utilisez :
 
 ```powershell
 Remove-AzureRmVirtualNetworkGateway -Name $GWName -ResourceGroupName $RG

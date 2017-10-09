@@ -1,6 +1,6 @@
 ---
-title: "Créer et publier une application managée du catalogue de services Azure | Microsoft Docs"
-description: "Montre comment créer une application managée Azure destinée aux membres de votre organisation."
+title: "aaaCreate et publier une application de catalogue managé service Azure | Documents Microsoft"
+description: "Montre comment toocreate Azure gérés à application qui est destinée aux membres de votre organisation."
 services: azure-resource-manager
 author: ravbhatnagar
 manager: rjmax
@@ -10,27 +10,27 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 08/23/2017
 ms.author: gauravbh; tomfitz
-ms.openlocfilehash: 39b74984ec2f89ed39753963de7fe3ff79577c9e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 31f2f9e3b50f57dae7f4dcf2edefa7366bfff25c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="publish-a-managed-application-for-internal-consumption"></a>Publier une application managée pour une utilisation interne
 
-Vous pouvez créer et publier des[applications managées](managed-application-overview.md) Azure pour les besoins des membres de votre organisation. Par exemple, un service informatique peut publier des applications managées destinées à contrôler la conformité par rapport aux normes de l’organisation. Ces applications managées sont disponibles via le catalogue de services, et non la Place de marché Azure.
+Vous pouvez créer et publier des[applications managées](managed-application-overview.md) Azure pour les besoins des membres de votre organisation. Par exemple, un service informatique peut publier des applications managées destinées à contrôler la conformité par rapport aux normes de l’organisation. Ces applications gérées sont disponibles via le catalogue de services hello, pas hello Azure Marketplace.
 
-Pour publier une application managée pour le catalogue de services, vous devez :
+toopublish une application managée hello catalogue de services, vous devez :
 
-* créer un package .zip qui contient les trois fichiers modèles nécessaires ;
-* désigner l’utilisateur, le groupe ou l’application qui doit avoir accès au groupe de ressources dans l’abonnement de l’utilisateur ;
-* créer la définition de l’application managée qui pointe vers le package .zip et qui demande l’accès pour l’identité.
+* Créer un package .zip qui contient les trois fichiers de modèle requis hello.
+* Décider quel utilisateur, groupe ou une application a besoin d’accès toohello ressource groupe dans l’abonnement de l’utilisateur hello.
+* Créer la définition d’application hello géré qui pointe le package .zip de toohello et demande l’accès pour l’identité de hello.
 
 ## <a name="create-a-managed-application-package"></a>Créer un package d’application gérée
 
-La première étape consiste à créer les trois fichiers modèles nécessaires. Compressez les trois fichiers dans un fichier .zip, puis chargez ce package à un emplacement accessible, par exemple un compte de stockage. Vous transmettez un lien à ce fichier .zip au moment de créer la définition de l’application managée.
+première étape de Hello est fichiers de modèles requis trois toocreate hello. Les trois fichiers de package dans un fichier .zip et téléchargez-le tooan emplacement accessible, tel qu’un compte de stockage. Vous passez un fichier .zip de toothis lien lors de la création hello gérés définition d’application.
 
-* **applianceMainTemplate.json** : ce fichier définit les ressources Azure approvisionnées pour l’application managée. Le modèle n’est en rien différent d’un modèle Resource Manager normal. Par exemple, pour créer un compte de stockage via une application managée, le fichier applianceMainTemplate.json contient :
+* **applianceMainTemplate.json**: ce fichier définit hello Azure application gérée de ressources qui sont configurés en tant que partie de hello. modèle de Hello n’est pas différente de celle d’un modèle de gestionnaire de ressources normal. Par exemple, toocreate un compte de stockage via une application managée, applianceMainTemplate.json contient :
 
   ```json
   {
@@ -58,17 +58,17 @@ La première étape consiste à créer les trois fichiers modèles nécessaires.
   }
   ```
 
-* **mainTemplate.json** : les utilisateurs déploient ce modèle au moment de créer l’application managée. Il définit la ressource d’application managée, qui est un type de ressource Microsoft.Solutions/appliances. Ce fichier contient tous les paramètres dont vous avez besoin pour les ressources contenues dans applianceMainTemplate.json.
+* **mainTemplate.json**: les utilisateurs déployer ce modèle lors de la création d’hello application gérée. Il définit la ressource application hello géré, qui est un type de ressource Microsoft.Solutions/appliances. Ce fichier contient tous les paramètres de hello que vous avez besoin pour les ressources hello dans applianceMainTemplate.json.
 
-  Vous définissez deux propriétés importantes dans ce modèle. La première est la propriété **applianceDefinitionId**, qui correspond à l’ID de la définition de l’application managée. Vous créerez cette définition plus loin dans cette rubrique. Au moment de définir cette valeur, vous devez indiquer quel abonnement et quels groupes de ressources utiliser pour stocker les définitions de l’application managée. Par ailleurs, vous devez décider du nom que vous souhaitez attribuer à la définition. L’ID est au format suivant :
+  Vous définissez deux propriétés importantes dans ce modèle. Tout d’abord, hello **applianceDefinitionId** propriété est ID hello hello géré de définition d’application. Vous créez définition de hello plus loin dans cette rubrique. Lorsque vous définissez cette valeur, vous devez décider quel abonnement et le toouse de groupe de ressources pour le stockage des définitions d’application managée de hello. Et, vous devez choisir un nom pour la définition de hello. ID de Hello est au format de hello :
 
   `/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.Solutions/applianceDefinitions/<definition-name>`
 
-  La deuxième propriété, **managedResourceGroupId**, correspond à l’ID du groupe de ressources dans lequel les ressources Azure sont créées. Vous pouvez affecter une valeur à ce nom de groupe de ressources ou laisser le soin à l’utilisateur d’indiquer un nom. L’ID est au format suivant :
+  En second lieu, hello **managedResourceGroupId** propriété est ID hello hello du groupe de ressources où hello ressources Azure sont créées. Vous pouvez affecter une valeur pour le nom de ce groupe de ressources ou permettent de fournir un nom d’utilisateur de hello. format Hello hello ID est :
 
   `/subscriptions/<subscription-id>/resourceGroups/<resoure-group-name>`.
 
-  L’exemple suivant présente un fichier mainTemplate.json. Il spécifie un groupe de ressources pour les ressources déployées. L’ID de définition utilise ici une définition nommée **storageApp** dans un groupe de ressources nommé **managedApplicationGroup**. Vous pouvez modifier ces valeurs de façon à utiliser d’autres noms. Indiquez votre propre ID d’abonnement dans l’ID de définition.
+  Hello l’exemple suivant montre un fichier mainTemplate.json. Il spécifie un groupe de ressources pour les ressources de hello déployé. ID de définition de Hello est toouse de jeu nommée d’une définition de **storageApp** dans un groupe de ressources nommé **managedApplicationGroup**. Vous pouvez modifier ces noms de différentes valeurs toouse. Fournir votre propre ID d’abonnement dans l’ID de définition hello.
 
   ```json
   {
@@ -104,9 +104,9 @@ La première étape consiste à créer les trois fichiers modèles nécessaires.
   }
   ```
 
-* **applianceCreateUiDefinition.json** : le portail Azure utilise ce fichier pour générer l’interface utilisateur pour les clients qui créent l’application managée. Vous déterminez la façon dont les utilisateurs fournissent une entrée pour chaque paramètre. Vous pouvez utiliser des options comme un sélecteur de liste déroulante, une zone de texte, une zone de mot de passe et d’autres outils de saisie. Pour en savoir plus sur la création d’un fichier de définition de l’interface utilisateur pour une application gérée, consultez [Prise en main de CreateUiDefinition](managed-application-createuidefinition-overview.md).
+* **applianceCreateUiDefinition.json**: hello portail Azure utilise ce fichier toogenerate hello interface utilisateur pour les utilisateurs qui créent hello application managée. Vous déterminez la façon dont les utilisateurs fournissent une entrée pour chaque paramètre. Vous pouvez utiliser des options comme un sélecteur de liste déroulante, une zone de texte, une zone de mot de passe et d’autres outils de saisie. toolearn toocreate un fichier de définition de l’interface utilisateur pour une application managée, voir [prise en main CreateUiDefinition](managed-application-createuidefinition-overview.md).
 
-  L’exemple suivant présente un fichier applianceCreateUiDefinition.json qui permet aux utilisateurs de spécifier le préfixe du nom du compte de stockage dans une zone de texte.
+  Hello exemple suivant illustre un fichier applianceCreateUiDefinition.json qui permet aux utilisateurs toospecify hello stockage compte préfixe du nom dans une zone de texte.
 
   ```json
   {
@@ -120,11 +120,11 @@ La première étape consiste à créer les trois fichiers modèles nécessaires.
                 "type": "Microsoft.Common.TextBox",
                 "label": "Storage account name prefix",
                 "defaultValue": "storage",
-                "toolTip": "Provide a value that is used for the prefix of your storage account. Limit to 11 characters.",
+                "toolTip": "Provide a value that is used for hello prefix of your storage account. Limit too11 characters.",
                 "constraints": {
                     "required": true,
                     "regex": "^[a-z0-9A-Z]{1,11}$",
-                    "validationMessage": "Only alphanumeric characters are allowed, and the value must be 1-11 characters long."
+                    "validationMessage": "Only alphanumeric characters are allowed, and hello value must be 1-11 characters long."
                 },
                 "visible": true
             }
@@ -137,19 +137,19 @@ La première étape consiste à créer les trois fichiers modèles nécessaires.
   }
   ```
 
-Une fois que tous les fichiers nécessaires sont prêts, empaquetez-les sous forme de fichier .zip. Les trois fichiers doivent se trouver au niveau racine du fichier .zip. Si vous les placez dans un dossier, vous obtenez une erreur au moment de créer la définition de l’application managée qui indique que les fichiers nécessaires ne sont pas présents. Chargez le package à un emplacement accessible à partir de là où il peut être utilisé. La suite de cet article considère que le fichier .zip existe dans un conteneur d’objets blob de stockage accessible publiquement.
+Après que tous les fichiers hello nécessité sont prêts, empaqueter les sous la forme d’un fichier .zip. Hello trois fichiers doivent être au niveau racine de hello du fichier .zip de hello. Si vous les placez dans un dossier, vous recevez une erreur lors de la création d’hello géré de définition d’application indiquant hello requis de fichiers ne sont pas présents. Télécharger un emplacement accessible tooan package hello d’où il peut être consommé. reste Hello de cet article suppose le fichier .zip de hello existe dans un conteneur d’objets blob de stockage accessible publiquement.
 
 ## <a name="create-an-azure-active-directory-user-group-or-application"></a>Créer un groupe d’utilisateurs ou une application Azure Active Directory
 
-La deuxième étape consiste à sélectionner un groupe d’utilisateurs ou une application pour gérer les ressources pour le compte du client. Ce groupe d’utilisateurs ou l’application dispose d’autorisations sur le groupe de ressources managé en fonction du rôle attribué. Le rôle peut être n’importe quel rôle Contrôle d’accès en fonction du rôle (RBAC) intégré, par exemple Propriétaire ou Contributeur. Vous pouvez également autoriser un utilisateur individuel à pour gérer les ressources, mais en général, cette autorisation est attribuée à un groupe d’utilisateurs. Pour créer un groupe d’utilisateurs Active Directory, consultez [Créer un groupe et ajouter des membres dans Azure Active Directory](../active-directory/active-directory-groups-create-azure-portal.md).
+deuxième étape de Hello est tooselect un groupe d’utilisateurs ou une application pour la gestion des ressources de hello pour le compte du client de hello. Ce groupe d’utilisateurs ou cette application dispose des autorisations sur hello ressource managée conséquente toohello rôle de groupe qui est affecté. rôle de Hello peut être n’importe quel rôle intégré de contrôle d’accès en fonction du rôle (RBAC) comme propriétaire ou contributeur. Vous pouvez également fournir un utilisateur individuel ressources de hello toomanage autorisation, mais que vous attribuez généralement ce groupe d’utilisateurs tooa autorisation. toocreate un nouveau groupe d’utilisateurs Active Directory, voir [créer un groupe et ajouter des membres dans Azure Active Directory](../active-directory/active-directory-groups-create-azure-portal.md).
 
-Vous avez besoin de l’ID d’objet du groupe d’utilisateurs à utiliser pour gérer les ressources. L’exemple suivant montre comment obtenir l’ID d’objet à partir du nom d’affichage du groupe :
+Vous avez besoin d’ID d’objet hello de toouse de groupe utilisateur hello pour la gestion des ressources de hello. Bonjour à l’exemple suivant montre comment tooget hello ID d’objet à partir du nom complet du groupe hello :
 
 ```azurecli-interactive
 az ad group show --group exampleGroupName
 ```
 
-L’exemple de commande renvoie le résultat suivant :
+exemple de commande Hello renvoie hello suivant de sortie :
 
 ```azurecli
 {
@@ -161,22 +161,22 @@ L’exemple de commande renvoie le résultat suivant :
 }
 ```
 
-Pour récupérer uniquement l’ID d’objet, utilisez :
+ID d’objet tooretrieve hello seulement, utilisez :
 
 ```azurecli-interactive
 groupid=$(az ad group show --group exampleGroupName --query objectId --output tsv)
 ```
 
-## <a name="get-the-role-definition-id"></a>Obtenir l’ID de définition de rôle
+## <a name="get-hello-role-definition-id"></a>Obtenir l’ID de définition de rôle hello
 
-Ensuite, vous avez besoin de l’ID de définition de rôle du rôle RBAC intégré auquel vous souhaitez accorder l’accès à l’utilisateur, au groupe d’utilisateurs ou à l’application. En règle générale, vous utilisez le rôle Propriétaire, Collaborateur ou Lecteur. La commande suivante montre comment obtenir l’ID de définition de rôle pour le rôle Propriétaire :
+Ensuite, vous devez les ID de définition de rôle hello Hello rôle intégré de RBAC toogrant toohello utilisateur, groupe d’utilisateurs, ou l’application. En règle générale, vous utilisez hello propriétaire ou rôle de contributeur ou lecteur. Hello commande suivante montre comment tooget hello ID de définition de rôle pour le rôle de propriétaire hello :
 
 
 ```azurecli-interactive
 az role definition list --name owner
 ```
 
-Cette commande renvoie le résultat suivant :
+Cette commande renvoie hello suivant de sortie :
 
 ```azurecli
 {
@@ -186,7 +186,7 @@ Cette commande renvoie le résultat suivant :
       "assignableScopes": [
         "/"
       ],
-      "description": "Lets you manage everything, including access to resources.",
+      "description": "Lets you manage everything, including access tooresources.",
       "permissions": [
         {
           "actions": [
@@ -202,13 +202,13 @@ Cette commande renvoie le résultat suivant :
 }
 ```
 
-Vous avez besoin de la valeur de la propriété « name » issue de l’exemple précédent. Vous pouvez récupérer uniquement cette propriété avec :
+Vous devez valeur hello de propriété « name » hello précédant l’exemple hello. Vous pouvez récupérer uniquement cette propriété avec :
 
 ```azurecli-interactive
 roleid=$(az role definition list --name Owner --query [].name --output tsv)
 ```
 
-## <a name="create-the-managed-application-definition"></a>Créer la définition d’application gérée
+## <a name="create-hello-managed-application-definition"></a>Créer la définition de l’application hello géré
 
 Si vous ne disposez pas déjà d’un groupe de ressources pour stocker la définition de votre application managée, créez-en un maintenant :
 
@@ -216,7 +216,7 @@ Si vous ne disposez pas déjà d’un groupe de ressources pour stocker la défi
 az group create --name managedApplicationGroup --location westcentralus
 ```
 
-À présent, créez la ressource de définition de l’application managée.
+À présent, créer la ressource de définition d’application hello géré.
 
 ```azurecli-interactive
 az managedapp definition create \
@@ -230,18 +230,18 @@ az managedapp definition create \
   --package-file-uri <uri-path-to-zip-file>
 ```
 
-Les paramètres utilisés dans cet exemple sont les suivants :
+paramètres de Hello utilisés Bonjour précédent exemple sont :
 
-* **resource-group** : nom du groupe de ressources dans lequel la définition de l’application managée est créée.
-* **lock-level**: type de verrou placé sur le groupe de ressources gérées. Il empêche le client d’effectuer des opérations indésirables sur ce groupe de ressources. Actuellement, ReadOnly est le seul niveau de verrou pris en charge. Lorsque ReadOnly est spécifié, le client peut lire uniquement les ressources présentes dans le groupe de ressources gérées.
-* **authorizations** : décrit l’ID principal et l’ID de définition de rôle utilisés pour accorder des autorisations au groupe de ressources gérées. Il est spécifié sous la forme `<principalId>:<roleDefinitionId>`. Plusieurs valeurs peuvent également être spécifiées pour cette propriété. Si plusieurs valeurs sont nécessaires, elles doivent être spécifiées sous la forme `<principalId1>:<roleDefinitionId1> <principalId2>:<roleDefinitionId2>`. Les valeurs sont séparées par un espace.
-* **package-file-uri** : emplacement du package de l’application managée qui contient les fichiers modèles, qui peut être un objet blob de stockage Azure.
+* **groupe de ressources**: nom hello hello du groupe de ressources où hello géré définition d’application est créé.
+* **niveau de verrou**: type hello de verrou placé sur le groupe de ressources managé hello. Il empêche les clients hello d’effectuer des opérations indésirables sur ce groupe de ressources. Actuellement, en lecture seule est hello pris en charge uniquement au niveau du verrou. Lorsque ReadOnly est spécifié, les clients hello peuvent lire uniquement les ressources de hello présents dans le groupe de ressources managé hello.
+* **autorisations**: décrit les ID du principal hello et ID de définition de rôle hello qui sont un groupe de ressources managé toohello toogrant utilisé autorisation. Il est spécifié au format hello de `<principalId>:<roleDefinitionId>`. Plusieurs valeurs peuvent également être spécifiées pour cette propriété. Si plusieurs valeurs sont nécessaires, ils doivent être spécifiés sous forme de hello `<principalId1>:<roleDefinitionId1> <principalId2>:<roleDefinitionId2>`. Les valeurs sont séparées par un espace.
+* **uri de fichier de package**: hello emplacement du package d’application managée hello qui contient les fichiers de modèle hello, qui peuvent être un objet blob de stockage Azure.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* Pour voir une présentation des applications gérées, consultez [Vue d’ensemble des applications gérées](managed-application-overview.md).
-* Consultez les [exemples d’application gérée](https://github.com/Azure/azure-managedapp-samples/tree/master/samples) pour voir des exemples de fichiers.
+* Pour une introduction toomanaged les applications, voir [vue d’ensemble de Managed application](managed-application-overview.md).
+* Pour obtenir des exemples de fichiers de hello, consultez [gérés des exemples d’applications](https://github.com/Azure/azure-managedapp-samples/tree/master/samples).
 * Pour plus d’informations sur l’utilisation d’une application gérée de catalogue de services, consultez l’article [Utiliser une application gérée du catalogue de services](managed-application-consumption.md).
-* Pour plus d’informations sur la publication d’applications gérées sur la Place de marché, consultez l’article [Applications gérées sur la Place de marché](managed-application-author-marketplace.md).
-* Pour plus d’informations sur l’utilisation d’applications gérées de la Place de marché, consultez l’article [Utilisation des applications gérées de la Place de marché Azure](managed-application-consume-marketplace.md).
-* Pour en savoir plus sur la création d’un fichier de définition de l’interface utilisateur pour une application gérée, consultez [Prise en main de CreateUiDefinition](managed-application-createuidefinition-overview.md).
+* Pour plus d’informations sur la publication des applications managées toohello Azure Marketplace, consultez [Azure géré applications Bonjour Marketplace](managed-application-author-marketplace.md).
+* Pour plus d’informations sur la consommation d’une application managée à partir de hello Marketplace, consultez [Azure de consommer gérés applications Bonjour Marketplace](managed-application-consume-marketplace.md).
+* toolearn toocreate un fichier de définition de l’interface utilisateur pour une application managée, voir [prise en main CreateUiDefinition](managed-application-createuidefinition-overview.md).

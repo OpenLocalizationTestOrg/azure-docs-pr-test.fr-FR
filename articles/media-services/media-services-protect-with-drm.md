@@ -1,6 +1,6 @@
 ---
-title: Utilisation du chiffrement commun dynamique PlayReady et/ou Widevine | Microsoft Docs
-description: "Microsoft Azure Media Services vous permet de fournir des flux MPEG-DASH, Smooth Streaming et HLS (Http-Live-Streaming) protégés par Microsoft PlayReady DRM. Vous pouvez également l’utiliser pour diffuser du contenu DASH chiffré avec Widevine DRM. Cette rubrique montre comment chiffrer dynamiquement avec PlayReady et Widevine DRM."
+title: aaaUsing PlayReady et/ou Widevine dynamique chiffrement commun | Documents Microsoft
+description: "Microsoft Azure Media Services permet de vous toodeliver MPEG-DASH, Smooth Streaming et Http-Live-Streaming (HLS) flux protégés par Microsoft PlayReady DRM. Il vous permet également de toodelivery DASH chiffré avec Widevine DRM. Cette rubrique montre comment toodynamically chiffrer avec PlayReady et Widevine DRM."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/18/2017
 ms.author: juliako
-ms.openlocfilehash: 6cfb7b558b8dce511d517e69c022765feae245fa
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 0475e6ec80dcf39eb4e5c4ad4d17f821502951bd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="using-playready-andor-widevine-dynamic-common-encryption"></a>Utilisation du chiffrement commun dynamique PlayReady et/ou Widevine
 
@@ -29,128 +29,128 @@ ms.lasthandoff: 08/29/2017
 >
 >
 
-Microsoft Azure Media Services vous permet de fournir des flux MPEG-DASH, Smooth Streaming et HLS (HTTP-Live-Streaming) protégés par [Microsoft PlayReady DRM](https://www.microsoft.com/playready/overview/). Vous pouvez également l’utiliser pour diffuser du contenu DASH chiffré avec des licences Widevine DRM. PlayReady et Widewine sont chiffrés conformément à la spécification de chiffrement commun (ISO/IEC 23001-7 CENC). Vous pouvez utiliser [AMS .NET SDK](https://www.nuget.org/packages/windowsazure.mediaservices/) (en commençant par la version 3.5.1) ou une API REST pour configurer votre AssetDeliveryConfiguration afin d’utiliser Widevine.
+Microsoft Azure Media Services vous permet de toodeliver MPEG-DASH, Smooth Streaming et les flux HTTP Live Streaming (HLS) protégés avec [Microsoft PlayReady DRM](https://www.microsoft.com/playready/overview/). Il vous permet également de flux de tiret toodeliver chiffré avec licences Widevine DRM. PlayReady et Widevine sont chiffrées par hello spécification de chiffrement commun (CENC 23001-7 de norme ISO/IEC). Vous pouvez utiliser [AMS .NET SDK](https://www.nuget.org/packages/windowsazure.mediaservices/) (depuis la version de hello 3.5.1) ou REST API tooconfigure votre toouse AssetDeliveryConfiguration Widevine.
 
-Media Services fournit un service de remise de licences DRM PlayReady et Widevine. Media Services fournit également des API qui vous permettent de configurer les droits et les restrictions que vous souhaitez pour le runtime DRM PlayReady ou Widevine, qui s’appliquent lorsqu’un utilisateur lit un contenu protégé. Lorsqu’un utilisateur demande un contenu DRM protégé, l’application de lecteur demande une licence du service de licence AMS. Le service de licence AMS émet une licence pour le lecteur s’il est autorisé. Une licence PlayReady ou Widevine contient la clé de déchiffrement qui peut être utilisée par le lecteur client pour déchiffrer et diffuser le contenu.
+Media Services fournit un service de remise de licences DRM PlayReady et Widevine. Media Services fournit également des API qui vous permettent de configurer les droits hello et restrictions que vous souhaitez pour hello PlayReady ou Widevine DRM runtime tooenforce lorsqu’un utilisateur lit le contenu protégé. Lorsqu’un utilisateur demande un contenu protégé par DRM, application de lecteur hello demande une licence de service de licence hello AMS. service de licence Hello AMS émettra un lecteur toohello de licence s’il est autorisé. Une licence PlayReady ou Widevine contient la clé de déchiffrement hello qui peut être utilisé par hello client toodecrypt et flux hello contenu du lecteur.
 
-Vous pouvez également utiliser les partenaires AMS suivants pour vous aider à distribuer des licences Widevine : [Axinom](http://www.axinom.com/press/ibc-axinom-drm-6/), [EZDRM](http://ezdrm.com/), [castLabs](http://castlabs.com/company/partners/azure/). Pour plus d’informations, consultez : Intégration à [Axinom](media-services-axinom-integration.md) et [castLabs](media-services-castlabs-integration.md).
+Vous pouvez également utiliser hello suivant toohelp de partenaires AMS vous fournir des licences Widevine : [Axinom](http://www.axinom.com/press/ibc-axinom-drm-6/), [EZDRM](http://ezdrm.com/), [castLabs](http://castlabs.com/company/partners/azure/). Pour plus d’informations, consultez : Intégration à [Axinom](media-services-axinom-integration.md) et [castLabs](media-services-castlabs-integration.md).
 
-Media Services prend en charge plusieurs méthodes d’autorisation des utilisateurs effectuant des demandes de clé. La stratégie d’autorisation des clés de contenu peut comporter une ou plusieurs restrictions d’autorisation : ouverte ou restriction à jeton. La stratégie de restriction à jeton doit être accompagnée d’un jeton émis par un service de jeton sécurisé (STS). Media Services prend en charge les jetons aux formats [SWT](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_2) (Simple Web Tokens) et [JWT](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_3) (JSON Web Token). Pour plus d'informations, consultez Configurer la stratégie d'autorisation de la clé de contenu.
+Media Services prend en charge plusieurs méthodes d’autorisation des utilisateurs effectuant des demandes de clé. Hello contenu clé peut avoir une ou plusieurs restrictions d’autorisation : ouvrir ou de restriction de jeton. stratégie de restriction token Hello doit être accompagné d’un jeton émis par un Service (jeton de sécurité). Media Services prend en charge les jetons Bonjour [des jetons Web simples](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_2) format de (SWT) et [jeton Web JSON](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_3) format (JWT). Pour plus d’informations, consultez la stratégie d’autorisation de configurer hello de clé du contenu.
 
-Pour tirer parti du chiffrement dynamique, vous devez avoir un élément multimédia qui contient un ensemble de fichiers MP4 à débit binaire multiple ou de fichiers sources de diffusion en continu lisse (Smooth Streaming) à débit binaire multiple. Vous devez également configurer les stratégies de remise pour l’élément multimédia (décrites plus loin dans cette rubrique). Ensuite, en fonction du format spécifié dans l'URL de diffusion, le serveur de streaming à la demande s'assure que le flux est livré conformément au protocole choisi. Par conséquent, il vous suffit de stocker et de payer les fichiers dans un seul format de stockage. Media Services se charge de créer et de fournir la réponse HTTP appropriée à chaque demande des clients.
+tootake parti du chiffrement dynamique, vous devez toohave une ressource qui contient un ensemble de fichiers MP4 à plusieurs débits ou des fichiers sources de diffusion en continu lisse débits. Vous devez également les stratégies de remise tooconfigure hello pour un composant hello (décrite plus loin dans cette rubrique). Ensuite, selon le format de hello spécifié dans l’URL de diffusion en continu de hello, serveur de diffusion en continu à la demande de hello s’assure que ce flux de données hello est remis dans le protocole hello que vous avez choisi. Par conséquent, vous devez uniquement toostore et payer pour les fichiers hello dans un seul format de stockage et les Services de support crée et fournit la réponse HTTP approprié de hello, en fonction de chaque demande d’un client.
 
-Cette rubrique peut être utile aux développeurs travaillant sur des applications qui fournissent un support protégé avec plusieurs DRM comme PlayReady et Widevine. La rubrique vous montre comment configurer le service de distribution des licences PlayReady avec des stratégies d’autorisation, afin que seuls les clients autorisés puissent recevoir les licences PlayReady ou Widevine. Il indique également comment utiliser le chiffrement de cryptage dynamique avec PlayReady ou Widevine DRM sur DASH.
+Cette rubrique serait utile toodevelopers qui fonctionnent sur les applications qui fournissent du support protégé avec plusieurs DRMs, tels que PlayReady et Widevine. rubrique de Hello vous montre comment tooconfigure hello service de fourniture de licence PlayReady avec les stratégies d’autorisation afin que seuls les clients autorisés puissent recevoir des licences PlayReady ou Widevine. Il montre également comment le chiffrement de chiffrement dynamique toouse avec PlayReady ou DRM Widevine sur tiret.
 
 >[!NOTE]
->Une fois votre compte AMS créé, un point de terminaison de streaming **par défaut** est ajouté à votre compte à l’état **Arrêté**. Pour démarrer la diffusion en continu de votre contenu et tirer parti de l’empaquetage et du chiffrement dynamiques, le point de terminaison de streaming à partir duquel vous souhaitez diffuser du contenu doit se trouver à l’état **En cours d’exécution**. 
+>Création de votre compte AMS un **par défaut** point de terminaison de diffusion en continu est ajoutée tooyour compte Bonjour **arrêté** état. toostart de diffusion en continu de votre contenu et profitez de l’empaquetage dynamique et chiffrement dynamique, hello de point de terminaison de diffusion en continu à partir de laquelle vous souhaitez que le contenu toostream a toobe Bonjour **en cours d’exécution** état. 
 
 ## <a name="download-sample"></a>Charger l’exemple
-Vous pouvez télécharger l’exemple décrit dans cet article à partir d’ [ici](https://github.com/Azure-Samples/media-services-dotnet-dynamic-encryption-with-drm).
+Vous pouvez télécharger des exemple hello décrit dans cet article à partir de [ici](https://github.com/Azure-Samples/media-services-dotnet-dynamic-encryption-with-drm).
 
 ## <a name="configuring-dynamic-common-encryption-and-drm-license-delivery-services"></a>Configuration de Dynamic Common Encryption et services de distribution de licences DRM
 
-Voici les étapes générales que vous aurez à exécuter lors de la protection de vos éléments multimédias avec PlayReady, en utilisant le service de distribution des licences Media Services, ainsi que le chiffrement dynamique.
+Hello Voici les étapes générales que vous devez tooperform lors de la protection de vos éléments multimédias avec PlayReady, à l’aide du service de remise de licences de Media Services hello et utiliser le chiffrement dynamique.
 
-1. Créer un élément multimédia et télécharger des fichiers dans l'élément multimédia.
-2. Encoder l'élément multimédia contenant le fichier selon le débit binaire MP4 défini.
-3. Créer une clé de contenu et l'associer à l'élément multimédia encodé. Dans Media Services, la clé de contenu contient la clé de chiffrement de l'élément multimédia.
-4. Configurer la stratégie d'autorisation de la clé de contenu. La stratégie d'autorisation de la clé de contenu doit être configurée par vous et respectée par le client afin que la clé de contenu soit remise au client.
+1. Créer un élément multimédia et télécharger des fichiers dans l’élément multimédia de hello.
+2. Encoder hello asset contenant hello fichier toohello ensemble à débit adaptatif MP4.
+3. Créer une clé de contenu et l’associer à asset de hello encodé. Dans Media Services, clé de contenu hello contient la clé de chiffrement de l’élément multimédia hello.
+4. Configurez la stratégie d’autorisation de la clé de contenu hello. stratégie d’autorisation de clé contenu de Hello doit être configurée par vous et remplie par client hello pour hello toobe clé contenu livré toohello client.
 
-    Lorsque vous créez la stratégie d’autorisation de clé de contenu, vous devez spécifier les éléments suivants : méthode de livraison (PlayReady ou Widevine), restrictions de remise (ouvertes ou jeton) et informations spécifiques au type de remise de clé qui définit comment la clé est fournie au client (modèle de licence [PlayReady](media-services-playready-license-template-overview.md) ou [Widevine](media-services-widevine-license-template-overview.md)).
+    Lorsque vous créez la stratégie d’autorisation de clé contenu de hello, toospecify, hello éléments suivants sont nécessaires : (méthode) (PlayReady ou Widevine), restrictions de remise (ouvertes ou jeton) et le type de distribution de clés de toohello spécifique d’informations qui définit le mode de remise de clé de hello client de toohello ([PlayReady](media-services-playready-license-template-overview.md) ou [Widevine](media-services-widevine-license-template-overview.md) modèle de licence).
 
-5. Configurer la stratégie de remise pour un élément multimédia. La configuration de la stratégie de remise inclut : le protocole de remise (par exemple, MPEG DASH, HLS, Smooth Streaming ou tous), le type de chiffrement dynamique (par exemple, chiffrement commun), l’URL d’acquisition de licence PlayReady ou Widevine.
+5. Configurer la stratégie de livraison de hello pour un élément multimédia. configuration de la stratégie Hello livraison inclut : protocole de remise (par exemple, MPEG DASH, HLS, Smooth Streaming ou tous), hello type de chiffrement dynamique (par exemple, chiffrement commun), PlayReady ou l’URL d’acquisition de licences Widevine.
 
-    Vous pouvez appliquer des stratégies différentes à chaque protocole dans le même élément multimédia. Par exemple, vous pouvez appliquer le chiffrement PlayReady à Smooth/DASH et AES Envelope à HLS. Tous les protocoles qui ne sont pas définis dans une stratégie de remise (par exemple, en cas d’ajout d’une stratégie unique qui spécifie uniquement TLS comme protocole) seront bloqués de la diffusion en continu. Cela ne s’applique toutefois pas si vous n’avez défini aucune stratégie de remise de ressources. Tous les protocoles seront alors autorisés.
+    Vous pouvez appliquer le protocole de tooeach stratégie différente sur hello même actif. Par exemple, vous pouvez appliquer tooSmooth de chiffrement PlayReady/DASH et tooHLS d’enveloppe AES. Tous les protocoles qui ne sont pas définis dans une stratégie de remise (par exemple, vous ajoutez une stratégie unique qui spécifie seulement le HLS en tant que protocole de hello) sera bloquée à partir de la diffusion en continu. Hello exception toothis est si vous ne disposez d’aucune stratégie de remise actif du tout défini. Ensuite, tous les protocoles seront autorisés en hello clair.
 
-6. Créer un localisateur à la demande afin d'obtenir une URL de diffusion en continu.
+6. Créer un localisateur OnDemand dans l’ordre tooget une URL de diffusion en continu.
 
-Vous trouverez un exemple .NET complet à la fin de la rubrique.
+Vous trouverez un exemple complet de .NET à fin hello de rubrique de hello.
 
-L'illustration suivante montre le flux de travail décrit ci-dessus. Ici, le jeton est utilisé pour l'authentification.
+Hello suivant image montre workflow hello décrit ci-dessus. Ici, le jeton de hello est utilisé pour l’authentification.
 
 ![Protéger avec PlayReady](./media/media-services-content-protection-overview/media-services-content-protection-with-drm.png)
 
-Le reste de cette rubrique fournit des explications détaillées, des exemples de code et des liens vers des rubriques qui vous expliquent comment réaliser les tâches décrites ci-dessus.
+reste Hello de cette rubrique fournit des explications détaillées, des exemples de code et tootopics des liens qui vous montrent comment tooachieve hello les tâches décrites ci-dessus.
 
 ## <a name="current-limitations"></a>Limitations actuelles
-Si vous ajoutez ou mettez à jour une stratégie de remise de ressource, vous devez supprimer le localisateur associé (le cas échéant) et en créer un nouveau.
+Si vous ajoutez ou mettez à jour une stratégie de remise asset, vous devez supprimer le localisateur de hello associé (le cas échéant) et créer un nouveau.
 
 Limites lors du chiffrement Widevine avec Azure Media Services : actuellement, plusieurs clés de contenu ne sont pas prises en charge.
 
-## <a name="create-an-asset-and-upload-files-into-the-asset"></a>Créer un élément multimédia et télécharger des fichiers dans l'élément multimédia
-Pour gérer, encoder et diffuser vos vidéos, vous devez d'abord télécharger votre contenu dans Microsoft Azure Media Services. Une fois téléchargé, votre contenu est stocké en toute sécurité dans le cloud et peut faire l’objet d’un traitement et d’une diffusion en continu.
+## <a name="create-an-asset-and-upload-files-into-hello-asset"></a>Créer un élément multimédia et télécharger des fichiers dans l’élément multimédia de hello
+Dans l’ordre toomanage, encoder et diffuser en continu vos vidéos, vous devez d’abord télécharger votre contenu dans Microsoft Azure Media Services. Une fois téléchargé, votre contenu est stocké en toute sécurité dans le cloud hello pour poursuivre le traitement et la diffusion en continu.
 
 Pour plus d’informations, consultez [Charger des fichiers vers un compte Media Services](media-services-dotnet-upload-files.md).
 
-## <a name="encode-the-asset-containing-the-file-to-the-adaptive-bitrate-mp4-set"></a>Encoder l'élément multimédia contenant le fichier selon le débit binaire MP4 défini
-Avec le chiffrement dynamique, il vous suffit de créer un élément multimédia qui contient un ensemble de fichiers MP4 à débit binaire multiple ou de fichiers sources de diffusion en continu lisse à débit binaire multiple. Ensuite, en fonction du format spécifié dans le manifeste et la demande de fragment, le serveur de diffusion en continu à la demande s’assure que vous recevez le flux conforme au protocole choisi. Par conséquent, il vous suffit de stocker et de payer les fichiers dans un seul format de stockage. Le service Media Services se charge de créer et de fournir la réponse appropriée en fonction des demandes des clients. Pour plus d’informations, consultez la rubrique [Vue d’ensemble de l’empaquetage dynamique](media-services-dynamic-packaging-overview.md).
+## <a name="encode-hello-asset-containing-hello-file-toohello-adaptive-bitrate-mp4-set"></a>Encoder hello asset contenant hello fichier toohello ensemble à débit adaptatif MP4
+Avec le chiffrement dynamique, il vous suffit de toocreate un élément multimédia contenant un ensemble de fichiers MP4 à plusieurs débits ou des fichiers sources de diffusion en continu lisse débits. Ensuite, en fonction hello le format spécifié dans le manifeste de hello et demande de fragment, hello à la demande de diffusion en continu serveur garantit que vous recevez des flux de hello protocole hello que vous avez choisi. Par conséquent, vous devez uniquement toostore et payer pour les fichiers hello dans un seul format de stockage et le service Media Services pour la génération et fournit hello de réponse appropriée en fonction des demandes d’un client. Pour plus d’informations, consultez hello [présentation de la mise en package dynamique](media-services-dynamic-packaging-overview.md) rubrique.
 
-Pour savoir comment encoder, consultez [Encodage d’un élément multimédia à l’aide de Media Encoder Standard](media-services-dotnet-encode-with-media-encoder-standard.md).
+Pour obtenir des instructions sur la façon de tooencode, consultez [comment tooencode un élément multimédia à l’aide de Media Encoder Standard](media-services-dotnet-encode-with-media-encoder-standard.md).
 
-## <a id="create_contentkey"></a>Créer une clé de contenu et l’associer à l’élément multimédia encodé
-Dans Media Services, la clé de contenu contient la clé que vous souhaitez utiliser pour chiffrer un élément multimédia.
+## <a id="create_contentkey"></a>Créer une clé de contenu et l’associer à asset de hello codée
+Dans Media Services, clé de contenu hello contient la clé hello que vous souhaitez tooencrypt un élément multimédia avec.
 
 Pour plus d’informations, consultez [Créer une clé de contenu](media-services-dotnet-create-contentkey.md).
 
-## <a id="configure_key_auth_policy"></a>Configurez la stratégie d’autorisation de la clé de contenu.
-Media Services prend en charge plusieurs méthodes d’authentification des utilisateurs effectuant des demandes de clé. La stratégie d'autorisation de la clé de contenu doit être configurée par vous et respectée par le client (lecteur) afin que la clé soit remise au client. La stratégie d’autorisation des clés de contenu peut comporter une ou plusieurs restrictions d’autorisation : ouverte ou restriction à jeton.
+## <a id="configure_key_auth_policy"></a>Configurer la stratégie d’autorisation de clé de contenu hello
+Media Services prend en charge plusieurs méthodes d’authentification des utilisateurs effectuant des demandes de clé. stratégie d’autorisation de clé contenu de Hello doit être configurée par vous et remplie par le client hello (lecteur) afin que les toobe clé hello remis toohello client. Hello contenu clé peut avoir une ou plusieurs restrictions d’autorisation : ouvrir ou de restriction de jeton.
 
 Pour plus d’informations, consultez [Configurer la stratégie d’autorisation de clé de contenu](media-services-dotnet-configure-content-key-auth-policy.md#playready-dynamic-encryption).
 
 ## <a id="configure_asset_delivery_policy"></a>Configurer la stratégie de distribution d’éléments multimédia
-Configurez la stratégie de remise pour votre élément multimédia. Certains éléments que la configuration de la stratégie de remise de l'élément multimédia inclut :
+Configurer la stratégie de livraison de hello pour votre élément multimédia. Les éléments qui hello configuration actif de la stratégie de livraison inclut :
 
-* L’URL d’acquisition de licence PlayReady.
-* Le protocole de remise de l’élément multimédia (par exemple, MPEG DASH, HLS, Smooth Streaming ou tous).
-* Le type de chiffrement dynamique (dans ce cas, Common Encryption).
+* URL d’acquisition de licence DRM Hello.
+* protocole de la livraison d’asset Hello (par exemple, MPEG DASH, HLS, Smooth Streaming ou tous).
+* type Hello du chiffrement dynamique (dans ce cas, le chiffrement commun).
 
 Pour plus d’informations, consultez [Configurer la stratégie de distribution d’éléments multimédia ](media-services-rest-configure-asset-delivery-policy.md).
 
-## <a id="create_locator"></a>Créer un localisateur de diffusion en continu à la demande afin d’obtenir une URL de diffusion en continu
-Vous devrez fournir aux utilisateurs l'URL de diffusion en continu pour Smooth, DASH ou HLS.
+## <a id="create_locator"></a>Créer une recherche dans l’ordre tooget une URL de diffusion en continu de diffusion en continu à la demande
+Vous devez tooprovide votre utilisateur avec hello URL pour Smooth, DASH ou HLS de diffusion en continu.
 
 > [!NOTE]
 > Si vous ajoutez ou mettez à jour la stratégie de remise de votre ressource, vous devez supprimer le localisateur existant (le cas échéant) et en créer un nouveau.
 >
 >
 
-Pour savoir comment publier une ressource et générer une URL de diffusion en continu, consultez [Générer une URL de diffusion en continu](media-services-deliver-streaming-content.md).
+Pour plus d’informations sur comment toopublish un élément multimédia et créer une URL de diffusion en continu, consultez [générer une URL de diffusion en continu](media-services-deliver-streaming-content.md).
 
 ## <a name="get-a-test-token"></a>Obtenir un test de jeton
-Obtenez un jeton de test basé sur la restriction par jeton utilisée pour la stratégie d’autorisation de clé.
+Obtenez un test de jeton basé sur la restriction de type hello token qui a été utilisée pour la stratégie d’autorisation de clé de hello.
 
     // Deserializes a string containing an Xml representation of a TokenRestrictionTemplate
     // back into a TokenRestrictionTemplate class instance.
     TokenRestrictionTemplate tokenTemplate =
         TokenRestrictionTemplateSerializer.Deserialize(tokenTemplateString);
 
-    // Generate a test token based on the data in the given TokenRestrictionTemplate.
-    //The GenerateTestToken method returns the token without the word “Bearer” in front
-    //so you have to add it in front of the token string.
+    // Generate a test token based on hello data in hello given TokenRestrictionTemplate.
+    //hello GenerateTestToken method returns hello token without hello word “Bearer” in front
+    //so you have tooadd it in front of hello token string.
     string testToken = TokenRestrictionTemplateSerializer.GenerateTestToken(tokenTemplate);
-    Console.WriteLine("The authorization token is:\nBearer {0}", testToken);
+    Console.WriteLine("hello authorization token is:\nBearer {0}", testToken);
 
 
-Vous pouvez utiliser le [lecteur AMS](http://amsplayer.azurewebsites.net/azuremediaplayer.html) pour tester votre flux.
+Vous pouvez utiliser hello [AMS lecteur](http://amsplayer.azurewebsites.net/azuremediaplayer.html) tootest votre flux de données.
 
 ## <a name="create-and-configure-a-visual-studio-project"></a>Créer et configurer un projet Visual Studio
 
-1. Configurez votre environnement de développement et ajoutez des informations de connexion au fichier app.config selon la procédure décrite dans l’article [Développement Media Services avec .NET](media-services-dotnet-how-to-use.md). 
-2. Ajoutez les éléments suivants aux **appSettings** définis dans votre fichier app.config :
+1. Configurer votre environnement de développement et de remplir le fichier app.config de hello avec les informations de connexion, comme décrit dans [développement Media Services avec .NET](media-services-dotnet-how-to-use.md). 
+2. Ajouter hello suivant éléments trop**appSettings** défini dans votre fichier app.config :
 
         <add key="Issuer" value="http://testacs.com"/>
         <add key="Audience" value="urn:test"/>
 
 ## <a name="example"></a>Exemple
 
-L’exemple suivant illustre la fonctionnalité présentée dans le kit de développement logiciel Azure Media Services pour .Net-Version 3.5.2 (en particulier, la possibilité de définir un modèle de licence Widevine et de demander une licence Widevine Azure Media Services).
+Hello exemple suivant illustre la fonctionnalité qui a été introduite dans Azure Media Services SDK pour .net-Version 3.5.2 (plus précisément, hello capacité toodefine un Widevine modèle de licence et demande une licence Widevine à partir d’Azure Media Services).
 
-Remplacez le code dans votre fichier Program.cs par le code présenté dans cette section.
+Remplacer le code hello dans votre fichier Program.cs avec le code hello présenté dans cette section.
 
 >[!NOTE]
->Un nombre limite de 1 000 000 a été défini pour les différentes stratégies AMS (par exemple, pour la stratégie de localisateur ou pour ContentKeyAuthorizationPolicy). Vous devez utiliser le même ID de stratégie si vous utilisez toujours les mêmes jours / autorisations d’accès, par exemple, les stratégies pour les localisateurs destinées à demeurer en place pendant une longue période (stratégies sans chargement). Pour plus d’informations, consultez [cette rubrique](media-services-dotnet-manage-entities.md#limit-access-policies) .
+>Un nombre limite de 1 000 000 a été défini pour les différentes stratégies AMS (par exemple, pour la stratégie de localisateur ou pour ContentKeyAuthorizationPolicy). Vous devez utiliser hello ID de stratégie même si vous utilisez toujours hello même jours / autorisations d’accès, par exemple, les stratégies pour les localisateurs sont tooremain prévue en place pendant une longue période (non-téléchargement stratégies). Pour plus d’informations, consultez [cette rubrique](media-services-dotnet-manage-entities.md#limit-access-policies) .
 
-Veillez à mettre à jour les variables pour pointer vers les dossiers où se trouvent vos fichiers d'entrée.
+Assurez-vous que tooupdate variables toopoint toofolders où se trouvent vos fichiers d’entrée.
 
     using System;
     using System.Collections.Generic;
@@ -168,7 +168,7 @@ Veillez à mettre à jour les variables pour pointer vers les dossiers où se tr
     {
         class Program
         {
-        // Read values from the App.config file.
+        // Read values from hello App.config file.
         private static readonly string _AADTenantDomain =
         ConfigurationManager.AppSettings["AADTenantDomain"];
         private static readonly string _RESTAPIEndpoint =
@@ -205,7 +205,7 @@ Veillez à mettre à jour les variables pour pointer vers les dossiers où se tr
             Console.WriteLine("Encoded asset: {0}", encodedAsset.Id);
 
             IContentKey key = CreateCommonTypeContentKey(encodedAsset);
-            Console.WriteLine("Created key {0} for the asset {1} ", key.Id, encodedAsset.Id);
+            Console.WriteLine("Created key {0} for hello asset {1} ", key.Id, encodedAsset.Id);
             Console.WriteLine("PlayReady License Key delivery URL: {0}", key.GetKeyDeliveryUrl(ContentKeyDeliveryType.PlayReadyLicense));
             Console.WriteLine();
 
@@ -228,17 +228,17 @@ Veillez à mettre à jour les variables pour pointer vers les dossiers où se tr
             TokenRestrictionTemplate tokenTemplate =
                 TokenRestrictionTemplateSerializer.Deserialize(tokenTemplateString);
 
-            // Generate a test token based on the the data in the given TokenRestrictionTemplate.
-            // Note, you need to pass the key id Guid because we specified
-            // TokenClaim.ContentKeyIdentifierClaim in during the creation of TokenRestrictionTemplate.
+            // Generate a test token based on hello hello data in hello given TokenRestrictionTemplate.
+            // Note, you need toopass hello key id Guid because we specified
+            // TokenClaim.ContentKeyIdentifierClaim in during hello creation of TokenRestrictionTemplate.
             Guid rawkey = EncryptionUtils.GetKeyIdAsGuid(key.Id);
             string testToken = TokenRestrictionTemplateSerializer.GenerateTestToken(tokenTemplate, null, rawkey,
                                         DateTime.UtcNow.AddDays(365));
-            Console.WriteLine("The authorization token is:\nBearer {0}", testToken);
+            Console.WriteLine("hello authorization token is:\nBearer {0}", testToken);
             Console.WriteLine();
             }
 
-            // You can use the http://amsplayer.azurewebsites.net/azuremediaplayer.html player to test streams.
+            // You can use hello http://amsplayer.azurewebsites.net/azuremediaplayer.html player tootest streams.
             // Note that DASH works on IE 11 (via PlayReady), Edge (via PlayReady), Chrome (via Widevine).
 
             string url = GetStreamingOriginLocator(encodedAsset);
@@ -274,7 +274,7 @@ Veillez à mettre à jour les variables pour pointer vers les dossiers où se tr
         {
             var encodingPreset = "Adaptive Streaming";
 
-            IJob job = _context.Jobs.Create(String.Format("Encoding into Mp4 {0} to {1}",
+            IJob job = _context.Jobs.Create(String.Format("Encoding into Mp4 {0} too{1}",
                         inputAsset.Name,
                         encodingPreset));
 
@@ -308,7 +308,7 @@ Veillez à mettre à jour les variables pour pointer vers les dossiers où se tr
                         "ContentKey",
                         ContentKeyType.CommonEncryption);
 
-            // Associate the key with the asset.
+            // Associate hello key with hello asset.
             asset.ContentKeys.Add(key);
 
             return key;
@@ -353,7 +353,7 @@ Veillez à mettre à jour les variables pour pointer vers les dossiers où se tr
 
             contentKeyAuthorizationPolicy.Options.Add(PlayReadyPolicy);
             contentKeyAuthorizationPolicy.Options.Add(WidevinePolicy);
-            // Associate the content key authorization policy with the content key.
+            // Associate hello content key authorization policy with hello content key.
             contentKey.AuthorizationPolicyId = contentKeyAuthorizationPolicy.Id;
             contentKey = contentKey.UpdateAsync().Result;
         }
@@ -395,7 +395,7 @@ Veillez à mettre à jour les variables pour pointer vers les dossiers où se tr
             contentKeyAuthorizationPolicy.Options.Add(PlayReadyPolicy);
             contentKeyAuthorizationPolicy.Options.Add(WidevinePolicy);
 
-            // Associate the content key authorization policy with the content key
+            // Associate hello content key authorization policy with hello content key
             contentKey.AuthorizationPolicyId = contentKeyAuthorizationPolicy.Id;
             contentKey = contentKey.UpdateAsync().Result;
 
@@ -417,41 +417,41 @@ Veillez à mettre à jour les variables pour pointer vers les dossiers où se tr
 
         static private string ConfigurePlayReadyLicenseTemplate()
         {
-            // The following code configures PlayReady License Template using .NET classes
-            // and returns the XML string.
+            // hello following code configures PlayReady License Template using .NET classes
+            // and returns hello XML string.
 
-            //The PlayReadyLicenseResponseTemplate class represents the template for the response sent back to the end user.
-            //It contains a field for a custom data string between the license server and the application
+            //hello PlayReadyLicenseResponseTemplate class represents hello template for hello response sent back toohello end user.
+            //It contains a field for a custom data string between hello license server and hello application
             //(may be useful for custom app logic) as well as a list of one or more license templates.
             PlayReadyLicenseResponseTemplate responseTemplate = new PlayReadyLicenseResponseTemplate();
 
-            // The PlayReadyLicenseTemplate class represents a license template for creating PlayReady licenses
-            // to be returned to the end users.
-            //It contains the data on the content key in the license and any rights or restrictions to be
-            //enforced by the PlayReady DRM runtime when using the content key.
+            // hello PlayReadyLicenseTemplate class represents a license template for creating PlayReady licenses
+            // toobe returned toohello end users.
+            //It contains hello data on hello content key in hello license and any rights or restrictions toobe
+            //enforced by hello PlayReady DRM runtime when using hello content key.
             PlayReadyLicenseTemplate licenseTemplate = new PlayReadyLicenseTemplate();
-            //Configure whether the license is persistent (saved in persistent storage on the client)
-            //or non-persistent (only held in memory while the player is using the license).  
+            //Configure whether hello license is persistent (saved in persistent storage on hello client)
+            //or non-persistent (only held in memory while hello player is using hello license).  
             licenseTemplate.LicenseType = PlayReadyLicenseType.Nonpersistent;
 
-            // AllowTestDevices controls whether test devices can use the license or not.  
-            // If true, the MinimumSecurityLevel property of the license
-            // is set to 150.  If false (the default), the MinimumSecurityLevel property of the license is set to 2000.
+            // AllowTestDevices controls whether test devices can use hello license or not.  
+            // If true, hello MinimumSecurityLevel property of hello license
+            // is set too150.  If false (hello default), hello MinimumSecurityLevel property of hello license is set too2000.
             licenseTemplate.AllowTestDevices = true;
 
-            // You can also configure the Play Right in the PlayReady license by using the PlayReadyPlayRight class.
-            // It grants the user the ability to playback the content subject to the zero or more restrictions
-            // configured in the license and on the PlayRight itself (for playback specific policy).
-            // Much of the policy on the PlayRight has to do with output restrictions
-            // which control the types of outputs that the content can be played over and
+            // You can also configure hello Play Right in hello PlayReady license by using hello PlayReadyPlayRight class.
+            // It grants hello user hello ability tooplayback hello content subject toohello zero or more restrictions
+            // configured in hello license and on hello PlayRight itself (for playback specific policy).
+            // Much of hello policy on hello PlayRight has toodo with output restrictions
+            // which control hello types of outputs that hello content can be played over and
             // any restrictions that must be put in place when using a given output.
-            // For example, if the DigitalVideoOnlyContentRestriction is enabled,
-            //then the DRM runtime will only allow the video to be displayed over digital outputs
-            //(analog video outputs won’t be allowed to pass the content).
+            // For example, if hello DigitalVideoOnlyContentRestriction is enabled,
+            //then hello DRM runtime will only allow hello video toobe displayed over digital outputs
+            //(analog video outputs won’t be allowed toopass hello content).
 
-            //IMPORTANT: These types of restrictions can be very powerful but can also affect the consumer experience.
-            // If the output protections are configured too restrictive,
-            // the content might be unplayable on some clients. For more information, see the PlayReady Compliance Rules document.
+            //IMPORTANT: These types of restrictions can be very powerful but can also affect hello consumer experience.
+            // If hello output protections are configured too restrictive,
+            // hello content might be unplayable on some clients. For more information, see hello PlayReady Compliance Rules document.
 
             // For example:
             //licenseTemplate.PlayRight.AgcAndColorStripeRestriction = new AgcAndColorStripeRestriction(1);
@@ -489,15 +489,15 @@ Veillez à mettre à jour les variables pour pointer vers les dossiers où se tr
 
         static public void CreateAssetDeliveryPolicy(IAsset asset, IContentKey key)
         {
-            // Get the PlayReady license service URL.
+            // Get hello PlayReady license service URL.
             Uri acquisitionUrl = key.GetKeyDeliveryUrl(ContentKeyDeliveryType.PlayReadyLicense);
 
-            // GetKeyDeliveryUrl for Widevine attaches the KID to the URL.
+            // GetKeyDeliveryUrl for Widevine attaches hello KID toohello URL.
             // For example: https://amsaccount1.keydelivery.mediaservices.windows.net/Widevine/?KID=268a6dcb-18c8-4648-8c95-f46429e4927c.  
-            // The WidevineBaseLicenseAcquisitionUrl (used below) also tells Dynamaic Encryption
-            // to append /? KID =< keyId > to the end of the url when creating the manifest.
+            // hello WidevineBaseLicenseAcquisitionUrl (used below) also tells Dynamaic Encryption
+            // tooappend /? KID =< keyId > toohello end of hello url when creating hello manifest.
             // As a result Widevine license acquisition URL will have KID appended twice,
-            // so we need to remove the KID that in the URL when we call GetKeyDeliveryUrl.
+            // so we need tooremove hello KID that in hello URL when we call GetKeyDeliveryUrl.
 
             Uri widevineUrl = key.GetKeyDeliveryUrl(ContentKeyDeliveryType.Widevine);
             UriBuilder uriBuilder = new UriBuilder(widevineUrl);
@@ -512,7 +512,7 @@ Veillez à mettre à jour les variables pour pointer vers les dossiers où se tr
 
             };
 
-            // In this case we only specify Dash streaming protocol in the delivery policy,
+            // In this case we only specify Dash streaming protocol in hello delivery policy,
             // All other protocols will be blocked from streaming.
             var assetDeliveryPolicy = _context.AssetDeliveryPolicies.Create(
                 "AssetDeliveryPolicy",
@@ -521,21 +521,21 @@ Veillez à mettre à jour les variables pour pointer vers les dossiers où se tr
             assetDeliveryPolicyConfiguration);
 
 
-            // Add AssetDelivery Policy to the asset
+            // Add AssetDelivery Policy toohello asset
             asset.DeliveryPolicies.Add(assetDeliveryPolicy);
 
         }
 
         /// <summary>
-        /// Gets the streaming origin locator.
+        /// Gets hello streaming origin locator.
         /// </summary>
         /// <param name="assets"></param>
         /// <returns></returns>
         static public string GetStreamingOriginLocator(IAsset asset)
         {
 
-            // Get a reference to the streaming manifest file from the  
-            // collection of files in the asset.
+            // Get a reference toohello streaming manifest file from hello  
+            // collection of files in hello asset.
 
             var assetFile = asset.AssetFiles.Where(f => f.Name.ToLower().
                          EndsWith(".ism")).
@@ -546,12 +546,12 @@ Veillez à mettre à jour les variables pour pointer vers les dossiers où se tr
             TimeSpan.FromDays(30),
             AccessPermissions.Read);
 
-            // Create a locator to the streaming content on an origin.
+            // Create a locator toohello streaming content on an origin.
             ILocator originLocator = _context.Locators.CreateLocator(LocatorType.OnDemandOrigin, asset,
             policy,
             DateTime.UtcNow.AddMinutes(-5));
 
-            // Create a URL to the manifest file.
+            // Create a URL toohello manifest file.
             return originLocator.Path + assetFile.Name;
         }
 

@@ -1,6 +1,6 @@
 ---
-title: "Ajouter le connecteur Office 365 Outlook dans vos applications logiques | Microsoft Docs"
-description: "Créez des applications logiques avec un connecteur Office 365 pour permettre l’interaction avec Office 365. Par exemple : création, modification et mise à jour de contacts et d’éléments de calendrier."
+title: connecteur de Outlook Office 365 aaaAdd hello dans vos applications logiques | Documents Microsoft
+description: "Créer des applications de logique avec Office 365 connecteur tooenable une interaction avec Office 365. Par exemple : création, modification et mise à jour de contacts et d’éléments de calendrier."
 services: 
 documentationcenter: 
 author: MandiOhlinger
@@ -15,85 +15,85 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 10/18/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: 5335dae62e61659b68e8befb4ed0d404dffb800c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 86a573c9c54701de3d3f0500d19eaf545e0710ad
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-office-365-outlook-connector"></a>Prise en main du connecteur Office 365 Outlook
-Le connecteur Office 365 Outlook permet d’interagir avec Outlook dans Office 365. Utilisez ce connecteur pour créer, modifier et mettre à jour des contacts et des éléments de calendrier, ainsi que pour recevoir et envoyer des e-mails et pour y répondre.
+# <a name="get-started-with-hello-office-365-outlook-connector"></a>Prise en main hello Office 365 Outlook connector
+connecteur d’Outlook Office 365 Hello permet l’interaction avec Outlook pour Office 365. Utiliser ce connecteur toocreate, les modifier et les contacts de la mise à jour et les éléments de calendrier et aussi obtenir, envoyer et répondre tooemail.
 
 Avec Office 365 Outlook, vous pouvez effectuer les opérations suivantes :
 
-* Créer votre workflow à l’aide des fonctionnalités de messagerie et de calendrier dans Office 365. 
-* Utiliser des déclencheurs pour démarrer votre workflow lorsqu’un nouvel e-mail apparaît, lorsqu’un élément de calendrier est mis à jour, et bien davantage.
-* Utiliser des actions pour envoyer un e-mail, créer un événement de calendrier, etc. Par exemple, lorsqu’un nouvel objet existe dans Salesforce (déclencheur), un e-mail doit être envoyé à votre application Office 365 Outlook (action). 
+* Créer votre flux de travail à l’aide des fonctionnalités de messagerie et de calendrier hello dans Office 365. 
+* Utilisez déclenche toostart votre flux de travail lorsqu’il existe un nouvel e-mail, lorsqu’un élément de calendrier est mis à jour et bien plus encore.
+* Utiliser des actions toosend un message électronique, créer un nouvel événement de calendrier et bien plus encore. Par exemple, lorsqu’il existe un nouvel objet dans Salesforce (un déclencheur), envoyer un courrier électronique tooyour Outlook Office 365 (action). 
 
-Cette rubrique décrit comment utiliser le connecteur Office 365 Outlook dans une application logique, et répertorie les déclencheurs et les actions.
+Cette rubrique vous montre comment toouse hello Connecteur Outlook Office 365 dans une application logique, et également les listes hello déclencheurs et actions.
 
 > [!NOTE]
-> Cette version de l’article s’applique à la disponibilité générale des applications logiques.
+> Cette version de l’article de hello s’applique tooLogic applications mise à disposition générale (GA).
 > 
 > 
 
-Pour plus d’informations sur Logic Apps, voir [Qu’est-ce qu’une application logique ?](../logic-apps/logic-apps-what-are-logic-apps.md) et [Créer une application logique](../logic-apps/logic-apps-create-a-logic-app.md).
+toolearn en savoir plus sur les applications de la logique, consultez [quelles sont les applications logique](../logic-apps/logic-apps-what-are-logic-apps.md) et [créer une application logique](../logic-apps/logic-apps-create-a-logic-app.md).
 
-## <a name="connect-to-office-365"></a>Connexion à Office 365
-Pour que votre application logique puisse accéder à un service, vous devez d’abord créer une *connexion* à celui-ci. Une connexion permet d’assurer la connectivité entre une application logique et un autre service. Par exemple, pour vous connecter à Office 365 Outlook, vous devez préalablement disposer d’une *connexion* Office 365. Pour créer une connexion, entrez les informations d’identification que vous utilisez généralement pour accéder au service auquel vous souhaitez vous connecter. Ensuite, dans Office 365 Outlook, entrez les informations d’identification de votre compte Office 365 pour créer la connexion.
+## <a name="connect-toooffice-365"></a>Se connecter tooOffice 365
+Avant que votre application logique peut accéder à n’importe quel service, vous créez tout d’abord un *connexion* toohello service. Une connexion permet d’assurer la connectivité entre une application logique et un autre service. Par exemple, tooconnect tooOffice 365 Outlook, vous devez tout d’abord un Office 365 *connexion*. toocreate une connexion, entrez des informations d’identification de hello que vous utilisez normalement le service de hello tooaccess tooconnect pour vous le souhaitez. Avec Outlook Office 365, entrez tooyour des informations d’identification hello connexion hello toocreate au compte Office 365.
 
-## <a name="create-the-connection"></a>Créer la connexion
-> [!INCLUDE [Steps to create a connection to Office 365](../../includes/connectors-create-api-office365-outlook.md)]
+## <a name="create-hello-connection"></a>Créer la connexion de hello
+> [!INCLUDE [Steps toocreate a connection tooOffice 365](../../includes/connectors-create-api-office365-outlook.md)]
 > 
 > 
 
 ## <a name="use-a-trigger"></a>Utilisation d’un déclencheur
-Un déclencheur est un événement qui peut être utilisé pour lancer le flux de travail défini dans une application logique. Les déclencheurs « interrogent » le service à l’intervalle et à la fréquence de votre choix. [En savoir plus sur les déclencheurs](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).
+Un déclencheur est un événement qui peut être utilisé toostart hello flux de travail défini dans une application logique. Déclencheurs « interrogent « service de hello à un intervalle et la fréquence à laquelle vous souhaitez. [En savoir plus sur les déclencheurs](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).
 
-1. Dans l’application logique, tapez « office 365 » pour obtenir la liste des déclencheurs :  
+1. Dans l’application de la logique de hello, tapez « office 365 » tooget une liste des déclencheurs de hello :  
    
     ![](./media/connectors-create-api-office365-outlook/office365-trigger.png)
-2. Sélectionnez **Office 365 Outlook - When an upcoming event is starting soon** (Office 365 Outlook - Quand un événement à venir est imminent). Si une connexion existe déjà, sélectionnez un calendrier dans la liste déroulante.
+2. Sélectionnez **Office 365 Outlook - When an upcoming event is starting soon** (Office 365 Outlook - Quand un événement à venir est imminent). Si une connexion existe déjà, puis sélectionnez un calendrier à partir de la liste déroulante de hello.
    
     ![](./media/connectors-create-api-office365-outlook/sample-calendar.png)
    
-    Si vous êtes invité à vous connecter, entrez les informations de connexion pour créer la connexion. La section [Créer la connexion](connectors-create-api-office365-outlook.md#create-the-connection) dans cette rubrique répertorie les étapes. 
+    Si vous êtes invité à toosign dans, puis entrez le signe de hello dans Détails toocreate hello de connexion. [Créer la connexion de hello](connectors-create-api-office365-outlook.md#create-the-connection) dans cette rubrique répertorie les étapes de hello. 
    
    > [!NOTE]
-   > Dans cet exemple, l’application logique s’exécute lorsqu’un événement de calendrier est mis à jour. Pour visualiser les résultats de ce déclencheur, ajoutez une autre action qui vous envoie un SMS. Par exemple, ajoutez l’action Twilio *Send message* (Envoyer un message) qui vous envoie un SMS lorsque l’événement de calendrier doit démarrer dans 15 minutes. 
+   > Dans cet exemple, application de hello logique s’exécute lorsqu’un événement de calendrier est mis à jour. résultats de hello toosee de ce déclencheur, ajouter une autre action qui vous envoie un message texte. Par exemple, ajouter hello Twilio *envoyer le message* action textes lorsque hello événement de calendrier démarre des 15 dernières minutes. 
    > 
    > 
-3. Sélectionnez le bouton **Modifier**, puis renseignez les valeurs **Fréquence** et **Intervalle**. Par exemple, si vous souhaitez que le déclencheur interroge le service toutes les 15 minutes, définissez le champ **Fréquence** sur **Minute**, et le champ **Intervalle** sur **15**. 
+3. Sélectionnez hello **modifier** bouton et définissez hello **fréquence** et **intervalle** valeurs. Par exemple, si vous souhaitez hello déclencheur toopoll toutes les 15 minutes, puis définissez hello **fréquence** trop**Minute**et ensemble hello **intervalle** trop**15**. 
    
     ![](./media/connectors-create-api-office365-outlook/calendar-settings.png)
-4. **Enregistrez** vos modifications (dans le coin supérieur gauche de la barre d’outils). Votre application logique est enregistrée et peut être activée automatiquement.
+4. **Enregistrer** vos modifications (situé dans l’angle supérieur gauche de la barre d’outils hello). Votre application logique est enregistrée et peut être activée automatiquement.
 
 ## <a name="use-an-action"></a>Utilisation d’une action
-Une action est une opération effectuée par le flux de travail défini dans une application logique. [En savoir plus sur les actions](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).
+Une action est une opération effectuée par flux de travail hello défini dans une application logique. [En savoir plus sur les actions](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts).
 
-1. Sélectionnez le signe plus. Vous disposez de plusieurs options : **Ajouter une action**, **Ajouter une condition** ou l’une des options **Plus**.
+1. Sélectionnez le signe plus hello. Vous voyez plusieurs choix : **ajouter une action**, **ajouter une condition**, ou l’un des hello **plus** options.
    
     ![](./media/connectors-create-api-office365-outlook/add-action.png)
 2. Choisissez **Ajouter une action**.
-3. Dans la zone de texte, tapez « office 365 » pour obtenir la liste de toutes les actions disponibles.
+3. Dans la zone de texte hello, tapez « office 365 » tooget une liste de toutes les actions disponibles hello.
    
     ![](./media/connectors-create-api-office365-outlook/office365-actions.png) 
-4. Dans notre exemple, choisissez **Office 365 Outlook - Créer un contact**. Si une connexion existe déjà, choisissez **ID du dossier**, **Prénom** et d’autres propriétés :  
+4. Dans notre exemple, choisissez **Office 365 Outlook - Créer un contact**. Si une connexion existe déjà, puis choisissez hello **ID de dossier**, **prénom**et d’autres propriétés :  
    
     ![](./media/connectors-create-api-office365-outlook/office365-sampleaction.png)
    
-    Si vous êtes invité à saisir les informations de connexion, entrez les informations requises pour créer la connexion. La section [Créer la connexion](connectors-create-api-office365-outlook.md#create-the-connection) dans cette rubrique décrit ces propriétés. 
+    Si vous êtes invité hello informations de connexion, puis entrez connexion de hello toocreate hello détails. [Créer la connexion de hello](connectors-create-api-office365-outlook.md#create-the-connection) dans cette rubrique décrit ces propriétés. 
    
    > [!NOTE]
-   > Dans cet exemple, nous créons un contact dans Office 365 Outlook. Vous pouvez utiliser la sortie d’un autre déclencheur pour créer le contact. Par exemple, ajoutez le déclencheur SalesForce *Quand un objet est créé*. Ensuite, ajoutez l’action Office 365 Outlook *Créer un contact* qui utilise les champs SalesForce pour créer le contact dans Office 365. 
+   > Dans cet exemple, nous créons un contact dans Office 365 Outlook. Vous pouvez utiliser la sortie à partir d’un autre contact de hello toocreate déclencheur. Par exemple, ajouter hello SalesForce *lorsqu’un objet est créé* déclencheur. Ajoutez ensuite hello Outlook Office 365 *créer contact* action qui utilise hello SalesForce champs toocreate hello nouvelle nouveau contact dans Office 365. 
    > 
    > 
-5. **Enregistrez** vos modifications (dans le coin supérieur gauche de la barre d’outils). Votre application logique est enregistrée et peut être activée automatiquement.
+5. **Enregistrer** vos modifications (situé dans l’angle supérieur gauche de la barre d’outils hello). Votre application logique est enregistrée et peut être activée automatiquement.
 
-## <a name="connector-specific-details"></a>Détails spécifiques aux connecteurs
+## <a name="connector-specific-details"></a>Détails spécifiques du connecteur
 
-Consultez tous les déclencheurs et les actions définies dans le swagger, ainsi que les éventuelles limites dans les [détails des connecteurs](/connectors/office365connector/). 
+Afficher les déclencheurs et les actions définies dans les swagger hello et également voir les limites Bonjour [détails du connecteur](/connectors/office365connector/). 
 
 ## <a name="next-steps"></a>Étapes suivantes
-[Créez une application logique](../logic-apps/logic-apps-create-a-logic-app.md). Explorez les autres connecteurs disponibles dans les applications logiques en consultant notre [liste d’API](apis-list.md).
+[Créer une application logique](../logic-apps/logic-apps-create-a-logic-app.md). Explorer hello tous les autres connecteurs disponibles dans les applications logique à notre [liste des API](apis-list.md).
 

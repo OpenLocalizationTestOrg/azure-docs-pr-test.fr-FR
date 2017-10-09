@@ -1,6 +1,6 @@
 ---
-title: "Comment effectuer une diffusion de vidéo en flux continu à l’aide d’Azure Media Services pour créer des flux à vitesses de transmission multiples | Microsoft Docs"
-description: "Cette rubrique décrit comment configurer un canal qui reçoit un flux dynamique à débit binaire unique à partir d’un encodeur local, puis effectue un encodage en temps réel en flux à débit binaire adaptatif avec Media Services. Le flux peut ensuite être distribué aux applications de lecture clientes via un ou plusieurs points de terminaison de streaming à l’aide d’un des protocoles de diffusion en continu adaptatifs suivants : HLS, Smooth Stream, MPEG DASH."
+title: "aaaLive de diffusion en continu à l’aide de flux de débits Azure Media Services toocreate | Documents Microsoft"
+description: "Cette rubrique explique comment tooset un canal qui reçoit un débit binaire unique live flux à partir d’un encodeur local et qu’il effectue ensuite les flux de vitesse de transmission de tooadaptive codage dynamique avec Media Services. Hello flux peut ensuite être remis tooclient les applications de lecture via un ou plusieurs points de diffusion en continu, à l’aide de hello suite de protocoles de diffusion en continu adaptatives : TLS, le contenu Smooth Streaming, MPEG DASH."
 services: media-services
 documentationcenter: 
 author: anilmur
@@ -14,53 +14,53 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/09/2017
 ms.author: juliako;anilmur
-ms.openlocfilehash: d5f76d532b236e67a4e69eb820e2cfc3033a80c6
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a8bbdd1570cc9a11bfc2de7bb4ceb9006cc25534
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="live-streaming-using-azure-media-services-to-create-multi-bitrate-streams"></a>Comment effectuer une diffusion de vidéo en flux continu à l’aide d’Azure Media Services pour créer des flux à vitesses de transmission multiples.
+# <a name="live-streaming-using-azure-media-services-toocreate-multi-bitrate-streams"></a>Diffusion en continu à l’aide de flux de débits toocreate Azure Media Services
 ## <a name="overview"></a>Vue d'ensemble
 Dans Azure Media Services (AMS), un **canal** représente un pipeline de traitement du contenu vidéo en flux continu. Un **canal** reçoit des flux d’entrée live de l’une des deux manières suivantes :
 
-* Un encodeur dynamique envoie un flux à vitesse de transmission unique vers le canal activé pour effectuer un encodage en direct avec Media Services dans l’un des formats suivants : RTP (MPEG-TS), RTMP ou Smooth Streaming (MP4 fragmenté). Le canal procède ensuite à l’encodage en temps réel du flux à débit unique entrant en flux vidéo multidébit (adaptatif). Lorsqu’il y est invité, Media Services fournit le flux aux clients.
-* Un encodeur live local envoie au canal un paquet **RTMP** ou **Smooth Streaming** (MP4 fragmenté) à débit binaire multiple qui n’est pas activé pour effectuer un encodage live avec AMS. Les flux reçus transitent par les **canaux**sans traitement supplémentaire. Cette méthode est appelée **pass-through**. Vous pouvez utiliser les encodeurs en direct suivants qui produisent un flux Smooth Streaming multidébit : MediaExcel, Ateme, Imagine Communications, Envivio, Cisco et Elemental. Les encodeurs en direct suivants produisent un flux au format RTMP : Adobe Flash Media Live Encoder (FMLE), Telestream Wirecast, Haivision, Teradek et Tricaster.  Un encodeur live peut également envoyer un flux à débit binaire unique vers un canal qui n’est pas activé pour le Live Encoding, mais ce n’est pas recommandé. Lorsqu’il y est invité, Media Services fournit le flux aux clients.
+* Un encodeur dynamique local envoie un flux unique à plusieurs débits canal toohello est activé tooperform live encodage avec Media Services dans un des hello suivant formats : RTP (MPEG-TS), RTMP ou Smooth Streaming (MP4 fragmenté). Hello canal effectue ensuite l’encodage dynamique de hello entrant à débit binaire unique flux tooa débits (adaptatif) flux vidéo. Lorsqu’il est demandé, Media Services diffuse hello flux toocustomers.
+* Un encodeur dynamique local envoie plusieurs débits **RTMP** ou **Smooth Streaming** canal toohello (MP4 fragmenté) qui n’est pas activée tooperform dynamique encodage avec AMS. flux de données Hello ingéré passent par **canal**s sans traitement supplémentaire. Cette méthode est appelée **pass-through**. Vous pouvez utiliser hello suivant encodeurs en temps réel qui produisent plusieurs débits binaires de la diffusion en continu lisse : MediaExcel Ateme, imaginez, Envivio, Cisco et Communications élémentaire. Hello suivants encodeurs en temps réel de sortie RTMP : les encodeurs Adobe Flash Media en direct encodeur (FMLE), Telestream Wirecast, Haivision, Teradek et Tricaster.  Un encodeur en temps réel peut également envoyer un canal tooa du flux à débit binaire unique qui n’est pas activée pour l’encodage live, mais qui n’est pas recommandé. Lorsqu’il est demandé, Media Services diffuse hello flux toocustomers.
   
   > [!NOTE]
-  > L’utilisation d’une méthode pass-through est le moyen le plus économique de diffuser une vidéo en flux continu.
+  > À l’aide d’une méthode directe d’est le moyen le plus économique hello toodo la diffusion en continu.
   > 
   > 
 
-À compter de la version de Media Services 2.10, lorsque vous créez un canal, vous pouvez spécifier la façon dont vous souhaitez qu’il reçoive le flux d’entrée. Vous pouvez également indiquer si vous souhaitez ou non que le canal effectue un encodage en temps réel de votre flux. Deux options s'offrent à vous :
+En commençant avec la version de hello 2.10 de Media Services, lorsque vous créez un canal, vous pouvez spécifier la façon dont vous souhaitez pour votre flux d’entrée du canal tooreceive hello et si vous souhaitez que pour hello canal tooperform live codage de votre flux de données. Deux options s'offrent à vous :
 
-* **Aucun** : indiquez cette valeur si vous envisagez d’utiliser un encodeur live local qui produira des flux multidébits (un flux pass-through). Le cas échéant, le flux entrant est transmis à la sortie sans encodage. Il s’agit du comportement d’un canal avant la version 2.10.  Pour plus d’informations sur l’utilisation des canaux de ce type, consultez [Vidéo en flux continu avec des encodeurs locaux qui créent des flux à vitesses de transmission multiples](media-services-live-streaming-with-onprem-encoders.md).
-* **Standard** : choisissez cette valeur si vous envisagez d’utiliser Media Services pour encoder votre flux live à débit binaire unique en flux à débit binaire multiple. N'oubliez pas qu'il existe un impact sur la facturation pour le codage en direct et que laisser un canal d'encodage en temps réel dans l'état « Actif » occasionne des frais de facturation.  Il est recommandé d'arrêter immédiatement vos canaux en cours d'exécution une fois votre événement de diffusion en continu en temps réel terminé pour éviter des frais horaires supplémentaires.
+* **Aucun** : spécifiez cette valeur, si vous envisagez de toouse un encodeur dynamique local qui produira des flux de débits (un flux direct). Dans ce cas, les flux entrants hello transmis toohello de sortie sans encodage. Il s’agit de comportement hello d’une version antérieure too2.10 de canal.  Pour plus d’informations sur l’utilisation des canaux de ce type, consultez [Vidéo en flux continu avec des encodeurs locaux qui créent des flux à vitesses de transmission multiples](media-services-live-streaming-with-onprem-encoders.md).
+* **Standard** – choisissez cette valeur, si vous envisagez de toouse Media Services tooencode votre flux de débits toomulti de flux en continu à débit binaire unique. N’oubliez pas qu’il existe un impact sur la facturation pour l’encodage dynamique et vous devez vous rappeler que sans toucher à un canal en direct de codage de hello état « Actif » occasionnent des frais de facturation.  Il est recommandé d’arrêter immédiatement vos canaux en cours d’exécution après votre événement de diffusion en continu en direct est tooavoid complète des frais supplémentaires de toutes les heures.
 
 > [!NOTE]
-> Cette rubrique décrit les attributs des canaux qui sont activés pour effectuer un encodage en temps réel (type d’encodage**standard** ). Pour obtenir des informations sur l’utilisation des canaux qui ne sont pas activés pour effectuer l’encodage live, consultez [Vidéo en flux continu avec des encodeurs locaux qui créent des flux à vitesses de transmission multiples](media-services-live-streaming-with-onprem-encoders.md).
+> Cette rubrique décrit les attributs de canaux qui sont activés encodage dynamique tooperform (**Standard** type d’encodage). Pour plus d’informations sur l’utilisation des canaux qui ne sont pas activé l’encodage dynamique tooperform, consultez [la diffusion en continu en direct avec les encodeurs locaux qui créent des flux de débits](media-services-live-streaming-with-onprem-encoders.md).
 > 
-> Assurez-vous d’examiner la section [Considérations](media-services-manage-live-encoder-enabled-channels.md#Considerations) .
+> Assurez-vous que tooreview hello [considérations](media-services-manage-live-encoder-enabled-channels.md#Considerations) section.
 > 
 > 
 
 ## <a name="billing-implications"></a>Implications de facturation
-La facturation d'un canal d'encodage en temps réel commence dès que son état passe à « En cours d'exécution » via l'API.   Vous pouvez également afficher l’état dans le portail Azure ou dans l’outil Azure Media Services Explorer (http://aka.ms/amse).
+Un canal d’encodage live commence dès que l’état de transition trop « Running » via hello API de facturation.   Vous pouvez également afficher les état hello Bonjour portail Azure ou dans l’outil d’Azure Media Services Explorer hello (http://aka.ms/amse).
 
-Le tableau suivant montre comment les états du canal sont mappés aux états de facturation dans l’API et le portail Azure. Notez que les états sont légèrement différents entre l'API et le portail. Dès qu’un canal est dans l’état « En cours d’exécution » via l’API, ou dans l’état « Prêt » ou « Diffusion en continu » dans le portail Azure, la facturation est active.
-Pour arrêter la facturation, vous devez arrêter le canal via l’API ou dans le portail Azure.
-Vous êtes responsable de l'arrêt de vos canaux lorsque vous avez terminé d'utiliser le canal d'encodage en temps réel.  Ne pas arrêter un canal d'encodage provoque la facturation continue.
+Hello tableau suivant montre comment mappent les États des canaux États toobilling Bonjour API et portail Azure. Notez que les États hello sont légèrement différentes entre hello API et UX de portail. Dès qu’un canal est en état hello « En cours d’exécution » via hello API ou dans hello « Prêt » ou « Streaming » Bonjour portail Azure, la facturation sera active.
+Canal de hello toostop de facturation vous davantage, vous avez tooStop hello canal via les API de hello ou Bonjour portail Azure.
+Vous êtes responsable de l’arrêt de vos canaux lorsque vous avez terminé avec le canal d’encodage live hello.  Échec toostop un canal d’encodage entraîne la facturation continue.
 
-### <a id="states"></a>États du canal et mappage au mode de facturation
-État actuel d’un canal. Les valeurs possibles incluent :
+### <a id="states"></a>États de canal ainsi que leur mappage toohello en mode de facturation
+état actuel de Hello d’un canal. Les valeurs possibles incluent :
 
-* **Arrêté**. Ceci est l'état initial du canal après sa création (sauf si le démarrage automatique a été sélectionné dans le portail). Aucune facturation ne survient dans cet état. Dans cet état, les propriétés du canal peuvent être mises à jour, mais la diffusion en continu n’est pas autorisée.
-* **Démarrage en cours**. Le canal est en cours de démarrage. Aucune facturation ne survient dans cet état. Aucune mise à jour ou diffusion en continu n’est autorisée durant cet état. Si une erreur se produit, le canal retourne à l’état Arrêté.
-* **Exécution en cours**. Le canal est capable de traiter des flux dynamiques. Il facture désormais l'utilisation. Vous devez arrêter le canal pour empêcher toute facturation supplémentaire. 
-* **En cours d’arrêt**. Le canal est en cours d’arrêt. Aucune facturation ne survient dans cet état de transition. Aucune mise à jour ou diffusion en continu n’est autorisée durant cet état.
-* **Suppression en cours**. Le canal est en cours de suppression. Aucune facturation ne survient dans cet état de transition. Aucune mise à jour ou diffusion en continu n’est autorisée durant cet état.
+* **Arrêté**. Il s’agit état initial de hello Hello canal après sa création (sauf si le démarrage automatique a été sélectionné dans le portail de hello.) Aucune facturation ne survient dans cet état. Dans cet état, les propriétés de canal hello peuvent être mis à jour, mais de diffusion en continu n’est pas autorisée.
+* **Démarrage en cours**. Hello canal est en cours de démarrage. Aucune facturation ne survient dans cet état. Aucune mise à jour ni aucun streaming ne sont autorisés durant cet état. Si une erreur se produit, hello canal retourne toohello état arrêté.
+* **Exécution en cours**. Hello canal est capable de traiter des flux live. Il facture désormais l'utilisation. Vous devez arrêter tooprevent de canal hello davantage de facturation. 
+* **En cours d’arrêt**. Hello canal est en cours d’arrêt. Aucune facturation ne survient dans cet état de transition. Aucune mise à jour ou diffusion en continu n’est autorisée durant cet état.
+* **Suppression en cours**. Hello canal est en cours de suppression. Aucune facturation ne survient dans cet état de transition. Aucune mise à jour ni aucun streaming ne sont autorisés durant cet état.
 
-Le tableau suivant montre comment les états du canal sont mappés au mode de facturation. 
+Hello tableau suivant montre comment canal indique le mode de facturation toohello mappage. 
 
 | État du canal | Indicateurs de l’interface utilisateur du portail | Existe-t-il une facturation ? |
 | --- | --- | --- |
@@ -70,56 +70,56 @@ Le tableau suivant montre comment les états du canal sont mappés au mode de fa
 | Arrêté |Arrêté |Non |
 
 ### <a name="automatic-shut-off-for-unused-channels"></a>Fermeture automatique des canaux inutilisés
-Depuis le 25 janvier 2016, Media Services a déployé une mise à jour qui ferme automatiquement un canal (avec encodage en temps réel activé) s’il reste non utilisé pendant une longue période. Cela s'applique aux canaux qui n’ont aucun programme actif et qui ont été laissés à l’état d’exécution sans un flux de contribution d’entrée pendant une période prolongée.
+Depuis le 25 janvier 2016, Media Services a déployé une mise à jour qui ferme automatiquement un canal (avec encodage en temps réel activé) s’il reste non utilisé pendant une longue période. Cela s’applique tooChannels n’ayant aucun programme active, et qui n’ont pas reçu une contribution d’entrée de flux pour une période prolongée.
 
-Le seuil nominal de la période inutilisée est de 12 heures, mais il est susceptible de changer.
+seuil de Hello pendant une période inutilisée nominalement est de 12 heures, mais il est sujet toochange.
 
 ## <a name="live-encoding-workflow"></a>Flux de travail d'encodage en temps réel
-Le diagramme suivant représente un flux de travail de diffusion en continu dynamique où un canal reçoit un flux à débit binaire unique dans l’un des protocoles suivants : RTMP, Smooth Streaming ou RTP (MPEG-TS). Il encode ensuite le flux dans un flux à débit binaire multiple. 
+Hello diagramme suivant représente un flux de travail de diffusion en continu live où un canal reçoit un flux à débit binaire unique dans un des hello suivant protocoles : RTMP, diffusion en continu lisse ou RTP (MPEG-TS) ; Il encode ensuite des flux de débits tooa hello flux. 
 
 ![Flux de travail live][live-overview]
 
 ## <a id="scenario"></a>Scénario courant de diffusion dynamique en continu
-Ci-après figurent les étapes générales impliquées dans la création d’applications courantes de diffusion en continu dynamique.
+Hello Voici les étapes générales nécessaires à la création d’applications de diffusion en continu dynamiques communes.
 
 > [!NOTE]
-> Actuellement, la durée maximale recommandée d’un événement en direct est de 8 heures. Contactez amslived à Microsoft.com si vous avez besoin d’exécuter un canal pour de longues périodes. N’oubliez pas qu’il existe un impact sur la facturation pour l’encodage en temps réel et que laisser un canal d’encodage en temps réel dans l’état « Actif » occasionne des frais de facturation horaires.  Il est recommandé d'arrêter immédiatement vos canaux en cours d'exécution une fois votre événement de diffusion en continu en temps réel terminé pour éviter des frais horaires supplémentaires. 
+> Actuellement, hello maximum recommandé de durée d’un événement en direct est de 8 heures. Si vous avez besoin d’un canal de toorun pour de longues périodes, contactez amslived Microsoft.com. N’oubliez pas qu’il existe un impact sur la facturation pour l’encodage dynamique et vous devez vous rappeler que sans toucher à un canal en direct de codage de hello état « Actif » occasionnent des frais de facturation toutes les heures.  Il est recommandé d’arrêter immédiatement vos canaux en cours d’exécution après votre événement de diffusion en continu en direct est tooavoid complète des frais supplémentaires de toutes les heures. 
 > 
 > 
 
-1. Connectez une caméra vidéo à un ordinateur. Lancez et configurez un encodeur dynamique local capable de générer un flux à vitesse binaire **unique** dans l’un des protocoles suivants : RTMP, Smooth Streaming ou RTP (MPEG-TS). 
+1. Connecter un ordinateur de tooa caméra vidéo. Lancer et configurer un encodeur dynamique local qui peut afficher un **unique** flux à débit binaire de l’une des hello suite de protocoles : RTMP, diffusion en continu lisse ou RTP (MPEG-TS). 
    
     Cette étape peut également être effectuée après la création du canal.
 2. Créez et démarrez un canal. 
-3. Récupérez l’URL de réception du canal. 
+3. URL de réception récupérer hello canal. 
    
-    L’URL de réception est utilisée par l’encodeur dynamique pour envoyer le flux au canal.
-4. Récupérez l’URL d’aperçu du canal. 
+    URL de réception Hello est utilisé par hello encodeur en temps réel toosend hello flux toohello canal.
+4. Récupérer l’URL d’aperçu hello canal. 
    
-    Utilisez cette URL pour vérifier que votre canal reçoit correctement le flux dynamique.
+    Utilisez cette tooverify URL que votre canal reçoit correctement les flux live hello.
 5. Créez un programme. 
    
-    Lors de l’utilisation du portail Azure, la création d’un programme crée également un élément multimédia. 
+    Lors de l’aide de hello portail Azure, création d’un programme crée également un élément multimédia. 
    
-    Lors de l’utilisation du Kit SDK .NET ou de REST, vous devez créer une ressource et préciser son utilisation lors de la création d’un programme. 
-6. Publiez la ressource associée au programme.   
+    Lorsque vous utilisez le Kit de développement .NET ou REST vous devez toocreate un élément multimédia et toouse cette ressource lors de la création d’un programme. 
+6. Publier asset hello associé hello du programme.   
    
     >[!NOTE]
-    >Une fois votre compte AMS créé, un point de terminaison de streaming **par défaut** est ajouté à votre compte à l’état **Arrêté**. Le point de terminaison à partir duquel vous souhaitez diffuser du contenu doit se trouver dans l’état **En cours d’exécution**. 
+    >Création de votre compte AMS un **par défaut** point de terminaison de diffusion en continu est ajoutée tooyour compte Bonjour **arrêté** état. Hello, point de terminaison à partir de laquelle vous souhaitez toostream contenu de diffusion en continu a toobe Bonjour **en cours d’exécution** état. 
     
-7. Démarrez le programme dès que vous êtes prêt à lancer le streaming et l’archivage.
-8. Un signal peut éventuellement être envoyé à l’encodeur dynamique pour qu’il démarre une publicité. La publicité est insérée dans le flux de sortie.
-9. Arrêtez le programme chaque fois que vous voulez arrêter le streaming et l’archivage de l’événement.
-10. Supprimez le programme (et éventuellement la ressource).   
+7. Démarrer le programme de hello lorsque vous êtes prêt toostart diffusion et l’archivage.
+8. Si vous le souhaitez, encodeur en direct de hello peut être signalé toostart une publication. publication de Hello est insérée dans le flux de sortie hello.
+9. Arrêter le programme de hello chaque fois que vous souhaitez toostop de diffusion en continu et l’archivage des événements de hello.
+10. Supprimer le programme de hello (et éventuellement supprimer actif de hello).   
 
 > [!NOTE]
-> Il est très important de ne pas oublier d'arrêter un canal d'encodage en temps réel. N'oubliez pas qu'il existe un impact sur la facturation horaire pour l'encodage en temps réel et que laisser un canal d'encodage en temps réel dans l'état « Actif » occasionne des frais de facturation.  Il est recommandé d'arrêter immédiatement vos canaux en cours d'exécution une fois votre événement de diffusion en continu en temps réel terminé pour éviter des frais horaires supplémentaires. 
+> Il est très important pas tooforget tooStop un canal d’encodage Live. N’oubliez pas qu’il existe un horaire de l’impact de l’encodage dynamique de facturation et vous devez vous rappeler que sans toucher à un canal en direct de codage de hello état « Actif » occasionnent des frais de facturation.  Il est recommandé d’arrêter immédiatement vos canaux en cours d’exécution après votre événement de diffusion en continu en direct est tooavoid complète des frais supplémentaires de toutes les heures. 
 > 
 > 
 
 ## <a id="channel"></a>Configurations de l’entrée (réception) du canal
-### <a id="Ingest_Protocols"></a>Protocole de diffusion en continu de réception
-Si le **Type d’encodeur** est défini sur **Standard**, les options valides sont les suivantes :
+### <a id="Ingest_Protocols"></a>Protocole de streaming de réception
+Si hello **Type d’encodeur** est défini trop**Standard**, les options valides sont :
 
 * **RTP** (MPEG-TS) : flux de transport MPEG-2 via RTP.  
 * **RTMP**
@@ -128,15 +128,15 @@ Si le **Type d’encodeur** est défini sur **Standard**, les options valides so
 #### <a name="rtp-mpeg-ts---mpeg-2-transport-stream-over-rtp"></a>RTP (MPEG-TS) : flux de transport MPEG-2 via RTP.
 Cas d’utilisation classique : 
 
-Les diffuseurs professionnels utilisent généralement des encodeurs dynamiques locaux haut de gamme des fournisseurs comme Elemental Technologies, Ericsson, Ateme, Imagine ou Envivio pour envoyer un flux. Ils sont souvent utilisés conjointement avec un service informatique et des réseaux privés.
+Professionnels chaînes de télévision fonctionnent généralement avec des encodeurs en temps réel local haut de gamme de fournisseurs comme toosend Technologies élémentaire, Ericsson, Ateme, Imagine ou Envivio un flux de données. Ils sont souvent utilisés conjointement avec un service informatique et des réseaux privés.
 
 Considérations :
 
-* L’utilisation d’une entrée SPTS (Single Program Transport Stream) est vivement recommandée. 
-* Vous pouvez utiliser en entrée jusqu'à 8 flux audio à l'aide de MPEG-2 TS via RTP. 
-* Le flux vidéo doit avoir un débit binaire moyen inférieur à 15 Mbits/s.
-* La somme des débits binaires moyens des flux audio doit être inférieure à 1 Mbits/s.
-* Voici les codecs pris en charge :
+* utilisation de Hello d’un flux de transport de programme unique (SPTS) d’entrée est fortement recommandée. 
+* Vous pouvez entrer des flux de données audio too8 à l’aide de MPEG-2 TS sur RTP. 
+* les flux vidéo Hello doivent avoir un débit binaire moyen ci-dessous 15 Mbits/s
+* Hello d’agrégation débit binaire moyen du flux de données audio hello doit être inférieure à 1 Mbit/s
+* Suivantes sont hello codecs pris en charge :
   
   * Vidéo MPEG-2/H.262 
     
@@ -167,10 +167,10 @@ Considérations :
 #### <a id="single_bitrate_RTMP"></a>RTMP à débit binaire unique
 Considérations :
 
-* Le flux entrant ne peut pas contenir de vidéo à débit binaire multiple
-* Le flux vidéo doit avoir un débit binaire moyen inférieur à 15 Mbits/s.
-* Le flux audio doit avoir un débit binaire moyen inférieur à 1 Mbits/s.
-* Voici les codecs pris en charge :
+* les flux entrants Hello ne peut pas contenir plusieurs débits binaires vidéo
+* les flux vidéo Hello doivent avoir un débit binaire moyen ci-dessous 15 Mbits/s
+* les flux audio Hello doivent avoir un débit binaire moyen ci-dessous 1 Mbit/s
+* Suivantes sont hello codecs pris en charge :
 * Vidéo MPEG-4 AVC/H.264
 * Profil Baseline, Main, High (8 bits 4:2:0)
 * Profil High 10 (10 bits 4:2:0)
@@ -186,85 +186,85 @@ Considérations :
 #### <a name="single-bitrate-fragmented-mp4-smooth-streaming"></a>MP4 fragmenté (Smooth Streaming) à débit binaire unique
 Cas d’utilisation classique :
 
-Utilisez les encodeurs dynamiques locaux des fournisseurs que sont Elemental Technologies, Ericsson, Ateme, Envivio pour envoyer le flux d’entrée via Internet à un centre de données Azure à proximité.
+Utiliser des encodeurs en temps réel sur site auprès de fournisseurs tels que des Technologies élémentaire, Ericsson, Ateme, flux d’entrée hello toosend Envivio sur hello ouvrir internet tooa à proximité du centre de données Azure.
 
 Considérations :
 
 Identique au flux [RTMP à débit binaire unique](media-services-manage-live-encoder-enabled-channels.md#single_bitrate_RTMP).
 
-#### <a name="other-considerations"></a>Autres considérations
-* Vous ne pouvez pas modifier le protocole d’entrée pendant l’exécution du canal ou de ses programmes associés. Si vous avez besoin d’autres protocoles, vous devez créer des canaux distincts pour chaque protocole d’entrée.
-* La résolution maximale pour le flux vidéo entrant est définie sur 1920x1080. Si le flux vidéo est entrelacé, elle est définie au plus sur 60 champs par seconde. S’il est progressif, elle est définie sur 30 images/seconde.
+#### <a name="other-considerations"></a>Autres points à considérer
+* Vous ne pouvez modifier le protocole d’entrée de hello lors hello canal ou ses programmes associés sont en cours d’exécution. Si vous avez besoin d’autres protocoles, vous devez créer des canaux distincts pour chaque protocole d’entrée.
+* Résolution maximale de flux vidéo entrant de hello est 1920 x 1080 pixels et au maximum 60 champs/seconde si entrelacée, ou 30 images/seconde si progressif.
 
 ### <a name="ingest-urls-endpoints"></a>URL (points de terminaison) de réception
-Un canal fournit un point de terminaison d’entrée (URL de réception) que vous spécifiez dans l’encodeur dynamique pour que ce dernier puisse envoyer les flux vers vos canaux.
+Un canal fournit un point de terminaison d’entrée (URL de réception) que vous spécifiez dans l’encodeur en temps réel de hello, afin de l’encodeur de hello pouvez pousser le flux tooyour canaux.
 
-Vous pouvez obtenir les URL de réception dès que vous avez créé un canal. Pour les obtenir, il n’est pas nécessaire que le canal soit à l’état **En cours d’exécution** . Lorsque vous êtes prêt à commencer l’envoi de données dans le canal, ce dernier doit être à l’état **En cours d’exécution** . Une fois que le canal commence à recevoir les données, vous pouvez prévisualiser votre flux via l’URL d’aperçu.
+Vous pouvez obtenir hello URL de réception une fois que vous créez un canal. tooget ces URL, hello canal n’a pas toobe Bonjour **en cours d’exécution** état. Lorsque vous êtes prêt toostart transmettre des données à hello canal, il doit être Bonjour **en cours d’exécution** état. Une fois que le canal de hello démarre la réception de données, vous pouvez afficher un aperçu de votre flux de données via une URL d’aperçu hello.
 
-Vous avez la possibilité de recevoir un flux dynamique au format MP4 fragmenté (Smooth Streaming) via une connexion SSL. Pour assurer la réception via SSL, veillez à mettre à jour l’URL de réception pour HTTPS. Notez que, actuellement, AMS ne prend pas en charge SSL avec les domaines personnalisés.  
+Vous avez la possibilité de recevoir un flux dynamique au format MP4 fragmenté (Smooth Streaming) via une connexion SSL. tooingest via le protocole SSL, assurez-vous que tooupdate hello tooHTTPS de l’URL de réception. Notez qu’actuellement AMS ne prend pas en charge SSL avec les domaines personnalisés.  
 
 ### <a name="allowed-ip-addresses"></a>Adresses IP autorisées
-Vous pouvez définir les adresses IP autorisées à publier du contenu vidéo sur ce canal. Les adresses IP autorisées peuvent être spécifiées en tant qu’adresses IP uniques (par exemple, '10.0.0.1'), une plage d’adresses IP utilisant une adresse IP et un masque de sous-réseau CIDR (par exemple, 10.0.0.1/22), ou une plage d’adresses IP utilisant une adresse IP et un masque de sous-réseau décimal séparé par des points (par exemple, '10.0.0.1(255.255.252.0)').
+Vous pouvez définir les adresses IP hello autorisées toopublish toothis vidéo channel. Les adresses IP autorisées peuvent être spécifiées en tant qu’adresses IP uniques (par exemple, '10.0.0.1'), une plage d’adresses IP utilisant une adresse IP et un masque de sous-réseau CIDR (par exemple, 10.0.0.1/22), ou une plage d’adresses IP utilisant une adresse IP et un masque de sous-réseau décimal séparé par des points (par exemple, '10.0.0.1(255.255.252.0)').
 
-Si aucune adresse IP n’est spécifiée et qu’il n’existe pas de définition de règle, alors aucune adresse IP n’est autorisée. Pour autoriser toutes les adresses IP, créez une règle et définissez la valeur 0.0.0.0/0.
+Si aucune adresse IP n’est spécifiée et qu’il n’existe pas de définition de règle, alors aucune adresse IP n’est autorisée. tooallow n’importe quelle adresse IP, créez une règle et définissez 0.0.0.0/0.
 
 ## <a name="channel-preview"></a>Aperçu du canal
 ### <a name="preview-urls"></a>URL d’aperçu
-Les canaux fournissent un point de terminaison d’aperçu (URL d’aperçu) permettant de prévisualiser et de valider le flux avant de lui appliquer un traitement supplémentaire et de le distribuer.
+Les canaux fournissent un aperçu point de terminaison (URL d’aperçu) que vous utilisez toopreview et validez votre flux de données avant de poursuivre le traitement et de remise.
 
-Vous pouvez obtenir l’URL d’aperçu lors de la création du canal. Pour obtenir l’URL, il n’est pas nécessaire que le canal soit à l’état **En cours d’exécution** .
+Vous pouvez obtenir les URL d’aperçu hello lorsque vous créez le canal de hello. tooget hello URL, le canal de hello n’a pas toobe Bonjour **en cours d’exécution** état.
 
-Une fois que le canal commence à recevoir les données, vous pouvez prévisualiser votre flux.
+Une fois que le canal de hello démarre la réception de données, vous pouvez afficher un aperçu de votre flux de données.
 
 > [!NOTE]
-> Actuellement, le flux d'aperçu ne peut être distribué qu'au format MP4 fragmenté (Smooth Streaming), quel que soit le type d'entrée spécifié. Vous pouvez utiliser le lecteur [http://smf.cloudapp.net/healthmonitor](http://smf.cloudapp.net/healthmonitor) pour tester la diffusion au format Smooth Streaming. Vous pouvez également utiliser un lecteur hébergé dans le portail Azure pour afficher votre flux.
+> En flux d’aperçu hello ne peut plus être remis dans MP4 fragmenté (Smooth Streaming) de format, quelle que soit la hello spécifié type d’entrée. Vous pouvez utiliser hello [http://smf.cloudapp.net/healthmonitor](http://smf.cloudapp.net/healthmonitor) lecteur tootest hello contenu Smooth Streaming. Vous pouvez également utiliser un lecteur hébergé dans hello tooview portail Azure, votre flux de données.
 > 
 > 
 
 ### <a name="allowed-ip-addresses"></a>Adresses IP autorisées
-Vous pouvez définir les adresses IP autorisées à se connecter au point de terminaison d’aperçu. Si aucune adresse IP n’est spécifiée, alors toutes les adresses IP seront autorisées. Les adresses IP autorisées peuvent être spécifiées en tant qu’adresses IP uniques (par exemple, 10.0.0.1), une plage d’adresses IP utilisant une adresse IP et un masque de sous-réseau CIDR (par exemple, 10.0.0.1/22), ou une plage d’adresses IP utilisant une adresse IP et un masque de sous-réseau décimal séparé par des points (par exemple, 10.0.0.1[255.255.252.0]).
+Vous pouvez définir les adresses IP hello qui sont autorisés à point de terminaison tooconnect toohello aperçu. Si aucune adresse IP n’est spécifiée, alors toutes les adresses IP seront autorisées. Les adresses IP autorisées peuvent être spécifiées en tant qu’adresses IP uniques (par exemple, 10.0.0.1), une plage d’adresses IP utilisant une adresse IP et un masque de sous-réseau CIDR (par exemple, 10.0.0.1/22), ou une plage d’adresses IP utilisant une adresse IP et un masque de sous-réseau décimal séparé par des points (par exemple, 10.0.0.1[255.255.252.0]).
 
 ## <a name="live-encoding-settings"></a>Paramètres d’encodage en temps réel
-Cette section décrit comment les paramètres de l’encodeur dynamique dans le canal peuvent être ajustés, lorsque le paramètre **Type d’encodage** d’un canal est défini sur **Standard**.
+Cette section décrit comment les paramètres hello pour l’encodeur en direct de hello dans hello canal peuvent être ajustée lorsque hello **Type de codage** d’un canal est défini trop**Standard**.
 
 > [!NOTE]
-> Seul RTP est pris en charge pour la saisie multilingue lors de la saisie de pistes multilingues et l'encodage en temps réel. Vous pouvez définir jusqu'à 8 flux audio en entrée à l'aide de MPEG-2 TS via RTP. La réception de plusieurs pistes audio avec RTMP ou Smooth Streaming n'est actuellement pas prise en charge. Il n’existe aucune limitation en cas d’encodage live avec des [encodeurs live locaux](media-services-live-streaming-with-onprem-encoders.md), car tout le contenu envoyé au système AMS passe par un canal sans traitement supplémentaire.
+> Seul RTP est pris en charge pour la saisie multilingue lors de la saisie de pistes multilingues et l'encodage en temps réel. Vous pouvez définir des flux de données audio too8 à l’aide de MPEG-2 TS sur RTP. La réception de plusieurs pistes audio avec RTMP ou Smooth Streaming n'est actuellement pas prise en charge. Lors de l’exécution avec l’encodage live [local live encode](media-services-live-streaming-with-onprem-encoders.md), il en existe aucune limitation de ce type, car tout ce qui est envoyé tooAMS passe par un canal sans traitement supplémentaire.
 > 
 > 
 
 ### <a name="ad-marker-source"></a>Source de marqueur de publicité
-Vous pouvez spécifier la source des signaux des marqueurs de publicité. La valeur par défaut est **Api**, qui indique que l’encodeur dynamique dans le canal doit écouter une **API de marqueur de publicité** asynchrone.
+Vous pouvez spécifier la source de hello pour les signaux marqueurs publicitaires. Valeur par défaut est **Api**, ce qui signifie qu’encodeur live hello dans hello canal doit écouter tooan asynchrone **Ad marqueur API**.
 
-L’autre option valide est **Scte35** (autorisée uniquement si le protocole de diffusion en continu de réception est défini sur RTP (MPEG-TS). Si l’option Scte35 est spécifiée, l’encodeur dynamique analyse les signaux SCTE-35 du flux d’entrée RTP (MPEG-TS).
+Bonjour autre option valide est **Scte35** (autorisé uniquement si l’acquisition de hello protocole de diffusion en continu a la valeur tooRTP (MPEG-TS). Lorsque Scte35 est spécifié, encodeur en direct de hello analyse les signaux de SCTE-35 hello flux d’entrée RTP (MPEG-TS).
 
 ### <a name="cea-708-closed-captions"></a>Sous-titres CEA-708
-Indicateur facultatif qui spécifie à l’encodeur dynamique d’ignorer les données des sous-titres CEA-708 intégrées à la vidéo entrante. Lorsque l’indicateur est défini sur false (par défaut), l’encodeur détecte et réinsère les données CEA-708 dans les flux vidéo de sortie.
+Indicateur facultatif qui indique à hello encodeur en temps réel tooignore toutes les données de légendes 708 incorporées dans les vidéo entrant hello. Lorsque l’indicateur de hello a la valeur toofalse (valeur par défaut), les encoder hello détectera et réinsérez les données 708 en flux vidéo de sortie hello.
 
 ### <a name="video-stream"></a>Flux vidéo
-facultatif. Décrit le flux vidéo d’entrée. Si ce champ n’est pas spécifié, la valeur par défaut est utilisée. Ce paramètre est autorisé uniquement si le protocole de diffusion en continu d’entrée est défini sur RTP (MPEG-TS).
+facultatif. Décrit le flux vidéo entrant de hello. Si ce champ n’est pas spécifié, la valeur par défaut de hello est utilisé. Ce paramètre est autorisé uniquement si hello d’entrée de protocole de diffusion en continu a la valeur tooRTP (MPEG-TS).
 
 #### <a name="index"></a>Index
-Index de base zéro qui précise le flux vidéo d’entrée qui doit être traité par l’encodeur dynamique dans le canal. Ce paramètre s’applique uniquement si le protocole de diffusion en continu de réception est défini sur RTP (MPEG-TS).
+Index de base zéro qui spécifie quel flux vidéo entrant doit être traité par l’encodeur en temps réel de hello dans hello canal. Ce paramètre s’applique uniquement si le protocole de diffusion en continu de réception est défini sur RTP (MPEG-TS).
 
-La valeur par défaut est zéro. L’envoi dans un flux SPTS est recommandé. Si le flux d’entrée contient plusieurs programmes, l’encodeur dynamique analyse la table de mappage de programmes (PMT) dans l’entrée, identifie les entrées dont le nom de type de flux est Vidéo MPEG-2 ou H.264, puis les réorganise en suivant l’ordre spécifié dans la table PMT. L’index de base zéro permet ensuite de choisir la nième entrée dans cette disposition.
+La valeur par défaut est zéro. Il est recommandé de toosend dans un flux de transport de programme unique (SPTS). Si le flux d’entrée de hello contient plusieurs programmes, encodeur en direct de hello analyse hello Table de mappage de programme (PMT) dans l’entrée de hello, identifie les entrées hello qui ont un nom de type de flux de vidéo MPEG-2 ou H.264 et les réorganise dans l’ordre de hello spécifié dans hello PMT. index de base zéro Hello est ensuite utilisé toopick des hello énième entrée dans cette organisation.
 
 ### <a name="audio-stream"></a>Flux audio
-facultatif. Décrit les flux audio d’entrée. Si ce champ n’est pas spécifié, les valeurs par défaut spécifiées s’appliquent. Ce paramètre est autorisé uniquement si le protocole de diffusion en continu d’entrée est défini sur RTP (MPEG-TS).
+facultatif. Décrit le flux de données audio hello d’entrée. Si ce champ n’est pas spécifié, les valeurs par défaut hello spécifiées s’appliquent. Ce paramètre est autorisé uniquement si hello d’entrée de protocole de diffusion en continu a la valeur tooRTP (MPEG-TS).
 
 #### <a name="index"></a>Index
-L’envoi dans un flux SPTS est recommandé. Si le flux d’entrée contient plusieurs programmes, l’encodeur dynamique au sein du canal analyse la table de mappage de programmes (PMT) dans l’entrée, identifie les entrées dont le nom de type de flux est Audio MPEG-2 AAC ADTS, AC-3 System-A, AC-3 System-B, MPEG-2 Private PES, MPEG-1 ou MPEG-2, puis les réorganise en suivant l’ordre spécifié dans la table PMT. L’index de base zéro permet ensuite de choisir la nième entrée dans cette disposition.
+Il est recommandé de toosend dans un flux de transport de programme unique (SPTS). Si le flux d’entrée de hello contient plusieurs programmes, hello encodeur en direct dans hello canal analyse hello Table de mappage de programme (PMT) dans l’entrée de hello, identifie les entrées hello qui ont un nom de type de flux de MPEG-2 AAC ADTS AC-3 System-A ou AC-3 System-B ou MPEG-2 Private PES ou MPEG-1 Audio ou MPEG-2 Audio et les réorganise dans l’ordre de hello spécifié dans hello PMT. index de base zéro Hello est ensuite utilisé toopick des hello énième entrée dans cette organisation.
 
-#### <a name="language"></a>Langage
-Identificateur de langue du flux audio, conformément à la norme ISO 639-2, par exemple ENG. En son absence, la valeur par défaut est UND (non définie).
+#### <a name="language"></a>language
+identificateur de langue de hello flux audio, tooISO 639-2, par exemple selon de Hello Sinon, valeur par défaut de la hello est UND (non défini).
 
-Jusqu’à 8 jeux de flux audio peuvent être spécifiés si l’entrée du canal est définie sur MPEG-2 TS via RTP. Toutefois, deux entrées ne peuvent pas posséder la même valeur d’index.
+Il peut y avoir des flux de données audio too8 jeux spécifiés si hello d’entrée toohello canal est MPEG-2 TS sur RTP. Toutefois, il ne peut y avoir aucune deux entrées avec hello même valeur d’Index.
 
 ### <a id="preset"></a>Présélection du système
-Spécifie la présélection à utiliser par l’encodeur dynamique dans ce canal. Actuellement, la seule valeur autorisée est **Default720p** (par défaut).
+Spécifie le hello présélection toobe utilisé par l’encodeur en temps réel de hello au sein de ce canal. Actuellement, hello uniquement la valeur est **Default720p** (par défaut).
 
 Notez que si vous avez besoin de paramètres prédéfinis personnalisés, contactez amslived à l’adresse Microsoft.com.
 
-**Default720p** encode la vidéo dans les 7 couches suivantes.
+**Default720p** codera vidéo de hello en hello suivant 7 couches.
 
 #### <a name="output-video-stream"></a>Flux vidéo de sortie
 | Débit binaire | Largeur | Hauteur | IPS max. | Profil | Nom du flux de sortie |
@@ -278,88 +278,88 @@ Notez que si vous avez besoin de paramètres prédéfinis personnalisés, contac
 | 200 |340 |192 |30 |Ligne de base |Video_340x192_200kbps |
 
 #### <a name="output-audio-stream"></a>Flux audio de sortie
-Le flux audio est encodé au format stéréo AAC-LC à 64 Kbits/s, avec un taux d’échantillonnage de 44,1 kHz.
+Audio est encodé toostereo AAC-LC à 64 Kbits/s, fréquence de 44,1 kHz d’échantillonnage.
 
 ## <a name="signaling-advertisements"></a>Signalisation des annonces
-Si le paramètre Encodage en temps réel du canal est activé, vous possédez un composant dans votre pipeline qui traite les vidéos et peut les manipuler. Vous pouvez indiquer au canal d’insérer des ardoises et/ou des annonces dans le flux à débit binaire adaptatif sortant. Les ardoises sont des images fixes que vous pouvez utiliser pour couvrir le flux d’entrée dynamique dans certains cas (par exemple pendant une pause publicitaire). Les signaux publicitaires sont des signaux synchronisés que vous intégrez au flux sortant pour indiquer au lecteur vidéo d’effectuer une action spéciale, par exemple de basculer vers une annonce au moment approprié. Consultez ce [blog](https://codesequoia.wordpress.com/2014/02/24/understanding-scte-35/) pour obtenir une vue d’ensemble du mécanisme de signalisation SCTE-35 utilisé à cet effet. Ci-dessous figure un scénario standard que vous pouvez implémenter dans votre événement en direct.
+Si le paramètre Encodage en temps réel du canal est activé, vous possédez un composant dans votre pipeline qui traite les vidéos et peut les manipuler. Vous pouvez signaler pour hello canal tooinsert plus et/ou des publications dans les flux à débit adaptatif sortant hello. Tablettes sont toujours des images que vous pouvez utiliser toocover des flux d’entrée hello dans certains cas (par exemple pendant une pause publicitaire). Publier des signaux, sont des signaux synchronisés que vous incorporez dans action spéciale hello sortant flux tootell hello lecteur vidéo tootake – tels que de la publication de tooan tooswitch au moment approprié de hello. Consultez ce [blog](https://codesequoia.wordpress.com/2014/02/24/understanding-scte-35/) pour une vue d’ensemble du mécanisme de signalisation hello SCTE-35 utilisé à cet effet. Ci-dessous figure un scénario standard que vous pouvez implémenter dans votre événement en direct.
 
-1. Avant le début de l’événement, faites que vos observateurs obtiennent une image ANTÉRIEURE À L’ÉVÉNEMENT
-2. À l’issue de l’événement, faites que vos observateurs obtiennent une image POST-ÉVÉNEMENT.
-3. Faites que vos observateurs obtiennent une image ÉVÉNEMENT AVEC ERREUR si un problème se produit au cours de l’événement (par exemple, une panne de courant dans un stade).
-4. Envoyez une image PAUSE PUBLICITAIRE pour masquer le flux d’événements en direct pendant une pause publicitaire.
+1. Permettre à vos utilisateurs d’obtenir une image antérieur à l’événement avant le démarrage de l’événement de hello.
+2. Permettre à vos utilisateurs d’obtenir une image de post-l’événement après la fin de l’événement de hello.
+3. Avoir vos utilisateurs d’obtenir une image de l’événement d’erreur si un problème est survenu lors de l’événement hello (par exemple, panne de courant stade de hello).
+4. Envoyer un événement de hello live-publicitaire image toohide flux pendant une pause publicitaire.
 
-Ci-après figurent les propriétés que vous pouvez définir pour la signalisation des annonces : 
+Hello Voici les propriétés que vous définissez pour les publications hello. 
 
-### <a name="duration"></a>Durée
-Durée (en secondes) de la pause publicitaire. Pour que la pause publicitaire commence, ce doit être une valeur positive différente de zéro. Si une pause publicitaire est en cours et que la durée est définie sur zéro avec la propriété ID de file d’attente correspondant à la pause publicitaire en cours, alors cette pause est annulée.
+### <a name="duration"></a>Duration
+Durée Hello, en secondes, de la pause publicitaire de hello. Cela a toobe d’une valeur positive différente de zéro dans publicitaire ordre toostart hello. Quand une pause publicitaire est en cours et la durée de hello toozero ensemble avec hello CueId correspond à pause publicitaire en cours de hello, alors que l’instruction break est annulée.
 
 ### <a name="cueid"></a>ID de file d’attente
-ID unique de la pause publicitaire à utiliser par une application en aval pour prendre les actions appropriées. Ce doit être un entier positif. Vous pouvez définir cette valeur sur un entier positif aléatoire quelconque ou utiliser un système en amont pour suivre les ID de file d'attente. Assurez-vous de normaliser les ID en entiers positifs avant de procéder à la soumission via l’API.
+Un ID Unique pour la pause publicitaire hello, toobe utilisé par l’application en aval tootake les mesures nécessaires. Doit toobe un entier positif. Vous pouvez définir cet valeur tooany aléatoire entier ou utiliser un hello de tootrack ID de file d’attente système en amont. Rendre certaine toonormalize tout entiers de toopositive ID avant l’envoi par hello API.
 
 ### <a name="show-slate"></a>Afficher l’ardoise
-facultatif. Signale à l’encodeur en direct de basculer vers l’image de l’ [ardoise par défaut](media-services-manage-live-encoder-enabled-channels.md#default_slate) pendant une pause publicitaire et de masquer le flux vidéo entrant. Le son est également désactivé pendant l’affichage de l’ardoise. La valeur par défaut est **false**. 
+facultatif. Signaux hello encodeur en temps réel tooswitch toohello [par défaut ardoise](media-services-manage-live-encoder-enabled-channels.md#default_slate) image pendant une pause publicitaire et masquer le flux vidéo entrant de hello. Le son est également désactivé pendant l’affichage de l’ardoise. La valeur par défaut est **false**. 
 
-L’image utilisée sera celle qui est spécifiée par la propriété ID de ressource d’ardoise par défaut au moment de la création du canal. L’ardoise est étirée pour s’ajuster à la taille de l’image de l’écran. 
+image Hello utilisée sera hello celle spécifiée via asset d’ardoise par défaut hello propriété Id lors de la création du canal hello hello. séquence de Hello sera étirée toofit la taille d’image de l’affichage hello. 
 
 ## <a name="insert-slate--images"></a>Insérer des images d’ardoise
-L’encodeur dynamique dans le canal peut être informé de basculer vers une image d’ardoise. Il peut également être informé de mettre fin à une ardoise en cours. 
+encodeur en direct de Hello dans hello canal peut être signalé tooswitch tooa ardoise image. Il peut également être signalé tooend une ardoise. 
 
-L’encodeur dynamique peut être configuré pour basculer vers une image d’ardoise et masquer le signal vidéo entrant dans certaines situations, par exemple, pendant une pause publicitaire. Si une telle ardoise n’est pas configurée, la vidéo d’entrée n’est pas masquée pendant cette annonce publicitaire.
+encodeur en direct de Hello peut être configuré tooswitch tooa ardoise image et masquer hello signal vidéo entrant dans certaines situations, par exemple, pendant une coupure publicitaire. Si une telle ardoise n’est pas configurée, la vidéo d’entrée n’est pas masquée pendant cette annonce publicitaire.
 
-### <a name="duration"></a>Durée
-Durée (en secondes) de l’affichage de l’ardoise. Pour que l’affichage de l’ardoise commence, ce doit être une valeur positive différente de zéro. Si une ardoise est en cours d’affichage et que la durée zéro est spécifiée, cette ardoise en cours va se terminer.
+### <a name="duration"></a>Duration
+Durée Hello de séquence de hello en secondes. Cela a toobe d’une valeur positive différente de zéro dans la séquence de commande toostart hello. Si une ardoise est en cours d’affichage et que la durée zéro est spécifiée, cette ardoise en cours va se terminer.
 
 ### <a name="insert-slate-on-ad-marker"></a>Insérer une ardoise dans le marqueur de publicité
-S’il est défini sur true, ce paramètre configure l’encodeur dynamique pour insérer une image d’ardoise pendant une pause publicitaire. La valeur par défaut est true. 
+Lorsque le jeu tootrue, ce paramètre configure hello encodeur en temps réel tooinsert une image d’ardoise pendant une coupure publicitaire. valeur par défaut de Hello est true. 
 
 ### <a id="default_slate"></a>ID de ressource d'ardoise par défaut
 
-facultatif. Spécifie l’ID de la ressource Media Services qui contient l’image d’ardoise. La valeur par défaut est Null. 
+facultatif. Spécifie les hello Id d’élément multimédia de hello Services multimédia qui contient l’image de hello ardoise. La valeur par défaut est Null. 
 
 
 >[!NOTE] 
->Avant de créer le canal, l’image d’ardoise avec les contraintes suivantes doit être chargée en tant que ressource dédiée (aucun autre fichier ne doit exister dans cette ressource). Cette image est utilisée uniquement lorsque l’encodeur en direct insère une ardoise pour cause de coupure publicitaire ou qu’un signal explicite lui a été envoyé pour qu’il insère une ardoise. L’encodeur en direct peut également passer en mode ardoise pendant certaines conditions d’erreur, par exemple en cas de perte du signal d’entrée. Il n’est pas possible actuellement d’utiliser une image personnalisée lorsque l’encodeur en direct entre dans un état « signal d’entrée perdu » de ce type. Vous pouvez voter pour que cette fonctionnalité [ici](https://feedback.azure.com/forums/169396-azure-media-services/suggestions/10190457-define-custom-slate-image-on-a-live-encoder-channel).
+>Avant de créer le canal de hello, hello image d’ardoise par hello suivant contraintes doit être téléchargé en tant qu’une ressource dédiée (aucun autre fichier ne doit être dans cet élément multimédia). Cette image est utilisée uniquement lorsque encodeur en direct de hello consiste à insérer une ardoise en raison de la coupure publicitaire tooan ou a été explicitement signalé tooinsert une ardoise. encodeur en direct de Hello peut également passer en mode d’ardoise pendant certaines conditions d’erreur – par exemple si le signal d’entrée de hello est perdue. Il n’a actuellement aucun toouse option une image personnalisée lors de l’encodeur en temps réel de hello passe à un état « perdu du signal d’entrée ». Vous pouvez voter pour que cette fonctionnalité [ici](https://feedback.azure.com/forums/169396-azure-media-services/suggestions/10190457-define-custom-slate-image-on-a-live-encoder-channel).
 
 
 * Résolution maximale de 1920 x 1080
 * Taille maximale de 3 Mo.
-* Le nom de fichier doit avoir une extension *.jpg.
-* L'image doit être téléchargée dans une ressource en tant que seul AssetFile de cette ressource et cet AssetFile doit être marqué comme fichier principal. La ressource ne peut pas être de type stockage chiffré.
+* nom de fichier Hello doit avoir une extension *.jpg.
+* image de Hello doit être téléchargé dans un élément multimédia en tant que hello Qu'assetfile uniquement dans cet élément multimédia et cet AssetFile doivent être marqué comme fichier principal de hello. Hello actif ne peut pas être chiffré de stockage.
 
-Si **l’ID de ressource d’ardoise par défaut** n’est pas spécifié, et que le paramètre **Insérer une ardoise dans le marqueur de publicité** est défini sur **true**, une image d’Azure Media Services par défaut est utilisée pour masquer le flux vidéo d’entrée. Le son est également désactivé pendant l’affichage de l’ardoise. 
+Si hello **par défaut tablettes Id d’élément multimédia** n’est pas spécifié, et **insertion d’ardoise sur un marqueur publicitaire** est défini trop**true**, une image d’Azure Media Services par défaut sera hello toohide utilisé d’entrée flux vidéo. Le son est également désactivé pendant l’affichage de l’ardoise. 
 
 ## <a name="channels-programs"></a>Programmes du canal
-Un canal est associé à des programmes vous permettant de contrôler la publication et le stockage des segments dans un flux dynamique. Les canaux gèrent des programmes. La relation entre canal et programme est très similaire au contenu multimédia traditionnel où un canal présente un flux de contenu constant et un programme est limité à un événement minuté sur ce canal.
+Un canal est associé à des programmes qui vous permettent de la publication toocontrol hello et stockage des segments dans un flux en direct. Les canaux gèrent des programmes. Hello relation de canal et le programme est très similaire tootraditional média, où un canal possède un flux constant de contenu et un programme est événements étendue toosome a expiré sur le canal.
 
-Vous pouvez spécifier le nombre d’heures pendant lesquelles vous souhaitez conserver le contenu enregistré pour le programme en définissant la durée de la **fenêtre d’archivage** . Cette valeur peut être comprise entre 5 minutes et 25 heures. La durée de la fenêtre d’archivage détermine également la plage maximale de temps dans laquelle les clients peuvent effectuer des recherches en arrière à partir de la position dynamique actuelle. Les programmes peuvent durer davantage que le laps de temps spécifié, mais le contenu qui se situe en dehors de la longueur de fenêtre est ignoré en permanence. La valeur de cette propriété détermine également la longueur maximale que les manifestes de client peuvent atteindre.
+Vous pouvez spécifier le nombre de hello d’heures que vous voulez tooretain hello enregistrée contenu pour le programme de hello en définissant un hello **fenêtre d’Archive** longueur. Cette valeur peut être définie à partir d’un minimum de 5 minutes tooa 25 heures maximum. Longueur de fenêtre d’archive détermine également hello durée maximale pendant laquelle les clients peuvent effectuer des recherches dans le temps à partir de la position de diffusion en continu hello actuel. Programmes peuvent s’exécuter sur la durée spécifiée hello, mais le contenu qui se trouve derrière la longueur de la fenêtre hello est ignoré en permanence. La valeur de cette propriété détermine également la durée pendant laquelle hello client manifestes peuvent atteindre.
 
-Chaque programme est associé à une ressource qui stocke le contenu diffusé en continu. Un élément multimédia est mappé à un conteneur d’objets blob de blocs dans le compte de stockage Azure et les fichiers de l’élément multimédia sont stockés sous la forme d’objets blob dans ce conteneur. Pour publier le programme afin que vos clients puissent visionner le flux, vous devez créer un localisateur OnDemand pour la ressource associée. Le fait de posséder ce localisateur vous permettra de générer une URL de diffusion en continu que vous pourrez fournir à vos clients.
+Chaque programme est associé à un élément multimédia qui stocke le contenu de diffusion en continu de hello. Un élément multimédia est le conteneur d’objets blob de blocs tooa mappé dans le compte de stockage Azure hello et fichiers hello asset de hello sont stockés en tant qu’objets BLOB dans le conteneur. programme de hello toopublish afin que vos clients puissent afficher les flux hello vous devez créer un localisateur OnDemand pour hello associés actif. Ce localisateur activera toobuild une URL de diffusion en continu que vous pouvez fournir tooyour clients.
 
-Un canal prend en charge jusqu’à trois programmes exécutés simultanément, ce qui permet de créer plusieurs archives du même flux entrant. Cela vous permet de publier et d’archiver différentes parties d’un événement en fonction des besoins. Par exemple, imaginez que vous devez archiver 6 heures d’un programme, mais diffuser uniquement les 10 dernières minutes. Pour ce faire, vous devez créer deux programmes exécutés simultanément. Un programme est configuré pour archiver 6 heures de l’événement, mais il n’est pas publié. L’autre programme est configuré pour archiver pendant 10 minutes et il est publié.
+Un canal prend en charge jusqu'à toothree qui s’exécutent simultanément des programmes, vous pouvez créer plusieurs archives de hello même flux entrant. Cela vous permet de toopublish et archivage de différentes parties d’un événement en fonction des besoins. Par exemple, vos exigences d’entreprise est tooarchive 6 heures d’un programme, mais toobroadcast uniquement les 10 dernières minutes. tooaccomplish, vous devez toocreate deux des programmes qui s’exécutent simultanément. Un programme a la valeur tooarchive d’événement de hello les 6 heures, mais les programme hello ne sont pas publié. Hello autre programme est ensemble tooarchive pendant 10 minutes et ce programme est publié.
 
-Vous ne devez pas réutiliser de programmes existants pour de nouveaux événements. Au lieu de cela, créez et démarrez un nouveau programme pour chaque événement, tel que décrit dans la section Programmation d’applications de streaming en direct.
+Vous ne devez pas réutiliser de programmes existants pour de nouveaux événements. Au lieu de cela, créez et démarrez un nouveau programme pour chaque événement, comme décrit dans la section de programmation d’Applications de diffusion en continu Live hello.
 
-Démarrez le programme dès que vous êtes prêt à lancer le streaming et l’archivage. Arrêtez le programme chaque fois que vous voulez arrêter le streaming et l’archivage de l’événement. 
+Démarrer le programme de hello lorsque vous êtes prêt toostart diffusion et l’archivage. Arrêter le programme de hello chaque fois que vous souhaitez toostop de diffusion en continu et l’archivage des événements de hello. 
 
-Pour supprimer du contenu archivé, arrêtez et supprimez le programme, puis supprimez l’élément multimédia associé. Un élément multimédia ne peut pas être supprimé s’il est utilisé par un programme ; le programme doit d’abord être supprimé. 
+contenu de toodelete archivé, arrêter et supprimer hello programme et supprimez actif associé de hello. Un élément multimédia ne peut pas être supprimé s’il est utilisé par un programme ; programme de Hello doit d’abord être supprimée. 
 
-Même après l’arrêt et la suppression du programme, les utilisateurs pourront lire votre contenu archivé en tant que vidéo à la demande tant que vous n’aurez pas supprimé l’élément multimédia.
+Même après l’arrêt et suppression du programme de hello, hello les utilisateurs serait en mesure de toostream votre contenu archivé comme une vidéo à la demande, pour tant que vous ne supprimez pas l’élément multimédia de hello.
 
-Si vous souhaitez conserver le contenu archivé sans qu’il soit disponible pour la diffusion, supprimez le localisateur de diffusion en continu.
+Si vous souhaitez hello tooretain archivé le contenu, mais n’est pas le disponible pour la diffusion en continu, supprimez hello localisateur de diffusion en continu.
 
 ## <a name="getting-a-thumbnail-preview-of-a-live-feed"></a>Obtention d’une image miniature d’un flux en direct
-Si le paramètre Encodage en temps réel est activé, vous pouvez désormais obtenir un aperçu du flux en direct lorsqu’il atteint le canal. Ce peut être un outil intéressant lorsqu’il s’agit de vérifier si votre flux en direct atteint réellement le canal. 
+Lors de l’encodage dynamique est activée, vous pouvez désormais obtenir un aperçu du flux live de hello qu’il atteint hello canal. Cela peut être un toocheck outil très utile si votre flux dynamique est atteint réellement le canal de hello. 
 
-## <a id="states"></a>États du canal et mappage des états au mode de facturation
-État actuel d’un canal. Les valeurs possibles incluent :
+## <a id="states"></a>Les États des canaux et comment les États mappent toohello en mode de facturation
+état actuel de Hello d’un canal. Les valeurs possibles incluent :
 
-* **Arrêté**. C’est l’état initial du canal après sa création. Dans cet état, les propriétés du canal peuvent être mises à jour, mais le streaming n’est pas autorisé.
-* **Démarrage en cours**. Le canal est en cours de démarrage. Aucune mise à jour ni aucun streaming ne sont autorisés durant cet état. Si une erreur se produit, le canal retourne à l’état Arrêté.
-* **Exécution en cours**. Le canal est capable de traiter des flux dynamiques.
-* **En cours d’arrêt**. Le canal est en cours d’arrêt. Aucune mise à jour ni aucun streaming ne sont autorisés durant cet état.
-* **Suppression en cours**. Le canal est en cours de suppression. Aucune mise à jour ni aucun streaming ne sont autorisés durant cet état.
+* **Arrêté**. Il s’agit état initial de hello Hello canal après sa création. Dans cet état, les propriétés de canal hello peuvent être mis à jour, mais de diffusion en continu n’est pas autorisée.
+* **Démarrage en cours**. Hello canal est en cours de démarrage. Aucune mise à jour ni aucun streaming ne sont autorisés durant cet état. Si une erreur se produit, hello canal retourne toohello état arrêté.
+* **Exécution en cours**. Hello canal est capable de traiter des flux live.
+* **En cours d’arrêt**. Hello canal est en cours d’arrêt. Aucune mise à jour ni aucun streaming ne sont autorisés durant cet état.
+* **Suppression en cours**. Hello canal est en cours de suppression. Aucune mise à jour ni aucun streaming ne sont autorisés durant cet état.
 
-Le tableau suivant montre comment les états du canal sont mappés au mode de facturation. 
+Hello tableau suivant montre comment canal indique le mode de facturation toohello mappage. 
 
 | État du canal | Indicateurs de l’interface utilisateur du portail | Facturation ? |
 | --- | --- | --- |
@@ -369,29 +369,29 @@ Le tableau suivant montre comment les états du canal sont mappés au mode de fa
 | Arrêté |Arrêté |Non |
 
 > [!NOTE]
-> Actuellement, la moyenne de démarrage du canal est d'environ 2 minutes, mais parfois peut prendre jusqu'à 20 minutes. La réinitialisation du canal peut prendre jusqu’à 5 minutes.
+> Actuellement, moyenne de démarrage de canal hello est d’environ 2 minutes, mais dans certains cas peut être too20 + minutes. Les réinitialisations de canal peuvent prendre jusqu'à too5 minutes.
 > 
 > 
 
 ## <a id="Considerations"></a>Considérations
-* Quand un canal de type de codage **Standard** subit une perte de flux de source d'entrée/contribution, il compense cette perte en remplaçant l'audio ou la vidéo source par une ardoise d'erreur et un silence. Le canal continue d’émettre une ardoise jusqu’à la reprise du flux d’entrée/de contribution. Nous vous recommandons de ne pas laisser un canal direct dans cet état pendant plus de 2 heures. Au-delà de ce point, ni le comportement du canal au moment de la reconnexion de l’entrée ni son comportement en réponse à une commande de réinitialisation ne sont garantis. Vous devez alors arrêter le canal, le supprimer et en créer un autre.
-* Vous ne pouvez pas modifier le protocole d’entrée pendant l’exécution du canal ou de ses programmes associés. Si vous avez besoin d’autres protocoles, vous devez créer des canaux distincts pour chaque protocole d’entrée.
-* Chaque fois que vous reconfigurez l’encodeur dynamique, appelez la méthode de réinitialisation **Reset** sur le canal. Avant de réinitialiser le canal, vous devez arrêter le programme. Une fois le canal réinitialisé, redémarrez le programme.
-* Un canal peut être arrêté uniquement lorsqu’il est en cours d’exécution et que tous les programmes du canal ont été arrêtés.
-* Par défaut, vous pouvez seulement ajouter 5 canaux à votre compte Media Services. Il s’agit d’un quota conditionnel sur tous les nouveaux comptes. Pour plus d’informations, voir [Quotas et limitations](media-services-quotas-and-limitations.md).
-* Vous ne pouvez pas modifier le protocole d’entrée pendant l’exécution du canal ou de ses programmes associés. Si vous avez besoin d’autres protocoles, vous devez créer des canaux distincts pour chaque protocole d’entrée.
-* Vous êtes facturé uniquement lorsque votre canal est à l’état **En cours d’exécution** . Pour plus d’informations, reportez-vous à [cette](media-services-manage-live-encoder-enabled-channels.md#states) section.
-* Actuellement, la durée maximale recommandée d’un événement en direct est de 8 heures. Veuillez contacter amslived à l’adresse Microsoft.com si vous avez besoin d’exécuter un canal sur de plus longues périodes.
-* Assurez-vous que le point de terminaison à partir duquel vous souhaitez diffuser du contenu se trouve dans l’état **En cours d’exécution**.
-* Seul RTP est pris en charge pour la saisie multilingue lors de la saisie de pistes multilingues et l'encodage en temps réel. Vous pouvez définir jusqu'à 8 flux audio en entrée à l'aide de MPEG-2 TS via RTP. La réception de plusieurs pistes audio avec RTMP ou Smooth Streaming n'est actuellement pas prise en charge. Il n’existe aucune limitation en cas d’encodage live avec des [encodeurs live locaux](media-services-live-streaming-with-onprem-encoders.md), car tout le contenu envoyé au système AMS passe par un canal sans traitement supplémentaire.
-* La valeur d'encodage prédéfinie utilise la notion de « fréquence d’images max » de 30 i/s. Par conséquent, si l'entrée est 60 i/s/59,97i, les images d’entrée sont réduites/désentrelacées à 30/29,97 i/s. Si l'entrée est 50 i/s/50i, les images d’entrée sont réduites/désentrelacées à 25 i/s. Si l'entrée est 25 i/s, la sortie reste à 25 i/s.
-* N'oubliez pas d'ARRÊTER VOS CANAUX lorsque vous avez terminé. Dans le cas contraire, la facturation continue.
+* Lorsqu’un canal de **Standard** type d’encodage rencontre une perte d’alimentation de la source/contribution d’entrée, il compense en remplaçant hello source audio/vidéo avec une séquence d’erreur et la latence. Hello canal continue tooemit une ardoise jusqu'à ce que l’entrée de hello/contribution flux reprend. Nous vous recommandons de ne pas laisser un canal direct dans cet état pendant plus de 2 heures. Au-delà de ce point, comportement hello Hello canal lors de la reconnexion d’entrée n’est pas garanti, n’est pas son comportement en réponse tooa commande de réinitialisation. Vous avez toostop hello canal, supprimez-le et créez-en un nouveau.
+* Vous ne pouvez modifier le protocole d’entrée de hello lors hello canal ou ses programmes associés sont en cours d’exécution. Si vous avez besoin d’autres protocoles, vous devez créer des canaux distincts pour chaque protocole d’entrée.
+* Chaque fois que vous reconfigurez encodeur en direct de hello, appelez hello **réinitialiser** méthode sur le canal de hello. Avant de réinitialiser le canal de hello, vous disposez de programme de hello toostop. Après avoir réinitialisé le canal de hello, redémarrez le programme de hello.
+* Un canal peut être arrêté seulement quand il est en cours d’exécution hello, et tous les programmes sur le canal de hello ont été arrêtés.
+* Par défaut, vous pouvez uniquement ajouter 5 canaux tooyour compte Media Services. Il s’agit d’un quota conditionnel sur tous les nouveaux comptes. Pour plus d’informations, voir [Quotas et limitations](media-services-quotas-and-limitations.md).
+* Vous ne pouvez modifier le protocole d’entrée de hello lors hello canal ou ses programmes associés sont en cours d’exécution. Si vous avez besoin d’autres protocoles, vous devez créer des canaux distincts pour chaque protocole d’entrée.
+* Vous êtes facturé uniquement lorsque votre canal est Bonjour **en cours d’exécution** état. Pour plus d’informations, consultez trop[cela](media-services-manage-live-encoder-enabled-channels.md#states) section.
+* Actuellement, hello maximum recommandé de durée d’un événement en direct est de 8 heures. Si vous avez besoin d’un canal de toorun pour de longues périodes, contactez amslived Microsoft.com.
+* Assurez-vous que toohave hello de point de terminaison de diffusion en continu à partir de laquelle vous souhaitez contenu toostream Bonjour **en cours d’exécution** état.
+* Seul RTP est pris en charge pour la saisie multilingue lors de la saisie de pistes multilingues et l'encodage en temps réel. Vous pouvez définir des flux de données audio too8 à l’aide de MPEG-2 TS sur RTP. La réception de plusieurs pistes audio avec RTMP ou Smooth Streaming n'est actuellement pas prise en charge. Lors de l’exécution avec l’encodage live [local live encode](media-services-live-streaming-with-onprem-encoders.md), il en existe aucune limitation de ce type, car tout ce qui est envoyé tooAMS passe par un canal sans traitement supplémentaire.
+* utilise de présélection encodage Hello hello la notion de « max cadence » de 30 i/s. Par conséquent, si hello entrée est de 60fps / 59.97i, les cadres d’entrée hello sont supprimés/désérialiser-interlaced too30/29,97 i/s. Si l’entrée hello est i/s 50/50i, les trames d’entrée hello sont i/s supprimés/désérialiser-interlaced too25. Si l’entrée de hello est 25 i/s, sortie reste à 25 i/s.
+* N’oubliez pas les canaux de votre tooSTOP lorsqu’il est terminé. Dans le cas contraire, la facturation continue.
 
 ## <a name="known-issues"></a>Problèmes connus
-* Le temps de démarrage du canal a été amélioré pour une moyenne de 2 minutes, mais parfois la demande croissante  peut prendre jusqu'à 20 minutes.
-* La prise en charge RTP est adaptée aux diffuseurs professionnels. Consultez les notes relatives à RTP dans [ce](https://azure.microsoft.com/blog/2015/04/13/an-introduction-to-live-encoding-with-azure-media-services/) blog.
-* Les images d'ardoise doivent être conformes aux restrictions décrites [ici](media-services-manage-live-encoder-enabled-channels.md#default_slate). Si vous essayez de créer un canal à partir d’une ardoise par défaut d’une résolution supérieure à 1920 x 1080, la requête se termine par une erreur.
-* Une fois encore... n'oubliez pas d'ARRÊTER VOS CANAUX lorsque vous avez terminé la diffusion en continu. Dans le cas contraire, la facturation continue.
+* Temps de démarrage du canal a été améliorée tooan moyenne de 2 minutes, mais dans certains cas d’augmentation de la demande peut toujours être too20 + minutes.
+* La prise en charge RTP est adaptée aux diffuseurs professionnels. Passez en revue les notes hello sur RTP dans [cela](https://azure.microsoft.com/blog/2015/04/13/an-introduction-to-live-encoding-with-azure-media-services/) blog.
+* Images de la séquence doivent être conforme toorestrictions décrites [ici](media-services-manage-live-encoder-enabled-channels.md#default_slate). Si vous essayez de créer un canal avec une erreur de séquence par défaut qui est supérieure à 1920 x 1080, hello requête finit par out.
+* Une fois encore... n’oubliez pas tooSTOP votre canaux lorsque vous avez terminé de diffusion en continu. Dans le cas contraire, la facturation continue.
 
 ## <a name="next-step"></a>Étape suivante
 Consultez les parcours d’apprentissage de Media Services.
@@ -404,9 +404,9 @@ Consultez les parcours d’apprentissage de Media Services.
 ## <a name="related-topics"></a>Rubriques connexes
 [Diffusion d’événements en direct en continu avec Azure Media Services](media-services-overview.md)
 
-[Créer des canaux encodant en temps réel un flux à débit binaire unique en flux à débit binaire adaptatif avec le portail](media-services-portal-creating-live-encoder-enabled-channel.md)
+[Créer des canaux qui effectue un encodage dynamique d’un flux de vitesse de transmission unique à débit binaire tooadaptive avec le portail](media-services-portal-creating-live-encoder-enabled-channel.md)
 
-[Créer des canaux encodant en temps réel un flux à débit binaire unique en flux à débit binaire adaptatif avec le Kit de développement logiciel (SDK) .NET](media-services-dotnet-creating-live-encoder-enabled-channel.md)
+[Créer des canaux qui effectue un encodage dynamique d’un flux de vitesse de transmission unique à débit binaire tooadaptive avec le Kit de développement .NET](media-services-dotnet-creating-live-encoder-enabled-channel.md)
 
 [Gérer des canaux avec l’API REST](https://docs.microsoft.com/rest/api/media/operations/channel)
  

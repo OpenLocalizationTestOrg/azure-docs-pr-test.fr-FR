@@ -1,6 +1,6 @@
 ---
-title: Utilisation de Hadoop Pig dans HDInsight | Microsoft Docs
-description: Utilisation de Pig avec Hadoop sur HDInsight.
+title: aaaUse Hadoop Pig dans HDInsight | Documents Microsoft
+description: "Découvrez comment toouse porc avec Hadoop dans HDInsight."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,17 +16,17 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 08/15/2017
 ms.author: larryfr
-ms.openlocfilehash: 474f901ffdaf1ed372ace19076ef723b8b10cb9a
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 90850f2c742b8954c66ce277127e01b14fc3906f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-pig-with-hadoop-on-hdinsight"></a>Utilisation de Pig avec Hadoop sur HDInsight
 
-Découvrez comment utiliser [Apache Pig](http://pig.apache.org/) avec HDInsight...
+Découvrez comment toouse [Apache Pig](http://pig.apache.org/) avec HDInsight...
 
-Pig est une plateforme qui permet de créer des programmes pour Hadoop dans un langage procédural appelé *Pig Latin*. Pig est une alternative à Java, dédiée à la création de solutions *MapReduce* , qui est incluse avec Azure HDInsight. Utilisez le tableau suivant pour découvrir les différentes façons dont Pig peut être utilisé avec HDInsight :
+Pig est une plateforme qui permet de créer des programmes pour Hadoop dans un langage procédural appelé *Pig Latin*. Pig est un autre tooJava pour la création de *MapReduce* solutions et il est inclus dans Azure HDInsight. Utilisez hello suivant hello toodiscover de table que Pig peut être utilisé avec HDInsight de différentes manières :
 
 | **Utilisez-le** si vous souhaitez... | ... un interpréteur de commandes **interactif** | ... un traitement par **lots** | ...avec ce **système d’exploitation cluster** | ...depuis ce **système d’exploitation cluster** |
 |:--- |:---:|:---:|:--- |:--- |
@@ -37,29 +37,29 @@ Pig est une plateforme qui permet de créer des programmes pour Hadoop dans un l
 | [Bureau à distance](hdinsight-hadoop-use-pig-remote-desktop.md) (HDInsight 3.2 et 3.3) |✔ |✔ |Windows |Windows |
 
 > [!IMPORTANT]
-> Linux est le seul système d’exploitation utilisé sur HDInsight version 3.4 ou supérieure. Pour plus d’informations, consultez [Suppression de HDInsight sous Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+> Linux est hello seul système d’exploitation utilisé sur HDInsight version 3.4 ou supérieure. Pour plus d’informations, consultez [Suppression de HDInsight sous Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
 ## <a id="why"></a>Pourquoi utiliser Pig ?
 
-Lun des défis de traitement de données à l'aide de MapReduce dans Hadoop consiste à implémenter votre logique de traitement en utilisant uniquement un mappage et une fonction de réduction. Pour un traitement complexe, vous devez souvent interrompre le traitement lors de plusieurs opérations MapReduce qui sont chaînées ensemble pour produire le résultat souhaité.
+Un des défis hello de traitement de données à l’aide de MapReduce dans Hadoop implémente votre logique de traitement à l’aide uniquement sur une carte et une fonction de la réduire. Pour un traitement complexe, fréquence à laquelle vous avez toobreak le traitement en plusieurs opérations MapReduce qui sont chaînées tooachieve de résultats hello souhaité.
 
-Pig permet de définir un traitement comme une série de transformations via lesquelles les données circulent pour produire le résultat souhaité.
+Pig vous permet de toodefine traitant comme une série de transformations qui hello du flux de données via la sortie de tooproduce hello souhaité.
 
-Le langage Pig Latin vous permet de décrire le flux de données provenant d’une entrée brute, via une ou plusieurs transformations, pour produire le résultat souhaité. Les programmes Pig Latin suivent le modèle général suivant :
+langage Hello Pig permet de vous toodescribe hello flux de données d’entrée brute, via une ou plusieurs transformations, la sortie de hello souhaité tooproduce. Les programmes Pig Latin suivent le modèle général suivant :
 
-* **Chargement**: lecture des données à manipuler dans le système de fichiers
+* **Charge**: lire toobe données manipulée hello système de fichiers
 
-* **Transformation**: manipulation des données
+* **Transformer**: manipuler les données de salutation
 
-* **Sortie ou stockage**: affichage du résultat à l'écran ou stockage pour traitement
+* **Dump ou stocker**: toohello l’écran de données de sortie ou de le stocker pour le traitement
 
 ### <a name="user-defined-functions"></a>Fonctions définies par l’utilisateur
 
-Pig Latin prend également en charge les fonctions définies par l'utilisateur (UDF), ce qui vous permet d'appeler des composants externes qui implémentent la logique qui est difficile à modéliser dans Pig Latin.
+Pig Latin prend également en charge les fonctions définies par l’utilisateur (UDF), qui vous permet de tooinvoke des composants externes qui implémentent la logique qui est difficile toomodel dans Pig Latin.
 
 Pour plus d’informations sur Pig Latin, consultez les pages [Manuel de référence Pig Latin 1](http://pig.apache.org/docs/r0.7.0/piglatin_ref1.html) et [Manuel de référence Pig Latin 2](http://pig.apache.org/docs/r0.7.0/piglatin_ref2.html).
 
-Pour obtenir un exemple d'utilisation des fonctions définies par l’utilisateur (UDF) avec Pig, consultez les documents suivants :
+Pour obtenir un exemple d’utilisation des UDF avec Pig, consultez hello suivant des documents :
 
 * [Utilisation de DataFu avec Pig dans HDInsight](hdinsight-hadoop-use-pig-datafu-udf.md) : DataFu est une collection de fonctions définies par l’utilisateur utiles gérées par Apache
 * [Utilisation de Python avec Hive et Pig dans HDInsight](hdinsight-python.md)
@@ -67,20 +67,20 @@ Pour obtenir un exemple d'utilisation des fonctions définies par l’utilisateu
 
 ## <a id="data"></a>Exemple de données
 
-HDInsight propose différents exemples de jeux de données, qui sont stockés dans les répertoires `/example/data` et `/HdiSamples`. Ces répertoires sont disponibles dans le stockage par défaut de votre cluster. L’exemple Pig présenté dans ce document utilise le fichier *log4j* à partir de `/example/data/sample.log`.
+HDInsight fournit différents jeux de données d’exemple, qui sont stockées dans hello `/example/data` et `/HdiSamples` répertoires. Ces répertoires sont dans le stockage par défaut hello pour votre cluster. exemple de Pig Hello dans ce document utilise hello *log4j* à partir du fichier `/example/data/sample.log`.
 
-Chaque journal à l'intérieur du fichier est constitué d'une ligne de champs qui contient un champ `[LOG LEVEL]` pour indiquer le type et la gravité, par exemple :
+Chaque journal à l’intérieur du fichier de hello se compose d’une ligne de champs qui contient un `[LOG LEVEL]` champ tooshow hello hello et type de niveau de gravité, par exemple :
 
     2012-02-03 20:26:41 SampleClass3 [ERROR] verbose detail for id 1527353937
 
-Dans l'exemple précédent, le niveau de journal est ERROR.
+Dans l’exemple précédent de hello, niveau de journal hello est erreur.
 
 > [!NOTE]
-> Vous pouvez également générer un fichier log4j à l'aide de l’outil de journalisation [Apache Log4j](http://en.wikipedia.org/wiki/Log4j) , puis télécharger ce fichier vers votre objet blob. Pour des instructions, consultez la page [Téléchargement de données vers HDInsight](hdinsight-upload-data.md) . Pour plus d'informations sur l'utilisation du stockage d'objets blob Azure avec HDInsight, consultez la page [Utilisation du stockage d'objets blob Azure avec HDInsight](hdinsight-hadoop-use-blob-storage.md).
+> Vous pouvez également générer un fichier log4j à l’aide de hello [Apache Log4j](http://en.wikipedia.org/wiki/Log4j) journalisation de l’outil, puis le télécharger cet objet blob tooyour de fichier. Consultez [tooHDInsight de télécharger des données](hdinsight-upload-data.md) pour obtenir des instructions. Pour plus d'informations sur l'utilisation du stockage d'objets blob Azure avec HDInsight, consultez la page [Utilisation du stockage d'objets blob Azure avec HDInsight](hdinsight-hadoop-use-blob-storage.md).
 
 ## <a id="job"></a>Exemple de travail
 
-Le travail Pig Latin suivant charge le fichier `sample.log` depuis le stockage par défaut de votre cluster HDInsight. Elle effectue ensuite une série de transformations qui créent un décompte du nombre de fois où chaque niveau du journal s'est produit dans les données d'entrée. Les résultats sont écrits en STDOUT.
+tâche Pig Latin suivante Hello charge hello `sample.log` fichier de stockage par défaut de hello pour votre cluster HDInsight. Il effectue ensuite une série de transformations qui entraîne le nombre d’illustrant le nombre de fois où chaque données d’entrée de journal au niveau hello s’est produite dans. les résultats de Hello sont écrits tooSTDOUT.
 
     LOGS = LOAD 'wasb:///example/data/sample.log';
     LEVELS = foreach LOGS generate REGEX_EXTRACT($0, '(TRACE|DEBUG|INFO|WARN|ERROR|FATAL)', 1)  as LOGLEVEL;
@@ -90,13 +90,13 @@ Le travail Pig Latin suivant charge le fichier `sample.log` depuis le stockage 
     RESULT = order FREQUENCIES by COUNT desc;
     DUMP RESULT;
 
-L’image suivante montre un résumé de ce qu’effectue chaque transformation sur les données.
+Hello image suivante affiche un résumé de chaque transformation ne toohello. les données.
 
-![Représentation graphique des transformations][image-hdi-pig-data-transformation]
+![Représentation graphique des transformations de hello][image-hdi-pig-data-transformation]
 
-## <a id="run"></a>Exécution de la tâche Pig Latin
+## <a id="run"></a>Exécuter la tâche Pig Latin de hello
 
-HDInsight peut exécuter des tâches Pig Latin de différentes façons. Utilisez le tableau suivant pour découvrir la méthode qui vous convient, puis cliquez sur le lien pour obtenir une présentation détaillée.
+HDInsight peut exécuter des tâches Pig Latin de différentes façons. Utilisez hello suivant toodecide table quelle méthode vous consiste, puis suivez le lien hello pour une procédure pas à pas.
 
 | **Utilisez-le** si vous souhaitez... | ... un interpréteur de commandes **interactif** | ... un traitement par **lots** | ...avec ce **système d’exploitation cluster** | ... depuis ce **client** |
 |:--- |:---:|:---:|:--- |:--- |
@@ -107,22 +107,22 @@ HDInsight peut exécuter des tâches Pig Latin de différentes façons. Utilise
 | [Bureau à distance](hdinsight-hadoop-use-pig-remote-desktop.md) (HDInsight 3.2 et 3.3) |✔ |✔ |Windows |Windows |
 
 > [!IMPORTANT]
-> Linux est le seul système d’exploitation utilisé sur HDInsight version 3.4 ou supérieure. Pour plus d’informations, consultez [Suppression de HDInsight sous Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+> Linux est hello seul système d’exploitation utilisé sur HDInsight version 3.4 ou supérieure. Pour plus d’informations, consultez [Suppression de HDInsight sous Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
 ## <a name="pig-and-sql-server-integration-services"></a>Pig et SQL Server Integration Services
 
-Vous pouvez utiliser les services SQL Server Integration Services (SSIS) pour exécuter une travail Pig. Le pack de fonctionnalités Azure pour SSIS fournit les composants suivants, compatibles avec les tâches Pig sur HDInsight.
+Vous pouvez utiliser SQL Server Integration Services (SSIS) toorun un travail Pig. Bonjour Azure Feature Pack pour SSIS fournit hello suivant des composants qui fonctionnent avec des travaux Pig dans HDInsight.
 
 * [Tâche d’Azure HDInsight Pig][pigtask]
 
 * [Gestionnaire de connexions d’abonnement Azure][connectionmanager]
 
-Pour en savoir plus sur le pack de fonctionnalités Azure pour SSIS, cliquez [ici][ssispack].
+En savoir plus sur hello Azure Feature Pack pour SSIS [ici][ssispack].
 
 ## <a id="nextsteps"></a>Étapes suivantes
-Maintenant que vous avez vu comment utiliser Pig avec HDInsight, utilisez les liens suivants pour découvrir d'autres façons d'utiliser Azure HDInsight.
+Maintenant que vous avez appris comment toouse Pig hdinsight, hello utilisation suivant lie tooexplore autres toowork manières avec Azure HDInsight.
 
-* [Téléchargement de données vers HDInsight][hdinsight-upload-data]
+* [Télécharger des données tooHDInsight][hdinsight-upload-data]
 * [Utilisation de Hive avec HDInsight][hdinsight-use-hive]
 * [Utilisation de Sqoop avec HDInsight](hdinsight-use-sqoop.md)
 * [Utilisation d’Oozie avec HDInsight](hdinsight-use-oozie.md)

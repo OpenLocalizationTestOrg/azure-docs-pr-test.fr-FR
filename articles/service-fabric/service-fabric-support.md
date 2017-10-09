@@ -1,6 +1,6 @@
 ---
-title: "En savoir plus sur les options de support d’Azure Service Fabric | Microsoft Docs"
-description: Versions de clusters Azure Service Fabric prises en charge et liens pour soumettre des tickets de support
+title: "aaaLearn sur les options de prise en charge de l’infrastructure de Service Azure | Documents Microsoft"
+description: Versions du cluster Service Fabric Azure pris en charge et des liens de tickets de support toofile
 services: service-fabric
 documentationcenter: .net
 author: pkc
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/15/2017
 ms.author: pkc
-ms.openlocfilehash: 78e68cff3a757cbbcd8dc6f53120e6a4af54591a
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 42394e2cd9dad2040d37d3a2ff3600ee040d8720
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-service-fabric-support-options"></a>Options de support d’Azure Service Fabric
 
-Pour assurer un support adapté des clusters Service Fabric sur lesquels vous exécutez vos charges de travail d’applications, nous avons mis différentes options à votre disposition. Vous pourrez choisir les options appropriées selon le niveau de support nécessaire et la gravité du problème. 
+prise en charge toodeliver hello approprié pour vos clusters Service Fabric que vous exécutez votre travail de l’application se charge, nous avons mis en place différentes options pour vous. Varie en fonction de hello au niveau de prise en charge et gravité hello du problème de hello, vous obtenez toopick hello droite options. 
 
 
 <a id="getlivesitesupportonazure"></a>
@@ -50,46 +50,46 @@ Pour en savoir plus :
 
 <a id="getsupportonissues"></a>
 ## <a name="report-azure-service-fabric-issues"></a>Signaler des problèmes avec Azure Service Fabric 
-Nous avons défini un référentiel GitHub pour signaler les problèmes de Service Fabric.  De plus, nous surveillons activement les forums suivants.
+Nous avons défini un référentiel GitHub pour signaler les problèmes de Service Fabric.  Nous sommes également surveillez hello suivant des forums.
 
 ### <a name="github-repo"></a>Référentiel GitHub 
-Signaler des problèmes avec Azure Service Fabric sur le [Référentiel Git des problèmes de Service Fabric](https://github.com/Azure/service-fabric-issues). Ce référentiel est destiné au signalement et au suivi des problèmes rencontrés avec Azure Service Fabric, ainsi qu’aux demandes de petites fonctionnalités. **Ne pas l’utiliser pour signaler des problèmes de site en ligne**.
+Signaler des problèmes avec Azure Service Fabric sur le [Référentiel Git des problèmes de Service Fabric](https://github.com/Azure/service-fabric-issues). Ce référentiel est destiné au signalement et au suivi des problèmes rencontrés avec Azure Service Fabric, ainsi qu’aux demandes de petites fonctionnalités. **N’utilisez pas les problèmes de ce site live tooreport**.
 
 ### <a name="stackoverflow-and-msdn-forums"></a>Forums StackOverflow et MSDN
 
-La [Balise Service Fabric sur StackOverflow][stackoverflow] et le [Forum Service Fabric sur MSDN][msdn-forum] sont recommandés pour poser des questions sur le fonctionnement de la plateforme et la réalisation de certaines tâches par son intermédiaire.
+Hello [balise Service Fabric sur StackOverflow] [ stackoverflow] et hello [forum Service Fabric sur MSDN] [ msdn-forum] est recommandé d’utiliser pour poser des questions sur fonctionne de la plateforme de hello et comment vous pouvez accomplir certaines tâches avec lui.
 
 ### <a name="azure-feedback-forum"></a>Forum de commentaires Azure
 
-Le [Forum de commentaires Azure pour Service Fabric][uservoice-forum] est le meilleur endroit pour envoyer vos idées de fonctionnalités majeures pour le produit. Nous examinons en effet les requêtes les plus populaires dans le cadre de notre planification à moyen ou long terme. Nous vous encourageons à chercher l’appui de la communauté pour vos suggestions.
+Hello [Forum de commentaires de Azure pour Service Fabric] [ uservoice-forum] est hello meilleur endroit pour l’envoi des idées de fonctionnalité big qu’au produit de hello nous allons examiner les requêtes les plus populaires hello font partie de notre support toolong à long terme planification. Nous vous conseillons de prise en charge de toorally de vos suggestions au sein de la Communauté de hello.
 
 
 <a id="releasesuport"></a>
 ## <a name="supported-service-fabric-versions"></a>Versions de Service Fabric prises en charge.
 
-Veillez à ce que votre cluster exécute toujours une version prise en charge de Service Fabric. Lorsque nous annonçons le lancement d’une nouvelle version de Service Fabric, la fin de la prise en charge de la version précédente est signalée 60 jours minimum après la date de lancement. Les nouvelles versions sont annoncées [sur le blog de l’équipe Service Fabric](https://blogs.msdn.microsoft.com/azureservicefabric/).
+Veillez à ce que votre cluster exécute toujours une version prise en charge de Service Fabric. Et, lorsque nous annoncer version hello d’une nouvelle version de l’infrastructure de Service, version précédente de hello est marquée pour la fin de la prise en charge un minimum de 60 jours à partir de cette date. Hello nouvelles versions sont annoncées [sur le blog de l’équipe Service Fabric hello](https://blogs.msdn.microsoft.com/azureservicefabric/).
 
-Consultez les documents suivants pour savoir plus en détails comment faire en sorte que votre cluster exécute toujours une version prise en charge de Service Fabric.
+Consultez toohello suivant des documents de plus d’informations sur la façon de tookeep votre cluster exécutant une version prise en charge de l’infrastructure de Service.
 
 - [Mettre à niveau la version de Service Fabric sur un cluster Azure](service-fabric-cluster-upgrade.md)
 - [Mettre à niveau la version de Service Fabric sur un cluster de serveurs Windows autonome](service-fabric-cluster-upgrade-windows-server.md)
  
-Voici la liste des versions de Service Fabric prises en charge et la date associée de fin de prise en charge.
+Voici la liste hello des versions de Service Fabric hello qui sont prises en charge et leur date de fin de prise en charge.
 
 | **Cluster runtime Service Fabric** | **Kit de développement logiciel compatible / Versions de package NuGet** | **Date de fin de prise en charge** |
 | --- | --- | --- |
-| Toutes les versions de clusters antérieures à 5.3.121 |Inférieure ou égale à la version 2.3 |20 janvier 2017 |
-| 5.3.* |Inférieure ou égale à la version 2.3 |24 février 2017 |
-| 5.4.* |Inférieure ou égale à la version 2.4 |10 mai 2017     |
-| 5.5.* |Inférieure ou égale à la version 2.5 |10 août 2017    |
-| 5.6.* |Inférieure ou égale à la version 2.6 |13 octobre 2017    |
-| 5.7.* |Inférieure ou égale à la version 2.7 |Version actuelle ; par conséquent, pas de date de fin
+| Tous les too5.3.121 de précédentes versions de cluster |Inférieur ou égale tooversion 2.3 |20 janvier 2017 |
+| 5.3.* |Inférieur ou égale tooversion 2.3 |24 février 2017 |
+| 5.4.* |Inférieur ou égale tooversion 2.4 |10 mai 2017     |
+| 5.5.* |Inférieur ou égale tooversion 2.5 |10 août 2017    |
+| 5.6.* |Inférieur ou égale tooversion 2.6 |13 octobre 2017    |
+| 5.7.* |Inférieur ou égale tooversion 2.7 |Version actuelle ; par conséquent, pas de date de fin
 
 <a id="previewversion"></a>
 ## <a name="service-fabric-preview-versions---unsupported-for-production-use"></a>Versions préliminaires de Service Fabric – non pris en charge pour la production.
-De temps à autre, nous publions des versions dotées de fonctionnalités significatives, sur lesquelles nous souhaitons avoir un retour et qui sont publiées sous forme de version préliminaire. Ces versions préliminaires doivent uniquement être utilisées à des fins de test. Votre cluster de production doit toujours exécuter une version de Service Fabric prise en charge et stable. Les versions préliminaires commencent toujours par un numéro de version majeure et mineure : 255. Par exemple, la version 255.255.5703.949 de Service Fabric ne doit être utilisée que dans les clusters de test. Il s’agit d’une version préliminaire. Ces versions préliminaires sont également annoncées sur le [blog de l’équipe Service Fabric](https://blogs.msdn.microsoft.com/azureservicefabric) et s’accompagnent d’informations sur les fonctionnalités incluses.
+À partir de tootime de temps, nous diffuserons de versions qui ont des fonctionnalités importantes, que nous souhaitons vos commentaires, qui sont publiées sous forme d’aperçu. Ces versions préliminaires doivent uniquement être utilisées à des fins de test. Votre cluster de production doit toujours exécuter une version de Service Fabric prise en charge et stable. Les versions préliminaires commencent toujours par un numéro de version majeure et mineure : 255. Par exemple, si vous voyez un Service Fabric version 255.255.5703.949, cette version de release est toobe uniquement utilisés dans des clusters de test et est en version préliminaire. Ces versions préliminaires sont également annoncées sur hello [blog de l’équipe Service Fabric](https://blogs.msdn.microsoft.com/azureservicefabric) et avoir plus d’informations sur les fonctionnalités de hello incluses.
 
-Il n’existe aucune option de support technique payant pour ces versions préliminaires. Utilisez l’une des options répertoriées dans la rubrique [Signaler des problèmes Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-support#report-azure-service-fabric-issues) pour poser des questions ou laisser un commentaire.
+Il n’existe aucune option de support technique payant pour ces versions préliminaires. Utilisez une des options de hello répertoriées sous [rapport Azure Service Fabric émet](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-support#report-azure-service-fabric-issues) tooask questions ou fournir des commentaires.
 
 ## <a name="next-steps"></a>Étapes suivantes
 

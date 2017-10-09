@@ -1,6 +1,6 @@
 ---
-title: "Comment appeler une perte des données sur des services Service Fabric | Microsoft Docs"
-description: "Explique comment utiliser l’API de perte des données"
+title: "aaaHow tooInvoke perte de données sur les Services de Fabric Service | Documents Microsoft"
+description: "Décrit comment toouse hello une perte de données api"
 services: service-fabric
 documentationcenter: .net
 author: LMWF
@@ -15,23 +15,23 @@ ms.workload: NA
 ms.date: 09/19/2016
 ms.author: lemai
 redirect_url: /azure/service-fabric/service-fabric-testability-overview
-ms.openlocfilehash: 0c4791e56f84d0df38783a13c8d8c564fd25f55f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 014c7ebfd2c42d79a5fe1802ecc3fa0c1f26f9d7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-invoke-data-loss-on-services"></a>Comment appeler la perte des données sur des services
+# <a name="how-tooinvoke-data-loss-on-services"></a>Comment tooInvoke une perte de données sur les Services
 > [!WARNING]
-> Ce document décrivent comment entraîner une perte de données dans vos services et doit être utilisé avec précaution.
+> Ce document décrit comment toocause une perte de données dans vos services et doit être utilisée avec précaution.
 > 
 > 
 
 ## <a name="introduction"></a>Introduction
-Vous pouvez appeler une perte de données sur une partition de votre service Service Fabric en appelant StartPartitionDataLossAsync().  Cette API utilise le service d’injection et d’analyse des erreurs pour provoquer des conditions de perte de données.
+Vous pouvez appeler une perte de données sur une partition de votre service Service Fabric en appelant StartPartitionDataLossAsync().  Cette api utilise hello injection d’erreurs et d’Analysis Service tooperform hello toocause données perte conditions de travail.
 
-## <a name="using-the-fault-injection-and-analysis-service"></a>Utilisation du service d’injection et d’analyse des erreurs
-Le service d’injection et d’analyse des erreurs prend actuellement en charge les API suivantes, comme indiqué dans le graphique ci-dessous.  Le côté droit du graphique montre l’applet de commande PowerShell.  Reportez-vous à la documentation msdn de chaque API pour plus d’informations sur chacune d’elles.
+## <a name="using-hello-fault-injection-and-analysis-service"></a>À l’aide de hello injection d’erreurs et d’Analysis Services
+Hello injection d’erreurs et d’Analysis Services prend en charge actuellement hello suivant d’API dans le graphique de hello ci-dessous.  à droite de Hello du graphique de hello montre l’applet de commande PowerShell correspondante hello.  Veuillez consultez la documentation du msdn toohello sur chaque API pour plus d’informations sur chacun d’eux.
 
 | C# API | Applet de commande PowerShell |
 | --- | ---:|
@@ -40,41 +40,41 @@ Le service d’injection et d’analyse des erreurs prend actuellement en charge
 | [StartPartitionRestartAsync][rp] |[Start-ServiceFabricPartitionRestart][psrp] |
 
 ## <a name="conceptual-overview-of-running-a-command"></a>Vue d’ensemble conceptuelle de l’exécution d’une commande
-Le service d’injection et d’analyse des erreurs utilise un modèle asynchrone dans lequel vous démarrez la commande avec une API, appelée API « Start » dans ce document, puis vérifie la progression de cette commande à l’aide d’une API « GetProgress » jusqu'à ce qu’elle atteigne un état terminal, ou jusqu'à ce que vous l’annuliez.
-Pour démarrer une commande, appelez l’API « Start » pour l’API correspondante.  Cette API est renvoyée lorsque le service d’injection et d’analyse des erreurs a accepté la demande.  Toutefois, elle n’indique pas jusqu’où une commande est exécutée, ou si elle a déjà démarré.  Pour vérifier la progression d’une commande, appelez l’API qui correspond à l’API « Start » précédemment appelée « GetProgress ».  L’API « GetProgress » renvoie un objet qui indique l’état actuel de la commande à l’intérieur de sa propriété d’état (State).  La commande s’exécute indéfiniment jusqu'à ce que :
+Hello d’injection d’erreurs et d’Analysis Services utilise un modèle asynchrone, où vous démarrez hello de commande avec une API, appelle l’API de « Start » tooas hello dans ce document, puis vérifie hello progression de cette commande à l’aide d’une API « GetProgress » jusqu'à ce qu’il a atteint un terminal état, ou jusqu'à ce que vous l’annuler.
+toostart une commande, appeler des API de « Start » de hello pour les API correspondantes hello.  Cette API retourne lorsque hello injection d’erreurs et d’Analysis Services a accepté la demande de hello.  Toutefois, elle n’indique pas jusqu’où une commande est exécutée, ou si elle a déjà démarré.  En cours de toocheck de commande d’une commande, appelez hello « GetProgress « API correspondant toohello « Démarrer » des API appelée précédemment.  Hello « GetProgress « API retournera un objet indiquant l’état actuel de hello de commande hello à l’intérieur de sa propriété d’état.  La commande s’exécute indéfiniment jusqu'à ce que :
 
-1. Elle se termine correctement.  Si vous appelez « GetProgress » sur cette API dans ce cas, l’état de progression de l’objet affiche Completed (terminé).
-2. Elle rencontre une erreur irrécupérable.  Si vous appelez « GetProgress » sur cette API dans ce cas, l’état de progression de l’objet affiche Faulted (défaillance)
-3. Pour l’annuler, utilisez l’API [CancelTestCommandAsync][cancel] ou l’applet de commande PowerShell [Stop-ServiceFabricTestCommand][cancelps].  Si vous appelez « GetProgress » sur cette API dans ce cas, l’état de progression de l’objet affiche Cancelled (annulé) ou ForceCancelled (annulation forcée), selon un argument de cette API.  Consultez la documentation de [CancelTestCommandAsync][cancel] pour plus de détails.
+1. Elle se termine correctement.  Si vous appelez « GetProgress » sur ce dernier dans ce cas, l’état de l’objet de progression hello sera terminée.
+2. Elle rencontre une erreur irrécupérable.  Si vous appelez « GetProgress » sur ce dernier dans ce cas, état de l’objet de progression hello générera une erreur
+3. Vous l’annulez via hello [CancelTestCommandAsync] [ cancel] API, ou [Stop-ServiceFabricTestCommand] [ cancelps] applet de commande PowerShell.  Si vous appelez « GetProgress » sur ce dernier dans ce cas, hello état de progression de l’objet sera soit annulé ou ForceCancelled, selon une toothat argument API.  Consultez la documentation de hello pour [CancelTestCommandAsync] [ cancel] pour plus d’informations.
 
 ## <a name="details-of-running-a-command"></a>Détails de l’exécution d’une commande
-Pour démarrer une commande, appelez l’API Start avec les arguments attendus.  Toutes les API Start ont un argument Guid nommé operationId.  Vous devriez effectuer le suivi de l’argument operationId car il est utilisé pour suivre la progression de cette commande.  Cet argument doit être passée à l’API « GetProgress » afin de suivre la progression de la commande.  La valeur operationId doit être unique.
+Dans l’ordre toostart une commande, appelez hello API de démarrer avec des arguments de hello attendu.  Toutes les API Start ont un argument Guid nommé operationId.  Vous devez effectuer le suivi des argument operationId de hello, car il est utilisé progression tootrack de cette commande.  Cela doit être passé dans hello « GetProgress « API en cours de tootrack d’ordre de la commande hello.  Hello operationId doit être unique.
 
-Après l’appel réussi de l’API Start, l’API GetProgress devrait être appelée dans une boucle jusqu'à ce que la propriété d’état de progression de l’objet retourné affiche Completed (Terminé).  Toutes les commandes [FabricTransientException][fte] et OperationCanceledException doivent être relancées.
-Lorsque la commande a atteint un état terminal (Completed, Faulted ou Cancelled), la propriété Result de progression de l’objet retourné aura plus d’informations.  Si l’état affiche Completed (terminé), Result.SelectedPartition.PartitionId contient l’ID de partition qui a été sélectionné.  La valeur Result.Exception sera nulle.  Si l’état indique Faulted, Result.Exception indiquera la raison pour laquelle le service d’injection et d’analyse des erreurs a généré une erreur de la commande.  Result.SelectedPartition.PartitionId affichera l’ID de partition qui a été sélectionné.  Dans certains cas, la commande n’a peut-être pas été suffisamment loin pour choisir une partition.  Dans ce cas, la valeur PartitionId sera 0.  Si l’état affiche Cancelled (annulé), la valeur Result.Exception est nulle.  Comme pour l’état Faulted (défaillance), Result.SelectedPartition.PartitionId affichera l’ID de partition qui a été choisi, mais si la commande n’a pas été suffisamment loin pour cela, la valeur sera 0.  Reportez-vous aussi à l’exemple ci-dessous.
+Après avoir correctement appelé hello API Démarrer, hello GetProgress API doit être appelée dans une boucle jusqu'à ce que hello retourné progression propriété State de l’objet est terminée.  Toutes les commandes [FabricTransientException][fte] et OperationCanceledException doivent être relancées.
+Lors de la commande hello a atteint un état terminal (terminé, Faulted ou annulée), hello retourné la propriété Result de l’objet de progression aura plus d’informations.  Si l’état de hello est terminée, Result.SelectedPartition.PartitionId contient les id de partition hello qui a été sélectionné.  La valeur Result.Exception sera nulle.  Si l’état de hello est défectueux, Result.Exception aura hello de raison hello injection d’erreurs et de la commande hello de Service a généré une erreur d’analyse.  Result.SelectedPartition.PartitionId aura un id de partition hello qui a été sélectionné.  Dans certaines situations, commande hello ne peut-être pas été suffisamment loin toochoose une partition.  Dans ce cas, hello PartitionId est égal à 0.  Si l’état de hello est annulée, Result.Exception sera null.  Comme hello Faulted cas, Result.SelectedPartition.PartitionId aura un id de partition hello qui a été choisi, mais si la commande hello n'a pas traité suffisamment loin toodo par conséquent, il est égal à 0.  Reportez-vous également exemple toohello ci-dessous.
 
-L’exemple de code ci-dessous montre comment démarrer puis vérifier la progression d’une commande pour provoquer une perte de données sur une partition spécifique.
+Hello exemple de code ci-dessous montre comment toostart vérifier puis cours sur une perte de données toocause commande sur une partition spécifique.
 
 ```csharp
     static async Task PerformDataLossSample()
     {
-        // Create a unique operation id for the command below
+        // Create a unique operation id for hello command below
         Guid operationId = Guid.NewGuid();
 
-        // Note: Use the appropriate overload for your configuration
+        // Note: Use hello appropriate overload for your configuration
         FabricClient fabricClient = new FabricClient();
 
-        // The name of the target service
+        // hello name of hello target service
         Uri targetServiceName = new Uri("fabric:/MyService");
 
-        // The id of the target partition inside the target service
+        // hello id of hello target partition inside hello target service
         Guid targetPartitionId = new Guid("00000000-0000-0000-0000-000002233445");
 
         PartitionSelector partitionSelector = PartitionSelector.PartitionIdOf(targetServiceName, targetPartitionId);
 
-        // Start the command.  Retry OperationCanceledException and all FabricTransientException's.  Note when StartPartitionDataLossAsync completes
-        // successfully it only means the Fault Injection and Analysis Service has saved the intent to perform this work.  It does not say anything about the progress
-        // of the command.
+        // Start hello command.  Retry OperationCanceledException and all FabricTransientException's.  Note when StartPartitionDataLossAsync completes
+        // successfully it only means hello Fault Injection and Analysis Service has saved hello intent tooperform this work.  It does not say anything about hello progress
+        // of hello command.
         while (true)
         {
             try
@@ -94,8 +94,8 @@ L’exemple de code ci-dessous montre comment démarrer puis vérifier la progre
 
         PartitionDataLossProgress progress = null;
 
-        // Poll the progress using GetPartitionDataLossProgressAsync until it is either Completed or Faulted.  In this example, we're assuming
-        // the command won't be cancelled.        
+        // Poll hello progress using GetPartitionDataLossProgressAsync until it is either Completed or Faulted.  In this example, we're assuming
+        // hello command won't be cancelled.        
 
         while (true)
         {
@@ -116,13 +116,13 @@ L’exemple de code ci-dessous montre comment démarrer puis vérifier la progre
             {
                 Console.WriteLine("Command '{0}' completed successfully", operationId);
 
-                // In a terminal state .Result.SelectedPartition.PartitionId will have the chosen partition
+                // In a terminal state .Result.SelectedPartition.PartitionId will have hello chosen partition
                 Console.WriteLine("  Printing selected partition='{0}'", progress.Result.SelectedPartition.PartitionId);
                 break;
             }
             else if (progress.State == TestCommandProgressState.Faulted)
             {
-                // If State is Faulted, the progress object's Result property's Exception property will have the reason why.
+                // If State is Faulted, hello progress object's Result property's Exception property will have hello reason why.
                 Console.WriteLine("Command '{0}' failed with '{1}'", operationId, progress.Result.Exception);
                 break;
             }
@@ -136,26 +136,26 @@ L’exemple de code ci-dessous montre comment démarrer puis vérifier la progre
     }
 ```
 
-L’exemple ci-dessous montre comment utiliser PartitionSelector pour choisir une partition aléatoire d’un service spécifié :
+exemple Hello ci-dessous montre comment toouse hello PartitionSelector toochoose une partition aléatoire d’un service spécifié :
 
 ```csharp
     static async Task PerformDataLossUseSelectorSample()
     {
-        // Create a unique operation id for the command below
+        // Create a unique operation id for hello command below
         Guid operationId = Guid.NewGuid();
 
-        // Note: Use the appropriate overload for your configuration
+        // Note: Use hello appropriate overload for your configuration
         FabricClient fabricClient = new FabricClient();
 
-        // The name of the target service
+        // hello name of hello target service
         Uri targetServiceName = new Uri("fabric:/SampleService ");
 
-        // Use a PartitionSelector that will have the Fault Injection and Analysis Service choose a random partition of “targetServiceName”
+        // Use a PartitionSelector that will have hello Fault Injection and Analysis Service choose a random partition of “targetServiceName”
         PartitionSelector partitionSelector = PartitionSelector.RandomOf(targetServiceName);
 
-        // Start the command.  Retry OperationCanceledException and all FabricTransientException's.  Note when StartPartitionDataLossAsync completes
-        // successfully it only means the Fault Injection and Analysis Service has saved the intent to perform this work.  It does not say anything about the progress
-        // of the command.
+        // Start hello command.  Retry OperationCanceledException and all FabricTransientException's.  Note when StartPartitionDataLossAsync completes
+        // successfully it only means hello Fault Injection and Analysis Service has saved hello intent tooperform this work.  It does not say anything about hello progress
+        // of hello command.
         while (true)
         {
             try
@@ -180,8 +180,8 @@ L’exemple ci-dessous montre comment utiliser PartitionSelector pour choisir un
 
         PartitionDataLossProgress progress = null;
 
-        // Poll the progress using GetPartitionDataLossProgressAsync until it is either Completed or Faulted.  In this example, we're assuming
-        // the command won't be cancelled.
+        // Poll hello progress using GetPartitionDataLossProgressAsync until it is either Completed or Faulted.  In this example, we're assuming
+        // hello command won't be cancelled.
 
         while (true)
         {
@@ -209,7 +209,7 @@ L’exemple ci-dessous montre comment utiliser PartitionSelector pour choisir un
             }
             else if (progress.State == TestCommandProgressState.Faulted)
             {
-                // If State is Faulted, the progress object's Result property's Exception property will have the reason why.
+                // If State is Faulted, hello progress object's Result property's Exception property will have hello reason why.
                 Console.WriteLine("Command '{0}' failed with '{1}', SelectedPartition {2}", operationId, progress.Result.Exception, progress.Result.SelectedPartition);
                 break;
             }
@@ -224,7 +224,7 @@ L’exemple ci-dessous montre comment utiliser PartitionSelector pour choisir un
 ```
 
 ## <a name="history-and-truncation"></a>Historique et troncation
-Dès qu’une commande a atteint un état terminal, ses métadonnées resteront dans le service d’injection et d’analyse des erreurs pour un certain temps, avant d’être supprimées pour économiser de l’espace.  Si « GetProgress » est appelée à l’aide de la valeur operationId d’une commande après avoir été supprimée, elle retournera une valeur FabricException avec un code d’erreur KeyNotFound.
+Après qu’une commande a atteint un état terminal, ses métadonnées restent Bonjour injection d’erreurs et Analysis Services pour un certain temps, avant d’être supprimé toosave espace.  Si « GetProgress » est appelée à l’aide d’operationId hello d’une commande une fois qu’il a été supprimée, elle retournera une FabricException avec un code d’erreur de KeyNotFound.
 
 [dl]: https://msdn.microsoft.com/library/azure/mt693569.aspx
 [ql]: https://msdn.microsoft.com/library/azure/mt693558.aspx

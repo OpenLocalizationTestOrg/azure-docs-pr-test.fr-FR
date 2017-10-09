@@ -1,6 +1,6 @@
 ---
-title: "Options de migration hors d’Azure RemoteApp | Microsoft Docs"
-description: "Découvrez les options de migration hors d’Azure RemoteApp."
+title: "aaaOptions pour la migration en dehors d’Azure RemoteApp | Documents Microsoft"
+description: "En savoir plus sur les options de hello pour la migration en dehors d’Azure RemoteApp."
 services: remoteapp
 documentationcenter: 
 author: ericorman
@@ -13,59 +13,59 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/26/2017
 ms.author: mbaldwin
-ms.openlocfilehash: 9ab63124e2521ee1922d15c1e388c54d50eb8301
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 75324597881520d0c75939983b728ae9bbd7f436
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="options-for-migrating-out-of-azure-remoteapp"></a>Options de migration hors d’Azure RemoteApp
 > [!IMPORTANT]
-> Azure RemoteApp ne sera plus disponible à partir du 31 août 2017. Pour plus d’informations, lisez [l’annonce](https://go.microsoft.com/fwlink/?linkid=821148) .
+> Azure RemoteApp ne sera plus disponible à partir du 31 août 2017. Hello de lecture [annonce](https://go.microsoft.com/fwlink/?linkid=821148) pour plus d’informations.
 
 
-Si vous avez cessé d’utiliser RemoteApp du fait de [l’annonce de la suppression](https://go.microsoft.com/fwlink/?linkid=821148) ou parce que vous avez terminé votre évaluation, vous devez migrer d’Azure RemoteApp vers un autre service d’application. Il existe deux approches différentes pour la migration : le déploiement autogéré (souvent appelé Infrastructure en tant que Service [IaaS]) ou une offre de plateforme entièrement gérée (souvent appelée Plateforme ou Logiciel en tant que service [PaaS/SaaS]). 
+Si vous avez arrêté à l’aide d’Azure RemoteApp en raison de hello [annonce du retrait](https://go.microsoft.com/fwlink/?linkid=821148) ou parce que vous avez terminé votre version d’évaluation, vous devez toomigrate hors service d’applications Azure RemoteApp tooanother. Il existe deux approches différentes pour la migration : le déploiement autogéré (souvent appelé Infrastructure en tant que Service [IaaS]) ou une offre de plateforme entièrement gérée (souvent appelée Plateforme ou Logiciel en tant que service [PaaS/SaaS]). 
 
-L’IaaS en libre-service est un déploiement personnalisable que vous gérez, exploitez et possédez, directement déployé sur des machines virtuelles (VM) ou des systèmes physiques. En face, une offre de PaaS/SaaS entièrement géré ressemble davantage à Azure RemoteApp : un partenaire fournit une couche de service sur une solution d’accès distant qui gère les opérations et la maintenance, pendant que vous, en tant que client, effectuez la gestion des images et applications.
+L’IaaS en libre-service est un déploiement personnalisable que vous gérez, exploitez et possédez, directement déployé sur des machines virtuelles (VM) ou des systèmes physiques. À hello autres terminer, une PaaS/SaaS entièrement géré offre est ressemble davantage à Azure RemoteApp - un partenaire fournit une couche de service sur une solution de communication à distance qui gère le fonctionnement et la maintenance, pendant que vous, en tant que client de hello, effectuer une gestion des applications et des images.
 
-[Consultez les webinaires Azure RemoteApp sur les options de migration](https://social.msdn.microsoft.com/Forums/azure/40557aaa-3e9f-403c-b221-ad3eac10dc56/migration-option-webinar-recordings?forum=AzureRemoteApp), ou lisez la suite pour plus d’informations (y compris des exemples des différentes options d’hébergement).
+[Afficher hello Azure RemoteApp webinaires sur les options de migration](https://social.msdn.microsoft.com/Forums/azure/40557aaa-3e9f-403c-b221-ad3eac10dc56/migration-option-webinar-recordings?forum=AzureRemoteApp), ou de lecture pour plus d’informations (y compris des exemples de différente options d’hébergement de hello).
 
 ## <a name="self-managed-iaas-solutions"></a>Solutions autogérées (IaaS)
 ### <a name="rds-on-iaas"></a>**RDS sur IaaS**
 Vous pouvez déployer un déploiement de services Bureau à distance natif basé sur les sessions (dans Windows Server) à l’aide de RemoteApp sur des postes de travail locaux ou dans un environnement hébergé (comme sur les machines virtuelles Azure). Les services Bureau à Distance sur les déploiements IaaS sont parfaits pour les clients déjà familiarisés avec cette solution et qui ont une expertise technique existante pour les déploiements de services Bureau à Distance. 
 
 > [!NOTE]
-> Vous avez besoin de licences en volume avec Software Assurance (SA) pour les licences d’accès client aux services Bureau à distance pour utiliser cette option de déploiement.
+> Vous devez avec Software Assurance (SA) de licence en Volume pour les services Bureau à distance client accès licences toouse cette option de déploiement.
 
-Le déploiement des services Bureau à Distance sur des machines virtuelles Azure est plus facile que jamais lorsque vous utilisez le déploiement et des modèles d’application de correctifs (lisez la [présentation](https://blogs.technet.microsoft.com/enterprisemobility/2015/07/13/azure-resource-manager-template-for-rds-deployment/) puis [récupérez-les](https://aka.ms/rdautomation)). Vous pouvez obtenir les mêmes fonctionnalités de mise à l’échelle flexibles avec des ressources de modèle de déploiement Azure Classic (et non des ressources de modèle de ressource Azure) dans Azure RemoteApp à l’aide du [script de mise à l’échelle automatique](https://gallery.technet.microsoft.com/scriptcenter/Automatic-Scaling-of-9b4f5e76), bien qu’il existe davantage de personnalisations et de configurations. Lorsque vous déployez des services Bureau à Distance sur des machines virtuelles Azure, le support technique est fourni via le [Support Azure](https://azure.microsoft.com/support/plans/), les mêmes professionnels d’assistance technique qui vous ont assisté avec Azure RemoteApp. Vous pouvez obtenir des estimations de coût en fonction de votre utilisation existante en contactant le [Support Azure](https://azure.microsoft.com/support/plans/), ou vous pouvez effectuer les calculs vous-même à l’aide de notre calculateur de coûts à venir.  En outre, avec les machines virtuelles de série N (actuellement en version préliminaire privée), vous pouvez ajouter des vGPU - Pour plus d’informations sur l’ajout de vGPU et sur la [prise en main des améliorations des services de Bureau à distance dans Windows Server 2016](https://myignite.microsoft.com/videos/2794), consultez notre session Ignite.   
+Le déploiement des services Bureau à Distance sur des machines virtuelles Azure est plus facile que jamais lorsque vous utilisez le déploiement et des modèles d’application de correctifs (lisez la [présentation](https://blogs.technet.microsoft.com/enterprisemobility/2015/07/13/azure-resource-manager-template-for-rds-deployment/) puis [récupérez-les](https://aka.ms/rdautomation)). Vous pouvez obtenir les mêmes fonctionnalités de mise à l’échelle élastiques avec les ressources de modèle de déploiement classique Azure (pas les ressources de modèle de ressource Azure) dans Azure RemoteApp hello à l’aide de hello [mise à l’échelle de script](https://gallery.technet.microsoft.com/scriptcenter/Automatic-Scaling-of-9b4f5e76), bien qu’il existe plus personnalisations et configurations. Lorsque vous déployez des services Bureau à distance sur des machines virtuelles Azure, est prise en charge via [Azure prend en charge](https://azure.microsoft.com/support/plans/), hello même professionnels du support technique vous pris en charge avec Azure RemoteApp. Vous pouvez obtenir des estimations de coût en fonction de votre utilisation existante en contactant [prise en charge Azure](https://azure.microsoft.com/support/plans/), ou vous pouvez effectuer des calculs vous-même à l’aide un bientôt toobe publié calculateur de coût.  En outre, avec des machines virtuelles de série N (actuellement en aperçu privé), vous pouvez ajouter vGPU - plus d’informations sur l’ajout de processeur et sur la façon de réponse trop[maîtriser les améliorations des services Bureau à distance dans Windows Server 2016](https://myignite.microsoft.com/videos/2794) dans notre session Ignite.   
 
-Nous proposons des guides de déploiement étape par étape pour [Windows Server 2012 R2](http://aka.ms/rdsonazure) et [Windows Server 2016](http://aka.ms/rdsonazure2016) afin de faciliter votre déploiement. Consultez le [blog du Bureau à distance](https://blogs.technet.microsoft.com/enterprisemobility/?product=windows-server-remote-desktop-services) pour les dernières informations.
+Nous avons des guides de déploiement de l’étape par étape pour [Windows Server 2012 R2](http://aka.ms/rdsonazure) et [Windows Server 2016](http://aka.ms/rdsonazure2016) tooassist avec votre déploiement. Extraire hello [blog du Bureau à distance](https://blogs.technet.microsoft.com/enterprisemobility/?product=windows-server-remote-desktop-services) pour les informations les plus récentes hello.
 
 ### <a name="citrix-on-iaas"></a>**Citrix sur IaaS**
 Un déploiement Citrix natif de XenApp ou de XenDesktop basé sur les sessions peut être déployé localement ou dans un environnement hébergé (par exemple sur des machines virtuelles Azure). 
 
-Consultez le guide de déploiement étape par étape, [Citrix XA 7.6 sur Azure](http://www.citrixandmicrosoft.com/Documents/Citrix-Azure Deployment Guide-v.1.0.docx), pour plus d’informations. En savoir plus sur [Citrix sur Azure](http://www.citrixandmicrosoft.com/Solutions/AzureCloud.aspx), avec notamment un calculateur de prix. Vous pouvez également rechercher un [contact Citrix](http://citrix.com/English/contact/index.asp) pour discuter de vos options.
+Guide de déploiement étape par étape hello, consultez [7.6 XA de Citrix sur Azure](http://www.citrixandmicrosoft.com/Documents/Citrix-Azure Deployment Guide-v.1.0.docx), pour plus d’informations. En savoir plus sur [Citrix sur Azure](http://www.citrixandmicrosoft.com/Solutions/AzureCloud.aspx), avec notamment un calculateur de prix. Vous pouvez également rechercher un [Citrix contact](http://citrix.com/English/contact/index.asp) toodiscuss vos options avec.
 
 ## <a name="fully-managed-paassaas-offerings"></a>Offres entièrement gérés (PaaS/SaaS)
 
 ### <a name="citrix-xenapp-essentials-released-april-2017"></a>Citrix XenApp Essentials (parution : avril 2017)
-Désormais disponible sur la [Place de marché Azure](https://azuremarketplace.microsoft.com/marketplace/apps/Citrix.XenAppEssentials), Citrix XenApp Essentials est un nouveau service de virtualisation d’application. Il associe la puissance et la flexibilité de la plateforme Citrix Cloud à la vision simple, normative et facile à utiliser de Microsoft Azure RemoteApp. 
+Disponible pour l’instant sur hello [Azure Marketplace](https://azuremarketplace.microsoft.com/marketplace/apps/Citrix.XenAppEssentials), Citrix XenApp Essentials est le nouveau service de virtualisation d’application hello, associant hello puissance et flexibilité de hello plateforme Cloud de Citrix avec simple hello et normative, et Pour utiliser la vision de Microsoft Azure RemoteApp. 
 
 Les clients Azure RemoteApp existants peuvent [s’inscrire pour profiter d’une version d’évaluation gratuite](https://www.citrix.com/products/citrix-cloud/form/xenapp-essentials-msft-trial/).  Remarque : seul le service utilisateur Citrix est gratuit. Calcul Azure et Stockage Azure sont payants.
 
 En savoir plus :
-- [Migrer d’Azure RemoteApp vers Citrix XenApp Essentials](remoteapp-migrate-citrix.md)
+- [Migrer à partir d’Azure RemoteApp tooCitrix XenApp Essentials](remoteapp-migrate-citrix.md)
 - [Citrix et Microsoft](https://www.citrix.com/global-partners/microsoft/remote-app.html)
 - [Présentation de Citrix XenApp Essentials](https://www.youtube.com/watch?v=91Z7CCfQ-9k)  
 
 ### <a name="citrix-cloud-xenapp-service-and-xendesktop-service"></a>Services Citrix Cloud XenApp et XenDesktop 
 
-Le [service Citrix Cloud XenApp et XenDesktop](https://www.citrix.com/products/citrix-cloud/services.html) est la solution optimale pour la prestation d’applications et de postes de travail, ainsi que pour les capacités avancées de gestion et de supervision. 
+[Le Service Cloud XenApp Citrix et XenDesktop Service](https://www.citrix.com/products/citrix-cloud/services.html) est hello meilleure solution pour la remise de hello des applications et poste de travail, plus avancées de gestion et ses fonctionnalités de surveillance. 
 
 #### <a name="conexlink-platform-name-mycloudit"></a>Conexlink (nom de la plateforme : MyCloudIT)
-[MyCloudIT](https://mycloudit.com) est une plateforme d’automatisation pour les entreprises informatiques qui souhaitent simplifier, optimiser et mettre à l’échelle la migration et la livraison de bureaux à distance, d’applications à distance et d’infrastructures dans le cloud Microsoft Azure. 
+[MyCloudIT](https://mycloudit.com) est une plate-forme d’automatisation pour toosimplify de sociétés informatiques, optimiser et mettre à l’échelle de la migration hello et remise des bureaux à distance, les applications à distance et l’infrastructure dans hello Microsoft Azure Cloud. 
 
-La plateforme MyCloudIT réduit le temps nécessaire au déploiement de 95 %, les coûts liés à Azure de 30 %, et déplace l’infrastructure informatique entière des clients dans le cloud en quelques clics. Les partenaires peuvent désormais gérer les clients à partir d’un tableau de bord global, les utilisateurs finaux de service à travers le monde entier comme jamais auparavant et augmenter leur chiffre d’affaires sans ajouter de surcharge supplémentaire ou nécessiter de formation approfondie à Azure.  
+plateforme de MyCloudIT Hello réduit le temps de déploiement en 95 %, Azure coût de 30 % et déplace de l’infrastructure informatique de leurs clients dans cloud hello retirés au bout de quelques séquences de touches. Les partenaires peuvent désormais gérer les clients à partir d’un tableau de bord global, les utilisateurs finaux de service monde hello comme jamais auparavant et augmenter les revenus sans ajouter une charge supplémentaire ou formation Azure complète.  
 
 > Emplacement principal : Dallas, Texas, États-Unis
 > 
@@ -87,7 +87,7 @@ La plateforme MyCloudIT réduit le temps nécessaire au déploiement de 95 %, le
 
 ### <a name="frame"></a>Frame
 
-Les organisations informatiques des entreprises et du gouvernement, les fournisseurs de services gérés et les principaux éditeurs de logiciels choisissent Frame pour créer et gérer leurs espaces de travail sécurisés et à définition logicielle dans le cloud. Des petites aux grandes entreprises, Frame facilite considérablement l’accès aux applications Windows pour les utilisateurs, sur n’importe quel navigateur et n’importe quel appareil. La plateforme Frame comprend tout ce dont un administrateur a besoin pour déployer des applications à partir du cloud, notamment l’infrastructure Azure et les licences des services Bureau à distance (il est facultatif d’apporter son propre compte Azure et ses propres licences). 
+Les organisations informatiques dans enterprise et gouvernement, fournisseurs de services gérés et principaux fournisseurs de logiciels choisissez toocreate de Frame et gérer leurs espaces de travail sécurisés, défini par logiciel dans le cloud de hello. À partir de toolarge petites organisations, Frame rend très facile toolet utilisateurs accéder aux applications Windows sur n’importe quel navigateur à partir de n’importe quel appareil. Hello plateforme de Frame comprend tout ce dont un administrateur besoins toodeploy applications de cloud hello notamment hello infrastructure Azure et licences des services Bureau à distance (mettre votre propre compte Azure et licences est facultative). 
 
 En savoir plus sur [Frame sur Azure](https://www.fra.me/ara). 
 
@@ -100,12 +100,12 @@ En savoir plus sur [Frame sur Azure](https://www.fra.me/ara).
 > Téléphone : 1-480-269-4668
 
 ### <a name="awingu"></a>Awingu
-Awingu fournit une solution simple d’espace de travail en ligne qui exécute des applications héritées, SaaS et des documents à partir d’un navigateur html5. Ainsi, les applications sont disponibles en toute sécurité, sur tous les types d’appareils. Pour les services SaaS, un large éventail d’options d’authentification unique (SSO) est disponible. De plus, plusieurs systèmes de fichiers (cloud) peuvent être profondément intégrés dans votre espace de travail. En plus d’une mobilité totale, l’espace de travail en ligne riche d’Awingu offre un niveau de sécurité optimal avec des contrôles granulaires (par exemple, téléchargement / chargement), audit d’utilisation complet, Multi-Factor Authentication (par exemple, Azure MFA), enregistrement de session et bien plus. Solution originale, Awingu permet le partage de session d’application et de document pour une collaboration sûre et optimisée.
-Awingu est une solution d’API ouverte, multi-AD et mutualisée. Elle est utilisée par les petites et grandes entreprises, fournisseurs de services Cloud et les [ISV](http://www.isv2saas.com). Ces clients apprécieront particulièrement sa simplicité d’utilisation et d’installation et les faibles coûts de possession.
+Awingu fournit une solution simple d’espace de travail en ligne qui exécute des applications héritées, SaaS et des documents à partir d’un navigateur html5. Ainsi, les applications sont disponibles en toute sécurité, sur tous les types d’appareils. Pour les services SaaS, un large éventail d’options d’authentification unique (SSO) est disponible. De plus, plusieurs systèmes de fichiers (cloud) peuvent être profondément intégrés dans votre espace de travail. Espace de travail en ligne de Awingu enrichi donne suivant toofull mobilité, une sécurité optimale avec contrôles granulaires (par exemple, du téléchargement/chargement), l’utilisation complète de l’audit, l’authentification multifacteur (par exemple, Azure MFA), l’enregistrement de session et bien plus encore. Solution originale, Awingu permet le partage de session d’application et de document pour une collaboration sûre et optimisée.
+Awingu est une solution d’API ouverte, multi-AD et mutualisée. Elle est utilisée par les petites et grandes entreprises, fournisseurs de services Cloud et les [ISV](http://www.isv2saas.com). Ces clients plaira particulièrement hello facile d’utilisation, facilité à installer et à faible coût total de possession.
 
-Awingu All-in-One est [disponible dans Place de marché Azure](https://azuremarketplace.microsoft.com/marketplace/apps/awingu.awingu-arm) avec 2 utilisateurs simultanés intégrés. Des licences supplémentaires sont disponibles via un [large éventail de distributeurs et revendeurs](http://www.awingu.com/reseller).
+Awingu tout-en-un est [disponibles dans Azure Marketplace de hello](https://azuremarketplace.microsoft.com/marketplace/apps/awingu.awingu-arm) avec 2 utilisateurs simultanés intégrés. Des licences supplémentaires sont disponibles via un [large éventail de distributeurs et revendeurs](http://www.awingu.com/reseller).
 
-En savoir plus sur [Awingu comme alternative à Azure RemoteApp](http://alternative-for-azure-remoteapp.awingu.com/).
+En savoir plus sur [Awingu sur comme autre tooAzure RemoteApp](http://alternative-for-azure-remoteapp.awingu.com/).
 
 
 > Emplacement principal : Belgique
@@ -134,20 +134,20 @@ En savoir plus sur [Awingu comme alternative à Azure RemoteApp](http://alternat
 > 
 > **États-Unis** :
 > 
-> 7th floor, 1177 Ave of the Americas,
+> 7 floor, Ave 1177 Hello Amériques,
 > 
 > New York, NY 10036
 > 
 > E-mail : [info.us@awingu.com](mailto:info.us@awingu.com)
 
 ### <a name="microsoft-hosted-service-provider"></a>Fournisseur de services hébergés Microsoft
-Les partenaires d’hébergement offrent généralement un service hébergé entièrement géré de service d’application et bureau Windows, ce qui peut inclure la gestion des ressources Azure, des systèmes d’exploitation, des applications et du support technique en fonction des contrats de licence du partenaire avec Microsoft et d’autres fournisseurs de logiciels, ainsi qu’un contrat de licence de fournisseur de services pour permettre la revente de la licence d’accès SAL. Les informations suivantes fournissent des détails et des informations de contact pour certains des hébergeurs spécialisés dans l’assistance aux clients pour leur migration Azure RemoteApp. Découvrez [la liste actuelle des fournisseurs de services hébergés](http://aka.ms/rdsonazurecertified) qui ont effectué le parcours d’apprentissage et l’évaluation de RDS sur IaaS.  
+Partenaires d’hébergement offrent généralement entièrement géré hébergé bureau Windows et de hello de service d’application, qui peut inclure la gestion des ressources Azure, des systèmes d’exploitation, des applications et de support technique à l’aide du partenaire de hello du Gestionnaire de licences des contrats avec Microsoft et autres fournisseurs de logiciels, ainsi que d’en cours de contrat de licence de fournisseur de services de la licence d’accès abonné (SAL) revente tooallow. Hello ci-après fournit des détails et informations de contact pour certaines des hébergeurs hello spécialisés pour aider les clients avec leur migration d’Azure RemoteApp. Extraire [liste actuelle de hello des fournisseurs de services hébergés](http://aka.ms/rdsonazurecertified) qui terminées hello RDS sur IaaS, chemin d’accès et d’évaluation de la formation.  
 
 ### <a name="citrix-service-provider-program"></a>Programme de fournisseur de services de Citrix
-Le programme de fournisseur de services de Citrix permet aux fournisseurs de services d’offrir la simplicité du cloud computing virtuel aux petites et moyennes entreprises, en leur offrant les services souhaités dans un modèle simple et proposant un paiement à l’utilisation. Les fournisseurs de services Citrix développent leurs entreprises Microsoft SPLA et prolongent leurs investissements sur la plateforme de services de Bureau à distance sur tout appareil, avec un accès en tout lieu, la meilleure prise en charge d’applications disponible, une expérience riche, une meilleure sécurité et une évolutivité accrue. Ainsi, les fournisseurs de services de Citrix attirent plus d’abonnés, améliorent la satisfaction des clients et réduisent les coûts d’exploitation. [En savoir plus](http://www.citrix.com/products/service-providers.html) ou [trouver un partenaire](https://www.citrix.com/buy/partnerlocator.html).
+Hello Citrix Service fournisseur de programme facilite pour simplifier service fournisseurs toodeliver hello virtuel cloud computing tooSMBs, offre les services hello qu’ils souhaitent dans un modèle simple et de paiement à l’utilisation. Les fournisseurs de services de Citrix développer leur activité Microsoft SPLA et développer leurs investissements de plateforme des services Bureau à distance avec n’importe quel appareil, accès en tout lieu, hello plus large prise en charge des applications une expérience enrichie, renforcer la sécurité et une extensibilité accrue. Ainsi, les fournisseurs de services de Citrix attirent plus d’abonnés, améliorent la satisfaction des clients et réduisent les coûts d’exploitation. [En savoir plus](http://www.citrix.com/products/service-providers.html) ou [trouver un partenaire](https://www.citrix.com/buy/partnerlocator.html).
 
 #### <a name="acuutech"></a>Acuutech
-[Acuutech](http://www.acuutech.com) se spécialise dans la fourniture de solutions de bureaux hébergés, en livrant des expériences complètes d’application de bureau et d’éditeurs de logiciels construites sur la technologie Microsoft pour une base de clients globale, à partir d’Azure et leurs propres centres de données.
+[Acuutech](http://www.acuutech.com) spécialisée de fournir des solutions de bureau hébergées, fourniture de bureau et applications ISV expériences reposant sur la technologie tooa global client Microsoft base à partir d’Azure et de leurs propres centres de données.
 
 > Emplacements principaux : Londres, Royaume-Uni ; Singapour ; Houston, Texas
 > 
@@ -173,7 +173,7 @@ Le programme de fournisseur de services de Citrix permet aux fournisseurs de ser
 >   
 > 100 Cecil Street, #09-02, 
 >   
-> The Globe, Singapore 069532
+> Hello Globe, Singapour 069532
 > 
 > Téléphone : +65 6709 4933
 >   
@@ -186,7 +186,7 @@ Le programme de fournisseur de services de Citrix permet aux fournisseurs de ser
 > Téléphone : +1 713 691 0800
 
 #### <a name="aspex"></a>ASPEX
-[ASPEX](http://www.aspex.be/en) se spécialise dans les éditeurs de logiciels en transition vers le cloud et ceux cherchant à optimiser leurs configurations cloud actuelles. ASPEX offre un large éventail de services gérés, d’opérations de développement et de conseil.  
+[ASPEX](http://www.aspex.be/en) spécialisé dans les éditeurs de logiciels en cours de transition toohello Cloud et ISV' recherche toooptimize leurs configurations de cloud en cours. ASPEX offre un large éventail de services gérés, d’opérations de développement et de conseil.  
 
 > Emplacement principal : Anvers, Belgique
 > 
@@ -207,8 +207,8 @@ Le programme de fournisseur de services de Citrix permet aux fournisseurs de ser
 > Web : [http://cloud.aspex.be/contact-ara-0](http://cloud.aspex.be/contact-ara-0)
 
 #### <a name="caasecom"></a>Caase.com
-[Caase.com](http://www.caase.com/) accompagne les entreprises, les administrations locales, les organismes non gouvernementaux et les établissements de santé dans leur quête d’une utilisation plus avertie de Microsoft Cloud, à savoir, être productif n’importe où et en toute sécurisé, avec n’importe quel appareil et pour un faible coût informatique. Caase.com est un vrai spécialiste de Microsoft Office 365, Azure, Enterprise Mobility + Security et Windows. Caase.com propose à ses clients du conseil, des services de migration, des programmes d’adoption, des formations, des services de gestion et de support dans l’optique de créer une plateforme optimisée et sécurisée favorisant la collaboration entre leurs employés, leurs partenaires et leurs fournisseurs.
-Caase.com est l’architecte d’Azure Remote Worskpace (espace de travail mobile) et de Digital Workplace (intranet social). Ces deux solutions, qui s’accompagnent d’un programme d’adoption, assurent à leurs utilisateurs une transition vers Microsoft Cloud des plus agréables, concluantes et efficaces.
+[Caase.com](http://www.caase.com/) aide les entreprises, administrations locales, des organismes non gouvernementaux et les établissements de soins de santé avec leur voyage vers un moyen plus intelligent de travail Bonjour Cloud Microsoft. être productif n’importe où et en toute sécurisé, avec n’importe quel appareil et pour un faible coût informatique. Caase.com est un vrai spécialiste de Microsoft Office 365, Azure, Enterprise Mobility + Security et Windows. Caase.com propose à ses clients du conseil, des services de migration, des programmes d’adoption, des formations, des services de gestion et de support dans l’optique de créer une plateforme optimisée et sécurisée favorisant la collaboration entre leurs employés, leurs partenaires et leurs fournisseurs.
+Caase.com est maîtrisée hello de hello espace de travail Azure à distance (espace de travail mobile) et hello espace de travail numérique (Social Intranet). Les deux solutions – accomplies avec adoption – sont foundation hello qui garantit que les utilisateurs de hello de ces solutions ont expérience plus agréable, réussie et efficace de hello dans leur toohello itinéraire Cloud Microsoft.
 Vous trouverez un texte de présentation de ces solutions, ainsi qu’une vidéo, à l’adresse suivante (en néerlandais) : http://caase.com/over-ons/
 
 > Région d’exploitation : siège aux Pays-Bas, portée mondiale
@@ -232,7 +232,7 @@ Vous trouverez un texte de présentation de ces solutions, ainsi qu’une vidéo
 
 
 #### <a name="nerdio"></a>Nerdio
-[Nerdio for Azure](http://getnerdio.com/nfa/) est une plateforme d’automatisation informatique qui facilite considérablement l’approvisionnement, la gestion et l’optimisation des environnements informatiques complets dans Microsoft Cloud. Une paire d’heures suffit pour mettre en place des bureaux virtuels, des applications distantes et des serveurs. Grâce au portail d’administration Nerdio, vous administrez l’environnement en quelques clics. La mise à l’échelle automatique et intelligente permet quant à elle d’économiser entre 40 et 60 % de ressources Azure IaaS.
+[Nerdio pour Azure](http://getnerdio.com/nfa/) est une plate-forme d’automatisation informatique qui remet ridiculement simple mise en service, la gestion et l’optimisation des environnements informatiques complets Bonjour cloud de Microsoft. Une paire d’heures suffit pour mettre en place des bureaux virtuels, des applications distantes et des serveurs. Administrer l’environnement hello dans trois clics ou moins avec le portail d’administration Nerdio. Utilisez intelligente montée en puissance automatique et enregistrez les 40 % de too60 dans les ressources IaaS Azure.
 
 > Site principal : Chicago, IL. Région d’exploitation : monde. Statut partenaire : [Gold](https://partnercenter.microsoft.com/en-us/pcv/solution-providers/adar-inc_341c9afa-f12c-46f5-8f7b-3f9ef59a66a5/3a7ae479-3ac2-42f6-84e2-d456dc7424e1) Fournisseur de services Microsoft Cloud : oui
 > 
@@ -272,7 +272,7 @@ Vous trouverez un texte de présentation de ces solutions, ainsi qu’une vidéo
 > 
 > 71 LP Badhoevedorp
 > 
-> Pays-Bas
+> Hello pays-bas
 > 
 > Téléphone : +31 20 547 8060 
 > 
@@ -292,7 +292,7 @@ Vous trouverez un texte de présentation de ces solutions, ainsi qu’une vidéo
 > 
 > 105 Cecil Street
 >    
-> \#11-08, The Octagon
+> \#11-08, hello octogone
 > 
 > Singapour 069534
 > 
@@ -305,7 +305,7 @@ Vous trouverez un texte de présentation de ces solutions, ainsi qu’une vidéo
 > Téléphone - Nouvelle-Zélande : +64 4 488 0321
 > 
 ## <a name="need-more-help"></a>Besoin de plus d’aide ?
-Toujours besoin d’aide pour choisir ou des questions supplémentaires ? Utilisez l’une des méthodes suivantes pour obtenir de l’aide. 
+Toujours besoin d’aide pour choisir ou des questions supplémentaires ? Utilisez une des hello suivant les méthodes tooget aide. 
 
 1. Envoyez-nous un e-mail à l’adresse [arainfo@microsoft.com](mailto:arainfo@microsoft.com).
 2. Contacter le [support Azure](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade). Commencez par créer un [ticket d’assistance Azure](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade).

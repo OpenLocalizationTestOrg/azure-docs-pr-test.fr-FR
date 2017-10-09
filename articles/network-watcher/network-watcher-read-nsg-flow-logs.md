@@ -1,6 +1,6 @@
 ---
-title: "Lire les journaux de flux de groupe de sécurité réseau | Documents Microsoft"
-description: "Cet article explique comment analyser les journaux de flux de groupe de sécurité réseau"
+title: "aaaRead groupe de sécurité réseau de flux de journaux | Documents Microsoft"
+description: "Cet article explique le fonctionnement des journaux des flux de groupe de sécurité réseau tooparse"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -13,69 +13,69 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/25/2017
 ms.author: gwallace
-ms.openlocfilehash: 9bb48157b2b8e483e063058f761c3a8f531927f9
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: b4f0f64639c7b2a6b4db50e54d15056bfd809e48
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="read-nsg-flow-logs"></a>Lire des journaux de flux NSG
 
-Découvrez comment lire les entrées de journaux de flux de groupe de sécurité réseau avec PowerShell.
+Découvrez comment les flux de groupe de sécurité réseau tooread enregistre les entrées avec PowerShell.
 
-Les journaux de flux de groupe de sécurité réseau sont stockés dans un compte de stockage dans de [objets blob de bloc](/rest/api/storageservices/understanding-block-blobs--append-blobs--and-page-blobs.md#about-block-blobs). Les objets blob de blocs sont composés de blocs plus petits. Chaque journal est un objet blob de blocs séparé généré toutes les heures. Les nouveaux journaux sont créés toutes les heures, les journaux sont mis à jour avec les nouvelles entrées toutes les quelques minutes avec les dernières données. Dans cet article vous allez apprendre à lire une partie des journaux de flux.
+Les journaux de flux de groupe de sécurité réseau sont stockés dans un compte de stockage dans de [objets blob de bloc](/rest/api/storageservices/understanding-block-blobs--append-blobs--and-page-blobs.md#about-block-blobs). Les objets blob de blocs sont composés de blocs plus petits. Chaque journal est un objet blob de blocs séparé généré toutes les heures. Nouveaux journaux sont créés toutes les heures, les journaux de hello sont mis à jour avec les nouvelles entrées quelques minutes avec les données les plus récentes hello. Dans cet article vous apprendre comment les parties tooread Hello le flux de journaux.
 
 ## <a name="scenario"></a>Scénario
 
-Dans le scénario suivant, vous disposez d’un exemple de journal de flux stocké dans un compte de stockage. nous parcourons comment vous pouvez lire sélectivement les derniers événements dans les journaux de flux de groupe de sécurité réseau. Dans cet article, nous allons utiliser PowerShell, toutefois, les concepts abordés dans l’article ne sont pas limités au langage de programmation et sont applicables à tous les langages pris en charge par les API de stockage Azure
+Bonjour scénario, vous disposez d’un exemple de journal de flux qui est stocké dans un compte de stockage. Nous parcourez comment vous pouvez lire sélectivement les événements les plus récents hello dans les journaux de flux de groupe de sécurité réseau. Dans cet article, nous allons utiliser PowerShell, toutefois, les concepts de hello abordés dans l’article de hello ne sont pas limités toohello langage de programmation et tooall applicable langues prises en charge par hello API de stockage Azure
 
 ## <a name="setup"></a>Paramétrage
 
-Avant de commencer, la journalisation des flux de groupe de sécurité réseau doit être activée sur un ou plusieurs groupes de sécurité réseau de votre compte. Pour obtenir des instructions sur l’activation des journaux de flux de sécurité réseau, consultez l’article suivant [Introduction to flow logging for Network Security Groups](network-watcher-nsg-flow-logging-overview.md) (Introduction à la journalisation des flux pour les groupes de sécurité réseau).
+Avant de commencer, la journalisation des flux de groupe de sécurité réseau doit être activée sur un ou plusieurs groupes de sécurité réseau de votre compte. Pour obtenir des instructions sur l’activation de la sécurité du réseau de flux de journaux, consultez l’article suivant de toohello : [journalisation tooflow de présentation pour les groupes de sécurité réseau](network-watcher-nsg-flow-logging-overview.md).
 
-## <a name="retrieve-the-block-list"></a>Récupérer la liste de blocs
+## <a name="retrieve-hello-block-list"></a>Récupérer la liste des blocs hello
 
-La commande PowerShell suivante définit les variables nécessaires pour interroger l’objet blob des journaux de flux de groupe de sécurité réseau et répertorier les blocs dans l’objet blob de blocs [CloudBlockBlob](https://docs.microsoft.com/en-us/dotnet/api/microsoft.windowsazure.storage.blob.cloudblockblob?view=azurestorage-8.1.3). Mettez à jour le script pour contenir des valeurs valides pour votre environnement.
+Hello suivant définit les variables hello PowerShell nécessaires blob et la liste des blocs hello dans hello du journal tooquery hello flux du groupe de sécurité réseau [CloudBlockBlob](https://docs.microsoft.com/en-us/dotnet/api/microsoft.windowsazure.storage.blob.cloudblockblob?view=azurestorage-8.1.3) objet blob de blocs. Mettre à jour hello script toocontain les valeurs valides pour votre environnement.
 
 ```powershell
-# The SubscriptionID to use
+# hello SubscriptionID toouse
 $subscriptionId = "00000000-0000-0000-0000-000000000000"
 
-# Resource group that contains the Network Security Group
+# Resource group that contains hello Network Security Group
 $resourceGroupName = "<resourceGroupName>"
 
-# The name of the Network Security Group
+# hello name of hello Network Security Group
 $nsgName = "NSGName"
 
-# The storage account name that contains the NSG logs
+# hello storage account name that contains hello NSG logs
 $storageAccountName = "<storageAccountName>" 
 
-# The date and time for the log to be queried, logs are stored in hour intervals.
+# hello date and time for hello log toobe queried, logs are stored in hour intervals.
 [datetime]$logtime = "06/16/2017 20:00"
 
-# Retrieve the primary storage account key to access the NSG logs
+# Retrieve hello primary storage account key tooaccess hello NSG logs
 $StorageAccountKey = (Get-AzureRmStorageAccountKey -ResourceGroupName $resourceGroupName -Name $storageAccountName).Value[0]
 
-# Setup a new storage context to be used to query the logs
+# Setup a new storage context toobe used tooquery hello logs
 $ctx = New-AzureStorageContext -StorageAccountName $StorageAccountName -StorageAccountKey $StorageAccountKey
 
 # Container name used by NSG flow logs
 $ContainerName = "insights-logs-networksecuritygroupflowevent"
 
-# Name of the blob that contains the NSG flow log
+# Name of hello blob that contains hello NSG flow log
 $BlobName = "resourceId=/SUBSCRIPTIONS/${subscriptionId}/RESOURCEGROUPS/${resourceGroupName}/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/${nsgName}/y=$($logtime.Year)/m=$(($logtime).ToString("MM"))/d=$(($logtime).ToString("dd"))/h=$(($logtime).ToString("HH"))/m=00/PT1H.json"
 
-# Gets the storage blog
+# Gets hello storage blog
 $Blob = Get-AzureStorageBlob -Context $ctx -Container $ContainerName -Blob $BlobName
 
-# Gets the block blog of type 'Microsoft.WindowsAzure.Storage.Blob.CloudBlob' from the storage blob
+# Gets hello block blog of type 'Microsoft.WindowsAzure.Storage.Blob.CloudBlob' from hello storage blob
 $CloudBlockBlob = [Microsoft.WindowsAzure.Storage.Blob.CloudBlockBlob] $Blob.ICloudBlob
 
-# Stores the block list in a variable from the block blob.
+# Stores hello block list in a variable from hello block blob.
 $blockList = $CloudBlockBlob.DownloadBlockList()
 ```
 
-La variable `$blockList` renvoie une liste des blocs dans l’objet blob. Chaque objet blob de blocs contient au moins deux blocs.  Le premier bloc a une longueur de `21` octets, ce bloc contient les crochets d’ouverture du journal json. L’autre bloc contient les crochets fermant avec une longueur de `9` octets.  Comme vous pouvez le constater, le journal d’exemple suivant comporte sept entrées, chacune étant une entrée individuelle. Toutes les nouvelles entrées dans le journal sont ajoutées à la fin, juste avant le dernier bloc.
+Hello `$blockList` variable renvoie une liste de blocs de hello dans l’objet blob de hello. Chaque objet blob de blocs contient au moins deux blocs.  Hello premier bloc a une longueur de `21` octets, ce bloc contient hello ouvrant entre crochets du journal de json hello. Hello autres blocs est hello crochet fermant et a une longueur de `9` octets.  Comme vous pouvez le voir hello suivant l’exemple de journal comporte sept entrées, chacun étant une entrée individuelle. Toutes les nouvelles entrées dans le journal de hello sont ajoutées fin toohello juste avant le dernier bloc de hello.
 
 ```
 Name                                         Length Committed
@@ -91,45 +91,45 @@ Mzk1YzQwM2U0ZWY1ZDRhOWFlMTNhYjQ3OGVhYmUzNjk=   2675      True
 ZjAyZTliYWE3OTI1YWZmYjFmMWI0MjJhNzMxZTI4MDM=      9      True
 ```
 
-## <a name="read-the-block-blob"></a>Lire l’objet blob de blocs
+## <a name="read-hello-block-blob"></a>Objet blob de blocs en lecture hello
 
-Ensuite, nous avons besoin de lire la variable `$blocklist` pour récupérer les données. Dans cet exemple que nous itérons dans la liste de blocs, lisez les octets de chaque bloc et estimez-les dans un tableau. Nous utilisons la méthode [DownloadRangeToByteArray](/dotnet/api/microsoft.windowsazure.storage.blob.cloudblob.downloadrangetobytearray?view=azurestorage-8.1.3#Microsoft_WindowsAzure_Storage_Blob_CloudBlob_DownloadRangeToByteArray_System_Byte___System_Int32_System_Nullable_System_Int64__System_Nullable_System_Int64__Microsoft_WindowsAzure_Storage_AccessCondition_Microsoft_WindowsAzure_Storage_Blob_BlobRequestOptions_Microsoft_WindowsAzure_Storage_OperationContext_) pour récupérer les données.
+Ensuite, nous devons tooread hello `$blocklist` les données de variable tooretrieve salutation. Dans cet exemple que nous itérer la liste de blocage hello, de lire les octets de hello dans chaque bloc et les récit dans un tableau. Nous utilisons hello [DownloadRangeToByteArray](/dotnet/api/microsoft.windowsazure.storage.blob.cloudblob.downloadrangetobytearray?view=azurestorage-8.1.3#Microsoft_WindowsAzure_Storage_Blob_CloudBlob_DownloadRangeToByteArray_System_Byte___System_Int32_System_Nullable_System_Int64__System_Nullable_System_Int64__Microsoft_WindowsAzure_Storage_AccessCondition_Microsoft_WindowsAzure_Storage_Blob_BlobRequestOptions_Microsoft_WindowsAzure_Storage_OperationContext_) données de méthode tooretrieve hello.
 
 ```powershell
-# Set the size of the byte array to the largest block
+# Set hello size of hello byte array toohello largest block
 $maxvalue = ($blocklist | measure Length -Maximum).Maximum
 
-# Create an array to store values in
+# Create an array toostore values in
 $valuearray = @()
 
-# Define the starting index to track the current block being read
+# Define hello starting index tootrack hello current block being read
 $index = 0
 
-# Loop through each block in the block list
+# Loop through each block in hello block list
 for($i=0; $i -lt $blocklist.count; $i++)
 {
 
-# Create a byte array object to story the bytes from the block
+# Create a byte array object toostory hello bytes from hello block
 $downloadArray = New-Object -TypeName byte[] -ArgumentList $maxvalue
 
-# Download the data into the ByteArray, starting with the current index, for the number of bytes in the current block. Index is increased by 3 when reading to remove preceding comma.
+# Download hello data into hello ByteArray, starting with hello current index, for hello number of bytes in hello current block. Index is increased by 3 when reading tooremove preceding comma.
 $CloudBlockBlob.DownloadRangeToByteArray($downloadArray,0,$index+3,$($blockList[$i].Length-1)) | Out-Null
 
-# Increment the index by adding the current block length to the previous index
+# Increment hello index by adding hello current block length toohello previous index
 $index = $index + $blockList[$i].Length
 
-# Retrieve the string from the byte array
+# Retrieve hello string from hello byte array
 
 $value = [System.Text.Encoding]::ASCII.GetString($downloadArray)
 
-# Add the log entry to the value array
+# Add hello log entry toohello value array
 $valuearray += $value
 }
 ```
 
-Maintenant le tableau `$valuearray` contient la valeur de chaîne de chaque bloc. Pour vérifier l’entrée, enregistrez le deuxième à la dernière valeur du tableau en exécutant `$valuearray[$valuearray.Length-2]`. Nous ne souhaitons pas que la dernière valeur soit simplement le crochet fermant.
+Maintenant hello `$valuearray` tableau contient la valeur de chaîne hello de chaque bloc. entrée de hello tooverify get hello deuxième toohello dernière valeur du tableau hello en exécutant `$valuearray[$valuearray.Length-2]`. Nous ne souhaitez pas que la dernière valeur de hello est simplement hello crochet droit.
 
-Les résultats de cette valeur sont affichés dans l’exemple suivant :
+les résultats de Hello de cette valeur s’affichent dans hello l’exemple suivant :
 
 ```json
         {
@@ -151,11 +151,11 @@ A","1497646742,10.0.0.4,168.62.32.14,44942,443,T,O,A","1497646742,10.0.0.4,52.24
         }
 ```
 
-Ce scénario est un exemple montrant comment lire les entrées dans les journaux de flux de groupe de sécurité réseau sans avoir à analyser l’ensemble du journal. Vous pouvez lire les nouvelles entrées dans le journal comme elles sont écrites à l’aide de l’ID de bloc ou en effectuant le suivi de la longueur des blocs stockés dans l’objet blob de blocs. Cela vous permet de lire uniquement les nouvelles entrées.
+Ce scénario est un exemple de comment tooread les entrées dans le groupe de sécurité réseau de flux de journaux sans avoir journal complet de tooparse hello. Vous pouvez lire les nouvelles entrées de journal de hello qu’ils sont écrits à l’aide des ID de bloc hello ou en effectuant le suivi de la longueur de blocs stockées dans l’objet blob de blocs hello hello. Cela vous permet de tooread nouvelles entrées hello uniquement.
 
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Visiter [visualiser les journaux de flux de NSG de l’Observateur réseau Azure à l’aide d’outils open source](network-watcher-visualize-nsg-flow-logs-open-source-tools.md) pour en savoir plus sur d’autres moyens pour afficher les journaux de flux NSG.
+Visitez [visualiser les journaux de flux de NSG de l’Observateur réseau Azure à l’aide d’outils open source](network-watcher-visualize-nsg-flow-logs-open-source-tools.md) toolearn en savoir plus sur les autres façons de tooview groupe de sécurité réseau de flux de journaux.
 
-Pour en savoir plus sur les objets blob de stockage, visitez : [liaisons de stockage d’objets blob de fonction Azure](../azure-functions/functions-bindings-storage-blob.md)
+toolearn plus sur les objets BLOB de stockage, visitez : [liaisons de stockage d’objets Blob de fonctions Azure](../azure-functions/functions-bindings-storage-blob.md)

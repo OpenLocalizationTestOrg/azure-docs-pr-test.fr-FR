@@ -1,0 +1,2 @@
+Vous pouvez résoudre votre déploiement en examinant les journaux d’audit de hello ou des opérations de déploiement hello. Cette rubrique illustre les deux méthodes. Pour plus d’aide sur la résolution des erreurs de déploiement particulier, consultez [résoudre les erreurs courantes lors du déploiement de ressources tooAzure avec Azure Resource Manager](../articles/azure-resource-manager/resource-manager-common-deployment-errors.md).
+

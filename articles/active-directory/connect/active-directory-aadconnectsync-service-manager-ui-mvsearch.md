@@ -1,6 +1,6 @@
 ---
-title: "La recherche de métaverse d’Azure AD Connect Sync Service Manager"
-description: "Comprendre l’onglet Recherche de métaverse dans Synchronization Service Manager pour Azure AD Connect."
+title: "Recherche d’Azure AD Connect Sync Service Manager métaverse aaaThe | Des documents Microsoft"
+description: "Comprendre hello onglet recherche de métaverse Bonjour Synchronization Service Manager pour Azure AD Connect."
 services: active-directory
 documentationcenter: 
 author: andkjell
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/13/2017
 ms.author: billmath
-ms.openlocfilehash: faf66f19ab1fe5c38273b22c1ff8aeff4d26f1ea
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 5cc115344255ecbb3d13d11eaa4bbe95bdbefe22
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sync-service-manager-metaverse-search"></a>Recherche de métaverse de Sync Service Manager
 
 ![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/mvsearch.png)
 
-L’onglet de recherche de métaverse est utile pour la résolution des problèmes liés aux données. Dans la partie supérieure, vous pouvez créer une requête basée sur une combinaison d’attributs. Quand vous êtes satisfait de votre requête, cliquez sur **Recherche**. Le résultat s’affiche dans la grille inférieure. Vous pouvez sélectionner les colonnes qui doivent être visibles à l’aide de **Paramètres de colonne**.
+onglet de recherche de métaverse Hello est utile pour la résolution des problèmes liés aux données. Dans la moitié supérieure de hello, vous pouvez créer une requête basée sur une combinaison d’attributs. Quand vous êtes satisfait de votre requête, cliquez sur **Recherche**. résultat de Hello est visible dans la grille inférieure de hello. Vous pouvez sélectionner les colonnes qui doivent être visibles à l’aide de **Paramètres de colonne**.
 
-Dans les résultats de la recherche, sélectionnez un objet et **Propriétés** pour afficher les [propriétés de l’objet métaverse](active-directory-aadconnectsync-troubleshoot-object-not-syncing.md#metaverse-object-properties).
+Dans les résultats de recherche hello, sélectionnez un objet et **propriétés** toosee hello [propriétés d’objet métaverse](active-directory-aadconnectsync-troubleshoot-object-not-syncing.md#metaverse-object-properties).
 
 ## <a name="next-steps"></a>Étapes suivantes
-En savoir plus sur la configuration de la [synchronisation Azure AD Connect](active-directory-aadconnectsync-whatis.md) .
+En savoir plus sur hello [synchronisation Azure AD Connect](active-directory-aadconnectsync-whatis.md) configuration.
 
 En savoir plus sur l’ [intégration de vos identités locales avec Azure Active Directory](active-directory-aadconnect.md).

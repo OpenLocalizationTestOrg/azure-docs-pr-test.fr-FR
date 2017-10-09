@@ -1,6 +1,6 @@
 ---
 title: "Sauvegarde Azure : sauvegarde cohérente des applications des machines virtuelles Linux | Microsoft Docs"
-description: "Utilisez des scripts pour garantir des sauvegardes cohérentes des applications sur Azure pour vos machines virtuelles Linux. Les scripts s’appliquent uniquement aux machines virtuelles Linux dans un déploiement de Gestionnaire de ressources. Les scripts ne s’appliquent pas aux machines virtuelles Windows ou aux déploiements de Service Manager. Cet article passe en revue les étapes de configuration des scripts, y compris la résolution des problèmes."
+description: "Utilisez des scripts tooguarantee sauvegarde cohérente au niveau de l’application tooAzure, pour vos machines virtuelles de Linux. les scripts de Hello s’appliquent tooLinux uniquement des machines virtuelles dans un déploiement du Gestionnaire de ressources ; les scripts Hello ne s’appliquent pas tooWindows machines virtuelles ou aux déploiements de service manager. Cet article vous guide tout au long des étapes de hello pour les scripts de hello, notamment la résolution des problèmes de configuration."
 services: backup
 documentationcenter: dev-center-name
 author: anuragmehrotra
@@ -14,86 +14,86 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 4/12/2017
 ms.author: anuragm;markgal
-ms.openlocfilehash: 378c65bec8fd1f880ed459e76f5e4b5d85e49d2a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d557dd973364d79bb4d8ce954f648de835dd345f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="application-consistent-backup-of-azure-linux-vms-preview"></a>Sauvegarde cohérente des applications des machines virtuelles Linux Azure (version préliminaire)
 
-Cet article traite de la structure de pré-scripts et post-scripts de Linux, ainsi que de la façon dont elle peut être utilisée pour effectuer des sauvegardes cohérentes d’applications de machines virtuelles Linux Azure.
+Cet article traite de hello script avant de Linux et script postérieur à framework, et comment il peut être tootake utilisé des sauvegardes cohérentes avec les applications d’ordinateurs virtuels Linux de Azure.
 
 > [!Note]
-> La structure de pré-scripts et post-scripts est prise en charge uniquement pour les machines virtuelles déployées par Azure Resource Manager. Les scripts pour la cohérence d’application ne sont pas pris en charge pour les machines virtuelles déployées par Service Manager ou les machines virtuelles Windows.
+> infrastructure de script avant et après script Hello est pris en charge uniquement pour les machines virtuelles déployées par le Gestionnaire de ressources Azure de Linux. Les scripts pour la cohérence d’application ne sont pas pris en charge pour les machines virtuelles déployées par Service Manager ou les machines virtuelles Windows.
 >
 
-## <a name="how-the-framework-works"></a>Fonctionnement de l’infrastructure
+## <a name="how-hello-framework-works"></a>Fonctionne de l’infrastructure de hello
 
-L’infrastructure fournit une option permettant d’exécuter des pré/post-scripts personnalisés lors de la capture d’instantanés de machines virtuelles. Les pré-scripts sont exécutés juste avant la capture d’instantané de machine virtuelle, et les post-scripts juste après la capture. Cela vous permet de contrôler votre environnement et l’application lorsque vous prenez des instantanés de machines virtuelles.
+infrastructure de Hello fournit une option toorun des scripts personnalisés avant et après des scripts pendant que vous prenez des captures instantanées de machine virtuelle. Les scripts sont exécutés juste avant que vous prenez un instantané VM hello et post-scripts sont exécutées immédiatement après avoir appliqué les instantané d’ordinateur virtuel hello. Cela donne hello toocontrol de flexibilité votre environnement et l’application pendant que vous prenez des captures instantanées de machine virtuelle.
 
-Dans ce scénario, il est important d’assurer la sauvegarde cohérente des applications de la machine virtuelle. Le pré-script peut appeler les API natives de l’application pour suspendre les E/S et vider le contenu de la mémoire sur le disque. Cela garantit que l’instantané est cohérent avec l’application (autrement dit, que l’application est lancée lorsque la machine virtuelle est démarrée après la restauration). Le post-script permet de libérer les E/S. Il effectue cela à l’aide des API d’applications natives, afin que l’application puisse reprendre son fonctionnement normal après la capture instantanée de la machine virtuelle.
+Dans ce scénario, il est important tooensure cohérents au niveau de l’application sauvegarde de machine virtuelle. script de Pre Hello peut appeler des natif de l’application API tooquiesce hello IOs et vider toohello de contenu en mémoire disque. Cela garantit qu’un instantané hello est cohérente avec les applications (autrement dit, cette application hello s’affiche quand hello machine virtuelle est démarré après la restauration). Post-script de peut être utilisé toothaw hello IOs. Pour cela, à l’aide des API de l’application en mode natif afin que l’application hello peut reprendre la capture instantanée de post-VM les opérations normales.
 
-## <a name="steps-to-configure-pre-script-and-post-script"></a>Procédure de configuration du pré-script et du post-script
+## <a name="steps-tooconfigure-pre-script-and-post-script"></a>Étapes tooconfigure script préalable et le script postérieur à
 
-1. Connectez-vous en tant qu’utilisateur root de la machine virtuelle Linux que vous souhaitez sauvegarder.
+1. Se connecter comme hello racine utilisateur toohello VM Linux que vous souhaitez tooback des.
 
-2. Téléchargez **VMSnapshotScriptPluginConfig.json** à partir de [GitHub](https://github.com/MicrosoftAzureBackup/VMSnapshotPluginConfig) et copiez-le dans le dossier **/etc/azure** sur toutes les machines virtuelles que vous prévoyez de sauvegarder. Créez le répertoire **/etc/azure** s’il n’existe pas.
+2. Télécharger **VMSnapshotScriptPluginConfig.json** de [GitHub](https://github.com/MicrosoftAzureBackup/VMSnapshotPluginConfig), puis copiez toohello **/etc/azure** dossier sur tous les ordinateurs virtuels hello que vous allez tooback des. Créer hello **/etc/azure** active s’il n’existe pas déjà.
 
-3. Copiez le pré-script et le post-script de votre application sur toutes les machines virtuelles que vous prévoyez de sauvegarder. Vous pouvez copier les scripts vers n’importe quel emplacement sur la machine virtuelle. Veillez à mettre à jour le chemin d’accès complet des fichiers de script dans le fichier **VMSnapshotScriptPluginConfig.json**.
+3. Copiez hello script avant et après de script pour votre application sur hello toutes les machines virtuelles que vous envisagez de tooback des. Vous pouvez copier l’emplacement tooany des scripts hello sur hello machine virtuelle. Être tooupdate vraiment hello chemin d’accès complet hello des fichiers de script Bonjour **VMSnapshotScriptPluginConfig.json** fichier.
 
-4. Vérifiez les autorisations suivantes pour ces fichiers :
+4. Vérifiez que hello les autorisations pour ces fichiers suivantes :
 
-   - **VMSnapshotScriptPluginConfig.json** : autorisation « 600 ». Par exemple, seul l’utilisateur « racine » doit avoir des autorisations de « lecture » et « d’écriture » pour ce fichier, et aucun utilisateur ne doit disposer des autorisations « d’exécution ».
+   - **VMSnapshotScriptPluginConfig.json** : autorisation « 600 ». Par exemple, seul l’utilisateur « racine » doit avoir les autorisations « lecture » et « écriture » un fichier toothis, et aucun utilisateur ne doit disposer d’autorisations « Exécuter ».
 
-   - **Fichier de pré-script** : autorisation « 700 ».  Par exemple, seul l’utilisateur « racine » doit avoir les autorisations de « lecture », « d’écriture » et « d’exécution » pour ce fichier.
+   - **Fichier de pré-script** : autorisation « 700 ».  Par exemple, seul l’utilisateur « racine » doit avoir « lecture », « écriture » et « exécuter » le fichier toothis d’autorisations.
   
-   - **Post-script** : autorisation « 700 ». Par exemple, seul l’utilisateur « racine » doit avoir les autorisations de « lecture », « d’écriture » et « d’exécution » pour ce fichier.
+   - **Post-script** : autorisation « 700 ». Par exemple, seul l’utilisateur « racine » doit avoir « lecture », « écriture » et « exécuter » le fichier toothis d’autorisations.
 
    > [!Important]
-   > L’infrastructure offre beaucoup de puissance aux utilisateurs. Il est donc important qu’il soit sécurisé et que seul l’utilisateur « root » ait accès aux fichiers critiques de JSON et de script.
-   > Si les conditions précédentes ne sont pas remplies, le script ne s’exécute pas. Cela entraîne une sauvegarde du système de fichiers/point cohérent d’incident.
+   > infrastructure de Hello donne aux utilisateurs beaucoup d’énergie. Il est important qu’il est sécurisé et que seul l’utilisateur « racine » a accès toocritical JSON et des fichiers script.
+   > Si les exigences précédentes hello ne sont pas remplies, le script de hello ne s’exécute pas. Cela entraîne une sauvegarde du système de fichiers/point cohérent d’incident.
    >
 
 5. Configurez **VMSnapshoScriptPluginConfig.json** comme décrit ici :
     - **pluginName** : laissez ce champ tel quel, sans quoi vos scripts ne fonctionneront pas comme prévu.
 
-    - **preScriptLocation** : fournissez le chemin d’accès complet du pré-script sur la machine virtuelle qui sera sauvegardée.
+    - **preScriptLocation**: fournissent de chemin d’accès complet de hello du script avant de hello sur hello VM de cours toobe sauvegardé.
 
-    - **postScriptLocation** : fournissez le chemin d’accès complet du post-script sur la machine virtuelle qui sera sauvegardée.
+    - **postScriptLocation**: fournissent de chemin d’accès complet de hello du post-script de hello sur hello VM de cours toobe sauvegardé.
 
-    - **preScriptParams** : fournissez les paramètres facultatifs qui doivent être transmis au pré-script. Tous les paramètres doivent être entre guillemets et être séparés par des virgules s’il existe plusieurs paramètres.
+    - **preScriptParams**: fournir des paramètres facultatifs hello nécessitant toobe passé script avant de toohello. Tous les paramètres doivent être entre guillemets et être séparés par des virgules s’il existe plusieurs paramètres.
 
-    - **postScriptParams** : fournissez les paramètres facultatifs qui doivent être transmis au post-script. Tous les paramètres doivent être entre guillemets et être séparés par des virgules s’il existe plusieurs paramètres.
+    - **postScriptParams**: fournir des paramètres facultatifs hello nécessitant toobe passé toohello postérieurs aux scripts. Tous les paramètres doivent être entre guillemets et être séparés par des virgules s’il existe plusieurs paramètres.
 
-    - **preScriptNoOfRetries** : définissez le nombre de fois où le pré-script doit être traité à nouveau en cas d’erreur avant de terminer. Zéro signifie qu’une seule tentative a lieu et qu’aucune nouvelle tentative n’a lieu en cas d’échec.
+    - **preScriptNoOfRetries**: définir nombre hello de script avant de hello doit être retentée si une erreur se produit avant la fin d’exécution. Zéro signifie qu’une seule tentative a lieu et qu’aucune nouvelle tentative n’a lieu en cas d’échec.
 
-    - **postScriptNoOfRetries** : définissez le nombre de fois où le post-script doit être traité à nouveau en cas d’erreur avant de terminer. Zéro signifie qu’une seule tentative a lieu et qu’aucune nouvelle tentative n’a lieu en cas d’échec.
+    - **postScriptNoOfRetries**: définir nombre hello de post-script de hello doit être retentée si une erreur se produit avant la fin d’exécution. Zéro signifie qu’une seule tentative a lieu et qu’aucune nouvelle tentative n’a lieu en cas d’échec.
     
-    - **timeoutInSeconds** : spécifiez des délais d’attente individuels pour le pré-script et le post-script.
+    - **timeoutInSeconds**: spécifier les délais d’attente individuels pour le script avant de hello et postérieurs aux scripts hello.
 
-    - **continueBackupOnFailure** : définissez cette valeur sur **true** si vous voulez que la sauvegarde Azure effectue une restauration vers une sauvegarde cohérente en cas d’incident/cohérente de système de fichiers en cas d’échec du pré-script ou du post-script. Définir cette valeur sur **false** fait échouer la sauvegarde en cas d’échec du script (sauf en cas de machine virtuelle à un seul disque où la restauration est effectuée vers une sauvegarde cohérente en cas d’incident, indépendamment de ce paramètre).
+    - **continueBackupOnFailure**: définissez cette valeur trop**true** si vous Azure Backup toofall tooa précédent système cohérent d’incident cohérent/sauvegarde de fichiers si le script avant ou après un script échoue. La définition de cette trop**false** échoue hello sauvegarde en cas d’échec de script (sauf lorsque vous avez seul disque VM cette sauvegarde de retour toocrash cohérent de se situe indépendamment de ce paramètre).
 
-    - **fsFreezeEnabled** : spécifiez si fsfreeze Linux doit être appelé pendant la capture instantanée de la machine virtuelle pour garantir la cohérence du système de fichiers. Nous vous recommandons de laisser cette valeur définie sur **true**, sauf si votre application comporte des dépendances sur la désactivation de fsfreeze.
+    - **fsFreezeEnabled**: spécifiez si Linux fsfreeze doit être appelée lorsque vous prenez la cohérence du système de fichiers hello virtuelle instantané tooensure. Nous vous recommandons de conserver ce paramètre est défini trop**true** , sauf si votre application comporte une dépendance sur la désactivation de fsfreeze.
 
-6. L’infrastructure de script est désormais configurée. Si la sauvegarde de la machine virtuelle est déjà configurée, la sauvegarde suivante appelle les scripts et déclenche la sauvegarde cohérente avec les applications. Si la sauvegarde de machine virtuelle n’est pas configurée, faites-le à l’aide de [Sauvegarde de machines virtuelles Azure dans des coffres Recovery Services.](https://docs.microsoft.com/azure/backup/backup-azure-vms-first-look-arm)
+6. environnement de script Hello est maintenant configurée. Si la sauvegarde d’ordinateurs virtuels hello est déjà configurée, sauvegarde suivante de hello appelle les scripts de hello et déclenche une sauvegarde cohérente de l’application. Si la sauvegarde d’ordinateurs virtuels hello n’est pas configuré, le configurer à l’aide de [sauvegarder les coffres des Services de machines virtuelles tooRecovery.](https://docs.microsoft.com/azure/backup/backup-azure-vms-first-look-arm)
 
-## <a name="troubleshooting"></a>Résolution de problèmes
+## <a name="troubleshooting"></a>Résolution des problèmes
 
-Veillez à ajouter un enregistrement approprié lors de l’écriture de votre pré-script et post-script et passez en revue vos journaux de script pour résoudre les problèmes de script. Si vous rencontrez toujours des problèmes pour exécuter des scripts, reportez-vous au tableau suivant pour plus d’informations.
+Assurez-vous que vous ajoutez un enregistrement approprié lors de l’écriture de votre script avant et un script postérieur à et examinez votre toofix de journaux script tous les problèmes de script. Si vous rencontrez des problèmes d’exécution de scripts, consultez toohello tableau pour plus d’informations.
 
-| Erreur | Message d’erreur | Action recommandée |
+| Error | Message d’erreur | Action recommandée |
 | ------------------------ | -------------- | ------------------ |
-| Pre-ScriptExecutionFailed |Le pré-script a renvoyé une erreur ; la sauvegarde peut ne pas être cohérente avec les applications.   | Examinez les journaux d’erreur de votre script pour résoudre le problème.|  
-|   Post-ScriptExecutionFailed |    Le post-script a renvoyé une erreur qui peut affecter l’état de l’application. |    Examinez les journaux d’erreur de votre script pour résoudre le problème et vérifiez l’état de l’application. |
-| Pre-ScriptNotFound |  Le pré-script est introuvable à l’emplacement spécifié dans le fichier de configuration **VMSnapshotScriptPluginConfig.json**. |   Assurez-vous que ce pré-script est présent au niveau du chemin d’accès spécifié dans le fichier de configuration pour garantir la sauvegarde cohérente des applications.|
-| Post-ScriptNotFound | Le post-script est introuvable à l’emplacement spécifié dans le fichier de configuration **VMSnapshotScriptPluginConfig.json**. |   Assurez-vous que ce post-script est présent au niveau du chemin d’accès spécifié dans le fichier de configuration pour garantir la sauvegarde cohérente des applications.|
-| IncorrectPluginhostFile | Le fichier **Pluginhost** fourni avec l’extension VmSnapshotLinux est endommagé. Le pré-script et le post-script ne peuvent donc pas être exécutés et la sauvegarde ne sera pas cohérente avec les applications. | Désinstallez l’extension **VmSnapshotLinux**, et elle sera automatiquement réinstallée avec la sauvegarde suivante pour résoudre le problème. |
-| IncorrectJSONConfigFile | Le fichier **VMSnapshotScriptPluginConfig.json** est incorrect. Le pré-script et le post-script ne peuvent donc pas être exécutés et la sauvegarde ne sera pas cohérente avec les applications. | Téléchargez la copie à partir de [GitHub](https://github.com/MicrosoftAzureBackup/VMSnapshotPluginConfig) et la configurer à nouveau. |
-| InsufficientPermissionforPre-Script | Pour l’exécution de scripts, l’utilisateur racine doit être le propriétaire du fichier et le fichier doit avoir des autorisations « 700 », (seul le propriétaire doit avoir des autorisations de « lecture », « d’écriture » et « d’exécution »). | Assurez-vous que l’utilisateur « racine » est le « propriétaire » du fichier de script et que seul le propriétaire dispose des autorisations de « lecture », « d’écriture » et « d’exécution ». |
-| InsufficientPermissionforPost-Script | Pour l’exécution de scripts, l’utilisateur racine doit être le propriétaire du fichier et le fichier doit avoir des autorisations « 700 » (c.-à-d. que seul le propriétaire doit avoir des autorisations de « lecture », « d’écriture » et « d’exécution »). | Assurez-vous que l’utilisateur « racine » est le « propriétaire » du fichier de script et que seul le propriétaire dispose des autorisations de « lecture », « d’écriture » et « d’exécution ». |
-| Pre-ScriptTimeout | L’exécution du pré-script de sauvegarde cohérente des applications a expiré. | Vérifiez le script et augmentez le délai d’expiration dans le fichier **VMSnapshotScriptPluginConfig.json** situé à l’emplacement **/etc/azure**. |
-| Post-ScriptTimeout | L’exécution du post-script de sauvegarde cohérente des applications a expiré. | Vérifiez le script et augmentez le délai d’expiration dans le fichier **VMSnapshotScriptPluginConfig.json** situé à l’emplacement **/etc/azure**. |
+| Pre-ScriptExecutionFailed |script de Pre Hello a renvoyé une erreur, de sauvegarde peut donc pas être cohérentes avec les applications. | Examinez les journaux des échecs hello pour votre problème de hello toofix script.|  
+|   Post-ScriptExecutionFailed |    post-script de Hello a retourné une erreur qui peut affecter l’état de l’application. |  Examinez les journaux des échecs hello pour votre problème de hello toofix script et vérifier l’état de l’application hello. |
+| Pre-ScriptNotFound |  Hello script préalable est introuvable à l’emplacement de hello est spécifié dans hello **VMSnapshotScriptPluginConfig.json** le fichier de configuration. | Assurez-vous que ce préalable script est présent dans le chemin de hello est spécifié dans la sauvegarde de tooensure de fichiers config hello cohérents avec les applications.|
+| Post-ScriptNotFound | script postérieur à Hello n’a pas été trouvé à l’emplacement de hello qui est spécifié dans hello **VMSnapshotScriptPluginConfig.json** le fichier de configuration. | Assurez-vous que ce postérieur au script est présent dans le chemin de hello est spécifié dans la sauvegarde de tooensure de fichiers config hello cohérents avec les applications.|
+| IncorrectPluginhostFile | Hello **Pluginhost** , qui est livré avec hello VmSnapshotLinux extension, il est endommagé, donc script avant et après script ne peut pas exécuter et de sauvegarde de hello ne pourra plus être cohérentes avec les applications.   | Désinstaller hello **VmSnapshotLinux** extension et il seront automatiquement réinstallé avec le problème de hello suivant toofix sauvegarde hello. |
+| IncorrectJSONConfigFile | Hello **VMSnapshotScriptPluginConfig.json** fichier est incorrecte, par conséquent, le script avant et après script ne peut pas exécuter et sauvegarde de hello ne pourra plus être cohérentes avec les applications. | Télécharger à partir de hello [GitHub](https://github.com/MicrosoftAzureBackup/VMSnapshotPluginConfig) et le configurer à nouveau. |
+| InsufficientPermissionforPre-Script | Pour exécuter des scripts, utilisateur de « root » doit être propriétaire de hello du fichier de hello et fichier de hello doit avoir des autorisations « 700 » (autrement dit, seuls « propriétaire » doit avoir « lecture », « écriture » et « exécuter les autorisations »). | Assurez-vous que l’utilisateur « racine » est hello « propriétaire » du fichier de script hello et que seul « propriétaire » a « autorisations de lecture », « écriture » et « exécuter ». |
+| InsufficientPermissionforPost-Script | Pour exécuter des scripts, utilisateur racine doit être propriétaire de hello du fichier de hello et fichier de hello doit avoir des autorisations « 700 » (autrement dit, seuls « propriétaire » doit avoir « lecture », « écriture » et « exécuter les autorisations »). | Assurez-vous que l’utilisateur « racine » est hello « propriétaire » du fichier de script hello et que seul « propriétaire » a « autorisations de lecture », « écriture » et « exécuter ». |
+| Pre-ScriptTimeout | Hello l’exécution du script avant sauvegarde cohérents au niveau de l’application hello expiré. | Vérifier le script de hello et augmenter le délai d’expiration de hello en hello **VMSnapshotScriptPluginConfig.json** fichier qui se trouve dans **azure/etc/**. |
+| Post-ScriptTimeout | l’exécution de Hello hello cohérents avec les applications après du script de sauvegarde a expiré. | Vérifier le script de hello et augmenter le délai d’expiration de hello en hello **VMSnapshotScriptPluginConfig.json** fichier qui se trouve dans **azure/etc/**. |
 
 ## <a name="next-steps"></a>Étapes suivantes
-[Sauvegarder des machines virtuelles Azure dans un coffre Recovery Services](https://docs.microsoft.com/azure/backup/backup-azure-arm-vms)
+[Configurer le coffre Recovery Services de sauvegarde tooa machine virtuelle](https://docs.microsoft.com/azure/backup/backup-azure-arm-vms)

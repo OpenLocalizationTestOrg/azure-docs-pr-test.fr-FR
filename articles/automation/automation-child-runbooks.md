@@ -1,6 +1,6 @@
 ---
-title: Runbooks enfants dans Azure Automation | Microsoft Docs
-description: "Décrit les différentes méthodes permettant le démarrage d’un Runbook à partir d’un autre Runbook dans Azure Automation et le partage d’informations entre eux."
+title: aaaChild des runbooks dans Azure Automation | Documents Microsoft
+description: "Décrit différentes méthodes de hello pour le démarrage d’un runbook dans Azure Automation à partir d’un autre runbook et partager des informations entre eux."
 services: automation
 documentationcenter: 
 author: mgoedtel
@@ -14,73 +14,73 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/02/2017
 ms.author: magoedte;bwren
-ms.openlocfilehash: a605d278dbbda9613b91007ea6a7042403a7a6ff
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d3d06818d344b565d53cc4f4705b41dcfcf9a376
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="child-runbooks-in-azure-automation"></a>Runbooks enfants dans Azure Automation
-Dans Azure Automation, il est recommandé d’écrire des Runbooks réutilisables et modulaires avec une fonction discrète qui peut être utilisée par d’autres Runbooks. Un Runbook parent appelle souvent un ou plusieurs Runbooks enfants pour exécuter la fonctionnalité requise. Il existe deux méthodes pour appeler un Runbook enfant. Vous devez comprendre leurs spécificités afin de déterminer celle répondant le mieux aux exigences de chacun de vos scénarios.
+Il est recommandé dans toowrite réutilisables et modulaires runbooks d’automatisation Azure avec une fonction discrète qui peut être utilisée par d’autres runbooks. Un runbook parent appelle souvent un ou plusieurs runbooks enfants des fonctionnalités tooperform requis. Il existe deux façons toocall un runbook enfant et chacune présente des différences que vous devez comprendre afin que vous pouvez déterminer celle qui convient le mieux à vos scénarios.
 
 ## <a name="invoking-a-child-runbook-using-inline-execution"></a>Appeler un Runbook enfant à l’aide de l’exécution en ligne
-Pour appeler un Runbook en ligne à partir d’un autre Runbook, vous utilisez le nom du Runbook et définissez des valeurs pour ses paramètres de la même façon qu’avec une activité ou une applet de commande.  Tous les Runbooks d’un même compte Automation peuvent être utilisés ainsi par les autres Runbooks. Le Runbook parent attend la fin de l’exécution du Runbook enfant avant de passer à la ligne suivante, et toute sortie est retournée directement au parent.
+tooinvoke un runbook inline à partir d’un autre runbook, vous utilisez nom hello de hello runbook et fournir des valeurs pour ses paramètres exactement comme vous utiliseriez une activité ou une applet de commande.  Tous les runbooks hello même compte Automation est tooall disponible à d’autres toobe utilisés de cette manière. Hello le runbook parent attend que hello enfant runbook toocomplete avant de déplacer la ligne suivante de toohello, et les sorties sont retournées directement toohello parent.
 
-Lorsque vous appelez un Runbook en ligne, il est exécuté dans la même tâche que le Runbook parent. L’historique des tâches du Runbook enfant n’indique pas qu’il a été exécuté. Toutes les exceptions et sorties de flux issues du Runbook enfant seront associées au parent. Cela réduit le nombre de tâches et simplifie leur suivi, ainsi que la résolution des problèmes. En effet, toutes les exceptions lancées par le Runbook enfant et toute sortie de flux correspondante sont associées à la tâche du parent.
+Lorsque vous appelez un runbook inline, il s’exécute dans hello même de la tâche en tant que le runbook parent hello. Il y a aucune indication dans l’historique des travaux hello du runbook enfant hello qu’il a exécuté. Toutes les exceptions et les flux de sortie du runbook de hello enfant sera associés au parent de hello. Cela entraîne moins de travaux et facilite tootrack, tootroubleshoot depuis toutes les exceptions levées par le runbook enfant hello et sa sortie de flux de données sont associés avec la tâche parent de hello.
 
-Lorsqu’un Runbook est publié, les Runbooks enfants qu’il appelle doivent déjà être publiés. En effet, Azure Automation crée une association avec tous les Runbooks enfants lorsqu’un Runbook est compilé. Si ce n’est pas le cas, la publication du Runbook parent semblera correcte, mais le Runbook générera une exception au démarrage. Dans ce cas, vous pouvez republier le Runbook parent pour référencer correctement les Runbooks enfants. Il est inutile de republier le Runbook parent si des Runbooks enfants sont modifiés, car l’association aura déjà été créée.
+Lorsqu’un Runbook est publié, les Runbooks enfants qu’il appelle doivent déjà être publiés. En effet, Azure Automation crée une association avec tous les Runbooks enfants lorsqu’un Runbook est compilé. Si elles ne sont pas, le runbook parent hello apparaîtra toopublish correctement, mais génère une exception lorsqu’il est démarré. Dans ce cas, vous pouvez republier le runbook parent hello dans les runbooks enfants hello ordre tooproperly référence. Il est inutile toorepublish hello parent runbook si les runbooks enfants de hello sont modifiés, car l’association de hello est déjà créée.
 
-Les paramètres d’un Runbook enfant appelé en ligne peuvent correspondre à n’importe quel type de données, y compris des objets complexes. Aucune [sérialisation JSON](automation-starting-a-runbook.md#runbook-parameters) n’intervient, comme c’est le cas quand vous démarrez le Runbook à l’aide du Portail de gestion Azure ou de l’applet de commande Start-AzureRmAutomationRunbook.
+paramètres Hello d’un runbook enfant appelé inline peuvent être n’importe quel type de données, y compris les objets complexes et il n’est pas [sérialisation JSON](automation-starting-a-runbook.md#runbook-parameters) qu’il est quand vous démarrez runbook hello à l’aide de hello portail de gestion Azure, ou par hello Applet de commande Start-AzureRmAutomationRunbook.
 
 ### <a name="runbook-types"></a>Types de runbook
 Types pouvant s’appeler mutuellement :
 
 * Un [runbook PowerShell](automation-runbook-types.md#powershell-runbooks) et des [runbooks graphiques](automation-runbook-types.md#graphical-runbooks) peuvent s’appeler mutuellement en ligne (les deux sont basés sur PowerShell).
 * Un [runbook PowerShell Workflow](automation-runbook-types.md#powershell-workflow-runbooks) et des runbooks PowerShell Workflow graphiques peuvent s’appeler mutuellement en ligne (les deux sont basé sur PowerShell)
-* Les types PowerShell et PowerShell Workflow ne peuvent pas s’appeler mutuellement en ligne doivent utiliser Start-AzureRmAutomationRunbook.
+* Hello PowerShell types et hello que types de flux de travail PowerShell ne peut pas appeler les uns des autres inline et doit utiliser AzureRmAutomationRunbook de début.
 
 Pertinence de l’ordre de publication :
 
-* L’ordre de publication de runbooks n’est important que pour les runbooks PowerShell Workflow et les runbooks graphiques PowerShell.
+* Hello publier l’ordre des procédures opérationnelles a une incidence uniquement pour les runbooks PowerShell Workflow et les flux de travail PowerShell graphique.
 
-Lorsque vous appelez un runbook graphique ou PowerShell Workflow enfant à l’aide d’une exécution incorporée, vous utilisez simplement le nom du runbook.  Lorsque vous appelez un runbook enfant de PowerShell, vous devez précédé son nom avec *.\\*  pour spécifier que le script se trouve dans le répertoire local. 
+Lorsque vous appelez un runbook enfant graphique ou de flux de travail PowerShell à l’aide de l’exécution inline, vous utilisez simplement nom hello de hello runbook.  Lorsque vous appelez un runbook enfant de PowerShell, vous devez précédé son nom avec *.\\*  toospecify qui hello script se trouve dans le répertoire local de hello. 
 
 ### <a name="example"></a>Exemple
-Dans l’exemple suivant, on appelle un Runbook enfant de test qui accepte trois paramètres : un objet complexe, un entier et une valeur booléenne. La sortie du Runbook enfant est affectée à une variable.  Dans ce cas, le runbook enfant est un runbook PowerShell Workflow
+Bonjour à l’exemple suivant appelle un runbook enfant qui accepte trois paramètres, un objet complexe, un entier et une valeur booléenne. sortie de Hello du runbook enfant de hello est affectée tooa variable.  Dans ce cas, le runbook enfant hello est un runbook PowerShell Workflow
 
     $vm = Get-AzureRmVM –ResourceGroupName "LabRG" –Name "MyVM"
     $output = PSWF-ChildRunbook –VM $vm –RepeatCount 2 –Restart $true
 
-Voici le même exemple utilisant un runbook PowerShell en tant qu’enfant.
+Voici hello même exemple à l’aide d’un runbook PowerShell en tant qu’enfant de hello.
 
     $vm = Get-AzureRmVM –ResourceGroupName "LabRG" –Name "MyVM"
     $output = .\PS-ChildRunbook.ps1 –VM $vm –RepeatCount 2 –Restart $true
 
 
 ## <a name="starting-a-child-runbook-using-cmdlet"></a>Démarrage d’un Runbook enfant à l’aide d’une applet de commande
-Vous pouvez utiliser l’applet de commande [Start-AzureRmAutomationRunbook](https://msdn.microsoft.com/library/mt603661.aspx) pour démarrer un runbook, comme décrit dans [Démarrage d’un Runbook avec Windows PowerShell](automation-starting-a-runbook.md#starting-a-runbook-with-windows-powershell). Il existe deux modes d’utilisation pour cette applet de commande.  Dans un mode, l’applet de commande renvoie l’ID de tâche dès que la tâche enfant est créée pour le runbook enfant.  Dans l’autre mode, que vous activez en spécifiant le paramètre **-wait** , l’applet de commande attend que la tâche enfant se termine et renvoie la sortie du runbook enfant.
+Vous pouvez utiliser hello [Start-AzureRmAutomationRunbook](https://msdn.microsoft.com/library/mt603661.aspx) toostart de l’applet de commande un runbook, comme décrit dans [toostart un runbook avec Windows PowerShell](automation-starting-a-runbook.md#starting-a-runbook-with-windows-powershell). Il existe deux modes d’utilisation pour cette applet de commande.  Dans un mode, hello applet de commande renvoie les id de tâche hello dès que la tâche enfant de hello est créé pour le runbook enfant hello.  Dans hello autre mode, vous activez en spécifiant hello **-attente** paramètre, attend que les enfants hello hello applet de commande de la tâche se termine et retourne la sortie de hello du runbook enfant de hello.
 
-La tâche issue d’un Runbook enfant démarré avec une applet de commande est exécutée dans une tâche distincte du Runbook parent. Cela entraîne davantage de tâches que l’appel de runbook en ligne et rend leur suivi plus complexe. Le parent peut démarrer plusieurs Runbooks enfants de façon asynchrone, sans attendre la fin de leur exécution. Pour ce même type d’exécution en parallèle avec appel des runbooks enfants en ligne, le runbook parent doit utiliser le [mot clé parallèle](automation-powershell-workflow.md#parallel-processing).
+tâche Hello à partir d’un runbook enfant démarré avec une applet de commande s’exécute dans un travail distinct hello parent runbook. Cela entraîne plus de travaux que l’appel hello runbook inline et les rend plus difficile tootrack. parent de Hello peut démarrer plusieurs runbooks enfants de façon asynchrone sans attendre que chaque toocomplete. Pour que ce même type d’exécution parallèle appelle les runbooks enfants de hello, le runbook parent hello devez toouse hello [mot clé parallel](automation-powershell-workflow.md#parallel-processing).
 
-Les paramètres d’un runbook enfant démarré avec une applet de commande sont fournis sous forme de table de hachage, comme décrit dans [Paramètres du runbook](automation-starting-a-runbook.md#runbook-parameters). Seuls les types de données simples peuvent être utilisés. Si le Runbook possède un paramètre avec un type de données complexe, il doit être appelé en ligne.
+Les paramètres d’un runbook enfant démarré avec une applet de commande sont fournis sous forme de table de hachage, comme décrit dans [Paramètres du runbook](automation-starting-a-runbook.md#runbook-parameters). Seuls les types de données simples peuvent être utilisés. Si hello runbook possède un paramètre avec un type de données complexe, puis il doit être appelé inline.
 
 ### <a name="example"></a>Exemple
-Dans l’exemple suivant, un Runbook enfant avec paramètres est démarré et exécuté avec le paramètre Start-AzureRmAutomationRunbook -wait. À l’issue de l’exécution du Runbook, sa sortie est collectée à partir du runbook enfant.
+Hello exemple suivant démarre un runbook enfant avec des paramètres et puis attend toocomplete à l’aide de hello AzureRmAutomationRunbook-Start-attendre le paramètre. Une fois terminé, sa sortie est collectée à partir de runbook d’enfant hello.
 
     $params = @{"VMName"="MyVM";"RepeatCount"=2;"Restart"=$true} 
     $joboutput = Start-AzureRmAutomationRunbook –AutomationAccountName "MyAutomationAccount" –Name "Test-ChildRunbook" -ResourceGroupName "LabRG" –Parameters $params –wait
 
 
 ## <a name="comparison-of-methods-for-calling-a-child-runbook"></a>Comparaison des méthodes pour l’appel d’un Runbook enfant
-Le tableau suivant résume les différences entre les deux méthodes applicables pour appeler un Runbook à partir d’un autre Runbook.
+Hello tableau suivant résume les différences de hello entre hello deux méthodes d’appel d’un runbook à partir d’un autre runbook.
 
 |  | En ligne | Applet de commande |
 |:--- |:--- |:--- |
-| Travail |Les Runbooks enfants s’exécutent dans la même tâche que le parent. |Une tâche distincte est créée pour le Runbook enfant. |
-| Exécution |Le Runbook parent attend la fin de l’exécution du Runbook enfant avant de se poursuivre. |Le runbook parent continue immédiatement après le démarrage du runbook enfant *ou* le runbook parent attend que la tâche enfant se termine. |
+| Travail |Runbooks enfants s’exécutent dans hello même de la tâche en tant que parent de hello. |Un travail distinct est créé pour le runbook enfant hello. |
+| Exécution |Le runbook parent attend hello enfant runbook toocomplete avant de continuer. |Le runbook parent se poursuit immédiatement après le démarrage du runbook enfant *ou* runbook parent attend toofinish de travail enfant hello. |
 | Sortie |Le Runbook parent peut obtenir directement la sortie du Runbook enfant. |Le runbook parent doit récupérer la sortie à partir de la tâche du runbook enfant *ou* le runbook parent peut obtenir directement la sortie du runbook enfant. |
-| Paramètres |Les valeurs des paramètres du Runbook enfant sont spécifiées séparément et peuvent utiliser n’importe quel type de données. |Les valeurs des paramètres du Runbook enfant doivent être combinées dans une table de hachage unique et peuvent inclure uniquement des types de données simples, de tableau et d’objet exploitant la sérialisation JSON. |
-| Compte Automation |Le Runbook parent peut utiliser uniquement un Runbook enfant du même compte Automation. |Le Runbook parent peut utiliser un Runbook enfant de n’importe quel compte Automation du même abonnement Azure ou d’un autre abonnement si vous disposez de la connexion correspondante. |
+| Paramètres |Les valeurs des paramètres de runbook hello enfant sont spécifiées séparément et peuvent utiliser n’importe quel type de données. |Les valeurs de hello du runbook enfant doivent être combinées en une seule table de hachage de paramètres et ne peuvent contenir que simple, de tableau et types de données exploitant la sérialisation JSON de l’objet. |
+| Compte Automation |Le runbook parent peut uniquement utiliser le runbook enfant Bonjour même compte automation. |Le runbook parent peut utiliser runbook enfant à partir de n’importe quel compte automation à partir de hello même abonnement Azure et même un autre abonnement si vous avez un tooit de connexion. |
 | Publication |Le Runbook enfant doit être publié avant la publication du Runbook parent. |Le Runbook enfant doit être publié avant le démarrage du Runbook parent. |
 
 ## <a name="next-steps"></a>Étapes suivantes

@@ -2,10 +2,10 @@
 
 
 
-Nous avons créé le concept d’unité de calcul Azure (ACU) pour permettre de comparer les performances de calcul (UC) des références Azure. Cela vous aidera à identifier facilement la référence la plus à même de répondre à vos besoins en termes de performances.  L’unité ACU est actuellement normalisée sur une machine virtuelle de petite taille (Standard_A1) correspondant à 100, et toutes les autres références représentent ensuite approximativement la rapidité avec laquelle la référence en question peut exécuter un test d’évaluation. 
+Nous avons créé le concept de hello de hello unité de calcul de Azure (ACU) tooprovide un moyen de comparer les performances de calcul (processeur) entre les références (SKU) de Azure. Cela vous aidera à identifier facilement la référence est probablement toosatisfy vos besoins de performances.  L’unité ACU est actuellement normalisée sur une machine virtuelle de petite taille (Standard_A1) correspondant à 100, et toutes les autres références représentent ensuite approximativement la rapidité avec laquelle la référence en question peut exécuter un test d’évaluation. 
 
 > [!IMPORTANT]
-> Cette unité ACU est fournie uniquement à titre indicatif.  Les résultats de votre charge de travail peuvent varier. 
+> Hello ACU n'est qu’une indication.  résultats Hello pour votre charge de travail peuvent varier. 
 > 
 > 
 
@@ -35,6 +35,6 @@ Nous avons créé le concept d’unité de calcul Azure (ACU) pour permettre de 
 | [L4s-L32s](../articles/virtual-machines/windows/sizes-storage.md) |180 - 240* |
 | [M](../articles/virtual-machines/virtual-machines-windows-sizes-memory.md) | 160-180** |
 
-Les unités ACU signalées par un astérisque (*) utilisent la technologie Intel ® Turbo pour augmenter la fréquence du processeur et améliorer les performances.  Cette amélioration des performances peut varier en fonction de la taille et de la charge de travail de la machine virtuelle, et des autres charges de travail en cours d’exécution sur le même hôte.
+ACUs marqués avec un * utiliser Intel® Turbo technologie tooincrease processeur fréquence et fournir une amélioration des performances.  Hello quantité de renforcement de hello peut varier en fonction de la taille de machine virtuelle hello, de charge de travail et d’autres charges de travail en cours d’exécution sur hello même hôte.
 
 ** Avec technologie Hyper-thread. 

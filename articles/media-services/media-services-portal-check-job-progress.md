@@ -1,6 +1,6 @@
 ---
-title: "Surveiller la progression du travail d’encodage avec le Portail Azure"
-description: "Ce didacticiel vous guide à travers les étapes de surveillance de la progression de votre travail à l’aide du Portail Azure."
+title: aaaMonitor codage la progression du travail avec hello portail Azure
+description: "Ce didacticiel vous guide tout au long des étapes de hello de surveillance de votre progression du travail à l’aide de hello portail Azure."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: juliako
-ms.openlocfilehash: 571d222068e92a45b0e37bec298bab7a6825f731
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4282553d5dbed65ea6427bcd6de778795f1ff9ed
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="monitor-encoding-job-progress-with-the-azure-portal"></a>Surveiller la progression du travail d’encodage avec le Portail Azure
+# <a name="monitor-encoding-job-progress-with-hello-azure-portal"></a>Surveiller la progression de la tâche encodage avec hello portail Azure
 > [!div class="op_single_selector"]
 > * [Portail](media-services-portal-check-job-progress.md)
 > * [.NET](media-services-check-job-progress.md)
@@ -30,19 +30,19 @@ ms.lasthandoff: 08/29/2017
 
 ## <a name="overview"></a>Vue d'ensemble
 > [!NOTE]
-> Pour suivre ce didacticiel, vous avez besoin d'un compte Azure. Pour plus d'informations, consultez la page [Version d'évaluation gratuite d'Azure](https://azure.microsoft.com/pricing/free-trial/). 
+> toocomplete ce didacticiel, vous avez besoin d’un compte Azure. Pour plus d'informations, consultez la page [Version d'évaluation gratuite d'Azure](https://azure.microsoft.com/pricing/free-trial/). 
 > 
 > 
 
-Lorsque vous exécutez des travaux, vous avez généralement besoin de faire appel à une méthode de suivi de la progression du travail. 
+Lorsque vous exécutez des tâches, vous nécessitent souvent une progression du travail tootrack moyen. 
 
-Pour surveiller la progression du travail d’encodage, cliquez sur **Paramètres** (en haut de la page), puis sélectionnez **Travaux**.
+progression de hello toomonitor Hello encodage de travail, cliquez sur **paramètres** (en hello haut hello), puis sélectionnez **travaux**.
 
 ![Tâches](./media/media-services-portal-vod-get-started/media-services-jobs.png)
 
-Vous pouvez cliquer sur le travail pour afficher plus de détails.
+Vous pouvez cliquer sur hello travail toosee plus de détails.
 
-![Travaux](./media/media-services-portal-vod-get-started/media-services-job-progress2.png)
+![Tâches](./media/media-services-portal-vod-get-started/media-services-job-progress2.png)
 
 ## <a name="next-steps"></a>Étapes suivantes
 Une fois votre travail d’encodage terminé, vous pouvez publier et lire vos éléments multimédias, comme indiqué [ici](media-services-portal-publish.md).

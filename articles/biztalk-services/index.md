@@ -1,6 +1,6 @@
 ---
-title: "Documentation Azure BizTalk Services - Didacticiels | Microsoft Docs"
-description: "Découvrez comment utiliser BizTalk Services pour assurer l’intégration d’applications métiers locales et dans le cloud pour SAP, Oracle EBS, SQL Server et PeopleSoft."
+title: aaaAzure Documentation des Services Biztalk - didacticiels | Documents Microsoft
+description: "Découvrez comment toouse BizTalk services tooon local tooprovide cloud et l’intégration de line-of-business application pour SAP, Oracle eBusiness Suite, SQL Server et PeopleSoft."
 services: biztalk-services
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 80b381d59e95297cf8d7616e6a2eb3186ab26a05
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 06411e211b987a96d4b79a93871e66157f7ecdb6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="biztalk-services-documentation"></a>Documentation BizTalk Services
 
-Découvrez comment utiliser BizTalk Services pour assurer l’intégration d’applications métiers locales et dans le cloud pour SAP, Oracle EBS, SQL Server et PeopleSoft. Des didacticiels et d’autres documents vous montrent comment intégrer l’entreprise et le cloud.
+Découvrez comment toouse BizTalk services tooon local tooprovide cloud et l’intégration de line-of-business application pour SAP, Oracle eBusiness Suite, SQL Server et PeopleSoft. Didacticiels et autres documentations affichent hello et enterprise de hello toointegrate de cloud.
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -70,7 +70,7 @@ Découvrez comment utiliser BizTalk Services pour assurer l’intégration d’
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Prise en main de BizTalk Services à l’aide du Portail Azure</h3>
+                        <h3>Prise en main des Services BizTalk à l’aide de hello portail Azure</h3>
                     </div>
                 </div>
             </div>

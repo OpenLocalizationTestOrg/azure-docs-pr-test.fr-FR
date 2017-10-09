@@ -1,27 +1,27 @@
-Pour permettre l’inscription sur votre application, vous devez créer une stratégie d’inscription. Celle-ci décrit les expériences des clients lors de l’inscription, et le contenu des jetons que l’application reçoit en cas de réussite de l’opération.
+tooenable d’inscription de votre application, vous devez toocreate une stratégie d’inscription. Cette stratégie décrit des expériences hello consommateurs traversent pendant l’inscription et un contenu hello de jetons qui hello application reçoit les inscriptions réussies.
 
 [!INCLUDE [active-directory-b2c-portal-navigate-b2c-service](active-directory-b2c-portal-navigate-b2c-service.md)]
 
 Cliquez sur **Stratégies d'inscription**.
 
-Cliquez sur **+Ajouter** en haut du volet.
+Cliquez sur **+ ajouter** haut hello du Panneau de hello.
 
-Le **Nom** détermine le nom de la stratégie d'inscription utilisé par votre application. Par exemple, entrez **SiUp**.
+Hello **nom** détermine le nom de stratégie d’inscription hello utilisée par votre application. Par exemple, entrez **SiUp**.
 
 Cliquez sur **Fournisseurs d’identité** et sélectionnez **Inscription par e-mail**. Si vous le souhaitez, vous pouvez également sélectionner des fournisseurs d'identité sociaux, s'ils sont déjà configurés. Cliquez sur **OK**.
 
-Cliquez sur **Attributs d’inscription**. Ici, vous choisissez les attributs que vous souhaitez collecter auprès du client au cours de l’inscription. Par exemple, sélectionnez **Pays/région**, **Nom d’affichage** et **Code postal**. Cliquez sur **OK**.
+Cliquez sur **Attributs d’inscription**. Vous choisissez ici les attributs que vous souhaitez toocollect consommateur de hello pendant l’inscription. Par exemple, sélectionnez **Pays/région**, **Nom d’affichage** et **Code postal**. Cliquez sur **OK**.
 
-Cliquez sur **Revendications d’application**. Ici, vous choisissez les revendications à renvoyer à votre application dans les jetons après une expérience d’inscription réussie. Par exemple, sélectionnez **Nom d’affichage**, **Fournisseur d’identité**, **Code postal**, **Nouvel utilisateur** et **ID d’objet de l’utilisateur**.
+Cliquez sur **Revendications d’application**. Vous choisissez ici les revendications que vous souhaitez renvoyer dans les jetons hello envoyées application tooyour précédent après une expérience d’inscription. Par exemple, sélectionnez **Nom d’affichage**, **Fournisseur d’identité**, **Code postal**, **Nouvel utilisateur** et **ID d’objet de l’utilisateur**.
 
-Cliquez sur **Create**. La stratégie créée s’affiche sous la forme **B2C_1_SiUp** (le fragment **B2C\_1\_** est automatiquement ajouté) dans le panneau **Stratégies d’inscription**.
+Cliquez sur **Créer**. stratégie Hello créée apparaît sous la forme **B2C_1_SiUp** (hello **B2C\_1\_**  fragment est automatiquement ajouté) Bonjour **des stratégies d’inscription** panneau.
 
-Ouvrez la stratégie en cliquant sur **B2C_1_SiUp**.
+Ouvrez la stratégie de hello en cliquant sur **B2C_1_SiUp**.
 
-Sélectionnez **Contoso B2C app** dans le menu déroulant **Applications** et `https://localhost:44321/` dans le menu déroulant **URL de réponse/URI de redirection**.
+Sélectionnez **Contoso B2C application** Bonjour **Applications** liste déroulante et `https://localhost:44321/` Bonjour **URL de réponse / URI de redirection** liste déroulante.
 
-Cliquez sur **Exécuter maintenant**. Un nouvel onglet de navigateur s’ouvre et vous pouvez vivre l’expérience du client consistant à vous inscrire à votre application.
+Cliquez sur **Exécuter maintenant**. Un nouvel onglet de navigateur s’ouvre et vous pouvez exécuter via une expérience de consommateur hello de s’inscrire à votre application.
 
 > [!NOTE]
-> La création de la stratégie et les mises à jour peuvent prendre jusqu’à une minute.
+> Il occupe minute tooa pour la création de stratégies et met à jour tootake effet.
 >

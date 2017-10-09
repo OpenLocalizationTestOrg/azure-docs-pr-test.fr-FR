@@ -1,6 +1,6 @@
 ---
 title: "Portail Azure : géoréplication SQL Database | Microsoft Docs"
-description: "Configurer la géoréplication pour Azure SQL Database dans le portail Azure et initier le basculement"
+description: "Configurer les géo-réplication pour la base de données SQL Azure dans hello portail Azure et de basculement de lancement"
 services: sql-database
 documentationcenter: 
 author: CarlRabeler
@@ -15,85 +15,85 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 03/06/2016
 ms.author: carlrab
-ms.openlocfilehash: db90fad2fe397f0c8466db6bdc1bd8c8d1cf8f15
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 09cbbdb040f36c42593e3be87ce6db2238f36656
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="configure-active-geo-replication-for-azure-sql-database-in-the-azure-portal-and-initiate-failover"></a>Configurer la géoréplication active pour Azure SQL Database dans le portail Azure et initier le basculement
+# <a name="configure-active-geo-replication-for-azure-sql-database-in-hello-azure-portal-and-initiate-failover"></a>Configurer géo-réplication active pour base de données SQL Azure hello portail Azure et de basculement de lancement
 
-Cet article montre comment configurer la géoréplication active pour SQL Database dans le [portail Azure](http://portal.azure.com) et initier le basculement.
+Cet article vous montre comment tooconfigure géo-réplication active pour la base de données SQL dans hello [portail Azure](http://portal.azure.com) et tooinitiate le basculement.
 
-Pour lancer un basculement avec le portail Azure, consultez [Lancer un basculement planifié ou non planifié pour une base de données SQL Azure avec le portail Azure](sql-database-geo-replication-portal.md).
+basculement tooinitiate avec hello portail Azure, consultez [initier un basculement planifié ou non planifié pour la base de données SQL Azure avec hello portail Azure](sql-database-geo-replication-portal.md).
 
-Pour configurer la géo-réplication active à l’aide du portail Azure, vous devez disposer des ressources suivantes :
+tooconfigure géo-réplication active à l’aide de hello portail Azure, vous devez hello suivant de ressource :
 
-* Une Azure SQL Database : la base de données primaire que vous souhaitez répliquer vers une autre région géographique.
+* Une base de données SQL Azure : base de données primaire hello que vous souhaitez tooa tooreplicate autre région géographique.
 
 > [!Note]
-La géo-réplication active doit être entre des bases de données au sein du même abonnement.
+Géo-réplication Active doit être entre bases de données Bonjour même abonnement.
 
 ## <a name="add-a-secondary-database"></a>Ajout d'une base de données secondaire
-Les étapes suivantes créent une nouvelle base de données secondaire dans un partenariat géo-réplication.  
+Hello étapes suivantes créent une nouvelle base de données secondaire dans un partenariat de géo-réplication.  
 
-Pour ajouter une base de données secondaire, vous devez être le propriétaire ou copropriétaire de l’abonnement.
+tooadd une base de données secondaire, vous devez être propriétaire de l’abonnement hello ou copropriétaire.
 
-La base de données secondaire a le même nom que la base de données primaire et, par défaut, le même niveau de service. La base de données secondaire peut être une base de données autonome ou une base de données dans un pool élastique. Pour en savoir plus, consultez [Niveaux de service](sql-database-service-tiers.md).
-Une fois la base de données secondaire créée et amorcée, une réplication des données de la base de données primaire vers la base de données secondaire commence.
+base de données secondaire Hello a hello même nom qu’une base de données primaire hello et a, par défaut, hello même niveau de service. base de données secondaire Hello peut être une base de données ou d’une base de données dans un pool élastique. Pour en savoir plus, consultez [Niveaux de service](sql-database-service-tiers.md).
+Une fois hello secondaire est créée et amorcée, données commencent à se répliquer à partir de hello base de données primaire toohello nouvelle base de données secondaire.
 
 > [!NOTE]
-> Si la base de données partenaire existe déjà (par exemple, suite à l’arrêt d’une relation de géo-réplication précédente), la commande échoue.
+> Si la base de données partenaire hello existe déjà (par exemple, suite à l’arrêt d’une relation de géo-réplication précédente) commande hello échoue.
 > 
 
-1. Dans le [portail Azure](http://portal.azure.com), accédez à la base de données que vous souhaitez configurer pour la géo-réplication.
-2. Dans la page SQL Database, sélectionnez **Géoréplication**, puis choisissez la région dans laquelle créer la base de données secondaire. Bien que vous puissiez sélectionner n’importe quelle région autre que la région qui héberge la base de données primaire, nous vous recommandons de sélectionner la [région jumelée](../best-practices-availability-paired-regions.md).
+1. Bonjour [portail Azure](http://portal.azure.com), parcourir toohello de base de données que vous souhaitez tooset pour géo-réplication.
+2. Sur la page de base de données SQL hello, sélectionnez **géo-réplication**, puis sélectionnez hello région toocreate hello base de données secondaire. Vous pouvez sélectionner n’importe quelle région autre que de la région de hello hébergeant la base de données primaire hello, mais nous vous recommandons de hello [région associée](../best-practices-availability-paired-regions.md).
    
     ![Configuration de la géo-réplication](./media/sql-database-geo-replication-portal/configure-geo-replication.png)
-3. Sélectionnez ou configurez le serveur et le niveau tarifaire pour la base de données secondaire.
+3. Sélectionnez ou configurer le serveur de hello et niveau de tarification pour la base de données secondaire hello.
    
     ![Configuration de la base de données secondaire](./media/sql-database-geo-replication-portal/create-secondary.png)
-4. Si vous le souhaitez, vous pouvez ajouter une base de données secondaire à un pool données élastique. Pour créer la base de données secondaire dans un pool, cliquez sur **Pool élastique**, puis sélectionnez un pool sur le serveur cible. Un pool doit déjà exister sur le serveur cible. Ce workflow ne crée pas un pool.
-5. Cliquez sur **créer** pour ajouter la base de données secondaire.
-6. La base de données secondaire est créée et le processus d’amorçage commence.
+4. Si vous le souhaitez, vous pouvez ajouter un pool élastique de base de données secondaire tooan. base de données secondaire toocreate hello dans un pool, cliquez sur **pool élastique** et sélectionnez un pool sur le serveur cible de hello. Un pool doit déjà exister sur le serveur cible de hello. Ce workflow ne crée pas un pool.
+5. Cliquez sur **créer** hello tooadd secondaire.
+6. base de données secondaire Hello est créé et hello amorçage processus commence.
    
     ![Configuration de la base de données secondaire](./media/sql-database-geo-replication-portal/seeding0.png)
-7. Lorsque le processus d’amorçage est terminé, la base de données secondaire affiche son état.
+7. Lorsque hello amorçage le processus est terminé, la base de données secondaire hello affiche son état.
    
     ![Amorçage terminé](./media/sql-database-geo-replication-portal/seeding-complete.png)
 
 ## <a name="initiate-a-failover"></a>Initialisation d’un basculement
 
-La base de données secondaire peut être basculée en base de données primaire.  
+base de données secondaire Hello peut être hello toobecome commuté principal.  
 
-1. Dans le [portail Azure](http://portal.azure.com), accédez à la base de données primaire dans le partenariat de géo-réplication.
-2. Dans le panneau SQL Database, sélectionnez **Tous les paramètres** > **Géoréplication**.
-3. Dans la liste **SECONDAIRES**, sélectionnez la base de données qui doit devenir la nouvelle base primaire et cliquez sur **Basculement**.
+1. Bonjour [portail Azure](http://portal.azure.com), parcourir la base de données primaire toohello en partenariat de géo-réplication hello.
+2. Dans le panneau de la base de données SQL hello, sélectionnez **tous les paramètres** > **géo-réplication**.
+3. Bonjour **secondaires** liste, sélectionnez hello base de données toobecome hello nouveau réplica principal et cliquez sur **basculement**.
    
     ![Basculement](./media/sql-database-geo-replication-failover-portal/secondaries.png)
-4. Cliquez sur **Oui** pour commencer le basculement.
+4. Cliquez sur **Oui** toobegin hello basculement.
 
-La commande fait immédiatement basculer la base de données secondaire vers le rôle primaire. 
+commande Hello bascule immédiatement la base de données secondaire hello dans le rôle principal de hello. 
 
-Il existe une courte période pendant laquelle les deux bases de données ne sont pas disponibles (de l’ordre de 0 à 25 secondes) pendant que les rôles sont activés. Si la base de données primaire comporte plusieurs bases de données secondaires, la commande reconfigure automatiquement les autres bases de données secondaires pour qu’elles se connectent à la nouvelle base de données primaire. Toute l’opération devrait prendre moins d’une minute pour se terminer dans des circonstances normales. 
+Il existe une courte période pendant laquelle les deux bases de données ne sont pas disponibles (dans l’ordre hello de 0 seconde too25) pendant le basculement des rôles de hello. Si la base de données primaire hello a plusieurs bases de données secondaires, commande hello automatiquement reconfigure hello autres bases de données secondaires tooconnect toohello nouveau réplica principal. toute l’opération Hello doit prendre moins d’une minute toocomplete dans des circonstances normales. 
 
 > [!NOTE]
-> Cette commande est conçue pour récupérer rapidement la base de données en cas de panne. Elle déclenche un basculement sans synchronisation des données (basculement forcé).  Si la base de données primaire est en ligne et valide des transactions lorsque la commande est émise, une perte de données peut se produire. 
+> Cette commande est conçue pour une récupération rapide de base de données hello en cas de panne. Elle déclenche un basculement sans synchronisation des données (basculement forcé).  Si hello principal est en ligne et la validation des transactions lors de la commande hello est émise une perte de données peut se produire. 
 > 
 > 
 
 ## <a name="remove-secondary-database"></a>Supprimer une base de données secondaire
-Cette opération arrête définitivement la réplication vers la base de données secondaire et modifie le rôle de la base de données secondaire en une base de données normale accessible en lecture et en écriture. Si la connectivité à la base de données secondaire est interrompue, la commande aboutit, mais la base de données secondaire ne passe pas en mode lecture-écriture une fois la connectivité rétablie.  
+Cette opération arrête définitivement de la base de données secondaire de toohello réplication hello et modifications hello le rôle de base de données en lecture-écriture régulière hello tooa secondaire. Si la base de données secondaire hello connectivité toohello est rompue, commande hello réussit mais hello est secondaire ne devient en lecture-écriture jusqu'à une fois que la connectivité est rétablie.  
 
-1. Dans le [portail Azure](http://portal.azure.com), accédez à la base de données primaire dans le partenariat de géo-réplication.
-2. Dans la page SQL Database, sélectionnez **Géoréplication**.
-3. Dans la liste des bases de données **SECONDAIRES**, sélectionnez la base de données que vous souhaitez supprimer du partenariat de géo-réplication.
+1. Bonjour [portail Azure](http://portal.azure.com), parcourir la base de données primaire toohello en partenariat de géo-réplication hello.
+2. Sur la page de base de données SQL hello, sélectionnez **géo-réplication**.
+3. Bonjour **secondaires** liste, sélectionnez hello base de données tooremove à partir du partenariat de géo-réplication hello.
 4. Cliquez sur **Arrêter la réplication**.
    
     ![Suppression de la base de données secondaire](./media/sql-database-geo-replication-portal/remove-secondary.png)
-5. Une fenêtre de confirmation s’ouvre. Cliquez sur **Oui** pour supprimer la base de données de partenariat de géo-réplication (définissez-la sur une base de données en lecture-écriture ne faisant pas partie d’une réplication).
+5. Une fenêtre de confirmation s’ouvre. Cliquez sur **Oui** tooremove hello base de données partenariat de géo-réplication hello. (Définissez la propriété en lecture-écriture de base de données ne fait pas partie de toute réplication tooa.)
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Pour plus d’informations sur la géoréplication active, voir [Géoréplication active](sql-database-geo-replication-overview.md).
+* toolearn en savoir plus sur la géo-réplication active, consultez [géo-réplication active](sql-database-geo-replication-overview.md).
 * Pour une vue d’ensemble de la continuité des activités et des scénarios, consultez [Vue d’ensemble de la continuité des activités](sql-database-business-continuity.md).
 

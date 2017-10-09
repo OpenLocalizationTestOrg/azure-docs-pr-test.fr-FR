@@ -1,6 +1,6 @@
 ---
-title: "Synchronisation Azure AD Connect : modification de mot de passe de compte AD DS | Microsoft Docs"
-description: "Cette rubrique décrit comment mettre à jour Azure AD Connect après la modification du mot de passe du compte AD DS."
+title: "Synchronisation Azure AD Connect : mot de passe du compte de service d’annuaire hello AD modification | Documents Microsoft"
+description: "Document de cette rubrique décrit comment tooupdate Azure AD Connect après le mot de passe hello du compte de hello AD DS est modifiée."
 services: active-directory
 keywords: "Compte AD DS, compte Active Directory, mot de passe"
 documentationcenter: 
@@ -15,39 +15,39 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: billmath
-ms.openlocfilehash: 14e16a238e60ecfeeb3cbf88c3922a79349dcc75
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 2707c9246446612f8d083ecde876b3b4fb2435ca
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="changing-the-ad-ds-account-password"></a>Modifier le mot de passe du compte AD DS
-Le compte AD DS fait référence au compte d’utilisateur utilisé par Azure AD Connect pour communiquer avec le répertoire Active Directory local. Si vous modifiez le mot de passe du compte AD DS, vous devez mettre à jour le service de synchronisation Azure AD Connect avec le nouveau mot de passe. Dans le cas contraire, la synchronisation avec le répertoire Active Directory local ne s’effectue plus correctement et les erreurs suivantes apparaissent :
+# <a name="changing-hello-ad-ds-account-password"></a>Modification de mot de passe de compte hello AD DS
+compte de Hello AD DS fait référence toohello compte d’utilisateur utilisé par toocommunicate Azure AD Connect avec Active Directory local. Si vous modifiez le mot de passe hello Hello compte AD DS, vous devez mettre à jour un Service Azure AD Connect synchronisation avec le nouveau mot de passe hello. Dans le cas contraire, hello que la synchronisation peut ne plus synchroniser correctement avec hello Active Directory sur site et vous rencontrerez hello les erreurs suivantes :
 
-* Dans Synchronization Service Manager, toute opération d’importation ou d’exportation avec le répertoire local Active Directory échoue avec une erreur **no-start-credentials**.
+* Bonjour opération Synchronization Service Manager, toute importation ou d’exportation avec local échoue AD avec **non-start-informations d’identification** erreur.
 
-* Dans l’Observateur d’événements Windows, le journal d’événement d’application contient une erreur avec l’**ID d’événement 6000** et le message **«  failed to run because the credentials were invalid « contoso.com » en raison d'informations d'identification non valides. »**.
+* Dans l’Observateur d’événements Windows, journal des événements application hello contient une erreur avec **événement ID 6000** et message **'agent de gestion hello « contoso.com » a échoué toorun, car les informations d’identification hello n’étaient pas valides'** .
 
 
-## <a name="how-to-update-the-synchronization-service-with-new-password-for-ad-ds-account"></a>Mise à jour du service de synchronisation avec un nouveau mot de passe pour le compte AD DS
-Pour mettre à jour le service de synchronisation avec le nouveau mot de passe :
+## <a name="how-tooupdate-hello-synchronization-service-with-new-password-for-ad-ds-account"></a>Comment tooupdate hello Service de synchronisation avec le nouveau mot de passe pour le compte de domaine Active Directory
+tooupdate hello Service de synchronisation avec le nouveau mot de passe hello :
 
-1. Démarrez Synchronization Service Manager (DÉMARRER → Service de synchronisation).
+1. Démarrez hello Synchronization Service Manager (Service de synchronisation de début →).
 </br>![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/startmenu.png)  
 
-2. Accédez à l’onglet **Connecteurs** .
+2. Accédez toohello **connecteurs** onglet.
 
-3. Sélectionnez le **Connecteur AD** correspondant au compte AD DS dont le mot de passe a été modifié.
+3. Sélectionnez hello **Connecteur AD** qui correspond le compte de service d’annuaire toohello AD dont son mot de passe a été modifié.
 
 4. Sous **Actions**, sélectionnez **Propriétés**.
 
-5. Dans la boîte de dialogue contextuelle, sélectionnez **Se connecter à la forêt Active Directory** :
+5. Dans la boîte de dialogue contextuelle hello, sélectionnez **connecter tooActive Directory forêt**:
 
-6. Dans la zone de texte **Mot de passe**, tapez le nouveau mot de passe du compte AD DS.
+6. Entrez hello nouveau mot de passe du compte de hello AD DS dans hello **mot de passe** zone de texte.
 
-7. Cliquez sur **OK** pour enregistrer le nouveau mot de passe et fermez la boîte de dialogue contextuelle.
+7. Cliquez sur **OK** toosave hello nouveau mot de passe et de la boîte de dialogue contextuelle hello fermer.
 
-8. Redémarrez le service de synchronisation Azure AD Connect sous le Gestionnaire de contrôle des services Windows. Cela permet de s’assurer que toute référence à l’ancien mot de passe est supprimée du cache mémoire.
+8. Redémarrage hello Service Azure AD Connect synchronisation sous le Gestionnaire de contrôle de Service Windows. Il s’agit de tooensure que toute référence toohello ancien mot de passe est supprimé du cache de mémoire hello.
 
 ## <a name="next-steps"></a>Étapes suivantes
 **Rubriques de présentation**

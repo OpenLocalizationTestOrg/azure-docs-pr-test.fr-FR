@@ -1,6 +1,6 @@
 ---
-title: "Interprétation des résultats de modèle dans Machine Learning | Microsoft Docs"
-description: "Sélection du paramètre optimal défini pour un algorithme en utilisant et visualisant des sorties de modèle de notation."
+title: "résultats du modèle aaaInterpret dans l’apprentissage | Documents Microsoft"
+description: "Comment paramètre optimal de hello toochoose définie un algorithme à l’aide et de visualisation des sorties de modèle de score."
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -14,14 +14,14 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: bradsev
-ms.openlocfilehash: 939dd7b359b4f5c248ade47b794102f4930994b1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 52161b1aa5ff3e7a63fc4b1bfb7c5e354eabcc50
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="interpret-model-results-in-azure-machine-learning"></a>Interprétation des résultats de modèle dans Azure Machine Learning
-Cette rubrique vous explique comment visualiser et interpréter les résultats de prédiction dans Azure Machine Learning Studio. Après avoir formé un modèle et effectué des prédictions sur celui-ci (c’est-à-dire « noté le modèle »), vous avez besoin de comprendre et d’interpréter les résultats de prédiction.
+Cette rubrique explique comment toovisualize et interpréter les résultats de prédiction dans Azure Machine Learning Studio. Après avoir formé d’un modèle et effectue des prédictions par-dessus (« modèle de hello transformée »), vous devez toounderstand et interpréter les résultats de prédiction hello.
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
@@ -32,40 +32,40 @@ Il existe quatre principaux types de modèles d'apprentissage automatique dans A
 * régression ;
 * systèmes de recommandation.
 
-Les modules utilisés pour la prédiction en plus de ces modèles sont :
+les modules de Hello utilisés pour la prédiction sur ces modèles sont :
 
 * [Noter le modèle][score-model] pour la classification et la régression
-* [Attribuer aux clusters][assign-to-clusters] pour le clustering
+* [Affecter tooClusters] [ assign-to-clusters] module pour le clustering
 * [Noter la recommandation Matchbox][score-matchbox-recommender] pour les systèmes de recommandation
 
-Ce document vous explique comment interpréter les résultats de prédiction pour chacun de ces modules. Pour obtenir une vue d’ensemble de ces modules, consultez la rubrique [Sélection des paramètres permettant d’optimiser des algorithmes dans Azure Machine Learning](machine-learning-algorithm-parameters-optimize.md).
+Ce document explique l’affichage des résultats de prédiction de toointerpret pour chacun de ces modules. Pour une vue d’ensemble de ces modules, consultez [comment toochoose paramètres toooptimize vos algorithmes dans Azure Machine Learning](machine-learning-algorithm-parameters-optimize.md).
 
-Cette rubrique aborde l’interprétation des prédictions et non l’évaluation du modèle. Pour plus d’informations sur la manière d’évaluer votre modèle, reportez-vous à la rubrique [Évaluation des performances d’un modèle dans Azure Machine Learning](machine-learning-evaluate-model-performance.md).
+Cette rubrique aborde l’interprétation des prédictions et non l’évaluation du modèle. Pour plus d’informations sur la façon tooevaluate votre modèle, consultez [comment tooevaluate modèle de performances dans Azure Machine Learning](machine-learning-evaluate-model-performance.md).
 
-Si vous débutez avec Azure Machine Learning et souhaitez découvrir comment créer une expérience simple, consultez la rubrique [Création d’une expérience simple dans Azure Machine Learning Studio](machine-learning-create-experiment.md) dans Azure Machine Learning Studio.
+Si vous êtes tooAzure nouvelle Machine Learning et que vous avez besoin d’aide à la création d’un tooget une expérience simple démarré, consultez [créer une expérience simple dans Azure Machine Learning Studio](machine-learning-create-experiment.md) dans Azure Machine Learning Studio.
 
-## <a name="classification"></a>classification ;
+## <a name="classification"></a>Classification
 Il existe deux sous-catégories de problèmes de classification :
 
 * Problèmes avec uniquement deux classes (classification double classe ou binaire)
 * Problèmes avec plus de deux classes (classification multiclasse)
 
-Azure Machine Learning propose différents modules pour traiter chacun de ces types de classification, mais les méthodes permettant d’interpréter les résultats des prédictions sont similaires.
+Azure Machine Learning a toodeal différents modules avec chacun de ces types de classification, mais les méthodes hello pour interpréter leurs résultats de prédiction sont similaires.
 
 ### <a name="two-class-classification"></a>Classification double classe.
 **Exemple d'expérience**
 
-Un exemple de problème de classification double classe est la classification de fleurs d’iris. La tâche consiste à classer les fleurs d’iris en fonction de leurs caractéristiques. Le jeu de données Iris fourni dans Azure Machine Learning constitue un sous-ensemble de ce fameux [Jeu de données Iris](http://en.wikipedia.org/wiki/Iris_flower_data_set) contenant des instances d’uniquement deux espèces de fleur (classes 0 et 1). Chaque fleur comporte quatre caractéristiques (la longueur des sépales, la largeur des sépales, la longueur des pétales et la largeur des pétales).
+Un exemple d’un problème de classification à deux classes est classification hello de fleurs d’iris. tâche Hello est fleurs d’iris tooclassify en fonction de leurs fonctionnalités. jeu de données Iris fourni dans Azure Machine Learning Hello est un sous-ensemble de hello populaires [jeu de données Iris](http://en.wikipedia.org/wiki/Iris_flower_data_set) contenant des instances de seulement deux fleur espèces (classes 0 et 1). Chaque fleur comporte quatre caractéristiques (la longueur des sépales, la largeur des sépales, la longueur des pétales et la largeur des pétales).
 
 ![Capture d’écran de l’expérience iris](./media/machine-learning-interpret-model-results/1.png)
 
 Figure 1. Expérience d’un problème de classification double classe iris
 
-Une expérience a été réalisée pour résoudre ce problème, comme mentionnée dans la Figure 1. Un modèle d'arbre de décision augmentée, double classe a été formé et noté. Vous pouvez dès à présent visualiser les résultats de prédiction du module [Noter le modèle][score-model] en cliquant sur le port de sortie du module [Noter le modèle][score-model], puis sur **Visualiser** dans le menu qui s’affiche.
+Une expérience été effectuée toosolve ce problème, comme illustré dans la Figure 1. Un modèle d'arbre de décision augmentée, double classe a été formé et noté. Maintenant vous permet de visualiser les résultats de prédiction hello de hello [Score Model] [ score-model] module en cliquant sur le port de sortie hello Hello [Score Model] [ score-model]module et en cliquant sur **visualiser**.
 
 ![Module Noter le modèle](./media/machine-learning-interpret-model-results/1_1.png)
 
-Ceci affiche les résultats de notation, comme mentionné dans la Figure 2.
+Hello score des résultats comme indiqué dans la Figure 2 s’affiche.
 
 ![Résultats de l’expérience de classification double classe iris](./media/machine-learning-interpret-model-results/2.png)
 
@@ -73,23 +73,23 @@ Figure 2 : Visualisation du résultat du modèle de notation dans la classific
 
 **Interprétation du résultat**
 
-La table des résultats est constituée de six colonnes. Les quatre colonnes de gauche représentent les quatre fonctionnalités. Les deux colonnes de droite, Étiquettes notées et Probabilités notées, représentent les résultats de prédiction. La colonne Probabilités notées indique la probabilité qu’une fleur appartienne à la classe positive (Classe 1). Par exemple, le premier numéro indiqué dans la colonne (0,028571) signifie qu’il y a une probabilité de 0,028571 que la première fleur appartienne à la Classe 1. La colonne Étiquettes notées indique la classe prédite pour chaque fleur. Elle est déterminée en fonction de la colonne Probabilités notées. Si la probabilité notée d’une fleur est supérieure à 0,5, elle est prédite en tant que Classe 1. Sinon, elle est prédite en tant que classe 0.
+Il y a six colonnes dans la table des résultats hello. colonnes de quatre gauche Hello sont des fonctionnalités de quatre hello. Hello droite deux colonnes, Scored Labels et probabilités évaluées, sont des résultats de prédiction hello. Hello notées les probabilités colonne montre hello probabilité qu’un fleuriste appartienne toohello de classe positif (classe 1). Par exemple, hello premier numéro de moyens de colonne (0.028571) hello est 0.028571 probabilité hello fleur première appartient tooClass 1. Hello Scored Labels colonne montre hello prévisible de classe pour chaque fleur. Cela est basée sur la colonne des probabilités de transformée hello. Si hello transformée la probabilité d’un fleuriste est supérieure à 0,5, il est prévu en tant que classe 1. Sinon, elle est prédite en tant que classe 0.
 
 **Publication du service web**
 
-Une fois que les résultats de prédiction ont été compris et considérés comme pertinents, l’expérience peut être publiée en tant que service web pour vous permettre de la déployer sur différentes applications et être sollicitée pour obtenir des prédictions de classe sur n’importe quelle nouvelle fleur d’iris. Pour découvrir comment convertir une expérience de formation en expérience de notation et la publier sous forme de service web, consultez la rubrique [Publication du service web Azure Machine Learning](machine-learning-walkthrough-5-publish-web-service.md). Cette procédure vous permet de bénéficier d’une expérience de notation, comme indiqué dans la Figure 3.
+Une fois les résultats de prédiction hello ont été compris et jugées audio, hello expérience peut être publié en tant qu’un service web afin que vous pouvez déployer dans différentes applications et appeler des prédictions de classe tooobtain sur n’importe quel fleur iris nouvelle. toolearn toochange une formation faire des essais en expérience de score et le publier en tant qu’un service web, voir [publier le service web de Azure Machine Learning hello](machine-learning-walkthrough-5-publish-web-service.md). Cette procédure vous permet de bénéficier d’une expérience de notation, comme indiqué dans la Figure 3.
 
 ![Capture d’écran de l’expérience de notation](./media/machine-learning-interpret-model-results/3.png)
 
-Figure 3. Notation de l’expérience d’un problème de classification double classe Iris
+Figure 3. Calcul de score expérience de problème de classification à deux classes hello iris
 
-Vous devez à présent définir l’entrée et la sortie du service web. L'entrée est caractérisée par le port d'entrée droit de [Noter le modèle][score-model], qui représente l'entrée des fonctionnalités de la fleur d'Iris. La sortie est, quant à elle, définie en fonction de l’intérêt que vous portez à la classe prédite (étiquette notée), à la probabilité notée ou bien aux deux. Dans cet exemple, on considère ici que vous êtes intéressé par les deux. Pour sélectionner les colonnes de sortie souhaitées, nous devons utiliser un module [Sélectionner des colonnes dans le jeu de données][select-columns]. Cliquez sur le module [Sélectionner des colonnes dans le jeu de données][select-columns], sur **Lancer le sélecteur de colonne** situé dans le volet droit, puis sélectionnez **Étiquettes notées** et **Probabilités notées**. Une fois le port de sortie du module [Sélectionner des colonnes dans le jeu de données configuré][select-columns] et exécuté à nouveau, nous devons être en mesure de publier l’expérience de notation en tant que service web en cliquant sur le bouton du bas, intitulé **PUBLIER LE SERVICE WEB**. L'expérience finale est semblable à celle mentionnée dans la Figure 4.
+Vous devez maintenant tooset hello entrée et sortie pour le service web de hello. entrée Hello est port d’entrée de droite hello de [Score Model][score-model], qui est hello Iris fleur fonctionnalités entrée. Hello choix de la sortie de hello varie selon que vous sont intéressées Bonjour prédit classe (étiquette noté), hello transformée probabilité ou les deux. Dans cet exemple, on considère ici que vous êtes intéressé par les deux. tooselect hello souhaitée des colonnes de sortie, utilisez un [sélectionner les colonnes dans le jeu de données] [ select-columns] module. Cliquez sur le module [Sélectionner des colonnes dans le jeu de données][select-columns], sur **Lancer le sélecteur de colonne** situé dans le volet droit, puis sélectionnez **Étiquettes notées** et **Probabilités notées**. Après avoir défini le port de sortie hello du [sélectionner les colonnes dans le jeu de données] [ select-columns] et exécuter à nouveau, vous devez être prêt toopublish expérience de score hello comme un service web en cliquant sur **publier le site WEB SERVICE**. expérience de final Hello ressemble à la Figure 4.
 
-![Expérience de classification double classe iris](./media/machine-learning-interpret-model-results/4.png)
+![expérience de classification à deux classes Hello iris](./media/machine-learning-interpret-model-results/4.png)
 
 Figure 4. Expérience de notation finale d’un problème de classification double classe Iris
 
-Une fois le service web exécuté et certaines valeurs caractéristiques d’une instance de test saisies, le résultat fournit deux nombres. Le premier nombre représente l’étiquette notée, le deuxième la probabilité notée. Cette fleur est prédite en tant que Classe 1 avec une probabilité de 0,9655.
+Après avoir exécuté le service web de hello et que vous entrez des valeurs de certaines fonctionnalités d’une instance de test, le résultat de hello renvoie deux nombres. numéro de la première Hello est hello transformée étiquette et hello est ensuite hello transformée probabilité. Cette fleur est prédite en tant que Classe 1 avec une probabilité de 0,9655.
 
 ![Test de l’interprétation Noter le modèle](./media/machine-learning-interpret-model-results/4_1.png)
 
@@ -100,17 +100,17 @@ Figure 5. Résultat du service web de classification double classe Iris
 ### <a name="multi-class-classification"></a>Classification multiclasse.
 **Exemple d'expérience**
 
-Lors de cette expérience, vous réalisez une tâche de reconnaissance de lettres en tant qu’exemple de classification multiclasse. Le classificateur essaye de prédire une lettre (classe), compte tenu de certaines valeurs d’attribut écrites, extraites d’images écrites.
+Lors de cette expérience, vous réalisez une tâche de reconnaissance de lettres en tant qu’exemple de classification multiclasse. Hello classifieur tente toopredict une certaine lettre (classe) en fonction de certaines valeurs d’attribut de manuel extraites à partir d’images de hello écrit manuellement.
 
 ![Exemple de reconnaissance de lettres](./media/machine-learning-interpret-model-results/5_1.png)
 
-Dans les données de formation, 16 caractéristiques sont extraites d’images de lettres écrites. Les 26 lettres forment nos 26 classes. La figure 6 montre une expérience qui va former un modèle de classification multiclasse de reconnaissance de lettres et établir des prédictions sur le même ensemble de fonctionnalités d’un jeu de données de test.
+Dans les données d’apprentissage hello, il existe des 16 fonctionnalités extraites à partir d’images de lettre de manuel. Hello 26 lettres forment nos 26 classes. La figure 6 montre une expérience qui sera l’apprentissage d’une classification multiclasse de modèle pour la reconnaissance des lettres et prédire sur hello même fonctionnalité ensemble sur un jeu de données de test.
 
 ![Expérience de classification multiclasse de reconnaissance de lettre](./media/machine-learning-interpret-model-results/6.png)
 
 Figure 6. Expérience de problème de classification multiclasse de reconnaissance de lettre
 
-Lorsque vous visualisez les résultats du module [Noter le modèle][score-model] en cliquant sur le port de sortie du module [Noter le modèle][score-model], puis sur **Visualiser**, vous devez voir apparaître une fenêtre, comme illustré dans la Figure 7.
+Visualisation des résultats hello de hello [Score Model] [ score-model] module en cliquant sur le port de sortie hello du [Score Model] [ score-model] module, puis en cliquant sur **visualiser**, vous devez voir le contenu comme indiqué dans la Figure 7.
 
 ![Résultats Noter le modèle](./media/machine-learning-interpret-model-results/7.png)
 
@@ -118,21 +118,21 @@ Figure 7. Visualisation du résultat de modèle de notation dans la classificat
 
 **Interprétation du résultat**
 
-Les 16 colonnes de gauche représentent les valeurs caractéristiques de l’ensemble du test. Les colonnes intitulées Probabilités notées de classe « XX » sont similaires à la colonne Probabilités notées dans le cas d’utilisation d’une classification double classe. Elles indiquent la probabilité que l'entrée correspondante est comprise dans une certaine classe. Par exemple, pour la première entrée, il y a une probabilité de 0,003571 que ce soit un « A », une probabilité de 0,000451 que ce soit un « B », et ainsi de suite. La dernière colonne (Étiquettes notées) est identique aux Étiquettes notées dans le cas d’utilisation d’une classification double classe. Elle sélectionne la classe présentant la probabilité notée la plus élevée en tant que classe prédite de l'entrée correspondante. Par exemple, pour la première entrée, l'étiquette notée est un « F », car elle présente la probabilité la plus élevée que ce soit un « F » (0,916995).
+colonnes de 16 gauche Hello représentent les valeurs de fonctionnalité hello de jeu de test hello. colonnes Hello avec des noms, telles que les probabilités d’évaluées pour la classe « XX » sont comme colonne des probabilités de transformée hello dans les cas de deux classes hello. Ils montrent la probabilité hello hello entrée correspondante se situe dans une certaine classe. Par exemple, pour la première entrée de hello, il est 0.003571 probabilité qu’il s’agit d’un « A », 0.000451 probabilité qu’il s’agit d’un « B » et ainsi de suite. colonne de dernière Hello (étiquettes au score calculé) est hello identique dans les cas de deux classes hello Scored Labels. Il sélectionne la classe hello avec hello plus grande transformée probabilité comme hello classe prévue de l’entrée correspondante de hello. Par exemple, pour la première entrée de hello, hello transformée étiquette est « F », car il a hello plus grande probabilité toobe (0.916995) « F ».
 
 **Publication du service web**
 
-Vous pouvez également obtenir l’étiquette notée pour chaque entrée et la probabilité de l’étiquette notée. La logique de base consiste à trouver la probabilité la plus élevée parmi toutes les probabilités notées. Pour ce faire, vous devez utiliser le module [Exécuter le script R][execute-r-script]. Le code R est mentionné dans la Figure 8 et le résultat de l’expérience dans la Figure 9.
+Vous pouvez également obtenir hello évalué d’étiquette pour chaque entrée et hello probabilité hello transformée d’étiquette. logique de base Hello représente la probabilité de plus grande de hello toofind entre hello toutes les probabilités de transformée. toodo, vous devez toouse hello [Execute R Script] [ execute-r-script] module. Hello code R est indiqué dans la Figure 8, et résultat hello d’expérimentation de hello est indiqué dans la Figure 9.
 
 ![Exemple de code R](./media/machine-learning-interpret-model-results/8.png)
 
-Figure 8. Code R permettant d’extraire les étiquettes notées et les probabilités associées des étiquettes
+Figure 8. Code R d’extraction Scored Labels et hello associées des probabilités des étiquettes de hello
 
 ![Résultat de l’expérience](./media/machine-learning-interpret-model-results/9.png)
 
-Figure 9. Expérience de notation finale d’un problème de classification multiclasse de reconnaissance de lettres
+Figure 9. Expérience de score final de problème de classification multiclasse de reconnaissance de lettre hello
 
-Une fois le service web publié et exécuté, et certaines valeurs caractéristiques d’une instance de test saisies, le résultat renvoyé est semblable à celui mentionné dans la Figure 10. Cette lettre écrite, accompagnée de ses 16 fonctionnalités extraites, est prédite pour être un « T » avec une probabilité de 0,9715.
+Une fois que vous publiez et exécutez le service web de hello et entrez des valeurs de la fonctionnalité d’entrée, hello renvoyé de résultat ressemble à la Figure 10. Cette lettre manuel, avec ses fonctionnalités de 16 extraites est prédite toobe un « T » avec une probabilité 0.9715.
 
 ![Test de l’interprétation du module de notation](./media/machine-learning-interpret-model-results/9_1.png)
 
@@ -141,35 +141,35 @@ Une fois le service web publié et exécuté, et certaines valeurs caractéristi
 Figure 10. Résultat du service web de classification multiclasse
 
 ## <a name="regression"></a>régression ;
-Les problèmes de régression sont différents des problèmes de classification. Dans un problème de classification, vous essayez de prédire les classes discrètes, telles que la classe à laquelle appartient une fleur d’iris. Mais dans un problème de régression, comme indiqué dans l’exemple suivant, nous essayons de prédire une variable continue, comme le prix d’une voiture.
+Les problèmes de régression sont différents des problèmes de classification. Un problème de classification, que vous essayez toopredict classes discrètes, telles que la classe appartient un fleuriste iris. Mais comme vous pouvez le voir dans hello exemple d’un problème de régression suivant, que vous essayez de toopredict une variable continue, comme les prix hello d’une voiture.
 
 **Exemple d'expérience**
 
-Utilisez la prédiction du prix d’une voiture comme exemple de régression. Vous essayez de prédire le prix d’une voiture en fonction de ses fonctionnalités comme la marque, le type de carburant, le type de voiture, le type de traction, etc. L'expérience est indiquée dans la Figure 11.
+Utilisez la prédiction du prix d’une voiture comme exemple de régression. Vous essayez de prix de hello toopredict d’une voiture en fonction de ses fonctionnalités, y compris la marque, type de carburant, type de corps et la roulette de lecteur. expérience de Hello est illustrée dans la Figure 11.
 
 ![Expérience de régression de prix des véhicules automobiles](./media/machine-learning-interpret-model-results/11.png)
 
 Figure 11. Expérience de problème de régression de prix des véhicules automobiles
 
-Visualisation du module [Noter le modèle][score-model], le résultat est semblable à celui mentionné dans la Figure 12.
+Visualisation hello [Score Model] [ score-model] module, résultat de hello ressemble à la Figure 12.
 
 ![Résultats d’évaluation pour le problème de prédiction du prix des véhicules automobiles](./media/machine-learning-interpret-model-results/12.png)
 
-Figure 12 : Résultats d’évaluation du problème de prédiction du prix des véhicules automobiles
+Figure 12 : Résultat du calcul de score pour problème de prédiction de prix automobile hello
 
 **Interprétation du résultat**
 
-Les étiquettes notées représentent la colonne de résultat dans ce résultat de notation. Les nombres constituent le prix prédit pour chaque voiture.
+Étiquettes évaluées est la colonne de résultat hello dans ce résultat du calcul de score. les numéros de Hello sont des prix prédite de hello pour chaque voiture.
 
 **Publication du service web**
 
-Vous pouvez publier l’expérience de régression dans un service web et la solliciter pour prédire le prix d’une voiture de la même manière que dans le cas d’utilisation d’une classification double classe.
+Vous pouvez publier l’expérience de régression hello dans un service web et l’appeler pour la prédiction de prix automobile Bonjour la même façon que dans classification à deux classes hello les cas d’usage.
 
 ![Expérience de notation pour le problème de prédiction du prix des véhicules automobiles](./media/machine-learning-interpret-model-results/13.png)
 
 Figure 13 : Expérience de notation pour un problème de prédiction du prix des véhicules automobiles
 
-Exécution du service web, le résultat renvoyé est semblable à celui indiqué dans la Figure 14. Le prix prédit de cette voiture est de 15 085,52 $.
+En cours d’exécution service web de hello, hello retourné résultat ressemble à la Figure 14. prix de prédite Hello pour cette voiture est $15,085.52.
 
 ![Module de notation d’interprétation de test](./media/machine-learning-interpret-model-results/13_1.png)
 
@@ -180,21 +180,21 @@ Figure 14. Résultat du service web d’un problème de régression du prix d’
 ## <a name="clustering"></a>clustering.
 **Exemple d'expérience**
 
-Utilisons le jeu de données Iris pour réaliser une expérience de clustering. Nous filtrons ici les étiquettes de classe dans le jeu de données de manière à ce qu’il ne contienne que des caractéristiques et puisse être utilisé uniquement pour le clustering. Dans ce cas d’utilisation Iris, définissez deux clusters lors du processus de formation, pour regrouper les fleurs en deux classes. L'expérience est indiquée dans la Figure 15.
+Nous allons utiliser hello jeu de données Iris à nouveau toobuild une expérience de gestion de clusters. Ici, vous pouvez filtrer les étiquettes de classe hello dans le jeu de données hello afin qu’il dispose de fonctionnalités et peut être utilisé pour le clustering d’uniquement. Cas d’usage dans cette iris, spécifiez les nombre hello de clusters toobe, deux au cours du processus d’apprentissage hello, ce qui signifie que vous serez cluster fleurs de hello en deux classes. expérience de Hello est indiqué dans la Figure 15.
 
 ![Expérience d’un problème de clustering Iris](./media/machine-learning-interpret-model-results/15.png)
 
 Figure 15. Expérience d’un problème de clustering Iris
 
-Le clustering diffère de la classification, car le jeu de données de formation ne dispose pas lui-même des étiquettes réelles. Le clustering regroupe les instances du jeu de données de formation dans des groupes distincts. Lors du processus de formation, le modèle étiquette les entrées en prenant compte des différences existantes entre leurs fonctionnalités. Le modèle formé peut être ensuite utilisé pour classifier les entrées futures. Deux parties du résultat nous intéressent au sein d'un problème de clustering. La première partie est l’étiquetage du jeu de données d’apprentissage et le second est le classement du nouveau jeu de données avec le modèle formé.
+Clustering est différente de classification dans le jeu de données d’apprentissage hello n’a pas les étiquettes réalité de terrain par lui-même. Groupes de clusters hello instances du jeu de données d’apprentissage en clusters distincts. Au cours du processus d’apprentissage hello, les étiquettes de modèle hello hello entrées par apprentissage des différences de hello entre leurs fonctionnalités. Après cela, d’utiliser le modèle formé hello toofurther classer les entrées ultérieures. Il existe deux parties de résultat hello que nous intéresse au sein d’un problème de gestion de clusters. première partie de Hello est étiquetage de jeu de données d’apprentissage hello et hello est ensuite classer un nouveau jeu de données avec le modèle formé de hello.
 
-La première partie du résultat peut être visualisée en cliquant sur le port de sortie gauche de [Former le modèle de clustering][train-clustering-model], puis sur **Visualiser**. La visualisation est présentée dans la Figure 16.
+Hello première partie du résultat de hello peut être visualisé en cliquant sur hello gauche du port de sortie du [Train Clustering Model] [ train-clustering-model] , puis en cliquant sur **visualiser**. visualisation de Hello est indiquée dans la Figure 16.
 
 ![Résultat du clustering](./media/machine-learning-interpret-model-results/16.png)
 
-Figure 16. Visualisation du résultat de clustering pour le jeu de données de formation
+Figure 16. Visualiser le résultat pour le jeu de données d’apprentissage hello de clustering
 
-Le résultat de la deuxième partie, regroupant de nouvelles entrées avec le modèle de clustering formé, est indiqué dans la Figure 17.
+résultat de Hello de deuxième partie hello, clustering des nouvelles entrées avec le modèle de clustering formé hello, est illustré dans la Figure 17.
 
 ![Visualiser le résultat de clustering](./media/machine-learning-interpret-model-results/17.png)
 
@@ -202,17 +202,17 @@ Figure 17. Visualisation du résultat de clustering sur un nouveau jeu de donné
 
 **Interprétation du résultat**
 
-Bien que provenant d’étapes d’expérience différentes, les résultats des deux parties sont similaires et interprétés de la même manière. Les quatre premières colonnes représentent les caractéristiques. La dernière colonne, Affectations, représente les résultats de prédiction. Les entrées affectées du même numéro sont prédites dans le même groupe, c’est-à-dire qu’elles partagent d’une certaine façon des similitudes (cet te expérience utilise la mesure de la distance euclidienne par défaut). Étant donné que vous avez spécifié 2 comme nombre de clusters, les entrées dans Affectations sont étiquetées 0 ou 1.
+Bien que les résultats hello de parties de hello deux proviennent d’expériences dans différentes phases, elles apparaîtront hello identiques et sont interprétées dans hello identique. Hello quatre premières colonnes sont des fonctionnalités. dernière colonne Hello, affectations, est le résultat de prédiction hello. Bonjour Bonjour d’affectées même nombre prévues toobe Bonjour même cluster, autrement dit, ils partagent les similitudes d’une certaine façon (cette expérience utilise les mesures de distance EUCLIDIENNE hello par défaut). Étant donné que vous avez spécifié le nombre de hello de clusters toobe 2, entrées hello dans les attributions sont étiquetées 0 ou 1.
 
 **Publication du service web**
 
-Vous pouvez publier l’expérience de clustering dans un service web et la solliciter pour des prédictions de clustering de la même manière que dans le cas d’utilisation d’une classification double classe.
+Vous pouvez publier hello clustering expérience dans un service web et l’appeler pour le clustering des prédictions hello même façon que les cas d’usage dans la classification à deux classes hello.
 
 ![Expérience de notation d’un problème de clustering Iris](./media/machine-learning-interpret-model-results/18.png)
 
 Figure 18. Expérience de notation d’un problème de clustering Iris
 
-Une fois le service web exécuté, le résultat renvoyé est semblable à celui indiqué dans la Figure 19. Cette fleur est prédite dans le cluster 0.
+Après avoir exécuté le service web de hello, hello retourné le résultat ressemble à la Figure 19. Cette fleur est prédite toobe cluster 0.
 
 ![Module de notation d’interprétation de test](./media/machine-learning-interpret-model-results/18_1.png)
 
@@ -223,24 +223,24 @@ Figure 19. Résultat du service web de classification double classe Iris
 ## <a name="recommender-system"></a>Système de recommandation
 **Exemple d'expérience**
 
-Pour les systèmes de recommandation, vous pouvez utiliser le problème de recommandation de restaurants à titre d’exemple : recommander des restaurants aux clients en fonction de leur historique de notation. Les données d'entrée sont composées de trois parties :
+Pour les systèmes de recommandation, vous pouvez utiliser le problème de recommandation hello restaurant par exemple : vous pouvez recommander des restaurants pour les clients en fonction de leur historique d’évaluation. les données d’entrée Hello se compose de trois parties :
 
 * Notations de restaurants attribuées par les clients
 * Données caractéristiques des clients
 * Données sur les caractéristiques de restaurants
 
-Plusieurs tâches peuvent être effectuées via le module [Former la recommandation Matchbox][train-matchbox-recommender] d'Azure Machine Learning, à savoir :
+Il existe plusieurs choses que nous pouvons faire avec hello [Train Matchbox Recommender] [ train-matchbox-recommender] module dans Azure Machine Learning :
 
 * Prédire des notations pour un utilisateur et un élément donné
-* Recommander des éléments à un utilisateur donné
-* Trouver des utilisateurs associés à un utilisateur donné
-* Trouver des éléments associés à un utilisateur donné
+* Recommandons tooa éléments donné utilisateur
+* Rechercher des utilisateurs tooa connexes donné utilisateur
+* Rechercher des éléments connexes tooa est donné d’élément
 
-Vous pouvez choisir ce que vous voulez en sélectionnant parmi les quatre options du menu **Type de prédiction de recommandation**. Vous pouvez parcourir quatre scénarios.
+Vous pouvez choisir ce que vous souhaitez toodo en sélectionnant options hello quatre Bonjour **type de prédiction Recommender** menu. Vous pouvez parcourir quatre scénarios.
 
 ![Recommandation matchbox](./media/machine-learning-interpret-model-results/19_1.png)
 
-Une expérience Azure Machine Learning type pour un système de recommandation est semblable à celui de la Figure 20. Pour plus d’informations sur l’utilisation de ces modules de système de recommandation, consultez les rubriques [Former la recommandation Matchbox][train-matchbox-recommender] et [Noter la recommandation Matchbox][score-matchbox-recommender].
+Une expérience Azure Machine Learning type pour un système de recommandation est semblable à celui de la Figure 20. Pour plus d’informations sur comment toouse ces modules système de recommandation, consultez [de recommandations matchbox Train] [ train-matchbox-recommender] et [Score de recommandations matchbox] [ score-matchbox-recommender].
 
 ![Expérience du système de recommandation](./media/machine-learning-interpret-model-results/20.png)
 
@@ -250,55 +250,55 @@ Figure 20. Expérience du système de recommandation
 
 **Prédire des notations pour un utilisateur et un élément donné**
 
-En sélectionnant **Prédiction de notation** dans le menu **Type de prédiction de recommandation**, vous demandez au système de recommandation de prédire la notation pour un utilisateur et un élément donné. La visualisation de la sortie [Noter la recommandation Matchbox][score-matchbox-recommender] est semblable à celle mentionnée dans la Figure 21.
+En sélectionnant **une prédiction d’évaluation** sous **type de prédiction Recommender**, vous demandez recommender de hello hello toopredict de système d’évaluation pour un utilisateur donné et un élément. Hello visualisation Hello [Score Matchbox Recommender] [ score-matchbox-recommender] sortie ressemble à la Figure 21.
 
-![Visualisation du résultat de notation du système de recommandation - Prédiction de notation](./media/machine-learning-interpret-model-results/21.png)
+![Résultat de système de recommandation hello : prédiction de l’évaluation de score](./media/machine-learning-interpret-model-results/21.png)
 
-Figure 21. Visualisation du résultat de notation du système de recommandation - Prédiction de notation
+Figure 21. Visualiser les résultats de score hello de système de recommandation hello : prédiction d’évaluation
 
-Les deux premières colonnes représentent les paires utilisateur-élément fournies par les données d'entrée. La troisième colonne représente la notation prédite d'un utilisateur pour un élément donné. Par exemple, dans la première ligne, le client U1048 est censé attribuer au restaurant 135 026 la note de 2.
+Hello deux premières colonnes sont des paires utilisateur-élément de hello fournis par les données d’entrée hello. troisième colonne de Hello est hello évaluation prédite d’un utilisateur pour un article donné. Par exemple, dans la première ligne de hello, client U1048 prédit toorate restaurant 135026 2.
 
-**Recommander des éléments à un utilisateur donné**
+**Recommandons tooa éléments donné utilisateur**
 
-En sélectionnant **Recommandation d’éléments** dans le menu **Type de prédiction de recommandation**, vous demandez au système de recommandation de recommander des éléments à un utilisateur donné. Le dernier paramètre à choisir dans ce scénario est la *sélection d’éléments recommandés*. L'option **À partir d'éléments notés (pour l'évaluation de modèle)** est principalement utilisée pour l'évaluation de modèle lors du processus de formation. Pour cette étape de prédiction, nous choisissons **À partir de tous les éléments**. La visualisation de la sortie [Noter la recommandation Matchbox][score-matchbox-recommender] est semblable à celle mentionnée dans la Figure 22.
+En sélectionnant **recommandation d’élément** sous **type de prédiction Recommender**, vous vous demandez recommender de hello système toorecommend éléments tooa donné utilisateur. Hello dernier paramètre toochoose dans ce scénario est *recommandé de sélection d’éléments*. Hello option **d’éléments d’évalués (pour l’évaluation de modèle)** est principalement utilisé pour l’évaluation du modèle pendant le processus d’apprentissage hello. Pour cette étape de prédiction, nous choisissons **À partir de tous les éléments**. Hello visualisation Hello [Score Matchbox Recommender] [ score-matchbox-recommender] sortie ressemble à la Figure 22.
 
 ![Visualisation du résultat de notation du système de recommandation - Recommandation d’éléments](./media/machine-learning-interpret-model-results/22.png)
 
-Figure 22. Visualisation du résultat de notation du système de recommandation - Recommandation d’éléments
+Figure 22. Visualiser le résultat de score de système de recommandation hello--recommandation d’élément
 
-La première des six colonnes représente le nom de l’utilisateur donné pour lequel nous recommandons des éléments, fournis par les données d’entrée. Les cinq colonnes restantes représentent les éléments recommandés à l’utilisateur, classés par ordre décroissant en fonction de leur pertinence. Par exemple, dans la première ligne, le restaurant le plus recommandé au client U1048 est le restaurant 134986, suivi des restaurants 135018, 134975, 135021 et 132862.
+Bonjour premier Hello de représente hello six colonnes donné d’éléments de toorecommend l’ID utilisateur, tel que fourni par les données d’entrée hello. Hello cinq autres colonnes représentent les éléments hello recommandés utilisateur toohello par ordre décroissant de pertinence. Par exemple, dans la première ligne de hello, hello plus recommandé restaurant client U1048 est 134986, suivie de 135018, 134975, 135021 et 132862.
 
-**Trouver des utilisateurs associés à un utilisateur donné**
+**Rechercher des utilisateurs tooa connexes donné utilisateur**
 
-En sélectionnant **Utilisateurs associés** dans **Type de prédiction de recommandation**, nous demandons au système de recommandation de trouver des utilisateurs associés à un utilisateur donné. Les utilisateurs associés sont les utilisateurs qui ont des préférences similaires. Le dernier paramètre à choisir dans ce scénario est la *sélection de l’utilisateur associé*. L’option **À partir d’utilisateurs qui ont noté des éléments (pour l’évaluation de modèle)** est principalement utilisée pour l’évaluation de modèle lors du processus de formation. Pour cette étape de prédiction, choisissez **À partir de tous les utilisateurs**. La visualisation de la sortie [Noter la recommandation Matchbox][score-matchbox-recommender] est semblable à celle mentionnée dans la Figure 23.
+En sélectionnant **utilisateurs liés** sous **type de prédiction Recommender**, vous vous demandez recommender de hello utilisateur système toofind d’utilisateurs liés tooa donné. Les utilisateurs associés sont des utilisateurs de hello qui ont des préférences similaires. Hello dernier paramètre toochoose dans ce scénario est *liés de sélection de l’utilisateur*. Hello option **d’utilisateurs ayant évalué des éléments (pour l’évaluation de modèle)** est principalement utilisé pour l’évaluation du modèle pendant le processus d’apprentissage hello. Pour cette étape de prédiction, choisissez **À partir de tous les utilisateurs**. Hello visualisation Hello [Score Matchbox Recommender] [ score-matchbox-recommender] sortie ressemble à la Figure 23.
 
 ![Visualisation du résultat de notation du système de recommandation - Utilisateurs associés](./media/machine-learning-interpret-model-results/23.png)
 
-Figure 23. Visualisation du résultat de notation du système de recommandation - Utilisateurs associés
+Figure 23. Visualiser les résultats du score de système de recommandation hello--utilisateurs liés
 
-La première des six colonnes contient les ID utilisateurs donnés nécessaires pour rechercher des utilisateurs liés, comme fournis par les données d’entrée. Les cinq colonnes restantes répertorient les utilisateurs associés prédits, classés par ordre décroissant en fonction de leur pertinence. Par exemple, dans la première ligne, le client le plus pertinent pour le client U1048 est le client U1051, suivi des clients U1066, U1044, U1017 et U1072.
+Hello tout d’abord de hello de montre hello six colonnes donnée utilisateur ID nécessités toofind liées aux utilisateurs, tel que fourni par les données d’entrée. Hello autre banque de cinq colonnes hello utilisateurs liés prédits d’utilisateur hello dans l’ordre décroissant de pertinence. Par exemple, dans la première ligne de hello, client les plus pertinents hello client U1048 est U1051, suivie de U1066, U1044, U1017 et U1072.
 
-**Trouver des éléments associés à un élément donné**
+**Rechercher des éléments connexes tooa est donné d’élément**
 
-En sélectionnant **Éléments associés** dans le menu **Type de prédiction de recommandation**, vous demandez au système de recommandation de trouver des éléments associés à un élément donné. Les éléments associés sont les éléments les plus susceptibles d'être appréciés par le même utilisateur. Le dernier paramètre à choisir dans ce scénario est la *sélection de l’article associé*. L'option **À partir d'éléments notés (pour l'évaluation de modèle)** est principalement utilisée pour l'évaluation de modèle lors du processus de formation. Pour cette étape de prédiction, nous choisissons **À partir de tous les éléments** . La visualisation de la sortie [Noter la recommandation Matchbox][score-matchbox-recommender] est semblable à celle mentionnée dans la Figure 24.
+En sélectionnant **éléments connexes** sous **type de prédiction Recommender**, vous demandez recommender de hello élément tooa donné du système toofind éléments connexes. Liés à des éléments sont toobe probablement des éléments de hello aimé par hello même utilisateur. Hello dernier paramètre toochoose dans ce scénario est *liés de sélection d’éléments*. Hello option **d’éléments d’évalués (pour l’évaluation de modèle)** est principalement utilisé pour l’évaluation du modèle pendant le processus d’apprentissage hello. Pour cette étape de prédiction, nous choisissons **À partir de tous les éléments** . Hello visualisation Hello [Score Matchbox Recommender] [ score-matchbox-recommender] sortie ressemble à la Figure 24.
 
 ![Visualisation du résultat de notation du système de recommandation - articles associés](./media/machine-learning-interpret-model-results/24.png)
 
-Figure 24. Visualisation du résultat de notation du système de recommandation - articles associés
+Figure 24. Visualiser les résultats du score de système de recommandation hello--éléments connexes
 
-La première des six colonnes représente le nom de l’élément donné pour les éléments associés, fournis par les données d’entrée. Les cinq colonnes restantes répertorient les éléments associés prédits, classés par ordre décroissant en fonction de leur pertinence. Par exemple, dans la première ligne, l’élément le plus pertinent pour l’élément 135026 est l’élément 135074, suivi des éléments 135035, 132875, 135055 et 134992.
+Hello premier Hello de représente hello six colonnes étant donné les ID d’éléments nécessités toofind les éléments liés aux, tel que fourni par les données d’entrée hello. Hello autre banque de cinq colonnes hello éléments liés prédits d’élément hello dans l’ordre décroissant en termes de pertinence. Par exemple, dans la première ligne de hello, élément de hello les plus pertinents pour l’élément 135026 est 135074, suivie de 135035, 132875, 135055 et 134992.
 
 **Publication du service web**
 
-Le processus de publication de ces expériences en tant que services web permettant d'obtenir des prédictions est similaire pour chacun des quatre scénarios. Nous nous attardons ici sur le second scénario, la recommandation d’éléments à un utilisateur donné, à titre d’exemple. Vous pouvez suivre la même procédure pour les trois autres.
+processus de Hello de ces expériences en tant que prédictions de tooget de services web de publication est similaire pour chacun des quatre scénarios de hello. Ici, nous prenons second scénario de hello (il est recommandé d’éléments tooa donné utilisateur) comme exemple. Vous pouvez suivre hello même procédure avec hello trois autres.
 
-Enregistrement du système de recommandation formé en tant que modèle formé et filtrage des données d’entrée dans une colonne d’ID utilisateur unique (tel que cela a été demandé), vous pouvez raccorder l’expérience, comme mentionné dans la Figure 25, et la publier en tant que service web.
+Enregistrement hello formé de système de recommandation comme un modèle formé et le filtrage tooa des données d’entrée hello colonne d’ID utilisateur unique comme demandé, vous pouvez raccorder expérience hello comme dans la Figure 25 et publier en tant que service web.
 
-![Expérience de notation d’un problème de recommandation de restaurants](./media/machine-learning-interpret-model-results/25.png)
+![Expérience de problème de recommandation hello restaurant de calcul de score](./media/machine-learning-interpret-model-results/25.png)
 
-Figure 25. Expérience de notation d’un problème de recommandation de restaurants
+Figure 25. Expérience de problème de recommandation hello restaurant de calcul de score
 
-Exécution du service web, le résultat renvoyé est semblable à celui indiqué dans la Figure 26. Les cinq restaurants recommandés pour l’utilisateur U1048 sont les restaurants 134986, 135018, 134975, 135021 et 132862.
+En cours d’exécution service web de hello, hello retourné de résultats ressemble Figure 26. les restaurants recommandée cinq Hello pour utilisateur U1048 sont 134986, 135018, 134975, 135021 et 132862.
 
 ![Exemple de service de système de recommandation](./media/machine-learning-interpret-model-results/25_1.png)
 

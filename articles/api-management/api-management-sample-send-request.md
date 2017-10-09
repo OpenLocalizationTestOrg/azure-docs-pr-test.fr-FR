@@ -1,6 +1,6 @@
 ---
-title: "Utilisation du service de gestion des API pour générer des requêtes HTTP"
-description: "Apprenez à utiliser des stratégies de requête et de réponse dans le service de gestion des API pour appeler des services externes depuis votre API"
+title: demandes de toogenerate HTTP de service de gestion des API aaaUsing
+description: "Découvrez les stratégies de demande et de réponse toouse dans Gestion des API toocall des services externes à partir de votre API"
 services: api-management
 documentationcenter: 
 author: darrelmiller
@@ -14,22 +14,22 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 12/15/2016
 ms.author: apimpm
-ms.openlocfilehash: e778943715d6ca5256ad612d82bdc1f82197df0d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8002ee453057513340328d99f298703c3b3a9531
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="using-external-services-from-the-azure-api-management-service"></a>Utilisation de services externes à partir du service de gestion des API Azure
-Les stratégies disponibles dans le service de gestion des API Azure permettent de réaliser un large éventail de tâches utiles purement selon la requête entrante, la réponse sortante et les informations de configuration de base. En revanche, la possibilité d’interagir avec des services externes à partir des stratégies de gestion des API ouvre bien davantage d’opportunités.
+# <a name="using-external-services-from-hello-azure-api-management-service"></a>À l’aide des services externes à partir de hello service de gestion des API Azure
+stratégies de Hello disponibles dans le service de gestion des API Azure faire un large éventail de tâches utiles dépend uniquement de demande entrante de hello, la réponse sortante hello et les informations de configuration de base. Toutefois, les stratégies qui est en mesure de toointeract avec des services externes à partir de la gestion des API ouvre opportunités plus nombreuses.
 
-Nous avons vu précédemment comment interagir avec le service [Azure Event Hub pour la journalisation, la surveillance et l’analyse](api-management-log-to-eventhub-sample.md). Dans cet article, nous allons décrire les stratégies qui vous permettent d’interagir avec n’importe quel service HTTP externe. Ces stratégies peuvent être utilisées pour déclencher des événements à distance ou récupérer des informations servant à manipuler la requête d’origine et la réponse d’une certaine façon.
+Nous l’avons déjà vu comment nous pouvons interagissent avec hello [service de concentrateur d’événements Azure pour la journalisation, la surveillance et analytique](api-management-log-to-eventhub-sample.md). Dans cet article, nous allons vous montrer service basé sur des stratégies qui vous toointeract avec n’importe quel HTTP externe. Ces stratégies peuvent être utilisés pour déclencher des événements à distance ou pour récupérer des informations qui seront demande d’origine de hello toomanipulate utilisés et de réponse d’une certaine façon.
 
 ## <a name="send-one-way-request"></a>Send-One-Way-Request (Envoyer une requête à sens unique)
-L’interaction externe la plus simple est peut-être le style « fire and forget » d’une demande qui permet à un service externe d’être notifié d’un type d’événement important. Nous pouvons utiliser la stratégie de flux de contrôle `choose` pour détecter tout type de condition qui nous intéresse et puis, si la condition est remplie, nous pouvons effectuer une requête HTTP externe à l’aide de la stratégie [send-one-way-request](https://msdn.microsoft.com/library/azure/dn894085.aspx#SendOneWayRequest) . Il peut s’agir d’une requête destinée à un système de messagerie comme Hipchat ou Slack, ou encore à une API de messagerie telle que SendGrid ou MailChimp, ou à quelque chose comme PagerDuty pour les incidents de support critiques. Tous ces systèmes de messagerie ont des API HTTP simples que nous pouvons facilement appeler.
+Hello interaction externe la plus simple est probablement style d’incendie et oubliez hello de requête qui permet une toobe de service externe notifié d’un type d’événement important. Nous pouvons utiliser la stratégie de flux de contrôle hello `choose` toodetect n’importe quel type de condition qui nous intéressent et ensuite, si hello condition est satisfaite, nous pouvons effectuer une demande HTTP externe à l’aide de hello [envoyer un moyen de demande](https://msdn.microsoft.com/library/azure/dn894085.aspx#SendOneWayRequest) stratégie. Cela peut être un tooa demande système comme Hipchat Slack ou d’une API de messagerie comme SendGrid ou MailChimp de messagerie, ou pour les incidents de support critiques quelque chose comme PagerDuty. Tous ces systèmes de messagerie ont des API HTTP simples que nous pouvons facilement appeler.
 
 ### <a name="alerting-with-slack"></a>Alerte avec Slack
-L’exemple suivant montre comment envoyer un message à une salle de conversation Slack si le code d’état de la réponse HTTP est supérieur ou égal à 500. Une erreur incluse dans la plage 500 indique un problème avec notre API principale que le client de notre API ne peut pas résoudre lui-même. Elle nécessite généralement une intervention de notre part.  
+Hello l’exemple suivant montre comment toosend un tooa message marge salle de conversation si le code hello d’état de réponse HTTP est supérieur ou égal à too500. Une erreur de 500 plage indique un problème avec nos API de serveur principal qui hello client de notre API ne peut pas résoudre d’eux-mêmes. Elle nécessite généralement une intervention de notre part.  
 
 ```xml
 <choose>
@@ -56,31 +56,31 @@ L’exemple suivant montre comment envoyer un message à une salle de conversati
 </choose>
 ```
 
-Slack inclut la notion de Webhook entrant. Quand vous configurez un Webhook entrant, Slack génère une URL spéciale qui vous permet de faire une requête POST simple et de transmettre un message dans le canal Slack. Le corps JSON que nous créons se base sur un format défini par Slack.
+Marge a notion hello des raccordements de web entrantes. Lorsque vous configurez un raccordement web entrantes, Slack génère une URL spéciale qui vous permet de toodo une demande POST simple et toopass un message dans le canal de marge hello. Hello corps JSON que vous créez est basée sur un format défini par la marge.
 
 ![Webhook Slack](./media/api-management-sample-send-request/api-management-slack-webhook.png)
 
 ### <a name="is-fire-and-forget-good-enough"></a>Le style « fire and forget » est-il suffisant ?
-L’utilisation d’un style « fire and forget » de requête implique certains compromis. Si, pour une raison ou une autre, la requête échoue, alors l’échec n’est pas signalé. Dans ce cas particulier, la complexité d’avoir un système de signalement des échecs secondaire et le coût des performances supplémentaires liées à l’attente de la réponse ne sont pas justifiés. Pour les scénarios où il est indispensable de vérifier la réponse, la stratégie [send-request](https://msdn.microsoft.com/library/azure/dn894085.aspx#SendRequest) constitue une meilleure option.
+L’utilisation d’un style « fire and forget » de requête implique certains compromis. Si, pour une raison quelconque, hello demande échoue, puis Échec de hello n’est pas signalée. Dans ce cas particulier, la complexité hello de disposer d’un système de notification d’échec secondaire et le coût de performances supplémentaires hello d’attente d’une réponse de hello n’est pas justifiée. Pour les scénarios où il s’agit toocheck essentielles hello, puis hello [demande d’envoi](https://msdn.microsoft.com/library/azure/dn894085.aspx#SendRequest) stratégie est une meilleure option.
 
 ## <a name="send-request"></a>send-request
-La stratégie `send-request` permet d’utiliser un service externe pour exécuter des fonctions de traitement complexes et retourner des données au service Gestion des API qui peuvent être utilisées pour d’autres traitements de stratégie.
+Hello `send-request` permet de stratégie à l’aide d’un service externe de tooperform complexe de traitement des fonctions et données de retour toohello API management service qui peuvent être utilisée pour la poursuite du traitement de stratégie.
 
 ### <a name="authorizing-reference-tokens"></a>Autorisation des jetons de référence
-Une fonction majeure de la gestion des API consiste à protéger les ressources principales. Si le serveur d’autorisation utilisé par votre API crée des [jetons JWT](http://jwt.io/) dans le cadre de son flux OAuth2, comme le fait [Azure Active Directory](../active-directory/active-directory-aadconnect.md), vous pouvez utiliser la stratégie `validate-jwt` pour vérifier la validité du jeton. Toutefois, certains serveurs d’autorisation créent des [jetons de référence](http://leastprivilege.com/2015/11/25/reference-tokens-and-introspection/) qui ne peuvent pas être vérifiés sans rappeler le serveur d’autorisation.
+Une fonction majeure de la gestion des API consiste à protéger les ressources principales. Si le serveur d’autorisation de hello utilisé par votre API crée [jetons JWT](http://jwt.io/) dans le cadre de son flux OAuth2, en tant que [Azure Active Directory](../active-directory/active-directory-aadconnect.md) est le cas, vous pouvez ensuite utiliser hello `validate-jwt` validité de hello tooverify de stratégie de jeton de Hello. Toutefois, certains serveurs d’autorisation créent sont appelées [référence jetons](http://leastprivilege.com/2015/11/25/reference-tokens-and-introspection/) qui ne peut pas être vérifié sans passer d’un serveur d’autorisation de toohello précédent appel.
 
 ### <a name="standardized-introspection"></a>Introspection normalisée
-Par le passé, il n’existait aucun moyen normalisé de vérifier un jeton de référence avec un serveur d’autorisation. Néanmoins, une norme récemment proposée, [RFC 7662](https://tools.ietf.org/html/rfc7662) , qui définit comment un serveur de ressources peut vérifier la validité d’un jeton, a été publiée par l’IETF.
+Hello passée il n’y a eu aucun moyen normalisé de vérification d’un jeton de référence avec un serveur d’autorisation. Cependant une norme récemment [RFC 7662](https://tools.ietf.org/html/rfc7662) a été publiée par hello IETF qui définit comment un serveur de ressources peut vérifier la validité hello d’un jeton.
 
-### <a name="extracting-the-token"></a>Extraction du jeton
-La première étape consiste à extraire le jeton de l’en-tête d’autorisation. La valeur d’en-tête doit être mise en forme à l’aide du modèle d’autorisation `Bearer` , d’un seul espace, puis du jeton d’autorisation conformément à la norme [RFC 6750](http://tools.ietf.org/html/rfc6750#section-2.1). Malheureusement, il existe des cas où le modèle d’autorisation est omis. Pour en tenir compte lors de l’analyse, nous fractionnons la valeur d’en-tête sur un espace et sélectionnons la dernière chaîne dans le tableau de chaînes retourné. Une solution de contournement est ainsi trouvée pour les en-têtes d’autorisation mal formés.
+### <a name="extracting-hello-token"></a>Extraction du jeton de hello
+première étape de Hello est jeton de hello tooextract à partir de l’en-tête d’autorisation hello. valeur d’en-tête Hello doit être formaté avec hello `Bearer` schéma d’autorisation, un espace unique et l’autorisation de hello puis jeton en tant que par [RFC 6750](http://tools.ietf.org/html/rfc6750#section-2.1). Malheureusement, il existe des cas où le schéma d’autorisation de hello est omis. tooaccount pour cela lors de l’analyse, nous diviser la valeur d’en-tête de hello sur un espace et la chaîne hello sélectionnez dernière hello retourné du tableau de chaînes. Une solution de contournement est ainsi trouvée pour les en-têtes d’autorisation mal formés.
 
 ```xml
 <set-variable name="token" value="@(context.Request.Headers.GetValueOrDefault("Authorization","scheme param").Split(' ').Last())" />
 ```
 
-### <a name="making-the-validation-request"></a>Requête de validation
-Une fois que nous avons le jeton d’autorisation, nous pouvons faire la requête pour valider le jeton. La norme RFC 7662 appelle ce processus « introspection » et vous oblige à appliquer une commande `POST` de formulaire HTML à la ressource d’introspection. Le formulaire HTML doit contenir au moins une paire clé/valeur avec la clé `token`. Cette requête adressée au serveur d’autorisation doit également être authentifiée pour veiller à ce qu’aucun client malveillant ne puisse obtenir des jetons valides.
+### <a name="making-hello-validation-request"></a>Demande de validation hello
+Une fois le jeton d’autorisation hello, nous permettent de jeton de hello demande toovalidate hello. RFC 7662 appelle introspection de ce processus et exige que vous `POST` une ressource d’introspection de toohello de formulaire HTML. Hello formulaire HTML doit contenir au moins une paire clé/valeur avec la clé de hello `token`. Cette demande adressée au serveur d’autorisation toohello doit également être authentifié tooensure que des clients malveillants ne peuvent pas atteindre chalutage pour les jetons valides.
 
 ```xml
 <send-request mode="new" response-variable-name="tokenstate" timeout="20" ignore-error="true">
@@ -96,13 +96,13 @@ Une fois que nous avons le jeton d’autorisation, nous pouvons faire la requêt
 </send-request>
 ```
 
-### <a name="checking-the-response"></a>Vérification de la réponse
-L’attribut `response-variable-name` est utilisé pour accéder à la réponse retournée. Le nom défini dans cette propriété peut être utilisé comme clé dans le dictionnaire `context.Variables` pour accéder à l’objet `IResponse`.
+### <a name="checking-hello-response"></a>La vérification de la réponse de hello
+Hello `response-variable-name` attribut est hello d’accès utilisé toogive a retourné une réponse. Hello nom défini dans cette propriété peut être utilisé comme une clé dans hello `context.Variables` hello tooaccess de dictionnaire `IResponse` objet.
 
-À partir de l’objet réponse, nous pouvons récupérer le corps et la norme RFC 7622 nous indique que la réponse doit être un objet JSON et contenir au moins une propriété appelée `active` qui est une valeur booléenne. Quand `active` a la valeur true, alors le jeton est considéré comme valide.
+À partir de l’objet de réponse hello, nous pouvons récupérer les corps hello et RFC 7622 nous indique que la réponse de hello doit être un objet JSON et doit contenir au moins une propriété appelée `active` qui est une valeur booléenne. Lorsque `active` est true, le jeton de hello est considéré comme valid.
 
 ### <a name="reporting-failure"></a>Signalement d’un échec
-Nous utilisons une stratégie `<choose>` pour détecter si le jeton n’est pas valide et le cas échéant, retourner une réponse 401.
+Nous utilisons un `<choose>` stratégie toodetect si le jeton de hello n’est pas valide et le cas échéant, renvoyer une réponse 401.
 
 ```xml
 <choose>
@@ -117,17 +117,17 @@ Nous utilisons une stratégie `<choose>` pour détecter si le jeton n’est pas 
 </choose>
 ```
 
-Conformément à la norme [RFC 6750](https://tools.ietf.org/html/rfc6750#section-3) qui décrit comment les jetons `bearer` doivent être utilisés, nous retournons également un en-tête `WWW-Authenticate` avec la réponse 401. L’élément WWW-Authenticate a pour but d’informer un client sur la manière de créer une requête dûment autorisée. En raison de la grande variété d’approches possibles avec l’infrastructure OAuth2, il est difficile de communiquer toutes les informations nécessaires. Heureusement, tous les efforts sont déployés pour aider les [clients à découvrir comment autoriser correctement les requêtes adressées à un serveur de ressources](http://tools.ietf.org/html/draft-jones-oauth-discovery-00).
+Comme pour [RFC 6750](https://tools.ietf.org/html/rfc6750#section-3) qui décrit comment `bearer` jetons doivent être utilisés, nous avons également retourner un `WWW-Authenticate` l’en-tête de réponse de hello 401. Hello WWW-Authenticate est prévue tooinstruct un client sur la façon de tooconstruct une demande correctement autorisée. En raison de toohello diverses approches possibles avec les framework hello OAuth2, il est difficile toocommunicate tous hello informations sont nécessaires. Heureusement des efforts en cours d’exécution toohelp [clients découvrir comment tooproperly autoriser le serveur de ressources de demandes tooa](http://tools.ietf.org/html/draft-jones-oauth-discovery-00).
 
 ### <a name="final-solution"></a>Solution finale
-En rassemblant tous les éléments, nous obtenons la stratégie suivante :
+Assembler tous les éléments de hello, nous obtenons hello suivant de stratégie :
 
 ```xml
 <inbound>
   <!-- Extract Token from Authorization header parameter -->
   <set-variable name="token" value="@(context.Request.Headers.GetValueOrDefault("Authorization","scheme param").Split(' ').Last())" />
 
-  <!-- Send request to Token Server to validate token (see RFC 7662) -->
+  <!-- Send request tooToken Server toovalidate token (see RFC 7662) -->
   <send-request mode="new" response-variable-name="tokenstate" timeout="20" ignore-error="true">
     <set-url>https://microsoft-apiappec990ad4c76641c6aea22f566efc5a4e.azurewebsites.net/introspection</set-url>
     <set-method>POST</set-method>
@@ -156,32 +156,32 @@ En rassemblant tous les éléments, nous obtenons la stratégie suivante :
 </inbound>
 ```
 
-Il ne s’agit que d’un des nombreux exemples d’utilisation de la stratégie `send-request` pour intégrer des services externes utiles dans le processus des requêtes et réponses transitant par le service de gestion des API.
+Il existe un seul de nombreux exemples de hello `send-request` stratégie peut être des services externes utile toointegrate utilisés dans les processus hello des demandes et réponses transitant par le service de gestion des API de hello.
 
 ## <a name="response-composition"></a>Rédaction de réponse
-La stratégie `send-request` peut être utilisée pour améliorer une requête principale adressée à un système principal, comme nous l’avons vu dans l’exemple précédent, ou elle peut remplacer totalement l’appel du serveur principal. À l’aide de cette technique, nous pouvons facilement créer des ressources composites qui sont agrégées à partir de plusieurs systèmes différents.
+Hello `send-request` stratégie peut être utilisée pour améliorer un système principal demande tooa principal, comme nous l’avons vu dans l’exemple précédent de hello, ou il peut être utilisé comme un remplacement complet pour d’appel de back-end hello. À l’aide de cette technique, nous pouvons facilement créer des ressources composites qui sont agrégées à partir de plusieurs systèmes différents.
 
 ### <a name="building-a-dashboard"></a>Génération d’un tableau de bord
-Vous avez parfois besoin d’exposer des informations qui existent dans plusieurs systèmes principaux, par exemple, pour piloter un tableau de bord. Les indicateurs de performance clés proviennent de tous les services principaux différents, mais vous préférez ne pas y fournir d’accès direct et il serait intéressant que toutes les informations puissent être récupérées dans une seule requête. Certaines informations principales ont peut-être besoin d’être coupées en rondelles ou en tranches, voire d’être assainies dans un premier temps. La possibilité de mettre en cache cette ressource composite s’avère utile pour réduire la charge principale puisque vous savez que les utilisateurs ont l’habitude de marteler la touche F5 pour voir si leurs mesures peu performantes peuvent changer.    
+Parfois, vous souhaitez toobe tooexpose en mesure d’informations qui existe dans plusieurs systèmes principaux, par exemple, toodrive un tableau de bord. Hello, indicateurs de performance clés proviennent de tous les principaux différents, mais vous préférez pas les toothem tooprovide un accès direct, et il peut être intéressant si toutes les informations de hello pu être récupérées dans une demande unique. Peut-être que certaines informations de serveur principal hello doit certains découpage et découper et expurgation un peu de tout d’abord ! Qui est en mesure de toocache que la ressource composite serait un tooreduce utile hello principal charger puisque vous savez que les utilisateurs ont l’habitude de marteler la touche F5 de hello dans l’ordre toosee si leurs mesures peu performantes peuvent changer.    
 
-### <a name="faking-the-resource"></a>Simulation de la ressource
-La première étape pour générer notre ressource de tableau de bord consiste à configurer une nouvelle opération dans le portail des éditeurs de la gestion des API. Il s’agit d’une opération d’espace réservé utilisée pour configurer notre stratégie de rédaction afin de générer notre ressource dynamique.
+### <a name="faking-hello-resource"></a>Ressource de hello émulant
+Hello première étape toobuilding nos ressources de tableau de bord est tooconfigure une nouvelle opération dans le portail de publication de gestion des API hello. Cela sera un tooconfigure d’opération utilisée espace réservé de notre toobuild de stratégie de composition notre ressource dynamique.
 
 ![Opération de tableau de bord](./media/api-management-sample-send-request/api-management-dashboard-operation.png)
 
-### <a name="making-the-requests"></a>Construction des requêtes
-Une fois l’opération `dashboard` créée, nous pouvons configurer une stratégie spécifiquement pour cette opération. 
+### <a name="making-hello-requests"></a>Effectuant des demandes de hello
+Une fois hello `dashboard` opération a été créée. nous pouvons configurer une stratégie spécifiquement pour cette opération. 
 
 ![Opération de tableau de bord](./media/api-management-sample-send-request/api-management-dashboard-policy.png)
 
-La première étape consiste à extraire les paramètres de requête à partir de la requête entrante, de sorte à pouvoir les transférer vers notre serveur principal. Dans cet exemple, notre tableau de bord affiche des informations selon une période ; il comporte donc un paramètre `fromDate` et `toDate`. Nous pouvons utiliser la stratégie `set-variable` pour extraire les informations de l’URL de la requête.
+première étape de Hello est tooextract tous les paramètres de requête à partir de la demande entrante de hello, afin que nous pouvons transmettre tooour principal. Dans cet exemple, notre tableau de bord affiche des informations selon une période ; il comporte donc un paramètre `fromDate` et `toDate`. Nous pouvons utiliser hello `set-variable` stratégie tooextract hello plus d’informations à partir de l’URL de demande hello.
 
 ```xml
 <set-variable name="fromDate" value="@(context.Request.Url.Query["fromDate"].Last())">
 <set-variable name="toDate" value="@(context.Request.Url.Query["toDate"].Last())">
 ```
 
-Une fois que nous avons ces informations, nous pouvons faire des requêtes auprès de tous les systèmes principaux. Chaque requête construit une nouvelle URL avec les informations de paramètre, puis appelle son serveur respectif et enregistre la réponse dans une variable de contexte.
+Une fois ces informations nous pouvons effectuer des demandes systèmes principaux de hello tooall. Chaque requête construit une nouvelle URL avec informations de paramètre hello et appelle son propre serveur et stocke la réponse de hello dans une variable de contexte.
 
 ```xml
 <send-request mode="new" response-variable-name="revenuedata" timeout="20" ignore-error="true">
@@ -205,10 +205,10 @@ Une fois que nous avons ces informations, nous pouvons faire des requêtes aupr�
 </send-request>
 ```
 
-Ces requêtes s’exécutent en séquence, ce qui n’est pas idéal. Dans une prochaine version, nous introduirons une nouvelle stratégie nommée `wait` qui permettra à toutes ces requêtes de s’exécuter en parallèle.
+Ces requêtes s’exécutent en séquence, ce qui n’est pas idéal. Dans une prochaine version nous présenterons une nouvelle stratégie nommée `wait` qui activera tous ces tooexecute de requêtes en parallèle.
 
 ### <a name="responding"></a>Réponse
-Pour construire la réponse composite, nous pouvons utiliser la stratégie [return-response](https://msdn.microsoft.com/library/azure/dn894085.aspx#ReturnResponse) . L’élément `set-body` peut utiliser une expression pour construire un nouveau `JObject` avec toutes les représentations de composant incorporées en tant que propriétés.
+Nous pouvons utiliser hello du réponse composite hello tooconstruct [retour-réponse](https://msdn.microsoft.com/library/azure/dn894085.aspx#ReturnResponse) stratégie. Hello `set-body` élément peut utiliser une expression tooconstruct un nouveau `JObject` avec toutes les représentations de composant hello incorporées en tant que propriétés.
 
 ```xml
 <return-response response-variable-name="existing response variable">
@@ -226,7 +226,7 @@ Pour construire la réponse composite, nous pouvons utiliser la stratégie [retu
 </return-response>
 ```
 
-La stratégie complète se présente comme suit :
+stratégie complète de Hello se présente comme suit :
 
 ```xml
 <policies>
@@ -278,13 +278,13 @@ La stratégie complète se présente comme suit :
 </policies>
 ```
 
-Pendant la configuration de l’opération d’espace réservé, nous pouvons configurer la ressource de tableau de bord de sorte à la mettre en cache pendant au moins une heure, car nous sommes conscients que la nature des données signifie que même si elle est en retard d’une heure, elle sera quand même suffisamment efficace pour transmettre des informations utiles aux utilisateurs.
+Dans la configuration de hello d’opération d’espace réservé de hello, nous pouvons configurer hello du tableau de bord ressources toobe mis en cache pour au moins une heure, car nous sommes conscients de nature hello de données de hello signifie que, même s’il s’agit d’une heure plus à jour, qu'il sera toujours suffisamment efficace utilisateurs de toohello tooconvey des informations précieuses.
 
 ## <a name="summary"></a>Résumé
-Le service de gestion des API Azure offre des stratégies flexibles que vous pouvez appliquer de façon sélective au trafic HTTP et permet de composer des services principaux. Que vous vouliez améliorer votre passerelle API avec des fonctions d’alerte, des fonctionnalités de vérification et de validation ou créer des ressources composites reposant sur plusieurs services principaux, la stratégie `send-request` et les stratégies associées vous ouvrent un monde de possibilités.
+Service de gestion des API Azure fournit des stratégies souples qui peuvent être de manière sélective appliquées tooHTTP trafic et composition de services principaux. Si vous souhaitez tooenhance votre passerelle API avec la génération d’alertes de fonctions, la vérification des fonctionnalités de validation ou de créez des ressources composites en fonction de plusieurs services principaux, hello `send-request` et les stratégies associées ouvrir un monde de possibilités.
 
 ## <a name="watch-a-video-overview-of-these-policies"></a>Regarder une vidéo de présentation de ces stratégies.
-Pour plus d’informations sur les stratégies [send-one-way-request](https://msdn.microsoft.com/library/azure/dn894085.aspx#SendOneWayRequest), [send-request](https://msdn.microsoft.com/library/azure/dn894085.aspx#SendRequest) et [return-response](https://msdn.microsoft.com/library/azure/dn894085.aspx#ReturnResponse) abordées dans cet article, regardez la vidéo suivante.
+Pour plus d’informations sur hello [envoyer un moyen de demande](https://msdn.microsoft.com/library/azure/dn894085.aspx#SendOneWayRequest), [demande d’envoi](https://msdn.microsoft.com/library/azure/dn894085.aspx#SendRequest), et [retour-réponse](https://msdn.microsoft.com/library/azure/dn894085.aspx#ReturnResponse) stratégies abordées dans cet article, veuillez consulter hello suivant vidéo.
 
 > [!VIDEO https://channel9.msdn.com/Blogs/AzureApiMgmt/Send-Request-and-Return-Response-Policies/player]
 > 

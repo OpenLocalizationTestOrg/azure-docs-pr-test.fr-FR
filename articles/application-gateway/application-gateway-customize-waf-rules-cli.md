@@ -1,6 +1,6 @@
 ---
-title: "Personnaliser les règles de pare-feu d’applications web dans Azure Application Gateway - Azure CLI 2.0 | Microsoft Docs"
-description: "Cet article fournit des informations sur la personnalisation des règles de pare-feu d’applications web dans Application Gateway avec Azure CLI 2.0."
+title: "règles de pare-feu aaaCustomize web application dans Azure Azure CLI 2.0 - passerelle d’Application | Documents Microsoft"
+description: "Cet article fournit des informations sur le fonctionnement des règles de pare-feu d’applications web toocustomize dans la passerelle d’Application avec hello Azure CLI 2.0."
 documentationcenter: na
 services: application-gateway
 author: georgewallace
@@ -14,34 +14,34 @@ ms.custom:
 ms.workload: infrastructure-services
 ms.date: 07/26/2017
 ms.author: gwallace
-ms.openlocfilehash: 456be048dc2d82cd50d145b71f17a84a7189ea96
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: b83ffb9f6a7e0d0c8c970885d2bcb3b63d32581c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="customize-web-application-firewall-rules-through-the-azure-cli-20"></a>Personnaliser les règles de pare-feu d’applications web par le biais d’Azure CLI 2.0
+# <a name="customize-web-application-firewall-rules-through-hello-azure-cli-20"></a>Personnaliser les règles de pare-feu d’applications web via hello Azure CLI 2.0
 
 > [!div class="op_single_selector"]
 > * [Portail Azure](application-gateway-customize-waf-rules-portal.md)
 > * [PowerShell](application-gateway-customize-waf-rules-powershell.md)
 > * [Azure CLI 2.0](application-gateway-customize-waf-rules-cli.md)
 
-Le pare-feu d’applications web (WAF) Azure Application Gateway fournit une protection pour les applications web. Ces protections sont fournies par le jeu de règles (Core Rule Set, CRS) de l’Open Web Application Security Project (OWASP). Certaines règles peuvent entraîner des faux positifs et bloquer le trafic réel. Par conséquent, Application Gateway permet de personnaliser des règles et des groupes de règles. Pour plus d’informations sur les règles et groupes de règles spécifiques, consultez la [List of web application firewall CRS Rule groups and rules](application-gateway-crs-rulegroups-rules.md) (Liste de règles et groupes de règles CRS de pare-feu d’applications web).
+pare-feu d’applications web Hello Azure Application Gateway (WAF) offre une protection pour les applications web. Ces protections sont fournies par hello ouvrir Web Application sécurité projet (OWASP avoir) Core règle définie (DM). Certaines règles peuvent entraîner des faux positifs et bloquer le trafic réel. Pour cette raison, la passerelle d’Application fournit et hello capacité toocustomize groupes de règles. Pour plus d’informations sur les règles et les groupes de règles spécifiques hello, consultez [la liste des règles et des groupes de règles web application pare-feu CRS](application-gateway-crs-rulegroups-rules.md).
 
 ## <a name="view-rule-groups-and-rules"></a>Afficher les règles et groupes de règles
 
-Voici des exemples de code montrant comment afficher les règles et les groupes de règles qui peuvent être configurés.
+Hello, exemple de code suivant affiche la tooview des règles et groupes qui sont configurables de règles.
 
 ### <a name="view-rule-groups"></a>Afficher les groupes de règles
 
-L’exemple suivant montre comment afficher les groupes de règles :
+Bonjour à l’exemple suivant montre comment tooview hello des groupes de règles :
 
 ```azurecli-interactive
 az network application-gateway waf-config list-rule-sets --type OWASP
 ```
 
-Voici un extrait de réponse issu de l’exemple précédent :
+Hello suivant la sortie est une réponse tronquée hello précédent exemple :
 
 ```
 [
@@ -88,13 +88,13 @@ Voici un extrait de réponse issu de l’exemple précédent :
 
 ### <a name="view-rules-in-a-rule-group"></a>Afficher les règles dans un groupe de règles
 
-L’exemple suivant montre comment afficher les règles dans un groupe de règles spécifique :
+Hello l’exemple suivant illustre le fonctionnement des règles de tooview dans un groupe de règles spécifié :
 
 ```azurecli-interactive
 az network application-gateway waf-config list-rule-sets --group "REQUEST-910-IP-REPUTATION"
 ```
 
-Voici un extrait de réponse issu de l’exemple précédent :
+Hello suivant la sortie est une réponse tronquée hello précédent exemple :
 
 ```
 [
@@ -127,7 +127,7 @@ Voici un extrait de réponse issu de l’exemple précédent :
 
 ## <a name="disable-rules"></a>Désactiver les règles
 
-L’exemple suivant montre comment désactiver les règles `910018` et `910017` sur une passerelle d’application :
+exemple Hello désactive les règles `910018` et `910017` sur une passerelle d’application :
 
 ```azurecli-interactive
 az network application-gateway waf-config set --resource-group AdatumAppGatewayRG --gateway-name AdatumAppGateway --enabled true --rule-set-version 3.0 --disabled-rules 910018 910017
@@ -135,7 +135,7 @@ az network application-gateway waf-config set --resource-group AdatumAppGatewayR
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Après avoir configuré vos règles désactivées, vous pouvez apprendre à afficher vos journaux WAF. Pour plus d’informations, consultez [Diagnostics Application Gateway](application-gateway-diagnostics.md#diagnostic-logging).
+Après avoir configuré vos règles désactivées, vous pouvez apprendre comment tooview vos journaux WAF. Pour plus d’informations, consultez [Diagnostics Application Gateway](application-gateway-diagnostics.md#diagnostic-logging).
 
 [fig1]: ./media/application-gateway-customize-waf-rules-portal/1.png
 [1]: ./media/application-gateway-customize-waf-rules-portal/figure1.png

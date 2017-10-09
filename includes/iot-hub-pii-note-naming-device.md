@@ -1,3 +1,3 @@
 > [!IMPORTANT]
-> L’ID d’appareil étant potentiellement visible dans les journaux collectés à des fins de support technique et de dépannage, assurez-vous de ne pas utiliser d’informations sensibles en attribuant un nom à votre appareil.
+> APPAREIL Hello ID peut être visible dans les journaux hello collectées pour le support technique et la résolution des problèmes, vous devez donc vous assurer tooavoid toutes les informations sensibles tout en lui attribuant un nom.
 >

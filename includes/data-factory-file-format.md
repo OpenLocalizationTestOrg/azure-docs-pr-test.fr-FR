@@ -1,5 +1,5 @@
 ## <a name="specifying-formats"></a>Spécification des formats
-Azure Data Factory prend en charge les types de format suivants :
+Azure Data Factory prend en charge hello les types de format suivants :
 
 * [Format Texte](#specifying-textformat)
 * [Format JSON](#specifying-jsonformat)
@@ -8,22 +8,22 @@ Azure Data Factory prend en charge les types de format suivants :
 * [Format Parquet](#specifying-parquetformat)
 
 ### <a name="specifying-textformat"></a>Définition de TextFormat
-Si vous souhaitez analyser des fichiers texte ou écrire des données au format texte, définissez la propriété `format` `type` sur **TextFormat**. Vous pouvez également spécifier les propriétés **facultatives** suivantes, dans la section `format`. Consultez la section [Exemple pour TextFormat](#textformat-example) pour en savoir plus sur la méthode de configuration à suivre.
+Si vous souhaitez que les fichiers de texte hello tooparse ou écrivez les données de salutation au format texte, la valeur hello `format` `type` propriété trop**TextFormat**. Vous pouvez également spécifier les éléments suivants de hello **facultatif** propriétés Bonjour `format` section. Consultez [TextFormat exemple](#textformat-example) section sur la façon de tooconfigure.
 
 | Propriété | Description | Valeurs autorisées | Requis |
 | --- | --- | --- | --- |
-| columnDelimiter |Caractère utilisé pour séparer les colonnes dans un fichier. Vous pouvez envisager d’utiliser un caractère non imprimable rare qui n’existe probablement pas dans vos données ; par exemple, spécifiez « \u0001 », qui représente le début d’en-tête. |Un seul caractère est autorisé. La valeur **par défaut** est la **virgule (,)**. <br/><br/>Pour utiliser un caractère Unicode, reportez-vous à [Unicode Characters](https://en.wikipedia.org/wiki/List_of_Unicode_characters) (Caractères Unicode) pour obtenir le code correspondant. |Non |
-| rowDelimiter |Caractère utilisé pour séparer les lignes dans un fichier. |Un seul caractère est autorisé. La valeur **par défaut** est l’une des suivantes : **[« \r\n », « \r », « \n »]** en lecture et **« \r\n »** en écriture. |Non |
-| escapeChar |Caractère spécial utilisé pour échapper au délimiteur de colonnes dans le contenu du fichier d’entrée. <br/><br/>Vous ne pouvez pas spécifier à la fois escapeChar et quoteChar pour une table. |Un seul caractère est autorisé. Aucune valeur par défaut. <br/><br/>Par exemple, si vous avez une virgule (,) comme séparateur de colonnes mais que vous voulez avoir le caractère virgule dans le texte (par exemple : « Hello, world »), vous pouvez définir « $ » comme caractère d’échappement et utiliser la chaîne « Hello$, world » dans la source. |Non |
-| quoteChar |Le caractère utilisé pour entourer de guillemets une valeur de chaîne. Les séparateurs de colonnes et de lignes à l'intérieur des caractères de guillemets sont considérés comme faisant partie de la valeur de la chaîne. Cette propriété s’applique aux jeux de données d’entrée et de sortie.<br/><br/>Vous ne pouvez pas spécifier à la fois escapeChar et quoteChar pour une table. |Un seul caractère est autorisé. Aucune valeur par défaut. <br/><br/>Par exemple, si vous avez une virgule (,) comme séparateur de colonnes mais que vous voulez avoir le caractère virgule dans le texte (par exemple : « Hello, world »), vous pouvez définir " (guillemet droit) comme caractère de guillemet et utiliser la chaîne "Hello, world" dans la source. |Non |
-| nullValue |Un ou plusieurs caractères utilisés pour représenter une valeur null. |Un ou plusieurs caractères. Les valeurs **par défaut** sont **« \N » et « NULL »** en lecture, et **« \N »** en écriture. |Non |
-| encodingName |Spécifier le nom d'encodage. |Une liste de noms d’encodage valides. Consultez : [Propriété Encoding.EncodingName](https://msdn.microsoft.com/library/system.text.encoding.aspx). Exemple : windows-1250 ou shift_jis. La valeur **par défaut** est **UTF-8**. |Non |
-| firstRowAsHeader |Spécifie si la première ligne doit être considérée comme un en-tête. Pour un jeu de données d’entrée, Data Factory lit la première ligne comme un en-tête. Pour un jeu de données de sortie, Data Factory écrit la première ligne comme un en-tête. <br/><br/>Voir [Scénarios d’utilisation de `firstRowAsHeader` et `skipLineCount`](#scenarios-for-using-firstrowasheader-and-skiplinecount) pour obtenir des exemples de scénarios. |true<br/>**false (valeur par défaut)** |Non |
-| skipLineCount |Indique le nombre de lignes à ignorer lors de la lecture des données à partir des fichiers d’entrée. Si skipLineCount et firstRowAsHeader sont spécifiés, les lignes sont d’abord ignorées, puis les informations d’en-tête sont lues à partir du fichier d’entrée. <br/><br/>Voir [Scénarios d’utilisation de `firstRowAsHeader` et `skipLineCount`](#scenarios-for-using-firstrowasheader-and-skiplinecount) pour obtenir des exemples de scénarios. |Entier  |Non |
-| treatEmptyAsNull |Spécifie si une chaîne null ou vide doit être traitée comme une valeur null lors de la lecture des données à partir d’un fichier d’entrée. |**True (valeur par défaut)**<br/>False |Non |
+| columnDelimiter |caractère de Hello utilisé tooseparate colonnes dans un fichier. Vous pouvez envisager d’un caractère non imprimable rares qui se ne trouve pas probablement toouse dans vos données : par exemple, spécifiez « \u0001 » qui représente le début de titre (SOH). |Un seul caractère est autorisé. Hello **par défaut** valeur est **virgule («, »)**. <br/><br/>toouse un caractère Unicode, consultez trop[caractères Unicode](https://en.wikipedia.org/wiki/List_of_Unicode_characters) tooget hello code correspondant pour celle-ci. |Non |
+| rowDelimiter |caractère de Hello utilisé tooseparate lignes dans un fichier. |Un seul caractère est autorisé. Hello **par défaut** valeur est une des valeurs suivantes lors de la lecture de hello : **[« \r\n », « \r », « \n »]** et **« \r\n »** lors de l’écriture. |Non |
+| escapeChar |un caractère spécial Hello utilisé tooescape un délimiteur de colonne dans le contenu du fichier d’entrée hello. <br/><br/>Vous ne pouvez pas spécifier à la fois escapeChar et quoteChar pour une table. |Un seul caractère est autorisé. Aucune valeur par défaut. <br/><br/>Exemple : Si vous utilisez une virgule («, ») comme délimiteur de colonne hello mais que vous voulez que virgule toohave hello dans le texte hello (exemple : « Hello, world »), vous pouvez définir « $» comme caractère d’échappement hello et utilisez la chaîne « $Hello, world » dans la source de hello. |Non |
+| quoteChar |caractère de Hello utilisé tooquote une valeur de chaîne. séparateurs de ligne et de colonne Hello à l’intérieur des guillemets hello sont traités en tant que partie de la valeur de chaîne hello. Cette propriété est applicable tooboth entrée et de sortie des jeux de données.<br/><br/>Vous ne pouvez pas spécifier à la fois escapeChar et quoteChar pour une table. |Un seul caractère est autorisé. Aucune valeur par défaut. <br/><br/>Par exemple, si vous utilisez une virgule («, ») comme délimiteur de colonne hello, mais vous voulez que virgule toohave dans le texte hello (exemple : < Hello, world >), vous pouvez définir « (guillemets doubles) comme hello guillemet et utilisez hello chaîne « Hello, world » dans la source de hello. |Non |
+| nullValue |Un ou plusieurs caractères utilisés toorepresent une valeur null. |Un ou plusieurs caractères. Hello **par défaut** les valeurs sont **« \N » et « NULL »** lors de la lecture et **« \N »** lors de l’écriture. |Non |
+| encodingName |Spécifiez le nom de codage hello. |Une liste de noms d’encodage valides. Consultez : [Propriété Encoding.EncodingName](https://msdn.microsoft.com/library/system.text.encoding.aspx). Exemple : windows-1250 ou shift_jis. Hello **par défaut** valeur est **UTF-8**. |Non |
+| firstRowAsHeader |Spécifie si tooconsider hello la première ligne comme un en-tête. Pour un jeu de données d’entrée, Data Factory lit la première ligne comme un en-tête. Pour un jeu de données de sortie, Data Factory écrit la première ligne comme un en-tête. <br/><br/>Voir [Scénarios d’utilisation de `firstRowAsHeader` et `skipLineCount`](#scenarios-for-using-firstrowasheader-and-skiplinecount) pour obtenir des exemples de scénarios. |true<br/>**false (valeur par défaut)** |Non |
+| skipLineCount |Indique le nombre de hello de lignes tooskip lors de la lecture des données à partir des fichiers d’entrée. Si skipLineCount et firstRowAsHeader sont spécifiés, les lignes de hello sont ignorées tout d’abord, et ensuite les informations d’en-tête hello sont en lecture à partir du fichier d’entrée de hello. <br/><br/>Voir [Scénarios d’utilisation de `firstRowAsHeader` et `skipLineCount`](#scenarios-for-using-firstrowasheader-and-skiplinecount) pour obtenir des exemples de scénarios. |Entier  |Non |
+| treatEmptyAsNull |Spécifie si la valeur tootreat null ou une chaîne vide comme une valeur null lorsque la lecture des données à partir d’un fichier d’entrée. |**True (valeur par défaut)**<br/>False |Non |
 
 #### <a name="textformat-example"></a>Exemple pour TextFormat
-L'exemple suivant illustre certaines des propriétés de format pour TextFormat.
+Hello exemple suivant illustre certaines des propriétés de format hello pour TextFormat.
 
 ```json
 "typeProperties":
@@ -44,29 +44,29 @@ L'exemple suivant illustre certaines des propriétés de format pour TextFormat.
 },
 ```
 
-Pour utiliser un caractère `escapeChar` au lieu de `quoteChar`, remplacez la ligne par `quoteChar`, avec le caractère escapeChar suivant :
+toouse un `escapeChar` au lieu de `quoteChar`, remplacez la ligne hello avec `quoteChar` avec hello suivant dont :
 
 ```json
 "escapeChar": "$",
 ```
 
 #### <a name="scenarios-for-using-firstrowasheader-and-skiplinecount"></a>Scénarios d’utilisation de firstRowAsHeader et skipLineCount
-* Vous copiez à partir d’une source hors fichier vers un fichier texte et vous souhaitez ajouter une ligne d’en-tête qui contient les métadonnées de schéma (par exemple : schéma SQL). Définissez le paramètre `firstRowAsHeader` sur true dans le jeu de données de sortie pour ce scénario.
-* Vous copiez à partir d’un fichier texte contenant une ligne d’en-tête vers un récepteur hors fichier et souhaitez supprimer cette ligne. Définissez le paramètre `firstRowAsHeader` sur true dans le jeu de données d’entrée.
-* Vous copiez à partir d’un fichier texte et souhaitez ignorer quelques lignes au début, qui ne contiennent ni données, ni informations d’en-tête. Spécifiez le paramètre `skipLineCount` pour indiquer le nombre de lignes à ignorer. Si le reste du fichier contient une ligne d’en-tête, vous pouvez également spécifier `firstRowAsHeader`. Si les paramètres `skipLineCount` et `firstRowAsHeader` sont tous deux spécifiés, les lignes sont d’abord ignorées, puis les informations d’en-tête sont lues à partir du fichier d’entrée.
+* Vous copiez à partir d’un fichier de texte source de fichier non tooa et que vous souhaitez tooadd une ligne d’en-tête contenant des métadonnées de schéma hello (par exemple : schéma SQL). Spécifiez `firstRowAsHeader` comme true dans le dataset de sortie hello pour ce scénario.
+* Vous copiez à partir d’un fichier texte contenant un récepteur les fichiers d’en-tête ligne tooa et que vous souhaitez toodrop de ligne. Spécifiez `firstRowAsHeader` comme true dans le jeu de données d’entrée hello.
+* Vous copiez à partir d’un fichier texte et que vous souhaitez tooskip quelques lignes au début de hello qui ne contiennent aucune information d’en-tête ou de données. Spécifiez `skipLineCount` nombre de hello tooindicate de lignes toobe ignorés. Si le reste hello du fichier de hello contient une ligne d’en-tête, vous pouvez également spécifier `firstRowAsHeader`. Si les deux `skipLineCount` et `firstRowAsHeader` sont spécifiés, les lignes de hello sont ignorées tout d’abord, et ensuite les informations d’en-tête hello sont en lecture à partir du fichier d’entrée de hello
 
 ### <a name="specifying-jsonformat"></a>Définition de JsonFormat
-Pour en savoir plus sur **l’importation ou l’exportation de fichiers JSON en l’état dans ou à partir d’Azure Cosmos DB**, consultez la section [Importer/exporter des documents JSON](../articles/data-factory/data-factory-azure-documentdb-connector.md#importexport-json-documents) dans le connecteur Azure Cosmos DB.
+trop**importation/exportation de fichiers JSON en tant que-est dans/à partir de la base de données Azure Cosmos**, consultez [documents JSON d’importation/exportation](../articles/data-factory/data-factory-azure-documentdb-connector.md#importexport-json-documents) section dans le connecteur de base de données Azure Cosmos hello avec les détails.
 
-Si vous souhaitez analyser des fichiers JSON ou écrire des données au format JSON, définissez la propriété `format` `type` sur **JsonFormat**. Vous pouvez également spécifier les propriétés **facultatives** suivantes, dans la section `format`. Consultez la section [Exemple pour JsonFormat](#jsonformat-example) pour en savoir plus sur la méthode de configuration à suivre.
+Si vous souhaitez que les fichiers JSON tooparse hello ou écrivez des données de salutation au format JSON, définissez hello `format` `type` propriété trop**JsonFormat**. Vous pouvez également spécifier les éléments suivants de hello **facultatif** propriétés Bonjour `format` section. Consultez [JsonFormat exemple](#jsonformat-example) section sur la façon de tooconfigure.
 
 | Propriété | Description | Obligatoire |
 | --- | --- | --- |
-| filePattern |Indiquez le modèle des données stockées dans chaque fichier JSON. Les valeurs autorisées sont les suivantes : **setOfObjects** et **arrayOfObjects**. La valeur **par défaut** est **setOfObjects**. Consultez la section [Modèles de fichiers JSON](#json-file-patterns) pour en savoir plus sur ces modèles. |Non |
-| jsonNodeReference | Si vous souhaitez effectuer une itération et extraire des données à partir des objets situés à l’intérieur d’un champ de tableau présentant le même modèle, spécifiez le chemin d’accès JSON de ce tableau. Cette propriété est uniquement prise en charge lors de la copie de données de fichiers JSON. | Non |
-| jsonPathDefinition | Spécifiez l’expression de chemin JSON pour chaque mappage de colonne avec un nom de colonne personnalisé (commencez par une lettre minuscule). Cette propriété est uniquement prise en charge lors de la copie de données à partir de fichiers JSON, et vous pouvez extraire des données d’un objet ou d’un tableau. <br/><br/> Pour les champs situés sous l’objet racine, commencez par $ racine ; pour ceux qui se trouvent dans le tableau sélectionné par la propriété `jsonNodeReference`, commencez par l’élément de tableau. Consultez la section [Exemple pour JsonFormat](#jsonformat-example) pour en savoir plus sur la méthode de configuration à suivre. | Non |
-| encodingName |Spécifiez le nom du codage. Pour obtenir une liste des noms d’encodage valides, consultez la propriété [Encoding.EncodingName](https://msdn.microsoft.com/library/system.text.encoding.aspx) . Par exemple : windows-1250 ou shift_jis. La valeur **par défaut** est : **UTF-8**. |Non |
-| nestingSeparator |Caractère utilisé pour séparer les niveaux d'imbrication. La valeur par défaut est . (point). |Non |
+| filePattern |Indiquer le motif hello des données stockées dans chaque fichier JSON. Les valeurs autorisées sont les suivantes : **setOfObjects** et **arrayOfObjects**. Hello **par défaut** valeur est **setOfObjects**. Consultez la section [Modèles de fichiers JSON](#json-file-patterns) pour en savoir plus sur ces modèles. |Non |
+| jsonNodeReference | Si vous souhaitez tooiterate et extrayez des données à partir des objets hello à l’intérieur d’un tableau de champ par hello même modèle, spécifiez le chemin d’accès JSON hello de ce tableau. Cette propriété est uniquement prise en charge lors de la copie de données de fichiers JSON. | Non |
+| jsonPathDefinition | Spécifiez l’expression de chemin JSON hello pour chaque mappage de colonne avec un nom de colonne personnalisée (commencent par des minuscules). Cette propriété est uniquement prise en charge lors de la copie de données à partir de fichiers JSON, et vous pouvez extraire des données d’un objet ou d’un tableau. <br/><br/> Pour les champs sous l’objet racine, commencer par $ de la racine ; pour les champs de tableau hello choisi par `jsonNodeReference` propriété, lancement à partir de l’élément de tableau hello. Consultez [JsonFormat exemple](#jsonformat-example) section sur la façon de tooconfigure. | Non |
+| encodingName |Spécifiez le nom de codage hello. Pour hello la liste des noms de codage valides, consultez : [Encoding.EncodingName](https://msdn.microsoft.com/library/system.text.encoding.aspx) propriété. Par exemple : windows-1250 ou shift_jis. Hello **par défaut** valeur est : **UTF-8**. |Non |
+| nestingSeparator |Caractère utilisé tooseparate des niveaux d’imbrication. Hello la valeur par défaut est «. » (point). |Non |
 
 #### <a name="json-file-patterns"></a>Modèles de fichiers JSON
 
@@ -163,11 +163,11 @@ L’activité de copie peut analyser les modèles de fichiers JSON ci-dessous 
 
 **Cas 1 : Copie de données à partir de fichiers JSON**
 
-Vous trouverez ci-dessous deux types d’exemples de copie des données à partir de fichiers JSON, ainsi que les points génériques à noter :
+Consultez ci-dessous les deux types d’exemples lors de la copie des données à partir de fichiers JSON et hello points générique toonote :
 
 **Exemple 1 : Extraire des données d’objet et de tableau**
 
-Dans cet exemple, un objet JSON racine doit correspondre à un seul enregistrement dans la table de résultats. Prenons un fichier JSON avec le contenu suivant :  
+Dans cet exemple, vous prévoyez un objet JSON de racine mappe enregistrement toosingle de résultats tabulaire. Si vous disposez d’un fichier JSON avec hello suivant le contenu :  
 
 ```json
 {
@@ -192,16 +192,16 @@ Dans cet exemple, un objet JSON racine doit correspondre à un seul enregistreme
     }
 }
 ```
-Vous voulez copier ce contenu dans un tableau SQL Azure au format suivant, en extrayant les données des objets et du tableau :
+et que vous souhaitez toocopy dans une table SQL Azure suivante de hello mettre en forme, en extrayant les données à partir des objets et de tableau :
 
 | id | deviceType | targetResourceType | resourceManagmentProcessRunId | occurrenceTime |
 | --- | --- | --- | --- | --- |
 | ed0e4960-d9c5-11e6-85dc-d7996816aad3 | PC | Microsoft.Compute/virtualMachines | 827f8aaa-ab72-437c-ba48-d8917a7336a3 | 13/01/2017 11:24:37 |
 
-Le jeu de données d’entrée présentant le type **JsonFormat** est défini comme suit : (définition partielle présentant uniquement les éléments pertinents). Plus précisément :
+jeu de données d’entrée Hello avec **JsonFormat** type est défini comme suit : (définition partielle avec uniquement les parties pertinentes hello). Plus précisément :
 
-- La section `structure` définit les noms de colonne personnalisés et le type de données correspondant lors de la conversion des données au format tabulaire. Cette section est **facultative**, sauf si vous avez besoin d’effectuer un mappage de colonne. Pour en savoir plus, voir [Spécification de la définition de la structure des jeux de données rectangulaires](#specifying-structure-definition-for-rectangular-datasets).
-- Le paramètre `jsonPathDefinition` indique le chemin JSON de chaque colonne indiquant l’emplacement à partir duquel les données sont extraites. Pour copier les données d’un tableau, vous pouvez utiliser **array[x].property** pour extraire la valeur de la propriété spécifiée à partir de l’objet x, ou vous pouvez utiliser **array[*].property** pour trouver la valeur de tout objet contenant cette propriété.
+- `structure`section définit les noms de colonne de hello personnalisé et type de données correspondant hello lors de la conversion des données de tootabular. Cette section est **facultatif** , sauf si vous avez besoin de mappage de colonne toodo. Pour en savoir plus, voir [Spécification de la définition de la structure des jeux de données rectangulaires](#specifying-structure-definition-for-rectangular-datasets).
+- `jsonPathDefinition`Spécifie le chemin d’accès JSON hello pour chaque colonne qui indique où tooextract hello des données à partir de. toocopy des données à partir du tableau, vous pouvez utiliser **propriété de tableau [x]** tooextract valeur hello donné de propriété d’objet de x hello, ou vous pouvez utiliser  **tableau [*] propriété** toofind valeur Hello à partir de n’importe quel objet contenant la propriété de ce type.
 
 ```json
 "properties": {
@@ -238,9 +238,9 @@ Le jeu de données d’entrée présentant le type **JsonFormat** est défini co
 }
 ```
 
-**Exemple 2 : application croisée de plusieurs objets avec le même modèle à partir d’un tableau**
+**Exemple 2 : Cross-appliquer plusieurs objets avec hello même modèle de tableau**
 
-Dans cet exemple, vous voulez transformer un objet JSON racine en plusieurs enregistrements dans la table de résultats. Prenons un fichier JSON avec le contenu suivant :  
+Cet exemple, vous prévoyez d’un objet JSON racine tootransform en plusieurs enregistrements dans la table de résultats. Si vous disposez d’un fichier JSON avec hello suivant le contenu :  
 
 ```json
 {
@@ -263,7 +263,7 @@ Dans cet exemple, vous voulez transformer un objet JSON racine en plusieurs enre
     "city": [ { "sanmateo": "No 1" } ]
 }
 ```
-Vous souhaitez copier ce fichier dans une table SQL Azure au format suivant, en mettant à plat les données se trouvant dans le tableau et en effectuant une jointure croisée avec les informations racines communes :
+et vous souhaitez toocopy dans une table SQL Azure suivante de hello mettre en forme, par la mise à plat de données hello à l’intérieur du tableau de hello et cross join avec des informations racine commun hello :
 
 | ordernumber | orderdate | order_pd | order_price | city |
 | --- | --- | --- | --- | --- |
@@ -271,11 +271,11 @@ Vous souhaitez copier ce fichier dans une table SQL Azure au format suivant, en
 | 01 | 20170122 | P2 | 13. | [{"sanmateo":"No 1"}] |
 | 01 | 20170122 | P3 | 231 | [{"sanmateo":"No 1"}] |
 
-Le jeu de données d’entrée présentant le type **JsonFormat** est défini comme suit : (définition partielle présentant uniquement les éléments pertinents). Plus précisément :
+jeu de données d’entrée Hello avec **JsonFormat** type est défini comme suit : (définition partielle avec uniquement les parties pertinentes hello). Plus précisément :
 
-- La section `structure` définit les noms de colonne personnalisés et le type de données correspondant lors de la conversion des données au format tabulaire. Cette section est **facultative**, sauf si vous avez besoin d’effectuer un mappage de colonne. Pour en savoir plus, voir [Spécification de la définition de la structure des jeux de données rectangulaires](#specifying-structure-definition-for-rectangular-datasets).
-- Le paramètre `jsonNodeReference` indique que les données doivent être itérées et extraites des objets présentant le même modèle sous « orderlines » dans le **tableau**.
-- Le paramètre `jsonPathDefinition` indique le chemin JSON de chaque colonne indiquant l’emplacement à partir duquel les données sont extraites. Dans cet exemple, les éléments « ordernumber », « orderdate » et « city » se trouvent sous l’objet racine associé au chemin JSON commençant par « $. », tandis que les éléments « order_pd » et « order_price » sont définis avec le chemin d’accès dérivé de l’élément de tableau sans « $.».
+- `structure`section définit les noms de colonne de hello personnalisé et type de données correspondant hello lors de la conversion des données de tootabular. Cette section est **facultatif** , sauf si vous avez besoin de mappage de colonne toodo. Pour en savoir plus, voir [Spécification de la définition de la structure des jeux de données rectangulaires](#specifying-structure-definition-for-rectangular-datasets).
+- `jsonNodeReference`Indique tooiterate et extraire des données à partir des objets hello avec hello même motif sous **tableau** orderlines.
+- `jsonPathDefinition`Spécifie le chemin d’accès JSON hello pour chaque colonne qui indique où tooextract hello des données à partir de. Dans cet exemple, « ordernumber », « date » et « city » sont sous l’objet racine avec le chemin d’accès JSON en commençant par « $»., alors que « order_pd » et « order_price » sont définies avec le chemin d’accès dérivée de l’élément de tableau hello sans « $»..
 
 ```json
 "properties": {
@@ -313,14 +313,14 @@ Le jeu de données d’entrée présentant le type **JsonFormat** est défini co
 }
 ```
 
-**Notez les points suivants :**
+**Hello Notez les points suivants :**
 
-* Si les éléments `structure` et `jsonPathDefinition` ne sont pas définis dans le jeu de données Data Factory, l’activité de copie détecte le schéma à partir du premier objet et aplatit l’objet entier.
-* Si l’entrée JSON contient un tableau, l’activité de copie convertit la valeur du tableau entier en une chaîne, par défaut. Vous pouvez choisir d’extraire des données de cette dernière à l’aide de `jsonNodeReference` et/ou `jsonPathDefinition`, ou ignorer cette opération en ne la spécifiant pas dans `jsonPathDefinition`.
-* S’il y a plusieurs noms identiques au même niveau, l’activité de copie sélectionne le dernier nom.
+* Si hello `structure` et `jsonPathDefinition` ne sont pas définis dans le jeu de données Data Factory hello, hello détecte de l’activité de copie hello de schéma à partir du premier objet de hello et aplatir la totalité de l’objet hello.
+* Si l’entrée JSON hello possède un tableau, par défaut, hello activité de copie convertit hello tableau entier valeur en une chaîne. Vous pouvez choisir à l’aide de données de tooextract `jsonNodeReference` et/ou `jsonPathDefinition`, ou la passer en ne spécifiant dans `jsonPathDefinition`.
+* S’il existe en double noms à hello même niveau, hello activité de copie sélectionne hello dernière.
 * Les noms de propriété respectent la casse. Quand deux propriétés de même nom ont une casse différente, elles sont considérées comme deux propriétés distinctes.
 
-**Cas 2 : Écriture de données dans un fichier JSON**
+**Cas 2 : L’écriture du fichier tooJSON de données**
 
 Vous disposez de la table ci-dessous dans votre base de données SQL :
 
@@ -330,7 +330,7 @@ Vous disposez de la table ci-dessous dans votre base de données SQL :
 | 2 | 20170120 | 3 500 | Patrick |
 | 3 | 20170121 | 4000 | Jason |
 
-Pour chaque enregistrement, vous voulez écrire des données dans un objet JSON, au format suivant :
+et pour chaque enregistrement, vous attendez l’objet JSON tooa à toowrite dans au-dessous de format :
 ```json
 {
     "id": "1",
@@ -342,7 +342,7 @@ Pour chaque enregistrement, vous voulez écrire des données dans un objet JSON
 }
 ```
 
-Le jeu de données de sortie présentant le type **JsonFormat** est défini comme suit : (définition partielle présentant uniquement les éléments pertinents). Plus précisément, la section `structure` définit les noms des propriétés personnalisés dans le fichier de destination ; le paramètre `nestingSeparator` (valeur par défaut : «. ») vous permet d’identifier la couche d’imbrication à partir du nom. Cette section est **facultative**, sauf si vous souhaitez modifier le nom de propriété par rapport au nom de la colonne source, ou imbriquer certaines propriétés.
+dataset à l’aide de sortie Hello **JsonFormat** type est défini comme suit : (définition partielle avec uniquement les parties pertinentes hello). Plus spécifiquement, `structure` section définit les noms de propriété hello personnalisé dans le fichier de destination, `nestingSeparator` (valeur par défaut est «. ») sera couche d’imbrication de hello tooidentify utilisé à partir du nom de hello. Cette section est **facultatif** sauf si vous souhaitez que le nom de la propriété hello toochange la comparaison avec le nom de la colonne source, ou imbriquer des propriétés de hello.
 
 ```json
 "properties": {
@@ -374,7 +374,7 @@ Le jeu de données de sortie présentant le type **JsonFormat** est défini comm
 ```
 
 ### <a name="specifying-avroformat"></a>Définition d'AvroFormat
-Si vous souhaitez analyser des fichiers Avro ou écrire des données au format Avro, définissez la propriété `format` `type` sur **AvroFormat**. Il est inutile de spécifier des propriétés dans la partie Format de la section typeProperties. Exemple :
+Si vous souhaitez que les fichiers de Avro tooparse hello ou écrivez des données de hello dans le format Avro, la valeur hello `format` `type` propriété trop**AvroFormat**. Il est inutile toospecify toutes les propriétés de la section de Format hello dans la section de typeProperties hello. Exemple :
 
 ```json
 "format":
@@ -383,14 +383,14 @@ Si vous souhaitez analyser des fichiers Avro ou écrire des données au format�
 }
 ```
 
-Pour utiliser le format Avro dans une table Hive, vous pouvez faire référence au [didacticiel Apache Hive](https://cwiki.apache.org/confluence/display/Hive/AvroSerDe).
+le format Avro toouse dans une table Hive, vous pouvez faire référence trop[didacticiel d’Apache Hive](https://cwiki.apache.org/confluence/display/Hive/AvroSerDe).
 
-Notez les points suivants :  
+Hello Notez les points suivants :  
 
 * [Les types de données complexes](http://avro.apache.org/docs/current/spec.html#schema_complex) ne sont pas pris en charge (enregistrements, enums, tableaux, cartes, unions et fixes).
 
 ### <a name="specifying-orcformat"></a>Spécification d’OrcFormat
-Si vous souhaitez analyser des fichiers ORC ou écrire des données au format ORC, définissez la propriété `format` `type` sur **OrcFormat**. Il est inutile de spécifier des propriétés dans la partie Format de la section typeProperties. Exemple :
+Si vous souhaitez tooparse hello ORC fichiers ou écrivez des données de hello dans format ORC, définissez hello `format` `type` propriété trop**OrcFormat**. Il est inutile toospecify toutes les propriétés de la section de Format hello dans la section de typeProperties hello. Exemple :
 
 ```json
 "format":
@@ -400,17 +400,17 @@ Si vous souhaitez analyser des fichiers ORC ou écrire des données au format 
 ```
 
 > [!IMPORTANT]
-> Si vous ne copiez pas les fichiers ORC **tels quels** entre les magasins de données locaux et cloud, vous devez installer JRE 8 (Java Runtime Environment) sur votre machine de passerelle. La passerelle 64 bits requiert un environnement JRE 64 bits et que la passerelle 32 bits nécessite un environnement JRE 32 bits. Ces deux versions sont disponibles [ici](http://go.microsoft.com/fwlink/?LinkId=808605). Sélectionnez la bonne version.
+> Si vous ne copiez pas les fichiers ORC **comme-est** entre locaux et cloud magasins de données, vous devez tooinstall hello 8 de JRE (Java Runtime Environment) sur votre ordinateur de passerelle. La passerelle 64 bits requiert un environnement JRE 64 bits et que la passerelle 32 bits nécessite un environnement JRE 32 bits. Ces deux versions sont disponibles [ici](http://go.microsoft.com/fwlink/?LinkId=808605). Choisir hello approprié.
 >
 >
 
-Notez les points suivants :
+Hello Notez les points suivants :
 
 * Les types de données complexes ne sont pas pris en charge (STRUCT, MAP, LIST, UNION)
-* Le fichier ORC a trois [options liées à la compression](http://hortonworks.com/blog/orcfile-in-hdp-2-better-compression-better-performance/): NONE, ZLIB, SNAPPY. Data Factory prend en charge la lecture des données du fichier ORC dans tous ces formats compressés. Il utilise le codec de compression se trouvant dans les métadonnées pour lire les données. Toutefois, lors de l’écriture dans un fichier ORC, Data Factory choisit ZLIB, qui est la valeur par défaut pour ORC. Actuellement, il n’existe aucune option permettant de remplacer ce comportement.
+* Le fichier ORC a trois [options liées à la compression](http://hortonworks.com/blog/orcfile-in-hdp-2-better-compression-better-performance/): NONE, ZLIB, SNAPPY. Data Factory prend en charge la lecture des données du fichier ORC dans tous ces formats compressés. Il utilise la compression de hello codec est dans les données de salutation métadonnées tooread hello. Toutefois, lors de l’écriture de fichier ORC de tooan, Data Factory choisit ZLIB, qui est la valeur par défaut de hello pour ORC. Il n’existe actuellement aucune toooverride option ce comportement.
 
 ### <a name="specifying-parquetformat"></a>Spécification de ParquetFormat
-Si vous souhaitez analyser des fichiers Parquet ou écrire des données au format Parquet, définissez la propriété `format` `type` sur **ParquetFormat**. Il est inutile de spécifier des propriétés dans la partie Format de la section typeProperties. Exemple :
+Si vous souhaitez que les fichiers de Parquet tooparse hello ou écrivez des données de hello au format de Parquet, définissez hello `format` `type` propriété trop**ParquetFormat**. Il est inutile toospecify toutes les propriétés de la section de Format hello dans la section de typeProperties hello. Exemple :
 
 ```json
 "format":
@@ -419,11 +419,11 @@ Si vous souhaitez analyser des fichiers Parquet ou écrire des données au form
 }
 ```
 > [!IMPORTANT]
-> Si vous ne copiez pas les fichiers Parquet **tels quels** entre les magasins de données locaux et cloud, vous devez installer JRE 8 (Java Runtime Environment) sur votre machine de passerelle. La passerelle 64 bits requiert un environnement JRE 64 bits et que la passerelle 32 bits nécessite un environnement JRE 32 bits. Ces deux versions sont disponibles [ici](http://go.microsoft.com/fwlink/?LinkId=808605). Sélectionnez la bonne version.
+> Si vous ne copiez pas les fichiers Parquet **comme-est** entre locaux et cloud magasins de données, vous devez tooinstall hello 8 de JRE (Java Runtime Environment) sur votre ordinateur de passerelle. La passerelle 64 bits requiert un environnement JRE 64 bits et que la passerelle 32 bits nécessite un environnement JRE 32 bits. Ces deux versions sont disponibles [ici](http://go.microsoft.com/fwlink/?LinkId=808605). Choisir hello approprié.
 >
 >
 
-Notez les points suivants :
+Hello Notez les points suivants :
 
 * Les types de données complexes ne sont pas pris en charge (MAP, LIST)
-* Le fichier Parquet offre les options de compression suivantes : NONE, SNAPPY, GZIP et LZO. Data Factory prend en charge la lecture des données du fichier ORC dans tous ces formats compressés. Il utilise le codec de compression se trouvant dans les métadonnées pour lire les données. Toutefois, lors de l’écriture dans un fichier Parquet, Data Factory choisit SNAPPY, qui est la valeur par défaut pour le format Parquet. Actuellement, il n’existe aucune option permettant de remplacer ce comportement.
+* Fichier de parquet a hello liés à la compression des options suivantes : NONE, SNAPPY, GZIP et LZO. Data Factory prend en charge la lecture des données du fichier ORC dans tous ces formats compressés. Elle utilise le codec de compression hello dans les données de salutation métadonnées tooread hello. Toutefois, lors de l’écriture du fichier de Parquet tooa, fabrique de données choisit SNAPPY, valeur par défaut de hello pour le format Parquet. Il n’existe actuellement aucune toooverride option ce comportement.

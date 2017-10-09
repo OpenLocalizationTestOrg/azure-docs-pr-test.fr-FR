@@ -1,6 +1,6 @@
 ---
-title: "Déclencheurs d’application API App Service | Microsoft Docs"
-description: "Comment implémenter des déclencheurs dans une application API dans Azure App Service"
+title: "aaaApp API du Service application déclencheurs | Documents Microsoft"
+description: "Comment tooimplement déclenche dans une application API dans Azure App Service"
 services: logic-apps
 documentationcenter: .net
 author: guangyang
@@ -14,53 +14,53 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/25/2016
 ms.author: rachelap
-ms.openlocfilehash: 3ddfb142e7f1a47e2a8564387da785acf36fa61f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2d6b6a942a23c0a93987e9c48b69ecc739bfd814
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-app-service-api-app-triggers"></a>Déclencheurs des applications API Azure App Service
 > [!NOTE]
-> Cette version de l’article s’applique à la version du schéma 2014-12-01-preview API Apps.
+> Cette version de l’article de hello s’applique la version du schéma tooAPI applications 2014-12-01-preview.
 >
 >
 
 ## <a name="overview"></a>Vue d'ensemble
-Cet article explique comment implémenter des déclencheurs d'application API et comment les utiliser à partir d'une application logique.
+Cet article explique comment tooimplement API application déclenche et les consommer à partir d’une application logique.
 
-Tous les extraits de code de cette rubrique sont copiés depuis l’ [exemple de code de l’application API FileWatcher](http://go.microsoft.com/fwlink/?LinkId=534802).
+Tous les extraits de code hello dans cette rubrique sont copiés à partir de hello [exemple de code d’application d’API FileWatcher](http://go.microsoft.com/fwlink/?LinkId=534802).
 
-Notez que vous devez télécharger le package NuGet suivant pour que le code de cet article puisse être généré et s'exécuter : [http://www.nuget.org/packages/Microsoft.Azure.AppService.ApiApps.Service/](http://www.nuget.org/packages/Microsoft.Azure.AppService.ApiApps.Service/).
+Notez que vous devez hello toodownload suivant du package nuget pour le code dans cet article de toobuild hello et exécutez : [http://www.nuget.org/packages/Microsoft.Azure.AppService.ApiApps.Service/](http://www.nuget.org/packages/Microsoft.Azure.AppService.ApiApps.Service/).
 
 ## <a name="what-are-api-app-triggers"></a>Que sont les déclencheurs des applications API ?
-C'est un scénario courant pour une application API que de déclencher un événement, afin que les clients de l'application API puissent effectuer les actions appropriées en réponse à l'événement. Le mécanisme basé sur l'API REST qui prend en charge ce scénario est appelé un déclencheur d'application API.
+Il est un scénario courant pour un toofire d’application API un événement afin que les clients de l’application d’API hello prendre les mesures appropriées de hello dans l’événement toohello de réponse. Hello mécanisme d’API REST en fonction qui prend en charge ce scénario est appelé un déclencheur d’application API.
 
-Par exemple, supposons que votre code client utilise l' [application API du connecteur Twitter](../connectors/connectors-create-api-twitter.md) et que votre code doit exécuter une action basée sur les nouveaux tweets contenant des mots spécifiques. Dans ce cas, vous pouvez définir un déclencheur d’émission ou de collecte pour répondre facilement à ce besoin.
+Par exemple, supposons que votre code client à l’aide de hello [application API de connecteur Twitter](../connectors/connectors-create-api-twitter.md) et votre code doit être tooperform une action en fonction de la nouvelle tweets qui contiennent des mots spécifiques. Dans ce cas, vous pouvez configurer un toofacilitate de déclencheur d’interrogation ou de push ce besoin.
 
 ## <a name="poll-trigger-versus-push-trigger"></a>Déclencheur d'interrogation et déclencheur d'émission
 Deux types de déclencheurs sont actuellement pris en charge :
 
-* Déclencheur d'interrogation : le client collecte auprès de l'application API les notifications de déclenchement d'un événement.
-* Déclencheur d'émission : le client est notifié par l'application API quand un événement est déclenché.
+* Déclencheur d’interrogation - Client interroge application d’API hello pour la notification d’un événement a été déclenché.
+* Déclencheur d’émission - Client est averti par application hello API lorsqu’un événement est déclenché
 
 ### <a name="poll-trigger"></a>Déclencheur d'interrogation :
-Un déclencheur d'interrogation est implémenté sous la forme d'une API REST normale et il attend que ses clients (comme une application Logic) l'interrogent pour obtenir une notification. Alors que le client est susceptible de gérer les états, le déclencheur d'interrogation lui-même est sans état.
+Un déclencheur de sondage est implémenté comme une API REST régulière et attend son toopoll clients (par exemple, une application logique) dans la commande tooget notification. Pendant que le client de hello peut-être conserver l’état, le déclencheur de sondage de hello lui-même est sans état.
 
-Les informations suivantes concernant les paquets de demande et de réponse montrent certains aspects essentiels du contrat du déclencheur d'interrogation :
+Hello informations concernant les paquets de demande et de réponse hello suivantes illustre certains aspects clés de contrat de déclencheur d’interrogation hello :
 
 * Demande
   * Méthode HTTP : GET
   * Paramètres
-    * triggerState : ce paramètre facultatif permet aux clients de spécifier leur état, afin que le déclencheur d'interrogation puisse décider correctement s'il faut ou non retourner la notification, en fonction de l'état spécifié.
+    * triggerState - ce paramètre facultatif permet aux clients toospecify leur état afin que hello déclencheur d’interrogation peut correctement décider si tooreturn notification ou pas selon hello état spécifié.
     * Paramètres spécifiques de l'API
 * Réponse
-  * Code d'état **200** : la demande est valide et il existe une notification provenant du déclencheur. Le contenu de la notification sera le corps de la réponse. Un en-tête « Retry-After » dans la réponse indique que des données de notification supplémentaires doivent être récupérées avec un appel de demande suivant.
-  * Code d'état **202** : la demande est valide, mais il n'existe pas de nouvelle notification provenant du déclencheur.
-  * Code d'état **4xx** : la demande n'est pas valide. Le client ne doit pas recommencer la demande.
-  * Code d'état **5xx** : la demande a entraîné une erreur de serveur interne et/ou un problème temporaire. Le client doit recommencer la demande.
+  * Code d’état **200** - demande est valide et qu’il existe une notification de déclencheur de hello. le contenu de la notification de hello Hello sera corps de réponse hello. Un en-tête « Retry-After » dans la réponse de hello indique que les données de notification supplémentaires doivent être récupérées avec un appel de la demande suivante.
+  * Code d’état **202** - la demande est valide, mais il n’existe aucune nouvelle notification de déclencheur de hello.
+  * Code d'état **4xx** : la demande n'est pas valide. client de Hello doit réessayer pas de demande de hello.
+  * Code d'état **5xx** : la demande a entraîné une erreur de serveur interne et/ou un problème temporaire. client de Hello doit réessayer la demande de hello.
 
-L'extrait de code suivant est un exemple de la façon d'implémenter un déclencheur d'interrogation.
+Hello suivant extrait de code est un exemple de comment déclencher des tooimplement une interrogation.
 
     // Implement a poll trigger.
     [HttpGet]
@@ -71,54 +71,54 @@ L'extrait de code suivant est un exemple de la façon d'implémenter un déclenc
         // Additional parameters
         string searchPattern = "*")
     {
-        // Check to see whether there is any file touched after the timestamp.
+        // Check toosee whether there is any file touched after hello timestamp.
         var lastTriggerTimeUtc = DateTime.Parse(triggerState).ToUniversalTime();
         var touchedFiles = Directory.EnumerateFiles(rootPath, searchPattern, SearchOption.AllDirectories)
             .Select(f => FileInfoWrapper.FromFileInfo(new FileInfo(f)))
             .Where(fi => fi.LastAccessTimeUtc > lastTriggerTimeUtc);
 
-        // If there are files touched after the timestamp, return their information.
+        // If there are files touched after hello timestamp, return their information.
         if (touchedFiles != null && touchedFiles.Count() != 0)
         {
-            // Extension method provided by the AppService service SDK.
+            // Extension method provided by hello AppService service SDK.
             return this.Request.EventTriggered(new { files = touchedFiles });
         }
-        // If there are no files touched after the timestamp, tell the caller to poll again after 1 mintue.
+        // If there are no files touched after hello timestamp, tell hello caller toopoll again after 1 mintue.
         else
         {
-            // Extension method provided by the AppService service SDK.
+            // Extension method provided by hello AppService service SDK.
             return this.Request.EventWaitPoll(new TimeSpan(0, 1, 0));
         }
     }
 
-Pour tester ce déclencheur d'interrogation, procédez comme suit :
+tootest ce sondage déclencher, procédez comme suit :
 
-1. Déployez l'application API avec un paramètre d'authentification **anonyme public**.
-2. Appelez l'opération **touch** pour toucher un fichier. L'illustration suivante montre un exemple de demande via Postman.
+1. Déployer hello API application avec un paramètre d’authentification de **public anonyme**.
+2. Appelez hello **touch** opération tootouch un fichier. Hello suivant image montre un exemple de demande via Postman.
    ![Appeler une opération Touch via Postman](./media/app-service-api-dotnet-triggers/calltouchfilefrompostman.PNG)
-3. Appelez le déclencheur d'interrogation avec le paramètre **triggerState** défini avec un horodatage antérieur à l'étape 2. L'illustration suivante montre un exemple de demande via Postman.
+3. Appeler hello interrogation avec hello **triggerState** paramètre défini tooa temps horodatage préalable tooStep #2. Hello image suivante illustre demande d’exemple hello via Postman.
    ![Appeler un déclencheur d'interrogation via Postman](./media/app-service-api-dotnet-triggers/callpolltriggerfrompostman.PNG)
 
 ### <a name="push-trigger"></a>Déclencheurs d'émission :
-Un déclencheur d'émission est implémenté sous la forme d'une API REST normale, qui envoie des notifications aux clients qui se sont inscrits pour être notifiés quand des événements spécifiques se déclenchent.
+Un déclencheur d’émission est implémenté comme une réguliers API REST qui exécute un push de tooclients de notifications qui ont inscrit toobe averti lorsque des événements spécifiques se déclenchent.
 
-Les informations suivantes concernant les paquets de demande et de réponse montrent certains aspects essentiels du contrat du déclencheur d'interrogation :
+Hello informations concernant les paquets de demande et de réponse hello suivantes illustre certains aspects clés de contrat de déclencheur hello par émission de données.
 
 * Demande
   * Méthode HTTP : PUT
   * Paramètres
-    * triggerId : obligatoire. Chaîne Opaque (comme un GUID) qui représente l'inscription d'un déclencheur d'émission.
-    * callbackUrl : obligatoire. URL du rappel à appeler quand l'événement se déclenche. L'appel est un simple appel HTTP POST.
+    * triggerId : requis - Opaque chaîne (par exemple, un GUID) que représente hello d’inscription d’un déclencheur par émission de données.
+    * callbackUrl : requise : URL de hello rappel tooinvoke lors du déclenche de l’événement de hello. appel de Hello est un simple appel HTTP POST.
     * Paramètres spécifiques de l'API
 * Réponse
-  * Code d'état **200** : la demande d'inscription du client a réussi.
-  * Code d'état **4xx** : la demande n'est pas valide. Le client ne doit pas recommencer la demande.
-  * Code d'état **5xx** : la demande a entraîné une erreur de serveur interne et/ou un problème temporaire. Le client doit recommencer la demande.
+  * Code d’état **200** -client de tooregister demande réussie.
+  * Code d'état **4xx** : la demande n'est pas valide. client de Hello doit réessayer pas de demande de hello.
+  * Code d'état **5xx** : la demande a entraîné une erreur de serveur interne et/ou un problème temporaire. client de Hello doit réessayer la demande de hello.
 * Rappel
   * Méthode HTTP : POST
   * Corps de la demande : contenu de la notification.
 
-L'extrait de code suivant est un exemple de la façon d'implémenter un déclencheur d'émission.
+Hello suivant extrait de code est un exemple de comment tooimplement push de déclencheur :
 
     // Implement a push trigger.
     [HttpPut]
@@ -126,14 +126,14 @@ L'extrait de code suivant est un exemple de la façon d'implémenter un déclenc
     public HttpResponseMessage TouchedFilesPushTrigger(
         // triggerId is an opaque string.
         string triggerId,
-        // A helper class provided by the AppService service SDK.
-        // Here it defines the input of the push trigger is a string and the output to the callback is a FileInfoWrapper object.
+        // A helper class provided by hello AppService service SDK.
+        // Here it defines hello input of hello push trigger is a string and hello output toohello callback is a FileInfoWrapper object.
         [FromBody]TriggerInput<string, FileInfoWrapper> triggerInput)
     {
-        // Register the trigger to some trigger store.
+        // Register hello trigger toosome trigger store.
         triggerStore.RegisterTrigger(triggerId, rootPath, triggerInput);
 
-        // Extension method provided by the AppService service SDK indicating the registration is completed.
+        // Extension method provided by hello AppService service SDK indicating hello registration is completed.
         return this.Request.PushTriggerRegistered(triggerInput.GetCallback());
     }
 
@@ -165,53 +165,53 @@ L'extrait de code suivant est un exemple de la façon d'implémenter un déclenc
         public void RegisterTrigger(string triggerId, string rootPath,
             TriggerInput<string, FileInfoWrapper> triggerInput)
         {
-            // Use FileSystemWatcher to listen to file change event.
+            // Use FileSystemWatcher toolisten toofile change event.
             var filter = string.IsNullOrEmpty(triggerInput.inputs) ? "*" : triggerInput.inputs;
             var watcher = new FileSystemWatcher(rootPath, filter);
             watcher.IncludeSubdirectories = true;
             watcher.EnableRaisingEvents = true;
             watcher.NotifyFilter = NotifyFilters.LastAccess;
 
-            // When some file is changed, fire the push trigger.
+            // When some file is changed, fire hello push trigger.
             watcher.Changed +=
                 (sender, e) => watcher_Changed(sender, e,
                     Runtime.FromAppSettings(),
                     triggerInput.GetCallback());
 
-            // Assoicate the FileSystemWatcher object with the triggerId.
+            // Assoicate hello FileSystemWatcher object with hello triggerId.
             _store[triggerId] = watcher;
 
         }
 
-        // Fire the assoicated push trigger when some file is changed.
+        // Fire hello assoicated push trigger when some file is changed.
         void watcher_Changed(object sender, FileSystemEventArgs e,
-            // AppService runtime object needed to invoke the callback.
+            // AppService runtime object needed tooinvoke hello callback.
             Runtime runtime,
-            // The callback to invoke.
+            // hello callback tooinvoke.
             ClientTriggerCallback<FileInfoWrapper> callback)
         {
-            // Helper method provided by AppService service SDK to invoke a push trigger callback.
+            // Helper method provided by AppService service SDK tooinvoke a push trigger callback.
             callback.InvokeAsync(runtime, FileInfoWrapper.FromFileInfo(new FileInfo(e.FullPath)));
         }
     }
 
-Pour tester ce déclencheur d'interrogation, procédez comme suit :
+tootest ce sondage déclencher, procédez comme suit :
 
-1. Déployez l'application API avec un paramètre d'authentification **anonyme public**.
-2. Accédez à [http://requestb.in/](http://requestb.in/) pour créer un élément RequestBin qui vous servira d'URL de rappel.
-3. Appelez le déclencheur d’émission avec un GUID pour **triggerId** et l’URL de l’élément RequestBin pour **callbackUrl**.
+1. Déployer hello API application avec un paramètre d’authentification de **public anonyme**.
+2. Parcourir trop[http://requestb.in/](http://requestb.in/) toocreate un RequestBin qui servira de votre URL de rappel.
+3. Appeler le déclencheur d’émission hello avec un GUID en tant que **triggerId** et hello URL RequestBin **callbackUrl**.
    ![Appeler un déclencheur d'émission via Postman](./media/app-service-api-dotnet-triggers/callpushtriggerfrompostman.PNG)
-4. Appelez l'opération **touch** pour toucher un fichier. L'illustration suivante montre un exemple de demande via Postman.
+4. Appelez hello **touch** opération tootouch un fichier. Hello suivant image montre un exemple de demande via Postman.
    ![Appeler une opération Touch via Postman](./media/app-service-api-dotnet-triggers/calltouchfilefrompostman.PNG)
-5. Vérifiez l'élément RequestBin pour confirmer que le rappel du déclencheur d'émission est appelé avec une sortie de propriété.
-   ![Appeler un déclencheur d’interrogation via Postman](./media/app-service-api-dotnet-triggers/pushtriggercallbackinrequestbin.PNG)
+5. Vérifiez que hello RequestBin tooconfirm qui hello push déclencheur rappel est appelé avec la sortie de la propriété.
+   ![Appeler un déclencheur d'interrogation via Postman](./media/app-service-api-dotnet-triggers/pushtriggercallbackinrequestbin.PNG)
 
 ### <a name="describe-triggers-in-api-definition"></a>Décrire des déclencheurs dans une définition d'API
-Après avoir implémenté les déclencheurs et déployé votre application API dans Azure, accédez au panneau **Définition d’API** dans le portail Azure en version préliminaire. Vous y voyez que les déclencheurs sont automatiquement reconnus dans l’interface utilisateur, qui repose sur la définition de l’API Swagger 2.0 de l’application API.
+Après l’implémentation de déclencheurs de hello et en déployant votre tooAzure d’application API, accédez à toohello **définition d’API** panneau dans le portail Azure en version préliminaire de hello et vous verrez que les déclencheurs sont automatiquement reconnus Bonjour interface utilisateur, qui est déterminée par les Hello définition Swagger 2.0 API de l’application hello API.
 
 ![Panneau Définition de l'API](./media/app-service-api-dotnet-triggers/apidefinitionblade.PNG)
 
-Si vous cliquez sur le bouton **Télécharger Swagger** et que vous ouvrez le fichier JSON, vous verrez des résultats similaires à ceci :
+Si vous cliquez sur hello **télécharger Swagger** bouton et le fichier JSON de hello ouvert, vous verrez toohello similaire de résultats suivant :
 
     "/api/files/poll/TouchedFiles": {
       "get": {
@@ -228,20 +228,20 @@ Si vous cliquez sur le bouton **Télécharger Swagger** et que vous ouvrez le fi
       }
     }
 
-La propriété d'extension **x-ms-schedular-trigger** indique comment les déclencheurs sont décrits dans la définition de l'API, et elle est automatiquement ajoutée à la passerelle d'application API quand vous demandez la définition de l'API via la passerelle, si la demande satisfait à un des critères suivants. (Vous pouvez également ajouter cette propriété manuellement.)
+propriété d’extension de Hello **x-ms-programmation-le déclencheur** est la façon dont les déclencheurs sont décrites dans la définition de l’API et est automatiquement ajoutée par la passerelle d’application hello API lorsque vous demandez une définition hello API via une passerelle de hello hello demande tooone de Hello suivant des critères. (Vous pouvez également ajouter cette propriété manuellement.)
 
 * Déclencheur d'interrogation :
-  * Si la méthode HTTP est **GET**.
-  * Si la propriété **operationId** contient la chaîne **trigger**.
-  * Si la propriété **parameters** inclut un paramètre avec une propriété **name** définie sur **triggerState**.
+  * Si la méthode HTTP de hello est **obtenir**.
+  * Si hello **operationId** propriété contient la chaîne de hello **déclencheur**.
+  * Si hello **paramètres** propriété inclut un paramètre avec un **nom** propriété trop**triggerState**.
 * Déclencheurs d'émission :
-  * Si la méthode HTTP est **PUT**.
-  * Si la propriété **operationId** contient la chaîne **trigger**.
-  * Si la propriété **parameters** inclut un paramètre avec une propriété **name** définie sur **triggerId**.
+  * Si la méthode HTTP de hello est **PUT**.
+  * Si hello **operationId** propriété contient la chaîne de hello **déclencheur**.
+  * Si hello **paramètres** propriété inclut un paramètre avec un **nom** propriété trop**triggerId**.
 
 ## <a name="use-api-app-triggers-in-logic-apps"></a>Utiliser des déclencheurs d'application API dans les applications logiques
-### <a name="list-and-configure-api-app-triggers-in-the-logic-apps-designer"></a>Répertorier et configurer des déclencheurs d'application API dans le concepteur d'applications logiques
-Si vous créez une application logique dans le même groupe de ressources que l'application API, vous pourrez l'ajouter au canevas du concepteur simplement en cliquant dessus. Les images suivantes illustrent ce principe :
+### <a name="list-and-configure-api-app-triggers-in-hello-logic-apps-designer"></a>Répertorier et configurer des déclencheurs d’application API dans le Concepteur d’applications hello logique
+Si vous créez une application logique Bonjour même groupe de ressources que hello application API, vous serez en mesure de tooadd il canevas de concepteur toohello simplement en cliquant dessus. Hello suivant des images pour illustrer ce propos :
 
 ![Déclencheurs dans le concepteur d'applications logiques](./media/app-service-api-dotnet-triggers/triggersinlogicappdesigner.PNG)
 
@@ -250,15 +250,15 @@ Si vous créez une application logique dans le même groupe de ressources que l'
 ![Configurer un déclencheur d'émission dans le concepteur d'applications logiques](./media/app-service-api-dotnet-triggers/configurepushtriggerinlogicappdesigner.PNG)
 
 ## <a name="optimize-api-app-triggers-for-logic-apps"></a>Optimiser les déclencheurs d'application API pour les applications logiques
-Après avoir ajouté des déclencheurs à une application API, vous pouvez faire un certain nombre de choses pour améliorer l'expérience de l'utilisation de l'application API dans une application logique.
+Après avoir ajouté des déclencheurs tooan API app, il existe quelques opérations réalisables expérience de hello tooimprove lors de l’utilisation d’application hello API dans une application logique.
 
-Par exemple, le paramètre **triggerState** pour les déclencheurs d'interrogation doit être défini avec l'expression suivante dans l'application logique. Cette expression doit évaluer le dernier appel du déclencheur depuis l'application logique et retourner cette valeur.  
+Par exemple, hello **triggerState** pour les déclencheurs d’interrogation doit être défini toohello expression dans l’application logique de hello suivante. Cette expression doit évaluer hello dernière invocation du déclencheur hello à partir de l’application logique de hello et retourne cette valeur.  
 
     @coalesce(triggers()?.outputs?.body?['triggerState'], '')
 
-REMARQUE : pour une explication des fonctions utilisées dans l'expression ci-dessus, reportez-vous à la documentation sur le [Langage de définition des flux de travail des applications logiques](https://msdn.microsoft.com/library/azure/dn948512.aspx).
+Remarque : Pour obtenir une explication des fonctions hello utilisé dans l’expression hello ci-dessus, consultez la documentation du toohello sur [langage de définition de flux de travail logique d’application](https://msdn.microsoft.com/library/azure/dn948512.aspx).
 
-Les utilisateurs d'applications logiques devraient ainsi fournir l'expression ci-dessus pour le paramètre **triggerState** lors de l'utilisation du déclencheur. Il est possible de faire prédéfinir cette valeur par le concepteur d'applications logiques via la propriété d'extension **x-ms-scheduler-recommendation**.  La propriété d'extension **x-ms-visibility** peut être définie avec une valeur *internal* , de façon à ce que le paramètre lui-même ne soit pas affiché sur le concepteur.  L'extrait de code suivant montre ceci.
+Expression de hello tooprovide au-dessus de l’utilisateur d’application logique a besoin pour hello **triggerState** paramètre lors de l’utilisation de déclencheur de hello. Il est possible de toohave cette valeur prédéfinie par le Concepteur d’application hello logique via la propriété d’extension hello **x-ms-planificateur-recommandation**.  Hello **x-ms-visibilité** propriété d’extension peut être valeur tooa *interne* afin que le paramètre hello lui-même n’est pas visible sur le Concepteur de hello.  Hello suivant extrait de code illustre.
 
     "/api/Messages/poll": {
       "get": {
@@ -278,11 +278,11 @@ Les utilisateurs d'applications logiques devraient ainsi fournir l'expression ci
       }
     }
 
-Pour les déclencheurs d'émission, le paramètre **triggerId** doit identifier de façon univoque l'application logique. Une pratique recommandée consiste à définir cette propriété avec le nom du flux de travail en utilisant l'expression suivante :
+Pour les déclencheurs de push, hello **triggerId** paramètre doit identifier de façon unique application logique de hello. Meilleure pratique recommandée est tooset ce nom toohello de propriété de flux de travail hello à l’aide de hello l’expression suivante :
 
     @workflow().name
 
-À l’aide des propriétés d’extension **x-ms-scheduler-recommendation** et **x-ms-visibility** dans sa définition d’API, l’application API peut indiquer au concepteur d’applications logiques de définir automatiquement cette expression pour l’utilisateur.
+À l’aide de hello **x-ms-planificateur-recommandation** et **x-ms-visibilité** propriétés d’extension dans sa définition d’API, hello application API peuvent transmettre toohello logique application concepteur tooautomatically définie expression pour l’utilisateur de hello.
 
         "parameters":[  
           {  
@@ -296,11 +296,11 @@ Pour les déclencheurs d'émission, le paramètre **triggerId** doit identifier 
 
 
 ### <a name="add-extension-properties-in-api-defintion"></a>Ajouter des propriétés d'extension dans la définition de l'API
-Des informations de métadonnées supplémentaires, comme les propriétés d’extension **x-ms-scheduler-recommendation** et **x-ms-visibility**, peuvent être ajoutées dans la définition de l’API de deux façons : statique ou dynamique.
+Informations de métadonnées supplémentaires telles que les propriétés d’extension hello - **x-ms-planificateur-recommandation** et **x-ms-visibilité** -peuvent être ajoutées dans la définition de hello API dans un des deux façons : statique ou dynamique.
 
-Pour les métadonnées statiques, vous pouvez modifier directement le fichier */metadata/apiDefinition.swagger.json* dans votre projet et y ajouter les propriétés manuellement.
+Pour les métadonnées statiques, vous pouvez modifier directement hello */metadata/apiDefinition.swagger.json* dans votre projet et ajouter manuellement les propriétés de hello.
 
-Pour les applications API utilisant des métadonnées dynamiques, vous pouvez modifier le fichier SwaggerConfig.cs pour y ajouter un filtre d'opération qui peut ajouter ces extensions.
+Pour les applications API en utilisant les métadonnées dynamique, vous pouvez modifier hello SwaggerConfig.cs fichier tooadd un filtre d’opération qui peut ajouter ces extensions.
 
     GlobalConfiguration.Configuration
         .EnableSwagger(c =>
@@ -311,9 +311,9 @@ Pour les applications API utilisant des métadonnées dynamiques, vous pouvez mo
             }
 
 
-Voici un exemple de la façon dont cette classe peut être implémentée pour faciliter le scénario des métadonnées dynamiques.
+Hello Voici un exemple de la manière dont cette classe peut être scénario de métadonnées dynamique hello toofacilitate implémenté.
 
-    // Add extension properties on the triggerState parameter
+    // Add extension properties on hello triggerState parameter
     public class TriggerStateFilter : IOperationFilter
     {
 
@@ -331,8 +331,8 @@ Voici un exemple de la façon dont cette classe peut être implémentée pour fa
                     }
 
                     // add 2 vendor extensions
-                    // x-ms-visibility: set to 'internal' to signify this is an internal field
-                    // x-ms-scheduler-recommendation: set to a value that logic app can use
+                    // x-ms-visibility: set too'internal' toosignify this is an internal field
+                    // x-ms-scheduler-recommendation: set tooa value that logic app can use
                     triggerStateParam.vendorExtensions.Add("x-ms-visibility", "internal");
                     triggerStateParam.vendorExtensions.Add("x-ms-scheduler-recommendation",
                                                            "@coalesce(triggers()?.outputs?.body?['triggerState'], '')");

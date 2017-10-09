@@ -1,6 +1,6 @@
 ---
-title: "Avant de déployer App Service sur Azure Stack | Microsoft Docs"
-description: "Étapes à effectuer avant de déployer App Service sur Azure Stack"
+title: "aaaBefore que vous déployez le Service d’applications sur la pile de Azure | Documents Microsoft"
+description: "Toocomplete étapes avant de déployer le Service d’applications sur la pile de Azure"
 services: azure-stack
 documentationcenter: 
 author: apwestgarth
@@ -14,33 +14,33 @@ ms.devlang: na
 ms.topic: article
 ms.date: 7/3/2017
 ms.author: anwestg
-ms.openlocfilehash: 3cba11acc6279f24d0a47af8978610180724c0a2
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: fad758232ef2795105036640c2a26abf3fa2c3c8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="before-you-get-started-with-app-service-on-azure-stack"></a>Avant de commencer avec App Service sur Azure Stack
 
-Vous avez besoin de quelques éléments pour installer Azure App Service sur Azure Stack :
+Vous avez besoin de quelques éléments tooinstall du Service d’applications Azure sur la pile de Azure :
 
-- Un déploiement terminé du [Kit de développement Azure Stack](azure-stack-run-powershell-script.md).
-- Suffisamment d’espace dans votre système Azure Stack pour un petit déploiement d’App Service sur Azure Stack.  L’espace requis est d’environ 20 Go d’espace disque.
+- Un déploiement terminé de hello [kit de développement Azure pile](azure-stack-run-powershell-script.md).
+- Suffisamment d’espace dans votre système Azure Stack pour un petit déploiement d’App Service sur Azure Stack.  Hello espace requis est d’environ 20 Go d’espace disque.
 - Une image de machine virtuelle Windows Server à utiliser lorsque vous créez des machines virtuelles pour App Service sur Azure Stack.
 - [Un serveur qui exécute SQL Server](#SQL-Server).
 
 >[!NOTE] 
-> Les étapes suivantes sont *toutes* exécutées sur l’ordinateur hôte Azure Stack.
+> Hello comme suit *tous les* ont lieu sur l’ordinateur hôte de pile de Azure hello.
 
-Pour déployer un fournisseur de ressources, vous devez exécuter l’ISE PowerShell en tant qu’administrateur. Pour cette raison, vous devez autoriser les cookies et JavaScript dans le profil Internet Explorer que vous utilisez pour vous connecter à Azure Active Directory.
+toodeploy un fournisseur de ressources, vous devez exécuter hello PowerShell Integrated Scripting Environment (ISE) en tant qu’administrateur. Pour cette raison, vous devez tooallow cookies et JavaScript dans le profil d’Internet Explorer hello utiliser toosign dans tooAzure Active Directory.
 
 ## <a name="turn-off-internet-explorer-enhanced-security"></a>Désactiver la sécurité renforcée d’Internet Explorer
 
-1.  Connectez-vous sur la machine du Kit de développement Azure Stack en tant que **AzureStack/administrator**, puis ouvrez le **Gestionnaire de serveur**.
+1.  Connectez-vous à ordinateur de kit de développement de Azure pile toohello en tant que **AzureStack/administrateur**, puis ouvrez **le Gestionnaire de serveur**.
 
 2.  Désactivez la **Configuration de sécurité renforcée d’Internet Explorer** pour les administrateurs et les utilisateurs.
 
-3.  Connectez-vous sur la machine du Kit de développement Azure Stack en tant qu’administrateur, puis ouvrez le **Gestionnaire de serveur**.
+3.  Connectez-vous à ordinateur de kit de développement de Azure pile toohello en tant qu’administrateur, puis ouvrez **le Gestionnaire de serveur**.
 
 4.  Désactivez la **Configuration de sécurité renforcée d’Internet Explorer** pour les administrateurs et les utilisateurs.
 
@@ -50,31 +50,31 @@ Pour déployer un fournisseur de ressources, vous devez exécuter l’ISE PowerS
 
 2.  Si vous y êtes invité, sélectionnez **Utiliser la sécurité recommandée**, puis sélectionnez **OK**.
 
-3.  Dans Internet Explorer, sélectionnez **Outils** (icône d’engrenage) > **Options Internet** > **Confidentialité** > **Avancé**.
+3.  Dans Internet Explorer, sélectionnez **outils** (icône d’engrenage hello) > **Options Internet** > **confidentialité** > **avancé**.
 
 4.  Sélectionnez **Advanced (Avancé)**. Vérifiez que les deux cases **Accepter** sont cochées. Sélectionnez **OK** deux fois.
 
-5.  Fermez Internet Explorer et redémarrez l’ISE PowerShell en tant qu’administrateur.
+5.  Fermez Internet Explorer et redémarrez hello PowerShell ISE en tant qu’administrateur.
 
 ## <a name="install-powershell-for-azure-stack"></a>Installer PowerShell pour Azure Stack
 
-Pour installer PowerShell pour Azure Stack, suivez les étapes sous [Installer PowerShell](azure-stack-powershell-install.md).
+tooinstall PowerShell pour la pile de Azure, suivez les étapes de hello dans [installer PowerShell](azure-stack-powershell-install.md).
 
 ## <a name="use-visual-studio-with-azure-stack"></a>Utiliser Visual Studio avec Azure Stack
 
-Pour utiliser Visual Studio avec Azure Stack, suivez les étapes sous [Installer Visual Studio](azure-stack-install-visual-studio.md).
+toouse Visual Studio avec la pile d’Azure, suivez les étapes de hello dans [installer Visual Studio](azure-stack-install-visual-studio.md).
 
-## <a name="add-a-windows-server-2016-vm-image-to-azure-stack"></a>Ajouter une image de machine virtuelle Windows Server 2016 à Azure Stack
+## <a name="add-a-windows-server-2016-vm-image-tooazure-stack"></a>Ajouter un tooAzure d’image de machine virtuelle de Windows Server 2016 pile
 
-Étant donné qu’App Service déploie plusieurs machines virtuelles, il requiert une image de machine virtuelle Windows Server 2016 dans Azure Stack. Pour installer une image de machine virtuelle, suivez les étapes sous [Ajouter une image de machine virtuelle par défaut](azure-stack-add-default-image.md).
+Étant donné qu’App Service déploie plusieurs machines virtuelles, il requiert une image de machine virtuelle Windows Server 2016 dans Azure Stack. tooinstall une image de machine virtuelle, suivez les étapes de hello dans [ajouter une image de machine virtuelle par défaut](azure-stack-add-default-image.md).
 
 ## <a name="SQL-Server"></a>SQL Server
 
-App Service sur Azure Stack nécessite l’accès à une instance SQL Server pour créer et héberger deux bases de données afin d’exécuter le fournisseur de ressources App Service.  Si vous décidez de déployer une machine virtuelle SQL Server sur Azure Stack, son niveau de connectivité SQL doit être défini sur **Public**.  Vous pouvez choisir l’instance SQL Server à utiliser lorsque vous choisissez les options dans le programme d’installation App Service sur Azure Stack.
+Service application sur Azure pile nécessite l’accès tooa SQL Server instance toocreate et hôte deux bases de données toorun hello fournisseur de ressources du Service d’applications.  Si vous choisissez toodeploy une machine virtuelle SQL Server sur la pile Azure qu’il doit être le niveau de connectivité SQL hello trop**Public**.  Vous pouvez choisir hello SQL Server instance toouse lorsque vous effectuez des options hello Bonjour du Service d’applications sur le programme d’installation de la pile de Azure.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-- [Installer le fournisseur de ressources App Service](azure-stack-app-service-deploy.md).
+- [Installer hello fournisseur de ressources du Service d’applications](azure-stack-app-service-deploy.md).
 
 <!--Image references-->
 [1]: ./media/azure-stack-app-service-before-you-get-started/PSGallery.png

@@ -1,6 +1,6 @@
 ---
-title: Interface utilisateur d'Azure Mobile Engagement - Moniteur
-description: "En savoir plus sur la surveillance des données en temps réel de votre application à l’aide d’Azure Mobile Engagement"
+title: "aaaAzure l’Interface utilisateur Mobile Engagement - analyse"
+description: "Découvrez comment toomonitor des données en temps réel sur votre application à l’aide d’Azure Mobile Engagement"
 services: mobile-engagement
 documentationcenter: 
 author: piyushjo
@@ -14,45 +14,45 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 5f8a02e35db93585e0fe46d77b3ad18b94c99597
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3a581e4166bc88e6ee7aa784d4047c94533685b5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-monitor-real-time-data-about-your-application"></a>Surveillance des données en temps réel de votre application
-Cet article décrit l’onglet **SURVEILLER** du portail **Mobile Engagement**. Le portail **Mobile Engagement** sert à surveiller et à gérer vos applications mobiles. Notez que pour utiliser le portail, vous devez tout d’abord créer un compte **Azure Mobile Engagement** . 
+# <a name="how-toomonitor-real-time-data-about-your-application"></a>Comment toomonitor des données en temps réel sur votre application
+Cet article décrit hello **moniteur** onglet Hello **Mobile Engagement** portal. Vous utilisez hello **Mobile Engagement** toomonitor portail et gérer vos applications mobiles. Notez que toostart à l’aide du portail hello vous devez tout d’abord toocreate un **Azure Mobile Engagement** compte. 
 
-La section Surveiller de l’interface utilisateur offre des analyses en temps réel et vous permet de définir des alertes lorsque des seuils sont atteints pour la plupart des informations disponibles dans l’historique de la section [Analyse](mobile-engagement-user-interface-analytics.md) de l’interface utilisateur. Consultez la section **Glossaire** de la rubrique [Concepts](http://go.microsoft.com/fwlink/?LinkId=525555) qui présente les définitions des termes et abréviations indiqués dans Analyse et Surveillance, notamment : utilisateur actif, nouvel utilisateur, utilisateur conservé, session, graphique du chemin d’accès utilisateur, mappage des utilisateurs, URL de suivi, tendances, activité, événement, travail, erreur, informations supplémentaires, incident et informations sur l’application.
+Hello section Moniteur de hello l’interface utilisateur fournit des informations de l’analytique en temps réel et vous permet de tooset alertes lorsque les seuils sont atteints pour la plupart des hello même informations disponibles par le passé dans hello [ANALYTICS](mobile-engagement-user-interface-analytics.md) section de Hello l’interface utilisateur. Consultez hello **glossaire** section Bonjour [Concepts](http://go.microsoft.com/fwlink/?LinkId=525555) rubrique pour les définitions des termes et abréviations Analytique et de surveillance (tels que les suivants hello : utilisateur actif, le nouvel utilisateur, conservées un utilisateur, la Session, Graphique de chemin d’accès d’utilisateur, les utilisateurs carte, URL de suivi, les tendances, activité, événements, travail, erreur, des informations supplémentaires, panne et App-info).
 
 > [!NOTE]
-> De nombreuses sections de l’interface utilisateur du portail **Mobile Engagement** contiennent un bouton **AFFICHER L’AIDE**. Appuyez sur ce bouton pour obtenir des informations contextuelles supplémentaires sur une section.
+> De nombreuses sections de hello **Mobile Engagement** interface utilisateur du portail contient hello **afficher l’aide** bouton. Appuyez sur ce bouton tooget informations contextuelles supplémentaires sur une section.
 > 
 > 
 
 ## <a name="monitor---sessions-jobs-events-errors-and-crashes"></a>Surveillance - Sessions, travaux, événements, erreurs et incidents
-Vous pouvez afficher le nombre d'utilisateurs actuellement dans une session, les écrans sur lesquels ils se trouvent et les actions spécifiques qu'ils effectuent. Vous pouvez afficher l'activité de l'utilisateur répartie selon les sessions, les tâches, les événements, les erreurs et les incidents. Vous pouvez voir l'information actuelle ainsi que les informations de la dernière heure, du dernier jour ou de la dernière semaine. Vous pouvez voir toutes les informations dans chaque catégorie ou les trier suivant la session, la tâche, l'événement, l'erreur ou l'incident.  La surveillance directe est utile lors d'événements tels qu'une campagne Push pour voir si l'action est en légère hausse juste après l'envoi de votre notification Push.
+Vous pouvez afficher le nombre d'utilisateurs actuellement dans une session, les écrans sur lesquels ils se trouvent et les actions spécifiques qu'ils effectuent. Vous pouvez afficher l'activité de l'utilisateur répartie selon les sessions, les tâches, les événements, les erreurs et les incidents. Vous pouvez voir les informations actuelles hello et affichent des informations de la hello de hello dernière heure, jour ou semaine. Vous pouvez voir toutes les informations de hello dans chaque catégorie ou trier hello spécifique de Session, tâche, événement, erreur et incident.  La surveillance dynamique est utile toouse lors d’événements comme un toosee de campagne Push s’il existe un relèvement en action droit une fois que vous envoyez votre notification Push.
 
 ![Moniteur1][14]  
 
 ## <a name="troubleshooting-with-monitor---events---details"></a>Résolution des problèmes liés à la section Surveillance - Événements - Détails
-La génération d'un événement dans votre application à partir de votre appareil de test et sa recherche dans Surveillance - Événements - Détails est l'un des moyens les plus faciles pour trouver l'ID de votre appareil pour votre appareil de test et pour confirmer que l'intégration des sections Analyse, Surveillance et Segments par Azure Mobile Engagement fonctionne à partir de votre application. Une fois que vous avez l'ID de l'appareil de votre appareil de test, vous pouvez l'ajouter à vos appareils de test dans « Mon compte - Appareils ». Si vous ne parvenez pas à générer un événement, assurez-vous qu'Azure Mobile Engagement est bien intégré à votre application Android, iOS, Web, Windows ou Windows Phone à l'aide du Kit de développement logiciel (SDK).
+Génère un événement dans votre application à partir de votre appareil de test et en recherchant dans le moniteur - événements - détails soient un des plus simple toofind façons hello, ID de votre appareil pour votre appareil de test et le tooconfirm que l’intégration de l’Analytique, surveillance, Azure Mobile Engagement et L’utilisation de segments à partir de votre application. Après avoir hello ID de périphérique de votre appareil de test, vous pouvez les ajouter à des appareils de test tooyour dans « Mes appareils – de compte ». Si vous ne pouvez pas générer un événement, assurez-vous que Azure Mobile Engagement est correctement intégré dans votre application Android/iOS/Web/Windows/Windows Phone avec hello SDK.
 
 Pour plus d’informations, consultez la [documentation du Kit de développement logiciel (SDK)][Link 5]
 
 ![Moniteur2][15]  
 
 ## <a name="troubleshooting-with-monitor---crashes---details"></a>Résolution des problèmes liés à la section Surveillance - Incidents - Détails
-Vous pouvez consulter les informations relatives à l'incident de votre application dans Surveillance - Incidents - Détails pour vous aider à déterminer les raisons de l'incident survenu dans votre application. Nous vous invitons à chercher également des problèmes connus avec chaque version du Kit de développement logiciel (SDK) dans les notes de publication pour chaque version du Kit de développement logiciel (SDK) pour Android, iOS, Web, Windows et Windows Phone.
+Vous pouvez consulter les informations d’incident sur votre application à partir des détails du moniteur - pannes - toohelp déterminer pourquoi votre application se bloque. Vous devez également rechercher des problèmes connus avec chaque version du Kit de développement logiciel de hello dans les notes de publication hello pour chaque version de hello SDK pour Android/iOS/Web/Windows/Windows Phone.
 
 Pour plus d’informations, consultez la [documentation du Kit de développement logiciel (SDK) et les notes de publication][Link 5]
 
 ![Moniteur3][16]
 
 ## <a name="monitor---alerts"></a>Analyse - Alertes
-Vous pouvez également indiquer des conditions pour des alertes qui vous seront automatiquement envoyées par courrier électronique ou message instantané. (Tout les services conformes à XMPP tels que Google Talk de Google ou iChat d'Apple sont pris en charge). Les alertes sont basées sur un seuil de détection prédéfini supérieur (>) ou inférieur à (<) un nombre spécifique de sessions, de tâches, d'événements, d'erreurs ou d'incidents par seconde, par minute ou par heure. Les alertes peuvent surveiller toutes les activités d'un type donné ou simplement surveiller l'activité d'une tâche, d'un événement ou d'une erreur spécifique. 
+Vous pouvez également spécifier des conditions pour les alertes qui seront envoyées automatiquement tooyou par courrier électronique ou message instantané. (Tout les services conformes à XMPP tels que Google Talk de Google ou iChat d'Apple sont pris en charge). Les alertes sont basées sur un seuil de détection prédéfini supérieur (>) ou inférieur à (<) un nombre spécifique de sessions, de tâches, d'événements, d'erreurs ou d'incidents par seconde, par minute ou par heure. Les alertes peuvent surveiller toutes les activités d'un type donné ou simplement surveiller l'activité d'une tâche, d'un événement ou d'une erreur spécifique. 
 
-Vous pouvez également indiquer un taux de détection minimum qui correspond au nombre de minutes minimal entre deux notifications pour la même alerte afin de vous assurer que, lorsque l’alerte est déclenchée, vous ne recevez qu’une notification par intervalle spécifié.
+Vous pouvez également spécifier un taux de détection minimal, qui est la quantité minimale de hello de minutes qui séparera deux notifications pour hello même alerte toomake garantit que quand votre alerte est déclenchée, vous ne recevrez jamais supérieure à 1 notification par intervalle spécifié.
 
 ![Moniteur4][17]
 

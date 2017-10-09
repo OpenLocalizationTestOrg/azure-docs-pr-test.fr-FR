@@ -1,6 +1,6 @@
 ---
-title: "Guide de développement Azure Functions | Microsoft Docs"
-description: "Découvrez les concepts et techniques Azure Functions dont vous avez besoin pour développer des fonctions dans Azure, et ce, pour tous les langages de programmation et toutes les liaisons."
+title: "aaaGuidance pour le développement de fonctions de Azure | Documents Microsoft"
+description: "Découvrez les concepts des fonctions de Azure hello et techniques que vous avez besoin de fonctions toodevelop dans Azure, sur tous les langages de programmation et les liaisons."
 services: functions
 documentationcenter: na
 author: christopheranderson
@@ -16,21 +16,21 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 05/30/2017
 ms.author: chrande
-ms.openlocfilehash: 879be48150cfe13e31064475aa637f13f5f5f9d5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 86d37dae5333f615faafc966e9da6e08e0a6354e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-functions-developers-guide"></a>Guide de développement Azure Functions
-Dans Azure Functions, des fonctions spécifiques partagent quelques concepts techniques et composants de base, quels que soient le langage et la liaison que vous utilisez. Avant de passer à l'apprentissage des détails propres à un langage ou une liaison donnés, veillez à lire cette présentation qui s'applique à l’ensemble d’entre eux.
+Dans les fonctions d’Azure, des fonctions spécifiques partagent quelques concepts techniques de base et composants, quelle que soit la langue de hello ou de liaison que vous utilisez. Avant de passer à l’apprentissage des détails spécifiques tooa est fonction de langue ou liaison, être tooread que via cette vue d’ensemble qui s’applique tooall d'entre eux.
 
-Cet article suppose que vous avez déjà lu la [vue d'ensemble d'Azure Functions](functions-overview.md) et que vous connaissez les [concepts du Kit de développement logiciel (SDK) WebJobs, notamment les déclencheurs, les liaisons et le runtime JobHost](../app-service-web/websites-dotnet-webjobs-sdk.md). Azure Functions est fondé sur le SDK WebJobs. 
+Cet article suppose que vous avez déjà lu hello [vue d’ensemble des fonctions d’Azure](functions-overview.md) et vous êtes familiarisé avec [WebJobs SDK concepts tels que les déclencheurs, liaisons et hello JobHost runtime](../app-service-web/websites-dotnet-webjobs-sdk.md). Les fonctions Azure est basé sur hello WebJobs SDK. 
 
 ## <a name="function-code"></a>Code de fonction
-La *fonction* est le principal concept d'Azure Functions. Vous écrivez du code pour une fonction dans le langage de votre choix et enregistrez le code et les fichiers de configuration dans le même dossier. La configuration est nommée `function.json`, et contient les données de configuration JSON. Plusieurs langages sont pris en charge, et chacun d’entre eux offre une expérience légèrement différente, optimisée pour fonctionner idéalement pour ce langage. 
+A *fonction* est hello le concept principal dans les fonctions d’Azure. Écrire du code pour une fonction dans une langue de votre choix et d’enregistrer le code de hello et les fichiers de configuration dans hello même dossier. configuration de Hello est nommée `function.json`, qui contient les données de configuration JSON. Différentes langues sont prises en charge, et chacun d’eux a un toowork expérience légèrement différente optimisé idéal pour cette langue. 
 
-Le fichier function.json définit les liaisons de fonction et d’autres paramètres de configuration. Le runtime utilise ce fichier pour déterminer les événements à surveiller et comment passer des données et renvoyer des données à partir de l’exécution de la fonction. Voici un exemple de fichier function.json.
+fichier de function.json Hello définit les liaisons de fonction hello et d’autres paramètres de configuration. Hello runtime utilise cette toomonitor d’événements fichier toodetermine hello et le fonctionnement de toopass retournées et données vers et à partir de l’exécution. Hello Voici un exemple de fichier function.json.
 
 ```json
 {
@@ -47,68 +47,68 @@ Le fichier function.json définit les liaisons de fonction et d’autres paramè
 }
 ```
 
-Définissez la propriété `disabled` sur `true` pour empêcher l’exécution de la fonction.
+Ensemble hello `disabled` propriété trop`true` fonction hello tooprevent en cours d’exécution.
 
-La propriété `bindings` vous permet de configurer les liaisons et les déclencheurs. Chaque liaison partage quelques paramètres communs et des paramètres propres à un type de liaison donné. Chaque liaison requiert les paramètres suivants :
+Hello `bindings` propriété est où vous permet de configurer des liaisons et des déclencheurs. Chaque liaison partage quelques paramètres communs et certains paramètres, qui sont de type particulier de tooa spécifique de liaison. Chaque liaison nécessite hello suivant les paramètres :
 
 | Propriété | Valeurs/types | Commentaires |
 | --- | --- | --- |
 | `type` |string |Type de liaison. Par exemple, `queueTrigger`. |
-| `direction` |'in', 'out' |Indique si la liaison sert à recevoir des données dans la fonction ou à envoyer des données à partir de la fonction. |
-| `name` |string |Le nom utilisé pour les données liées dans la fonction. Pour C#, il s’agit d’un nom d'argument ; pour JavaScript, il s’agit de la clé dans une liste de clés/valeurs. |
+| `direction` |'in', 'out' |Indique si la liaison de hello est pour la réception de données en fonction de hello ou envoi de données à partir de la fonction hello. |
+| `name` |string |nom de Hello qui est utilisé pour hello des données liées dans la fonction hello. Pour c#, ceci est un nom d’argument ; pour JavaScript, il s’agit de la clé hello dans une liste de clé/valeur. |
 
 ## <a name="function-app"></a>Conteneur de fonctions
-Un conteneur de fonctions est constitué d’une ou de plusieurs des fonctions individuelles qui sont gérées ensemble par Azure App Service. Toutes les fonctions d’un conteneur de fonctions partagent le même plan de tarification, le même déploiement continu et la même version du runtime. Les fonctions écrites dans plusieurs langages peuvent partager le même conteneur de fonctions. Considérez un conteneur de fonctions comme un moyen d’organiser et de gérer collectivement vos fonctions. 
+Un conteneur de fonctions est constitué d’une ou de plusieurs des fonctions individuelles qui sont gérées ensemble par Azure App Service. Toutes les fonctions hello dans un partage d’application de fonction hello même tarification planifier, de déploiement continu et de version du runtime. Fonctions écrites dans plusieurs langages peuvent que tous partager hello même fonction app. Considérez une application de fonction comme un moyen de tooorganize et collectivement gérer vos fonctions. 
 
 ## <a name="runtime-script-host-and-web-host"></a>Runtime (hôte de script et hôte web)
-Le runtime, également appelé hôte de script, est l’hôte du Kit de développement logiciel (SDK) WebJobs sous-jacent qui écoute les événements, collecte et envoie les données et, enfin, exécute votre code. 
+Hello runtime ou hôte de script est hello sous-jacent WebJobs SDK qui écoute les événements, collecte et envoie des données et exécute votre code. 
 
-Pour faciliter les déclencheurs HTTP, il existe également un hôte web conçu pour précéder l'hôte de script dans les scénarios de production. Avoir deux hôtes vous permet d'isoler l'hôte de script du trafic frontal géré par l'hôte web.
+les déclencheurs toofacilitate HTTP, il existe également un hôte web qui est conçue toosit devant l’ordinateur hôte de script hello dans les scénarios de production. Avoir deux hôtes permet de scripts tooisolate hello du trafic de frontal hello géré par hello web hôte.
 
 ## <a name="folder-structure"></a>Structure des dossiers
 [!INCLUDE [functions-folder-structure](../../includes/functions-folder-structure.md)]
 
-Lorsque vous configurez un projet pour déployer des fonctions dans un conteneur de fonctions dans Azure App Service, vous pouvez traiter cette structure de dossiers comme le code de votre site. Vous pouvez utiliser des outils existants, comme le déploiement et l'intégration continus, ou des scripts de déploiement personnalisés pour effectuer l'installation du package ou la transpilation de code au moment du déploiement.
+Lorsque vous définissez un projet pour le déploiement d’application de fonction fonctions tooa dans Azure App Service, vous pouvez traiter cette structure de dossiers en tant que votre code de site. Vous pouvez utiliser des outils existants, comme le déploiement et l'intégration continus, ou des scripts de déploiement personnalisés pour effectuer l'installation du package ou la transpilation de code au moment du déploiement.
 
 > [!NOTE]
-> Veillez à déployer votre fichier `host.json` et vos dossiers de fonction directement dans le dossier `wwwroot`. N’incluez pas le dossier `wwwroot` dans vos déploiements. Sinon, vous vous retrouverez avec `wwwroot\wwwroot` dossiers. 
+> Assurez-vous que toodeploy votre `host.json` dossiers de fichiers et de fonction directement toohello `wwwroot` dossier. N’incluez pas hello `wwwroot` dossier dans vos déploiements. Sinon, vous vous retrouverez avec `wwwroot\wwwroot` dossiers. 
 > 
 > 
 
-## <a id="fileupdate"></a> Comment mettre à jour les fichiers du conteneur de fonctions
-L’éditeur de fonctions intégré au portail Azure vous permet de mettre à jour le fichier *function.json* et le fichier de code pour une fonction. Pour télécharger ou mettre à jour d’autres fichiers comme *package.json* ou *project.json* ou les dépendances, vous devez utiliser d’autres méthodes de déploiement.
+## <a id="fileupdate"></a>Fonctionnement des fichiers de l’application tooupdate
+éditeur de fonctions Hello intégrée hello portail Azure vous permet de mettre à jour de hello *function.json* de fichiers et le fichier de code hello pour une fonction. tooupload ou mise à jour autres fichiers tels que *package.json* ou *project.json* ou dépendances, vous avez toouse autres méthodes de déploiement.
 
-Les conteneurs de fonctions sont créés sur App Service, de sorte que toutes les [options de déploiement disponibles sur les applications web standard](../app-service-web/web-sites-deploy.md) le sont également sur les conteneurs de fonctions. Voici des méthodes que vous pouvez utiliser pour télécharger ou mettre à jour les fichiers du conteneur de fonctions. 
+Applications de fonction sont intégrées sur le Service d’application, afin que tous les hello [options de déploiement des applications web disponible toostandard](../app-service-web/web-sites-deploy.md) sont également disponibles pour les applications de la fonction. Voici certaines méthodes, vous pouvez utiliser tooupload ou mettre à jour les fichiers d’application de fonction. 
 
-#### <a name="to-use-app-service-editor"></a>Pour utiliser l’Éditeur App Service
-1. Dans le portail Azure Functions, cliquez sur **Paramètres du conteneur de fonctions**.
-2. Dans la section **Paramètres avancés** cliquez sur **Accéder aux paramètres App Service**.
+#### <a name="toouse-app-service-editor"></a>toouse éditeur de Service d’applications
+1. Dans le portail Azure fonctions hello, cliquez sur **paramètres de l’application de la fonction**.
+2. Bonjour **paramètres avancés** , cliquez sur **aller paramètres du Service tooApp**.
 3. Cliquez sur **Éditeur App Service** dans App Menu Nav sous **OUTILS DE DÉVELOPPEMENT**.
 4. Cliquez sur **Atteindre**.
    
-   Une fois l’Éditeur App Service chargé, le fichier *host.json* et les dossiers de fonctions s’affichent sous *wwwroot*. 
-5. Ouvrez des fichiers pour les modifier, ou téléchargez des fichiers par glisser-déplacer depuis votre machine de développement.
+   Une fois que la charge de l’éditeur de Service d’application, vous verrez hello *host.json* des dossiers de fichiers et de fonction sous *wwwroot*. 
+5. Tooedit de fichiers ouverts, ou faites glisser et déposez des fichiers tooupload machine de développement.
 
-#### <a name="to-use-the-function-apps-scm-kudu-endpoint"></a>Pour utiliser la fonction de système d'extrémité SCM (Kudu) de l’application
+#### <a name="toouse-hello-function-apps-scm-kudu-endpoint"></a>point de terminaison SCM (Kudu) de l’application toouse hello (fonction)
 1. Accédez à `https://<function_app_name>.scm.azurewebsites.net`.
 2. Cliquez sur **Console de débogage > CMD**.
-3. Accédez à `D:\home\site\wwwroot\` pour mettre à jour *host.json* ou `D:\home\site\wwwroot\<function_name>` pour mettre à jour les fichiers d’une fonction.
-4. Glissez-déplacez un fichier à télécharger dans le dossier approprié dans la grille de fichiers. La grille de fichiers offre deux zones dans lesquelles vous pouvez déposer un fichier. Pour les fichiers *.zip* , une zone s’affiche avec le libellé « Faites glisser ici pour charger et décompresser ». Pour les autres types de fichier, déposez le fichier dans la grille de fichiers, mais en dehors de cette zone.
+3. Accédez trop`D:\home\site\wwwroot\` tooupdate *host.json* ou `D:\home\site\wwwroot\<function_name>` tooupdate les fichiers d’une fonction.
+4. Glisser-déposer un fichier que vous souhaitez tooupload dans le dossier approprié de hello dans la grille de fichier hello. Il existe deux zones dans la grille de fichier hello dans laquelle vous pouvez déposer un fichier. Pour *.zip* fichiers, une zone s’affiche avec l’étiquette de hello « faites glisser ici tooupload et décompressez. » Pour les autres types de fichier, supprimer dans la grille de fichier hello mais en dehors de la zone de « unzip » hello.
 
-<!--NOTE: I've removed documentation on FTP, because it does not sync triggers on the consumption plan --DonnaM -->
+<!--NOTE: I've removed documentation on FTP, because it does not sync triggers on hello consumption plan --DonnaM -->
 
-#### <a name="to-use-continuous-deployment"></a>Pour utiliser le déploiement continu
-Suivez les instructions de la rubrique [Déploiement continu pour Azure Functions](functions-continuous-deployment.md).
+#### <a name="toouse-continuous-deployment"></a>déploiement continu toouse
+Suivez les instructions de hello dans la rubrique de hello [déploiement continu pour les fonctions Azure](functions-continuous-deployment.md).
 
 ## <a name="parallel-execution"></a>Exécution en parallèle
-Lorsque plusieurs événements de déclenchement se produisent plus rapidement qu'un runtime de fonction monothread ne peut les traiter, le runtime peut appeler la fonction plusieurs fois en parallèle.  Si un conteneur de fonctions utilise le [plan d’hébergement de consommation](functions-scale.md#how-the-consumption-plan-works), il peut monter automatiquement augmenter la taille des instances.  Que l’application s’exécute sur le plan d’hébergement de consommation ou sur un [plan d’hébergement App Service](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md) standard, chaque instance de l’application de fonction peut traiter en parallèle des appels de fonction simultanés en utilisant plusieurs threads.  Le nombre maximal d’appels de fonction simultanés dans chaque instance de chaque application de fonction varie en fonction du type de déclencheur utilisé, ainsi que des ressources utilisées par d’autres fonctions au sein de l’application de fonction.
+Lorsque plusieurs événements de déclenchement se produisent plus rapidement qu’un runtime monothread (fonction) pour les traiter, hello runtime peut appeler fonction hello plusieurs fois en parallèle.  Si une application de la fonction à l’aide de hello [consommation plan d’hébergement](functions-scale.md#how-the-consumption-plan-works), application de fonction hello peut monter en charge automatiquement.  Chaque instance de l’application de fonction hello, si l’application hello s’exécute sur hello la consommation de l’hébergement du plan ou une expression régulière [plan d’hébergement du Service d’applications](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md), peuvent traiter des appels de fonction simultanés en parallèle à l’aide de plusieurs threads.  nombre maximal de Hello d’appels de fonction simultanés dans chaque instance d’application de fonction varie en fonction de type hello de déclencheur utilisé, ainsi que les ressources hello utilisées par d’autres fonctions au sein de l’application de fonction hello.
 
 ## <a name="functions-runtime-versioning"></a>Contrôle de version du runtime Functions
 
-Vous pouvez configurer la version du runtime Functions en utilisant le paramètre d’application `FUNCTIONS_EXTENSION_VERSION`. Par exemple, la valeur « ~ 1 » indique que votre application de fonction utilise 1 comme version principale. Les applications Function sont mises à niveau pour chaque nouvelle version secondaire lorsqu’elles sont disponibles. Vous pouvez voir la version exacte de votre application de fonction dans l’onglet **Paramètres** du portail Azure.
+Vous pouvez configurer hello version de runtime de fonctions hello à l’aide de hello `FUNCTIONS_EXTENSION_VERSION` paramètre d’application. Par exemple, la valeur de hello « ~ 1 » indique que votre application de la fonction utilise 1 sa version majeure. Les applications de fonction sont version mineure tooeach mis à niveau qu’elles sont disponibles. Vous pouvez afficher la version exacte de hello de votre application de la fonction Bonjour **paramètres** onglet Bonjour portail Azure.
 
 ## <a name="repositories"></a>Référentiels
-Le code pour Azure Fonctions est open source et stocké dans des dépôts GitHub :
+code Hello pour les fonctions de Azure est open source et stockées dans des référentiels GitHub :
 
 * [Runtime Azure Functions](https://github.com/Azure/azure-webjobs-sdk-script/)
 * [Portail Azure Functions](https://github.com/projectkudu/AzureFunctionsPortal)
@@ -125,12 +125,12 @@ Voici un tableau de toutes les liaisons prises en charge.
 [!INCLUDE [Reporting Issues](../../includes/functions-reporting-issues.md)]
 
 ## <a name="next-steps"></a>Étapes suivantes
-Pour plus d’informations, consultez les ressources suivantes :
+Pour plus d’informations, consultez hello suivant des ressources :
 
 * [Meilleures pratiques pour Azure Functions](functions-best-practices.md)
 * [Informations de référence pour les développeurs C# sur Azure Functions](functions-reference-csharp.md)
 * [Informations de référence pour les développeurs F# sur Azure Functions](functions-reference-fsharp.md)
 * [Azure Functions NodeJS developer reference (Référence pour les développeurs NodeJS Azure Functions)](functions-reference-node.md)
 * [Déclencheurs et liaisons Azure Functions](functions-triggers-bindings.md)
-* [Azure Functions : The Journey](https://blogs.msdn.microsoft.com/appserviceteam/2016/04/27/azure-functions-the-journey/) (Découverte d’Azure Functions) sur le blog d’Azure App Service. Un historique sur le développement d’Azure Functions.
+* [Les fonctions Azure : hello voyage](https://blogs.msdn.microsoft.com/appserviceteam/2016/04/27/azure-functions-the-journey/) sur le blog de l’équipe du Service d’applications Azure hello. Un historique sur le développement d’Azure Functions.
 

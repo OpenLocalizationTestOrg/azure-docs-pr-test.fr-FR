@@ -4,35 +4,35 @@ includes/sql-database-include-ip-address-22-v12portal.md
 
 Latest Freshness check:  2016-03-21 , daleche.
 
-As of circa 2015-09-04, the following topics might include this include:
+As of circa 2015-09-04, hello following topics might include this include:
 articles/sql-database/sql-database-configure-firewall-settings.md
 articles/sql-database/sql-database-connect-query.md
 
 
 ## Server-level firewall rules
 
-### Add a server-level firewall rule through the new Azure portal
+### Add a server-level firewall rule through hello new Azure portal
 -->
 
 
-1. Connectez-vous au [Portail Azure](https://portal.azure.com/) à l’adresse http://portal.azure.com/.
-2. Dans la bannière de gauche, cliquez sur **PARCOURIR TOUT**. Le panneau **Parcourir** s’affiche.
-3. Faites défiler l’écran, puis cliquez sur **Serveurs SQL**. Le panneau **Serveurs SQL** s’affiche.
+1. Connectez-vous à toohello [portail Azure](https://portal.azure.com/) à http://portal.azure.com/.
+2. Dans la bannière de gauche hello, cliquez sur **parcourir tous les**. Hello **Parcourir** panneau s’affiche.
+3. Faites défiler l’écran, puis cliquez sur **Serveurs SQL**. Hello **serveurs SQL** panneau s’affiche.
    
-    ![Rechercher votre serveur Azure SQL Database sur le portail][b21-FindServerInPortal]
-4. Pour plus de commodité, cliquez sur la commande de réduction sur le panneau **Parcourir** précédent.
-5. Dans la zone de texte de filtre, tapez les premières lettres du nom de votre serveur. La ligne correspondante s’affiche.
-6. Cliquez dessus. Un panneau dédié à votre serveur s’affiche.
-7. Dans ce panneau, cliquez sur **Paramètres**. Le panneau **Paramètres** s’affiche.
-8. Cliquez sur **Pare-feu**. Le panneau **Paramètres du pare-feu** s’affiche.
+    ![Recherchez votre serveur de base de données SQL Azure dans le portail de hello][b21-FindServerInPortal]
+4. Pour plus de commodité, cliquez sur hello réduire contrôle sur hello précédemment **Parcourir** panneau.
+5. Dans la zone de texte de filtre hello, commencez à taper nom de hello de votre serveur. La ligne correspondante s’affiche.
+6. Cliquez sur ligne hello pour votre serveur. Un panneau dédié à votre serveur s’affiche.
+7. Dans ce panneau, cliquez sur **Paramètres**. Hello **paramètres** panneau s’affiche.
+8. Cliquez sur **Pare-feu**. Hello **les paramètres de pare-feu** panneau s’affiche.
    
     ![Cliquer sur Paramètres, puis sur Pare-feu][b31-SettingsFirewallNavig]
-9. Cliquez sur **Ajouter une adresse IP cliente**. Dans la première zone de texte, tapez un nom pour votre nouvelle règle.
-10. Tapez les valeurs d’adresse IP basse et haute de la plage que vous souhaitez autoriser.
+9. Cliquez sur **Ajouter une adresse IP cliente**. Tapez un nom pour votre nouvelle règle dans la première zone de texte hello.
+10. Type Bonjour haute et basse de valeurs de plage hello d’adresses IP tooenable.
     
-    * Pour des raisons pratiques, vous pouvez terminer les valeurs basse et haute par **.0** et **.255**, respectivement.
+    * Il peut être pratique toohave hello faible valeur de fin avec **.0** et hello élevé avec **.255**.
     
-    ![Ajouter une plage d’adresses IP à autoriser][b41-AddRange]
+    ![Ajouter un tooallow de plage d’adresses IP][b41-AddRange]
 11. Cliquez sur **Enregistrer**.
 
 <!-- Image references. -->

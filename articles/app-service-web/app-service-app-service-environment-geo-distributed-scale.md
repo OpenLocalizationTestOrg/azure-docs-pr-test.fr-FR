@@ -1,6 +1,6 @@
 ---
-title: "Mise à l’échelle géolocalisée avec les environnements App Service"
-description: "Découvrez comment mettre à l’échelle des applications horizontalement en utilisant Traffic Manager et les environnements App Service."
+title: "aaaGeo échelle distribuées avec les environnements de Service d’application"
+description: "Découvrez comment toohorizontally l’échelle d’applications à l’aide de la distribution géographique avec Traffic Manager et les environnements de Service d’application."
 services: app-service
 documentationcenter: 
 author: stefsch
@@ -14,57 +14,57 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/07/2016
 ms.author: stefsch
-ms.openlocfilehash: 505301b2650c9b8bafdad352055f30e55148ab0c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9b441f637d8b7f679b3d83240baf99b8ee57e8f3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="geo-distributed-scale-with-app-service-environments"></a>Mise à l’échelle géolocalisée avec les environnements App Service
 ## <a name="overview"></a>Vue d'ensemble
-Les scénarios d’application s’appliquant à très grande échelle peuvent dépasser la capacité de ressources de calcul disponible pour un seul déploiement d’application.  À titre d’exemple, les applications de vote, les événements sportifs et les programmes de divertissement télévisés sont des scénarios qui fonctionnent à très grande échelle. Les exigences à grande échelle peuvent être satisfaites par la mise à l’échelle horizontale des applications, avec plusieurs déploiements dans une seule ou plusieurs régions, pour gérer les charges extrêmes.
+Scénarios d’application qui exigent une très grande échelle peuvent dépasser hello calcul capacité disponible tooa seul déploiement de ressources d’une application.  À titre d’exemple, les applications de vote, les événements sportifs et les programmes de divertissement télévisés sont des scénarios qui fonctionnent à très grande échelle. Les besoins à grande échelle peuvent être remplies par l’évolution horizontale des applications, avec plusieurs déploiements d’applications effectués au sein d’une seule région, ainsi qu’entre les régions, les exigences de charge extrême toohandle.
 
-Les environnements App Service sont une plate-forme idéale pour l’évolution horizontale.  Une fois que la configuration d’environnements App Service a été sélectionnée et qu’elle peut prend en charge un taux de requête connu, les développeurs peuvent déployer des environnements App Service supplémentaires en mode « découpage » pour atteindre la capacité de charge maximale souhaitée.
+Les environnements App Service sont une plate-forme idéale pour l’évolution horizontale.  Une fois qu’une configuration de l’environnement App Service a été sélectionnée qui peut prendre en charge un taux de demandes connus, les développeurs peuvent déployer des environnements de Service application supplémentaires dans « découpage » de manière tooattain une capacité de charge maximale de votre choix.
 
-Par exemple, supposons qu’une application s’exécutant sur une configuration de l’environnement App Service a été testée pour gérer les demandes de 20 Ko par seconde (RPS).  Si la capacité de charge maximale souhaitée est de 100 Ko RPS, il est possible de créer et configurer cinq (5) environnements App Service s’assurer que l’application pourra gérer la charge maximale prévue.
+Par exemple une application en cours d’exécution sur une configuration de l’environnement App Service a été testée toohandle 20 Ko des demandes par seconde (RPS).  Si la charge de pointe de votre choix hello capacité est 100 Ko RPS, environnements de Service d’application cinq (5) peut être créés et configuré tooensure hello application peut gérer hello maximale prévue de charge.
 
-Les clients accédant généralement aux applications par le biais d’un domaine personnalisé (ou personnel), les développeurs ont besoin d’un moyen de distribuer les demandes d’application parmi toutes les instances d’environnement App Service.  Un excellent moyen d’y parvenir consiste à résoudre le domaine personnalisé à l’aide d’un [profil Azure Traffic Manager][AzureTrafficManagerProfile].  Le profil Traffic Manager peut être configuré pour pointer sur tous les environnements App Service.  Traffic Manager peut être configuré pour pointer automatiquement sur tous les environnements App Service en fonction des paramètres d’équilibrage de charge du profil Traffic Manager.  Cette approche fonctionne que les environnements App Service soient déployés dans une seule région Azure ou dans plusieurs régions Azure à travers le monde.
+Étant donné que les clients en général les applications à l’aide d’un domaine personnalisé (ou personnel), les développeurs doivent accéder à une application toodistribute de façon demandes sur toutes les instances d’environnement App Service hello.  Un tooaccomplish excellent moyen il s’agit de tooresolve hello personnalisé de domaine en utilisant un [profil Azure Traffic Manager][AzureTrafficManagerProfile].  Hello Traffic Manager profil peut être configuré toopoint tous les hello environnements de Service d’application individuels.  Traffic Manager gérera automatiquement à la distribution des clients dans l’ensemble de hello Qu'environnements de Service d’application basées sur les paramètres dans le profil Traffic Manager hello d’équilibrage de charge de hello.  Cette approche fonctionne indépendamment de tous les environnements de Service d’application hello sont déployés dans une seule région Azure ou déployés dans le monde dans plusieurs régions Azure.
 
-En outre, comme les clients accèdent aux applications via le domaine personnel, les clients ne connaissent pas le nombre d’environnements App Service exécutant une application.  Par conséquent les développeurs peuvent rapidement et facilement ajouter et supprimer des environnements App Service en fonction de la charge du trafic observée.
+En outre, étant donné que les clients accéder aux applications via le domaine personnel de hello, les clients ne savent pas nombre hello des environnements de Service d’application une application en cours d’exécution.  Par conséquent les développeurs peuvent rapidement et facilement ajouter et supprimer des environnements App Service en fonction de la charge du trafic observée.
 
-Le schéma conceptuel ci-dessous décrit une application mise à l’échelle horizontalement dans trois environnements App Service au sein d’une seule région.
+diagramme conceptuel de Hello ci-dessous illustre une application horizontalement répartie sur trois environnements de Service d’application au sein d’une seule région.
 
 ![Architecture conceptuelle][ConceptualArchitecture] 
 
-Le reste de cette rubrique décrit les étapes nécessaires à la configuration d’une topologie distribuée pour l’exemple d’application à l’aide de plusieurs environnements App Service.
+reste Hello de cette rubrique décrit les étapes hello liés à la configuration d’une topologie distribuée pour l’application d’exemple hello à l’aide de plusieurs environnements de Service d’application.
 
-## <a name="planning-the-topology"></a>Planification de la topologie
-Avant de créer une empreinte d’application distribuée, il peut s’avérer utile de disposer de quelques éléments d’informations.
+## <a name="planning-hello-topology"></a>Planification de la topologie de hello
+Avant la création d’un encombrement de l’application distribuée, il vous aide à toohave quelques informations pièces avance.
 
-* **Domaine personnalisé pour l’application :** quel est le nom de domaine personnalisé que les utilisateurs utiliseront pour accéder à l’application ?  Pour l’exemple d’application, le nom de domaine personnalisé est *www.scalableasedemo.com*
-* **Domaine Traffic Manager :** vous devez choisir un nom de domaine au moment de la création d’un [profil Azure Traffic Manager][AzureTrafficManagerProfile].  Ce nom est associé au suffixe *trafficmanager.net* pour enregistrer une entrée de domaine gérée par Traffic Manager.  Dans l’exemple d’application, le nom choisi est *scalable-ase-demo*.  Par conséquent, le nom de domaine complet géré par Traffic Manager est *scalable-ase-demo.trafficmanager.net*.
-* **Stratégie de mise à l’échelle de l’empreinte de l’application :** l’empreinte de l’application sera-t-elle distribuée sur plusieurs environnements App Service dans une seule région ?  Plusieurs régions ?  Une combinaison des deux approches ?  La décision doit être prise en fonction des attentes depuis l’emplacement d’origine du trafic du client, ainsi que sur la manière dont peut évoluer le reste de l’application prenant en charge l’infrastructure principale.  Par exemple, avec une application à 100 % sans état, une application peut être adaptée à très grande échelle à l’aide d’une combinaison de plusieurs environnements App Service, puis multipliée par les environnements App Service déployés dans plusieurs régions Azure.  Avec plus de 15 régions Azure publiques disponibles, les clients peuvent véritablement créer une empreinte d’application à échelle mondial.  Pour l’exemple d’application utilisé pour cet article, trois environnements App Service ont été créés dans une seule région Azure (Sud-Central des États-Unis).
-* **Convention de dénomination pour les environnements App Service :** chaque environnement App Service exige un nom unique.  Au-delà d’un ou deux environnements App Service, une convention d’affectation de noms identifiant chaque environnement App Service peut s’avérer utile.  Pour l’exemple d’application, une convention d’affectation de noms simple a été utilisée.  Les noms des trois environnements App Service sont respectivement *fe1ase*, *fe2ase* et *fe3ase*.
-* **Convention de dénomination pour les applications :** comme plusieurs instances de l’application vont être déployées, un nom est requis pour chacune d’entre elles.  Les environnements App Service proposent une fonctionnalité peu connue, mais très pratique, qui fait que le même nom d’application peut être utilisé sur plusieurs environnements App Service.  Étant donné que chaque environnement App Service comporte un suffixe de domaine unique, les développeurs peuvent choisir d’utiliser le même nom d’application dans chaque environnement.  Par exemple, un développeur peut avoir des applications nommées comme suit : *myapp.foo1.p.azurewebsites.net*, *myapp.foo2.p.azurewebsites.net*, *myapp.foo3.p.azurewebsites.net*, etc.  Cependant, pour l’exemple d’application, chaque instance de l’application a également un nom unique.  Les noms d’instance application utilisés sont *webfrontend1*, *webfrontend2* et *webfrontend3*.
+* **Domaine personnalisé pour une application hello :** ce qui est le nom de domaine personnalisé hello que les clients utilisent tooaccess hello application ?  Pour un domaine personnalisé d’hello application exemple hello nom est *www.scalableasedemo.com*
+* **Domaine Traffic Manager :** toobe choisi lors de la création a besoin d’un nom de domaine un [profil Azure Traffic Manager][AzureTrafficManagerProfile].  Ce nom sera combiné avec hello *trafficmanager.net* suffixe tooregister une entrée de domaine qui est gérée par le Gestionnaire de trafic.  Pour l’application d’exemple hello, est choisi de nom hello *évolutive ase-démonstration*.  Par conséquent le nom de domaine complet de hello est géré par le Gestionnaire de trafic est *demo.trafficmanager.net-ase évolutive*.
+* **Stratégie de mise à l’échelle l’encombrement application hello :** sera l’impact des applications hello distribué sur plusieurs environnements de Service d’application dans une seule région ?  Plusieurs régions ?  Une combinaison des deux approches ?  décision de Hello doit être basée sur les attentes d’où le trafic de client proviennent, ainsi que la manière d’autres hello bien d’une application prenant en charge l’infrastructure principale peut mettre à l’échelle.  Par exemple, avec une application à 100 % sans état, une application peut être adaptée à très grande échelle à l’aide d’une combinaison de plusieurs environnements App Service, puis multipliée par les environnements App Service déployés dans plusieurs régions Azure.  Avec les régions Azure publique 15 + toochoose disponible à partir de, les clients peuvent générer réellement un encombrement de l’application d’une évolutivité à l’échelle mondiale.  Pour l’application d’exemple hello utilisée pour cet article, trois environnements de Service d’application ont été créés dans une seule région Azure (Amérique du Sud).
+* **Convention de dénomination pour hello les environnements App Service :** chaque environnement App Service requiert un nom unique.  Au-delà d’un ou deux environnements de Service d’application, il est utile toohave une convention d’affectation de noms toohelp identifier chaque environnement App Service.  Pour un exemple d’application hello une convention d’affectation de noms simple a été utilisée.  Hello noms des environnements de Service d’application hello trois sont *fe1ase*, *fe2ase*, et *fe3ase*.
+* **Convention d’affectation de noms pour les applications de hello :** étant donné que plusieurs instances de l’application hello seront déployés, un nom est requis pour chaque instance de l’application hello déployé.  Une fonctionnalité peu connue, mais très pratique des environnements de Service d’application est que hello même nom d’application peut être utilisé dans différents environnements de Service d’application.  Étant donné que chaque environnement App Service a un suffixe de domaine unique, les développeurs peuvent choisir d’utiliser toore hello exacte même nom de l’application dans chaque environnement.  Par exemple, un développeur peut avoir des applications nommées comme suit : *myapp.foo1.p.azurewebsites.net*, *myapp.foo2.p.azurewebsites.net*, *myapp.foo3.p.azurewebsites.net*, etc.  Pour un exemple d’application hello bien que chaque instance de l’application a également un nom unique.  Hello application les noms d’instance utilisés sont *webfrontend1*, *webfrontend2*, et *webfrontend3*.
 
-## <a name="setting-up-the-traffic-manager-profile"></a>Configuration d’un profil Traffic Manager
-Une fois que plusieurs instances d’une application sont déployées sur plusieurs environnements App Service, les instances d’application individuelles peuvent être enregistrées avec Traffic Manager.  Dans l’exemple d’application, un profil Traffic Manager qui peut acheminer les clients vers les instances d’applications qui suivent est nécessaire pour *scalable-ase-demo.trafficmanager.net* :
+## <a name="setting-up-hello-traffic-manager-profile"></a>Configuration de hello profil Traffic Manager
+Une fois que plusieurs instances d’une application sont déployés sur plusieurs environnements de Service d’application, les instances d’application individuels hello peuvent être inscrits avec Traffic Manager.  Pour l’application d’exemple hello Gestionnaire de trafic profil est nécessaire pour *demo.trafficmanager.net-ase évolutive* qui peut acheminer les instances d’application clients tooany Hello suivant déployé :
 
-* **webfrontend1.fe1ase.p.azurewebsites.net :** instance de l’exemple d’application déployée sur le premier environnement App Service.
-* **webfrontend2.fe2ase.p.azurewebsites.net :** instance de l’exemple d’application déployée sur le deuxième environnement App Service.
-* **webfrontend3.fe3ase.p.azurewebsites.net :** instance de l’exemple d’application déployée sur le troisième environnement App Service.
+* **webfrontend1.fe1ase.p.azurewebsites.NET :** une instance de l’application d’exemple hello déployée sur hello premier environnement App Service.
+* **webfrontend2.fe2ase.p.azurewebsites.NET :** une instance de l’application d’exemple hello déployée sur hello deuxième environnement App Service.
+* **webfrontend3.fe3ase.p.azurewebsites.NET :** une instance de l’application d’exemple hello déployée sur hello troisième environnement App Service.
 
-Le moyen le plus simple d’enregistrer plusieurs points de terminaison Azure App Service s’exécutant tous dans la **même** région Azure, est d’utiliser la [prise en charge Powershell Azure Resource Manager Traffic Manager][ARMTrafficManager].  
+Hello tooregister de façon plus simple de plusieurs services d’application Azure points de terminaison, s’exécutant tous dans hello **même** région Azure, est par hello Powershell [prise en charge Azure Resource Manager Traffic Manager] [ ARMTrafficManager].  
 
-La première étape consiste à créer un profil Azure Traffic Manager.  Le code suivant montre comment le profil a été créé pour l’exemple d’application :
+première étape de Hello est toocreate un profil Traffic Manager de Azure.  code Hello ci-dessous montre comment le profil de hello a été créé pour hello, exemple d’application :
 
     $profile = New-AzureTrafficManagerProfile –Name scalableasedemo -ResourceGroupName yourRGNameHere -TrafficRoutingMethod Weighted -RelativeDnsName scalable-ase-demo -Ttl 30 -MonitorProtocol HTTP -MonitorPort 80 -MonitorPath "/"
 
-Notez la manière dont le paramètre *RelativeDnsName* a été défini sur *scalable-ase-demo*.  Voici comment le nom de domaine *scalable-ase-demo.trafficmanager.net* est créé et associé à un profil Traffic Manager.
+Notez comment hello *RelativeDnsName* paramètre a été défini trop*évolutive ase-démonstration*.  Cela est hello comment de nom de domaine *demo.trafficmanager.net-ase évolutive* est créé et associé à un profil Traffic Manager.
 
-Le paramètre *TrafficRoutingMethod* définit la stratégie d’équilibrage de charge que Traffic Manager va utiliser pour déterminer la répartition de la charge du client sur tous les points de terminaison disponibles.  Dans cet exemple, la méthode *Weighted* a été choisie.  Ainsi, les demandes clients sont réparties entre les différents points de terminaison d’application enregistrés en fonction de la pondération relative associée à chacun d’eux. 
+Hello *TrafficRoutingMethod* paramètre définit la stratégie Traffic Manager utilisera toodetermine comment toospread client charger dans l’ensemble de points de terminaison disponibles hello d’équilibrage de charge hello.  Dans cette hello exemple *Weighted* méthode a été choisie.  Ainsi, les demandes des clients sont réparties entre tous points de terminaison d’application hello inscrit en fonction du poids relatif de hello associés à chaque point de terminaison. 
 
-Avec le profil créé, chaque instance de l’application est ajoutée au profil en tant que point de terminaison Azure natif.  Le code ci-dessous extrait une référence à chaque application web frontale et ajoute chaque application en tant que point de terminaison Traffic Manager au moyen du paramètre *TargetResourceId* .
+Avec profil hello créé, chaque instance de l’application est ajoutée toohello profil comme un point de terminaison Azure natif.  code Hello ci-dessous extrait d’une application web de référence tooeach front-end, puis ajoute chaque application en tant qu’un point de terminaison Traffic Manager au moyen de hello *TargetResourceId* paramètre.
 
     $webapp1 = Get-AzureRMWebApp -Name webfrontend1
     Add-AzureTrafficManagerEndpointConfig –EndpointName webfrontend1 –TrafficManagerProfile $profile –Type AzureEndpoints -TargetResourceId $webapp1.Id –EndpointStatus Enabled –Weight 10
@@ -77,44 +77,44 @@ Avec le profil créé, chaque instance de l’application est ajoutée au profil
 
     Set-AzureTrafficManagerProfile –TrafficManagerProfile $profile
 
-Notez qu’il existe un appel de *Add-AzureTrafficManagerEndpointConfig* pour chaque instance d’application individuelle.  Le paramètre *TargetResourceId* dans chaque commande Powershell fait référence à l’une des trois instances d’application déployées.  Le profil Traffic Manager répartira la charge entre les trois points de terminaison enregistrés dans le profil.
+Notez la façon dont un appel est trop*Add-AzureTrafficManagerEndpointConfig* pour chaque instance d’application individuels.  Hello *TargetResourceId* dans chaque commande Powershell fait référence à une des instances d’application déployée trois hello.  Hello profil Traffic Manager est répartir la charge parmi les trois points de terminaison inscrits dans le profil hello.
 
-Les trois points de terminaison utilisent la même valeur (10) pour le paramètre *Poids* .  Ainsi, Traffic Manager répartit les demandes clients entre les trois instances d’application de façon relativement uniforme. 
+Tous les hello trois points de terminaison utilisent hello même valeur (10) pour hello *poids* paramètre.  Ainsi, Traffic Manager répartit les demandes clients entre les trois instances d’application de façon relativement uniforme. 
 
-## <a name="pointing-the-apps-custom-domain-at-the-traffic-manager-domain"></a>Pointer le domaine personnalisé de l’application sur le domaine Traffic Manager
-La dernière étape obligatoire consiste à pointer le domaine personnalisé de l’application sur le domaine Traffic Manager.  Pour l’exemple d’application, cela signifie pointer *www.scalableasedemo.com* sur *scalable-ase-demo.trafficmanager.net*.  Cette étape doit être effectuée avec le service de registre de domaine qui gère le domaine personnalisé.  
+## <a name="pointing-hello-apps-custom-domain-at-hello-traffic-manager-domain"></a>Pointant vers un domaine personnalisé de l’application hello en hello domaine Traffic Manager
+dernière étape Hello nécessaire est domaine personnalisé de hello toopoint de l’application hello au domaine Traffic Manager de hello.  Pour un exemple d’application hello, cela signifie pointant *www.scalableasedemo.com* à *demo.trafficmanager.net-ase évolutive*.  Cette étape doit toobe s’est terminée avec des domaines hello qui gère le domaine personnalisé de hello.  
 
-Avec les outils de gestion d’enregistrement de domaine, vous devez créer un enregistrement CNAME pointant sur le domaine personnalisé du domaine Traffic Manager.  L’illustration ci-dessous montre un exemple de cette configuration CNAME :
+À l’aide des outils de gestion de domaine de votre bureau d’enregistrement, un toobe de besoins d’enregistrements CNAME créé le domaine personnalisé hello points au domaine Traffic Manager de hello.  image Hello ci-dessous montre un exemple de cette configuration de CNAME :
 
 ![Enregistrement CNAME pour le domaine personnalisé][CNAMEforCustomDomain] 
 
-Bien que cet aspect ne soit pas traité dans cette rubrique, n’oubliez pas que le domaine personnalisé doit être enregistré avec chaque instance d’application individuelle.  Si ce n’est pas le cas, si une demande s’adresse à une instance d’application et que l’application ne dispose pas d’un domaine personnalisé enregistré avec l’application, la demande échoue.  
+Bien que non couvertes dans cette rubrique, souvenez-vous que chaque instance d’application individuels doit enregistré avec lui aussi bien du domaine personnalisé hello toohave.  Dans le cas contraire, si l’instance d’application tooan rend une demande et application hello n’a pas de nom de domaine personnalisé hello enregistré avec l’application hello, demande de hello échoue.  
 
-Dans cet exemple le domaine personnalisé est *www.scalableasedemo.com*, et chaque instance d’application est associée à un domaine personnalisé.
+Dans cette hello exemple domaine personnalisé est *www.scalableasedemo.com*, et chaque instance d’application hello de domaine personnalisé associé.
 
 ![Domaine personnalisé][CustomDomain] 
 
-Pour obtenir un récapitulatif de l’enregistrement d’un domaine personnalisé avec les applications Azure App Service, consultez l’article qui suit sur l’[enregistrement de domaines personnalisés][RegisterCustomDomain].
+Pour un récapitulatif d’inscription d’un domaine personnalisé avec les applications de Service d’applications Azure, consultez hello l’article suivant [l’enregistrement de domaines personnalisés][RegisterCustomDomain].
 
-## <a name="trying-out-the-distributed-topology"></a>Essai de la topologie distribuée
-Le résultat final de la configuration de Traffic Manager et de DNS est que les demandes de *www.scalableasedemo.com* circulent dans suivant la séquence suivante :
+## <a name="trying-out-hello-distributed-topology"></a>La tentative de hello distribués topologie
+Bonjour résultat final de la configuration de Traffic Manager et DNS hello est que les demandes de *www.scalableasedemo.com* transite hello suivant séquence :
 
 1. Un navigateur ou un périphérique effectue une recherche DNS sur *www.scalableasedemo.com*
-2. L’entrée CNAME sur l’enregistrement de domaine fait que la recherche DNS est redirigée vers Azure Traffic Manager.
-3. Une recherche DNS sur *scalable-ase-demo.trafficmanager.net* est effectuée sur l’un des serveurs DNS Traffic Manager d’Azure.
-4. Selon la stratégie d’équilibrage de charge (paramètre *TrafficRoutingMethod* utilisé précédemment lors de la création du profil Traffic Manager), Traffic Manager sélectionne un des points de terminaison configurés et renvoie le nom de domaine complet de ce point de terminaison au navigateur ou au périphérique.
-5. Étant donné que le nom de domaine complet du point de terminaison est l’Url d’une instance d’application s’exécutant dans un environnement App Service, le navigateur ou le périphérique demandera à un serveur DNS de Microsoft Azure de résoudre le nom de domaine complet sur une adresse IP. 
-6. Le navigateur ou le périphérique envoie la demande HTTP/S à l’adresse IP.  
-7. La demande arrive dans une des instances d’application en cours d’exécution sur un des environnements App Service.
+2. Hello entrée CNAME auprès de domaines hello provoque hello DNS recherche toobe redirigé tooAzure Traffic Manager.
+3. Une recherche DNS est effectuée *demo.trafficmanager.net-ase évolutive* sur l’un des serveurs de Azure DNS Traffic Manager hello.
+4. Stratégie d’équilibrage de charge hello (hello *TrafficRoutingMethod* paramètre utilisé précédemment lors de la création du profil Traffic Manager hello), Traffic Manager va sélectionner de hello configuré des points de terminaison et retourne hello de ce nom de domaine complet navigateur de toohello de point de terminaison ou l’appareil.
+5. Hello, nom de domaine complet du point de terminaison hello étant hello les Url d’une instance de l’application en cours d’exécution sur un environnement App Service, hello navigateur ou l’appareil vous demande un serveur DNS de Microsoft Azure tooresolve hello adresse tooan de nom de domaine complet. 
+6. Hello navigateur ou l’appareil envoie hello HTTP/demande toohello adresse IP.  
+7. demande de Hello arriverez à une des instances d’application hello en cours d’exécution sur l’un des hello environnements de Service d’application.
 
-L’image de la console ci-dessous représente une recherche DNS sur le domaine personnalisé de l’exemple d’application se résolvant sur une instance d’application en cours d’exécution sur un des trois exemples d’environnements (dans ce cas le deuxième des trois environnements d’App Service ) :
+image de la console ci-dessous Hello affiche une recherche DNS pour domaine personnalisé avec succès résolution tooan application instance l’application d’exemple hello en cours d’exécution sur l’un de l’exemple hello trois environnements de Service d’application (dans ce cas hello seconde de hello trois environnements de Service d’application) :
 
 ![Recherche DNS][DNSLookup] 
 
 ## <a name="additional-links-and-information"></a>Informations et liens supplémentaires
-Tous les articles et procédures concernant les environnements App Service sont disponibles dans le [fichier Lisez-moi des environnements App Service](../app-service/app-service-app-service-environments-readme.md).
+Tous les articles et comment-de pour les environnements App Service sont disponibles dans hello [fichier Lisezmoi pour les environnements de Service d’Application](../app-service/app-service-app-service-environments-readme.md).
 
-Documentation sur la [prise en charge Powershell Azure Resource Manager Traffic Manager][ARMTrafficManager].  
+Documentation sur hello Powershell [prise en charge Azure Resource Manager Traffic Manager][ARMTrafficManager].  
 
 [!INCLUDE [app-service-web-whats-changed](../../includes/app-service-web-whats-changed.md)]
 

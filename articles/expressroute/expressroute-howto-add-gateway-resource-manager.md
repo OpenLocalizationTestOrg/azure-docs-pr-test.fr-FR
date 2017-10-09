@@ -1,6 +1,6 @@
 ---
-title: "Ajouter une passerelle de réseau virtuel à un réseau virtuel pour ExpressRoute avec PowerShell et Azure | Microsoft Docs"
-description: "Cet article vous explique comment ajouter une passerelle de réseau virtuel à un réseau virtuel Resource Manager déjà créé pour ExpressRoute."
+title: "Ajouter un tooa de passerelle de réseau virtuel réseau virtuel pour ExpressRoute : PowerShell : Azure | Documents Microsoft"
+description: "Cet article vous explique comment ajouter un tooan de passerelle de réseau virtuel déjà créé VNet Gestionnaire de ressources pour ExpressRoute."
 documentationcenter: na
 services: expressroute
 author: charwen
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/17/2017
 ms.author: charwen
-ms.openlocfilehash: 3aeddd03e0be548933775164ae790ba208fc13ae
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8983430b426ad7c4af766294fa16427c5e9df5c3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-a-virtual-network-gateway-for-expressroute-using-powershell"></a>Configurer une passerelle de réseau virtuel pour ExpressRoute à l’aide de PowerShell
 > [!div class="op_single_selector"]
@@ -30,14 +30,14 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-Cet article vous montre les étapes nécessaires pour ajouter, redimensionner et supprimer une passerelle de réseau virtuel pour un réseau virtuel existant. Les étapes de cette configuration sont spécifiquement adaptées aux réseaux virtuels qui ont été créés à l’aide du modèle de déploiement Resource Manager qui sera utilisé dans une configuration ExpressRoute. Pour plus d’informations sur les passerelles de réseau virtuel et les paramètres de configuration de passerelle pour ExpressRoute, consultez [À propos des passerelles de réseau virtuel pour ExpressRoute](expressroute-about-virtual-network-gateways.md). 
+Cet article vous guide tout au long des hello étapes tooadd, redimensionner et supprimer une passerelle de réseau virtuel (VNet) pour un réseau virtuel existant. étapes de Hello pour cette configuration sont spécifiquement pour les réseaux virtuels qui ont été créés à l’aide du modèle de déploiement de gestionnaire de ressources hello qui sera utilisé dans une configuration ExpressRoute. Pour plus d’informations sur les passerelles de réseau virtuel et les paramètres de configuration de passerelle pour ExpressRoute, consultez [À propos des passerelles de réseau virtuel pour ExpressRoute](expressroute-about-virtual-network-gateways.md). 
 
 
 ## <a name="before-beginning"></a>Avant tout chose
-Assurez-vous que vous avez installé les dernières applets de commande Azure PowerShell. Si vous n’avez pas installé les dernières applets de commande, vous devez le faire avant de commencer les étapes de configuration. Pour plus d’informations, consultez [Installer et configurer Azure PowerShell](/powershell/azure/overview).
+Vérifiez que vous avez installé les applets de commande hello dernière Azure PowerShell. Si vous n’avez pas installé les dernières applets de commande hello, vous devez toodo par conséquent avant de commencer les étapes de configuration hello. Pour plus d’informations, consultez [Installer et configurer Azure PowerShell](/powershell/azure/overview).
 
 [!INCLUDE [expressroute-gateway-rm-ps](../../includes/expressroute-gateway-rm-ps-include.md)]
 
 ## <a name="next-steps"></a>Étapes suivantes
-Une fois que vous avez créé la passerelle de réseau virtuel, vous pouvez lier votre réseau virtuel à un circuit ExpressRoute. Consultez [Liaison d’un réseau virtuel à un circuit ExpressRoute](expressroute-howto-linkvnet-arm.md).
+Une fois que vous avez créé la passerelle de réseau virtuel hello, vous pouvez lier votre réseau virtuel de tooan circuit ExpressRoute. Consultez [lier un circuit ExpressRoute de tooan réseau virtuel](expressroute-howto-linkvnet-arm.md).
 

@@ -1,5 +1,5 @@
 ---
-title: "Vérifier les paramètres Azure Traffic Manager | Microsoft Docs"
+title: "paramètres de Azure Traffic Manager aaaVerify | Documents Microsoft"
 description: "Cet article vous aide à vérifier les paramètres Traffic Manager."
 services: traffic-manager
 documentationcenter: 
@@ -14,60 +14,60 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/16/2017
 ms.author: kumud
-ms.openlocfilehash: aadff1806a7cb22347283143563467366e857569
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c670be6cf55e140c7ab63d5d526de08e14774d2a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="verify-traffic-manager-settings"></a>Vérifier les paramètres Traffic Manager
 
-Pour tester vos paramètres Traffic Manager, vous devez disposer de plusieurs clients, à différents emplacements, d’où vous pouvez exécuter vos tests. Ensuite, mettez les points de terminaison de votre profil Traffic Manager hors service, l’un après l’autre.
+tootest vos paramètres Traffic Manager, vous devez toohave plusieurs clients dans différents emplacements, à partir de laquelle vous pouvez exécuter vos tests. Ensuite, mettez les points de terminaison hello dans votre profil Traffic Manager à la fois.
 
-* Définissez une durée de vie (TTL) DNS assez courte pour que les modifications se propagent rapidement (par exemple, 30 secondes).
-* Veillez à connaître les adresses IP de vos services cloud et sites web Azure du profil que vous testez.
-* Utilisez des outils permettant de résoudre un nom DNS en adresse IP et d’afficher cette adresse.
+* Hello valeur DNS TTL une valeur faible afin que les modifications se propagent rapidement (par exemple, 30 secondes).
+* Obtenir des adresses IP de vos services cloud Azure et les sites Web dans le profil hello que vous testez hello.
+* Utiliser les outils qui vous permettent de résoudre l’adresse IP tooan du nom DNS et d’afficher cette adresse.
 
-Vous devez vérifier que les noms DNS sont résolus en adresses IP des points de terminaison de votre profil. Les noms doivent être résolus de manière cohérente par rapport à la méthode de routage du trafic définie dans le profil Traffic Manager. Vous pouvez utiliser les outils **nslookup** ou **dig** pour résoudre les noms DNS.
+Vous êtes en train de toosee que les noms DNS hello résoudre tooIP les adresses de points de terminaison hello dans votre profil. les noms Hello doivent se résoudre en accord avec la méthode de routage du trafic hello définie dans le profil Traffic Manager de hello. Vous pouvez utiliser des outils de hello comme **nslookup** ou **Explorer** tooresolve les noms DNS.
 
-Les exemples suivants vous aideront à tester votre profil Traffic Manager.
+Hello exemples suivants vous aident à tester votre profil Traffic Manager.
 
 ### <a name="check-traffic-manager-profile-using-nslookup-and-ipconfig-in-windows"></a>Vérifier le profil Traffic Manager à l’aide de nslookup et ipconfig dans Windows
 
 1. Ouvrez une commande ou une invite de commandes Windows PowerShell en tant qu’administrateur.
-2. Entrez `ipconfig /flushdns` pour vider le cache de résolution DNS.
-3. Saisissez `nslookup <your Traffic Manager domain name>`. Par exemple, la commande suivante vérifie le nom de domaine doté du préfixe *myapp.contoso*
+2. Type `ipconfig /flushdns` tooflush hello cache de résolution DNS.
+3. Saisissez `nslookup <your Traffic Manager domain name>`. Par exemple, hello commande vérifications hello nom de domaine avec préfixe de hello suivante *myapp.contoso*
 
         nslookup myapp.contoso.trafficmanager.net
 
-    Les résultats contiennent généralement les informations suivantes :
+    Un résultat classique montre hello informations suivantes :
 
-    + le nom DNS et l’adresse IP du serveur DNS utilisé pour résoudre le nom de domaine Traffic Manager ;
-    + le nom de domaine Traffic Manager saisi dans la ligne de commande après « nslookup » et l’adresse IP correspondant au domaine Traffic Manager. La deuxième adresse IP est celle à vérifier. Elle doit correspondre à l’adresse IP virtuelle (VIP) publique de l’un des services cloud ou sites web du profil Traffic Manager testé.
+    + Hello nom DNS et adresse IP du serveur hello DNS en cours accessibles tooresolve ce nom de domaine Traffic Manager.
+    + nom de domaine Traffic Manager Hello tapé sur la ligne de commande hello après « nslookup » et domaine Traffic Manager de hello IP adresse toowhich hello est résolue. adresse IP de la deuxième Hello est un toocheck important de hello. Elle doit correspondre à une public adresse IP virtuelle (VIP) pour un des services de cloud computing hello ou sites Web hello profil Traffic Manager que vous testez.
 
-## <a name="how-to-test-the-failover-traffic-routing-method"></a>Comment tester la méthode de routage du trafic par basculement
-
-1. Laissez tous les points de terminaison en fonction.
-2. À partir d’un même client, demandez la résolution DNS du nom de domaine de votre entreprise à l’aide de l’outil nslookup.exe ou d’un utilitaire similaire.
-3. Vérifiez que l’adresse IP résolue correspond au point de terminaison principal.
-4. Mettez votre point de terminaison principal hors service ou supprimez le fichier de surveillance pour que Traffic Manager considère que l’application est hors service.
-5. Patientez pendant une période correspondant à la durée de vie (TTL, Time-to-Live) DNS du profil Traffic Manager en rajoutant deux minutes. Par exemple, si la TTL de votre DNS est de 300 secondes (5 minutes), vous devez attendre 7 minutes.
-6. Videz le cache de votre client DNS et demandez une résolution DNS à l’aide de nslookup. Dans Windows, vous pouvez vider votre cache DNS à l’aide de la commande ipconfig /flushdns.
-7. Vérifiez que l’adresse IP résolue correspond à votre point de terminaison secondaire.
-8. Répétez le processus en mettant tour à tour chaque point de terminaison hors service. Vérifiez que le système DNS retourne l’adresse IP du point de terminaison suivant dans la liste. Une fois tous les points de terminaison hors fonction, vous devez obtenir à nouveau l’adresse IP du point de terminaison principal.
-
-## <a name="how-to-test-the-weighted-traffic-routing-method"></a>Comment tester la méthode de routage du trafic par pondération
+## <a name="how-tootest-hello-failover-traffic-routing-method"></a>Comment tootest hello basculement du trafic de la méthode de routage
 
 1. Laissez tous les points de terminaison en fonction.
 2. À partir d’un même client, demandez la résolution DNS du nom de domaine de votre entreprise à l’aide de l’outil nslookup.exe ou d’un utilitaire similaire.
-3. Vérifiez que l’adresse IP résolue correspond à l’un de vos points de terminaison.
+3. Vérifiez que hello résolu l’adresse IP correspond au point de terminaison principal hello.
+4. Entraîne la défaillance de votre point de terminaison principal ou supprimez les hello analyse fichier afin de Traffic Manager juge qui hello application est arrêté.
+5. Attendez que hello DNS Time-to-Live (TTL) du profil Traffic Manager de hello plus de deux minutes supplémentaires. Par exemple, si la TTL de votre DNS est de 300 secondes (5 minutes), vous devez attendre 7 minutes.
+6. Videz le cache de votre client DNS et demandez une résolution DNS à l’aide de nslookup. Dans Windows, vous pouvez vider votre cache DNS avec la commande hello ipconfig /flushdns.
+7. Vérifiez que hello résolu l’adresse IP correspond à votre point de terminaison secondaire.
+8. Répétez le processus hello, en arrêtant à chaque point de terminaison à son tour. Vérifiez que hello DNS retourne hello adresseIP du point de terminaison suivant hello dans la liste de hello. Lorsque tous les points de terminaison sont arrêtés, vous devez obtenir à nouveau hello adresseIP du point de terminaison principal hello.
+
+## <a name="how-tootest-hello-weighted-traffic-routing-method"></a>Comment tootest hello pondérée méthode de routage du trafic
+
+1. Laissez tous les points de terminaison en fonction.
+2. À partir d’un même client, demandez la résolution DNS du nom de domaine de votre entreprise à l’aide de l’outil nslookup.exe ou d’un utilitaire similaire.
+3. Vérifiez que hello résolu l’adresse IP correspond à l’un de vos points de terminaison.
 4. Videz le cache de votre client DNS et répétez les étapes 2 et 3 pour chaque point de terminaison. Vous devriez alors obtenir différentes adresses IP pour chacun de vos points de terminaison.
 
-## <a name="how-to-test-the-performance-traffic-routing-method"></a>Comment tester la méthode de routage du trafic basé sur les performances
+## <a name="how-tootest-hello-performance-traffic-routing-method"></a>Comment les performances de hello tootest le trafic méthode de routage
 
-Pour tester efficacement une méthode de routage du trafic basé sur les performances, vous devez disposer de plusieurs clients répartis en différents emplacements dans le monde. Vous pouvez créer des clients dans différentes régions Azure, qui peuvent servir à tester vos services. Si votre réseau est d’envergure mondiale, vous pouvez vous connecter à des clients situés dans d’autres parties du monde et exécuter vos tests à partir de ces emplacements.
+tooeffectively tester une méthode de routage de trafic de performances, vous devez disposer de clients situés dans différentes parties de hello world. Vous pouvez créer des clients dans différentes régions Azure qui peuvent être utilisé tootest vos services. Si vous avez un réseau global, vous pouvez à distance connectez-vous tooclients dans d’autres parties de hello world et exécuter vos tests à partir de là.
 
-Sinon, différents services de recherche et d’obtention de DNS sont disponibles gratuitement sur Internet. Certains de ces outils permettent de contrôler la résolution de noms DNS à partir de divers emplacements à travers le monde. Faites une recherche sur « Recherche DNS » pour obtenir des exemples. Certains services tiers comme Gomez ou Keynote vous permettent de vérifier que vos profils distribuent le trafic comme prévu.
+Sinon, différents services de recherche et d’obtention de DNS sont disponibles gratuitement sur Internet. Certaines de ces outils permettent de hello de résolution de noms DNS capacité toocheck à partir de différents emplacements monde hello. Faites une recherche sur « Recherche DNS » pour obtenir des exemples. Les services tiers comme Gomez ou Keynote peuvent être utilisé tooconfirm que vos profils distribuent le trafic comme prévu.
 
 ## <a name="next-steps"></a>Étapes suivantes
 

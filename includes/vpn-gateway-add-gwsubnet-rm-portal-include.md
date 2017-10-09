@@ -1,8 +1,8 @@
-1. Dans le [portail](http://portal.azure.com), accédez au réseau virtuel Resource Manager pour lequel vous souhaitez créer une passerelle de réseau virtuel.
-2. Dans la section **Paramètres** de la page de votre réseau virtuel, cliquez sur **Sous-réseaux** pour développer la page Sous-réseaux.
-3. Sur la page **Sous-réseaux**, cliquez sur **+Sous-réseau de passerelle** pour ouvrir la page **Ajouter un sous-réseau**.
+1. Bonjour [portal](http://portal.azure.com), parcourir le réseau virtuel du Gestionnaire de ressources toohello pour lequel vous souhaitez toocreate une passerelle de réseau virtuel.
+2. Bonjour **paramètres** section de la page de votre réseau virtuel, cliquez sur **sous-réseaux** tooexpand hello sous-réseaux, page.
+3. Sur hello **sous-réseaux** , cliquez sur **+ sous-réseau de passerelle** tooopen hello **ajouter un sous-réseau** page.
 
-  ![Ajouter un sous-réseau de passerelle](./media/vpn-gateway-add-gwsubnet-rm-portal-include/addgwsubnet.png "Ajouter un sous-réseau de passerelle")
-4. Le **Nom** de votre sous-réseau est automatiquement rempli avec la valeur « GatewaySubnet ». Cette valeur est nécessaire pour qu’Azure puisse reconnaître le sous-réseau en tant que sous-réseau de passerelle. Ajustez le remplissage automatique des valeurs de la **plage d’adresses** pour correspondre à votre configuration requise, puis cliquez sur **OK** au bas de la page pour créer le sous-réseau.
+  ![Ajouter un sous-réseau de passerelle hello](./media/vpn-gateway-add-gwsubnet-rm-portal-include/addgwsubnet.png "ajouter un sous-réseau de passerelle hello")
+4. Hello **nom** pour votre sous-réseau est automatiquement renseigné avec hello valeur « GatewaySubnet ». Cette valeur est requise dans l’ordre pour le sous-réseau de hello toorecognize Azure que le sous-réseau de passerelle hello. Ajuster hello automatiquement renseigné **plage d’adresses** valeurs toomatch la configuration requise, puis cliquez sur **OK** bas hello du sous-réseau de hello page toocreate hello.
 
-  ![Ajout du sous-réseau](./media/vpn-gateway-add-gwsubnet-rm-portal-include/addsubnetgw.png "Ajout du sous-réseau")
+  ![Ajout du sous-réseau de hello](./media/vpn-gateway-add-gwsubnet-rm-portal-include/addsubnetgw.png "Ajout hello sous-réseau")

@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Configuration de Samanage pour l’approvisionnement automatique d’utilisateurs avec Azure Active Directory | Microsoft Docs"
-description: "Découvrez comment configurer Azure Active Directory pour approvisionner et retirer automatiquement des comptes utilisateur sur Samanage."
+description: "Découvrez comment tooconfigure Azure Active Directory tooautomatically disposition et la disposition de l’utilisateur des comptes tooSamanage."
 services: active-directory
 documentationcenter: 
 author: asmalser-msft
@@ -14,85 +14,85 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/14/2017
 ms.author: asmalser-msft
-ms.openlocfilehash: 278ebf464fbe815568fbe332f80d5ea6b29e1811
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: 6cb36d2cc6ce33da4f8ebba65d138bfd4f2aca9b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-configuring-samanage-for-automatic-user-provisioning"></a>Didacticiel : configuration de Samanage pour l’approvisionnement automatique d’utilisateurs
 
 
-L’objectif de ce didacticiel est de vous montrer la procédure à suivre dans Samanage et Azure AD pour approvisionner et retirer automatiquement des comptes utilisateur Azure AD vers Samanage. 
+objectif Hello de ce didacticiel est tooshow vous hello étapes que vous devez tooperform dans Samanage et Azure AD tooautomatically approvisionner et configurer des comptes d’utilisateur à partir d’Azure AD tooSamanage. 
 
-## <a name="prerequisites"></a>Conditions préalables
+## <a name="prerequisites"></a>Composants requis
 
-Le scénario décrit dans ce didacticiel part du principe que vous disposez des éléments suivants :
+scénario de Hello décrite dans ce didacticiel part du principe que vous avez déjà hello éléments suivants :
 
 *   Un locataire Azure Active Directory
-*   Un locataire Samanage avec le [plan professionnel](https://www.samanage.com/pricing/) ou mieux activé 
+*   Un locataire Samanage avec hello [plan professionnel](https://www.samanage.com/pricing/) ou mieux activé 
 *   Un compte d’utilisateur dans Samanage avec des autorisations d’administrateur 
 
 > [!NOTE]
-> L’intégration de l’approvisionnement Azure AD s’appuie sur l’[API REST Samanage](https://www.samanage.com/api/), qui est disponible pour les équipes Samanage disposant du plan professionnel ou mieux.
+> Hello mise en service d’intégration de Azure AD s’appuie sur hello [API REST de Samanage](https://www.samanage.com/api/), qui est équipes tooSamanage disponible sur hello Professionnel planifier ou mieux.
 
-## <a name="assigning-users-to-samanage"></a>Affectation d’utilisateurs à Samanage
+## <a name="assigning-users-toosamanage"></a>Affectation d’utilisateurs tooSamanage
 
-Azure Active Directory utilise un concept appelé « affectations » pour déterminer les utilisateurs devant recevoir l’accès aux applications sélectionnées. Dans le cadre de l’approvisionnement automatique de comptes utilisateur, les utilisateurs et les groupes qui ont été « affectés » à une application dans Azure AD sont synchronisés. 
+Azure Active Directory utilise un concept appelé toodetermine « affectations » les utilisateurs qui doivent recevoir l’accès tooselected applications. Dans le contexte de hello de configuration de compte automatique d’utilisateurs, seuls les utilisateurs de hello et les groupes qui ont été « affectés » application tooan dans Azure AD est synchronisé. 
 
-Avant de configurer et d’activer le service d’approvisionnement, vous devez déterminer quels utilisateurs et/ou groupes dans Azure AD représentent les utilisateurs qui ont besoin d’accéder à votre application Samanage. Une fois que vous avez choisi, vous pouvez affecter ces utilisateurs à votre application Samanage en suivant les instructions fournies ici :
+Avant de configurer et de l’activation de hello service de configuration, vous devez toodecide quels utilisateurs ou des groupes dans Azure AD représentent hello utilisateurs qui doivent accéder à application de Samanage tooyour. Une fois décidé, vous pouvez attribuer ces applications de Samanage tooyour les utilisateurs en suivant les instructions hello ici :
 
-[Affecter un utilisateur ou un groupe à une application d’entreprise](active-directory-coreapps-assign-user-azure-portal.md)
+[Affecter une application d’entreprise tooan utilisateur ou un groupe](active-directory-coreapps-assign-user-azure-portal.md)
 
-### <a name="important-tips-for-assigning-users-to-samanage"></a>Conseils importants pour l’affectation d’utilisateurs à Samanage
+### <a name="important-tips-for-assigning-users-toosamanage"></a>Conseils importants pour l’affectation d’utilisateurs tooSamanage
 
-*   Il est recommandé de n’assigner qu’un seul utilisateur Azure AD à Samanage afin de tester la configuration de l’approvisionnement. Les autres utilisateurs et/ou groupes peuvent être affectés ultérieurement.
+*   Il est recommandé qu’un seul utilisateur Azure AD est attribué tooSamanage tootest hello est mise en service de configuration. Les autres utilisateurs et/ou groupes peuvent être affectés ultérieurement.
 
-*   Quand vous affectez un utilisateur à Samanage, vous devez sélectionner le rôle **utilisateur** ou un autre rôle valide propre à l’application (si disponible) dans la boîte de dialogue d’affectation. Le rôle **Accès par défaut** ne fonctionne pas pour l’approvisionnement, et ces utilisateurs sont ignorés.
+*   Lorsque vous affectez un tooSamanage d’utilisateur, vous devez sélectionner soit hello **utilisateur** rôle, ou un autre valide spécifique à l’application (si disponible) dans la boîte de dialogue attribution hello. Hello **accès par défaut** rôle ne fonctionne pas pour la configuration, et ces utilisateurs sont ignorés.
 
 > [!NOTE]
-> En guise de fonctionnalité ajoutée, le service d’approvisionnement lit les rôles personnalisés définis dans Samanage et les importe dans Azure AD où vous pouvez les sélectionner dans la boîte de dialogue Select Role. Ces rôles sont visibles dans le portail Azure une fois que le service d’approvisionnement a été activé et qu’un cycle de synchronisation s’est achevé.
+> Comme une fonctionnalité ajoutée, hello configuration service lit tous les rôles personnalisés définis dans Samanage et les importe dans Azure AD où ils peuvent être sélectionnées dans la boîte de dialogue Sélectionner un rôle hello. Ces rôles seront visibles dans hello portail Azure après hello mise en service du service est activé et un cycle de synchronisation est terminée.
 
-## <a name="configuring-user-provisioning-to-samanage"></a>Configuration de l'approvisionnement des utilisateurs sur Samanage 
+## <a name="configuring-user-provisioning-toosamanage"></a>Configuration tooSamanage de configuration de l’utilisateur 
 
-Cette section vous guide à travers la connexion de votre Azure AD au compte d’utilisateur de Samanage fournissant l’API et la configuration du service d’approvisionnement pour créer, mettre à jour et désactiver les comptes utilisateur affectés dans Samanage en fonction des attributions d’utilisateurs et de groupes dans Azure AD.
+Cette section vous guide à travers de la connexion du compte d’utilisateur de votre tooSamanage AD Azure API de configuration et configurez hello toocreate du service de configuration, de mettre à jour et de désactiver les comptes d’utilisateur affecté dans Samanage en fonction de l’affectation d’utilisateurs et de groupes dans Azure AD.
 
 > [!TIP]
-> Vous pouvez également choisir d’activer l’authentification unique basée sur SAML pour Samanage, grâce aux instructions disponibles dans le [portail Azure](https://portal.azure.com). L’authentification unique peut être configurée indépendamment de l’approvisionnement automatique, bien que chacune de ces deux fonctionnalités compléte l’autre.
+> Vous pouvez également choisir tooenabled basé sur SAML Single Sign-On pour Samanage, en suivant les instructions hello fournies dans [portail Azure](https://portal.azure.com). L’authentification unique peut être configurée indépendamment de l’approvisionnement automatique, bien que chacune de ces deux fonctionnalités compléte l’autre.
 
 
-### <a name="configure-automatic-user-account-provisioning-to-samanage-in-azure-ad"></a>Configurer l’approvisionnement automatique de comptes utilisateur vers Samanage dans Azure AD :
+### <a name="configure-automatic-user-account-provisioning-toosamanage-in-azure-ad"></a>Configurez le compte d’automatique de l’utilisateur de configuration tooSamanage dans Azure AD :
 
 
-1. Dans le [portail Azure](https://portal.azure.com), accédez à la section **Azure Active Directory > Applications d’entreprise > Toutes les applications**.
+1. Bonjour [portail Azure](https://portal.azure.com), parcourir toohello **Azure Active Directory > applications d’entreprise > toutes les applications** section.
 
-2. Si vous avez déjà configuré Samanage pour l’authentification unique, recherchez votre instance de Samanage à l’aide du champ de recherche. Sinon, sélectionnez **Ajouter** et effectuer une recherche pour **Samanage** dans la galerie d’applications. Dans les résultats de la recherche, sélectionnez Samanage, puis ajoutez-le à votre liste d’applications.
+2. Si vous avez déjà configuré Samanage pour l’authentification unique, recherchez votre instance de Samanage à l’aide du champ de recherche hello. Sinon, sélectionnez **ajouter** et recherchez **Samanage** dans la galerie d’applications hello. Sélectionnez Samanage à partir des résultats de recherche hello et ajoutez-le tooyour la liste des applications.
 
-3. Sélectionnez votre instance de Samanage, puis sélectionnez l’onglet **Approvisionnement**.
+3. Sélectionnez votre instance de Samanage, puis hello **Provisioning** onglet.
 
-4. Définissez le **Mode d’approvisionnement** sur **Automatique**.
+4. Ensemble hello **Mode d’approvisionnement** trop**automatique**.
 
     ![Approvisionnement de Samanage](./media/active-directory-saas-samanage-provisioning-tutorial/Samanage1.png)
 
-5. Dans la section **Informations d’identification de l’administrateur**, entrez le **Nom d'utilisateur de l'administrateur et le Mot de passe d'administrateur** de votre compte Samanage. 
+5. Sous hello **informations d’identification administrateur** section, entrée hello **Admin Username & mot de passe administrateur** du compte de votre Samanage. 
 
-6. Dans le portail Azure, cliquez sur **Tester la connexion** pour vous assurer qu’Azure AD peut se connecter à votre application Samanage. Si la connexion échoue, vérifiez que votre compte Samanage dispose des autorisations d’administrateur et réessayez l’étape 5.
+6. Bonjour portail Azure, cliquez sur **tester la connexion** tooensure AD Azure peut se connecter tooyour Samanage application. Si hello connexion échoue, vérifiez que votre compte de Samanage a des autorisations d’administrateur et recommencez l’étape 5.
 
-7. Entrez l’adresse de courrier d’une personne ou d’un groupe qui doit recevoir les notifications d’erreur d’approvisionnement dans le champ **E-mail de notification**, puis cochez la case « Envoyer une notification par e-mail en cas de défaillance ».
+7. Entrez hello adresse de messagerie d’une personne ou un groupe qui doit recevoir des notifications d’erreur approvisionnement hello **courrier électronique de Notification** champ et la case à cocher de vérification hello « envoient une notification par courrier électronique lorsqu’une défaillance se produit ».
 
 8. Cliquez sur **Enregistrer**. 
 
-9. Dans la section Mappages, sélectionnez **Synchroniser les utilisateurs Azure Active Directory avec Samanage**.
+9. Sous la section des mappages de hello, sélectionnez **tooSamanage de synchronisation Azure Active Directory Users**.
 
-10. Dans la section **Mappages des attributs**, passez en revue les attributs utilisateur qui sont synchronisés d’Azure AD vers Samanage. Les attributs sélectionnés en tant que propriétés de **Correspondance** sont utilisés pour faire correspondre les comptes d’utilisateur dans Samanage pour les opérations de mise à jour. Cliquez sur le bouton Enregistrer pour valider les modifications.
+10. Bonjour **des mappages d’attributs** section, passez en revue les attributs utilisateur hello qui sont synchronisés à partir d’Azure AD tooSamanage. Hello attributs sélectionnés en tant que **correspondance** propriétés sont des comptes d’utilisateur hello toomatch utilisés dans Samanage pour les opérations de mise à jour. Sélectionnez toocommit de bouton hello enregistrer toutes les modifications.
 
-11. Pour activer le service d’approvisionnement Azure AD pour Samanage, modifiez le paramètre **État d’approvisionnement** sur **Activé** dans la section **Paramètres**.
+11. tooenable hello service de configuration d’Azure AD pour Samanage, la modification hello **état d’approvisionnement** trop**sur** Bonjour **paramètres** section
 
 12. Cliquez sur **Enregistrer**. 
 
-Cette opération démarre la synchronisation initiale des utilisateurs et/ou des groupes affectés à Samanage dans la section Utilisateurs et Groupes. La synchronisation initiale prend plus de temps que les synchronisations suivantes, qui se produisent environ toutes les 20 minutes, tant que le service est en cours d’exécution. Vous pouvez utiliser la section **Détails de la synchronisation** pour surveiller la progression et suivre les liens vers les rapports d’activité d’approvisionnement, qui décrivent toutes les actions effectuées par le service d’approvisionnement.
+Cette opération démarre la synchronisation initiale d’utilisateurs et/ou groupes affectés tooSamanage Bonjour les utilisateurs et la section groupes de hello. la synchronisation initiale Hello prend tooperform plus de temps que les synchronisations suivantes, qui se produisent toutes les 20 minutes environ tant que service de hello est en cours d’exécution. Vous pouvez utiliser hello **détails de synchronisation** section toomonitor cours et suivre des rapports d’activité tooprovisioning des liens, qui décrivent toutes les actions effectuées par hello service de configuration.
 
-Pour plus d’informations sur la lecture des journaux d’approvisionnement Azure AD, consultez [Création de rapports sur l’approvisionnement automatique de comptes d’utilisateur](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-saas-provisioning-reporting).
+Pour plus d’informations sur l’approvisionnement hello Azure AD tooread du mode de connexion, consultez [création de rapports sur la configuration de compte automatique d’utilisateurs](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-saas-provisioning-reporting).
 
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
@@ -102,4 +102,4 @@ Pour plus d’informations sur la lecture des journaux d’approvisionnement Azu
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* [Découvrez comment consulter les journaux et obtenir des rapports sur l’activité d’approvisionnement](active-directory-saas-provisioning-reporting.md)
+* [Découvrez comment tooreview se connecte et obtenir des rapports sur l’activité de configuration](active-directory-saas-provisioning-reporting.md)

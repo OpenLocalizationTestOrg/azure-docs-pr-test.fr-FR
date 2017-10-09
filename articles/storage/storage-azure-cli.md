@@ -1,6 +1,6 @@
 ---
-title: "Utilisation d’Azure CLI 2.0 avec le stockage Azure | Microsoft Docs"
-description: "Découvrez comment utiliser Azure CLI 2.0 avec le stockage Azure pour créer et gérer des comptes de stockage et utiliser des fichiers et objets blob Azure. Azure CLI 2.0 est un outil multiplateforme écrit en Python."
+title: aaaUsing hello Azure CLI 2.0 avec le stockage Azure | Documents Microsoft
+description: "Découvrez comment toouse hello Azure Interface de ligne (Azure) 2.0 avec le stockage Azure toocreate et gérer des comptes de stockage et de travail avec les fichiers et les objets BLOB Windows Azure. Bonjour Azure CLI 2.0 est un outil d’inter-plateformes écrit dans Python."
 services: storage
 documentationcenter: na
 author: mmacy
@@ -14,40 +14,40 @@ ms.devlang: azurecli
 ms.topic: article
 ms.date: 06/02/2017
 ms.author: marsma
-ms.openlocfilehash: 6098216f7dd901ea48fb3ab969c7934cc288b247
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 38402373dcd87f1ef05471a02353c77d58f1a9fe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="using-the-azure-cli-20-with-azure-storage"></a>Utilisation d’Azure CLI 2.0 avec le stockage Azure
+# <a name="using-hello-azure-cli-20-with-azure-storage"></a>À l’aide de hello Azure CLI 2.0 avec le stockage Azure
 
-L’interface Azure CLI 2.0 multiplateforme et open source offre un ensemble de commandes dédiées à l’utilisation de la plateforme Azure. Elle offre des fonctionnalités similaires à celles du [portail Azure](https://portal.azure.com), notamment l’accès étendu aux données.
+Hello open source, multiplateforme Azure CLI 2.0 fournit un ensemble de commandes pour travailler avec hello plateforme Azure. Il fournit la majeure partie de hello même fonctionnalité trouvée dans hello [portail Azure](https://portal.azure.com), y compris l’accès aux données enrichi.
 
-Dans ce guide, nous vous montrons comment utiliser [Azure CLI 2.0](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2) pour effectuer plusieurs tâches à l’aide de ressources dans votre compte de stockage Azure. Nous vous recommandons de télécharger et d’installer ou de mettre à niveau la CLI 2.0 vers la dernière version avant d’utiliser ce guide.
+Dans ce guide, nous vous indiquons comment toouse hello [Azure CLI 2.0](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2) tooperform plusieurs tâches, utilisation des ressources dans votre compte de stockage Azure. Nous vous recommandons de télécharger et installer ou mettre à niveau la version la plus récente toohello Hello CLI 2.0 avant d’utiliser ce guide.
 
-Les exemples dans le guide partent du principe que vous utilisez le shell Bash sur Ubuntu, mais les autres plateformes devraient fonctionner de manière similaire. 
+exemples de Hello dans le guide de hello partent du principe utiliser hello hello shell Bash sur Ubuntu, mais autres plateformes doivent exécuter la même façon. 
 
 [!INCLUDE [storage-cli-versions](../../includes/storage-cli-versions.md)]
 
 ## <a name="prerequisites"></a>Composants requis
-Ce guide part du principe que vous comprenez les concepts de base de Microsoft Azure Storage. Il suppose également que vous êtes en mesure de satisfaire les exigences de création de compte spécifiées ci-dessous pour Azure et le service Stockage.
+Ce guide suppose que vous comprenez les concepts de base hello du stockage Azure. Il suppose également que vous êtes en mesure de toosatisfy hello création exigences relatives aux comptes qui sont spécifiées ci-dessous pour Azure et hello service de stockage.
 
 ### <a name="accounts"></a>Comptes
 * **Compte Azure** : si vous ne possédez pas encore d’abonnement Azure, [créez un compte Azure gratuit](https://azure.microsoft.com/free/).
 * **Compte de stockage** : voir la section [Créer un compte de stockage](../storage/storage-create-storage-account.md#create-a-storage-account) de l’article [À propos des comptes de stockage Azure](../storage/storage-create-storage-account.md).
 
-### <a name="install-the-azure-cli-20"></a>Installer Azure CLI 2.0
+### <a name="install-hello-azure-cli-20"></a>Installer hello Azure CLI 2.0
 
-Téléchargez et installez Azure CLI 2.0 en suivant les instructions fournies dans la section [Installer Azure CLI 2.0](/cli/azure/install-az-cli2).
+Téléchargez et installez hello Azure CLI 2.0 en suivant les instructions hello décrites dans [installer Azure CLI 2.0](/cli/azure/install-az-cli2).
 
 > [!TIP]
-> Si vous rencontrez un problème avec l’installation, consultez la section [Dépannage de l’installation](/cli/azure/install-az-cli2#installation-troubleshooting) de l’article et le guide [Dépannage de l’installation](https://github.com/Azure/azure-cli/blob/master/doc/install_troubleshooting.md) sur GitHub.
+> Si vous avez des difficultés avec l’installation de hello, extraire hello [dépannage de l’Installation](/cli/azure/install-az-cli2#installation-troubleshooting) section de l’article de hello et hello [installer dépannage](https://github.com/Azure/azure-cli/blob/master/doc/install_troubleshooting.md) guide sur GitHub.
 >
 
-## <a name="working-with-the-cli"></a>Utilisation de la CLI
+## <a name="working-with-hello-cli"></a>Utilisation de hello CLI
 
-Une fois la CLI installée, vous pouvez utiliser la commande `az` de votre interface de ligne de commande (invite de ligne de commande, Terminal, Bash) afin d’accéder aux commandes de la CLI Azure. Tapez la commande `az` pour afficher la liste complète des commandes de base (l’exemple de sortie suivant a été tronqué) :
+Une fois que vous avez installé hello CLI, vous pouvez utiliser hello `az` dans vos commandes de CLI d’Azure de hello tooaccess interface de ligne de commande (interpréteur de commandes, Terminal Server, invite de commandes). Hello de type `az` commande toosee une liste complète des commandes de base hello (hello suivant l’exemple de sortie a été tronquée) :
 
 ```
      /\
@@ -57,9 +57,9 @@ Une fois la CLI installée, vous pouvez utiliser la commande `az` de votre inter
  /_/    \_\/___|\__,_|_|  \___|
 
 
-Welcome to the cool new Azure CLI!
+Welcome toohello cool new Azure CLI!
 
-Here are the base commands:
+Here are hello base commands:
 
     account          : Manage subscriptions.
     acr              : Manage Azure container registries.
@@ -69,7 +69,7 @@ Here are the base commands:
     ...
 ```
 
-Dans l’interface de ligne de commande, exécutez la commande `az storage --help` pour répertorier les sous-groupes de la commande `storage`. Les descriptions des sous-groupes fournissent une vue d’ensemble de la fonctionnalité que la CLI Azure fournit pour l’utilisation de vos ressources de stockage.
+Dans l’interface de ligne de commande, exécutez la commande hello `az storage --help` hello de toolist `storage` commande sous-groupes. descriptions de Hello de sous-groupes de hello fournissent une vue d’ensemble de hello de fonctionnalité hello que CLI d’Azure fournit pour travailler avec vos ressources de stockage.
 
 ```
 Group
@@ -82,18 +82,18 @@ Subgroups:
     cors     : Manage Storage service Cross-Origin Resource Sharing (CORS).
     directory: Manage file storage directories.
     entity   : Manage table storage entities.
-    file     : File shares that use the standard SMB 3.0 protocol.
+    file     : File shares that use hello standard SMB 3.0 protocol.
     logging  : Manage Storage service logging information.
     message  : Manage queue storage messages.
     metrics  : Manage Storage service metrics.
-    queue    : Use queues to effectively scale applications according to traffic.
+    queue    : Use queues tooeffectively scale applications according tootraffic.
     share    : Manage file shares.
     table    : NoSQL key-value storage using semi-structured datasets.
 ```
 
-## <a name="connect-the-cli-to-your-azure-subscription"></a>Connexion de la CLI à votre abonnement Azure
+## <a name="connect-hello-cli-tooyour-azure-subscription"></a>Se connecter hello CLI tooyour abonnement Azure
 
-Pour utiliser les ressources dans votre abonnement Azure, vous devez tout d’abord vous connecter à votre compte Azure avec `az login`. Vous pouvez vous connecter de plusieurs façons :
+toowork des ressources de hello dans votre abonnement Azure, vous devez tout d’abord vous connecter tooyour compte Azure avec `az login`. Vous pouvez vous connecter de plusieurs façons :
 
 * **Connexion interactive** : `az login`
 * **Connexion avec nom d’utilisateur et mot de passe** : `az login -u johndoe@contoso.com -p VerySecret`
@@ -102,7 +102,7 @@ Pour utiliser les ressources dans votre abonnement Azure, vous devez tout d’ab
 
 ## <a name="azure-cli-20-sample-script"></a>Exemple de script CLI 2.0 Azure
 
-Ensuite, nous allons utiliser un petit script shell qui émet plusieurs commandes CLI 2.0 Azure de base pour interagir avec les ressources de stockage Azure. Tout d’abord, le script crée un nouveau conteneur dans votre compte de stockage, puis télécharge un fichier existant (comme un objet blob) dans ce conteneur. Ensuite, il répertorie tous les objets blob dans le conteneur et pour terminer, il télécharge le fichier vers une destination sur l’ordinateur local que vous spécifiez.
+Ensuite, nous allons utiliser un script shell small qui émet quelques base toointeract de commandes Azure CLI 2.0 avec des ressources de stockage Azure. tout d’abord les script Hello crée un nouveau conteneur dans votre compte de stockage, puis télécharge un conteneur existant pour toothat fichier (comme un objet blob). Il répertorie ensuite tous les objets BLOB dans le conteneur de hello et enfin, télécharge destination de tooa hello fichier sur votre ordinateur local que vous spécifiez.
 
 ```bash
 #!/bin/bash
@@ -116,54 +116,54 @@ export blob_name=<blob_name>
 export file_to_upload=<file_to_upload>
 export destination_file=<destination_file>
 
-echo "Creating the container..."
+echo "Creating hello container..."
 az storage container create --name $container_name
 
-echo "Uploading the file..."
+echo "Uploading hello file..."
 az storage blob upload --container-name $container_name --file $file_to_upload --name $blob_name
 
-echo "Listing the blobs..."
+echo "Listing hello blobs..."
 az storage blob list --container-name $container_name --output table
 
-echo "Downloading the file..."
+echo "Downloading hello file..."
 az storage blob download --container-name $container_name --name $blob_name --file $destination_file --output table
 
 echo "Done"
 ```
 
-**Configuration et exécution du script**
+**Configurer et exécuter le script de hello**
 
-1. Ouvrez votre éditeur de texte préféré, puis copiez et collez le script précédent dans l’éditeur.
+1. Ouvrez l’éditeur de texte, puis copier- coller hello précédant le script dans l’éditeur de hello.
 
-2. Ensuite, mettez à jour les variables du script pour refléter vos paramètres de configuration. Remplacez les valeurs suivantes comme indiqué :
+2. Ensuite, mettez à jour tooreflect de variables de script hello vos paramètres de configuration. Remplacez hello suivant des valeurs comme indiqué :
 
-   * **\<storage_account_name\>** : nom de votre compte de stockage.
-   * **\<storage_account_key\>** : clé d’accès primaire ou secondaire pour votre compte de stockage.
-   * **\<container_name\>** : nom du nouveau conteneur à créer, par exemple « azure-cli-sample-container ».
-   * **\<blob_name\>** : nom de l’objet blob de destination dans le conteneur.
-   * **\<file_to_upload\>** : chemin d’accès au petit fichier sur l’ordinateur local, par exemple « ~/images/HelloWorld.png ».
-   * **\<destination_file\>** : chemin d’accès au fichier de destination, par exemple « ~/downloadedImage.png ».
+   * **\<storage_account_name\>**  nom hello de votre compte de stockage.
+   * **\<storage_account_key\>**  clé d’accès primaire ou secondaire hello pour votre compte de stockage.
+   * **\<nom_conteneur\>**  un nom hello nouvelle toocreate de conteneur, tel que « azure-cli-exemple-container ».
+   * **\<blob_name\>**  un nom pour l’objet blob de destination hello dans le conteneur de hello.
+   * **\<file_to_upload\>**  hello chemin d’accès fichier toosmall sur votre ordinateur local, tel que « ~ / images/HelloWorld.png ».
+   * **\<destination_file\>**  hello chemin d’accès du fichier de destination, tel que « ~ / downloadedImage.png ».
 
-3. Une fois que vous avez mis à jour les variables nécessaires, enregistrez le script et quittez l’éditeur. Les étapes suivantes supposent que vous avez nommé votre script **my_storage_sample.sh**.
+3. Une fois que vous avez mis à jour les variables nécessaires hello, enregistrer le script de hello et quittez l’éditeur. les étapes suivantes Hello supposent que vous avez nommé votre script **my_storage_sample.sh**.
 
-4. Rendez le script exécutable, si nécessaire : `chmod +x my_storage_sample.sh`
+4. Marquer le script hello en tant que fichier exécutable, si nécessaire :`chmod +x my_storage_sample.sh`
 
-5. Exécutez le script. Par exemple, dans Bash : `./my_storage_sample.sh`
+5. Exécuter le script de hello. Par exemple, dans Bash : `./my_storage_sample.sh`
 
-Vous devriez voir une sortie similaire à ce qui suit et la variable **\<destination_file\>** spécifiée dans le script doit s’afficher sur votre ordinateur local.
+Vous devez voir sortie similaire toohello et hello  **\<destination_file\>**  vous avez spécifié dans hello script doit s’afficher sur votre ordinateur local.
 
 ```
-Creating the container...
+Creating hello container...
 {
   "created": true
 }
-Uploading the file...
+Uploading hello file...
 Percent complete: %100.0
-Listing the blobs...
+Listing hello blobs...
 Name       Blob Type      Length  Content Type              Last Modified
 ---------  -----------  --------  ------------------------  -------------------------
 README.md  BlockBlob        6700  application/octet-stream  2017-05-12T20:54:59+00:00
-Downloading the file...
+Downloading hello file...
 Name
 ---------
 README.md
@@ -171,13 +171,13 @@ Done
 ```
 
 > [!TIP]
-> La sortie précédente est au format **table**. Vous pouvez spécifier le format de sortie à utiliser en spécifiant l’argument `--output` dans vos commandes CLI ou en le définissant globalement à l’aide de `az configure`.
+> Hello sortie précédente est en **table** format. Vous pouvez spécifier toouse du format de sortie en spécifiant hello `--output` argument dans vos commandes CLI, ou globalement à l’aide de la valeur `az configure`.
 >
 
 ## <a name="manage-storage-accounts"></a>Gestion des comptes de stockage
 
 ### <a name="create-a-new-storage-account"></a>Création d’un nouveau compte de stockage
-Pour utiliser le Stockage Azure, vous avez besoin d’un compte de stockage. Vous pouvez créer un nouveau compte de stockage Azure après avoir configuré votre ordinateur pour qu’il se [connecte à votre abonnement](#connect-to-your-azure-subscription).
+toouse stockage Azure, vous devez un compte de stockage. Vous pouvez créer un nouveau compte de stockage Azure une fois que vous avez configuré votre ordinateur trop[connecter tooyour abonnement](#connect-to-your-azure-subscription).
 
 ```azurecli
 az storage account create \
@@ -188,9 +188,9 @@ az storage account create \
 ```
 
 * `--location` [Obligatoire] : emplacement. Par exemple, « États-Unis de l’Ouest ».
-* `--name` [Obligatoire] : nom du compte de stockage. Le nom doit comporter entre 3 et 24 caractères, lesquels ne peuvent être que des caractères alphanumériques minuscules.
+* `--name`[Obligatoire] : nom de compte de stockage hello. nom de Hello doit comporter 3 caractères too24 et utiliser uniquement des caractères alphanumériques en minuscules.
 * `--resource-group` [Obligatoire] : nom du groupe de ressources.
-* `--sku` [Obligatoire] : référence du compte de stockage. Valeurs autorisées :
+* `--sku`[Obligatoire] : hello compte de stockage référence (SKU). Valeurs autorisées :
   * `Premium_LRS`
   * `Standard_GRS`
   * `Standard_LRS`
@@ -198,14 +198,14 @@ az storage account create \
   * `Standard_ZRS`
 
 ### <a name="set-default-azure-storage-account-environment-variables"></a>Définition des variables d’environnement par défaut pour le compte de stockage Azure
-Vous pouvez disposer de plusieurs comptes de stockage dans votre abonnement Azure. Pour en sélectionner un à utiliser pour toutes les commandes de stockage suivantes, vous pouvez définir ces variables d’environnement :
+Vous pouvez disposer de plusieurs comptes de stockage dans votre abonnement Azure. tooselect un d’eux toouse de stockage suivants toutes les commandes, vous pouvez définir ces variables d’environnement :
 
 ```azurecli
 export AZURE_STORAGE_ACCOUNT=<account_name>
 export AZURE_STORAGE_ACCESS_KEY=<key>
 ```
 
-Vous pouvez également définir un compte de stockage par défaut via une chaîne de connexion. Commencez par obtenir la chaîne de connexion à l’aide de la commande `show-connection-string` :
+Une autre façon tooset un compte de stockage par défaut est à l’aide d’une chaîne de connexion. Chaîne de connexion hello hello d’abord, obtenir `show-connection-string` commande :
 
 ```azurecli
 az storage account show-connection-string \
@@ -213,36 +213,36 @@ az storage account show-connection-string \
     --resource-group <resource_group>
 ```
 
-Ensuite, copiez la chaîne de connexion de sortie et définissez la variable d’environnement `AZURE_STORAGE_CONNECTION_STRING` (vous devrez peut-être mettre la chaîne de connexion entre guillemets) :
+Hello de copie la sortie de chaîne de connexion, puis définir hello `AZURE_STORAGE_CONNECTION_STRING` variable d’environnement (vous devrez peut-être chaîne de connexion tooenclose hello entre guillemets) :
 
 ```azurecli
 export AZURE_STORAGE_CONNECTION_STRING="<connection_string>"
 ```
 
 > [!NOTE]
-> Tous les exemples des sections suivantes de cet article supposent que vous avez défini les variables d’environnement `AZURE_STORAGE_ACCOUNT` et `AZURE_STORAGE_ACCESS_KEY`.
+> Tous les exemples de hello les sections suivantes de cet article supposent que vous avez défini hello `AZURE_STORAGE_ACCOUNT` et `AZURE_STORAGE_ACCESS_KEY` variables d’environnement.
 >
 
 ## <a name="create-and-manage-blobs"></a>Créer et gérer des objets blob
-Le stockage d’objets blob Azure est un service permettant de stocker de gros volumes de données non structurées, telles que du texte ou des données binaires, accessibles depuis n’importe où dans le monde via HTTP ou HTTPS. Cette section suppose que vous êtes déjà familiarisé avec les concepts du Stockage Blob Azure. Pour obtenir des informations détaillées, consultez [Prise en main du Stockage Blob Azure à l’aide de .NET](storage-dotnet-how-to-use-blobs.md) et [Concepts de service Blob](/rest/api/storageservices/blob-service-concepts).
+Stockage d’objets Blob Azure est un service pour stocker de grandes quantités de données non structurées, telles que les données texte ou binaire, qui sont accessibles à partir de n’importe où dans le monde hello via HTTP ou HTTPS. Cette section suppose que vous êtes déjà familiarisé avec les concepts du Stockage Blob Azure. Pour obtenir des informations détaillées, consultez [Prise en main du Stockage Blob Azure à l’aide de .NET](storage-dotnet-how-to-use-blobs.md) et [Concepts de service Blob](/rest/api/storageservices/blob-service-concepts).
 
 ### <a name="create-a-container"></a>Créer un conteneur
-Chaque objet blob du stockage Azure doit se trouver dans un conteneur. Vous pouvez créer un conteneur à l’aide de la commande `az storage container create` :
+Chaque objet blob du stockage Azure doit se trouver dans un conteneur. Vous pouvez créer un conteneur à l’aide de hello `az storage container create` commande :
 
 ```azurecli
 az storage container create --name <container_name>
 ```
 
-Vous pouvez définir l’un des trois niveaux d’accès en lecture pour un nouveau conteneur en spécifiant l’argument facultatif `--public-access` :
+Vous pouvez définir un des trois niveaux d’accès en lecture pour un conteneur en spécifiant hello facultatif `--public-access` argument :
 
-* `off` (par défaut) : les données du conteneur sont privées et accessibles uniquement par le propriétaire du compte.
+* `off`(par défaut) : les données de conteneur soient privé toohello propriétaire du compte.
 * `blob` : accès en lecture public pour les objets blob.
-* `container` : accès en lecture et en création de listes public à l’intégralité du conteneur.
+* `container`: Lecture et liste accès toohello ensemble conteneur public.
 
-Pour plus d’informations, consultez la section [Gestion de l’accès en lecture anonyme aux conteneurs et aux objets blob](storage-manage-access-to-resources.md).
+Pour plus d’informations, consultez [gérer l’accès en lecture anonyme toocontainers et les objets BLOB](storage-manage-access-to-resources.md).
 
-### <a name="upload-a-blob-to-a-container"></a>Chargement d’un objet blob dans un conteneur
-Le Stockage Blob Azure prend en charge les objets blob de blocs, d’ajout et de page. Chargez des objets blob dans un conteneur à l’aide de la commande `blob upload` :
+### <a name="upload-a-blob-tooa-container"></a>Télécharger un conteneur d’objets blob tooa
+Le Stockage Blob Azure prend en charge les objets blob de blocs, d’ajout et de page. Téléchargement d’objets BLOB tooa conteneur à l’aide de hello `blob upload` commande :
 
 ```azurecli
 az storage blob upload \
@@ -251,13 +251,13 @@ az storage blob upload \
     --name <blob_name>
 ```
 
- Sinon, la commande `blob upload` charge par défaut les fichiers *.vhd dans les objets blob de pages ou de blocs. Pour spécifier un autre type lorsque vous chargez un objet blob, vous pouvez utiliser l’argument `--type` ; les valeurs autorisée sont `append`, `block` et `page`.
+ Par défaut, hello `blob upload` commande télécharge les objets BLOB de toopage *.vhd fichiers ou des objets BLOB de blocs dans le cas contraire. toospecify un autre type lorsque vous téléchargez un objet blob, vous pouvez utiliser hello `--type` argument--les valeurs autorisée sont `append`, `block`, et `page`.
 
- Pour plus d’informations sur les différents objets blob, consultez [Présentation des objets blob de blocs, des objets blob d’ajout et des objets blob de pages](/rest/api/storageservices/Understanding-Block-Blobs--Append-Blobs--and-Page-Blobs).
+ Pour plus d’informations sur les types d’objets blob différents hello, consultez [objets BLOB de blocs, ajouter des objets BLOB et objets BLOB de pages](/rest/api/storageservices/Understanding-Block-Blobs--Append-Blobs--and-Page-Blobs).
 
 
 ### <a name="download-a-blob-from-a-container"></a>Télécharger un objet blob depuis un conteneur
-Cet exemple indique comment télécharger un objet blob à partir d’un conteneur :
+Cet exemple montre comment un objet blob à partir d’un conteneur de toodownload :
 
 ```azurecli
 az storage blob download \
@@ -266,9 +266,9 @@ az storage blob download \
     --file ~/mydownloadedblob.png
 ```
 
-### <a name="list-the-blobs-in-a-container"></a>Création d'une liste d'objets blob dans un conteneur
+### <a name="list-hello-blobs-in-a-container"></a>Répertorier les objets BLOB hello dans un conteneur
 
-Répertoriez les objets blob dans un conteneur à l’aide de la commande [az storage blob list](/cli/azure/storage/blob#list).
+Répertorier les objets BLOB de hello dans un conteneur avec hello [liste objet blob de stockage az](/cli/azure/storage/blob#list) commande.
 
 ```azurecli
 az storage blob list \
@@ -279,7 +279,7 @@ az storage blob list \
 ### <a name="copy-blobs"></a>Copier des objets blob
 Vous pouvez copier des objets blob au sein d’un compte de stockage, ou vers des comptes de stockage et des régions et ce, de façon asynchrone.
 
-L’exemple suivant indique comment copier des objets blob depuis un compte de stockage et les coller dans un autre. Nous créons d’abord un conteneur dans le compte de stockage source, en spécifiant l’accès en lecture public pour ses objets blob. Ensuite, nous chargeons un fichier dans le conteneur. Pour finir, nous copions l’objet blob de ce conteneur vers un conteneur du compte de stockage de destination.
+Hello exemple suivant montre comment le BLOB toocopy à partir du stockage d’un compte tooanother. Nous créons d’abord un conteneur dans le compte de stockage source hello, spécifiant l’accès en lecture public pour ses objets BLOB. Ensuite, nous télécharger un conteneur de fichier toohello et pour finir, copie d’objets blob hello conteneur dans un conteneur dans le compte de stockage de destination hello.
 
 ```azurecli
 # Create container in source account
@@ -289,7 +289,7 @@ az storage container create \
     --name sourcecontainer \
     --public-access blob
 
-# Upload blob to container in source account
+# Upload blob toocontainer in source account
 az storage blob upload \
     --account-name sourceaccountname \
     --account-key sourceaccountkey \
@@ -297,7 +297,7 @@ az storage blob upload \
     --file ~/Pictures/sourcefile.png \
     --name sourcefile.png
 
-# Copy blob from source account to destination account (destcontainer must exist)
+# Copy blob from source account toodestination account (destcontainer must exist)
 az storage blob copy start \
     --account-name destaccountname \
     --account-key destaccountkey \
@@ -306,27 +306,27 @@ az storage blob copy start \
     --source-uri https://sourceaccountname.blob.core.windows.net/sourcecontainer/sourcefile.png
 ```
 
-Dans l’exemple indiqué ci-dessus, le conteneur de destination doit déjà exister dans le compte de stockage de destination pour que l’opération de copie réussisse. En outre, l’objet blob source spécifié dans l’argument `--source-uri` doit inclure un jeton de signature d’accès partagé, ou être accessible publiquement, comme dans cet exemple.
+Bonjour exemple ci-dessus, le conteneur de destination hello doit déjà exister dans le compte de stockage de destination hello pour hello copie opération toosucceed. En outre, hello objet blob source spécifié dans hello `--source-uri` argument doit inclure un jeton de signature (SAP) d’accès partagé, ou être accessible publiquement, comme dans cet exemple.
 
 ### <a name="delete-a-blob"></a>Supprimer un objet blob
-Pour supprimer un objet blob, utilisez la commande `blob delete` :
+toodelete un objet blob, utilisez hello `blob delete` commande :
 
 ```azurecli
 az storage blob delete --container-name <container_name> --name <blob_name>
 ```
 
 ## <a name="create-and-manage-file-shares"></a>Créer et gérer des partages de fichiers
-Le Stockage Fichier Azure propose un stockage partagé pour les applications utilisant le protocole SMB. Les services cloud et les machines virtuelles Microsoft Azure, ainsi que les applications locales, peuvent partager des données de fichiers via des partages montés. Vous pouvez gérer des partages de fichiers et des données de fichiers via la CLI Azure. Pour plus d’informations sur Azure File Storage, consultez [Prise en main du stockage de fichiers Azure sur Windows](storage-dotnet-how-to-use-files.md) ou [Utilisation du stockage de fichiers Azure avec Linux](storage-how-to-use-files-linux.md).
+Stockage de fichiers Azure offre un stockage partagé pour les applications à l’aide du protocole Server Message Block (SMB) de hello. Les services cloud et les machines virtuelles Microsoft Azure, ainsi que les applications locales, peuvent partager des données de fichiers via des partages montés. Vous pouvez gérer les partages de fichiers et les données de fichier via hello CLI d’Azure. Pour plus d’informations sur le stockage de fichiers Azure, consultez [prise en main avec un stockage de fichier Azure sur Windows](storage-dotnet-how-to-use-files.md) ou [comment toouse stockage Azure files avec Linux](storage-how-to-use-files-linux.md).
 
 ### <a name="create-a-file-share"></a>Créer un partage de fichiers
-Un partage de fichiers Azure est un partage de fichiers SMB dans Microsoft Azure. Tous les répertoires et fichiers doivent être créés dans un partage de fichiers. Un compte peut contenir un nombre illimité de partages, et un partage peut stocker un nombre illimité de fichiers, dans les limites de capacité du compte de stockage. L’exemple suivant détaille la création d’un partage de fichiers nommé **MonPartage**.
+Un partage de fichiers Azure est un partage de fichiers SMB dans Microsoft Azure. Tous les répertoires et fichiers doivent être créés dans un partage de fichiers. Un compte peut contenir un nombre illimité de partages, et un partage peut stocker un nombre illimité de fichiers, les limites de capacité toohello hello du compte de stockage. Hello exemple suivant crée un partage de fichiers nommé **monsiteweb**.
 
 ```azurecli
 az storage share create --name myshare
 ```
 
 ### <a name="create-a-directory"></a>Créer un répertoire
-Un répertoire fournit une structure hiérarchique dans un partage de fichiers Azure. L’exemple suivant crée un répertoire nommé **MonRép** dans le partage de fichiers.
+Un répertoire fournit une structure hiérarchique dans un partage de fichiers Azure. Hello exemple suivant crée un répertoire nommé **myDir** dans le partage de fichiers hello.
 
 ```azurecli
 az storage directory create --name myDir --share-name myshare
@@ -334,37 +334,37 @@ az storage directory create --name myDir --share-name myshare
 
 Un chemin d’accès peut inclure plusieurs niveaux, par exemple **dir1/dir2**. Toutefois, avant de créer un sous-répertoire, vous devez vous assurer que tous les répertoires parents existent. Par exemple, pour le chemin d’accès **dir1/dir2**, vous devez créer le répertoire **dir1**, puis le répertoire **dir2**.
 
-### <a name="upload-a-local-file-to-a-share"></a>Chargement d’un fichier local vers un partage
-Dans l’exemple suivant, un fichier est chargé à partir de l’emplacement **~/temp/samplefile.txt** vers la racine du partage de fichiers **myshare**. L’argument `--source` spécifie le fichier local existant à charger.
+### <a name="upload-a-local-file-tooa-share"></a>Télécharger un partage de fichiers local de tooa
+exemple Hello télécharge un fichier à partir de **~/temp/samplefile.txt** tooroot Hello **monsiteweb** partage de fichiers. Hello `--source` argument spécifie tooupload de fichier local existant hello.
 
 ```azurecli
 az storage file upload --share-name myshare --source ~/temp/samplefile.txt
 ```
 
-Comme pour la création d’un répertoire, vous pouvez spécifier un chemin d’accès au répertoire dans le partage pour charger le fichier vers un répertoire existant dans le partage :
+Comme avec la création du répertoire, vous pouvez spécifier un chemin d’accès de répertoire dans hello partage tooupload hello fichier tooan répertoire existant au sein de la part d’hello :
 
 ```azurecli
 az storage file upload --share-name myshare/myDir --source ~/temp/samplefile.txt
 ```
 
-Dans le partage, un fichier peut présenter une taille maximale de 1 To.
+Un fichier dans le partage de hello peut être jusqu'à to too1 taille.
 
-### <a name="list-the-files-in-a-share"></a>Liste des fichiers dans un partage
-Vous pouvez répertorier les fichiers et les répertoires dans un partage à l’aide de la commande `az storage file list` :
+### <a name="list-hello-files-in-a-share"></a>Liste des fichiers dans un partage de hello
+Vous pouvez répertorier des fichiers et des répertoires dans un partage à l’aide de hello `az storage file list` commande :
 
 ```azurecli
-# List the files in the root of a share
+# List hello files in hello root of a share
 az storage file list --share-name myshare --output table
 
-# List the files in a directory within a share
+# List hello files in a directory within a share
 az storage file list --share-name myshare/myDir --output table
 
-# List the files in a path within a share
+# List hello files in a path within a share
 az storage file list --share-name myshare --path myDir/mySubDir/MySubDir2 --output table
 ```
 
 ### <a name="copy-files"></a>Copie des fichiers      
-Vous pouvez copier un fichier dans un autre, un fichier dans un objet blob ou un objet blob dans un fichier. Par exemple, pour copier un fichier vers un répertoire dans un partage différent :        
+Vous pouvez copier un fichier de tooanother, un objet blob tooa de fichier ou un objet blob tooa fichier. Par exemple, toocopy un répertoire tooa de fichiers dans un partage différent :        
         
 ```azurecli
 az storage file copy start \
@@ -373,7 +373,7 @@ az storage file copy start \
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-Voici quelques ressources supplémentaires pour en savoir plus sur l’utilisation d’Azure CLI 2.0.
+Voici quelques ressources supplémentaires pour en savoir plus sur l’utilisation de hello Azure CLI 2.0.
 
 * [Prise en main d’Azure CLI 2.0](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2)
 * [Référence des commandes Azure CLI 2.0](/cli/azure)

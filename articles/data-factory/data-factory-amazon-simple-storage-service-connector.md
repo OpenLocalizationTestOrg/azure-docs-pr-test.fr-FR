@@ -1,6 +1,6 @@
 ---
-title: "Déplacement de données à partir d’Amazon Simple Storage Service à l’aide de Data Factory | Microsoft Docs"
-description: "Découvrez comment déplacer des données à partir d’Amazon Simple Storage Service (S3) à l’aide d’Azure Data Factory."
+title: "données aaaMove Amazon Simple Service de stockage à l’aide de Data Factory | Documents Microsoft"
+description: "En savoir plus sur la façon de toomove les données à partir du Service de stockage Simple Amazon (S3) à l’aide d’Azure Data Factory."
 services: data-factory
 documentationcenter: 
 author: linda33wj
@@ -14,52 +14,52 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/20/2017
 ms.author: jingwang
-ms.openlocfilehash: 3e21f7dfccc3b235071344a28c7d94f65e6bf9ac
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8a8cd2845fd1de74413bd0372f3aabfb4817549b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="move-data-from-amazon-simple-storage-service-by-using-azure-data-factory"></a>Déplacement de données à partir d’Amazon Simple Storage Service à l’aide d’Azure Data Factory
-Cet article explique comment utiliser l’activité de copie dans Azure Data Factory pour déplacer des données à partir d’un système Amazon Simple Storage Service (S3). Il s’appuie sur l’article relatif aux [activités de déplacement des données](data-factory-data-movement-activities.md), qui présente une vue d’ensemble du déplacement des données avec l’activité de copie.
+Cet article explique comment toouse hello activité de copie de données de toomove Azure Data Factory à partir du Service de stockage Simple Amazon (S3). Il repose sur hello [les activités de déplacement des données](data-factory-data-movement-activities.md) article, qui présente une vue d’ensemble du déplacement des données avec l’activité de copie hello.
 
-Vous pouvez copier les données d’Amazon S3 dans tout magasin de données récepteur pris en charge. Consultez le tableau [Magasins de données pris en charge](data-factory-data-movement-activities.md#supported-data-stores-and-formats) pour obtenir la liste des magasins de données pris en charge en tant que récepteurs par l’activité de copie. Actuellement, Data Factory prend uniquement en charge le déplacement de données d’Amazon S3 vers d’autres magasins de données, mais pas l’inverse.
+Vous pouvez copier des données à partir de la banque de données récepteur Amazon S3 tooany pris en charge. Pour une liste de données pris en charge des magasins récepteurs par l’activité de copie hello, consultez hello [prise en charge des magasins de données](data-factory-data-movement-activities.md#supported-data-stores-and-formats) table. Fabrique de données prend actuellement en charge le déplacement des données uniquement à partir des magasins de données Amazon S3 tooother, mais ne pas déplacer les données à partir d’autres données stocke tooAmazon S3.
 
 ## <a name="required-permissions"></a>Autorisations requises
-Pour copier des données à partir d’Amazon S3, assurez-vous que vous disposez des autorisations suivantes :
+données toocopy de Amazon S3, assurez-vous que vous avez été accordées hello les autorisations suivantes :
 
 * `s3:GetObject` et `s3:GetObjectVersion` pour les opérations d’objet Amazon S3 ;
-* `s3:ListBucket` pour les opérations de compartiment Amazon S3. Si vous utilisez l’Assistant de copie de Data Factory, l’élément `s3:ListAllMyBuckets` est également requis.
+* `s3:ListBucket` pour les opérations de compartiment Amazon S3. Si vous utilisez hello Assistant Copier les données de fabrique, `s3:ListAllMyBuckets` est également requis.
 
-Pour obtenir la liste complète des autorisations Amazon S3, consultez l’article [Spécification des autorisations d’une stratégie](http://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html).
+Pour plus d’informations sur la liste complète des autorisations d’Amazon S3 hello, consultez [spécifier les autorisations dans une stratégie](http://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html).
 
 ## <a name="getting-started"></a>Prise en main
 Vous pouvez créer un pipeline avec une activité de copie qui déplace les données d’une source Amazon S3 à l’aide de différents outils ou API.
 
-Le moyen le plus simple de créer un pipeline consiste à utiliser **l’Assistant de copie**. Pour obtenir une description rapide, consultez [Didacticiel : créer un pipeline à l’aide de l’Assistant Copie](data-factory-copy-data-wizard-tutorial.md).
+toocreate de façon plus simple Hello un pipeline est toouse hello **Assistant copie de**. Pour obtenir une description rapide, consultez [Didacticiel : créer un pipeline à l’aide de l’Assistant Copie](data-factory-copy-data-wizard-tutorial.md).
 
-Vous pouvez également utiliser les outils suivants pour créer un pipeline : le **portail Azure**, **Visual Studio**, **Azure PowerShell**, le **modèle Azure Resource Manager**, l’**API .NET** et l’**API REST**. Pour obtenir des instructions détaillées sur la création d’un pipeline avec une activité de copie, consultez le [Didacticiel de l’activité de copie](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md).
+Vous pouvez également utiliser hello suivant outils toocreate un pipeline : **portail Azure**, **Visual Studio**, **Azure PowerShell**, **modèle Azure Resource Manager** , **API .NET**, et **API REST**. Pour obtenir des instructions toocreate un pipeline avec une activité de copie, consultez hello [didacticiel d’activité de copie](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md).
 
-Que vous utilisiez des outils ou des API, la création d’un pipeline qui déplace les données d’un magasin de données source vers un magasin de données récepteur implique les étapes suivantes :
+Si vous utilisez des outils ou des API, vous allez exécuter hello suivant les étapes toocreate un pipeline qui déplace la banque de données récepteur tooa du magasin de données à partir des données sources :
 
-1. Création de **services liés** pour lier les magasins de données d’entrée et de sortie à votre fabrique de données.
-2. Création de **jeux de données** pour représenter les données d’entrée et de sortie de l’opération de copie.
+1. Créer **services liés** fabrique de données tooyour toolink les données d’entrée et de sortie magasins.
+2. Créer **datasets** toorepresent d’entrée et sortie l’opération de copie des données pour hello.
 3. Création d’un **pipeline** avec une activité de copie qui utilise un jeu de données en tant qu’entrée et un jeu de données en tant que sortie.
 
-Lorsque vous utilisez l’Assistant, les définitions JSON de ces entités Data Factory (services liés, jeux de données et pipeline) sont automatiquement créées pour vous. Lorsque vous utilisez les outils ou API (à l’exception de l’API .NET), vous devez définir ces entités Data Factory à l’aide du format JSON. Pour consulter un exemple contenant des définitions JSON pour les entités Data Factory utilisées pour copier des données d’un magasin de données Amazon S3, consultez la section [Exemple JSON : copier des données depuis un système Amazon S3 vers Blob Azure](#json-example-copy-data-from-amazon-s3-to-azure-blob) de cet article.
+Lorsque vous utilisez hello Assistant, les définitions de JSON pour ces entités de fabrique de données (services liés, des datasets et pipeline de hello) sont créées automatiquement pour vous. Lorsque vous utilisez des outils ou des API (à l’exception des API .NET), vous définissez ces entités de fabrique de données à l’aide du format JSON de hello. Pour voir un exemple avec des définitions de JSON pour les entités de fabrique de données qui sont utilisées toocopy des données à partir d’une banque de données Amazon S3, hello [exemple de JSON : copier des données d’Amazon S3 tooAzure Blob](#json-example-copy-data-from-amazon-s3-to-azure-blob) section de cet article.
 
 > [!NOTE]
 > Pour plus d’informations sur les formats de fichier et de compression pris en charge pour une activité de copie, consultez [Formats de fichier et de compression pris en charge dans Azure Data Factory](data-factory-supported-file-and-compression-formats.md).
 
-Les sections suivantes fournissent des informations sur les propriétés JSON utilisées pour définir les entités Data Factory spécifiques à Amazon S3.
+Hello les sections suivantes fournit des détails sur les propriétés JSON qui sont utilisés toodefine Data Factory entités spécifique tooAmazon S3.
 
 ## <a name="linked-service-properties"></a>Propriétés du service lié
-Un service lié lie un magasin de données à une fabrique de données. Pour lier votre magasin de données Amazon S3 à votre fabrique de données, vous devez créer un service lié de type **AwsAccessKey**. La table suivante fournit la description des éléments JSON spécifiques au service lié Amazon S3 (AwsAccessKey).
+Un service lié lie une fabrique de données de tooa de magasin de données. Vous créez un service lié de type **AwsAccessKey** toolink vos données Amazon S3 stocker la fabrique de données tooyour. Hello tableau suivant fournit un service de description pour JSON éléments tooAmazon spécifique S3 (AwsAccessKey) liée.
 
 | Propriété | Description | Valeurs autorisées | Requis |
 | --- | --- | --- | --- |
-| accessKeyID |ID de la clé d’accès secrète. |string |Oui |
-| secretAccessKey |La clé d’accès secrète elle-même. |Chaîne secrète chiffrée |Oui |
+| accessKeyID |ID de clé d’accès de clé secrète hello. |string |Oui |
+| secretAccessKey |clé d’accès de clé secrète Hello elle-même. |Chaîne secrète chiffrée |Oui |
 
 Voici un exemple :
 
@@ -77,22 +77,22 @@ Voici un exemple :
 ```
 
 ## <a name="dataset-properties"></a>Propriétés du jeu de données
-Pour spécifier un jeu de données afin de représenter les données d’entrée dans un Stockage Blob Azure, définissez la propriété de type du jeu de données sur **AmazonS3**. Définissez la propriété **linkedServiceName** du jeu de données sur le nom du service lié Amazon S3. Pour obtenir la liste complète des sections et propriétés disponibles pour la définition de jeux de données, voir [Création de jeux de données](data-factory-create-datasets.md). 
+toospecify un toorepresent de jeu de données d’entrée les données dans le stockage d’objets Blob Azure, propriété de type hello ensemble du jeu de données hello**AmazonS3**. Ensemble hello **linkedServiceName** service lié de propriété du nom de toohello hello dataset Hello Amazon S3. Pour obtenir la liste complète des sections et propriétés disponibles pour la définition de jeux de données, voir [Création de jeux de données](data-factory-create-datasets.md). 
 
-Les sections comme la structure, la disponibilité et la stratégie sont similaires pour tous les types de jeux de données (par exemple, SQL Database, Azure Blob et Azure Table). La section **typeProperties** est différente pour chaque type de jeu de données et fournit des informations sur l'emplacement des données dans le magasin de données. La section **typeProperties** du jeu de données de type **AmazonS3** (comprenant le jeu de données Amazon S3) présente les propriétés suivantes :
+Les sections comme la structure, la disponibilité et la stratégie sont similaires pour tous les types de jeux de données (par exemple, SQL Database, Azure Blob et Azure Table). Hello **typeProperties** section est différente pour chaque type de jeu de données et fournit des informations sur l’emplacement de hello de données hello dans le magasin de données hello. Hello **typeProperties** section pour un jeu de données de type **AmazonS3** (qui inclut les dataset hello Amazon S3) a hello propriétés suivantes :
 
 | Propriété | Description | Valeurs autorisées | Requis |
 | --- | --- | --- | --- |
-| bucketName |Le nom de compartiment S3. |string |Oui |
-| key |La clé d’objet S3. |string |Non |
-| prefix |Préfixe de la clé d’objet S3. Les objets dont les clés commencent par ce préfixe sont sélectionnés. S’applique uniquement lorsque la clé est vide. |string |Non |
-| version |La version de l’objet S3 si le contrôle de version S3 est activé. |String |Non |
-| format | Les types de formats suivants sont pris en charge : **TextFormat**, **JsonFormat**, **AvroFormat**, **OrcFormat**, **ParquetFormat**. Définissez la propriété **type** située sous Format sur l’une de ces valeurs. Pour en savoir plus, voir les sections [Format Text](data-factory-supported-file-and-compression-formats.md#text-format), [Format JSON](data-factory-supported-file-and-compression-formats.md#json-format), [Format Avro](data-factory-supported-file-and-compression-formats.md#avro-format), [Format Orc](data-factory-supported-file-and-compression-formats.md#orc-format) et [Format Parquet](data-factory-supported-file-and-compression-formats.md#parquet-format). <br><br> Si vous souhaitez copier des fichiers en l’état entre des magasins de fichiers (copie binaire), ignorez la section Format dans les deux définitions de jeu de données d’entrée et de sortie. |Non | |
-| compression | Spécifiez le type et le niveau de compression pour les données. Les types pris en charge sont : **GZip**, **Deflate**, **BZip2** et **ZipDeflate**. Les niveaux pris en charge sont **Optimal** et **Fastest**. Pour en savoir plus, voir [Formats de fichiers et de compression pris en charge dans Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |Non | |
+| bucketName |nom du compartiment Hello S3. |String |Oui |
+| key |clé d’objet Hello S3. |String |Non |
+| prefix |Préfixe de la clé d’objet hello S3. Les objets dont les clés commencent par ce préfixe sont sélectionnés. S’applique uniquement lorsque la clé est vide. |string |Non |
+| version |version Hello d’objet hello S3, si le contrôle de version S3 est activé. |String |Non |
+| format | Hello, les types de format suivants est pris en charge : **TextFormat**, **JsonFormat**, **AvroFormat**, **OrcFormat**,  **ParquetFormat**. Ensemble hello **type** propriété sous tooone de format de ces valeurs. Pour plus d’informations, consultez hello [au format texte](data-factory-supported-file-and-compression-formats.md#text-format), [format JSON](data-factory-supported-file-and-compression-formats.md#json-format), [le format Avro](data-factory-supported-file-and-compression-formats.md#avro-format), [Orc format](data-factory-supported-file-and-compression-formats.md#orc-format), et [format de Parquet ](data-factory-supported-file-and-compression-formats.md#parquet-format) sections. <br><br> Si vous souhaitez que les fichiers toocopy en tant que-entre le fichier magasins (copie binaire), ignorer hello format section dans les deux définitions de jeu de données d’entrée et de sortie. |Non | |
+| compression | Spécifiez le type de hello et le niveau de compression pour les données de salutation. les types Hello pris en charge sont : **GZip**, **Deflate**, **BZip2**, et **ZipDeflate**. les niveaux de Hello pris en charge sont : **Optimal** et **plus rapide**. Pour plus d’informations, consultez [Formats de fichiers et de compression pris en charge dans Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |Non | |
 
 
 > [!NOTE]
-> **bucketName + key** spécifient l’emplacement de l’objet S3 où le compartiment est le conteneur racine pour les objets S3 et la clé est le chemin d’accès complet à l’objet S3.
+> **bucketName + touche** Spécifie l’emplacement de hello d’objet hello S3, où compartiment est le conteneur racine hello S3 objets et la clé est hello chemin d’accès complet toohello S3 objet.
 
 ### <a name="sample-dataset-with-prefix"></a>Exemple de jeu de données avec le préfixe
 
@@ -143,7 +143,7 @@ Les sections comme la structure, la disponibilité et la stratégie sont similai
 ```
 
 ### <a name="dynamic-paths-for-s3"></a>Chemins d’accès dynamiques pour S3
-L’exemple précédent utilise des valeurs fixes pour les propriétés **key** et **bucketName** dans le jeu de données Amazon S3.
+Hello précédent exemple utilise des valeurs fixes pour hello **clé** et **bucketName** propriétés dans le jeu de données hello Amazon S3.
 
 ```json
 "key": "testFolder/test.orc",
@@ -157,19 +157,19 @@ Vous pouvez demander à Data Factory de calculer ces propriétés dynamiquement
 "bucketName": "$$Text.Format('{0:yyyy}', SliceStart)"
 ```
 
-Vous pouvez faire de même pour la propriété **prefix** d’un jeu de données Amazon S3. Pour obtenir la liste des fonctions et variables prises en charge, consultez [Variables système et fonctions Data Factory](data-factory-functions-variables.md).
+Vous pouvez effectuer même hello pour hello **préfixe** propriété d’un jeu de données Amazon S3. Pour obtenir la liste des fonctions et variables prises en charge, consultez [Variables système et fonctions Data Factory](data-factory-functions-variables.md).
 
 ## <a name="copy-activity-properties"></a>Propriétés de l’activité de copie
-Pour obtenir la liste complète des sections et propriétés disponibles pour la définition des activités, voir [Création de pipelines](data-factory-create-pipelines.md). Les propriétés comme le nom, la description, les tables d'entrée et de sortie et les différentes stratégies sont disponibles pour tous les types d'activités. Les propriétés disponibles dans la section **typeProperties** de l’activité varient pour chaque type d’activité. Pour l’activité de copie, les propriétés dépendent des types de sources et de récepteurs. Lorsque la source de l’activité de copie est de type **FileSystemSource** (qui inclut Amazon S3), la propriété suivante est disponible dans la section **typeProperties** :
+Pour obtenir la liste complète des sections et propriétés disponibles pour la définition des activités, voir [Création de pipelines](data-factory-create-pipelines.md). Les propriétés comme le nom, la description, les tables d'entrée et de sortie et les différentes stratégies sont disponibles pour tous les types d'activités. Propriétés disponibles dans hello **typeProperties** section d’activité hello varient selon chaque type d’activité. Pour l’activité de copie hello, les propriétés varient selon les types de sources et récepteurs hello. Lorsqu’une source de l’activité de copie hello est de type **FileSystemSource** (qui inclut Amazon S3), hello suivant la propriété est disponible dans **typeProperties** section :
 
 | Propriété | Description | Valeurs autorisées | Requis |
 | --- | --- | --- | --- |
-| recursive |Spécifie s’il faut répertorier de manière récursive les objets S3 sous le répertoire. |true/false |Non |
+| recursive |Spécifie si la liste de toorecursively S3 objets sous le répertoire de hello. |true/false |Non |
 
-## <a name="json-example-copy-data-from-amazon-s3-to-azure-blob-storage"></a>Exemple JSON : copier des données depuis un système Amazon S3 vers le stockage Blob Azure
-Cet exemple indique comment copier des données à partir d’Amazon S3 vers un stockage Blob Azure. Toutefois, les données peuvent être copiées directement vers [l’un des récepteurs pris en charge](data-factory-data-movement-activities.md#supported-data-stores-and-formats), via l’activité de copie de Data Factory.
+## <a name="json-example-copy-data-from-amazon-s3-tooazure-blob-storage"></a>Exemple de JSON : copier des données d’Amazon S3 tooAzure stockage d’objets Blob
+Cet exemple montre comment toocopy des données à partir d’Amazon S3 tooan stockage d’objets Blob Azure. Toutefois, les données peuvent être copiées directement trop[des récepteurs hello qui sont pris en charge](data-factory-data-movement-activities.md#supported-data-stores-and-formats) à l’aide de l’activité de copie hello dans la fabrique de données.
 
-Cet exemple fournit des définitions JSON pour les entités Data Factory suivantes. Vous pouvez utiliser ces définitions pour créer un pipeline afin de copier des données depuis Amazon S3 vers un Stockage Blob Azure à l’aide du [portail Azure](data-factory-copy-activity-tutorial-using-azure-portal.md), de [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) ou [de PowerShell](data-factory-copy-activity-tutorial-using-powershell.md).   
+exemple Hello fournit les définitions de JSON pour hello suivant des entités de fabrique de données. Vous pouvez utiliser ces définitions de toocreate un pipeline toocopy des données d’Amazon S3 tooBlob stockage, à l’aide de hello [portail Azure](data-factory-copy-activity-tutorial-using-azure-portal.md), [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md), ou [PowerShell](data-factory-copy-activity-tutorial-using-powershell.md).   
 
 * Un service lié de type [AwsAccessKey](#linked-service-properties).
 * Un service lié de type [AzureStorage](data-factory-azure-blob-connector.md#linked-service-properties).
@@ -177,7 +177,7 @@ Cet exemple fournit des définitions JSON pour les entités Data Factory suiva
 * Un [jeu de données](data-factory-create-datasets.md) de sortie de type [AzureBlob](data-factory-azure-blob-connector.md#dataset-properties).
 * Un [pipeline](data-factory-create-pipelines.md) avec activité de copie qui utilise [FileSystemSource](#copy-activity-properties) et [BlobSink](data-factory-azure-blob-connector.md#copy-activity-properties).
 
-L’exemple copie des données à partir d’Amazon S3 vers un objet blob Azure toutes les heures. Les propriétés JSON utilisées dans ces exemples sont décrites dans les sections suivant les exemples.
+exemple Hello copie des données d’Amazon S3 tooan objets blob Azure toutes les heures. propriétés JSON Hello utilisées dans ces exemples sont décrits dans les sections suivantes des exemples de hello.
 
 ### <a name="amazon-s3-linked-service"></a>Service lié Amazon S3
 
@@ -210,7 +210,7 @@ L’exemple copie des données à partir d’Amazon S3 vers un objet blob Azure 
 
 ### <a name="amazon-s3-input-dataset"></a>Jeu de données d’entrée Amazon S3
 
-La définition de **"external": true** informe le service Data Factory qu’il s’agit d’un jeu de données qui est externe à Data Factory. Définissez cette propriété sur true sur un jeu de données d’entrée qui n’est pas produit par une activité dans le pipeline.
+Paramètre **« external » : true** informe service Data Factory de hello ce jeu de données hello est la fabrique de données externe toohello. Définir tootrue de cette propriété sur un jeu de données d’entrée qui n’est pas généré par une activité dans le pipeline de hello.
 
 ```json
     {
@@ -237,7 +237,7 @@ La définition de **"external": true** informe le service Data Factory qu’il s
 
 ### <a name="azure-blob-output-dataset"></a>Jeu de données de sortie d’objet Blob Azure
 
-Les données sont écrites dans un nouvel objet blob toutes les heures (fréquence : heure, intervalle : 1). Le chemin d’accès du dossier pour l’objet blob est évalué dynamiquement en fonction de l’heure de début du segment en cours de traitement. Le chemin d’accès du dossier utilise l’année, le mois, le jour et la partie heure de l’heure de début.
+Les données sont écrites tooa nouvel objet blob toutes les heures (fréquence : heure, intervalle : 1). chemin d’accès du dossier Hello pour l’objet blob de hello est évaluée dynamiquement en fonction de l’heure de début hello de tranche hello qui est en cours de traitement. chemin d’accès du dossier Hello utilise hello des parties d’année, mois, jours et heures de l’heure de début hello.
 
 ```json
 {
@@ -298,7 +298,7 @@ Les données sont écrites dans un nouvel objet blob toutes les heures (fréquen
 
 ### <a name="copy-activity-in-a-pipeline-with-an-amazon-s3-source-and-a-blob-sink"></a>Activité de copie dans un pipeline avec une source Amazon S3 et un récepteur blob
 
-Le pipeline contient une activité de copie qui est configurée pour utiliser les jeux de données d’entrée et de sortie, et qui est planifiée pour s’exécuter toutes les heures. Dans la définition du pipeline JSON, le type **source** est défini sur **FileSystemSource** et le type **sink** est défini sur **BlobSink**.
+Hello pipeline contient une activité de copie qui est configuré toouse hello des jeux de données d’entrée et de sortie, et est toorun planifiée toutes les heures. Dans la définition JSON du pipeline hello, hello **source** type est défini trop**FileSystemSource**, et **récepteur** type est défini trop**BlobSink**.
 
 ```json
 {
@@ -346,12 +346,12 @@ Le pipeline contient une activité de copie qui est configurée pour utiliser le
 }
 ```
 > [!NOTE]
-> Pour savoir comment mapper des colonnes d’un jeu de données source à des colonnes d’un jeu de données récepteur, voir [Mappage des colonnes d’un jeu de données dans Azure Data Factory](data-factory-map-columns.md).
+> toomap des colonnes à partir d’un toocolumns de jeu de données source à partir d’un jeu de données récepteur, consultez [mappage des colonnes de jeu de données dans Azure Data Factory](data-factory-map-columns.md).
 
 
 ## <a name="next-steps"></a>Étapes suivantes
-Consultez les articles suivants :
+Consultez hello suivant des articles :
 
-* Pour découvrir les facteurs clés affectant les performances de déplacement des données (activité de copie) dans Azure Data Factory et les différentes manières de les optimiser, voir [Guide sur les performances et le réglage de l’activité de copie](data-factory-copy-activity-performance.md).
+* impact sur les performances de déplacement des données (activité de copie) dans la fabrique de données et différentes façons toooptimize des facteurs toolearn sur la clé, consultez hello [copier activité guide des performances et paramétrage](data-factory-copy-activity-performance.md).
 
-* Pour obtenir des instructions détaillées sur la création d’un pipeline avec une activité de copie, voir [Didacticiel de l’activité de copie](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md).
+* Pour obtenir des instructions pour la création d’un pipeline avec une activité de copie, consultez hello [didacticiel d’activité de copie](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md).

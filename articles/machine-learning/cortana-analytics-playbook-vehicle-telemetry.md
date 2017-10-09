@@ -1,6 +1,6 @@
 ---
-title: "Prédire l’état des véhicules et les habitudes de conduite | Microsoft Docs"
-description: "Utilisez les fonctionnalités de Cortana Intelligence pour obtenir des informations en temps réel et prédictives sur l’état des véhicules et les habitudes de conduite."
+title: "contrôle d’intégrité du véhicule aaaPredict et du pilotage habitudes - Azure | Documents Microsoft"
+description: "Utiliser les fonctionnalités de hello des aperçus Cortana Intelligence toogain prédictives et en temps réel sur l’intégrité du véhicule et du pilotage habituelles."
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -14,47 +14,47 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: bradsev
-ms.openlocfilehash: d202d314c61416cf306f760f93e0a4a88a1ab42b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 54cc890ff39493bc040bb809721388349665720f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="vehicle-telemetry-analytics-solution-playbook"></a>Manuel de la solution Vehicle Telemetry Analytics
-Ce **menu** contient des liens vers les chapitres de ce manuel. 
+Cela **menu** lie chapitres toohello dans ce manuel. 
 
 [!INCLUDE [cap-vehicle-telemetry-playbook-selector](../../includes/cap-vehicle-telemetry-playbook-selector.md)]
 
 ## <a name="overview"></a>Vue d'ensemble
-Nous avons transféré nos superordinateurs du laboratoire à notre garage ! Ces automobiles de pointe contiennent une multitude de capteurs capables de suivre et de surveiller des millions d'événements chaque seconde. Nous pensons que d’ici 2020, la plupart de ces voitures seront connectées à Internet. Imaginez le potentiel qu’offrent toutes ces données pour améliorer la sécurité, la fiabilité et le plaisir de la conduite ! Microsoft a réalisé ce rêve en développant Cortana Intelligence.
+Ordinateurs super ont déplacé hors de laboratoire de hello et sont désormais stationnés dans notre garage ! Ces automobiles pointe contiennent une multitude de capteurs, en leur donnant hello capacité tootrack et surveiller des millions d’événements par seconde. Nous espérons que par 2020, la plupart de ces voitures auront déjà été connecté toohello Internet. Imaginez appuyé dans grâce à cette multitude de sécurité supérieure des tooprovide de données, de fiabilité et une expérience mieux conduite ! Microsoft a réalisé ce rêve en développant Cortana Intelligence.
 
-Cortana Intelligence de Microsoft est une suite de traitement du Big Data et d’analyse avancée entièrement gérée, qui vous permet de convertir vos données en action intelligente. Nous souhaitons vous présenter le modèle de la solution Vehicle Telemetry Analytics Cortana Intelligence. Cette solution montre comment les concessions, les constructeurs automobiles et les compagnies d’assurance peuvent utiliser les fonctionnalités de Cortana Intelligence pour obtenir des informations en temps réel et prédictives sur l’état des véhicules et les habitudes de conduite. 
+Intelligence de Cortana de Microsoft est de type données big entièrement gérées et avancé analytique suite vous tootransform vos données en action intelligente. Nous souhaitons toointroduce toohello Cortana Intelligence véhicule télémétrie Analytique Solution de modèle. Cette solution montre comment concessions de voiture et sociétés d’assurance automobiles fabricants peuvent utiliser des fonctions de hello de toogain Cortana Intelligence en temps réel et des analyses prédictives sur l’intégrité du véhicule et du pilotage habituelles. 
 
-La solution est implémentée comme un [modèle d’architecture lambda](https://en.wikipedia.org/wiki/Lambda_architecture) montrant tout le potentiel de la plateforme Cortana Intelligence pour le traitement en temps réel et par lots. La solution : 
+solution de Hello est implémentée comme un [modèle d’architecture lambda](https://en.wikipedia.org/wiki/Lambda_architecture) montrant le potentiel de plateforme d’analyse décisionnelle de Cortana hello pour hello en temps réel et le traitement par lots. solution de Hello : 
 
 * fournit un simulateur de télématique des véhicules ;
 * utilise Event Hubs pour la réception dans Azure de millions d’événements de télémétrie virtuels associés aux véhicules ; 
-* utilise Stream Analytics pour obtenir un aperçu en temps réel de l’intégrité du véhicule ;
-* conserve les données dans un stockage à long terme pour une analyse par lot plus riche ; 
-* s’appuie sur Machine Learning pour la détection d’anomalies en temps réel et le traitement par lots afin d’obtenir des informations prédictives ;
-* utilise HDInsight pour transformer les données à l’échelle et Data Factory pour gérer l’orchestration, la planification, la gestion des ressources et la surveillance du pipeline de traitement par lots ; 
+* utilise les informations de flux de données Analytique toogain en temps réel sur l’intégrité du véhicule
+* conserve les données de hello dans le stockage à long terme pour l’analytique de lot plus riche. 
+* bénéficie de l’apprentissage pour la détection d’anomalies dans en temps réel et insights prédictive toogain de traitement du lot.
+* s’appuie sur des données de tootransform HDInsight à l’échelle et orchestration toohandle de fabrique de données, en planifiant, gestion des ressources et d’analyse de pipeline de traitement par lots hello 
 * offre à cette solution un tableau de bord complet permettant de visualiser à la fois les données en temps réel et les analyses prédictives à l’aide de Power BI.
 
 ## <a name="architecture"></a>Architecture
 ![Diagramme d’architecture de solution](./media/cortana-analytics-playbook-vehicle-telemetry/fig1-vehicle-telemetry-annalytics-solution-architecture.png)
 *Figure 1 – Architecture d’analyse de télémétrie de véhicule*
 
-Cette solution inclut les **composants Cortana Intelligence** suivants et présente leur intégration de bout en bout :
+Cette solution inclut des éléments suivants de hello **composants Cortana Intelligence** et présente leur intégration tooend de fin :
 
 * **Event Hubs** , pour la réception dans Azure de millions d’événements de télémétrie associés aux véhicules.
 * **STREAM ANALYTICS** , pour une visibilité en temps réel sur l’état des véhicules et une conservation de ces données dans un stockage à long terme afin d’enrichir les analyses par lots.
-* **MACHINE LEARNING** , pour la détection d’anomalies en temps réel et le traitement par lots afin d’obtenir des informations prédictives.
-* **HDInsight** est utilisé pour transformer les données à grande échelle
-* **Data Factory** gère l’orchestration, la planification, la gestion des ressources et la surveillance du pipeline de traitement par lots.
+* **Apprentissage** pour la détection d’anomalie en temps réel et les analyses prédictives toogain de traitement par lots.
+* **HDInsight** est exploitée tootransform des données à grande échelle
+* **Fabrique de données** gère l’orchestration, la planification, la gestion des ressources et la surveillance de pipeline de traitement par lots hello.
 * **POWER BI** offre à cette solution un tableau de bord complet permettant de visualiser à la fois les données en temps réel et les analyses prédictives.
 
 Cette solution utilise deux **sources de données**différentes : 
 
-* **SIMULATION DES SIGNAUX ET DIAGNOSTICS D’UN VÉHICULE**: un simulateur télématique de véhicule émet des informations de diagnostic et des signaux correspondant à l’état du véhicule et au schéma de conduite à un moment donné dans le temps. 
-* **CATALOGUE DE VÉHICULES**: un jeu de données de référence associé à un mappage VIN/modèle.
+* **Simulée véhicule signaux et les diagnostics**: un simulateur de télématique véhicule émet des informations de diagnostic et des signaux qui correspondent état toohello du véhicule de hello et hello gérant le modèle à un moment donné dans le temps. 
+* **Catalogue de véhicule**: un dataset de référence contenant un mappage de toomodel VIN.
 

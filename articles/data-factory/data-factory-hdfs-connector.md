@@ -1,6 +1,6 @@
 ---
-title: "Transfert de données à partir d’un HDFS en local | Microsoft Docs"
-description: "Découvrez comment transférer des données à partir d’un HDFS en local à l’aide d’Azure Data Factory."
+title: "données aaaMove local HDFS | Documents Microsoft"
+description: "Découvrez comment toomove des données à partir de local HDFS à l’aide d’Azure Data Factory."
 services: data-factory
 documentationcenter: 
 author: linda33wj
@@ -14,57 +14,57 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/20/2017
 ms.author: jingwang
-ms.openlocfilehash: 9a8f3156a62a1a7aa49377349e8a85454efeda50
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 96387e5dd089099fc2e983ab26d67c2044b973b0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="move-data-from-on-premises-hdfs-using-azure-data-factory"></a>Transfert de données à partir d’un HDFS local à l’aide d’Azure Data Factory
-Cet article explique comment utiliser l’activité de copie dans Azure Data Factory pour déplacer des données à partir d’un HDFS local. Il s’appuie sur l’article [Activités de déplacement des données](data-factory-data-movement-activities.md), qui présente une vue d’ensemble du déplacement de données avec l’activité de copie.
+Cet article explique comment toouse hello activité de copie de données Azure Data Factory toomove un HDFS local. Il repose sur hello [les activités de déplacement des données](data-factory-data-movement-activities.md) article, qui présente une vue d’ensemble du déplacement des données avec l’activité de copie hello.
 
-Vous pouvez copier les données depuis HDFS vers tout magasin de données récepteur pris en charge. Consultez le tableau [Magasins de données pris en charge](data-factory-data-movement-activities.md#supported-data-stores-and-formats) pour obtenir la liste des magasins de données pris en charge en tant que récepteurs par l’activité de copie. Actuellement, Data Factory prend uniquement en charge le déplacement de données de HDFS en local vers d’autres magasins de données, mais pas l’inverse.
+Vous pouvez copier des données à partir du magasin de données du récepteur HDFS tooany pris en charge. Pour une liste de données pris en charge des magasins récepteurs par l’activité de copie hello, consultez hello [prise en charge des magasins de données](data-factory-data-movement-activities.md#supported-data-stores-and-formats) table. Fabrique de données prend actuellement en charge le déplacement des données uniquement à partir d’un HDFS local tooother des magasins de données, mais ne pas pour le déplacement des données à partir d’autres données de magasins tooan local HDFS.
 
 > [!NOTE]
-> L’activité de copie ne supprime pas le fichier source une fois qu’il est copié sur la destination. Si vous devez supprimer le fichier source une fois qu’il est copié, créez une activité personnalisée pour supprimer le fichier et utilisez l’activité dans le pipeline. 
+> Activité de copie ne supprime pas le fichier de source de hello lorsqu’elle est correctement copié toohello destination. Si vous avez besoin de fichier de source de hello toodelete après la copie a réussi, créer un fichier de hello toodelete activité personnalisée et utiliser l’activité hello dans le pipeline de hello. 
 
 ## <a name="enabling-connectivity"></a>Activation de la connectivité
-Le service Data Factory prend en charge la connexion à des sources HDFS locales à l’aide de la passerelle de gestion des données. Consultez l’article [Déplacement de données entre des emplacements locaux et le cloud](data-factory-move-data-between-onprem-and-cloud.md) pour en savoir plus sur la passerelle de gestion des données et obtenir des instructions détaillées sur la configuration de la passerelle. Utilisez la passerelle pour vous connecter à HDFS même si elle est hébergée sur des machines virtuelles IaaS Azure.
+Service de fabrique de données prend en charge la connexion HDFS tooon local à l’aide de la passerelle de gestion des données de hello. Consultez [déplacement des données entre les emplacements locaux et cloud](data-factory-move-data-between-onprem-and-cloud.md) toolearn l’article sur la passerelle de gestion des données et des instructions détaillées sur la configuration de passerelle de hello. Utilisez hello passerelle tooconnect tooHDFS même s’il est hébergé dans une machine virtuelle IaaS de Azure.
 
 > [!NOTE]
-> Assurez-vous que la passerelle de gestion des données peut accéder à **TOUS** les éléments [serveur du nœud de nom]:[port du nœud de nom] et [serveurs du nœud de données]:[port du nœud de données] du cluster Hadoop. Le [port du nœud de nom] par défaut est 50070 et le [port du nœud de données] par défaut est 50075.
+> Vérifiez que hello est passerelle de gestion des données peuvent accéder à trop**tous les** hello [serveur de noms de nœud] : [nom de port du nœud] et [serveurs de nœud de données] : [port de nœud de données] du cluster Hadoop de hello. Le [port du nœud de nom] par défaut est 50070 et le [port du nœud de données] par défaut est 50075.
 
-Bien qu’il soit possible d’installer la passerelle sur le même ordinateur local ou la même machine virtuelle Azure que le HDFS, nous vous recommandons de l’installer sur un ordinateur ou une machine virtuelle IaaS Azure distinct(e). Disposer d’une passerelle sur un ordinateur distinct réduit les conflits de ressources et améliore les performances. Lorsque vous installez la passerelle sur un ordinateur distinct, l’ordinateur doit être en mesure d’accéder à l’ordinateur qui exécute le système HDFS.
+Lorsque vous installez une passerelle sur hello même ordinateur ou local hello Azure VM comme hello HDFS, nous vous recommandons d’installer hello passerelle sur un ordinateur distinct/Azure IaaS machine virtuelle. Disposer d’une passerelle sur un ordinateur distinct réduit les conflits de ressources et améliore les performances. Lorsque vous installez la passerelle de hello sur un ordinateur distinct, machine de hello doit être machine hello tooaccess en mesure de hello HDFS.
 
 ## <a name="getting-started"></a>Prise en main
 Vous pouvez créer un pipeline avec une activité de copie qui déplace les données d’une source HDFS à l’aide de différents outils/API.
 
-Le moyen le plus simple de créer un pipeline consiste à utiliser **l’Assistant de copie**. Consultez la page [Didacticiel : Créer un pipeline avec l’activité de copie à l’aide de l’Assistant Data Factory Copy](data-factory-copy-data-wizard-tutorial.md) pour une procédure pas à pas rapide sur la création d’un pipeline à l’aide de l’Assistant Copier des données.
+toocreate de façon plus simple Hello un pipeline est toouse hello **Assistant copie de**. Consultez [didacticiel : créer un pipeline à l’aide d’Assistant copie de](data-factory-copy-data-wizard-tutorial.md) pour une procédure pas à pas rapides sur la création d’un pipeline à l’aide d’Assistant de données de copie hello.
 
-Vous pouvez également utiliser les outils suivants pour créer un pipeline : le **portail Azure**, **Visual Studio**, **Azure PowerShell**, le **modèle Azure Resource Manager**, l’**API .NET** et l’**API REST**. Consultez le [Didacticiel de l’activité de copie](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) pour obtenir des instructions détaillées sur la création d’un pipeline avec une activité de copie.
+Vous pouvez également utiliser hello suivant outils toocreate un pipeline : **portail Azure**, **Visual Studio**, **Azure PowerShell**, **modèle Azure Resource Manager** , **API .NET**, et **API REST**. Consultez [didacticiel d’activité de copie](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) pour obtenir des instructions toocreate un pipeline avec une activité de copie.
 
-Que vous utilisiez des outils ou des API, la création d’un pipeline qui déplace les données d’un magasin de données source vers un magasin de données récepteur implique les étapes suivantes :
+Si vous utilisez hello ou une API, vous effectuez hello suivant les étapes toocreate un pipeline qui déplace la banque de données récepteur tooa du magasin de données à partir des données d’une source :
 
-1. Création de **services liés** pour lier les magasins de données d’entrée et de sortie à votre fabrique de données.
-2. Création de **jeux de données** pour représenter les données d’entrée et de sortie de l’opération de copie.
+1. Créer **services liés** fabrique de données tooyour toolink les données d’entrée et de sortie magasins.
+2. Créer **datasets** toorepresent d’entrée et sortie l’opération de copie des données pour hello.
 3. Création d’un **pipeline** avec une activité de copie qui utilise un jeu de données en tant qu’entrée et un jeu de données en tant que sortie.
 
-Lorsque vous utilisez l’Assistant, les définitions JSON de ces entités Data Factory (services liés, jeux de données et pipeline) sont automatiquement créées pour vous. Lorsque vous utilisez des outils/API (à l’exception de l’API .NET), vous devez définir ces entités Data Factory au format JSON.  Pour consulter un exemple contenant des définitions JSON pour les entités Data Factory utilisées pour copier des données d’un magasin de données HDFS local, consultez la section [Exemple JSON : copier des données depuis un HDFS local vers Azure Blob](#json-example-copy-data-from-on-premises-hdfs-to-azure-blob) de cet article.
+Lorsque vous utilisez hello Assistant, les définitions de JSON pour ces entités de fabrique de données (services liés, des datasets et pipeline de hello) sont créées automatiquement pour vous. Lorsque vous utilisez/API des outils (à l’exception des API .NET), vous définissez ces entités de fabrique de données à l’aide du format JSON de hello.  Pour voir un exemple avec des définitions de JSON pour les entités de fabrique de données qui sont utilisées toocopy des données à partir d’un magasin de données HDFS, [exemple de JSON : copier des données locales HDFS tooAzure Blob](#json-example-copy-data-from-on-premises-hdfs-to-azure-blob) section de cet article.
 
-Les sections suivantes fournissent des informations sur les propriétés JSON utilisées pour définir les entités Data Factory spécifiques à HDFS :
+Hello les sections suivantes fournit des détails sur les propriétés JSON qui sont utilisés toodefine Data Factory entités spécifiques tooHDFS :
 
 ## <a name="linked-service-properties"></a>Propriétés du service lié
-Un service lié lie un magasin de données à une fabrique de données. Vous créez un service lié de type **HDFS** pour lier un système HDFS local à votre fabrique de données. Le tableau suivant fournit la description des éléments JSON spécifiques au service lié HDFS.
+Un service lié lie une fabrique de données de tooa de magasin de données. Vous créez un service lié de type **Hdfs** toolink une fabrique de données tooyour HDFS local. Hello tableau suivant fournit la description du service de tooHDFS spécifique lié éléments JSON.
 
 | Propriété | Description | Requis |
 | --- | --- | --- |
-| type |La propriété de type doit être définie sur **Hdfs** |Oui |
-| Url |URL vers le système HDFS |Oui |
-| authenticationType |Anonyme ou Windows. <br><br> Pour utiliser l’**authentification Kerberos** pour le connecteur HDFS, reportez-vous à [cette section](#use-kerberos-authentication-for-hdfs-connector) pour configurer votre environnement local en conséquence. |Oui |
+| type |propriété de type Hello doit indiquer : **Hdfs** |Oui |
+| Url |URL toohello HDFS |Oui |
+| authenticationType |Anonyme ou Windows. <br><br> toouse **l’authentification Kerberos** pour le connecteur HDFS, consultez trop[cette section](#use-kerberos-authentication-for-hdfs-connector) tooset votre environnement local en conséquence. |Oui |
 | userName |Nom d’utilisateur de l’authentification Windows |Oui (pour l’authentification Windows) |
 | password |Mot de passe de l’authentification Windows |Oui (pour l’authentification Windows) |
-| gatewayName |Nom de la passerelle que le service Data Factory doit utiliser pour se connecter au système HDFS. |Oui |
-| Encryptedcredential |[New-AzureRMDataFactoryEncryptValue](https://msdn.microsoft.com/library/mt603802.aspx) des informations d’accès. |Non |
+| gatewayName |Nom de passerelle hello hello service Data Factory doit utiliser tooconnect toohello HDFS. |Oui |
+| Encryptedcredential |[Nouveau-AzureRMDataFactoryEncryptValue](https://msdn.microsoft.com/library/mt603802.aspx) sortie des informations d’identification de l’accès hello. |Non |
 
 ### <a name="using-anonymous-authentication"></a>Utilisation de l’authentification anonyme
 
@@ -105,25 +105,25 @@ Un service lié lie un magasin de données à une fabrique de données. Vous cr�
 }
 ```
 ## <a name="dataset-properties"></a>Propriétés du jeu de données
-Pour obtenir une liste complète des sections et propriétés disponibles pour la définition de jeux de données, consultez l’article [Création de jeux de données](data-factory-create-datasets.md). Les sections comme la structure, la disponibilité et la stratégie d'un jeu de données JSON sont similaires pour tous les types de jeux de données (SQL Azure, Azure Blob, Azure Table, etc.).
+Pour obtenir une liste complète des sections et les propriétés disponibles pour définir des jeux de données, consultez hello [création de datasets](data-factory-create-datasets.md) l’article. Les sections comme la structure, la disponibilité et la stratégie d'un jeu de données JSON sont similaires pour tous les types de jeux de données (SQL Azure, Azure Blob, Azure Table, etc.).
 
-La section **typeProperties** est différente pour chaque type de jeu de données et fournit des informations sur l’emplacement des données dans le magasin de données. La section typeProperties du jeu de données de type **FileShare** (comprenant le jeu de données HDFS) présente les propriétés suivantes
+Hello **typeProperties** section est différente pour chaque type de jeu de données et fournit des informations sur l’emplacement de hello de données hello dans le magasin de données hello. jeu de données de type Hello typeProperties section **le partage de fichiers** (qui inclut les dataset HDFS) a hello propriétés suivantes
 
 | Propriété | Description | Requis |
 | --- | --- | --- |
-| folderPath |Chemin d'accès au dossier. Exemple : `myfolder`<br/><br/>Utilisez le caractère d’échappement « \ » pour les caractères spéciaux contenus dans la chaîne. Par exemple : pour dossier\sous-dossier, spécifiez dossier\\\\sous-dossier et pour d:\dossier d’exemple, spécifiez d:\\\\dossier d’exemple.<br/><br/>Vous pouvez également effectuer une combinaison avec la propriété **partitionBy** pour que les chemins d’accès de dossier soient basés sur les dates et heures de démarrage et d’arrêt de la tranche. |Oui |
-| fileName |Spécifiez le nom du fichier dans l’élément **folderPath** si vous souhaitez que la table se réfère à un fichier spécifique du dossier. Si vous ne spécifiez aucune valeur pour cette propriété, le tableau pointe vers tous les fichiers du dossier.<br/><br/>Lorsque fileName n’est pas spécifié pour un jeu de données de sortie, le nom du fichier généré aura ce format dans l’exemple suivant : <br/><br/>Data<Guid>.txt (par exemple : Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt) |Non |
-| partitionedBy |partitionedBy peut être utilisé pour spécifier un folderPath dynamique, fileName pour les données de série chronologique. Exemple : folderPath peut être paramétré pour toutes les heures de données. |Non |
-| format | Les types de formats suivants sont pris en charge : **TextFormat**, **JsonFormat**, **AvroFormat**, **OrcFormat**, **ParquetFormat**. Définissez la propriété **type** située sous Format sur l’une de ces valeurs. Pour en savoir plus, consultez les sections relatives à [format Text](data-factory-supported-file-and-compression-formats.md#text-format), [format Json](data-factory-supported-file-and-compression-formats.md#json-format), [format Avro](data-factory-supported-file-and-compression-formats.md#avro-format), [format Orc](data-factory-supported-file-and-compression-formats.md#orc-format) et [format Parquet](data-factory-supported-file-and-compression-formats.md#parquet-format). <br><br> Si vous souhaitez **copier des fichiers en l’état** entre des magasins de fichiers (copie binaire), ignorez la section Format dans les deux définitions de jeu de données d’entrée et de sortie. |Non |
-| compression | Spécifiez le type et le niveau de compression pour les données. Les types pris en charge sont : **GZip**, **Deflate**, **BZip2** et **ZipDeflate**. Les niveaux pris en charge sont **Optimal** et **Fastest**. Pour plus d’informations, consultez [Formats de fichiers et de compression pris en charge dans Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |Non |
+| folderPath |Dossier toohello de chemin d’accès. Exemple : `myfolder`<br/><br/>Utilisez le caractère d’échappement ' \ ' pour les caractères spéciaux dans la chaîne de hello. Par exemple : pour dossier\sous-dossier, spécifiez dossier\\\\sous-dossier et pour d:\dossier d’exemple, spécifiez d:\\\\dossier d’exemple.<br/><br/>Vous pouvez combiner cette propriété avec **partitionBy** toohave chemins d’accès basés sur un secteur de début et date et l’heure de fin. |Oui |
+| fileName |Spécifiez le nom hello du fichier de hello Bonjour **folderPath** si vous souhaitez hello table toorefer tooa fichier spécifique dans le dossier de hello. Si vous ne spécifiez pas de valeur pour cette propriété, la table de hello pointe tooall des fichiers dans le dossier de hello.<br/><br/>Lorsque le nom de fichier n’est pas spécifié pour un dataset de sortie, nom hello du fichier de hello généré serait Bonjour sous ce format : <br/><br/>Data<Guid>.txt (par exemple : Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt) |Non |
+| partitionedBy |partitionedBy peut être utilisé toospecify un folderPath dynamique, le nom de fichier de données de série chronologique. Exemple : folderPath peut être paramétré pour toutes les heures de données. |Non |
+| format | Hello, les types de format suivants est pris en charge : **TextFormat**, **JsonFormat**, **AvroFormat**, **OrcFormat**,  **ParquetFormat**. Ensemble hello **type** propriété sous tooone de format de ces valeurs. Pour en savoir plus, consultez les sections relatives à [format Text](data-factory-supported-file-and-compression-formats.md#text-format), [format Json](data-factory-supported-file-and-compression-formats.md#json-format), [format Avro](data-factory-supported-file-and-compression-formats.md#avro-format), [format Orc](data-factory-supported-file-and-compression-formats.md#orc-format) et [format Parquet](data-factory-supported-file-and-compression-formats.md#parquet-format). <br><br> Si vous souhaitez trop**copier les fichiers en tant que-est** entre des magasins basée sur le fichier (copie binaire), ignorer la section de format hello dans les deux définitions de jeu de données d’entrée et de sortie. |Non |
+| compression | Spécifiez le type de hello et le niveau de compression pour les données de salutation. Les types pris en charge sont : **GZip**, **Deflate**, **BZip2** et **ZipDeflate**. Les niveaux pris en charge sont **Optimal** et **Fastest**. Pour plus d’informations, consultez [Formats de fichiers et de compression pris en charge dans Azure Data Factory](data-factory-supported-file-and-compression-formats.md#compression-support). |Non |
 
 > [!NOTE]
 > fileName et fileFilter ne peuvent pas être utilisés simultanément.
 
 ### <a name="using-partionedby-property"></a>Utilisation de la propriété partitionedBy
-Comme mentionné dans la section précédente, vous pouvez spécifier un folderPath et un fileName dynamiques pour les données de série chronologique avec la propriété **partitionedBy**, [les fonctions Data Factory et les variables système](data-factory-functions-variables.md).
+Comme indiqué dans la section précédente de hello, vous pouvez spécifier un folderPath dynamique et le nom de fichier de données de série chronologique par hello **partitionedBy** propriété, [fonctions de la fabrique de données et les variables système hello](data-factory-functions-variables.md).
 
-Consultez les articles [Création de jeux de données](data-factory-create-datasets.md), [Planification et exécution](data-factory-scheduling-and-execution.md) et [Création de pipelines](data-factory-create-pipelines.md) pour en savoir plus sur les jeux de données de série chronologique, la planification et les segments.
+toolearn en savoir plus sur les jeux de données de série temps, en planifiant et secteurs, consultez [création de Datasets](data-factory-create-datasets.md), [de planification et l’exécution de](data-factory-scheduling-and-execution.md), et [création de Pipelines](data-factory-create-pipelines.md) articles.
 
 #### <a name="sample-1"></a>Exemple 1 :
 
@@ -134,7 +134,7 @@ Consultez les articles [Création de jeux de données](data-factory-create-datas
     { "name": "Slice", "value": { "type": "DateTime", "date": "SliceStart", "format": "yyyyMMddHH" } },
 ],
 ```
-Dans cet exemple, {Slice} est remplacé par la valeur de la variable système Data Factory SliceStart au format (AAAAMMJJHH) spécifié. SliceStart fait référence à l'heure de début du segment. folderPath est différent pour chaque segment. Par exemple : wikidatagateway/wikisampledataout/2014100103 ou wikidatagateway/wikisampledataout/2014100104.
+Dans cet exemple {Slice} est remplacé par la valeur hello de fabrique de données variable système SliceStart au format (AAAAMMJJHH) de la hello spécifiée. Hello SliceStart fait référence à des temps de toostart de tranche de hello. Hello folderPath est différent pour chaque secteur. Par exemple : wikidatagateway/wikisampledataout/2014100103 ou wikidatagateway/wikisampledataout/2014100104.
 
 #### <a name="sample-2"></a>Exemple 2 :
 
@@ -152,25 +152,25 @@ Dans cet exemple, {Slice} est remplacé par la valeur de la variable système Da
 Dans cet exemple, l'année, le mois, le jour et l'heure de SliceStart sont extraits dans des variables distinctes qui sont utilisées par les propriétés folderPath et fileName.
 
 ## <a name="copy-activity-properties"></a>Propriétés de l’activité de copie
-Pour obtenir la liste complète des sections et des propriétés disponibles pour la définition des activités, consultez l’article [Création de pipelines](data-factory-create-pipelines.md). Les propriétés comme le nom, la description, les tables d'entrée et de sortie et les différentes stratégies sont disponibles pour tous les types d'activités.
+Pour obtenir une liste complète des sections et les propriétés disponibles pour la définition d’activités, consultez hello [création de Pipelines](data-factory-create-pipelines.md) l’article. Les propriétés comme le nom, la description, les tables d'entrée et de sortie et les différentes stratégies sont disponibles pour tous les types d'activités.
 
-En revanche, les propriétés disponibles dans la section typeProperties de l’activité varient pour chaque type d'activité. Pour l’activité de copie, elles dépendent des types de sources et récepteurs.
+Alors que les propriétés disponibles dans la section typeProperties hello activité hello varient selon chaque type d’activité. Pour l’activité de copie, ils varient selon les types de sources et récepteurs hello.
 
-Pour une activité de copie, quand la source est de type **FileSystemSource** , les propriétés suivantes sont disponibles dans la section typeProperties :
+Pour l’activité de copie, lors de la source est de type **FileSystemSource** hello propriétés suivantes est disponible dans la section de typeProperties :
 
-**FileSystemSource** prend en charge les propriétés suivantes :
+**FileSystemSource** prend en charge hello propriétés suivantes :
 
 | Propriété | Description | Valeurs autorisées | Requis |
 | --- | --- | --- | --- |
-| recursive |Indique si les données sont lues de manière récursive dans les sous-dossiers ou uniquement dans le dossier spécifié. |True, False (par défaut) |Non |
+| recursive |Indique si les données de salutation sont lu de manière récursive à partir de dossiers de sub hello ou uniquement à partir de dossier spécifié de hello. |True, False (par défaut) |Non |
 
 ## <a name="supported-file-and-compression-formats"></a>Formats de fichier et de compression pris en charge
-Pour plus d’informations, consultez l’article [Formats de fichiers et de compression pris en charge dans Azure Data Factory](data-factory-supported-file-and-compression-formats.md).
+Pour plus d’informations, voir [Formats de fichiers et de compression pris en charge dans Azure Data Factory](data-factory-supported-file-and-compression-formats.md).
 
-## <a name="json-example-copy-data-from-on-premises-hdfs-to-azure-blob"></a>Exemple JSON : copie de données entre un système HDFS local et un objet blob Azure
-Cet exemple indique comment copier des données depuis un système HDFS local vers un système Blob Storage Microsoft Azure. Toutefois, les données peuvent être copiées **directement** vers l’un des récepteurs indiqués [ici](data-factory-data-movement-activities.md#supported-data-stores-and-formats) , via l’activité de copie d’Azure Data Factory.  
+## <a name="json-example-copy-data-from-on-premises-hdfs-tooazure-blob"></a>Exemple de JSON : copier des données locales HDFS tooAzure Blob
+Cet exemple montre comment toocopy des données à partir d’un tooAzure HDFS local stockage d’objets Blob. Toutefois, les données peuvent être copiées **directement** tooany de récepteurs hello indiqué [ici](data-factory-data-movement-activities.md#supported-data-stores-and-formats) à l’aide de hello activité de copie dans Azure Data Factory.  
 
-Cet exemple fournit des définitions JSON pour les entités Data Factory suivantes. Vous pouvez utiliser ces définitions pour créer un pipeline afin de copier des données depuis HDFS vers un Stockage Blob Azure à l’aide du [portail Azure](data-factory-copy-activity-tutorial-using-azure-portal.md), de [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) ou [d’Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md).
+exemple Hello fournit les définitions de JSON pour hello suivant des entités de fabrique de données. Vous pouvez utiliser ces définitions de toocreate un pipeline toocopy des données d’HDFS tooAzure stockage d’objets Blob à l’aide de [portail Azure](data-factory-copy-activity-tutorial-using-azure-portal.md) ou [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) ou [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md).
 
 1. Un service lié de type [OnPremisesHdfs](#linked-service-properties).
 2. Un service lié de type [AzureStorage](data-factory-azure-blob-connector.md#linked-service-properties).
@@ -178,11 +178,11 @@ Cet exemple fournit des définitions JSON pour les entités Data Factory suiva
 4. Un [jeu de données](data-factory-create-datasets.md) de sortie de type [AzureBlob](data-factory-azure-blob-connector.md#dataset-properties).
 5. Un [pipeline](data-factory-create-pipelines.md) avec activité de copie qui utilise [FileSystemSource](#copy-activity-properties) et [BlobSink](data-factory-azure-blob-connector.md#copy-activity-properties).
 
-L’exemple copie toutes les heures les données d’un système HDFS en local vers un objet Blob Azure. Les propriétés JSON utilisées dans ces exemples sont décrites dans les sections suivant les exemples.
+exemple Hello copie des données à partir d’un tooan HDFS local Azure blob toutes les heures. propriétés JSON Hello utilisées dans ces exemples sont décrits dans les sections suivantes des exemples de hello.
 
-Dans un premier temps, configurez la passerelle de gestion des données. Les instructions se trouvent dans l’article [Déplacement de données entre des emplacements locaux et le cloud](data-factory-move-data-between-onprem-and-cloud.md) .
+Dans un premier temps, configurer la passerelle de gestion des données hello. Hello instructions Bonjour [déplacement des données entre les emplacements locaux et cloud](data-factory-move-data-between-onprem-and-cloud.md) l’article.
 
-**Service lié de HDFS :** cet exemple utilise l’authentification Windows. Consultez la section [Service lié HDFS](#linked-service-properties) pour connaître les différents types d’authentification que vous pouvez utiliser.
+**Service lié de HDFS :** cet exemple utilise hello l’authentification Windows. Consultez la section [Service lié HDFS](#linked-service-properties) pour connaître les différents types d’authentification que vous pouvez utiliser.
 
 ```JSON
 {
@@ -216,9 +216,9 @@ Dans un premier temps, configurez la passerelle de gestion des données. Les ins
 }
 ```
 
-**Jeu de données d’entrée HDFS :** ce jeu de données fait référence au dossier HDFS DataTransfer/UnitTest/. Le pipeline copie tous les fichiers de son dossier vers la destination.
+**HDFS d’entrée de jeu de données :** ce jeu de données fait référence le dossier HDFS toohello DataTransfer/UnitTest /. pipeline de Hello copie tous les fichiers de hello dans cette destination toohello de dossier.
 
-La définition de « external » : « true» informe le service Data Factory qu’il s’agit d’un jeu de données qui est externe à Data Factory et non produit par une activité dans Data Factory.
+Paramètre « external » : « true » informe service Data Factory de hello ce jeu de données hello est la fabrique de données externe toohello et n’est pas généré par une activité dans la fabrique de données hello.
 
 ```JSON
 {
@@ -240,7 +240,7 @@ La définition de « external » : « true» informe le service Data Factory qu
 
 **Jeu de données de sortie Azure Blob :**
 
-Les données sont écrites dans un nouvel objet blob toutes les heures (fréquence : heure, intervalle : 1). Le chemin d’accès du dossier pour l’objet blob est évalué dynamiquement en fonction de l’heure de début du segment en cours de traitement. Le chemin d'accès du dossier utilise l'année, le mois, le jour et l'heure de l'heure de début.
+Les données sont écrites tooa nouvel objet blob toutes les heures (fréquence : heure, intervalle : 1). chemin d’accès du dossier Hello pour l’objet blob de hello est évaluée dynamiquement en fonction de l’heure de début hello de tranche hello qui est en cours de traitement. chemin d’accès du dossier Hello utilise l’année, mois, jours et heures des parties de l’heure de début hello.
 
 ```JSON
 {
@@ -300,7 +300,7 @@ Les données sont écrites dans un nouvel objet blob toutes les heures (fréquen
 
 **Activité de copie dans un pipeline avec une source Système de fichiers et un récepteur blob :**
 
-Le pipeline contient une activité de copie qui est configurée pour utiliser ces jeux de données d'entrée et de sortie, et qui est planifiée pour s'exécuter toutes les heures. Dans la définition du pipeline JSON, le type **source** est défini sur **FileSystemSource** et le type **sink** est défini sur **BlobSink**. La requête SQL spécifiée pour la propriété **query** sélectionne les données de la dernière heure à copier.
+pipeline de Hello contient une activité de copie qui est configuré toouse ces jeux de données d’entrée et de sortie et est toorun planifiée toutes les heures. Dans la définition JSON du pipeline hello, hello **source** type est défini trop**FileSystemSource** et **récepteur** type est défini trop**BlobSink**. la requête SQL Hello spécifiée pour hello **requête** propriété sélectionne des données de hello Bonjour au-delà de toocopy d’heure.
 
 ```JSON
 {
@@ -341,7 +341,7 @@ Le pipeline contient une activité de copie qui est configurée pour utiliser ce
 ```
 
 ## <a name="use-kerberos-authentication-for-hdfs-connector"></a>Utilisation de l’authentification Kerberos pour le connecteur HDFS
-Il existe deux options de configuration de l’environnement local afin d’utiliser l’authentification Kerberos dans le connecteur HDFS. Vous pouvez choisir celle qui correspond mieux à votre situation.
+Il existe deux tooset options d’environnement local de hello ainsi en toouse l’authentification Kerberos dans le connecteur HDFS. Vous pouvez choisir de hello une correspond mieux à votre cas.
 * Option 1 : [Joindre l’ordinateur de la passerelle au domaine Kerberos](#kerberos-join-realm)
 * Option 2 : [activer l’approbation mutuelle entre le domaine Windows et le domaine Kerberos](#kerberos-mutual-trust)
 
@@ -349,22 +349,22 @@ Il existe deux options de configuration de l’environnement local afin d’util
 
 #### <a name="requirement"></a>Condition :
 
-* L’ordinateur de passerelle doit rejoindre le domaine Kerberos et ne peut rejoindre aucun domaine Windows.
+* ordinateur de passerelle Hello a besoin de domaine Kerberos de hello toojoin et ne peut pas joindre un domaine Windows.
 
-#### <a name="how-to-configure"></a>Procédure de configuration :
+#### <a name="how-tooconfigure"></a>Comment tooconfigure :
 
 **Sur l’ordinateur de la passerelle :**
 
-1.  Exécutez l’utilitaire **Ksetup** pour configurer le serveur Kerberos KDC et le domaine.
+1.  Exécutez hello **Ksetup** utilitaire tooconfigure hello serveur KDC Kerberos et le domaine.
 
-    L’ordinateur doit être configuré en tant que membre d’un groupe de travail, car un domaine Kerberos est différent d’un domaine Windows. Pour ce faire, définissez le domaine Kerberos et ajoutez un serveur KDC comme suit. Remplacez *REALM.COM* par votre propre domaine respectif en fonction des besoins.
+    machine de Hello doit être configuré en tant que membre d’un groupe de travail, car un domaine Kerberos est différent d’un domaine Windows. Cela est possible en définissant de Kerberos hello et en ajoutant un serveur de contrôleur de domaine Kerberos comme suit. Remplacez *REALM.COM* par votre propre domaine respectif en fonction des besoins.
 
             C:> Ksetup /setdomain REALM.COM
             C:> Ksetup /addkdc REALM.COM <your_kdc_server_address>
 
-    **Redémarrez** l’ordinateur après avoir exécuté ces 2 commandes.
+    **Redémarrez** machine hello après l’exécution de ces 2 commandes.
 
-2.  Vérifiez la configuration avec la commande **Ksetup**. La sortie doit être semblable à :
+2.  Vérifiez la configuration hello avec **Ksetup** commande. sortie de Hello doit être telles que :
 
             C:> Ksetup
             default realm = REALM.COM (external)
@@ -373,22 +373,22 @@ Il existe deux options de configuration de l’environnement local afin d’util
 
 **Dans Azure Data Factory :**
 
-* Configurez le connecteur HDFS à l’aide de l’**authentification Windows** avec votre nom principal Kerberos et le mot de passe pour vous connecter à la source de données HDFS. Vérifiez les détails de configuration dans la section sur les [propriétés du service lié HDFS](#linked-service-properties).
+* Configurer l’utilisation du connecteur hello HDFS **l’authentification Windows** avec Kerberos principal nom et mot de passe tooconnect toohello HDFS source de données. Vérifiez les détails de configuration dans la section sur les [propriétés du service lié HDFS](#linked-service-properties).
 
 ### <a name="kerberos-mutual-trust"></a>Option 2 : activer l’approbation mutuelle entre le domaine Windows et le domaine Kerberos
 
 #### <a name="requirement"></a>Condition :
-*   L’ordinateur de passerelle doit rejoindre un domaine Windows.
-*   Vous avez besoin d’autorisations pour mettre à jour les paramètres du contrôleur de domaine.
+*   ordinateur de passerelle Hello doit rejoindre un domaine Windows.
+*   Vous avez besoin des paramètres d’autorisation tooupdate hello du contrôleur de domaine.
 
-#### <a name="how-to-configure"></a>Procédure de configuration :
+#### <a name="how-tooconfigure"></a>Comment tooconfigure :
 
 > [!NOTE]
-> Remplacez REALM.COM et AD.COM dans le didacticiel suivant par votre propre domaine et contrôleur de domaine respectifs en fonction des besoins.
+> Remplacez le domaine.com et AD.COM Bonjour suivant le didacticiel avec vos propres respectif domaine et contrôleur de domaine en fonction des besoins.
 
 **Sur le serveur KDC :**
 
-1.  Modifiez la configuration KDC dans le fichier **krb5.conf** afin de permettre au KDC d’approuver le domaine Windows faisant référence au modèle de configuration suivant. Par défaut, la configuration se trouve dans **/etc/krb5.conf**.
+1.  Modifier la configuration KDC hello **krb5.conf** fichier toolet KDC approbation de domaine Windows toohello suivant le modèle de configuration de référence. Par défaut, configuration de hello se trouve dans **/etc/krb5.conf**.
 
             [logging]
              default = FILE:/var/log/krb5libs.log
@@ -424,9 +424,9 @@ Il existe deux options de configuration de l’environnement local afin d’util
               REALM.COM = .
              }
 
-  **Redémarrez** le service KDC après la configuration.
+  **Redémarrez** hello service KDC après la configuration.
 
-2.  Préparez un fichier principal nommé **krbtgt/REALM.COM@AD.COM** dans le serveur KDC avec la commande suivante :
+2.  Préparer un principal nommé  **krbtgt/REALM.COM@AD.COM**  dans serveur KDC avec hello de commande suivante :
 
             Kadmin> addprinc krbtgt/REALM.COM@AD.COM
 
@@ -434,55 +434,55 @@ Il existe deux options de configuration de l’environnement local afin d’util
 
 **Sur le contrôleur de domaine :**
 
-1.  Exécutez les commandes **Ksetup** suivantes pour ajouter une entrée de domaine :
+1.  Exécutez hello **Ksetup** commandes tooadd une entrée de domaine :
 
             C:> Ksetup /addkdc REALM.COM <your_kdc_server_address>
             C:> ksetup /addhosttorealmmap HDFS-service-FQDN REALM.COM
 
-2.  Établir l’approbation entre le domaine Windows et le domaine Kerberos. [password] correspond au mot de passe pour le principal  **krbtgt/REALM.COM@AD.COM** .
+2.  Établir l’approbation de domaine Windows tooKerberos domaine. [] est hello mot de passe pour le principal de hello  **krbtgt/REALM.COM@AD.COM** .
 
             C:> netdom trust REALM.COM /Domain: AD.COM /add /realm /passwordt:[password]
 
 3.  Sélectionnez l’algorithme de chiffrement utilisé dans Kerberos.
 
-    1. Accédez à Gestionnaire de serveur > Gestion des stratégies de groupe > Domaine > Objets de stratégie de groupe > Stratégie de domaine par défaut ou actif, puis Modifier.
+    1. Accédez tooServer Manager > Gestion des stratégies de groupe > domaine > objets de stratégie de groupe > par défaut ou stratégie de domaine Active et modifier.
 
-    2. Dans la fenêtre contextuelle **Éditeur de gestion des stratégies de groupe**, accédez à Configuration ordinateur > Stratégies > Paramètres Windows > Paramètres de sécurité > Stratégies locales > Options de sécurité, puis configurez **Sécurité réseau : Configurer les types de chiffrement autorisés pour Kerberos**.
+    2. Bonjour **éditeur de gestion de stratégie de groupe** fenêtre contextuelle, accédez tooComputer Configuration > stratégies > Paramètres Windows > Paramètres de sécurité > Stratégies locales > Options de sécurité et configurer **réseau sécurité : configurer les types de chiffrement autorisés pour Kerberos**.
 
-    3. Sélectionnez l’algorithme de chiffrement à utiliser pour vous connecter à KDC. En règle générale, vous pouvez simplement sélectionner toutes les options.
+    3. Algorithme de chiffrement hello sélectionnez souhaité toouse lorsque connectez tooKDC. En règle générale, vous pouvez simplement sélectionner toutes les options de hello.
 
         ![Configuration des types de chiffrement pour Kerberos](media/data-factory-hdfs-connector/config-encryption-types-for-kerberos.png)
 
-    4. Utilisez la commande **Ksetup** pour spécifier l’algorithme de chiffrement à utiliser dans le domaine spécifique.
+    4. Utilisez **Ksetup** algorithme de chiffrement du hello commande toospecify toobe utilisé sur hello domaine spécifique.
 
                 C:> ksetup /SetEncTypeAttr REALM.COM DES-CBC-CRC DES-CBC-MD5 RC4-HMAC-MD5 AES128-CTS-HMAC-SHA1-96 AES256-CTS-HMAC-SHA1-96
 
-4.  Créez le mappage entre le compte de domaine et le principal Kerberos afin de pouvoir utiliser le principal Kerberos dans un domaine Windows.
+4.  Créer un mappage de hello entre le compte de domaine hello et Kerberos principal, dans l’ordre toouse principal Kerberos dans un domaine Windows.
 
-    1. Démarrez Outils d’administration > **Utilisateurs et ordinateurs Active Directory**.
+    1. Démarrer les outils d’administration hello > **Active Directory Users and Computers**.
 
     2. Pour configurer les fonctionnalités avancées, cliquez sur **Affichage** > **Fonctionnalités avancées**.
 
-    3. Recherchez le compte pour lequel vous souhaitez créer des mappages, cliquez avec le bouton droit pour afficher **Mappages des noms** > cliquez sur l’onglet **Noms Kerberos**.
+    3. Recherchez hello compte toowhich vous souhaitez les mappages toocreate, avec le bouton droit tooview **mappages nom** > cliquez sur **noms Kerberos** onglet.
 
-    4. Ajoutez un principal provenant du domaine.
+    4. Ajouter un principal de domaine de hello.
 
         ![Mappage des identités de sécurité](media/data-factory-hdfs-connector/map-security-identity.png)
 
 **Sur l’ordinateur de la passerelle :**
 
-* Exécutez les commandes **Ksetup** suivantes pour ajouter une entrée de domaine.
+* Exécutez hello **Ksetup** commandes tooadd une entrée de domaine.
 
             C:> Ksetup /addkdc REALM.COM <your_kdc_server_address>
             C:> ksetup /addhosttorealmmap HDFS-service-FQDN REALM.COM
 
 **Dans Azure Data Factory :**
 
-* Configurez le connecteur HDFS à l’aide de l’**authentification Windows** avec votre compte de domaine ou le principal Kerberos pour vous connecter à la source de données HDFS. Vérifiez les détails de configuration dans la section sur les [propriétés du service lié HDFS](#linked-service-properties).
+* Configurer l’utilisation du connecteur hello HDFS **l’authentification Windows** avec votre compte de domaine ou une source de données Principal Kerberos tooconnect toohello HDFS. Vérifiez les détails de configuration dans la section sur les [propriétés du service lié HDFS](#linked-service-properties).
 
 > [!NOTE]
-> Pour savoir comment mapper des colonnes d’un jeu de données source à des colonnes d’un jeu de données récepteur, consultez [Mapping dataset columns in Azure Data Factory](data-factory-map-columns.md) (Mappage des colonnes des jeux de données dans Azure Data Factory).
+> colonnes de toomap de toocolumns du jeu de données source à partir du jeu de données récepteur, consultez [mappage des colonnes de jeu de données dans Azure Data Factory](data-factory-map-columns.md).
 
 
 ## <a name="performance-and-tuning"></a>Performances et réglage
-Consultez l’article [Guide sur les performances et le réglage de l’activité de copie](data-factory-copy-activity-performance.md) pour en savoir plus sur les facteurs clés affectant les performances de déplacement des données (activité de copie) dans Azure Data Factory et les différentes manières de les optimiser.
+Consultez [copie activité optimiser les performances et Guide d’optimisation](data-factory-copy-activity-performance.md) toolearn sur la clé de facteurs d’affecter les performances de transfert de données (activité de copie) dans Azure Data Factory et de différentes façons toooptimize il.

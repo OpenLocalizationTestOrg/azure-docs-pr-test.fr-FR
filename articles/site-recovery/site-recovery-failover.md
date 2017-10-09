@@ -1,6 +1,6 @@
 ---
-title: Basculement dans Site Recovery | Microsoft Docs
-description: "Azure Site Recovery coordonne la réplication, le basculement et la récupération des machines virtuelles et des serveurs physiques. Informez-vous sur le basculement dans Microsoft Azure ou un centre de données secondaire."
+title: "aaaFailover en mode de récupération de Site | Documents Microsoft"
+description: "Azure Site Recovery coordonne la réplication hello, le basculement et récupération des ordinateurs virtuels et des serveurs physiques. En savoir plus sur tooAzure de basculement ou un centre de données secondaire."
 services: site-recovery
 documentationcenter: 
 author: prateek9us
@@ -14,59 +14,59 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 07/04/2017
 ms.author: pratshar
-ms.openlocfilehash: ef586191f0b89dca89810644d45503fe42538635
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7cacea829d78bb7de2b2d67402291b472b10f023
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="failover-in-site-recovery"></a>Basculement via Microsoft Azure Site Recovery
-Cet article explique comment basculer des machines virtuelles et des serveurs physiques protégés par Site Recovery.
+Cet article décrit comment toofailover les ordinateurs virtuels et des serveurs physiques protègent par Site Recovery.
 
 ## <a name="prerequisites"></a>Composants requis
-1. Avant de procéder à un basculement, effectuez un [test de basculement](site-recovery-test-failover-to-azure.md) pour vous vérifier que tout fonctionne comme prévu.
-1. Avant le basculement, [préparez le réseau](site-recovery-network-design.md) au niveau de l’emplacement cible.  
+1. Avant d’effectuer un basculement, effectuez une [test de basculement](site-recovery-test-failover-to-azure.md) tooensure que tout fonctionne comme prévu.
+1. [Préparer hello réseau](site-recovery-network-design.md) à l’emplacement cible avant d’effectuer un basculement.  
 
 
 ## <a name="run-a-failover"></a>Exécuter un basculement
-Cette procédure explique comment exécuter un basculement dans le cadre d’un [plan de récupération](site-recovery-create-recovery-plans.md). Vous pouvez également exécuter le basculement d’une machine virtuelle ou d’un serveur physique unique à partir de la page **Éléments répliqués**.
+Cette procédure décrit comment toorun un basculement pour un [plan de récupération](site-recovery-create-recovery-plans.md). Vous pouvez également exécuter basculement hello pour un serveur physique ou un seul ordinateur virtuel à partir de hello **éléments répliqués** page
 
 
 ![Basculement](./media/site-recovery-failover/Failover.png)
 
 1. Sélectionnez **Plans de récupération** > *nom_planrécupération*. Cliquez sur **Basculement**.
-2. Sur l’écran **Basculement**, sélectionnez un **point de récupération** vers lequel basculer. Vous pouvez utiliser l’une des options suivantes :
-    1.  **Dernier point dans le temps** (par défaut) : cette option permet de traiter d’abord toutes les données qui ont été envoyées au service Site Recovery afin de créer un point de récupération pour chaque machine virtuelle avant de basculer les machines virtuelles vers celui-ci. Cette option offre l’objectif de point de récupération (RPO) le plus faible, car la machine virtuelle créée après le basculement dispose de toutes les données qui ont été répliquées vers le service Site Recovery lorsque le basculement a été déclenché.
-    1.  **Dernier point dans le temps traité** : cette option permet de basculer toutes les machines virtuelles du plan de récupération vers le dernier point de récupération ayant déjà été traité par le service Site Recovery. Lorsque vous effectuez un test de basculement d’une machine virtuelle, la date et l’heure du dernier point de récupération traité sont également affichées. Si vous effectuez le basculement d’un plan de récupération, vous pouvez accéder à une machine virtuelle individuelle et consulter la vignette **Latest Recovery Points** (Derniers points de récupération) pour obtenir ces informations. Comme aucun temps n’est passé à traiter les données non traitées, cette option assure un basculement avec un objectif de délai récupération (RTO) faible.
-    1.  **Dernier point dans le temps cohérent de l’application** : cette option permet de basculer toutes les machines virtuelles du plan de récupération vers le dernier point de récupération cohérent d’application ayant déjà été traité par le service Site Recovery. Lorsque vous effectuez un test de basculement d’une machine virtuelle, la date et l’heure du dernier point de récupération cohérent d’application sont également affichées. Si vous effectuez le basculement d’un plan de récupération, vous pouvez accéder à une machine virtuelle individuelle et consulter la vignette **Latest Recovery Points** (Derniers points de récupération) pour obtenir ces informations.
-    1.  **Latest multi-VM processed** (Dernier point multimachine virtuelle traité) : cette option est disponible uniquement pour les plans de récupération qui incluent au moins une machine virtuelle avec la cohérence multimachine virtuelle activée. Les machines virtuelles appartenant à un groupe de réplication basculent vers le point de récupération multimachine virtuelle cohérent commun. Les autres machines virtuelles basculent vers leur dernier point de récupération traité.  
-    1.  **Latest multi-VM app-consistent** (Dernier point d’application multimachine virtuelle cohérent) : cette option est disponible uniquement pour les plans de récupération qui incluent au moins une machine virtuelle avec la cohérence multimachine virtuelle activée. Les machines virtuelles appartenant à un groupe de réplication basculent vers le dernier point de récupération d’application multimachine virtuelle cohérent commun. Les autres machines virtuelles basculent vers leur dernier point de récupération d’application cohérent.
-    1.  **Personnalisé** : si vous effectuez un test de basculement d’une machine virtuelle, vous pouvez utiliser cette option pour réaliser le basculement vers un point de récupération spécifique.
+2. Sur hello **basculement** écran, sélectionnez un **Point de récupération** toofailover à. Vous pouvez utiliser une des options suivantes de hello :
+    1.  **Dernière** (par défaut) : cette option traite tout d’abord toutes les données hello qui a été envoyé tooSite récupération service toocreate un point de récupération pour chaque ordinateur virtuel avant de les avoir basculé tooit. Cette option fournit hello plus bas RPO (Recovery Point Objective) en tant que hello virtuels créés après le basculement a toutes les données hello qui a été répliquées tooSite le service de récupération lorsque hello basculement a été déclenchée.
+    1.  **Dernier traitement**: cette option bascule toutes les machines virtuelles hello plan toohello dernière récupération du point de récupération qui a déjà été traitée par le service de récupération de Site. Lorsque vous effectuez un test de basculement d’un ordinateur virtuel, la date et heure du dernier point de récupération traité hello est également affiché. Si vous effectuez le basculement d’un plan de récupération, vous pouvez atteindre l’ordinateur virtuel de tooindividual et observez **des Points de récupération la plus récente** vignette tooget ces informations. Aucun temps n’est consacré à tooprocess hello des données non traitées, cette option fournit une option de basculement faible RTO (objectif de temps de récupération).
+    1.  **Dernière cohérentes au niveau application**: cette option bascule toutes les machines virtuelles hello plan toohello dernière application récupération cohérent du point de récupération qui a déjà été traitée par le service de récupération de Site. Lorsque vous effectuez un test de basculement d’un ordinateur virtuel, la date et heure du dernier point de récupération cohérents avec l’application hello est également affiché. Si vous effectuez le basculement d’un plan de récupération, vous pouvez atteindre l’ordinateur virtuel de tooindividual et observez **des Points de récupération la plus récente** vignette tooget ces informations.
+    1.  **Latest multi-VM processed** (Dernier point multimachine virtuelle traité) : cette option est disponible uniquement pour les plans de récupération qui incluent au moins une machine virtuelle avec la cohérence multimachine virtuelle activée. Machines virtuelles qui font partie d’une réplication groupe basculement toohello dernière courantes multi-VM récupération cohérent du point. Autres machines virtuelles basculement tootheir dernier traité point de récupération.  
+    1.  **Latest multi-VM app-consistent** (Dernier point d’application multimachine virtuelle cohérent) : cette option est disponible uniquement pour les plans de récupération qui incluent au moins une machine virtuelle avec la cohérence multimachine virtuelle activée. Machines virtuelles qui font partie d’une réplication de groupe basculement toohello commun multi-VM récupération cohérents avec les applications les plus récentes. Autres machines virtuelles basculement tootheir dernière cohérents avec les applications de points de récupération.
+    1.  **Personnalisé**: Si vous effectuez un test de basculement d’un ordinateur virtuel, vous pouvez ensuite utiliser ce point de récupération particulier option toofailover tooa.
 
     > [!NOTE]
-    > L’option permettant de choisir un point de récupération est disponible uniquement lorsque vous effectuez un basculement vers Azure.
+    > Hello option toochoose un point de récupération n’est disponible que lorsque vous basculez sur tooAzure.
     >
     >
 
 
-1. Si une partie des machines virtuelles concernées par le plan de récupération a été basculée au cours d’une exécution précédente et que ces machines sont maintenant actives sur l’emplacement source et cible, vous pouvez utiliser l’option **Changer de direction** pour choisir la direction du basculement.
-1. Si vous effectuez le basculement vers Azure et que la fonction de chiffrement des données est activée pour le cloud (s’applique uniquement lorsque les machines virtuelles Hyper-v sont protégées contre un serveur VMM), accédez à la zone **Clé de chiffrement** et sélectionnez le certificat émis lorsque vous avez activé le chiffrement des données pendant l’installation sur le serveur VMM.
-1. Sélectionnez **Arrêter la machine avant de commencer le basculement** si vous souhaitez que Site Recovery tente d’arrêter les machines virtuelles source avant de déclencher le basculement. Le basculement est effectué même en cas d’échec de l’arrêt.  
+1. Si certains des ordinateurs virtuels de hello dans le plan de récupération hello ont été basculés d’une exécution précédente et maintenant hello virtuels sont actifs sur les emplacements source et cible, vous pouvez utiliser **modifier la direction de** option direction hello toodecide le basculement hello doit se produire.
+1. Si vous avez basculé tooAzure et le chiffrement des données est activé pour le cloud hello (s’applique uniquement lorsque vous avez protégé des ordinateurs virtuels Hyper-v à partir d’un serveur VMM), dans **clé de chiffrement** certificat hello select qui a été émis quand vous activé le chiffrement des données pendant l’installation sur le serveur VMM de hello.
+1. Sélectionnez **arrêt de la machine avant de commencer le basculement** si vous souhaitez que la récupération de Site tooattempt toodo un arrêt des machines virtuelles source avant de déclencher hello basculement. Le basculement est effectué même en cas d’échec de l’arrêt.  
 
     > [!NOTE]
-    > Dans le cas de machines virtuelles Hyper-v, lorsque vous sélectionnez cette option, Site Recovery tente de synchroniser les données locales qui n’ont pas encore été envoyées au service avant de déclencher le basculement.
+    > En cas d’ordinateurs virtuels Hyper-v, cette option essaie également toosynchronize hello des données locales qui n’a pas encore été envoyées toohello service avant de déclencher le basculement de hello.
     >
     >
 
-1. Vous pouvez suivre la progression du basculement sur la page **Tâches**. Même si des erreurs se produisent lors d’un basculement non planifié, le plan de récupération s’exécute jusqu’à la fin.
-1. Après le basculement, validez la machine virtuelle en vous y connectant. Si vous souhaitez accéder à un autre point de récupération pour la machine virtuelle, utilisez l’option **Changer le point de récupération**.
-1. Si vous êtes satisfait de la machine vers laquelle est effectué le basculement, vous pouvez **Valider** le basculement. Cette opération supprime tous les points de récupération disponibles avec le service. Par ailleurs, l’option **Changer le point de récupération** n’est plus disponible.
+1. Vous pouvez suivre la progression du basculement hello sur hello **travaux** page. Même si des erreurs se produisent pendant un basculement non planifié, le plan de récupération hello s’exécute jusqu'à ce qu’elle est terminée.
+1. Après le basculement de hello, valider hello virtual machine en vous connectant à tooit. Si vous voulez toogo un autre point de récupération pour l’ordinateur virtuel de hello, vous pouvez ensuite utiliser **modifier le point de récupération** option.
+1. Une fois que vous êtes satisfait de hello a échoué sur l’ordinateur virtuel, vous pouvez **valider** hello de basculement. Cette opération supprime tous les points de récupération hello disponibles avec le service de hello et **modifier le point de récupération** option ne seront plus disponible.
 
 ## <a name="planned-failover"></a>Basculement planifié
-Outre la basculement,les machines virtuelles Hyper-V protégées à l’aide de Site Recovery prennent également en charge le **Basculement planifié**. Cette option de basculement évite toute perte de données. Lorsqu’un basculement planifié se déclenche, les machines virtuelles sources sont arrêtées, les données à synchroniser sont synchronisées, puis le basculement est effectué.
+Outre la basculement,les machines virtuelles Hyper-V protégées à l’aide de Site Recovery prennent également en charge le **Basculement planifié**. Cette option de basculement évite toute perte de données. Lorsqu’un basculement planifié est déclenché, tout d’abord hello source d’ordinateurs virtuels sont arrêtés, les données de salutation n’a encore toobe synchronisé est synchronisé et ensuite un basculement est déclenché.
 
 > [!NOTE]
-> Lorsque vous basculez des machines virtuelles Hyper-v d’un site local vers un autre site local, pour revenir au site local principal vous devez d’abord exécuter une **réplication inverse** de la machine virtuelle vers le site principal, puis déclencher un basculement. Si la machine virtuelle principale n’est pas disponible, avant de commencer la **réplication inversée** vous devez restaurez la machine virtuelle à partir d’une sauvegarde.   
+> Lorsque vous machines virtuelles de basculement Hyper-v à partir d’un local tooanother de site local site, toocome toohello arrière locale principale vous avez toofirst **réplication inverse** site précédent tooprimary de machine virtuelle hello et puis déclenchez un basculement. Si l’ordinateur virtuel principal hello n’est pas disponible, puis avant de démarrer trop**réplication inverse** vous avez toorestore hello virtual machine à partir d’une sauvegarde.   
 >
 >
 
@@ -76,18 +76,18 @@ Outre la basculement,les machines virtuelles Hyper-V protégées à l’aide de 
 
 Le déclenchement d’un basculement implique les étapes suivantes :
 
-1. Vérification des conditions requises : cette étape permet de vérifier que toutes les conditions requises pour le basculement sont satisfaites.
-1. Basculement : cette étape consiste à traiter les données et à les préparer pour les utiliser pour la création d’une machine virtuelle Azure. Si vous avez choisi le **dernier** point de récupération, cette étape crée un point de récupération à partir des données envoyées au service.
-1. Démarrer : cette étape crée une machine virtuelle Azure à l’aide des données traitées à l’étape précédente.
+1. Vérification des conditions requises : cette étape s’assure que toutes les conditions requises pour le basculement sont satisfaites.
+1. Basculement : Cette étape traite les données de hello et rend prêt afin qu’une machine virtuelle Azure peut être créée à partir d’elle. Si vous avez choisi **dernière** point de récupération, cette étape crée un point de récupération à partir des données hello qui a été envoyées toohello service.
+1. Démarrer : Cette étape crée une machine virtuelle Azure à l’aide de données de hello traitées à l’étape précédente de hello.
 
 > [!WARNING]
-> **N’annulez pas un basculement en cours** : avant le démarrage d’un basculement, la réplication de la machine virtuelle est arrêtée. Si vous **annulez** un travail en cours, le basculement s’arrête, mais la réplication de la machine virtuelle ne démarre pas. Il n’est plus possible ensuite de démarrer à nouveau la réplication.
+> **Ne pas annuler une en cours basculement**: avant de démarrer le basculement, la réplication pour la machine virtuelle de hello est arrêtée. Si vous **Annuler** un travail de progression, s’arrête le basculement mais la machine virtuelle de hello ne démarrera pas tooreplicate. Il n’est plus possible ensuite de démarrer à nouveau la réplication.
 >
 >
 
-## <a name="time-taken-for-failover-to-azure"></a>Durée du basculement vers Azure
+## <a name="time-taken-for-failover-tooazure"></a>Temps nécessaire pour le basculement tooAzure
 
-Dans certains cas, le basculement des machines virtuelles nécessite une étape supplémentaire intermédiaire qui dure généralement de 8 à 10 minutes. Il s’agit des cas suivants :
+Dans certains cas, le basculement d’ordinateurs virtuels nécessite une étape supplémentaire intermédiaire qui prend généralement environ 8 toocomplete de minutes too10. Il s’agit des cas suivants :
 
 * Machines virtuelles VMware utilisant une version antérieure à la 9.8 pour le service de mobilité
 * Serveurs physiques 
@@ -101,23 +101,23 @@ Dans certains cas, le basculement des machines virtuelles nécessite une étape 
     * atapi
 * Machines virtuelles VMware qui n’ont pas de service DHCP activé, que vous utilisiez des adresses IP statiques ou DHCP
 
-Dans tous les autres cas, cette étape intermédiaire n’est pas nécessaire et le temps nécessaire au basculement est nettement plus faible. 
+Bonjour tous les autres cas cette étape intermédiaire n’est pas obligatoire et durée hello pour le basculement hello est nettement plus faible. 
 
 
 
 
 
 ## <a name="using-scripts-in-failover"></a>Utilisation de scripts lors du basculement
-Si vous le souhaitez, vous pouvez automatiser certaines actions pendant l’exécution d’un basculement. Pour ce faire, vous pouvez utiliser des scripts ou des [runbooks Azure Automation](site-recovery-runbook-automation.md) dans les [plans de récupération](site-recovery-create-recovery-plans.md).
+Vous souhaiterez peut-être tooautomate certaines actions tout en effectuant un basculement. Vous pouvez utiliser des scripts ou [runbooks Azure automation](site-recovery-runbook-automation.md) dans [plans de récupération](site-recovery-create-recovery-plans.md) toodo qui.
 
-## <a name="other-considerations"></a>Autres considérations
-* **Lettre de lecteur** : pour conserver la lettre de lecteur sur les machines virtuelles après basculement, vous pouvez définir la **stratégie SAN** de la machine virtuelle sur **Activé**. [En savoir plus](https://support.microsoft.com/en-us/help/3031135/how-to-preserve-the-drive-letter-for-protected-virtual-machines-that-are-failed-over-or-migrated-to-azure).
+## <a name="other-considerations"></a>Autres points à considérer
+* **Lettre de lecteur** : tooretain lettre de lecteur hello sur des machines virtuelles après basculement, vous pouvez définir hello **stratégie SAN** pour hello virtual machine trop**OnlineAll**. [En savoir plus](https://support.microsoft.com/en-us/help/3031135/how-to-preserve-the-drive-letter-for-protected-virtual-machines-that-are-failed-over-or-migrated-to-azure).
 
 
 
 ## <a name="next-steps"></a>Étapes suivantes
-Une fois le basculement des machines virtuelles effectué et le centre de données local disponible, vous devez [**à nouveau protéger**](site-recovery-how-to-reprotect.md) les machines virtuelles VMware dans le centre de données local.
+Une fois que vous n’avez pas sur les ordinateurs virtuels et de centre de données local hello est disponible, vous devez [ **reprotéger** ](site-recovery-how-to-reprotect.md) les ordinateurs virtuels VMware sauvegarder le centre de données local toohello.
 
-Utilisez l’option [**Basculement planifié**](site-recovery-failback-from-azure-to-hyper-v.md) pour **restaurer automatiquement** les machines virtuelles Hyper-v en local à partir d’Azure.
+Utilisez [ **le basculement planifié** ](site-recovery-failback-from-azure-to-hyper-v.md) option trop**la restauration automatique** ordinateurs virtuels Hyper-v de nouveau tooon local Azure.
 
-Si vous avez basculé une machine virtuelle Hyper-v vers un autre centre de données local géré par un serveur VMM et que le centre de données principal est disponible, utilisez l’option **Réplication inverse** pour redémarrer la réplication vers le centre de données principal.
+Si vous n’avez pas sur une Hyper-v virtual machine tooanother des données locales center géré par un centre de données principal de serveur et hello VMM est disponible, puis utilisez **la réplication inverse** option toostart hello réplication différé toohello Centre de données principal.

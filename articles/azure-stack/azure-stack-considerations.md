@@ -1,6 +1,6 @@
 ---
-title: "Principales différences entre Azure et Azure Stack lorsque vous utilisez des services et générez des applications | Microsoft Docs"
-description: "Ce que vous devez savoir quand vous utilisez des services ou générez des applications pour Azure Stack."
+title: "aaaKey les différences entre Azure et Azure pile lorsque vous utilisez les services et créez des applications | Documents Microsoft"
+description: "Ce que vous devez tooknow lorsque vous utilisez des services ou créez des applications pour Azure pile."
 services: azure-stack
 documentationcenter: 
 author: twooley
@@ -14,46 +14,46 @@ ms.devlang: na
 ms.topic: article
 ms.date: 8/2/2017
 ms.author: twooley
-ms.openlocfilehash: 0567811e36102177af9f9c339587b251e04a1ff5
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: e302f20aeb3c74f944cb3daaee7e0db073ab5bfa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="key-considerations-using-services-or-building-apps-for-azure-stack"></a>Considérations importantes : utilisation de services ou génération d’applications pour Azure Stack
 
-Lorsque vous utilisez des services ou générez des applications pour Azure Stack, vous devez comprendre qu’il existe des différences entre Azure Stack et Azure. Cet article fournit une vue d’ensemble des considérations importantes lorsque vous ciblez Azure Stack comme votre environnement de développement cloud hybride.
+Lorsque vous utilisez des services ou générez des applications pour Azure Stack, vous devez comprendre qu’il existe des différences entre Azure Stack et Azure. Cet article fournit des considérations relatives à la clé par une vue d’ensemble de hello lorsque vous ciblez la pile de Azure comme environnement de développement de cloud hybride.
 
 ## <a name="overview"></a>Vue d'ensemble
 
-Azure Stack est une plateforme cloud hybride qui vous permet d’utiliser les services Azure à partir du centre de données de votre entreprise ou de votre fournisseur de services. En tant que développeur, vous pouvez générer des applications qui s’exécutent sur Azure Stack. Vous pouvez ensuite déployer ces applications sur Azure Stack, sur Azure ou vous pouvez générer des applications réellement hybrides qui tirent parti de la connectivité entre un cloud Azure Stack et Azure.
+Azure Stack est une plateforme cloud hybride qui vous permet d’utiliser les services Azure à partir du centre de données de votre entreprise ou de votre fournisseur de services. En tant que développeur, vous pouvez générer des applications qui s’exécutent sur Azure Stack. Vous pouvez ensuite déployer ces tooAzure applications pile, tooAzure, ou vous pouvez générer réellement les applications hybrides qui tirent parti de connectivité hello entre un cloud de la pile d’Azure et le Azure.
 
-Votre administrateur ou fournisseur de services cloud Azure Stack vous indiquera les services que vous pouvez utiliser et comment obtenir un support technique. Il propose ces services par le biais de ses offres et plans personnalisés.
+Votre administrateur du cloud Azure pile ou un fournisseur de services sera vous permettent de connaître les services qui sont disponibles pour vous toouse, et comment tooget prennent en charge. Il propose ces services par le biais de ses offres et plans personnalisés.
 
-Le contenu technique Azure suppose que les applications sont développées pour un service Azure au lieu d’Azure Stack. Lorsque vous générez et déployez des applications sur Azure Stack, vous devez comprendre les principales différences, telles que les suivantes :
+Hello contenu technique Azure suppose que les applications sont développées pour un service Azure au lieu de la pile de Azure. Lorsque vous générez et déployez des applications tooAzure pile, vous devez comprendre les différences clés, telles que :
 
-* Azure Stack fournit un sous-ensemble des services et fonctionnalités qui sont disponibles dans Azure.
-* Votre entreprise ou fournisseur de services peut choisir les services à proposer. Cela inclut des services ou des applications personnalisés.
-* Vous devez utiliser les points de terminaison corrects spécifiques à Azure Stack (par exemple, les URL de l’adresse du portail et le point de terminaison Azure Resource Manager).
+* Pile Azure fournit un sous-ensemble de services de hello et les fonctionnalités qui sont disponibles dans Azure.
+* Votre entreprise ou fournisseur de services permettre choisir les services qu’ils souhaitent toooffer. Cela inclut des services ou des applications personnalisés.
+* Vous devez utiliser hello corriger les points de terminaison Azure pile spécifique (par exemple, les URL de hello pour l’adresse de portail hello et le point de terminaison hello Azure Resource Manager).
 * Vous devez utiliser des versions de PowerShell et d’API qui sont prises en charge par Azure Stack. Ceci permet de s’assurer que vos applications fonctionnent dans Azure Stack et Azure.
 
 ## <a name="cheat-sheet-high-level-differences"></a>Aide-mémoire : principales différences
 
-Le tableau suivant décrit les principales différences entre Azure Stack et Azure. Gardez-les à l’esprit lorsque vous développez pour Azure Stack ou utilisez des services Azure Stack.
+Hello tableau suivant décrit les différences de haut niveau hello entre la pile d’Azure et Azure. Gardez-les à l’esprit lorsque vous développez pour Azure Stack ou utilisez des services Azure Stack.
 
 | Domaine | Azure (global) | Azure Stack |
 | -------- | ------------- | ----------|
 | Qui est en charge de son fonctionnement ? | Microsoft | Votre entreprise ou fournisseur de services.|
-| Qui contactez-vous pour obtenir un support ? | Microsoft | Pour la prise en charge du Kit de développement Azure Stack, visitez les [forums Microsoft](https://social.msdn.microsoft.com/Forums/home?forum=azurestack). Étant donné que le kit de développement est un environnement d’évaluation, il n’y a aucune prise en charge officielle de la part des services clients Microsoft.
-| Services disponibles | Consultez la liste des [produits Azure](https://azure.microsoft.com/services/?b=17.04b). Les services disponibles varient selon la région Azure. | Azure Stack prend en charge un sous-ensemble des services Azure. <br><br>Les services réels varient en fonction de ce que votre entreprise ou fournisseur de services choisit d’offrir.
-| Point de terminaison Azure Resource Manager* | https://management.azure.com | Pour le kit de développement : https://management.local.azurestack.external
-| URL du portail* | [https://portal.azure.com](https://portal.azure.com) | Pour le kit de développement : https://portal.local.azurestack.external
-| Région | Vous pouvez sélectionner la région où effectuer le déploiement. | Pour le kit de développement, la région est toujours définie sur **local**. <br><br>Le kit de développement ne prend en charge qu’une seule région.
-| Groupes de ressources | Un groupe de ressources peut s’étendre sur plusieurs régions. | Pour le kit de développement, il n’y a qu’une seule région.
-|Espaces de noms, types de ressources et versions d’API pris en charge | La dernière version (ou les versions antérieures qui ne sont pas encore obsolètes). | Azure Stack prend en charge des versions spécifiques. Consultez la section « Configuration requise pour la version » de cet article.
+| Qui contactez-vous pour obtenir un support ? | Microsoft | Pour la prise en charge du Kit de développement de pile Azure, visitez hello [forums Microsoft](https://social.msdn.microsoft.com/Forums/home?forum=azurestack). Kit de développement hello étant un environnement d’évaluation, il n’existe aucune prise en charge officielle proposé par Microsoft prend en charge les Services (technique).
+| Services disponibles | Consultez la liste des hello [produits Azure](https://azure.microsoft.com/services/?b=17.04b). Les services disponibles varient selon la région Azure. | Azure Stack prend en charge une partie des services Azure. <br><br>Les services réels varient en fonction de ce que votre entreprise ou fournisseur de services choisit toooffer.
+| Point de terminaison Azure Resource Manager* | https://management.azure.com | Pour le kit de développement hello : https://management.local.azurestack.external
+| URL du portail* | [https://portal.azure.com](https://portal.azure.com) | Pour le kit de développement hello : https://portal.local.azurestack.external
+| Région | Vous pouvez sélectionner la région toodeploy à. | Pour le kit de développement hello région sera toujours **local**. <br><br>kit de développement Hello prend en charge qu’une seule région.
+| Groupes de ressources | Un groupe de ressources peut s’étendre sur plusieurs régions. | Pour le kit de développement hello n'est qu’une seule région.
+|Espaces de noms, types de ressources et versions d’API pris en charge | Hello plus récente (ou versions antérieures qui ne sont pas encore déconseillé). | Azure Stack prend en charge des versions spécifiques. Voir hello « Configuration requise » de cet article.
 | | |
 
-*Si vous êtes un opérateur cloud Azure Stack, consultez [Utilisation des portails administrateur et utilisateur dans Azure Stack](azure-stack-manage-portals.md) pour obtenir plus d’informations sur le portail administrateur et les URL de point de terminaison de Resource Manager administrateur.
+* Si vous êtes un opérateur cloud de pile d’Azure, consultez [à l’aide des portails d’administrateur et utilisateur hello dans Azure pile](azure-stack-manage-portals.md) pour plus d’informations sur les URL par administrateur hello portail et l’administrateur de point de terminaison de gestionnaire de ressources.
 
 ## <a name="helpful-tools-and-best-practices"></a>Outils utiles et meilleures pratiques
  
@@ -61,21 +61,21 @@ Le tableau suivant décrit les principales différences entre Azure Stack et Azu
 
 | Recommandation | Références | 
 | -------- | ------------- | 
-| Installez les outils appropriés sur votre station de travail du développeur. | - [Installer PowerShell](azure-stack-powershell-install.md)<br>- [Télécharger des outils](azure-stack-powershell-download.md)<br>- [Configurer PowerShell](azure-stack-powershell-configure-user.md)<br>- [Installer Visual Studio](azure-stack-install-visual-studio.md) 
-| Passez en revue les informations relatives aux éléments suivants :<br>- Considérations relatives au modèle Azure Resource Manager<br>- Comment trouver les modèles de démarrage rapide<br>- Utiliser un module de stratégie pour vous aider à utiliser Azure pour le développement pour Azure Stack | [Développer pour Azure Stack](azure-stack-developer.md) | 
-| Passez en revue et appliquez les meilleures pratiques relatives aux modèles. | [Modèles de démarrage rapide Resource Manager](https://github.com/Azure/azure-quickstart-templates/blob/master/1-CONTRIBUTION-GUIDE/best-practices.md#best-practices)
+| Installez les outils appropriés hello sur votre station de travail du développeur. | - [Installer PowerShell](azure-stack-powershell-install.md)<br>- [Télécharger des outils](azure-stack-powershell-download.md)<br>- [Configurer PowerShell](azure-stack-powershell-configure-user.md)<br>- [Installer Visual Studio](azure-stack-install-visual-studio.md) 
+| Passez en revue les informations sur les éléments suivants de hello :<br>- Considérations relatives au modèle Azure Resource Manager<br>-Comment toofind les modèles de démarrage rapide<br>-Utilisez un toohelp de module de stratégie vous utilisez Azure toodevelop pour la pile de Azure | [Développer pour Azure Stack](azure-stack-developer.md) | 
+| Passez en revue et suivre les meilleures pratiques de hello pour les modèles. | [Modèles de démarrage rapide Resource Manager](https://github.com/Azure/azure-quickstart-templates/blob/master/1-CONTRIBUTION-GUIDE/best-practices.md#best-practices)
 | | |
 
 ## <a name="version-requirements"></a>Configuration requise pour la version
 
-Azure Stack prend en charge des versions spécifiques d’Azure PowerShell et des API de service Azure. Vous devez utiliser les versions prises en charge pour vous assurer que votre application peut être déployée vers Azure Stack et Azure.
+Azure Stack prend en charge des versions spécifiques d’Azure PowerShell et des API de service Azure. Vous devez utiliser tooensure versions prises en charge que votre application peut être déployée tooboth Azure pile et tooAzure.
 
-Pour vous assurer que vous utilisez une version appropriée d’Azure PowerShell, utilisez les [profils de version d’API](azure-stack-version-profiles.md). Pour connaître le profil de version d’API le plus récent que vous pouvez utiliser, vous devez savoir quel build Azure Stack vous utilisez. Contactez votre administrateur Azure Stack pour obtenir ces informations.
+toomake que que vous utilisez une version appropriée de Azure PowerShell, utilisez [profils de version d’API](azure-stack-version-profiles.md). toodetermine hello API version profil le plus récent que vous pouvez utiliser, vous devez savoir quelle build de pile de Azure que vous utilisez. Contactez votre administrateur Azure Stack pour obtenir ces informations.
 
 >[!NOTE]
- Si vous utilisez le Kit de développement Azure Stack, et que vous disposez d’un accès administratif, consultez la section « Déterminer la version actuelle » sous [Gérer les mises à jour](https://docs.microsoft.com/azure/azure-stack/azure-stack-updates#determine-the-current-version) pour connaître le build Azure Stack.
+ Si vous utilisez hello Kit de développement de pile Azure, et vous disposez d’un accès administratif, consultez la section de « Déterminer la version actuelle de hello » de hello de [gérer les mises à jour](https://docs.microsoft.com/azure/azure-stack/azure-stack-updates#determine-the-current-version) toodetermine hello build de la pile de Azure.
 
-Pour les autres API, exécutez la commande PowerShell suivante pour afficher les espaces de noms, les types de ressources et les versions d’API qui sont pris en charge dans votre abonnement Azure Stack. Notez que des différences peuvent subsister au niveau de la propriété. (Pour que cette commande fonctionne, vous devez avoir déjà [installé](azure-stack-powershell-install.md) et [configuré](azure-stack-powershell-configure-user.md) PowerShell pour un environnement Azure Stack. Vous devez également disposer d’un abonnement à une offre Azure Stack.)
+Pour les autres API, exécutez hello suivant PowerShell commande toooutput hello espaces de noms, types de ressources et les versions d’API qui sont pris en charge dans votre abonnement Azure pile. Notez que des différences peuvent subsister au niveau de la propriété. (Pour cette commande toowork, vous devez avoir déjà [installé](azure-stack-powershell-install.md) et [configuré](azure-stack-powershell-configure-user.md) PowerShell pour un environnement de la pile de Azure. Vous devez également avoir une offre d’abonnement tooan pile d’Azure.)
 
  ```powershell
 Get-AzureRmResourceProvider | Select ProviderNamespace -Expand ResourceTypes | Select * -Expand ApiVersions | `

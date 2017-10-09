@@ -1,5 +1,5 @@
 ---
-title: "Exemple de script d’interface CLI Azure - Créer un cluster ACS Linux Kubernetes | Microsoft Docs"
+title: "aaaAzure exemple de Script CLI - créer le Cluster ACS Linux Kubernetes | Documents Microsoft"
 description: "Exemple de script d’interface CLI Azure - Créer un cluster ACS Linux Kubernetes"
 services: container-service
 documentationcenter: 
@@ -16,11 +16,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/30/2017
 ms.author: nepeters
-ms.openlocfilehash: 46bc37ab9949d070d19a3d8946fd5b00acf7f5d9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 811929eea4fdf62d8c3de54e81cbc7f6cda858c8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-azure-container-service-kubernetes-linux-cluster"></a>Créer un cluster Azure Container Service Kubernetes Linux
 
@@ -44,7 +44,7 @@ az acs create \
 
 ## <a name="clean-up-deployment"></a>Nettoyer le déploiement 
 
-Exécutez la commande suivante pour supprimer le groupe de ressources, la machine virtuelle et toutes les ressources associées.
+Exécutez hello suivant du groupe de ressources de commande tooremove hello, machine virtuelle et toutes les ressources.
 
 ```azurecli
 az group delete --name myResourceGroup
@@ -52,7 +52,7 @@ az group delete --name myResourceGroup
 
 ## <a name="script-explanation"></a>Explication du script
 
-Ce script a recours aux commandes suivantes pour créer le déploiement. Chaque élément du tableau renvoie à une documentation spécifique.
+Ce script utilise hello après le déploiement de commandes toocreate hello. Chaque élément de la documentation spécifique du toocommand liens table hello.
 
 | Commande | Remarques |
 |---|---|
@@ -61,7 +61,7 @@ Ce script a recours aux commandes suivantes pour créer le déploiement. Chaque 
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Pour plus d’informations sur l’interface Azure CLI, consultez la [documentation relative à l’interface Azure CLI](https://docs.microsoft.com/cli/azure/overview).
+Pour plus d’informations sur hello CLI d’Azure, consultez [documentation relative à Azure CLI](https://docs.microsoft.com/cli/azure/overview).
 
-Vous trouverez des exemples supplémentaires de scripts CLI Azure Container Service dans la [documentation sur Azure Container Service](../cli-samples.md).
+Vous trouverez des exemples supplémentaires de script CLI de Service de conteneur Azure Bonjour [documentation sur le Service de conteneur Azure](../cli-samples.md).
 

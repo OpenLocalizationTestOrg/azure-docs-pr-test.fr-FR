@@ -1,5 +1,5 @@
 ---
-title: Exemples Azure PowerShell - App Service | Microsoft Docs
+title: "aaaAzure exemples PowerShell - Service d’applications | Documents Microsoft"
 description: Exemples Azure PowerShell - App Service
 services: app-service
 documentationcenter: app-service
@@ -16,15 +16,15 @@ ms.workload: app-service
 ms.date: 03/08/2017
 ms.author: cfowler
 ms.custom: mvc
-ms.openlocfilehash: 3254fdd57cfcd170f22374c1e3b058e6081d8e8e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b7b4a030364f797195522c56fbae5b7f530d4d1b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-powershell-samples"></a>Exemples Azure PowerShell
 
-Le tableau suivant contient des liens vers des scripts Bash créés à l’aide d’Azure PowerShell.
+Hello tableau suivant inclut des liens toobash scripts créés à l’aide de hello Azure PowerShell.
 
 | | |
 |-|-|
@@ -33,16 +33,16 @@ Le tableau suivant contient des liens vers des scripts Bash créés à l’aide 
 | [Créer une application web avec un déploiement continu à partir de GitHub](./scripts/app-service-powershell-continuous-deployment-github.md?toc=%2fpowershell%2fmodule%2ftoc.json)| Crée une application web Azure qui déploie du code en continu à partir de GitHub. |
 | [Créer une application web et déployer du code avec FTP](./scripts/app-service-powershell-deploy-ftp.md?toc=%2fpowershell%2fmodule%2ftoc.json) | Crée une application web Azure et télécharge des fichiers à partir d’un répertoire local via FTP. |
 | [Créer une application web et déployer le code à partir d’un référentiel Git](./scripts/app-service-powershell-deploy-local-git.md?toc=%2fpowershell%2fmodule%2ftoc.json) | Crée une application web Azure et configure la transmission de code de type push à partir d’un référentiel Git local. |
-| [Créer une application web et déployer le code dans un environnement intermédiaire](./scripts/app-service-powershell-deploy-staging-environment.md?toc=%2fpowershell%2fmodule%2ftoc.json) | Crée une application web Azure avec un emplacement de déploiement pour les modifications de code intermédiaires. |
+| [Créer une application web et de déployer tooa code environnement intermédiaire](./scripts/app-service-powershell-deploy-staging-environment.md?toc=%2fpowershell%2fmodule%2ftoc.json) | Crée une application web Azure avec un emplacement de déploiement pour les modifications de code intermédiaires. |
 |**Configurer l’application**||
-| [Mapper un domaine personnalisé à une application web](./scripts/app-service-powershell-configure-custom-domain.md?toc=%2fpowershell%2fmodule%2ftoc.json)| Crée une application web Azure et mappe un nom de domaine personnalisé. |
-| [Lier un certificat SSL personnalisé à une application web](./scripts/app-service-powershell-configure-ssl-certificate.md?toc=%2fpowershell%2fmodule%2ftoc.json)| Crée une application web Azure et lie le certificat SSL d’un nom de domaine personnalisé à celle-ci. |
+| [Mapper une domaine personnalisé tooa l’application web](./scripts/app-service-powershell-configure-custom-domain.md?toc=%2fpowershell%2fmodule%2ftoc.json)| Crée une application web Azure et mappe un tooit de nom de domaine personnalisé. |
+| [Lier une application du web tooa de certificat SSL personnalisée](./scripts/app-service-powershell-configure-ssl-certificate.md?toc=%2fpowershell%2fmodule%2ftoc.json)| Crée une application web Azure et lie le certificat SSL de hello d’un tooit de nom de domaine personnalisé. |
 |**Mettre à l’échelle une application**||
 | [Mettre à l’échelle une application web manuellement](./scripts/app-service-powershell-scale-manual.md?toc=%2fpowershell%2fmodule%2ftoc.json) | Crée une application web Azure et la met à l’échelle entre 2 instances. |
 | [Mettre à l’échelle une application web dans le monde entier avec une architecture haute disponibilité](./scripts/app-service-powershell-scale-high-availability.md?toc=%2fpowershell%2fmodule%2ftoc.json) | Crée deux applications web Azure dans deux régions géographiques différentes et les rend disponibles par le biais d’un point de terminaison unique à l’aide d’Azure Traffic Manager. |
-|**Connecter l’application aux ressources**||
-| [Connecter une application web à une instance SQL Database](./scripts/app-service-powershell-connect-to-sql.md?toc=%2fpowershell%2fmodule%2ftoc.json)| Crée une application web Azure et une instance SQL Database, puis ajoute la chaîne de connexion de base de données aux paramètres d’application. |
-| [Connecter une application web à un compte de stockage](./scripts/app-service-powershell-connect-to-storage.md?toc=%2fpowershell%2fmodule%2ftoc.json)| Crée une application web Azure et un compte de stockage, puis ajoute la chaîne de connexion de stockage aux paramètres d’application. |
+|**Se connecter tooresources d’application**||
+| [Se connecter à un tooa d’application web de la base de données SQL](./scripts/app-service-powershell-connect-to-sql.md?toc=%2fpowershell%2fmodule%2ftoc.json)| Crée une application web Azure et une base de données SQL, puis ajoute les paramètres de l’application hello de base de données connexion chaîne toohello. |
+| [Se connecter à un compte de stockage tooa application web](./scripts/app-service-powershell-connect-to-storage.md?toc=%2fpowershell%2fmodule%2ftoc.json)| Crée une application web Azure et un compte de stockage, puis ajoute les paramètres de l’application hello stockage connexion chaîne toohello. |
 |**Surveiller l’application**||
-| [Analyser une application web avec les journaux de serveur web](./scripts/app-service-powershell-monitor.md?toc=%2fpowershell%2fmodule%2ftoc.json) | Crée une application web Azure, active sa journalisation et télécharge les journaux sur votre ordinateur local. |
+| [Analyser une application web avec les journaux de serveur web](./scripts/app-service-powershell-monitor.md?toc=%2fpowershell%2fmodule%2ftoc.json) | Crée une application web Azure, Active la journalisation pour elle et télécharge l’ordinateur local de hello journaux tooyour. |
 | | |

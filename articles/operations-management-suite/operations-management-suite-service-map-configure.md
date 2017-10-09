@@ -1,6 +1,6 @@
 ---
-title: Configurer Service Map dans Operations Management Suite | Microsoft Docs
-description: "Carte de service est une solution OMS (Operations Management Suite) qui détecte automatiquement les composants d’application sur les systèmes Windows et Linux et mappe la communication entre les services. Cet article fournit des informations sur le déploiement de Carte de service dans votre environnement et son utilisation dans divers scénarios."
+title: aaaConfigure carte de Service dans Operations Management Suite | Documents Microsoft
+description: "Carte de service est une solution de Operations Management Suite qui découvre automatiquement les composants de l’application sur Windows et cartes et les systèmes Linux hello la communication entre les services. Cet article fournit des informations sur le déploiement de Service Map dans votre environnement et son utilisation dans divers scénarios."
 services: operations-management-suite
 documentationcenter: 
 author: daveirwin1
@@ -14,16 +14,16 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 11/18/2016
 ms.author: daseidma;bwren;dairwin
-ms.openlocfilehash: 0da0231f1a6c01ddd95ce7872e0e4aa47dc61f1b
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 3127f4440f2886370f8ff617c405c6d70a926eb8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-service-map-in-operations-management-suite"></a>Configurer Service Map dans Operations Management Suite
-Carte de service détecte automatiquement les composants d’application sur les systèmes Windows et Linux et mappe la communication entre les services. Cette solution permet d’afficher les serveurs comme on se les représente, c’est-à-dire comme des systèmes interconnectés qui fournissent des services critiques. Service Map affiche les connexions entre les serveurs, les processus et les ports sur n’importe quelle architecture connectée par TCP, sans configuration requise autre que l’installation d’un agent.
+Carte de service découvre automatiquement les composants de l’application sur les systèmes Windows et Linux et mappages hello la communication entre les services. Vous pouvez l’utiliser tooview vos serveurs en tant que vous les--considérer comme des réseaux interconnectés qui fournissent des services critiques. Service Map affiche les connexions entre les serveurs, les processus et les ports sur n’importe quelle architecture connectée par TCP, sans configuration requise autre que l’installation d’un agent.
 
-Cet article décrit en détail la configuration de Carte de service et de l’intégration des agents. Pour plus d’informations sur l’utilisation de Service Map, consultez [Utiliser la solution Service Map dans Operations Management Suite](operations-management-suite-service-map.md).
+Cet article décrit les détails de hello de configuration des agents de carte de Service et l’intégration. Pour plus d’informations sur l’utilisation de carte de Service, consultez [utiliser des solutions de carte de Service hello dans Operations Management Suite](operations-management-suite-service-map.md).
 
 ## <a name="dependency-agent-downloads"></a>Téléchargements de l’agent de dépendances
 | Fichier | SE | Version | SHA-256 |
@@ -33,86 +33,86 @@ Cet article décrit en détail la configuration de Carte de service et de l’in
 
 
 ## <a name="connected-sources"></a>Sources connectées
-Carte de service obtient ses données à partir de l’agent de dépendances Microsoft. L’agent de dépendances dépend de l’agent OMS pour ses connexions à Operations Management Suite. Cela signifie qu’un serveur doit disposer de l’agent OMS installé et configuré avant que l’agent de dépendances puisse être installé. Le tableau suivant décrit les sources connectées prises en charge par la solution Service Map.
+Carte de service obtient ses données à partir de hello Agent de dépendances Microsoft. Hello Agent de dépendances dépend hello Agent OMS pour son tooOperations connexions Management Suite. Cela signifie qu’un serveur doit avoir hello OMS Agent installé et configuré le premier, puis hello que dépendance Agent peut être installé. Hello tableau suivant décrit les sources de hello connecté qui prend en charge des solutions de carte de Service hello.
 
 | Source connectée | Pris en charge | Description |
 |:--|:--|:--|
-| Agents Windows | Oui | Carte de service analyse et collecte des données à partir des ordinateurs agents Windows. <br><br>Outre [l’agent OMS](../log-analytics/log-analytics-windows-agents.md), les agents Windows nécessitent l’agent de dépendances Microsoft. Pour obtenir la liste complète des versions des systèmes d’exploitation, consultez la page [Systèmes d’exploitation pris en charge](#supported-operating-systems). |
-| Agents Linux | Oui | Carte de service analyse et collecte des données à partir des ordinateurs agents Linux. <br><br>Outre [l’agent OMS](../log-analytics/log-analytics-linux-agents.md), les agents Linux nécessitent l’agent de dépendances Microsoft. Pour obtenir la liste complète des versions des systèmes d’exploitation, consultez la page [Systèmes d’exploitation pris en charge](#supported-operating-systems). |
-| Groupe d’administration Microsoft System Center Operations Manager | Oui | Service Map analyse et collecte des données provenant des agents Windows et Linux dans un [groupe d’administration System Center Operations Manager](../log-analytics/log-analytics-om-agents.md) connecté. <br><br>Une connexion directe entre l’ordinateur agent System Center Operations Manager et Operations Management Suite est requise. Les données sont transférées du groupe d’administration au référentiel Operations Management Suite.|
-| Compte Azure Storage | Non | Service Map collecte des données provenant des ordinateurs agents. Aucune donnée n’est donc recueillie à partir du Stockage Azure. |
+| Agents Windows | Oui | Carte de service analyse et collecte des données à partir des ordinateurs agents Windows. <br><br>En outre toohello [Agent OMS](../log-analytics/log-analytics-windows-agents.md), agents Windows nécessitent hello Agent de dépendances Microsoft. Consultez hello [prise en charge des systèmes d’exploitation](#supported-operating-systems) pour une liste complète des versions de système d’exploitation. |
+| Agents Linux | Oui | Carte de service analyse et collecte des données à partir des ordinateurs agents Linux. <br><br>En outre toohello [Agent OMS](../log-analytics/log-analytics-linux-agents.md), agents Linux nécessitent hello Agent de dépendances Microsoft. Consultez hello [prise en charge des systèmes d’exploitation](#supported-operating-systems) pour une liste complète des versions de système d’exploitation. |
+| Groupe d’administration Microsoft System Center Operations Manager | Oui | Service Map analyse et collecte des données provenant des agents Windows et Linux dans un [groupe d’administration System Center Operations Manager](../log-analytics/log-analytics-om-agents.md) connecté. <br><br>Une connexion directe à partir de hello System Center Operations Manager agent ordinateur tooOperations Management Suite est requis. Données sont transférées à partir du référentiel de hello gestion groupe toohello Operations Management Suite.|
+| Compte Azure Storage | Non | Carte de service collecte des données à partir d’ordinateurs de l’agent, il n’existe pas de données à partir de celui-ci toocollect depuis le stockage Azure. |
 
 Service Map prend uniquement en charge les plateformes 64 bits.
 
-Sous Windows, Microsoft Monitoring Agent (MMA) est utilisé à la fois par System Center Operations Manager et par Operations Management Suite pour collecter et envoyer des données d’analyse. (Cet agent est nommé Agent System Center Operations Manager, Agent OMS, Agent Log Analytics, MMA ou Agent direct, en fonction du contexte.) System Center Operations Manager et Operations Management Suite fournissent différentes versions prêtes à l’emploi de MMA. Les deux versions peuvent envoyer leurs rapports à System Center Operations Manager, à Operations Management Suite ou aux deux.  
+Sous Windows, hello Microsoft Monitoring Agent (MMA) est utilisé par System Center Operations Manager et Operations Management Suite toogather et envoi de données d’analyse. (Cet agent est appelé hello Agent System Center Operations Manager, OMS Agent, l’Agent Analytique de journal, MMA ou Agent Direct, selon le contexte de hello.) System Center Operations Manager et Operations Management Suite fournissent des versions de zones hors de-hello différente de hello MMA. Ces versions de chaque rapport tooSystem Center Operations Manager, tooOperations Management Suite ou tooboth.  
 
-Sous Linux, l’agent OMS pour Linux collecte et envoie les données d’analyse à Operations Management Suite. Vous pouvez utiliser Service Map sur des serveurs équipés d’agents directs OMS ou sur des serveurs rattachés à Operations Management Suite au moyen de groupes d’administration System Center Operations Manager.  
+Sur Linux, hello Agent OMS pour Linux collecte et envoie analyse les données tooOperations Management Suite. Vous pouvez utiliser la carte de Service sur les serveurs dotés d’Agents Direct OMS ou sur des serveurs qui sont attachées tooOperations Management Suite via des groupes d’administration System Center Operations Manager.  
 
-Dans cet article, nous ferons référence à tous les agents (Linux ou Windows, connectés à un groupe d’administration System Center Operations Manager ou directement à Operations Management Suite) sous le terme d’« agents OMS ». Nous n’utiliserons le nom de déploiement propre à l’agent que si le contexte l’impose.
+Dans cet article, nous l’appellerons tooall agents--si Linux ou Windows, si connectée tooa groupe d’administration de System Center Operations Manager ou directement tooOperations Management Suite--comme hello « OMS Agent ». Nous allons utiliser le nom de déploiement spécifique de hello de l’agent de hello uniquement si elle est nécessaire pour le contexte.
 
-L’agent Carte de service ne transmet pas les données lui-même et il n’est pas nécessaire d’apporter des modifications au pare-feu ni aux ports. Les données de Service Map sont toujours transmises par l’agent OMS à Operations Management Suite, directement ou via la passerelle OMS.
+l’agent de carte de Service Hello ne transmet pas les données elles-mêmes, et il ne nécessite pas de modifications toofirewalls ou des ports. Hello données dans la carte de Service sont toujours transmises par hello Agent OMS tooOperations Management Suite, directement ou via hello OMS passerelle.
 
 ![Agents Service Map](media/oms-service-map/agents.png)
 
-Si vous êtes un client System Center Operations Manager avec un groupe d’administration connecté à Operations Management Suite :
+Si vous êtes un client de System Center Operations Manager avec un tooOperations de groupe connecté gestion Management Suite :
 
-- Si vos agents System Center Operations Manager peuvent accéder à Internet pour se connecter à Operations Management Suite, aucune configuration supplémentaire n’est requise.  
-- Si vos agents System Center Operations Manager ne peuvent pas accéder à Operations Management Suite par Internet, vous devez configurer la passerelle OMS de sorte qu’elle fonctionne avec System Center Operations Manager.
+- Si vos agents de System Center Operations Manager peuvent accéder à hello Internet tooconnect tooOperations Management Suite, aucune configuration supplémentaire n’est requise.  
+- Si vos agents de System Center Operations Manager ne peut pas accéder à Operations Management Suite sur hello Internet, vous devez tooconfigure hello OMS passerelle toowork avec System Center Operations Manager.
   
-Si vous utilisez l’agent direct OMS, vous devez configurer l’agent OMS lui-même pour qu’il se connecte à Operations Management Suite ou à votre passerelle OMS. La passerelle OMS est téléchargeable sur le [Centre de téléchargement Microsoft](https://www.microsoft.com/download/details.aspx?id=52666).
+Si vous utilisez hello OMS l’Agent Direct, vous devez tooconfigure hello Agent OMS lui-même tooconnect tooOperations Management Suite ou tooyour OMS passerelle. Hello OMS passerelle peut être téléchargé à partir de hello [Microsoft Download Center](https://www.microsoft.com/download/details.aspx?id=52666).
 
 ### <a name="management-packs"></a>Packs d’administration
-Quand Service Map est activé dans un espace de travail Operations Management Suite, un pack d’administration de 300 Ko est envoyé à tous les serveurs Windows de cet espace de travail. Si vous utilisez des agents System Center Operations Manager dans un [groupe d’administration connecté](../log-analytics/log-analytics-om-agents.md), le pack d’administration Service Map est déployé à partir de System Center Operations Manager. Si les agents sont connectés directement, Operations Management Suite remet le pack d’administration.
+Lors de la carte de Service est activé dans un espace de travail Operations Management Suite, un Pack d’administration de 300 Ko est envoyé à des serveurs Windows tooall hello dans cet espace de travail. Si vous utilisez des agents de System Center Operations Manager dans un [groupe d’administration connecté](../log-analytics/log-analytics-om-agents.md), hello Pack d’administration de carte de Service est déployé à partir de System Center Operations Manager. Si les agents hello sont directement connectés, Operations Management Suite offre pack d’administration hello.
 
-Le pack d’administration se nomme Microsoft.IntelligencePacks.ApplicationDependencyMonitor. Il est enregistré dans %Programfiles%\Microsoft Monitoring Agent\Agent\Health Service State\Management Packs\. La source de données utilisée par le pack d’administration est %Program files%\Microsoft Monitoring Agent\Agent\Health Service State\Resources\<AutoGeneratedID>\Microsoft.EnterpriseManagement.Advisor.ApplicationDependencyMonitorDataSource.dll.
+pack d’administration Hello est nommé Microsoft.IntelligencePacks.ApplicationDependencyMonitor. Il écrit too%Programfiles%\Microsoft Monitoring Agent\Agent\Health Service State\Management Packs\. source de données qui utilise du pack d’administration hello Hello est % %Program files%\Microsoft Monitoring Agent\Agent\Health Service State\Resources\<AutoGeneratedID > \ Microsoft.EnterpriseManagement.Advisor.ApplicationDependencyMonitorDataSource.dll.
 
 ## <a name="installation"></a>Installation
-### <a name="install-the-dependency-agent-on-microsoft-windows"></a>Installer l’agent de dépendances sous Microsoft Windows
-Des privilèges d’administrateur sont requis pour installer ou désinstaller l’agent.
+### <a name="install-hello-dependency-agent-on-microsoft-windows"></a>Installer hello Agent de dépendances sur Microsoft Windows
+Des privilèges d’administrateur sont requis tooinstall ou désinstaller l’agent de hello.
 
-L’agent de dépendances s’installe sur les ordinateurs Windows par le biais de InstallDependencyAgent-Windows.exe. Si vous exécutez ce fichier exécutable sans aucune option, il démarre un Assistant que vous pouvez suivre pour une installation interactive.  
+Hello dépendance Agent est installé sur les ordinateurs Windows via InstallDependencyAgent-Windows.exe. Si vous exécutez ce fichier exécutable sans option, il démarre un Assistant que vous pouvez suivre tooinstall de manière interactive.  
 
-Utilisez les étapes suivantes pour installer l’agent de dépendances sur chaque ordinateur Windows :
+Hello suivant les étapes tooinstall hello dépendance Agent sur chaque ordinateur Windows, utilisez :
 
-1.  Installez l’agent OMS en suivant les instructions de la page [Connecter des ordinateurs Windows au service Log Analytics dans Azure](../log-analytics/log-analytics-windows-agents.md).
-2.  Téléchargez l’agent Windows et exécutez-le à l’aide de la commande suivante : <br>`InstallDependencyAgent-Windows.exe`
-3.  Suivez les instructions de l’Assistant pour installer l’agent.
-4.  Si le démarrage de l’agent de dépendances échoue, recherchez des informations détaillées sur l’erreur dans les journaux. Sur les agents Windows, le répertoire des journaux est %Programfiles%\Microsoft Dependency Agent\logs. 
+1.  Installation hello Agent OMS à l’aide d’instructions hello à [toohello d’ordinateurs Windows de se connecter service Analytique de journal dans Azure](../log-analytics/log-analytics-windows-agents.md).
+2.  Télécharger l’agent de Windows hello et l’exécuter à l’aide de hello de commande suivante : <br>`InstallDependencyAgent-Windows.exe`
+3.  Suivez l’agent de hello Assistant tooinstall hello.
+4.  En cas de hello dépendance Agent toostart, vérifiez les journaux de hello pour les informations d’erreur détaillées. Sur les agents Windows, le répertoire de journal de hello est %Programfiles%\Microsoft Agent\logs de dépendance. 
 
 #### <a name="windows-command-line"></a>Ligne de commande Windows
-Utilisez les options dans le tableau suivant pour effectuer l’installation à partir d’une ligne de commande. Pour afficher la liste des indicateurs d’installation, exécutez le programme d’installation à l’aide de l’indicateur /? comme suit.
+Utilisez les options de hello suivant tooinstall de la table à partir d’une ligne de commande. toosee une liste des indicateurs d’installation Bonjour, exécutez le programme d’installation de hello à l’aide de hello / ? comme suit.
 
     InstallDependencyAgent-Windows.exe /?
 
 | Indicateur | Description |
 |:--|:--|
-| /? | Récupérez la liste des options de ligne de commande. |
+| /? | Obtenir la liste des options de ligne de commande hello. |
 | /S | Effectuez une installation silencieuse sans invite utilisateur. |
 
-Par défaut, les fichiers de l’agent de dépendances Windows sont placés dans le répertoire C:\Program Files\Microsoft Dependency Agent.
+Fichiers de hello Agent de dépendances de Windows sont placés dans C:\Program Files\Microsoft dépendance Agent par défaut.
 
-### <a name="install-the-dependency-agent-on-linux"></a>Installer l’agent de dépendances sous Linux
-L’accès racine est requis pour installer ou configurer l’agent.
+### <a name="install-hello-dependency-agent-on-linux"></a>Installer hello Agent de dépendances sur Linux
+Accès à la racine est requise tooinstall ou configurer l’agent de hello.
 
-L’agent de dépendances s’installe sur les ordinateurs Linux par le biais de InstallDependencyAgent-Linux64.bin, un script shell avec un fichier binaire à extraction automatique. Vous pouvez exécuter le fichier à l’aide de sh ou ajouter des autorisations d’exécution au fichier lui-même.
+Hello dépendance Agent est installé sur les ordinateurs Linux via InstallDependencyAgent-Linux64.bin, un script de shell dans un fichier binaire à extraction automatique. Vous pouvez exécuter hello à l’aide sh ou ajouter d’exécuter le fichier de toohello autorisations lui-même.
  
-Utilisez les étapes suivantes pour installer l’agent de dépendances sur chaque ordinateur Linux :
+Hello suivant les étapes tooinstall hello dépendance Agent sur chaque ordinateur Linux, utilisez :
 
-1.  Installez l’agent OMS en suivant les instructions de la page [Connecter et gérer les données à partir d’ordinateurs Linux](https://technet.microsoft.com/library/mt622052.aspx).
-2.  Installez l’agent de dépendances Linux en tant que racine à l’aide de la commande suivante :<br>`sh InstallDependencyAgent-Linux64.bin`
-3.  Si le démarrage de l’agent de dépendances échoue, recherchez des informations détaillées sur l’erreur dans les journaux. Sur les agents Linux, le répertoire des journaux est /var/opt/microsoft/dependency-agent/log.
+1.  Installation hello Agent OMS à l’aide d’instructions hello à [collecter et gérer les données des ordinateurs Linux](https://technet.microsoft.com/library/mt622052.aspx).
+2.  Installer l’agent de dépendance de Linux hello en tant que racine à l’aide de hello de commande suivante :<br>`sh InstallDependencyAgent-Linux64.bin`
+3.  En cas de hello dépendance Agent toostart, vérifiez les journaux de hello pour les informations d’erreur détaillées. Sur les agents de Linux, le répertoire de journal de hello est /var/opt/microsoft/dependency-agent/log.
 
-Pour afficher la liste des indicateurs d’installation, exécutez le programme d’installation avec l’indicateur -help comme suit.
+toosee une liste d’indicateurs d’installation hello, exécutez le programme d’installation de hello hello - aide indicateur comme suit.
 
     InstallDependencyAgent-Linux64.bin -help
 
 | Indicateur | Description |
 |:--|:--|
-| -help | Récupérez la liste des options de ligne de commande. |
+| -help | Obtenir la liste des options de ligne de commande hello. |
 | -s | Effectuez une installation silencieuse sans invite utilisateur. |
-| --check | Vérifiez les autorisations et le système d’exploitation, sans installer l’agent. |
+| --check | Vérifiez les autorisations et le système d’exploitation de hello, mais ne pas installer l’agent de hello. |
 
-Les fichiers de l’agent de dépendances sont placés dans les répertoires suivants :
+Fichiers pourquoi l’Agent de dépendance sont placés dans hello suivant répertoires :
 
 | Fichiers | Lieu |
 |:--|:--|
@@ -123,7 +123,7 @@ Les fichiers de l’agent de dépendances sont placés dans les répertoires sui
 | Fichiers de stockage binaires | /var/opt/microsoft/dependency-agent/storage |
 
 ## <a name="installation-script-examples"></a>Exemples de script d’installation
-Pour déployer facilement l’agent de dépendances sur plusieurs serveurs d’un coup, il est plus facile d’utiliser un script. Vous pouvez utiliser les exemples de script suivants pour télécharger et installer l’agent de dépendances sous Windows ou sous Linux.
+tooeasily déployer hello Agent de dépendances sur plusieurs serveurs à la fois, il vous aide à toouse un script. Vous pouvez utiliser hello suivant toodownload des exemples de script et installer hello Agent de dépendances sur Windows ou Linux.
 
 ### <a name="powershell-script-for-windows"></a>Script PowerShell pour Windows
 ```PowerShell
@@ -139,7 +139,7 @@ sh InstallDependencyAgent-Linux64.bin -s
 ```
 
 ## <a name="desired-state-configuration"></a>Configuration de l’état souhaité (DSC)
-Pour déployer l’agent de dépendances avec Desired State Configuration, vous pouvez utiliser le module xPSDesiredStateConfiguration et un peu de code comme ceci :
+toodeploy hello Agent de dépendances via la Configuration d’état souhaité, vous pouvez utiliser le module xPSDesiredStateConfiguration de hello et un peu de code hello suivante :
 ```
 configuration ServiceMap {
 
@@ -149,7 +149,7 @@ $DAPackageLocalPath = "C:\InstallDependencyAgent-Windows.exe"
 
 Node localhost
 { 
-    # Download and install the Dependency Agent
+    # Download and install hello Dependency Agent
     xRemoteFile DAPackage 
     {
         Uri = "https://aka.ms/dependencyagentwindows"
@@ -173,13 +173,13 @@ Node localhost
 ```
 
 ## <a name="uninstallation"></a>Désinstallation
-### <a name="uninstall-the-dependency-agent-on-windows"></a>Désinstaller l’agent de dépendances sous Windows
-Un administrateur peut désinstaller l’agent de dépendances pour Windows au moyen du Panneau de configuration.
+### <a name="uninstall-hello-dependency-agent-on-windows"></a>Désinstaller hello Agent de dépendances sur Windows
+Un administrateur peut désinstaller l’Agent pour Windows de la dépendance d’hello via le panneau de configuration.
 
-Un administrateur peut également exécuter %Programfiles%\Microsoft Dependency Agent\Uninstall.exe pour désinstaller l’agent de dépendances.
+Un administrateur peut également exécuter %Programfiles%\Microsoft dépendance Agent\Uninstall.exe toouninstall hello Agent de dépendances.
 
-### <a name="uninstall-the-dependency-agent-on-linux"></a>Désinstaller l’agent de dépendances sous Linux
-Pour désinstaller complètement l’agent de dépendances de Linux, vous devez supprimer l’agent lui-même et le connecteur qui est installé automatiquement avec lui. Vous pouvez désinstaller les deux à l’aide de la commande ci-dessous :
+### <a name="uninstall-hello-dependency-agent-on-linux"></a>Désinstaller hello Agent de dépendances sur Linux
+désinstallation de toocompletely hello Agent de dépendance à partir de Linux, vous devez supprimer l’agent hello lui-même hello connecteur, qui est installé automatiquement avec l’agent de hello. Vous pouvez désinstaller à l’aide de hello unique commande suivante :
 
     rpm -e dependency-agent dependency-agent-connector
 
@@ -188,56 +188,56 @@ Si vous rencontrez des problèmes d’installation ou d’exécution de Service 
 
 ### <a name="dependency-agent-installation-problems"></a>Problèmes d’installation de l’agent de dépendances
 #### <a name="installer-asks-for-a-reboot"></a>Le programme d’installation vous demande de redémarrer
-L’agent de dépendances ne nécessite *généralement* pas un redémarrage à l’installation ou à la désinstallation. Toutefois, dans quelques rares cas, Windows Server nécessite un redémarrage pour poursuivre l’installation. Cela se produit lorsqu’une dépendance, généralement Redistributable Microsoft Visual C++, requiert un redémarrage en raison d’un fichier verrouillé.
+Agent de dépendances de Hello *généralement* ne nécessite pas un redémarrage à l’installation ou la désinstallation. Toutefois, dans certains cas rares, Windows Server nécessite une toocontinue de redémarrage d’une installation. Cela se produit lorsqu’une dépendance, généralement les hello redistribuable Microsoft Visual C++, requiert un redémarrage en raison d’un fichier verrouillé.
 
-#### <a name="message-unable-to-install-dependency-agent-visual-studio-runtime-libraries-failed-to-install-code--codenumber-appears"></a>Le message « Impossible d’installer l’agent de dépendances : échec de l’installation des bibliothèques runtime de Visual Studio (code = [code_number]) » apparaît.
+#### <a name="message-unable-tooinstall-dependency-agent-visual-studio-runtime-libraries-failed-tooinstall-code--codenumber-appears"></a>Message « Impossible de tooinstall Agent de dépendances : les bibliothèques Runtime Visual Studio a échoué tooinstall (code = [code_number]) » s’affiche
 
-L’agent de dépendances Microsoft repose sur les bibliothèques runtime de Microsoft Visual Studio. Vous recevrez un message si un problème est survenu lors de l’installation des bibliothèques. 
+Hello Agent de dépendances Microsoft repose sur les bibliothèques runtime de Microsoft Visual Studio hello. Vous recevez un message signalant si un problème est survenu lors de l’installation des bibliothèques de hello. 
 
-Les programmes d’installation des bibliothèques Runtime créent des journaux dans le dossier %LOCALAPPDATA%\temp. Le fichier est dd_vcredist_arch_aaaammjjhhmmss.log, où *arch* prend la valeur « x86 » ou « amd64 » et *aaaammjjhhmmss* correspond à la date et à l’heure (au format 24 heures) de création du journal. Le journal fournit des détails sur le problème qui bloque l’installation.
+programmes d’installation de bibliothèque de runtime Hello créer des journaux dans le dossier de %LOCALAPPDATA%\temp hello. fichier de Hello est dd_vcredist_arch_yyyymmddhhmmss.log, où *arch* est « x86 » ou « amd64 » et *aaaammjjhhmmss* est hello horodatage (24 heures) lorsque le journal de hello a été créé. journal de Hello fournit des détails sur le problème hello qui bloque l’installation.
 
-Il peut être utile d’installer d’abord les [dernières bibliothèques runtime](https://support.microsoft.com/help/2977003/the-latest-supported-visual-c-downloads) par vous-même.
+Il peut être utile tooinstall hello [dernières bibliothèques runtime](https://support.microsoft.com/help/2977003/the-latest-supported-visual-c-downloads) vous-même premier.
 
-Le tableau ci-dessous liste des numéros de code et des suggestions de résolutions.
+Hello tableau suivant répertorie les numéros de code et les solutions suggérées.
 
 | Code | Description | Résolution : |
 |:--|:--|:--|
-| 0x17 | Le programme d’installation de la bibliothèque nécessite une mise à jour Windows qui n’a pas été installée. | Consultez le dernier journal du programme d’installation de la bibliothèque.<br><br>Si une référence à « Windows8.1-KB2999226-x64.msu » est suivie d’une ligne « Erreur 0x80240017 : Impossible d’exécuter le package MSU », cela signifie que vous n’avez pas la configuration requise pour installer KB2999226. Suivez les instructions de la section Conditions préalables sur la page [Universal C Runtime sous Windows](https://support.microsoft.com/kb/2999226). Vous devrez peut-être exécuter Windows Update et redémarrer plusieurs fois afin d’installer les composants nécessaires.<br><br>Exécutez à nouveau le programme d’installation de l’agent de dépendances Microsoft. |
+| 0x17 | programme d’installation de la bibliothèque Hello requiert une mise à jour de Windows n’a pas été installé. | Recherchez dans le journal du programme d’installation hello plus récent bibliothèque.<br><br>Si une référence trop « Windows8. 1-KB2999226-x 64.msu » est suivi d’une ligne « erreur 0x80240017 : package MSU de tooexecute ayant échoué, « vous n’avez pas hello conditions préalables tooinstall KB2999226. Suivez les instructions de hello dans la section conditions préalables de hello dans [Universal Runtime C dans Windows](https://support.microsoft.com/kb/2999226). Vous pouvez peut-être toorun mise à jour Windows et redémarrer plusieurs fois dans les conditions préalables de commande tooinstall hello.<br><br>Réexécutez le programme d’installation de hello Agent de dépendances Microsoft. |
 
 ### <a name="post-installation-issues"></a>Problèmes après installation
 #### <a name="server-doesnt-appear-in-service-map"></a>Le serveur n’apparaît pas dans Service Map
-Si votre installation de l’agent de dépendances a réussi mais que vous ne voyez pas votre serveur dans la solution de carte de service :
-* L’agent de dépendances est-il correctement installé ? Vous pouvez vous en assurer en vérifiant si le service est installé et en cours d’exécution.<br><br>
-**Windows** : recherchez le service nommé « Microsoft Dependency Agent ».<br>
-**Linux** : recherchez « microsoft-dependency-agent » dans les processus en cours d’exécution.
+Si votre installation de l’Agent de dépendances a réussi, mais vous ne voyez pas votre serveur Bonjour solutions de carte de Service :
+* Hello dépendance Agent est installé avec succès ? Vous pouvez le valider par la vérification toosee si hello service est installé et en cours d’exécution.<br><br>
+**Windows**: recherchez service hello nommé « Microsoft Dependency Agent ».<br>
+**Linux**: recherchez hello exécute le processus de « microsoft-dépendance-agent ».
 
-* Utilisez-vous le [niveau tarifaire Gratuit d’Operations Management Suite/Log Analytics](https://docs.microsoft.com/azure/log-analytics/log-analytics-add-solutions#offers-and-pricing-tiers) ? Le forfait Gratuit autorise jusqu'à cinq serveurs de carte de service uniques. Les serveurs suivants ne s’afficheront pas dans la carte de service, même si les cinq précédents n’envoient plus de données.
+* Vous êtes sur hello [libre tarification d’Operations Management Suite/journal Analytique](https://docs.microsoft.com/azure/log-analytics/log-analytics-add-solutions#offers-and-pricing-tiers)? un plan gratuit hello permet de configurer des serveurs de carte de Service uniques toofive. Les serveurs suivants ne s’afficheront dans la carte de Service, même si hello cinq préalable n’est plus envoient des données.
 
-* Votre serveur envoie-t-il des données de journal et de performances à Operations Management Suite ? Accédez à la recherche dans les journaux et exécutez la requête suivante sur votre ordinateur : 
+* Est votre journal envoi du serveur et les données de performances tooOperations Management Suite ? Accédez tooLog recherche et exécutez hello suivant la requête pour votre ordinateur : 
 
         * Computer="<your computer name here>" | measure count() by Type
         
-  Avez-vous reçu divers événements dans les résultats ? Les données sont-elles récentes ? Dans ce cas, votre agent OMS fonctionne correctement et communique avec le service Operations Management Suite. Si ce n’est pas le cas, vérifiez l’agent OMS sur votre serveur : [Résolution des problèmes de l’agent OMS pour Windows](https://support.microsoft.com/help/3126513/how-to-troubleshoot-operations-management-suite-onboarding-issues) ou [Résolution des problèmes de l’agent OMS pour Linux](https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/Troubleshooting.md).
+  Vous avez reçu une variété d’événements dans les résultats de hello ? Donnée hello récente ? Dans ce cas, l’Agent OMS est fonctionne correctement et communique avec hello service Operations Management Suite. Sinon, vérifiez hello Agent OMS sur votre serveur : [dépannage d’OMS Agent pour Windows](https://support.microsoft.com/help/3126513/how-to-troubleshoot-operations-management-suite-onboarding-issues) ou [Agent OMS pour Linux dépannage](https://github.com/Microsoft/OMS-Agent-for-Linux/blob/master/docs/Troubleshooting.md).
 
 #### <a name="server-appears-in-service-map-but-has-no-processes"></a>Le serveur s’affiche dans Service Map, mais n’a aucun processus
-Si vous voyez votre serveur dans la carte de service, mais qu’il ne comporte aucune donnée de processus ou de connexion, cela indique que l’agent de dépendances est installé et en cours d’exécution, mais que le pilote du noyau ne s’est pas chargé. 
+Si votre serveur dans la carte de Service, mais il ne comporte aucune donnée de processus ou de connexion, qui indique que hello dépendance Agent est installé et en cours d’exécution, mais n’a pas de charger le pilote du noyau hello. 
 
-Vérifiez le fichier C:\Program Files\Microsoft Dependency Agent\logs\wrapper.log (Windows) ou le fichier /var/opt/microsoft/dependency-agent/log/service.log (Linux). Les dernières lignes du fichier doivent indiquer la raison pour laquelle le noyau ne s’est pas chargé. Par exemple, le noyau n’est peut-être pas pris en charge sous Linux si vous l’avez mis à jour.
+Vérifiez le fichier de C:\Program Files\Microsoft dépendance Agent\logs\wrapper.log hello (Windows) ou /var/opt/microsoft/dependency-agent/log/service.log (Linux). Hello dernières lignes du fichier de hello doivent indiquer pourquoi le noyau de hello n’a pas chargé. Par exemple, hello noyau ne peut pas être pris en charge sous Linux si vous votre noyau mis à jour.
 
 ## <a name="data-collection"></a>Collecte des données
-Vous pouvez vous attendre à ce que chaque agent transmette par jour environ 25 Mo selon la complexité des dépendances du système. Chaque agent envoie des données de dépendance Service Map toutes les 15 secondes.  
+Vous pouvez vous attendre tootransmit de chaque agent à peu près 25 Mo par jour, selon la complexité sont de dépendances de votre système. Chaque agent envoie des données de dépendance Service Map toutes les 15 secondes.  
 
-L’agent de dépendances consomme généralement 0,1 % de la mémoire système et 0,1 % du processeur système.
+Agent de dépendances de Hello consomme généralement 0,1 pour cent de la mémoire système et de 0,1 pour cent de l’UC système.
 
 ## <a name="supported-azure-regions"></a>Régions Azure prises en charge
-Service Map est actuellement disponible dans les régions Azure suivantes :
+Carte de service est actuellement disponible dans hello suivant des régions Azure :
 - Est des États-Unis
 - Europe de l'Ouest
 - Centre-Ouest des États-Unis
 
 
 ## <a name="supported-operating-systems"></a>Systèmes d’exploitation pris en charge
-Les sections suivantes répertorient les systèmes d’exploitation pris en charge par l’agent de dépendances. Service Map ne prend pas en charge les architectures 32 bits, quel que soit le système d’exploitation.
+Hello sections suivantes répertorient hello pris en charge les systèmes d’exploitation pour hello Agent de dépendances. Service Map ne prend pas en charge les architectures 32 bits, quel que soit le système d’exploitation.
 
 ### <a name="windows-server"></a>Windows Server
 - Windows Server 2016
@@ -253,7 +253,7 @@ Les sections suivantes répertorient les systèmes d’exploitation pris en char
 
 ### <a name="red-hat-enterprise-linux-centos-linux-and-oracle-linux-with-rhel-kernel"></a>Red Hat Enterprise Linux, CentOS Linux et Oracle Linux (avec noyau RHEL)
 - Seules les versions du noyau SMP Linux et par défaut sont prises en charge.
-- Les versions non standard du noyau, par exemple PAE et Xen, ne sont prises en charge par aucune distribution Linux. Par exemple, un système avec la chaîne de version « 2.6.16.21-0.8-xen » n’est pas pris en charge.
+- Les versions non standard du noyau, par exemple PAE et Xen, ne sont prises en charge par aucune distribution Linux. Par exemple, un système avec la chaîne de version hello de « 2.6.16.21-0.8-xen » n’est pas prise en charge.
 - Les noyaux personnalisés, y compris les recompilations de noyaux standard, ne sont pas pris en charge.
 - Le noyau CentOSPlus n’est pas pris en charge.
 - Oracle Unbreakable Enterprise Kernel (UEK) est traité dans une autre section, plus loin dans cet article.
@@ -325,11 +325,11 @@ Les sections suivantes répertorient les systèmes d’exploitation pris en char
 | 10 SP4 | 2.6.16.60 |
 
 ## <a name="diagnostic-and-usage-data"></a>Données relatives aux diagnostics et à l’utilisation
-Microsoft collecte automatiquement les données sur l’utilisation et les performances via votre utilisation du service Service Map. Microsoft utilise ces données pour fournir et améliorer la qualité, la sécurité et l’intégrité du service Service Map. Elles comprennent des informations sur la configuration du logiciel, notamment son système d’exploitation et sa version. Elles incluent également l’adresse IP, le nom DNS et le nom de la station de travail afin de fournir des capacités de dépannage précises et efficaces. Nous ne collectons pas votre nom, votre adresse, ni vos autres coordonnées.
+Microsoft recueille automatiquement des données d’utilisation et de performances via votre utilisation du service de carte de Service de hello. Microsoft utilise cette tooprovide de données et améliorer la qualité de hello, la sécurité et l’intégrité de hello service de carte de Service. Données incluent des informations sur la configuration de votre logiciel, telles que le système d’exploitation et version hello. Il inclut également le nom de la station de travail, nom DNS et adresse IP dans l’ordre tooprovide précise et efficace des capacités de dépannage. Nous ne collectons pas votre nom, votre adresse, ni vos autres coordonnées.
 
-Pour plus d’informations sur la collecte et l’utilisation des données, consultez la [Déclaration de confidentialité Microsoft Online Services](https://go.microsoft.com/fwlink/?LinkId=512132).
+Pour plus d’informations sur la collecte de données et l’utilisation, consultez hello [déclaration de confidentialité Microsoft Online Services](https://go.microsoft.com/fwlink/?LinkId=512132).
 
 
 
 ## <a name="next-steps"></a>Étapes suivantes
-- Découvrez comment [utiliser Service Map](operations-management-suite-service-map.md) une fois le déploiement et la configuration effectués.
+- Découvrez comment trop[utiliser la carte de Service](operations-management-suite-service-map.md) après qu’il a été déployé et configuré.

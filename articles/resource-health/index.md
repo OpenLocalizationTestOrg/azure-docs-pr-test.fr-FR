@@ -1,5 +1,5 @@
 ---
-title: Azure Resource Health - Didacticiels | Microsoft Docs
+title: "aaaAzure l’intégrité des ressources - didacticiels | Documents Microsoft"
 description: 
 services: Resource health
 author: bernardm
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 03/17/2017
 ms.author: bernardm
-ms.openlocfilehash: ef6709b623acb3b823ea337af0062e8c95d0478e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 124ef729fb2be77e7e3a83708d9e6c3c65f08be3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-resource-health-documentation"></a>Documentation Azure Resource Health
 
-Resource Health vous permet d’établir des diagnostics et d’obtenir de l’aide lorsqu’un problème touchant Azure a des répercussions sur vos ressources. Il vous informe de l’intégrité (actuelle et passée) de vos ressources et vous aide à atténuer les problèmes. Resource Health propose un support technique dès lors que vous êtes confronté à des problèmes de service Azure et que vous avez besoin d’aide.
+Resource Health vous permet d’établir des diagnostics et d’obtenir de l’aide lorsqu’un problème touchant Azure a des répercussions sur vos ressources. Il vous informe de la santé de vos ressources hello actuelles et passées et vous permet d’atténuer les problèmes. Resource Health propose un support technique dès lors que vous êtes confronté à des problèmes de service Azure et que vous avez besoin d’aide.
 <ul class="panelContent cardsFTitle">
     <li>
         <a href="/azure/resource-health/resource-health-overview">

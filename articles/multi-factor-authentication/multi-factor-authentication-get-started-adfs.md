@@ -1,6 +1,6 @@
 ---
-title: "Vérification en deux étapes et AD FS : Azure MFA | Microsoft Docs"
-description: "Ceci est la page d'Azure Multi-Factor Authentication qui explique la prise en main d’Azure MFA et des services AD FS."
+title: "vérification de l’étape d’aaaTwo et AD FS - l’authentification Multifacteur Azure | Documents Microsoft"
+description: "Il s’agit de page d’authentification multifacteur Azure hello qui décrit comment tooget main d’Azure MFA et AD FS."
 services: multi-factor-authentication
 documentationcenter: 
 author: kgremban
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 04/23/2017
 ms.author: kgremban
-ms.openlocfilehash: 28aede545c738137ff04257214e4a3f42792d85c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7c1c925039d3cb753ba60e286168e5869faeae4d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="getting-started-with-azure-multi-factor-authentication-and-active-directory-federation-services"></a>Prise en main d’Azure Multi-Factor Authentication et des services de fédération Active Directory (AD FS)
 <center>![Cloud](./media/multi-factor-authentication-get-started-adfs/adfs.png)</center>
@@ -28,22 +28,22 @@ Si votre organisation a fédéré votre Active Directory local avec Azure Active
 * Sécuriser les ressources de cloud à l’aide de l’authentification multifacteur Azure ou des services de fédération Active Directory (AD FS)
 * Sécuriser les ressources de cloud et locales à l'aide du serveur Azure Multi-Factor Authentication
 
-Le tableau suivant résume le processus de vérification avec la sécurisation des ressources à l’aide d’Azure Multi-Factor Authentication et AD FS
+Hello tableau suivant résume l’expérience de vérification hello entre la sécurisation des ressources avec Azure multi-Factor Authentication et AD FS
 
 | Processus de vérification : applications basées sur le navigateur | Processus de vérification : applications hors navigateur |
 |:--- |:--- |:--- |
-| Sécurisation des ressources Azure AD à l'aide d’Azure Multi-Factor Authentication |<li>La première étape de vérification est effectuée en local à l’aide d’AD FS.</li> <li>La seconde étape est une méthode par téléphone effectuée à l’aide de l’authentification cloud.</li> |
-| Sécurisation des ressources Azure AD à l'aide des services ADFS |<li>La première étape de vérification est effectuée en local à l’aide d’AD FS.</li><li>La seconde étape est effectuée localement en répondant à la demande.</li> |
+| Sécurisation des ressources Azure AD à l'aide d’Azure Multi-Factor Authentication |<li>première étape de vérification Hello est effectuée en local avec AD FS.</li> <li>deuxième étape de Hello est une méthode par téléphone effectuée à l’aide de l’authentification cloud.</li> |
+| Sécurisation des ressources Azure AD à l'aide des services ADFS |<li>première étape de vérification Hello est effectuée en local avec AD FS.</li><li>Hello deuxième étape est effectué localement en répondant à hello revendication.</li> |
 
 Mises en garde relatives aux mots de passe d'application pour les utilisateurs fédérés :
 
 * Les mots de passe d’applications sont vérifiés à l’aide de l’authentification cloud et contournent donc la fédération. La fédération n’est utilisée activement que lorsque vous configurez un mot de passe d’application.
 * Les paramètres de contrôle d’accès client locaux ne sont pas honorés par les mots de passe d’application.
 * Vous perdez la fonctionnalité de journalisation-authentification locale pour les mots de passe d’application.
-* La désactivation/suppression de compte peut mettre jusqu’à 3 heures pour synchroniser les répertoires, ce qui peut retarder la désactivation/suppression des mots de passe d’application dans l’identité de cloud.
+* La désactivation/suppression de compte peut prendre des heures de toothree pour la synchronisation d’annuaire, retardant la désactivation/suppression de mots de passe d’application dans l’identité de cloud hello.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Pour plus d’informations sur la configuration d’Azure Multi-Factor Authentication ou du serveur Azure Multi-Factor Authentication avec AD FS, consultez les articles suivants :
+Pour plus d’informations sur la configuration de l’authentification multifacteur Azure ou de hello serveur Azure multi-Factor Authentication avec AD FS, consultez hello suivant des articles :
 
 * [Sécuriser les ressources cloud à l’aide d’Azure Multi-Factor Authentication et AD FS](multi-factor-authentication-get-started-adfs-cloud.md)
 * [Sécuriser les ressources de cloud et locales à l'aide du serveur Azure Multi-Factor Authentication avec Windows Server 2012 R2 AD FS](multi-factor-authentication-get-started-adfs-w2k12.md)

@@ -1,5 +1,5 @@
 ---
-title: "Dépanner votre configuration de cluster Service Fabric locale | Microsoft Docs"
+title: aaaTroubleshoot votre configuration du cluster Service Fabric locale | Documents Microsoft
 description: "Cet article aborde un ensemble de suggestions relatives à la résolution des problèmes de votre cluster de développement local"
 services: service-fabric
 documentationcenter: .net
@@ -14,21 +14,21 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/07/2017
 ms.author: mikkelhegn
-ms.openlocfilehash: aa393f884b564cee81fcf75cc2eff895efea9471
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ce36f62a4bc69d2cd5b6c3df4abda6ca88fa84f0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshoot-your-local-development-cluster-setup"></a>Résoudre les problèmes d'installation de votre cluster de développement local
-Si vous rencontrez un problème en interagissant avec votre cluster de développement Azure Service Fabric local, examinez les suggestions suivantes de résolution.
+Si vous rencontrez un problème lors de l’interaction avec votre cluster de développement local Azure Service Fabric, passez en revue hello suivant des suggestions pour les solutions possibles.
 
 ## <a name="cluster-setup-failures"></a>Échecs de configuration du cluster
 ### <a name="cannot-clean-up-service-fabric-logs"></a>Impossible de nettoyer les journaux de Service Fabric
 #### <a name="problem"></a>Problème
-Lors de l’exécution du script DevClusterSetup, une erreur de ce type peut s’afficher :
+Lorsque vous exécutez le script de DevClusterSetup hello, vous voyez ce type d’erreur :
 
-    Cannot clean up C:\SfDevCluster\Log fully as references are likely being held to items in it. Please remove those and run this script again.
+    Cannot clean up C:\SfDevCluster\Log fully as references are likely being held tooitems in it. Please remove those and run this script again.
     At line:1 char:1 + .\DevClusterSetup.ps1
     + ~~~~~~~~~~~~~~~~~~~~~
     + CategoryInfo : NotSpecified: (:) [Write-Error], WriteErrorException
@@ -36,33 +36,33 @@ Lors de l’exécution du script DevClusterSetup, une erreur de ce type peut s�
 
 
 #### <a name="solution"></a>Solution
-Fermez la fenêtre PowerShell active et ouvrez une nouvelle fenêtre PowerShell en tant qu’administrateur. Vous devriez pouvoir exécuter le script.
+Fermez hello fenêtre actuelle de PowerShell et ouvrir une nouvelle fenêtre PowerShell en tant qu’administrateur. Vous devez maintenant être en mesure de toosuccessfully exécuter le script de hello.
 
 ## <a name="cluster-connection-failures"></a>Échecs de connexion au cluster
 ### <a name="service-fabric-powershell-cmdlets-are-not-recognized-in-azure-powershell"></a>Applets de commande PowerShell de Service Fabric non reconnues dans Azure PowerShell
 #### <a name="problem"></a>Problème
-Si vous essayez d’exécuter l’une des applets de commande PowerShell de Service Fabric, par exemple `Connect-ServiceFabricCluster` , dans une fenêtre Azure PowerShell, l’applet de commande échoue avec un message indiquant qu’elle n’est pas reconnue. Cela est dû au fait qu’Azure PowerShell utilise la version 32 bits de Windows PowerShell (même sur les versions 64 bits du système d’exploitation), tandis que les applets de commande Service Fabric fonctionnent uniquement dans des environnements 64 bits.
+Si vous essayez toorun des hello applets de commande PowerShell de l’infrastructure de Service, tel que `Connect-ServiceFabricCluster` dans une fenêtre Azure PowerShell, il échoue, indiquant que cette applet de commande hello n’est pas reconnu. Hello fait que Azure PowerShell utilise hello 32 bits de Windows PowerShell (même sur les versions de système d’exploitation 64 bits), alors que hello applets de commande Service Fabric fonctionnent uniquement dans les environnements 64 bits.
 
 #### <a name="solution"></a>Solution
 Exécutez toujours les applets de commande Service Fabric directement à partir de Windows PowerShell.
 
 > [!NOTE]
-> La dernière version d'Azure PowerShell ne crée aucun raccourci spécial, et cela ne devrait donc plus se reproduire.
+> version la plus récente d’Azure PowerShell Hello ne crée pas un raccourci spécial, donc cela ne devrait plus apparaître.
 > 
 > 
 
 ### <a name="type-initialization-exception"></a>Exception durant l’initialisation de type
 #### <a name="problem"></a>Problème
-Quand vous êtes connecté au cluster dans PowerShell, l’erreur TypeInitializationException apparaît pour System.Fabric.Common.AppTrace.
+Lorsque vous vous connectez le cluster toohello dans PowerShell, vous voyez l’erreur hello TypeInitializationException pour System.Fabric.Common.AppTrace.
 
 #### <a name="solution"></a>Solution
 Votre variable PATH n’a pas été correctement définie durant l’installation. Déconnectez-vous de Windows, puis reconnectez-vous. Le chemin d’accès est alors actualisé.
 
 ### <a name="cluster-connection-fails-with-object-is-closed"></a>La connexion au cluster est mise en échec avec une indication de fermeture de l’objet
 #### <a name="problem"></a>Problème
-Un appel à Connect-ServiceFabricCluster est mis en échec avec une erreur de ce type :
+Un appel tooConnect-ServiceFabricCluster échoue avec une erreur comme suit :
 
-    Connect-ServiceFabricCluster : The object is closed.
+    Connect-ServiceFabricCluster : hello object is closed.
     At line:1 char:1
     + Connect-ServiceFabricCluster
     + ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -70,19 +70,19 @@ Un appel à Connect-ServiceFabricCluster est mis en échec avec une erreur de ce
     + FullyQualifiedErrorId : CreateClusterConnectionErrorId,Microsoft.ServiceFabric.Powershell.ConnectCluster
 
 #### <a name="solution"></a>Solution
-Fermez la fenêtre PowerShell active et ouvrez une nouvelle fenêtre PowerShell en tant qu’administrateur. Vous devez être maintenant en mesure de vous connecter.
+Fermez hello fenêtre actuelle de PowerShell et ouvrir une nouvelle fenêtre PowerShell en tant qu’administrateur. Vous devez maintenant être en mesure de se connecter de toosuccessfully.
 
 ### <a name="fabric-connection-denied-exception"></a>Exception Connexion Fabric refusée
 #### <a name="problem"></a>Problème
 Pendant le débogage à partir de Visual Studio, vous obtenez une erreur FabricConnectionDeniedException.
 
 #### <a name="solution"></a>Solution
-Cette erreur se produit généralement lorsque vous démarrez manuellement un processus hôte de service, sans recourir au runtime de Service Fabric.
+Cette erreur se produit généralement lorsque vous essayez de toostart un processus hôte de service manuellement, au lieu de laisser toostart de runtime Service Fabric hello pour vous.
 
 Assurez-vous de ne pas disposer de projets de service définis en tant que projets de démarrage dans votre solution. Seuls les projets d’application Service Fabric doivent être définis en tant que projets de démarrage.
 
 > [!TIP]
-> Si, après l’installation, votre cluster local commence à se comporter de manière anormale, vous pouvez le réinitialiser à l’aide de l’application de barre d’état système de gestionnaire de cluster local. Cela supprime le cluster existant et en installe un nouveau. Notez que toutes les applications déployées et les données associées sont supprimées.
+> Si, après l’installation, votre cluster local commence toobehave anormalement, vous pouvez réinitialiser à l’aide d’application de barre d’état système hello cluster local manager. Cette supprime hello cluster existant et configurer un nouveau. Notez que toutes les applications déployées et les données associées sont supprimées.
 > 
 > 
 

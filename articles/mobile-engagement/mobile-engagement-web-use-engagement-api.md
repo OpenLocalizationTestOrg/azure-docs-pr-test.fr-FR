@@ -1,6 +1,6 @@
 ---
-title: API du SDK web Azure Mobile Engagement | Microsoft Docs
-description: "Dernières mises à jour et procédures du Kit de développement logiciel (SDK) web pour Azure Mobile Engagement"
+title: "aaaAzure API Kit de développement logiciel de Mobile Engagement Web | Documents Microsoft"
+description: "Hello les dernières mises à jour et les procédures à suivre pour hello Web SDK pour Azure Mobile Engagement"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,48 +14,48 @@ ms.devlang: js
 ms.topic: article
 ms.date: 06/07/2016
 ms.author: piyushjo
-ms.openlocfilehash: 54c22ce6a03e382b1bbde102bccc97deec249b30
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ec1261d6ad573b8c3ad6d5f616ab7bbe560d6fe2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-the-azure-mobile-engagement-api-in-a-web-application"></a>Utiliser l’API Azure Mobile Engagement dans une application web
-Ce document vient compléter celui vous décrivant comment [intégrer Mobile Engagement dans une application web](mobile-engagement-web-integrate-engagement.md). Il fournit des informations détaillées sur l’utilisation de l’API Azure Mobile Engagement pour signaler les statistiques de votre application.
+# <a name="use-hello-azure-mobile-engagement-api-in-a-web-application"></a>Utilisez hello Azure Mobile Engagement API dans une application web
+Ce document est un document de toohello d’addition qui vous indique comment trop[intégrer Mobile Engagement dans une application web](mobile-engagement-web-integrate-engagement.md). Il fournit des informations détaillées à propos de la façon dont toouse hello Azure Mobile Engagement API tooreport vos statistiques de l’application.
 
-L’API Mobile Engagement est fournie par l’objet `engagement.agent` . L’alias du Kit de développement logiciel (SDK) web d’Azure Mobile Engagement par défaut est `engagement`. Vous pouvez redéfinir cet alias dans la configuration du Kit de développement logiciel (SDK).
+API d’Engagement Mobile Hello est fournie par hello `engagement.agent` objet. Hello par défaut de kit de développement Web Azure Mobile Engagement d’alias est `engagement`. Vous pouvez redéfinir l’alias à partir de la configuration du Kit de développement logiciel hello.
 
 ## <a name="mobile-engagement-concepts"></a>Concepts de Mobile Engagement
-Les sections qui suivent affinent les [concepts Mobile Engagement](mobile-engagement-concepts.md) courants pour la plateforme web.
+Hello parties suivantes affiner commun [concepts de Mobile Engagement](mobile-engagement-concepts.md) pour la plateforme web de hello.
 
 ### <a name="session-and-activity"></a>`Session` et `Activity`
-Si l’utilisateur reste inactif pendant plus de quelques secondes entre deux activités, sa séquence d’activités est fractionnée en deux sessions distinctes. Ces quelques secondes constituent le délai d’expiration de session.
+Si l’utilisateur de hello reste inactif pendant plus de quelques secondes entre deux activités, hello séquence de l’utilisateur des activités est fractionné en deux sessions distinctes. Délai d’expiration de session hello sont appelés des ces quelques secondes.
 
-Si votre application web ne déclare pas la fin des activités de l’utilisateur par elle-même (en appelant la fonction `engagement.agent.endActivity` ), le serveur Mobile Engagement termine automatiquement la session de l’utilisateur dans les trois minutes qui suivent la fermeture de la page d’application. C’est ce que l’on appelle le délai d’expiration de session du serveur.
+Si votre application web ne déclare pas fin hello d’activités des utilisateurs par lui-même (en appelant hello `engagement.agent.endActivity` fonction), serveur de Mobile Engagement hello expire automatiquement hello session utilisateur dans les trois minutes après la fermeture de la page de l’application hello. Il s’agit de délai d’expiration de session de serveur hello.
 
 ### `Crash`
-Les rapports automatisés d’exceptions JavaScript non interceptées ne sont pas créés par défaut. Toutefois, vous pouvez signaler les incidents manuellement à l’aide de la fonction `sendCrash` (voir la section sur les rapports d’incidents).
+Les rapports automatisés d’exceptions JavaScript non interceptées ne sont pas créés par défaut. Toutefois, vous pouvez signaler les pannes manuellement à l’aide de hello `sendCrash` (voir la section de hello sur les rapports d’incidents).
 
 ## <a name="reporting-activities"></a>Rapports d’activités
-Les rapports d’activités de l’utilisateur incluent le moment où l’utilisateur démarre une nouvelle activité et où l’utilisateur met fin à l’activité en cours.
+Création de rapports sur l’activité des utilisateurs inclut lorsqu’un utilisateur démarre une nouvelle activité et lorsque l’utilisateur de hello met fin à l’activité en cours hello.
 
 ### <a name="user-starts-a-new-activity"></a>L’utilisateur démarre une nouvelle activité
     engagement.agent.startActivity("MyUserActivity");
 
-Vous devez appeler `startActivity()` chaque fois que l’activité utilisateur change. Le premier appel à cette fonction démarre une nouvelle session utilisateur.
+Vous devez toocall `startActivity()` chaque activité utilisateur change. Hello premier appel toothis fonction démarre une nouvelle session de l’utilisateur.
 
-### <a name="user-ends-the-current-activity"></a>L’utilisateur met fin à l’activité en cours
+### <a name="user-ends-hello-current-activity"></a>Utilisateur met fin à l’activité en cours hello
     engagement.agent.endActivity();
 
-Vous devez appeler `endActivity()` au moins une fois lorsque l’utilisateur termine sa dernière activité. Le Kit de développement logiciel (SDK) web Mobile Engagement est ainsi informé que l’utilisateur est inactif et que la session utilisateur doit être fermée après le délai d’expiration de session. Si vous appelez `startActivity()` avant la fin du délai d’expiration de session, la session reprend simplement.
+Vous devez toocall `endActivity()` au moins une fois lorsque hello utilisateur a fini de leur dernière activité. Cela permet d’informer hello Kit de développement Web Mobile Engagement qu’utilisateur de hello est actuellement inactif et que la session d’utilisateur hello a besoin toobe fermés après l’expiration du délai d’expiration de session hello. Si vous appelez `startActivity()` avant l’expiration du délai d’expiration de session hello, hello simplement la reprise de session.
 
-Étant donné qu’il n’existe aucun appel fiable lors de la fermeture de la fenêtre du navigateur, il est souvent difficile, voire impossible, d’intercepter la fin des activités de l’utilisateur dans un environnement web. C’est pourquoi le serveur Mobile Engagement termine automatiquement la session de l’utilisateur dans un délai de trois minutes après la fermeture de la page de l’application.
+Étant donné qu’aucun appel fiable pour la fermeture de la fenêtre de navigateur hello, il est souvent de fin de hello toocatch impossible ou difficile d’activités des utilisateurs à l’intérieur d’un environnement web. Qui est hello pourquoi Mobile Engagement serveur expire automatiquement session d’utilisateur hello dans les trois minutes après la fermeture de la page de l’application hello.
 
 ## <a name="reporting-events"></a>Rapports d’événements
 Les rapports d’événements couvrent les événements de session et les événements autonomes.
 
 ### <a name="session-events"></a>Événements de session
-Les événements de session servent généralement à signaler les actions effectuées par un utilisateur lors la session de l’utilisateur.
+Événements de session sont généralement des actions de hello tooreport utilisé effectuées par un utilisateur au cours de la session de l’utilisateur hello.
 
 **Exemple sans données supplémentaires :**
 
@@ -72,7 +72,7 @@ Les événements de session servent généralement à signaler les actions effec
     }
 
 ### <a name="standalone-events"></a>Événements autonomes
-Contrairement aux événements de session, les événements autonomes peuvent se produire en dehors du contexte d’une session.
+Contrairement aux événements de session, les événements autonome peuvent se produire en dehors du contexte hello d’une session.
 
 Pour cela, utilisez ``engagement.agent.sendEvent`` au lieu de ``engagement.agent.sendSessionEvent``.
 
@@ -80,7 +80,7 @@ Pour cela, utilisez ``engagement.agent.sendEvent`` au lieu de ``engagement.agent
 Les rapports d’erreurs couvrent les erreurs de session et les erreurs autonomes.
 
 ### <a name="session-errors"></a>Erreurs de session
-Les erreurs de session servent généralement à signaler les erreurs qui ont un impact sur l’utilisateur pendant la session de l’utilisateur.
+Erreurs de session sont généralement des erreurs hello tooreport utilisé qui ont un impact sur l’utilisateur de hello pendant la session de l’utilisateur hello.
 
 **Exemple sans données supplémentaires :**
 
@@ -103,7 +103,7 @@ Les erreurs de session servent généralement à signaler les erreurs qui ont un
     }
 
 ### <a name="standalone-errors"></a>Erreurs autonomes
-Contrairement aux erreurs de session, les erreurs autonomes peuvent se produire en dehors du contexte d’une session.
+Contrairement aux erreurs de session, les erreurs autonome peuvent se produire en dehors du contexte hello d’une session.
 
 Pour cela, utilisez `engagement.agent.sendError` au lieu de `engagement.agent.sendSessionError`.
 
@@ -112,7 +112,7 @@ Les rapports de travaux couvrent les erreurs et les événements qui se produise
 
 **Exemple :**
 
-Pour surveiller une requête AJAX, vous utilisez les éléments suivants :
+Si vous souhaitez toomonitor une requête AJAX, vous utiliseriez suivant de hello :
 
     // [...]
     xhr.onreadystatechange = function() {
@@ -126,11 +126,11 @@ Pour surveiller une requête AJAX, vous utilisez les éléments suivants :
     // [...]
 
 ### <a name="reporting-errors-during-a-job"></a>Signaler les erreurs lors d’un travail
-Les erreurs peuvent être associées à un travail en cours d’exécution plutôt qu’à la session utilisateur en cours.
+Erreurs peuvent être associée tooa travail au lieu de la session utilisateur en cours toohello en cours d’exécution.
 
 **Exemple :**
 
-Pour signaler une erreur si une requête AJAX échoue :
+Si vous souhaitez tooreport une erreur si une requête AJAX échoue :
 
     // [...]
     xhr.onreadystatechange = function() {
@@ -147,71 +147,71 @@ Pour signaler une erreur si une requête AJAX échoue :
     // [...]
 
 ### <a name="reporting-events-during-a-job"></a>Rapports d’événements pendant un travail
-Les événements peuvent être associés à un travail en cours d’exécution plutôt qu’à la session utilisateur en cours grâce à la fonction `engagement.agent.sendJobEvent` .
+Les événements peuvent être associée tooa exécution de travail au lieu de la session utilisateur en cours toohello, grâce toohello `engagement.agent.sendJobEvent` (fonction).
 
 Cette fonction fonctionne exactement comme `engagement.agent.sendJobError`.
 
 ### <a name="reporting-crashes"></a>Rapports d’incidents
-Utilisez la fonction `sendCrash` pour signaler des incidents manuellement.
+Hello d’utilisation `sendCrash` fonction tooreport tombe en panne manuellement.
 
-L’argument `crashid` est une chaîne qui identifie le type d’incident.
-L’argument `crash` correspond généralement à l’arborescence des appels de procédure de l’incident sous forme de chaîne.
+Hello `crashid` argument est une chaîne qui identifie le type hello d’incident.
+Hello `crash` argument est généralement la trace de la pile hello d’incident hello sous forme de chaîne.
 
     engagement.agent.sendCrash(crashid, crash);
 
 ## <a name="extra-parameters"></a>Paramètres supplémentaires
-Vous pouvez joindre des données arbitraires à un événement, une erreur, une activité ou un travail.
+Vous pouvez attacher des événements de tooan de données arbitraires, erreur, activité ou la tâche.
 
-Les données peuvent être n’importe quel objet JSON (mais pas un tableau ou un type primitif).
+les données de salutation peuvent être n’importe quel objet JSON (mais pas un tableau ou type primitif).
 
 **Exemple :**
 
     var extras = {"video_id": 123, "ref_click": "http://foobar.com/blog"};
     engagement.agent.sendEvent("video_clicked", extras);
 
-### <a name="limits"></a>Limites
-Les limites qui s’appliquent aux paramètres supplémentaires se situent dans les zones des expressions régulières pour les clés, les types de valeur et la taille.
+### <a name="limits"></a>limites
+Les limites qui s’appliquent les paramètres tooextra sont dans des domaines de hello des expressions régulières pour les clés, les types valeur et taille.
 
-#### <a name="keys"></a>de clés symétriques
-Chaque clé de l'objet doit correspondre à l'expression régulière suivante :
+#### <a name="keys"></a>Clés
+Chaque clé de l’objet de hello doit correspondre hello expression régulière suivante :
 
     ^[a-zA-Z][a-zA-Z_0-9]*
 
 Cela signifie que les clés doivent commencer par au moins une lettre, suivie de lettres, de chiffres ou de traits de soulignement (\_).
 
 #### <a name="values"></a>Valeurs
-Les valeurs sont limitées aux types chaîne, nombre et Booléen.
+Les valeurs sont limitée toostring, nombre et types booléens.
 
 #### <a name="size"></a>Taille
-Les paramètres supplémentaires sont limités à 1 024 caractères par appel (une fois que le Kit de développement logiciel (SDK) Mobile Engagement Web l’encode dans JSON).
+Fonctionnalités supplémentaires sont limitées too1, 024 caractères par appel (après que hello Kit de développement Web Mobile Engagement qu’elle l’encode au format JSON).
 
 ## <a name="reporting-application-information"></a>Rapports d’informations sur l’application
-Vous pouvez signaler manuellement les informations de suivi (ou toutes autres informations spécifiques aux applications) à l’aide de la fonction `sendAppInfo()` .
+Vous pouvez signaler manuellement le suivi des informations (ou toutes autres informations spécifiques à l’application) à l’aide de hello `sendAppInfo()` (fonction).
 
-Notez que ces informations peuvent être envoyées de façon incrémentielle. Seule la dernière valeur d’une clé spécifique est conservée pour un appareil donné.
+Notez que ces informations peuvent être envoyées de façon incrémentielle. Uniquement hello valeur la plus récente pour une clé spécifique est conservé pour un périphérique spécifique.
 
-Comme pour les paramètres supplémentaires d’événement, vous pouvez utiliser n’importe quel objet JSON pour extraire des informations sur l’application. Notez que les tableaux ou les sous-objets sont traités comme des chaînes plates (à l’aide de la sérialisation JSON).
+Comme événement extras, vous pouvez utiliser les informations de l’application de JSON objet tooabstract. Notez que les tableaux ou les sous-objets sont traités comme des chaînes plates (à l’aide de la sérialisation JSON).
 
 **Exemple :**
 
-Voici un exemple de code pour l’envoi du sexe et de la date de naissance de l’utilisateur :
+Voici un exemple de code pour le sexe de l’utilisateur expéditeur hello et date de naissance :
 
     var appInfos = {"birthdate":"1983-12-07","gender":"female"};
     engagement.agent.sendAppInfo(appInfos);
 
-### <a name="limits"></a>Limites
-Les limites qui s’appliquent aux informations sur l’application se situent dans les zones des expressions régulières pour les clés et la taille.
+### <a name="limits"></a>limites
+Les limites qui s’appliquent les informations de tooapplication sont dans des zones de hello des expressions régulières pour les clés et la taille.
 
-#### <a name="keys"></a>de clés symétriques
-Chaque clé de l'objet doit correspondre à l'expression régulière suivante :
+#### <a name="keys"></a>Clés
+Chaque clé de l’objet de hello doit correspondre hello expression régulière suivante :
 
     ^[a-zA-Z][a-zA-Z_0-9]*
 
 Cela signifie que les clés doivent commencer par au moins une lettre, suivie de lettres, de chiffres ou de traits de soulignement (\_).
 
 #### <a name="size"></a>Taille
-Les informations sur l’application sont limitées à 1 024 caractères par appel (une fois que le Kit de développement logiciel (SDK) Mobile Engagement Web l’encode dans JSON).
+Informations de l’application sont limitée too1, 024 caractères par appel (après que hello Kit de développement Web Mobile Engagement qu’elle l’encode au format JSON).
 
-Dans l’exemple précédent, le JSON envoyé au serveur fait 44 caractères :
+Bonjour précédent exemple, hello JSON envoyé toohello server est 44 caractères :
 
     {"birthdate":"1983-12-07","gender":"female"}

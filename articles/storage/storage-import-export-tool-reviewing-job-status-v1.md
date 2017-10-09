@@ -1,6 +1,6 @@
 ---
-title: "Vérification de l’état des travaux Azure Import/Export - v1 | Microsoft Docs"
-description: "Découvrez comment utiliser les fichiers journaux créés lors de l’exécution du travail d’importation ou d’exportation pour connaître l’état du travail Import/Export."
+title: "aaaReviewing v1 - état du travail Azure Import/Export | Documents Microsoft"
+description: "Découvrez comment les fichiers de journaux de hello toouse créés lorsque hello importation ou travail d’exportation a été exécutée état de hello toosee de tâche d’importation/exportation hello."
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,29 +14,29 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/26/2017
 ms.author: muralikk
-ms.openlocfilehash: 621e41df127fded6ec6fe1f71e86cb8630965a70
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 378bc9a7ef6bfe65209413c8c4134f313a2c0d79
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="reviewing-azure-importexport-job-status-with-copy-log-files"></a>Vérification de l’état des travaux Azure Import/Export avec les copies des fichiers journaux
-Lorsque le service Microsoft Azure Import/Export traite des lecteurs associés à un travail d’importation ou d’exportation, il écrit les fichiers journaux de copie dans le compte de stockage dans ou à partir duquel vous importez ou exportez des objets blob. Le fichier journal contient l’état détaillé de chaque fichier importé ou exporté. L’URL de chaque fichier journal de copie est renvoyée lorsque vous interrogez l’état d’un travail effectué ; consultez la page [Get Job](/rest/api/storageservices/Get-Job3) pour plus d’informations.  
+En cas de hello service Microsoft Azure Import/Export traite les lecteurs associés à un travail d’importation ou d’exportation, il écrit copie journal fichiers toohello stockage compte tooor à partir de laquelle vous importez ou exportez des objets BLOB. fichier journal de Hello contient l’état détaillé de chaque fichier qui a été importé ou exporté. fichier journal de copie Hello URL tooeach est retourné lorsque vous interrogez l’état hello d’un travail effectué ; consultez [Get Job](/rest/api/storageservices/Get-Job3) pour plus d’informations.  
 
 ## <a name="example-urls"></a>Exemples d’URL
 
-Voici des exemples d’URL de fichiers journaux de copie pour un travail d’importation avec deux lecteurs :  
+Hello Voici des exemples d’URL pour les fichiers journaux de copie pour un travail d’importation avec deux lecteurs :  
   
  `http://myaccount.blob.core.windows.net/ImportExportStatesPath/waies/myjob_9WM35C2V_20130921-034307-902_error.xml`  
   
  `http://myaccount.blob.core.windows.net/ImportExportStatesPath/waies/myjob_9WM45A6Q_20130921-042122-021_error.xml`  
   
- Consultez la page [Format des fichiers journaux du Service Import-Export](storage-import-export-file-format-log.md) pour connaître le format des journaux de copie et la liste complète des codes d’état.  
+ Consultez [service d’importation/exportation Format de fichier journal](storage-import-export-file-format-log.md) pour le format des journaux de copie et de la liste complète des codes d’état hello hello.  
   
 ## <a name="next-steps"></a>Étapes suivantes
  
- * [Configuration de l’outil Azure Import/Export](storage-import-export-tool-setup-v1.md)   
+ * [Configuration des hello, outil d’importation/exportation Azure](storage-import-export-tool-setup-v1.md)   
  * [Préparation des disques durs pour un travail d’importation](storage-import-export-tool-preparing-hard-drives-import-v1.md)   
  * [Réparation d’un travail d’importation](storage-import-export-tool-repairing-an-import-job-v1.md)   
  * [Réparation d’un travail d’exportation](storage-import-export-tool-repairing-an-export-job-v1.md)   
- * [Résolution des problèmes associés à l’outil Azure Import-Export](storage-import-export-tool-troubleshooting-v1.md)
+ * [Résolution des problèmes de hello outil d’importation/exportation Azure](storage-import-export-tool-troubleshooting-v1.md)

@@ -1,4 +1,4 @@
-Azure Data Factory prend en charge les activités de transformation suivantes, qui peuvent être ajoutées à des pipelines, soit individuellement soit de façon chaînée avec une autre activité.
+Azure Data Factory prend en charge hello suivant des activités de transformation qui peuvent être ajouté toopipelines soit individuellement ou chaîné avec une autre activité.
 
 | Activités de transformation des données | Environnement de calcul |
 |:--- |:--- |
@@ -13,8 +13,8 @@ Azure Data Factory prend en charge les activités de transformation suivantes, q
 | [DotNet](../articles/data-factory/data-factory-use-custom-activities.md) |HDInsight [Hadoop] ou Azure Batch |
 
 > [!NOTE]
-> Vous pouvez utiliser l'activité MapReduce pour exécuter des programmes Spark sur votre cluster HDInsight Spark. Consultez la page [Appeler des programmes Spark à partir d’Azure Data Factory](../articles/data-factory/data-factory-spark.md) pour plus d’informations.
-> Vous pouvez créer une activité personnalisée pour exécuter des scripts R sur votre cluster HDInsight si R est installé. Consultez la page [Exécuter des scripts R avec Azure Data Factory](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/RunRScriptUsingADFSample).
+> Vous pouvez utiliser les programmes MapReduce activité toorun Spark sur votre cluster HDInsight Spark. Consultez la page [Appeler des programmes Spark à partir d'Azure Data Factory](../articles/data-factory/data-factory-spark.md) pour plus d'informations.
+> Vous pouvez créer une activité personnalisée toorun R scripts sur votre cluster HDInsight avec R installé. Consultez la page [Exécuter des scripts R avec Azure Data Factory](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/RunRScriptUsingADFSample).
 > 
 > 
 

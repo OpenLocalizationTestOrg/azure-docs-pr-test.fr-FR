@@ -1,6 +1,6 @@
 ---
-title: "Obtention d’une instance de processeur multimédia à l’aide de REST | Microsoft Docs"
-description: "Apprenez à créer un composant processeur multimédia pour encoder, chiffrer ou déchiffrer un contenu multimédia, ou convertir son format pour Azure Media Services."
+title: "AAA comment tooget une instance de processeur multimédia à l’aide de REST | Documents Microsoft"
+description: "Découvrez comment toocreate un tooencode de composant de processeur multimédia, convertir le format de chiffrer ou déchiffrer le contenu multimédia pour Azure Media Services."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: juliako
-ms.openlocfilehash: 4ad90ad979c5bd74fc55155098c88d5c13cb12e2
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 9f423648ab73c90405c64895ce0f5b6a457862e4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-get-a-media-processor-instance"></a>Obtention d’une instance de processeur multimédia
+# <a name="how-tooget-a-media-processor-instance"></a>Comment tooget une instance de processeur multimédia
 > [!div class="op_single_selector"]
 > * [.NET](media-services-get-media-processor.md)
 > * [REST](media-services-rest-get-media-processor.md)
@@ -28,11 +28,11 @@ ms.lasthandoff: 08/29/2017
 > 
 
 ## <a name="overview"></a>Vue d'ensemble
-Dans Media Services, un processeur multimédia est un composant qui gère une tâche de traitement spécifique, telle que l’encodage, la conversion de format, le chiffrement ou le déchiffrement de contenu multimédia. Le plus souvent, vous devez créer un processeur multimédia lorsque vous créez une tâche visant à encoder, à chiffrer ou à convertir le format du contenu multimédia.
+Dans Media Services, un processeur multimédia est un composant qui gère une tâche de traitement spécifique, telle que l’encodage, la conversion de format, le chiffrement ou le déchiffrement de contenu multimédia. Vous généralement créez un processeur multimédia lorsque vous créez une tâche tooencode, chiffrez ou convertissez le format hello du contenu multimédia.
 
 ## <a name="azure-media-processors"></a>Processeurs multimédias Azure 
 
-La rubrique suivante fournit une liste de processeurs multimédias :
+Hello rubrique suivante fournit des listes de processeurs multimédias :
 
 * [Processeurs multimédias d’encodage](scenarios-and-availability.md#encoding-media-processors)
 * [Processeurs multimédias Analytics](scenarios-and-availability.md#analytics-media-processors)
@@ -40,16 +40,16 @@ La rubrique suivante fournit une liste de processeurs multimédias :
 >[!NOTE]
 >Lors de l’accès aux entités dans Media Services, vous devez définir les valeurs et les champs d’en-tête spécifiques dans vos requêtes HTTP. Pour plus d'informations, consultez [Installation pour le développement REST API de Media Services](media-services-rest-how-to-use.md).
 
-## <a name="connect-to-media-services"></a>Connexion à Media Services
+## <a name="connect-toomedia-services"></a>Connecter les Services de tooMedia
 
-Pour savoir comment vous connecter à l’API AMS, consultez [Accéder à l’API Azure Media Services avec l’authentification Azure AD](media-services-use-aad-auth-to-access-ams-api.md). 
+Pour plus d’informations sur la façon dont tooconnect toohello AMS API, consultez [hello accès API Azure Media Services avec l’authentification Azure AD](media-services-use-aad-auth-to-access-ams-api.md). 
 
 >[!NOTE]
->Après vous être connecté à https://media.windows.net, vous recevrez une redirection 301 spécifiant un autre URI Media Services. Vous devez faire d’autres appels au nouvel URI.
+>Après vous être connecté toohttps://media.windows.net, vous recevrez une redirection 301 spécifiant un autre URI de Media Services. Vous devez effectuer les appels suivants toohello nouvel URI.
 
 ## <a name="get-a-media-processor"></a>Obtention d’un processeur multimédia
 
-L’appel REST suivant montre comment obtenir une instance de processeur multimédia par nom (dans ce cas, **Media Encoder Standard**). 
+Hello après l’appel REST montre comment tooget un processeur multimédia par nom d’instance (dans ce cas, **Media Encoder Standard**). 
 
 Demande :
 
@@ -89,5 +89,5 @@ Réponse :
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
 ## <a name="next-steps"></a>Étapes suivantes
-Maintenant que vous savez comment obtenir une instance de processeur multimédia, consultez la rubrique [Encodage d’un élément multimédia](media-services-rest-get-started.md) pour savoir comment utiliser Media Encoder Standard afin d’encoder un élément multimédia.
+Maintenant que vous savez comment tooget une instance de processeur multimédia, accédez toohello [comment tooEncode un élément multimédia](media-services-rest-get-started.md) rubrique qui vous indique comment toouse hello tooencode Media Encoder Standard, un élément multimédia.
 

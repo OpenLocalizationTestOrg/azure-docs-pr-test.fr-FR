@@ -1,27 +1,27 @@
 ## <a name="create-an-iot-hub"></a>Créer un hub IoT
-Créez un IoT Hub pour que votre application de périphérique simulé puisse se connecter. Les étapes suivantes vous montrent comment exécuter cette tâche à l’aide du portail Azure.
+Créez un hub IoT pour votre tooconnect d’application appareil simulé à. Hello étapes suivantes vous montrent comment toocomplete cette tâche à l’aide de hello portail Azure.
 
-1. Connectez-vous au [portail Azure][lnk-portal].
-1. Dans la barre de lancement, cliquez sur **Nouveau** > **Internet des objets** > **Azure IoT Hub**.
+1. Connectez-vous à toohello [portail Azure][lnk-portal].
+1. Bonjour Jumpbar, cliquez sur **nouveau** > **Internet of Things** > **IoT Hub**.
    
     ![Barre de lancement du portail Azure][1]
-1. Dans le panneau **IoT hub** , choisissez la configuration de votre concentrateur IoT.
+1. Bonjour **IoT hub** panneau, choisissez configuration hello pour votre hub IoT.
    
     ![Panneau IoT Hub][2]
    
-   1. Dans la zone **Nom** , saisissez un nom pour identifier votre hub IoT. Une fois le **Nom** validé et disponible, une coche verte apparaît dans la case **Nom**.
+   1. Bonjour **nom** , entrez un nom pour votre hub IoT. Si hello **nom** n’est valide et disponible, une coche verte s’affiche dans hello **nom** boîte.
     [!INCLUDE [iot-hub-pii-note-naming-hub](iot-hub-pii-note-naming-hub.md)]
    
-   1. Sélectionnez une [tarification et un niveau de mise à l’échelle][lnk-pricing]. Ce didacticiel ne nécessite pas un niveau spécifique. Pour ce didacticiel, utilisez le niveau F1 gratuit.
-   1. Dans **Groupe de ressources**, créez un groupe de ressources ou sélectionnez un groupe existant. Pour plus d’informations, consultez [Utilisation des groupes de ressources pour gérer vos ressources Azure][lnk-resource-groups].
-   1. Dans **Emplacement**, sélectionnez l’emplacement destiné à héberger votre concentrateur IoT. Pour ce didacticiel, choisissez l’emplacement le plus proche.
-1. Une fois que vous avez choisi les options de configuration de votre hub IoT, cliquez sur **Créer**.  La création du hub IoT par Azure peut prendre plusieurs minutes. Pour vérifier l’état d’avancement de l’opération, vous pouvez consulter le tableau d’accueil ou le panneau Notifications.
+   1. Sélectionnez une [tarification et un niveau de mise à l’échelle][lnk-pricing]. Ce didacticiel ne nécessite pas un niveau spécifique. Pour ce didacticiel, utilisez le gratuit F1 hello.
+   1. Dans **Groupe de ressources**, créez un groupe de ressources ou sélectionnez un groupe existant. Pour plus d’informations, consultez [à l’aide de la ressource groupes toomanage vos ressources Azure][lnk-resource-groups].
+   1. Dans **emplacement**, sélectionnez hello emplacement toohost votre hub IoT. Pour ce didacticiel, choisissez l’emplacement le plus proche.
+1. Une fois que vous avez choisi les options de configuration de votre hub IoT, cliquez sur **Créer**.  Il peut prendre quelques minutes pour Azure toocreate votre hub IoT. état de hello toocheck, vous pouvez surveiller progression hello sur hello tableau d’accueil ou dans le panneau de configuration de Notifications hello.
    
     ![Nouveau statut IoT Hub][3]
-1. Lorsque l’IoT hub a été créé avec succès, cliquez sur la nouvelle vignette représentant votre IoT hub dans le portail Azure pour ouvrir le panneau du nouveau IoT Hub. Notez la valeur **Hostname**, puis cliquez sur **Stratégies d’accès partagé**.
+1. Lorsque le hub IoT de hello a été créé avec succès, cliquez sur hello nouvelle vignette représentant votre hub IoT dans Panneau de hello hello tooopen portail Azure pour le nouveau concentrateur de IoT hello. Prenez note de hello **nom d’hôte**, puis cliquez sur **les stratégies d’accès partagé**.
    
     ![Nouveau panneau IoT Hub][4]
-1. Dans le panneau **Stratégies d’accès partagé**, cliquez sur la stratégie **iothubowner**, puis copiez et notez la chaîne de connexion IoT Hub dans le panneau **iothubowner**. Consultez la rubrique [Access Control][lnk-access-control] du « Guide du développeur IoT Hub » pour plus d’informations.
+1. Bonjour **les stratégies d’accès partagé** panneau, cliquez sur hello **iothubowner** stratégie, puis copiez et prenez note de hello chaîne de connexion de IoT Hub Bonjour **iothubowner** panneau. Pour plus d’informations, consultez [le contrôle d’accès] [ lnk-access-control] Bonjour « Guide du développeur IoT Hub ».
    
     ![Panneau des stratégies d’accès partagées][5]
 

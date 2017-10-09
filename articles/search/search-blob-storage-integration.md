@@ -1,6 +1,6 @@
 ---
-title: "Ajout de Recherche Azure à Stockage Blob | Microsoft Docs"
-description: "Créer un index dans le code à l’aide de l’API REST HTTP d’Azure Search."
+title: aaaAdding Azure Search tooBlob stockage | Documents Microsoft
+description: "Créer un index dans le code à l’aide de hello API REST de Azure Search HTTP."
 services: search
 documentationcenter: 
 author: ashmaka
@@ -9,51 +9,51 @@ ms.service: search
 ms.topic: article
 ms.date: 05/04/2017
 ms.author: ashmaka
-ms.openlocfilehash: 0cd0cbb05c465d32a9ef02f9350ebdf9ccea36c5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a3801790067bf169693b500e83799286b7387a77
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="searching-blob-storage-with-azure-search"></a>Recherche dans le Stockage Blob avec la Recherche Azure
 
-La recherche dans les différents types de contenu enregistrés dans le Stockage Blob Azure peut constituer un problème difficile à résoudre. Toutefois, vous pouvez indexer et rechercher le contenu de vos objets blob en quelques clics à l’aide de la Recherche Azure. La recherche dans le Stockage Blob nécessite d’approvisionner un service Recherche Azure. Les différentes limites de service et les niveaux de tarification de Recherche Azure sont indiqués sur la [page de tarification](https://aka.ms/azspricing).
+Recherche dans hello divers types de contenu stockées dans le stockage Blob Azure peut être un problème difficile de toosolve. Toutefois, vous pouvez indexer et rechercher hello du contenu de vos objets BLOB en seulement quelques clics à l’aide d’Azure Search. La recherche dans le Stockage Blob nécessite d’approvisionner un service Recherche Azure. Hello différentes limites de service et niveaux d’Azure Search tarifaires se trouvent sur hello [page de tarification](https://aka.ms/azspricing).
 
 ## <a name="what-is-azure-search"></a>Présentation d’Azure Search
-[Recherche Azure](https://aka.ms/whatisazsearch) est une solution de recherche qui permet aux développeurs d’ajouter des expériences de recherche de texte intégral fiables pour les applications web et mobiles. Avec le service Recherche Azure il n’est plus nécessaire de gérer une infrastructure de recherche. De plus, vous profitez d’une offre de [SLA garantissant un temps d’activité de 99,9 %](https://aka.ms/azuresearchsla).
+[Azure Search](https://aka.ms/whatisazsearch) est une solution de recherche qui facilite la tâche de recherche en texte intégral robuste de développeurs tooadd rencontre tooweb et des applications mobiles. En tant que service, Azure Search supprime hello besoin toomanage n’importe quelle infrastructure recherche tout en offrant un [99,9 % du temps SLA](https://aka.ms/azuresearchsla).
 
-Avec prise en charge avancée pour 56 langues, Recherche Azure peut analyser votre contenu et gérer intelligemment les constructions spécifiques à chaque langue. Recherche Azure fournit également les outils nécessaires pour créer une riche expérience de recherche. Les fonctions, comme la navigation à facettes, les suggestions de recherche en saisie semi-automatique et les correspondances, sont faciles à ajouter aux interfaces utilisateurs avec Recherche Azure. Pour en savoir plus sur les fonctionnalités de Recherche Azure, consultez la [documentation](https://aka.ms/azsearchdocs) sur le sujet.
+Avec prise en charge avancée pour 56 langues, Recherche Azure peut analyser votre contenu et gérer intelligemment les constructions spécifiques à chaque langue. Azure Search fournit également une expérience utilisateur de recherche riches hello outils toobuild. Il est simple tooadd des fonctionnalités telles que la navigation par facettes et les suggestions de recherche de tampon clavier positionnement interfaces toouser de mise en surbrillance à l’aide d’Azure Search. toolearn sur les fonctionnalités de la recherche d’Azure, vous pouvez lire du service hello [documentation](https://aka.ms/azsearchdocs).
 
-## <a name="crack-open-and-search-through-the-content-of-enterprise-document-formats"></a>Parcourez le contenu et les formats des documents d’entreprise.
-Recherche Azure prend en charge [l’extraction de documents](https://aka.ms/azsblobindexer) dans Stockage Blob Azure et peut indexer le contenu d’un grand nombre de types de fichiers stockés dans des objets blob :
+## <a name="crack-open-and-search-through-hello-content-of-enterprise-document-formats"></a>Peut-il ouvrir et parcourez le contenu de hello de formats de documents d’entreprise
+Avec prise en charge pour [d’extraction de document](https://aka.ms/azsblobindexer) dans le stockage d’objets Blob Azure, Azure Search peut indexer le contenu de hello un grand nombre de types de fichiers stockés dans des objets BLOB :
 - PDF
 - Microsoft Office : DOCX/DOC, XLSX/XLS, PPTX/PPT, MSG (e-mails Outlook)
 - HTML
 - Fichiers de texte brut
 
-Grâce à l’extraction du texte et des métadonnées de ces types de fichiers, vous pouvez effectuer facilement une recherche dans plusieurs formats de fichiers, via une simple requête, pour trouver les documents les plus utiles, quel qu’en soit le type. En indexant le contenu et les métadonnées des documents Microsoft Office, des fichiers PDF et des courriers électroniques, il est possible de créer une solution de gestion de contenu d’entreprise fiable à l’aide du Stockage Blob et de Recherche Azure.
+Par extraction de texte et les métadonnées de ces types de fichiers, il est facile toosearch entre plusieurs formats de fichiers avec une seule requête toofind hello documents les plus pertinents, quelle que soit le type. À l’indexation hello les métadonnées de contenu et hello de documents Microsoft Office, PDF et des messages électroniques, il toobuild possibles d’une solution de gestion de contenu d’entreprise robuste à l’aide du stockage d’objets Blob et Azure Search.
 
 ## <a name="search-through-your-blob-metadata"></a>Effectuer des recherches dans vos métadonnées d’objets blob
-Voici un exemple de scénario courant permettant de faire une recherche dans des objets blob avec du contenu de tout type : il suffit d’indexer les métadonnées d’objets blob personnalisées définies par l’utilisateur, ainsi que les propriétés système pour chacun de vos objets blob. De cette façon, les informations pour chaque objet blob sont indexées quel que soit le type de document dans l’objet blob. Ainsi, vous pouvez facilement trier et définir des propriétés de facette pour l’ensemble de votre contenu Stockage Blob.
+Un scénario courant qui le rend facile toosort via des objets BLOB de n’importe quel type de contenu est tooindex hello blob personnalisée, définie par l’utilisateur métadonnées ainsi que de hello propriétés système pour chacun de vos objets BLOB. De cette façon, les informations pour chaque objet blob sont indexées, quelle que soit le type hello du document dans le blob hello afin de trier facilement et de facette dans l’ensemble de votre contenu du stockage Blob.
 
 [En savoir que plus sur l’indexation des métadonnées d’objets blob.](https://aka.ms/azsblobmetadataindexing)
 
 ## <a name="image-search"></a>Recherche d’images
-La recherche de texte intégral de Recherche Azure, la navigation à facettes et les capacités de tri peuvent désormais être appliquées aux métadonnées des images stockées dans les objets blob.
+De Azure Search recherche en texte intégral, une navigation par facettes et des fonctionnalités de tri peuvent être appliqué toohello les métadonnées des images stockées dans des objets BLOB.
 
-Si ces images sont traitées au préalable à l’aide de l’[API Vision par ordinateur](https://www.microsoft.com/cognitive-services/computer-vision-api) à partir de Microsoft Cognitive Services, il est possible d’indexer le contenu visuel de chaque image, y compris la reconnaissance de l’écriture manuscrite et la reconnaissance optique de caractères. Nous travaillons sur l’ajout de la reconnaissance optique de caractères et d’autres fonctionnalités de traitement d’image directement dans Recherche Azure. Si ces fonctionnalités vous intéressent, veuillez envoyer une demande via[UserVoice](https://aka.ms/azsuv) ou par [e-mail](mailto:azscustquestions@microsoft.com).
+Si ces images sont traités au préalable à l’aide de hello [ordinateur Vision API](https://www.microsoft.com/cognitive-services/computer-vision-api) à partir des Services de Microsoft cognitifs, il est possible de tooindex hello visual contenu de chaque image, y compris la reconnaissance OCR et de l’écriture manuscrite. Nous travaillons sur l’ajout de OCR et autres fonctions de traitement de l’image directement tooAzure recherche, si vous êtes intéressé par ces fonctionnalités Veuillez soumettre une demande sur notre [UserVoice](https://aka.ms/azsuv) ou [envoyez-nous un e-mail](mailto:azscustquestions@microsoft.com).
 
 ## <a name="index-and-search-through-json-blobs"></a>Indexation et recherche à l’aide des objets blob JSON
-Recherche Azure peut être configuré pour extraire le contenu structuré des objets blob qui contiennent des objets JSON. Recherche Azure peut lire les objets blob JSON et analyser le contenu structuré dans les champs adaptés du document Recherche Azure. Recherche Azure peut également extraire les objets blob contenant des objets JSON et mapper chaque élément avec un document Recherche Azure différent.
+Azure Search peut être configuré tooextract structuré contenus dans des objets BLOB qui contiennent JSON. Azure Search peut lire les objets BLOB JSON et analyser le contenu de hello structurée dans les champs appropriés de hello d’un document Azure Search. Azure Search peut également prendre des objets BLOB qui contient un tableau d’objets JSON et de mappent chaque élément tooa distinct Azure recherche dans le document.
 
-Notez que l’analyse des objets JSON n’est pas actuellement configurable via le portail. [En savoir plus sur l’analyse des objets JSON dans Recherche Azure.](https://aka.ms/azsjsonblobindexing)
+Notez que l’analyse de JSON n’est pas actuellement configurable via le portail de hello. [En savoir plus sur l’analyse des objets JSON dans Recherche Azure.](https://aka.ms/azsjsonblobindexing)
 
 ## <a name="quick-start"></a>Démarrage rapide
-Il est possible d’ajouter directement Recherche Azure dans des objets Blob, à partir du panneau Stockage Blob sur le portail.
+Azure Search peut être ajouté tooblobs directement à partir de panneau portail du stockage Blob hello.
 
 ![](./media/search-blob-storage-integration/blob-blade.png)
 
-Cliquez sur l’option « Ajouter Recherche Azure » pour lancer un flux dans lequel vous pouvez sélectionner un service Recherche Azure existant ou créer un nouveau service. Si vous créez un nouveau service, vous quitterez l’expérience portail de votre compte Stockage. Vous devrez accéder à nouveau au panneau du portail Stockage et resélectionner l’option « Ajouter Recherche Azure », puis sélectionner le service existant.
+En cliquant sur hello option « Ajouter Azure recherche » lance un flux dans lequel vous pouvez sélectionner un service Azure Search existant ou créer un nouveau service. Si vous créez un nouveau service, vous quitterez l’expérience portail de votre compte Stockage. Vous devez toore-accédez panneau portail du stockage toohello et resélectionnez option de « Ajouter Azure Search » hello, où vous pouvez sélectionner le service existant de hello.
 
 ### <a name="next-steps"></a>Étapes suivantes
-Consultez la [documentation](https://aka.ms/azsblobindexer) pour en savoir plus sur l’indexeur d’objets blob Recherche Azure.
+En savoir plus sur hello indexeur d’objet Blob Azure Search Bonjour complète [documentation](https://aka.ms/azsblobindexer).

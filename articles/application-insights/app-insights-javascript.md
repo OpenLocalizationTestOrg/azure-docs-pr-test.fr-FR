@@ -1,5 +1,5 @@
 ---
-title: Azure Application Insights pour les applications web JavaScript | Microsoft Docs
+title: les applications web aaaAzure Application Insights pour JavaScript | Documents Microsoft
 description: "Obtention des décomptes de sessions et d’affichages de pages, des données de client web et suivi des modèles d’utilisation. Détection des problèmes de performances et des exceptions dans les pages Web JavaScript."
 services: application-insights
 documentationcenter: 
@@ -13,30 +13,30 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 03/14/2017
 ms.author: bwren
-ms.openlocfilehash: 4e8a77e3644bb726d1b8e2050dab61893ccfa3c9
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 986db3c3776471f9f8556f4e09f2d02aad022549
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="application-insights-for-web-pages"></a>Application Insights pour les pages web
-Apprenez-en plus sur les performances et l’utilisation de votre page web ou de votre application. Ajoutez [Application Insights](app-insights-overview.md) à votre script de page pour obtenir le minutage des chargements de page et des appels AJAX, le nombre d’exceptions du navigateur et d’échecs d’AJAX et leurs détails, ainsi que le nombre d’utilisateurs et de sessions. Toutes ces données peuvent être segmentées par page, par version de système d’exploitation ou de navigateur client, par emplacement géographique et en fonction d’autres aspects. Vous pouvez définir des alertes en cas de dépassement d’un certain nombre d’échecs ou de ralentissement du chargement des pages. Et en insérant des suivis d’appel dans votre code JavaScript, vous pouvez suivre l’utilisation des différentes fonctionnalités de votre application de page web.
+Découvrez les performances de hello et d’utilisation de votre page web ou d’une application. Si vous ajoutez [Application Insights](app-insights-overview.md) tooyour script de page, vous obtenez le minutage de chargement de page et les appels AJAX, les nombres et détails des exceptions du navigateur et les échecs d’AJAX, ainsi que les utilisateurs et les nombres de la session. Toutes ces données peuvent être segmentées par page, par version de système d’exploitation ou de navigateur client, par emplacement géographique et en fonction d’autres aspects. Vous pouvez définir des alertes en cas de dépassement d’un certain nombre d’échecs ou de ralentissement du chargement des pages. Et en insérant des appels de trace dans votre code JavaScript, vous pouvez suivre l’utilisation des hello différentes fonctionnalités de votre application de la page web.
 
 Vous pouvez utiliser Application Insights avec toutes les pages web ; il vous suffit pour cela d’ajouter un court extrait de code JavaScript. Si votre service web est [Java](app-insights-java-get-started.md) ou [ASP.NET](app-insights-asp-net.md), vous pouvez intégrer les données de télémétrie de votre serveur et de vos clients.
 
 ![Dans portal.azure.com, ouvrez les ressources de votre application, puis cliquez sur Navigateur](./media/app-insights-javascript/03.png)
 
-Vous devrez vous abonner à [Microsoft Azure](https://azure.com). Si votre équipe dispose d’un abonnement d’organisation, demandez à son propriétaire d’y ajouter votre compte Microsoft. Le développement et l’utilisation à petite échelle ne coûtent rien.
+Vous avez besoin d’un abonnement trop[Microsoft Azure](https://azure.com). Si votre équipe dispose d’un abonnement d’organisation, vous pouvez demander hello propriétaire tooadd votre tooit Account Microsoft. Le développement et l’utilisation à petite échelle ne coûtent rien.
 
 ## <a name="set-up-application-insights-for-your-web-page"></a>Configurer Application Insights pour votre page web
-Ajoutez l’extrait de code de chargeur à vos pages web, comme suit.
+Ajouter hello chargeur code extrait tooyour des pages web, comme suit.
 
 ### <a name="open-or-create-application-insights-resource"></a>Ouverture ou création d’une ressource Application Insights dans Azure
-La ressource Application Insights est l’endroit où les données de performance et d’utilisation de votre page s’affichent. 
+Hello ressource Application Insights est où les données sur les performances et d’utilisation de votre page s’affiche. 
 
 Connectez-vous au [portail Azure](https://portal.azure.com).
 
-Si vous avez déjà défini la surveillance pour le côté serveur de votre application, vous aurez déjà une ressource :
+Si vous avez déjà défini la surveillance pour le côté du serveur hello de votre application, vous disposez déjà d’une ressource :
 
 ![Cliquez sur Parcourir, Services de développement, Application Insights.](./media/app-insights-javascript/01-find.png)
 
@@ -46,36 +46,36 @@ Si vous n'en avez pas, créez-la.
 
 *Vous avez déjà des questions ?* [Plus d’informations sur la création d’une ressource](app-insights-create-new-resource.md).
 
-### <a name="add-the-sdk-script-to-your-app-or-web-pages"></a>Ajoutez le script du Kit de développement logiciel (SDK) à votre application ou vos pages web
-Dans Démarrage rapide, récupérez le script pour les pages Web :
+### <a name="add-hello-sdk-script-tooyour-app-or-web-pages"></a>Ajouter une application de tooyour script hello SDK ou des pages web
+Dans le démarrage rapide, obtenir le script de hello pour les pages web :
 
-![Dans le panneau de vue d’ensemble de l’application, cliquez sur Démarrage rapide, Obtenir le code pour analyser mes pages web. Copiez le script](./media/app-insights-javascript/02-monitor-web-page.png)
+![Sur votre Panneau de vue d’ensemble des applications, sélectionnez Démarrage rapide, obtenir code toomonitor Mes pages web. Copiez le script de hello.](./media/app-insights-javascript/02-monitor-web-page.png)
 
-Insérez-le juste avant la balise `</head>` de chaque page que vous voulez suivre. Si votre site Web possède une page maître, vous pouvez y placer le script. Par exemple :
+Insérer un script hello juste avant hello `</head>` balise de chaque page, vous souhaitez tootrack. Si votre site Web dispose d’une page maître, vous pouvez placer les script hello il. Par exemple :
 
 * Dans un projet ASP.NET MVC, vous devez placer le script dans `View\Shared\_Layout.cshtml`
-* Dans un site SharePoint, dans le panneau de configuration, ouvrez [Paramètres du site/Page maître](app-insights-sharepoint.md).
+* Dans un site SharePoint, dans le panneau de configuration hello, ouvrez [paramètres du Site / Page maître](app-insights-sharepoint.md).
 
-Le script contient la clé d’instrumentation qui dirige les données vers votre ressource Application Insights. 
+script de Hello contient la clé d’instrumentation hello qui dirige la ressource d’Application Insights hello données tooyour. 
 
-([Explication approfondie du script.](http://apmtips.com/blog/2015/03/18/javascript-snippet-explained/))
+([Une explication plus approfondie du script de hello. ](http://apmtips.com/blog/2015/03/18/javascript-snippet-explained/))
 
 *(Si vous utilisez une infrastructure de page web connue, cherchez des adaptateurs Application Insights. Par exemple, il existe [un module AngularJS](http://ngmodules.org/modules/angular-appinsights).)*
 
 ## <a name="detailed-configuration"></a>Configuration détaillée
-Bien que vous puissiez définir plusieurs [paramètres](https://github.com/Microsoft/ApplicationInsights-JS/blob/master/API-reference.md#config) , vous ne devriez pas avoir besoin de le faire dans la plupart des cas. Par exemple, vous pouvez désactiver ou limiter le nombre d’appels Ajax signalés par page vue (afin de réduire le trafic). Sinon, vous pouvez définir le mode de débogage pour que les données de télémétrie transitent rapidement à travers le pipeline sans être traitées par lot.
+Bien que vous puissiez définir plusieurs [paramètres](https://github.com/Microsoft/ApplicationInsights-JS/blob/master/API-reference.md#config) , vous ne devriez pas avoir besoin de le faire dans la plupart des cas. Par exemple, vous pouvez désactiver ou limiter le nombre de hello des appels Ajax signalées par l’affichage de page (trafic tooreduce). Ou bien, vous pouvez définir debug mode toohave télémétrie déplacer rapidement au pipeline de hello sans être traités par lot.
 
-Pour définir ces paramètres, recherchez cette ligne dans l’extrait de code et ajoutez des éléments séparés par des virgules à la suite de celle-ci :
+tooset ces paramètres, recherchez la ligne dans l’extrait de code hello et ajouter davantage d’éléments séparés par des virgules :
 
     })({
       instrumentationKey: "..."
       // Insert here
     });
 
-Les [paramètres disponibles](https://github.com/Microsoft/ApplicationInsights-JS/blob/master/API-reference.md#config) incluent :
+Hello [paramètres disponibles](https://github.com/Microsoft/ApplicationInsights-JS/blob/master/API-reference.md#config) incluent :
 
     // Send telemetry immediately without batching.
-    // Remember to remove this when no longer required, as it
+    // Remember tooremove this when no longer required, as it
     // can affect browser performance.
     enableDebug: boolean,
 
@@ -85,10 +85,10 @@ Les [paramètres disponibles](https://github.com/Microsoft/ApplicationInsights-J
     // Don't log ajax calls.
     disableAjaxTracking: boolean,
 
-    // Limit number of Ajax calls logged, to reduce traffic.
+    // Limit number of Ajax calls logged, tooreduce traffic.
     maxAjaxCallsPerView: 10, // default is 500
 
-    // Time page load up to execution of first trackPageView().
+    // Time page load up tooexecution of first trackPageView().
     overridePageViewDuration: boolean,
 
     // Set these dynamically for an authenticated user.
@@ -98,57 +98,57 @@ Les [paramètres disponibles](https://github.com/Microsoft/ApplicationInsights-J
 
 
 ## <a name="run"></a>Exécution de votre application
-Exécutez votre application web, utilisez-la un certain temps pour générer de la télémétrie et attendez quelques secondes. Vous pouvez l’exécuter en appuyant sur la touche **F5** de votre machine de développement, ou la publier et laisser les utilisateurs s’en servir.
+Exécuter votre application web, utiliser un lors de la télémétrie de toogenerate et patientez quelques secondes. Vous pouvez exécuter à l’aide de hello **F5** clés sur votre ordinateur de développement, ou publier et permettre aux utilisateurs de le manipuler.
 
-Si vous souhaitez vérifier la télémétrie qu’une application web envoie à Application Insights, utilisez les outils de débogage de votre navigateur (**F12** sur de nombreux navigateurs). Les données sont envoyées à dc.services.visualstudio.com.
+Si vous souhaitez que les données de télémétrie toocheck hello qu’une application web envoie tooApplication Insights, utilisez les outils de débogage de votre navigateur (**F12** sur de nombreux navigateurs). Données sont envoyées toodc.services.visualstudio.com.
 
 ## <a name="explore-your-browser-performance-data"></a>Exploration de vos données de performances dans les navigateurs
-Ouvrez le panneau Navigateurs pour afficher la synthèse des données de performances issues des navigateurs des utilisateurs.
+Ouvrez hello navigateur panneau tooshow agrégée les données de performances à partir de navigateurs de vos utilisateurs.
 
 ![Dans portal.azure.com, ouvrez les ressources de votre application, puis cliquez sur Paramètres, Navigateur.](./media/app-insights-javascript/03.png)
 
-*Pas de données pour le moment ? Cliquez sur **Actualiser** en haut de la page. Toujours rien ? Consultez la rubrique [Résolution des problèmes](app-insights-troubleshoot-faq.md).*
+*Pas de données pour le moment ? Cliquez sur **Actualiser** en hello haut hello. Toujours rien ? Consultez la rubrique [Résolution des problèmes](app-insights-troubleshoot-faq.md).*
 
-Le panneau navigateur est un [Panneau Metrics Explorer](app-insights-metrics-explorer.md) avec filtres prédéfinis et des sélections de graphique. Si vous le souhaitez, vous pouvez modifier l’intervalle de temps, les filtres et la configuration des graphiques, puis enregistrer le résultat en tant que favori. Cliquez sur **Paramètres par défaut** pour revenir à la configuration d’origine du panneau.
+Panneau de navigateur Hello est un [panneau Metrics Explorer](app-insights-metrics-explorer.md) avec des filtres prédéfinis et les sélections de graphique. Vous pouvez modifier la plage de temps hello, de filtres et de configuration des graphiques si vous le souhaitez et enregistrez le résultat de hello en tant que favori. Cliquez sur **restaurer les valeurs par défaut** configuration du panneau tooget toohello arrière d’origine.
 
 ## <a name="page-load-performance"></a>Performances de chargement des pages
-Dans la partie supérieure se trouve un graphique segmenté illustrant le temps de chargement des pages. La hauteur totale du graphique représente la durée moyenne nécessaire pour charger et afficher les pages de votre application dans les navigateurs de vos utilisateurs. La durée est mesurée entre le moment où le navigateur envoie la requête HTTP initiale et le moment où tous les événements de chargement synchrones ont été traités, y compris la mise en page et l’exécution des scripts. Elle n’inclut pas les tâches asynchrones telles que le chargement des composants web à partir des appels AJAX.
+À hello haut est un graphique segmenté de temps de chargement de page. hauteur totale de Hello du graphique de hello représente des pages de tooload et l’affichage de la durée moyenne hello à partir de votre application dans les navigateurs de vos utilisateurs. temps de Hello est mesuré à partir de lorsque le navigateur de hello envoie la requête HTTP initiale de hello jusqu'à ce que la charge synchrone tous les événements ont été traités, y compris la mise en page et d’exécution de scripts. Elle n’inclut pas les tâches asynchrones telles que le chargement des composants web à partir des appels AJAX.
 
-Le graphique segmente le temps de chargement total des pages suivant les [durées standard définies par le consortium W3C](http://www.w3.org/TR/navigation-timing/#processing-model). 
+graphique de Hello segmente les temps de chargement du nombre total de pages hello en hello [minutages standards définis par le W3C](http://www.w3.org/TR/navigation-timing/#processing-model). 
 
 ![](./media/app-insights-javascript/08-client-split.png)
 
-Notez que la durée de *connexion réseau* est souvent plus faible que prévue, car il s’agit d’une moyenne de toutes les demandes du navigateur au serveur. De nombreuses requêtes individuelles ont un temps de connexion de 0, car il existe déjà une connexion active au serveur.
+Notez que hello *de connexion réseau* heure est souvent inférieure à ce que vous pourriez vous attendre, car elle est une moyenne de toutes les demandes d’hello navigateur toohello le serveur. Nombre de requêtes individuelles ont une durée de connexion 0, car il existe déjà un serveur de toohello de connexion active.
 
 ### <a name="slow-loading"></a>Le chargement est lent ?
-Les pages qui mettent du temps à se charger constituent une source de mécontentement majeure pour vos utilisateurs. Si le graphique indique des chargements de page lents, il est facile de faire des recherches pour diagnostiquer le problème.
+Les pages qui mettent du temps à se charger constituent une source de mécontentement majeure pour vos utilisateurs. Si le graphique de hello indique le chargement de page lente, il est facile toodo des recherches de diagnostic.
 
-Le graphique illustre la moyenne de tous les chargements de page dans votre application. Pour voir si le problème est limité à certaines pages, regardez plus bas dans le panneau, où vous trouverez une grille segmentée par URL de page :
+graphique de Hello montre toutes les charges de page moyenne hello dans votre application. toosee si le problème de hello est limitée tooparticular pages, plus détaillée de panneau de hello, dans lequel il existe une grille segmentée par une URL de la page :
 
 ![](./media/app-insights-javascript/09-page-perf.png)
 
-Observez le nombre d’affichages de page et l’écart type. Si le nombre de pages est très faible, alors le problème n’a pas un impact important sur les utilisateurs. Un écart type élevé (comparable à la moyenne elle-même) indique une variation considérable entre les mesures individuelles.
+Notez le nombre de vues de page hello et l’écart. Si le nombre de pages hello est très faible, puis problème de hello n’est pas affecter d’utilisateurs beaucoup. Un écart type élevé (moyenne toohello comparables lui-même) indique un grand nombre de variation entre des mesures individuelles.
 
-**Zoomez sur une URL et un affichage de page.** Cliquez sur n’importe quel nom de page pour afficher un panneau de graphiques de navigateur filtrés en fonction de cette URL, puis sur une instance d’un affichage de page.
+**Zoomez sur une URL et un affichage de page.** Cliquez sur n’importe quel toosee de nom de page une lame de navigateur graphiques filtrés toothat simplement URL ; puis sur une instance d’un affichage de page.
 
 ![](./media/app-insights-javascript/35.png)
 
-Cliquez sur `...` pour obtenir une liste complète des propriétés de cet événement ou examinez les appels Ajax et les événements associés. S’ils sont synchrones, les appels Ajax lents ont un impact sur le temps de chargement de l’ensemble de la page. Les événements associés incluent les requêtes de serveur pour la même URL (si vous avez configuré Application Insights sur votre serveur web).
+Cliquez sur `...` pour une liste complète des propriétés pour cet événement, ou examiner les appels Ajax hello et événements connexes. Appels Ajax lents affectent hello page global des temps de chargement s’ils sont synchrones. Liées événements incluent des requêtes au serveur pour hello même URL (si vous avez configuré Application Insights sur votre serveur web).
 
-**Historique des performances de la page.** Dans le panneau Navigateurs, convertissez la grille Temps de chargement de la page consultée en graphique en courbes pour voir s’il y a des pics à des moments spécifiques :
+**Historique des performances de la page.** Revenir au panneau de navigateurs hello, transformer grille de temps de chargement de Page vue hello une toosee graphique de ligne s’il y a des pics à des moments :
 
-![Cliquez sur l’en-tête de la grille et sélectionnez un nouveau type de graphique.](./media/app-insights-javascript/10-page-perf-area.png)
+![Cliquez sur en-tête hello de grille de hello et sélectionnez un nouveau type de graphique](./media/app-insights-javascript/10-page-perf-area.png)
 
-**Segmentation en fonction d’autres aspects.** Vos pages mettent peut-être plus de temps à se charger sur un navigateur ou un système d’exploitation spécifiques, ou encore selon l’emplacement géographique de l’utilisateur ? Ajoutez un nouveau graphique et faites des essais avec l’option **Grouper par** .
+**Segmentation en fonction d’autres aspects.** Peut-être que vos pages sont tooload plus lent sur un emplacement spécifique de navigateur, du système d’exploitation client ou utilisateur ? Ajouter un nouveau graphique et faire des essais avec hello **Group by** dimension.
 
 ![](./media/app-insights-javascript/21.png)
 
 ## <a name="ajax-performance"></a>Performances AJAX
-Assurez-vous que tous les appels AJAX dans vos pages web fonctionnent correctement. Ils sont souvent utilisés pour remplir des parties de votre page de façon asynchrone. Même si l’ensemble de la page se charge rapidement, vos utilisateurs pourraient être frustrés d’avoir à attendre que les données apparaissent dans des parties vides de la page.
+Assurez-vous que tous les appels AJAX dans vos pages web fonctionnent correctement. Il s’agit souvent utilisé toofill des parties de votre page de façon asynchrone. Bien que hello page globale peut charger rapidement, vos utilisateurs pourraient confrontés veut WebPart vide, en attente de tooappear de données dans les.
 
-Les appels AJAX effectués à partir de votre page web sont affichés dans le panneau Navigateurs en tant que dépendances.
+Appels AJAX effectuées à partir de votre page web sont affichés sur le panneau de navigateurs hello en tant que dépendances.
 
-Vous trouverez des graphiques récapitulatifs dans la partie supérieure du panneau :
+Il existe des graphiques de résumé dans la partie supérieure de hello du Panneau de hello :
 
 ![](./media/app-insights-javascript/31.png)
 
@@ -159,62 +159,62 @@ et des grilles détaillées plus bas :
 Cliquez sur n’importe quelle ligne pour obtenir des détails spécifiques.
 
 > [!NOTE]
-> Si vous supprimez le filtre Navigateurs du panneau, les dépendances de serveur et AJAX figureront dans ces graphiques. Cliquez sur Paramètres par défaut pour reconfigurer le filtre.
+> Si vous supprimez le filtre de navigateurs hello sur le panneau de hello, serveur et dépendances AJAX sont inclus dans ces graphiques. Cliquez sur le filtre de hello tooreconfigure de paramètres par défaut.
 > 
 > 
 
-**Pour explorer les appels Ajax ayant échoué** , faites défiler l’écran jusqu’à la grille Échecs de dépendance, puis cliquez sur une ligne afin d’afficher des instances spécifiques.
+**toodrill dans des échecs d’appels Ajax** défiler la grille de défaillances de dépendance toohello, puis cliquez sur une instance spécifique de toosee de ligne.
 
 ![](./media/app-insights-javascript/37.png)
 
 
-Cliquez sur `...` pour obtenir les données de télémétrie complètes d’un appel Ajax.
+Cliquez sur `...` de télémétrie complète de hello pour un appel Ajax.
 
 ### <a name="no-ajax-calls-reported"></a>Aucun appel Ajax n’est signalé ?
-Les appels AJAX incluent tous les appels HTTP/HTTPS effectués à partir du script de votre page web. S’ils ne sont pas signalés, vérifiez que l’extrait de code ne définit pas les [paramètres](https://github.com/Microsoft/ApplicationInsights-JS/blob/master/API-reference.md#config) `disableAjaxTracking` ou `maxAjaxCallsPerView`.
+Appels AJAX incluent tous les appels HTTP/HTTPS effectuées à partir du script hello de votre page web. Si vous ne voyez pas les signalé, vérifiez hello ne définit pas cet extrait de code hello `disableAjaxTracking` ou `maxAjaxCallsPerView` [paramètres](https://github.com/Microsoft/ApplicationInsights-JS/blob/master/API-reference.md#config).
 
 ## <a name="browser-exceptions"></a>Exceptions du navigateur
-Le panneau Navigateurs présente un graphique récapitulatif des exceptions, ainsi qu’une grille des types d’exception plus bas.
+Dans Panneau de navigateurs hello, il existe un graphique de synthèse des exceptions et une grille des types d’exception plus bas le panneau de hello.
 
 ![](./media/app-insights-javascript/39.png)
 
-Si les exceptions de navigateur ne sont pas signalées, vérifiez que l’extrait de code ne définit pas le [paramètre](https://github.com/Microsoft/ApplicationInsights-JS/blob/master/API-reference.md#config) `disableExceptionTracking`.
+Si vous ne voyez pas les exceptions de navigateur signalées, vérifiez hello ne définit pas cet extrait de code hello `disableExceptionTracking` [paramètre](https://github.com/Microsoft/ApplicationInsights-JS/blob/master/API-reference.md#config).
 
 ## <a name="inspect-individual-page-view-events"></a>Inspection des événements d’affichage de page individuels
 
 La télémétrie de l'affichage de page est généralement analysée par Application Insights, et vous ne consultez que des rapports cumulés, avec une moyenne entre tous les utilisateurs. Toutefois, à des fins de débogage, vous pouvez également consulter des événements d'affichage de page individuels.
 
-Dans le volet Recherche de diagnostic, définissez Filtres sur Affichage de page.
+Dans le panneau de recherche Diagnostic hello, définir les filtres tooPage vue.
 
 ![](./media/app-insights-javascript/12-search-pages.png)
 
-Sélectionnez n'importe quel événement pour afficher plus de détails. Dans la page des détails, cliquez sur «... » pour voir davantage de détails.
+Sélectionnez n’importe quel toosee événement plus en détail. Dans la page de détails de hello, cliquez sur «... » toosee encore plus de détails.
 
 > [!NOTE]
-> Si vous utilisez [Rechercher](app-insights-diagnostic-search.md), notez que vous devez faire correspondre les mots entiers : « à propo » et « propos » ne correspondent pas à « À propos ».
+> Si vous utilisez [recherche](app-insights-diagnostic-search.md), notez que vous disposez des mots entiers toomatch : « Ropos » et « à propos de » ne correspondent pas « About ».
 > 
 > 
 
-Vous pouvez également utiliser le puissant [langage de requête Log Analytics](https://docs.microsoft.com/azure/application-insights/app-insights-analytics-tour#browser-timings-table) pour effectuer des recherches dans les vues de pages.
+Vous pouvez également utiliser hello puissant [de langage de requête Analytique de journal](https://docs.microsoft.com/azure/application-insights/app-insights-analytics-tour#browser-timings-table) toosearch les vues de page.
 
 ### <a name="page-view-properties"></a>Propriétés d'affichage de la page
 * **Durée d’affichage de la page** 
   
-  * Par défaut, le temps nécessaire au chargement de la page, depuis la requête du client jusqu’à son chargement complet (y compris les fichiers auxiliaires, mais à l’exception des tâches asynchrones telles que les appels Ajax). 
-  * Si vous définissez `overridePageViewDuration` dans la [configuration de la page](#detailed-configuration), il s’agit de l’intervalle entre la requête du client et l’exécution du premier `trackPageView`. Si vous avez déplacé trackPageView de sa position habituelle après l'initialisation du script, il affiche une autre valeur.
-  * Si `overridePageViewDuration` est défini et qu’un argument Duration est fourni dans l’appel `trackPageView()`, la valeur d’argument sera utilisée à la place. 
+  * Par défaut, hello fois qu’il prend tooload hello page, à partir du client demande toofull charger (y compris les fichiers auxiliaires mais à l’exclusion des tâches asynchrones tels que les appels Ajax). 
+  * Si vous définissez `overridePageViewDuration` Bonjour [configuration de la page](#detailed-configuration), hello intervalle entre tooexecution de demande client Hello tout d’abord `trackPageView`. Si vous avez déplacé trackPageView depuis sa position habituelle après l’initialisation de hello du script de hello, il reflète une valeur différente.
+  * Si `overridePageViewDuration` est défini et une durée d’argument est fourni dans hello `trackPageView()` appeler, puis de la valeur de l’argument hello est utilisée à la place. 
 
 ## <a name="custom-page-counts"></a>Compteurs de page personnalisés
-Par défaut, un compteur de page est activé chaque fois qu'une nouvelle page est chargée dans le navigateur client.  Mais vous pouvez vouloir consulter d'autres affichages de page. Par exemple, si une page affiche son contenu dans des onglets, il se peut que vous désiriez compter une page lorsque l'utilisateur passe d'un onglet à l'autre. Ou il se peut que le code JavaScript dans une page charge du nouveau contenu sans modifier l'URL du navigateur.
+Par défaut, un nombre de pages se produit chaque fois qu'une nouvelle page est chargée dans le navigateur du client hello.  Toutefois, vous pouvez toocount les vues de page supplémentaires. Par exemple, une page peut afficher son contenu dans les onglets et vous toocount une page lorsque les utilisateur hello bascule onglets. Ou le code JavaScript dans la page de hello peut charger de nouveau contenu sans modifier l’URL du navigateur hello.
 
-Insérez par exemple l'appel JavaScript suivant à l'emplacement approprié dans votre code client :
+Insérer un appel JavaScript comme suit à point hello dans votre code client :
 
     appInsights.trackPageView(myPageName);
 
-Le nom d'une page peut contenir les mêmes caractères qu'une URL, mais tout ce qui se trouve après « # » ou « ? » sera ignoré.
+nom de la page Hello peut contenir hello même caractères en tant qu’URL, mais n’est pas défini après « # » ou « ? » est ignoré.
 
 ## <a name="usage-tracking"></a>Suivi de l’utilisation
-Vous souhaitez savoir ce que vos utilisateurs font avec votre application ?
+Vous souhaitez toofind les opérations de vos utilisateurs avec votre application ?
 
 * [En savoir plus sur le suivi de l’utilisation](app-insights-web-track-usage.md)
 * [En savoir plus sur les événements personnalisés et les API de métriques](app-insights-api-custom-events-metrics.md).

@@ -1,6 +1,6 @@
 ---
-title: "Création de clés de contenu avec REST | Microsoft Docs"
-description: "Apprenez à créer des clés de contenu qui fournissent un accès sécurisé aux ressources."
+title: "les clés de contenu aaaCreate avec REST | Documents Microsoft"
+description: "Découvrez comment accéder à tooAssets toocreate clés de contenu qui fournissent sécurisé."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: juliako
-ms.openlocfilehash: ece09277d26fafb7c0eebf62730031c4dc01bfe0
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: cb3b74bdb72c43ab5b375c0376b6704f4a93bb8b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-content-keys-with-rest"></a>Création de clés de contenu avec REST
 > [!div class="op_single_selector"]
@@ -27,26 +27,26 @@ ms.lasthandoff: 08/29/2017
 > 
 > 
 
-Media Services vous permet de créer et de fournir des ressources chiffrées. **ContentKey** fournit un accès sécurisé à vos **éléments multimédias**. 
+Media Services vous permet de toocreate nouvelle et remettre les éléments multimédias chiffrés. A **ContentKey** fournit un accès sécurisé tooyour **Asset**s. 
 
-Quand vous créez un élément multimédia (par exemple, avant de [charger des fichiers](media-services-rest-upload-files.md)), vous pouvez spécifier les options de chiffrement suivantes : **StorageEncrypted**, **CommonEncryptionProtected** ou **EnvelopeEncryptionProtected**. 
+Lorsque vous créez un nouvel élément multimédia (par exemple, avant de vous [télécharger des fichiers](media-services-rest-upload-files.md)), vous pouvez spécifier hello options de chiffrement suivantes : **StorageEncrypted**, **CommonEncryptionProtected**, ou **EnvelopeEncryptionProtected**. 
 
-Quand vous fournissez des éléments multimédias à vos clients, vous pouvez [configurer les éléments multimédias devant être chiffrés dynamiquement](media-services-rest-configure-asset-delivery-policy.md) avec un des deux chiffrements suivants : **DynamicEnvelopeEncryption** ou **DynamicCommonEncryption**.
+Lorsque vous fournissez des ressources tooyour clients, vous pouvez [configurer pour toobe actifs dynamiquement chiffré](media-services-rest-configure-asset-delivery-policy.md) avec l’un des hello suivant deux chiffrements : **DynamicEnvelopeEncryption** ou  **DynamicCommonEncryption**.
 
-Les ressources chiffrées doivent être associées à des **ContentKey**. Cet article décrit comment créer une clé de contenu.
+Les éléments multimédias chiffrés ont toobe associé **ContentKey**s. Cet article décrit comment toocreate une clé de contenu.
 
-Voici les étapes générales pour la génération de clés de contenu que vous allez associer à des ressources devant être chiffrées. 
+Hello Voici les étapes générales pour la génération de clés de contenu que vous associerez avec les composants qui vous voulez toobe chiffré. 
 
 1. Générez de façon aléatoire une clé AES de 16 octets (pour le chiffrement commun et d’enveloppe) ou AES de 32 octets (chiffrement de stockage). 
    
-    Il s’agit de la clé de contenu de votre ressource, ce qui signifie que tous les fichiers associés à cette ressource doivent utiliser la même clé de contenu lors du déchiffrement. 
-2. Appelez les méthodes [GetProtectionKeyId](https://docs.microsoft.com/rest/api/media/operations/rest-api-functions#getprotectionkeyid) et [GetProtectionKey](https://msdn.microsoft.com/library/azure/jj683097.aspx#getprotectionkey) pour obtenir le certificat X.509 approprié qui doit être utilisé pour chiffrer votre clé de contenu.
-3. Chiffrez votre clé de contenu avec la clé publique du certificat X.509. 
+    Ce sera la clé de contenu hello pour votre élément multimédia, ce qui signifie que tous les fichiers associés à cet élément multimédia sera peut-être toouse hello même clé de contenu pendant le déchiffrement. 
+2. Appelez hello [GetProtectionKeyId](https://docs.microsoft.com/rest/api/media/operations/rest-api-functions#getprotectionkeyid) et [GetProtectionKey](https://msdn.microsoft.com/library/azure/jj683097.aspx#getprotectionkey) tooget de méthodes hello certificat X.509 correct doit être utilisé tooencrypt votre clé de contenu.
+3. Chiffrer votre clé de contenu avec une clé publique du certificat X.509 de hello hello. 
    
-   Le Kit de développement logiciel (SDK) Media Services pour .NET utilise RSA avec OAEP lorsque vous effectuez le chiffrement.  Vous trouverez un exemple dans la [fonction EncryptSymmetricKeyData](https://github.com/Azure/azure-sdk-for-media-services/blob/dev/src/net/Client/Common/Common.FileEncryption/EncryptionUtils.cs).
-4. Créez une valeur de somme de contrôle (basée sur l’algorithme de somme de contrôle de clé AES PlayReady), calculée à l’aide de l’identificateur de clé et de la clé de contenu. Pour plus d’informations, consultez la section relative à l’algorithme de somme de contrôle de clé AES PlayReady du document décrivant l’objet d’en-tête PlayReady situé [ici](http://www.microsoft.com/playready/documents/).
+   Media Services .NET SDK utilise RSA avec OAEP lorsque vous effectuez un chiffrement de hello.  Vous pouvez voir un exemple Bonjour [EncryptSymmetricKeyData fonction](https://github.com/Azure/azure-sdk-for-media-services/blob/dev/src/net/Client/Common/Common.FileEncryption/EncryptionUtils.cs).
+4. Créez une valeur de somme de contrôle (basée sur hello algorithme de somme de contrôle de clé AES PlayReady) calculée à l’aide d’identificateur de clé hello et clé de contenu. Pour plus d’informations, consultez hello section « Algorithme de somme de contrôle clé PlayReady AES » du document d’objet d’en-tête PlayReady hello trouve [ici](http://www.microsoft.com/playready/documents/).
    
-   L’exemple .NET suivant calcule la somme de contrôle à l’aide de la partie GUID de l’identificateur de clé et de la clé de contenu en clair.
+   Hello Voici un exemple .NET qui calcule la somme de contrôle hello à l’aide de la partie GUID de hello d’identificateur de clé hello et hello effacer la clé de contenu.
 
          public static string CalculateChecksum(byte[] contentKey, Guid keyId)
          {
@@ -65,24 +65,24 @@ Voici les étapes générales pour la génération de clés de contenu que vous 
             Array.Copy(array, array2, 8);
             return Convert.ToBase64String(array2);
          }
-5. Créez la clé de contenu avec les valeurs **EncryptedContentKey** (convertie en chaîne codée en Base64), **ProtectionKeyId**, **ProtectionKeyType**, **ContentKeyType** et **Checksum** que vous avez obtenues lors des étapes précédentes.
-6. Associez l’entité **ContentKey** avec votre entité **Asset** par le biais de l’opération $links.
+5. Créer la clé de contenu hello avec hello **EncryptedContentKey** (converties en chaîne encodée toobase64), **ProtectionKeyId**, **ProtectionKeyType**,  **ContentKeyType**, et **Checksum** valeurs que vous avez reçu dans les étapes précédentes.
+6. Associer hello **ContentKey** entité avec votre **Asset** entité via une opération de hello $links.
 
-Notez que cette rubrique n’explique pas comment générer une clé AES, chiffrer la clé puis calculer la somme de contrôle. 
+Notez que cette rubrique ne s’affiche pas comment toogenerate une clé AES, chiffrer la clé de hello et calculer la somme de contrôle hello. 
 
 >[!NOTE]
 
 >Lors de l’accès aux entités dans Media Services, vous devez définir les valeurs et les champs d’en-tête spécifiques dans vos requêtes HTTP. Pour plus d'informations, consultez [Installation pour le développement REST API de Media Services](media-services-rest-how-to-use.md).
 
-## <a name="connect-to-media-services"></a>Connexion à Media Services
+## <a name="connect-toomedia-services"></a>Connecter les Services de tooMedia
 
-Pour savoir comment vous connecter à l’API AMS, consultez [Accéder à l’API Azure Media Services avec l’authentification Azure AD](media-services-use-aad-auth-to-access-ams-api.md). 
+Pour plus d’informations sur la façon dont tooconnect toohello AMS API, consultez [hello accès API Azure Media Services avec l’authentification Azure AD](media-services-use-aad-auth-to-access-ams-api.md). 
 
 >[!NOTE]
->Après vous être connecté à https://media.windows.net, vous recevrez une redirection 301 spécifiant un autre URI Media Services. Vous devez faire d’autres appels au nouvel URI.
+>Après vous être connecté toohttps://media.windows.net, vous recevrez une redirection 301 spécifiant un autre URI de Media Services. Vous devez effectuer les appels suivants toohello nouvel URI.
 
-## <a name="retrieve-the-protectionkeyid"></a>Récupération de ProtectionKeyId
-L’exemple suivant montre comment récupérer ProtectionKeyId, une empreinte de certificat, pour le certificat que vous devez utiliser pour chiffrer votre clé de contenu. Effectuez cette étape pour vous assurer que vous possédez déjà le certificat approprié sur votre ordinateur.
+## <a name="retrieve-hello-protectionkeyid"></a>Récupérer hello ProtectionKeyId
+Bonjour à l’exemple suivant montre comment tooretrieve hello ProtectionKeyId, une empreinte de certificat pour le certificat hello vous devez utiliser lors du chiffrement de votre clé de contenu. Effectuez cette étape toomake que vous avez déjà les certificats appropriés hello sur votre ordinateur.
 
 Demande :
 
@@ -113,8 +113,8 @@ Réponse :
 
     {"odata.metadata":"https://wamsbayclus001rest-hs.cloudapp.net/api/$metadata#Edm.String","value":"7D9BB04D9D0A4A24800CADBFEF232689E048F69C"}
 
-## <a name="retrieve-the-protectionkey-for-the-protectionkeyid"></a>Récupération de ProtectionKey pour ProtectionKeyId
-L’exemple suivant montre comment récupérer le certificat X.509 à l’aide de ProtectionKeyId, que vous avez reçue lors de l’étape précédente.
+## <a name="retrieve-hello-protectionkey-for-hello-protectionkeyid"></a>Récupérer ProtectionKey de hello pour hello ProtectionKeyId
+Hello suivant montre comment le certificat X.509 de tooretrieve hello à l’aide de hello ProtectionKeyId vous avez reçu dans l’étape précédente de hello.
 
 Demande :
 
@@ -149,17 +149,17 @@ Réponse :
     {"odata.metadata":"https://wamsbayclus001rest-hs.cloudapp.net/api/$metadata#Edm.String",
     "value":"MIIDSTCCAjGgAwIBAgIQqf92wku/HLJGCbMAU8GEnDANBgkqhkiG9w0BAQQFADAuMSwwKgYDVQQDEyN3YW1zYmx1cmVnMDAxZW5jcnlwdGFsbHNlY3JldHMtY2VydDAeFw0xMjA1MjkwNzAwMDBaFw0zMjA1MjkwNzAwMDBaMC4xLDAqBgNVBAMTI3dhbXNibHVyZWcwMDFlbmNyeXB0YWxsc2VjcmV0cy1jZXJ0MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzR0SEbXefvUjb9wCUfkEiKtGQ5Gc328qFPrhMjSo+YHe0AVviZ9YaxPPb0m1AaaRV4dqWpST2+JtDhLOmGpWmmA60tbATJDdmRzKi2eYAyhhE76MgJgL3myCQLP42jDusWXWSMabui3/tMDQs+zfi1sJ4Ch/lm5EvksYsu6o8sCv29VRwxfDLJPBy2NlbV4GbWz5Qxp2tAmHoROnfaRhwp6WIbquk69tEtu2U50CpPN2goLAqx2PpXAqA+prxCZYGTHqfmFJEKtZHhizVBTFPGS3ncfnQC9QIEwFbPw6E5PO5yNaB68radWsp5uvDg33G1i8IT39GstMW6zaaG7cNQIDAQABo2MwYTBfBgNVHQEEWDBWgBCOGT2hPhsvQioZimw8M+jOoTAwLjEsMCoGA1UEAxMjd2Ftc2JsdXJlZzAwMWVuY3J5cHRhbGxzZWNyZXRzLWNlcnSCEKn/dsJLvxyyRgmzAFPBhJwwDQYJKoZIhvcNAQEEBQADggEBABcrQPma2ekNS3Wc5wGXL/aHyQaQRwFGymnUJ+VR8jVUZaC/U/f6lR98eTlwycjVwRL7D15BfClGEHw66QdHejaViJCjbEIJJ3p2c9fzBKhjLhzB3VVNiLIaH6RSI1bMPd2eddSCqhDIn3VBN605GcYXMzhYp+YA6g9+YMNeS1b+LxX3fqixMQIxSHOLFZ1G/H2xfNawv0VikH3djNui3EKT1w/8aRkUv/AAV0b3rYkP/jA1I0CPn0XFk7STYoiJ3gJoKq9EMXhit+Iwfz0sMkfhWG12/XO+TAWqsK1ZxEjuC9OzrY7pFnNxs4Mu4S8iinehduSpY+9mDd3dHynNwT4="}
 
-## <a name="create-the-contentkey"></a>Création de ContentKey
-Après avoir récupéré le certificat X.509 et utilisé sa clé publique pour chiffrer votre clé de contenu, créez une entité **ContentKey** et définissez ses valeurs de propriété en conséquence.
+## <a name="create-hello-contentkey"></a>Créer hello ContentKey
+Après avoir récupéré le certificat X.509 de hello et utilisé son tooencrypt de clé publique de votre clé de contenu, créez un **ContentKey** entité et définissez sa propriété de valeurs en conséquence.
 
-Une des valeurs que vous devez définir lors de la création d’une clé de contenu est son type. Choisissez une des valeurs suivantes.
+Une des valeurs hello que vous devez définir quand créer hello contenu clé est de type de hello. Choisissez une des valeurs suivantes de hello.
 
     public enum ContentKeyType
     {
         /// <summary>
         /// Specifies a content key for common encryption.
         /// </summary>
-        /// <remarks>This is the default value.</remarks>
+        /// <remarks>This is hello default value.</remarks>
         CommonEncryption = 0,
 
         /// <summary>
@@ -179,7 +179,7 @@ Une des valeurs que vous devez définir lors de la création d’une clé de con
     }
 
 
-L’exemple suivant montre comment créer une **ContentKey** avec un **ContentKeyType** défini pour le chiffrement du stockage (« 1 ») et le **ProtectionKeyType** avec la valeur « 0 » pour indiquer que l’ID de la clé de protection est l’empreinte numérique du certificat X.509.  
+Hello suivant montre l’exemple de comment toocreate un **ContentKey** avec un **ContentKeyType** définie pour le chiffrement de stockage (« 1 ») et hello **ProtectionKeyType** défini trop « 0 » tooindicate qui hello Id de clé de protection est l’empreinte de certificat X.509 hello.  
 
 Demande
 
@@ -229,8 +229,8 @@ Réponse :
     "ProtectionKeyType":0,
     "Checksum":"calculated checksum"}
 
-## <a name="associate-the-contentkey-with-an-asset"></a>Association de la ContentKey avec une ressource
-Après avoir créé la ContentKey, associez-la à votre ressource à l’aide de l’opération $links, comme illustré dans l’exemple suivant :
+## <a name="associate-hello-contentkey-with-an-asset"></a>Associer des hello ContentKey à un élément multimédia
+Après avoir créé le hello ContentKey, associez-le à votre élément multimédia à l’aide de l’opération de hello $links, comme indiqué dans hello l’exemple suivant :
 
 Demande :
 

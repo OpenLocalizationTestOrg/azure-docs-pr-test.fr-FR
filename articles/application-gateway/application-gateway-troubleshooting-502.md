@@ -1,6 +1,6 @@
 ---
-title: "Résolution des erreurs de passerelle incorrecte dans Azure Application Gateway (502) | Microsoft Docs"
-description: "Découvrez comment résoudre les erreurs 502 dans Application Gateway"
+title: erreurs de Azure Application passerelle passerelle incorrecte (502) aaaTroubleshoot | Documents Microsoft
+description: "Découvrez comment les erreurs tootroubleshoot 502 de passerelle d’Application"
 services: application-gateway
 documentationcenter: na
 author: amitsriva
@@ -15,23 +15,23 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/09/2017
 ms.author: amsriva
-ms.openlocfilehash: cbf9c552c4818b3925f449081539f1db6d61918e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a50f736ac157256a53f6fbe3a208f0c11dd58f4f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshooting-bad-gateway-errors-in-application-gateway"></a>Résolution des erreurs de passerelle incorrecte dans Application Gateway
 
-Découvrez comment résoudre les erreurs de passerelle incorrecte (502) reçues lors de l’utilisation d’Application Gateway.
+Découvrez comment les erreurs (502) passerelle incorrecte de tootroubleshoot reçu lors de l’utilisation de passerelle d’application.
 
 ## <a name="overview"></a>Vue d'ensemble
 
-Après avoir configuré une passerelle Application Gateway, les utilisateurs peuvent rencontrer l’erreur « Erreur serveur 502 : le serveur Web a reçu une réponse erronée lors de son utilisation en tant que passerelle ou serveur proxy ». Cette erreur peut se produire pour les raisons suivantes :
+Après avoir configuré une passerelle d’application, une des erreurs hello que les utilisateurs peuvent rencontrer est « Erreur de serveur : 502 - serveur Web a reçu une réponse non valide en tant que passerelle ou proxy ». Cette erreur peut se produire en raison de toohello suivant raisons principales :
 
 * Le [pool principal d’Azure Application Gateway n’est pas configuré ou est vide](#empty-backendaddresspool).
-* Aucune des machines virtuelles ou des instances du [groupe de machines virtuelles identiques](#unhealthy-instances-in-backendaddresspool) n’est intègre.
-* Les machines virtuelles principales ou les instances du groupe de machines virtuelles identiques [ne répondent pas à la sonde d’intégrité par défaut](#problems-with-default-health-probe.md).
+* Aucun des machines virtuelles de hello ou des instances dans [ensemble d’échelle de machine virtuelle sont intègres](#unhealthy-instances-in-backendaddresspool).
+* Machines virtuelles ou des instances de l’ensemble d’échelle de machine virtuelle principale sont [sonde d’intégrité de par défaut ne répond pas toohello](#problems-with-default-health-probe.md).
 * [Configuration non valide ou incorrecte des sondes d’intégrité personnalisées](#problems-with-custom-health-probe.md).
 * [Problèmes de connectivité ou d’expiration](#request-time-out) des requêtes d’utilisateur.
 
@@ -39,17 +39,17 @@ Après avoir configuré une passerelle Application Gateway, les utilisateurs peu
 
 ### <a name="cause"></a>Cause :
 
-Si Application Gateway ne dispose d’aucune machine virtuelle ou de jeu de mise à l’échelle de machine virtuelle configuré(e) dans le pool d’adresses principal, il ne peut pas acheminer les demandes client et renvoie alors une erreur de passerelle incorrecte.
+Si hello passerelle d’Application n’a pas de machines virtuelles ou ensemble d’échelle de machine virtuelle configurée dans un pool d’adresses de serveur principal hello, il ne peut pas acheminer une demande du client et lève une erreur de passerelle incorrecte.
 
 ### <a name="solution"></a>Solution
 
-Assurez-vous que le pool d’adresses principal n’est pas vide. Vous pouvez pour cela utiliser PowerShell, l’interface de ligne de commande ou le portail.
+Assurez-vous que le pool d’adresses principal hello n’est pas vide. Vous pouvez pour cela utiliser PowerShell, l’interface de ligne de commande ou le portail.
 
 ```powershell
 Get-AzureRmApplicationGateway -Name "SampleGateway" -ResourceGroupName "ExampleResourceGroup"
 ```
 
-L’applet de commande ci-dessus doit renvoyer un pool d’adresses principal non vide. Dans l’exemple suivant, la commande retourne deux pools configurés avec un nom de domaine complet ou des adresses IP pour les machines virtuelles de serveur principal. L’approvisionnement de BackendAddressPool doit se trouver à l’état « Succeeded » (Réussi).
+sortie de Hello de hello précédant l’applet de commande doit contenir un pool d’adresses de serveur principal non vide. Dans l’exemple suivant, la commande retourne deux pools configurés avec un nom de domaine complet ou des adresses IP pour les machines virtuelles de serveur principal. Hello état de configuration de hello BackendAddressPool doit être 'Succeeded'.
 
 BackendAddressPoolsText :
 
@@ -81,70 +81,70 @@ BackendAddressPoolsText :
 
 ### <a name="cause"></a>Cause :
 
-Si aucune des instances de BackendAddressPool n’est intègre, Application Gateway ne disposera d’aucun serveur principal vers lequel acheminer la demande utilisateur. Cette situation peut se produire lorsque les instances de serveur principal sont intègres, mais que l’application requise n’est pas déployée.
+Si toutes les instances de hello de BackendAddressPool sont défectueux, passerelle d’Application n’ont pas de toute demande d’utilisateur principal tooroute à. Cela peut également être le cas de hello lorsque les instances de serveur principal sont sains, mais n’ont pas d’application hello requis déployée.
 
 ### <a name="solution"></a>Solution
 
-Assurez-vous que les instances sont intègres et que l’application est correctement configurée. Vérifiez si les instances de serveur principal sont en mesure de répondre à une commande ping générée par une autre machine virtuelle résidant dans le même réseau virtuel. Si vous utilisez un point de terminaison public, assurez-vous qu’une demande de navigateur à l’application web est accessible.
+Assurez-vous que les instances de hello sont intègres, application hello est correctement configurée. Vérifiez si les instances de serveur principal de hello sont toorespond en mesure de commande ping tooa à partir d’une autre machine virtuelle dans hello même réseau virtuel. Si configuré avec un point de terminaison public, assurez-vous que l’application web navigateur demande toohello est utilisable.
 
 ## <a name="problems-with-default-health-probe"></a>Problèmes avec la sonde d’intégrité par défaut
 
 ### <a name="cause"></a>Cause :
 
-Les erreurs 502 peuvent également indiquer que la sonde d’intégrité par défaut n’est pas en mesure d’atteindre les machines virtuelles du serveur principal. Lorsqu’une instance Application Gateway est approvisionnée, elle configure automatiquement une sonde d’intégrité par défaut pour chaque BackendAddressPool à l’aide des propriétés de BackendHttpSetting. La configuration de cette sonde d’intégrité ne nécessite aucune action de la part de l’utilisateur. Plus précisément, lorsqu’une règle d’équilibrage de charge est configurée, une association est établie entre BackendHttpSetting et BackendAddressPool. Un contrôle par défaut est configuré pour chacune de ces associations et Application Gateway initie régulièrement une connexion de contrôle d’intégrité à chaque instance dans le BackendAddressPool au niveau du port spécifié dans l’élément BackendHttpSetting. Le tableau suivant répertorie les valeurs associées à la sonde d’intégrité par défaut.
+502 erreurs peuvent également être fréquentes indicateurs hello sonde d’intégrité par défaut est tooreach n’a pas pu machines virtuelles du serveur principal. Lorsqu’une instance de la passerelle d’Application est configurée, il configure automatiquement un tooeach de sonde d’intégrité par défaut BackendAddressPool à l’aide des propriétés de hello BackendHttpSetting. Aucun utilisateur d’entrée est obligatoire tooset cette sonde. Plus précisément, lorsqu’une règle d’équilibrage de charge est configurée, une association est établie entre BackendHttpSetting et BackendAddressPool. Une sonde est configurée pour chacune de ces associations lance la passerelle d’Application une instance de tooeach de connexion de contrôle d’intégrité réguliers dans hello BackendAddressPool port hello spécifié dans l’élément de BackendHttpSetting hello. Tableau suivant répertorie les valeurs hello associés de sonde de contrôle d’intégrité par défaut hello.
 
 | Propriétés de la sonde | Valeur | Description |
 | --- | --- | --- |
 | URL de sonde |http://127.0.0.1/ |Chemin d'accès de l'URL |
 | Intervalle |30 |Intervalle d’analyse en secondes |
 | Délai d’attente |30 |Délai d’expiration de l’analyse en secondes |
-| Seuil de défaillance sur le plan de l’intégrité |3 |Nombre de tentatives d’analyse Le serveur principal est marqué comme étant défectueux après que le nombre d’échecs consécutifs a atteint le seuil de défaillance. |
+| Seuil de défaillance sur le plan de l’intégrité |3 |Nombre de tentatives d’analyse serveur principal de Hello est marquée vers le bas après que le nombre d’échecs de sonde consécutifs hello a atteint le seuil de défaillance hello. |
 
 ### <a name="solution"></a>Solution
 
 * Assurez-vous qu’un site par défaut est configuré et qu’il écoute sur le port 127.0.0.1.
-* Si BackendHttpSetting spécifie un port autre que 80, le site par défaut doit être configuré pour écouter sur ce port.
-* L’appel à http://127.0.0.1:port doit renvoyer un code de résultat HTTP 200. Ce code doit être retourné dans un délai de 30 secondes.
-* Vérifiez que le port configuré est ouvert et qu’aucune règle de pare-feu ou aucun groupe de sécurité réseau Azure ne bloque le trafic entrant ou sortant sur le port configuré.
-* Si vous utilisez des machines virtuelles Azure classiques ou un service cloud avec un nom de domaine complet ou une adresse IP publique, assurez-vous que le [point de terminaison](../virtual-machines/windows/classic/setup-endpoints.md?toc=%2fazure%2fapplication-gateway%2ftoc.json) correspondant est ouvert.
-* Si la machine virtuelle est configuré via Azure Resource Manager et se trouve en dehors du réseau virtuel où est déployé Application Gateway, le [groupe de sécurité réseau](../virtual-network/virtual-networks-nsg.md) doit être configuré pour autoriser l’accès sur le port souhaité.
+* Si BackendHttpSetting spécifie un port autre que 80, le site par défaut de hello doit être toolisten configuré sur ce port.
+* Hello appel toohttp://127.0.0.1:port doit retourner un code de résultat HTTP 200. Cela doit être retourné dans le délai d’attente de 30 secondes hello.
+* Assurez-vous que le port configuré est ouvert et qu’il n’y a aucune règles de pare-feu ou les groupes de sécurité réseau Azure, qui bloquent le trafic entrant ou sortant sur le port hello configuré.
+* Si les machines virtuelles Azure classiques ou le Service Cloud est utilisé avec le nom de domaine complet ou l’adresse IP publique, vérifiez hello correspondantes [point de terminaison](../virtual-machines/windows/classic/setup-endpoints.md?toc=%2fazure%2fapplication-gateway%2ftoc.json) est ouvert.
+* Si hello machine virtuelle est configurée via le Gestionnaire de ressources Azure et se trouve en dehors de hello réseau virtuel où la passerelle d’Application est déployée, [groupe de sécurité réseau](../virtual-network/virtual-networks-nsg.md) doit être configuré accès tooallow sur hello souhaité de port.
 
 ## <a name="problems-with-custom-health-probe"></a>Problèmes avec la sonde d’intégrité personnalisée
 
 ### <a name="cause"></a>Cause :
 
-Les sondes d’intégrité personnalisées apportent davantage de flexibilité au comportement de contrôle par défaut. En utilisant des sondes personnalisées, les utilisateurs peuvent configurer l’intervalle d’analyse, l’URL et le chemin à tester ainsi que le nombre de réponses en échec autorisé avant que l’instance de pool principal soit marquée comme étant défectueuse. Les propriétés supplémentaires suivantes sont ajoutées.
+Sondes d’intégrité personnalisés permettent de tester le comportement par défaut de toohello davantage de flexibilité. Lorsque vous utilisez des sondes personnalisés, les utilisateurs peuvent configurer intervalle d’analyse hello, l’URL de hello et tootest de chemin d’accès et combien tooaccept d’échecs de réponse avant de marquer l’instance du pool de back-end hello comme étant défectueux. Hello propriétés supplémentaires suivantes est ajoutée.
 
 | Propriétés de la sonde | Description |
 | --- | --- |
-| Name |Nom de la sonde. Ce nom est utilisé pour désigner la sonde dans les paramètres HTTP du serveur principal. |
-| Protocole |Protocole utilisé pour envoyer la sonde. La sonde utilise le protocole défini dans les paramètres HTTP du serveur principal |
-| Host |Nom d’hôte pour l’envoi de la sonde. S’applique uniquement lorsque plusieurs sites sont configurés sur Application Gateway. Ce nom est différent du nom d’hôte de la machine virtuelle. |
-| Chemin |Chemin relatif de la sonde. Le chemin valide commence par « / ». La sonde est envoyée à \<protocole\>://\<hôte\>:\<port\>\<chemin d’accès\> |
-| Intervalle |Intervalle d’analyse en secondes. Il s’agit de l’intervalle de temps qui s’écoule entre deux analyses consécutives. |
-| Délai d’attente |Délai d’expiration de l’analyse en secondes. Si aucune réponse valide n’est reçue dans le délai imparti, la sonde est marquée comme étant en échec. |
-| Seuil de défaillance sur le plan de l’intégrité |Nombre de tentatives d’analyse Le serveur principal est marqué comme étant défectueux après que le nombre d’échecs consécutifs a atteint le seuil de défaillance. |
+| Nom |Nom de la sonde de hello. Ce nom est sonde de toohello toorefer utilisés dans les paramètres HTTP du serveur principal. |
+| Protocole |Protocole utilisé sonde de hello toosend. Sonde de Hello utilise le protocole de hello définie dans les paramètres HTTP hello principal |
+| Host |Hôte toosend hello de sonde à nom. S’applique uniquement lorsque plusieurs sites sont configurés sur Application Gateway. Ce nom est différent du nom d’hôte de la machine virtuelle. |
+| Chemin |Chemin d’accès relatif de sonde de hello. chemin d’accès valide de Hello commence à partir de '/'. Sonde de Hello est envoyé trop\<protocole\>://\<hôte\>:\<port\>\<chemin d’accès\> |
+| Intervalle |Intervalle d’analyse en secondes. Il s’agit d’intervalle de temps hello entre deux analyses consécutives. |
+| Délai d’attente |Délai d’expiration de l’analyse en secondes. Si une réponse valide n’est pas reçue dans ce délai, la sonde de hello est marquée comme ayant échoué. |
+| Seuil de défaillance sur le plan de l’intégrité |Nombre de tentatives d’analyse serveur principal de Hello est marquée vers le bas après que le nombre d’échecs de sonde consécutifs hello a atteint le seuil de défaillance hello. |
 
 ### <a name="solution"></a>Solution
 
-Vérifiez que la sonde d’intégrité personnalisée est correctement configurée (voir la table précédente). Outre les étapes de dépannage précédentes, vérifiez également les points suivants :
+Valider ce hello que sonde d’intégrité personnalisé est correctement configuré en tant que hello tableau précédent. En outre toohello précédente étapes de dépannage Vérifiez également les hello qui suit :
 
-* Assurez-vous que la sonde est correctement spécifiée suivant les indications du [guide](application-gateway-create-probe-ps.md).
-* Si Application Gateway est configuré pour un seul site, le nom d’hôte par défaut doit être spécifié sous la forme « 127.0.0.1 », sauf s’il est configuré d’une autre manière dans la sonde personnalisée.
-* Assurez-vous qu’un appel à http://\<hôte\>:\<port\>\<chemin d’accès\> retourne un code de résultat HTTP 200.
-* Assurez-vous que les paramètres Interval, Time-out et UnhealtyThreshold se trouvent dans la plage acceptable.
-* Si vous utilisez une sonde HTTPS, vérifiez que le serveur back-end ne nécessite pas SNI en configurant un certificat de secours sur le serveur back-end lui-même. 
-* Assurez-vous que les paramètres Interval, Time-out et UnhealtyThreshold se trouvent dans la plage acceptable.
+* Vérifiez cette sonde hello est spécifié correctement conformément à hello [guide](application-gateway-create-probe-ps.md).
+* Si la passerelle d’Application est configurée pour un site unique, par hello de valeur par défaut hôte nom doit être spécifié sous la forme '127.0.0.1', à moins que sinon configurés dans une sonde personnalisée.
+* Vérifiez qu’un appel toohttp : / /\<hôte\>:\<port\>\<chemin d’accès\> retourne un code de résultat HTTP 200.
+* Assurez-vous que l’intervalle, délai d’expiration et UnhealtyThreshold sont dans une plage acceptable hello.
+* Si à l’aide de HTTPS sonde, assurez-vous que ce serveur principal de hello ne nécessite pas SNI en configurant un certificat de secours sur le serveur principal de hello lui-même. 
+* Assurez-vous que l’intervalle de délai d’attente et UnhealtyThreshold sont dans une plage acceptable hello.
 
 ## <a name="request-time-out"></a>Délai d’expiration de la demande
 
 ### <a name="cause"></a>Cause :
 
-À réception d’une demande de l’utilisateur, Application Gateway applique les règles configurées à la demande et achemine cette demande à une instance de pool principal. Application Gateway observe un temps d’attente (configurable) pour recevoir une réponse de l’instance de serveur principal. Par défaut, cet intervalle est de **30 secondes**. Si Application Gateway ne reçoit pas de réponse de l’application principale dans cet intervalle, la demande de l’utilisateur renverra une erreur 502.
+Lors de la réception d’une demande de l’utilisateur, passerelle d’Application s’applique hello configuré règles toohello demande et l’achemine instance du pool de back-end tooa. Il attend un intervalle de temps de réponse à partir de l’instance de serveur principal hello configurable. Par défaut, cet intervalle est de **30 secondes**. Si Application Gateway ne reçoit pas de réponse de l’application principale dans cet intervalle, la demande de l’utilisateur renverra une erreur 502.
 
 ### <a name="solution"></a>Solution
 
-Application Gateway permet aux utilisateurs de configurer ce paramètre via BackendHttpSetting pour l’appliquer ensuite à différents pools. Les pools de serveurs principaux peuvent avoir des paramètres BackendHttpSetting différents et, par conséquent, des délais d’attente différents.
+Passerelle d’application permet aux utilisateurs tooconfigure ce paramètre via BackendHttpSetting, ce qui peut être ensuite appliqués toodifferent pools. Les pools de serveurs principaux peuvent avoir des paramètres BackendHttpSetting différents et, par conséquent, des délais d’attente différents.
 
 ```powershell
     New-AzureRmApplicationGatewayBackendHttpSettings -Name 'Setting01' -Port 80 -Protocol Http -CookieBasedAffinity Enabled -RequestTimeout 60
@@ -152,5 +152,5 @@ Application Gateway permet aux utilisateurs de configurer ce paramètre via Back
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Si les étapes précédentes ne vous permettent pas de résoudre le problème, ouvrez un [ticket d’incident](https://azure.microsoft.com/support/options/).
+Si hello étapes précédentes ne résolvent pas hello problème, ouvrez un [ticket de support](https://azure.microsoft.com/support/options/).
 

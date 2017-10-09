@@ -1,5 +1,5 @@
 ---
-title: Fournir du contenu aux clients | Microsoft Docs
+title: toocustomers de contenu aaaDelivering | Documents Microsoft
 description: "Cette rubrique donne une vue d’ensemble de ce qu’implique la distribution de votre contenu avec Azure Media Services."
 services: media-services
 documentationcenter: 
@@ -14,75 +14,75 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/29/2017
 ms.author: juliako
-ms.openlocfilehash: 46dccd5a50b6dc7c7a93700b8fae554587385031
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 0570bd62d9d42633df0132f9449b357e2abb4086
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deliver-content-to-customers"></a>Fournir du contenu aux clients
-Quand vous distribuez votre contenu de diffusion en continu ou de vidéo à la demande aux clients, votre objectif est de fournir une vidéo de haute qualité à divers appareils dans différentes conditions de réseau.
+# <a name="deliver-content-toocustomers"></a>Fournir du contenu toocustomers
+Lorsque vous êtes remettre votre toocustomers de contenu de diffusion en continu ou de vidéo à la demande, votre objectif est toodeliver pour les appareils toovarious vidéo de haute qualité dans des conditions réseau différents.
 
-Pour atteindre cet objectif, vous pouvez :
+tooachieve cet objectif, vous pouvez :
 
-* Encoder votre flux dans un flux vidéo multidébit (débit binaire adaptatif). La qualité et les conditions du réseau sont ainsi prises en charge.
-* Utiliser [l’empaquetage dynamique](media-services-dynamic-packaging-overview.md) de Microsoft Azure Media Services pour empaqueter de nouveau votre flux dans différents protocoles dynamiquement. La diffusion en continu sur différents appareils est ainsi prise en charge. Media Services prend en charge la distribution des technologies de streaming à débit adaptatif suivantes : HTTP Live Streaming (HLS), Smooth Streaming et MPEG-DASH.
+* Encoder votre flux vidéo de flux tooa plusieurs débits (débit adaptatif). La qualité et les conditions du réseau sont ainsi prises en charge.
+* Utiliser Microsoft Azure Media Services [empaquetage dynamique](media-services-dynamic-packaging-overview.md) toodynamically créer un nouveau package votre flux de données dans différents protocoles. La diffusion en continu sur différents appareils est ainsi prise en charge. Media Services prend en charge la remise de hello suivant des technologies de diffusion en continu de fichiers à débit adaptatif : HTTP Live Streaming (HLS), la diffusion en continu lisse et MPEG-DASH.
 
 >[!NOTE]
->Une fois votre compte AMS créé, un point de terminaison de streaming **par défaut** est ajouté à votre compte à l’état **Arrêté**. Pour démarrer la diffusion en continu de votre contenu et tirer parti de l’empaquetage et du chiffrement dynamiques, le point de terminaison de streaming à partir duquel vous souhaitez diffuser du contenu doit se trouver à l’état **En cours d’exécution**. 
+>Création de votre compte AMS un **par défaut** point de terminaison de diffusion en continu est ajoutée tooyour compte Bonjour **arrêté** état. toostart de diffusion en continu de votre contenu et profitez de l’empaquetage dynamique et chiffrement dynamique, hello de point de terminaison de diffusion en continu à partir de laquelle vous souhaitez que le contenu toostream a toobe Bonjour **en cours d’exécution** état. 
 
 Cet article offre une vue d’ensemble sur des concepts importants de la distribution de contenu.
 
-Pour vérifier les problèmes connus, consultez [Problèmes connus](media-services-deliver-content-overview.md#known-issues).
+toocheck des problèmes connus, consultez [problèmes connus](media-services-deliver-content-overview.md#known-issues).
 
 ## <a name="dynamic-packaging"></a>l’empaquetage dynamique
-Avec l’empaquetage dynamique fourni par Media Services, vous pouvez distribuer votre contenu encodé en MP4 à débit binaire adaptatif ou Smooth Streaming dans un format de diffusion continue pris en charge par Media Services (MPEG-DASH, HLS, Smooth Streaming) sans avoir à recréer de nouveaux packages dans ces formats. Nous vous recommandons de distribuer votre contenu avec l’empaquetage dynamique.
+Avec l’empaquetage dynamique de hello que Media Services fournit, que vous pouvez livrer votre contenu à débit adaptatif MP4 ou Smooth Streaming encodés de diffusion en continu des formats pris en charge par Media Services (MPEG-DASH, HLS, Smooth Streaming) sans avoir toore-package dans Ces formats de diffusion en continu. Nous vous recommandons de distribuer votre contenu avec l’empaquetage dynamique.
 
-Pour tirer parti de l’empaquetage dynamique, vous devez encoder votre fichier mezzanine (source) en un ensemble de fichiers MP4 à débit adaptatif ou de fichiers Smooth Streaming à débit adaptatif.
+tootake parti de l’empaquetage dynamique, vous devez tooencode votre fichier mezzanine (source) dans un ensemble de fichiers MP4 à débit adaptatif ou des fichiers de diffusion en continu lisse à débit adaptatif.
 
-Avec l’empaquetage dynamique, vous stockez et payez les fichiers dans un format de stockage unique. Media Services crée et fournit la réponse appropriée à vos demandes.
+Avec l’empaquetage dynamique, vous stockez et payez les fichiers hello dans le format de stockage unique. Media Services crée et fournit la réponse appropriée de hello en fonction de vos demandes.
 
 L’empaquetage dynamique est disponible pour les points de terminaison de streaming Standard et Premium. 
 
 Pour plus d’informations, consultez [Empaquetage dynamique](media-services-dynamic-packaging-overview.md).
 
 ## <a name="filters-and-dynamic-manifests"></a>Filtres et manifestes dynamiques
-Vous pouvez définir des filtres pour vos éléments multimédias avec Media Services. Ces filtres sont des règles côté serveur qui permettent à vos clients d’effectuer des opérations comme les suivantes : lecture d’une section donnée d’une vidéo, spécification d’un sous-ensemble de rendus audio et vidéo pouvant être gérés par l’appareil de votre client (au lieu de tous les rendus associés à l’élément multimédia). Ce filtrage est obtenu au moyen de *manifestes dynamiques* créés quand votre client émet une demande pour diffuser une vidéo selon un ou plusieurs filtres spécifiés.
+Vous pouvez définir des filtres pour vos éléments multimédias avec Media Services. Ces filtres sont des règles côté serveur à vos clients de faire lire une section spécifique d’une vidéo ou spécifier un sous-ensemble de formats audio et vidéo capable de gérer les périphériques de votre client (au lieu de tous les formats de hello qui sont associés à des actifs de hello ). Ce filtrage s’effectue via *manifestes dynamiques* qui sont créés lorsque votre client demande toostream une vidéo basée sur l’un ou plusieurs filtres spécifiés.
 
 Pour plus d’informations, consultez [Filtres et manifestes dynamiques](media-services-dynamic-manifest-overview.md).
 
 ## <a name="locators"></a>Localisateurs
-Pour fournir aux utilisateurs une URL pouvant être utilisée pour diffuser en continu ou télécharger votre contenu, vous devez d’abord publier votre élément multimédia en créant un localisateur. Un localisateur fournit un point d’entrée pour accéder aux fichiers contenus dans une ressource. Media Services prend en charge deux types de localisateurs :
+tooprovide votre utilisateur avec une URL qui peut être utilisé toostream ou télécharger votre contenu, vous devez toopublish votre élément multimédia en créant un localisateur. Un localisateur fournit un hello de tooaccess de point d’entrée des fichiers contenus dans un élément multimédia. Media Services prend en charge deux types de localisateurs :
 
-* Localisateurs OnDemandOrigin. Ils sont utilisés pour diffuser du contenu multimédia (par exemple, MPEG-DASH, HLS ou Smooth Streaming) ou télécharger progressivement des fichiers.
-* Localisateurs d’URL de signature d’accès partagé (SAP). Ils sont utilisés pour télécharger des fichiers multimédias sur un ordinateur local.
+* Localisateurs OnDemandOrigin. Ceux-ci sont utilisés toostream media (par exemple, MPEG-DASH, HLS ou Smooth Streaming) ou téléchargement progressivement les fichiers.
+* Localisateurs d’URL de signature d’accès partagé (SAP). Il s’agit d’ordinateur local du tooyour fichiers media toodownload utilisé.
 
-Une *stratégie d’accès* est utilisée pour définir les autorisations (écriture, lecture, énumération, etc.) et la durée pendant laquelle le client a accès à une ressource donnée. Notez que l’autorisation de liste (AccessPermissions.List) ne doit pas être utilisée lors de la création d’un localisateur OnDemandOrigin.
+Un *stratégie d’accès* est utilisé toodefine autorisations hello (par exemple, lecture, écriture et liste) et la durée pour laquelle un client a accès pour un composant particulier. Notez qu’autorisation de liste de hello (AccessPermissions.List) ne doit pas être utilisée pour la création d’un localisateur OrDemandOrigin.
 
-Les localisateurs ont une date d’expiration. Le portail Azure définit une date d’expiration 100 ans plus tard pour les localisateurs.
+Les localisateurs ont une date d’expiration. Hello portail Azure définit une date d’expiration à 100 ans Bonjour futures de localisateurs.
 
 > [!NOTE]
-> Si vous avez utilisé le portail Azure pour créer des localisateurs avant mars 2015, ces localisateurs ont été configurés pour expirer après deux ans.
+> Si vous avez utilisé les localisateurs toocreate portail Azure hello avant mars 2015, les localisateurs ont été définies tooexpire après deux ans.
 > 
 > 
 
-Pour mettre à jour la date d’expiration d’un localisateur, utilisez les API [REST](https://docs.microsoft.com/rest/api/media/operations/locator#update_a_locator) ou [.NET](http://go.microsoft.com/fwlink/?LinkID=533259). Notez que lorsque vous mettez à jour la date d’expiration d’un localisateur SAS, l’URL est modifiée.
+tooupdate une date d’expiration sur un localisateur, utilisez [reste](https://docs.microsoft.com/rest/api/media/operations/locator#update_a_locator) ou [.NET](http://go.microsoft.com/fwlink/?LinkID=533259) API. Notez que lorsque vous mettez à jour date d’expiration de hello d’un localisateur SAS, hello URL change.
 
-Les localisateurs ne sont pas conçus pour gérer le contrôle d’accès par utilisateur. Vous pouvez accorder différents droits d’accès aux utilisateurs en utilisant les solutions de gestion des droits numériques (DRM). Pour plus d’informations, consultez la page [Sécurisation des médias](http://msdn.microsoft.com/library/azure/dn282272.aspx).
+Les localisateurs ne sont pas conçus toomanage le contrôle d’accès par utilisateur. Vous pouvez accorder des droits tooindividual utilisateurs accès différent à l’aide de solutions de gestion des droits numériques (DRM). Pour plus d’informations, consultez la page [Sécurisation des médias](http://msdn.microsoft.com/library/azure/dn282272.aspx).
 
-Lorsque vous créez un localisateur, il peut y avoir un délai de 30 secondes dû au processus de stockage et de propagation requis dans Azure Storage.
+Lorsque vous créez un localisateur, il peut y avoir un délai de 30 secondes en raison du processus de stockage et de propagation toorequired dans le stockage Azure.
 
 ## <a name="adaptive-streaming"></a>Diffusion en continu adaptative
-Les technologies à débit adaptatif permettent aux applications de lecteur vidéo de déterminer les conditions réseau et de choisir entre plusieurs débits. Si la communication réseau se dégrade, le client peut sélectionner un débit inférieur, ce qui permet au lecteur de continuer avec une qualité vidéo moindre. Dès que les conditions réseau s’améliorent, le client peut passer à un débit binaire supérieur pour une meilleure qualité vidéo. Azure Media Services prend en charge les technologies à débit binaire adaptatif suivantes : HTTP Live Streaming (HLS), Smooth Streaming et MPEG-DASH.
+Technologies de débit adaptatif permettent aux applications de lecteur vidéo toodetermine des conditions réseau et sélectionner à partir de plusieurs débits binaires. Lors de la communication réseau se dégrade, client de hello permet un débit binaire inférieur pour lecture puisse continuer avec la qualité vidéo moindre. Comme l’amélioration des conditions réseau, client de hello peut basculer tooa le débit plus élevé avec une meilleure qualité vidéo. Azure Media Services prend en charge hello suivant des technologies de débit adaptatif : HTTP Live Streaming (HLS), la diffusion en continu lisse et MPEG-DASH.
 
-Pour fournir aux utilisateurs des URL de diffusion en continu, vous devez d’abord créer un localisateur OnDemandOrigin. La création du localisateur vous donne le chemin d’accès de base à l’élément multimédia qui contient le contenu que vous souhaitez diffuser. Toutefois, pour pouvoir diffuser ce contenu vous devez modifier ce chemin d’accès. Pour construire une URL complète vers le fichier manifeste de diffusion en continu, vous devez concaténer la valeur de chemin d’accès du localisateur et le nom du fichier manifeste (nom_fichier.ism). Ensuite, ajoutez **/Manifest** et un format approprié (si nécessaire) au chemin d’accès du localisateur.
+tooprovide des utilisateurs avec des URL de diffusion en continu, vous devez créer un localisateur OnDemandOrigin. Création de hello donne localisateur vous hello asset toohello chemin d’accès de base qui contient le contenu de hello souhaité toostream. Toutefois, toostream en mesure de toobe ce contenu, vous devez toomodify ce chemin d’accès supplémentaire. tooconstruct une URL complète toohello fichier manifeste de diffusion en continu, vous devez concaténer de chemin d’accès du localisateur hello valeur et hello manifeste (nom_fichier.ISM) nom du fichier. Puis ajoutez **de manifeste** et un chemin d’accès du localisateur de toohello format approprié (si nécessaire).
 
 > [!NOTE]
-> Vous pouvez aussi diffuser votre contenu via une connexion SSL. Pour ce faire, assurez-vous que votre URL de diffusion commence par HTTPS. Notez qu’actuellement AMS ne prend pas en charge SSL avec les domaines personnalisés.  
+> Vous pouvez aussi diffuser votre contenu via une connexion SSL. toodo, assurez-vous que votre Démarrer URL de diffusion en continu avec HTTPS. Notez qu’actuellement AMS ne prend pas en charge SSL avec les domaines personnalisés.  
 > 
 
 
-Vous ne pouvez transmettre en continu avec le protocole SSL que si le point de terminaison de streaming à partir duquel vous distribuez votre contenu a été créé après le 10 septembre 2014. Si vos URL de diffusion sont basées sur des points de terminaison créés après le 10 septembre 2014, l’URL contient « streaming.mediaservices.windows.net ». Les URL de diffusion qui contiennent « origin.mediaservices.windows.net » (ancien format) ne sont pas compatibles avec le protocole SSL. Si votre URL suit l’ancien format et que vous souhaitez être en mesure de diffuser via le protocole SSL, créez un point de terminaison. Utilisez des URL basées sur le nouveau point de terminaison de streaming pour diffuser votre contenu avec le protocole SSL.
+Vous pouvez uniquement diffuser via le protocole SSL si hello point de terminaison à partir duquel vous distribuez votre contenu de diffusion en continu a été créé après le 10 septembre 2014. Si votre URL de diffusion en continu est basés sur hello créés après le 10 septembre 2014, des points de terminaison de diffusion en continu hello URL contient « streaming.mediaservices.windows.net ». URL de diffusion en continu qui contiennent « origin.mediaservices.windows.net » (hello ancien format) ne prennent pas en charge SSL. Si votre URL est dans un ancien format de hello et que vous souhaitez toostream en mesure de toobe via le protocole SSL, créez un nouveau point de terminaison de diffusion en continu. URL de l’utilisation selon hello new toostream de point de terminaison de diffusion en continu votre contenu via le protocole SSL.
 
 ## <a name="streaming-url-formats"></a>Formats d’URL de diffusion en continu :
 ### <a name="mpeg-dash-format"></a>Format MPEG-DASH
@@ -101,7 +101,7 @@ http://testendpoint-testaccount.streaming.mediaservices.windows.net/fecebb23-46f
 http://testendpoint-testaccount.streaming.mediaservices.windows.net/fecebb23-46f6-490d-8b70-203e86b0df58/BigBuckBunny.ism/Manifest(format=m3u8-aapl-v3)
 
 ### <a name="apple-http-live-streaming-hls-format-with-audio-only-filter"></a>Format Apple HTTP Live Streaming (HLS) avec filtre audio uniquement
-Par défaut, les pistes uniquement audio sont incluses dans le manifeste HLS. Cette condition est nécessaire pour qu’Apple Store certifie les réseaux cellulaires. Dans ce cas, si un client n’a pas suffisamment de bande passante ou est connecté au moyen d’une connexion 2G, la lecture bascule vers l’audio uniquement. Cela permet de maintenir la diffusion en continu du contenu sans mise en mémoire tampon, mais sans la vidéo. Dans certains scénarios, la mise en mémoire tampon du lecteur est préférable à une diffusion audio uniquement. Si vous souhaitez supprimer la piste audio uniquement, ajoutez **audio-only=false** à l’URL.
+Par défaut, les pistes audio uniquement sont inclus dans hello que TLS de manifeste. Cette condition est nécessaire pour qu’Apple Store certifie les réseaux cellulaires. Dans ce cas, si un client n’a pas suffisamment de bande passante ou est connecté via une connexion de 2G, lecture bascule tooaudio uniquement. Cela permet de tookeep le contenu de diffusion en continu sans mise en mémoire tampon, mais rien ne s’affiche. Dans certains scénarios, la mise en mémoire tampon du lecteur est préférable à une diffusion audio uniquement. Si vous souhaitez piste audio uniquement du hello tooremove, ajoutez **audio uniquement = false** toohello URL.
 
 http://testendpoint-testaccount.streaming.mediaservices.windows.net/fecebb23-46f6-490d-8b70-203e86b0df58/BigBuckBunny.ism/Manifest(format=m3u8-aapl-v3,audio-only=false)
 
@@ -115,43 +115,43 @@ Exemple :
 http://testendpoint-testaccount.streaming.mediaservices.windows.net/fecebb23-46f6-490d-8b70-203e86b0df58/BigBuckBunny.ism/Manifest
 
 ### <a id="fmp4_v20"></a>Manifeste Smooth Streaming 2.0 (manifeste hérité)
-Par défaut, le manifeste Smooth Streaming contient la balise de répétition (r-tag). Toutefois, certains lecteurs ne gèrent pas la balise r-tag. Les clients disposant de ces lecteurs peuvent utiliser un format qui désactive la balise r-tag :
+Par défaut, le format de manifeste Smooth Streaming contient la balise de répétition hello (r-tag). Toutefois, certains lecteurs ne gèrent pas la balise hello. Clients avec ces lecteurs peuvent utiliser un format qui désactive la balise hello :
 
 {nom du point de terminaison de diffusion en continu-nom du compte media services}.streaming.mediaservices.windows.net/{ID_de_localisateur}/{nom_de_fichier}.ISM/Manifest(format=fmp4-v20)
 
     http://testendpoint-testaccount.streaming.mediaservices.windows.net/fecebb23-46f6-490d-8b70-203e86b0df58/BigBuckBunny.ism/Manifest(format=fmp4-v20)
 
 ## <a name="progressive-download"></a>Téléchargement progressif
-Avec le téléchargement progressif, vous pouvez commencer la lecture multimédia avant que l’intégralité du fichier ait été téléchargée. Vous ne pouvez pas télécharger progressivement des fichiers .ism* (.ismv, .isma, .ismt ou .ismc).
+Avec le téléchargement progressif, vous pouvez commencer la lecture du contenu multimédia avant que l’intégralité du fichier hello a été téléchargé. Vous ne pouvez pas télécharger progressivement des fichiers .ism* (.ismv, .isma, .ismt ou .ismc).
 
-Pour télécharger progressivement du contenu, utilisez le type de localisateur OnDemandOrigin. L’exemple suivant illustre l’URL basée sur le type de localisateur OnDemandOrigin :
+tooprogressively téléchargent du contenu, utilisez hello OnDemandOrigin type localisateur. Hello exemple suivant montre les URL hello basé sur hello type OnDemandOrigin de localisateur :
 
     http://amstest1.streaming.mediaservices.windows.net/3c5fe676-199c-4620-9b03-ba014900f214/BigBuckBunny_H264_650kbps_AAC_und_ch2_96kbps.mp4
 
-Vous devez déchiffrer les ressources à chiffrement de stockage que vous souhaitez diffuser en continu à partir du service d’origine pour permettre le téléchargement progressif.
+Vous devez déchiffrer tous les éléments chiffrés de stockage que vous souhaitez toostream à partir du service d’origine hello pour le téléchargement progressif.
 
 ## <a name="download"></a>Télécharger
-Pour télécharger votre contenu sur un appareil client, vous devez créer un localisateur SAP. Le localisateur SAP vous donne accès au conteneur Azure Storage où votre fichier est stocké. Pour créer l’URL de téléchargement, vous devez inclure le nom du fichier entre l’hôte et la signature SAP.
+toodownload votre appareil client tooa de contenu, vous devez créer un localisateur SAS. Hello SAS localisateur vous donne accès au conteneur de stockage Azure toohello où se trouve votre fichier. URL de téléchargement toobuild hello, vous avez le nom de fichier tooembed hello entre l’hôte de hello et la signature SAS.
 
-L’exemple suivant illustre l’URL basée sur le localisateur SAP :
+Hello exemple suivant montre les URL de hello qui est basé sur le localisateur SAS de hello :
 
     https://test001.blob.core.windows.net/asset-ca7a4c3f-9eb5-4fd8-a898-459cb17761bd/BigBuckBunny.mp4?sv=2012-02-12&se=2014-05-03T01%3A23%3A50Z&sr=c&si=7c093e7c-7dab-45b4-beb4-2bfdff764bb5&sig=msEHP90c6JHXEOtTyIWqD7xio91GtVg0UIzjdpFscHk%3D
 
-Les considérations suivantes s'appliquent :
+Hello suivant considérations s’appliquent :
 
-* Vous devez déchiffrer les ressources à chiffrement de stockage que vous souhaitez diffuser en continu à partir du service d’origine pour permettre le téléchargement progressif.
+* Vous devez déchiffrer tous les éléments chiffrés de stockage que vous souhaitez toostream à partir du service d’origine hello pour le téléchargement progressif.
 * Si le téléchargement n’est pas terminé au bout de 12 heures, il échoue.
 
 ## <a name="streaming-endpoints"></a>Points de terminaison de streaming
 
-Un point de terminaison de streaming représente un service de diffusion en continu qui peut fournir du contenu directement à une application de lecteur cliente ou à un réseau de distribution de contenu (CDN) en vue de sa redistribution. Le flux sortant d’un service de point de terminaison de streaming peut être un flux dynamique ou une ressource de vidéo à la demande dans votre compte Media Services. Il existe deux types de points de terminaison de streaming : **Standard** et **Premium**. Pour plus d’informations, consultez [Vue d’ensemble des points de terminaison de streaming](media-services-streaming-endpoints-overview.md).
+Un point de terminaison de diffusion en continu représente un service de diffusion en continu qui peut fournir du contenu directement tooa client lecteur application ou tooa réseau content delivery network (CDN) pour plus de distribution. flux sortant de Hello à partir d’un service de point de terminaison de diffusion en continu peut être un flux en direct ou une ressource vidéo à la demande dans votre compte Media Services. Il existe deux types de points de terminaison de streaming : **Standard** et **Premium**. Pour plus d’informations, consultez [Vue d’ensemble des points de terminaison de streaming](media-services-streaming-endpoints-overview.md).
 
 >[!NOTE]
->Une fois votre compte AMS créé, un point de terminaison de streaming **par défaut** est ajouté à votre compte à l’état **Arrêté**. Pour démarrer la diffusion en continu de votre contenu et tirer parti de l’empaquetage et du chiffrement dynamiques, le point de terminaison de streaming à partir duquel vous souhaitez diffuser du contenu doit se trouver à l’état **En cours d’exécution**. 
+>Création de votre compte AMS un **par défaut** point de terminaison de diffusion en continu est ajoutée tooyour compte Bonjour **arrêté** état. toostart de diffusion en continu de votre contenu et profitez de l’empaquetage dynamique et chiffrement dynamique, hello de point de terminaison de diffusion en continu à partir de laquelle vous souhaitez que le contenu toostream a toobe Bonjour **en cours d’exécution** état. 
 
 ## <a name="known-issues"></a>Problèmes connus
-### <a name="changes-to-smooth-streaming-manifest-version"></a>Modifications apportées à la version du manifeste Smooth Streaming
-Avant la version de service de juillet 2016, lorsque des éléments multimédias générés par Media Encoder Standard, Media Encoder Premium Workflow ou, précédemment, Azure Media Encoder étaient diffusés en continu à l’aide de l’empaquetage dynamique, le manifeste Smooth Streaming retourné devait être conforme à la version 2.0. Dans la version 2.0, les durées de fragments n’utilisent pas ce que l’on appelle les balises de répétition (« r »). Par exemple :
+### <a name="changes-toosmooth-streaming-manifest-version"></a>Version du manifeste de diffusion en continu tooSmooth modifications
+Avant que le hello version de juillet 2016 service--lorsque le manifeste des biens produits par l’encodeur de support Standard, Workflow d’encodeur multimédia Premium ou hello Azure Media Encoder antérieures ont été transmis à l’aide d’empaquetage dynamique--hello Smooth Streaming retourné serait conforme tooversion 2.0. Dans la version 2.0, les durées de fragment hello n’utilisent pas les balises hello soi-disant repeat (« r »). Par exemple :
 
 <?xml version="1.0" encoding="UTF-8"?>
     <SmoothStreamingMedia MajorVersion="2" MinorVersion="0" Duration="8000" TimeScale="1000">
@@ -164,7 +164,7 @@ Avant la version de service de juillet 2016, lorsque des éléments multimédias
         </StreamIndex>
     </SmoothStreamingMedia>
 
-Dans la version de service de juillet 2016, le manifeste Smooth Streaming généré est conforme à la version 2.2, avec des durées de fragments utilisant des balises de répétition. Par exemple :
+Dans la version de juillet 2016 de service de hello, manifeste de diffusion en continu lisse hello généré est conforme à tooversion 2.2, avec des durées de fragment à l’aide de balises de répétitions. Par exemple :
 
     <?xml version="1.0" encoding="UTF-8"?>
     <SmoothStreamingMedia MajorVersion="2" MinorVersion="2" Duration="8000" TimeScale="1000">
@@ -174,7 +174,7 @@ Dans la version de service de juillet 2016, le manifeste Smooth Streaming géné
         </StreamIndex>
     </SmoothStreamingMedia>
 
-Certains clients Smooth Streaming hérités peuvent ne pas prendre en charge les balises de répétition et ne parviendront pas à charger le manifeste. Pour résoudre ce problème, vous pouvez utiliser le paramètre de format de manifeste hérité **(format=fmp4-v20)** ou mettre à jour votre client vers la dernière version qui prend en charge les balises de répétition. Pour plus d’informations, consultez [Smooth Streaming 2.0](media-services-deliver-content-overview.md#fmp4_v20).
+Certaines des clients hérités de diffusion en continu lisse hello n’acceptent pas les balises de répétition hello et ne pourra pas de manifeste de hello tooload. toomitigate ce problème, vous pouvez utiliser le paramètre de format de manifeste hérité hello **(format = fmp4-v20)** ou mettre à jour votre version plus récente toohello du client, qui prend en charge les balises de répétitions. Pour plus d’informations, consultez [Smooth Streaming 2.0](media-services-deliver-content-overview.md#fmp4_v20).
 
 ## <a name="media-services-learning-paths"></a>Parcours d’apprentissage de Media Services
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

@@ -1,6 +1,6 @@
 ---
-title: Utilisation du stockage Table (C++) | Microsoft Docs
-description: "Stockez des données structurées dans le cloud à l’aide du stockage de tables Azure, un magasin de données NoSQL."
+title: aaaHow toouse le stockage de Table (C++) | Documents Microsoft
+description: "Stocker des données structurées dans le cloud hello avec le stockage Table Azure, un magasin de données NoSQL."
 services: cosmos-db
 documentationcenter: .net
 author: mimig1
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/28/2017
 ms.author: mimig
-ms.openlocfilehash: 8314292cdb9b7a3f464c60119ed10f6b06ed4d10
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 8096fe531427ba4858f7f4cb7f664f941892d1c9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-table-storage-from-c"></a>Utilisation du stockage de table à partir de C++
+# <a name="how-toouse-table-storage-from-c"></a>Comment toouse le stockage de Table à partir de C++
 [!INCLUDE [storage-selector-table-include](../../includes/storage-selector-table-include.md)]
 [!INCLUDE [storage-table-cosmos-db-langsoon-tip-include](../../includes/storage-table-cosmos-db-langsoon-tip-include.md)]
 
 ## <a name="overview"></a>Vue d'ensemble
-Ce guide décrit le déroulement de scénarios courants dans le cadre de l’utilisation du service de stockage de table Azure. Les exemples ont été écrits en C++ et utilisent la [bibliothèque cliente Azure Storage pour C++](https://github.com/Azure/azure-storage-cpp/blob/master/README.md). Les scénarios traités incluent la **création et la suppression d’une table**, ainsi que **l’utilisation d’entités de table**.
+Ce guide explique comment tooperform des scénarios courants à l’aide de hello service de stockage de Table Azure. exemples de Hello sont écrits en C++ et utiliser hello [bibliothèque cliente de stockage Azure pour C++](https://github.com/Azure/azure-storage-cpp/blob/master/README.md). Hello scénarios abordés incluent **création et suppression d’une table** et **utilisation des entités de table**.
 
 > [!NOTE]
-> Ce guide cible la bibliothèque cliente Azure Storage pour C++ version 1.0.0 et les versions ultérieures. La version recommandée est la bibliothèque cliente de stockage version 2.2.0, disponible par le biais de [NuGet](http://www.nuget.org/packages/wastorage) ou [GitHub](https://github.com/Azure/azure-storage-cpp/).
+> Les cibles de ce guide hello bibliothèque cliente Azure Storage pour C++ version 1.0.0 et versions ultérieures. Hello recommandé de version est la bibliothèque cliente de stockage 2.2.0, qui est disponible via [NuGet](http://www.nuget.org/packages/wastorage) ou [GitHub](https://github.com/Azure/azure-storage-cpp/).
 > 
 > 
 
@@ -37,17 +37,17 @@ Ce guide décrit le déroulement de scénarios courants dans le cadre de l’uti
 [!INCLUDE [storage-create-account-include](../../includes/storage-create-account-include.md)]
 
 ## <a name="create-a-c-application"></a>Création d’une application C++
-Dans ce guide, vous allez utiliser des fonctionnalités de stockage qui peuvent être exécutées dans une application C++. Pour ce faire, vous devez installer la bibliothèque cliente Azure Storage pour C++ et créer un compte Azure Storage dans votre abonnement Azure.  
+Dans ce guide, vous allez utiliser des fonctionnalités de stockage qui peuvent être exécutées dans une application C++. toodo par conséquent, vous devez tooinstall hello bibliothèque cliente Azure Storage pour C++ et créer un compte de stockage Azure dans votre abonnement Azure.  
 
-Pour installer la bibliothèque cliente Azure Storage pour C++, vous pouvez procéder comme suit :
+tooinstall hello bibliothèque cliente Azure Storage pour C++, vous pouvez utiliser hello méthodes suivantes :
 
-* **Linux :** suivez les instructions disponibles dans la page [Bibliothèque cliente Azure Storage pour C++](https://github.com/Azure/azure-storage-cpp/blob/master/README.md) .  
-* **Windows :** dans Visual Studio, cliquez sur **Outils > Gestionnaire de package NuGet > Console du gestionnaire de package**. Entrez la commande suivante dans la [console du gestionnaire du package NuGet](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) et appuyez sur Entrée.  
+* **Linux :** suivez les indications hello hello [bibliothèque cliente de stockage Azure pour C++ Lisez-moi](https://github.com/Azure/azure-storage-cpp/blob/master/README.md) page.  
+* **Windows :** dans Visual Studio, cliquez sur **Outils &gt; Gestionnaire de package NuGet &gt; Console du gestionnaire de package**. Tapez ce qui suit hello commande dans hello [console du Gestionnaire de Package NuGet](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) et appuyez sur ENTRÉE.  
   
      Install-Package wastorage
 
-## <a name="configure-your-application-to-access-table-storage"></a>Configuration de votre application pour accéder au stockage de table
-Ajoutez l’instruction import suivante au début du fichier C++ dans lequel vous voulez utiliser des API de stockage Azure pour accéder aux tables :  
+## <a name="configure-your-application-tooaccess-table-storage"></a>Configurer votre application de tooaccess le stockage de Table
+Ajouter suivant de hello inclure haut de toohello d’instructions de hello C++ fichier dans lequel les tables tooaccess API toouse hello stockage Azure :  
 
 ```cpp
 #include <was/storage_account.h>
@@ -55,72 +55,72 @@ Ajoutez l’instruction import suivante au début du fichier C++ dans lequel vou
 ```
 
 ## <a name="set-up-an-azure-storage-connection-string"></a>Configuration d’une chaîne de connexion au stockage Azure
-Un client de stockage Azure utilise une chaîne de connexion de stockage pour stocker des points de terminaison et des informations d’identification permettant d’accéder aux services de gestion des données. Quand vous exécutez une application cliente, vous devez fournir la chaîne de connexion de stockage dans le format suivant. Utilisez le nom de votre compte de stockage et la clé d’accès de stockage pour le compte de stockage répertorié sur le [portail Azure](https://portal.azure.com) pour les valeurs *AccountName* et *AccountKey*. Pour plus d’informations sur les comptes et les clés d’accès de stockage, consultez [À propos des comptes Azure Storage](../storage/common/storage-create-storage-account.md). Cet exemple vous montre comment déclarer un champ statique pour qu’il contienne une chaîne de connexion :  
+Un client de stockage Azure utilise une terminaison de stockage connexion chaîne toostore et informations d’identification pour accéder aux services de gestion de données. Lors de l’exécution d’une application cliente, vous devez fournir la chaîne de connexion de stockage hello Bonjour suivant le format. Utiliser le nom de votre compte et hello stockage clé d’accès pour le compte de stockage hello hello répertoriés dans hello [Azure Portal](https://portal.azure.com) pour hello *AccountName* et *AccountKey* valeurs. Pour plus d’informations sur les comptes et les clés d’accès de stockage, consultez [À propos des comptes Azure Storage](../storage/common/storage-create-storage-account.md). Cet exemple montre comment vous pouvez déclarer une chaîne de connexion de champ statique toohold hello :  
 
 ```cpp
-// Define the connection string with your values.
+// Define hello connection string with your values.
 const utility::string_t storage_connection_string(U("DefaultEndpointsProtocol=https;AccountName=your_storage_account;AccountKey=your_storage_account_key"));
 ```
 
-Pour tester votre application sur votre ordinateur Windows local, vous pouvez utiliser [l’émulateur de stockage](../storage/common/storage-use-emulator.md) Azure installé avec le [Kit de développement logiciel (SDK) Azure](https://azure.microsoft.com/downloads/). L’émulateur de stockage est un utilitaire qui simule les services Azure d’objet blob, de file d’attente et de table disponibles sur votre ordinateur de développement local. L’exemple suivant vous montre comment déclarer un champ statique pour qu’il contienne une chaîne de connexion vers votre émulateur de stockage local :  
+tootest votre application sur votre ordinateur local basé sur Windows, vous pouvez utiliser hello Azure [l’émulateur de stockage](../storage/common/storage-use-emulator.md) qui est installé avec hello [Azure SDK](https://azure.microsoft.com/downloads/). l’émulateur de stockage Hello est un utilitaire qui simule hello Azure Blob, file d’attente et Table services disponibles sur votre ordinateur de développement local. Hello suivant montre comment vous pouvez déclarer un champ statique toohold hello connexion chaîne tooyour local l’émulateur de stockage :  
 
 ```cpp
-// Define the connection string with Azure storage emulator.
+// Define hello connection string with Azure storage emulator.
 const utility::string_t storage_connection_string(U("UseDevelopmentStorage=true;"));  
 ```
 
-Pour démarrer l’émulateur de stockage Azure, cliquez sur le bouton **Démarrer** ou appuyez sur la touche Windows. Commencez à taper **Émulateur de stockage Azure**, puis sélectionnez **Émulateur de stockage Microsoft Azure** dans la liste des applications.  
+toostart hello émulateur de stockage Azure, cliquez sur hello **Démarrer** bouton ou appuyez sur clé de Windows hello. Commencez à taper **émulateur de stockage Azure**, puis sélectionnez **émulateur de stockage Microsoft Azure** à partir de la liste des applications hello.  
 
-Les exemples ci-dessous partent du principe que vous avez utilisé l’une de ces deux méthodes pour obtenir la chaîne de connexion de stockage.  
+Hello exemples suivants supposent que vous avez utilisé une de ces chaînes de connexion de stockage de deux méthodes tooget hello.  
 
 ## <a name="retrieve-your-connection-string"></a>Récupération de votre chaîne de connexion
-Vous pouvez utiliser la classe **cloud_storage_account** pour représenter les informations de votre compte de stockage. Pour extraire les informations de votre compte de stockage de la chaîne de connexion de stockage, vous pouvez utiliser la méthode parse.
+Vous pouvez utiliser hello **cloud_storage_account** classe toorepresent vos informations de compte de stockage. tooretrieve plus d’informations à partir de la chaîne de connexion de stockage hello du compte de votre stockage, vous pouvez utiliser la méthode d’analyse hello.
 
 ```cpp
-// Retrieve the storage account from the connection string.
+// Retrieve hello storage account from hello connection string.
 azure::storage::cloud_storage_account storage_account = azure::storage::cloud_storage_account::parse(storage_connection_string);
 ```
 
-Ensuite, récupérez une référence à une classe **cloud_table_client**, car elle vous permet d’obtenir des objets de référence pour les tables et entités stockées dans le service de stockage de Table. Le code suivant crée un objet **cloud_table_client** en utilisant l’objet de compte de stockage récupéré ci-dessus :  
+Ensuite, obtenez une référence tooa **cloud_table_client** de classe, comme il vous permet d’obtenir des objets de référence pour les tables et entités stockées dans hello service de stockage de Table. Hello de code suivant crée un **cloud_table_client** objet à l’aide d’objet de compte de stockage hello nous récupérées ci-dessus :  
 
 ```cpp
-// Create the table client.
+// Create hello table client.
 azure::storage::cloud_table_client table_client = storage_account.create_cloud_table_client();
 ```
 
 ## <a name="create-a-table"></a>Création d’une table
-Un objet **cloud_table_client** vous permet d’obtenir les objets de référence pour les tables et entités. Le code suivant crée un objet **cloud_table_client** et l’utilise pour créer une table.
+Un objet **cloud_table_client** vous permet d’obtenir les objets de référence pour les tables et entités. Hello de code suivant crée un **cloud_table_client** de l’objet et l’utilise toocreate une nouvelle table.
 
 ```cpp
-// Retrieve the storage account from the connection string.
+// Retrieve hello storage account from hello connection string.
 azure::storage::cloud_storage_account storage_account = azure::storage::cloud_storage_account::parse(storage_connection_string);  
 
-// Create the table client.
+// Create hello table client.
 azure::storage::cloud_table_client table_client = storage_account.create_cloud_table_client();
 
-// Retrieve a reference to a table.
+// Retrieve a reference tooa table.
 azure::storage::cloud_table table = table_client.get_table_reference(U("people"));
 
-// Create the table if it doesn't exist.
+// Create hello table if it doesn't exist.
 table.create_if_not_exists();  
 ```
 
-## <a name="add-an-entity-to-a-table"></a>Ajout d'une entité à une table
-Pour ajouter une entité à une table, créez un objet **table_entity** et transmettez-le à **table_operation::insert_entity**. Le code suivant utilise le prénom du client en tant que clé de ligne et son nom de famille en tant que clé de partition. Ensemble, les clés de partition et de ligne d’une entité identifient l’entité de façon unique dans la table. Les requêtes d’entités dont les clés de partition sont identiques sont plus rapides que celles d’entités dont les clés de partition sont différentes, mais le fait d’utiliser différentes clés de partition améliore l’extensibilité des opérations parallèles. Pour plus d’informations, consultez [Liste de contrôle des performances et de l’extensibilité de Microsoft Azure Storage](../storage/common/storage-performance-checklist.md).
+## <a name="add-an-entity-tooa-table"></a>Ajouter une table de tooa d’entité
+tooadd une table de tooa entité, créez un **table_entity** de l’objet et lui passer trop**table_operation::insert_entity**. Hello de code suivant utilise prénom du client hello en tant que clé de ligne hello et le nom comme clé de partition hello. Ensemble, les partitions d’une entité et la clé de ligne identifient hello entité dans la table de hello. Entités avec hello même clé de partition peut être interrogé plus rapidement que les différents avec des clés de partition, mais à l’aide de clés de partition divers permet une plus grande évolutivité de l’opération parallèle. Pour plus d’informations, consultez [Liste de contrôle des performances et de l’extensibilité de Microsoft Azure Storage](../storage/common/storage-performance-checklist.md).
 
-Le code suivant crée une instance de la classe **table_entity** avec des données client à stocker. Le code appelle ensuite **table_operation::insert_entity** pour créer un objet **table_operation** pour insérer une entité dans une table et y associer la nouvelle entité de table. Enfin, le code appelle la méthode execute sur l’objet **cloud_table**. Puis le nouvel objet **table_operation** envoie une demande au service de Table pour insérer la nouvelle entité de client dans la table « people ».  
+Hello de code suivant crée une nouvelle instance de **table_entity** avec certaines toobe de données client stockée. Hello de code suivante appelle **table_operation::insert_entity** toocreate un **table_operation** tooinsert une entité de l’objet dans une table, et associe hello nouvelle entité de table avec lui. Enfin, les appels de code hello hello exécuter la méthode sur hello **cloud_table** objet. Et hello nouvelle **table_operation** envoie une demande de toohello Table service tooinsert hello nouvelle entité customer dans la table « people » de hello.  
 
 ```cpp
-// Retrieve the storage account from the connection string.
+// Retrieve hello storage account from hello connection string.
 azure::storage::cloud_storage_account storage_account = azure::storage::cloud_storage_account::parse(storage_connection_string);
 
-// Create the table client.
+// Create hello table client.
 azure::storage::cloud_table_client table_client = storage_account.create_cloud_table_client();
 
-// Retrieve a reference to a table.
+// Retrieve a reference tooa table.
 azure::storage::cloud_table table = table_client.get_table_reference(U("people"));
 
-// Create the table if it doesn't exist.
+// Create hello table if it doesn't exist.
 table.create_if_not_exists();
 
 // Create a new customer entity.
@@ -132,30 +132,30 @@ properties[U("Email")] = azure::storage::entity_property(U("Walter@contoso.com")
 
 properties[U("Phone")] = azure::storage::entity_property(U("425-555-0101"));
 
-// Create the table operation that inserts the customer entity.
+// Create hello table operation that inserts hello customer entity.
 azure::storage::table_operation insert_operation = azure::storage::table_operation::insert_entity(customer1);
 
-// Execute the insert operation.
+// Execute hello insert operation.
 azure::storage::table_result insert_result = table.execute(insert_operation);
 ```
 
-## <a name="insert-a-batch-of-entities"></a>Insertion d'un lot d'entités
-Vous pouvez insérer un lot d’entités dans le service de Table en une seule opération d’écriture. Le code suivant crée un objet **table_batch_operation**, puis y ajoute trois opérations d’insertion. Chaque opération d’insertion est ajoutée en créant un objet d’entité, en définissant ses valeurs, puis en appelant la méthode insert sur l’objet **table_batch_operation** pour associer l’entité avec une nouvelle opération d’insertion. La méthode **cloud_table.execute** est ensuite appelée pour exécuter l’opération.  
+## <a name="insert-a-batch-of-entities"></a>Insertion d’un lot d’entités
+Vous pouvez insérer un lot d’entités toohello service de Table dans une opération d’écriture. Hello de code suivant crée un **table_batch_operation** de l’objet, puis ajoute trois insérer tooit d’opérations. Chaque opération d’insertion est ajoutée en créant un nouvel objet d’entité, ses valeurs, et puis en appelant hello insérer la méthode sur hello **table_batch_operation** objet entité de hello tooassociate avec une nouvelle opération d’insertion. Ensuite, **cloud_table.execute** est appelé l’opération de hello tooexecute.  
 
 ```cpp
-// Retrieve the storage account from the connection string.
+// Retrieve hello storage account from hello connection string.
 azure::storage::cloud_storage_account storage_account = azure::storage::cloud_storage_account::parse(storage_connection_string);
 
-// Create the table client.
+// Create hello table client.
 azure::storage::cloud_table_client table_client = storage_account.create_cloud_table_client();
 
-// Create a cloud table object for the table.
+// Create a cloud table object for hello table.
 azure::storage::cloud_table table = table_client.get_table_reference(U("people"));
 
 // Define a batch operation.
 azure::storage::table_batch_operation batch_operation;
 
-// Create a customer entity and add it to the table.
+// Create a customer entity and add it toohello table.
 azure::storage::table_entity customer1(U("Smith"), U("Jeff"));
 
 azure::storage::table_entity::properties_type& properties1 = customer1.properties();
@@ -163,7 +163,7 @@ properties1.reserve(2);
 properties1[U("Email")] = azure::storage::entity_property(U("Jeff@contoso.com"));
 properties1[U("Phone")] = azure::storage::entity_property(U("425-555-0104"));
 
-// Create another customer entity and add it to the table.
+// Create another customer entity and add it toohello table.
 azure::storage::table_entity customer2(U("Smith"), U("Ben"));
 
 azure::storage::table_entity::properties_type& properties2 = customer2.properties();
@@ -171,7 +171,7 @@ properties2.reserve(2);
 properties2[U("Email")] = azure::storage::entity_property(U("Ben@contoso.com"));
 properties2[U("Phone")] = azure::storage::entity_property(U("425-555-0102"));
 
-// Create a third customer entity to add to the table.
+// Create a third customer entity tooadd toohello table.
 azure::storage::table_entity customer3(U("Smith"), U("Denise"));
 
 azure::storage::table_entity::properties_type& properties3 = customer3.properties();
@@ -179,44 +179,44 @@ properties3.reserve(2);
 properties3[U("Email")] = azure::storage::entity_property(U("Denise@contoso.com"));
 properties3[U("Phone")] = azure::storage::entity_property(U("425-555-0103"));
 
-// Add customer entities to the batch insert operation.
+// Add customer entities toohello batch insert operation.
 batch_operation.insert_or_replace_entity(customer1);
 batch_operation.insert_or_replace_entity(customer2);
 batch_operation.insert_or_replace_entity(customer3);
 
-// Execute the batch operation.
+// Execute hello batch operation.
 std::vector<azure::storage::table_result> results = table.execute_batch(batch_operation);
 ```
 
-Quelques remarques sur les opérations par lots :  
+Toonote de certaines opérations sur les opérations de traitement par lots :  
 
-* Vous pouvez effectuer jusqu’à 100 opérations d’insertion, de suppression, de fusion, de remplacement, d’insertion ou fusion et d’insertion ou de remplacement dans n’importe quelle combinaison en un seul lot.  
-* Une opération par lot peut comporter une opération d’extraction, s’il s’agit de la seule opération du lot.  
-* Toutes les entités d’une opération par lot doivent avoir la même clé de partition.  
-* Une opération par lot est limitée à une charge utile de données de 4 Mo.  
+* Vous pouvez effectuer des too100 insert, delete, merge, replace, opérations insert ou merge et insérer ou remplacer dans n’importe quelle combinaison dans un lot unique.  
+* Une opération de traitement peut avoir une opération de récupération, s’il est la seule opération de hello dans un lot de hello.  
+* Toutes les entités dans une seule opération doivent avoir hello même clé de partition.  
+* Une opération de traitement est la charge utile de données de 4 Mo tooa limité.  
 
 ## <a name="retrieve-all-entities-in-a-partition"></a>Extraction de toutes les entités d'une partition
-Pour exécuter une requête de table pour toutes les entités d’une partition, utilisez un objet **table_query**. L’exemple de code suivant indique un filtre pour les entités où ’Smith’ est la clé de partition. Il imprime les champs de chaque entité dans les résultats de requête vers la console.  
+tooquery une table pour toutes les entités dans une partition, utilisez un **table_query** objet. Hello exemple de code suivant spécifie un filtre pour les entités où « Smith » est la clé de partition hello. Cet exemple imprime les champs de chaque entité dans la console de toohello de résultats de requête hello hello.  
 
 ```cpp
-// Retrieve the storage account from the connection string.
+// Retrieve hello storage account from hello connection string.
 azure::storage::cloud_storage_account storage_account = azure::storage::cloud_storage_account::parse(storage_connection_string);
 
-// Create the table client.
+// Create hello table client.
 azure::storage::cloud_table_client table_client = storage_account.create_cloud_table_client();
 
-// Create a cloud table object for the table.
+// Create a cloud table object for hello table.
 azure::storage::cloud_table table = table_client.get_table_reference(U("people"));
 
-// Construct the query operation for all customer entities where PartitionKey="Smith".
+// Construct hello query operation for all customer entities where PartitionKey="Smith".
 azure::storage::table_query query;
 
 query.set_filter_string(azure::storage::table_query::generate_filter_condition(U("PartitionKey"), azure::storage::query_comparison_operator::equal, U("Smith")));
 
-// Execute the query.
+// Execute hello query.
 azure::storage::table_query_iterator it = table.execute_query(query);
 
-// Print the fields for each customer.
+// Print hello fields for each customer.
 azure::storage::table_query_iterator end_of_results;
 for (; it != end_of_results; ++it)
 {
@@ -228,22 +228,22 @@ for (; it != end_of_results; ++it)
 }  
 ```
 
-La requête de cet exemple affiche toutes les entités qui correspondent aux critères de filtre. Si vous avez des tables volumineuses et que vous devez télécharger les entités de table souvent, nous vous recommandons de plutôt stocker vos données dans des objets blob de stockage Azure.
+requête Hello dans cet exemple met toutes les entités hello qui correspondent aux critères de filtre hello. Si vous avez des tables volumineuses et que vous devez souvent les entités de table toodownload hello, nous vous recommandons que vous stockez vos données dans des objets BLOB de stockage Azure à la place.
 
 ## <a name="retrieve-a-range-of-entities-in-a-partition"></a>Extraction d’un ensemble d’entités dans une partition
-Si vous ne voulez pas exécuter une requête pour toutes les entités d'une partition, vous pouvez spécifier un ensemble en combinant le filtre de clé de partition avec un filtre de clé de ligne. L’exemple de code suivant utilise deux filtres pour obtenir toutes les entités dans la partition « Smith » où la clé de ligne (prénom) commence par une lettre située avant la lettre « E » dans l’ordre alphabétique, puis imprime les résultats de la requête.  
+Si vous ne souhaitez pas tooquery toutes les entités hello dans une partition, vous pouvez spécifier une plage en combinant le filtre de clé de partition hello avec un filtre de clé de ligne. Hello exemple de code suivant utilise deux filtres tooget toutes les entités dans la partition « Smith », où la clé de ligne hello (prénom) commence par une lettre « E » dans l’alphabet de hello plus tôt et imprime ensuite les résultats de la requête hello.  
 
 ```cpp
-// Retrieve the storage account from the connection string.
+// Retrieve hello storage account from hello connection string.
 azure::storage::cloud_storage_account storage_account = azure::storage::cloud_storage_account::parse(storage_connection_string);
 
-// Create the table client.
+// Create hello table client.
 azure::storage::cloud_table_client table_client = storage_account.create_cloud_table_client();
 
-// Create a cloud table object for the table.
+// Create a cloud table object for hello table.
 azure::storage::cloud_table table = table_client.get_table_reference(U("people"));
 
-// Create the table query.
+// Create hello table query.
 azure::storage::table_query query;
 
 query.set_filter_string(azure::storage::table_query::combine_filter_conditions(
@@ -252,10 +252,10 @@ query.set_filter_string(azure::storage::table_query::combine_filter_conditions(
     azure::storage::query_logical_operator::op_and,
     azure::storage::table_query::generate_filter_condition(U("RowKey"), azure::storage::query_comparison_operator::less_than, U("E"))));
 
-// Execute the query.
+// Execute hello query.
 azure::storage::table_query_iterator it = table.execute_query(query);
 
-// Loop through the results, displaying information about the entity.
+// Loop through hello results, displaying information about hello entity.
 azure::storage::table_query_iterator end_of_results;
 for (; it != end_of_results; ++it)
 {
@@ -268,22 +268,22 @@ for (; it != end_of_results; ++it)
 ```
 
 ## <a name="retrieve-a-single-entity"></a>Extraction d'une seule entité
-Vous pouvez écrire une requête pour extraire une seule entité. Le code suivant utilise **table_operation::retrieve_entity** pour spécifier le client « Jeff Smith ». Cette méthode renvoie une seule entité, au lieu d’une collection. De plus, la valeur renvoyée est dans **table_result**. La méthode la plus rapide pour extraire une seule entité dans le service de Table consiste à spécifier une clé de partition et une clé de ligne.  
+Vous pouvez écrire une requête tooretrieve une entité unique et spécifique. code Hello suivant utilise **table_operation::retrieve_entity** client de hello toospecify « Jeff Smith ». Cette méthode renvoie qu’une seule entité, plutôt qu’une collection et hello valeur retournée dans **table_result**. Spécification des clés de partition et de ligne dans une requête est tooretrieve de manière plus rapide hello une seule entité hello service de Table.  
 
 ```cpp
 azure::storage::cloud_storage_account storage_account = azure::storage::cloud_storage_account::parse(storage_connection_string);
 
-// Create the table client.
+// Create hello table client.
 azure::storage::cloud_table_client table_client = storage_account.create_cloud_table_client();
 
-// Create a cloud table object for the table.
+// Create a cloud table object for hello table.
 azure::storage::cloud_table table = table_client.get_table_reference(U("people"));
 
-// Retrieve the entity with partition key of "Smith" and row key of "Jeff".
+// Retrieve hello entity with partition key of "Smith" and row key of "Jeff".
 azure::storage::table_operation retrieve_operation = azure::storage::table_operation::retrieve_entity(U("Smith"), U("Jeff"));
 azure::storage::table_result retrieve_result = table.execute(retrieve_operation);
 
-// Output the entity.
+// Output hello entity.
 azure::storage::table_entity entity = retrieve_result.entity();
 const azure::storage::table_entity::properties_type& properties = entity.properties();
 
@@ -293,16 +293,16 @@ std::wcout << U("PartitionKey: ") << entity.partition_key() << U(", RowKey: ") <
 ```
 
 ## <a name="replace-an-entity"></a>Remplacement d’une entité
-Pour remplacer une entité, récupérez-la dans le service de Table, modifiez l’objet d’entité, puis enregistrez les modifications dans le service de Table. Le code suivant modifie le numéro de téléphone et l’adresse de messagerie électronique d’un client existant. Au lieu d’appeler **table_operation::insert_entity**, ce code utilise **table_operation::replace_entity**. Ceci entraîne le remplacement complet de l’entité sur le serveur, sauf si cette dernière a été modifiée depuis sa récupération, auquel cas l’opération échoue. Cet échec survient pour empêcher votre application de remplacer par erreur une modification apportée entre la récupération et la mise à jour par un autre composant de votre application. Pour gérer correctement cet échec, vous devez récupérer de nouveau l’entité, apporter vos modifications (si elles sont toujours valides), puis effectuer une autre opération **table_operation::replace_entity**. La prochaine section vous apprendra à remplacer ce comportement.  
+tooreplace une entité, récupérer à partir du service de Table hello, modifier l’objet d’entité hello, puis enregistrez les modifications hello de nouveau service de Table toohello. Hello code suivant modifie l’adresse de messagerie et le numéro du téléphone d’un client existant. Au lieu d’appeler **table_operation::insert_entity**, ce code utilise **table_operation::replace_entity**. Cela provoque une toobe d’entité hello entièrement remplacé sur le serveur de hello, sauf si l’entité hello sur le serveur de hello a changé depuis sa récupération, auquel cas hello échoue. Cet échec est tooprevent votre application à partir de remplacement accidentel d’une modification effectuée entre hello récupération et mettre à jour par un autre composant de votre application. Hello gestion correcte de cet échec est tooretrieve hello entité à nouveau, apportez vos modifications (si elle est toujours valide), puis effectuer une autre **table_operation::replace_entity** opération. Hello prochaine section vous montrera comment toooverride ce comportement.  
 
 ```cpp
-// Retrieve the storage account from the connection string.
+// Retrieve hello storage account from hello connection string.
 azure::storage::cloud_storage_account storage_account = azure::storage::cloud_storage_account::parse(storage_connection_string);
 
-// Create the table client.
+// Create hello table client.
 azure::storage::cloud_table_client table_client = storage_account.create_cloud_table_client();
 
-// Create a cloud table object for the table.
+// Create a cloud table object for hello table.
 azure::storage::cloud_table table = table_client.get_table_reference(U("people"));
 
 // Replace an entity.
@@ -316,24 +316,24 @@ properties_to_replace[U("Phone")] = azure::storage::entity_property(U("425-555-0
 // Specify a new email address.
 properties_to_replace[U("Email")] = azure::storage::entity_property(U("JeffS@contoso.com"));
 
-// Create an operation to replace the entity.
+// Create an operation tooreplace hello entity.
 azure::storage::table_operation replace_operation = azure::storage::table_operation::replace_entity(entity_to_replace);
 
-// Submit the operation to the Table service.
+// Submit hello operation toohello Table service.
 azure::storage::table_result replace_result = table.execute(replace_operation);
 ```
 
 ## <a name="insert-or-replace-an-entity"></a>Insertion ou remplacement d’une entité
-Les opérations **table_operation::replace_entity** échouent si l’entité est modifiée depuis sa récupération à partir du serveur. De plus, pour que l’opération **table_operation::replace_entity** réussisse, vous devez d’abord récupérer l’entité à partir du serveur. Cependant, il se peut parfois que vous ne sachiez pas si l’entité existe sur le serveur et si les valeurs stockées sont inadaptées. Votre mise à jour doit donc toutes les remplacer. Pour ce faire, utilisez une opération **table_operation::insert_or_replace_entity**. Cette opération insère l’entité (s’il n’y en a pas déjà une) ou la remplace (s’il y en a une), indépendamment du moment de la dernière mise à jour. Dans l’exemple de code suivant, l’entité de client pour Jeff Smith est toujours récupérée, mais elle est ensuite enregistrée sur le serveur via **table_operation::insert_or_replace_entity**. Les mises à jour apportées à l’entité entre les opérations de récupération et de mise à jour sont remplacées.  
+**table_operation::replace_entity** opérations échouent si l’entité de hello a été modifiée, car il a été récupéré à partir du serveur de hello. En outre, vous devez récupérer des entités de hello de hello serveur tout d’abord pour **table_operation::replace_entity** toobe réussie. Dans certains cas, toutefois, vous ne connaissez pas si l’entité hello existe sur le serveur de hello et les valeurs actuelles hello stockés qu’il contient sont sans intérêt, votre mise à jour doit remplacer toutes les. tooaccomplish, vous devez utiliser un **table_operation::insert_or_replace_entity** opération. Cette opération insère l’entité de hello si elle n’existe pas ou elle remplace dans ce cas, quelle que soit la lorsque la dernière mise à jour de hello a été effectuée. Dans l’exemple de code suivant de hello, entité customer de hello pour Jeff Smith est toujours récupérée, mais il est ensuite enregistrée serveur toohello arrière via **table_operation::insert_or_replace_entity**. Les mises à jour apportées entité toohello entre une opération de mise à jour et de récupération hello seront remplacées.  
 
 ```cpp
-// Retrieve the storage account from the connection string.
+// Retrieve hello storage account from hello connection string.
 azure::storage::cloud_storage_account storage_account = azure::storage::cloud_storage_account::parse(storage_connection_string);
 
-// Create the table client.
+// Create hello table client.
 azure::storage::cloud_table_client table_client = storage_account.create_cloud_table_client();
 
-// Create a cloud table object for the table.
+// Create a cloud table object for hello table.
 azure::storage::cloud_table table = table_client.get_table_reference(U("people"));
 
 // Insert-or-replace an entity.
@@ -348,37 +348,37 @@ properties_to_insert_or_replace[U("Phone")] = azure::storage::entity_property(U(
 // Specify an email address.
 properties_to_insert_or_replace[U("Email")] = azure::storage::entity_property(U("Jeffsm@contoso.com"));
 
-// Create an operation to insert-or-replace the entity.
+// Create an operation tooinsert-or-replace hello entity.
 azure::storage::table_operation insert_or_replace_operation = azure::storage::table_operation::insert_or_replace_entity(entity_to_insert_or_replace);
 
-// Submit the operation to the Table service.
+// Submit hello operation toohello Table service.
 azure::storage::table_result insert_or_replace_result = table.execute(insert_or_replace_operation);
 ```
 
 ## <a name="query-a-subset-of-entity-properties"></a>Interrogation d’un sous-ensemble de propriétés d’entité
-Vous pouvez utiliser une requête de table pour extraire uniquement quelques propriétés d’une entité. La requête contenue dans le code suivant utilise la méthode **table_query::set_select_columns** pour renvoyer uniquement les adresses de messagerie des entités dans la table.  
+Une table de tooa de requête peut récupérer des propriétés peu d’une entité. requête de hello suivant code Hello utilise hello **table_query::set_select_columns** méthode tooreturn uniquement hello adresses de messagerie des entités de table de hello.  
 
 ```cpp
-// Retrieve the storage account from the connection string.
+// Retrieve hello storage account from hello connection string.
 azure::storage::cloud_storage_account storage_account = azure::storage::cloud_storage_account::parse(storage_connection_string);
 
-// Create the table client.
+// Create hello table client.
 azure::storage::cloud_table_client table_client = storage_account.create_cloud_table_client();
 
-// Create a cloud table object for the table.
+// Create a cloud table object for hello table.
 azure::storage::cloud_table table = table_client.get_table_reference(U("people"));
 
-// Define the query, and select only the Email property.
+// Define hello query, and select only hello Email property.
 azure::storage::table_query query;
 std::vector<utility::string_t> columns;
 
 columns.push_back(U("Email"));
 query.set_select_columns(columns);
 
-// Execute the query.
+// Execute hello query.
 azure::storage::table_query_iterator it = table.execute_query(query);
 
-// Display the results.
+// Display hello results.
 azure::storage::table_query_iterator end_of_results;
 for (; it != end_of_results; ++it)
 {
@@ -400,59 +400,59 @@ for (; it != end_of_results; ++it)
 > 
 
 ## <a name="delete-an-entity"></a>Suppression d’une entité
-Il est facile de supprimer une entité après l’avoir récupérée. Une fois que l’entité est extraite, appelez **table_operation::delete_entity** avec l’entité à supprimer. Appelez ensuite la méthode **cloud_table.execute**. Le code suivant récupère et supprime une entité dont la clé de partition est « Smith » et la clé de ligne « Jeff ».  
+Il est facile de supprimer une entité après l’avoir récupérée. Une fois que l’entité de hello est récupérée, appelez **table_operation::delete_entity** avec toodelete d’entité hello. Appelez ensuite hello **cloud_table.execute** (méthode). Bonjour de code suivant récupère et supprime une entité avec une clé de partition « Smith » et une clé de ligne de « Jeff ».  
 
 ```cpp
-// Retrieve the storage account from the connection string.
+// Retrieve hello storage account from hello connection string.
 azure::storage::cloud_storage_account storage_account = azure::storage::cloud_storage_account::parse(storage_connection_string);
 
-// Create the table client.
+// Create hello table client.
 azure::storage::cloud_table_client table_client = storage_account.create_cloud_table_client();
 
-// Create a cloud table object for the table.
+// Create a cloud table object for hello table.
 azure::storage::cloud_table table = table_client.get_table_reference(U("people"));
 
-// Create an operation to retrieve the entity with partition key of "Smith" and row key of "Jeff".
+// Create an operation tooretrieve hello entity with partition key of "Smith" and row key of "Jeff".
 azure::storage::table_operation retrieve_operation = azure::storage::table_operation::retrieve_entity(U("Smith"), U("Jeff"));
 azure::storage::table_result retrieve_result = table.execute(retrieve_operation);
 
-// Create an operation to delete the entity.
+// Create an operation toodelete hello entity.
 azure::storage::table_operation delete_operation = azure::storage::table_operation::delete_entity(retrieve_result.entity());
 
-// Submit the delete operation to the Table service.
+// Submit hello delete operation toohello Table service.
 azure::storage::table_result delete_result = table.execute(delete_operation);  
 ```
 
 ## <a name="delete-a-table"></a>Suppression d’une table
-Pour finir, l’exemple de code suivant supprime une table d’un compte de stockage. Une table supprimée ne peut plus être recréée pendant un certain temps.  
+Enfin, hello, exemple de code suivant supprime une table à partir d’un compte de stockage. Une table qui a été supprimée sera indisponible toobe recréée pour une période de temps après la suppression de hello.  
 
 ```cpp
-// Retrieve the storage account from the connection string.
+// Retrieve hello storage account from hello connection string.
 azure::storage::cloud_storage_account storage_account = azure::storage::cloud_storage_account::parse(storage_connection_string);
 
-// Create the table client.
+// Create hello table client.
 azure::storage::cloud_table_client table_client = storage_account.create_cloud_table_client();
 
-// Create a cloud table object for the table.
+// Create a cloud table object for hello table.
 azure::storage::cloud_table table = table_client.get_table_reference(U("people"));
 
-// Create an operation to retrieve the entity with partition key of "Smith" and row key of "Jeff".
+// Create an operation tooretrieve hello entity with partition key of "Smith" and row key of "Jeff".
 azure::storage::table_operation retrieve_operation = azure::storage::table_operation::retrieve_entity(U("Smith"), U("Jeff"));
 azure::storage::table_result retrieve_result = table.execute(retrieve_operation);
 
-// Create an operation to delete the entity.
+// Create an operation toodelete hello entity.
 azure::storage::table_operation delete_operation = azure::storage::table_operation::delete_entity(retrieve_result.entity());
 
-// Submit the delete operation to the Table service.
+// Submit hello delete operation toohello Table service.
 azure::storage::table_result delete_result = table.execute(delete_operation);
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-Les bases du stockage des tables étant assimilées, voir les liens suivants pour en savoir plus sur Azure Storage :  
+Maintenant que vous avez appris les notions de base de hello du stockage table, suivez ces liens de toolearn plus d’informations sur le stockage Azure :  
 
-* [Microsoft Azure Storage Explorer](../vs-azure-tools-storage-manage-with-storage-explorer.md) est une application autonome et gratuite de Microsoft qui vous permet d’exploiter visuellement les données de Stockage Azure sur Windows, macOS et Linux.
-* [Utilisation du stockage d’objets blob à partir de C++](../storage/blobs/storage-c-plus-plus-how-to-use-blobs.md)
-* [Utilisation du service de stockage de files d’attente à partir de C++](../storage/queues/storage-c-plus-plus-how-to-use-queues.md)
+* [Microsoft Azure Storage Explorer](../vs-azure-tools-storage-manage-with-storage-explorer.md) est une application autonome gratuit, à partir de Microsoft qui vous permet de toowork visuellement avec des données de stockage Azure sur Windows, Mac OS et Linux.
+* [Comment toouse stockage d’objets Blob à partir de C++](../storage/blobs/storage-c-plus-plus-how-to-use-blobs.md)
+* [Comment toouse stockage de file d’attente à partir de C++](../storage/queues/storage-c-plus-plus-how-to-use-queues.md)
 * [Listage des ressources Azure Storage en C++](../storage/common/storage-c-plus-plus-enumeration.md)
 * [Référence de la bibliothèque cliente de stockage pour C++](http://azure.github.io/azure-storage-cpp)
 * [Documentation d’Azure Storage](https://azure.microsoft.com/documentation/services/storage/)

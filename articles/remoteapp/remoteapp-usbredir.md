@@ -1,6 +1,6 @@
 ---
-title: "Comment rediriger les périphériques USB dans Azure RemoteApp ? | Microsoft Docs"
-description: "Apprenez à utiliser la redirection de périphériques USB dans Azure RemoteApp."
+title: "aaaHow vous redirigez les périphériques USB dans Azure RemoteApp ? | Microsoft Docs"
+description: "Découvrez comment toouse une redirection pour les périphériques USB dans Azure RemoteApp."
 services: remoteapp
 documentationcenter: 
 author: msmbaldwin
@@ -13,75 +13,75 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/26/2017
 ms.author: mbaldwin
-ms.openlocfilehash: 3d7165d2c3dafe87b829e588b9e7f2c377552a35
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 661b90c0910167d76ac3886b5af7a32d00b3943f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="how-do-you-redirect-usb-devices-in-azure-remoteapp"></a>Comment rediriger les périphériques USB dans Azure RemoteApp ?
 > [!IMPORTANT]
-> Azure RemoteApp ne sera plus disponible à partir du 31 août 2017. Pour plus d’informations, lisez [l’annonce](https://go.microsoft.com/fwlink/?linkid=821148) .
+> Azure RemoteApp ne sera plus disponible à partir du 31 août 2017. Hello de lecture [annonce](https://go.microsoft.com/fwlink/?linkid=821148) pour plus d’informations.
 > 
 > 
 
-La redirection de périphérique permet aux utilisateurs d’utiliser les périphériques USB raccordés à leur ordinateur ou à une tablette avec les applications de Azure RemoteApp. Par exemple, si vous avez partagé Skype via Azure RemoteApp, vos utilisateurs devront être en mesure d’utiliser les caméras de leurs périphériques mobiles.
+La redirection du périphérique permet aux utilisateurs d’utiliser hello USB périphériques attachés tootheir ordinateur ou un Tablet PC avec les applications de hello dans Azure RemoteApp. Par exemple, si vous avez partagé Skype via Azure RemoteApp, vos utilisateurs doivent toouse en mesure de toobe leurs appareils de l’appareil.
 
-Avant de poursuivre, assurez-vous de lire les informations de redirection USB dans [Utilisation de la redirection dans Azure RemoteApp](remoteapp-redirection.md). Toutefois, la commande nusbdevicestoredirect:s:* recommandée ne fonctionne pas pour les webcams USB et peut ne pas fonctionner pour certaines imprimantes USB ou périphériques multifonctions USB. Pour des raisons de conception et de sécurité, l’administrateur RemoteApp doit activer la redirection soit par le biais d’un identificateur global unique, soit par un ID d’instance de périphérique avant que vos utilisateurs puissent utiliser ces périphériques.
+Avant de poursuivre, assurez-vous de lire les informations de redirection de USB hello dans [à l’aide de la redirection dans Azure RemoteApp](remoteapp-redirection.md). Toutefois hello recommandé nusbdevicestoredirect:s : * ne fonctionne pas pour les caméras web USB et de ne pas fonctionner pour certaines imprimantes USB ou les périphériques multifonctions USB. Par conception et pour des raisons de sécurité, administrateur d’Azure RemoteApp hello a tooenable redirection par la classe de dispositifs de GUID ou par ID d’instance de périphérique avant que vos utilisateurs peuvent utiliser ces appareils.
 
-Bien que cet article traite de la redirection de caméra web, vous pouvez utiliser une approche similaire pour rediriger les imprimantes USB et les autres périphériques multifonctions USB qui ne sont pas redirigés par la commande **nusbdevicestoredirect:s:***.
+Bien que cet article traite de la redirection de caméra web, vous pouvez utiliser un imprimantes USB de tooredirect approche similaire et autres périphériques multifonctions USB qui ne sont pas redirigés par hello **nusbdevicestoredirect:s :*** commande.
 
 ## <a name="redirection-options-for-usb-devices"></a>Options de redirection pour périphériques USB
-RemoteApp Azure utilise les mécanismes très similaires à ceux qui sont disponibles pour les Services Bureau à distance pour rediriger des périphériques USB. La technologie sous-jacente vous permet de choisir la méthode de redirection convenant à un périphérique donné et d’obtenir le meilleur du haut niveau et de la redirection des périphériques USB RemoteFX grâce à la redirection de la commande **usbdevicestoredirect:s :** . Cette commande comporte quatre éléments :
+Azure RemoteApp utilise des mécanismes très similaires pour rediriger les périphériques USB hello ceux disponibles pour les Services Bureau à distance. Hello technologie vous permet de choisir méthode de redirection correct hello pour un périphérique donné, hello tooget meilleur des deux principales et la redirection de périphériques USB RemoteFX à l’aide de hello **usbdevicestoredirect:s :** commande. Il existe quatre éléments toothis commande :
 
 | Ordre de traitement | Paramètre | Description |
 | --- | --- | --- |
 | 1 |* |Sélectionne tous les périphériques non sélectionnés par la redirection de haut niveau. Remarque : Dès le départ, * ne fonctionne pas pour les webcams USB. |
-| {Identificateur global unique} |Sélectionnez tous les périphériques qui correspondent à la classe d’installation de périphérique spécifié. | |
-| USB\InstanceID |Sélectionne un périphérique USB spécifié pour l’ID d’instance donné. | |
-| 2 |-USB\Instance ID |Supprime les paramètres de redirection du périphérique spécifié. |
+| {Identificateur global unique} |Sélectionne tous les appareils qui correspondent aux hello spécifié classe le programme d’installation de périphérique. | |
+| USB\InstanceID |Sélectionne un périphérique USB spécifié pour hello donnée d’ID d’instance. | |
+| 2 |-USB\Instance ID |Supprime les paramètres de redirection de hello pour le périphérique spécifié de hello. |
 
-## <a name="redirecting-a-usb-device-by-using-the-device-class-guid"></a>Redirection d’un périphérique USB à l’aide du GUID de la classe de périphérique
-Il existe deux façons de trouver le GUID de la classe de périphérique qui peut être utilisé pour la redirection de périphérique. 
+## <a name="redirecting-a-usb-device-by-using-hello-device-class-guid"></a>Redirection d’un périphérique USB à l’aide du GUID de la classe hello appareil
+Il existe deux façons toofind hello périphérique GUID de la classe qui peut être utilisé pour la redirection. 
 
-La première option consiste à utiliser les [classes de configuration de périphérique définies par le système à la disposition des fournisseurs](https://msdn.microsoft.com/library/windows/hardware/ff553426.aspx). Sélectionnez la classe qui correspond le mieux au périphérique connecté à l’ordinateur local. Pour les appareils photo numériques, il peut s’agir de la classe de périphérique d’acquisition d’image ou de la classe de périphérique de capture vidéo. Vous devez faire des essais avec les classes de périphériques pour trouver le GUID de classe qui fonctionne avec le périphérique USB connecté localement (dans notre cas, la caméra web).
+option de première Hello est toouse hello [tooVendors définies périphérique le programme d’installation Classes disponible](https://msdn.microsoft.com/library/windows/hardware/ff553426.aspx). Choisir la classe hello qui correspond au mieux à l’ordinateur local de hello appareil toohello attaché. Pour les appareils photo numériques, il peut s’agir de la classe de périphérique d’acquisition d’image ou de la classe de périphérique de capture vidéo. Vous devez toodo des tests avec Bonjour appareil classes toofind Bonjour correct de la classe GUID qui fonctionne avec hello localement attaché un périphérique USB (dans notre webcam hello cas).
 
-Il existe un meilleur moyen, ou une seconde possibilité de trouver le GUID de classe de périphérique spécifique :
+Un meilleur moyen de hello deuxième option est toofollow ces périphérique étapes toofind hello classe GUID :
 
-1. Ouvrez le Gestionnaire de périphériques, localisez le périphérique qui va être redirigé, effectuez un clic droit dessus droit, puis ouvrez les propriétés.
-   ![Ouvrir le Gestionnaire de périphériques](./media/remoteapp-usbredir/ra-devicemanager.png)
-2. Sur l’onglet **Détails**, choisissez la propriété **GUID de classe**. La valeur qui apparaît est le GUID de classe correspondant à ce type de périphérique.
+1. Ouvrir le Gestionnaire de périphériques de hello, recherchez appareil hello sera redirigé et faites un clic droit, puis ouvrez les propriétés de hello.
+   ![Ouvrez le Gestionnaire de périphériques de hello](./media/remoteapp-usbredir/ra-devicemanager.png)
+2. Sur hello **détails** , choisir la propriété de hello **Guid de la classe**. valeur Hello qui apparaît est hello GUID de classe pour ce type de périphérique.
    ![Propriétés de caméra](./media/remoteapp-usbredir/ra-classguid.png)
-3. La valeur GUID de classe permet de rediriger les périphériques qui lui correspondent.
+3. Utilisez hello Guid de la classe valeur tooredirect les appareils qui lui correspondent.
 
 Par exemple :
 
         Set-AzureRemoteAppCollection -CollectionName <collection name> -CustomRdpProperty "nusbdevicestoredirect:s:<Class Guid value>"
 
-Vous pouvez combiner plusieurs redirections de périphérique dans la même applet de commande. Par exemple, pour rediriger le stockage local et une webcam USB, l’applet de commande se présente comme suit :
+Vous pouvez combiner plusieurs redirections d’appareil Bonjour même applet de commande. Par exemple : tooredirect le stockage local et la clé USB de caméra web, l’applet de commande ressemble à ceci :
 
         Set-AzureRemoteAppCollection -CollectionName <collection name> -CustomRdpProperty "drivestoredirect:s:*`nusbdevicestoredirect:s:<Class Guid value>"
 
-Lorsque vous définissez la redirection de périphérique par GUID de classe, tous les périphériques correspondant à ce GUID de classe dans l’ensemble spécifié sont redirigés. Par exemple, s’il existe sur le réseau plusieurs ordinateurs qui utilisent les mêmes webcams USB. Vous pouvez exécuter une applet de commande unique pour rediriger toutes les webcams.
+Lorsque vous définissez la redirection du périphérique par le GUID de la classe tous les appareils qui correspondent aux que le GUID de la classe Bonjour spécifié collection sont redirigés. Par exemple, s’il existe plusieurs ordinateurs sur le réseau local de hello ayant hello même les webcams USB, vous pouvez exécuter une applet de commande unique de tooredirect tous les webcams hello.
 
-## <a name="redirecting-a-usb-device-by-using-the-device-instance-id"></a>Redirection d’un périphérique USB à l’aide de l’ID d’instance du périphérique
-Si vous souhaitez un contrôle précis et contrôler la redirection par appareil, vous pouvez utiliser le paramètre de redirection **USB\InstanceID**.
+## <a name="redirecting-a-usb-device-by-using-hello-device-instance-id"></a>Redirection d’un périphérique USB à l’aide des ID d’instance hello appareil
+Si vous souhaitez un contrôle plus précis et que vous souhaitez que la redirection de toocontrol par périphérique, vous pouvez utiliser hello **USB\InstanceID** paramètre de la redirection.
 
-La partie la plus difficile de cette méthode consiste à trouver l’ID d’instance de périphérique USB. Vous devez avoir accès à l’ordinateur et à ce périphérique USB particulier. Exécutez ensuite les opérations qui suivent :
+plus difficiles Hello cette méthode trouve un ID d’instance du périphérique hello USB. Vous aurez besoin d’accès toohello ordinateur et le périphérique USB spécifique de hello. Exécutez ensuite les opérations qui suivent :
 
-1. Activez la redirection de périphérique dans la Session Bureau à distance, comme décrit dans [Utilisation de mes périphériques et mes ressources dans une session Bureau à distance](http://windows.microsoft.com/en-us/windows7/How-can-I-use-my-devices-and-resources-in-a-Remote-Desktop-session)
+1. Activer la redirection du périphérique hello dans la Session Bureau à distance, comme décrit dans [comment puis-je utiliser mes périphériques et les ressources dans une session Bureau à distance ?](http://windows.microsoft.com/en-us/windows7/How-can-I-use-my-devices-and-resources-in-a-Remote-Desktop-session)
 2. Ouvrez une connexion Bureau à distance, puis cliquez sur **Afficher les options**.
-3. Cliquez sur **Enregistrer sous** pour enregistrer les paramètres de connexion actuels dans un fichier RDP.  
-    ![Enregistrer les paramètres dans un fichier RDP](./media/remoteapp-usbredir/ra-saveasrdp.png)
-4. Choisissez un nom de fichier et un emplacement, par exemple « MyConnection.rdp » et « Ce PC\Documents », puis enregistrez le fichier.
-5. Ouvrez le fichier MyConnection.rdp à l’aide d’un éditeur de texte et recherchez l’ID d’instance du périphérique que vous souhaitez rediriger.
+3. Cliquez sur **enregistrer en tant que** toosave hello connexion tooan RDP fichier de paramètres courant.  
+    ![Enregistrer les paramètres de hello dans un fichier RDP](./media/remoteapp-usbredir/ra-saveasrdp.png)
+4. Choisissez un nom de fichier et un emplacement, par exemple MyConnection.rdp et ce PC\Documents et enregistrer le fichier de hello.
+5. Ouvrez hello MyConnection.rdp fichier à l’aide d’un éditeur de texte et rechercher l’ID d’instance hello du périphérique de hello souhaité tooredirect.
 
-À présent, utilisez l’ID d’instance dans l’applet de commande suivante :
+Maintenant, utiliser les ID d’instance hello hello suivant l’applet de commande :
 
     Set-AzureRemoteAppCollection -CollectionName <collection name> -CustomRdpProperty "nusbdevicestoredirect:s: USB\<Device InstanceID value>"
 
 
 
 ### <a name="help-us-help-you"></a>Vos commentaires nous aideront à mieux vous servir
-Saviez-vous qu’en plus de noter cet article et de rédiger des commentaires ci-dessous, vous pouviez modifier l’article lui-même ? Il manque des informations ? Des informations sont erronées ? Certains passages ne sont pas clairs ? Faites défiler l’écran vers le haut et cliquez sur **Modifier sur GitHub** pour apporter des modifications. Nous les passerons ensuite en revue, et une fois que nous les aurons confirmées, vos modifications et les améliorations seront visibles ici.
+Saviez-vous que toorating d’ajout de cet article et de faire des commentaires vers le bas, vous pouvez effectuer modifications toohello article ? Il manque des informations ? Des informations sont erronées ? Certains passages ne sont pas clairs ? Faites défiler et cliquez sur **modifier sur GitHub** toomake modifications - ces proviendront toous pour révision et, une fois que nous se déconnecter sur ces derniers, vous verrez alors vos modifications et des améliorations ici.
 

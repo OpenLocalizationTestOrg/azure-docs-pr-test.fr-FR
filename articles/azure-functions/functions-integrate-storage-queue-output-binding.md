@@ -1,6 +1,6 @@
 ---
-title: "Créer une fonction dans Azure déclenchée par des messages de file d’attente | Microsoft Docs"
-description: "Utilisez Azure Functions pour créer une fonction sans serveur appelée par un message soumis à une file d’attente de stockage Azure."
+title: "une fonction dans Azure déclenché par des messages de la file d’attente d’aaaCreate | Documents Microsoft"
+description: "Utilisez les fonctions Azure toocreate une fonction sans serveur qui est appelée par une les messages soumis file d’attente de stockage Azure tooan."
 services: azure-functions
 documentationcenter: na
 author: ggailey777
@@ -16,23 +16,23 @@ ms.workload: na
 ms.date: 08/17/2017
 ms.author: glenga
 ms.custom: mvc
-ms.openlocfilehash: 57c59273a9da55f3e357764c522b444ae2d73cb5
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 44db90fa80bf77e31bf53dddabd7136de5800b11
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-messages-to-an-azure-storage-queue-using-functions"></a>Ajouter des messages au stockage de files d’attente Azure, à l’aide de Functions
+# <a name="add-messages-tooan-azure-storage-queue-using-functions"></a>Ajouter la file d’attente de messages tooan stockage Azure à l’aide de fonctions
 
-Dans Azure Functions, les liaisons d’entrée et de sortie fournissent une méthode déclarative pour se connecter à des données de service externe à partir de votre fonction. Dans cette rubrique, apprenez à mettre à jour une fonction existante en ajoutant une liaison de sortie qui envoie des messages au service Stockage File d’attente d’Azure.  
+Dans les fonctions d’Azure, les liaisons d’entrée et de sortie fournissent une données de service de façon déclarative tooconnect tooexternal à partir de votre fonction. Dans cette rubrique, découvrez comment tooupdate une fonction existante en ajoutant une sortie de liaison qui envoie des messages stockage de file d’attente tooAzure.  
 
-![Affichage du message dans les journaux.](./media/functions-integrate-storage-queue-output-binding/functions-integrate-storage-binding-in-portal.png)
+![Afficher le message dans les journaux hello.](./media/functions-integrate-storage-queue-output-binding/functions-integrate-storage-binding-in-portal.png)
 
 ## <a name="prerequisites"></a>Composants requis 
 
 [!INCLUDE [Previous topics](../../includes/functions-quickstart-previous-topics.md)]
 
-* Installez [l’Explorateur de Stockage Microsoft Azure](http://storageexplorer.com/).
+* Installer hello [Microsoft Azure Storage Explorer](http://storageexplorer.com/).
 
 ## <a name="add-binding"></a>Ajoutez une liaison de sortie
  
@@ -40,27 +40,27 @@ Dans Azure Functions, les liaisons d’entrée et de sortie fournissent une mé
 
 2. Cliquez sur **Intégrer** et **+ Nouvelle sortie**, puis choisissez **Stockage File d’attente Azure** et **Sélectionner**.
     
-    ![Ajoutez une liaison de sortie de stockage de files d’attente à une fonction dans le Portail Azure.](./media/functions-integrate-storage-queue-output-binding/function-add-queue-storage-output-binding.png)
+    ![Ajouter une fonction de file d’attente stockage sortie liaison tooa Bonjour portail Azure.](./media/functions-integrate-storage-queue-output-binding/function-add-queue-storage-output-binding.png)
 
-3. Utilisez les paramètres spécifiés dans le tableau : 
+3. Utiliser les paramètres de hello comme spécifié dans la table de hello : 
 
-    ![Ajoutez une liaison de sortie de stockage de files d’attente à une fonction dans le Portail Azure.](./media/functions-integrate-storage-queue-output-binding/function-add-queue-storage-output-binding-2.png)
+    ![Ajouter une fonction de file d’attente stockage sortie liaison tooa Bonjour portail Azure.](./media/functions-integrate-storage-queue-output-binding/function-add-queue-storage-output-binding-2.png)
 
     | Paramètre      |  Valeur suggérée   | Description                              |
     | ------------ |  ------- | -------------------------------------------------- |
-    | **Nom de la file d’attente**   | éléments myqueue    | Le nom de la file d’attente à connecter à votre compte de stockage. |
-    | **Connexion au compte de stockage** | AzureWebJobStorage | Vous pouvez utiliser la connexion de compte de stockage qui est déjà utilisée par votre application de fonction, ou créez-en une.  |
-    | **Nom de message de paramètre** | outputQueueItem | Le nom du paramètre de liaison de sortie. | 
+    | **Nom de la file d’attente**   | éléments myqueue    | nom Hello Hello file d’attente tooconnect tooin votre compte de stockage. |
+    | **Connexion au compte de stockage** | AzureWebJobStorage | Vous pouvez utiliser la connexion au compte de stockage hello est déjà utilisée par votre application de la fonction, ou créez-en un.  |
+    | **Nom de message de paramètre** | outputQueueItem | nom Hello hello liaison de paramètre de sortie. | 
 
-4. Cliquez sur **Enregistrer** pour ajouter la liaison.
+4. Cliquez sur **enregistrer** liaison de hello tooadd.
  
-Maintenant que vous avez défini une liaison de sortie, vous devez mettre à jour le code afin d’utiliser la liaison pour ajouter des messages à une file d’attente.  
+Maintenant que vous avez définie une liaison de sortie, vous devez tooupdate hello code toouse hello liaison tooadd messages tooa file d’attente.  
 
-## <a name="update-the-function-code"></a>Mettre à jour le code de fonction
+## <a name="update-hello-function-code"></a>Mettre à jour le code de la fonction hello
 
-1. Sélectionnez la fonction pour afficher le code de fonction dans l’éditeur. 
+1. Sélectionnez votre code de fonction hello fonction toodisplay dans l’éditeur de hello. 
 
-2. Pour une fonction C#, mettez à jour la définition de fonction comme suit, afin d’ajouter le paramètre de liaison de stockage **outputQueueItem**. Ignorez cette étape pour une fonction JavaScript.
+2. Pour une fonction c#, mise à jour de votre définition de fonction comme suit tooadd hello **outputQueueItem** paramètre de liaison de stockage. Ignorez cette étape pour une fonction JavaScript.
 
     ```cs   
     public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, 
@@ -70,48 +70,48 @@ Maintenant que vous avez défini une liaison de sortie, vous devez mettre à jou
     }
     ```
 
-3. Ajoutez le code suivant à la fonction, juste avant que la méthode ne revienne. Utilisez l’extrait de code approprié pour la langue de votre fonction.
+3. Ajoutez hello suivant fonction toohello de code juste avant le retour de méthode hello. Utilisez hello approprié extrait de code pour la langue hello de votre fonction.
 
     ```javascript
-    context.bindings.outputQueueItem = "Name passed to the function: " + 
+    context.bindings.outputQueueItem = "Name passed toohello function: " + 
                 (req.query.name || req.body.name);
     ```
 
     ```cs
-    outputQueueItem.Add("Name passed to the function: " + name);     
+    outputQueueItem.Add("Name passed toohello function: " + name);     
     ```
 
-4. Sélectionnez **Enregistrer** pour enregistrer les modifications.
+4. Sélectionnez **enregistrer** toosave modifications.
 
-La valeur passée au déclencheur HTTP est comprise dans un message ajouté à la file d’attente.
+valeur de Hello passé le déclencheur HTTP toohello est incluse dans une file d’attente de message toohello ajouté.
  
-## <a name="test-the-function"></a>Tester la fonction 
+## <a name="test-hello-function"></a>Fonction hello de test 
 
-1. Après avoir enregistré les modifications de code, sélectionnez **Exécuter**. 
+1. Après avoir enregistrement les modifications de code hello, sélectionnez **exécuter**. 
 
-    ![Ajoutez une liaison de sortie de stockage de files d’attente à une fonction dans le Portail Azure.](./media/functions-integrate-storage-queue-output-binding/functions-test-run-function.png)
+    ![Ajouter une fonction de file d’attente stockage sortie liaison tooa Bonjour portail Azure.](./media/functions-integrate-storage-queue-output-binding/functions-test-run-function.png)
 
-2. Vérifiez les journaux pour vous assurer que la fonction a réussi. Une nouvelle file d’attente nommée **outqueue** est créée dans votre compte de stockage, par le runtime des fonctions, lorsque la liaison de sortie est utilisée pour la première fois.
+2. Vérifiez toomake de journaux hello assurer que la fonction hello a réussi. Une nouvelle file d’attente nommée **outqueue** est créé dans votre compte de stockage par hello fonctions runtime lors de la liaison de sortie hello est utilisée pour la première fois.
 
-Par la suite, vous pouvez vous connecter à votre compte de stockage afin de vérifier la nouvelle file d’attente et le nouveau message que vous avez ajouté au compte. 
+Ensuite, vous pouvez vous connecter tooyour stockage compte tooverify hello nouvelle file d’attente et vous avez ajouté tooit message de type hello. 
 
-## <a name="connect-to-the-queue"></a>Connexion à la file d’attente
+## <a name="connect-toohello-queue"></a>Se connecter à la file d’attente de toohello
 
-Ignorez les trois premières étapes si vous avez déjà installé l’Explorateur de stockage et si vous l’avez connecté à votre compte de stockage.    
+Skip hello trois premières étapes si vous avez déjà installé l’Explorateur de stockage et le compte de stockage tooyour elle est connectée.    
 
-1. Dans votre fonction, sélectionnez **Intégrer**, et choisissez la nouvelle liaison de sortie **Stockage de files d’attente Azure**, puis développez **Documentation**. Copiez le **Nom de compte** et la **Clé de compte**. Vous utilisez ces informations d’identification pour vous connecter au compte de stockage.
+1. Dans votre fonction, choisissez **intégrer** et hello nouvelle **stockage de file d’attente Azure** liaison de sortie, puis développez **Documentation**. Copiez le **Nom de compte** et la **Clé de compte**. Vous utilisez ces informations d’identification tooconnect toohello stockage compte.
  
-    ![Obtenez les informations d’identification de connexion au compte de stockage.](./media/functions-integrate-storage-queue-output-binding/function-get-storage-account-credentials.png)
+    ![Obtenir des informations d’identification de connexion de compte de stockage hello.](./media/functions-integrate-storage-queue-output-binding/function-get-storage-account-credentials.png)
 
-2. Exécutez [l’Explorateur de stockage Microsoft Azure](http://storageexplorer.com/), sélectionnez l’icône de connexion située sur la gauche, choisissez **Utiliser un nom et une clé de compte de stockage**, puis sélectionnez **Suivant**.
+2. Exécutez hello [Microsoft Azure Storage Explorer](http://storageexplorer.com/) outil, sélectionnez hello icône à gauche de hello de connexion, choisissez **utiliser un nom de compte de stockage et de la clé**, puis sélectionnez **suivant**.
 
-    ![Exécutez l’outil Explorateur de compte de stockage.](./media/functions-integrate-storage-queue-output-binding/functions-storage-manager-connect-1.png)
+    ![Exécuter l’outil Explorateur de compte de stockage de hello.](./media/functions-integrate-storage-queue-output-binding/functions-storage-manager-connect-1.png)
     
-3. Collez le **Nom de compte** et la **Clé de compte** de l’étape 1 dans les champs correspondants, puis sélectionnez **Suivant**, et **Connexion**. 
+3. Hello de coller **nom de compte** et **clé de compte** à l’étape 1 dans les champs correspondants, puis sélectionnez **suivant**, et **connexion**. 
   
-    ![Collez les informations d’identification de stockage et connectez-vous.](./media/functions-integrate-storage-queue-output-binding/functions-storage-manager-connect-2.png)
+    ![Collez les informations d’identification du stockage hello et se connecter.](./media/functions-integrate-storage-queue-output-binding/functions-storage-manager-connect-2.png)
 
-4. Développez le compte de stockage attaché, puis **Files d’attente**, et vérifiez qu’une file d’attente nommée **myqueue-items** existe. Vous devriez également déjà voir un message dans la file d’attente.  
+4. Développez le compte de stockage hello attaché, **les files d’attente** et vérifiez qu’une file d’attente appelé **myqueue-éléments** existe. Vous devez également voir un message déjà dans la file d’attente hello.  
  
     ![Créez une file d’attente de stockage.](./media/functions-integrate-storage-queue-output-binding/function-queue-storage-output-view-queue.png)
  
@@ -122,11 +122,11 @@ Ignorez les trois premières étapes si vous avez déjà installé l’Explorate
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Vous avez ajouté une liaison de sortie à une fonction existante. 
+Vous avez ajouté une fonction existante de tooan de liaison de sortie. 
 
 [!INCLUDE [Next steps note](../../includes/functions-quickstart-next-steps.md)]
 
-Pour en savoir plus sur la liaison vers le stockage de files d’attente, consultez la page [Liaisons de file d’attente de stockage Azure Functions](functions-bindings-storage-queue.md). 
+Pour plus d’informations sur le stockage de tooQueue de liaison, consultez [liaisons de file d’attente de stockage de fonctions Azure](functions-bindings-storage-queue.md). 
 
 
 

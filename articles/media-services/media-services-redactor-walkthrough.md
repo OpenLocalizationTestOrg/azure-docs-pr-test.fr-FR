@@ -1,6 +1,6 @@
 ---
-title: "Procédure d’édition des visages avec Azure Media Analytics | Microsoft Docs"
-description: "Cette rubrique explique étape par étape comment exécuter un workflow de rédaction complet à l’aide d’Azure Media Services Explorer (AMSE) et d’Azure Media Redactor Visualizer (outil open source)."
+title: "faces aaaRedact avec Azure Media Analytique procédure pas à pas | Documents Microsoft"
+description: "Cette rubrique présente des instructions étape par étape sur la façon de toorun un flux de travail de rédaction complète à l’aide d’Azure Media Services Explorer (AMSE) et Azure Media Redactor visualiseur (outil open source)."
 services: media-services
 documentationcenter: 
 author: Lichard
@@ -14,36 +14,36 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 04/03/2017
 ms.author: rli; juliako;
-ms.openlocfilehash: c0c622237f8cdca65fb6933f14cc21e9eb9ac036
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ab28f4052b73fdb74fcd5766235eab35402a0c9d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="redact-faces-with-azure-media-analytics-walkthrough"></a>Procédure d’édition des visages avec Azure Media Analytics
 
-## <a name="overview"></a>Vue d’ensemble
+## <a name="overview"></a>Vue d'ensemble
 
-**Azure Media Redactor** est un processeur multimédia [Azure Media Analytics](media-services-analytics-overview.md) qui offre la rédaction de face évolutive dans le cloud. La rédaction de face vous permet de modifier votre vidéo afin de flouter les visages des individus sélectionnés. Vous souhaitez peut-être utiliser le service de rédaction de face dans des scénarios de média et de sécurité publics. Quelques minutes de séquences vidéo contenant plusieurs visages peuvent nécessiter des heures de traitement manuel, mais avec ce service, le processus de rédaction de face ne nécessitera que quelques étapes simples. Pour plus d’informations, consultez [ce blog](https://azure.microsoft.com/blog/azure-media-redactor/).
+**Azure Media Redactor** est un [Azure Media Analytique](media-services-analytics-overview.md) processeur multimédia (MP) qui offre la rédaction de face évolutives dans le cloud de hello. Rédaction de face permet de vous toomodify votre vidéo dans faces de tooblur d’ordre d’individus sélectionnés. Vous pouvez choisir de service de rédaction face toouse hello dans les scénarios de sécurité et de médias public. Quelques minutes de film qui contient plusieurs polices peuvent prendre des heures tooredact manuellement, mais avec cette face hello de service des processus de rédaction nécessite quelques étapes simples. Pour plus d’informations, consultez [ce blog](https://azure.microsoft.com/blog/azure-media-redactor/).
 
-Pour plus d’informations sur **Azure Media Redactor**, consultez la rubrique [Vue d’ensemble de la rédaction de face](media-services-face-redaction.md).
+Pour plus d’informations sur les **Azure Media Redactor**, consultez hello [vue d’ensemble de la rédaction Face](media-services-face-redaction.md) rubrique.
 
-Cette rubrique explique étape par étape comment exécuter un workflow de rédaction complet à l’aide d’Azure Media Services Explorer (AMSE) et d’Azure Media Redactor Visualizer (outil open source).
+Cette rubrique présente des instructions étape par étape sur la façon de toorun un flux de travail de rédaction complète à l’aide d’Azure Media Services Explorer (AMSE) et Azure Media Redactor visualiseur (outil open source).
 
-Le processeur multimédia **Azure Media Redactor** est uniquement disponible en version préliminaire. Il est disponible dans toutes les régions Azure publiques, ainsi que dans les centres de données de Chine et du Gouvernement des États-Unis. Cette version préliminaire est actuellement disponible gratuitement. Dans la version actuelle, la longueur de vidéo traitée est limitée à 10 minutes.
+Hello **Azure Media Redactor** Pack d’administration est actuellement en version préliminaire. Il est disponible dans toutes les régions Azure publiques, ainsi que dans les centres de données de Chine et du Gouvernement des États-Unis. Cette version préliminaire est actuellement disponible gratuitement. Dans la version actuelle de hello, il existe une limite de 10 minutes sur la longueur de vidéo traitée.
 
 Pour plus d’informations, consultez [ce](https://azure.microsoft.com/en-us/blog/redaction-preview-available-globally) blog.
 
 ## <a name="azure-media-services-explorer-workflow"></a>Worfkflow d’Azure Media Services Explorer
 
-La manière la plus simple de prendre en main Redactor consiste à utiliser l’outil AMSE open source sur github. Vous pouvez exécuter un workflow simplifié via le mode **combiné** si vous n’avez pas besoin d’accéder au json d’annotations ou aux images jpg de face.
+Hello tooget de façon plus simple main Redactor est l’outil AMSE toouse hello open source sur github. Vous pouvez exécuter un workflow simplifié via **combinées** mode si vous ne devez accéder à toohello annotation json ou hello face jpg images.
 
 ### <a name="download-and-setup"></a>Téléchargement et configuration
 
-1. Téléchargez l’outil AMSE [ici](https://github.com/Azure/Azure-Media-Services-Explorer).
-1. Connectez-vous à votre compte Media Services à l’aide de votre clé de service.
+1. Télécharger l’outil hello AMSE [ici](https://github.com/Azure/Azure-Media-Services-Explorer).
+1. Ouvrez une session dans tooyour compte Media Services à l’aide de votre clé de service.
 
-    Pour obtenir le nom du compte et les informations sur la clé, accédez au [portail Azure](https://portal.azure.com/) et sélectionnez votre compte AMS. Sélectionnez Paramètres > Clés. La fenêtre Gérer les clés affiche le nom du compte ainsi que les clés primaires et secondaires. Copiez les valeurs du nom du compte et de la clé primaire.
+    tooobtain hello nom de compte et les informations de clé, accédez toohello [portail Azure](https://portal.azure.com/) et sélectionnez votre compte AMS. Sélectionnez Paramètres > Clés. windows de clés gérer Hello affiche le nom du compte hello et les clés primaires et secondaires hello s’affiche. Copiez les valeurs de nom de compte hello et de clé primaire de hello.
 
 ![Rédaction de face](./media/media-services-redactor-walkthrough/media-services-redactor-walkthrough001.png)
 
@@ -57,69 +57,69 @@ La manière la plus simple de prendre en main Redactor consiste à utiliser l’
 
 ![Rédaction de face](./media/media-services-redactor-walkthrough/media-services-redactor-walkthrough003.png)
 
-La sortie inclut un fichier json d’annotations avec les données d’emplacement de face, ainsi qu’un fichier jpg de chaque face détectée. 
+sortie de Hello inclut un fichier json d’annotations avec les données d’emplacement face, ainsi que jpg de chaque police détecté. 
 
 ![Rédaction de face](./media/media-services-redactor-walkthrough/media-services-redactor-walkthrough004.png)
 
 ###<a name="second-pass--redact-mode"></a>Second passage – Mode de rédaction
 
-1. Chargez votre ressource vidéo d’origine sur la sortie dès le premier passage et définissez-la comme ressource principale. 
+1. Téléchargez votre toohello élément multimédia vidéo d’origine, la sortie à partir de la première phase de hello et définie comme un élément multimédia principal. 
 
     ![Rédaction de face](./media/media-services-redactor-walkthrough/media-services-redactor-walkthrough005.png)
 
-2. (Facultatif) Chargez un fichier « Dance_idlist.txt » qui comprend une liste (avec délimitation par un saut de ligne) des ID que vous souhaitez éditer. 
+2. (Facultatif) Télécharger un fichier de « Dance_idlist.txt » qui inclut une liste de saut de ligne délimité de hello ID que vous souhaitez tooredact. 
 
     ![Rédaction de face](./media/media-services-redactor-walkthrough/media-services-redactor-walkthrough006.png)
 
-3. (Facultatif) Apportez des modifications au fichier .json d’annotations, telles qu’une augmentation des limites du cadre englobant. 
-4. Cliquez avec le bouton droit sur la ressource de sortie à partir du premier passage, sélectionnez le Redactor et exécutez-le avec le mode **Rédaction**. 
+3. (Facultatif) Effectuer n’importe quel fichier de annotations.json toohello modifications, comme augmenter hello des limites de la zone englobante. 
+4. Cliquez avec le bouton droit sur hello élément multimédia de sortie à partir de la première phase de hello hello Redactor et sélectionnez Exécuter avec hello **Redact** mode. 
 
     ![Rédaction de face](./media/media-services-redactor-walkthrough/media-services-redactor-walkthrough007.png)
 
-5. Téléchargez ou partagez la ressource de sortie rédigée finale. 
+5. Télécharger ou partager hello finale rédigé actif. 
 
     ![Rédaction de face](./media/media-services-redactor-walkthrough/media-services-redactor-walkthrough008.png)
 
 ##<a name="azure-media-redactor-visualizer-open-source-tool"></a>Outil open source Azure Media Redactor Visualizer
 
-Un [outil de visualisation](https://github.com/Microsoft/azure-media-redactor-visualizer) open source est conçu pour aider les développeurs commençant à utiliser le format d’annotations avec l’analyse et à l’aide de la sortie.
+Une open source [outil de visualiseur](https://github.com/Microsoft/azure-media-redactor-visualizer) est développeurs toohelp conçue en cours de démarrage avec le format d’annotations hello avec l’analyse et à l’aide de la sortie de hello.
 
-Une fois le référentiel cloné, vous devrez télécharger FFMPEG à partir du [site officiel](https://ffmpeg.org/download.html) pour exécuter le projet.
+Une fois que vous clonez le dépôt hello, dans le projet de commande toorun hello, vous devez toodownload FFMPEG à partir de leurs [site officiel](https://ffmpeg.org/download.html).
 
-Si vous êtes un développeur tentant d’analyser les données d’annotation JSON, recherchez des exemples de code dans Models.MetaData.
+Si vous êtes un développeur de la tentative de tooparse hello données d’annotation JSON, recherchez à l’intérieur de Models.MetaData exemples de code d’exemple.
 
-### <a name="set-up-the-tool"></a>Configuration de l’outil
+### <a name="set-up-hello-tool"></a>Configurer les outils de hello
 
-1.  Téléchargez et générez la solution complète. 
+1.  Téléchargez et générer l’ensemble de la solution hello. 
 
     ![Rédaction de face](./media/media-services-redactor-walkthrough/media-services-redactor-walkthrough009.png)
 
 2.  Téléchargez FFMPEG [ici](https://ffmpeg.org/download.html). Ce projet a été développé à l’origine avec la version be1d324 (04-10-2016) avec une liaison statique. 
-3.  Copiez ffmpeg.exe et ffprobe.exe dans le même dossier de sortie en tant que AzureMediaRedactor.exe. 
+3.  Copiez ffmpeg.exe et ffprobe.exe toohello même dossier de sortie en tant que AzureMediaRedactor.exe. 
 
     ![Rédaction de face](./media/media-services-redactor-walkthrough/media-services-redactor-walkthrough010.png)
 
 4. Exécutez AzureMediaRedactor.exe. 
 
-### <a name="use-the-tool"></a>Utiliser l’outil
+### <a name="use-hello-tool"></a>Utilisez l’outil hello
 
-1. Traitez votre vidéo dans votre compte Azure Media Services avec le processeur multimédia Redactor sur le mode Analyse. 
-2. Téléchargez le fichier vidéo d’origine et la sortie du travail Rédaction - Analyse. 
-3. Exécutez l’application du visualiseur et choisissez les fichiers ci-dessus. 
+1. Traiter les données vidéo dans votre compte Azure Media Services avec hello Redactor du Pack d’administration sur le mode d’analyse. 
+2. Télécharger le fichier vidéo d’origine de hello et sortie hello Hello rédaction - analyser le travail. 
+3. Exécutez l’application du visualiseur hello et choisissez les fichiers hello ci-dessus. 
 
     ![Rédaction de face](./media/media-services-redactor-walkthrough/media-services-redactor-walkthrough011.png)
 
-4. Affichez un aperçu de votre fichier. Sélectionnez les faces à flouter via le volet de droite. 
+4. Affichez un aperçu de votre fichier. Sélectionnez qui fait face vous aimeriez tooblur via encadré hello sur hello droite. 
     
     ![Rédaction de face](./media/media-services-redactor-walkthrough/media-services-redactor-walkthrough012.png)
 
-5.  Le champ de texte en bas est mis à jour avec les ID de face. Créez un fichier appelé « idlist.txt » avec ces ID sous forme de liste délimitée par un saut de ligne. 
+5.  champ de texte Hello bas met à jour dont l’image de hello ID. Créez un fichier appelé « idlist.txt » avec ces ID sous forme de liste délimitée par un saut de ligne. 
 
     >[!NOTE]
-    > Le fichier idlist.txt doit être enregistré au format ANSI. Vous pouvez utiliser le Bloc-notes pour enregistrer au format ANSI.
+    > Hello idlist.txt doivent être enregistrés au format ANSI. Vous pouvez utiliser le bloc-notes toosave au format ANSI.
     
-6.  Chargez ce fichier dans la ressource de sortie de l’étape 1. Chargez la vidéo d’origine également dans cette ressource et définissez-la en tant que ressource principale. 
-7.  Lancez le travail de rédaction sur cette ressource avec le mode « Rédaction » pour obtenir la vidéo rédigée finale. 
+6.  Télécharger ce fichier à toohello élément multimédia de sortie de l’étape 1. Télécharger hello actif d’origine toothis vidéo ainsi et définir comme principal. 
+7.  Exécuter le travail de rédaction sur cet élément multimédia avec « Redact » en mode tooget hello rédigé vidéo finale. 
 
 ## <a name="next-steps"></a>Étapes suivantes 
 

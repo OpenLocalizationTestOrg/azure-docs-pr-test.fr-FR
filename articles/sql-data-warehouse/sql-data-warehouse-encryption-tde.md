@@ -1,5 +1,5 @@
 ---
-title: "Chiffrement transparent des données dans SQL Data Warehouse (portail) | Microsoft Docs"
+title: "aaaTransparent chiffrement des données dans l’entrepôt de données SQL (portail) | Documents Microsoft"
 description: "Chiffrement transparent des données (TDE) dans SQL Data Warehouse"
 services: sql-data-warehouse
 documentationcenter: 
@@ -15,11 +15,11 @@ ms.topic: article
 ms.custom: security
 ms.date: 10/31/2016
 ms.author: rortloff;barbkess
-ms.openlocfilehash: b1db3bdfdfb54bda325c9b971cfcb4dd5efa333a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8233886ecf170844104e0d1459e2a829cafa9b8d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-transparent-data-encryption-tde-in-sql-data-warehouse"></a>Mise en route avec le chiffrement transparent des données (TDE) dans SQL Data Warehouse
 > [!div class="op_single_selector"]
@@ -31,30 +31,30 @@ ms.lasthandoff: 07/11/2017
 > 
 
 ## <a name="required-permssions"></a>Autorisations requises
-Pour activer le chiffrement transparent des données (TDE), vous devez être un administrateur ou un membre du rôle dbmanager.
+tooenable Transparent Data Encryption (TDE), vous devez être un administrateur ou un membre du rôle dbmanager de hello.
 
 ## <a name="enabling-encryption"></a>Activation du chiffrement
-Pour activer le chiffrement transparent des données pour SQL Data Warehouse, procédez comme suit :
+tooenable chiffrement transparent des données d’un entrepôt de données SQL, suivez les étapes de hello ci-dessous :
 
-1. Ouvrez la base de données dans le [portail Azure](https://portal.azure.com)
-2. Dans le panneau de la base de données, cliquez sur le bouton **Paramètres**
-3. Sélectionnez l’option **Chiffrement transparent des données**![][1]
-4. Sélectionnez le paramètre **Activé** ![][2]
+1. Base de données ouverte hello Bonjour [portail Azure](https://portal.azure.com)
+2. Dans le panneau de la base de données hello, cliquez sur hello **paramètres** bouton
+3. Sélectionnez hello **chiffrement Transparent des données** option![][1]
+4. Sélectionnez hello **sur** paramètre![][2]
 5. Sélectionnez **Enregistrer**
    ![][3]  
 
 ## <a name="disabling-encryption"></a>Désactivation du chiffrement
-Pour désactiver le chiffrement transparent des données pour SQL Data Warehouse, procédez comme suit :
+toodisable chiffrement transparent des données d’un entrepôt de données SQL, suivez les étapes de hello ci-dessous :
 
-1. Ouvrez la base de données dans le [portail Azure](https://portal.azure.com)
-2. Dans le panneau de la base de données, cliquez sur le bouton **Paramètres**
-3. Sélectionnez l’option **Chiffrement transparent des données**![][1]
-4. Sélectionnez le paramètre **Désactivé** ![][4]
+1. Base de données ouverte hello Bonjour [portail Azure](https://portal.azure.com)
+2. Dans le panneau de la base de données hello, cliquez sur hello **paramètres** bouton
+3. Sélectionnez hello **chiffrement Transparent des données** option![][1]
+4. Sélectionnez hello **hors** paramètre![][4]
 5. Sélectionnez **Enregistrer**
    ![][5]  
 
 ## <a name="encryption-dmvs"></a>DMV de chiffrement
-Le chiffrement peut être vérifié avec les vues DMV suivantes :
+Le chiffrement peut être confirmé par hello suivant des vues de gestion dynamique :
 
 * [sys.databases]
 * [sys.dm_pdw_nodes_database_encryption_keys]

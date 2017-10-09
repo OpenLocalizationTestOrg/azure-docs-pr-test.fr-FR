@@ -1,6 +1,6 @@
 ---
-title: Entonnoirs Azure Application Insights
-description: "Apprenez à utiliser les entonnoirs pour découvrir de quelle façon les clients interagissent avec votre application."
+title: aaaAzure Application Insights Entonnoirs
+description: "Découvrez comment vous pouvez utiliser les Entonnoirs toodiscover comment les clients interagissent avec votre application."
 services: application-insights
 documentationcenter: 
 author: CFreemanwa
@@ -12,32 +12,32 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/17/2017
 ms.author: cfreeman
-ms.openlocfilehash: 85f47daaaff8967eb83c330bab839023f128b486
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3a90cfd11cb193e303136504df44008ffd04a290
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="discover-how-customers-are-using-your-application-with-the-application-insights-funnels"></a>Découvrez comment les clients utilisent votre application avec les entonnoirs Application Insights
+# <a name="discover-how-customers-are-using-your-application-with-hello-application-insights-funnels"></a>Découvrez comment les clients utilisent votre application avec Application Insights Entonnoirs de hello
 
-Comprendre l’expérience de vos utilisateurs est primordial pour votre entreprise. Si votre application implique plusieurs étapes, vous devrez savoir si la plupart des clients vont au bout du processus, ou s’ils arrêtent celui-ci à un moment donné. La progression via une série d’étapes dans une application web est appelée « entonnoir ». Vous pouvez utiliser les entonnoirs Application Insights pour obtenir des informations sur vos utilisateurs et suivre les taux de conversion étape par étape. 
+Expérience de présentation est d’entreprise de tooyour hello plus haute importance. Si votre application implique plusieurs étapes, vous devez tooknow si la progression de la plupart des clients via l’ensemble du processus hello, ou si elles sont se terminant par processus hello à un moment donné. progression Hello via une série d’étapes dans une application web est appelée un « entonnoir ». Vous pouvez utiliser hello Application Insights Entonnoirs toogain vue d’ensemble de vos utilisateurs et les taux de conversion pas à pas de moniteur. 
 
-## <a name="get-started-with-the-funnels-blade"></a>Prise en main du panneau Entonnoirs
-La meilleure façon d’en savoir plus sur les entonnoirs est de prendre un exemple. Les illustrations suivantes montrent les étapes que les propriétaires d’entreprises de e-commerce devraient suivre pour apprendre de quelle façon leurs clients interagissent avec leur application web.  
+## <a name="get-started-with-hello-funnels-blade"></a>Prise en main Panneau d’Entonnoirs hello
+Hello toolearn de façon plus simple sur Entonnoirs est toowalk si un exemple. Hello illustrations suivantes montrent les propriétaires d’étapes hello d’une entreprise de commerce électronique prendrait toolearn comment leurs clients interagissent avec l’application web.  
 
 ### <a name="create-your-funnel"></a>Créer votre entonnoir
-Avant de créer votre entonnoir, vous devez choisir la question à laquelle vous souhaitez répondre. Par exemple, vous souhaiterez peut-être connaître le nombre de clients qui cliquent sur une publicité lorsqu’ils consultent votre page d’accueil. Dans cet exemple, les propriétaires de la société Fabrikam Fiber souhaitent connaître le pourcentage de clients qui effectuent un achat après avoir ajouté des articles dans leur panier au cours du mois dernier.
+Avant de créer votre en entonnoir, vous devez toodecide sur la question de hello souhaité tooanswer. Par exemple, vous pourriez tooknow le nombre de clients affichage de votre page d’accueil, cliquez sur une publication. Dans cet exemple, les propriétaires de hello Hello entreprise de Fabrikam Fiber veulent pourcentage de hello tooknow de clients fassent un achat après l’ajout de tootheir éléments panier d’achat pendant hello du mois précédent.
 
-Voici les étapes qu’ils suivent pour créer leur entonnoir.
+Voici les étapes hello informerons toocreate leur en entonnoir.
 
-1. Cliquez sur le bouton Nouveau du panneau Entonnoirs.
-1. Sélectionnez l’intervalle de temps « Mois dernier » dans la liste déroulante **Intervalle de temps**. 
-1. Sélectionnez l’événement **Product page** (Page du produit) dans la liste déroulante **Step 1** (Étape 1). 
-1. Sélectionnez l’événement **Add to shopping cart** (Ajouter au panier) dans la liste déroulante **Step 2** (Étape 2).
-1. Sélectionnez l’événement **Click purchase** (Cliquer sur Acheter) dans la liste déroulante **Step 3** (Étape 3).
-1. Donnez un nom à l’entonnoir, puis cliquez sur **Enregistrer**.
+1. Sur le bouton Nouveau hello Panneau d’Entonnoirs hello.
+1. Sélectionnez plage de temps hello de « Mois » à partir de hello **période** liste déroulante. 
+1. Sélectionnez hello **page produit** événement hello **étape 1** liste déroulante. 
+1. Sélectionnez hello **ajouter tooshopping panier** événement hello **étape 2** liste déroulante.
+1. Sélectionnez hello **cliquez sur acheter** événement hello **étape 3** liste déroulante.
+1. Ajouter un graphique en entonnoir toohello de nom, cliquez sur **enregistrer**.
 
-L’illustration suivante montre les données générées par le panneau Entonnoirs. À partir d’ici, les propriétaires de Fabrikam peuvent voir que pendant la semaine passée, 22,7 % des clients ayant ajouté un article à leur panier ont effectué un achat. Ils peuvent également voir que 1 % des clients ont cliqué sur une publicité avant de consulter la page du produit, et que 20 % des clients se sont déconnectés après avoir effectué leur achat.
+Hello l’illustration suivante montre lame Entonnoirs hello hello génère. À partir d’ici hello Fabrikam propriétaires peuvent voir que pendant la dernière semaine de hello, % 22.7 des clients qui l’a ajouté un élément tootheir d’achat panier achat de hello terminée. Ils peuvent également voir que 1 % des clients de hello cliqué une publication avant la visite de page du produit hello et 20 % des clients déconnectés après avoir effectué leur achat.
 
 
 ![Panneau Entonnoirs avec des données](./media/app-insights-understand-usage-patterns/funnel1.png)

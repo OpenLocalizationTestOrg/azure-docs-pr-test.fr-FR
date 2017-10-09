@@ -1,6 +1,6 @@
 ---
-title: "Création d’un entrepôt SQL Data Warehouse dans le portail Azure | Microsoft Docs"
-description: "Découvrez comment créer un entrepôt de données Azure SQL Data Warehouse dans le portail Azure"
+title: "aaaCreate un entrepôt de données SQL dans hello portail Azure | Documents Microsoft"
+description: "Découvrez comment toocreate un entrepôt de données SQL Azure dans hello portail Azure"
 services: sql-data-warehouse
 documentationcenter: NA
 author: hirokib
@@ -16,11 +16,11 @@ ms.workload: data-services
 ms.custom: create
 ms.date: 10/31/2016
 ms.author: elbutter;barbkess
-ms.openlocfilehash: 24ed2d8bad3090e378acf2a42fb909dee0a8517b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f5be6e3f2936e3af9d099854a468f8ce66fd8fbe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-azure-sql-data-warehouse"></a>Créer un Azure SQL Data Warehouse
 > [!div class="op_single_selector"]
@@ -30,13 +30,13 @@ ms.lasthandoff: 07/11/2017
 >
 >
 
-Ce didacticiel fait appel au portail Azure pour créer un entrepôt de données SQL Data Warehouse qui contient un exemple de base de données AdventureWorksDW.
+Ce didacticiel utilise hello toocreate portail Azure SQL Data Warehouse qui contient une base de données exemple AdventureWorksDW.
 
 ## <a name="prerequisites"></a>Composants requis
-Pour commencer, vous avez besoin des éléments suivants :
+tooget démarré, vous devez :
 
-* **Compte Azure** : consultez [Évaluation gratuite d’Azure][Azure Free Trial] ou [Crédits Azure MSDN][MSDN Azure Credits] pour créer un compte.
-* **Serveur SQL Azure** : pour en savoir plus, consultez [Create and query a single Azure SQL database in the Azure portal][Create an Azure SQL database in the Azure portal] (Créer et interroger une base de données SQL Azure unique dans le portail Azure).
+* **Compte Azure**: visitez [d’évaluation gratuite Azure] [ Azure Free Trial] ou [des crédits Azure MSDN] [ MSDN Azure Credits] toocreate un compte.
+* **Serveur SQL Azure**: consultez [créer une base de données SQL Azure avec hello portail Azure] [ Create an Azure SQL database in hello Azure portal] pour plus d’informations.
 
 > [!NOTE]
 > La création d’un entrepôt de données SQL Data Warehouse peut donner lieu à un nouveau service facturable.  Pour plus d’informations sur la tarification, consultez la page [SQL Data Warehouse Tarification][SQL Data Warehouse pricing].
@@ -44,51 +44,51 @@ Pour commencer, vous avez besoin des éléments suivants :
 >
 
 ## <a name="create-a-sql-data-warehouse"></a>Créer un entrepôt de données SQL
-1. Connectez-vous au [portail Azure](https://portal.azure.com).
+1. Connectez-vous à toohello [portail Azure](https://portal.azure.com).
 2. Cliquez sur **+Nouveau** > **Bases de données** > **SQL Data Warehouse**.
 
     ![Créer](./media/sql-data-warehouse-get-started-provision/create-sample.gif)
-3. Dans le panneau **SQL Data Warehouse** , fournissez les informations nécessaires, puis appuyez sur « Créer ».
+3. Bonjour **SQL Data Warehouse** panneau, renseignez les informations de hello nécessaires, puis appuyez sur 'Create' toocreate.
 
     ![Création d’une base de données](./media/sql-data-warehouse-get-started-provision/create-database.png)
 
    * **Serveur**: nous vous recommandons de commencer par sélectionner votre serveur.  
-   * **Nom de la base de données**: nom servant à référencer l’entrepôt de données SQL Data Warehouse.  Le nom doit être unique sur le serveur.
-   * **Performances** : nous vous recommandons de commencer par 400 [DWU][DWU]. Vous pouvez déplacer le curseur vers la gauche ou la droite pour ajuster les performances de votre entrepôt de données, ou le faire monter ou descendre en puissance suivant la création.  Pour en savoir plus sur les DWU, consultez notre documentation sur la [montée en charge](sql-data-warehouse-manage-compute-overview.md) ou notre [page de tarification][SQL Data Warehouse pricing].
-   * **Abonnement**: sélectionnez [l’abonnement] à utiliser pour la facturation de cet entrepôt de données SQL Data Warehouse.
-   * **Groupe de ressources** : un [groupe de ressources][Resource group] est un conteneur conçu pour vous aider à gérer une collection de ressources Azure. En savoir plus sur les [groupes de ressources](../azure-resource-manager/resource-group-overview.md).
-   * **Sélectionner une source** : cliquez sur **Sélectionner une source** > **Exemple**. Azure renseigne automatiquement AdventureWorksDW dans l’option **Sélectionner un exemple** .
+   * **Nom de la base de données**: nom de hello est utilisé tooreference hello SQL Data Warehouse.  Il doit être unique toohello server.
+   * **Performances** : nous vous recommandons de commencer par 400 [DWU][DWU]. Vous pouvez déplacer hello toohello de curseur gauche ou avec le bouton droit tooadjust les performances de hello de votre entrepôt de données, ou de mise à l’échelle vers le haut ou vers le bas après sa création.  toolearn en savoir plus sur les Dwu, reportez-vous à notre documentation sur [mise à l’échelle](sql-data-warehouse-manage-compute-overview.md) ou notre [page de tarification][SQL Data Warehouse pricing].
+   * **Abonnement**: hello sélectionnez [abonnement] qui sera facturation cet entrepôt de données SQL.
+   * **Groupe de ressources**: [groupes de ressources] [ Resource group] sont toohelp conteneurs conçues vous gérez une collection de ressources Azure. En savoir plus sur les [groupes de ressources](../azure-resource-manager/resource-group-overview.md).
+   * **Sélectionner une source** : cliquez sur **Sélectionner une source** > **Exemple**. Azure remplit automatiquement hello **sélectionnez exemple** option avec AdventureWorksDW.
 
    > [!NOTE]
-   > Le classement par défaut pour un entrepôt SQL Data Warehouse est SQL_Latin1_General_CP1_CI_AS. Si vous avez besoin d’un classement différent, [T-SQL][T-SQL] permet de créer la base de données avec un autre classement.
+   > classement par défaut de Hello pour un entrepôt de données SQL est SQL_Latin1_General_CP1_CI_AS. Si un classement différent est nécessaire, [T-SQL] [ T-SQL] peuvent être utilisés toocreate hello avec un classement différent.
    >
    >
 
-1. Cliquez sur **Créer** pour créer votre entrepôt de données SQL Data Warehouse.
-2. Patientez quelques minutes. Une fois que votre entrepôt de données est prêt, vous devriez être redirigé vers le [Portail Azure](https://portal.azure.com). Vous pouvez trouver votre SQL Data Warehouse sur votre tableau de bord, répertorié sous vos bases de données SQL, ou dans le groupe de ressources que vous avez utilisé pour le créer.
+1. Cliquez sur **créer** toocreate votre SQL Data Warehouse.
+2. Patientez quelques minutes. Lorsque votre entrepôt de données est prête, vous devez être retournée toohello [portail Azure](https://portal.azure.com). Vous pouvez trouver votre entrepôt de données SQL sur votre tableau de bord, conformément à vos bases de données SQL, ou dans la ressource de hello groupe que vous avez utilisé toocreate il.
 
     ![vue du portail](./media/sql-data-warehouse-get-started-provision/database-portal-view.png)
 
 [!INCLUDE [SQL Database create server](../../includes/sql-database-create-new-server-firewall-portal.md)]
 
 ## <a name="next-steps"></a>Étapes suivantes
-Maintenant que vous avez créé un entrepôt de données SQL Data Warehouse, vous êtes prêt à vous [connecter](sql-data-warehouse-connect-overview.md) et à lancer des requêtes.
+Maintenant que vous avez créé un entrepôt de données SQL, vous êtes prêt trop[Connect](sql-data-warehouse-connect-overview.md) et procéder à l’interrogation.
 
-Pour consulter une vue d’ensemble sur le chargement, accédez à la rubrique [Chargement de données dans SQL Data Warehouse](sql-data-warehouse-overview-load.md).
+données tooload dans l’entrepôt de données SQL, consultez hello [vue d’ensemble de chargement](sql-data-warehouse-overview-load.md).
 
-Si vous tentez de migrer une base de données existante vers SQL Data Warehouse, consultez la [vue d’ensemble de la migration](sql-data-warehouse-overview-migrate.md) ou utilisez [l’utilitaire de migration](sql-data-warehouse-migrate-migration-utility.md).
+Si vous essayez de toomigrate un tooSQL existant de la base de données l’entrepôt de données, consultez hello [présentation de la Migration](sql-data-warehouse-overview-migrate.md) ou utilisez [l’utilitaire de Migration](sql-data-warehouse-migrate-migration-utility.md).
 
 Les règles de pare-feu peuvent également être configurées à l’aide de Transact-SQL. Pour plus d’informations, consultez [sp_set_firewall_rule][sp_set_firewall_rule] et [sp_set_database_firewall_rule][sp_set_database_firewall_rule].
 
-Nous vous recommandons également de prendre connaissance des [bonnes pratiques][Best practices].
+Il est également un toolook idée à hello [meilleures pratiques][Best practices].
 
 <!--Article references-->
-[Create an Azure SQL database in the Azure portal]: ../sql-database/sql-database-get-started.md
+[Create an Azure SQL database in hello Azure portal]: ../sql-database/sql-database-get-started.md
 [Create an Azure SQL database with PowerShell]: ../sql-database/sql-database-create-and-configure-database-powershell
 [resource groups]: ../azure-resource-manager/resource-group-template-deploy-portal.md
 [Best practices]: sql-data-warehouse-best-practices.md
 [DWU]: sql-data-warehouse-overview-what-is.md
-[l’abonnement]: ../azure-glossary-cloud-terminology.md#subscription
+[abonnement]: ../azure-glossary-cloud-terminology.md#subscription
 [resource group]: ../azure-glossary-cloud-terminology.md#resource-group
 [T-SQL]: ./sql-data-warehouse-get-started-create-database-tsql.md
 

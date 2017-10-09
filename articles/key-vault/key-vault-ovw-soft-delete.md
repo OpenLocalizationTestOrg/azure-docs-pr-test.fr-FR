@@ -1,70 +1,70 @@
 ---
 ms.assetid: 
-title: "Suppression réversible d’Azure Key Vault | Microsoft Docs"
+title: "suppression réversible de coffre de clés aaaAzure | Documents Microsoft"
 ms.service: key-vault
 author: BrucePerlerMS
 ms.author: bruceper
 manager: mbaldwin
 ms.date: 07/10/2017
-ms.openlocfilehash: c873b153ef9c7d5f55672a5918c9dc4fb7256701
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 1b402c58db6f25ae4ae5e2720786fa81eb0e839a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-key-vault-soft-delete-overview"></a>Vue d’ensemble de la suppression réversible d’Azure Key Vault
 
-La fonctionnalité de suppression réversible de Key Vault permet la récupération des coffres et des objets de coffres supprimés. Nous aborderons en particulier les scénarios suivants :
+Fonctionnalité de suppression réversible du coffre de clés permet de récupérer des coffres de hello supprimé et les objets de coffre, appelés soft-suppression. Plus précisément, nous adresser hello les scénarios suivants :
 
 - Prise en charge de la suppression récupérable d’un coffre de clés
 - Prise en charge de la suppression récupérable d’objets Key Vault (par exemple, clés, secrets et certificats)
 
 ## <a name="supporting-interfaces"></a>Prise en charge des interfaces
 
-La fonctionnalité de suppression réversible est pour le moment disponible sur les interfaces .NET/C# et PowerShell. Pour plus d’informations, consultez les références correspondantes dans les [Informations de référence sur Key Vault](https://docs.microsoft.com/azure/key-vault/).
+Hello soft-suppression fonctionnalité est disponible via hello REST, .NET / C# et PowerShell d’interfaces. Pour ces valeurs pour plus d’informations, consultez le toohello références [clé de coffre référence](https://docs.microsoft.com/azure/key-vault/).
 
 ## <a name="scenarios"></a>Scénarios
 
-Les coffres Azure Key Vault désignent des ressources suivies, gérées par Azure Resource Manager. Azure Resource Manager spécifie également un comportement bien défini pour la suppression, qui suppose qu’une opération DELETE correctement exécutée sur une ressource ne permet plus d’accéder à cette ressource. La fonctionnalité de suppression réversible permet la récupération de l’objet supprimé en cas de suppression accidentelle ou intentionnelle.
+Les coffres Azure Key Vault désignent des ressources suivies, gérées par Azure Resource Manager. Azure Resource Manager spécifie également un comportement bien défini pour la suppression, qui suppose qu’une opération DELETE correctement exécutée sur une ressource ne permet plus d’accéder à cette ressource. adresses de fonctionnalité de soft-suppression Hello hello récupération de l’objet de hello supprimée, si la suppression de hello était accidentelle ou intentionnelle.
 
-1. Dans un scénario type, un utilisateur peut avoir supprimé par mégarde un coffre Key Vault ou un objet Key Vault ; si la restauration du coffre ou de l’objet en question a été programmée pendant une période prédéterminée, l’utilisateur peut annuler la suppression et récupérer ses données.
+1. Dans ce scénario hello, un utilisateur a peut-être accidentellement supprimé un coffre de clés ou un objet de coffre de clés ; Si ce coffre de clés ou une clé de coffre objet ont été toobe récupérables pendant une période prédéterminée, utilisateur de hello peut annuler la suppression de hello et récupérer leurs données.
 
-2. Dans un autre scénario, un utilisateur non autorisé peut tenter de supprimer un coffre Key Vault ou un objet Key Vault, par exemple une clé se trouvant à l’intérieur d’un coffre, pour provoquer une interruption de service. Le fait de séparer la suppression du coffre Key Vault ou de l’objet Key Vault de la suppression effective des données sous-jacentes peut renforcer la sécurité, par exemple en limitant les autorisations de suppression de données à un autre rôle approuvé. Cette approche suppose d’appliquer un quorum à une opération donnée qui pourrait, dans d’autres circonstances, se traduire par une perte de données immédiate.
+2. Dans un autre scénario, un utilisateur non autorisé peut tenter de toodelete un coffre de clés ou un objet de coffre de clés, telle qu’une clé à l’intérieur d’un coffre, toocause une interruption de service. Séparation de suppression hello de coffre de clés hello ou un objet de coffre de clés à partir de la suppression effective de hello Hello les données sous-jacentes utilisable comme une mesure de sécurité en limitant les autorisations tooa de suppression de données différent, par exemple, approuvés rôle. Cette approche suppose d’appliquer un quorum à une opération donnée qui pourrait, dans d’autres circonstances, se traduire par une perte de données immédiate.
 
 ### <a name="soft-delete-behavior"></a>Comportement de la suppression réversible
 
-Avec cette fonctionnalité, l’opération SUPPRIMER effectuée sur un coffre de clés ou un objet de coffre de clés constitue une suppression réversible, qui conserve efficacement les ressources pendant une période de rétention donnée, tout en donnant l’impression que l’objet est supprimé. Le service fournit en outre un mécanisme de récupération de l’objet supprimé, qui a essentiellement pour effet d’annuler la suppression. 
+Avec cette fonctionnalité, hello opération DELETE sur un coffre de clés ou un objet de coffre de clés est une soft-suppression contiennent efficacement des ressources de hello pour une période de rétention donnée, alors que donnant apparence de hello cet objet hello est supprimé. service Hello plus fournit un mécanisme pour récupérer l’objet hello supprimé, essentiellement annuler la suppression hello. 
 
-La suppression réversible est un comportement facultatif de Key Vault et **n’est pas activée par défaut** dans cette version. Pour plus d’informations sur l’activation de la suppression réversible pour votre Key Vault, consultez les instructions spécifiques à l’interface de votre choix dans la [Documentation Key Vault](https://docs.microsoft.com/azure/key-vault/).
+La suppression réversible est un comportement facultatif de Key Vault et **n’est pas activée par défaut** dans cette version. Pour plus d’informations sur l’activation de soft-suppression de votre coffre de clés, consultez les conseils spécifiques de hello dans référence hello pour interface hello de votre choix, [clé de coffre référence](https://docs.microsoft.com/azure/key-vault/).
 
 ### <a name="key-vault-recovery"></a>Récupération d’un Key Vault
 
-En cas de suppression d’un coffre de clés, le service crée une ressource de proxy sous l’abonnement, en y ajoutant suffisamment de métadonnées pour permettre la récupération. La ressource de proxy est un objet stocké, disponible au même emplacement que le Key Vault supprimé. 
+Lors de la suppression d’un coffre de clés, service de hello crée une ressource de proxy sous abonnement hello, ajout de suffisamment de métadonnées pour la récupération. ressource de proxy Hello est un objet stocké, disponible dans hello même emplacement que le coffre de clés hello supprimé. 
 
 ### <a name="key-vault-object-recovery"></a>Récupération d’objets Key Vault
 
-Lors de la suppression d’un objet Key Vault (une clé, par exemple), le service place l’objet à l’état supprimé, ce qui le rend inaccessible à toutes les opérations de récupération. Dans cet état, l’objet de coffre de clés peut être seulement listé, restauré ou supprimé de façon forcée ou permanente. 
+Lors de la suppression d’un objet de coffre de clés, comme une clé de service de hello placera les objet hello dans un état supprimé, ce qui rend les opérations d’extraction tooany inaccessible. Dans cet état, objet de coffre de clés hello ne peut figurer, récupérés, ou forcer/définitivement supprimés. 
 
-Dans le même temps, Key Vault planifiera la suppression des données sous-jacentes correspondant au Key Vault ou à l’objet Key Vault supprimé afin qu’elle soit exécutée après un intervalle de rétention prédéterminé. L’enregistrement DNS correspondant au coffre est également conservé pendant la durée de l’intervalle de rétention.
+À hello même coffre de clés, en temps planifierez suppression hello Hello sous-jacent toohello correspondantes de données supprimée coffre de clés ou un objet de coffre de clés pour l’exécution après un intervalle de rétention prédéterminée. Hello DNS record toohello coffre correspondant est également conservé pendant l’intervalle de conservation hello hello.
 
 ### <a name="soft-delete-retention-period"></a>Période de rétention de la suppression réversible
 
-Les ressources ayant fait l’objet d’une suppression réversible sont conservées pendant une durée fixée à 90 jours. Au cours de la période de rétention de la suppression réversible :
+Les ressources ayant fait l’objet d’une suppression réversible sont conservées pendant une durée fixée à 90 jours. Au cours de l’intervalle de conservation de soft-suppression hello suivant de hello s’appliquent :
 
-- Vous pouvez répertorier tous les coffres Key Vault et les objets Key Vault à l’état de suppression réversible pour votre abonnement, et accéder à des informations concernant leur suppression et leur récupération.
+- Vous pouvez répertorier toutes les coffres de clé hello et objets de coffre de clés dans l’état soft-suppression de hello pour votre abonnement, ainsi que les accès suppression et la récupération d’informations sur les.
     - Seuls les utilisateurs disposant d’autorisations spéciales peuvent répertorier des coffres supprimés. Nous recommandons à nos utilisateurs de créer un rôle personnalisé avec ces autorisations spéciales pour le traitement des coffres supprimés.
-- Il est impossible de créer un Key Vault du même nom au même emplacement. En conséquence, un objet Key Vault ne peut pas être créé dans un coffre donné si celui-ci contient un objet portant le même nom et se trouvant à l’état supprimé 
-- Seul un utilisateur disposant de privilèges spécifiques peut restaurer un coffre Key Vault ou un objet Key Vault en exécutant une commande de récupération sur la ressource de proxy correspondante.
-    - L’utilisateur membre du rôle personnalisé qui est autorisé à créer un coffre sous le groupe de ressources peut restaurer le coffre.
-- Seul un utilisateur disposant de privilèges spécifiques peut forcer la suppression d’un coffre Key Vault ou d’un objet Key Vault en exécutant une commande de suppression sur la ressource de proxy correspondante.
+- Un coffre de clés avec le même nom ne peut pas être créé dans hello de hello même emplacement. en conséquence, un objet de coffre de clés ne peut pas être créé dans un coffre-fort donné si ce coffre de clés contient un objet avec hello même nom et qui se trouve dans un état supprimé 
+- Seul un utilisateur privilégié spécifiquement peut restaurer un coffre de clés ou un objet de coffre de clés en exécutant une commande de récupération sur la ressource de proxy hello correspondante.
+    - utilisateur de Hello, membre de rôle personnalisée hello disposant hello privilège toocreate un coffre de clés de groupe de ressources hello peut restaurer le coffre hello.
+- Seul un utilisateur privilégié spécifiquement peut supprimer de force un coffre de clés ou un objet de coffre de clés en émettant une commande delete sur la ressource de proxy hello correspondante.
 
-Sauf en cas de restauration d’un coffre de clés ou d’un objet de coffre de clés, à la fin de l’intervalle de rétention, le service vide le coffre de clés ou l’objet de coffre de clés qui a fait l’objet d’une suppression réversible, ainsi que son contenu. La suppression de la ressource ne peut pas être replanifiée.
+Sauf si un coffre de clés ou un objet de coffre de clés est récupérée, hello fin du service de hello rétention intervalle hello effectue un vidage de coffre de clés hello supprimé ou un objet de coffre de clés et son contenu. La suppression de la ressource ne peut pas être replanifiée.
 
 ### <a name="permitted-purge"></a>Vidage autorisé
 
-Il est possible de supprimer ou vider définitivement un coffre Key Vault en exécutant une commande POST sur la ressource de proxy. Cette opération nécessite des privilèges spéciaux. En général, seul le propriétaire de l’abonnement peut vider un coffre. L’opération POST déclenche la suppression immédiate et irrécupérable de ce coffre, 
+Supprimer définitivement, de purge, un coffre de clés est possible grâce à une opération POST sur la ressource de proxy hello et nécessite des privilèges spéciaux. En général, seul hello propriétaire sera en mesure de toopurge un coffre de clés. déclencheurs d’opération Hello POST hello immédiate et irrécupérable suppression de ce coffre. 
 
-sauf si l’abonnement Azure a été marqué comme *impossible à supprimer*. Dans ce cas, seul le service peut alors effectuer la suppression, dans le cadre d’un processus planifié. 
+Une exception toothis arrive hello lorsque hello abonnement Azure a été marquée comme étant *impossible à supprimer*. Dans ce cas, uniquement les service hello peut effectuer puis suppression effective de hello et fait un processus planifié. 
 
 
 

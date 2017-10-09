@@ -1,6 +1,6 @@
 ---
-title: "Résolution de problèmes HDFS à l’aide d’Azure HDInsight | Microsoft Docs"
-description: "Obtenez les réponses aux questions courantes sur l’utilisation de HDFS et d’Azure HDInsight."
+title: "aaaTroubleshoot HDFS à l’aide d’Azure HDinsight | Documents Microsoft"
+description: "Obtenez des réponses toocommon des questions sur l’utilisation de HDFS et Azure HDInsight."
 keywords: "Azure HDInsight, HDFS, FAQ, guide de dépannage, questions courantes"
 services: Azure HDInsight
 documentationcenter: na
@@ -15,25 +15,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 7/7/2017
 ms.author: arijitt
-ms.openlocfilehash: 58f3d160c1f2a32025b706f10863e0055d67bfcd
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f5adec6879c947fcff82112e95d9d0303592c834
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshoot-hdfs-by-using-azure-hdinsight"></a>Résolution de problèmes HDFS à l’aide d’Azure HDInsight
 
-Découvrez les principaux problèmes rencontrés lors de l’utilisation de charges utiles HDFS (Hadoop Distributed File System) dans Apache Ambari, et leur résolution.
+En savoir plus sur les questions hello et leurs résolutions lorsque vous travaillez avec des charges utiles de système de fichiers distribués Hadoop (HDFS) dans Apache Ambari.
 
-## <a name="how-do-i-access-local-hdfs-from-inside-a-cluster"></a>Comment accéder au stockage HDFS local depuis un cluster ?
+## <a name="how-do-i-access-local-hdfs-from-inside-a-cluster"></a>Comment accéder hello HDFS local à partir d’à l’intérieur d’un cluster
 
 ### <a name="issue"></a>Problème
 
-Accédez au stockage HDFS local à l’aide de la ligne de commande et du code d’application plutôt qu’à partir du stockage Blob Azure ou Azure Data Lake Store depuis le cluster HDInsight.   
+Hello accès HDFS locales à partir de hello code application et de ligne de commande au lieu d’en utilisant le stockage Blob Azure ou Azure Data Lake Store à partir d’à l’intérieur de hello cluster HDInsight.   
 
 ### <a name="resolution-steps"></a>Étapes de résolution
 
-1. Dans la ligne de commande, utilisez `hdfs dfs -D "fs.default.name=hdfs://mycluster/" ...` littéralement, comme dans la commande suivante :
+1. À l’invite de commandes hello utiliser `hdfs dfs -D "fs.default.name=hdfs://mycluster/" ...` littéralement, comme dans hello de commande suivante :
 
     ```apache
     hdiuser@hn0-spark2:~$ hdfs dfs -D "fs.default.name=hdfs://mycluster/" -ls /
@@ -43,7 +43,7 @@ Accédez au stockage HDFS local à l’aide de la ligne de commande et du code d
     drwx------   - hdiuser hdfs          0 2016-11-10 22:22 /user
     ```
 
-2. À partir du code source, utilisez l’URI `hdfs://mycluster/` littéralement, comme dans l’exemple d’application suivant :
+2. À partir de code source, utilisez hello URI `hdfs://mycluster/` littéralement, comme dans hello suivant l’exemple d’application :
 
     ```csharp
     import java.io.IOException;
@@ -68,7 +68,7 @@ Accédez au stockage HDFS local à l’aide de la ligne de commande et du code d
     }
     ```
 
-3. Exécutez le fichier .jar compilé (par exemple un fichier nommé `java-unit-tests-1.0.jar`) sur le cluster HDInsight à l’aide de la commande suivante :
+3. Exécution hello compilé du fichier .jar (par exemple, un fichier nommé `java-unit-tests-1.0.jar`) sur hello HDInsight le cluster avec hello de commande suivante :
 
     ```apache
     hdiuser@hn0-spark2:~$ hadoop jar java-unit-tests-1.0.jar JavaUnitTests
@@ -83,23 +83,23 @@ Accédez au stockage HDFS local à l’aide de la ligne de commande et du code d
 
 ### <a name="issue"></a>Problème
 
-Le stockage HDFS local est bloqué en mode sans échec sur le cluster HDInsight.   
+Hello que HDFS local est bloquée en mode sans échec sur le cluster HDInsight de hello.   
 
 ### <a name="detailed-description"></a>Description détaillée
 
-L’exécution de la commande HDFS suivante échoue :
+Échec se produit lorsque vous exécutez hello HDFS commande suivante :
 
 ```apache
 hdfs dfs -D "fs.default.name=hdfs://mycluster/" -mkdir /temp
 ```
 
-L’erreur suivante s’affiche lorsque vous exécutez la commande :
+Vous voyez l’erreur suivante lorsque vous exécutez la commande hello de hello :
 
 ```apache
 hdiuser@hn0-spark2:~$ hdfs dfs -D "fs.default.name=hdfs://mycluster/" -mkdir /temp
 17/04/05 16:20:52 WARN retry.RetryInvocationHandler: Exception while invoking ClientNamenodeProtocolTranslatorPB.mkdirs over hn0-spark2.2oyzcdm4sfjuzjmj5dnmvscjpg.dx.internal.cloudapp.net/10.0.0.22:8020. Not retrying because try once and fail.
 org.apache.hadoop.ipc.RemoteException(org.apache.hadoop.hdfs.server.namenode.SafeModeException): Cannot create directory /temp. Name node is in safe mode.
-It was turned on manually. Use "hdfs dfsadmin -safemode leave" to turn safe mode off.
+It was turned on manually. Use "hdfs dfsadmin -safemode leave" tooturn safe mode off.
         at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.checkNameNodeSafeMode(FSNamesystem.java:1359)
         at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.mkdirs(FSNamesystem.java:4010)
         at org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.mkdirs(NameNodeRpcServer.java:1102)
@@ -149,11 +149,11 @@ mkdir: Cannot create directory /temp. Name node is in safe mode.
 
 ### <a name="probable-cause"></a>Cause probable
 
-Le cluster HDInsight a été redimensionné et ne compte plus que quelques nœuds. Le nombre de nœuds est inférieur au facteur de réplication HDFS ou proche de ce dernier.
+Hello cluster HDInsight a été mis à l’échelle vers le bas tooa très peu de nœuds. nombre de Hello de nœuds est inférieur ou fermez le facteur de réplication toohello HDFS.
 
 ### <a name="resolution-steps"></a>Étapes de résolution 
 
-1. Déterminez l’état du stockage HDFS du cluster HDInsight à l’aide des commandes suivantes :
+1. Obtenez l’état de hello de HDFS sur le cluster HDInsight de hello à l’aide de hello suivant de commandes :
 
     ```apache
     hdfs dfsadmin -D "fs.default.name=hdfs://mycluster/" -report
@@ -194,14 +194,14 @@ Le cluster HDInsight a été redimensionné et ne compte plus que quelques nœud
     ...
     ```
 
-2. Vérifiez l’intégrité du stockage HDFS du cluster HDInsight à l’aide des commandes suivantes :
+2. Intégrité hello de HDFS sur le cluster HDInsight de hello à l’aide de hello suivant de commandes :
 
     ```apache
     hdiuser@hn0-spark2:~$ hdfs fsck -D "fs.default.name=hdfs://mycluster/" /
     ```
 
     ```apache
-    Connecting to namenode via http://hn0-spark2.2oyzcdm4sfjuzjmj5dnmvscjpg.dx.internal.cloudapp.net:30070/fsck?ugi=hdiuser&path=%2F
+    Connecting toonamenode via http://hn0-spark2.2oyzcdm4sfjuzjmj5dnmvscjpg.dx.internal.cloudapp.net:30070/fsck?ugi=hdiuser&path=%2F
     FSCK started by hdiuser (auth:SIMPLE) from /10.0.0.22 for path / at Wed Apr 05 16:40:28 UTC 2017
     ....................................................................................................
 
@@ -224,10 +224,10 @@ Le cluster HDInsight a été redimensionné et ne compte plus que quelques nœud
     Number of racks:               1
     FSCK ended at Wed Apr 05 16:40:28 UTC 2017 in 187 milliseconds
 
-    The filesystem under path '/' is HEALTHY
+    hello filesystem under path '/' is HEALTHY
     ```
 
-3. Si aucun bloc n’est manquant, endommagé ou sous-répliqué ou si ces blocs peuvent être ignorés, exécutez la commande suivante pour désactiver le mode sans échec sur le nœud de nom :
+3. Si vous déterminez qu’il n’y a aucun bloc manquant, endommagé ou under-répliquées, ou que ces blocs peuvent être ignorées, exécutez hello suivant commande tootake hello nom du nœud du mode sans échec :
 
     ```apache
     hdfs dfsadmin -D "fs.default.name=hdfs://mycluster/" -safemode leave

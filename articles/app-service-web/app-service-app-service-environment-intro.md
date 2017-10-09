@@ -1,6 +1,6 @@
 ---
-title: "Présentation d’App Service Environment v1"
-description: "Découvrez la fonctionnalité App Service Environment v1, qui fournit des unités d’échelle sécurisées, dédiées et appartenant à un réseau virtuel pour exécuter toutes vos applications."
+title: aaaIntroduction tooApp environnement Service v1
+description: "En savoir plus sur la fonctionnalité hello v1 de l’environnement App Service qui fournit des unités d’échelle sûr, appartenant à un réseau virtuel et dédié pour exécuter toutes vos applications."
 services: app-service
 documentationcenter: 
 author: stefsch
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: ccompy
-ms.openlocfilehash: 38cb79eb32bd61cdbfb6da91d50e6713d71a2b0d
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 6e3cd1909b241887b5ec19412b9f7884d870cc3d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-app-service-environment-v1"></a>Présentation d’App Service Environment v1
+# <a name="introduction-tooapp-service-environment-v1"></a>Introduction tooApp environnement Service v1
 
 > [!NOTE]
-> Cet article traite de l’environnement App Service v1.  Il existe une version plus récente de l’environnement App Service Environment, plus facile à utiliser et qui s’exécute sur des infrastructures plus puissantes. Pour en savoir plus sur la nouvelle version, commencez par la section [Présentation de l’environnement App Service Environment](../app-service/app-service-environment/intro.md).
+> Cet article porte sur hello environnement App Service v1.  Il existe une version plus récente de hello environnement App Service toouse plus facile et s’exécute sur une infrastructure plus puissante. toolearn plus d’informations sur la nouvelle version de hello commencent par Bonjour [Introduction toohello environnement App Service](../app-service/app-service-environment/intro.md).
 > 
 
 ## <a name="overview"></a>Vue d'ensemble
@@ -36,56 +36,56 @@ Les environnements App Service constituent le meilleur choix pour les charges d
 
 Les clients peuvent créer plusieurs environnements App Service au sein d’une même région Azure, ainsi que dans plusieurs régions Azure.  Les environnements App Service sont donc parfaits pour l’évolution horizontale des applications sans état pour la prise en charge de lourdes charges de travail RPS.
 
-Les environnements App Service sont isolés de façon à exécuter les applications d’un seul client et ils sont toujours déployés dans un réseau virtuel.  Les clients ont un contrôle affiné sur le trafic réseau entrant et sortant des applications, et les applications peuvent établir des connexions sécurisées à haut débit sur les réseaux virtuels avec les ressources d’entreprise locales.
+Les environnements App Service sont isolé toorunning uniquement les applications d’un client unique et sont toujours déployés dans un réseau virtuel.  Les clients ont un contrôle affiné sur le trafic réseau entrant et sortant des applications et applications peuvent établir des connexions sécurisées à grande vitesse sur les ressources d’entreprise de réseaux virtuels tooon local.
 
-Tous les articles et procédures concernant les environnements App Service sont disponibles dans le [fichier Lisez-moi des environnements App Service](../app-service/app-service-app-service-environments-readme.md).
+Tous les articles et comment-du sur les environnements App Service sont disponibles dans hello [fichier Lisezmoi pour les environnements de Service d’Application](../app-service/app-service-app-service-environments-readme.md).
 
-Pour avoir une idée générale de la façon dont les environnements App Service permettent l’accès réseau sécurisé à grande échelle, consultez la vidéo [AzureCon Deep Dive][AzureConDeepDive] sur les environnements App Service.
+Pour une vue d’ensemble de l’activer à grande échelle et la sécurisation des environnements App Service accès réseau, consultez hello [approfondie AzureCon] [ AzureConDeepDive] sur les environnements de Service d’application !
 
-Pour une exploration approfondie de la mise à l’échelle horizontale à l’aide de plusieurs environnements App Service, consultez l’article sur la configuration d’une [empreinte d’application géo-distribuée][GeodistributedAppFootprint].
+Pour une présentation détaillée sur la mise à l’échelle horizontalement à l’aide de plusieurs environnements de Service d’application voir l’article de hello sur la façon de toosetup un [encombrement de l’application de géo-distribué][GeodistributedAppFootprint].
 
-Pour afficher la configuration de l’architecture de sécurité illustrée dans AzureCon Deep Dive, consultez l’article sur l’implémentation d’une [architecture de sécurité en couches](app-service-app-service-environment-layered-security.md) avec les environnements App Service.
+toosee architecture de sécurité hello hello approfondie AzureCon montre la configuration, consultez l’article hello sur l’implémentation d’un [en couches d’architecture de sécurité](app-service-app-service-environment-layered-security.md) avec les environnements de Service d’application.
 
-L’accès aux applications qui s’exécutent sur des environnements App Service peut être contrôlé par des appareils en amont tels que les pare-feu d’applications web (WAF).  Ce scénario est traité dans l’article sur la [configuration d’un pare-feu d’application web pour les environnements App Service](app-service-app-service-environment-web-application-firewall.md) . 
+L’accès aux applications qui s’exécutent sur des environnements App Service peut être contrôlé par des appareils en amont tels que les pare-feu d’applications web (WAF).  article Hello sur [configuration un WAF pour les environnements de Service d’application](app-service-app-service-environment-web-application-firewall.md) couvre ce scénario. 
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
 ## <a name="dedicated-compute-resources"></a>Ressources de calcul dédiées
-Toutes les ressources de calcul d’un environnement App Service sont exclusivement dédiées à un seul abonnement, et il est possible de configurer un environnement App Service avec jusqu’à cinquante (50) ressources de calcul pour une seule application.
+Calcul hello les ressources dans un environnement App Service sont tous dédié exclusivement tooa seul abonnement, et un environnement App Service peut être configuré avec des ressources de calcul toofifty (50) pour une utilisation exclusive par une application unique.
 
-Un environnement App Service se compose d’un pool de ressources de calcul frontal, ainsi que de un à trois pools de ressources de calcul de travail. 
+Un environnement App Service est composé d’un pool de ressources de calcul frontaux, ainsi que les pools de ressources de calcul un toothree travail. 
 
-Le pool frontal contient des ressources de calcul responsables de l'arrêt SSL ainsi que de l'équilibrage de charge automatique des demandes d'application dans un environnement App Service. 
+pool frontal de Hello contient des ressources de calcul responsable de la terminaison SSL en tant que l’équilibrage de charge automatique et de demandes d’application dans un environnement App Service. 
 
-Chaque pool de travaux contient des ressources de calcul allouées à des [plans App Service][AppServicePlan], qui, eux-mêmes, contiennent une ou plusieurs applications Azure App Service.  Étant donné qu'un environnement App Service peut comprendre jusqu'à trois pools de travaux différents, vous pouvez choisir des ressources de calcul différentes pour chaque pool de travaux.  
+Chaque pool de travail contient des ressources de calcul alloués trop[Plans de Service d’application][AppServicePlan], qui à son tour contenir une ou plusieurs applications de Service d’applications Azure.  Dans la mesure où il peut y avoir des pools de travail différent toothree dans un environnement App Service, vous avez hello flexibilité toochoose différentes des ressources de calcul pour chaque pool de travail.  
 
-Cela vous permet, par exemple, de créer un pool de travaux avec des ressources de calcul moins puissantes pour les plans App Service destinés aux applications de développement ou de test.  Un deuxième (ou même troisième) pool de travaux peut utiliser des ressources de calcul plus puissantes destinées aux plans App Service exécutant des applications de production.
+Par exemple, cela vous permet toocreate pool d’un travail avec des ressources de calcul moins puissants pour les Plans de Service application conçue pour les applications de développement ou de test.  Un deuxième (ou même troisième) pool de travaux peut utiliser des ressources de calcul plus puissantes destinées aux plans App Service exécutant des applications de production.
 
-Pour plus d'informations sur la quantité de ressources de calcul disponibles pour les pools frontaux et de travail, consultez [Comment configurer un environnement App Service][HowToConfigureanAppServiceEnvironment].  
+Pour plus d’informations sur la quantité de hello de calcul ressources disponibles toohello frontaux et des pools de travail, consultez [comment tooConfigure un environnement App Service][HowToConfigureanAppServiceEnvironment].  
 
-Pour plus d'informations sur les tailles de ressources de calcul disponibles prises en charge dans un environnement App Service, consultez la page [Service d'application Tarification][AppServicePricing] et passez en revue les options disponibles pour les environnements App Service dans le niveau de tarification Premium.
+Pour plus d’informations sur hello disponible des tailles de ressources pris en charge dans un environnement App Service de calcul, consultez hello [tarification de Service application] [ AppServicePricing] page et passez en revue les options disponibles de hello pour les environnements de Service d’application dans le niveau de tarification hello Premium.
 
 ## <a name="virtual-network-support"></a>Prise en charge des réseaux virtuels
-Un environnement App Service peut être créé **soit** dans un réseau virtuel Azure Resource Manager, **ou** dans un réseau virtuel de modèle de déploiement classique ([plus d’informations sur les réseaux virtuels][MoreInfoOnVirtualNetworks]).  Étant donné qu'il existe toujours un environnement App Service sur un réseau virtuel, et plus précisément sur un sous-réseau d'un réseau virtuel, vous pouvez exploiter les fonctionnalités de sécurité des réseaux virtuels pour contrôler les communications réseau entrantes et sortantes.  
+Un environnement App Service peut être créé **soit** dans un réseau virtuel Azure Resource Manager, **ou** dans un réseau virtuel de modèle de déploiement classique ([plus d’informations sur les réseaux virtuels][MoreInfoOnVirtualNetworks]).  Depuis un environnement App Service existe toujours dans un réseau virtuel, et plus précisément au sein d’un sous-réseau d’un réseau virtuel, vous pouvez tirer parti des fonctionnalités de sécurité hello de réseaux virtuels toocontrol les communications réseau entrantes et sortantes.  
 
 Un environnement App Service peut être soit accessible sur Internet avec une adresse IP publique, soit accessible en interne avec une adresse d’équilibrage de charge interne (ILB) Azure uniquement.
 
-Vous pouvez utiliser des [groupes de sécurité réseau][NetworkSecurityGroups] pour restreindre les communications réseau entrantes vers le sous-réseau sur lequel réside un environnement App Service.  Cela vous permet d'exécuter des applications derrière des appareils et services en amont tels des pare-feu d'applications web, ainsi que des fournisseurs SaaS réseau.
+Vous pouvez utiliser [groupes de sécurité réseau] [ NetworkSecurityGroups] toorestrict entrants communications toohello sous-réseau dans lequel un environnement App Service réside.  Cela vous permet des applications toorun derrière les périphériques en amont et de services tels que les pare-feu d’applications web et les fournisseurs SaaS de réseau.
 
-Les applications doivent souvent accéder à des ressources d'entreprise telles que des bases de données internes et des services web.  Une approche courante consiste à rendre ces points de terminaison disponibles uniquement au trafic réseau interne circulant au sein d'un réseau virtuel Azure.  Une fois qu'un environnement App Service est joint au même réseau virtuel que les services internes, les applications s'exécutant dans l'environnement peuvent y accéder, notamment les points de terminaison accessibles via des connexions [site à site][SiteToSite] et [Azure ExpressRoute][ExpressRoute].
+Les applications doivent également fréquemment tooaccess des ressources d’entreprise telles que les bases de données internes et les services web.  Une approche courante est toomake ces points de terminaison disponibles toointernal uniquement tout trafic réseau au sein d’un réseau virtuel Azure.  Une fois qu’un environnement App Service est toohello joints à un même réseau virtuel en tant que services interne hello, les applications en cours d’exécution dans un environnement de hello peut y accéder, y compris les points de terminaison accessibles via [Site-à-Site] [ SiteToSite]et [Azure ExpressRoute] [ ExpressRoute] connexions.
 
-Pour plus d’informations sur le fonctionnement des environnements App Service avec les réseaux virtuels et les réseaux locaux, consultez les articles suivants sur l’[architecture réseau][NetworkArchitectureOverview], le [contrôle du trafic entrant][ControllingInboundTraffic] et la [connexion sécurisée aux serveurs principaux][SecurelyConnectingToBackends]. 
+Pour plus d’informations sur le fonctionnement des environnements de Service d’application avec des réseaux virtuels et réseaux locaux consultez hello suivant des articles de [Architecture réseau][NetworkArchitectureOverview], [contrôle de trafic entrant Le trafic][ControllingInboundTraffic], et [tooBackends de connexion en toute sécurité][SecurelyConnectingToBackends]. 
 
 ## <a name="getting-started"></a>Prise en main
-Pour prendre en main les environnements App Service, consultez [Comment créer un environnement App Service][HowToCreateAnAppServiceEnvironment]
+tooget démarré avec les environnements de Service d’application, consultez [comment tooCreate un environnement App Service][HowToCreateAnAppServiceEnvironment]
 
-Tous les articles et procédures concernant les environnements App Service sont disponibles dans le [fichier Lisez-moi des environnements App Service](../app-service/app-service-app-service-environments-readme.md).
+Tous les articles et comment-de pour les environnements App Service sont disponibles dans hello [fichier Lisezmoi pour les environnements de Service d’Application](../app-service/app-service-app-service-environments-readme.md).
 
-Pour plus d’informations sur la plateforme Azure App Service, consultez la rubrique [Azure App Service][AzureAppService].
+Pour plus d’informations sur la plateforme Azure App Service de hello, consultez [Azure App Service][AzureAppService].
 
-Pour obtenir une vue d’ensemble de l’architecture réseau de l’environnement App Service, consultez l’article [Présentation de l’architecture réseau][NetworkArchitectureOverview].
+Pour une vue d’ensemble de l’architecture en réseau environnement App Service de hello, consultez hello [présentation de l’Architecture réseau] [ NetworkArchitectureOverview] l’article.
 
-Pour plus d’informations sur l’utilisation d’un environnement App Service avec ExpressRoute, consultez l’article suivant sur [ExpressRoute et environnements App Service][NetworkConfigDetailsForExpressRoute].
+Pour plus d’informations sur l’utilisation d’un environnement App Service grâce à ExpressRoute, consultez hello l’article suivant [Express Route et les environnements App Service][NetworkConfigDetailsForExpressRoute].
 
 [!INCLUDE [app-service-web-whats-changed](../../includes/app-service-web-whats-changed.md)]
 

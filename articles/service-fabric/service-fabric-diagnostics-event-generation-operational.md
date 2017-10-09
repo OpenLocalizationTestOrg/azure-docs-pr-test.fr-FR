@@ -1,6 +1,6 @@
 ---
-title: "Canal opérationnel Azure Service Fabric | Microsoft Docs"
-description: "Liste complète des journaux générés dans le canal opérationnel des clusters Azure Service Fabric."
+title: "aaaAzure Service Fabric opérationnel canal | Documents Microsoft"
+description: "Liste complète des fichiers journaux générés dans des clusters de canal opérationnel d’Azure Service Fabric hello."
 services: service-fabric
 documentationcenter: .net
 author: dkkapur
@@ -14,19 +14,19 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 07/19/2017
 ms.author: dekapur
-ms.openlocfilehash: 934719868ab9968db352db2b440014d35dbc0274
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: 358782420ed62b202d6a89fe0f200b5ef0384c9c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="operational-channel"></a>Canal opérationnel 
 
-Le canal opérationnel se compose des journaux provenant des principales actions effectuées par Service Fabric sur vos nœuds et votre cluster. Lorsque l’option « Diagnostics » est activée pour un cluster, l’agent Azure Diagnostics est déployé sur votre cluster et il est par défaut configuré pour lire les journaux à partir du canal opérationnel. Pour savoir comment modifier la configuration des diagnostics de votre cluster afin de sélectionner plus de journaux ou de compteurs de performances, consultez [Agent Azure Diagnostics](service-fabric-diagnostics-event-aggregation-wad.md). 
+canal opérationnel de Hello se compose des journaux à partir des principales actions effectuées par l’infrastructure de Service sur vos nœuds et que votre cluster. Lorsque « Diagnostics » est activé pour un cluster, hello agent de Diagnostics Windows Azure est déployé sur votre cluster et est par défaut configuré les tooread dans les journaux à partir du canal opérationnel de hello. En savoir plus sur la configuration de hello [agent de Diagnostics Azure](service-fabric-diagnostics-event-aggregation-wad.md) configuration des diagnostics hello toomodify de votre toopick cluster plusieurs journaux ou les compteurs de performance. 
 
 ## <a name="operational-channel-logs"></a>Journaux du canal opérationnel 
 
-Voici une liste complète des journaux fournis par Service Fabric dans le canal opérationnel. 
+Voici une liste complète des journaux fournie par l’infrastructure de Service dans le canal opérationnel de hello. 
 
 | EventId | Nom | Source (tâche) | Niveau |
 | --- | --- | --- | --- |
@@ -56,6 +56,6 @@ Voici une liste complète des journaux fournis par Service Fabric dans le canal 
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* En savoir plus sur la [génération d’événements au niveau de la plateforme](service-fabric-diagnostics-event-generation-infra.md) dans Service Fabric
-* Modification de votre configuration [Azure Diagnostics](service-fabric-diagnostics-event-aggregation-wad.md) pour collecter davantage de journaux
-* [Configuration d’Application Insights](service-fabric-diagnostics-event-analysis-appinsights.md) pour voir les journaux de votre canal opérationnel
+* En savoir plus sur global [génération des événements au niveau de plate-forme hello](service-fabric-diagnostics-event-generation-infra.md) dans Service Fabric
+* Modification de votre [Azure Diagnostics](service-fabric-diagnostics-event-aggregation-wad.md) configuration toocollect consigne plus
+* [Configuration d’Application Insights](service-fabric-diagnostics-event-analysis-appinsights.md) toosee journaux de votre canal opérationnel

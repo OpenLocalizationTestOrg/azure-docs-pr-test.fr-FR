@@ -1,6 +1,6 @@
 ---
-title: "Gérer les mises à jour dans Azure Stack | Microsoft Docs"
-description: "Découvrir comment gérer les mises à jour dans Azure Stack"
+title: "aaaManage les mises à jour dans la pile de Azure | Documents Microsoft"
+description: "Découvrez comment toomanage met à jour dans la pile de Azure"
 services: azure-stack
 documentationcenter: 
 author: twooley
@@ -14,24 +14,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/10/2017
 ms.author: twooley
-ms.openlocfilehash: 1462079c1aac9031e8ea195282555c0707480ec8
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 549b442db758af6c34de5c70d082f5375293d01e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-updates-in-azure-stack"></a>Gérer les mises à jour dans Azure Stack
 
-Dans le kit de développement Azure Stack, vous pouvez afficher un aperçu de l’expérience de gestion des mises à jour Azure Stack dans un environnement à plusieurs nœuds. Étant donné que les machines virtuelles ne présentent pas une haute disponibilité dans le kit de développement, vous ne pouvez pas appliquer des mises à jour à l’aide de la vignette **Mises à jour**.
+Bonjour Kit de développement de pile Azure, vous pouvez afficher un aperçu expérience hello pour la gestion des mises à jour de la pile d’Azure dans un environnement à plusieurs nœud. Étant donné que les ordinateurs virtuels ne sont pas hautement disponibles dans le kit de développement hello, vous ne peut pas appliquer les mises à jour via hello **mises à jour** vignette.
 
-Dans le portail d’administration Azure Stack, vous pouvez déterminer la version actuelle (ou le numéro de build actuel) d’Azure Stack.
+Dans le portail d’administration hello Azure pile, vous pouvez déterminer la version actuelle de hello (ou numéro de build) de la pile de Azure.
 
-## <a name="determine-the-current-version"></a>Déterminer la version actuelle
+## <a name="determine-hello-current-version"></a>Déterminer la version actuelle de hello
 
-Pour déterminer la version actuelle d’Azure Stack, effectuez l’une des opérations suivantes dans le portail d’administration :
+version actuelle de hello toodetermine de pile de Azure, effectuez une des suivantes hello dans le portail d’administration hello :
 
-- Sur le tableau de bord, consultez la version actuelle dans la vignette **Mises à jour**.
-- Sur la vignette **Gestion des régions**, cliquez sur le nom de la région (par exemple **locale**). Consultez la version actuelle dans la vignette **Mises à jour**.
+- Tableau de bord de hello, afficher la version actuelle de hello dans hello **mises à jour** vignette.
+- Sur hello **gestion de la région** vignette, cliquez sur le nom de la région hello (tel que **local**). Afficher la version actuelle de hello Bonjour **mises à jour** vignette.
 
    ![Vignette Mises à jour sur le tableau de bord par défaut](./media/azure-stack-updates/image1.png)
 

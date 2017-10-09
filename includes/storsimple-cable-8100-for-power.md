@@ -1,12 +1,12 @@
 <!--author=alkohli last changed: 9/16/15-->
 
-#### <a name="to-cable-for-power"></a>Pour brancher les câbles d’alimentation
-1. Assurez-vous que les commutateurs d'alimentation sont en position d'arrêt sur chacun des PCM (Modules d'alimentation et de refroidissement).
-2. Branchez les câbles d'alimentation sur chacun des deux PCM du boîtier principal.
-3. Fixez les câbles d'alimentation aux unités de distribution de l'alimentation (PDU) du rack, comme indiqué sur l'illustration suivante. Assurez-vous que les deux modules d'alimentation et de refroidissement (PCM) utilisent des sources d'alimentation distinctes.
+#### <a name="toocable-for-power"></a>toocable d’alimentation
+1. Assurez-vous que les interrupteurs d’alimentation hello sur chacun des hello Power et Modules de refroidissement (PCM) sont en position OFF de hello.
+2. Se connecter tooeach de câbles d’alimentation hello Hello PCM dans le boîtier principal de hello.
+3. Raccordez hello câbles toohello rack power unités d’alimentation (PDU) comme indiqué dans hello suivant l’image. Vérifiez que hello deux PCM utilisent des sources d’alimentation distinctes.
    
    > [!IMPORTANT]
-   > Pour garantir une haute disponibilité de votre système, nous vous recommandons de vous conformer strictement au schéma de branchement des câbles d'alimentation illustré dans le diagramme suivant. 
+   > tooensure haute disponibilité pour votre système, nous vous recommandons de respecter strictement toohello les schéma illustré hello suivant schéma de câblage. 
    > 
    > 
    
@@ -21,5 +21,5 @@
    | 3 |Contrôleur 0 |
    | 4 |PCM 1 |
    | 5 |PDU |
-4. Activez le système en mettant en marche les commutateurs d'alimentation des deux PCM.
+4. tooturn sur le système de hello, power de retournement hello commutateurs sur les deux position de ON toohello PCM.
 

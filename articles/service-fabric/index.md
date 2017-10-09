@@ -1,6 +1,6 @@
 ---
-title: "Documentation Azure Service Fabric - Didacticiels, informations de référence sur les API | Microsoft Docs"
-description: "Découvrez comment utiliser la plateforme middleware Service Fabric pour empaqueter et déployer des microservices pour des applications à l’échelle du cloud. Didacticiels, références d’API et exemples de code."
+title: "aaaAzure Service Fabric Documentation - didacticiels, référence de l’API | Documents Microsoft"
+description: "Découvrez comment toouse Service Fabric intergiciel (middleware) plateforme toopackage et déployer des microservices pour les applications cloud à l’échelle. Didacticiels, références d’API et exemples de code."
 services: service-fabric
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 95499b3ca42e17a6586f97ca3e28919d2fc64a80
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0758059e7f8604fc2fe9cff4acb826204ff8d686
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 #<a name="service-fabric-documentation"></a>Documentation Service Fabric
 
-Découvrez comment utiliser Service Fabric pour empaqueter, déployer et gérer des microservices évolutifs et fiables. Les didacticiels, références d’API et exemples de code vous montrent comment utiliser cette plateforme middleware pour créer et gérer des applications à l’échelle du cloud.
+Découvrez comment toouse Service Fabric toopackage, déployer et gérer des microservices fiables et évolutives. Didacticiels, des références de l’API et code exemples illustrent comment toouse ce toobuild de plateforme d’intergiciel (middleware) et gérer des applications de cloud à l’échelle.
 
 <ul class="panelContent cardsFTitle">
     <li>

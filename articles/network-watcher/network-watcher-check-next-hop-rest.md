@@ -1,6 +1,6 @@
 ---
-title: "Rechercher le tronçon suivant avec la fonction Tronçon suivant Azure Network Watcher - REST | Microsoft Docs"
-description: "Cet article explique comment rechercher le type de tronçon suivant et l’adresse IP à l’aide de la fonction Tronçon suivant par le biais de l’API REST"
+title: "aaaFind tronçon suivant avec Azure réseau observateur du tronçon suivant - REST | Documents Microsoft"
+description: "Cet article décrit comment vous pouvez trouver le hello de type de tronçon suivant est et l’adresse ip à l’aide de tronçon suivant hello API REST Azure"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,40 +14,40 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 644713d365191bf5e51517d0cc565efbc2abc144
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a2b61b355aae8ae513ebd44837184fbc6cfd668c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="find-out-what-the-next-hop-type-is-using-the-next-hop-capability-in-aure-network-watcher-using-azure-rest-api"></a>Découvrez le type de tronçon suivant grâce à la fonction Tronçon suivant Azure Network Watcher à l’aide de l’API REST
+# <a name="find-out-what-hello-next-hop-type-is-using-hello-next-hop-capability-in-aure-network-watcher-using-azure-rest-api"></a>Savoir quel type de tronçon suivant hello est à l’aide de capacité de tronçon suivant hello dans l’Observateur réseau de Aure à l’aide des API REST Azure
 
 > [!div class="op_single_selector"]
-> - [portail Azure](network-watcher-check-next-hop-portal.md)
+> - [Portail Azure](network-watcher-check-next-hop-portal.md)
 > - [PowerShell](network-watcher-check-next-hop-powershell.md)
 > - [CLI 1.0](network-watcher-check-next-hop-cli-nodejs.md)
 > - [CLI 2.0](network-watcher-check-next-hop-cli.md)
 > - [API REST Azure](network-watcher-check-next-hop-rest.md)
 
-Tronçon suivant est une fonctionnalité de Network Watcher qui permet d’obtenir le type de tronçon suivant et l’adresse IP à partir d’une machine virtuelle spécifiée. Cette fonctionnalité est utile pour déterminer si le trafic sortant d’une machine virtuelle passe par une passerelle, Internet ou des réseaux virtuels pour atteindre sa destination.
+Tronçon suivant est une fonctionnalité de l’Observateur réseau qui offre la possibilité de hello obtenir le type de tronçon suivant hello et l’adresse IP basée sur une machine virtuelle spécifiée. Cette fonctionnalité est utile pour déterminer si le trafic en laissant une machine virtuelle traverse une passerelle, internet ou des réseaux virtuels tooget tooits destination.
 
 ## <a name="before-you-begin"></a>Avant de commencer
 
-ARMclient permet d’appeler l’API REST à l’aide de PowerShell. ARMClient est accessible sur le site chocolatey à partir de la page [ARMClient sur Chocolatey](https://chocolatey.org/packages/ARMClient).
+ARMclient est utilisé toocall hello REST API à l’aide de PowerShell. ARMClient est accessible sur le site chocolatey à partir de la page [ARMClient sur Chocolatey](https://chocolatey.org/packages/ARMClient).
 
-Ce scénario suppose que vous ayez déjà suivi la procédure décrite dans [Créer une instance d’Azure Network Watcher](network-watcher-create.md) pour créer un Network Watcher.
+Ce scénario suppose que vous avez déjà suivi les étapes hello dans [créer un observateur réseau](network-watcher-create.md) toocreate un observateur réseau.
 
 ## <a name="scenario"></a>Scénario
 
-Le scénario décrit dans cet article utilise Tronçon suivant, une fonctionnalité de Network Watcher qui détecte le type de tronçon suivant et l’adresse IP d’une ressource. Pour en savoir plus sur Tronçon suivant, consultez [Next Hop Overview (Vue d’ensemble de la fonctionnalité Tronçon suivant)](network-watcher-next-hop-overview.md).
+scénario de Hello abordée dans cet article utilise le saut suivant, une fonctionnalité de l’Observateur réseau qui recherche le type de tronçon suivant hello et une adresse IP pour une ressource. toolearn en savoir plus sur le tronçon suivant, visitez [vue d’ensemble du tronçon suivant](network-watcher-next-hop-overview.md).
 
-Dans ce scénario, vous allez :
+Dans ce scénario, vous allez :
 
-* Récupérer le tronçon suivant pour une machine virtuelle.
+* Récupérer le saut suivant de hello pour un ordinateur virtuel.
 
-## <a name="log-in-with-armclient"></a>Vous connecter à ARMClient
+## <a name="log-in-with-armclient"></a>Se connecter à ARMClient
 
-Vous connecter à armclient avec vos informations d’identification Azure.
+Ouvrez une session dans tooarmclient avec vos informations d’identification Azure.
 
 ```PowerShell
 armclient login
@@ -55,12 +55,12 @@ armclient login
 
 ## <a name="retrieve-a-virtual-machine"></a>Récupérer une machine virtuelle
 
-Exécutez le script suivant pour renvoyer une machine virtuelle. Ces informations sont nécessaires pour l’exécution de la fonctionnalité Tronçon suivant.
+Exécutez hello suivant script tooreturn une machine virtuelle. Ces informations sont nécessaires pour l’exécution de la fonctionnalité Tronçon suivant.
 
-Les codes suivants ont besoin de valeurs pour les variables suivantes :
+Hello suivant code doit valeurs pour hello suivant variables :
 
-- **subscriptionId** : l’ID d’abonnement à utiliser.
-- **resourceGroupName** : le nom d’un groupe de ressources qui contient les machines virtuelles.
+- **ID d’abonnement** -hello toouse de Id d’abonnement.
+- **resourceGroupName** hello - nom du groupe de ressources qui contient des machines virtuelles.
 
 ```powershell
 $subscriptionId = '<subscription id>'
@@ -69,7 +69,7 @@ $resourceGroupName = '<resource group name>'
 armclient get https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Compute/virtualMachines?api-version=2015-05-01-preview
 ```
 
-À partir de la sortie suivante, l’ID de la machine virtuelle est utilisé dans l’exemple suivant :
+À partir de la sortie suivante de hello, id de hello de machine virtuelle de hello est utilisée dans hello l’exemple suivant :
 
 ```json
 ...
@@ -86,10 +86,10 @@ armclient get https://management.azure.com/subscriptions/${subscriptionId}/Resou
 
 ## <a name="get-next-hop"></a>Obtenir le tronçon suivant
 
-Une fois que l’en-tête d’autorisation est créé, le tronçon suivant d’une machine virtuelle peut être récupéré. Les valeurs suivantes doivent être remplacées pour que l’exemple de code fonctionne.
+Une fois créé, l’en-tête d’autorisation hello saut suivant de hello à partir d’un ordinateur virtuel peut être récupéré. Hello valeurs suivantes doivent être remplacées pour hello code exemple toowork.
 
 > [!Important]
-> Pour les appels de l’API REST de Network Watcher, le nom du groupe de ressources dans l’URI de requête correspond au groupe de ressources qui contient Network Watcher, mais pas les ressources sur lesquelles vous exécutez les actions de diagnostic.
+> Pour l’API REST de l’Observateur réseau appels hello nom de groupe de ressources dans la demande de hello QU'URI est le groupe de ressources hello contient hello Observateur réseau, pas les ressources hello vous effectuez des actions de diagnostic hello sur.
 
 ```powershell
 $sourceIP = "10.0.0.4"
@@ -108,17 +108,17 @@ armclient post "https://management.azure.com/subscriptions/${subscriptionId}/Res
 ```
 
 > [!NOTE]
-> L’exécution de la fonctionnalité Tronçon suivant nécessite l’allocation de la ressource de machine virtuelle.
+> Tronçon suivant requiert que les ressources d’ordinateur virtuel hello est allouée toorun.
 
 ## <a name="results"></a>Résultats
 
-L’extrait de code suivant est un exemple de sortie reçue. Les résultats contiennent les valeurs suivantes :
+Bonjour extrait de code suivant est un exemple de sortie hello reçu. les résultats de Hello contiennent hello valeurs suivantes :
 
-* **nextHopType** : cette valeur est l’une des valeurs suivantes : Internet, VirtualAppliance, VirtualNetworkGateway, VnetLocal, HyperNetGateway ou None.
-* **nextHopIpAddress** : l’adresse IP du tronçon suivant.
-* **routeTableId** : la valeur est un URI pour la table de routage associée à l’itinéraire ou, aucun itinéraire défini par l’utilisateur n’est défini, la valeur d’*itinéraire système* est renvoyée.
+* **type de tronçon suivant** -cette valeur est une des valeurs suivantes de hello : Internet, VirtualAppliance, VirtualNetworkGateway, VnetLocal, HyperNetGateway ou None.
+* **nextHopIpAddress** -hello l’adresse IP du tronçon suivant de hello.
+* **routeTableId** - hello valeur est soit un uri pour la table d’itinéraires hello associé hello itinéraire, ou si non défini par l’utilisateur itinéraire valeur hello défini de *système itinéraire* est retourné.
 
-Voici les résultats au format json.
+Hello Voici les résultats hello au format json.
 
 ```json
 {
@@ -129,7 +129,7 @@ Voici les résultats au format json.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Lorsque vous avez trouvé le tronçon suivant pour une machine virtuelle, vous pouvez afficher la sécurité de vos ressources réseau en vous rendant dans la [vue d’ensemble de la vue de sécurité](network-watcher-security-group-view-overview.md)
+Une fois que vous avez été en mesure de toofind out saut suivant de hello pour un ordinateur virtuel, vous pouvez afficher la sécurité hello de ressources de votre réseau en vous rendant sur [vue d’ensemble de la vue de la sécurité](network-watcher-security-group-view-overview.md)
 
 
 

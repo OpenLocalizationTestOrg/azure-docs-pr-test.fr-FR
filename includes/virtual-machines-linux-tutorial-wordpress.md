@@ -1,14 +1,14 @@
 ## <a name="install-wordpress"></a>Installer WordPress
 
-Si vous souhaitez essayer votre pile, installez un exemple d’application. Ainsi, les étapes suivantes installent la plateforme open source [WordPress](https://wordpress.org/) pour créer des sites web et des blogs. Les autres charges de travail à essayer incluent [Drupal](http://www.drupal.org) et [Moodle](https://moodle.org/). 
+Si vous souhaitez tootry votre pile, installez un exemple d’application. Par exemple, hello suit installer ouvrir la source de hello [WordPress](https://wordpress.org/) plateforme toocreate des sites Web et des blogs. Inclure d’autres charges de travail de tootry [Drupal](http://www.drupal.org) et [Moodle](https://moodle.org/). 
 
-Ce programme d’installation de WordPress est pour la preuve de concept. Consultez la [documentation WordPress](https://codex.wordpress.org/Main_Page)pour obtenir plus d’informations et de paramètres sur l’installation de production. 
+Ce programme d’installation de WordPress est pour la preuve de concept. Pour plus d’informations et des paramètres pour l’installation de production, consultez hello [WordPress documentation](https://codex.wordpress.org/Main_Page). 
 
 
 
-### <a name="install-the-wordpress-package"></a>Installez le package WordPress
+### <a name="install-hello-wordpress-package"></a>Installer le package de WordPress hello
 
-Exécutez la commande suivante :
+Exécutez hello de commande suivante :
 
 ```bash
 sudo apt install wordpress
@@ -16,12 +16,12 @@ sudo apt install wordpress
 
 ### <a name="configure-wordpress"></a>Configurer WordPress
 
-Configurer WordPress pour utiliser PHP et MySQL. Exécutez la commande suivante pour ouvrir un éditeur de texte de votre choix et créer le fichier `/etc/wordpress/config-localhost.php`:
+Configurer WordPress toouse MySQL et PHP. Exécutez hello suivant commande tooopen un éditeur de texte de votre choix et créer le fichier de hello `/etc/wordpress/config-localhost.php`:
 
 ```bash
 sudo sensible-editor /etc/wordpress/config-localhost.php
 ```
-Copiez les lignes suivantes dans le fichier, en remplaçant votre mot de passe de base de données par *votreMotdePasse* (laissez les autres valeurs inchangées). Puis enregistrez le fichier.
+Hello copie le fichier toohello lignes suivant, en remplaçant votre mot de passe de base de données *votreMotdePasse* (laissez les autres valeurs inchangées). Puis enregistrez le fichier de hello.
 
 ```php
 <?php
@@ -33,33 +33,33 @@ define('WP_CONTENT_DIR', '/usr/share/wordpress/wp-content');
 ?>
 ```
 
-Dans un répertoire de travail, créez un fichier texte `wordpress.sql` pour configurer la base de données WordPress : 
+Dans un répertoire de travail, créez un fichier texte `wordpress.sql` base de données tooconfigure hello WordPress : 
 
 ```bash
 sudo sensible-editor wordpress.sql
 ```
 
-Ajoutez les commandes suivantes, en remplaçant votre mot de passe de base de données par *votreMotdePasse* (laissez les autres valeurs inchangées). Puis enregistrez le fichier.
+Ajouter hello suivant de commandes, en remplaçant votre mot de passe de base de données *votreMotdePasse* (laissez les autres valeurs inchangées). Puis enregistrez le fichier de hello.
 
 ```sql
 CREATE DATABASE wordpress;
 GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,ALTER
 ON wordpress.*
-TO wordpress@localhost
+toowordpress@localhost
 IDENTIFIED BY 'yourPassword';
 FLUSH PRIVILEGES;
 ```
 
 
-Exécutez la commande suivante pour créer la base de données :
+Exécutez hello suivant de base de données de commande toocreate hello :
 
 ```bash
 cat wordpress.sql | sudo mysql --defaults-extra-file=/etc/mysql/debian.cnf
 ```
 
-Une fois la commande terminée, supprimez le fichier `wordpress.sql`.
+Après la commande hello, supprimez-le hello `wordpress.sql`.
 
-Déplacez l’installation de WordPress à la racine du document du serveur web :
+Déplacer la racine du document hello WordPress installation toohello web server :
 
 ```bash
 sudo ln -s /usr/share/wordpress /var/www/html/wordpress
@@ -67,6 +67,6 @@ sudo ln -s /usr/share/wordpress /var/www/html/wordpress
 sudo mv /etc/wordpress/config-localhost.php /etc/wordpress/config-default.php
 ```
 
-Vous pouvez désormais terminer l’installation de WordPress et publier sur la plateforme. Ouvrez un navigateur web et accédez à `http://yourPublicIPAddress/wordpress`. Remplacez l’adresse IP publique de votre machine virtuelle. Elle doit ressembler à cette image.
+Maintenant, vous pouvez terminer l’installation de WordPress hello et publier sur la plateforme de hello. Ouvrez un navigateur et allez trop`http://yourPublicIPAddress/wordpress`. Remplacez hello adresse IP publique de votre machine virtuelle. Il doit se présenter une image toothis similaire.
 
 ![Page d’installation de WordPress](./media/virtual-machines-linux-tutorial-wordpress/wordpressstartpage.png)

@@ -1,5 +1,5 @@
 ---
-title: "Règles et groupes de règles CRS de pare-feu d’applications web Azure Application Gateway | Microsoft Docs"
+title: "les règles et les groupes de règles de pare-feu d’applications web aaaAzure Application Gateway CRS | Documents Microsoft"
 description: "Cette page fournit des informations sur les règles et groupes CRS de pare-feu d’applications web."
 documentationcenter: na
 services: application-gateway
@@ -15,17 +15,17 @@ ms.custom:
 ms.workload: infrastructure-services
 ms.date: 03/28/2017
 ms.author: gwallace
-ms.openlocfilehash: 9f4445b7ceb5b39c7907b1ca4c7bf0ad52ba8212
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6be139847392baeb235bc48b079335c1e0d8287b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="list-of-web-application-firewall-crs-rule-groups-and-rules-offered"></a>Liste des règles et groupes de règles CRS de pare-feu d’applications web proposées
 
-Le pare-feu d’applications web Application Gateway protège les applications web contre les vulnérabilités et failles de sécurité. Cette protection s’effectue via des règles définies basées sur les ensembles de règles de base OWASP 2.2.9 ou 3.0. Ces règles peuvent être désactivées une par une. Cet article contient les règles et ensembles de règles actuellement proposées.
+Le pare-feu d’applications web Application Gateway protège les applications web contre les vulnérabilités et failles de sécurité. Cela est effectué à partir de règles qui sont définies selon les ensembles de règles hello OWASP avoir core 2.2.9 ou 3.0. Ces règles peuvent être désactivées une par une. Cet article contient les règles actuelles hello et rulesets proposé.
 
-Les tableaux suivants correspondent aux groupes de règles et règles disponibles lors de l’utilisation de la passerelle d’Application Gateway avec le pare-feu d’applications web.  Chaque tableau représente les règles trouvées dans un groupe de règles pour une version CRS spécifique.
+Hello les tableaux suivants est des groupes de règles hello et les règles qui sont disponibles lors de l’utilisation de la passerelle d’Application avec le pare-feu d’applications web.  Chaque table représente les règles de hello trouvées dans un groupe de règles pour une version spécifique de CRS.
 
 ##<a name="owasp30"></a> OWASP_3.0
 
@@ -110,7 +110,7 @@ Les tableaux suivants correspondent aux groupes de règles et règles disponible
 |920011|Règle 920011|
 |920012|Règle 920012|
 |920100|Ligne de requête HTTP non valide|
-|920130|Échec de l’analyse du corps de la requête.|
+|920130|Échec de corps de la demande tooparse.|
 |920140|Échec de la validation stricte du corps de la requête en plusieurs parties  =     PE %@{REQBODY_PROCESSOR_ERROR}     BQ %@{MULTIPART_BOUNDARY_QUOTED}     BW %@{MULTIPART_BOUNDARY_WHITESPACE}     DB %@{MULTIPART_DATA_BEFORE}     DA %@{MULTIPART_DATA_AFTER}     HF %@{MULTIPART_HEADER_FOLDING}     LF %@{MULTIPART_LF_LINE}     SM %@{MULTIPART_SEMICOLON_MISSING}     IQ %@{MULTIPART_INVALID_QUOTING}     IH %@{MULTIPART_INVALID_HEADER_FOLDING}     FLE %@{MULTIPART_FILE_LIMIT_EXCEEDED}|
 |920160|L’en-tête HTTP Content-Length n’est pas numérique.|
 |920170|Requête GET ou HEAD avec contenu du corps.|
@@ -342,7 +342,7 @@ Les tableaux suivants correspondent aux groupes de règles et règles disponible
 |---|---|
 |960911|Ligne de requête HTTP non valide|
 |981227|Erreur Apache = URI non valide dans la requête.|
-|960912|Échec de l’analyse du corps de la requête.|
+|960912|Échec de corps de la demande tooparse.|
 |960914|Échec de la validation stricte du corps de la requête en plusieurs parties  =     PE %@{REQBODY_PROCESSOR_ERROR}     BQ %@{MULTIPART_BOUNDARY_QUOTED}     BW %@{MULTIPART_BOUNDARY_WHITESPACE}     DB %@{MULTIPART_DATA_BEFORE}     DA %@{MULTIPART_DATA_AFTER}     HF %@{MULTIPART_HEADER_FOLDING}     LF %@{MULTIPART_LF_LINE}     SM %@{MULTIPART_SEMICOLON_MISSING}     IQ %@{MULTIPART_INVALID_QUOTING}     IH %@{MULTIPART_INVALID_HEADER_FOLDING}     FLE %@{MULTIPART_FILE_LIMIT_EXCEEDED}|
 |960915|L’analyseur multipart a détecté une possible limite sans correspondance.|
 |960016|L’en-tête HTTP Content-Length n’est pas numérique.|
@@ -400,9 +400,9 @@ Les tableaux suivants correspondent aux groupes de règles et règles disponible
 
 |ID de la règle|Description|
 |---|---|
-|990002|La requête indique qu’un système d’analyse de la sécurité a analysé le site|
-|990901|La requête indique qu’un système d’analyse de la sécurité a analysé le site|
-|990902|La requête indique qu’un système d’analyse de la sécurité a analysé le site|
+|990002|Demande indique un Bonjour analysés de Scanner de sécurité de Site|
+|990901|Demande indique un Bonjour analysés de Scanner de sécurité de Site|
+|990902|Demande indique un Bonjour analysés de Scanner de sécurité de Site|
 |990012|Analyseur de sites web non fiables|
 
 ### <a name="crs40"></a> crs_40_generic_attacks
@@ -592,6 +592,6 @@ Les tableaux suivants correspondent aux groupes de règles et règles disponible
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Pour découvrir comment désactiver des règles WAF, voir [Personnaliser des règles WAF](application-gateway-customize-waf-rules-portal.md)
+Découvrez le fonctionnement des règles de toodisable WAF en visitant : [règles de personnaliser les WAF](application-gateway-customize-waf-rules-portal.md)
 
 [1]: ./media/application-gateway-integration-security-center/figure1.png

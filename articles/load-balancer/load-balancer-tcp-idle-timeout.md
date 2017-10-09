@@ -1,5 +1,5 @@
 ---
-title: "Configuration du délai d’inactivité TCP de l’équilibrage de charge | Microsoft Docs"
+title: "délai d’inactivité de TCP d’équilibrage de charge d’aaaConfigure | Documents Microsoft"
 description: "Configuration du délai d’inactivité TCP de l’équilibrage de charge"
 services: load-balancer
 documentationcenter: na
@@ -13,45 +13,45 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/24/2016
 ms.author: kumud
-ms.openlocfilehash: d040fe6580b8ae777aecc9dd385ed33861530c38
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2bf0704b891f708e0a5bd7aa827441930f51cfaf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-tcp-idle-timeout-settings-for-azure-load-balancer"></a>Configuration des paramètres de délai d’inactivité et d’expiration TCP pour Azure Load Balancer
 
-Dans sa configuration par défaut, l’équilibrage de charge Azure a un paramètre de délai d’inactivité de 4 minutes. Si une période d’inactivité est supérieure à la valeur de délai d’expiration, il n’est pas garanti que la session TCP ou HTTP est maintenue entre le client et votre service cloud.
+Dans sa configuration par défaut, l’équilibrage de charge Azure a un paramètre de délai d’inactivité de 4 minutes. Si une période d’inactivité est supérieure à la valeur de délai d’attente hello, il n’existe aucune garantie que hello TCP ou session HTTP est conservée entre le client de hello et votre service cloud.
 
-Lorsque la connexion est fermée, votre application cliente peut obtenir un message d’erreur de ce type : « La connexion sous-jacente a été fermée : le serveur a fermé une connexion qui devait être maintenue active ».
+Lors de la connexion de hello est fermée, votre application cliente peut s’afficher hello message d’erreur suivant : « hello connexion sous-jacente a été fermée : une connexion qui a été prévue toobe maintenus l’activité a été fermée par le serveur de hello. »
 
-Une pratique courante consiste à utiliser TCP keep-alive. Cela permet de maintenir la connexion active pendant une période plus longue. Pour plus d’informations, consultez ces [exemples .NET](https://msdn.microsoft.com/library/system.net.servicepoint.settcpkeepalive.aspx). avec keep-alive activé, les paquets sont envoyés au cours des périodes d’inactivité sur la connexion. Ces paquets keep-alive garantissent que la valeur de délai d’inactivité n’est jamais atteinte et que la connexion est maintenue pendant une longue période.
+Une pratique courante consiste à toouse TCP KeepAlive. Cette pratique maintient la connexion de hello active pour une période plus longue. Pour plus d’informations, consultez ces [exemples .NET](https://msdn.microsoft.com/library/system.net.servicepoint.settcpkeepalive.aspx). Activé keep-alive, les paquets sont envoyés au cours des périodes d’inactivité sur la connexion de hello. Ces paquets persistants vous assurer que la valeur de délai d’inactivité hello n’est jamais atteint et connexion de hello est conservée pendant une longue période.
 
-Ce paramètre fonctionne uniquement pour les connexions entrantes. Pour éviter la perte de la connexion, vous devez configurer TCP keep-alive sur un intervalle inférieur au paramètre de délai d’inactivité ou augmentez la valeur du délai d’inactivité. Pour prendre en charge ces scénarios, nous avons ajouté la prise en charge d’un délai d’inactivité configurable. Vous pouvez maintenant le définir sur une durée comprise entre 4 et 30 minutes.
+Ce paramètre fonctionne uniquement pour les connexions entrantes. tooavoid perdante de la connexion de hello, vous devez configurer hello TCP persistante avec un intervalle inférieur à hello paramètre ou augmentez hello délai d’inactivité délai d’inactivité. toosupport ces scénarios, nous avons ajouté la prise en charge pour un délai d’attente inactif configurable. Vous pouvez maintenant définir pour une durée de 4 minutes too30.
 
-TCP keep-alive fonctionne bien pour les scénarios où l’autonomie de la batterie n’est pas une contrainte. Il n’est pas recommandé de l’utiliser pour les applications mobiles. L’utilisation de TCP keep-alive depuis une application mobile peut décharger la batterie de l’appareil plus rapidement.
+TCP keep-alive fonctionne bien pour les scénarios où l’autonomie de la batterie n’est pas une contrainte. Il n’est pas recommandé de l’utiliser pour les applications mobiles. À l’aide de TCP KeepAlive dans une application mobile peut s’épuise hello périphérique plus rapidement.
 
 ![Délai d’expiration TCP](./media/load-balancer-tcp-idle-timeout/image1.png)
 
-Les sections suivantes décrivent comment modifier les paramètres de délai d’inactivité dans les machines virtuelles et les services cloud.
+Hello les sections suivantes décrire comment les toochange des temps d’inactivité des paramètres de délai d’attente dans des machines virtuelles et services de cloud computing.
 
-## <a name="configure-the-tcp-timeout-for-your-instance-level-public-ip-to-15-minutes"></a>Configurer le délai d’expiration TCP pour votre adresse IP publique de niveau instance à 15 minutes
+## <a name="configure-hello-tcp-timeout-for-your-instance-level-public-ip-too15-minutes"></a>Configurer le délai d’expiration TCP de hello pour les minutes too15 IP publiques de niveau de l’instance
 
 ```powershell
 Set-AzurePublicIP -PublicIPName webip -VM MyVM -IdleTimeoutInMinutes 15
 ```
 
-`IdleTimeoutInMinutes` est facultatif. Si cela n'est pas défini, le délai d'expiration par défaut est de 4 minutes. La plage de délai d’expiration acceptable est comprise entre 4 et 30 minutes.
+`IdleTimeoutInMinutes` est facultatif. Si elle n’est pas définie, le délai d’attente de hello par défaut est 4 minutes. plage de délai d’attente acceptable Hello est 4 minutes too30.
 
-## <a name="set-the-idle-timeout-when-creating-an-azure-endpoint-on-a-virtual-machine"></a>Définir le délai d’inactivité pendant la création d’un point de terminaison Azure sur une machine virtuelle
+## <a name="set-hello-idle-timeout-when-creating-an-azure-endpoint-on-a-virtual-machine"></a>Définir le délai d’inactivité de hello lors de la création d’un point de terminaison Azure sur un ordinateur virtuel
 
-Pour modifier le paramètre de délai d’attente pour un point de terminaison, utilisez ce qui suit :
+toochange hello délai d’expiration de la définition pour un point de terminaison, utilisez hello qui suit :
 
 ```powershell
 Get-AzureVM -ServiceName "mySvc" -Name "MyVM1" | Add-AzureEndpoint -Name "HttpIn" -Protocol "tcp" -PublicPort 80 -LocalPort 8080 -IdleTimeoutInMinutes 15| Update-AzureVM
 ```
 
-Pour récupérer votre configuration du délai d’inactivité, utilisez la commande suivante :
+tooretrieve votre configuration du délai d’inactivité, hello utilisez commande suivante :
 
     PS C:\> Get-AzureVM -ServiceName "MyService" -Name "MyVM" | Get-AzureEndpoint
     VERBOSE: 6:43:50 PM - Completed Operation: Get Deployment
@@ -71,9 +71,9 @@ Pour récupérer votre configuration du délai d’inactivité, utilisez la comm
     InternalLoadBalancerName :
     IdleTimeoutInMinutes : 15
 
-## <a name="set-the-tcp-timeout-on-a-load-balanced-endpoint-set"></a>Définir le délai d’expiration TCP sur un jeu de points de terminaison d’équilibrage de charge
+## <a name="set-hello-tcp-timeout-on-a-load-balanced-endpoint-set"></a>Définir le délai d’attente de hello TCP sur un ensemble de point de terminaison avec équilibrage de charge
 
-Si les points de terminaison font partie d'un jeu de points de terminaison d'équilibrage de charge, le délai d'expiration TCP doit être défini sur le jeu de points de terminaison d'équilibrage de charge. Par exemple :
+Si les points de terminaison font partie d’un ensemble de point de terminaison avec équilibrage de charge, le délai d’attente de hello TCP doit être défini sur l’ensemble du point de terminaison avec équilibrage de charge hello. Par exemple :
 
 ```powershell
 Set-AzureLoadBalancedEndpoint -ServiceName "MyService" -LBSetName "LBSet1" -Protocol tcp -LocalPort 80 -ProbeProtocolTCP -ProbePort 8080 -IdleTimeoutInMinutes 15
@@ -81,9 +81,9 @@ Set-AzureLoadBalancedEndpoint -ServiceName "MyService" -LBSetName "LBSet1" -Prot
 
 ## <a name="change-timeout-settings-for-cloud-services"></a>Modifier les paramètres de délai d’expiration pour les services cloud
 
-Vous pouvez utiliser le Kit de développement logiciel (SDK) Azure pour mettre à jour votre service cloud. Les paramètres de point de terminaison des services cloud sont définis dans le fichier .csdef. La mise à jour du délai d’expiration TCP pour le déploiement d’un service cloud requiert une mise à niveau du déploiement. L’exception est si le délai d’expiration TCP n’est spécifié que pour une adresse IP publique. Les paramètres d’adresse IP publique sont définis dans le fichier .cscfg et peuvent être mis à jour via une mise à jour et une mise à niveau du déploiement.
+Vous pouvez utiliser hello Azure SDK tooupdate votre service cloud. Vous apportez des paramètres de point de terminaison pour les services de cloud computing dans le fichier de .csdef hello. Mise à jour le délai d’expiration TCP de hello pour le déploiement d’un service cloud requiert une mise à niveau du déploiement. Une exception est si le délai d’expiration TCP de hello est spécifié uniquement pour une adresse IP publique. Les paramètres IP publics sont dans le fichier .cscfg de hello, et vous pouvez les mettre à jour via la mise à niveau et mise à jour du déploiement.
 
-Les modifications apportées aux paramètres de point de terminaison dans .csdef sont les suivantes :
+modifications de .csdef de Hello pour les paramètres de point de terminaison sont :
 
 ```xml
 <WorkerRole name="worker-role-name" vmsize="worker-role-size" enableNativeCodeExecution="[true|false]">
@@ -93,7 +93,7 @@ Les modifications apportées aux paramètres de point de terminaison dans .csdef
 </WorkerRole>
 ```
 
-Les modifications de .cscfg pour le paramètre de délai d’expiration sur des adresses IP publiques sont :
+modifications de .cscfg Hello pour le paramètre de délai d’attente hello sur des adresses IP publiques sont :
 
 ```xml
 <NetworkConfiguration>
@@ -110,7 +110,7 @@ Les modifications de .cscfg pour le paramètre de délai d’expiration sur des 
 
 ## <a name="rest-api-example"></a>Exemple d’API REST
 
-Vous pouvez configurer le délai d’inactivité TCP à l’aide de l’API Gestion des services. Assurez-vous que l’en-tête `x-ms-version` est défini sur la version `2014-06-01` ou une version ultérieure. Mettre à jour la configuration des points de terminaison d’entrée d’équilibrage de charge spécifiés sur toutes les machines virtuelles d’un déploiement.
+Vous pouvez configurer le délai d’inactivité de hello TCP à l’aide des API de gestion de service hello. Vérifiez que hello `x-ms-version` en-tête a la valeur tooversion `2014-06-01` ou version ultérieure. Mettre à jour les points de terminaison hello configuration Hello spécifié équilibré de la charge d’entrée sur toutes les machines virtuelles dans un déploiement.
 
 ### <a name="request"></a>Demande
 

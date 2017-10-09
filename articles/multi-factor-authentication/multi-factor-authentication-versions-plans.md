@@ -1,6 +1,6 @@
 ---
-title: "Versions Azure MFA et plans de consommation | Microsoft Docs"
-description: "Informations sur le client Multi-Factor Authentication (MFA) et les différentes méthodes et versions disponibles. Détails sur chaque plan de consommation"
+title: "versions de l’authentification Multifacteur aaaAzure et la consommation des plans | Documents Microsoft"
+description: "Informations sur le client de l’authentification multifacteur hello et les différentes méthodes de hello et les versions disponibles. Détails sur chaque plan de consommation"
 keywords: 
 services: multi-factor-authentication
 documentationcenter: 
@@ -15,36 +15,36 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/26/2017
 ms.author: kgremban
-ms.openlocfilehash: 5adffb0d461503b57ff9152671c44716dd044b1e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4914747e435531b9f950356d23aa386f3d9585d2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-get-azure-multi-factor-authentication"></a>Comment obtenir Azure Multi-Factor Authentication ?
+# <a name="how-tooget-azure-multi-factor-authentication"></a>Comment tooget Azure multi-Factor Authentication
 
-Lorsqu’il s’agit de protéger vos comptes, la vérification en deux étapes doit être la norme dans votre organisation. Cette fonctionnalité est particulièrement importante pour les comptes administratifs qui disposent d’un accès privilégié aux ressources. Pour cette raison, Microsoft propose des fonctionnalités de vérification en deux étapes de base aux administrateurs Office 365 et Azure. Si vous souhaitez mettre à niveau les fonctionnalités de vos administrateurs ou étendre la vérification en deux étapes au reste de vos utilisateurs, vous pouvez acheter Azure Multi-Factor Authentication. 
+Lorsqu’il s’agit tooprotecting vos comptes, vérification en deux étapes doit être standard dans votre organisation. Cette fonctionnalité est particulièrement importante pour les comptes administratifs qui ont des privilèges élevés tooresources d’accès. Pour cette raison, Microsoft propose tooOffice de fonctionnalités de vérification en deux étapes de base 365 et les administrateurs Azure. Si vous souhaitez que les fonctionnalités de hello tooupgrade pour vos administrateurs, ou étendez le reste de toohello vérification en deux étapes de vos utilisateurs, vous pouvez acheter Azure multi-Factor Authentication. 
 
-Cet article explique la différence entre les versions proposées aux administrateurs et la version Azure MFA complète, et elle précise les fonctionnalités qui sont disponibles dans chacune d’elles. Si vous êtes prêt à déployer l’offre Azure MFA complète, les sections ultérieures traitent des options d’implémentation et de la façon dont Microsoft calcule la consommation.
+Cet article traite des explique la différence hello entre les versions hello proposé tooadministrators et hello version Azure MFA complète et spécifie quelles fonctionnalités sont disponibles dans chaque. Si vous êtes prêt toodeploy hello Azure MFA offre complète, hello des options de mise en œuvre ultérieure sections couvre et comment Microsoft calcule la consommation.
 
 >[!IMPORTANT]
->Cet article est destiné à vous guider pour vous aider à comprendre les différentes manières d’acheter Azure Multi-Factor Authentication. Pour obtenir des détails spécifiques sur la tarification et la facturation, vous devez toujours consulter la [page de tarification Multi-Factor Authentication](https://azure.microsoft.com/pricing/details/multi-factor-authentication/).
+>Cet article est destiné à toobe un toohelp guide que vous comprenez hello toobuy de différentes façons Azure multi-Factor Authentication. Pour plus d’informations sur la tarification et facturation spécifiques, vous devez font toujours référence toohello [multi-Factor Authentication, page de tarification](https://azure.microsoft.com/pricing/details/multi-factor-authentication/).
 
 ## <a name="available-versions-of-azure-multi-factor-authentication"></a>Versions disponibles d’Azure Multi-Factor Authentication
 
-Le tableau suivant décrit les différences entre trois versions de l’authentification multifacteur :
+Hello tableau suivant décrit les différences de hello entre trois versions de l’authentification multifacteur :
 
 | Version | Description |
 | --- | --- |
-| Authentification multifacteur pour Office 365 |Cette version fonctionne exclusivement avec les applications Office 365 et est gérée à partir du portail Office 365. Les administrateurs peuvent [sécuriser les ressources Office 365 avec la vérification en deux étapes](https://support.office.com/article/Set-up-multi-factor-authentication-for-Office-365-users-8f0454b2-f51a-4d9c-bcde-2c48e41621c6). Cette version est fournie dans le cadre d’un abonnement à Office 365. |
+| Authentification multifacteur pour Office 365 |Cette version fonctionne exclusivement avec les applications Office 365 et est gérée à partir du portail de hello Office 365. Les administrateurs peuvent [sécuriser les ressources Office 365 avec la vérification en deux étapes](https://support.office.com/article/Set-up-multi-factor-authentication-for-Office-365-users-8f0454b2-f51a-4d9c-bcde-2c48e41621c6). Cette version est fournie dans le cadre d’un abonnement à Office 365. |
 | Authentification multifacteur pour administrateurs Azure | Les administrateurs généraux des locataires Azure peuvent activer la vérification en deux étapes pour leurs comptes d’administrateurs généraux sans coût supplémentaire.|
-| Azure Multi-Factor Authentication | Souvent désigné comme version « complète », Azure Multi-Factor Authentication offre un riche éventail de fonctionnalités. Il fournit des options de configuration supplémentaires via le [Portail Azure Classic](https://manage.windowsazure.com), des fonctions de rapports avancées et la prise en charge d’une sélection d’applications locales et dans le cloud. Azure Multi-Factor Authentication est inclus dans Azure Active Directory Premium (plans P1 et P2) et Enterprise Mobility + Security (plans E3 et E5), et peut être déployé [localement ou dans le cloud](multi-factor-authentication-get-started.md). |
+| Azure Multi-Factor Authentication | Version liée à un « complet » hello tooas souvent désignée, Azure multi-Factor Authentication qui offre ensemble plus riche de hello de fonctionnalités. Il fournit des options de configuration supplémentaires via hello [portail Azure classic](https://manage.windowsazure.com), des rapports avancés et prise en charge pour une plage de locaux et cloud des applications. L’authentification multifacteur Azure est incluse dans Azure Active Directory Premium (plans P1 et P2) et Enterprise Mobility + Security (plans E3 et E5) et peut être déployé soit [dans le cloud de hello ou sur site](multi-factor-authentication-get-started.md). |
 
 ## <a name="feature-comparison-of-versions"></a>Comparaison des fonctionnalités suivant les versions
-Le tableau suivant fournit la liste des fonctionnalités qui sont disponibles dans les différentes versions d’Azure Multi-Factor Authentication.
+Hello tableau suivant fournit une liste des fonctionnalités hello qui sont disponibles dans hello différentes versions d’Azure multi-Factor Authentication.
 
 > [!NOTE]
-> Ce tableau de comparaison répertorie les fonctionnalités de chaque version de Multi-Factor Authentication. Si vous disposez du service Azure Multi-Factor Authentication complet, certaines fonctionnalités peuvent être disponibles ou non, selon que vous utilisez [MFA dans le cloud ou localement](multi-factor-authentication-get-started.md).
+> Ce tableau de comparaison décrit les fonctionnalités de hello qui font partie de chaque version de l’authentification multifacteur. Si vous avez hello complète Azure multi-Factor Authentication service, certaines fonctionnalités ne soient pas disponibles selon que vous utilisez [l’authentification Multifacteur dans le cloud de hello ou l’authentification Multifacteur sur site](multi-factor-authentication-get-started.md).
 
 
 | Fonctionnalité | Authentification multifacteur pour Office 365 | Authentification multifacteur pour administrateurs Azure | Azure Multi-Factor Authentication |
@@ -66,20 +66,20 @@ Le tableau suivant fournit la liste des fonctionnalités qui sont disponibles da
 | SDK MFA | | |● (Requiert un fournisseur Multi-Factor Auth et un abonnement Azure complet) |
 | MFA pour les applications locales | | |● |
 
-## <a name="how-to-get-azure-multi-factor-authentication"></a>Comment obtenir Azure Multi-Factor Authentication ?
-Si vous souhaitez bénéficier de toutes les fonctionnalités offertes par Azure Multi-Factor Authentication, plusieurs options s’offrent à vous :
+## <a name="how-tooget-azure-multi-factor-authentication"></a>Comment tooget Azure multi-Factor Authentication
+Si vous souhaitez que les fonctionnalités complètes de hello offertes par l’authentification multifacteur Azure, il existe plusieurs options :
 
 ### <a name="option-1---mfa-licenses"></a>Option 1 : licences MFA
 
-Achetez des licences Azure Multi-Factor Authentication et attribuez-les à vos utilisateurs dans Azure Active Directory. 
+Acheter des licences Azure multi-Factor Authentication et leur affecter des utilisateurs de tooyour dans Azure Active Directory. 
 
-Si vous utilisez cette option, vous devez créer un fournisseur Azure Multi-Factor Authentication uniquement si vous devez également fournir la vérification en deux étapes pour certains utilisateurs dépourvus de licences. Sinon, vous risquez d’être facturé à deux reprises.
+Si vous utilisez cette option, vous devez créer un fournisseur d’authentification multifacteur Azure seulement si vous devez également une vérification en deux étapes de tooprovide pour certains utilisateurs ne disposant pas de licences. Sinon, vous risquez d’être facturé à deux reprises.
 
 ### <a name="option-2---bundled-licenses-that-include-mfa"></a>Option 2 : licences regroupées qui incluent MFA
 
-Achetez des licences qui incluent Azure Multi-Factor Authentication, comme Azure Active Directory Premium (P1 ou P2) ou Enterprise Mobility + Security (E3 ou E5), puis attribuez-les à vos utilisateurs dans Azure Active Directory. 
+Acheter des licences qui incluent l’authentification multifacteur Azure, comme Azure Active Directory Premium (P1 ou P2) ou Enterprise Mobility + Security (E3 ou E5) et de leur affecter des utilisateurs de tooyour dans Azure Active Directory. 
 
-Si vous utilisez cette option, vous devez créer un fournisseur Azure Multi-Factor Authentication uniquement si vous devez également fournir la vérification en deux étapes pour certains utilisateurs dépourvus de licences. Sinon, vous risquez d’être facturé à deux reprises. 
+Si vous utilisez cette option, vous devez créer un fournisseur d’authentification multifacteur Azure seulement si vous devez également une vérification en deux étapes de tooprovide pour certains utilisateurs ne disposant pas de licences. Sinon, vous risquez d’être facturé à deux reprises. 
 
 ### <a name="option-3---mfa-consumption-based-model"></a>Option 3 : modèle basé sur la consommation MFA
 
@@ -87,22 +87,22 @@ Créez un fournisseur Azure Multi-Factor Authentication dans un abonnement Azure
 
 Quand vous utilisez un fournisseur Azure Multi-Factor Authentication, vous avez le choix entre deux modèles d’utilisation qui sont facturés dans le cadre de votre abonnement Azure :  
 
-1. **Par utilisateur** : pour les entreprises qui souhaitent activer la vérification en deux étapes pour un nombre fixe d’employés qui s’authentifient régulièrement. La facturation par utilisateur est basée sur le nombre d’utilisateurs activés pour MFA dans votre client Azure AD ou/ou sur votre serveur Azure MFA. Si les utilisateurs sont activés pour MFA à la fois dans Azure AD et sur le serveur Azure MFA, et si la synchronisation de domaines (Azure AD Connect) est activée, le plus grand ensemble d’utilisateurs est alors pris en compte. Si la synchronisation de domaines n’est pas activée, nous comptons la somme de tous les utilisateurs activés pour MFA dans Azure AD et sur le serveur Azure MFA. La facturation est calculée au prorata et consignée quotidiennement dans le système Commerce. 
+1. **Par utilisateur** - pour les entreprises qui le souhaitent vérification en deux étapes de tooenable pour un nombre fixe d’employés qui s’authentifient régulièrement. La facturation par utilisateur est basée sur le nombre de hello d’utilisateurs activés pour l’authentification Multifacteur dans votre locataire Azure AD et/ou de votre serveur Azure MFA. Si les utilisateurs sont activés pour l’authentification Multifacteur dans les deux Azure AD et le serveur Azure MFA et la synchronisation du domaine (Azure AD Connect) est activée, puis nous compter ensemble plus important de hello d’utilisateurs. Si la synchronisation du domaine n’est pas activée, puis nous compter somme hello de tous les utilisateurs activés pour l’authentification Multifacteur dans Azure AD et le serveur Azure MFA. La facturation est système de Commerce toohello au prorata et signalée quotidienne. 
 
   > [!NOTE]
-  > Exemple de facturation 1 : 5 000 utilisateurs sont activés pour MFA à la date du jour. Le système MFA divise ce nombre par 31 et indique 161,29 utilisateurs pour ce jour. Le lendemain, vous activez 15 utilisateurs supplémentaires. Le système MFA indique alors 161,77 utilisateurs pour ce jour. À la fin du cycle de facturation, le nombre total d’utilisateurs facturés sur votre abonnement Azure se monte à environ 5 000. 
+  > Exemple de facturation 1 : 5 000 utilisateurs sont activés pour MFA à la date du jour. Hello système de l’authentification Multifacteur divise ce nombre par 31 et 161.29 utilisateurs de rapports pour ce jour. Demain vous activez 15 davantage d’utilisateurs, afin de 161.77 aux utilisateurs des rapports hello système de l’authentification Multifacteur pour ce jour. En fin de hello de hello cycle de facturation, hello nombre d’utilisateurs facturés sur votre abonnement Azure ajoute des tooaround 5 000. 
   >
-  > Exemple de facturation 2 : certains de vos utilisateurs disposent de licences tandis que d’autres en sont dépourvus. Vous disposez donc d’un fournisseur Azure MFA par utilisateur pour compenser la différence. Il existe 4 500 licences Enterprise Mobility + Security sur votre client, mais 5 000 utilisateurs sont activés pour MFA. Votre abonnement Azure est facturé pour 500 utilisateurs, calculé au prorata et indiqué quotidiennement sous la forme de 16,13 utilisateurs. 
+  > Exemple de facturation 2 : vous disposez d’un mélange d’utilisateurs dont les licences et les utilisateurs sans afin que vous ayez un toomake de fournisseur d’authentification Multifacteur Azure par utilisateur différence de hello. Il existe 4 500 licences Enterprise Mobility + Security sur votre client, mais 5 000 utilisateurs sont activés pour MFA. Votre abonnement Azure est facturé pour 500 utilisateurs, calculé au prorata et indiqué quotidiennement sous la forme de 16,13 utilisateurs. 
 
-2. **Par authentification** : pour les entreprises qui souhaitent activer la vérification en deux étapes pour un nombre important d’utilisateurs qui s’authentifient ponctuellement. La facturation est basée sur le nombre de demandes de vérification en deux étapes reçues par le service cloud Azure MFA, que ces vérifications réussissent ou soient refusées. Cette facturation apparaît sur votre relevé d’utilisation Azure dans des packs de 10 authentifications. Elle est consignée quotidiennement dans le système Commerce. 
+2. **Par authentification** - pour les entreprises qui le souhaitent vérification en deux étapes de tooenable pour un grand groupe d’utilisateurs qui s’authentifient rarement. Facturation est basée sur le nombre de hello de demandes de vérification en deux étapes reçus par hello du service cloud Azure MFA, que ces vérifications réussissent ou sont refusées. Cette facturation apparaît dans votre instruction d’utilisation d’Azure dans les packs de 10 authentifications et est signalée toohello Commerce système quotidienne. 
 
   > [!NOTE]
-  > Exemple de facturation 3 : aujourd’hui, le service Azure MFA a reçu 3 105 demandes de vérification en deux étapes. Votre abonnement Azure est facturé pour 310,5 packs d’authentification. 
+  > Exemple de facturation 3 : aujourd'hui, hello du service Azure MFA a reçu des demandes de vérification 3,105 en deux étapes. Votre abonnement Azure est facturé pour 310,5 packs d’authentification. 
 
-Il est important de noter que vous pouvez posséder des licences Azure MFA, mais être toujours facturé en vertu d’une configuration basée sur la consommation. Si vous configurez un fournisseur Azure MFA par authentification, vous êtes facturé pour toutes les demandes de vérification en deux étapes, y compris pour celles qui ont été effectuées par les utilisateurs disposant de licences. Si vous configurez un fournisseur Azure MFA par utilisateur sur un domaine qui n’est pas lié à votre client Azure AD, vous êtes facturé par utilisateur activé même si vos utilisateurs possèdent des licences sur Azure AD. 
+Il est important toonote peut avoir des licences Azure MFA, mais de toujours obtenir facturé pour la configuration basée sur la consommation. Si vous configurez un fournisseur Azure MFA par authentification, vous êtes facturé pour toutes les demandes de vérification en deux étapes, y compris pour celles qui ont été effectuées par les utilisateurs disposant de licences. Si vous configurez un fournisseur d’authentification Multifacteur Azure par utilisateur sur un domaine qui n’est pas lié tooyour locataire Azure AD, vous êtes facturé par utilisateur activé même si vos utilisateurs disposent de licences sur Azure AD. 
 
 ## <a name="next-steps"></a>Étapes suivantes
 
 - Pour plus d’informations sur la tarification, consultez la [tarification d’Azure MFA](https://azure.microsoft.com/pricing/details/multi-factor-authentication/).
 
-- Choisissez de déployer Azure MFA [dans le cloud ou en local](multi-factor-authentication-get-started.md)
+- Choisissez si toodeploy Azure MFA [dans hello ou local](multi-factor-authentication-get-started.md)

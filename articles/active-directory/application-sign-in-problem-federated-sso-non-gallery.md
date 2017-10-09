@@ -1,6 +1,6 @@
 ---
-title: "Problèmes de connexion à une application non issue de la galerie configurée pour l’authentification unique fédérée | Microsoft Docs"
-description: "Instructions pour résoudre les problèmes rencontrés lors de la connexion à une application configurée pour l’authentification unique SAML fédérée avec Azure AD"
+title: "aaaProblems application de la galerie de tooa configurée pour fédéré de signature sur l’authentification unique | Documents Microsoft"
+description: "Conseils pour les problèmes spécifiques hello que vous pouvez rencontrer lors de la signature dans l’application tooan configurée pour SAML-fédéré-authentification auprès d’Azure AD"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,189 +13,189 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 3afc7bca878caef424d3fa3c64aa17df0fda7de5
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 1243456695c097f404a66fc89893efa2afdaaf22
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="problems-signing-in-to-a-non-gallery-application-configured-for-federated-single-sign-on"></a>Problèmes de connexion à une application non issue de la galerie configurée pour l’authentification unique fédérée
+# <a name="problems-signing-in-tooa-non-gallery-application-configured-for-federated-single-sign-on"></a>Problèmes de connexion d’application de non-galerie tooa configurée pour fédérée l’authentification unique
 
-Pour résoudre votre problème, vous devez vérifier la configuration de l’application dans Azure AD de la manière suivante :
+tootroubleshoot votre problème, vous avez besoin de configuration de l’application hello tooverify dans Azure AD comme suit :
 
--   Vérifiez que vous avez suivi toutes les étapes de configuration pour l’application de la galerie Azure AD.
+-   Vous avez suivi toutes les étapes de configuration hello pour hello application de la galerie Azure AD.
 
--   Vérifiez que l’identificateur et l’URL de réponse configurés dans AAD correspondent aux valeurs attendues dans l’application.
+-   Hello identificateur et l’URL de réponse configurée dans AAD correspond à elles, les valeurs attendues dans l’application hello
 
--   Vérifiez que vous avez affecté des utilisateurs à l’application.
+-   Vous avez affecté des utilisateurs toohello application
 
 ## <a name="application-not-found-in-directory"></a>Application introuvable dans le répertoire
 
-*Erreur AADSTS70001 : L’application avec l’identificateur « https://contoso.com » est introuvable dans l’annuaire*.
+*Erreur AADSTS70001 : Application avec l’identificateur « https://contoso.com » est introuvable dans le répertoire de hello*.
 
 **Cause possible**
 
-L’attribut d’émetteur envoyé de l’application vers Azure AD dans la demande SAML ne correspond pas à la valeur de l’identificateur configurée dans l’application Azure AD.
+attribut de l’émetteur Hello envoie hello application tooAzure AD dans la demande SAML hello ne correspond pas à valeur de l’identificateur hello configuré dans l’application hello Azure AD.
 
 **Résolution :**
 
-Vérifiez que l’attribut d’émetteur de la demande SAML correspond à la valeur de l’identificateur configurée dans Azure AD :
+Vérifiez que cet attribut de l’émetteur hello dans la demande SAML hello qu'est mise en correspondance le hello valeur d’identificateur configuré dans Azure AD :
 
-1.  Ouvrez le [**portail Azure**](https://portal.azure.com/) et connectez-vous en tant qu’**administrateur général** ou **coadministrateur**.
+1.  Ouvrez hello [ **Azure Portal** ](https://portal.azure.com/) et connectez-vous en tant qu’un **administrateur Global** ou **Co-Admin.**
 
-2.  Ouvrez **l’extension Azure Active Directory** en cliquant sur **Autres services** en bas du menu de navigation principal de gauche.
+2.  Ouvrez hello **Extension Azure Active Directory** en cliquant sur **davantage de services** bas hello du menu de navigation de gauche principal hello.
 
-3.  Tapez « **Azure Active Directory** » dans la zone de recherche de filtre et sélectionnez l’élément **Azure Active Directory**.
+3.  Tapez dans **« Azure Active Directory**» dans la zone de recherche filtre hello et sélectionnez hello **Azure Active Directory** élément.
 
-4.  Cliquez sur **Applications d’entreprise** dans le menu de navigation de gauche d’Azure Active Directory.
+4.  Cliquez sur **des Applications d’entreprise** à partir du menu de navigation gauche hello Azure Active Directory.
 
-5.  Cliquez sur **Toutes les applications** pour afficher la liste complète de vos applications.
+5.  Cliquez sur **toutes les Applications** tooview une liste de toutes vos applications.
 
-   * Si l’application que vous recherchez ne figure pas dans la liste, utilisez la commande **Filtre** en haut de la **liste de toutes les applications** et définissez l’option **Afficher** sur **Toutes les applications.**
+   * Si vous ne voyez pas l’application hello que vous souhaitez afficher ici, utilisez hello **filtre** contrôle haut hello hello **liste de toutes les Applications** et ensemble hello **afficher** option trop **Toutes les Applications.**
 
-6.  Sélectionnez l’application pour laquelle vous souhaitez configurer l’authentification unique.
+6.  Sélectionnez l’application hello tooconfigure l’authentification unique.
 
-7.  Une fois l’application chargée, cliquez sur **Authentification unique** dans le menu de navigation de gauche de l’application.
+7.  Une fois que la charge de l’application hello, cliquez sur hello **l’authentification unique** à partir du menu de navigation de gauche de l’application hello.
 
-8.  <span id="_Hlk477190042" class="anchor"></span>Accédez à la section **Domaine et URL**. Vérifiez que la valeur située dans la zone de texte de l’identificateur correspond à celle de l’identificateur mentionnée dans l’erreur.
+8.  <span id="_Hlk477190042" class="anchor"></span>Accédez trop**domaine et les URL** section. Vérifiez cette valeur hello Bonjour identificateur valeur hello pour la valeur de l’identificateur hello affiché par erreur de hello est correspondant à la zone de texte.
 
-Une fois que vous avez mis à jour la valeur d’identificateur pour qu’elle corresponde à celle envoyée par l’application dans la demande SAML, vous pouvez vous connecter à l’application.
+Une fois que vous avez mis à jour de valeur d’identificateur hello dans Azure AD et sa correspondance hello valeur envoie par application hello dans la demande SAML hello, vous devez être en mesure de toosign dans toohello application.
 
-## <a name="the-reply-address-does-not-match-the-reply-addresses-configured-for-the-application"></a>L’adresse de réponse ne correspond pas aux adresses de réponse configurées pour l’application. 
+## <a name="hello-reply-address-does-not-match-hello-reply-addresses-configured-for-hello-application"></a>adresse de réponse Hello ne correspondent pas aux adresses de réponse de hello configurés pour l’application hello. 
 
-*Erreur AADSTS50011 : L’adresse de réponse « https://contoso.com » ne correspond pas à l’adresse de réponse configurée pour l’application* 
+*Erreur AADSTS50011 : adresse de réponse hello 'https://contoso.com' ne correspond pas à des adresses de réponse hello configurés pour l’application hello* 
 
 **Cause possible** 
 
-La valeur AssertionConsumerServiceURL dans la demande SAML ne correspond pas à la valeur de l’URL de réponse ou au modèle configuré dans Azure AD. La valeur AssertionConsumerServiceURL dans la demande SAML est l’URL que vous voyez dans l’erreur. 
+valeur de l’URL de réponse hello ou un modèle configuré dans Azure AD ne correspond pas Hello valeur AssertionConsumerServiceURL dans la demande SAML hello. Hello valeur AssertionConsumerServiceURL dans la demande SAML hello est URL hello vous voyez dans l’erreur de hello. 
 
 **Résolution :** 
 
-Assurez-vous que la valeur AssertionConsumerServiceURL dans la demande SAML correspond à la valeur de l’URL de réponse configurée dans Azure AD. 
+Vérifiez que cette valeur de AssertionConsumerServiceURL hello dans la demande SAML hello sa correspondance hello valeur de l’URL de réponse est configuré dans Azure AD. 
  
-1.  Ouvrez le [**portail Azure**](https://portal.azure.com/) et connectez-vous en tant qu’**administrateur général** ou **coadministrateur.** 
+1.  Ouvrez hello [ **Azure Portal** ](https://portal.azure.com/) et connectez-vous en tant qu’un **administrateur Global** ou **Co-Admin.** 
 
-2.  Ouvrez **l’extension Azure Active Directory** en cliquant sur **Autres services** en bas du menu de navigation principal de gauche. 
+2.  Ouvrez hello **Extension Azure Active Directory** en cliquant sur **davantage de services** bas hello du menu de navigation de gauche principal hello. 
 
-3.  Tapez « **Azure Active Directory** » dans la zone de recherche de filtre et sélectionnez l’élément **Azure Active Directory**. 
+3.  Tapez dans **« Azure Active Directory**» dans la zone de recherche filtre hello et sélectionnez hello **Azure Active Directory** élément. 
 
-4.  Cliquez sur **Applications d’entreprise** dans le menu de navigation de gauche d’Azure Active Directory. 
+4.  Cliquez sur **des Applications d’entreprise** à partir du menu de navigation gauche hello Azure Active Directory. 
 
-5.  Cliquez sur **Toutes les applications** pour afficher la liste complète de vos applications. 
+5.  Cliquez sur **toutes les Applications** tooview une liste de toutes vos applications. 
 
-  * Si l’application que vous recherchez n’apparaît pas ici, utilisez le contrôle **Filtrer** en haut de la liste **Toutes les applications** et définissez l’option **Afficher** sur **Toutes les applications**.
+  * Si vous ne voyez pas l’application hello que vous souhaitez afficher ici, utilisez hello **filtre** contrôle haut hello hello **liste de toutes les Applications** et ensemble hello **afficher** option trop **Toutes les Applications.**
   
-6.  Sélectionnez l’application pour laquelle vous souhaitez configurer l’authentification unique.
+6.  Sélectionnez application hello tooconfigure l’authentification unique
 
-7.  Une fois l’application chargée, cliquez sur **Authentification unique** dans le menu de navigation de gauche de l’application.
+7.  Une fois que la charge de l’application hello, cliquez sur hello **l’authentification unique** à partir du menu de navigation de gauche de l’application hello.
 
-8.  Accédez à la section **Domaine et URL**. Vérifiez ou mettez à jour la valeur figurant dans la zone de texte URL de réponse pour qu’elle corresponde à la valeur AssertionConsumerServiceURL dans la demande SAML.
+8.  Accédez trop**domaine et les URL** section. Vérifier ou mettre à jour la valeur de hello dans la zone de texte toomatch hello valeur AssertionConsumerServiceURL dans la demande SAML hello de hello URL de réponse.
 
-  * Si vous ne voyez pas la zone de texte URL de réponse, cochez la case **Afficher les paramètres d’URL avancés**. 
+  * Si vous ne voyez pas de zone de texte URL de réponse hello sélectionnez hello **afficher les paramètres d’URL avancés** case à cocher. 
 
-Une fois que vous avez mis à jour la valeur de l’URL de réponse dans Azure AD et qu’elle correspond à celle envoyée par l’application dans la demande SAML, vous devez être en mesure de vous connecter à l’application.
+Une fois que vous avez mis à jour valeur de l’URL de réponse hello dans Azure AD et qu’il a correspondant hello valeur envoie par application hello Bonjour demande SAML, vous devez être en mesure de toosign dans toohello application.
 
 ## <a name="user-not-assigned-a-role"></a>Utilisateur non affecté à un rôle
 
-*Erreur AADSTS50105 : L’utilisateur connecté « brian@contoso.com » n’est pas affecté à un rôle pour l’application*
+*Erreur AADSTS50105 : hello utilisateur connecté 'brian@contoso.com' ne possède pas de rôle tooa pour l’application hello*
 
 **Cause possible**
 
-L’utilisateur ne dispose pas des autorisations nécessaires pour accéder à l’application dans Azure AD.
+Hello lui n'ont pas été accordées application toohello d’accès dans Azure AD.
 
 **Résolution :**
 
-Pour affecter un ou plusieurs utilisateurs directement à une application, effectuez les étapes suivantes :
+tooassign un ou plusieurs utilisateurs tooan application directement, comme suit hello ci-dessous :
 
-1.  Ouvrez le [**portail Azure**](https://portal.azure.com/) et connectez-vous en tant qu’**administrateur général.**
+1.  Ouvrez hello [ **Azure Portal** ](https://portal.azure.com/) et connectez-vous en tant qu’un **administrateur Global.**
 
-2.  Ouvrez **l’extension Azure Active Directory** en cliquant sur **Autres services** en bas du menu de navigation principal de gauche.
+2.  Ouvrez hello **Extension Azure Active Directory** en cliquant sur **davantage de services** bas hello du menu de navigation de gauche principal hello.
 
-3.  Tapez « **Azure Active Directory** » dans la zone de recherche de filtre et sélectionnez l’élément **Azure Active Directory**.
+3.  Tapez dans **« Azure Active Directory**» dans la zone de recherche filtre hello et sélectionnez hello **Azure Active Directory** élément.
 
-4.  Cliquez sur **Applications d’entreprise** dans le menu de navigation de gauche d’Azure Active Directory.
+4.  Cliquez sur **des Applications d’entreprise** à partir du menu de navigation gauche hello Azure Active Directory.
 
-5.  Cliquez sur **Toutes les applications** pour afficher la liste complète de vos applications.
+5.  Cliquez sur **toutes les Applications** tooview une liste de toutes vos applications.
 
-  * Si l’application que vous recherchez ne figure pas dans la liste, utilisez la commande **Filtre** en haut de la **liste de toutes les applications** et définissez l’option **Afficher** sur **Toutes les applications.**
+  * Si vous ne voyez pas l’application hello que vous souhaitez afficher ici, utilisez hello **filtre** contrôle haut hello hello **liste de toutes les Applications** et ensemble hello **afficher** option trop **Toutes les Applications.**
 
-6.  Dans la liste qui s’affiche, sélectionnez l’application à laquelle vous souhaitez affecter un utilisateur.
+6.  Sélectionnez l’application hello tooassign une liste des utilisateurs toofrom hello.
 
-7.  Une fois l’application chargée, cliquez sur **Utilisateurs et groupes** dans le menu de navigation de gauche de l’application.
+7.  Une fois le charge de l’application hello, cliquez sur **utilisateurs et groupes** à partir du menu de navigation de gauche de l’application hello.
 
-8.  Cliquez sur le bouton **Ajouter** en haut de la liste **Utilisateurs et groupes** pour ouvrir le panneau **Ajouter une attribution**.
+8.  Cliquez sur hello **ajouter** bouton par-dessus hello **utilisateurs et groupes** hello tooopen de liste **ajouter l’affectation** panneau.
 
-9.  Cliquez sur le sélecteur **Utilisateurs et groupes** à partir du panneau **Ajouter une attribution**.
+9.  Cliquez sur hello **utilisateurs et groupes** sélecteur de hello **ajouter l’affectation** panneau.
 
-10. Tapez **le nom complet** ou **l’adresse de messagerie** de l’utilisateur souhaité pour l’attribution dans la zone de recherche **Rechercher par nom ou adresse de messagerie**.
+10. Type Bonjour **nom complet** ou **adresse de messagerie** d’utilisateur hello vous êtes intéressé par attribution dans hello **recherche par nom ou adresse de messagerie** zone de recherche.
 
-11. Pointez sur **l’utilisateur** dans la liste pour afficher une **case à cocher**. Cliquez sur la case à cocher en regard de la photo de profil ou du logo de l’utilisateur pour ajouter ce dernier à la liste **Sélectionné**.
+11. Placez le curseur sur hello **utilisateur** dans hello liste tooreveal un **case à cocher**. Cliquez sur tooadd de photo ou le logo de profil hello case à cocher suivante toohello l’utilisateur à votre toohello utilisateur **sélectionnés** liste.
 
-12. **Facultatif :** si vous souhaitez **ajouter plusieurs utilisateurs**, entrez un autre **nom complet** ou une autre **adresse de messagerie** dans la zone de recherche **Rechercher par nom ou adresse de messagerie**, puis cliquez sur la case à cocher pour ajouter cet utilisateur à la liste **Sélectionné**.
+12. **Facultatif :** si vous souhaitez que trop**ajouter plusieurs utilisateurs**, type dans un autre **nom complet** ou **adresse de messagerie** dans hello **Rechercher par nom ou l’adresse de messagerie** zone de recherche, cliquez sur tooadd de case à cocher hello cette toohello utilisateur **sélectionnés** liste.
 
-13. Après avoir sélectionné les utilisateurs, cliquez sur le bouton **Sélectionner** pour les ajouter à la liste des utilisateurs et des groupes à affecter à l’application.
+13. Lorsque vous avez fini de sélectionner les utilisateurs, cliquez sur hello **sélectionnez** bouton tooadd les toohello la liste des toobe utilisateurs et groupes affectés toohello application.
 
-14. **Facultatif :** cliquez sur le sélecteur **Sélectionner un rôle** dans le panneau **Ajouter une attribution** pour sélectionner un rôle à affecter aux utilisateurs que vous avez sélectionnés.
+14. **Facultatif :** cliquez sur hello **sélectionner un rôle** sélecteur Bonjour **ajouter l’affectation** panneau tooselect un rôle aux utilisateurs de toohello tooassign que vous avez sélectionné.
 
-15. Cliquez sur le bouton **Attribuer** pour affecter l’application aux utilisateurs sélectionnés.
+15. Cliquez sur hello **affecter** bouton tooassign hello application toohello les utilisateurs sélectionnés.
 
-Après une courte période, les utilisateurs que vous avez sélectionnés seront en mesure de démarrer ces applications à l’aide des méthodes décrites dans la section de description des solutions.
+Après une courte période de temps, les utilisateurs de hello que vous avez sélectionné en toolaunch en mesure de ces applications à l’aide de hello des méthodes décrites dans la section de description de solution hello.
 
 ## <a name="not-a-valid-saml-request"></a>Demande SAML non valide
 
-*Erreur AADSTS75005 : La demande n’est pas un message de protocole Saml2 valide.*
+*Erreur AADSTS75005 : demande de hello n’est pas un message de protocole Saml2 valid.*
 
 **Cause possible**
 
-Azure AD ne prend pas en charge les demandes SAML envoyées par l’application pour l’authentification unique. Voici certains problèmes courants :
+Azure AD ne prend pas en charge hello SAML de demande envoyé par l’application hello pour l’authentification unique. Voici certains problèmes courants :
 
--   Des champs obligatoires sont manquants dans la demande SAML
+-   Les champs requis dans la demande SAML hello manquants
 
 -   La méthode de demande SAML encodée
 
 **Résolution :**
 
-1.  Capturez la demande SAML. Pour savoir comment capturer la demande SAML, suivez le didacticiel [Comment déboguer une authentification unique SAML pour des applications dans Azure AD](https://docs.microsoft.com/azure/active-directory/develop/active-directory-saml-debugging).
+1.  Capturez la demande SAML. Suivez le didacticiel de hello [comment toodebug basé sur SAML uniques authentification tooapplications dans Azure AD](https://docs.microsoft.com/azure/active-directory/develop/active-directory-saml-debugging) toolearn toocapture hello SAML demander.
 
-2.  Contactez le fournisseur de l’application et communiquez-lui les informations suivantes :
+2.  Contactez le fournisseur de l’application hello et partage :
 
     -   Demande SAML
 
     -   [Spécifications du protocole SAML d’authentification unique Azure AD](https://docs.microsoft.com/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference)
 
-Il doit confirmer sa prise en charge de l’implémentation SAML Azure AD pour l’authentification unique.
+Ils doivent valider ils prennent en charge l’implémentation d’Azure AD SAML hello pour l’authentification unique.
 
 ## <a name="no-resource-in-requiredresourceaccess-list"></a>Aucune ressource dans la liste requiredResourceAccess
 
-*Erreur AADSTS65005 : L’application cliente a demandé l’accès à la ressource « 00000002-0000-0000-c000-000000000000 ». La demande a échoué, car le client n’a pas spécifié cette ressource dans sa liste requiredResourceAccess*.
+*Erreur AADSTS65005 : hello client application demande l’accès tooresource ' 00000002-0000-0000-c000-type "000000000000"'. Cette demande a échoué, car le client de hello, cette ressource n’a pas spécifié dans sa liste requiredResourceAccess*.
 
 **Cause possible**
 
-L’objet d’application est endommagé.
+objet de l’application Hello est endommagé.
 
 **Résolution :**
 
-Pour résoudre ce problème, supprimez l’application du répertoire. Ensuite, pour ajouter et reconfigurer l’application, effectuez les étapes suivantes :
+problème de hello toosolve, supprimer une application hello à partir du répertoire de hello. Ensuite, ajoutez et reconfigurer l’application hello, suivez les étapes de hello ci-dessous :
 
-1.  Ouvrez le [**portail Azure**](https://portal.azure.com/) et connectez-vous en tant qu’**administrateur général** ou **coadministrateur**.
+1.  Ouvrez hello [ **Azure Portal** ](https://portal.azure.com/) et connectez-vous en tant qu’un **administrateur Global** ou **Co-Admin.**
 
-2.  Ouvrez **l’extension Azure Active Directory** en cliquant sur **Autres services** en bas du menu de navigation principal de gauche.
+2.  Ouvrez hello **Extension Azure Active Directory** en cliquant sur **davantage de services** bas hello du menu de navigation de gauche principal hello.
 
-3.  Tapez « **Azure Active Directory** » dans la zone de recherche de filtre et sélectionnez l’élément **Azure Active Directory**.
+3.  Tapez dans **« Azure Active Directory**» dans la zone de recherche filtre hello et sélectionnez hello **Azure Active Directory** élément.
 
-4.  Cliquez sur **Applications d’entreprise** dans le menu de navigation de gauche d’Azure Active Directory.
+4.  Cliquez sur **des Applications d’entreprise** à partir du menu de navigation gauche hello Azure Active Directory.
 
-5.  Cliquez sur **Toutes les applications** pour afficher la liste complète de vos applications.
+5.  Cliquez sur **toutes les Applications** tooview une liste de toutes vos applications.
 
-  * Si l’application que vous recherchez ne figure pas dans la liste, utilisez la commande **Filtre** en haut de la **liste de toutes les applications** et définissez l’option **Afficher** sur **Toutes les applications.**
+  * Si vous ne voyez pas l’application hello que vous souhaitez afficher ici, utilisez hello **filtre** contrôle haut hello hello **liste de toutes les Applications** et ensemble hello **afficher** option trop **Toutes les Applications.**
 
-6.  Sélectionnez l’application pour laquelle vous souhaitez configurer l’authentification unique.
+6.  Sélectionnez l’application hello tooconfigure l’authentification unique.
 
-7.  Cliquez sur **Supprimer** dans le coin supérieur gauche du panneau **Présentation** de l’application.
+7.  Cliquez sur **supprimer** en hello en haut à gauche de l’application hello **vue d’ensemble** panneau.
 
-8.  Actualisez Azure AD et ajoutez l’application à partir de la galerie Azure AD. Ensuite, reconfigurez l’application.
+8.  Actualiser Azure AD et ajouter l’application hello à partir de la galerie d’Azure AD hello. Configurez ensuite l’application hello.
 
-Une fois l’application reconfigurée, vous devez être en mesure de vous connecter à l’application.
+Après la reconfiguration d’application hello, vous devez être en mesure de toosign dans toohello application.
 
 ## <a name="certificate-or-key-not-configured"></a>Certificat ou clé non configuré(e)
 
@@ -203,39 +203,39 @@ Erreur AADSTS50003 : Aucune clé de signature configurée.
 
 **Cause possible**
 
-L’objet d’application est endommagé et Azure AD ne reconnaît pas le certificat configuré pour l’application.
+objet de l’application Hello est endommagé et Azure AD ne reconnaît pas certificat hello configuré pour l’application hello.
 
 **Résolution :**
 
-Pour supprimer et créer un nouveau certificat, effectuez les étapes suivantes :
+toodelete et créer un nouveau certificat, suivez les étapes de hello ci-dessous :
 
-1.  Ouvrez le [**portail Azure**](https://portal.azure.com/) et connectez-vous en tant qu’**administrateur général** ou **coadministrateur**.
+1.  Ouvrez hello [ **Azure Portal** ](https://portal.azure.com/) et connectez-vous en tant qu’un **administrateur Global** ou **Co-Admin.**
 
-2.  Ouvrez **l’extension Azure Active Directory** en cliquant sur **Autres services** en bas du menu de navigation principal de gauche.
+2.  Ouvrez hello **Extension Azure Active Directory** en cliquant sur **davantage de services** bas hello du menu de navigation de gauche principal hello.
 
-3.  Tapez « **Azure Active Directory** » dans la zone de recherche de filtre et sélectionnez l’élément **Azure Active Directory**.
+3.  Tapez dans **« Azure Active Directory**» dans la zone de recherche filtre hello et sélectionnez hello **Azure Active Directory** élément.
 
-4.  Cliquez sur **Applications d’entreprise** dans le menu de navigation de gauche d’Azure Active Directory.
+4.  Cliquez sur **des Applications d’entreprise** à partir du menu de navigation gauche hello Azure Active Directory.
 
-5.  Cliquez sur **Toutes les applications** pour afficher la liste complète de vos applications.
+5.  Cliquez sur **toutes les Applications** tooview une liste de toutes vos applications.
 
-  * Si l’application que vous recherchez ne figure pas dans la liste, utilisez la commande **Filtre** en haut de la **liste de toutes les applications** et définissez l’option **Afficher** sur **Toutes les applications.**
+  * Si vous ne voyez pas l’application hello que vous souhaitez afficher ici, utilisez hello **filtre** contrôle haut hello hello **liste de toutes les Applications** et ensemble hello **afficher** option trop **Toutes les Applications.**
 
-6.  Sélectionnez l’application pour laquelle vous souhaitez configurer l’authentification unique.
+6.  Sélectionnez l’application hello tooconfigure l’authentification unique.
 
-7.  Une fois l’application chargée, cliquez sur **Authentification unique** dans le menu de navigation de gauche de l’application.
+7.  Une fois que la charge de l’application hello, cliquez sur hello **l’authentification unique** à partir du menu de navigation de gauche de l’application hello.
 
-8.  Dans la section **Certificat de signature SAML**, cliquez sur **Créer un certificat**.
+8.  Cliquez sur **créer un nouveau certificat** sous hello **SAML certificat de signature** section.
 
 9.  Sélectionnez une date d’expiration. Cliquez ensuite sur **Enregistrer**.
 
-10. Cochez la case **Activer le nouveau certificat** pour substituer le certificat actif. Ensuite, cliquez sur **Enregistrer** en haut du panneau, puis acceptez d’activer le certificat de substitution.
+10. Vérifiez **activer le nouveau certificat** certificat de toooverride hello active. Ensuite, cliquez sur **enregistrer** haut hello du Panneau de hello et accepter le certificat de substitution tooactivate hello.
 
-11. Dans la section **Certificat de signature SAML**, cliquez sur **Supprimer** pour supprimer le certificat **Inutilisé**.
+11. Sous hello **le certificat de signature SAML** , cliquez sur **supprimer** tooremove hello **inutilisé** certificat.
 
-## <a name="problem-when-customizing-the-saml-claims-sent-to-an-application"></a>Problème lors de la personnalisation des revendications SAML envoyées à une application
+## <a name="problem-when-customizing-hello-saml-claims-sent-tooan-application"></a>Problème lors de la personnalisation des revendications de hello SAML envoyé tooan application
 
-Pour savoir comment personnaliser les revendications d’attribut SAML envoyées à votre application, consultez l’article [Mappage des revendications dans Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-claims-mapping) pour plus d’informations.
+toolearn toocustomize hello SAML attribut revendications envoyées tooyour application, voir [revendications mappage dans Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-claims-mapping) pour plus d’informations.
 
 ## <a name="next-steps"></a>Étapes suivantes
 [Spécifications du protocole SAML d’authentification unique Azure AD](https://docs.microsoft.com/azure/active-directory/develop/active-directory-single-sign-on-protocol-reference)

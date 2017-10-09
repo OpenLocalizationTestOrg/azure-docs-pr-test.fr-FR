@@ -1,6 +1,6 @@
 ---
-title: "Recommandations de sécurité du conseiller Azure | Microsoft Docs"
-description: "Utilisez le conseiller Azure pour améliorer la sécurité de vos déploiements Azure."
+title: "aaaAzure recommandations de l’Assistant sécurité | Documents Microsoft"
+description: "Utilisez l’Assistant Azure toohelp améliorer la sécurité de hello de vos déploiements Azure."
 services: advisor
 documentationcenter: NA
 author: kumudd
@@ -14,44 +14,44 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 11/16/2016
 ms.author: kumud
-ms.openlocfilehash: 53be05593c3733ccb27979a3a026414013125779
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e01ac29eb6e02bff0b1e846e320e7c36f85c7343
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="advisor-security-recommendations"></a>Recommandations de sécurité du conseiller
 
-Azure Advisor vous offre une vue cohérente et consolidée des recommandations pour toutes vos ressources Azure. Il s’intègre avec Azure Security Center pour vous proposer des recommandations de sécurité. Vous pouvez obtenir des recommandations en matière de sécurité à partir de l’onglet **Sécurité** du tableau de bord Advisor.
+Azure Advisor vous offre une vue cohérente et consolidée des recommandations pour toutes vos ressources Azure. Il s’intègre à Azure Security Center toobring vous recommandations de sécurité. Vous pouvez obtenir des recommandations de sécurité à partir de hello **sécurité** onglet tableau de bord de conseiller hello.
 
-![Bouton Sécurité Advisor](./media/advisor-security-recommendations/advisor-security-tab.png)
+![bouton de l’Assistant sécurité Hello](./media/advisor-security-recommendations/advisor-security-tab.png)
 
-Le Centre de sécurité vous aide à prévenir, détecter et résoudre les menaces grâce à une visibilité et un contrôle accrus de la sécurité de vos ressources Azure. Il analyse l’état de sécurité de vos ressources Azure à intervalles réguliers. Lorsqu’il identifie des failles de sécurité potentielles, il crée des recommandations. Ces recommandations vous guident tout au long du processus de configuration des contrôles nécessaires. 
+Centre de sécurité vous permet d’empêcher, détecter et répondre toothreats avec une meilleure visibilité et un contrôle accru de la sécurité hello de vos ressources Azure. Il analyse régulièrement état de la sécurité de vos ressources Azure hello. Lorsqu’il identifie des failles de sécurité potentielles, il crée des recommandations. recommandations de Hello vous guident tout au long des processus de hello de configuration de contrôles hello que vous avez besoin. 
 
-![Onglet Sécurité Advisor](./media/advisor-security-recommendations/advisor-security-recommendations.png)
+![onglet de l’Assistant sécurité Hello](./media/advisor-security-recommendations/advisor-security-recommendations.png)
 
 Pour plus d’informations sur les recommandations de sécurité, consultez [Gestion des recommandations de sécurité dans Azure Security Center](https://azure.microsoft.com/en-us/documentation/articles/security-center-recommendations/).
 
-## <a name="how-to-access-security-recommendations-in-azure-advisor"></a>Accès aux recommandations de sécurité dans Azure Advisor
+## <a name="how-tooaccess-security-recommendations-in-azure-advisor"></a>Comment tooaccess les recommandations de sécurité dans l’Assistant d’Azure
 
-1. Connectez-vous au [portail Azure](https://portal.azure.com).
+1. Connectez-vous à toohello [portail Azure](https://portal.azure.com).
 
-2. Dans le volet gauche, cliquez sur **Autres services**.
+2. Dans le volet gauche de hello, cliquez sur **davantage de services**.
 
-3. Dans le volet du menu de services, sous **Surveillance et gestion**, cliquez sur **Azure Advisor**.  
- Le tableau de bord Advisor s’affiche.
+3. Bonjour service sous le volet de menu, **analyse et gestion**, cliquez sur **Azure Advisor**.  
+ tableau de bord Hello Advisor s’affiche.
 
-4. Dans le tableau de bord Advisor, cliquez sur l’onglet **Sécurité**.
+4. Tableau de bord du conseiller hello, cliquez sur hello **sécurité** onglet.
 
-5. Sélectionnez l’abonnement pour lequel vous souhaitez recevoir des recommandations, puis cliquez sur **Obtenir des recommandations**.
+5. Sélectionnez l’abonnement hello pour lequel vous souhaitez que les recommandations tooreceive, puis cliquez sur **obtenir des recommandations**.
 
 > [!NOTE]
-> Pour accéder aux recommandations d’Advisor, vous devez d’abord *inscrire votre abonnement*  auprès d’Advisor. L’abonnement est inscrit lorsque son *propriétaire* lance le tableau de bord Advisor, puis clique sur le bouton **Obtenir des recommandations**. Cette opération ne doit être *exécutée qu’une seule fois*. Une fois l’abonnement inscrit, vous pouvez accéder aux recommandations d’Advisor en tant que *propriétaire*, *collaborateur* ou *lecteur* d’un abonnement, d’un groupe de ressources ou d’une ressource spécifique.
+> tooaccess recommandations de l’Assistant, vous devez d’abord *enregistrer votre abonnement* avec l’Assistant. Un abonnement est enregistré quand un *abonnement propriétaire* lance hello hello de tableau de bord et clique sur Advisor **obtenir des recommandations** bouton. Cette opération ne doit être *exécutée qu’une seule fois*. Une fois l’abonnement de hello est enregistré, vous pouvez accéder à des recommandations de l’Assistant en tant que *propriétaire*, *collaborateur*, ou *lecteur* pour un abonnement, un groupe de ressources, ou un ressource spécifique.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Pour en savoir plus sur les recommandations d’Advisor, consultez les ressources suivantes :
-* [Présentation d’Azure](advisor-overview.md)
+toolearn en savoir plus sur les recommandations de l’Assistant, consultez :
+* [Introduction tooAdvisor](advisor-overview.md)
 * [Prise en main du conseiller](advisor-get-started.md)
 * [Recommandations du conseiller en matière de coûts](advisor-performance-recommendations.md)
 * [Recommandations du conseiller en matière de performances](advisor-performance-recommendations.md)

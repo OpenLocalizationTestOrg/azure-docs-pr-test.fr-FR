@@ -1,5 +1,5 @@
 ---
-title: "Adresses IP utilisées par Application Insights | Microsoft Docs"
+title: "adresses aaaIP utilisés par l’Application Insights | Documents Microsoft"
 description: Exceptions de pare-feu de serveur requises par Application Insights
 services: application-insights
 documentationcenter: .net
@@ -13,22 +13,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 8/11/2017
 ms.author: bwren
-ms.openlocfilehash: 3bb076c63223fc1567c6b7b25c1a513bbc81ed58
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 2c101b8da2ba9594fbff607f4f7551cda80c3c25
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="ip-addresses-used-by-application-insights"></a>Adresses IP utilisées par Application Insights
-Le service [Azure Application Insights](app-insights-overview.md) utilise plusieurs adresses IP. Vous devrez peut-être connaître ces adresses si l’application que vous surveillez est hébergée derrière un pare-feu.
+Hello [Azure Application Insights](app-insights-overview.md) service utilise un nombre d’adresses IP. Vous devrez peut-être tooknow ces adresses si l’application hello que vous analysez est hébergée derrière un pare-feu.
 
 > [!NOTE]
-> Bien que ces adresses soient statiques, il est possible que nous devions les modifier de temps à autre.
+> Bien que ces adresses sont statiques, il est possible que nous devons toochange de tootime de temps.
 > 
 > 
 
 ## <a name="outgoing-ports"></a>Ports sortants
-Vous devez ouvrir des ports sortants dans le pare-feu de votre serveur pour autoriser le Kit de développement logiciel (SDK) Application Insights et/ou Status Monitor à envoyer des données sur le portail :
+Vous devez tooopen certains ports sortants Bonjour tooallow de pare-feu de votre serveur Application Insights SDK et/ou le portail de moniteur d’état toosend données toohello :
 
 | Objectif | URL | IP | Ports |
 | --- | --- | --- | --- |
@@ -56,7 +56,7 @@ Configuration de Status Monitor (nécessaire uniquement pour apporter des modifi
 | Données d’incident |gate.hockeyapp.net |104.45.136.42 |80, 443 |
 
 ## <a name="availability-tests"></a>Tests de disponibilité
-Voici la liste des adresses à partir desquelles les [tests web de disponibilité](app-insights-monitor-web-app-availability.md) sont exécutés. Si vous souhaitez exécuter des tests web sur votre application, mais que votre serveur web est limité au service de clients spécifiques, vous devrez alors autoriser le trafic entrant depuis nos serveurs de test de disponibilité.
+Il s’agit liste hello d’adresses à partir de laquelle [disponibilité des tests web](app-insights-monitor-web-app-availability.md) sont exécutés. Si vous souhaitez toorun des tests web dans votre application, mais votre serveur web est restreint tooserving des clients spécifiques, vous devez toopermit le trafic entrant de nos serveurs de test de disponibilité.
 
 Ouvrez les ports 80 (http) et 443 (https) pour le trafic entrant à partir de ces adresses (les adresses IP sont regroupées par emplacement) :
 

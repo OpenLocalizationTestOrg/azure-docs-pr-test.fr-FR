@@ -1,6 +1,6 @@
 ---
-title: "Utiliser des bases de données MySQL en tant que PaaS sur Azure Stack | Microsoft Docs"
-description: "Découvrez comment déployer le fournisseur de ressources MySQL et fournir des bases de données MySQL en tant que service sur Azure Stack."
+title: "aaaUse MySQL de bases de données en tant que PaaS dans Azure pile | Documents Microsoft"
+description: "Découvrez comment vous pouvez déployer hello fournisseur de ressources MySQL et fournissent des bases de données MySQL en tant que service sur la pile de Azure"
 services: azure-stack
 documentationCenter: 
 author: JeffGoldner
@@ -13,76 +13,76 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/10/2017
 ms.author: JeffGo
-ms.openlocfilehash: 4e9da524ef9dfa2d5b7150bc6a888536a1435dfd
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 634e408eae9f3d8257a8610c60def0978ce333c5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-mysql-databases-on-microsoft-azure-stack"></a>Utiliser des bases de données MySQL sur Microsoft Azure Stack
 
 
-Vous pouvez déployer un fournisseur de ressources MySQL sur Azure Stack. Après avoir déployé le fournisseur de ressources, vous pouvez créer des serveurs et des bases de données MySQL avec des modèles de déploiement Azure Resource Manager et fournir des bases de données MySQL en tant que service. Les bases de données MySQL, qui sont courantes sur les sites web, prennent en charge de nombreuses plateformes de site web. Par exemple, après avoir déployé le fournisseur de ressources, vous pouvez créer des sites web WordPress à partir du module complémentaire PaaS (Platform as a Service) Azure Web Apps pour Azure Stack.
+Vous pouvez déployer un fournisseur de ressources MySQL sur Azure Stack. Après avoir déployé le fournisseur de ressources hello, vous pouvez créer des bases de données via des modèles de déploiement Azure Resource Manager et des serveurs MySQL et fournir des bases de données MySQL en tant que service. Les bases de données MySQL, qui sont courantes sur les sites web, prennent en charge de nombreuses plateformes de site web. Par exemple, après avoir déployé le fournisseur de ressources hello, vous pouvez créer des sites Web WordPress à partir de la plateforme d’applications Web Azure hello comme un module complémentaire de service (PaaS) pour la pile de Azure.
 
-Pour déployer le fournisseur MySQL sur un système qui n’a pas accès à Internet, vous pouvez copier le fichier [mysql-connector-net-6.9.9.msi](https://dev.mysql.com/get/Download/sConnector-Net/mysql-connector-net-6.9.9.msi) sur un partage local et fournir ce nom de partage quand vous y êtes invité (voir ci-dessous). Vous devez également installer les modules PowerShell Azure et Azure Stack.
+le fournisseur de MySQL toodeploy hello sur un système qui n’a pas accès à internet, vous pouvez copier les fichiers hello [mysql-connector-net-6.9.9.msi](https://dev.mysql.com/get/Download/sConnector-Net/mysql-connector-net-6.9.9.msi) tooa local partager et fournir ce nom de partage lorsque vous y êtes invité (voir ci-dessous). Vous devez également installer les modules Azure et Azure pile PowerShell hello.
 
 
 ## <a name="mysql-server-resource-provider-adapter-architecture"></a>Architecture de l’adaptateur de fournisseur de ressources MySQL Server
 
-Le fournisseur de ressources est constitué de trois composants :
+fournisseur de ressources Hello est constitué de trois composants :
 
-- **La machine virtuelle d’adaptateur de fournisseur de ressources MySQL**, qui est une machine virtuelle Windows exécutant les services de fournisseur.
-- **Le fournisseur de ressources proprement dit**, qui traite les demandes d’approvisionnement et expose les ressources de base de données.
+- **adaptateur de fournisseur ressources Hello MySQL VM**, qui est un ordinateur virtuel de Windows exécutant les services de fournisseur hello.
+- **fournisseur de ressources Hello lui-même**, qui traite les demandes d’approvisionnement et expose les ressources de base de données.
 - **Les serveurs qui hébergent MySQL Server**, qui fournissent de la capacité pour les bases de données, appelés serveurs d’hébergement. 
 
-Cette version ne crée plus d’instance de MySQL. Vous devez les créer et/ou fournir un accès à des instances SQL externes. Vous pouvez accéder à la [galerie de démarrage rapide Azure Stack](https://github.com/Azure/AzureStack-QuickStart-Templates/tree/master/mysql-standalone-server-windows) pour obtenir un exemple de modèle capable de créer un serveur MySQL pour vous, ou télécharger et déployer un serveur MySQL à partir de la Place de marché.
+Cette version ne crée plus d’instance de MySQL. Vous devez les créer ou fournir un accès tooexternal les instances de SQL. Vous pouvez visiter hello [galerie de démarrage rapide Azure pile](https://github.com/Azure/AzureStack-QuickStart-Templates/tree/master/mysql-standalone-server-windows) pour un exemple de modèle que vous pouvez créer un serveur MySQL pour vous ou télécharger et déployer un serveur MySQL de hello Marketplace.
 
-## <a name="deploy-the-resource-provider"></a>Déployer le fournisseur de ressources
+## <a name="deploy-hello-resource-provider"></a>Déployer le fournisseur de ressources hello
 
-1. Si ce n’est déjà fait, inscrivez votre Kit de développement et téléchargez l’image Windows Server 2016 Datacenter - Eval à partir de Gestion dans la Place de marché. Vous pouvez également utiliser un script pour créer une [image de Windows Server 2016](https://docs.microsoft.com/azure/azure-stack/azure-stack-add-default-image).
+1. Si vous ne le n'avez pas déjà fait, inscrire votre kit de développement et télécharger hello Windows Server Datacenter 2016 - Eval image téléchargeable via la gestion du Marketplace. Vous pouvez également utiliser un script toocreate un [image de Windows Server 2016](https://docs.microsoft.com/azure/azure-stack/azure-stack-add-default-image).
 
-2. [Téléchargez le fichier binaire du fournisseur de ressources MySQL](https://aka.ms/azurestackmysqlrp) et extrayez-le sur l’hôte du Kit de développement.
+2. [Télécharger le fichier de fichiers binaires du fournisseur de ressources hello MySQL](https://aka.ms/azurestackmysqlrp) et extrayez-le sur l’hôte de kit de développement hello.
 
-3. Connectez-vous à l’hôte du Kit de développement et extrayez le fichier du programme d’installation du fournisseur de ressources MySQL dans un répertoire temporaire.
+3. Connectez-vous à hôte de kit de développement toohello, puis extraire hello répertoire temporaire de tooa de fichiers de programme d’installation de MySQL RP.
 
-4. Le certificat racine Azure Stack est récupéré et un certificat auto-signé est créé dans le cadre de ce processus. 
+4. certificat racine de pile de Azure Hello est récupérée et un certificat auto-signé est créé dans le cadre de ce processus. 
 
-    __Facultatif :__ Si vous devez fournir vos propres certificats, préparez-les et copiez-les dans un répertoire local si vous souhaitez personnaliser les certificats (passés au script d’installation). Vous avez besoin des éléments suivants :
+    __Facultatif :__ si vous avez besoin de tooprovide votre propre, préparer les certificats hello et tooa répertoire local si vous le souhaitez toocustomize les certificats hello (script d’installation toohello passé). Éléments de hello suivants sont nécessaires :
 
-    a. Un certificat générique pour *.dbadapter.\<région\>.\<fqdn_externe\>. Ce certificat doit être approuvé, par exemple émis par une autorité de certification (autrement dit, la chaîne d’approbation doit exister sans qu’aucun certificat intermédiaire ne soit nécessaire). (Vous pouvez utiliser un certificat de site unique avec le nom de machine virtuelle explicite que vous fournissez lors de l’installation.)
+    a. Un certificat générique pour *.dbadapter.\<région\>.\<fqdn_externe\>. Ce certificat doit être approuvé, tel qu’est émise par une autorité de certification (autrement dit, chaîne hello d’approbation doit exister sans exiger de certificats intermédiaires). (Un certificat de site unique utilisable avec nom VM explicite de hello, que vous fournissez lors de l’installation.)
 
-    b. Le certificat racine utilisé par Azure Resource Manager pour votre instance d’Azure Stack. S’il est introuvable, le certificat racine est récupéré.
+    b. Hello certificat utilisé par hello Azure Resource Manager pour votre instance de la pile de Azure. S’il n’est pas trouvé, certificat hello est récupérée.
 
-5. Ouvrez une **nouvelle** console PowerShell avec élévation de privilèges et basculez vers le répertoire où vous avez extrait les fichiers. Utilisez une nouvelle fenêtre pour éviter les problèmes qui peuvent se produire à cause des modules PowerShell incorrects déjà chargés sur le système.
+5. Ouvrir un **nouvelle** élevé PowerShell console et de modifier le répertoire toohello où vous avez extrait les fichiers hello. Utilisez une nouvelle fenêtre tooavoid les problèmes qui peuvent survenir à partir des modules PowerShell incorrects déjà chargés sur le système de hello.
 
-6. Si vous avez installé des versions des modules PowerShell AzureRm ou AzureStack autres que 1.2.9 ou 1.2.10, vous devrez les supprimer ou l’installation ne sera pas effectuée. Cela inclut les versions 1.3 ou ultérieures.
+6. Si vous avez installé des versions des modules AzureStack PowerShell autres que 1.2.9 ou 1.2.10 hello Azure Resource Manager, vous serez invité à tooremove les ou hello installation ne sera pas effectuée. Cela inclut les versions 1.3 ou ultérieures.
 
 7. Exécutez DeployMySqlProvider.ps1.
 
 Ce script effectue les étapes suivantes :
 
 * Si nécessaire, téléchargement d’une version compatible d’Azure PowerShell.
-* Téléchargement du fichier binaire de connecteur MySQL (peut être fourni en mode hors connexion).
-* Chargement du certificat et de tous les autres artefacts sur un compte de stockage Azure Stack.
-* Publication des packages de la galerie afin que vous puissiez déployer des bases de données MySQL par le biais de la galerie.
+* Téléchargez hello connecteur MySQL binaire (Cela peut être fourni en mode hors connexion).
+* Télécharger le certificat de hello et tous les autres tooan artefacts compte de stockage Azure pile.
+* Publier des packages de la galerie afin que vous pouvez déployer des bases de données MySQL via la galerie de hello.
 * Déploiement d’une machine virtuelle qui héberge votre fournisseur de ressources.
-* Inscription d’un enregistrement DNS local mappé à votre machine virtuelle de fournisseur de ressources.
-* Inscription de votre fournisseur de ressources auprès de l’instance Azure Resource Manager locale.
+* Inscrire un enregistrement DNS local qui mappe le fournisseur de ressources tooyour machine virtuelle.
+* Inscrire votre fournisseur de ressources par hello local Azure Resource Manager.
 
-Spécifiez au moins les paramètres obligatoires sur la ligne de commande ou, si vous exécutez sans paramètres, vous êtes invité à les entrer. 
+Spécifiez au moins hello paramètres requis sur la ligne de commande hello ou, si vous exécutez sans paramètres, vous êtes invité à tooenter les. 
 
-Voici un exemple que vous pouvez exécuter à partir de l’invite PowerShell (mais changez les points de terminaison du portail et les informations du compte si nécessaire) :
+Voici un exemple, vous pouvez exécuter à partir de hello PowerShell invite (mais modifier des points de terminaison hello compte des informations et du portail si nécessaire) :
 
 
 ```
-# Install the AzureRM.Bootstrapper module
+# Install hello AzureRM.Bootstrapper module
 Install-Module -Name AzureRm.BootStrapper -Force
 
-# Installs and imports the API Version Profile required by Azure Stack into the current PowerShell session.
+# Installs and imports hello API Version Profile required by Azure Stack into hello current PowerShell session.
 Use-AzureRmProfile -Profile 2017-03-09-profile
 Install-Module -Name AzureStack -RequiredVersion 1.2.10 -Force
 
-# Download the Azure Stack Tools from GitHub and set the environment
+# Download hello Azure Stack Tools from GitHub and set hello environment
 cd c:\
 Invoke-Webrequest https://github.com/Azure/AzureStack-Tools/archive/master.zip -OutFile master.zip
 Expand-Archive master.zip -DestinationPath . -Force
@@ -91,10 +91,10 @@ Expand-Archive master.zip -DestinationPath . -Force
 Import-Module C:\AzureStack-Tools-master\Connect\AzureStack.Connect.psm1
 Add-AzureRmEnvironment -Name AzureStackAdmin -ArmEndpoint "https://adminmanagement.local.azurestack.external" 
 
-# For AAD, use the following
+# For AAD, use hello following
 $tenantID = Get-AzsDirectoryTenantID -AADTenantName "<your directory name>" -EnvironmentName AzureStackAdmin
 
-# For ADFS, replace the previous line with
+# For ADFS, replace hello previous line with
 # $tenantID = Get-AzsDirectoryTenantID -ADFS -EnvironmentName AzureStackAdmin
 
 $vmLocalAdminPass = ConvertTo-SecureString "P@ssw0rd1" -AsPlainText -Force
@@ -106,71 +106,71 @@ $AdminCreds = New-Object System.Management.Automation.PSCredential ("admin@mydom
 # change this as appropriate
 $PfxPass = ConvertTo-SecureString "P@ssw0rd1" -AsPlainText -Force
 
-# Change directory to the folder where you extracted the installation files 
-# and adjust the endpoints
+# Change directory toohello folder where you extracted hello installation files 
+# and adjust hello endpoints
 <extracted file directory>\DeployMySQLProvider.ps1 -DirectoryTenantID $tenantID -AzCredential $AdminCreds -VMLocalCredential $vmLocalAdminCreds -ResourceGroupName "MySqlRG" -VmName "MySQLRP" -ArmEndpoint "https://adminmanagement.local.azurestack.external" -TenantArmEndpoint "https://management.local.azurestack.external" -DefaultSSLCertificatePassword $PfxPass -DependencyFilesLocalPath
  ```
 
 ### <a name="deploymysqlproviderps1-parameters"></a>Paramètres de DeployMySqlProvider.ps1
 
-Vous pouvez spécifier ces paramètres sur la ligne de commande. Si vous ne le faites pas, ou si la validation des paramètres échoue, vous êtes invité à fournir les paramètres obligatoires.
+Vous pouvez spécifier ces paramètres dans la ligne de commande hello. Si vous n’effectuez pas ou n’importe quel paramètre validation échoue, vous êtes invité tooprovide hello requis ceux.
 
 | Nom du paramètre | Description | Commentaire ou valeur par défaut |
 | --- | --- | --- |
-| **DirectoryTenantID** | ID de répertoire AD FS ou Azure (guid) | _obligatoire_ |
-| **ArmEndpoint** | Point de terminaison Azure Resource Manager d’administration Azure Stack | _obligatoire_ |
-| **TenantArmEndpoint** | Point de terminaison Azure Resource Manager de locataire Azure Stack | _obligatoire_ |
-| **AzCredential** | Informations d’identification du compte d’administration de service Azure Stack (utilisez le même compte que celui utilisé pour le déploiement d’Azure Stack) | _obligatoire_ |
-| **VMLocalCredential** | Compte d’administrateur local de la machine virtuelle du fournisseur de ressources MySQL | _obligatoire_ |
-| **ResourceGroupName** | Groupe de ressources pour les éléments créés par ce script |  _obligatoire_ |
-| **VmName** | Nom de la machine virtuelle contenant le fournisseur de ressources |  _obligatoire_ |
-| **AcceptLicense** | Ignore l’invite demandant d’accepter la licence GPL (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html) | |
-| **DependencyFilesLocalPath** | Chemin vers un partage local contenant [mysql-connector-net-6.9.9.msi](https://dev.mysql.com/get/Downloads/Connector-Net/mysql-connector-net-6.9.9.msi). Si vous les fournissez, les fichiers de certificats doivent être placés dans ce répertoire. | _facultatif_ |
-| **DefaultSSLCertificatePassword** | Mot de passe pour le certificat .pfx. | _obligatoire_ |
+| **DirectoryTenantID** | Bonjour Azure ou ID de répertoire AD FS (guid) | _obligatoire_ |
+| **ArmEndpoint** | Bonjour Azure pile d’administration Gestionnaire de ressources du point de terminaison Azure | _obligatoire_ |
+| **TenantArmEndpoint** | Bonjour Azure pile client Gestionnaire de ressources du point de terminaison Azure | _obligatoire_ |
+| **AzCredential** | Références du compte administrateur de Service de pile Azure (hello utilisez même compte que vous avez utilisé pour le déploiement d’Azure pile) | _obligatoire_ |
+| **VMLocalCredential** | compte d’administrateur local Hello de fournisseur de ressources MySQL hello machine virtuelle | _obligatoire_ |
+| **ResourceGroupName** | Groupe de ressources pour les éléments hello créés par ce script |  _obligatoire_ |
+| **VmName** | Nom de l’exploitation de machine virtuelle hello fournisseur de ressources hello |  _obligatoire_ |
+| **AcceptLicense** | Ignore Bonjour tooaccept invite Bonjour le licence GPL (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html) | |
+| **DependencyFilesLocalPath** | Chemin d’accès tooa partage local contenant [mysql-connector-net-6.9.9.msi](https://dev.mysql.com/get/Downloads/Connector-Net/mysql-connector-net-6.9.9.msi). Si vous les fournissez, les fichiers de certificats doivent être placés dans ce répertoire. | _facultatif_ |
+| **DefaultSSLCertificatePassword** | mot de passe Hello certificat .pfx de hello | _obligatoire_ |
 | **MaxRetryCount** | Chaque opération est retentée en cas d’échec | 2 |
 | **RetryDuration** | Délai d’attente entre les tentatives, en secondes | 120 |
-| **Désinstaller** | Supprimer le fournisseur de ressources | Non |
+| **Désinstaller** | Supprimer le fournisseur de ressources hello | Non |
 | **DebugMode** | Empêche le nettoyage automatique en cas d’échec. | Non |
 
 
-En fonction de la vitesse de téléchargement et des performances système, l’installation peut durer entre 20 minutes et plusieurs heures. Vous devez actualiser le portail d’administration si le panneau MySQLAdapter n’est pas disponible.
+En fonction des vitesses téléchargement et les performances du système hello, installation peut prendre en l’espace de 20 minutes ou en tant que long en plusieurs heures. Vous devez actualiser le portail d’administration hello si le panneau de MySQLAdapter hello n’est pas disponible.
 
 > [!NOTE]
-> Si l’installation prend plus de 90 minutes, elle risque d’échouer et vous verrez un message d’erreur à l’écran et dans le fichier journal. Une nouvelle tentative de déploiement est effectuée à partir de l’étape ayant échoué. Les systèmes qui ne répondent pas aux spécifications recommandées en matière de mémoire et de noyau risquent de ne pas pouvoir déployer le fournisseur de ressources MySQL.
+> Si l’installation de hello prend plus de 90 minutes, elle peut échouer et vous verrez un message d’erreur sur l’écran hello et dans le fichier journal de hello. déploiement de Hello est retentée à partir de hello échouent étape. Les systèmes qui ne respectent pas hello mémoire recommandée et les spécifications principales peuvent ne pas être en mesure de toodeploy hello MySQL RP.
 
 
-## <a name="provide-capacity-by-connecting-to-a-mysql-hosting-server"></a>Fournir de la capacité en se connectant à un serveur d’hébergement MySQL
+## <a name="provide-capacity-by-connecting-tooa-mysql-hosting-server"></a>Fournir une capacité en vous connectant tooa serveur d’hébergement MySQL
 
-1. Connectez-vous au portail Azure Stack en tant qu’administrateur de service.
+1. Connectez-vous toohello de portail de la pile de Azure en tant qu’un administrateur de service.
 
 2. Cliquez sur **Fournisseurs de ressources** &gt; **MySQLAdapter** &gt; **Serveurs d’hébergement** &gt; **+ Ajouter**.
 
-    Dans le panneau **Serveurs d’hébergement MySQL**, vous pouvez connecter le fournisseur de ressources MySQL Server à des instances réelles de MySQL Server qui font office de backend du fournisseur de ressources.
+    Hello **serveurs d’hébergement MySQL** lame est où vous pouvez vous connecter hello fournisseur de ressources MySQL Server tooactual instances de MySQL Server qui servent de hello back-end du fournisseur de ressources.
 
     ![Serveurs d’hébergement](./media/azure-stack-mysql-rp-deploy/mysql-add-hosting-server-2.png)
 
-3. Remplissez le formulaire avec les détails de connexion de votre instance de MySQL Server. Fournissez le nom de domaine complet (FQDN) ou une adresse IPv4 valide, et pas le nom court de machine virtuelle. Cette installation ne fournit plus d’instance de MySQL par défaut. La taille fournie aide le fournisseur de ressources à gérer la capacité de la base de données. Elle doit être proche de la capacité physique du serveur de base de données.
+3. Remplir le formulaire de hello avec les détails de la connexion de votre instance de serveur MySQL hello. Fournir le nom de domaine complet hello (FQDN) ou une adresse IPv4 valide et pas hello VM nom court. Cette installation ne fournit plus d’instance de MySQL par défaut. Hello taille fournie permet de gérer la capacité de base de données hello fournisseur de ressources hello. Il doit être toohello fermer la capacité physique du serveur de base de données hello.
 
     > [!NOTE]
-    > Tant que l’instance MySQL est accessible par le locataire et l’administrateur Azure Resource Manager, elle peut être placée sous contrôle du fournisseur de ressources. L’instance de MySQL __doit__ être allouée exclusivement au fournisseur de ressources.
+    > Tant qu’instance de MySQL hello est accessible par le locataire de hello et administrateur Azure Resource Manager, il peut être placé sous contrôle de fournisseur de ressources hello. instance de MySQL Hello __doit__ être allouées exclusivement toohello RP.
 
-4. À mesure que vous ajoutez des serveurs, vous devez les affecter à une référence (SKU) nouvelle ou existante pour pouvoir différencier les offres de service. Par exemple, vous pouvez avoir une instance d’entreprise qui fournit la capacité de base de données et la sauvegarde automatique, réserver les serveurs hautes performances pour les différents services, et ainsi de suite. Le nom de la référence doit refléter les propriétés afin que les locataires puissent placer correctement leurs bases de données, et tous les serveurs d’hébergement d’une référence doivent avoir les mêmes fonctionnalités.
+4. Lorsque vous ajoutez des serveurs, vous devez les affecter tooa nouveau ou existante SKU tooallow différentiation entre des offres de service. Par exemple, Impossible de dispose d’une instance de l’entreprise en fournissant la capacité de la base de données et la sauvegarde automatique, de réserver les serveurs hautes performances pour les services, nom de référence (SKU) etc. hello doit refléter les propriétés hello afin que les clients peuvent placer leurs bases de données en conséquence et tous les serveurs d’hébergement dans une référence (SKU) doivent avoir hello les mêmes fonctionnalités.
 
     ![Créer une référence (SKU) MySQL](./media/azure-stack-mysql-rp-deploy/mysql-new-sku.png)
 
 
 >[!NOTE]
-Une heure entière peut être nécessaire avant que les références n’apparaissent dans le portail. Vous ne pouvez pas créer une base de données tant que la référence n’a pas été créée.
+Références (SKU) peut prendre jusqu'à toobe d’heure tooan visible dans le portail de hello. Impossible de créer une base de données jusqu'à ce que hello que référence (SKU) est créé.
 
 
-## <a name="create-your-first-mysql-database-to-test-your-deployment"></a>Créer votre première base de données MySQL pour tester votre déploiement
+## <a name="create-your-first-mysql-database-tootest-your-deployment"></a>Créer votre première tootest de base de données MySQL à votre déploiement
 
 
-1. Connectez-vous au portail Azure Stack en tant qu’administrateur de service.
+1. Se connecter toohello portail de la pile de Azure en tant qu’administrateur de service.
 
-2. Cliquez sur le bouton **+ Nouveau** &gt; **Données + stockage** &gt; **Base de données MySQL (préversion)**.
+2. Cliquez sur hello **+ nouveau** bouton &gt; **données + stockage** &gt; **base de données MySQL (version préliminaire)**.
 
-3. Remplissez le formulaire avec les détails de la base de données.
+3. Renseignez le formulaire hello avec les détails de base de données hello.
 
     ![Créer une base de données MySQL test](./media/azure-stack-mysql-rp-deploy/mysql-create-db.png)
 
@@ -178,45 +178,45 @@ Une heure entière peut être nécessaire avant que les références n’apparai
 
     ![Sélectionner une référence](./media/azure-stack-mysql-rp-deploy/mysql-select-a-sku.png)
 
-5. Créez un paramètre de connexion. Vous pouvez réutiliser un paramètre de connexion ou en créer un nouveau. Ce paramètre contient le nom d’utilisateur et le mot de passe de la base de données.
+5. Créez un paramètre de connexion. paramètre de connexion Hello peut être réutilisé ou créer une nouvelle. Nom d’utilisateur hello et le mot de passe pour la base de données hello contient.
 
     ![Créer une connexion de base de données](./media/azure-stack-mysql-rp-deploy/create-new-login.png)
 
-    La chaîne de connexion inclut le nom réel du serveur de base de données. Copiez-le à partir du portail.
+    chaîne de connexion Hello inclut le nom de serveur de base de données réels hello. Copier à partir du portail de hello.
 
-    ![Obtenir la chaîne de connexion pour la base de données MySQL](./media/azure-stack-mysql-rp-deploy/mysql-db-created.png)
+    ![Obtenir la chaîne de connexion hello pour la base de données MySQL hello](./media/azure-stack-mysql-rp-deploy/mysql-db-created.png)
 
 > [!NOTE]
-> La longueur des noms d’utilisateurs ne doit pas dépasser 32 caractères avec MySQL 5.7, ou 16 caractères dans les éditions antérieures. Il s’agit d’une limitation des implémentations de MySQL.
+> Hello hello des noms d’utilisateur ne peut pas dépasser 32 caractères avec MySQL 5.7 ou 16 caractères dans les éditions antérieures. Il s’agit d’une limitation des implémentations de MySQL hello.
 
 
 ## <a name="add-capacity"></a>Ajouter de la capacité
 
-Augmentez la capacité en ajoutant des serveurs MySQL dans le portail Azure Stack. Si vous souhaitez utiliser une autre instance de MySQL, cliquez sur **Fournisseurs de ressources** &gt; **MySQLAdapter** &gt; **Serveurs d’hébergement MySQL** &gt; **+Ajouter**.
+Augmenter la capacité en ajoutant des serveurs MySQL dans le portail d’Azure pile hello. Si vous le souhaitez toouse une autre instance de MySQL, cliquez sur **fournisseurs de ressources** &gt; **MySQLAdapter** &gt; **serveurs d’hébergement MySQL** &gt; **+ Ajouter**.
 
 
-## <a name="making-mysql-databases-available-to-tenants"></a>Mise à disposition des bases de données MySQL pour les locataires
-Créez des plans et des offres pour mettre les bases de données MySQL à disposition des locataires. Ajoutez le service Microsoft.MySqlAdapter, ajoutez un quota, et ainsi de suite.
+## <a name="making-mysql-databases-available-tootenants"></a>Rendre les bases de données MySQL tootenants disponibles
+Créer des plans et des offres toomake MySQL de bases de données disponibles pour les locataires. Ajouter un service de Microsoft.MySqlAdapter hello, ajouter un quota, un etc..
 
-![Créer des plans et des offres pour inclure des bases de données](./media/azure-stack-mysql-rp-deploy/mysql-new-plan.png)
+![Créer des plans et des offres tooinclude bases de données](./media/azure-stack-mysql-rp-deploy/mysql-new-plan.png)
 
-## <a name="removing-the-mysql-adapter-resource-provider"></a>Suppression du fournisseur de ressources de l’adaptateur MySQL
+## <a name="removing-hello-mysql-adapter-resource-provider"></a>Suppression de hello fournisseur de ressources MySQL adaptateur
 
-Pour supprimer le fournisseur de ressources, il est essentiel de supprimer d’abord toutes les dépendances.
+fournisseur de ressources tooremove hello, il est essentiel toofirst supprimer toutes les dépendances.
 
-1. Vérifiez que vous avez le package de déploiement d’origine que vous avez téléchargé pour cette version du fournisseur de ressources.
+1. Assurez-vous de qu'avoir hello d’origine package de déploiement que vous avez téléchargé pour cette version du fournisseur de ressources de hello.
 
-2. Toutes les bases de données de locataire doivent être supprimées du fournisseur de ressources (cela ne supprime pas les données). Cette opération doit être effectuée par les locataires eux-mêmes.
+2. Toutes les bases de données client doivent être supprimés à partir du fournisseur de ressources hello (cela ne supprimera pas les données de salutation). Doit être effectué par les locataires hello eux-mêmes.
 
-3. Les locataires doivent annuler l’inscription à partir de l’espace de noms.
+3. Les locataires doivent annuler l’inscription à partir de l’espace de noms hello.
 
-4. L’administrateur doit supprimer les serveurs d’hébergement de l’adaptateur MySQL
+4. Administrateur doit supprimer hello hébergeant des serveurs à partir de hello MySQL adaptateur
 
-5. L’administrateur doit supprimer tous les plans qui référencent l’adaptateur MySQL.
+5. Administrateur doit supprimer tous les plans qui font référence à hello MySQL adaptateur.
 
-6. L’administrateur doit supprimer tous les quotas associés à l’adaptateur MySQL.
+6. Administrateur doit supprimer n’importe quel toohello associé de quotas MySQL adaptateur.
 
-7. Réexécutez le script de déploiement avec le paramètre -Uninstall, les points de terminaison Azure Resource Manager, DirectoryTenantID et les informations d’identification du compte d’administrateur de service.
+7. Réexécutez le script de déploiement hello dans hello - désinstallation de paramètre, les points de terminaison Azure Resource Manager, les DirectoryTenantID et les informations d’identification pour le compte d’administrateur de service de hello.
 
 
 
@@ -224,4 +224,4 @@ Pour supprimer le fournisseur de ressources, il est essentiel de supprimer d’a
 ## <a name="next-steps"></a>Étapes suivantes
 
 
-Essayez d’autres [services PaaS](azure-stack-tools-paas-services.md) comme le [fournisseur de ressources SQL Server](azure-stack-sql-resource-provider-deploy.md) et le [fournisseur de ressources App Services](azure-stack-app-service-overview.md).
+Essayez d’autres [services PaaS](azure-stack-tools-paas-services.md) comme hello [fournisseur de ressources SQL Server](azure-stack-sql-resource-provider-deploy.md) et hello [fournisseur de ressources des Services d’application](azure-stack-app-service-overview.md).

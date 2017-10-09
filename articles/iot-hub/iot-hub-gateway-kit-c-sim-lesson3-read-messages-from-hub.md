@@ -1,12 +1,12 @@
 ---
 title: "Appareil simulé et passerelle Azure IoT - Leçon 3 : Lire des messages | Microsoft Docs"
-description: "Exécutez un exemple de code sur votre ordinateur hôte pour lire les messages à partir de votre IoT Hub."
+description: "Exécuter un exemple de code sur votre hôte ordinateur tooread hello des messages à partir de votre hub IoT."
 services: iot-hub
 documentationcenter: 
 author: shizn
 manager: timtl
 tags: 
-keywords: "données dans le cloud, collecte de données cloud, service de cloud iot, données iot"
+keywords: "données dans le cloud de hello, collecte de données de cloud, le service cloud iot, iot données"
 ROBOTS: NOINDEX
 redirect_url: /azure/iot-hub/iot-hub-gateway-kit-c-lesson1-set-up-nuc
 ms.assetid: 5a6ec9c1-d83c-41c1-beaf-7c0d3395d77f
@@ -17,52 +17,52 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: 9fbf7958e2437d274f2692dbc235ac8147bdfa63
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 540575724bb5cdac4db581a226d8a02a59004d8c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="read-messages-from-your-iot-hub"></a>Lire des messages à partir de votre IoT Hub
 
 ## <a name="what-you-will-do"></a>Procédure à suivre
 
-- Exécutez l’exemple de code sur votre ordinateur hôte pour lire les messages provenant de votre IoT Hub.
+- Exécutez exemple de code sur votre hôte tooread ordinateur des messages à partir de votre hub IoT.
 
-Si vous rencontrez des problèmes, recherchez des solutions dans la [page de résolution des problèmes](iot-hub-gateway-kit-c-sim-troubleshooting.md).
+Si vous rencontrez des problèmes, recherchez des solutions sur hello [page Résolution des problèmes](iot-hub-gateway-kit-c-sim-troubleshooting.md).
 
 ## <a name="what-you-will-learn"></a>Contenu
 
-Découvrez comment utiliser l’outil gulp pour lire les messages à partir de votre IoT Hub.
+Comment toouse hello gulp tooread messages de l’outil à partir de votre hub IoT.
 
 ## <a name="what-you-need"></a>Ce dont vous avez besoin
 
-- L'exemple d'appareil simulé de la rubrique [Configurer et exécuter un exemple d’application de téléchargement cloud d’appareil simulé](iot-hub-gateway-kit-c-sim-lesson3-configure-simulated-device-app.md).
+- exemple d’appareil simulé Hello dans [configurer et exécuter un cloud d’appareil simulé téléchargement l’exemple d’application](iot-hub-gateway-kit-c-sim-lesson3-configure-simulated-device-app.md).
 
 ## <a name="get-your-iot-hub-and-device-connection-strings"></a>Obtenir vos chaînes de connexion d’IoT Hub et d’appareil
 
-La chaîne de connexion de l’appareil permet de connecter votre appareil simulé à votre IoT Hub. La chaîne de connexion IoT Hub sert à se connecter au registre des identités de votre IoT Hub pour gérer les appareils autorisés à se connecter à votre IoT Hub.
+chaîne de connexion de périphérique Hello est utilisé par votre appareil simulé tooconnect tooyour IoT de supervision. Hello chaîne de connexion de hub IoT est un registre des identités toohello tooconnect utilisés dans vos appareils IoT hub toomanage hello autorisées tooconnect tooyour IoT hub.
 
-- Répertorier tous les IoT Hubs de votre groupe de ressources en exécutant la commande suivante :
+- Liste de tous vos hubs IoT dans votre groupe de ressources en exécutant hello de commande suivante :
 
    ```bash
    az iot hub list -g iot-gateway --query [].name
    ```
 
-   Si vous n’avez pas modifié la valeur, utilisez `iot-gateway` en tant que valeur de `{resource group name}`.
-- Obtenez la chaîne de connexion de l'IoT Hub en exécutant la commande suivante :
+   Utilisez `iot-gateway` en tant que valeur hello `{resource group name}` si vous n’avez pas le modifier.
+- Obtenir la chaîne de connexion de hub IoT hello en exécutant hello de commande suivante :
 
    ```bash
    az iot hub show-connection-string --name {my hub name} -g iot-gateway
    ```
 
-   `{my hub name}` est le nom que vous avez spécifié à la leçon 2.
+   `{my hub name}`est le nom hello que vous avez spécifié dans la leçon 2.
 
-## <a name="configure-the-device-connection-for-the-sample-code"></a>Configurer la connexion de l’appareil pour l'exemple de code
+## <a name="configure-hello-device-connection-for-hello-sample-code"></a>Configurer la connexion du périphérique pour l’exemple de code hello hello
 
-Mettez à jour les configurations de connexion de l'appareil IoT Hub dans `config-azure.json` en effectuant les opérations suivantes :
+Mettre à jour les configurations de connexion IoT hub et de périphérique dans `config-azure.json` en effectuant hello comme suit :
 
-1. Ouvrez `config-azure.json` dans Visual Studio Code en exécutant la commande suivante dans une fenêtre de console :
+1. Ouvrez `config-azure.json` dans le Code de Visual Studio en exécutant hello commande dans une fenêtre de console suivante :
 
    ```bash
    # For Windows command prompt
@@ -71,29 +71,29 @@ Mettez à jour les configurations de connexion de l'appareil IoT Hub dans `confi
    code ~/.iot-hub-getting-started/config-azure.json
    ```
 
-2. Dans le fichier `config-azure.json`, effectuez les remplacements suivants :
+2. Rendre hello suivant remplacements Bonjour `config-azure.json` fichier :
 
    ![capture d’écran de configuration azure](media/iot-hub-gateway-kit-lessons/lesson3/config_azure.png)
 
-   Remplacez `[IoT hub connection string]` par la chaîne de connexion de l'IoT Hub.
+   Remplacez `[IoT hub connection string]` par hello chaîne de connexion de hub IoT.
 
 ## <a name="read-messages-from-your-iot-hub"></a>Lire des messages à partir de votre IoT Hub
 
-Exécutez l’exemple d’application d'appareil simulé et lisez les messages de l'IoT Hub à l'aide de la commande suivante :
+Exécuter l’exemple d’appareil hello simulée application et lire des messages de IoT Hub par hello de commande suivante :
 
 ```bash
 gulp run --iot-hub
 ```
 
-La commande exécute l’application qui envoie des messages à votre IoT Hub toutes les 2 secondes. Elle génère également un processus enfant pour recevoir le message.
+commande Hello s’exécute l’application hello qui envoie IoT hub de messages tooyour toutes les 2 secondes. Il génère également un message de salutation tooreceive processus enfant.
 
-Les messages envoyés et reçus sont tous affichés instantanément sur la même fenêtre de console sur l’ordinateur hôte. L’application va s’arrêter dans 40 secondes.
+messages de type Hello qui sont envoyés et reçus sont tous les hello afficher instantanément à même de fenêtre dans la console hello machine hôte. application Hello s’arrête dans 40 secondes.
 
 ![Exemple d’application d'appareil simulé avec des messages envoyés et reçus](media/iot-hub-gateway-kit-lessons/lesson3/gulp_run_read_hub_simudev.png)
 
 ## <a name="summary"></a>Résumé
 
-Vous avez correctement exécuté l’exemple d’application pour envoyer des données à votre IoT Hub à l'aide d'un appareil simulé. Vous avez également lu les messages qui ont été envoyés à votre IoT Hub.
+Vous avez correctement exécuter tooyour IoT hub hello exemple application toosend données avec un appareil simulé. Vous avez également lire les messages de type hello qui ont été envoyés tooyour IoT hub.
 
 ## <a name="next-steps"></a>Étapes suivantes
 [Créer une application de fonction Azure et un compte de stockage Azure](iot-hub-gateway-kit-c-sim-lesson4-deploy-resource-manager-template.md)

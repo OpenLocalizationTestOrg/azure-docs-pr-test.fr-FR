@@ -1,9 +1,9 @@
 
-1. Visitez le [portail Azure]. Cliquez sur **Parcourir tout** > **Applications mobiles** > le serveur principal que vous venez de créer. Dans les paramètres de l’application mobile, cliquez sur **Démarrage rapide** > **Android)**. Sous **Configurer votre application cliente**, cliquez sur **Télécharger**. Un projet Android complet pour une application préconfigurée pour se connecter à votre serveur principal est téléchargé. 
-2. Ouvrez le projet avec **Android Studio**, en utilisant **Importer un projet (Eclipse ADT, Gradle, etc.)**. Assurez-vous d’éviter toute erreur JDK avec ce choix d’importation.
-3. Appuyez sur le bouton **Exécuter l’application** pour générer le projet et démarrer l’application dans le simulateur Android.
-4. Dans l’application, tapez un texte explicite, comme *Suivre le didacticiel* , puis cliquez sur l’icône Ajouter. Cette action envoie une requête POST au serveur principal Azure déployé précédemment. Le backend insère les données de la requête dans la table SQL TodoItem et renvoie des informations sur les éléments récemment stockés à l’application mobile. L’application mobile affiche ces données dans la liste. 
+1. Visitez hello [Azure Portal]. Cliquez sur **parcourir tous les** > **Mobile Apps** > hello principal que vous venez de créer. Dans les paramètres de l’application mobile hello, cliquez sur **Quickstart** > **Android)**. Sous **Configurer votre application cliente**, cliquez sur **Télécharger**. Cela permet de télécharger un projet Android complet pour un serveur principal d’application préconfigurée tooconnect tooyour. 
+2. Hello ouverte à l’aide de projet **Android Studio**, à l’aide **importer un projet (Eclipse ADT, Gradle, etc.).** . Veillez à bien cette tooavoid de sélection Importer toutes les erreurs JDK.
+3. Hello de presse **exécuter « application »** bouton projet de hello toobuild et démarrer l’application hello dans le simulateur de Android hello.
+4. Dans l’application hello, tapez un texte explicite, tel que *didacticiel de hello complète* puis cliquez sur le bouton « Ajouter » de hello. Envoie un toohello de demande POST Azure principal que vous avez déployé précédemment. insertions de back-end Hello des données de demande de hello dans hello table TodoItem SQL et retourne les informations sur hello stockées qui vient d’être des éléments de sauvegarde toohello des applications mobiles. application mobile Hello affiche ces données dans la liste de hello. 
    
     ![](./media/app-service-mobile-android-quickstart/mobile-quickstart-startup-android.png)
 
-[portail Azure]: https://portal.azure.com/
+[Azure Portal]: https://portal.azure.com/

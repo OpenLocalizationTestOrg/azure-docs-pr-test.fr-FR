@@ -21,4 +21,4 @@
 | Nb max. d'E/S par seconde par machine virtuelle |80 000 E/S par seconde avec la machine virtuelle GS5<sup>1</sup> |
 | Débit max. par machine virtuelle |2 000 Mo/s avec la machine virtuelle GS5<sup>1</sup> |
 
-<sup>1</sup>Consultez la section [Tailles de machine virtuelle](../articles/virtual-machines/linux/sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) pour connaître les autres limites de taille de machine virtuelle. 
+<sup>1</sup>reportez-vous trop[taille de machine virtuelle](../articles/virtual-machines/linux/sizes.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) des limites sur les tailles de machine virtuelle. 

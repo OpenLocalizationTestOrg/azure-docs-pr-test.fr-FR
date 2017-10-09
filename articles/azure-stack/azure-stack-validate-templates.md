@@ -1,6 +1,6 @@
 ---
-title: "Utiliser le validateur de modèle pour vérifier des modèles pour Azure Stack | Microsoft Docs"
-description: "Vérifier des modèles pour un déploiement sur Azure Stack"
+title: "modèles de toocheck aaaUse validateur de modèle pour la pile de Azure | Documents Microsoft"
+description: "Vérifier les modèles de déploiement tooAzure pile"
 services: azure-stack
 documentationcenter: 
 author: HeathL17
@@ -14,42 +14,42 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/14/2017
 ms.author: helaw
-ms.openlocfilehash: bb1d624f4c73bcd5f41dde2d0b13c57c880eca05
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ee649f2ebf77486ca5036116dd73a45d66884704
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="check-your-templates-for-azure-stack-with-template-validator"></a>Vérifier vos modèles pour Azure Stack par le validateur de modèle
-Vous pouvez utiliser l’outil de validation des modèles pour vérifier si vos [modèles](azure-stack-arm-templates.md) Azure Resource Manager sont prêts pour Azure Stack. L’outil de validation des modèles fait partie des outils disponibles avec Azure Stack. Téléchargez les outils Azure Stack en utilisant la procédure décrite dans l’article [Télécharger des outils à partir de GitHub](azure-stack-powershell-download.md). 
+Vous pouvez utiliser toocheck d’outil de validation de modèle hello si votre gestionnaire de ressources Azure [modèles](azure-stack-arm-templates.md) sont prêts pour la pile de Azure. outil de validation de modèle Hello est disponible dans le cadre des outils de pile de Azure hello. Télécharger les outils de pile de Azure hello à l’aide de hello étapes de hello [télécharger les outils à partir de GitHub](azure-stack-powershell-download.md) l’article. 
 
-Pour valider des modèles, vous utilisez les modules PowerShell suivants et le fichier JSON situé dans les dossiers **TemplateValidator** et **CloudCapabilities** : 
+les modèles toovalidate, vous utilisez hello suivant des modules PowerShell et hello JSON fichier situé dans **TemplateValidator** et **CloudCapabilities** dossiers : 
 
- - AzureRM.CloudCapabilities.psm1 crée un fichier JSON des fonctionnalités du cloud représentant les services et versions présentes dans un cloud comme Azure Stack.
- - AzureRM.TemplateValidator.psm1 utilise un fichier JSON des fonctionnalités du cloud pour tester des modèles en vue d’un déploiement dans Azure Stack.
- - AzureStackCloudCapabilities_with_AddOns_20170627.json est un fichier des fonctionnalités du cloud par défaut.  Vous pouvez créer votre propre fichier ou utiliser ce fichier pour commencer. 
+ - AzureRM.CloudCapabilities.psm1 crée un fichier JSON de fonctionnalités cloud représentant les services hello et les versions dans un cloud comme Azure pile.
+ - AzureRM.TemplateValidator.psm1 utilise un modèles de tootest de fichiers JSON des capacités du cloud pour le déploiement dans la pile de Azure.
+ - AzureStackCloudCapabilities_with_AddOns_20170627.json est un fichier des fonctionnalités du cloud par défaut.  Vous pouvez créer vos propres ou utiliser ce tooget fichier a démarré. 
 
 Dans cette rubrique, vous aller exécuter une validation de vos modèles, et éventuellement générer un fichier des fonctionnalités du cloud.
 
 ## <a name="validate-templates"></a>Valider des modèles
-Dans cette procédure, vous allez valider des modèles à l’aide du module PowerShell AzureRM.TemplateValidator. Vous pouvez utiliser vos propres modèles, ou valider les [modèles de démarrage rapide Azure Stack](https://github.com/Azure/AzureStack-QuickStart-Templates).
+Dans ces étapes, valider les modèles à l’aide du module PowerShell de AzureRM.TemplateValidator de hello. Vous pouvez utiliser vos propres modèles, ou valider hello [modèles de démarrage rapide de pile Azure](https://github.com/Azure/AzureStack-QuickStart-Templates).
 
-1.  Importez le module PowerShell AzureRM.TemplateValidator.psm1 :
+1.  Module d’importation hello AzureRM.TemplateValidator.psm1 PowerShell :
     
     ```PowerShell
     cd "c:\AzureStack-Tools-master\TemplateValidator"
     Import-Module .\AzureRM.TemplateValidator.psm1
     ```
 
-2.  Exécutez le validateur de modèle :
+2.  Validateur de modèle hello, exécutez :
 
     ```PowerShell
-    Test-AzureRMTemplate -TemplatePath <path to template.json or template folder> `
-    -CapabilitiesPath <path to cloudcapabilities.json> `
+    Test-AzureRMTemplate -TemplatePath <path tootemplate.json or template folder> `
+    -CapabilitiesPath <path toocloudcapabilities.json> `
     -Verbose
     ```
 
-Les avertissements ou erreurs de validation de modèle sont journalisés sur la console PowerShell, ainsi que dans un fichier HTML situé dans le répertoire source. La sortie de rapport de validation peut se présenter ainsi :
+Les avertissements de validation de modèle ou les erreurs sont journalisées toohello PowerShell console et sont également consignées tooan HTML fichier dans le répertoire source hello. Un exemple de sortie de rapport de validation hello ressemble à ceci :
 
 ![exemple de rapport de validation](./media/azure-stack-validate-templates/image1.png)
 
@@ -57,17 +57,17 @@ Les avertissements ou erreurs de validation de modèle sont journalisés sur la 
 
 | Paramètre | Description | Requis |
 | ----- | -----| ----- |
-| TemplatePath | Spécifie le chemin pour rechercher des modèles Resource Manager de manière récursive | Oui | 
-| TemplatePattern | Spécifie le nom des fichiers de modèle à faire correspondre | Non |
-| CapabilitiesPath | Spécifie le chemin du fichier JSON des fonctionnalités du cloud | Oui | 
+| TemplatePath | Spécifie toorecursively de chemin d’accès hello trouver des modèles de gestionnaire de ressources | Oui | 
+| TemplatePattern | Spécifie le nom hello de toomatch des fichiers de modèle. | Non |
+| CapabilitiesPath | Spécifie le fichier JSON fonctionnalités hello chemin d’accès toocloud | Oui | 
 | IncludeComputeCapabilities | Inclut l’évaluation de ressources IaaS telles que des tailles de machine virtuelle et des extensions de machine virtuelle | Non |
 | IncludeStorageCapabilities | Inclut l’évaluation de ressources de stockage comme des types de références (SKU) | Non |
-| Rapport | Spécifie le nom du rapport HTML généré | Non |
-| Détaillé | Journalise les erreurs et les avertissements dans la console | Non|
+| Rapport | Spécifie le nom de hello le rapport HTML généré | Non |
+| Détaillé | Console de toohello de journaux des erreurs et avertissements | Non|
 
 
 ### <a name="examples"></a>Exemples
-Cet exemple valide tous les [modèles de démarrage rapide Azure Stack](https://github.com/Azure/AzureStack-QuickStart-Templates) téléchargés localement. Il valide également les tailles et extensions de machine virtuelle par rapport aux fonctionnalités du Kit de développement Azure Stack.
+Cet exemple valide tous les hello [modèles de démarrage rapide de pile Azure](https://github.com/Azure/AzureStack-QuickStart-Templates) téléchargé localement et valide également les tailles de machine virtuelle hello et des extensions par rapport aux fonctionnalités du Kit de développement de pile Azure.
 
 ```PowerShell
 test-AzureRMTemplate -TemplatePath C:\AzureStack-Quickstart-Templates `
@@ -78,16 +78,16 @@ test-AzureRMTemplate -TemplatePath C:\AzureStack-Quickstart-Templates `
 ```
 
 ## <a name="build-cloud-capabilities-file"></a>Générer le fichier des fonctionnalités du cloud
-Les fichiers téléchargés incluent un fichier *AzureStackCloudCapabilities_with_AddOns_20170627.json* par défaut, qui décrit les versions de services disponibles dans le Kit de développement Azure Stack avec les services PaaS installés.  Si vous installez des fournisseurs de ressources supplémentaires, vous pouvez utiliser le module PowerShell AzureRM.CloudCapabilities pour générer un fichier JSON incluant les nouveaux services.  
+les fichiers téléchargés Hello incluent une valeur par défaut *AzureStackCloudCapabilities_with_AddOns_20170627.json* fichier, qui décrit les versions de service hello disponibles dans le Kit de développement Azure pile avec les services PaaS.  Si vous installez des fournisseurs de ressources supplémentaires, vous pouvez utiliser un fichier JSON, y compris les nouveaux services de hello hello AzureRM.CloudCapabilities PowerShell module toobuild.  
 
-1.  Vérifiez que vous disposez d’une connectivité à Azure Stack.  Cette procédure peut être effectuée à partir de l’hôte de kit de développement Azure Stack, ou vous pouvez utiliser un [VPN](azure-stack-connect-azure-stack.md#connect-to-azure-stack-with-vpn) pour vous connecter à partir de votre station de travail. 
-2.  Importez le module PowerShell AzureRM.CloudCapabilities :
+1.  Assurez-vous que vous disposez de connectivité tooAzure pile.  Ces étapes peuvent être effectuées à partir de l’hôte de kit de développement de Azure pile hello, ou vous pouvez utiliser [VPN](azure-stack-connect-azure-stack.md#connect-to-azure-stack-with-vpn) tooconnect à partir de votre station de travail. 
+2.  Importez hello module AzureRM.CloudCapabilities PowerShell :
 
     ```PowerShell
     Import-Module .\CloudCapabilities\AzureRM.CloudCapabilities.psm1
     ``` 
 
-3.  Utilisez l’applet de commande Get-CloudCapabilities pour récupérer des versions de services et créer un fichier JSON des fonctionnalités du cloud :
+3.  Utilisez des versions de service de tooretrieve applet de commande Get-CloudCapabilities de hello et créer un fichier JSON de fonctionnalités cloud :
 
     ```PowerShell
     Get-AzureRMCloudCapabilities -Location 'local' -Verbose
@@ -95,6 +95,6 @@ Les fichiers téléchargés incluent un fichier *AzureStackCloudCapabilities_wit
 
 
 ## <a name="next-steps"></a>Étapes suivantes
- - [Déployer des modèles sur Azure Stack](azure-stack-arm-templates.md)
+ - [Déployer des modèles tooAzure pile](azure-stack-arm-templates.md)
  - [Développer des modèles pour Azure Stack] (azure-stack-develop-templates.md)
 

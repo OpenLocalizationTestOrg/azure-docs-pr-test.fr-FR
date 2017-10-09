@@ -1,6 +1,6 @@
 ---
-title: "Ajouter une passerelle de réseau virtuel à un réseau virtuel pour ExpressRoute : portail Azure | Microsoft Docs"
-description: "Cet article vous explique comment ajouter une passerelle de réseau virtuel à un réseau virtuel Resource Manager déjà créé pour ExpressRoute."
+title: "Ajouter un tooa de passerelle de réseau virtuel réseau virtuel pour ExpressRoute : portail : Azure | Documents Microsoft"
+description: "Cet article vous explique comment ajouter un tooan de passerelle de réseau virtuel déjà créé VNet Gestionnaire de ressources pour ExpressRoute."
 documentationcenter: na
 services: expressroute
 author: cherylmc
@@ -15,13 +15,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/17/2017
 ms.author: cherylmc
-ms.openlocfilehash: 2bd0cf8be87937044ad515a2c6f253b1711bb2bf
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9e922af1f3676eeebc569b57c3ae3a22d4e0b395
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="configure-a-virtual-network-gateway-for-expressroute-using-the-azure-portal"></a>Configurer une passerelle de réseau virtuel pour ExpressRoute à l’aide du portail Azure
+# <a name="configure-a-virtual-network-gateway-for-expressroute-using-hello-azure-portal"></a>Configurer une passerelle de réseau virtuel pour ExpressRoute à l’aide de hello portail Azure
 > [!div class="op_single_selector"]
 > * [Resource Manager - Portail Azure](expressroute-howto-add-gateway-portal-resource-manager.md)
 > * [Resource Manager - PowerShell](expressroute-howto-add-gateway-resource-manager.md)
@@ -30,12 +30,12 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-Cet article détaille la procédure requise pour ajouter une passerelle de réseau virtuel pour un réseau virtuel existant. Cet article vous montre les étapes nécessaires pour ajouter, redimensionner et supprimer une passerelle de réseau virtuel pour un réseau virtuel existant. Les étapes de cette configuration sont spécifiquement adaptées aux réseaux virtuels qui ont été créés à l’aide du modèle de déploiement Resource Manager qui sera utilisé dans une configuration ExpressRoute. Pour plus d’informations sur les passerelles de réseau virtuel et les paramètres de configuration de passerelle pour ExpressRoute, consultez [À propos des passerelles de réseau virtuel pour ExpressRoute](expressroute-about-virtual-network-gateways.md). 
+Cet article vous guide dans les étapes de hello tooadd une passerelle de réseau virtuel pour un réseau virtuel existant. Cet article vous guide tout au long des hello étapes tooadd, redimensionner et supprimer une passerelle de réseau virtuel (VNet) pour un réseau virtuel existant. étapes de Hello pour cette configuration sont spécifiquement pour les réseaux virtuels qui ont été créés à l’aide du modèle de déploiement de gestionnaire de ressources hello qui sera utilisé dans une configuration ExpressRoute. Pour plus d’informations sur les passerelles de réseau virtuel et les paramètres de configuration de passerelle pour ExpressRoute, consultez [À propos des passerelles de réseau virtuel pour ExpressRoute](expressroute-about-virtual-network-gateways.md). 
 
 
 ## <a name="before-beginning"></a>Avant tout chose
 
-Les étapes de cette tâche utilisent un réseau virtuel basé sur les valeurs figurant dans la liste de référence de configuration suivante. Nous utilisons cette liste dans notre exemple de procédure. Vous pouvez copier la liste et l’utiliser en tant que référence, en remplaçant les valeurs par les vôtres.
+étapes Hello pour cette tâche, utilisez un réseau virtuel en fonction des valeurs hello hello suivant liste de référence de configuration. Nous utilisons cette liste dans notre exemple de procédure. Vous pouvez copier hello liste toouse en tant que référence, en remplaçant les valeurs hello par les vôtres.
 
 **Liste de référence de configuration**
 
@@ -54,36 +54,36 @@ Les étapes de cette tâche utilisent un réseau virtuel basé sur les valeurs f
 
 Vous pouvez afficher une [vidéo](http://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-create-a-vpn-gateway-for-your-virtual-network) de ces étapes avant de commencer votre configuration.
 
-## <a name="create-the-gateway-subnet"></a>Création d’un sous-réseau de passerelle
+## <a name="create-hello-gateway-subnet"></a>Créez le sous-réseau de passerelle hello
 
-1. Dans le [portail](http://portal.azure.com), accédez au réseau virtuel Resource Manager pour lequel vous souhaitez créer une passerelle de réseau virtuel.
-2. Dans la section**Paramètres** du panneau de votre réseau virtuel, cliquez sur **Sous-réseaux** pour développer le panneau Sous-réseaux.
-3. Dans le panneau **Sous-réseaux**, cliquez sur **+Sous-réseau de passerelle** pour ouvrir le panneau **Ajouter un sous-réseau**. 
+1. Bonjour [portal](http://portal.azure.com), parcourir le réseau virtuel du Gestionnaire de ressources toohello pour lequel vous souhaitez toocreate une passerelle de réseau virtuel.
+2. Bonjour **paramètres** section du Panneau de votre réseau virtuel, cliquez sur **sous-réseaux** Panneau de sous-réseaux tooexpand hello.
+3. Sur hello **sous-réseaux** panneau, cliquez sur **+ sous-réseau de passerelle** tooopen hello **ajouter un sous-réseau** panneau. 
    
-    ![Ajouter un sous-réseau de passerelle](./media/expressroute-howto-add-gateway-portal-resource-manager/addgwsubnet.png "Ajouter un sous-réseau de passerelle")
+    ![Ajouter un sous-réseau de passerelle hello](./media/expressroute-howto-add-gateway-portal-resource-manager/addgwsubnet.png "ajouter un sous-réseau de passerelle hello")
 
 
-4. Le **Nom** de votre sous-réseau est automatiquement rempli avec la valeur « GatewaySubnet ». Cette valeur est nécessaire pour qu’Azure puisse reconnaître le sous-réseau en tant que sous-réseau de passerelle. Ajustez les valeurs de **plage d’adresses** renseignées automatiquement pour qu’elles correspondent à la configuration requise. Nous vous recommandons de créer un sous-réseau de passerelle avec /27 ou plus (/26, /25, etc.). Puis, cliquez sur **OK** pour enregistrer les valeurs et créer le sous-réseau de passerelle.
+4. Hello **nom** pour votre sous-réseau est automatiquement renseigné avec hello valeur « GatewaySubnet ». Cette valeur est requise dans l’ordre pour le sous-réseau de hello toorecognize Azure que le sous-réseau de passerelle hello. Ajuster hello automatiquement renseigné **plage d’adresses** valeurs toomatch la configuration requise. Nous vous recommandons de créer un sous-réseau de passerelle avec /27 ou plus (/26, /25, etc.). Ensuite, cliquez sur **OK** toosave hello valeurs et créer le sous-réseau de passerelle hello.
 
-    ![Ajout du sous-réseau](./media/expressroute-howto-add-gateway-portal-resource-manager/addsubnetgw.png "Ajout du sous-réseau")
+    ![Ajout du sous-réseau de hello](./media/expressroute-howto-add-gateway-portal-resource-manager/addsubnetgw.png "Ajout hello sous-réseau")
 
-## <a name="create-the-virtual-network-gateway"></a>Créer la passerelle de réseau virtuel
+## <a name="create-hello-virtual-network-gateway"></a>Créer une passerelle de réseau virtuel hello
 
-1. Dans le portail, sur le côté gauche, cliquez sur **+**, puis tapez « Passerelle de réseau virtuel » dans la recherche. Recherchez **passerelle de réseau virtuel** dans la zone de recherche et cliquez sur l’entrée. Dans le panneau **Passerelle de réseau virtuel**, cliquez sur **Créer** en bas du panneau. Cette opération ouvre le panneau **Créer une passerelle de réseau virtuel**.
-2. Dans le panneau **Créer une passerelle réseau virtuel**, renseignez les valeurs pour votre passerelle de réseau virtuel.
+1. Dans le portail hello, sur le côté gauche de hello, cliquez sur  **+**  et type de passerelle de réseau virtuel dans la recherche. Recherchez **passerelle de réseau virtuel** dans la recherche de hello retourner et cliquez sur entrée de hello. Sur hello **passerelle de réseau virtuel** panneau, cliquez sur **créer** bas hello du Panneau de hello. Cette opération ouvre hello **créer une passerelle réseau virtuelle** panneau.
+2. Sur hello **créer une passerelle réseau virtuelle** panneau, renseignez les valeurs hello pour votre passerelle de réseau virtuel.
 
     ![Champs du panneau Créer une passerelle de réseau virtuel](./media/expressroute-howto-add-gateway-portal-resource-manager/gw.png "Champs du panneau Créer une passerelle de réseau virtuel")
-3. **Nom** : nommez votre passerelle. Cela ne revient pas au même que de nommer un sous-réseau de passerelle. Il s’agit du nom de l’objet de passerelle que vous créez.
+3. **Nom** : nommez votre passerelle. Cela n’est pas hello identique à un sous-réseau de passerelle d’affectation de noms. Il s’agit de nom hello d’objet hello passerelle que vous créez.
 4. **Type de passerelle** : sélectionnez **ExpressRoute**.
-5. **Référence** : sélectionnez la référence de passerelle dans la liste déroulante.
-6. **Emplacement** : définissez le champ **Emplacement** pour pointer sur l’emplacement dans lequel le réseau virtuel est situé. Si l’emplacement ne pointe pas vers la région où se trouve votre réseau virtuel, le réseau virtuel n’apparaît pas dans la liste déroulante « Choisir un réseau virtuel ».
-7. Choisissez le réseau virtuel auquel vous souhaitez ajouter cette passerelle. Cliquez sur **Réseau virtuel** pour ouvrir le panneau **Choisir un réseau virtuel**. Sélectionnez le réseau virtuel. Si vous ne voyez pas votre réseau virtuel, assurez-vous que le champ **Emplacement** pointe sur la région dans laquelle se trouve votre réseau virtuel.
-9. Définissez une adresse IP publique. Cliquez sur **l’adresse IP publique** pour ouvrir le panneau **Choisir une adresse IP publique**. Cliquez sur **Créer** pour ouvrir le panneau **Créer une adresse IP publique**. Donnez à un nom à votre adresse IP publique. Ce panneau crée un objet d’adresse IP publique à laquelle une adresse IP publique sera être affectée dynamiquement. Cliquez sur **OK** pour enregistrer vos modifications à ce panneau.
-10. **Abonnement** : vérifiez que l’abonnement approprié est sélectionné.
-11. **Groupe de ressources** : ce paramètre est déterminé par le réseau virtuel que vous sélectionnez.
-12. Ne changez pas **l’emplacement** après avoir spécifié les paramètres ci-dessus.
-13. Vérifiez les paramètres. Si vous souhaitez que votre passerelle apparaisse sur le tableau de bord, vous pouvez sélectionner **Épingler au tableau de bord** en bas du panneau.
-14. Cliquez sur **Créer** pour créer la passerelle. Les paramètres sont validés et la passerelle se déploie. La création d’une passerelle de réseau virtuel peut prendre jusqu’à 45 minutes.
+5. **Référence (SKU)**: passerelle hello sélectionnez référence (SKU) à partir de la liste déroulante de hello.
+6. **Emplacement**: ajuster hello **emplacement** champ toopoint toohello emplacement de votre réseau virtuel. Si l’emplacement de hello ne pointe pas toohello la région où se trouve votre réseau virtuel, réseau virtuel de hello n’apparaît pas dans la liste déroulante de hello 'Sélectionner un réseau virtuel'.
+7. Choisissez toowhich de réseau virtuel hello vous voulez tooadd cette passerelle. Cliquez sur **réseau virtuel** tooopen hello **choisir un réseau virtuel** panneau. Sélectionnez hello réseau virtuel. Si vous ne voyez pas votre réseau virtuel, vérifiez que hello **emplacement** champ pointe toohello la région dans lequel se trouve votre réseau virtuel.
+9. Définissez une adresse IP publique. Cliquez sur **adresse IP publique** tooopen hello **choisir une adresse IP publique** panneau. Cliquez sur **+ créer de nouveaux** tooopen hello **lame adresse IP publique de créer**. Donnez à un nom à votre adresse IP publique. Ce panneau crée un public toowhich d’objet d’adresse IP qu'une adresse IP publique sera affectée dynamiquement. Cliquez sur **OK** toosave votre panneau toothis de modifications.
+10. **Abonnement**: Vérifiez que hello correct d’abonnement est sélectionné.
+11. **Groupe de ressources**: ce paramètre est déterminé par hello réseau virtuel que vous sélectionnez.
+12. Ne pas ajuster hello **emplacement** après avoir spécifié les paramètres précédents hello.
+13. Vérifiez les paramètres de hello. Si vous souhaitez que votre tooappear passerelle sur le tableau de bord hello, vous pouvez sélectionner **toodashboard du code confidentiel** bas hello du Panneau de hello.
+14. Cliquez sur **créer** toobegin création hello passerelle. paramètres de Hello sont validés et déploie de passerelle de hello. Création de passerelle de réseau virtuel peut prendre jusqu'à too45 minutes toocomplete.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Une fois que vous avez créé la passerelle de réseau virtuel, vous pouvez lier votre réseau virtuel à un circuit ExpressRoute. Consultez [Liaison d’un réseau virtuel à un circuit ExpressRoute](expressroute-howto-linkvnet-portal-resource-manager.md).
+Une fois que vous avez créé la passerelle de réseau virtuel hello, vous pouvez lier votre réseau virtuel de tooan circuit ExpressRoute. Consultez [lier un circuit ExpressRoute de tooan réseau virtuel](expressroute-howto-linkvnet-portal-resource-manager.md).

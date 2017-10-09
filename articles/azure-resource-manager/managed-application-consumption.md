@@ -1,5 +1,5 @@
 ---
-title: "Utiliser une application gérée Azure | Microsoft Docs"
+title: "application gérée d’aaaConsume Azure | Documents Microsoft"
 description: "Décrit comment un client crée une application gérée Azure à partir de fichiers publiés."
 services: azure-resource-manager
 author: ravbhatnagar
@@ -10,54 +10,54 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 08/23/2017
 ms.author: gauravbh; tomfitz
-ms.openlocfilehash: ed8fbaf2a4546c8e31eeced11cd0b5627fd62c0c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: b8510086eb05304c0e351a391b7e0cf34a467568
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="consume-an-internal-managed-application"></a>Utiliser une application managée interne
 
-Vous pouvez utiliser des [applications managées](managed-application-overview.md) Azure pour les besoins des membres de votre organisation. Par exemple, vous pouvez sélectionner des applications managées dans votre service informatique qui garantissent la conformité par rapport aux normes de l’organisation. Ces applications managées sont disponibles via le catalogue de services, et non la Place de marché Azure.
+Vous pouvez utiliser des [applications managées](managed-application-overview.md) Azure pour les besoins des membres de votre organisation. Par exemple, vous pouvez sélectionner des applications managées dans votre service informatique qui garantissent la conformité par rapport aux normes de l’organisation. Ces applications gérées sont disponibles via hello catalogue de services, pas hello Azure Marketplace.
 
-Avant d’aller plus loin dans la lecture de cet article, vérifiez qu’une application managée est disponible dans le catalogue de services de votre abonnement. Si personne au sein de votre organisation n’a encore créé une application managée, consultez [Publier une application managée pour une utilisation interne](managed-application-publishing.md).
+Avant de procéder à cet article, vous devez disposer d’une application managée disponible dans le catalogue de services hello pour votre abonnement. Si personne au sein de votre organisation n’a encore créé une application managée, consultez [Publier une application managée pour une utilisation interne](managed-application-publishing.md).
 
-Actuellement, vous pouvez utiliser Azure CLI ou le portail Azure pour utiliser une application gérée.
+Actuellement, vous pouvez utiliser soit une CLI d’Azure hello tooconsume portail Azure une application managée.
 
-## <a name="create-the-managed-application-by-using-the-portal"></a>Créer l’application gérée à l’aide du portail
+## <a name="create-hello-managed-application-by-using-hello-portal"></a>Créer l’application hello géré à l’aide du portail de hello
 
-Pour déployer une application managée via le portail, suivez ces étapes :
+toodeploy une application managée via le portail de hello, procédez comme suit :
 
-1. Accédez au portail Azure. Recherchez **Application managée du catalogue de services**.
+1. Accédez toohello portail Azure. Recherchez **Application managée du catalogue de services**.
 
    ![Application gérée du catalogue de services](./media/managed-application-consumption/create-service-catalog-managed-application.png)
 
-1. Sélectionnez l’application managée que vous voulez créer dans la liste des solutions disponibles. Sélectionnez **Créer**.
+1. Sélectionnez hello gérés à application que vous souhaitez toocreate à partir de la liste de hello des solutions disponibles. Sélectionnez **Créer**.
 
    ![Sélection d’application gérée](./media/managed-application-consumption/select-offer.png)
 
-1. Fournissez les valeurs des paramètres nécessaires à l’approvisionnement des ressources. Sélectionnez **Ouest-Centre des États-Unis** comme emplacement. Sélectionnez **OK**.
+1. Fournir des valeurs pour les paramètres de hello qui sont des ressources de hello tooprovision requis. Sélectionnez **Ouest-Centre des États-Unis** comme emplacement. Sélectionnez **OK**.
 
    ![Paramètres de l’application gérée](./media/managed-application-consumption/input-parameters.png)
 
-1. Le modèle valide les valeurs que vous avez fournies. Si la validation aboutit, sélectionnez **OK** pour commencer le déploiement.
+1. modèle de Hello valide les valeurs hello que vous avez fourni. Si la validation réussit, sélectionnez **OK** déploiement de hello toostart.
 
    ![Validation de l’application managée](./media/managed-application-consumption/validation.png)
 
-Une fois le déploiement terminé, les ressources appropriées définies dans le modèle sont approvisionnées dans le groupe de ressources gérées fourni.
+Une fois hello s’achève, les ressources appropriées de hello définis dans le modèle de hello sont configurés dans le groupe de ressources managé hello que vous avez fourni.
 
-## <a name="create-the-managed-application-by-using-azure-cli"></a>Créer l’application gérée à l’aide de l’interface CLI Azure
+## <a name="create-hello-managed-application-by-using-azure-cli"></a>Créer des application hello géré à l’aide de CLI d’Azure
 
-Il existe deux manières de créer une application gérée à l’aide d’Azure CLI :
+Il existe deux façons toocreate une application managée à l’aide d’Azure CLI :
 
-* Utilisez la commande permettant de créer des applications managées.
-* Utilisez la commande de déploiement de modèle standard.
+* Utilisez la commande hello pour créer des applications managées.
+* Utilisez la commande de déploiement de modèle Normal hello.
 
-### <a name="use-the-template-deployment-command"></a>Utiliser la commande de déploiement de modèle
+### <a name="use-hello-template-deployment-command"></a>Utilisez la commande de déploiement de modèle de hello
 
-Déployez le fichier applianceMainTemplate.json créé par le fournisseur.
+Déployer le fichier applianceMainTemplate.json hello hello fournisseur créé.
 
-Puis, créez deux groupes de ressources. Le premier groupe de ressources se trouve là où la ressource d’application managée est créée : Microsoft.Solutions/appliances. Le deuxième groupe de ressources contient toutes les ressources définies dans le fichier mainTemplate.json. Ce groupe de ressources est géré par l’éditeur de logiciels indépendants.
+Puis, créez deux groupes de ressources. Hello premier groupe de ressources est où hello ressources d’application managée est créé : Microsoft.Solutions/appliances. deuxième groupe de ressources Hello contient toutes les ressources hello définis dans mainTemplate.json. Ce groupe de ressources est géré par hello ISV.
 
 ```azurecli
 az group create --name mainResourceGroup --location westcentralus
@@ -65,28 +65,28 @@ az group create --name managedResourceGroup --location westcentralus
 ```
 
 > [!NOTE]
-> Utilisez `westcentralus` comme emplacement du groupe de ressources.
+> Utilisez `westcentralus` comme emplacement hello hello du groupe de ressources.
 >
 
-Utilisez la commande suivante pour déployer le fichier applianceMainTemplate.json dans mainResourceGroup :
+applianceMainTemplate.json toodeploy dans mainResourceGroup, hello utilisez commande suivante :
 
 ```azurecli
 az group deployment create --name managedAppDeployment --resourceGroup mainResourceGroup --templateUri
 ```
 
-Après l’exécution du modèle précédent, il vous demande les valeurs des paramètres qui sont définis dans le modèle. Outre les paramètres requis pour l’approvisionnement des ressources dans un modèle, vous avez besoin de deux valeurs de paramètre essentielles :
+Après avoir hello précédent s’exécute le modèle, il vous invite pour les valeurs de paramètres hello qui sont définis dans le modèle de hello hello. En outre les paramètres de toohello qui sont nécessaires tooprovision des ressources dans un modèle, vous avez besoin de deux valeurs de paramètre de clé :
 
-- **managedResourceGroupId** : ID du groupe de ressources contenant les ressources définies dans applianceMainTemplate.json. L’ID est au format `/subscriptions/{subscriptionId}/resourceGroups/{resoureGroupName}`. Dans l’exemple précédent, il s’agit de l’ID de `managedResourceGroup`.
-- **applianceDefinitionId** : ID de la ressource de la définition de l’application gérée. Cette valeur est fournie par l’éditeur de logiciels indépendants.
+- **managedResourceGroupId**: hello ID des ressources de hello contenant hello ressource groupe défini dans applianceMainTemplate.json. ID de Hello se présente sous forme de hello `/subscriptions/{subscriptionId}/resourceGroups/{resoureGroupName}`. Bonjour précédent exemple, il ID de l’élément hello de `managedResourceGroup`.
+- **applianceDefinitionId**: ID de hello Hello gérés ressource de définition d’application. Cette valeur est fournie par hello ISV.
 
 > [!NOTE]
-> L’éditeur doit accorder l’accès au groupe de ressources qui contient la définition d’application managée. La ressource de définition est créée dans l’abonnement de l’éditeur. Par conséquent, un utilisateur, un groupe d’utilisateurs ou une application du locataire client a besoin d’accéder en lecture à cette ressource.
+> serveur de publication Hello doit accorder l’accès toohello ressource groupe qui contient la définition de l’application hello géré. ressource de définition Hello est créée dans l’abonnement du serveur de publication hello. Par conséquent, un utilisateur, un groupe d’utilisateurs ou une application dans le locataire hello a besoin d’accès en lecture toothis ressource.
 
-À l’issue du déploiement, vous pouvez constater que l’application managée est créée dans mainResourceGroup. La ressource storageAccount est créée dans managedResourceGroup.
+Une fois le déploiement de hello se termine correctement, vous voyez hello géré application est créée dans mainResourceGroup. ressources de storageAccount Hello est créé dans managedResourceGroup.
 
-### <a name="use-the-create-command"></a>Utiliser la commande create
+### <a name="use-hello-create-command"></a>Hello d’utilisation Créer commande
 
-Vous pouvez utiliser la commande `az managedapp create` pour créer une application gérée à partir de la définition d’application gérée.
+Vous pouvez utiliser hello `az managedapp create` commande toocreate une application managée à partir de hello gérés définition d’application.
 
 ```azurecli
 az managedapp create --name ravtestappliance401 --location "westcentralus"
@@ -97,29 +97,29 @@ az managedapp create --name ravtestappliance401 --location "westcentralus"
     --debug
 ```
 
-* **appliance-definition-Id** : ID de ressource de la définition de l’application managée créée à l’étape précédente. Pour obtenir cet ID, exécutez la commande suivante :
+* **Id de définition d’application**: ID de ressource hello Hello gérés créée dans hello précédant l’étape de définition d’application. tooobtain cet ID, exécutez hello de commande suivante :
 
   ```azurecli
   az appliance definition show -n ravtestAppDef1 -g ravApplianceRG2
   ```
 
-  Cette commande retourne la définition de l’application managée. Vous avez besoin de la valeur de la propriété ID.
+  Cette commande renvoie la définition de l’application hello géré. Vous devez valeur hello de propriété d’ID hello.
 
-* **managed-rg-id** : nom du groupe de ressources contenant les ressources définies dans applianceMainTemplate.json. Ce groupe de ressources est le groupe de ressources gérées. Il est géré par l’éditeur. S’il n’existe pas, il est créé pour vous.
-* **resource-group** : groupe de ressources dans lequel la ressource d’application managée est créée. La ressource Microsoft.Solutions/appliance se trouve dans ce groupe de ressources.
-* **parameters** : paramètres qui sont nécessaires aux ressources définies dans le fichier applianceMainTemplate.json.
+* **id du groupe de routage managé**: nom hello des ressources de hello contenant hello ressource groupe défini dans applianceMainTemplate.json. Ce groupe de ressources est un groupe de ressources managé hello. Il est géré par le serveur de publication hello. S’il n’existe pas, il est créé pour vous.
+* **groupe de ressources**: groupe de ressources hello où hello géré de ressource d’application est créé. Hello Microsoft.Solutions/appliance ressource se situe à ce groupe de ressources.
+* **paramètres**: hello des paramètres qui sont nécessaires pour les ressources hello définis dans applianceMainTemplate.json.
 
 ## <a name="known-issues"></a>Problèmes connus
 
-Cette version préliminaire comprend les problèmes suivants :
+Cette préversion inclut hello suivants :
 
-* Une erreur de serveur interne 500 apparaît pendant la création de l’application managée. Si vous rencontrez ce problème, il est sans doute intermittent. Retentez l’opération.
-* Un nouveau groupe de ressources est nécessaire pour le groupe de ressources gérées. L’utilisation d’un groupe de ressources existant provoque l’échec du déploiement.
-* Le groupe de ressources qui contient la ressource Microsoft.Solutions/appliances doit être créé à l’emplacement **westcentralus**.
+* Une erreur de serveur interne 500 apparaît lors de la création de hello de l’application hello géré. Si vous rencontrez ce problème, il est probable toobe intermittent. Recommencez l’opération de hello.
+* Un groupe de ressources est nécessaire pour le groupe de ressources managé hello. Si vous utilisez un groupe de ressources existant, le déploiement de hello échoue.
+* Hello groupe de ressources qui contient la ressource de Microsoft.Solutions/appliances hello doit être créée dans hello **westcentralus** emplacement.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* Pour voir une présentation des applications gérées, consultez [Vue d’ensemble des applications gérées](managed-application-overview.md).
+* Pour une introduction toomanaged les applications, voir [vue d’ensemble de Managed application](managed-application-overview.md).
 * Pour plus d’informations sur la publication d’une application gérée de catalogue de services, consultez l’article [Créer et publier une application gérée de catalogue de services](managed-application-publishing.md).
-* Pour plus d’informations sur la publication d’applications gérées sur la Place de marché, consultez l’article [Applications gérées sur la Place de marché](managed-application-author-marketplace.md).
-* Pour plus d’informations sur l’utilisation d’applications gérées de la Place de marché, consultez l’article [Utilisation des applications gérées de la Place de marché Azure](managed-application-consume-marketplace.md).
+* Pour plus d’informations sur la publication des applications managées toohello Azure Marketplace, consultez [Azure géré applications Bonjour Marketplace](managed-application-author-marketplace.md).
+* Pour plus d’informations sur la consommation d’une application managée à partir de hello Marketplace, consultez [Azure de consommer gérés applications Bonjour Marketplace](managed-application-consume-marketplace.md).

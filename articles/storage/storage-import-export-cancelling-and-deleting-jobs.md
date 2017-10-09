@@ -1,6 +1,6 @@
 ---
-title: "Annulation et suppression d’un travail d’importation Azure Import/Export | Microsoft Docs"
-description: "Découvrez comment annuler et supprimer des travaux pour le service Microsoft Azure Import/Export."
+title: aaaCancel et supprimer un travail Azure Import/Export | Documents Microsoft
+description: "Découvrez comment toocancel et supprimer des travaux pour hello service Microsoft Azure Import/Export."
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,20 +14,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
-ms.openlocfilehash: e0a7ff391e5a03ed563912dea54c7cfe73111bcf
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5d2aba510dafd0ca9a10f5643f721e7059a6a8f1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="canceling-and-deleting-azure-importexport-jobs"></a>Annulation et suppression de travaux du service Azure Import/Export
 
-Vous pouvez demander qu’un travail soit annulé avant qu’il ne soit dans l’état `Packaging` en appelant l’opération [Update Job Properties](/rest/api/storageimportexport/jobs#Jobs_Update) et en définissant l’élément `CancelRequested` sur `true`. Le travail sera annulé de manière optimale. Si des données sont en cours de transfert sur les disques, cette opération peut se poursuivre même après que l’annulation ait été demandée.
+Vous pouvez demander qu’une tâche annulée avant qu’il soit Bonjour `Packaging` état en appelant hello [propriétés de tâche de mise à jour](/rest/api/storageimportexport/jobs#Jobs_Update) opération et le paramètre hello `CancelRequested` élément trop`true`. tâche de Hello sera annulée de manière optimale. Si les lecteurs sont en cours de hello de transfert de données, les données peuvent continuer toobe transférée même après que l’annulation a été demandée.
 
- Un travail annulé passe à l’état `Completed` et sera conservé pendant 90 jours, après quoi il sera supprimé.
+ Un travail annulé déplacera toohello `Completed` d’état et conservé pendant 90 jours, à quel point il sera supprimé.
 
- Pour supprimer un travail, appelez l’opération [Delete Job](/rest/api/storageimportexport/jobs#Jobs_Delete) avant que le travail ne soit expédié (*c’est-à-dire*, pendant que le travail est dans l’état `Creating`). Vous pouvez également supprimer un travail lorsqu’il se trouve dans l’état `Completed`. Après la suppression d’un travail, ses informations et son état ne sont plus accessibles via l’API REST ou le portail Azure.
+ toodelete un travail, appel hello [supprimer le travail](/rest/api/storageimportexport/jobs#Jobs_Delete) opération avant que le travail de hello a été expédiée (*c'est-à-dire*, tandis que le travail de hello est Bonjour `Creating` état). Vous pouvez également supprimer un travail lorsqu’il est Bonjour `Completed` état. Après la suppression d’un travail, ses informations et l’état ne sont plus accessibles via l’API REST de hello ou hello portail Azure.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* [Utilisation de l’API REST du service Import/Export](storage-import-export-using-the-rest-api.md)
+* [À l’aide des API REST du service importation/exportation hello](storage-import-export-using-the-rest-api.md)

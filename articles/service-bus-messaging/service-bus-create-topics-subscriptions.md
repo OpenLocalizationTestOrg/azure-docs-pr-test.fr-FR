@@ -1,6 +1,6 @@
 ---
-title: "Création d’applications qui utilisent des rubriques et des abonnements Azure Service Bus | Microsoft Docs"
-description: Introduction aux fonctions publication-abonnement offertes par les abonnements et les rubriques de Service Bus.
+title: aaaCreate les applications qui utilisent des rubriques et abonnements Azure Service Bus | Documents Microsoft
+description: "Introduction toohello publication-abonnement fonctionnalités offertes par les abonnements et les rubriques Service Bus."
 services: service-bus-messaging
 documentationcenter: na
 author: sethmanheim
@@ -14,47 +14,47 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 04/07/2017
 ms.author: sethm
-ms.openlocfilehash: eb01120ce9578f716e5381c107faa93f0b36e358
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: f6d7de46ace7bd5b49de612db213ced789308d91
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-applications-that-use-service-bus-topics-and-subscriptions"></a>Création d’applications qui utilisent des rubriques et des abonnements Service Bus
-Azure Service Bus prend en charge un ensemble de technologies interlogicielles Cloud orientées messages, notamment une mise en file d'attente des messages fiable et une messagerie de publication/abonnement durable. Cet article s’appuie sur les informations fournies dans [Création d’applications qui utilisent les files d’attente Service Bus](service-bus-create-queues.md) et présente les fonctionnalités de publication/d’abonnement offertes par les rubriques Service Bus.
+Azure Service Bus prend en charge un ensemble de technologies interlogicielles Cloud orientées messages, notamment une mise en file d'attente des messages fiable et une messagerie de publication/abonnement durable. Cet article s’appuie sur les informations de hello fournies dans [créer des applications qui utilisent des files d’attente Service Bus](service-bus-create-queues.md) et offre une introduction toohello des fonctionnalités de publication/abonnement offertes par les rubriques Service Bus.
 
 ## <a name="evolving-retail-scenario"></a>Scénario de vente au détail - La suite
-Cet article propose une suite du scénario de vente au détail décrit dans la rubrique [Création d’applications qui utilisent les files d’attente Service Bus](service-bus-create-queues.md). Souvenez-vous. Les données de vente recueillies à partir de terminaux de point de vente (PDV) doivent être acheminées vers un système de gestion des stocks. Celui-ci utilise ces données pour déterminer le moment où il est nécessaire de renouveler les stocks. Chaque terminal de PDV consigne ses données de vente en envoyant des messages à la file d’attente **DataCollectionQueue**, dans laquelle ils sont conservés jusqu’à ce qu’ils soient reçus par le système de gestion des stocks, comme illustré ici :
+Cet article poursuit le scénario de vente au détail hello utilisé dans [créer des applications qui utilisent des files d’attente Service Bus](service-bus-create-queues.md). Rappelez-vous que les données de vente des terminaux de Point de vente (PDV) individuels doivent être routé tooan inventaire gestion système qui utilise ce toodetermine données quand toobe réapprovisionné. Chaque terminal de PDV fournit ses données de vente en envoyant des messages toohello **DataCollectionQueue** file d’attente, où elles restent jusqu'à ce qu’ils sont reçus par le système de gestion des stocks hello, comme illustré ici :
 
 ![Service Bus 1](./media/service-bus-create-topics-subscriptions/IC657161.gif)
 
-Pour faire évoluer ce scénario, une nouvelle exigence a été ajoutée au système : le propriétaire de la boutique aimerait surveiller les performances de son point de vente en temps réel.
+tooevolve ce scénario, une nouvelle spécification a été ajouté toohello système : propriétaire du magasin hello veut toobe toomonitor en mesure de performances de magasin de hello en temps réel.
 
-Pour répondre à cette exigence, le système doit puiser des informations dans le flux de données des ventes. Nous souhaitons conserver l'envoi systématique de chaque message provenant des terminaux de PDV vers le système de gestion des stocks, comme c'était le cas auparavant. En revanche, nous souhaitons créer une copie de chaque message pour l'utiliser dans une vue sous forme de tableau de bord à destination du propriétaire du magasin.
+tooaddress cette exigence, hello système doit « puiser » désactiver le flux de données de ventes hello. Nous voulons toujours que chaque message envoyé par toobe de terminaux de PDV hello envoyé toohello inventaire système de gestion des, mais nous voulons une autre copie de chaque message que nous pouvons utiliser le propriétaire du magasin vue toohello toopresent hello du tableau de bord.
 
-Dans tous les cas de ce type, quand chaque message doit être consommé par plusieurs parties, vous pouvez utiliser les *rubriques* Service Bus. Les rubriques fournissent un modèle de publication/d’abonnement, dans lequel chaque message publié est mis à disposition d’un abonnement (ou plusieurs) inscrit auprès de la rubrique. Au contraire, avec les files d'attente, chaque message est reçu par un seul consommateur.
+Dans tous les cas comme celui-ci, dans lequel vous avez besoin de chaque toobe message consommé par plusieurs parties, vous pouvez utiliser Service Bus *rubriques*. Rubriques fournissent un modèle de publication/abonnement dans lequel chaque message publié devient disponible tooone ou plusieurs abonnements inscrit auprès de rubrique de hello. Au contraire, avec les files d'attente, chaque message est reçu par un seul consommateur.
 
-Les messages sont envoyés à une rubrique de la même façon qu’ils sont envoyés à une file d’attente. Toutefois, les messages ne sont pas reçus à partir de la rubrique directement ; ils sont reçus à partir des abonnements. Un abonnement à une rubrique ressemble à une file d’attente virtuelle qui reçoit des copies des messages envoyés à la rubrique en question. Les messages sont reçus à partir d’un abonnement identique de la même façon que ceux qui sont reçus de la file d’attente.
+Les messages sont envoyés tooa rubrique Bonjour même façon qu’ils sont envoyés à la file d’attente de tooa. Toutefois, les messages ne sont pas reçues à partir de la rubrique de hello directement ; ils sont reçus à partir d’abonnements. Vous pouvez considérer une rubrique de tooa abonnement comme une file d’attente virtuelle qui reçoit des copies de messages hello envoyés toothat rubrique. Les messages sont reçus à partir d’un abonnement hello même façon qu’ils sont reçus à partir d’une file d’attente.
 
-Pour revenir au scénario de vente au détail, la file d’attente est remplacée par une rubrique et un abonnement est ajouté. Il sera utilisé par le composant du système de gestion des stocks. Le système se présente alors comme suit :
+Revenons un scénario de vente au détail toohello, file d’attente hello est remplacé par une rubrique et un abonnement est ajouté, le composant de système de gestion hello inventaire peut utiliser. système de Hello apparaît désormais comme suit :
 
 ![Service Bus 2](./media/service-bus-create-topics-subscriptions/IC657165.gif)
 
-La configuration ici se comporte comme la conception précédente basée sur la file d'attente. Autrement dit, les messages envoyés à la rubrique sont routés vers l’abonnement **Inventaire**, à partir duquel le **système de gestion des stocks** les consomme.
+configuration de Hello ici identique conception basée sur la file d’attente précédente de toohello. Autrement dit, les messages envoyés toohello rubrique sont routé toohello **inventaire** abonnement, à partir de quels hello **système de gestion des stocks** les consomme.
 
-Pour prendre en charge le tableau de bord de gestion, créons un second abonnement sur la rubrique, comme illustré ici :
+Dans le tableau de bord de gestion de commande toosupport hello, nous créons un deuxième abonnement sur la rubrique de hello, comme indiqué ici :
 
 ![Service Bus 3](./media/service-bus-create-topics-subscriptions/IC657166.gif)
 
-Avec cette configuration, chaque message provenant des terminaux de PDV est accessible à la fois aux abonnements **Tableau de bord** et **Inventaire**.
+Avec cette configuration, chaque message des terminaux de PDV de hello est mis à disposition tooboth hello **tableau de bord** et **inventaire** abonnements.
 
-## <a name="show-me-the-code"></a>Afficher le code
-L’article [Création d’applications qui utilisent les files d’attente Service Bus](service-bus-create-queues.md) décrit comment s’inscrire pour obtenir un compte Azure et créer un espace de noms de service. Le moyen le plus simple pour référencer des dépendances Service Bus consiste à installer le [package Nuget](https://www.nuget.org/packages/WindowsAzure.ServiceBus/) de Service Bus. Vous trouverez également les bibliothèques Service Bus dans le kit de développement logiciel (SDK) d'Azure. Le téléchargement est disponible sur la [page de téléchargement du Kit de développement logiciel (SDK) Azure](https://azure.microsoft.com/downloads/).
+## <a name="show-me-hello-code"></a>Afficher le code de hello
+article de Hello [créer des applications qui utilisent des files d’attente Service Bus](service-bus-create-queues.md) décrit comment toosign pour un compte Azure et créez un espace de noms de service. dépendances du Service Bus tooreference Hello plus simple moyen est tooinstall hello Service Bus [package Nuget](https://www.nuget.org/packages/WindowsAzure.ServiceBus/). Vous pouvez également trouver hello bibliothèques Service Bus dans le cadre de hello Azure SDK. Bonjour téléchargement est disponible à l’adresse hello [page de téléchargement de Windows Azure SDK](https://azure.microsoft.com/downloads/).
 
-### <a name="create-the-topic-and-subscriptions"></a>Créez la rubrique et les abonnements
-Les opérations de gestion des entités de messagerie Service Bus (rubriques files d’attente et publication/abonnement) sont effectuées via la classe [NamespaceManager](/dotnet/api/microsoft.servicebus.namespacemanager#microsoft_servicebus_namespacemanager). Des informations d’identification appropriées sont nécessaires pour créer une instance **NamespaceManager** pour un espace de noms particulier. Service Bus utilise un modèle de sécurité basé sur une [signature d’accès partagé (SAP)](service-bus-sas.md). La classe [TokenProvider](/dotnet/api/microsoft.servicebus.tokenprovider#microsoft_servicebus_tokenprovider) représente un fournisseur de jetons de sécurité dont les méthodes de fabrique intégrées renvoient des fournisseurs de jetons bien connus. Nous allons utiliser une méthode [CreateSharedAccessSignatureTokenProvider](/dotnet/api/microsoft.servicebus.tokenprovider#Microsoft_ServiceBus_TokenProvider_CreateSharedAccessSignatureTokenProvider_System_String_) pour retenir les informations d’identification SAP. L’instance [NamespaceManager](/dotnet/api/microsoft.servicebus.namespacemanager#microsoft_servicebus_namespacemanager) est ensuite créée avec l’adresse de base de l’espace de noms Service Bus et du fournisseur de jetons.
+### <a name="create-hello-topic-and-subscriptions"></a>Créer des abonnements et la rubrique de hello
+Opérations de gestion de Service Bus entités de messagerie (files d’attente et publication/abonnement rubriques) sont effectuent via hello [NamespaceManager](/dotnet/api/microsoft.servicebus.namespacemanager#microsoft_servicebus_namespacemanager) classe. Informations d’identification appropriées sont requises dans la commande toocreate un **NamespaceManager** instance pour un espace de noms particulier. Service Bus utilise un modèle de sécurité basé sur une [signature d’accès partagé (SAP)](service-bus-sas.md). Hello [TokenProvider](/dotnet/api/microsoft.servicebus.tokenprovider#microsoft_servicebus_tokenprovider) classe représente un fournisseur de jetons de sécurité avec les méthodes de fabrique intégrées retournant des fournisseurs de jeton bien connus. Nous allons utiliser un [CreateSharedAccessSignatureTokenProvider](/dotnet/api/microsoft.servicebus.tokenprovider#Microsoft_ServiceBus_TokenProvider_CreateSharedAccessSignatureTokenProvider_System_String_) informations d’identification de méthode toohold hello SAP. Hello [NamespaceManager](/dotnet/api/microsoft.servicebus.namespacemanager#microsoft_servicebus_namespacemanager) instance est ensuite créée avec l’adresse de base hello d’espace de noms Service Bus hello et le fournisseur de jetons hello.
 
-La classe [NamespaceManager](/dotnet/api/microsoft.servicebus.namespacemanager#microsoft_servicebus_namespacemanager) fournit des méthodes pour créer, énumérer et supprimer des entités de messagerie. Le code ci-dessous montre comment l’instance **NamespaceManager** est créée et utilisée pour créer la rubrique **DataCollectionTopic**.
+Hello [NamespaceManager](/dotnet/api/microsoft.servicebus.namespacemanager#microsoft_servicebus_namespacemanager) classe fournit des méthodes toocreate, énumérer et supprimer des entités de messagerie. Hello code fourni ici montre comment hello **NamespaceManager** instance est créé et utilisé toocreate hello **DataCollectionTopic** rubrique.
 
 ```csharp
 Uri uri = ServiceBusEnvironment.CreateServiceUri("sb", "test-blog", string.Empty);
@@ -67,21 +67,21 @@ NamespaceManager namespaceManager = new NamespaceManager(uri, tokenProvider);
 namespaceManager.CreateTopic("DataCollectionTopic");
 ```
 
-Notez qu’il existe des surcharges de la méthode [CreateTopic](/dotnet/api/microsoft.servicebus.namespacemanager#Microsoft_ServiceBus_NamespaceManager_CreateTopic_System_String_) qui vous permettent de définir les propriétés de la rubrique. Par exemple, vous pouvez définir la valeur par défaut de durée de vie « time-to-live » pour les messages envoyés à la rubrique. Ensuite, ajoutez les abonnements **Inventaire** et **Tableau de bord**.
+Notez qu’il existe des surcharges de hello [CreateTopic](/dotnet/api/microsoft.servicebus.namespacemanager#Microsoft_ServiceBus_NamespaceManager_CreateTopic_System_String_) méthode qui vous permettent de tooset les propriétés de la rubrique de hello. Par exemple, vous pouvez définir hello time-to-live (TTL) par défaut pour les messages envoyés toohello rubrique. Ensuite, ajoutez hello **inventaire** et **tableau de bord** abonnements.
 
 ```csharp
 namespaceManager.CreateSubscription("DataCollectionTopic", "Inventory");
 namespaceManager.CreateSubscription("DataCollectionTopic", "Dashboard");
 ```
 
-### <a name="send-messages-to-the-topic"></a>Envoyez des messages à la rubrique
-Pour des opérations d’exécution sur les entités Service Bus ; par exemple, pour l’envoi et la réception de messages, une application doit tout d’abord créer un objet [MessagingFactory](/dotnet/api/microsoft.servicebus.messaging.messagingfactory#microsoft_servicebus_messaging_messagingfactory). Semblable à la classe [NamespaceManager](/dotnet/api/microsoft.servicebus.namespacemanager#microsoft_servicebus_namespacemanager), l’instance **MessagingFactory** est créée à partir de l’adresse de base de l’espace de noms et du fournisseur de jetons.
+### <a name="send-messages-toohello-topic"></a>Rubrique toohello de messages d’envoi
+Pour des opérations d’exécution sur les entités Service Bus ; par exemple, pour l’envoi et la réception de messages, une application doit tout d’abord créer un objet [MessagingFactory](/dotnet/api/microsoft.servicebus.messaging.messagingfactory#microsoft_servicebus_messaging_messagingfactory). Similaire toohello [NamespaceManager](/dotnet/api/microsoft.servicebus.namespacemanager#microsoft_servicebus_namespacemanager) classe hello **MessagingFactory** instance est créée à partir de l’adresse de base hello d’espace de noms de service hello et le fournisseur de jetons hello.
 
 ```
 MessagingFactory factory = MessagingFactory.Create(uri, tokenProvider);
 ```
 
-Les messages envoyés aux rubriques Service Bus (et reçus de celles-ci) sont des instances de la classe [BrokeredMessage](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage). Cette classe se compose d’un ensemble de propriétés standard (telles que [Label](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage.label?view=azureservicebus-4.0.0#Microsoft_ServiceBus_Messaging_BrokeredMessage_Label) et [TimeToLive](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage.timetolive?view=azureservicebus-4.0.0#Microsoft_ServiceBus_Messaging_BrokeredMessage_TimeToLive)), un dictionnaire servant à conserver les propriétés propres à une application, ainsi qu’un corps de données d’application arbitraires. Une application peut définir le corps en transmettant un objet sérialisable (l’exemple suivant transmet un objet **SalesData** qui représente les données de ventes à partir du terminal de PDV), qui utilisera [DataContractSerializer](https://msdn.microsoft.com/library/system.runtime.serialization.datacontractserializer.aspx) pour sérialiser l’objet. Une autre possibilité consiste à fournir un objet [Stream](https://msdn.microsoft.com/library/system.io.stream.aspx).
+Tooand envoyés des messages reçu à partir des rubriques Service Bus, sont des instances de hello [BrokeredMessage](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage) classe. Cette classe se compose d’un ensemble de propriétés standard (tels que [étiquette](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage.label?view=azureservicebus-4.0.0#Microsoft_ServiceBus_Messaging_BrokeredMessage_Label) et [TimeToLive](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage.timetolive?view=azureservicebus-4.0.0#Microsoft_ServiceBus_Messaging_BrokeredMessage_TimeToLive)), un dictionnaire de propriétés de l’application toohold utilisées et un corps de données d’application arbitraire. Une application peut définir le corps de hello en passant tout objet sérialisable (hello exemple suivant passe dans un **SalesData** objet qui représente les données de ventes hello de terminal de PDV de hello), qui sera utilisée hello [ DataContractSerializer](https://msdn.microsoft.com/library/system.runtime.serialization.datacontractserializer.aspx) objet de hello tooserialize. Une autre possibilité consiste à fournir un objet [Stream](https://msdn.microsoft.com/library/system.io.stream.aspx).
 
 ```csharp
 BrokeredMessage bm = new BrokeredMessage(salesData);
@@ -90,7 +90,7 @@ bm.Properties["StoreName"] = "Redmond";
 bm.Properties["MachineID"] = "POS_1";
 ```
 
-Le moyen le plus simple pour envoyer des messages à la rubrique consiste à utiliser [CreateMessageSender](/dotnet/api/microsoft.servicebus.messaging.messagingfactory#Microsoft_ServiceBus_Messaging_MessagingFactory_CreateMessageSender_System_String_) pour créer un objet [MessageSender](/dotnet/api/microsoft.servicebus.messaging.messagesender) directement à partir de l’instance [MessagingFactory](/dotnet/api/microsoft.servicebus.messaging.messagingfactory) :
+rubrique de Hello plus simple façon toosend messages toohello est toouse [CreateMessageSender](/dotnet/api/microsoft.servicebus.messaging.messagingfactory#Microsoft_ServiceBus_Messaging_MessagingFactory_CreateMessageSender_System_String_) toocreate un [MessageSender](/dotnet/api/microsoft.servicebus.messaging.messagesender) objet directement à partir de hello [MessagingFactory](/dotnet/api/microsoft.servicebus.messaging.messagingfactory) instance :
 
 ```csharp
 MessageSender sender = factory.CreateMessageSender("DataCollectionTopic");
@@ -98,9 +98,9 @@ sender.Send(bm);
 ```
 
 ### <a name="receive-messages-from-a-subscription"></a>Réception des messages d’un abonnement
-Semblable à l’utilisation des files d’attente, pour recevoir des messages à partir d’un abonnement, vous pouvez utiliser un objet [MessageReceiver](/dotnet/api/microsoft.servicebus.messaging.messagereceiver) que vous pouvez créer directement à partir de [MessagingFactory](/dotnet/api/microsoft.servicebus.messaging.messagingfactory) à l’aide de [CreateMessageReceiver](/dotnet/api/microsoft.servicebus.messaging.messagingfactory#Microsoft_ServiceBus_Messaging_MessagingFactory_CreateMessageReceiver_System_String_). Vous pouvez utiliser l’un des deux modes de réception (**ReceiveAndDelete** et **PeekLock**), comme indiqué dans [Création d’applications qui utilisent les files d’attente Service Bus](service-bus-create-queues.md).
+Les files d’attente de toousing similaire, tooreceive des messages à partir d’un abonnement, vous pouvez utiliser un [MessageReceiver](/dotnet/api/microsoft.servicebus.messaging.messagereceiver) objet que vous créez directement à partir de hello [MessagingFactory](/dotnet/api/microsoft.servicebus.messaging.messagingfactory) à l’aide de [ CreateMessageReceiver](/dotnet/api/microsoft.servicebus.messaging.messagingfactory#Microsoft_ServiceBus_Messaging_MessagingFactory_CreateMessageReceiver_System_String_). Vous pouvez utiliser l’une de hello deux différents modes de réception (**ReceiveAndDelete** et **PeekLock**), comme indiqué dans [créer des applications qui utilisent des files d’attente Service Bus](service-bus-create-queues.md).
 
-Notez que lorsque vous créez un **MessageReceiver** pour les abonnements, le paramètre *entityPath* se présente comme suit : `topicPath/subscriptions/subscriptionName`. Par conséquent, pour créer un **MessageReceiver** pour l’abonnement **Inventaire** de la rubrique **DataCollectionTopic**, *entityPath* doit être défini sur `DataCollectionTopic/subscriptions/Inventory`. Le code apparaît comme suit :
+Notez que lorsque vous créez un **MessageReceiver** pour les abonnements, hello *entityPath* paramètre se présente sous forme de hello `topicPath/subscriptions/subscriptionName`. Par conséquent, toocreate un **MessageReceiver** pour hello **inventaire** abonnement Hello **DataCollectionTopic** rubrique, *entityPath*doit être défini trop`DataCollectionTopic/subscriptions/Inventory`. code de Hello apparaît comme suit :
 
 ```csharp
 MessageReceiver receiver = factory.CreateMessageReceiver("DataCollectionTopic/subscriptions/Inventory");
@@ -117,30 +117,30 @@ catch (Exception e)
 ```
 
 ## <a name="subscription-filters"></a>Filtres d’abonnement
-Jusqu’ici, dans ce scénario, tous les messages envoyés à la rubrique sont rendus disponibles pour tous les abonnements inscrits. L'expression clé ici est « rendus disponibles ». Bien que les abonnements Service Bus voient tous les messages envoyés à la rubrique, vous pouvez uniquement copier un sous-ensemble de ces messages dans la file d’attente d’abonnement virtuelle. Pour ce faire, il faut utiliser des *filtres* d’abonnement. Lorsque vous créez un abonnement, vous pouvez fournir une expression de filtre sous la forme d’un prédicat de style SQL92 qui fonctionne avec les propriétés du message, à la fois les propriétés système (par exemple, [Label](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_Label)) et les propriétés de l’application, telles que **StoreName** dans l’exemple précédent.
+Jusqu'à présent, dans ce scénario, tous les messages envoyés toohello rubrique sont effectuées les abonnements disponibles tooall inscrit. expression de clé Hello ici est « accessible. » Bien que les abonnements Service Bus afficher tous les messages envoyés toohello rubrique, vous pouvez copier uniquement un sous-ensemble de ces files d’attente de messages toohello virtuelle des abonnements. Pour ce faire, il faut utiliser des *filtres* d’abonnement. Lorsque vous créez un abonnement, vous pouvez fournir une expression de filtre sous forme de hello d’un prédicat de type SQL92 qui opère sur les propriétés de message de type hello hello, les deux hello propriétés système (par exemple, [étiquette](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_Label)) et l’application hello propriétés, telles que **StoreName** dans l’exemple précédent de hello.
 
-Pour que le scénario de vente au détail soit plus complet et pour illustrer ce propos, nous allons ajouter un deuxième magasin. Les données de vente de tous les terminaux de PDV des deux magasins doivent toujours être acheminées vers le système de gestion des stocks central. En revanche, le directeur de chaque magasin, qui utilise l’outil de tableau de bord, souhaite visualiser uniquement les données qui concernent les performances de son magasin. Pour répondre à cette difficulté, vous pouvez utiliser un filtre d’abonnement. Remarque : lorsque les terminaux de PDV publient des messages, la propriété de l’application **StoreName** est définie dans le message. Prenons deux magasins, par exemple **Redmond** et **Seattle**. Les terminaux de PDV du magasin de Redmond estampillent leurs messages de données de ventes avec un **StoreName** égal à **Redmond**. Les terminaux de PDV du magasin de Seattle, quant à eux, utilisent un **StoreName** égal à **Seattle**. Le responsable de magasin de Redmond souhaite accéder uniquement aux données recueillies à partir de ses terminaux de PDV. Le système se présente comme suit :
+Évolution hello scénario tooillustrate cela, un deuxième magasin est scénario de vente au détail toobe tooour ajouté. Chiffres des ventes de tous les terminaux hello POS à partir des deux magasins ont toujours système de gestion du stock toobe routé toohello centralisée, mais un gestionnaire de magasin à l’aide d’outil de tableau de bord hello est uniquement intéressé par les performances de hello de ce magasin. Vous pouvez utiliser l’abonnement filtrage tooachieve cela. Notez que lorsque les terminaux de PDV de hello publient des messages, ils définir hello **StoreName** propriété d’application sur le message de type hello. Étant donné deux magasins, par exemple **Redmond** et **Seattle**, terminaux hello POS Bonjour Redmond stockent horodatage leurs données de ventes des messages avec un **StoreName** égal trop **Redmond**, alors que hello Seattle stocker l’utilisation des terminaux de PDV un **StoreName** égal trop**Seattle**. le Gestionnaire de magasins Hello Hello Redmond stocker uniquement souhaite toosee des données à partir de ses terminaux de PDV. système de Hello apparaît comme suit :
 
 ![Service-Bus4](./media/service-bus-create-topics-subscriptions/IC657167.gif)
 
-Pour configurer ce routage, vous créez l’abonnement **Tableau de bord** de la façon suivante :
+tooset ce routage, vous créez hello **tableau de bord** abonnement comme suit :
 
 ```csharp
 SqlFilter dashboardFilter = new SqlFilter("StoreName = 'Redmond'");
 namespaceManager.CreateSubscription("DataCollectionTopic", "Dashboard", dashboardFilter);
 ```
 
-Avec ce [filtre d’abonnement](/dotnet/api/microsoft.servicebus.messaging.sqlfilter) en place, seuls les messages dont la propriété **StoreName** est définie sur **Redmond** sont copiés vers la file d’attente virtuelle de l’abonnement **Tableau de bord**. Le filtrage ne s’arrête pas aux abonnements, loin de là. Les applications peuvent présenter plusieurs règles de filtre par abonnement, ainsi que la possibilité de modifier les propriétés d’un message lorsqu’il passe dans la file d’attente virtuelle d’un abonnement.
+Avec cette [filtre d’abonnement](/dotnet/api/microsoft.servicebus.messaging.sqlfilter), seuls les messages hello **StoreName** propriété trop**Redmond** sera copié toohello la file d’attente virtuelle pour hello **Tableau de bord** abonnement. Il est beaucoup plus toosubscription le filtrage, toutefois. Applications peuvent avoir plusieurs règles de filtrage par abonnement dans Ajout toohello capacité toomodify hello les propriétés d’un message lorsqu’il passe de file d’attente virtuelle de l’abonnement tooa.
 
 ## <a name="summary"></a>Résumé
-Toutes les raisons d’utiliser la mise en file d’attente décrites dans [Création d’applications qui utilisent les files d’attente Service Bus](service-bus-create-queues.md) s’appliquent également aux rubriques, en particulier :
+Tous les hello raisons toouse queuing décrits dans [créer des applications qui utilisent des files d’attente Service Bus](service-bus-create-queues.md) s’appliquent également tootopics, en particulier :
 
-* Découplage temporel : les producteurs et les consommateurs de messages n'ont pas besoin d'être en ligne en même temps.
-* Niveau de charge : les pics de charge sont apaisés par la rubrique qui permet aux applications consommatrices d’être configurées pour une charge moyenne au lieu de pics de charge.
-* Équilibrage de la charge : semblable à une file d’attente, plusieurs consommateurs concurrents peuvent être à l’écoute sur un seul abonnement. Dans ce contexte, chaque message est transmis à un seul des consommateurs, équilibrant ainsi la charge.
-* Couplage faible : vous pouvez faire évoluer le réseau de messagerie sans incidence sur les points de terminaison existants ; par exemple, ajoutez des abonnements ou modifiez des filtres dans une rubrique pour permettre l’ajout de nouveaux consommateurs.
+* Découplage temporel : message producteurs et consommateurs n’ont pas de toobe en ligne à hello même temps.
+* Nivellement de charge : les pics de charge sont nivelés par rubrique hello l’activation de consommation toobe d’applications configuré pour une charge moyenne au lieu de pics de charge.
+* Équilibrage : file d’attente de tooa similaires, vous pouvez avoir plusieurs consommateurs concurrents à l’écoute sur un seul abonnement avec chaque message remis tooonly un des consommateurs hello, ce qui équilibre la charge.
+* Faible couplage : vous pouvez faire évoluer hello réseau de messagerie sans affecter les points de terminaison existants ; par exemple, ajouter des abonnements ou modifier les filtres tooa rubrique tooallow de nouveaux consommateurs.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Consultez [Création d’applications qui utilisent les files d’attente Service Bus](service-bus-create-queues.md) pour obtenir des informations sur l’utilisation des files d’attente dans le scénario de vente au détail de PDV.
+Consultez [créer des applications qui utilisent des files d’attente Service Bus](service-bus-create-queues.md) pour plus d’informations sur comment toouse les files d’attente dans un scénario de vente au détail hello POS.
 

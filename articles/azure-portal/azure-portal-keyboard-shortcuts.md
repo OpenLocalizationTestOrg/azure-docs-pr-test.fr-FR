@@ -1,6 +1,6 @@
 ---
-title: Raccourcis clavier du portail Azure | Microsoft Docs
-description: En savoir plus sur les raccourcis clavier qui fonctionnent dans le portail Azure.
+title: raccourcis de clavier portail aaaAzure | Documents Microsoft
+description: En savoir plus sur les raccourcis clavier hello qui fonctionnent dans hello portail Azure.
 services: azure-portal
 documentationcenter: 
 author: flanakin
@@ -15,35 +15,35 @@ ms.workload: na
 ms.date: 08/24/2017
 ms.author: micflan
 ms.custom: accessibility
-ms.openlocfilehash: d5f837d0017ca885144b91d35f489a6fc0e5670e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 7d0130e1d7175cef07038bef0a4c47a4c1291050
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="keyboard-shortcuts-in-the-azure-portal"></a>Raccourcis clavier du portail Azure
-Cet article indique les raccourcis clavier qui fonctionnent sur le portail Azure. Les services individuels peuvent bénéficier de leurs propres raccourcis clavier.
+# <a name="keyboard-shortcuts-in-hello-azure-portal"></a>Raccourcis clavier dans hello portail Azure
+Cet article présente les raccourcis clavier hello qui fonctionnent tout au long de hello portail Azure. Les services individuels peuvent bénéficier de leurs propres raccourcis clavier.
 
 ## <a name="actions"></a>Actions
-|Action à réaliser |Appuyez sur |
+|toodo ce |Appuyez sur |
 | --- | --- |
 |Créer une nouvelle ressource|G + N|
-|Ouvrir le volet « Plus de services »|G + B|
+|Ouvrez hello « Plus services » de volet|G + B|
 |Rechercher des ressources|G+/| 
 |Rechercher les éléments de menu de ressource|CTRL + / |
-|Déplacer l’élément du volet de gauche sélectionné vers le haut |ALT+ Maj + Flèche haut|
-|Déplacer l’élément du volet de gauche sélectionné vers le bas |ALT + Maj + Flèche bas|
+|Monter l’élément sélectionné de hello |ALT+ Maj + Flèche haut|
+|Descendre l’élément sélectionné de hello |ALT + Maj + Flèche bas|
 
 ## <a name="navigation"></a>Navigation
-|Action à réaliser |Appuyez sur |
+|toodo ce |Appuyez sur |
 | --- | --- |
-|Déplacer le focus vers la barre de commande |G+, |
+|Déplacer le focus toocommand barre |G+, |
 |Basculer le focus entre la barre supérieure et la barre latérale | G+. |
 
 ## <a name="go-to"></a>Accéder à
-|Action à réaliser |Appuyez sur |
+|toodo ce |Appuyez sur |
 | --- | --- |
-|Accéder au tableau de bord |G + D |
-|Accéder à toutes les ressources|G + A |
-|Accéder aux groupes de ressources|G + R |
-|Ouvrir l’élément volet de gauche à cette position |G + numéro|
+|Accédez toodashboard |G + D |
+|Consultez les ressources tooall|G + A |
+|Accédez tooresource groupes|G + R |
+|Élément du volet gauche hello ouvert à cette position |G + numéro|

@@ -1,6 +1,6 @@
 ---
-title: "Documentation Azure Log Analytics - Didacticiels, informations de référence sur les API | Microsoft Docs"
-description: "Découvrez comment utiliser Log Analytics pour collecter et analyser les données générées par les ressources dans vos environnements cloud et locaux, quel que soit leur emplacement physique."
+title: "aaaAzure Documentation Analytique de journal - didacticiels, référence de l’API | Documents Microsoft"
+description: "Découvrez comment toouse Analytique de journal toocollect et analyser les données générées par les ressources dans vos environnements locaux et cloud, quelle que soit l’emplacement physique."
 services: log-analytics
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 9d5d1ada86a2cb1b6f6f70d9c662708f81b5bcc6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 48b3c1b28d9e3a9eaed34201d6bae2a6fdea90fd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="log-analytics-documentation"></a>Documentation Log Analytics
 
-Découvrez comment utiliser Log Analytics dans Operations Management Suite pour collecter et analyser les données générées par les ressources de vos environnements cloud et locaux. Des didacticiels et d’autres documents vous montrent comment obtenir des informations en temps réel sur les charges de travail et les serveurs, quel que soit leur emplacement physique.
+Découvrez comment toouse Analytique de journal dans hello Operations Management Suite toocollect et analyser les données générées par les ressources dans vos environnements locaux et cloud. Didacticiels et autres documentations vous indiquent comment tooget des informations en temps réel sur les charges de travail et les serveurs, quelle que soit l’emplacement physique.
 
 <ul class="panelContent cardsFTitle">
     <li>

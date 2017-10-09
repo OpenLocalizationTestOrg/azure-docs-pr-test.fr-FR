@@ -1,6 +1,6 @@
 ---
-title: "Montée en puissance d’une application dans Azure | Microsoft Docs"
-description: "Découvrez comment activer la montée en puissance d’une application dans Azure App Service pour ajouter des capacités et des fonctionnalités."
+title: aaaScale installer une application dans Azure | Documents Microsoft
+description: "Découvrez comment tooscale dans Azure App Service tooadd capacité et des fonctionnalités de l’application."
 services: app-service
 documentationcenter: 
 author: cephalin
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/05/2016
 ms.author: cephalin
-ms.openlocfilehash: 75ddbacbd4dd14597b786d26f0730477f6c85811
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 97f46f77aeef95aec90d38e8396a023820e3caeb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="scale-up-an-app-in-azure"></a>Montée en puissance d’une application dans Azure
-Cet article décrit la mise à l’échelle d’une application web dans Azure App Service. Il existe deux workflows de mise à l’échelle : montée en puissance et augmentation de la taille des instances. Cet article décrit le workflow de montée en puissance.
+Cet article vous montre comment tooscale votre application dans Azure App Service. Il existe deux flux de travail pour la mise à l’échelle, l’échelle des et montée en puissance parallèle et cet article explique la montée en puissance hello du workflow.
 
-* [Montée en puissance](https://en.wikipedia.org/wiki/Scalability#Horizontal_and_vertical_scaling): bénéficiez d’un surcroît de capacité d’UC, de mémoire et d’espace disque, ainsi que de fonctionnalités supplémentaires, comme des machines virtuelles dédiées, des domaines et des certificats personnalisés, des emplacements intermédiaires, la mise à l’échelle automatique, et bien davantage. Pour monter en puissance en modifiant le niveau tarifaire du plan App Service auquel appartient votre application.
-* [Augmentation de la taille des instances](https://en.wikipedia.org/wiki/Scalability#Horizontal_and_vertical_scaling): augmentez le nombre d’instances de machine virtuelle qui exécutent votre application.
-  Ce nombre peut atteindre 20 instances, en fonction de votre niveau tarifaire. [d’environnements App Service](../app-service/app-service-app-service-environments-readme.md) au niveau **Premium** tier will further au niveaucrease your scale-out count to 50 au niveaustances. Pour plus d’informations sur l’augmentation de la taille des instances, voir [Mise à l’échelle manuelle ou automatique du nombre d’instances](../monitoring-and-diagnostics/insights-how-to-scale.md). Vous y trouverez comment utiliser la mise à l’échelle automatique, qui permet de mettre à l’échelle le nombre d’instances automatiquement en fonction des planifications et des règles prédéfinies.
+* [Montée en puissance](https://en.wikipedia.org/wiki/Scalability#Horizontal_and_vertical_scaling): bénéficiez d’un surcroît de capacité d’UC, de mémoire et d’espace disque, ainsi que de fonctionnalités supplémentaires, comme des machines virtuelles dédiées, des domaines et des certificats personnalisés, des emplacements intermédiaires, la mise à l’échelle automatique, et bien davantage. Monter en modifiant hello tarification du plan de Service d’application appartenant à votre application.
+* [Montée en puissance parallèle](https://en.wikipedia.org/wiki/Scalability#Horizontal_and_vertical_scaling): augmenter le nombre de hello d’instances de machine virtuelle qui exécutent votre application.
+  Vous pouvez faire évoluer tooas comme 20 instances, selon votre niveau tarifaire. [Les environnements App Service](../app-service/app-service-app-service-environments-readme.md) dans **Premium** couche vont augmenter encore davantage vos instances de too50 du nombre de montée en puissance parallèle. Pour plus d’informations sur l’augmentation de la taille des instances, voir [Mise à l’échelle manuelle ou automatique du nombre d’instances](../monitoring-and-diagnostics/insights-how-to-scale.md). Vous y trouverez hors comment échelle toouse, qui est le nombre d’instances tooscale automatiquement en fonction des calendriers et des règles prédéfinies.
 
-Ces paramètres de mise à l’échelle sont applicables en quelques secondes et affectent toutes les applications de votre [plan App Service](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md).
-Ils ne nécessitent pas de modifier votre code ou de redéployer votre application.
+Hello échelle paramètres prennent uniquement secondes tooapply et concernent toutes les applications dans votre [plan App Service](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md).
+Ils ne nécessitent vous toochange votre code ou redéployer votre application.
 
-Pour plus d’informations sur la tarification et les fonctionnalités de chaque plan App Service, voir [Détails de la tarification - App Service](https://azure.microsoft.com/pricing/details/web-sites/).  
+Pour plus d’informations sur la tarification de hello et les fonctionnalités de plans de Service d’application individuels, consultez [tarification de Service d’application](https://azure.microsoft.com/pricing/details/web-sites/).  
 
 > [!NOTE]
-> Avant de changer le niveau **Gratuit** d’un plan App Service, commencez par supprimer les [limites de dépense](https://azure.microsoft.com/pricing/spending-limits/) en place pour votre abonnement Azure. Pour voir ou modifier les options de votre abonnement Microsoft Azure App Service, consultez la page [Abonnements Microsoft Azure][azuresubscriptions].
+> Avant de basculer un plan App Service à partir de hello **libre** couche, vous devez d’abord supprimer hello [limites de dépense](https://azure.microsoft.com/pricing/spending-limits/) en place pour votre abonnement Azure. tooview ou modifier les options de votre abonnement Microsoft Azure App Service, consultez [abonnements Microsoft Azure][azuresubscriptions].
 > 
 > 
 
@@ -41,63 +41,63 @@ Pour plus d’informations sur la tarification et les fonctionnalités de chaque
 <a name="scalingstandard"></a>
 
 ## <a name="scale-up-your-pricing-tier"></a>Montée en puissance de votre niveau de tarification
-1. Dans votre navigateur, ouvrez le [portail Azure][portal].
+1. Dans votre navigateur, ouvrez hello [portail Azure][portal].
 2. Dans le panneau de votre application, cliquez sur **Tous les paramètres**, puis sur **Monter en puissance**.
    
-    ![Accédez à la montée en puissance pour votre application Azure.][ChooseWHP]
+    ![Accédez tooscale votre application Azure.][ChooseWHP]
 3. Choisissez votre niveau, puis cliquez sur **Sélectionner**.
    
-    Dans l’onglet **Notifications**, la mention **RÉUSSITTE** clignote en vert une fois l’opération terminée.
+    Hello **Notifications** un vert clignote en onglet **réussite** après l’opération hello est terminée.
 
 <a name="ScalingSQLServer"></a>
 
 ## <a name="scale-related-resources"></a>Mettre à l’échelle des ressources associées
-Si votre application dépend d’autres services, tels que Azure SQL Database ou Azure Storage, vous pouvez également faire monter en puissance ces ressources selon vos besoins. Ces ressources ne sont pas mises à l’échelle avec le plan App Service et doivent être mises à l’échelle séparément.
+Si votre application dépend d’autres services, tels que Azure SQL Database ou Azure Storage, vous pouvez également faire monter en puissance ces ressources selon vos besoins. Ces ressources ne sont pas mis à l’échelle par hello plan App Service et doivent être mis à l’échelle séparément.
 
-1. Dans **Essentials**, cliquez sur le lien **Groupe de ressources**.
+1. Dans **Essentials**, cliquez sur hello **groupe de ressources** lien.
    
     ![Montée en puissance des ressources connexes de votre application Azure](./media/web-sites-scale/RGEssentialsLink.png)
-2. Dans la partie **Résumé** du panneau **Groupe de ressources**, cliquez sur une ressource à mettre à l’échelle. La capture d’écran ci-après illustre une ressource Base de données SQL et une ressource Azure Storage.
+2. Bonjour **Résumé** dans le cadre du hello **groupe de ressources** panneau, cliquez sur une ressource que vous souhaitez tooscale. Hello suivant capture d’écran montre une ressource de base de données SQL et une ressource de stockage Azure.
    
-    ![Accédez au panneau du groupe de ressources pour activer la montée en puissance de votre application Azure](./media/web-sites-scale/ResourceGroup.png)
-3. Pour une ressource Base de données SQL, cliquez sur **Paramètres** > **Niveau tarifaire** pour mettre à l’échelle le niveau tarifaire.
+    ![Accédez tooresource groupe panneau tooscale votre application Azure](./media/web-sites-scale/ResourceGroup.png)
+3. Pour une ressource de base de données SQL, cliquez sur **paramètres** > **niveau tarifaire** hello tooscale niveau tarifaire.
    
-    ![Montée en puissance de la base de données SQL principale pour votre application Azure](./media/web-sites-scale/ScaleDatabase.png)
+    ![Montée en puissance principal de base de données SQL hello pour votre application Azure](./media/web-sites-scale/ScaleDatabase.png)
    
     Vous pouvez également activer la [géoréplication](../sql-database/sql-database-geo-replication-overview.md) pour votre instance de base de données SQL.
    
-    Dans le cas d’une ressource Azure Storage, cliquez sur **Paramètres** > **Configuration** pour faire évoluer vos options de stockage.
+    Pour une ressource de stockage Azure, cliquez sur **paramètres** > **Configuration** tooscale des options de stockage.
    
-    ![Montée en puissance du compte de stockage Azure utilisé par votre application Azure](./media/web-sites-scale/ScaleStorage.png)
+    ![Montée en puissance compte de stockage Azure hello utilisé par votre application Azure](./media/web-sites-scale/ScaleStorage.png)
 
 <a name="devfeatures"></a>
 
 ## <a name="learn-about-developer-features"></a>En savoir plus sur les fonctionnalités de développement
-Selon le niveau de tarification, les fonctionnalités orientées développeur disponibles sont les suivantes :
+Selon le niveau de tarification de hello, hello destinées aux développeurs fonctionnalités suivantes sont disponibles :
 
 ### <a name="bitness"></a>Nombre de bits
-* Les modes **De base**, **Standard** et **Premium** prennent en charge les applications 64 bits et 32 bits.
-* Les niveaux de plan **Gratuit** et **Partagé** prennent uniquement en charge les applications 32 bits.
+* Hello **base**, **Standard**, et **Premium** niveaux prennent en charge les applications 32 bits et 64 bits.
+* Hello **libre** et **Shared** plan niveaux prennent en charge les applications 32 bits uniquement.
 
 ### <a name="debugger-support"></a>Prise en charge du débogueur
-* Une prise en charge du débogueur est disponible en modes **Gratuit**, **Partagé** et **De base** pour une connexion par plan App Service.
-* Une prise en charge du débogueur est disponible en modes **Standard** et **Premium** pour cinq connexions simultanées par plan App Service.
+* Prise en charge du débogueur est disponible pour hello **libre**, **Shared**, et **base** modes à une seule connexion par plan App Service.
+* Prise en charge du débogueur est disponible pour hello **Standard** et **Premium** modes à cinq connexions simultanées par plan App Service.
 
 <a name="OtherFeatures"></a>
 
 ## <a name="learn-about-other-features"></a>En savoir plus sur les autres fonctionnalités
-* Pour obtenir des informations détaillées sur toutes les autres fonctionnalités des plans App Service, notamment concernant la tarification et les fonctionnalités présentant de l’intérêt pour tous les utilisateurs (y compris les développeurs), consultez la page [Détails de la tarification - App Service](https://azure.microsoft.com/pricing/details/web-sites/).
+* Pour plus d’informations sur l’ensemble des hello restant fonctionnalités Bonjour du Service d’applications plans, y compris de prix et les caractéristiques des utilisateurs de tooall intérêt (y compris les développeurs), consultez [tarification de Service d’application](https://azure.microsoft.com/pricing/details/web-sites/).
 
 > [!NOTE]
-> Si vous voulez vous familiariser avec Azure App Service avant d’ouvrir un compte Azure, accédez à la page [d’essai d’App Service](https://azure.microsoft.com/try/app-service/) , qui vous permet de créer immédiatement une application web temporaire dans App Service. Aucune carte de crédit n’est nécessaire, et vous ne prenez aucun engagement.
+> Si vous souhaitez tooget démarré avec le Service d’application Azure avant de vous inscrivez pour un compte Azure, accédez trop[essayez du Service d’applications](https://azure.microsoft.com/try/app-service/) où vous pouvez créer une application web de courte durée de vie starter immédiatement dans le Service d’applications. Aucune carte de crédit n’est nécessaire, et vous ne prenez aucun engagement.
 > 
 > 
 
 <a name="Next Steps"></a>
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Pour la prise en main d'Azure, consultez la page [Version d'évaluation gratuite de Microsoft Azure](https://azure.microsoft.com/pricing/free-trial/).
-* Pour plus d’informations sur la tarification, le support et les contrats SLA, accédez aux liens suivants.
+* tooget main d’Azure, consultez [version d’évaluation gratuite de Microsoft Azure](https://azure.microsoft.com/pricing/free-trial/).
+* Pour plus d’informations sur la tarification, prise en charge et contrat SLA, visitez hello suivant liens.
   
     [Détails de la tarification – Transferts de données](https://azure.microsoft.com/pricing/details/data-transfers/)
   
@@ -113,9 +113,9 @@ Selon le niveau de tarification, les fonctionnalités orientées développeur di
   
     [Détails de la tarification – App Service - Connexions SSL](https://azure.microsoft.com/pricing/details/web-sites/#ssl-connections)
 * Pour plus d’informations sur les meilleures pratiques liées à Azure App Service, notamment la création d’une architecture évolutive et résiliente, voir [Best Practices: Azure App Service Web Apps](http://blogs.msdn.com/b/windowsazure/archive/2014/02/10/best-practices-windows-azure-websites-waws.aspx)(Meilleures pratiques : Azure App Service Web Apps).
-* Pour visionner des vidéos concernant la mise à l’échelle des applications App Service, consultez les ressources suivantes :
+* Pour les vidéos sur la mise à l’échelle des applications de Service d’applications, consultez hello suivant des ressources :
   
-  * [Quand mettre à l’échelle Sites Web Azure - avec Stefan Schackow](https://azure.microsoft.com/resources/videos/azure-web-sites-free-vs-standard-scaling/)
+  * [Lorsque des sites Web Azure - avec Stefan Schackow de tooScale](https://azure.microsoft.com/resources/videos/azure-web-sites-free-vs-standard-scaling/)
   * [Mise à l’échelle automatique de Sites Web Azure, unité centrale ou planification - avec Stefan Schackow](https://azure.microsoft.com/resources/videos/auto-scaling-azure-web-sites/)
   * [Mise à l’échelle de Sites Web Azure - avec Stefan Schackow](https://azure.microsoft.com/resources/videos/how-azure-web-sites-scale/)
 

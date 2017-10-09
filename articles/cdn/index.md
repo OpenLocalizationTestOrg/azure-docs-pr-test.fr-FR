@@ -1,6 +1,6 @@
 ---
-title: "Documentation Azure CDN - Didacticiels, informations de référence sur les API | Microsoft Docs"
-description: "Apprenez à utiliser un réseau de distribution de contenu (CDN) pour diffuser du contenu de centres de données mondiaux vers n’importe quel appareil. Didacticiels, références d’API et autres documents."
+title: "aaaAzure Documentation CDN - didacticiels, référence de l’API | Documents Microsoft"
+description: "Découvrez comment les centres de tooany périphérique toouse contenu toodeliver de réseau de distribution de contenu (CDN) à partir des données globales. Didacticiels, références d’API et autres documents."
 services: cdn
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 8b7d2e7825fce74fad391e52dd423dec8f9a0e17
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9d1a26398369233d75f3647a5a68f3e7f8698eb9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="cdn-documentation"></a>Documentation CDN
 
-Apprenez à utiliser un réseau de distribution de contenu (CDN) pour distribuer du contenu à bande passante élevée hébergé dans Azure ou dans un autre service. Des didacticiels, des références d’API et d’autres documents vous montrent comment utiliser le CDN pour diffuser du contenu de centres de données mondiaux vers n’importe quel appareil.
+Découvrez comment toouse réseau de distribution de contenu (CDN) toodeliver-bande passante élevée au contenu qui est hébergé dans Azure ou ailleurs. Didacticiels, des références de l’API et toute autre documentation vous montrent comment les centres de contenu de toodeliver toouse CDN à partir des données globales tooany appareil.
 
 <ul class="panelContent cardsFTitle">
     <li>

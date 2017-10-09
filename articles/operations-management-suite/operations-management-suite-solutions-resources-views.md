@@ -1,6 +1,6 @@
 ---
-title: Vues dans des solutions de gestion dans Operations Management Suite (OMS) | Microsoft Docs
-description: "Les solutions de gestion dans Operations Management Suite (OMS) comprennent généralement une ou plusieurs vues pour visualiser des données.  Cet article décrit comment exporter une vue créée par le Concepteur de vues et l’inclure dans une solution de gestion. "
+title: aaaViews dans les solutions de gestion Operations Management Suite (OMS) | Documents Microsoft
+description: "Solutions de gestion Operations Management Suite (OMS) inclut généralement une ou plusieurs vues des données toovisualize.  Cet article décrit comment tooexport une vue créée par hello Concepteur de vue et l’inclure dans une solution de gestion. "
 services: operations-management-suite
 documentationcenter: 
 author: bwren
@@ -14,44 +14,44 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/11/2017
 ms.author: bwren
-ms.openlocfilehash: 533b5564a805e0b41f2b1a4ad92e12b133220952
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 303861465014a27289f831332b3d95925c0ae66d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="views-in-operations-management-suite-oms-management-solutions-preview"></a>Vues dans des solutions de gestion dans Operations Management Suite (OMS) (préversion)
 > [!NOTE]
-> Il s’agit d’une documentation préliminaire pour la création de solutions de gestion dans OMS qui sont actuellement en préversion. Tout schéma décrit ci-dessous est susceptible d’être modifié.    
+> Il s’agit d’une documentation préliminaire pour la création de solutions de gestion dans OMS qui sont actuellement en préversion. N’importe quel schéma décrit ci-dessous est un objet toochange.    
 >
 >
 
-[Les solutions de gestion dans Operations Management Suite (OMS)](operations-management-suite-solutions.md) comprennent généralement une ou plusieurs vues pour visualiser des données.  Cet article décrit comment exporter une vue créée par le [Concepteur de vues](../log-analytics/log-analytics-view-designer.md) et l’inclure dans une solution de gestion.  
+[Solutions de gestion Operations Management Suite (OMS)](operations-management-suite-solutions.md) inclut généralement une ou plusieurs vues des données toovisualize.  Cet article décrit comment tooexport une vue créée par hello [Concepteur de vue](../log-analytics/log-analytics-view-designer.md) et l’inclure dans une solution de gestion.  
 
 > [!NOTE]
-> Les exemples dans cet article utilisent des paramètres et des variables qui sont nécessaires ou courants pour les solutions de gestion. Ils sont décrits dans la rubrique [Création de solutions de gestion dans Operations Management Suite (OMS)](operations-management-suite-solutions-creating.md)
+> Hello exemples dans cet article utilisent les paramètres et les variables qui sont deux solutions toomanagement requises ou courantes et décrites dans [création de solutions de gestion Operations Management Suite (OMS)](operations-management-suite-solutions-creating.md)
 >
 >
 
-## <a name="prerequisites"></a>Conditions préalables
-Cet article suppose que vous êtes déjà familiarisé avec la [création d’une solution de gestion](operations-management-suite-solutions-creating.md) et la structure d’un fichier solution.
+## <a name="prerequisites"></a>Composants requis
+Cet article suppose que vous êtes déjà familiarisé avec le trop[créer une solution de gestion](operations-management-suite-solutions-creating.md) et la structure de hello d’un fichier de solution.
 
-## <a name="overview"></a>Vue d’ensemble
-Pour inclure une vue dans une solution de gestion, vous créez une **ressource** lui correspondant dans le [fichier solution](operations-management-suite-solutions-creating.md).  Cependant, le fichier JSON qui décrit la configuration détaillée de la vue est généralement complexe. Un auteur de solution classique ne serait pas en mesure de le créer manuellement.  La méthode la plus courante consiste à créer la vue en utilisant le [Concepteur de vues](../log-analytics/log-analytics-view-designer.md), à l’exporter, puis à ajouter ensuite sa configuration détaillée à la solution.
+## <a name="overview"></a>Vue d'ensemble
+tooinclude une vue dans une solution de gestion, vous créez un **ressource** pour lui dans hello [fichier solution](operations-management-suite-solutions-creating.md).  Hello JSON qui décrit la configuration détaillée de la vue hello est généralement complexe cependant et pas quelque chose qu’un auteur de la solution classique serait en mesure de toocreate manuellement.  méthode la plus courante Hello est vue de hello toocreate à l’aide de hello [Concepteur de vue](../log-analytics/log-analytics-view-designer.md), exporter, puis ajoutez sa solution toohello de configuration détaillées.
 
-Voici les étapes de base pour ajouter une vue à une solution.  Chaque étape est décrite en détail dans les sections ci-dessous.
+Hello étapes de base tooadd une solution tooa de vue sont les suivantes.  Chaque étape est décrite en détail dans les sections hello ci-dessous.
 
-1. Exportation de la vue dans un fichier.
-2. Création de la ressource de la vue dans la solution.
-3. Ajout des détails de la vue.
+1. Hello vue tooa fichier d’exportation.
+2. Créez des ressources de vue hello de solution de hello.
+3. Ajouter les détails de l’affichage hello.
 
-## <a name="export-the-view-to-a-file"></a>Exportation de la vue dans un fichier.
-Suivez les instructions du [Concepteur de vues de Log Analytics](../log-analytics/log-analytics-view-designer.md) pour exporter un affichage dans un fichier.  Le fichier exporté sera au format JSON avec les mêmes [éléments que le fichier solution](operations-management-suite-solutions-solution-file.md).  
+## <a name="export-hello-view-tooa-file"></a>Hello vue tooa fichier d’exportation
+Suivez les instructions de hello à [Concepteur de vue Analytique de journal](../log-analytics/log-analytics-view-designer.md) tooexport un tooa afficher le fichier.  Hello fichier exporté sera être au format JSON avec hello même [éléments en tant que fichier de solution hello](operations-management-suite-solutions-solution-file.md).  
 
-L’élément **resources** du fichier de vue aura une ressource de type **Microsoft.OperationalInsights/workspaces** qui représente l’espace de travail OMS.  Cet élément aura un sous-élément de type **views** qui représente la vue et qui contient sa configuration détaillée.  Vous copiez les détails de cet élément, puis vous les copiez dans votre solution.
+Hello **ressources** élément du fichier de vue hello possède une ressource avec un type de **Microsoft.OperationalInsights/workspaces** que représente hello espace de travail OMS.  Cet élément a un sous-élément de type **vues** qui représente la vue de hello et contient sa configuration détaillée.  Copiez les détails hello de cet élément et puis le copier dans votre solution.
 
-## <a name="create-the-view-resource-in-the-solution"></a>Création de la ressource de la vue dans la solution
-Ajoutez la ressource de la vue suivante à l’élément **resources** de votre fichier solution.  Cette procédure utilise des variables décrites ci-dessous que vous devez également ajouter.  Notez que les propriétés **Dashboard** et **OverviewTile** sont des espaces réservés que vous remplacerez par les propriétés correspondantes du fichier de vue exporté.
+## <a name="create-hello-view-resource-in-hello-solution"></a>Créer une ressource de vue de hello dans la solution de hello
+Ajouter hello suivant vue ressource toohello **ressources** élément de votre fichier de solution.  Cette procédure utilise des variables décrites ci-dessous que vous devez également ajouter.  Notez que hello **tableau de bord** et **OverviewTile** propriétés sont des espaces réservés qui vous remplacerez avec les propriétés correspondantes hello hello exportée afficher le fichier.
 
     {
         "apiVersion": "[variables('LogAnalyticsApiVersion')]",
@@ -73,28 +73,28 @@ Ajoutez la ressource de la vue suivante à l’élément **resources** de votre 
         }
     }
 
-Ajoutez les variables suivantes à l’élément variables du fichier de la solution et remplacez les valeurs par celles de votre solution.
+Ajouter hello suivant variables toohello variables élément hello du fichier de solution et remplacez toothose de valeurs hello pour votre solution.
 
     "LogAnalyticsApiVersion": "2015-11-01-preview",
     "ViewAuthor": "Your name."
-    "ViewDescription": "Optional description of the view."
-    "ViewName": "Provide a name for the view here."
+    "ViewDescription": "Optional description of hello view."
+    "ViewName": "Provide a name for hello view here."
 
 
-Notez que vous pouvez copier la ressource de vue entière depuis votre fichier de vue exporté, mais que vous devez apporter les modifications suivantes pour qu’elle fonctionne dans votre solution.  
+Notez que vous pouvez copier des ressources de toute vue hello à partir de votre fichier de vue exportée, mais vous devez alors hello toomake modifications suivantes pour qu’il toowork dans votre solution.  
 
-* Le **type** pour la ressource de vue doit être modifié de **views** en **Microsoft.OperationalInsights/workspaces**.
-* La propriété **name** pour la ressource de la vue doit être modifiée pour inclure le nom de l’espace de travail.
-* La dépendance vis-à-vis de l’espace de travail doit être supprimée, car la ressource de l’espace de travail n’est pas définie dans la solution.
-* La propriété **DisplayName** doit être ajoutée à la vue.  Les éléments **Id**, **Name**, et **DisplayName** doivent tous correspondre.
-* Les noms des paramètres doivent être modifiés de manière à correspondre à l’ensemble de paramètres nécessaire.
-* Les variables doivent être définies dans la solution et utilisées dans les propriétés appropriées.
+* Hello **type** de vue de hello ressource doit être toobe a été remplacée par **vues** trop**Microsoft.OperationalInsights/workspaces**.
+* Hello **nom** propriété pour afficher la ressource hello doit nom d’espace de travail toobe modifié tooinclude hello.
+* dépendance Hello sur l’espace de travail hello doit toobe supprimée, car la ressource d’espace de travail hello n’est pas défini dans la solution de hello.
+* **DisplayName** toobe des besoins de propriété ajouté toohello vue.  Hello **Id**, **nom**, et **DisplayName** doivent toutes correspondre.
+* Les noms de paramètres doivent être modifiés toomatch hello requis de jeu de paramètres.
+* Variables doivent être définies dans la solution de hello et utilisés dans les propriétés appropriées hello.
 
-## <a name="add-the-view-details"></a>Ajout des détails de la vue
-La ressource de la vue dans le fichier exporté contient deux éléments dans l’élément **properties** nommés **Dashboard** et **OverviewTile** qui contiennent la configuration détaillée de la vue.  Copiez ces deux éléments et leur contenu dans l’élément **properties** de la ressource de vue dans votre fichier solution.
+## <a name="add-hello-view-details"></a>Ajouter des détails de l’affichage hello
+afficher la ressource Hello Bonjour exporté affichage fichier contient deux éléments Bonjour **propriétés** élément nommé **tableau de bord** et **OverviewTile** qui contiennent hello configuration détaillée de la vue de hello.  Copiez ces deux éléments et leur contenu hello **propriétés** élément de ressource de vue hello dans votre fichier de solution.
 
 ## <a name="example"></a>Exemple
-Par exemple, l’exemple suivant montre un fichier solution simple avec une vue.  Des points de suspension (...) sont affichés à la place du contenu des éléments **Dashboard** et **OverviewTile** pour des raisons d’espace.
+Par exemple, hello suivant l’exemple montre un fichier solution simple avec une vue.  Points de suspension (...) sont affichées pour hello **tableau de bord** et **OverviewTile** contenu pour des raisons d’espace.
 
     {
         "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",

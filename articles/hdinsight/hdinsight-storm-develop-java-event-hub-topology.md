@@ -1,6 +1,6 @@
 ---
-title: "Traitement des événements d’Event Hubs avec Storm sur HDInsight avec Java | Microsoft Docs"
-description: "Découvrez comment traiter les données Event Hubs avec une topologie Storm basée sur Java créée avec Maven."
+title: "les événements de concentrateurs d’événements avec Storm sur HDInsight à l’aide de Java aaaProcess | Documents Microsoft"
+description: "Découvrez comment tooprocess données concentrateurs d’événements avec une topologie Java Storm créé avec Maven."
 services: hdinsight,notification hubs
 documentationcenter: 
 author: Blackmist
@@ -15,24 +15,24 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 07/13/2017
 ms.author: larryfr
-ms.openlocfilehash: 2e8ebbdab2be7bed224a67facec798820615bb22
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 6506f5bc8f6ab0e29350c071a3f84433382038e4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="process-events-from-azure-event-hubs-with-storm-on-hdinsight-java"></a>Traitement des événements Azure Event Hubs avec Storm sur HDInsight (Java)
 
-Découvrez comment utiliser Azure Event Hubs avec Storm sur HDInsight. Cet exemple utilise des composants basés sur Java pour lire et écrire des données dans Azure Event Hubs.
+Découvrez comment toouse Azure Event Hubs avec Storm sur HDInsight. Cet exemple utilise des composants basés sur Java tooread et écrire les données dans Azure Event Hubs.
 
-Azure Event Hubs permet de traiter d’énormes quantités de données provenant de sites web, d’applications et d’appareils. Le spout Event Hub simplifie l’utilisation d’Apache Storm sur HDInsight pour analyser ces données en temps réel. Vous pouvez également écrire des données dans les hubs d’événements à partir de Storm à l’aide du bolt des hubs d’événements.
+Les concentrateurs d’événements Azure vous permet de tooprocess de gros volumes de données à partir de sites Web, des applications et des périphériques. Hello bec de concentrateur d’événements rend facile toouse Apache renverser sur HDInsight tooanalyze ces données en temps réel. Vous pouvez également écrire des données tooEvent concentrateurs à partir de Storm à l’aide de hello boulon de concentrateurs d’événements.
 
 ## <a name="prerequisites"></a>Composants requis
 
 * Un cluster Apache Storm sur HDInsight version 3.6. Pour plus d’informations, voir [Prise en main de Storm sur HDInsight](hdinsight-apache-storm-tutorial-get-started-linux.md).
 
     > [!IMPORTANT]
-    > Linux est le seul système d’exploitation utilisé sur HDInsight version 3.4 ou supérieure. Pour plus d’informations, consultez [Suppression de HDInsight sous Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+    > Linux est hello seul système d’exploitation utilisé sur HDInsight version 3.4 ou supérieure. Pour plus d’informations, consultez [Suppression de HDInsight sous Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
 * Un [hub d’événements Azure](../event-hubs/event-hubs-csharp-ephcs-getstarted.md).
 
@@ -43,31 +43,31 @@ Azure Event Hubs permet de traiter d’énormes quantités de données provenant
 * Un éditeur de texte ou un environnement de développement intégré (IDE).
 
     > [!NOTE]
-    > Votre éditeur ou IDE peut avoir des fonctionnalités spécifiques pour l’utilisation avec Maven, qui ne sont pas traitées dans ce document. Pour plus d’informations sur les capacités de votre environnement d’édition, consultez la documentation du produit que vous utilisez.
+    > Votre éditeur ou IDE peut avoir des fonctionnalités spécifiques pour l’utilisation avec Maven, qui ne sont pas traitées dans ce document. Pour plus d’informations sur les fonctionnalités de hello de votre environnement d’édition, consultez la documentation hello pour produit hello que vous utilisez.
 
     * Un client SSH. Pour en savoir plus, voir [Utilisation de SSH avec Hadoop Linux sur HDInsight depuis Linux, Unix ou OS X](hdinsight-hadoop-linux-use-ssh-unix.md).
 
-* Les commandes `ssh` et `scp`. Elles servent à copier des fichiers vers le cluster HDInsight. Sous Windows, vous pouvez les obtenir via Bash dans Windows 10.
+* Hello `ssh` et `scp` commandes. Il s’agit de cluster de HDInsight utilisé toocopy fichiers toohello. Sous Windows, vous pouvez les obtenir via Bash dans Windows 10.
 
-## <a name="understanding-the-example"></a>Vue d’ensemble de l’exemple
+## <a name="understanding-hello-example"></a>Exemple hello de présentation
 
-L’exemple [hdinsight-java-storm-eventhub](https://github.com/Azure-Samples/hdinsight-java-storm-eventhub) contient deux topologies :
+Hello [hdinsight-java-storm-eventhub](https://github.com/Azure-Samples/hdinsight-java-storm-eventhub) exemple contient deux topologies :
 
-La topologie `resources/writer.yaml` écrit des données aléatoires dans Azure Event Hub. Les données sont générées par le composant `DeviceSpout` et comprennent un ID d’appareil aléatoire et une valeur d’appareil. Ainsi, elles simulent certains matériels qui émettent un ID de chaîne et une valeur numérique.
+Hello `resources/writer.yaml` topologie écrit des données aléatoires tooan concentrateur d’événements Azure. les données de salutation sont générées par hello `DeviceSpout` composant, et est une valeur de l’appareil et un ID de périphérique aléatoire. Ainsi, elles simulent certains matériels qui émettent un ID de chaîne et une valeur numérique.
 
-La topologie `resources/reader.yaml` lit les données Event Hub (les données écrites par EventHubWriter), analyse les données JSON, puis enregistre les données `deviceId` et `deviceValue`.
+Les trois `resources/reader.yaml` topologie lit des données à partir du concentrateur d’événements (écrites par EventHubWriter, les données hello) analyse les données JSON de hello et ouvre une session hello `deviceId` et `deviceValue` données.
 
-Les données sont formatées sous forme de document JSON avant d’être écrites dans l’Event Hub ; lors de la lecture par le lecteur, elles sont analysées depuis JSON vers des tuples. Le format JSON est le suivant :
+les données de salutation sont mise en forme comme un document JSON avant d’être écrite tooEvent Hub et lors de la lecture par le lecteur de hello il est analysé en dehors de JSON et dans des tuples. format JSON Hello est comme suit :
 
     { "deviceId": "unique identifier", "deviceValue": some value }
 
 ### <a name="project-configuration"></a>Configuration du projet
 
-Le fichier `POM.xml` contient des informations de configuration pour ce projet Maven. Éléments intéressants :
+Hello `POM.xml` fichier contient des informations de configuration pour ce projet Maven. intéressantes Hello sont :
 
 #### <a name="event-hub-components"></a>Composants Event Hub
 
-Le composant qui lit et écrit dans Azure Event Hubs se trouve dans le [référentiel HDInsight](https://github.com/hdinsight/mvn-rep). Les sections suivantes du fichier `POM.xml` chargent les composants à partir de ce référentiel.
+composant de Hello qui lit et écrit les concentrateurs d’événements tooAzure se trouve dans hello [HDInsight référentiel](https://github.com/hdinsight/mvn-rep). Hello suivants sections Bonjour `POM.xml` composants hello du chargement de fichiers à partir de ce référentiel
 
 ```xml
 <repositories>
@@ -78,7 +78,7 @@ Le composant qui lit et écrit dans Azure Event Hubs se trouve dans le [référe
 </repositories>
 ```
 
-#### <a name="the-eventhubs-storm-spout-dependency"></a>Dépendance du spout Storm EventHubs
+#### <a name="hello-eventhubs-storm-spout-dependency"></a>Hello bec de Storm EventHubs de dépendance
 
 ```xml
 <dependency>
@@ -88,7 +88,7 @@ Le composant qui lit et écrit dans Azure Event Hubs se trouve dans le [référe
 </dependency>
 ```
 
-Ce fichier XML définit une dépendance pour le package eventhubs. Il contient à la fois un spout pour la lecture à partir d’Event Hubs et un bolt pour l’écriture dans Event Hubs.
+Ce code xml définit une dépendance pour le package hello eventhubs, qui contient à la fois un bec pour lire à partir de concentrateurs d’événements et un éclair pour l’écriture de tooit.
 
 ```xml
 </source>
@@ -97,9 +97,9 @@ Ce fichier XML définit une dépendance pour le package eventhubs. Il contient �
 </plugin>
 ```
 
-Ce fichier XML configure le projet de sorte à générer un résultat pour Java 8, résultat qui est ensuite utilisé par HDInsight 3.5 ou une version ultérieure.
+Ce code xml configure la sortie du toogenerate hello projet Java 8, qui est utilisé par HDInsight 3.5 ou version ultérieure.
 
-#### <a name="the-maven-shade-plugin"></a>maven-shade-plugin
+#### <a name="hello-maven-shade-plugin"></a>Hello maven-ton plug-in
 
 ```xml
 <!-- build an uber jar -->
@@ -136,17 +136,17 @@ Ce fichier XML configure le projet de sorte à générer un résultat pour Java 
 </plugin>
 ```
 
-Ce fichier XML configure la solution pour empaqueter la sortie dans une sorte de super fichier jar. Ce fichier jar contient le code de projet et les dépendances requises. Il est également utilisé pour :
+Ce code xml configure la sortie de hello hello solution toopackage dans un fichier jar générale. jar de Hello contient le code de projet hello et les dépendances requises. Il est également utilisé pour :
 
-* Renommer les fichiers de licence pour les dépendances.
+* Renommez les fichiers de licence pour les dépendances de hello.
 * Exclure les sécurités/signatures.
-* Assurez-vous que plusieurs implémentations de la même interface soient fusionnées dans une entrée.
+* Vérifiez que plusieurs implémentations de hello même interface sont fusionnées en une seule entrée.
 
 Ces paramètres de configuration évitent les erreurs au moment de l’exécution.
 
 #### <a name="topology-definitions"></a>Définitions de topologie
 
-Cet exemple utilise le framework [Flux](https://storm.apache.org/releases/1.1.0/flux.html). Ce framework utilise le langage YAML pour définir les topologies. Le principal avantage, c’est que vous ne codez pas la topologie en dur dans le code Java. Étant donné que la définition est rédigée en YAML, vous pouvez la modifier avant de soumettre la topologie, sans devoir tout recompiler.
+Cet exemple utilise hello [Flux](https://storm.apache.org/releases/1.1.0/flux.html) framework. Cette infrastructure utilise les topologies hello YAML toodefine. Hello le principal avantage est que vous n’êtes pas dur codage topologie hello dans le code Java. Définition de hello étant YAML, vous pouvez le modifier avant de soumettre la topologie de hello, sans avoir à toorecompile tous les éléments.
 
 __writer.yaml__ :
 
@@ -156,11 +156,11 @@ __writer.yaml__ :
 name: "eventhubwriter"
 
 components:
-  # Configure the Event Hub spout
+  # Configure hello Event Hub spout
   - id: "eventhubbolt-config"
     className: "org.apache.storm.eventhubs.bolt.EventHubBoltConfig"
     constructorArgs:
-      # These are populated from the .properties file when the topology is started
+      # These are populated from hello .properties file when hello topology is started
       - "${eventhub.write.policy.name}"
       - "${eventhub.write.policy.key}"
       - "${eventhub.namespace}"
@@ -177,7 +177,7 @@ bolts:
     className: "org.apache.storm.eventhubs.bolt.EventHubBolt"
     constructorArgs:
       - ref: "eventhubbolt-config" # config declared in components section
-    # parallelism hint. This should be the same as the number of partitions for your Event Hub, so we read it from the dev.properties file passed at run time.
+    # parallelism hint. This should be hello same as hello number of partitions for your Event Hub, so we read it from hello dev.properties file passed at run time.
     parallelism: ${eventhub.partitions}
 
   # Log information
@@ -185,7 +185,7 @@ bolts:
     className: "org.apache.storm.flux.wrappers.bolts.LogInfoBolt"
     parallelism: 1
 
-# How data flows through the components
+# How data flows through hello components
 streams:
   - name: "spout -> eventhub" # just a string used for logging
     from: "device-emulator-spout"
@@ -208,11 +208,11 @@ __reader.yaml__ :
 name: "eventhubreader"
 
 components:
-  # Configure the Event Hub spout
+  # Configure hello Event Hub spout
   - id: "eventhubspout-config"
     className: "org.apache.storm.eventhubs.spout.EventHubSpoutConfig"
     constructorArgs:
-      # These are populated from the .properties file when the topology is started
+      # These are populated from hello .properties file when hello topology is started
       - "${eventhub.read.policy.name}"
       - "${eventhub.read.policy.key}"
       - "${eventhub.namespace}"
@@ -224,7 +224,7 @@ spouts:
     className: "org.apache.storm.eventhubs.spout.EventHubSpout"
     constructorArgs:
       - ref: "eventhubspout-config" # config declared in components section
-    # parallelism hint. This should be the same as the number of partitions for your Event Hub, so we read it from the dev.properties file passed at run time.
+    # parallelism hint. This should be hello same as hello number of partitions for your Event Hub, so we read it from hello dev.properties file passed at run time.
     parallelism: ${eventhub.partitions}
 
 bolts:
@@ -238,7 +238,7 @@ bolts:
     className: "com.microsoft.example.ParserBolt"
     parallelism: ${eventhub.partitions}
 
-# How data flows through the components
+# How data flows through hello components
 streams:
   - name: "spout -> parser" # just a string used for logging
     from: "eventhub-spout"
@@ -253,9 +253,9 @@ streams:
         type: SHUFFLE
 ```
 
-#### <a name="tell-the-topology-about-event-hub"></a>Transmettre les informations Event Hub à la topologie
+#### <a name="tell-hello-topology-about-event-hub"></a>Topologie de hello dire de concentrateur d’événements
 
-Au moment de l’exécution, le fichier `dev.properties` est utilisé pour transmettre la configuration Event Hub à la topologie. L’exemple suivant montre le contenu par défaut du fichier :
+Au moment de l’exécution, hello `dev.properties` fichier est utilisé toopass hello concentrateur d’événements configuration toohello topologie. Hello exemple suivant est contenu par défaut de hello du fichier de hello :
 
 ```yaml
 eventhub.write.policy.name: writer
@@ -269,34 +269,34 @@ eventhub.partitions: 2
 
 ## <a name="configure-environment-variables"></a>Configuration des variables d’environnement
 
-Les variables d’environnement suivantes peuvent être définies lors de l’installation de Java et du Kit de développeur Java (JDK) sur votre station de travail de développement. Toutefois, vous devez vérifier qu’elles existent et qu’elles contiennent les valeurs correctes pour votre système.
+Hello variables d’environnement suivantes peuvent être définis lors de l’installation de Java et hello JDK sur votre station de travail de développement. Toutefois, vous devez vérifier qu’ils existent et qu’ils contiennent des valeurs correctes de hello pour votre système.
 
-* **JAVA_HOME** : doit pointer vers le répertoire d’installation de l’environnement d’exécution Java (JRE). Par exemple, sur une distribution Unix ou Linux, il doit avoir une valeur semblable à `/usr/lib/jvm/java-7-oracle`. Sous Windows, il a une valeur semblable à `c:\Program Files (x86)\Java\jre1.7`
-* **PATH** :doit contenir les chemins d’accès suivants :
+* **JAVA_HOME** -doit pointer Active toohello où hello Java runtime environment (JRE) est installé. Par exemple, dans une distribution Unix ou Linux, il doit avoir une valeur similaire trop`/usr/lib/jvm/java-7-oracle`. Dans Windows, il aurait une valeur similaire trop`c:\Program Files (x86)\Java\jre1.7`
+* **Chemin d’accès** -doit contenir hello suivant des chemins d’accès :
 
-  * **JAVA_HOME** (ou le chemin d’accès équivalent)
-  * **JAVA_HOME\bin** (ou le chemin d’accès équivalent)
-  * Le répertoire d’installation de Maven
+  * **JAVA_HOME** (ou les chemins d’accès équivalents hello)
+  * **JAVA_HOME\bin** (ou les chemins d’accès équivalents hello)
+  * répertoire d’Hello installation Maven
 
 ## <a name="configure-event-hub"></a>Configuration du hub d'événements
 
-Event Hubs est la source de données pour cet exemple. Procédez comme suit pour créer un Event Hub.
+Concentrateurs d’événements est la source de données de hello pour cet exemple. Utilisez hello suivant les étapes toocreate un concentrateur d’événements.
 
-1. Dans le [portail Azure Classic](https://manage.windowsazure.com), sélectionnez **NEW** > **Service Bus** > **Event Hub** > **Création personnalisée**.
+1. À partir de hello [portail classique Azure](https://manage.windowsazure.com), sélectionnez **nouveau** > **Service Bus** > **concentrateur d’événements**  >  **Création personnalisée**.
 
-2. Dans l’écran **Ajouter un nouvel hub d’événements**, entrez le **Nom du hub d’événements**. Sélectionnez la **région** pour créer le hub, puis créez un espace de noms ou sélectionnez-en un existant. Enfin, cliquez sur la **flèche** pour continuer.
+2. Sur hello **ajouter un concentrateur d’événements** écran, entrez un **nom de Hub d’événements**. Sélectionnez hello **région** toocreate hello concentrateur, puis créer un espace de noms ou sélectionnez-en un existant. Enfin, cliquez sur hello **flèche** toocontinue.
 
     ![page 1 de l’assistant](./media/hdinsight-storm-develop-csharp-event-hub-topology/wiz1.png)
 
    > [!NOTE]
-   > Vous devez sélectionner le même **emplacement** que celui de votre serveur Storm sur HDInsight pour réduire la latence et les coûts.
+   > Sélectionnez hello même **emplacement** comme votre Storm sur HDInsight serveur tooreduce latence et les coûts.
 
-3. Dans l’écran **Configurer un hub d’événements**, entrez les valeurs pour **Nombre de partitions** et **Rétention des messages**. Pour cet exemple, entrez 10 pour le nombre de partitions et 1 pour la conservation des messages. Notez le nombre de partitions, car vous en aurez besoin ultérieurement.
+3. Sur hello **concentrateur d’événements configurer** écran, entrez hello **nombre de Partition** et **rétention des messages** valeurs. Pour cet exemple, entrez 10 pour le nombre de partitions et 1 pour la conservation des messages. Notez le nombre de partitions hello, car vous avez besoin de cette valeur ultérieurement.
 
     ![page 2 de l’assistant](./media/hdinsight-storm-develop-csharp-event-hub-topology/wiz2.png)
 
-4. Une fois le hub d’événements créé, sélectionnez l’espace de noms, **Event Hubs**, puis le hub d’événements créé auparavant.
-5. Sélectionnez **Configurer**, puis créez deux nouvelles stratégies d’accès en utilisant les informations suivantes :
+4. Une fois le concentrateur d’événements hello a été créé, sélectionnez hello espace de noms, sélectionnez **concentrateurs d’événements**, puis sélectionnez le concentrateur d’événements hello que vous avez créé précédemment.
+5. Sélectionnez **configurer**, puis créez deux nouvelles stratégies d’accès à l’aide de hello informations suivantes :
 
     <table>
     <tr><th>Nom</th><th>Autorisations</th></tr>
@@ -304,73 +304,73 @@ Event Hubs est la source de données pour cet exemple. Procédez comme suit pour
     <tr><td>Lecteur</td><td>Écouter</td></tr>
     </table>
 
-    Après avoir créé les autorisations, sélectionnez l’icône **Enregistrer** située en bas de page. Ces stratégies d’accès partagé sont utilisées pour lire et écrire dans Event Hub.
+    Après avoir créé des autorisations de hello, sélectionnez hello **enregistrer** icône bas hello de page de hello. Ces stratégies d’accès partagé sont utilisé tooread et écrire tooEvent Hub.
 
     ![stratégies](./media/hdinsight-storm-develop-csharp-event-hub-topology/policy.png)
 
-6. Après avoir enregistré vos stratégies, utilisez le **Générateur de clés d’accès partagé** situé en bas de page pour récupérer les clés des stratégies **writer** et **reader**. Enregistrez ces clés.
+6. Après avoir enregistré les stratégies hello, utilisez hello **Générateur de clés d’accès partagé** bas hello de clé hello page tooretrieve hello hello **writer** et **lecteur** stratégies. Enregistrez ces clés.
 
-## <a name="download-and-build-the-project"></a>Télécharger et générer le projet
+## <a name="download-and-build-hello-project"></a>Télécharger et générer le projet de hello
 
-1. Téléchargez le projet à partir de GitHub : [hdinsight-java-storm-eventhub](https://github.com/Azure-Samples/hdinsight-java-storm-eventhub). Vous pouvez télécharger le package dans une archive .zip ou utiliser [git](https://git-scm.com/) pour cloner le projet localement.
+1. Télécharger le projet de hello à partir de GitHub : [hdinsight-java-storm-eventhub](https://github.com/Azure-Samples/hdinsight-java-storm-eventhub). Vous pouvez télécharger le package hello sous la forme d’une archive zip, ou utilisez [git](https://git-scm.com/) tooclone le projet hello local.
 
-2. Modifiez le fichier `dev.properties` et intégrez-y la configuration de votre Event Hub.
+2. Modifier hello `dev.properties` fichier de configuration hello pour votre concentrateur d’événements.
 
-3. Pour générer le projet et créer un package, utilisez la commande suivante :
+3. Utilisez hello suivant du projet de hello toobuild et le package :
 
         mvn package
 
-    Cette commande télécharge les dépendances requises, génère le projet, puis crée le package. Le résultat est stocké dans le répertoire **/target** dans un fichier **EventHubExample-1.0-SNAPSHOT.jar**.
+    Cette commande télécharge les dépendances nécessaires, builds, et puis packages hello projet. sortie de Hello est stockée dans hello **/target** répertoire comme **EventHubExample-1.0-SNAPSHOT.jar**.
 
 ## <a name="test-locally"></a>Tester les topologies localement
 
-Ces topologies lisent et écrivent uniquement dans Event Hubs, vous pouvez les tester localement si vous utilisez un [environnement de développement Storm](http://storm.apache.org/releases/current/Setting-up-development-environment.html). Effectuez les étapes suivantes pour exécuter les topologies localement dans l’environnement de développement :
+Étant donné que ces topologies uniquement lire et écrire tooEvent Hubs, vous pouvez les tester localement si vous avez un [environnement de développement Storm](http://storm.apache.org/releases/current/Setting-up-development-environment.html). Utilisez hello suivant toorun étapes localement dans l’environnement de développement hello :
 
-1. Exécutez le writer :
+1. Enregistreur de hello, exécutez :
 
         storm jar EventHubExample-1.0-SNAPSHOT.jar org.apache.storm.flux.Flux --local -R /writer.yaml --filter dev.properties
 
-2. Exécutez le reader :
+2. Lecteur de hello, exécutez :
 
         storm jar EventHubExample-1.0-SNAPSHOT.jar org.apache.storm.flux.Flux --local -R /reader.yaml --filter dev.properties
 
 > [!TIP]
-> * `--local` : exécuter la topologie en mode local (non distribué).
-> * `-R /writer.yaml` : charger la définition de la topologie à partir de l’élément `resources` empaqueté dans le fichier jar. Si la topologie est un fichier sur le système de fichiers local, spécifiez-en alors le chemin d’accès (dernier paramètre).
-> * `--filter dev.properties` : utiliser le contenu de `dev.properties` pour renseigner les valeurs dans les définitions de topologie. Par exemple, `${eventhub.read.policy.name}`.
+> * `--local`: Topologie hello exécution en mode local (non distribuées).
+> * `-R /writer.yaml`: Charger la définition de la topologie hello de hello `resources` empaquetées dans le fichier jar de hello. Si la topologie de hello est un fichier sur le système de fichiers local hello, spécifiez tooit de chemin d’accès hello comme dernier paramètre de hello.
+> * `--filter dev.properties`: Utilisez contenu hello de `dev.properties` toofill dans les valeurs hello dans les définitions de topologie hello. Par exemple, `${eventhub.read.policy.name}`.
 
-La sortie est enregistrée dans la console en cas d’exécution locale. Utilisez la combinaison de touches __Ctrl+C__ pour arrêter la topologie.
+Sortie est journalisée toohello console s’exécute en local. Utilisez __Ctrl + C__ topologie de hello toostop.
 
-## <a name="deploy-the-topologies"></a>Déploiement des topologies
+## <a name="deploy-hello-topologies"></a>Déployer des topologies de hello
 
-1. Utilisez SCP pour copier le package jar dans votre cluster HDInsight. Remplacez USERNAME par l’utilisateur SSH de votre cluster. Remplacez CLUSTERNAME par le nom de votre cluster HDInsight :
+1. Utilisez SCP toocopy hello jar package tooyour cluster HDInsight. Remplacez le nom d’utilisateur à utilisateur SSH hello pour votre cluster. Remplacez CLUSTERNAME nom hello de votre cluster HDInsight :
 
         scp ./target/EventHubExample-1.0-SNAPSHOT.jar USERNAME@CLUSTERNAME-ssh.azurehdinsight.net:.
 
-    Si vous avez utilisé un mot de passe pour votre compte SSH, vous êtes invité à le saisir. Si vous avez utilisé une clé SSH avec le compte, vous devrez peut-être utiliser le paramètre `-i` pour spécifier le chemin d’accès au fichier de clé. Par exemple, `scp -i ~/.ssh/id_rsa ./target/EventHubExample-1.0-SNAPSHOT.jar USERNAME@CLUSTERNAME-ssh.azurehdinsight.net:.`
+    Si vous avez utilisé un mot de passe pour votre compte SSH, vous êtes un mot de passe hello tooenter demandées. Si vous avez utilisé une clé SSH avec compte de hello, vous devrez peut-être toouse hello `-i` paramètre toospecify hello chemin d’accès toohello fichier de clé. Par exemple, `scp -i ~/.ssh/id_rsa ./target/EventHubExample-1.0-SNAPSHOT.jar USERNAME@CLUSTERNAME-ssh.azurehdinsight.net:.`
 
-    Cette commande copie le fichier sur le répertoire de base de votre utilisateur SSH sur le cluster.
+    Cette commande copie hello fichier toohello répertoire de base de votre utilisateur SSH sur le cluster de hello.
 
-2. Une fois le téléchargement du fichier terminé, utilisez SSH pour vous connecter au cluster HDInsight. Remplacez **USERNAME** par le nom de votre connexion SSH. Remplacez **CLUSTERNAME** par le nom de votre cluster HDInsight :
+2. Une fois le téléchargement du fichier hello a terminé, utilisez le cluster HDInsight SSH tooconnect toohello. Remplacez **nom d’utilisateur** nom hello de votre connexion SSH. Remplacez **CLUSTERNAME** par le nom de votre cluster HDInsight :
 
         ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net
 
     > [!NOTE]
-    > Si vous avez utilisé un mot de passe pour votre compte SSH, vous êtes invité à le saisir. Si vous avez utilisé une clé SSH avec le compte, vous devrez peut-être utiliser le paramètre `-i` pour spécifier le chemin d’accès au fichier de clé. L’exemple suivant charge la clé privée à partir de `~/.ssh/id_rsa` :
+    > Si vous avez utilisé un mot de passe pour votre compte SSH, vous êtes un mot de passe hello tooenter demandées. Si vous avez utilisé une clé SSH avec compte de hello, vous devrez peut-être toouse hello `-i` paramètre toospecify hello chemin d’accès toohello fichier de clé. Hello exemple suivant charge hello la clé privée `~/.ssh/id_rsa`:
     >
     > `ssh -i ~/.ssh/id_rsa USERNAME@CLUSTERNAME-ssh.azurehdinsight.net`
 
-3. Utilisez la commande suivante pour démarrer les topologies :
+3. Utilisez hello suivant des topologies de commande toostart hello :
 
         storm jar EventHubExample-1.0-SNAPSHOT.jar org.apache.storm.flux.Flux --remote -R /writer.yaml --filter dev.properties
         storm jar EventHubExample-1.0-SNAPSHOT.jar org.apache.storm.flux.Flux --remote -R /reader.yaml --filter dev.properties
 
     > [!TIP]
-    > * `--remote` : envoie la topologie au service Nimbus, qui la démarre sur les nœuds de travail du cluster.
+    > * `--remote`: Soumet hello topologie toohello service Nimbus, ce qui démarre sur les nœuds de cluster de hello travail de hello.
 
-4. Pour afficher les données enregistrées, accédez à l’adresse https://CLUSTERNAME.azurehdinsight.net/stormui, où __CLUSTERNAME__ est le nom de votre cluster HDInsight. Sélectionnez les topologies et explorez-en les composants. Sélectionnez l’entrée de __port__ d’une instance de composant pour afficher les informations enregistrées.
+4. les données tooview hello connecté, accédez à toohttps://CLUSTERNAME.azurehdinsight.net/stormui, où __CLUSTERNAME__ hello désigne votre cluster HDInsight. Sélectionnez les topologies hello et Descendre toohello composants. Sélectionnez hello __port__ entrée pour une instance d’un composant de tooview a enregistré des informations.
 
-5. Utilisez les commandes suivantes pour arrêter les topologies :
+5. Utilisez hello suivant des topologies de hello toostop de commandes :
 
         storm kill reader
         storm kill writer

@@ -1,6 +1,6 @@
 ---
-title: "Didacticiel de distribution mondiale Azure Cosmos DB pour l’API Table | Microsoft Docs"
-description: "Découvrez comment configurer la distribution mondiale Azure Cosmos DB à l’aide de l’API Table."
+title: "didacticiel de distribution globale aaaAzure Cosmos DB pour l’API de Table | Documents Microsoft"
+description: "Découvrez comment à l’aide de distribution globale de base de données Azure Cosmos toosetup hello des API de Table."
 services: cosmos-db
 keywords: distribution mondiale, Table
 documentationcenter: 
@@ -15,38 +15,38 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/10/2017
 ms.author: mimig
-ms.openlocfilehash: 63c9e530a4982e2e6e478fea56e015fc77851e1d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d2a995e09c37f9449856aef2ab707e95eb8a540c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-setup-azure-cosmos-db-global-distribution-using-the-table-api"></a>Comment configurer la distribution mondiale Azure Cosmos DB à l’aide de l’API Table
+# <a name="how-toosetup-azure-cosmos-db-global-distribution-using-hello-table-api"></a>À l’aide de distribution globale de base de données Azure Cosmos toosetup comment hello des API de Table
 
-Dans cet article, nous allons vous montrer comment utiliser le portail Azure pour configurer la distribution mondiale Azure Cosmos DB avant d’établir une connexion à l’aide de l’API Table (version préliminaire).
+Dans cet article, nous montrons comment toouse hello distribution globale de base de données Azure Cosmos toosetup portail Azure et connectez-vous à l’aide de hello API (version préliminaire) de la Table.
 
-Cet article décrit les tâches suivantes : 
+Cet article traite des hello tâches suivantes : 
 
 > [!div class="checklist"]
-> * Configurer la distribution mondiale à l’aide du portail Azure
-> * Configurer la distribution mondiale à l’aide de [l’API Table](table-introduction.md)
+> * Configurer la distribution globale à l’aide de hello portail Azure
+> * Configurer la distribution globale à l’aide de hello [API de Table](table-introduction.md)
 
 [!INCLUDE [cosmos-db-tutorial-global-distribution-portal](../../includes/cosmos-db-tutorial-global-distribution-portal.md)]
 
 
-## <a name="connecting-to-a-preferred-region-using-the-table-api"></a>Se connecter à une région de prédilection avec l’API Table
+## <a name="connecting-tooa-preferred-region-using-hello-table-api"></a>Connexion tooa la région préférée à l’aide de hello API de Table
 
-Pour tirer parti de la [distribution mondiale](distribute-data-globally.md), les applications clientes peuvent spécifier la liste ordonnée de préférences de régions à utiliser pour effectuer des opérations sur les documents. Pour ce faire, définissez la valeur de configuration `TablePreferredLocations` dans la configuration de l’application de la version préliminaire du kit de développement logiciel Azure Storage. Selon la configuration du compte Azure Cosmos DB, la disponibilité régionale actuelle et la liste de préférences spécifiée, le Kit de développement logiciel (SDK) Azure Storage choisit le point de terminaison optimal pour les opérations de lecture et d’écriture.
+Dans l’avantage de tootake d’ordre de [distribution globale](distribute-data-globally.md), les applications clientes peuvent spécifier hello classés de liste de préférence des régions toobe utilisé tooperform les opérations de document. Cela est possible en définissant les hello `TablePreferredLocations` valeur de configuration dans la configuration de l’application hello pour l’aperçu de hello SDK Azure Storage. Selon la configuration du compte de base de données Azure Cosmos hello, disponibilité régionale actuelle hello liste de préférence spécifié, hello la plupart des point de terminaison optimale est sélectionnée par hello SDK Azure Storage tooperform écrire et opérations de lecture.
 
-Le paramètre `TablePreferredLocations` doit contenir une liste séparée par des virgules des emplacements (de multihébergement) préférés pour les lectures. Chaque instance de client peut spécifier un sous-ensemble de ces régions dans l’ordre de préférence pour des lectures à faible latence. Les régions doivent être nommées à l’aide de leurs [noms d’affichage](https://msdn.microsoft.com/library/azure/gg441293.aspx), par exemple, `West US`.
+Hello `TablePreferredLocations` doit contenir une liste séparée par des virgules des emplacements (multihébergement) par défaut pour les lectures. Chaque instance de client peut spécifier un sous-ensemble de ces régions dans l’ordre de hello préféré pour les lectures de faible latence. les régions Hello doivent être nommées à l’aide de leurs [afficher les noms des](https://msdn.microsoft.com/library/azure/gg441293.aspx), par exemple, `West US`.
 
-Toutes les lectures sont envoyées vers la première région disponible dans la liste `TablePreferredLocations`. Si la demande échoue, le client passe à la région suivante dans la liste et ainsi de suite.
+Toutes les lectures seront envoyés toohello première disponible région Bonjour `TablePreferredLocations` liste. En cas de demande de hello, client de hello échouer la région de hello liste toohello suivante et ainsi de suite.
 
-Le SDK tente des opérations de lecture uniquement à partir des régions spécifiées dans `TablePreferredLocations`. Ainsi, par exemple, si le compte de base de données est disponible dans trois régions, mais que le client spécifie uniquement deux des régions sans écriture de `TablePreferredLocations`, aucune lecture n’est traitée hors de la région d’écriture, même en cas de basculement.
+Hello SDK tente uniquement tooread de régions hello spécifié dans `TablePreferredLocations`. Ainsi, par exemple, si hello compte de base de données est disponible dans trois régions, mais les clients hello spécifie uniquement deux des hello régions non-écriture pour `TablePreferredLocations`, alors aucune lecture ne sera pris en charge en dehors de la région d’écriture hello, même dans les cas de hello de basculement.
 
-Le SDK envoie automatiquement toutes les écritures vers la région d’écriture en cours.
+Hello Kit de développement logiciel enverra automatiquement région pour l’écriture de toutes les écritures toohello actuelle.
 
-Si la propriété `TablePreferredLocations` n’est pas définie, toutes les demandes seront traitées par la zone d’écriture en cours.
+Si hello `TablePreferredLocations` propriété n’est pas définie, toutes les demandes seront pris en charge à partir de la zone d’écriture en cours hello.
 
 ```xml
     <appSettings>
@@ -54,17 +54,17 @@ Si la propriété `TablePreferredLocations` n’est pas définie, toutes les dem
     </appSettings>
 ```
 
-C’est ici que s’achève ce didacticiel. Découvrez comment gérer la cohérence de votre compte répliqué à l’échelle mondiale en lisant l’article [Niveaux de cohérence dans Azure Cosmos DB](consistency-levels.md). Pour plus d’informations sur le fonctionnement de la réplication de base de données à l’échelle mondiale dans Azure Cosmos DB, voir [Diffuser des données à l’échelle mondiale avec Azure Cosmos DB](distribute-data-globally.md).
+C’est ici que s’achève ce didacticiel. Vous pouvez apprendre comment toomanage hello la cohérence de votre compte de réplication globale en lisant [niveaux de cohérence dans la base de données Azure Cosmos](consistency-levels.md). Pour plus d’informations sur le fonctionnement de la réplication de base de données à l’échelle mondiale dans Azure Cosmos DB, voir [Diffuser des données à l’échelle mondiale avec Azure Cosmos DB](distribute-data-globally.md).
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Dans ce didacticiel, vous avez effectué les tâches suivantes :
+Dans ce didacticiel, vous avez effectué les éléments suivants de hello :
 
 > [!div class="checklist"]
-> * Configurer la distribution mondiale à l’aide du portail Azure
-> * Configurer la distribution mondiale à l’aide des API DocumentDB
+> * Configurer la distribution globale à l’aide de hello portail Azure
+> * Configurer la distribution globale à l’aide de hello APIs DocumentDB
 
-Vous pouvez maintenant passer au didacticiel suivant pour apprendre à développer en local à l’aide de l’émulateur local Azure Cosmos DB.
+Vous pouvez maintenant toolearn de didacticiel suivant toohello comment toodevelop localement à l’aide de hello émulateur local de base de données Azure Cosmos.
 
 > [!div class="nextstepaction"]
-> [Développer en local avec l’émulateur](local-emulator.md)
+> [Développer localement avec l’émulateur de hello](local-emulator.md)

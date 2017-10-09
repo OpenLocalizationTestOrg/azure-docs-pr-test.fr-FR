@@ -1,6 +1,6 @@
 ---
-title: Activation du chiffrement SSL de bout en bout sur la passerelle Azure Application Gateway | Microsoft Docs
-description: "Cette page fournit une vue d’ensemble de la prise en charge du chiffrement SSL de bout en bout pour la passerelle Application Gateway."
+title: "aaaEnabling fin tooend SSL sur la passerelle d’Application Azure | Documents Microsoft"
+description: "Cette page fournit une vue d’ensemble de tooend de fin de passerelle d’Application hello prennent en charge de SSL."
 documentationcenter: na
 services: application-gateway
 author: amsriva
@@ -15,33 +15,33 @@ ms.custom: H1Hack27Feb2017
 ms.workload: infrastructure-services
 ms.date: 07/19/2017
 ms.author: amsriva
-ms.openlocfilehash: 689ee54dc1db2ea371b08270718278fd98c65bb5
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: c5cb398a1e7d9a08662a3120baad98edb5575917
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="overview-of-end-to-end-ssl-with-application-gateway"></a>Présentation du chiffrement SSL de bout en bout sur la passerelle Application Gateway
+# <a name="overview-of-end-tooend-ssl-with-application-gateway"></a>Vue d’ensemble de fin tooend SSL avec la passerelle d’Application
 
-La passerelle Application Gateway prend en charge la terminaison SSL au niveau de la passerelle, après laquelle le trafic transite généralement de façon non chiffrée vers les serveurs principaux. Grâce à cette fonctionnalité, les serveurs web ne sont plus chargés des opérations coûteuses de chiffrement et de déchiffrement. Mais pour certains clients, une communication non chiffrée vers les serveurs principaux n’est pas une option acceptable. Cette communication non chiffrée peut être due à des exigences de sécurité ou de conformité, ou au fait que l’application n’accepte qu’une connexion sécurisée. Pour de telles applications, la passerelle Application Gateway prend désormais en charge le chiffrement SSL de bout en bout.
+Passerelle d’application prend en charge la terminaison SSL au niveau de la passerelle de hello, une fois que le trafic qui transite généralement serveurs principaux de toohello un format non chiffré. Cette fonctionnalité permet toobe de serveurs web unburdened à partir de la surcharge de chiffrement et déchiffrement coûteux. Cependant pour certains clients serveurs de communication non chiffrés toohello principaux n’est pas une option acceptable. Cette communication non chiffrée peut être dû à toosecurity spécifications, les exigences de conformité, ou application hello peut accepter seulement une connexion sécurisée. Pour de telles applications, la passerelle d’application prend en charge fin tooend SSL chiffrement.
 
-## <a name="overview"></a>Vue d’ensemble
+## <a name="overview"></a>Vue d'ensemble
 
-Le chiffrement SSL de bout en bout vous permet de transmettre en toute sécurité des données sensibles au serveur back-end, tout en continuant de bénéficier des avantages des fonctionnalités d’équilibrage de charge de couche 7 fournies par la passerelle Application Gateway. Il s’agit notamment de la fonctionnalité d’affinité basée sur les cookies, du routage basé sur l’URL, de la prise en charge du routage basé sur des sites ou de la possibilité d’injecter des en-têtes X-Forwarded.
+Vous permet de fin tooend SSL toosecurely transmettre back-end du toohello des données sensibles chiffrée pendant que toujours tirer parti des avantages de hello de fonctionnalités d’équilibrage de charge de couche 7 de passerelle d’application fournit. Certaines de ces fonctionnalités sont l’affinité de basé sur cookie de session, le routage basé sur une URL, prise en charge pour le routage basé sur des sites ou capacité tooinject X - transféré-* en-têtes.
 
-Lorsqu’elle est configurée avec un mode de communication SSL de bout en bout, la passerelle Application Gateway ferme les sessions SSL au niveau de la passerelle et déchiffre le trafic de l’utilisateur. Il applique ensuite les règles configurées pour sélectionner une instance de pool principal appropriée vers laquelle acheminer le trafic. La passerelle Application Gateway établit ensuite une nouvelle connexion SSL vers le serveur back-end, puis chiffre à nouveau les données à l’aide du certificat de clé publique de ce serveur avant de transmettre la requête au back-end. Pour activer le chiffrement SSL de bout en bout, définissez le paramètre de protocole BackendHTTPSetting sur HTTPS, qui est ensuite appliqué à un pool back-end. Chaque serveur principal du pool principal pour lequel un chiffrement SSL de bout en bout a été activé doit être configuré avec un certificat afin de permettre une communication sécurisée.
+Configuré avec le mode de communication SSL fin tooend, lors de la passerelle d’application met fin à des sessions SSL hello au niveau de passerelle hello et déchiffre le trafic des utilisateurs. Il applique ensuite tooselect de règles hello configuré un serveur principal approprié pool instance tooroute le trafic. Passerelle d’application puis initie un nouveau serveur de back-end du toohello connexion SSL et rechiffre les données à l’aide du certificat de clé publique du serveur hello principal avant de les transmettre hello demande toohello principal. Tooend fin que SSL est activé en définissant le paramètre de protocole dans tooHTTPS BackendHTTPSetting, qui est ensuite appliqué pool principal de tooa. Chaque serveur principal dans le pool de principal de hello avec tooend fin que SSL activé doit être configuré avec une communication sécurisée tooallow de certificat.
 
-![scénario ssl de bout en bout][1]
+![scénario de fin tooend ssl][1]
 
-Dans cet exemple, les demandes utilisant TLS1.2 sont acheminées vers les serveurs principaux dans Pool1 à l’aide du chiffrement SSL de bout en bout.
+Dans cet exemple, les demandes à l’aide de TLS 1.2 sont des serveurs toobackend routé dans Pool1 à l’aide de fin tooend SSL.
 
-## <a name="end-to-end-ssl-and-whitelisting-of-certificates"></a>Chiffrement SSL de bout en bout et liste blanche de certificats
+## <a name="end-tooend-ssl-and-whitelisting-of-certificates"></a>Fin tooend SSL et création de listes de certificats autorisées
 
-La passerelle Application Gateway communique uniquement avec les instances de serveur principal identifiées dont le certificat figure sur la liste approuvée par la passerelle Application Gateway. Pour approuver des certificats, vous devez télécharger la clé publique des certificats du serveur principal pour la passerelle Application Gateway (non le certificat racine). Seules les connexions aux serveurs principaux connus et sur liste blanche sont alors autorisées. Les autres serveurs principaux renvoient une erreur de passerelle. Les certificats auto-signés sont uniquement destinés à des fins de test et ne sont pas recommandés pour les charges de travail de production. Pour être utilisables, ces certificats doivent figurer dans la liste approuvée par la passerelle Application Gateway, comme décrit dans les étapes précédentes.
+Passerelle d’application communique uniquement avec des instances de principal connus ayant dans la liste approuvée leur certificat avec la passerelle d’application hello. liste des tooenable approuvées de certificats, vous devez télécharger hello de clé publique passerelle d’application principal serveur certificats toohello (pas les certificats racine hello). Seules les connexions tooknown et dans la liste approuvée aux serveurs principaux sont autorisés puis. Hello restant les serveurs principaux entraîne une erreur de passerelle. Les certificats auto-signés sont uniquement destinés à des fins de test et ne sont pas recommandés pour les charges de travail de production. Ces certificats ont toobe dans la liste approuvée avec la passerelle d’application hello comme décrit dans les étapes précédentes avant de pouvoir être utilisés de hello.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Après avoir découvert le chiffrement SSL de bout en bout, consultez l’article indiquant comment [activer le chiffrement SSL de bout en bout sur la passerelle Application Gateway](application-gateway-end-to-end-ssl-powershell.md) pour créer une passerelle d’application à l’aide du chiffrement SSL de bout en bout.
+Après avoir d’apprendre à fin tooend SSL, passez trop[activer fin tooend SSL sur la passerelle d’application](application-gateway-end-to-end-ssl-powershell.md) toocreate une passerelle d’application à l’aide de fin tooend SSL.
 
 <!--Image references-->
 

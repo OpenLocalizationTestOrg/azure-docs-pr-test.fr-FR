@@ -1,6 +1,6 @@
 ---
-title: "Gestion du Stockage Fichier Azure à partir du portail Azure | Microsoft Docs"
-description: "Découvrez comment utiliser le portail Azure pour gérer le Stockage Fichier Azure."
+title: "aaaHow toomanage stockage Azure Files à partir de hello portail Azure | Documents Microsoft"
+description: "Découvrez le stockage de fichiers Azure toouse hello toomanage portail Azure."
 services: storage
 documentationcenter: 
 author: RenaShahMSFT
@@ -14,62 +14,62 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 05/27/2017
 ms.author: renash
-ms.openlocfilehash: d5ffa7cff0a31e36f5a96aaa4b2d477fa39333fb
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 6ad2fbbf9ee2f86748b1b175d0f63274144dc5eb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-azure-file-storage-from-the-azure-portal"></a>Utilisation du Stockage Fichier Azure à partir du portail Azure
-Le [portail Azure](https://portal.azure.com) offre une interface utilisateur permettant de gérer le Stockage Fichier Azure. Vous pouvez effectuer les actions suivantes à partir de votre navigateur web :
+# <a name="how-toouse-azure-file-storage-from-hello-azure-portal"></a>Comment le stockage de fichier Azure toouse de hello portail Azure
+Hello [portail Azure](https://portal.azure.com) fournit une interface utilisateur pour la gestion du stockage de fichiers Azure. Vous pouvez effectuer hello suivant des actions dans votre navigateur web :
 
 * Créer un partage de fichiers
-* Charger et télécharger des fichiers vers et à partir de votre partage de fichiers.
-* Surveiller l'utilisation réelle de chaque partage de fichiers.
-* Ajuster le quota de la taille de partage.
-* Copiez les commandes de montage servant à monter votre partage de fichiers à partir d’un client Windows ou Linux.
+* Télécharger des fichiers tooand à partir de votre partage de fichiers.
+* Surveillez l’utilisation réelle de hello de chaque partage de fichiers.
+* Ajustez le quota de taille de partage de fichiers hello.
+* Copiez hello montage commandes toouse toomount de partage de vos fichiers à partir d’un client Windows ou Linux.
 
 ## <a name="create-file-share"></a>Créer un partage de fichiers
-1. Connectez-vous au portail Azure.
-2. Dans le menu de navigation, cliquez sur **Comptes de stockage** ou sur **Comptes de stockage (classiques)**.
+1. Se connecter toohello portail Azure.
+2. Dans le menu de navigation hello, cliquez sur **comptes de stockage** ou **comptes de stockage (classiques)**.
     
-    ![Capture d’écran montrant comment créer un partage de fichiers dans le portail](./media/storage-how-to-use-files-portal/use-files-portal-create-file-share1.png)
+    ![Capture d’écran qui montre comment partager des fichiers de toocreate dans le portail de hello](./media/storage-how-to-use-files-portal/use-files-portal-create-file-share1.png)
 
 3. Choisissez votre compte de stockage.
 
-    ![Capture d’écran montrant comment créer un partage de fichiers dans le portail](./media/storage-how-to-use-files-portal/use-files-portal-create-file-share2.png)
+    ![Capture d’écran qui montre comment partager des fichiers de toocreate dans le portail de hello](./media/storage-how-to-use-files-portal/use-files-portal-create-file-share2.png)
 
 4. Choisissez le service Fichiers.
 
-    ![Capture d’écran montrant comment créer un partage de fichiers dans le portail](./media/storage-how-to-use-files-portal/use-files-portal-create-file-share3.png)
+    ![Capture d’écran qui montre comment partager des fichiers de toocreate dans le portail de hello](./media/storage-how-to-use-files-portal/use-files-portal-create-file-share3.png)
 
-5. Cliquez sur Partages de fichiers et suivez le lien pour créer votre premier partage de fichiers.
+5. Cliquez sur « Partages de fichiers » et suivez les toocreate de lien de hello partager de votre premier fichier.
 
-    ![Capture d’écran montrant comment créer un partage de fichiers dans le portail](./media/storage-how-to-use-files-portal/use-files-portal-create-file-share4.png)
+    ![Capture d’écran qui montre comment partager des fichiers de toocreate dans le portail de hello](./media/storage-how-to-use-files-portal/use-files-portal-create-file-share4.png)
 
-6. Renseignez le nom du partage de fichiers ainsi que sa taille (jusqu’à 5 120 Go) pour créer votre premier partage de fichiers. Une fois le partage de fichiers créé, vous pouvez le monter à partir de n’importe quel système de fichiers prenant en charge SMB 2.1 ou SMB 3.0. Vous pouvez cliquer sur **Quota** sur le partage de fichiers pour modifier la taille du fichier jusqu’à 5 120 Go. Reportez-vous à la [Calculatrice de prix Azure](https://azure.microsoft.com/pricing/calculator/) pour estimer le coût de stockage lié à l’utilisation du Stockage Fichier Azure.
+6. Renseignez nom de partage de fichiers hello et taille hello de toocreate de partage (haut too5120 Go) fichier hello votre première partage de fichiers. Une fois que le partage de fichiers hello a été créé, vous pouvez le monter à partir de n’importe quel système de fichiers qui prend en charge SMB 2.1 ou SMB 3.0. Vous pouvez cliquer sur **Quota** hello taille de fichier partage toochange hello du fichier hello des too5120 go. Reportez-vous trop[calculatrice de tarification Azure](https://azure.microsoft.com/pricing/calculator/) tooestimate hello stockage à moindre coût de l’utilisation du stockage de fichiers Azure.
 
-    ![Capture d’écran montrant comment créer un partage de fichiers dans le portail](./media/storage-how-to-use-files-portal/use-files-portal-create-file-share5.png)
+    ![Capture d’écran qui montre comment partager des fichiers de toocreate dans le portail de hello](./media/storage-how-to-use-files-portal/use-files-portal-create-file-share5.png)
 
 ## <a name="upload-and-download-files"></a>Charger et télécharger des fichiers
 1. Choisissez un partage de fichiers que vous avez déjà créé.
 
-    ![Capture d’écran montrant comment charger et télécharger des fichiers à partir du portail](./media/storage-how-to-use-files-portal/use-files-portal-upload-file1.png)
+    ![Capture d’écran qui illustre comment tooupload et téléchargez des fichiers à partir de hello portail](./media/storage-how-to-use-files-portal/use-files-portal-upload-file1.png)
 
-2. Cliquez sur **Charger** pour ouvrir l’interface utilisateur pour le chargement des fichiers.
+2. Cliquez sur **télécharger** pour ouvrir l’interface utilisateur de hello pour télécharger les fichiers.
 
-    ![Capture d’écran montrant comment charger des fichiers à partir du portail](./media/storage-how-to-use-files-portal/use-files-portal-upload-file2.png)
+    ![Capture d’écran qui illustre comment les fichiers à partir du portail de hello tooupload](./media/storage-how-to-use-files-portal/use-files-portal-upload-file2.png)
 
-## <a name="connect-to-file-share"></a>Connexion au partage de fichiers
--  Cliquez sur **Se connecter** pour accéder à la ligne de commande permettant de monter le partage de fichiers à partir de Windows et Linux. Pour les utilisateurs Linux, vous pouvez également consulter [Utilisation du Stockage Fichier Azure avec Linux](../storage-how-to-use-files-linux.md) pour obtenir des instructions de montage supplémentaires pour les autres distributions Linux.
+## <a name="connect-toofile-share"></a>Se connecter toofile partage
+-  Cliquez sur **connexion** pour obtenir la ligne de commande hello montage hello partage de fichiers à partir de Windows et Linux. Pour les utilisateurs Linux, vous pouvez également faire référence trop[comment toouse stockage Azure files avec Linux](../storage-how-to-use-files-linux.md) pour plus d’instructions de montage pour les autres distributions de Linux.
 
-    ![Capture d’écran montrant comment monter le partage de fichiers](./media/storage-how-to-use-files-portal/use-files-portal-connect.png)
--  Vous pouvez copier les commandes servant à monter le partage de fichiers sous Windows ou Linux et exécuter ce dernier à partir de votre machine virtuelle Azure ou de votre machine locale.
+    ![Capture d’écran qui illustre comment toomount hello partage de fichiers](./media/storage-how-to-use-files-portal/use-files-portal-connect.png)
+-  Vous pouvez copier hello commandes permettant de monter le fichier de partage sous Windows ou Linux et exécuter de votre ordinateur local ou de machine virtuelle Azure.
 
-    ![Capture d’écran qui montre les commandes de montage pour Windows et Linux](./media/storage-how-to-use-files-portal/use-files-portal-show-mount-commands.png)
+    ![Capture d’écran qui affiche les commandes de montage hello pour Windows et Linux](./media/storage-how-to-use-files-portal/use-files-portal-show-mount-commands.png)
 
 **Conseil :**  
-Pour obtenir la clé d’accès du compte de stockage permettant le montage, cliquez sur **Afficher les clés d’accès pour ce compte de stockage** au bas de la page de connexion.
+clé toofind hello accès de montage, cliquez sur **clés d’accès en lecture pour ce compte de stockage** bas hello hello page de connexion.
 
 ## <a name="see-also"></a>Voir aussi
 Pour plus d’informations sur le stockage de fichiers Azure, consultez ces liens.

@@ -1,6 +1,6 @@
 ---
-title: "Créer une fonction dans Azure déclenchée par un webhook générique | Microsoft Docs"
-description: "Utilisez Azure Functions pour créer une fonction sans serveur qui est appelée par un webhook dans Azure."
+title: "aaaCreate une fonction dans Azure déclenchée par un webhook générique | Documents Microsoft"
+description: "Utilisez les fonctions Azure toocreate une fonction sans serveur qui est appelée par un webhook dans Azure."
 services: functions
 documentationcenter: na
 author: ggailey777
@@ -16,21 +16,21 @@ ms.workload: na
 ms.date: 08/12/2017
 ms.author: glenga
 ms.custom: mvc
-ms.openlocfilehash: f283f8d79c5ae5fb6a72c84c9e9edb7bb8de4a83
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 0a4868da91d216c8d20930ce7ec82eaa059c75ff
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-function-triggered-by-a-generic-webhook"></a>Créer une fonction déclenchée par un webhook générique
 
-Azure Functions vous permet d’exécuter votre code dans un environnement sans serveur et sans avoir à créer une machine virtuelle ou à publier une application web au préalable. Par exemple, vous pouvez configurer qu’une fonction soit déclenchée par une alerte provenant d’Azure Monitor. Cette rubrique montre comment exécuter le code C# lorsqu’un groupe de ressources est ajouté à votre abonnement.   
+Les fonctions Azure vous permet d’exécuter votre code dans un environnement sans serveur sans avoir toofirst créer une machine virtuelle ou publier une application web. Par exemple, vous pouvez configurer un toobe fonction déclenchée par une alerte déclenchée par le moniteur de Windows Azure. Cette rubrique vous montre comment tooexecute code c# lorsqu’un groupe de ressources est ajouté tooyour abonnement.   
 
-![Fonction déclenchée par un webhook générique dans le portail Azure](./media/functions-create-generic-webhook-triggered-function/function-completed.png)
+![Générique webhook a déclenché la fonction Bonjour portail Azure](./media/functions-create-generic-webhook-triggered-function/function-completed.png)
 
 ## <a name="prerequisites"></a>Composants requis 
 
-Pour suivre ce didacticiel :
+toocomplete ce didacticiel :
 
 + Si vous n’avez pas d’abonnement Azure, créez un [compte gratuit](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) avant de commencer.
 
@@ -40,68 +40,68 @@ Pour suivre ce didacticiel :
 
 [!INCLUDE [Create function app Azure portal](../../includes/functions-create-function-app-portal.md)]
 
-Créez ensuite une fonction dans la nouvelle Function App.
+Ensuite, créez une fonction dans hello une nouvelle application de fonction.
 
 ## <a name="create-function"></a>Créer une fonction déclenchée par un webhook générique
 
-1. Développez votre Function App, puis cliquez sur le bouton **+** en regard de **Fonctions**. Si cette fonction est la première de votre application de fonction, sélectionnez **Fonction personnalisée**. Cela affiche l’ensemble complet des modèles de fonction.
+1. Développez votre application de la fonction et cliquez sur hello  **+**  bouton ensuite trop**fonctions**. Si cette fonction est hello dans votre application de la fonction, sélectionnez **fonction personnalisée**. Cela affiche le jeu complet de hello des modèles de fonction.
 
-    ![Page de démarrage rapide des fonctions sur le portail Azure](./media/functions-create-generic-webhook-triggered-function/add-first-function.png)
+    ![Page de démarrage rapide de fonctions Bonjour portail Azure](./media/functions-create-generic-webhook-triggered-function/add-first-function.png)
 
-2. Sélectionnez le modèle **Webhook générique - C#**. Donnez un nom à votre fonction C#, puis sélectionnez **Créer**.
+2. Sélectionnez hello **WebHook - générique c#** modèle. Donnez un nom à votre fonction C#, puis sélectionnez **Créer**.
 
-     ![Créer une fonction déclenchée par un webhook générique dans le portail Azure](./media/functions-create-generic-webhook-triggered-function/functions-create-generic-webhook-trigger.png) 
+     ![Créer une fonction générique webhook déclenchée Bonjour portail Azure](./media/functions-create-generic-webhook-triggered-function/functions-create-generic-webhook-trigger.png) 
 
-2. Dans votre nouvelle fonction, cliquez sur **</> Obtenir l’URL de fonction**, puis copiez et enregistrez la valeur. Vous utilisez cette valeur pour configurer le webhook. 
+2. Dans votre nouvelle fonction, cliquez sur **<> / Get fonction URL**, puis copiez et enregistrez la valeur de hello. Vous utilisez ce webhook de hello tooconfigure valeur. 
 
-    ![Examiner le code de fonction](./media/functions-create-generic-webhook-triggered-function/functions-copy-function-url.png)
+    ![Passez en revue le code de la fonction hello](./media/functions-create-generic-webhook-triggered-function/functions-copy-function-url.png)
          
 Créez ensuite un point de terminaison webhook dans une alerte de journal d’activité dans Azure Monitor. 
 
 ## <a name="create-an-activity-log-alert"></a>Créer une alerte de journal d’activité
 
-1. Dans le portail Azure, accédez au service **Surveillance**, sélectionnez **Alertes**, puis cliquez sur **Ajouter une alerte de journal d’activité**.   
+1. Dans hello portail Azure, accédez toohello **moniteur** service, sélectionnez **alertes**, puis cliquez sur **ajouter une alerte journal activité**.   
 
     ![Surveiller](./media/functions-create-generic-webhook-triggered-function/functions-monitor-add-alert.png)
 
-2. Utilisez les paramètres spécifiés dans le tableau :
+2. Utiliser les paramètres de hello comme spécifié dans la table de hello :
 
     ![Créer une alerte de journal d’activité](./media/functions-create-generic-webhook-triggered-function/functions-monitor-add-alert-settings.png)
 
     | Paramètre      |  Valeur suggérée   | Description                              |
     | ------------ |  ------- | -------------------------------------------------- |
-    | **Nom de l’alerte de journal d’activité** | resource-group-create-alert | Nom de l’alerte de journal d’activité. |
-    | **Abonnement** | Votre abonnement | L’abonnement que vous utilisez pour ce didacticiel. | 
-    |  **Groupe de ressources** | myResourceGroup | Le groupe de ressources dans lequel les ressources d’alerte sont déployées. L’utilisation du même groupe de ressources que votre application de fonction facilite le nettoyage une fois le didacticiel terminé. |
-    | **Catégorie d’événement** | Administratif | Cette catégorie inclut les modifications apportées aux ressources Azure.  |
-    | **Type de ressource** | Groupes de ressources | Filtre les alertes pour les activités du groupe de ressources. |
+    | **Nom de l’alerte de journal d’activité** | resource-group-create-alert | Nom de l’alerte de journal d’activité hello. |
+    | **Abonnement** | Votre abonnement | abonnement Hello que vous utilisez pour ce didacticiel. | 
+    |  **Groupe de ressources** | myResourceGroup | groupe de ressources Hello déployés pour avertir les ressources hello. À l’aide de hello le même groupe de ressources comme votre application de la fonction rend plus facile tooclean après avoir terminé le didacticiel de hello. |
+    | **Catégorie d’événement** | Administratif | Cette catégorie inclut les modifications apportées aux ressources de tooAzure.  |
+    | **Type de ressource** | Groupes de ressources | Filtre les activités de groupe tooresource alertes. |
     | **Groupe de ressources**<br/>et **Ressource** | Tout | Surveille toutes les ressources. |
-    | **Nom d’opération** | Créer un groupe de ressources | Filtre les alertes pour créer des opérations. |
+    | **Nom d’opération** | Créer un groupe de ressources | Filtre les opérations de toocreate d’alertes. |
     | **Niveau** | Informations | Incluez les alertes de niveau d’informations. | 
-    | **État** | Réussi | Filtre les alertes aux actions qui ont réussi. |
-    | **Groupe d’actions** | Nouveau | Créez un nouveau groupe d’actions, qui définit l’action effectuée lorsqu’une alerte est renvoyée. |
-    | **Nom du groupe d’actions** | function-webhook | Nom destiné à identifier le groupe d’actions.  | 
-    | **Nom court** | funcwebhook | Nom court du groupe d’actions. |  
+    | **État** | Réussi | Filtres tooactions alertes qui ont été effectuées avec succès. |
+    | **Groupe d’actions** | Nouveau | Créer un nouveau groupe d’action, qui définit l’action hello se lorsqu’une alerte est déclenchée. |
+    | **Nom du groupe d’actions** | function-webhook | Un groupe d’actions nom tooidentify hello.  | 
+    | **Nom court** | funcwebhook | Un nom court pour le groupe d’actions hello. |  
 
-3. Dans **Actions**, ajoutez une action à l’aide des paramètres spécifiés dans la table : 
+3. Dans **Actions**, ajoutez une action à l’aide des paramètres de hello comme spécifié dans la table de hello : 
 
     ![Ajouter un groupe d’actions](./media/functions-create-generic-webhook-triggered-function/functions-monitor-add-alert-settings-2.png)
 
     | Paramètre      |  Valeur suggérée   | Description                              |
     | ------------ |  ------- | -------------------------------------------------- |
-    | **Name** | CallFunctionWebhook | Nom de l’action. |
-    | **Type d’action** | webhook | La réponse à l’alerte est qu’une URL de webhook est appelée. |
-    | **Détails** | URL de la fonction | Collez l’URL de webhook de la fonction que vous avez copiée précédemment. |v
+    | **Name** | CallFunctionWebhook | Un nom pour l’action de hello. |
+    | **Type d’action** | webhook | alerte de toohello Hello réponse est que l’URL du Webhook est appelée. |
+    | **Détails** | URL de la fonction | Collez l’URL du webhook hello de fonction hello que vous avez copiée précédemment. |v
 
-4. Cliquez sur **OK** pour créer l’alerte et le groupe d’actions.  
+4. Cliquez sur **OK** toocreate hello alerte et action le groupe.  
 
-Le webhook est maintenant appelé lorsqu’un groupe de ressources est créé dans votre abonnement. Ensuite, vous mettez à jour le code dans votre fonction pour gérer les données de journal JSON dans le corps de la requête.   
+Hello webhook est maintenant appelé lorsqu’un groupe de ressources est créé dans votre abonnement. Ensuite, vous mettre à jour hello code dans votre hello toohandle de fonction JSON journal données hello corps de demande de hello.   
 
-## <a name="update-the-function-code"></a>Mettre à jour le code de fonction
+## <a name="update-hello-function-code"></a>Mettre à jour le code de la fonction hello
 
-1. Revenez à votre application de fonction sur le portail et développez votre fonction. 
+1. Accédez d’application de fonction tooyour précédent dans le portail de hello et développez votre fonction. 
 
-2. Remplacez le code de script C# dans la fonction sur le portail par le code suivant :
+2. Remplacez le code de script hello c# dans la fonction hello dans le portail de hello hello suivant de code :
 
     ```csharp
     #r "Newtonsoft.Json"
@@ -115,12 +115,12 @@ Le webhook est maintenant appelé lorsqu’un groupe de ressources est créé da
     {
         log.Info($"Webhook was triggered!");
     
-        // Get the activityLog object from the JSON in the message body.
+        // Get hello activityLog object from hello JSON in hello message body.
         string jsonContent = await req.Content.ReadAsStringAsync();
         JToken activityLog = JObject.Parse(jsonContent.ToString())
             .SelectToken("data.context.activityLog");
     
-        // Return an error if the resource in the activity log isn't a resource group. 
+        // Return an error if hello resource in hello activity log isn't a resource group. 
         if (activityLog == null || !string.Equals((string)activityLog["resourceType"], 
             "Microsoft.Resources/subscriptions/resourcegroups"))
         {
@@ -131,7 +131,7 @@ Le webhook est maintenant appelé lorsqu’un groupe de ressources est créé da
             });
         }
     
-        // Write information about the created resource group to the streaming log.
+        // Write information about hello created resource group toohello streaming log.
         log.Info(string.Format("Resource group '{0}' was {1} on {2}.",
             (string)activityLog["resourceGroupName"],
             ((string)activityLog["subStatus"]).ToLower(), 
@@ -141,19 +141,19 @@ Le webhook est maintenant appelé lorsqu’un groupe de ressources est créé da
     }
     ```
 
-Vous pouvez maintenant tester la fonction en créant un nouveau groupe de ressources dans votre abonnement.
+Vous pouvez maintenant tester la fonction hello en créant un nouveau groupe de ressources dans votre abonnement.
 
-## <a name="test-the-function"></a>Tester la fonction
+## <a name="test-hello-function"></a>Fonction hello de test
 
-1. Cliquez sur l’icône du groupe de ressources à gauche du portail Azure, sélectionnez **+ Ajouter**, saisissez un **Nom de groupe de ressources**, puis sélectionnez **Créer** pour créer un groupe de ressources vide.
+1. Cliquez sur icône de groupe de ressources hello en hello portail Azure, sélectionnez à gauche hello **+ ajouter**, tapez un **nom de groupe de ressources**, puis sélectionnez **créer** toocreate un groupe de ressources vide.
     
     ![Créez un groupe de ressources.](./media/functions-create-generic-webhook-triggered-function/functions-create-resource-group.png)
 
-2. Revenez à votre fonction et développez la fenêtre **Journaux**. Une fois le groupe de ressources créé, l’alerte de journal d’activité déclenche le webhook et la fonction est exécutée. Le nom du nouveau groupe de ressources est écrit dans les journaux.  
+2. Revenir en arrière tooyour fonction et développez hello **journaux** fenêtre. Après la création de groupe de ressources hello, webhook hello hello alerte déclencheurs de journal d’activité et hello fonction s’exécute. Vous voyez le nom hello du nouveau groupe de ressources hello écrit des journaux de toohello.  
 
     ![Ajoutez un paramètre d’application de test.](./media/functions-create-generic-webhook-triggered-function/function-view-logs.png)
 
-3. (Facultatif) Revenez en arrière et supprimez le groupe de ressources que vous avez créé. Notez que cette activité ne déclenche pas la fonction. Ceci est dû au fait que les opérations de suppression sont filtrées par l’alerte. 
+3. (Facultatif) Revenir en arrière et supprimer le groupe de ressources hello que vous avez créé. Notez que cette activité ne déclenche pas fonction hello. C’est parce que delete opérations sont filtrées par l’alerte de hello. 
 
 ## <a name="clean-up-resources"></a>Supprimer des ressources
 
@@ -165,5 +165,5 @@ Vous avez créé une fonction qui s’exécute lorsqu’une requête est reçue 
 
 [!INCLUDE [Next steps note](../../includes/functions-quickstart-next-steps.md)]
 
-Pour en savoir plus sur les déclencheurs webhook, consultez la page [Liaisons HTTP et webhook d’Azure Functions](functions-bindings-http-webhook.md). Pour en savoir plus sur le développement de fonctions en C#, consultez [Informations de référence pour les développeurs de scripts C# Azure Functions](functions-reference-csharp.md).
+Pour en savoir plus sur les déclencheurs webhook, consultez la page [Liaisons HTTP et webhook d’Azure Functions](functions-bindings-http-webhook.md). toolearn plus sur le développement de fonctions en langage c#, consultez [référence du développeur Azure fonctions C# script](functions-reference-csharp.md).
 

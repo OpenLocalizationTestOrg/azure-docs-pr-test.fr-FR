@@ -1,6 +1,6 @@
 ---
-title: "Interface utilisateur d'Azure Mobile Engagement - Campagne Reach"
-description: "Découvrez comment créer et gérer les campagnes de notifications Push à l'aide d'Azure Mobile Engagement"
+title: "aaaAzure l’Interface utilisateur Mobile Engagement - atteindre la campagne"
+description: "Laern comment toocreate et gérer des campagnes de notification push à l’aide d’Azure Mobile Engagement"
 services: mobile-engagement
 documentationcenter: 
 author: piyushjo
@@ -14,14 +14,14 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: fc88db8db11d1ed12fa95c2087c9a32b21bf4de5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 825e550ace63a34d1a90b10fa976a61eb15a6d04
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-create-and-manage-push-notification-campaigns"></a>Création et gestion des campagnes de notification Push
-Vous pouvez utiliser la section Reach de l'interface utilisateur pour créer une nouvelle campagne Push à l'aide d'une formule complexe en indiquant toutes les informations dont vous avez besoin pour envoyer une notification Push. Les options d'une campagne Push varient quelque peu selon les quatre types de campagne : Annonces, Sondages, Push de données et Vignettes (Windows Phone uniquement).
+# <a name="how-toocreate-and-manage-push-notification-campaigns"></a>Comment toocreate et gérer des campagnes de notification push
+Vous pouvez utiliser hello section portée de l’interface utilisateur de hello toocreate une nouvelle campagne de Push avec une formule complexe en fournissant toutes les informations de hello vous devez toosend une notification push. Hello options d’une campagne de Push varient légèrement en fonction des types de campagne hello quatre : annonces, sondages, exécute un push de données et des vignettes (Windows Phone uniquement).
 
 ### <a name="option-applies-to"></a>L'option s'applique à :
 * Langues : toutes (Annonces, Sondages, Push de données et Vignettes)
@@ -35,18 +35,18 @@ Vous pouvez utiliser la section Reach de l'interface utilisateur pour créer une
 ![Reach-Campaign1][20]
 
 ## <a name="languages"></a>Langues
-Vous pouvez utiliser le menu déroulant Langues pour envoyer une version différente de votre notification Push vers des appareils configurés pour d'autres langues. Par défaut, tous les appareils reçoivent la même notification Push, quelle que soit la langue pour laquelle ils sont configurés. Les utilisateurs qui disposent d'un appareil configuré pour une autre langue recevront la version de la notification Push dans la langue par défaut. De nombreuses options de campagne Push vous permettent de spécifier un contenu différent pour chaque langue supplémentaire que vous sélectionnez. 
+Vous pouvez utiliser hello déroulante langues menu toosend une version différente de votre toodevices par émission de données qui sont définies toouse différentes langues. Par défaut, tous les appareils recevront hello même Push quelle que soit la langue qu’ils sont toouse. Utilisateurs avec leur appareils ensemble tooa autre langue reçoivent une version de langue par défaut hello Hello par émission de données. La plupart des options de campagne push hello permettent toospecify un contenu de remplacement pour chacune des langues supplémentaires hello que vous sélectionnez. 
 
 ![Reach-Campaign2][21]
 
 ### <a name="language-differences-apply-to"></a>Les différences linguistiques s'appliquent à :
-* Langues : des langues uniques peuvent être sélectionnées en complément de la langue par défaut
+* Langues : Langues Unique peuvent être sélectionnés dans la langue par défaut de toohello Ajout
 * Campagne : identique pour toutes les langues
-* Notification : unique pour chaque langue ajoutée en complément de la langue par défaut
-* Contenu : unique pour chaque langue ajoutée en complément de la langue par défaut
+* Notification : Uniques pour chaque langue en outre toohello langue par défaut
+* Contenu : Uniques pour chaque langue en outre toohello langue par défaut
 * Audience : peut être filtrée par un critère de langue distinct
 * Délai d’exécution : identique pour toutes les langues
-* Test : peut être envoyé pour chaque langue en même temps
+* Test : Tooeach langue à la fois peuvent être envoyés
 
 ### <a name="supported-languages"></a>Langues prises en charge :
 * Arabe (ar) 
@@ -89,27 +89,27 @@ Vous pouvez utiliser le menu déroulant Langues pour envoyer une version différ
 * Vietnamien (vi) 
 
 ## <a name="campaign"></a>Campagne
-Vous pouvez utiliser la section Campagne pour définir le nom et la catégorie de votre campagne et si vous envisagez d'ignorer la section Audience d'une campagne Push et d'envoyer cette campagne via l'API Reach (et certains éléments de l'API Push de bas niveau). Des catégories peuvent être utilisées avec un modèle de notification personnalisé pour contrôler les notifications dans l'application suivant des paramètres prédéfinis. Vous pouvez obtenir une liste de vos « Catégories » existantes via l'API Reach.
+Vous pouvez utiliser hello campagne section tooset hello nom et la catégorie de votre campagne ainsi que si vous envisagez de section d’audience hello tooignore d’une campagne de Push et que vous envoyez à la place de cette campagne via hello API couverture (et certains éléments de niveau de faible hello API de Push). Catégories peuvent être utilisées avec une notification personnalisée modèle toocontrol dans l’application des notifications en fonction des paramètres prédéfinis. Vous pouvez obtenir une liste de vos « catégories » via l’API couverture de hello.
 
 > [!WARNING]
-> Si vous utilisez l'option « Ignorer l'audience, la notification Push sera envoyée aux utilisateurs via l'API Reach » dans la section « Campagne » de la campagne Reach, cette campagne ne sera pas automatiquement envoyée. Vous devrez l'envoyer manuellement via l'API Reach.
+> Si vous utilisez option de « Ignorer Audience, push seront envoyés toousers via hello API » hello de section de « De la campagne » hello d’une couverture campagne, campagne de hello n’envoie pas automatiquement, vous devez toosend manuellement via l’API couverture de hello.
 
 ![Reach-Campaign3][22]
 
 ### <a name="option-applies-to"></a>L'option s'applique à :
 * Nom : toutes
 * Catégorie : Annonces et Sondages
-* Ignorer l’audience, la notification Push sera envoyée aux utilisateurs via l’API : toutes
+* Ignorer l’Audience push seront envoyés toousers via hello API : tous les
 
 ## <a name="notification"></a>Notification
-Utilisez la section Notification pour définir les paramètres de base pour votre notification Push, y compris : le titre de la notification Push, le message, une image dans l'application ou si elle peut être révocable. De nombreux paramètres de notification sont spécifiques à la plateforme de votre appareil. Vous pouvez choisir d'envoyer votre notification Push depuis l'application ou en dehors de l'application, ou les deux. (N'oubliez pas que les utilisateurs peuvent accepter ou refuser les notifications Push envoyées en dehors de l'application au niveau du système d'exploitation de leurs appareils. Azure Mobile Engagement ne peut pas remplacer ce paramètre. Rappelez-vous également que l'API Reach gère les notifications Push dans et en dehors de l'application L'API Push peut également être utilisée pour gérer les notifications Push envoyées en dehors de l'application.) Les notifications Push peuvent être personnalisées avec des images ou du contenu HTML, notamment des liens ciblés menant hors de votre application ou vers un autre emplacement dans votre application (Kit de développement logiciel (SDK) Android 2.1.0 ou catégories d'intention ultérieures requises). Vous pouvez modifier l'icône ou le badge iOS et envoyer du texte ou du contenu Web (une fenêtre contextuelle avec du contenu HTML, un lien URL vers un autre emplacement dans ou en dehors de l'application). Vous pouvez aussi faire sonner ou vibrer les appareils Android avec la notification Push. (Rappelez-vous que vous aurez besoin des bonnes autorisations du Kit de développement logiciel (SDK) dans votre fichier manifeste Android pour faire sonner ou vibrer un appareil.) Il n'y a actuellement aucune norme industrielle pour les tailles « Grand format » puisque la taille des écrans est différente pour chaque appareil. Toutefois, les images 400 x 100 fonctionnent sur presque toutes les tailles d'écran.
+Vous pouvez utiliser les paramètres de base hello Notification section tooset pour votre commande, notamment : hello titre Hello Push, le message de type hello, une image dans l’application, ou si elle est révocables. De nombreux paramètres de notification sont toohello spécifique à la plateforme de votre appareil. Vous pouvez choisir d'envoyer votre notification Push depuis l'application ou en dehors de l'application, ou les deux. (N’oubliez pas que les utilisateurs peuvent « opt-in » ou « annuler » de « hors de l’application » transmet au système d’exploitation de hello niveau sur leurs appareils, Azure Mobile Engagement à ne pas être en mesure de toooverride ce paramètre. Également n’oubliez pas que gère les API de portée hello « dans l’application » exécute un push de « hors de l’application ». Hello API de Push peut être utilisé toohandle « du délai d’attente d’application » exécute un push de trop.) Push peut être personnalisée avec des images ou du contenu HTML, y compris des liens ciblés pour la liaison en dehors de votre application ou tooanother l’emplacement dans votre application (Kit de développement logiciel Android 2.1.0 ou ultérieure catégories intentionnels requis). Vous pouvez modifier le badge d’icône ou iOS hello et envoyer le contenu de texte ou web (un popup avec html, URL lien tooanother emplacement du contenu à l’intérieur ou en dehors de l’application hello). Vous pouvez également faire sonner des appareils Android ou faire vibrer avec hello par émission de données. (N’oubliez pas que vous serez peut-être hello correcte des autorisations dans votre Android SDK tooring du fichier de manifeste ou faire vibrer un appareil). Il n'y a actuellement aucune norme industrielle pour les tailles « Grand format » puisque la taille des écrans est différente pour chaque appareil. Toutefois, les images 400 x 100 fonctionnent sur presque toutes les tailles d'écran.
 
 ### <a name="delivery-types"></a>Types d'envoi :
-* En dehors de l'application uniquement : la notification sera envoyée lorsque l'utilisateur n'utilisera pas son application.
-* Ce type de notification requiert un certificat d'Apple ou de Google (certificat APNs ou GCM).
-* Dans l'application uniquement : la notification apparaît uniquement lorsque l'application est exécutée.
-* Cette notification utilise le système de messagerie Capptain pour contacter l'utilisateur. Vous pouvez personnaliser entièrement l'affichage ou la disposition de votre notification Push.
-* À tout moment : cette option garantit l'envoi de votre notification, que l'application soit exécutée ou non.
+* Hors de l’application uniquement : hello notification arrive lorsque l’utilisateur de hello n’utilise pas l’application hello.
+* Hello hors de notification uniquement de l’application requiert un certificat à partir d’Apple ou Google (certificat APN ou GCM).
+* Dans l’application uniquement : notification de hello s’affiche uniquement lorsque l’application hello s’exécute.
+* notification de Hello utilise hello Capptain remise système tooreach hello utilisateur. Vous pouvez entièrement personnaliser hello disposition/affichage visuel de votre publication.
+* À tout moment : Cette option permet de s’assurer que vous envoyez une notification de que l’application hello est en cours d’exécution ou non.
 
 ![Reach-Campaign4][23]
 
@@ -117,7 +117,7 @@ Utilisez la section Notification pour définir les paramètres de base pour votr
 * Notification : Annonces et Sondages
 
 ## <a name="content"></a>Contenu
-Vous pouvez utiliser la section Contenu pour modifier le contenu de vos annonces, de vos sondages, de vos Push de données et de vos vignettes (Windows Phone uniquement). Le paramètre Contenu de vos campagnes Push est spécifique à chaque type de campagne. 
+Vous pouvez utiliser le contenu de hello toomodify hello section de contenu des annonces, sondages, exécute un push de données et des vignettes (Windows Phone uniquement). le paramètre de contenu Hello de campagnes Push est type toohello spécifique de campagne. 
 
 ### <a name="see-also"></a>Voir aussi
 * [Documentation de l’interface utilisateur - Reach - Contenu Push][Link 29]
@@ -125,15 +125,15 @@ Vous pouvez utiliser la section Contenu pour modifier le contenu de vos annonces
 ![Reach-Campaign5][24]
 
 ## <a name="audience"></a>Public ciblé
-Utilisez la section Audience pour définir une liste d'éléments standard pour limiter votre campagne ou pour définir les limites de votre campagne en fonction des critères personnalisés. L'ensemble des options standard pour limiter votre audience vous permet d'envoyer des notifications Push aux nouveaux ou aux anciens utilisateurs, ou aux utilisateurs des Push natifs uniquement. Vous pouvez également définir un quota pour limiter le nombre d'utilisateurs recevant la notification Push. Vous pouvez modifier manuellement l'expression pour définir la façon dont votre campagne est filtrée afin d'inclure un ou plusieurs critères pour les utilisateurs cibles. Vous pouvez taper manuellement une expression d'audience. Ce type d'expression doit définir explicitement la relation entre les critères. Un critère est décrit par un identificateur qui doit commencer par une majuscule et ne peut pas contenir d'espace. La relation entre les critères peut être décrite à l'aide des opérateurs and, or, not (et, ou, pas) ainsi que '(', ')'. Exemple : « Critère1 ou (Critère1 sans Critère2) ».
+Vous pouvez utiliser hello Audience section toodefine une liste standard des éléments toolimit votre campagne ou les limites de votre campagne en fonction de critères personnalisés. Hello standard d’options tooLimit votre Audience vous permet d’utilisateurs de nouveau ou ancien de tooeither toopush ou push natif uniquement. Vous pouvez également définir un nombre de hello toolimit quota des utilisateurs qui reçoivent les push hello. Vous pouvez modifier manuellement l’expression hello pour comment votre campagne est filtré tooinclude un ou plusieurs utilisateurs tootarget de critère. Vous pouvez taper manuellement une expression d'audience. Une telle expression doit définir explicitement la relation hello entre les critères. Un critère est décrit par un identificateur qui doit commencer par une majuscule et ne peut pas contenir d'espace. relation Hello entre les critères de hello peut être décrite à l’aide de 'and', 'or', 'not' opérateurs ainsi que '(',')'. Exemple : « Critère1 ou (Critère1 sans Critère2) ».
 
 > [!NOTE]
-> Si l'audience incluse dans les campagnes est importante, l'analyse de ciblage côté serveur peut être lente, en particulier si vous essayez de démarrer plusieurs campagnes en même temps.
+> Avec un grand public inclus dans les campagnes, SSI hello ciblage d’analyse peut être lent, surtout si vous essayez de toostart plusieurs campagnes à hello même temps.
 
 * Si possible, ne démarrez qu'une campagne à la fois.
-* Tout au plus, ne démarrez que quatre campagnes en même temps.
-* Envoyez des notifications Push à vos utilisateurs actifs uniquement (case à cocher « Solliciter seulement les utilisateurs qui peuvent être contactés via un Push natif » et « Solliciter seulement les utilisateurs actifs ») de façon à ce que seuls les utilisateurs qui ont installé votre application et l'utilisent toujours doivent être analysés.
-  Une fois votre audience définie, vous pouvez utiliser le bouton de simulation pour savoir combien d'utilisateurs recevront cette notification Push. Ce bouton calculera le nombre d'utilisateurs connus potentiellement ciblés par cette audience (il s'agit d'une estimation basée sur un échantillon aléatoire d'utilisateurs). Notez que les utilisateurs qui ont désinstallé l'application font également partie de l'audience mais ne peuvent pas être contactés.
+* À hello plus uniquement démarrer quatre campagnes à la fois.
+* Transmettre uniquement les utilisateurs actifs tooyour (case à cocher « retenir uniquement les utilisateurs qui peuvent être atteints à l’aide de Push natif » et « Retenir uniquement les utilisateurs actifs ») afin que seuls vos utilisateurs ayant toujours application hello installée et l’utiliser doivent toobe analysé.
+  Une fois que votre audience est défini, vous pouvez utiliser hello simuler toofind bouton out combien d’utilisateurs recevront cette opération Push. Il calcule le nombre hello d’utilisateurs connus potentiellement ciblé par cette audience (Ceci est une estimation basée sur un échantillon aléatoire d’utilisateurs). N’oubliez pas que les utilisateurs qui ont désinstallé l’application hello font également partie de cette audience, mais qu’il ne peut pas être atteint.
 
 ### <a name="see-also"></a>Voir aussi
 * [Documentation sur l’interface utilisateur - Reach - Nouveau critère Push][Link 28]
@@ -152,10 +152,10 @@ Utilisez la section Audience pour définir une liste d'éléments standard pour 
 * Solliciter uniquement des utilisateurs qui peuvent être contactés via un Push natif : Annonces et Sondages
 
 ## <a name="time-frame"></a>Délai d'exécution
-Vous pouvez utiliser la section Délai d'exécution pour définir à quel moment la notification Push sera envoyée ou vous pouvez laisser le champ Délai d'exécution vide pour démarrer immédiatement la campagne. Notez que l'utilisation du fuseau horaire de l'utilisateur final peut faire démarrer la campagne un jour plus tôt que prévu pour vos utilisateurs en Asie et envoyer des petits lots de notifications Push à une certaine heure jusqu'à ce que tous les fuseaux horaires du monde correspondent au délai d'exécution défini pour votre campagne. L'utilisation du fuseau horaire des utilisateurs finaux peut également entraîner des retards dans les campagnes puisque cela nécessite de connaître l'heure du téléphone avant de démarrer l'envoi des notifications Push.
+Vous pouvez utiliser hello laps de temps section tooset lorsque hello push seront envoyés, ou vous pouvez laisser immédiatement campagne de hello toostart vide hello laps de temps. N’oubliez pas qu’à l’aide du fuseau horaire d’utilisateurs finaux hello peut démarrer hello campagne un jour plus tôt que prévu pour vos utilisateurs finaux en Asie et envoyer des lots de petite taille de push à la fois jusqu'à ce que tous les fuseaux horaires dans le laps de temps hello hello world correspondance définie pour votre campagne. À l’aide du fuseau horaire de hello utilisateurs peut également entraîner des retards dans les campagnes, car elle comprend le temps de hello toorequest à partir de téléphone de hello avant de push de hello.
 
 > [!NOTE]
-> Les campagnes qui n'ont pas de date de fin peuvent mettre en cache des notifications Push localement et continuer de les afficher une fois que vous avez terminé manuellement ces campagnes. Pour éviter cela, indiquer une date de fin pour ces campagnes.
+> Les campagnes qui n'ont pas de date de fin peuvent mettre en cache des notifications Push localement et continuer de les afficher une fois que vous avez terminé manuellement ces campagnes. tooavoid ce comportement, le spécifique à une heure de fin pour les campagnes.
 
 ### <a name="see-also"></a>Voir aussi
 * [Reach - Procédures - Planification][Link 3] 
@@ -166,10 +166,10 @@ Vous pouvez utiliser la section Délai d'exécution pour définir à quel moment
 * Délai d’exécution : Annonces, Sondages et Vignettes
 
 ## <a name="test"></a>Test
-Vous pouvez utiliser la section Test pour envoyer cette notification Push à votre propre appareil de test avant d'enregistrer la campagne. Si vous avez configuré des langues personnalisées pour cette campagne, vous pouvez tester la notification Push pour ces langues. Vous pouvez configurer un appareil de test depuis « Mon compte ».
+Vous pouvez utiliser hello Test section toosend cet appareil de test propre tooyour par émission de données avant d’enregistrer la campagne de hello. Si vous avez configuré des langues personnalisées pour cette campagne, vous pouvez tester hello push dans chaque langue. Vous pouvez configurer un appareil de test depuis « Mon compte ».
 
 > [!NOTE]
-> Aucune donnée côté serveur n'est enregistrée lorsque vous utilisez le bouton pour « tester » les notifications Push. Les données sont enregistrées uniquement pour les vraies campagnes de notification Push.
+> Exécute un push d’aucun côté serveur données sont enregistrées lorsque vous utilisez le bouton de hello trop « ne test », les données sont enregistrées uniquement pour les campagnes push réel.
 
 ### <a name="see-also"></a>Voir aussi
 * [Documentation sur l’interface utilisateur - Mon compte][Link 14]

@@ -1,26 +1,26 @@
 <!--author=alkohli last changed: 09/02/16 -->
 
-#### <a name="to-install-updates-via-the-azure-classic-portal"></a>Pour installer des mises à jour par le biais du portail Azure Classic
-1. À la page **Appareils** , sélectionnez l’appareil sur lequel vous souhaitez installer les mises à jour.
-2. Accédez à **Appareils > Maintenance > Mises à jour logicielles**.
+#### <a name="tooinstall-updates-via-hello-azure-classic-portal"></a>mises à jour de tooinstall via hello portail Azure classic
+1. Sur hello **périphériques** page, sélectionnez hello périphérique sur lequel tooinstall les mises à jour.
+2. Accédez trop**appareils > Maintenance > mises à jour logicielles**.
    
     ![mettre à jour l'appareil](../includes/media/storsimple-ova-install-update-via-portal/azupdate1m.png)  
-3. Un message s’affiche si des mises à jour logicielles sont disponibles. Pour vérifier si des mises à jour sont disponibles, vous pouvez également cliquer sur l’option **Vérifier les mises à jour** en bas de la page.
+3. Un message s’affiche si hello mises à jour sont disponibles. toocheck des mises à jour, vous pouvez également cliquer sur **d’analyse des mises à jour** bas hello de page de hello.
    
     ![mettre à jour l'appareil](../includes/media/storsimple-ova-install-update-via-portal/azupdate2m.png)
-4. En bas de la page, cliquez sur **Télécharger les mises à jour**. Une boîte de dialogue informe l’utilisateur que la mise à jour entraînera des interruptions. StorSimple Virtual Array est un appareil à nœud unique, ce qui signifie qu’il redémarre après la mise à jour. Cela perturbe les éventuelles E/S en cours. Cliquez sur l’icône en forme de coche pour lancer une tâche permettant de télécharger les mises à jour disponibles. 
+4. À partir de hello en bas de page de hello, cliquez sur **télécharger les mises à jour**. Une boîte de dialogue avertit l’utilisateur hello hello mise à jour est sans interruption. Donné hello StorSimple Virtual Array est un périphérique de nœud unique, les redémarrages de périphérique hello après que qu’il est mis à jour. Cela perturbe les éventuelles E/S en cours. Cliquez sur hello cocher icône toolaunch un travail toodownload hello mises à jour. 
    
     ![mettre à jour l'appareil](../includes/media/storsimple-ova-install-update-via-portal/azupdate3m.png)
-5. Vous êtes averti une fois les mises à jour téléchargées. 
+5. Vous êtes informé lors du téléchargement des mises à jour hello. 
    
     ![mettre à jour l'appareil](../includes/media/storsimple-ova-install-update-via-portal/azupdate6m.png)
-6. En bas de la page, cliquez sur **Installer les mises à jour** pour lancer la mise à jour de l’appareil. La boîte de dialogue s’affiche à nouveau. Cliquez sur l’icône en forme de coche pour démarrer une tâche d’installation des mises à jour. 
+6. À partir de hello en bas de page de hello, cliquez sur **installer les mises à jour** toobegin mise à jour d’appareil de hello. boîte de dialogue Hello est présenté tooyou à nouveau. Cliquez sur hello cocher icône toostart qu'un Bonjour tooinstall de travail des mises à jour. 
    
     ![mettre à jour l'appareil](../includes/media/storsimple-ova-install-update-via-portal/azupdate7m.png) 
-7. Un message vous informe que le travail a bien été créé. 
+7. Vous êtes averti une fois le travail de hello est créé. 
    
     ![mettre à jour l'appareil](../includes/media/storsimple-ova-install-update-via-portal/azupdate8m.png)
-8. Cliquez sur le lien **Afficher le travail** pour accéder à la page Travaux et surveiller l’état de l’installation. Vous pouvez cliquer à tout moment sur **Détails** pour obtenir des informations détaillées sur le travail de mise à jour. 
+8. Cliquez sur **afficher le travail** lien toogo toohello page et le moniteur hello installer l’état de travaux. Vous pouvez cliquer sur **détails** à tooget de n’importe quel moment des informations détaillées sur travail de mise à jour hello. 
    
     ![mettre à jour l'appareil](../includes/media/storsimple-ova-install-update-via-portal/azupdate9m.png)
 

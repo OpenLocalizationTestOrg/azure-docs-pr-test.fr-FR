@@ -1,6 +1,6 @@
 ---
-title: "Créer et gérer des groupes d’action sur le Portail Azure | Microsoft Docs"
-description: "Découvrez comment créer et gérer des groupes d’action sur le Portail Azure."
+title: "aaaCreate et gérer des groupes d’actions Bonjour portail Azure | Documents Microsoft"
+description: "Découvrez comment toocreate et gérer des groupes d’actions Bonjour portail Azure."
 author: anirudhcavale
 manager: orenr
 editor: 
@@ -14,43 +14,43 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/15/2017
 ms.author: ancav
-ms.openlocfilehash: ea15705bf02d9773507c6cb59f2da4c1dd0f9d77
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 97e0b22bea7787fff6856f895a7e6256c177efd9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-and-manage-action-groups-in-the-azure-portal"></a>Créer et gérer des groupes d’actions sur le Portail Azure
+# <a name="create-and-manage-action-groups-in-hello-azure-portal"></a>Créer et gérer des groupes d’actions Bonjour portail Azure
 ## <a name="overview"></a>Vue d'ensemble ##
-Cet article vous montre comment créer et gérer des groupes d’actions dans le portail Azure.
+Cet article vous montre comment toocreate et gérer des groupes d’actions Bonjour portail Azure.
 
-Vous pouvez configurer une liste d’actions avec des groupes d’actions. Ces groupes peuvent alors servir pour définir des alertes du journal d’activité. Ils peuvent être réutilisés par chaque alerte du journal d’activité que vous avez définie, afin que les mêmes actions soient entreprises chaque fois que l’alerte du journal d’activité est déclenchée.
+Vous pouvez configurer une liste d’actions avec des groupes d’actions. Ces groupes peuvent alors servir pour définir des alertes du journal d’activité. Ces groupes peuvent ensuite être réutilisées par chaque alerte de journal d’activité que vous définissez, vous être assuré que hello même action chaque déclenchement de l’alerte de journal d’activité hello.
 
-Un groupe d’actions peut contenir jusqu’à 10 actions de chaque type. Chaque action se compose des propriétés suivantes :
+Un groupe d’actions peut avoir au plus too10 de chaque type d’action. Chaque action est constituée de hello propriétés suivantes :
 
-* **Nom** : identificateur unique au sein du groupe d’actions.  
+* **Nom**: un identificateur unique au sein du groupe d’actions hello.  
 * **Type d’action** : envoyer un SMS, envoyer un e-mail ou appeler un Webhook.  
-* **Détails** : numéro de téléphone, adresse e-mail ou URI de Webhook correspondant.
+* **Détails**: hello webhook URI, adresse de messagerie ou numéro de téléphone correspondant.
 
-Pour plus d’informations sur l’utilisation de modèles Azure Resource Manager pour configurer des groupes d’actions, consultez la page [Modèles Resource Manager de groupes d’actions](monitoring-create-action-group-with-resource-manager-template.md).
+Pour plus d’informations sur la façon de toouse groupes d’actions modèles tooconfigure Azure Resource Manager, consultez [modèles de gestionnaire de ressources du groupe Action](monitoring-create-action-group-with-resource-manager-template.md).
 
-## <a name="create-an-action-group-by-using-the-azure-portal"></a>Créer un groupe d’actions à l’aide du Portail Azure ##
-1. Sur le [Portail](https://portal.azure.com), sélectionnez **Moniteur**. Le panneau **Moniteur** consolide tous vos paramètres et données de monitorage sur un même affichage.
+## <a name="create-an-action-group-by-using-hello-azure-portal"></a>Créer un groupe d’actions à l’aide de hello portail Azure ##
+1. Bonjour [portal](https://portal.azure.com), sélectionnez **analyse**. Hello **moniteur** panneau consolide toutes vos paramètres de surveillance et données dans une vue.
 
-    ![Le service « Moniteur »](./media/monitoring-action-groups/home-monitor.png)
-2. Dans la section **Journal d’activité**, sélectionnez **Groupes d’actions**.
+    ![Hello service de « Analyse »](./media/monitoring-action-groups/home-monitor.png)
+2. Bonjour **le journal d’activité** section, sélectionnez **groupes d’actions**.
 
-    ![L’onglet « Groupes d’actions »](./media/monitoring-action-groups/action-groups-blade.png)
-3. Sélectionnez **Ajouter un groupe d’actions** et renseignez les champs.
+    ![onglet de « Groupes d’actions » Hello](./media/monitoring-action-groups/action-groups-blade.png)
+3. Sélectionnez **ajouter un groupe action**et renseignez les champs hello.
 
-    ![La commande « Ajouter un groupe d’actions »](./media/monitoring-action-groups/add-action-group.png)
-4. Entrez un nom dans la zone **Nom du groupe d’actions** et un autre dans la zone **Nom court**. Le nom court est utilisé à la place du nom complet du groupe d’actions lorsque les notifications sont envoyées à l’aide de ce groupe.
+    ![Hello « Ajouter un groupe d’actions » une commande](./media/monitoring-action-groups/add-action-group.png)
+4. Entrez un nom dans hello **nom d’Action groupe** zone et entrez un nom dans hello **nom court** boîte. nom court de Hello est utilisé à la place d’un nom de groupe complet de l’action lorsque les notifications sont envoyées à l’aide de ce groupe.
 
-      ![La boîte de dialogue « Ajouter un groupe d’actions »](./media/monitoring-action-groups/action-group-define.png)
+      ![boîte de dialogue groupe d’actions Hello ajouter »](./media/monitoring-action-groups/action-group-define.png)
 
-5. La zone **Abonnement** est automatiquement renseignée avec votre abonnement actuel. Cet abonnement est celui dans lequel est enregistré le groupe d’actions.
+5. Hello **abonnement** zone autofills avec votre abonnement actuel. Cet abonnement est hello un dans le groupe d’actions hello est enregistré.
 
-6. Sélectionnez le **Groupe de ressources** dans lequel le groupe d’actions est enregistré.
+6. Sélectionnez hello **groupe de ressources** dans l’action hello groupe est enregistré.
 
 7. Définissez une liste d’actions en indiquant les éléments suivants pour chaque action :
 
@@ -58,19 +58,19 @@ Pour plus d’informations sur l’utilisation de modèles Azure Resource Manage
 
     b. **Type d’action** : sélectionnez SMS, e-mail ou webhook.
 
-    c. **Détails** : selon le type d’action, entrez un numéro de téléphone, une adresse e-mail ou une URI de Webhook.
+    c. **Détails**: selon le type d’action hello, entrez un numéro de téléphone, une adresse de messagerie ou un webhook URI.
 
-8. Sélectionnez **OK** pour créer le groupe d’actions.
+8. Sélectionnez **OK** groupe d’actions toocreate hello.
 
 ## <a name="manage-your-action-groups"></a>Gérer des groupes d’actions ##
-Après sa création, un groupe d’actions apparaît dans la section **Groupes d’actions** du panneau **Moniteur**. Sélectionnez le groupe d’actions que vous souhaitez gérer pour :
+Après avoir créé un groupe d’actions, il est visible dans hello **groupes d’actions** section Hello **moniteur** panneau. Sélectionnez hello action groupe toomanage à :
 
 * Ajouter, modifier ou supprimer des actions.
-* Supprimer le groupe d’actions.
+* Supprimer le groupe d’actions hello.
 
 ## <a name="next-steps"></a>Étapes suivantes ##
 * En savoir plus sur le [comportement des alertes SMS](monitoring-sms-alert-behavior.md).  
-* [Comprendre le schéma Webhook des alertes du journal d’activité](monitoring-activity-log-alerts-webhook.md).  
+* Obtenir un [compréhension de schéma webhook alerte des journaux d’activité hello](monitoring-activity-log-alerts-webhook.md).  
 * En savoir plus sur la [limitation de la fréquence](monitoring-alerts-rate-limiting.md) des alertes. 
-* Obtenir une [vue d’ensemble des alertes du journal d’activité](monitoring-overview-alerts.md) et découvrir comment recevoir des alertes.  
-* Découvrir comment [configurer des alertes lorsqu’une notification d’intégrité de service est publiée](monitoring-activity-log-alerts-on-service-notifications.md).
+* Obtenir un [vue d’ensemble des alertes de journal d’activité](monitoring-overview-alerts.md)et découvrez comment tooreceive alertes.  
+* Découvrez comment trop[configurer des alertes lors de la validation d’une notification de contrôle d’intégrité du service](monitoring-activity-log-alerts-on-service-notifications.md).

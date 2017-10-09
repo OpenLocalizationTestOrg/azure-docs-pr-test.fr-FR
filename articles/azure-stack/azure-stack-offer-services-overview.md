@@ -1,6 +1,6 @@
 ---
-title: Offre de services dans Azure Stack | Microsoft Docs
-description: "En tant qu’opérateur cloud, vous pouvez proposer des services à vos utilisateurs."
+title: services aaaOffering dans la pile de Azure | Documents Microsoft
+description: "Comme un opérateur cloud, vous pouvez offrir aux utilisateurs de tooyour de services."
 services: azure-stack
 documentationcenter: 
 author: ErikjeMS
@@ -14,32 +14,32 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/25/2017
 ms.author: erikje
-ms.openlocfilehash: 785acbeba7eebea5a0414ac8bb9942410bf4252e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 47cff8bfb202527ae4c930c7d1b9eb3998bee85f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="overview-of-offering-services-in-azure-stack"></a>Vue d’ensemble de l’offre de services dans Azure Stack
 
-Microsoft Azure Stack est une plateforme cloud hybride qui vous permet de fournir des services à partir de votre centre de données. En tant que fournisseur de services, vous pouvez proposer des services à vos locataires. Au sein d’une entreprise ou d’une agence gouvernementale, vous pouvez proposer des services locaux à vos employés. Vous pouvez proposer entre autres les services suivants :
+Microsoft Azure Stack est une plateforme cloud hybride qui vous permet de fournir des services à partir de votre centre de données. En tant qu’un fournisseur de services, vous pouvez offrir aux clients de services tooyour. Dans une entreprise ou une agence gouvernementale, vous pouvez proposer des employés de tooyour services local. services Hello qui vous permet de remettre incluent, mais ne sont pas limités à :
 
 - Services Paas (Platform as a Service) tels que App Services, Mobile Apps, API Apps, API Functions, SQL, MySQL.
 - Services SaaS (Software as a Service) tels que Sharepoint.
 
-Vous pouvez même combiner des services pour intégrer et créer des solutions complexes pour différents utilisateurs.
+Vous pouvez même combiner toointegrate de services et créer des solutions complexes pour des utilisateurs différents.
 
-Pour fournir ces services à vos utilisateurs, vous devez créer [des plans, des offres et des quotas](azure-stack-plan-offer-quota-overview.md). Vos utilisateurs peuvent ensuite s’abonner à vos offres pour utiliser les services.
+toodeliver ces utilisateurs tooyour services, vous devez créer [plans, les offres et les quotas](azure-stack-plan-offer-quota-overview.md). Vos utilisateurs peuvent ensuite s’abonner à tooyour offres toouse hello services.
 
 ## <a name="plan-your-service-offers"></a>Planifier vos offres de service
 
-Quand vous planifiez vos offres, gardez à l’esprit les points suivants :
+Lorsque vous planifiez vos offres, gardez hello points suivants en mémoire :
 
-**Offres d’évaluation** : vous pouvez utiliser des offres d’évaluation pour attirer de nouveaux utilisateurs, qui peuvent ensuite effectuer une mise à niveau pour obtenir des services supplémentaires. Pour créer une offre d’évaluation, créez un petit [plan de base](azure-stack-plan-offer-quota-overview.md#base-plan) avec un plan complémentaire facultatif plus important.
+**Offres d’évaluation**: vous pouvez utiliser des offres d’évaluation tooattract nouveaux utilisateurs, puis une tooadditional services. toocreate une offre d’évaluation, créez un petit [plan de base](azure-stack-plan-offer-quota-overview.md#base-plan) avec un plan de module complémentaire facultatif supérieure.
 
-**Planification de la capacité** : peut-être craignez-vous que des utilisateurs s’accaparent de grandes quantités de ressources et encombrent le système pour tous les autres utilisateurs. Pour améliorer les performances, vous pouvez [configurer vos plans avec des quotas](azure-stack-plan-offer-quota-overview.md#plans) afin de limiter l’utilisation.
+**Planification de la capacité**: vous pouvez être concerné sur les utilisateurs en saisissant de grandes quantités de ressources et les objets système hello pour tous les utilisateurs. toohelp des performances, vous pouvez [configurer vos plans avec les quotas](azure-stack-plan-offer-quota-overview.md#plans) toocap utilisation.
 
-**Fournisseurs délégués** : vous pouvez accorder à d’autres personnes la capacité à créer des offres dans votre environnement. Par exemple, si vous êtes fournisseur de services, vous pouvez [déléguer](azure-stack-delegated-provider.md) cette capacité à vos revendeurs. Si vous êtes une organisation, vous pouvez déléguer à d’autres divisions/filiales.
+**Délégué de fournisseurs**: vous pouvez accorder d’autres offres de toocreate possibilité hello dans votre environnement. Par exemple, si vous êtes un fournisseur de services, vous pouvez [déléguer](azure-stack-delegated-provider.md) cette revendeurs tooyour de capacité. Ou, si vous êtes une organisation, vous pouvez déléguer tooother divisions/filiales.
 
 ## <a name="next-steps"></a>Étapes suivantes
 [En savoir plus sur les offres, les plans, les quotas et les abonnements](azure-stack-plan-offer-quota-overview.md)

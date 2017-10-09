@@ -1,6 +1,6 @@
 ---
-title: "Connexions ITSM dans IT Service Management Connector d’OMS | Microsoft Docs"
-description: "Connectez vos produits/services ITSM à IT Service Management Connector dans OMS pour surveiller et gérer les éléments de travail ITSM de manière centralisée."
+title: connexions aaaITSM dans le connecteur de gestion du Service OMS informatique | Documents Microsoft
+description: "Connecter votre ITSM produits/services avec le connecteur de gestion du Service informatique dans OMS toocentrally analyse et gérer des éléments de travail ITSM hello."
 documentationcenter: 
 author: JYOTHIRMAISURI
 manager: riyazp
@@ -13,64 +13,64 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/29/2017
 ms.author: v-jysur
-ms.openlocfilehash: e4f2e0a23aa52a0e02e7047916b77fb15107defa
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 53ef51bf75fb8ed15ea3ce5072d9365c221f9f4f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="connect-itsm-productsservices-with-it-service-management-connector-preview"></a>Connecter des produits/services ITSM à IT Service Management Connector (préversion)
-Cet article fournit des informations sur la façon de connecter votre service/produit ITSM à IT Service Management Connector dans OMS et de gérer de manière centralisée vos éléments de travail. Pour plus d’informations sur IT Service Management Connector, voir la [Présentation](log-analytics-itsmc-overview.md).
+Cet article fournit des informations sur la façon tooconnect votre tooIT de produits et services ITSM connecteur de gestion de Service dans OMS et de manière centralisée gérer vos éléments de travail. Pour plus d’informations sur IT Service Management Connector, voir la [Présentation](log-analytics-itsmc-overview.md).
 
-Les produits/services suivants sont pris en charge :
+Hello suite de produits ou services est pris en charge :
 
 - [System Center Service Manager](#connect-system-center-service-manager-to-it-service-management-connector-in-oms)
 - [ServiceNow](#connect-servicenow-to-it-service-management-connector-in-oms)
 - [Provance](#connect-provance-to-it-service-management-connector-in-oms)
 - [Cherwell](#connect-cherwell-to-it-service-management-connector-in-oms)
 
-## <a name="connect-system-center-service-manager-to-it-service-management-connector-in-oms"></a>Connecter System Center Service Manager à IT Service Management Connector dans OMS
+## <a name="connect-system-center-service-manager-tooit-service-management-connector-in-oms"></a>Se connecter à System Center Service Manager tooIT connecteur de gestion de Service dans OMS
 
-Les sections suivantes fournissent des détails sur la connexion de votre produit System Center Service Manager à IT Service Management Connector dans OMS.
+Hello sections suivantes fournissent des détails sur la façon tooconnect votre toohello de produit System Center Service Manager connecteur de gestion de Service informatique dans OMS.
 
 ### <a name="prerequisites"></a>Composants requis
 
-Vérifiez que les conditions préalables suivantes sont remplies :
+Assurez-vous de qu'avoir hello suivant les conditions préalables sont remplies :
 
 - IT Service Management Connector installé.
 Plus d’informations : [Configuration](log-analytics-itsmc-overview.md#configuration).
-- L’application web Service Manager (application web) est déployée et configurée. Pour plus d’informations sur l’application web, cliquez [ici](#create-and-deploy-service-manager-web-app-service).
-- Connexion hybride créée et configurée. Plus d’informations : [Configurer la connexion hybride](#configure-the-hybrid-connection).
+- Hello l’application Gestionnaire de services Web (application Web) est déployée et configurée. Pour plus d’informations sur l’application web, cliquez [ici](#create-and-deploy-service-manager-web-app-service).
+- Connexion hybride créée et configurée. Plus d’informations : [hybride de hello configurer connexion](#configure-the-hybrid-connection).
 - Versions prises en charge de Service Manager : 2012 R2 ou 2016.
 - Rôle utilisateur : [opérateur avancé](https://technet.microsoft.com/library/ff461054.aspx).
 
 ### <a name="connection-procedure"></a>Procédure de connexion
 
-Utilisez la procédure suivante pour connecter votre instance System Center Service Manager à IT Service Management Connector :
+Utilisez hello suivant la procédure tooconnect votre toohello d’instance de System Center Service Manager connecteur de gestion du Service informatique :
 
-1. Accédez à **OMS** >**Paramètres** > **Sources connectées**.
+1. Accédez trop**OMS** >**paramètres** > **Sources connectées**.
 2. Sélectionnez **ITSM Connector**, puis cliquez sur **Ajouter une nouvelle connexion**.
 
     ![Service Manager ](./media/log-analytics-itsmc/itsmc-service-manager-connection.png)
-3. Indiquez les informations comme décrit dans le tableau suivant, puis cliquez sur **Enregistrer** pour créer la connexion :
+3. Fournir des informations de hello comme décrit dans hello tableau suivant, puis cliquez sur **enregistrer** connexion de hello toocreate :
 
 > [!NOTE]
 > Tous ces paramètres sont obligatoires.
 
 | **Champ** | **Description** |
 | --- | --- |
-| **Name**   | Tapez le nom de l’instance System Center Service Manager que vous souhaitez connecter à IT Service Management Connector.  Vous utiliserez ce nom ultérieurement lorsque vous configurerez des éléments de travail dans cette instance ou afficherez une analyse de journal détaillée. |
+| **Name**   | Tapez un nom d’instance de System Center Service Manager hello que vous souhaitez tooconnect avec hello connecteur de gestion du Service informatique.  Vous utiliserez ce nom ultérieurement lorsque vous configurerez des éléments de travail dans cette instance ou afficherez une analyse de journal détaillée. |
 | **Sélectionner un type de connexion**   | Sélectionnez **System Center Service Manager**. |
-| **URL du serveur**   | Tapez l’URL de l’application web Service Manager. Pour plus d’informations sur l’application web Service Manager, cliquez [ici](#create-and-deploy-service-manager-web-app-service).
-| **ID client**   | Tapez l’ID client que vous avez généré (en utilisant le script automatique) pour authentifier l’application web. Pour plus d’informations sur le script automatisé, cliquez [ici](log-analytics-itsmc-service-manager-script.md).|
-| **Clé secrète client**   | Tapez la clé secrète client, générée pour cet ID.   |
-| **Étendue de la synchronisation des données**   | Sélectionnez les éléments de travail de Service Manager que vous souhaitez synchroniser via IT Service Management Connector.  Ces éléments de travail sont importés dans Log Analytics. **Options :** incidents, demandes de modification.|
-| **Synchroniser les données** | Tapez le nombre de jours passés dont vous souhaitez les données. **Limite maximale** : 120 jours. |
-| **Create new configuration item in ITSM solution (Créer un élément de configuration dans la solution ITSM)** | Sélectionnez cette option si vous souhaitez créer les éléments de configuration dans le produit ITSM. Lorsque cette option est sélectionnée, OMS crée les éléments de configuration affectés en tant qu’éléments de configuration (dans le cas d’éléments de configuration non existants) dans le système ITSM pris en charge. **Par défaut** : désactivée. |
+| **URL du serveur**   | Tapez l’URL hello Hello application Web de Service Manager. Pour plus d’informations sur l’application web Service Manager, cliquez [ici](#create-and-deploy-service-manager-web-app-service).
+| **ID client**   | Tapez les ID de client hello généré (à l’aide d’un script automatique hello) pour l’authentification de l’application Web hello. Plus d’informations sur le script de hello automatisée est [ici.](log-analytics-itsmc-service-manager-script.md)|
+| **Clé secrète client**   | Clé secrète de type hello client, générée pour ce code.   |
+| **Étendue de la synchronisation des données**   | Sélectionnez des éléments de travail Service Manager hello que vous souhaitez toosync via hello connecteur de gestion du Service informatique.  Ces éléments de travail sont importés dans Log Analytics. **Options :** incidents, demandes de modification.|
+| **Synchroniser les données** | Tapez hello les nombre de jours souhaité pour les données de salutation à partir de. **Limite maximale** : 120 jours. |
+| **Create new configuration item in ITSM solution (Créer un élément de configuration dans la solution ITSM)** | Sélectionnez cette option si vous souhaitez que les éléments de configuration toocreate hello dans le produit ITSM hello. Lorsque sélectionnée, OMS crée les éléments de configuration hello affectée comme des éléments de configuration (en cas d’éléments de configuration non existant) Bonjour pris en charge le système ITSM. **Par défaut** : désactivée. |
 
 En cas de connexion et de synchronisation réussies :
 
-- Les éléments de travail sélectionnés dans Service Manager sont importés dans OMS **Log Analytics**. Vous pouvez afficher le résumé de ces éléments de travail sur la vignette d’IT Service Management Connector.
+- Les éléments de travail sélectionnés dans Service Manager sont importés dans OMS **Log Analytics**. Vous pouvez afficher le résumé hello de ces éléments de travail sur la vignette du connecteur de gestion du Service informatique hello.
 
 - Dans OMS, vous pouvez créer des incidents à partir d’alertes OMS ou de recherche dans les journaux, dans cette instance Service Manager.
 
@@ -78,17 +78,17 @@ Plus d’informations : [Create ITSM work items for OMS alerts (Créer des él�
 
 ### <a name="create-and-deploy-service-manager-web-app-service"></a>Créer et déployer l’application web Service Manager
 
-Pour connecter l’instance Service Manager locale à IT Service Management Connector dans OMS, Microsoft a créé une application web Service Manager sur GitHub.
+tooconnect hello local Service Manager avec hello connecteur de gestion de Service informatique dans OMS, Microsoft a créé une application Web de Service Manager sur hello GitHub.
 
-Pour configurer l’application Web ITSM pour votre instance Service Manager, procédez comme suit :
+tooset hello ITSM Web de l’application pour votre Service Manager, procédez comme hello suivant :
 
-- **Déployez l’application web** : déployez l’application web, définissez les propriétés et authentifiez-vous auprès d’Azure AD. Vous pouvez déployer l’application web à l’aide du [script automatisé](log-analytics-itsmc-service-manager-script.md) que Microsoft vous a fourni.
-- **Configurez la connexion hybride** - [Configurez cette connexion](#configure-the-hybrid-connection) manuellement.
+- **L’application Web Deploy hello** : déployer l’application Web de hello, définir les propriétés de hello et s’authentifier auprès d’Azure AD. Vous pouvez déployer l’application hello web à l’aide de hello [automatisée script](log-analytics-itsmc-service-manager-script.md) que Microsoft vous a fourni.
+- **Configurer la connexion hybride hello** - [configurer cette connexion](#configure-the-hybrid-connection)manuellement.
 
-#### <a name="deploy-the-web-app"></a>Déployer l’application web
-Utilisez le [script](log-analytics-itsmc-service-manager-script.md) automatisé pour déployer l’application web, définir les propriétés et vous authentifier auprès d’Azure AD.
+#### <a name="deploy-hello-web-app"></a>Déployer l’application web de hello
+Hello d’utilisation automatisée [script](log-analytics-itsmc-service-manager-script.md) toodeploy hello Web app, définir les propriétés de hello et s’authentifier auprès d’Azure AD.
 
-Exécutez le script en fournissant les informations requises suivantes :
+Exécuter le script de hello en fournissant hello les détails requis suivants :
 
 - Détails de l’abonnement Azure
 - Nom de groupe ressources
@@ -97,124 +97,124 @@ Exécutez le script en fournissant les informations requises suivantes :
 - Préfixe de nom de site pour votre application Web
 - Espace de noms ServiceBus.
 
-Le script crée l’application web en utilisant le nom que vous avez spécifié (avec quelques chaînes supplémentaires pour le rendre unique). Il génère **l’URL de l’application web**, **l’ID client** et la **clé secrète client**.
+script Hello crée hello Web app à l’aide du nom hello que vous avez spécifiées (ainsi que quelques autres chaînes toomake unique). Il génère hello **URL de l’application Web**, **ID client** et **clé secrète client**.
 
-Enregistrez les valeurs. Vous les utiliserez lorsque vous créerez une connexion avec IT Service Management Connector.
+Enregistrez les valeurs hello, vous les utilisez lorsque vous créez une connexion avec le connecteur de gestion du Service informatique.
 
-**Vérifier l’installation de l’application web**
+**Vérifiez l’installation de l’application hello Web**
 
-1. Accédez au **portail Azure** > **Ressources**.
-2. Sélectionnez l’application web, puis cliquez sur **Paramètres** > **Paramètres de l’application**.
-3. Vérifiez les informations sur l’instance Service Manager que vous avez fournies au moment du déploiement de l’application via le script.
+1. Accédez trop**portail Azure** > **ressources**.
+2. Sélectionnez l’application hello Web, cliquez sur **paramètres** > **paramètres de l’Application**.
+3. Confirmer les informations de hello sur l’instance de Service Manager hello que vous avez fourni au moment de hello de déploiement d’application hello dans le script hello.
 
-### <a name="configure-the-hybrid-connection"></a>Configurer la connexion hybride
+### <a name="configure-hello-hybrid-connection"></a>Configurer la connexion hybride hello
 
-Utilisez la procédure suivante pour configurer la connexion hybride qui connecte l’instance Service Manager à IT Service Management Connector dans OMS.
+Utilisez hello suivant la procédure tooconfigure hello la connexion hybride qui connecte l’instance de Service Manager hello avec hello connecteur de gestion de Service informatique dans OMS.
 
-1. Recherchez l’application web Service Manager, sous **Ressources Azure**.
+1. Recherche hello application Web de Service Manager, sous **ressources Azure**.
 2. Cliquez sur **Paramètres** > **Mise en réseau**.
 3. Sous **Connexions hybrides**, cliquez sur **Configurer vos points de terminaison de connexion hybride**.
 
     ![Mise en réseau de connexions hybrides](./media/log-analytics-itsmc/itsmc-hybrid-connection-networking-and-end-points.png)
-4. Dans le panneau **Connexions hybrides**, cliquez sur **Ajouter une connexion hybride**.
+4. Bonjour **connexions hybrides** panneau, cliquez sur **ajouter une connexion hybride**.
 
     ![Ajout d’une connexion hybride](./media/log-analytics-itsmc/itsmc-new-hybrid-connection-add.png)
 
-5. Dans le panneau **Ajouter des connexions hybrides**, cliquez sur **Créer une connexion hybride**.
+5. Bonjour **ajouter des connexions hybrides** panneau, cliquez sur **hybride de créer nouvelle connexion**.
 
     ![Nouvelle connexion hybride](./media/log-analytics-itsmc/itsmc-create-new-hybrid-connection.png)
 
-6. Tapez les valeurs suivantes :
+6. Tapez hello valeurs suivantes :
 
-    - **Nom du point de terminaison** : spécifiez un nom pour la nouvelle connexion hybride.
-    -  **Hôte du point de terminaison** : nom de domaine complet du serveur d’administration de Service Manager.
+    - **Nom du point de terminaison**: spécifiez un nom pour la connexion hybride hello.
+    -  **Hôte du point de terminaison**: nom de domaine complet du serveur d’administration Service Manager hello.
     - **Port du point de terminaison** : tapez 5724.
     - **Espace de noms Servicebus** : utilisez un espace de noms Servicebus existant ou créez-en un.
-    - **Emplacement** : sélectionnez l’emplacement.
-    -  **Nom** : spécifiez un nom pour le Servicebus si vous le créez.
+    - **Emplacement**: sélectionnez l’emplacement de hello.
+    -  **Nom**: spécifiez un servicebus toohello de nom si vous la créez.
 
     ![Valeurs de connexion hybride](./media/log-analytics-itsmc/itsmc-new-hybrid-connection-values.png)
-6. Cliquez sur **OK** pour fermer le panneau **Créer une connexion hybride**, et créez la connexion hybride.
+6. Cliquez sur **OK** tooclose hello **créer la connexion hybride** lame et commencer à créer la connexion hybride hello.
 
-    Une fois la connexion hybride créée, elle s’affiche sous le panneau.
+    Une fois la connexion hybride hello est créée, il est affiché sous le panneau de hello.
 
-7. Une fois la connexion hybride créée, sélectionnez-la, puis cliquez sur **Ajouter la connexion hybride sélectionnée**.
+7. Une fois la connexion hybride hello est créée, sélectionnez hello connexion et cliquez sur **ajouter sélectionné la connexion hybride**.
 
     ![Nouvelle connexion hybride](./media/log-analytics-itsmc/itsmc-new-hybrid-connection-added.png)
 
-#### <a name="configure-the-listener-setup"></a>Configurer l’écouteur
+#### <a name="configure-hello-listener-setup"></a>Configurer le programme d’installation de hello écouteur
 
-Utilisez la procédure suivante pour configurer l’écouteur pour la connexion hybride.
+Utilisez hello après l’installation d’écouteur procédure tooconfigure hello pour la connexion hybride hello.
 
-1. Dans le panneau **Connexions hybrides**, cliquez sur **Télécharger le gestionnaire de connexions** et installez-le sur l’ordinateur sur lequel l’instance System Center Service Manager s’exécute.
+1. Bonjour **connexions hybrides** panneau, cliquez sur **téléchargement hello Connection Manager** et l’installer sur l’ordinateur hello où l’instance System Center Service Manager est en cours d’exécution.
 
-    Une fois l’installation terminée, l’option **Interface utilisateur du gestionnaire de connexions hybrides** est disponible dans le menu **Démarrer**.
+    Une fois terminée, l’installation de hello **Gestionnaire de connexions hybrides UI** option est disponible sous **Démarrer** menu.
 
 2. Cliquez sur **Interface utilisateur du gestionnaire de connexions hybrides**. Vous êtes invité à entrer vos informations d’identification Azure.
 
-3. Connectez-vous avec vos informations d’identification Azure et sélectionnez votre abonnement dans lequel la connexion hybride a été créée.
+3. Connectez-vous avec vos informations d’identification Azure et sélectionnez votre abonnement où hello connexion hybride a été créé.
 
-4. Cliquez sur **Save**.
+4. Cliquez sur **Enregistrer**.
 
 Votre connexion hybride est connectée avec succès.
 
 ![Connexion hybride réussie](./media/log-analytics-itsmc/itsmc-hybrid-connection-listener-set-up-successful.png)
 > [!NOTE]
 
-> Une fois la connexion hybride créée, vérifiez et testez la connexion en visitant l’application web Service Manager déployée. Assurez-vous que la connexion est établie avant d’essayer de vous connecter à IT Service Management Connector dans OMS.
+> Une fois la connexion hybride hello est créée, vérifier et tester la connexion en visitant hello hello déployé l’application Web de Service Manager. Vérifiez la connexion de hello est établie avant d’essayer de tooconnect toohello connecteur de gestion de Service informatique dans OMS.
 
-L’illustration suivante présente les détails d’une connexion réussie :
+Hello image suivante montre les détails de hello d’une connexion réussie :
 
 ![Test de connexion hybride](./media/log-analytics-itsmc/itsmc-hybrid-connection-test.png)
 
-## <a name="connect-servicenow-to-it-service-management-connector-in-oms"></a>Connecter ServiceNow à IT Service Management Connector dans OMS
+## <a name="connect-servicenow-tooit-service-management-connector-in-oms"></a>Se connecter ServiceNow tooIT connecteur de gestion de Service dans OMS
 
-Les sections suivantes fournissent des détails sur la connexion de votre produit ServiceNow à IT Service Management Connector dans OMS.
+Hello sections suivantes fournissent des détails sur la façon tooconnect votre toohello de produit ServiceNow connecteur de gestion de Service informatique dans OMS.
 
 ### <a name="prerequisites"></a>Composants requis
 
-Vérifiez que les conditions préalables suivantes sont remplies :
+Assurez-vous de qu'avoir hello suivant les conditions préalables sont remplies :
 
 - IT Service Management Connector installé. Plus d’informations : [Configuration](log-analytics-itsmc-overview.md#configuration).
 - Versions prises en charge de ServiceNow : Fuji, Genève, Helsinki.
 
-Les administrateurs ServiceNow doivent procéder comme suis dans leur instance ServiceNow :
-- Générer l’ID client et la clé secrète client pour le produit ServiceNow. Pour plus d’informations sur la génération de l’ID client et de la clé secrète, consultez [Installation d’OAuth](http://wiki.servicenow.com/index.php?title=OAuth_Setup).
-- Installer l’application utilisateur pour l’intégration de Microsoft OMS (application ServiceNow). [En savoir plus](https://store.servicenow.com/sn_appstore_store.do#!/store/application/ab0265b2dbd53200d36cdc50cf961980/1.0.0 ).
-- Créer un rôle utilisateur de l’intégration pour l’application utilisateur installée. Pour plus d’informations sur la création du rôle d’utilisateur de l’intégration, cliquez [ici](#create-integration-user-role-in-servicenow-app).
+ServiceNow Admins doit faire hello suivant leur instance ServiceNow :
+- Générer des ID de client et question secrète du client pour le produit de ServiceNow hello. Pour plus d’informations sur comment les ID de client toogenerate et secret, consultez [l’installation d’OAuth](http://wiki.servicenow.com/index.php?title=OAuth_Setup).
+- Installez hello application d’utilisateur pour l’intégration de Microsoft OMS (application ServiceNow). [En savoir plus](https://store.servicenow.com/sn_appstore_store.do#!/store/application/ab0265b2dbd53200d36cdc50cf961980/1.0.0 ).
+- Créer le rôle d’utilisateur de l’intégration d’application utilisateur hello est installée. Plus d’informations sur la façon dont le rôle d’utilisateur de toocreate hello intégration est [ici](#create-integration-user-role-in-servicenow-app).
 
 
 ### <a name="connection-procedure"></a>**Procédure de connexion**
 
-Exécutez la procédure suivante pour créer une connexion ServiceNow :
+Hello, suivant la procédure toocreate une connexion de ServiceNow, utilisez :
 
-1. Accédez à **OMS** > **Paramètres** > **Sources connectées**.
+1. Accédez trop**OMS** > **paramètres** > **Sources connectées**.
 2. Sélectionnez **ITSM Connector**, puis cliquez sur **Ajouter une nouvelle connexion**.
 
     ![Connexion de ServiceNow](./media/log-analytics-itsmc/itsmc-servicenow-connection.png)
 
-3. Indiquez les informations comme décrit dans le tableau suivant, puis cliquez sur **Enregistrer** pour créer la connexion :
+3. Fournir des informations de hello comme décrit dans hello tableau suivant, puis cliquez sur **enregistrer** connexion de hello toocreate :
 
 > [!NOTE]
 > Tous ces paramètres sont obligatoires.
 
 | **Champ** | **Description** |
 | --- | --- |
-| **Name**   | Tapez le nom de l’instance ServiceNow que vous souhaitez connecter à IT Service Management Connector.  Vous utiliserez ce nom ultérieurement dans OMS lorsque vous configurerez des éléments de travail dans cette instance ITSM ou afficherez une analyse de journal détaillée. |
+| **Name**   | Tapez un nom pour l’instance de ServiceNow hello que vous souhaitez tooconnect avec hello connecteur de gestion du Service informatique.  Vous utiliserez ce nom ultérieurement dans OMS lorsque vous configurerez des éléments de travail dans cette instance ITSM ou afficherez une analyse de journal détaillée. |
 | **Sélectionner un type de connexion**   | Sélectionnez **ServiceNow**. |
-| **Nom d’utilisateur**   | Tapez le nom d’utilisateur de l’intégration que vous avez créé dans l’application ServiceNow pour prendre en charge la connexion à IT Service Management Connector. Plus d’informations : [Create ServiceNow app user role (Créer un rôle utilisateur pour l’application ServiceNow)](#create-integration-user-role-in-servicenow-app).|
-| **Mot de passe**   | Tapez le mot de passe associé à ce nom d’utilisateur. **Remarque** : le nom d’utilisateur et le mot de passe sont utilisés uniquement pour générer des jetons d’authentification. Ils ne sont pas stockés dans le service OMS.  |
-| **URL du serveur**   | Tapez l’URL de l’instance ServiceNow que vous souhaitez connecter à IT Service Management Connector. |
-| **ID client**   | Tapez l’ID client généré précédemment que vous souhaitez utiliser pour l’authentification OAuth2.  Plus d’informations sur la génération de l’ID client et de la clé secrète : [Installation d’OAuth](http://wiki.servicenow.com/index.php?title=OAuth_Setup). |
-| **Clé secrète client**   | Tapez la clé secrète client, générée pour cet ID.   |
-| **Étendue de la synchronisation des données**   | Sélectionnez les éléments de travail de ServiceNow que vous souhaitez synchroniser avec OMS via IT Service Management Connector.  Les valeurs sélectionnées sont importées dans Log Analytics.   **Options :** incidents et demandes de modification.|
-| **Synchroniser les données** | Tapez le nombre de jours passés dont vous souhaitez les données. **Limite maximale** : 120 jours. |
-| **Create new configuration item in ITSM solution (Créer un élément de configuration dans la solution ITSM)** | Sélectionnez cette option si vous souhaitez créer les éléments de configuration dans le produit ITSM. Lorsque cette option est sélectionnée, OMS crée les éléments de configuration affectés en tant qu’éléments de configuration (dans le cas d’éléments de configuration non existants) dans le système ITSM pris en charge. **Par défaut** : désactivée. |
+| **Nom d’utilisateur**   | Tapez le nom d’utilisateur d’intégration hello que vous avez créé dans hello ServiceNow application toosupport hello connexion toohello connecteur de gestion du Service informatique. Plus d’informations : [Create ServiceNow app user role (Créer un rôle utilisateur pour l’application ServiceNow)](#create-integration-user-role-in-servicenow-app).|
+| **Mot de passe**   | Tapez le mot de passe de hello associé à ce nom d’utilisateur. **Remarque**: nom d’utilisateur et mot de passe sont utilisés pour générer des jetons d’authentification et ne sont pas stockées n’importe où dans le service OMS de hello.  |
+| **URL du serveur**   | Tapez les URL hello d’instance ServiceNow de hello que vous souhaitez tooconnect tooIT connecteur de Service Management. |
+| **ID client**   | Tapez les ID de client hello toouse souhaité pour l’authentification OAuth2, ce qui vous avez généré précédemment.  Plus d’informations sur la génération de l’ID client et de la clé secrète : [Installation d’OAuth](http://wiki.servicenow.com/index.php?title=OAuth_Setup). |
+| **Clé secrète client**   | Clé secrète de type hello client, générée pour ce code.   |
+| **Étendue de la synchronisation des données**   | Sélectionnez hello ServiceNow des éléments de travail que vous souhaitez tooOMS toosync, via le connecteur de gestion du Service informatique de hello.  les valeurs Hello sélectionné sont importés dans analytique de journal.   **Options :** incidents et demandes de modification.|
+| **Synchroniser les données** | Tapez hello les nombre de jours souhaité pour les données de salutation à partir de. **Limite maximale** : 120 jours. |
+| **Create new configuration item in ITSM solution (Créer un élément de configuration dans la solution ITSM)** | Sélectionnez cette option si vous souhaitez que les éléments de configuration toocreate hello dans le produit ITSM hello. Lorsque sélectionnée, OMS crée les éléments de configuration hello affectée comme des éléments de configuration (en cas d’éléments de configuration non existant) Bonjour pris en charge le système ITSM. **Par défaut** : désactivée. |
 
 
 En cas de connexion et de synchronisation réussies :
 
-- Les éléments de travail sélectionnés dans la connexion ServiceNow sont importés dans OMS Log Analytics.  Vous pouvez afficher le résumé de ces éléments de travail sur la vignette d’IT Service Management Connector.
+- Les éléments de travail sélectionnés dans la connexion ServiceNow sont importés dans OMS Log Analytics.  Vous pouvez afficher le résumé hello de ces éléments de travail sur la vignette du connecteur de gestion du Service informatique hello.
 - Vous pouvez créer des incidents, des alertes et des événements à partir d’alertes OMS ou de recherche dans les journaux, dans cette instance ServiceNow.  
 
 
@@ -222,22 +222,22 @@ Plus d’informations : [Create ITSM work items for OMS alerts (Créer des él�
 
 ### <a name="create-integration-user-role-in-servicenow-app"></a>Créer un rôle utilisateur de l’intégration dans l’application ServiceNow
 
-Procédez comme suit :
+Hello utilisateur procédure :
 
-1.  Visitez le [magasin ServiceNow](https://store.servicenow.com/sn_appstore_store.do#!/store/application/ab0265b2dbd53200d36cdc50cf961980/1.0.0) et installez **l’application utilisateur pour l’intégration de Microsoft OMS et de ServiceNow** dans votre instance ServiceNow.
-2.  Après l’installation, consultez la barre de navigation gauche de l’instance ServiceNow, puis recherchez et sélectionnez l’intégrateur Microsoft OMS.  
+1.  Visitez hello [ServiceNow magasin](https://store.servicenow.com/sn_appstore_store.do#!/store/application/ab0265b2dbd53200d36cdc50cf961980/1.0.0) et installer hello **application utilisateur pour l’intégration de OMS de Microsoft et de ServiceNow** dans votre Instance ServiceNow.
+2.  Après l’installation, visitez hello barre de navigation de l’instance ServiceNow de hello, la recherche et sélectionnez Microsoft OMS intégrateur de gauche.  
 3.  Cliquez sur **Liste de vérifications d’installation**.
 
-    L’état **Incomplet** est affiché si le rôle utilisateur doit encore être créé.
+    état de Hello est affiché en tant que **pas terminer** si le rôle d’utilisateur hello est encore toobe créé.
 
-4.  Dans les zones de texte situées en regard de **Create integration user (Créer un utilisateur de l’intégration)**, entrez le nom de l’utilisateur qui peut se connecter à IT Service Management Connector dans OMS.
-5.  Entrez le mot de passe de cet utilisateur, puis cliquez sur **OK**.  
+4.  Dans le texte hello zones, ensuite trop**créer un utilisateur intégration**, entrez les nom d’utilisateur hello pour utilisateur hello qui peut se connecter toohello connecteur de gestion de Service informatique dans OMS.
+5.  Entrez le mot de passe hello pour cet utilisateur, puis cliquez sur **OK**.  
 
 >[!NOTE]
 
-> Vous utilisez ces informations d’identification pour établir la connexion ServiceNow dans OMS.
+> Vous utilisez ces informations d’identification toomake hello ServiceNow de connexion d’OMS.
 
-L’utilisateur nouvellement créé est affiché avec les rôles par défaut affectés.
+Hello utilisateur récemment créé est affiché avec les rôles par défaut de hello attribués.
 
 Rôles par défaut :
 - personalize_choices
@@ -247,70 +247,70 @@ Rôles par défaut :
 -   template_editor
 -   view_changer
 
-Une fois l’utilisateur créé, l’état de l’option **Liste de vérifications d’installation** est défini sur Terminé, et affiche les détails du rôle utilisateur créé pour l’application.
+Une fois que l’utilisateur de hello est correctement créé, hello état de **vérifier une Installation Checklist** déplace tooCompleted, affichage des détails hello hello du rôle d’utilisateur créé pour une application hello.
 
 > [!NOTE]
 
-> Pour autoriser un utilisateur à créer des **alertes** et des **événements** dans ServiceNow à partir d’OMS :
+> tooallow un toocreate utilisateur **alertes** et **événements** dans ServiceNow d’OMS :
 
-> - Vérifiez que vous avez installé le module Gestion des événements dans votre instance ServiceNow.
+> - Assurez-vous de qu'avoir module de gestion des événements hello installé sur votre instance ServiceNow.
 
-> - Ajoutez les rôles suivants à l’utilisateur de l’intégration :
+> - Ajoutez hello suivant utilisateur d’intégration toohello rôles :
 >      - evt_mgmt_integration
 >      - evt_mgmt_operator  
 
 
-## <a name="connect-provance-to-it-service-management-connector-in-oms"></a>Connecter Provance à IT Service Management Connector dans OMS
+## <a name="connect-provance-tooit-service-management-connector-in-oms"></a>Se connecter Provance tooIT connecteur de gestion de Service dans OMS
 
-Les sections suivantes fournissent des détails sur la connexion de votre produit Provance à IT Service Management Connector dans OMS.
+Hello sections suivantes fournissent des détails sur la façon tooconnect votre toohello de produit Provance connecteur de gestion de Service informatique dans OMS.
 
 ### <a name="prerequisites"></a>Composants requis
 
-Vérifiez que les conditions préalables suivantes sont remplies :
+Assurez-vous de qu'avoir hello suivant les conditions préalables sont remplies :
 
 - IT Service Management Connector installé. Plus d’informations : [Configuration](log-analytics-itsmc-overview.md#configuration).
-- L’application Provance doit être inscrite auprès d’Azure AD, et l’ID client est mis à disposition. Pour plus d’informations, consultez [Comment configurer votre application pour utiliser la connexion Azure Active Directory](../app-service-mobile/app-service-mobile-how-to-configure-active-directory-authentication.md).
+- L’application Provance doit être inscrite auprès d’Azure AD, et l’ID client est mis à disposition. Pour plus d’informations, consultez [comment l’authentification active directory de tooconfigure](../app-service-mobile/app-service-mobile-how-to-configure-active-directory-authentication.md).
 - Rôle utilisateur : administrateur.
 
 ### <a name="connection-procedure"></a>Procédure de connexion
 
-Exécutez la procédure suivante pour créer une connexion Provance :
+Utilisez hello suivant la procédure toocreate une connexion Provance :
 
-1. Accédez à **OMS** > **Paramètres** > **Sources connectées**.
+1. Accédez trop**OMS** > **paramètres** > **Sources connectées**.
 2. Sélectionnez **ITSM Connector**, puis cliquez sur **Ajouter une nouvelle connexion**.  
 
     ![Connexion Provance](./media/log-analytics-itsmc/itsmc-provance-connection.png)
-3. Indiquez les informations comme décrit dans le tableau suivant, puis cliquez sur **Enregistrer** pour créer la connexion.
+3. Fournir des informations de hello comme décrit dans hello tableau suivant, puis cliquez sur **enregistrer** connexion de hello toocreate.
 
 > [!NOTE]
 > Tous ces paramètres sont obligatoires.
 
 | **Champ** | **Description** |
 | --- | --- |
-| **Name**   | Tapez le nom de l’instance Provance que vous souhaitez connecter à IT Service Management Connector.  Vous utiliserez ce nom ultérieurement dans OMS lorsque vous configurerez des éléments de travail dans cette instance ITSM ou afficherez une analyse de journal détaillée. |
+| **Name**   | Tapez un nom pour l’instance de Provance hello que vous souhaitez tooconnect avec hello connecteur de gestion du Service informatique.  Vous utiliserez ce nom ultérieurement dans OMS lorsque vous configurerez des éléments de travail dans cette instance ITSM ou afficherez une analyse de journal détaillée. |
 | **Sélectionner un type de connexion**   | Sélectionnez **Provance**. |
-| **Nom d’utilisateur**   | Tapez le nom d’utilisateur qui peut se connecter à IT Service Management Connector.    |
-| **Mot de passe**   | Tapez le mot de passe associé à ce nom d’utilisateur. **Remarque** : le nom d’utilisateur et le mot de passe sont utilisés uniquement pour générer des jetons d’authentification. Ils ne sont pas stockés dans le service OMS.|
-| **URL du serveur**   | Tapez l’URL de l’instance Provance que vous souhaitez connecter à IT Service Management Connector. |
-| **ID client**   | Tapez l’ID client que vous avez généré dans votre instance Provance pour authentifier cette connexion.  Pour plus d’informations sur l’ID client, consultez [Comment configurer votre application pour utiliser la connexion Azure Active Directory](../app-service-mobile/app-service-mobile-how-to-configure-active-directory-authentication.md). |
-| **Étendue de la synchronisation des données**   | Sélectionnez les éléments de travail de Provance que vous souhaitez synchroniser à OMS via IT Service Management Connector.  Ces éléments de travail sont importés dans Log Analytics.   **Options :** incidents, demandes de modification.|
-| **Synchroniser les données** | Tapez le nombre de jours passés dont vous souhaitez les données. **Limite maximale** : 120 jours. |
-| **Create new configuration item in ITSM solution (Créer un élément de configuration dans la solution ITSM)** | Sélectionnez cette option si vous souhaitez créer les éléments de configuration dans le produit ITSM. Lorsque cette option est sélectionnée, OMS crée les éléments de configuration affectés en tant qu’éléments de configuration (dans le cas d’éléments de configuration non existants) dans le système ITSM pris en charge. **Par défaut** : désactivée.|
+| **Nom d’utilisateur**   | Tapez le nom d’utilisateur de hello qui peut se connecter toohello connecteur de gestion du Service informatique.    |
+| **Mot de passe**   | Tapez le mot de passe de hello associé à ce nom d’utilisateur. **Remarque :** nom d’utilisateur et mot de passe sont utilisés pour générer des jetons d’authentification et ne sont pas stockées n’importe où dans le service OMS de hello. _|
+| **URL du serveur**   | Tapez l’URL hello de votre instance Provance que vous souhaitez tooconnect tooIT connecteur de Service Management. |
+| **ID client**   | ID de client type hello pour authentifier cette connexion, vous avez généré dans votre instance Provance.  Plus d’informations sur l’ID de client, consultez [comment l’authentification active directory de tooconfigure](../app-service-mobile/app-service-mobile-how-to-configure-active-directory-authentication.md). |
+| **Étendue de la synchronisation des données**   | Sélectionnez hello Provance des éléments de travail que vous souhaitez tooOMS toosync, via le connecteur de gestion du Service informatique de hello.  Ces éléments de travail sont importés dans Log Analytics.   **Options :** incidents, demandes de modification.|
+| **Synchroniser les données** | Tapez hello les nombre de jours souhaité pour les données de salutation à partir de. **Limite maximale** : 120 jours. |
+| **Create new configuration item in ITSM solution (Créer un élément de configuration dans la solution ITSM)** | Sélectionnez cette option si vous souhaitez que les éléments de configuration toocreate hello dans le produit ITSM hello. Lorsque sélectionnée, OMS crée les éléments de configuration hello affectée comme des éléments de configuration (en cas d’éléments de configuration non existant) Bonjour pris en charge le système ITSM. **Par défaut** : désactivée.|
 
 En cas de connexion et de synchronisation réussies :
 
-- Les éléments de travail sélectionnés dans la connexion Provance sont importés dans OMS **Log Analytics**.  Vous pouvez afficher le résumé de ces éléments de travail sur la vignette d’IT Service Management Connector.
+- Les éléments de travail sélectionnés dans la connexion Provance sont importés dans OMS **Log Analytics**.  Vous pouvez afficher le résumé hello de ces éléments de travail sur la vignette du connecteur de gestion du Service informatique hello.
 - Vous pouvez créer des incidents et des événements à partir d’alertes OMS ou de recherche dans les journaux, dans cette instance Provance.
 
 Plus d’informations : [Create ITSM work items for OMS alerts (Créer des éléments de travail ITSM pour des alertes OMS)](log-analytics-itsmc-overview.md#create-itsm-work-items-for-oms-alerts) et [Create ITSM work items from OMS logs (Créer des éléments de travail ITSM à partir de journaux OMS)](log-analytics-itsmc-overview.md#create-itsm-work-items-from-oms-logs).
 
-## <a name="connect-cherwell-to-it-service-management-connector-in-oms"></a>Connecter Cherwell à IT Service Management Connector dans OMS
+## <a name="connect-cherwell-tooit-service-management-connector-in-oms"></a>Se connecter à Cherwell tooIT connecteur de gestion de Service dans OMS
 
-Les sections suivantes fournissent des détails sur la connexion de votre produit Cherwell à IT Service Management Connector dans OMS.
+Hello sections suivantes fournissent des détails sur la façon tooconnect votre toohello de produit Cherwell connecteur de gestion de Service informatique dans OMS.
 
 ### <a name="prerequisites"></a>Composants requis
 
-Vérifiez que les conditions préalables suivantes sont remplies :
+Assurez-vous de qu'avoir hello suivant les conditions préalables sont remplies :
 
 - IT Service Management Connector installé. Plus d’informations : [Configuration](log-analytics-itsmc-overview.md#configuration).
 - ID client généré. Plus d’informations : [Générer un ID client pour Cherwell](#generate-client-id-for-cherwell).
@@ -318,42 +318,42 @@ Vérifiez que les conditions préalables suivantes sont remplies :
 
 ### <a name="connection-procedure"></a>Procédure de connexion
 
-Exécutez la procédure suivante pour créer une connexion Cherwell :
+Utilisez hello suivant la procédure toocreate une connexion Cherwell :
 
-1. Accédez à **OMS** >  **Paramètres** > **Sources connectées**.
+1. Accédez trop**OMS** >  **paramètres** > **Sources connectées**.
 2. Sélectionnez **ITSM Connector**, puis cliquez sur **Ajouter une nouvelle connexion**.  
 
     ![Id utilisateur de Cherwell](./media/log-analytics-itsmc/itsmc-cherwell-connection.png)
 
-3. Indiquez les informations comme décrit dans le tableau suivant, puis cliquez sur **Enregistrer** pour créer la connexion.
+3. Fournir des informations de hello comme décrit dans hello tableau suivant, puis cliquez sur **enregistrer** connexion de hello toocreate.
 
 > [!NOTE]
 > Tous ces paramètres sont obligatoires.
 
 | **Champ** | **Description** |
 | --- | --- |
-| **Name**   | Tapez le nom de l’instance Cherwell que vous souhaitez connecter à IT Service Management Connector.  Vous utiliserez ce nom ultérieurement dans OMS lorsque vous configurerez des éléments de travail dans cette instance ITSM ou afficherez une analyse de journal détaillée. |
+| **Name**   | Tapez un nom pour l’instance de Cherwell hello que vous souhaitez tooconnect toohello connecteur de gestion du Service informatique.  Vous utiliserez ce nom ultérieurement dans OMS lorsque vous configurerez des éléments de travail dans cette instance ITSM ou afficherez une analyse de journal détaillée. |
 | **Sélectionner un type de connexion**   | Sélectionnez **Cherwell**. |
-| **Nom d’utilisateur**   | Tapez le nom d’utilisateur Cherwell qui peut se connecter à IT Service Management Connector. |
-| **Mot de passe**   | Tapez le mot de passe associé à ce nom d’utilisateur. **Remarque** : le nom d’utilisateur et le mot de passe sont utilisés uniquement pour générer des jetons d’authentification. Ils ne sont pas stockés dans le service OMS.|
-| **URL du serveur**   | Tapez l’URL de l’instance Cherwell que vous souhaitez connecter à IT Service Management Connector. |
-| **ID client**   | Tapez l’ID client que vous avez généré dans votre instance Cherwell pour authentifier cette connexion.   |
-| **Étendue de la synchronisation des données**   | Sélectionnez les éléments de travail de Cherwell que vous souhaitez synchroniser via IT Service Management Connector.  Ces éléments de travail sont importés dans Log Analytics.   **Options :** incidents, demandes de modification. |
-| **Synchroniser les données** | Tapez le nombre de jours passés dont vous souhaitez les données. **Limite maximale** : 120 jours. |
-| **Create new configuration item in ITSM solution (Créer un élément de configuration dans la solution ITSM)** | Sélectionnez cette option si vous souhaitez créer les éléments de configuration dans le produit ITSM. Lorsque cette option est sélectionnée, OMS crée les éléments de configuration affectés en tant qu’éléments de configuration (dans le cas d’éléments de configuration non existants) dans le système ITSM pris en charge. **Par défaut** : désactivée. |
+| **Nom d’utilisateur**   | Tapez le nom d’utilisateur de Cherwell hello qui peut se connecter toohello connecteur de gestion du Service informatique. |
+| **Mot de passe**   | Tapez le mot de passe de hello associé à ce nom d’utilisateur. **Remarque :** nom d’utilisateur et mot de passe sont utilisés pour générer des jetons d’authentification et ne sont pas stockées n’importe où dans le service OMS de hello.|
+| **URL du serveur**   | Tapez l’URL hello de votre instance de Cherwell que vous souhaitez tooconnect tooIT connecteur de Service Management. |
+| **ID client**   | ID de client type hello pour authentifier cette connexion, vous avez généré dans votre instance de Cherwell.   |
+| **Étendue de la synchronisation des données**   | Sélectionnez hello Cherwell des éléments de travail que vous souhaitez toosync via hello connecteur de gestion du Service informatique.  Ces éléments de travail sont importés dans Log Analytics.   **Options :** incidents, demandes de modification. |
+| **Synchroniser les données** | Tapez hello les nombre de jours souhaité pour les données de salutation à partir de. **Limite maximale** : 120 jours. |
+| **Create new configuration item in ITSM solution (Créer un élément de configuration dans la solution ITSM)** | Sélectionnez cette option si vous souhaitez que les éléments de configuration toocreate hello dans le produit ITSM hello. Lorsque sélectionnée, OMS crée les éléments de configuration hello affectée comme des éléments de configuration (en cas d’éléments de configuration non existant) Bonjour pris en charge le système ITSM. **Par défaut** : désactivée. |
 
 En cas de connexion et de synchronisation réussies :
 
-- Les éléments de travail sélectionnés dans cette connexion Cherwell sont importés dans OMS Log Analytics. Vous pouvez afficher le résumé de ces éléments de travail sur la vignette d’IT Service Management Connector.
+- Les éléments de travail sélectionnés dans cette connexion Cherwell sont importés dans OMS Log Analytics. Vous pouvez afficher le résumé hello de ces éléments de travail sur la vignette du connecteur de gestion du Service informatique hello.
 - Vous pouvez créer des incidents et des événements dans cette instance Cherwell à partir d’OMS. Plus d’informations : Create ITSM work items for OMS alerts (Créer des éléments de travail ITSM pour des alertes OMS) et Create ITSM work items from OMS logs (Créer des éléments de travail ITSM à partir de journaux OMS).
 
 Plus d’informations : [Create ITSM work items for OMS alerts (Créer des éléments de travail ITSM pour des alertes OMS)](log-analytics-itsmc-overview.md#create-itsm-work-items-for-oms-alerts) et [Create ITSM work items from OMS logs (Créer des éléments de travail ITSM à partir de journaux OMS)](log-analytics-itsmc-overview.md#create-itsm-work-items-from-oms-logs).
 
 ### <a name="generate-client-id-for-cherwell"></a>Générer un ID client pour Cherwell
 
-Pour générer l’ID client/la clé de Cherwell, procédez comme suit :
+toogenerate hello client ID et de clé pour Cherwell, utilisez hello procédure :
 
-1. Connectez-vous à votre instance Cherwell en tant qu’administrateur.
+1. Ouvrez une session dans tooyour Cherwell instance en tant qu’administrateur.
 2. Cliquez sur **Sécurité** > **Edit REST API client settings (Modifier les paramètres du client de l’API REST)**.
 3. Sélectionnez **Créer un client** > **Clé secrète client**.
 

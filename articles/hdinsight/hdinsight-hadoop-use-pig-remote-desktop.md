@@ -1,6 +1,6 @@
 ---
-title: "Utiliser Hadoop Pig avec le Bureau à distance dans HDInsight - Azure | Documents Microsoft"
-description: "Apprenez à utiliser la commande Pig pour exécuter les instructions Pig Latin à partir d'une connexion Bureau à distance vers un cluster Windows Hadoop sur HDInsight."
+title: "aaaUse Hadoop Pig avec le Bureau à distance dans HDInsight - Azure | Documents Microsoft"
+description: "Découvrez comment toouse hello instructions de Pig Latin Pig commande toorun à partir d’un bureau à distance connexion tooa basé sur Windows de cluster Hadoop dans HDInsight."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,86 +16,86 @@ ms.workload: big-data
 ms.date: 01/17/2017
 ms.author: larryfr
 ROBOTS: NOINDEX
-ms.openlocfilehash: 5e8d4fbd8afc54c8bbc1a9a71c66d7022a7d5986
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 2a4565fa827cd45fdbe6194b0486df93a6561084
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="run-pig-jobs-from-a-remote-desktop-connection"></a>Exécution de tâches Pig depuis une connexion Bureau à distance
 [!INCLUDE [pig-selector](../../includes/hdinsight-selector-use-pig.md)]
 
-Ce document fournit une procédure pas à pas de l'utilisation de la commande Pig pour exécuter les instructions Pig Latin à partir d'une connexion Bureau à distance vers un cluster HDInsight Windows. Pig Latin permet de créer des applications MapReduce en décrivant les transformations de données, plutôt que de mapper et de réduire les fonctions.
+Ce document fournit une procédure pas à pas pour l’utilisation d’instructions hello Pig commandes toorun Pig Latin d’un cluster de basés sur Windows de HDInsight de tooa connexion Bureau à distance. Pig Latin vous permet de toocreate MapReduce applications en décrivant les transformations de données, plutôt que mapper et réduire des fonctions.
 
 > [!IMPORTANT]
-> Le Bureau à distance n’est disponible que sur les clusters HDInsight qui utilisent Windows comme système d’exploitation. Linux est le seul système d’exploitation utilisé sur HDInsight version 3.4 ou supérieure. Pour plus d’informations, consultez [Suppression de HDInsight sous Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+> Bureau à distance n’est disponible sur les clusters HDInsight utilisent Windows comme système d’exploitation de hello. Linux est hello seul système d’exploitation utilisé sur HDInsight version 3.4 ou supérieure. Pour plus d’informations, consultez [Suppression de HDInsight sous Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 >
-> Pour HDInsight 3.4 ou les versions ultérieures, consultez l’article [Utiliser Pig avec HDInsight et SSH](hdinsight-hadoop-use-pig-ssh.md) pour plus d’informations sur l’exécution interactive de travaux Pig directement sur le cluster à partir d’une ligne de commande.
+> Pour HDInsight 3.4 ou supérieure, consultez [utilisez Pig avec HDInsight et SSH](hdinsight-hadoop-use-pig-ssh.md) pour plus d’informations sur l’exécution de manière interactive Pig travaux directement sur hello de cluster à partir d’une ligne de commande.
 
 ## <a id="prereq"></a>Configuration requise
-Pour effectuer les étapes présentées dans cet article, vous avez besoin des éléments suivants :
+toocomplete hello étapes décrites dans cet article, vous devez suivant de hello.
 
 * un cluster HDInsight basé sur Windows (Hadoop sur HDInsight)
 * Un ordinateur client avec Windows 10, Windows 8 ou Windows 7
 
 ## <a id="connect"></a>Connexion avec le Bureau à distance
-Activez le Bureau à distance pour le cluster HDInsight, puis connectez-vous à lui en suivant les instructions fournies dans [Connexion à des clusters HDInsight à l’aide de RDP](hdinsight-administer-use-management-portal.md#connect-to-clusters-using-rdp).
+Activer le Bureau à distance pour le cluster HDInsight de hello, puis connecter tooit en suivant les instructions de hello sur [connecter clusters tooHDInsight à l’aide du protocole RDP](hdinsight-administer-use-management-portal.md#connect-to-clusters-using-rdp).
 
-## <a id="pig"></a>Utilisation de la commande Pig
-1. Lorsque vous disposez d’une connexion Bureau à distance, démarrez la **ligne de commande Hadoop** en cliquant sur l’icône sur le bureau.
-2. Utilisez ce qui suit pour lancer la commande Pig :
+## <a id="pig"></a>Utilisez la commande de Pig hello
+1. Une fois que vous avez une connexion Bureau à distance, démarrer hello **ligne de commande Hadoop** en utilisant l’icône de hello sur le bureau de hello.
+2. Utilisez hello toostart hello Pig commande suivante :
 
         %pig_home%\bin\pig
 
     Une invite `grunt>` s’affiche.
-3. Entrez l’instruction suivante :
+3. Entrez hello après l’instruction :
 
         LOGS = LOAD 'wasb:///example/data/sample.log';
 
-    Cette commande charge le contenu du fichier sample.log dans les JOURNAUX. Vous pouvez afficher le contenu du fichier à l’aide de la commande suivante :
+    Cette commande charge contenu hello du fichier d’exemple.log hello dans les fichiers de journaux hello. Vous pouvez afficher le contenu hello du fichier de hello à l’aide de hello de commande suivante :
 
         DUMP LOGS;
-4. Transformez ensuite les données en appliquant une expression régulière pour extraire uniquement le niveau de journalisation de chaque enregistrement :
+4. Transformer les données de hello en appliquant un niveau de journalisation de hello uniquement tooextract expression régulière à partir de chaque enregistrement :
 
         LEVELS = foreach LOGS generate REGEX_EXTRACT($0, '(TRACE|DEBUG|INFO|WARN|ERROR|FATAL)', 1)  as LOGLEVEL;
 
-    Vous pouvez utiliser **DUMP** pour afficher les données après la transformation. Dans ce cas, `DUMP LEVELS;`.
-5. Continuez à appliquer des transformations à l’aide des instructions suivantes. Utilisez `DUMP` pour afficher le résultat de la transformation après chaque étape.
+    Vous pouvez utiliser **DUMP** tooview les données de salutation après la transformation de hello. Dans ce cas, `DUMP LEVELS;`.
+5. Continuer l’application de transformations à l’aide de hello suivant les instructions. Utilisez `DUMP` résultat de hello tooview de transformation hello après chaque étape.
 
     <table>
     <tr>
     <th>Instruction</th><th>Résultat</th>
     </tr>
     <tr>
-    <td>FILTEREDLEVELS = FILTER LEVELS by LOGLEVEL is not null;</td><td>Supprime les lignes contenant une valeur null pour le niveau de journal et stocke les résultats dans FILTEREDLEVELS.</td>
+    <td>FILTEREDLEVELS = FILTER LEVELS by LOGLEVEL is not null;</td><td>Supprime les lignes qui contiennent une valeur null pour le niveau de journal hello et stocke les résultats de hello dans FILTEREDLEVELS.</td>
     </tr>
     <tr>
-    <td>GROUPEDLEVELS = GROUP FILTEREDLEVELS by LOGLEVEL;</td><td>Regroupe les lignes par niveau de journal et stocke les résultats dans GROUPEDLEVELS.</td>
+    <td>GROUPEDLEVELS = GROUP FILTEREDLEVELS by LOGLEVEL;</td><td>Hello de groupes de lignes par niveau de journal et stocke des résultats de hello dans GROUPEDLEVELS.</td>
     </tr>
     <tr>
     <td>FREQUENCIES = foreach GROUPEDLEVELS generate group as LOGLEVEL, COUNT(FILTEREDLEVELS.LOGLEVEL) as COUNT;</td><td>Crée un jeu de données qui contient chaque valeur unique au niveau journal et le nombre de fois où elle se produit. Ces informations sont stockées dans FREQUENCIES</td>
     </tr>
     <tr>
-    <td>RESULT = order FREQUENCIES by COUNT desc;</td><td>Trie les niveaux du journal par décompte (décroissant) et stocke ces informations dans RESULT</td>
+    <td>RESULT = order FREQUENCIES by COUNT desc;</td><td>Les niveaux de journalisation hello par nombre (ordre décroissant) et stocke des commandes dans les résultats</td>
     </tr>
     </table>
-6. Vous pouvez également enregistrer les résultats d’une transformation à l’aide de l’instruction `STORE`. Par exemple, la commande suivante enregistre `RESULT` dans le répertoire **/example/data/pigout** sur le conteneur de stockage par défaut de votre cluster :
+6.Vous pouvez également enregistrer les résultats de hello d’une transformation à l’aide de hello `STORE` instruction. Par exemple, hello commande suivante enregistre hello `RESULT` toohello **/example/data/pigout** répertoire dans le conteneur de stockage par défaut hello pour votre cluster :
 
         STORE RESULT into 'wasb:///example/data/pigout'
 
    > [!NOTE]
-   > Les données sont stockées dans le répertoire spécifié dans des fichiers nommés **part-nnnnn**. Si le répertoire existe déjà, vous recevrez un message d’erreur.
+   > les données de salutation sont stockées dans le répertoire spécifié de hello dans les fichiers nommés **partie-nnnnn**. Si le répertoire de hello existe déjà, vous recevrez un message d’erreur.
    >
    >
-7. Pour quitter l’invite Grunt, entrez l’instruction suivante.
+7. tooexit hello des grunt à l’invite, entrez hello après l’instruction.
 
         QUIT;
 
 ### <a name="pig-latin-batch-files"></a>Fichiers de commandes Pig Latin
-Vous pouvez également utiliser la commande Pig pour exécuter le Pig Latin contenu dans un fichier.
+Vous pouvez également utiliser hello Pig commande toorun Latin Pig qui est contenue dans un fichier.
 
-1. Après avoir quitté l’invite Grunt, ouvrez le **bloc-notes** et créez un nouveau fichier nommé **pigbatch.pig** dans le répertoire **%PIG_HOME%**.
-2. Tapez ou collez les lignes suivantes dans le fichier **pigbatch.pig** , puis enregistrez-le.
+1. Après avoir quitté l’invite de grunt hello, ouvrez **bloc-notes** et créer un nouveau fichier nommé **pigbatch.pig** Bonjour **PIG_HOME %** active.
+2. Type ou à la suite de hello coller des lignes en hello **pigbatch.pig** de fichier, puis enregistrez-le :
 
         LOGS = LOAD 'wasb:///example/data/sample.log';
         LEVELS = foreach LOGS generate REGEX_EXTRACT($0, '(TRACE|DEBUG|INFO|WARN|ERROR|FATAL)', 1)  as LOGLEVEL;
@@ -104,11 +104,11 @@ Vous pouvez également utiliser la commande Pig pour exécuter le Pig Latin cont
         FREQUENCIES = foreach GROUPEDLEVELS generate group as LOGLEVEL, COUNT(FILTEREDLEVELS.LOGLEVEL) as COUNT;
         RESULT = order FREQUENCIES by COUNT desc;
         DUMP RESULT;
-3. Utilisez les éléments suivants pour exécuter le fichier **pigbatch.pig** à l’aide de la commande pig.
+3. Hello utilisation suivant toorun hello **pigbatch.pig** fichier à l’aide de la commande de pig hello.
 
         pig %PIG_HOME%\pigbatch.pig
 
-    Une fois le traitement par lots terminé, vous devez voir la sortie suivante, qui doit être la même que lorsque vous avez utilisé `DUMP RESULT;` lors des étapes précédentes :
+    Lors de la tâche hello est terminée, vous devez voir hello suivant de sortie, qui doit être hello de même que lorsque vous avez utilisé `DUMP RESULT;` dans les étapes précédentes hello :
 
         (TRACE,816)
         (DEBUG,434)
@@ -118,7 +118,7 @@ Vous pouvez également utiliser la commande Pig pour exécuter le Pig Latin cont
         (FATAL,2)
 
 ## <a id="summary"></a>Résumé
-Comme vous pouvez le voir, la commande Pig vous permet d’exécuter interactivement des opérations MapReduce ou d’exécuter des tâches Pig Latin stockées dans un fichier de commandes.
+Comme vous pouvez le voir, hello commande de Pig vous permet de toointeractively exécuter des opérations de MapReduce ou exécuter des travaux Pig Latin qui est stockés dans un fichier de commandes.
 
 ## <a id="nextsteps"></a>Étapes suivantes
 Pour obtenir des informations générales sur Pig dans HDInsight :

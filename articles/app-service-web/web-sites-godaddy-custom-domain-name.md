@@ -1,6 +1,6 @@
 ---
-title: "Configurer un nom de domaine personnalisé dans Azure App Service (GoDaddy)"
-description: "Apprenez à utiliser un nom de domaine à partir de GoDaddy avec Azure Web Apps"
+title: "aaaConfigure un nom de domaine personnalisé dans Azure App Service (GoDaddy)"
+description: "Découvrez comment toouse un domaine nom de GoDaddy avec Azure Web Apps"
 services: app-service
 documentationcenter: 
 author: erikre
@@ -14,18 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/12/2016
 ms.author: cephalin
-ms.openlocfilehash: 158c5dc06f83e16633d3c2fbb4eb27d3e8af030c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 48158ee752f9833249bbf85adf80f572d1c68486
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-a-custom-domain-name-in-azure-app-service-purchased-directly-from-godaddy"></a>Configurer un nom de domaine personnalisé dans Azure App Service (acheté directement sur GoDaddy)
 [!INCLUDE [web-selector](../../includes/websites-custom-domain-selector.md)]
 
 [!INCLUDE [intro](../../includes/custom-dns-web-site-intro.md)]
 
-Si vous avez acheté un domaine via Azure App Service Web Apps, reportez-vous à l’étape finale de l’article [Acheter un domaine pour Web Apps](custom-dns-web-site-buydomains-web-app.md).
+Si vous avez acheté domaine via Azure App Service Web Apps, consultez toohello dernière étape de [acheter un domaine pour les applications Web](custom-dns-web-site-buydomains-web-app.md).
 
 Cet article explique comment utiliser un nom de domaine personnalisé acheté directement auprès de [GoDaddy](https://godaddy.com) avec [App Service Web Apps](http://go.microsoft.com/fwlink/?LinkId=529714).
 
@@ -39,52 +39,52 @@ Cet article explique comment utiliser un nom de domaine personnalisé acheté di
 <a name="bkmk_configurecname"></a>
 
 ## <a name="add-a-dns-record-for-your-custom-domain"></a>Ajout d'un enregistrement DNS pour votre domaine personnalisé
-Pour associer votre domaine personnalisé à une application web dans App Service, vous devez ajouter une nouvelle entrée pour ce domaine dans la table DNS en utilisant les outils fournis par GoDaddy. Pour trouver les outils DNS pour GoDaddy.com, procédez comme suit.
+tooassociate votre domaine personnalisé avec une application web dans le Service d’applications, vous devez ajouter une nouvelle entrée dans la table de hello DNS pour votre domaine personnalisé à l’aide des outils fournis par GoDaddy. Utilisez hello suite d’outils du DNS hello étapes toolocate à GoDaddy.com
 
-1. Connectez-vous à votre compte GoDaddy.com et sélectionnez **My Account**, puis **Manage my domains**. Dans le menu déroulant, sélectionnez le nom de domaine à utiliser avec votre application web Azure, puis sélectionnez **Manage DNS** (Gérer DNS).
+1. Connectez-vous au compte tooyour avec GoDaddy.com, puis sélectionnez **mon compte** , puis **gérer mes domaines**. Menu déroulant de sélection hello hello nom de domaine que vous souhaitez toouse avec votre application web Azure, sélectionnez **gérer DNS**.
    
     ![page des domaines personnalisés de GoDaddy](./media/web-sites-godaddy-custom-domain-name/godaddy-customdomain.png)
-2. Dans la page **Domain details**, faites défiler jusqu’à l’onglet **DNS Zone File**. Il s'agit de la section qui vous permet d'ajouter et de modifier des enregistrements DNS pour votre nom de domaine.
+2. À partir de hello **les détails du domaine** page, faites défiler toohello **fichier de Zone DNS** onglet. Il s’agit de section hello utilisée pour ajouter et modifier des enregistrements DNS pour votre nom de domaine.
    
     ![Onglet DNS Zone File](./media/web-sites-godaddy-custom-domain-name/godaddy-zonetab.png)
    
-    Sélectionnez **Add Record** pour ajouter un enregistrement existant.
+    Sélectionnez **ajouter un enregistrement** tooadd un enregistrement existant.
    
-    Pour **modifier** un enregistrement existant, sélectionnez l’icône représentant un stylo et du papier à côté de l’enregistrement souhaité.
+    trop**modifier** un enregistrement existant, l’icône de stylet & papier hello select à côté de l’enregistrement de hello.
    
    > [!NOTE]
-   > Avant d’ajouter de nouveaux enregistrements, notez que GoDaddy a déjà créé des enregistrements DNS pour les sous-domaines populaires (sous **Host** dans l’éditeur), par exemple **email**, **files**, **mail**, etc. Si le nom que vous souhaitez utiliser existe déjà, modifiez l'enregistrement existant plutôt que d'en créer un nouveau.
+   > Avant d’ajouter de nouveaux enregistrements, notez que GoDaddy a déjà créé des enregistrements DNS pour les sous-domaines populaires (sous **Host** dans l’éditeur), par exemple **email**, **files**, **mail**, etc. Si hello nom que vous souhaitez toouse déjà existe, modifier l’enregistrement de hello existant au lieu de créer un nouveau.
    > 
    > 
-3. Quand vous ajoutez un enregistrement, vous devez d'abord sélectionner son type.
+3. Lorsque vous ajoutez un enregistrement, vous devez tout d’abord sélectionner le type d’enregistrement hello.
    
     ![sélectionner le type d'enregistrement](./media/web-sites-godaddy-custom-domain-name/godaddy-selectrecordtype.png)
    
-    Vous devez ensuite indiquer l’**Host** (domaine ou sous-domaine personnalisé) et sa cible dans **Points to**.
+    Ensuite, vous devez fournir hello **hôte** (hello domaine personnalisé ou sous-domaine) et ce qu’il **pointe vers**.
    
     ![ajouter un enregistrement de zone](./media/web-sites-godaddy-custom-domain-name/godaddy-addzonerecord.png)
    
-   * Lorsque vous ajoutez un **enregistrement A (host)**, vous devez attribuer au champ **Hôte** la valeur **@** (correspondant au nom de domaine racine, par exemple **contoso.com**), la valeur * (caractère générique correspondant à plusieurs sous-domaines) ou le sous-domaine à utiliser (par exemple, **www**). Dans le champ **Pointe sur**, indiquez l’adresse IP de votre application web Azure.
-   * Quand vous ajoutez un **CNAME (alias) record**, vous devez définir le champ **Host** en fonction du sous-domaine à utiliser. Par exemple, **www**. Dans le champ **Points to**, indiquez le nom de domaine **.azurewebsites.net** de votre application web Azure. Par exemple, **contoso.azurewebsites.net**.
+   * Lorsque vous ajoutez un **un enregistrement (hôte)** -vous devez définir hello **hôte** champ tooeither  **@**  (représente le nom de domaine racine, tel que  **Contoso.com**,) * (un caractère générique pour faire correspondre plusieurs sous-domaines,) ou vous souhaitez toouse sous-domaine hello (par exemple, **www**.) Vous devez définir hello **pointe vers** champ d’adresse IP de toohello de votre application web Azure.
+   * Lorsque vous ajoutez un **enregistrement CNAME (alias)** -vous devez définir hello **hôte** champ toohello sous-domaine toouse vous le souhaitez. Par exemple, **www**. Vous devez définir hello **pointe vers** champ toohello **. azurewebsites.net** nom de domaine de votre application web Azure. Par exemple, **contoso.azurewebsites.net**.
 4. Cliquez sur **Ajouter**.
-5. Sélectionnez **TXT** comme type d’enregistrement, puis spécifiez une valeur **Host** de **@** et une valeur **Points to** de **&lt;yourwebappname&gt;.azurewebsites.net**.
+5. Sélectionnez **TXT** en tant que type d’enregistrement hello, puis spécifiez un **hôte** valeur  **@**  et un **pointe vers** valeur  **&lt;yourwebappname&gt;. azurewebsites.net**.
    
    > [!NOTE]
-   > Cet enregistrement TXT permet à Azure de confirmer que vous possédez le domaine décrit par l’enregistrement A ou le premier enregistrement TXT. Une fois que le domaine a été mappé à l’application web dans le portail Azure, l’entrée d’enregistrement TXT peut être supprimée.
+   > Cet enregistrement TXT est utilisé par Azure toovalidate que vous possédez le domaine de hello décrite par hello un enregistrement TXT premier enregistrement ou hello. Une fois que le domaine de hello a été mappé toohello web application hello portail Azure, cette entrée de l’enregistrement TXT peut être supprimée.
    > 
    > 
-6. Une fois que vous avez fini d'ajouter ou de modifier des enregistrements, cliquez sur **Finish** pour enregistrer les changements.
+6. Lorsque vous avez terminé d’ajouter ou modifier des enregistrements, cliquez sur **Terminer** toosave modifications.
 
 <a name="enabledomain"></a>
 
-## <a name="enable-the-domain-name-on-your-web-app"></a>Activer le nom de domaine sur votre application web
+## <a name="enable-hello-domain-name-on-your-web-app"></a>Activer le nom de domaine hello sur votre application web
 [!INCLUDE [modes](../../includes/custom-dns-web-site-enable-on-web-site.md)]
 
 > [!NOTE]
-> Si vous voulez vous familiariser avec Azure App Service avant d’ouvrir un compte Azure, accédez à la page [Essayer App Service](https://azure.microsoft.com/try/app-service/), où vous pourrez créer immédiatement une application web temporaire dans App Service. Aucune carte de crédit n’est requise ; vous ne prenez aucun engagement.
+> Si vous souhaitez tooget démarré avec le Service d’application Azure avant de s’inscrire pour un compte Azure, accédez trop[essayez du Service d’applications](https://azure.microsoft.com/try/app-service/), où vous pouvez créer une application web de courte durée de démarrage immédiatement dans le Service d’applications. Aucune carte de crédit n’est requise ; vous ne prenez aucun engagement.
 > 
 > 
 
 ## <a name="whats-changed"></a>Changements apportés
-* Pour obtenir un guide présentant les modifications apportées dans le cadre de la transition entre Sites Web et App Service, consultez la page [Azure App Service et les services Azure existants](http://go.microsoft.com/fwlink/?LinkId=529714)
+* Pour un toohello guide voir changer à partir de sites Web tooApp Service : [Azure App Service et son Impact sur les Services Azure existants](http://go.microsoft.com/fwlink/?LinkId=529714)
 

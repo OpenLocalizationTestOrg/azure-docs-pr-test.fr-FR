@@ -1,5 +1,5 @@
 ---
-title: "Gérer la rapidité et la simultanéité de votre encodage avec Azure Media Services | Microsoft Docs"
+title: "vitesse de gérer aaa et l’accès simultané de votre encodage avec Azure Media Services | Documents Microsoft"
 description: "Cet article donne un bref aperçu de la manière dont vous pouvez gérer la rapidité et la simultanéité de vos travaux/tâches d’encodage avec Azure Media Services."
 services: media-services
 documentationcenter: 
@@ -14,23 +14,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/10/2017
 ms.author: juliako
-ms.openlocfilehash: 0463904fd9bf1138587d0d214e572ddd38cc2184
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: da52a6278a3d3b084dbf5a594db37df8447bb944
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 #  <a name="manage-speed-and-concurrency-of-your-encoding"></a>Gérer la vitesse et la simultanéité de votre encodage
 
 Cet article donne un bref aperçu de la manière dont vous pouvez gérer la rapidité et la simultanéité de vos travaux/tâches d’encodage.
 
-## <a name="overview"></a>Vue d’ensemble
+## <a name="overview"></a>Vue d'ensemble
 
-Dans Media Services, un **Type d’unité réservée** détermine la vitesse à laquelle vos tâches de traitement multimédia sont traitées. Vous pouvez choisir entre les types d’unités réservées suivantes : **S1**, **S2** ou **S3**. Par exemple, un même travail d’encodage s’exécute plus rapidement quand vous utilisez le type d’unité réservée **S2** que le type **S1**. La rubrique relative à la [mise à l’échelle des unités d’encodage](media-services-scale-media-processing-overview.md) contient un tableau qui vous aide à prendre une décision lors du choix entre les différentes vitesses d’encodage.
+Dans Media Services, un **Type d’unité réservée** détermine la vitesse de hello avec lequel votre média, les tâches de traitement est traités. Vous pouvez choisir parmi les éléments suivants de hello réservé de types d’unités : **S1**, **S2**, ou **S3**. Par exemple, les hello même travail d’encodage s’exécute plus rapidement lorsque vous utilisez hello **S2** type d’unité réservée comparer toohello **S1** type. Hello [mise à l’échelle des unités d’encodage](media-services-scale-media-processing-overview.md) rubrique illustre une table qui vous permet de prendre de décision lors du choix entre différentes vitesses de codage.
 
-En plus de spécifier le type d’unité réservée, vous pouvez approvisionner votre compte avec des **unités réservées**. Le nombre d’unités réservées approvisionnées détermine le nombre de tâches de média qui peuvent être traitées simultanément dans un compte donné. Si, par exemple, votre compte a cinq unités réservées, les cinq tâches multimédias sont exécutées simultanément tant qu’il y a des tâches à traiter. Les autres tâches restent dans la file d'attente et sont sélectionnées séquentiellement pour le traitement quand l'exécution d'une tâche se termine. Si aucune unité réservée n'est approvisionnée pour un compte donné, les tâches sont sélectionnées séquentiellement. Dans ce cas, le temps d'attente entre l'achèvement d'une tâche et le démarrage de la suivante dépend de la disponibilité des ressources dans le système.
+En outre toospecifying hello réservé type d’unité, vous pouvez spécifier tooprovision votre compte avec **unités réservées**. nombre Hello d’unités réservées configurées détermine le nombre hello de tâches multimédia qui peuvent être traitées simultanément dans un compte donné. Par exemple, si votre compte dispose de cinq unités réservées, puis les tâches de cinq support exécuter simultanément à condition qu’il sont toobe tâches traitée. les tâches restantes Hello attendent dans la file d’attente hello et sont collectées de manière séquentielle pour traitement lorsqu’une tâche en cours d’exécution se termine. Si aucune unité réservée n'est approvisionnée pour un compte donné, les tâches sont sélectionnées séquentiellement. Dans ce cas, hello délai entre une fin de tâche et hello ensuite démarrage dépendront de disponibilité hello des ressources dans le système de hello.
 
-Pour obtenir des informations détaillées et des exemples sur la manière de mettre à l’échelle les unités d’encodage, consultez [cette rubrique](media-services-scale-media-processing-overview.md).
+Pour plus d’informations et des exemples qui montrent comment les unités d’encodage tooscale, consultez [cela](media-services-scale-media-processing-overview.md) rubrique.
 
 ## <a name="next-step"></a>Étape suivante
 

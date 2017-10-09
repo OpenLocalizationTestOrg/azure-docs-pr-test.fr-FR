@@ -1,6 +1,6 @@
 ---
-title: "Création d'un espace de travail Machine Learning | Microsoft Docs"
-description: "Création d’un espace de travail pour Microsoft Azure Machine Learning Studio."
+title: aaaCreate un espace de travail Machine Learning | Documents Microsoft
+description: Comment toocreate un espace de travail pour Azure Machine Learning Studio
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/27/2017
 ms.author: garye;bradsev;ahgyger
-ms.openlocfilehash: 182a34822e71d63f4d7229548ae3f59d9f195337
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 178293af222365993fade666124f34269d892325
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-and-share-an-azure-machine-learning-workspace"></a>Créer et partager un espace de travail Azure Machine Learning
-Ce menu pointe vers des rubriques qui décrivent comment configurer les différents environnements de science de données utilisés par le processus d’analyse Cortana (CAP).
+Ce menu lie tootopics qui décrivent comment tooset des hello différents environnements de science des données utilisé par hello Cortana Analytique processus (CAP).
 
 [!INCLUDE [data-science-environment-setup](../../includes/cap-setup-environments.md)]
 
-Pour utiliser Azure Machine Learning Studio, vous devez disposer d’un espace de travail Machine Learning. Cet espace de travail contient les outils dont vous avez besoin pour créer, gérer et publier des expériences.
+toouse Azure Machine Learning Studio, vous devez toohave un espace de travail Machine Learning. Cet espace de travail contienne des outils de hello vous devez toocreate, gérer et publier des expériences.
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-### <a name="to-create-a-workspace"></a>Pour créer un espace de travail
-1. Connectez-vous au [portail Azure](https://portal.azure.com/)
+### <a name="toocreate-a-workspace"></a>toocreate un espace de travail
+1. Connectez-vous à toohello [portail Azure](https://portal.azure.com/)
 
     > [!NOTE]
-    > Pour vous connecter et créer un espace de travail, vous devez être un administrateur d’abonnements Azure. 
+    > toosign dans et créer un espace de travail, vous devez toobe administrateur d’abonnement Azure. 
     >
     > 
 
@@ -43,18 +43,18 @@ Pour utiliser Azure Machine Learning Studio, vous devez disposer d’un espace d
 
 4. Entrez vos informations d’espace de travail.
 
-    - Le *Nom de l’espace de travail* peut contenir jusqu’à 260 caractères. Il ne doit pas se terminer par un espace. Le nom ne peut pas contenir ces caractères : `< > * % & : \ ? + /`
-    - Le *plan de service web* que vous choisissez (ou créez), ainsi que le *niveau tarifaire* associé que vous sélectionnez, est utilisé si vous déployez des services web à partir de cet espace de travail.
+    - Hello *nom de l’espace de travail* peuvent être des caractères too260, se termine ne pas par un espace. nom de Hello ne peut pas contenir ces caractères :`< > * % & : \ ? + /`
+    - Hello *plan de service web* vous choisissez (ou créer), ainsi que de hello associé *tarification* vous sélectionnez, est utilisé si vous déployez des services web à partir de cet espace de travail.
 
     ![Créer un espace de travail](media/machine-learning-create-workspace/create-new-workspace.png)
 
 5. Cliquez sur **Créer**
 
-Une fois l’espace de travail déployé, vous pouvez l’ouvrir dans Machine Learning Studio.
+Une fois que l’espace de travail hello est déployé, vous pouvez l’ouvrir dans Machine Learning Studio.
 
-1. Accédez à Machine Learning Studio à l’adresse [https://studio.azureml.net](https://studio.azureml.net/).
+1. Parcourir tooMachine Learning Studio à [https://studio.azureml.net/](https://studio.azureml.net/).
 
-2. Sélectionnez votre espace de travail dans le coin supérieur droit.
+2. Sélectionnez votre espace de travail dans l’angle supérieure droite de hello.
 
     ![Sélectionner un espace de travail](media/machine-learning-create-workspace/open-workspace.png)
 
@@ -63,42 +63,42 @@ Une fois l’espace de travail déployé, vous pouvez l’ouvrir dans Machine Le
     ![Ouvrir des expérimentations](media/machine-learning-create-workspace/my-experiments.png)
 
 Pour plus d’informations sur la gestion de votre espace de travail, consultez [Gestion d’un espace de travail Azure Machine Learning](machine-learning-manage-workspace.md).
-En cas de problème lors de la création de votre espace de travail, consultez l’article [Guide de résolution des problèmes : création d’un espace de travail Machine Learning et connexion à celui-ci](machine-learning-troubleshooting-creating-ml-workspace.md).
+Si vous rencontrez un problème de création de votre espace de travail, consultez [guide de dépannage : créer et connecter l’espace de travail Machine Learning tooa](machine-learning-troubleshooting-creating-ml-workspace.md).
 
 
 ## <a name="sharing-an-azure-machine-learning-workspace"></a>Partage d’un espace de travail Azure Machine Learning
-Une fois l’espace de travail Machine Learning créé, vous pouvez y inviter les utilisateurs pour partager l’accès à votre espace de travail et à l’ensemble de ses expérimentations, jeux de données, bloc-notes, etc. Vous pouvez ajouter des utilisateurs dans l’un des deux rôles :
+Une fois qu’un espace de travail Machine Learning est créé, vous pouvez inviter les utilisateurs tooyour espace de travail tooshare accès tooyour espace de travail et tous les ses expériences, jeux de données, ordinateurs portables, etc.. Vous pouvez ajouter des utilisateurs dans l’un des deux rôles :
 
-* **Utilisateur** : un utilisateur de l’espace de travail peut créer, ouvrir, modifier et supprimer des expérimentations, jeux de données, etc. dans l’espace de travail.
-* **Propriétaire** : un propriétaire peut inviter et supprimer des utilisateurs dans l’espace de travail, ainsi que les actions qu’ils sont autorisés à effectuer.
+* **Utilisateur** -un utilisateur de l’espace de travail peut créer, ouvrir, modifier et supprimer des expériences, jeux de données, etc. dans l’espace de travail hello.
+* **Propriétaire** - invite un propriétaire et supprimer des utilisateurs dans hello espace de travail, ajout toowhat un utilisateur peuvent faire.
 
 > [!NOTE]
-> Le compte d’administrateur qui crée l’espace de travail y est automatiquement ajouté en tant que propriétaire de l’espace de travail. Toutefois, les autres administrateurs ou utilisateurs de cet abonnement ne bénéficient pas automatiquement d’un accès à l’espace de travail : vous devez les inviter explicitement.
+> compte d’administrateur Hello qui crée l’espace de travail hello est automatiquement ajouté toohello espace de travail en tant que propriétaire de l’espace de travail. Toutefois, autres administrateurs ou des utilisateurs dans la mesure où abonnement ne sont pas automatiquement accordé l’accès toohello espace de travail : vous devez tooinvite les explicitement.
 > 
 > 
 
-### <a name="to-share-a-workspace"></a>Pour partager un espace de travail
+### <a name="tooshare-a-workspace"></a>tooshare un espace de travail
 
-1. Connectez-vous à Machine Learning Studio à l’adresse [https://studio.azureml.net/Home](https://studio.azureml.net/Home).
+1. Se connecter tooMachine Learning Studio à [https://studio.azureml.net/Home](https://studio.azureml.net/Home)
 
-2. Dans le panneau gauche, cliquez sur **SETTINGS (PARAMÈTRES)**.
+2. Dans le volet gauche de hello, cliquez sur **paramètres**
 
-3. Cliquez sur l’onglet **USERS (UTILISATEURS)**.
+3. Cliquez sur hello **utilisateurs** onglet
 
-4. En bas de la page, cliquez sur **INVITE MORE USERS (INVITER D’AUTRES UTILISATEURS)**.
+4. Cliquez sur **inviter des utilisateurs plus** bas hello de page de hello
 
     ![Paramètres Studio](media/machine-learning-create-workspace/settings.png)
 
-5. Entrez une ou plusieurs adresses e-mail. Les utilisateurs ont besoin d’un compte Microsoft valide ou d’un compte d’entreprise (issu d’Azure Active Directory).
+5. Entrez une ou plusieurs adresses e-mail. les utilisateurs de Hello besoin d’un compte Microsoft valide ou un compte professionnel (à partir d’Azure Active Directory).
 
-6. Indiquez si vous voulez ajouter des utilisateurs en tant que propriétaire ou utilisateur.
+6. Sélectionnez si vous souhaitez que les utilisateurs de hello tooadd en tant que propriétaire ou utilisateur.
 
-7. Cliquez sur la coche **OK** .
+7. Cliquez sur hello **OK** coche.
 
-Chaque utilisateur ajouté reçoit un e-mail contenant des instructions de connexion à l’espace de travail partagé.
+Chaque utilisateur que vous ajoutez recevra un e-mail contenant des instructions sur le mode de partage de l’espace de travail de toosign dans toohello.
 
 > [!NOTE]
-> Pour que les utilisateurs puissent déployer ou gérer des services web dans cet espace de travail, ils doivent être collaborateurs ou administrateurs dans l’abonnement Azure. 
+> Pour toodeploy en mesure de toobe les utilisateurs ou gérer des services web dans cet espace de travail, ils doivent être un contributeur ou un administrateur Bonjour abonnement Azure. 
 
 
 

@@ -1,5 +1,5 @@
 ---
-title: "Guide d’utilisation de PolyBase dans SQL Data Warehouse | Microsoft Docs"
+title: "aaaGuide pour l’utilisation de PolyBase dans SQL Data Warehouse | Documents Microsoft"
 description: "Instructions et recommandations relatives à l'utilisation de PolyBase dans les scénarios SQL Data Warehouse."
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,36 +15,36 @@ ms.workload: data-services
 ms.date: 6/5/2016
 ms.custom: loading
 ms.author: cakarst;barbkess
-ms.openlocfilehash: 6938b92d8e5b46d908dc5b2155bdfdc89bb1dc8c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b05e4c5d528f2fe1c60d6855b5333065f0c908ab
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="guide-for-using-polybase-in-sql-data-warehouse"></a>Guide d'utilisation de PolyBase dans SQL Data Warehouse
 Ce guide fournit des informations pratiques pour l'utilisation de PolyBase dans SQL Data Warehouse.
 
-Pour commencer, suivez le didacticiel [Charger des données avec PolyBase][Load data with PolyBase].
+tooget démarré, consultez hello [charger des données avec PolyBase] [ Load data with PolyBase] didacticiel.
 
 ## <a name="rotating-storage-keys"></a>Rotation des clés de stockage
-De temps à autre, vous devez modifier la clé d'accès à votre stockage d'objets blob pour des raisons de sécurité.
+À partir de tootime de temps, vous devez le stockage blob tooyour clé toochange hello accès pour des raisons de sécurité.
 
-La façon la plus élégante d’effectuer cette tâche consiste à suivre un processus appelé « rotation des clés ». Vous avez peut-être remarqué que vous disposez de deux clés de stockage pour votre compte de stockage d'objets blob. Cela permet une transition.
+Bonjour tooperform de façon plus élégante que cette tâche est toofollow un processus appelé « rotation des clés de hello ». Vous avez peut-être remarqué que vous disposez de deux clés de stockage pour votre compte de stockage d'objets blob. Cela permet une transition.
 
 La rotation de vos clés de compte de stockage Azure est un processus simple en trois étapes.
 
-1. Créez le deuxième fichier d’informations d’identification de niveau base de données en fonction de la clé d'accès de stockage secondaire.
+1. Créer le deuxième information d’identification de la portée de la base de données en fonction de la clé d’accès de stockage secondaire de hello
 2. Créez la deuxième source de données externe en fonction de ces nouvelles informations d'identification.
-3. Supprimez et créez la ou les tables externes pointant vers la nouvelle source de données externes.
+3. Supprimez et recréez les tables externes hello pointant vers la nouvelle source de données externe toohello
 
-Lorsque vous avez migré toutes vos tables externes vers la nouvelle source de données externes, vous pouvez effectuer les tâches de nettoyage :
+Lorsque vous avez migré toutes les tables externes toohello nouvelle source de données externe que vous pouvez effectuer hello nettoyer des tâches :
 
 1. suppression de la première source de données externe ;
-2. suppression du premier fichier d’informations d’identification de niveau base de données en fonction de la clé d'accès de stockage secondaire ;
-3. connexion à Azure et régénération de la clé d'accès primaire, pour la prochaine fois.
+2. Première base de données de la suppression d’une étendue d’informations d’identification en fonction de la clé d’accès de stockage principal de hello
+3. Connectez-vous à Azure et régénérer la clé d’accès primaire hello prête pour hello prochaine
 
 ## <a name="query-azure-blob-storage-data"></a>Interroger des données de l’espace de stockage d’objets Blob Microsoft Azure
-Les requêtes dirigées vers les tables externes utilisent le nom de table, comme s’il s’agissait d’une table relationnelle.
+Requêtes sur des tables externes utilisent simplement le nom de la table hello comme s’il s’agissait d’une table relationnelle.
 
 ```sql
 -- Query Azure storage resident data via external table.
@@ -53,21 +53,21 @@ SELECT * FROM [ext].[CarSensor_Data]
 ```
 
 > [!NOTE]
-> Une requête sur une table externe peut échouer avec l’erreur *« Requête abandonnée : le seuil de rejet maximal a été atteint lors de la lecture à partir d’une source externe »*. Cela indique que vos données externes contiennent des enregistrements *à l’intégrité compromise* . Un enregistrement de données est considéré comme « compromis » si les types de données / le nombre de colonnes réels ne correspondent pas aux définitions de colonne de la table externe ou si les données ne sont pas conformes au format de fichier externe spécifié. Pour résoudre ce problème, assurez-vous que les définitions de format de votre table externe et de votre fichier externe sont correctes et que vos données externes sont conformes à ces définitions. Dans le cas où un sous-ensemble d'enregistrements de données externes serait compromis, vous pouvez choisir de rejeter ces enregistrements pour vos requêtes en utilisant les options de rejet dans le DDL CREATE EXTERNAL TABLE.
+> Une requête sur une table externe peut échouer avec l’erreur de hello *« requête abandonnée : seuil de rejet maximal hello a été atteinte lors de la lecture à partir d’une source externe »*. Cela indique que vos données externes contiennent des enregistrements *à l’intégrité compromise* . Un enregistrement de données est considérée comme « dirty » si les types de données réelles hello/nombre de colonnes ne correspondent pas les définitions des colonnes d’une table externe hello hello ou si les données de salutation n’est pas conforme toohello externe format spécifiés. toofix, assurez-vous que votre table externe et les définitions de format de fichier externe sont correctes et que vos données externes est conforme à des définitions de toothese. Au cas où un sous-ensemble d’enregistrements de données externes sont incorrectes, vous pouvez choisir tooreject ces enregistrements de vos requêtes à l’aide des options de rejet hello dans DDL créer la TABLE externe.
 > 
 > 
 
 ## <a name="load-data-from-azure-blob-storage"></a>Charger des données à partir d’objets Blob Microsoft Azure Storage
-Dans cet exemple, les données des objets Blob Microsoft Azure Storage sont chargées dans la base de données SQL Data Warehouse.
+Cet exemple charge des données à partir de la base de données du Data Warehouse tooSQL stockage blob Azure.
 
-En stockant directement les données, vous éliminez l’intervalle de transfert de données associé aux requêtes. Le stockage des données avec un index columnstore multiplie jusqu’à dix fois les performances des requêtes d’analyse.
+Le stockage des données directement supprime les temps de transfert de données hello pour les requêtes. Le stockage des données avec un index columnstore améliore les performances des requêtes d’analyse par des too10x.
 
-Dans cet exemple, l’instruction CREATE TABLE AS SELECT est utilisée pour charger des données. La nouvelle table hérite des colonnes désignées dans la requête. Elle hérite des types de données de ces colonnes à partir de la définition de table externe.
+Cet exemple utilise des données de tooload instruction CREATE TABLE AS SELECT hello. nouvelle table de Hello hérite des colonnes hello nommées dans la requête de hello. Il hérite des types de données hello de ces colonnes de définition de la table externe hello.
 
-CREATE TABLE AS SELECT est une instruction Transact-SQL très performante qui charge les données en parallèle sur tous les nœuds de calcul de votre entrepôt SQL Data Warehouse.  Initialement développée pour le moteur MPP (Massively Parallel Processing) d’Analytics Platform System, elle est désormais disponible dans SQL Data Warehouse.
+CREATE TABLE AS SELECT est une très performantes instruction Transact-SQL qui charge des données hello tooall parallèle Bonjour les nœuds de votre entrepôt de données SQL.  Il a été développé pour le moteur de traitement parallèle massif (MPP) hello dans le système de plateforme Analytique et est désormais dans l’entrepôt de données SQL.
 
 ```sql
--- Load data from Azure blob storage to SQL Data Warehouse
+-- Load data from Azure blob storage tooSQL Data Warehouse
 
 CREATE TABLE [dbo].[Customer_Speed]
 WITH
@@ -84,7 +84,7 @@ FROM   [ext].[CarSensor_Data]
 Consultez [CREATE TABLE AS SELECT (Transact-SQL)][CREATE TABLE AS SELECT (Transact-SQL)].
 
 ## <a name="create-statistics-on-newly-loaded-data"></a>Créer des statistiques sur des données nouvellement chargées
-Azure SQL Data Warehouse ne prend pas encore en charge les statistiques à création ou mise à jour automatique.  Pour optimiser les performances de vos requêtes, il est important de créer les statistiques sur toutes les colonnes de toutes les tables après le premier chargement ou après toute modification substantielle dans les données.  Pour obtenir une explication détaillée des statistiques, consultez la rubrique [Statistiques][Statistics] dans le groupe de rubriques sur le développement.  Voici un exemple rapide de la création de statistiques sur le tableau chargé dans cet exemple.
+Azure SQL Data Warehouse ne prend pas encore en charge les statistiques à création ou mise à jour automatique.  Dans l’ordre tooget hello optimiser les performances de vos requêtes, il est important que créer des statistiques sur toutes les colonnes de toutes les tables après le premier chargement de hello ou toutes les modifications importantes se produisent dans les données de salutation.  Pour obtenir une explication détaillée des statistiques, consultez hello [statistiques] [ Statistics] rubrique dans le groupe de développement hello de rubriques.  Voici un exemple rapide de la façon dont les statistiques toocreate sur hello déposée chargement dans cet exemple.
 
 ```sql
 create statistics [SensorKey] on [Customer_Speed] ([SensorKey]);
@@ -94,10 +94,10 @@ create statistics [Speed] on [Customer_Speed] ([Speed]);
 create statistics [YearMeasured] on [Customer_Speed] ([YearMeasured]);
 ```
 
-## <a name="export-data-to-azure-blob-storage"></a>Exportation de données vers le stockage d’objets blob Azure
-Cette section montre comment exporter les données de SQL Data Warehouse vers le stockage d’objets blob Azure. Cet exemple utilise CREATE EXTERNAL TABLE AS SELECT, une instruction Transact-SQL très performante, pour exporter les données en parallèle à partir de tous les nœuds de calcul.
+## <a name="export-data-tooazure-blob-storage"></a>Exporter le stockage d’objets blob de données tooAzure
+Cette section montre comment tooexport des données à partir de l’entrepôt de données SQL tooAzure stockage d’objets blob. Cet exemple utilise CREATE EXTERNAL TABLE AS SELECT qui est un hautement performant Transact-SQL instruction tooexport hello de données en parallèle à partir de tous les nœuds de calcul hello.
 
-L’exemple suivant crée une table externe Weblogs2014 à l’aide des définitions de colonne et des données de la table dbo.Weblogs. La définition de la table externe est stockée dans SQL Data Warehouse et les résultats de l’instruction SELECT sont exportés vers le répertoire « /archive/log2014 » sous le conteneur d’objets blob spécifié par la source de données. Les données sont exportées au format de fichier texte spécifié.
+Hello exemple suivant crée une table externe Weblogs2014 à l’aide des définitions de colonne et les données à partir de dbo. Table des blogs. définition de la table externe Hello est stockée dans l’entrepôt de données SQL et les résultats de hello d’instruction SELECT de hello sont exportée toohello répertoire « / archive/log2014 / » sous le conteneur d’objets blob hello spécifié par la source de données hello. les données de Hello sont exportées au format de fichier texte hello.
 
 ```sql
 CREATE EXTERNAL TABLE Weblogs2014 WITH
@@ -118,21 +118,21 @@ WHERE
     AND DateRequested < '01/01/2015';
 ```
 ## <a name="isolate-loading-users"></a>Isoler les utilisateurs du chargement
-Il est souvent nécessaire d’avoir plusieurs utilisateurs qui peuvent charger des données dans un entrepôt de données SQL. Étant donné que [CREATE TABLE AS SELECT (Transact-SQL)][CREATE TABLE AS SELECT (Transact-SQL)] nécessite des autorisations CONTROL de la base de données, vous obtenez plusieurs utilisateurs avec un accès au contrôle sur tous les schémas. Pour limiter ce problème, vous pouvez utiliser l’instruction DENY CONTROL.
+Il existe souvent un toohave besoin de plusieurs utilisateurs qui peuvent charger des données dans un entrepôt de données SQL. Étant donné que hello [CREATE TABLE AS SELECT (Transact-SQL)] [ CREATE TABLE AS SELECT (Transact-SQL)] nécessite des autorisations de contrôle de base de données hello, vous obtiendrez avec plusieurs utilisateurs à contrôler l’accès sur tous les schémas. toolimit, vous pouvez utiliser d’instruction de contrôle de refuser hello.
 
 Par exemple, les schémas de base de données schema_A pour le service A et schema_B pour le service B laissent les utilisateurs de base de données user_A et user_B être utilisateurs du chargement PolyBase dans les services A et B, respectivement. Ils ont tous deux reçu des autorisations de base de données CONTROL.
-Les créateurs des schémas A et B verrouillent maintenant leurs schémas à l’aide de DENY :
+créateurs Hello du schéma A et B désormais verrouiller leurs schémas à l’aide de refus :
 
 ```sql
-   DENY CONTROL ON SCHEMA :: schema_A TO user_B;
-   DENY CONTROL ON SCHEMA :: schema_B TO user_A;
+   DENY CONTROL ON SCHEMA :: schema_A toouser_B;
+   DENY CONTROL ON SCHEMA :: schema_B toouser_A;
 ```   
- Suite à cette opération, user_A et user_B ne doivent maintenant plus avoir accès au schéma de l’autre service.
+ Avec cette option, ce dernier et user_B doivent maintenant être verrouillée de hello les schémas d’autres sociétés.
  
 
 
 ## <a name="next-steps"></a>Étapes suivantes
-Pour en savoir plus sur le déplacement de données dans SQL Data Warehouse, consultez la [vue d’ensemble de la migration des données][data migration overview].
+toolearn en savoir plus sur mobile tooSQL données entrepôt de données, consultez hello [vue d’ensemble de la migration de données][data migration overview].
 
 <!--Image references-->
 

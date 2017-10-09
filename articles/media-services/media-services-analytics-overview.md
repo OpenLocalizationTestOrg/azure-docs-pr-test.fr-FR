@@ -1,5 +1,5 @@
 ---
-title: Media Analytics sur la plateforme Media Services | Microsoft Docs
+title: aaaMedia Analytique sur une plateforme de Media Services hello | Documents Microsoft
 description: "Présentation de la version préliminaire publique de Media Analytics, un ensemble de services de reconnaissance vocale et de vision par ordinateur destinés aux entreprises et répondant aux exigences de conformité, de sécurité et de présence mondiale"
 services: media-services
 documentationcenter: 
@@ -14,52 +14,52 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 06/29/2017
 ms.author: milanga;juliako;johndeu
-ms.openlocfilehash: c0bbe6f80370515fa783b12757434897fe2221b6
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 7545f0532d7618164ebe65e2f4232c5f63453cfd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="media-analytics-on-the-media-services-platform"></a>Media Analytics sur la plateforme Media Services
+# <a name="media-analytics-on-hello-media-services-platform"></a>Analytique multimédia sur la plateforme de Media Services hello
 ## <a name="overview"></a>Vue d'ensemble
-Les organisations sont de plus en plus nombreuses à privilégier les supports vidéo pour former leurs employés, susciter l’intérêt de leurs clients et présenter leurs activités commerciales. Le cloud computing offre un moyen de stocker, diffuser et accéder à ces fichiers multimédias volumineux. Mais lorsque la bibliothèque de contenu vidéo d’une société augmente, elle nécessite des moyens tout aussi efficaces d’extraire des analyses du contenu. 
+Plusieurs organisations utilisent vidéo comme hello tootrain moyenne par défaut leurs employés, retenir leurs clients et les fonctions commerciales de document. Le cloud computing offre un moyen toostore, flux et accéder à ces fichiers multimédias volumineux. Mais comme bibliothèque d’une société de contenu vidéo augmente, il doit aussi efficaces de l’extraction d’informations à partir du contenu de hello. 
 
-Pour répondre à ce besoin croissant, Azure Media Services propose Azure Media Analytics. Media Analytics est une collection de composants visuels et vocaux qui aident les organisations et les entreprises à extraire des connaissances exploitables de leurs fichiers vidéo. Reposant sur les principaux composants de la plateforme Azure Media Services, Media Analytics est à même de traiter les données multimédias à l’échelle souhaitée.
+tooaddress ce besoin croissant, Azure Media Services offre Azure Media Analytique. Support Analytique est une collection de composants de la reconnaissance vocale et de la vision qui rend plus facile pour les organisations et les entreprises tooderive d’informations exploitables à partir de leurs fichiers vidéos. Générée à l’aide de composants de la plateforme hello core Media Services, support Analytique peut gérer media à grande échelle sur le premier jour de traitement.
 
-Avec Media Analytics, les développeurs peuvent rapidement ajouter des fonctionnalités avancées aux applications. Il répond aux attentes des grandes entreprises en matière d’échelle, de conformité, de sécurité et de présence mondiale.
+Avec Media Analytics, les développeurs peuvent rapidement ajouter des fonctionnalités avancées aux applications. Il fournit les environnements d’entreprise complet hello, conformité, la sécurité et portée requis par les organisations de grande taille.
 
-Le diagramme suivant montre Media Analytics et d’autres parties principales de la plateforme Media Services. 
+Hello diagramme suivant montre Analytique de support et d’autres parties principales de plateforme de Media Services hello. 
 
 ![Flux de travail VOD](./media/media-services-analytics-overview/media-services-analytics-overview01.png)
 
-Les processeurs multimédias Media Analytics créent des fichiers MP4 ou JSON. Si un processeur multimédia produit un fichier MP4, vous pouvez télécharger ce dernier progressivement. Si un processeur multimédia a produit un fichier JSON, vous pouvez télécharger ce dernier à partir d’Azure Blob Storage. 
+Les processeurs multimédias Media Analytics créent des fichiers MP4 ou JSON. Si un processeur multimédia génère un fichier MP4, vous pouvez télécharger progressivement les fichier hello. Si un processeur multimédia génère un fichier JSON, vous pouvez télécharger le fichier de hello à partir du stockage d’objets Blob Azure. 
 
 ## <a name="media-analytics-services"></a>Services Media Analytics
 
 ### <a name="indexer"></a>Indexeur
-Avec Azure Media Indexer, vous pouvez activer la recherche pour du contenu et générer des pistes de sous-titrage. Par rapport à la version précédente d’Azure Media Indexer 2 Preview a une indexation plus rapide et une prise en charge plus large des langues. Les langues prises en charge sont l’anglais, l’espagnol, le français, l’allemand, l’italien, le chinois, le portugais et l’arabe. Pour obtenir des informations détaillées et des exemples, consultez [Traiter les vidéos avec l’Indexeur multimédia Azure 2](media-services-process-content-with-indexer2.md).
+Avec Azure Media Indexer, vous pouvez activer la recherche pour du contenu et générer des pistes de sous-titrage. Version précédente toohello comparés, Azure Media Indexer en version préliminaire 2 prend en charge les langage plus rapide d’indexation et plus large. Les langues prises en charge sont l’anglais, l’espagnol, le français, l’allemand, l’italien, le chinois, le portugais et l’arabe. Pour obtenir des informations détaillées et des exemples, consultez [Traiter les vidéos avec l’Indexeur multimédia Azure 2](media-services-process-content-with-indexer2.md).
 ### <a name="hyperlapse"></a>Hyperlapse
-Microsoft Hyperlapse associe des fonctionnalités de stabilisation vidéo et de création de séquences pour créer rapidement des vidéos immédiatement diffusables à partir de vos vidéos plus longues. En plus de la création de vidéos en accéléré, Hyperlapse vous permet de stabiliser des vidéos tremblantes qui ont été prises avec un téléphone portable ou un caméscope. Pour obtenir des informations détaillées et des exemples, consultez [Fichiers multimédia hyperlapse avec Azure Media Hyperlapse](media-services-hyperlapse-content.md).
+Microsoft Hyperlapse combine stabilisation vidéo et capacité séquentiel toocreate rapide, utilisable à partir de votre contenu sous forme longue. Outre la création intermittente, vous pouvez utiliser les vidéos stables de Hyperlapse toocreate de vidéos tremblement capturées à l’aide de téléphones et de caméscopes. Pour obtenir des informations détaillées et des exemples, consultez [Fichiers multimédia hyperlapse avec Azure Media Hyperlapse](media-services-hyperlapse-content.md).
 ### <a name="motion-detector"></a>Motion Detector
-Vous pouvez utiliser Motion Detector pour détecter les mouvements dans les vidéos à arrière-plan fixe. Cela permet d’identifier les faux positifs sur les événements de mouvement détectés par les caméras de surveillance. Pour obtenir des informations détaillées et des exemples, consultez [Détection de mouvement pour Azure Media Analytics](media-services-motion-detection.md).
+Vous pouvez utiliser le mouvement de toodetect de détecteur de mouvement dans une vidéo avec des arrière-plans STATIONNAIRES. Cela rend possible toocheck de faux positifs sur les événements de mouvement détectées par des caméras de surveillance. Pour obtenir des informations détaillées et des exemples, consultez [Détection de mouvement pour Azure Media Analytics](media-services-motion-detection.md).
 ### <a name="face-detector"></a>Face Detector
 Avec Face Detector, vous pouvez détecter les visages et les émotions qui y sont exprimées, comme la joie, la tristesse et la surprise. Ce service est très utile dans plusieurs secteurs d’activité, comme expliqué plus tard, notamment pour l’agrégation et l’analyse des réactions des personnes participant à un événement. Pour obtenir des informations détaillées et des exemples, consultez [Détection des visages et des émotions pour Azure Media Analytics](media-services-face-and-emotion-detection.md).
 ### <a name="video-summarization"></a>Video Summarization (Création de résumés de vidéos)
-La synthèse d’une vidéo peut vous aider à créer des synthèses de longues vidéos en sélectionnant automatiquement des extraits intéressants à partir de la vidéo source. Cette fonctionnalité est utile quand vous voulez offrir une présentation rapide de ce qui se trouve dans une vidéo longue. Pour obtenir des informations détaillées et des exemples, consultez [Utiliser Azure Media Video Thumbnails pour créer une synthèse d’une vidéo](media-services-video-summarization.md).
+Synthèse vidéo peut vous aider à créer des résumés de vidéos long en sélectionnant automatiquement extraits intéressantes à partir de la vidéo source de hello. Cette capacité est utile lorsque vous souhaitez tooprovide un aperçu rapide de quel tooexpect dans une vidéo longue. Pour plus d’informations et d’exemples, consultez [synthèse vidéo de miniatures de vidéo utiliser Azure Media toocreate](media-services-video-summarization.md).
 ### <a name="optical-character-recognition"></a>Reconnaissance optique de caractères
-Avec Azure Media OCR (reconnaissance optique de caractères), vous pouvez convertir le contenu texte de fichiers vidéo en un texte numérique modifiable et pouvant faire l’objet d’une recherche. Vous pouvez ensuite automatiser l’extraction de métadonnées explicites à partir du signal vidéo de votre contenu multimédia.
+Avec Azure Media OCR (reconnaissance optique de caractères), vous pouvez convertir le contenu texte de fichiers vidéo en un texte numérique modifiable et pouvant faire l’objet d’une recherche. Vous pouvez automatiser extraction hello de métadonnées significatives à partir de signal vidéo de hello de votre support.
 ### <a name="scalable-face-redaction"></a>Rédaction de face évolutive
-Azure Media Redactor est un processeur multimédia Media Analytics qui offre la rédaction de face évolutive dans le cloud. La rédaction de face vous permet de modifier votre vidéo afin de flouter les visages des individus sélectionnés. Vous souhaitez peut-être utiliser le service de rédaction de face dans les médias d’actualité ou lorsque la sécurité publique est impliquée. Quelques minutes de séquences vidéo contenant plusieurs visages peuvent nécessiter des heures de traitement manuel, mais avec ce service, le processus de rédaction de face ne nécessite que quelques étapes simples. Pour plus d'informations, consultez l’article [Éditer les visages avec Azure Media Analytique](media-services-face-redaction.md).
+Azure Media Redactor est un processeur multimédia Media Analytique qui offre la rédaction de face évolutives dans le cloud de hello. À l’aide de rédaction de face, vous pouvez modifier votre vidéo tooblur de face d’individus sélectionnés. Vous pouvez choisir le service de rédaction de face toouse hello dans les médias ou la sécurité publique est impliquée. Quelques minutes de film qui contient plusieurs polices peuvent prendre des heures tooredact manuellement, mais avec ce service, face rédaction prend seulement quelques étapes simples. Pour plus d’informations, consultez hello [procéder faces avec Azure Media Analytique](media-services-face-redaction.md) l’article.
 
 ## <a name="common-scenarios"></a>Scénarios courants
 Media Analytics peut aider les organisations et entreprises à mieux exploiter et cibler leurs contenus vidéo et à améliorer la gestion des gros volumes de contenus vidéo. Voici quelques exemples de scénario :
 
-* **Centres d’appel**. Même avec le développement des médias sociaux, les centres d’appels client sont encore largement utilisés pour faciliter les opérations des services client. Ces données audio contiennent une mine d’informations sur les clients, qui peuvent être utilisées pour mieux répondre aux attentes des clients. Avec Media Indexer, les organisations peuvent extraire du texte et créer des index de recherche et des tableaux de bord. Ils peuvent ensuite extraire des informations sur les réclamations, les causes des réclamations et autres données pertinentes.
-* **Modération du contenu généré par les utilisateurs**. Des médias d’information aux services de police, de nombreuses organisations ont des portails publics sur lesquels est publié du contenu multimédia généré par l’utilisateur, comme des vidéos et des images. Le volume de contenu peut fortement augmenter en raison d’événements inattendus. Dans ce type de scénario, il est difficile de vérifier manuellement et correctement la pertinence de tout le contenu. Les clients peuvent déléguer cette tâche au service de modération du contenu pour se concentrer sur le contenu approprié.
-* **Surveillance**. La généralisation de l’utilisation des caméras IP s’accompagne d’un inventaire croissant de vidéos de surveillance. L’examen manuel des vidéos de surveillance est long et sujet aux erreurs humaines. Media Analytics fournit plusieurs services, tels que la détection de mouvement, la détection des visages et Hyperlapse, pour faciliter l’examen, la gestion et la création d’éléments dérivés.
+* **Centres d’appel**. Même avec l’apparition de hello de médias sociaux, centres d’appels client facilitent encore un grand pourcentage des transactions du service clientèle. Codé dans ces données audio sont une grande quantité d’informations sur le client qui peuvent être analysées tooachieve satisfaction des clients plus élevée. Avec Media Indexer, les organisations peuvent extraire du texte et créer des index de recherche et des tableaux de bord. Ils peuvent ensuite extraire des informations sur les réclamations, les causes des réclamations et autres données pertinentes.
+* **Modération du contenu généré par les utilisateurs**. À partir des services de médias prises toopolice, de nombreuses organisations possèdent des portails publics qui acceptent généré par l’utilisateur les supports tels que des vidéos et des images. volume Hello de contenu peut grimper toounexpected événements d’échéance. Dans ces scénarios, il est difficile tooconduct révisions du manuel efficace du contenu de manière correcte. Les clients peuvent reposer sur toofocus du service de modération de contenu hello sur le contenu qui est approprié.
+* **Surveillance**. Hello s’accompagne de croissance en cours d’utilisation des caméras IP un inventaire croissant de vidéo de surveillance. Examen manuel de vidéo de surveillance est toohuman intensive et susceptible d’engendrer des erreurs au moment. Support Analytique fournit des services tels que la détection de mouvement, la détection de visage et Hyperlapse toomake hello processus de révision, la gestion et création dérivés plus facile.
 
 ## <a name="media-analytics-media-processors"></a>Processeurs multimédia Media Analytics
-Cette section répertorie tous les processeurs multimédia Media Analytics et montre comment utiliser .NET ou REST pour obtenir un objet de processeur multimédia (MP).
+Cette section processeurs multimédias de listes hello Media Analytique et montre comment tooget un objet de processeur (MP) multimédia toouse .NET ou REST.
 
 ### <a name="mp-names"></a>Noms MP
 * Azure Media Indexer 2 Preview
@@ -71,7 +71,7 @@ Cette section répertorie tous les processeurs multimédia Media Analytics et mo
 * Azure Media OCR
 
 ### <a name="net"></a>.NET
-La fonction suivante sélectionne un des noms MP spécifiés et retourne un objet MP.
+Hello après la fonction prend hello spécifié MP noms et retourne un objet de pack d’administration.
 
     static IMediaProcessor GetLatestMediaProcessorByName(string mediaProcessorName)
     {

@@ -1,6 +1,6 @@
 ---
-title: "Créer un module Azure IoT Edge avec Java | Microsoft Docs"
-description: "Ce didacticiel explique comment écrire un module de convertisseur de données BLE en utilisant les derniers packages Maven Azure IoT Edge."
+title: aaaCreate un Module de bord Azure IoT avec Java | Documents Microsoft
+description: "Ce didacticiel montre comment un ver données convertisseur module à l’aide de toowrite hello derniers packages Azure IoT bord Maven."
 services: iot-hub
 author: junyi
 manager: timlt
@@ -11,53 +11,53 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 06/28/2017
 ms.author: junyi
-ms.openlocfilehash: 0c430272225d79737baec2be15ed7c93991cdeac
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: abb560933d13d133ae9a1da08b503d5735b230e0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-azure-iot-edge-module-with-java"></a>Créer un module Azure IoT Edge avec Java
 
 Ce didacticiel explique comment vous pouvez créer un module pour Azure IoT Edge en Java.
 
-Dans ce didacticiel, nous aborderons la configuration de l’environnement et expliquerons comment écrire un module de convertisseur de données [BLE](https://en.wikipedia.org/wiki/Bluetooth_Low_Energy) en utilisant les derniers packages Maven Azure IoT Edge.
+Dans ce didacticiel, nous allons découvrir la configuration de l’environnement et comment toowrite un [BLE](https://en.wikipedia.org/wiki/Bluetooth_Low_Energy) module de convertisseur de données à l’aide de packages de Azure IoT bord Maven hello plus récente.
 
 ## <a name="prerequisites"></a>Composants requis
 
-Dans cette section, vous allez configurer votre environnement pour le développement du module IoT Edge. Cela s’applique aux systèmes d’exploitation *Windows 64 bits* et *Linux 64 bits (Ubuntu/Debian 8)*.
+Dans cette section, vous allez configurer votre environnement pour le développement du module IoT Edge. Il s’applique tooboth *Windows 64 bits* et *64 bits Linux (8 Ubuntu/Debian)* systèmes d’exploitation.
 
-Les logiciels suivants sont requis :
+Hello suivant logicielle est requise :
 
 * [Client Git](https://git-scm.com/downloads).
 * [JDK **x64**](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
 * [Maven](https://maven.apache.org/install.html).
 
-Ouvrez une fenêtre de terminal de ligne de commande et clonez le référentiel suivant :
+Ouvrez un en ligne de commande terminal fenêtre et clone hello suivant du référentiel :
 
 1. `git clone https://github.com/Azure-Samples/iot-edge-samples.git`.
 2. `cd iot-edge-samples/java/simulated_ble`
 
 ## <a name="overall-architecture"></a>Architecture globale
 
-La plateforme Azure IoT Edge adopte fortement [l’architecture de Von Neumann](https://en.wikipedia.org/wiki/Von_Neumann_architecture). Cela signifie que l’ensemble de l’architecture Azure IoT Edge est un système qui traite une entrée et produit une sortie, et que chaque module individuel est également un minuscule sous-système d’entrée-de sortie. Dans ce didacticiel, nous allons présenter les deux modules suivants :
+plateforme de Azure IoT bord Hello adopte fortement hello [architecture de Von Neumann](https://en.wikipedia.org/wiki/Von_Neumann_architecture). Ce qui signifie que cette architecture d’Azure IoT bord entier hello est un système qui traite l’entrée et produit une sortie ; et que chaque module individuel est également un sous-système d’e / s minuscule. Dans ce didacticiel, nous allons présenter hello suivant deux modules :
 
 1. Un module qui reçoit un signal [BLE](https://en.wikipedia.org/wiki/Bluetooth_Low_Energy) simulé et qui le convertit en message au format [JSON](https://en.wikipedia.org/wiki/JSON).
-2. Un module qui imprime le message [JSON](https://en.wikipedia.org/wiki/JSON) reçu.
+2. Un module qui imprime hello reçu [JSON](https://en.wikipedia.org/wiki/JSON) message.
 
-L’image suivante affiche le flux de données de bout en bout classique pour ce projet :
+Hello image suivante affiche hello les classique au bout de flux de données pour ce projet :
 
 ![Flux de données entre les trois modules](media/iot-hub-iot-edge-create-module/dataflow.png "Entrée : module BLE simulé ; processeur : module de convertisseur ; sortie : module d’imprimante")
 
-## <a name="understanding-the-code"></a>Présentation du code
+## <a name="understanding-hello-code"></a>Description du code hello
 
 ### <a name="maven-project-structure"></a>Structure du projet Maven
 
-Comme les packages Azure IoT Edge reposent sur Maven, nous avons besoin de créer une structure de projet Maven classique, qui contient un fichier `pom.xml`.
+Étant donné que les packages Azure IoT Edge sont basées sur Maven, nous devons toocreate une structure de projet Maven classique, qui contient un `pom.xml` fichier.
 
-Le POM hérite du package `com.microsoft.azure.gateway.gateway-module-base`, qui déclare toutes les dépendances requises par un projet de module incluant les fichiers binaires du runtime, le chemin du fichier config et le comportement d’exécution. Cela nous permet de gagner beaucoup de temps et élimine la nécessité d’écrire et de réécrire des centaines de lignes de code indéfiniment.
+Hello POM hérite hello `com.microsoft.azure.gateway.gateway-module-base` package, qui déclare toutes les dépendances hello requises par un projet de module qui inclut les fichiers binaires du runtime hello, chemin de fichier de configuration de passerelle hello et le comportement de l’exécution de hello. Cela nous évite beaucoup de temps et éliminer hello besoin toowrite et réécrire des centaines de lignes de code indéfiniment.
 
-Nous devons mettre à jour le fichier pom.xml en déclarant les dépendances/plug-ins requis et le nom du fichier config à utiliser par notre module, comme indiqué dans l’extrait de code suivant.
+Nous devons tooupdate le fichier pom.xml en déclarant hello requis dépendances/plug-ins et nom hello de toobe de fichier de configuration hello utilisé par notre module, comme illustré dans hello suivant extrait de code.
 
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0"
@@ -77,7 +77,7 @@ Nous devons mettre à jour le fichier pom.xml en déclarant les dépendances/plu
   <version>1.0</version>
   <packaging>jar</packaging>
 
-  <!-- Set the filename of the Azure IoT Edge configuration located
+  <!-- Set hello filename of hello Azure IoT Edge configuration located
        under ./src/main/resources/gateway/ which is used in parent -->
   <properties>
     <gw.config.fileName>gw-config.json</gw.config.fileName>
@@ -123,13 +123,13 @@ Nous devons mettre à jour le fichier pom.xml en déclarant les dépendances/plu
 
 Vous pouvez traiter un module Azure IoT Edge comme un processeur de données dont la tâche consiste à : recevoir une entrée, la traiter et générer une sortie.
 
-L’entrée peut être des données issues du matériel (comme un détecteur de mouvement), un message provenant d’autres modules ou toute autre chose (par exemple, un nombre aléatoire généré régulièrement par un minuteur).
+Hello entrée peut-être des données à partir du matériel (comme un détecteur de mouvement), un message à partir d’autres modules ou toute autre (par exemple, un nombre aléatoire généré régulièrement par un minuteur).
 
-La sortie est similaire à l’entrée, elle peut déclencher le comportement du matériel (comme le clignotement d’une LED), un message à d’autres modules ou toute autre chose (par exemple, une impression vers la console).
+sortie de Hello est similaire toohello entrée, il risque de déclencher matériel comportement (hello clignote LED), un module de tooother message ou rien (comme l’impression toohello console).
 
-Les modules communiquent entre eux à l’aide de la classe `com.microsoft.azure.gateway.messaging.Message`. Le **contenu** d’un `Message` est un tableau d’octets qui est capable de représenter n’importe quel type de données de votre choix. Les **propriétés** sont également disponibles dans le `Message` et sont simplement un mappage de chaîne à chaîne. Vous pouvez imaginer les **propriétés** comme étant les en-têtes d’une demande HTTP ou les métadonnées d’un fichier.
+Les modules communiquent entre eux à l’aide de la classe `com.microsoft.azure.gateway.messaging.Message`. Hello **contenu** d’un `Message` est un tableau d’octets qui est capable de représenter n’importe quel type de données de votre choix. **Propriétés** sont également disponibles dans hello `Message` et sont simplement un mappage de chaîne en chaîne. Vous pouvez vous représenter **propriétés** en tant qu’en-têtes hello dans une requête HTTP, ou métadonnées hello d’un fichier.
 
-Pour développer un module Azure IoT Edge en Java, vous devez créer une classe de module qui hérite de `com.microsoft.azure.gateway.core.GatewayModule` et implémenter les méthodes abstraites `receive()` et `destroy()` requises. À ce stade, vous pouvez également choisir d’implémenter les méthodes `start()` ou `create()` facultatives. L’extrait de code suivant vous montre comment prendre en main la création d’un module Azure IoT Edge.
+Dans l’ordre toodevelop un module Azure IoT Edge dans Java, vous devez toocreate une nouvelle classe de module qui hérite de `com.microsoft.azure.gateway.core.GatewayModule` et implémenter les méthodes abstraites hello requis `receive()` et `destroy()`. À ce stade, vous pouvez également choisir hello tooimplement facultatif `start()` ou `create()` également les méthodes. Hello suivant extrait de code montre comment tooget démarrer la création d’un module Azure IoT Edge.
 
 ```java
 import com.microsoft.azure.gateway.core.Broker;
@@ -138,29 +138,29 @@ import com.microsoft.azure.gateway.messaging.Message;
 
 public class MyEdgeModule extends GatewayModule {
   public MyEdgeModule(long address, Broker broker, String configuration) {
-    /* Let the GatewayModule do the dirty work of initialization. It's also
-       a good time to parse your own configuration defined in Azure IoT Edge
+    /* Let hello GatewayModule do hello dirty work of initialization. It's also
+       a good time tooparse your own configuration defined in Azure IoT Edge
        configuration file (typically ./src/main/resources/gateway/gw-config.json) */
     super(address, broker, configuration);
   }
 
   @Override
   public void start() {
-    /* Acquire the resources you need. If you don't
+    /* Acquire hello resources you need. If you don't
        need any resources, you may omit this method. */
   }
 
   @Override
   public void destroy() {
-    /* It's time to release all resources. This method is required. */
+    /* It's time toorelease all resources. This method is required. */
   }
 
   @Override
   public void receive(Message message) {
-    /* Logic to process the input message. This method is required. */
+    /* Logic tooprocess hello input message. This method is required. */
     // ...
-    /* Use publish() method to do the output. You are
-       allowed to publish your new Message instance. */
+    /* Use publish() method toodo hello output. You are
+       allowed toopublish your new Message instance. */
     this.publish(message);
   }
 }
@@ -172,7 +172,7 @@ public class MyEdgeModule extends GatewayModule {
 | ------------------------ | -------------------------------------- | ---------------------- | ---------------------- |
 | Message de données de température | Analyser et construire un nouveau message JSON | Structurer le message JSON | `ConverterModule.java` |
 
-Ce module est un module Azure IoT Edge classique. Il accepte des messages de température provenant d’autres modules (un module de matériel, ou dans notre cas, notre module BLE simulé), puis normalise le message de température dans un message JSON structuré (y compris l’ajout de l’ID de message, la définition de la propriété indiquant si nous devons déclencher l’alerte de température, etc.).
+Ce module est un module Azure IoT Edge classique. Il accepte des messages de température d’autres modules (un module de matériel, ou dans ce cas, notre module BLE simulé) ; puis normalise hello température message tooa structuré JSON message (y compris l’ajout des ID de message hello, définition de propriété hello de si nous devons alerte de température hello tootrigger et ainsi de suite).
 
 ```java
 @Override
@@ -202,9 +202,9 @@ public void receive(Message message) {
 
 | Entrée                          | Processeur | Sortie                     | Fichier source          |
 | ------------------------------ | --------- | -------------------------- | -------------------- |
-| Tous les messages provenant d’autres modules | N/A       | Enregistrer le message sur la console | `PrinterModule.java` |
+| Tous les messages provenant d’autres modules | N/A       | Ouvrez une session hello message tooconsole | `PrinterModule.java` |
 
-Il s’agit d’un module simple et explicite qui génère les messages reçus dans la fenêtre de terminal.
+Il s’agit d’un module de simple et explicite, qui génère la fenêtre de terminal toohello messages hello reçu.
 
 ```java
 @Override
@@ -215,9 +215,9 @@ public void receive(Message message) {
 
 ### <a name="azure-iot-edge-configuration"></a>Configuration d’Azure IoT Edge
 
-La dernière étape avant d’exécuter les modules consiste à configurer Azure IoT Edge et à établir les connexions entre les modules.
+étape finale de Hello avant d’exécuter les modules hello est tooconfigure hello Azure IoT Edge et tooestablish hello connexions entre des modules.
 
-Tout d’abord, nous devons déclarer notre chargeur Java (étant donné qu’Azure IoT Edge prend en charge des chargeurs de différents langages) qui peut, par la suite, être référencé par son `name` dans les sections.
+Nous devons abord toodeclare notre chargeur Java (depuis Azure IoT Edge prend en charge les chargeurs de langues différentes), qui peut être référencé par son `name` dans les sections hello par la suite.
 
 ```json
 "loaders": [{
@@ -231,7 +231,7 @@ Tout d’abord, nous devons déclarer notre chargeur Java (étant donné qu’Az
 }]
 ```
 
-Une fois que nous avons déclaré nos chargeurs, nous devrons également déclarer nos modules. À l’instar de la déclaration des chargeurs, les modules peuvent aussi être référencés par leur attribut `name`. Lors de la déclaration d’un module, nous devons spécifier le chargeur qu’il doit utiliser (qui doit être celui que nous avons défini avant) et le point d’entrée (qui doit être le nom de la classe normalisé de notre module) pour chaque module. Le module `simulated_device` est un module natif qui est inclus dans le package de runtime principal Azure IoT Edge. Vous devez toujours inclure l’élément `args` dans le fichier JSON même si sa valeur est `null`.
+Une fois que nous avons déclaré notre chargeurs, nous devez également toodeclare nos modules également. Les chargeurs de hello toodeclaring similaires, ils peuvent également être référencés par leurs `name` attribut. Lorsque vous déclarez un module, nous devons toospecify hello du chargeur doit être utilisé (qui doit être hello une nous avons défini avant) et hello point d’entrée (doit être le nom de classe normalisé hello de notre module) pour chaque module. Hello `simulated_device` module est un module natif qui est inclus dans le package de runtime hello Azure IoT bord core. Vous devez toujours inclure `args` Bonjour, même s’il s’agit du fichier JSON `null`.
 
 ```json
 "modules": [
@@ -273,7 +273,7 @@ Une fois que nous avons déclaré nos chargeurs, nous devrons également déclar
 ]
 ```
 
-À la fin de la configuration, nous établissons les connexions. Chaque connexion est exprimée par `source` et `sink`. Ces valeurs doivent faire référence à un module prédéfini. Le message de sortie du module `source` sera transféré à l’entrée du module `sink`.
+Extrémité hello de configuration de hello, nous établir des connexions de hello. Chaque connexion est exprimée par `source` et `sink`. Ces valeurs doivent faire référence à un module prédéfini. message de sortie de type Hello `source` module sera transféré entrée toohello `sink` module.
 
 ```json
 "links": [
@@ -288,14 +288,14 @@ Une fois que nous avons déclaré nos chargeurs, nous devrons également déclar
 ]
 ```
 
-## <a name="running-the-modules"></a>Exécution des modules
+## <a name="running-hello-modules"></a>Modules hello en cours d’exécution
 
-Utilisez `mvn package` pour générer tous les éléments dans le dossier `target/`. `mvn clean package` est également recommandé pour créer un build propre.
+Utilisez `mvn package` toobuild tout en hello `target/` dossier. `mvn clean package` est également recommandé pour créer un build propre.
 
-Utilisez `mvn exec:exec` pour exécuter Azure IoT Edge, et vous pourrez observer que les données de température et toutes les propriétés sont imprimées vers la console à une fréquence fixe.
+Utilisez `mvn exec:exec` toorun hello Azure IoT Edge et vous devez observer que les données de température hello et toutes les propriétés de hello sont console toohello imprimé à un taux fixe.
 
-Si vous souhaitez arrêter l’application, appuyez sur la touche `<Enter>`.
+Si vous souhaitez tooterminate hello application, appuyez sur `<Enter>` clé.
 
 > [!IMPORTANT]
-> Il est déconseillé d’utiliser Ctrl + C pour arrêter l’application de passerelle IoT Edge. Cela peut entraîner l’arrêt anormal du processus.
+> Il est déconseillé de toouse Ctrl + C tooterminate hello IoT bord application passerelle. Car cela pourrait provoquer hello processus tooterminate anormalement.
 

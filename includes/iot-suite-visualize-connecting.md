@@ -1,35 +1,35 @@
-## <a name="view-device-telemetry-in-the-dashboard"></a>Affichage de la télémétrie des appareils dans le tableau de bord
-Le tableau de bord de la solution de surveillance à distance permet d'afficher la télémétrie que vos appareils envoient au IoT Hub.
+## <a name="view-device-telemetry-in-hello-dashboard"></a>Télémétrie des consultations de périphérique dans le tableau de bord hello
+tableau de bord Hello Bonjour permet de solution télémétrie hello tooview tooIoT Hub d’envoi de vos appareils de surveillance à distance.
 
-1. Dans votre navigateur, revenez au tableau de bord de la solution de surveillance à distance, cliquez sur **Périphériques** dans le panneau de gauche pour accéder à la **Liste de périphériques**.
-2. Dans la **Liste d’appareils**, vous devez voir que l’état de votre appareil est maintenant **En cours d’exécution**. Sinon, cliquez sur **Activer l’appareil** dans le panneau **Détails de l’appareil**.
+1. Dans votre navigateur, retour toohello distant solutions tableau de bord, cliquez sur **périphériques** dans hello panneau gauche toonavigate toohello **liste de périphériques**.
+2. Bonjour **liste de périphériques**, vous devez voir que hello de votre appareil sont **en cours d’exécution**. Dans le cas contraire, cliquez sur **activer le périphérique** Bonjour **détails de l’appareil** Panneau de configuration.
    
     ![Afficher l’état de l’appareil][18]
-3. Cliquez sur **Tableau de bord** pour revenir au tableau de bord, sélectionnez votre périphérique dans la liste déroulante **Périphérique à afficher** pour afficher sa télémétrie. La télémétrie de l’exemple d’application est configurée pour envoyer 50 unités correspondant à la température interne, 55 unités correspondant à la température externe et 50 à l’humidité.
+3. Cliquez sur **tableau de bord** tooreturn toohello tableau de bord, sélectionnez votre appareil dans hello **tooView de périphérique** tooview de liste déroulante ses données de télémétrie. télémétrie Hello à partir de l’exemple d’application hello est 50 unités pour la température interne, 55 unités pour la température externe et 50 unités de l’humidité.
    
     ![Afficher la télémétrie d’appareil][img-telemetry]
 
 ## <a name="invoke-a-method-on-your-device"></a>Appel d’une méthode sur votre appareil
-Le tableau de bord de la solution de surveillance à distance vous permet d’appeler des méthodes sur vos appareils via IoT Hub. Par exemple, dans la solution de surveillance à distance, vous pouvez appeler une méthode pour simuler le redémarrage d’un appareil.
+tableau de bord Hello dans la solution d’analyse à distance hello vous permet de méthodes tooinvoke sur vos appareils via IoT Hub. Par exemple, Bonjour solution de surveillance à distance, vous pouvez appeler une toosimulate méthode redémarrage d’un périphérique.
 
-1. Dans le tableau de bord de la solution de surveillance à distance, cliquez sur **Périphériques** dans le panneau de gauche pour accéder à la **Liste de périphériques**.
-2. Cliquez sur **ID de périphérique** pour votre périphérique dans la **Liste de périphériques**.
-3. Dans le panneau **Détails de l’appareil**, cliquez sur **Méthodes**.
+1. Dans hello distant solutions tableau de bord, cliquez sur **périphériques** dans hello panneau gauche toonavigate toohello **liste de périphériques**.
+2. Cliquez sur **ID de périphérique** pour votre appareil dans hello **liste de périphériques**.
+3. Bonjour **détails de l’appareil** du panneau, cliquez sur **méthodes**.
    
     ![Méthodes d’appareil][13]
-4. Dans la liste déroulante **Méthode**, sélectionnez **InitiateFirmwareUpdate**, puis dans **FWPACKAGEURI**, saisissez une URL factice. Cliquez sur **Appeler une méthode** pour appeler la méthode sur l’appareil.
+4. Bonjour **méthode** liste déroulante, sélectionnez **InitiateFirmwareUpdate**, puis dans **FWPACKAGEURI** entrer une URL factice. Cliquez sur **appeler une méthode** toocall la méthode hello sur le périphérique de hello.
    
     ![Appel d’une méthode d’appareil][14]
    
 
-5. Vous voyez un message dans la console exécutant votre code d’appareil lorsque l’appareil traite la méthode. Les résultats de la méthode sont ajoutés à l’historique dans le portail de solution :
+5. Vous voyez un message dans la console hello votre code de l’appareil en cours d’exécution lorsque le périphérique de hello gère la méthode hello. résultats Hello de méthode hello sont ajoutées toohello historique au portail de solution hello :
 
     ![Affichage de l’historique des méthodes][img-method-history]
 
 ## <a name="next-steps"></a>Étapes suivantes
-L'article [Personnalisation des solutions préconfigurées][lnk-customize] décrit quelques méthodes pour étendre cet exemple. Les extensions incluent l'utilisation de capteurs réels et l'implémentation de commandes supplémentaires.
+article de Hello [personnalisation préconfiguré solutions] [ lnk-customize] décrit quelques méthodes que vous pouvez étendre cet exemple. Les extensions incluent l'utilisation de capteurs réels et l'implémentation de commandes supplémentaires.
 
-Vous pouvez en savoir plus sur les [autorisations sur le site azureiotsuite.com][lnk-permissions].
+Vous en apprendrez davantage sur hello [autorisations sur le site de azureiotsuite.com hello][lnk-permissions].
 
 [13]: ./media/iot-suite-visualize-connecting/suite4.png
 [14]: ./media/iot-suite-visualize-connecting/suite7-1.png

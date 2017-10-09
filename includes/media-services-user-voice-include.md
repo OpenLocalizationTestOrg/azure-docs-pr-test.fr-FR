@@ -1,4 +1,4 @@
-Utilisez le forum [User Voice](http://go.microsoft.com/fwlink/?linkid=698785&clcid=0x409) pour fournir des commentaires et des suggestions sur la façon d’améliorer Azure Media Services. Vous pouvez également accéder directement à l’une des catégories suivantes :
+Hello d’utilisation [User Voice](http://go.microsoft.com/fwlink/?linkid=698785&clcid=0x409) forum tooprovide des commentaires et apporter des suggestions sur la façon dont tooimprove Azure Media Services. Vous pouvez également accéder directement tooone Hello suivant des catégories :
 
 * [Azure Media Player](https://feedback.azure.com/forums/169396-media-services/category/109320-azure-media-player/)
 * [Bibliothèques de kit de développement logiciel (SDK) clientes](https://feedback.azure.com/forums/169396-media-services/category/144435-client-sdks/)

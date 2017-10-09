@@ -1,6 +1,6 @@
 ---
-title: "À propos de Mobile Apps dans Azure App Service"
-description: "Découvrez les avantages qu’App Service apporte à vos applications mobiles d’entreprise."
+title: aaaAbout Mobile Apps dans Azure App Service
+description: "En savoir plus sur les avantages de hello du Service d’applications met tooyour entreprise des applications mobiles."
 services: app-service\mobile
 documentationcenter: 
 author: ggailey777
@@ -14,50 +14,50 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 10/01/2016
 ms.author: glenga
-ms.openlocfilehash: ac35ff9fe1c5f315c4de08de951f505627ec412b
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ab96af11c3df196acfb9ecec1339e7f6093c7066
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="getting-started"> </a>À propos de Mobile Apps dans Azure App Service
-Azure App Service est une offre de [plateforme en tant que service](https://azure.microsoft.com/overview/what-is-paas/) (PaaS) entièrement gérée pour les développeurs professionnels. Ce service apporte un ensemble riche de fonctionnalités pour les scénarios web, mobiles et les scénarios d’intégration. 
+# <a name="getting-started"></a>À propos de Mobile Apps dans Azure App Service
+Azure App Service est une offre de [plateforme en tant que service](https://azure.microsoft.com/overview/what-is-paas/) (PaaS) entièrement gérée pour les développeurs professionnels. service de Hello met un riche ensemble de capacités scénarios tooweb, mobile et l’intégration. 
 
-La fonctionnalité Mobile Apps d’Azure App Service offre aux développeurs et aux intégrateurs de systèmes d’entreprise une plateforme de développement d’applications mobiles très évolutive et disponible dans le monde entier.
+fonctionnalité des applications mobiles Hello du Service d’applications Azure permet aux développeurs d’entreprise et de la plateforme de développement une application mobile les intégrateurs système hautement évolutifs et disponibles.
 
 ![Aperçu visuel des fonctionnalités Mobile Apps](./media/app-service-mobile-value-prop/overview.png)
 
 ## <a name="why-mobile-apps"></a>Pourquoi Mobile Apps ?
-Avec la fonctionnalité Mobile Apps, vous pouvez :
+Avec la fonctionnalité d’applications mobiles hello, vous pouvez :
 
 * **Générer des applications natives et multiplateformes** : que vous génériez des applications natives iOS, Android et Windows ou des applications multiplateformes Xamarin ou Cordova (Phonegap), vous pouvez tirer parti d’App Service à l’aide de Kits de développement logiciel (SDK) natifs.
-* **Se connecter aux systèmes de votre entreprise** : la fonctionnalité Mobile Apps vous permet d’ajouter une authentification d’entreprise en quelques minutes et de vous connecter à vos ressources locales et cloud d’entreprise.
-* **Créer des applications disponibles hors connexion avec la synchronisation des données** : augmentez davantage la productivité de votre personnel mobile en créant des applications qui fonctionnent hors connexion et qui utilisent la fonctionnalité Mobile Apps pour synchroniser les données en arrière-plan quand la connexion est établie avec l’une de vos sources de données d’entreprise ou API de software as a service (SaaS).
-* **Notifications push pour des millions de personnes en quelques secondes** : fidélisez vos clients en leur envoyant en temps opportun des notifications push instantanées, adaptées à leurs besoins et sur n’importe quel appareil.
+* **Connecter des systèmes d’entreprise tooyour**: avec la fonctionnalité d’applications mobiles hello, vous pouvez ajouter dans l’authentification d’entreprise en quelques minutes et connecter tooyour entreprise localement ou ressources de cloud.
+* **Créer des applications hors connexion disponible avec la synchronisation des données**: améliorer la productivité de votre personnel itinérant par la création d’applications qui fonctionnent en mode hors connexion et utiliser des données de toosync d’applications mobiles dans l’arrière-plan de hello lorsque la connectivité est présente avec les sources de données de votre entreprise ou logiciel en tant que service (SaaS) API.
+* **Push notifications toomillions en secondes**: activer vos clients avec les notifications push instantanée sur n’importe quel appareil, personnalisé tootheir besoins et envoyé lorsque le temps de hello est droit.
 
 ## <a name="mobile-apps-features"></a>Fonctionnalités Mobile Apps
-Les fonctions qui suivent sont importantes pour le développement mobile Cloud :
+Hello suivant les fonctionnalités est importantes développement mobile toocloud :
 
-* **Authentification et autorisation** : bénéficiez d’une liste toujours plus longue de fournisseurs d’identité, notamment Azure Active Directory pour l’authentification d’entreprise, et de fournisseurs de médias sociaux tels que Facebook, Google, Twitter et les comptes Microsoft. Mobile Apps offre un service OAuth 2.0 pour chaque fournisseur. Vous pouvez également intégrer le kit de développement logiciel du fournisseur d’identité pour la fonctionnalité spécifique du fournisseur.
+* **Authentification et autorisation** : bénéficiez d’une liste toujours plus longue de fournisseurs d’identité, notamment Azure Active Directory pour l’authentification d’entreprise, et de fournisseurs de médias sociaux tels que Facebook, Google, Twitter et les comptes Microsoft. Mobile Apps offre un service OAuth 2.0 pour chaque fournisseur. Vous pouvez également intégrer hello Kit de développement logiciel pour le fournisseur d’identité hello pour les fonctionnalités spécifiques du fournisseur.
 
     Apprenez-en davantage sur nos [fonctionnalités d’authentification].
 
-* **Accès aux données** : Mobile Apps offre une source de données OData v3 compatible avec les mobiles liée à SQL Azure Database ou à un serveur SQL Server local. Étant donné que ce service peut être développé à partir d’Entity Framework, vous pouvez l’intégrer facilement à d’autres fournisseurs de données NoSQL et SQL, notamment le [Stockage de tables Azure], MongoDB, [Azure Cosmos DB] et des fournisseurs d’API SaaS comme Office 365 et Salesforce.com.
+* **Accès aux données**: applications mobiles fournit une source de données adaptés aux appareils mobiles OData v3 qui a lié tooAzure base de données SQL ou un serveur de SQL server locale. Étant donné que ce service peut être développé à partir d’Entity Framework, vous pouvez l’intégrer facilement à d’autres fournisseurs de données NoSQL et SQL, notamment le [Stockage de tables Azure], MongoDB, [Azure Cosmos DB] et des fournisseurs d’API SaaS comme Office 365 et Salesforce.com.
 
-* **Synchronisation hors connexion** : nos Kits de développement logiciel (SDK) clients permettent de facilement générer des applications mobiles robustes et réactives exploitables sur des jeux de données hors connexion. Vous pouvez synchroniser automatiquement les données principales, y compris la prise en charge de la résolution de conflit.
+* **Synchronisation hors connexion**: toobuild facile robuste et réactives applications mobiles qui fonctionnent avec un jeu de données hors connexion rendre nos kits de développement logiciel client. Vous pouvez synchroniser automatiquement avec les données de back-end hello, y compris la prise en charge de la résolution de conflit, ce jeu de données.
 
   Apprenez-en davantage sur nos [fonctionnalités de données].
 
-* **Notifications Push** : nos Kits de développement logiciel (SDK) clients s’intègrent de façon transparente aux fonctionnalités d’inscription d’Azure Notification Hubs afin de pouvoir envoyer des notifications Push à des millions d’utilisateurs simultanément.
+* **Notifications Push**: nos kits de développement logiciel client s’intégrer parfaitement aux fonctionnalités de l’inscription de hello d’Azure Notification Hubs, et d’envoyer un toomillions de notifications push d’utilisateurs simultanément.
 
   Apprenez-en davantage sur nos [fonctionnalités de notification Push].
 
 * **Kits de développement logiciel clients** : nous fournissons un ensemble complet de Kits de développement logiciel clients qui concernent le développement natif ([iOS], [Android] et [Windows]), le développement multiplateforme ([Xamarin.iOS et Xamarin.Android], [Xamarin.Forms]) et le développement d’applications hybrides ([Apache Cordova]). Chaque kit de développement logiciel client est disponible avec une licence MIT et open source.
 
 ## <a name="azure-app-service-features"></a>Fonctionnalités d’Azure App Service
-Les fonctionnalités suivantes de la plate-forme sont utiles aux sites de production mobile :
+Hello suivant les fonctionnalités de plateforme est utile pour les sites de production mobile :
 
-* **Mise à l’échelle automatique** : avec App Service, vous pouvez facilement monter en puissance ou augmenter la taille des instances pour vous adapter à n’importe quelle charge cliente entrante. Sélectionnez manuellement le nombre et la taille des machines virtuelles, ou configurez la mise à l’échelle automatique pour dimensionner votre back end d’application mobile en fonction de la charge ou d’une planification.
+* **Échelle**: avec le Service d’application, vous pouvez rapidement montée en puissance ou monter en charge toohandle de toute charge de client entrantes. Manuellement sélectionner le nombre de hello et la taille des machines virtuelles, ou configurer tooscale de l’échelle de votre application mobile back-end en fonction de la charge ou de la planification.
 
   Apprenez-en davantage sur la [Mise à l’échelle automatique].
 
@@ -65,11 +65,11 @@ Les fonctionnalités suivantes de la plate-forme sont utiles aux sites de produc
 
   Apprenez-en davantage sur les [Environnements intermédiaires].
 
-* **Déploiement continu** : App Service peut s’intégrer aux systèmes de gestion de la chaîne d’approvisionnement (SCM) courants afin de déployer automatiquement une nouvelle version de votre serveur principal en le transférant vers une branche de votre système SCM.
+* **Déploiement continu**: application Services peuvent s’intégrer avec les systèmes de gestion (des services SCM) chaîne approvisionnement courants, afin de déployer automatiquement une nouvelle version de votre serveur principal en envoyant la branche tooa de votre système SCM.
 
   Apprenez-en davantage sur les [options de déploiement].
 
-* **Mise en réseau virtuelle** : App Service peut se connecter à des ressources locales à l’aide de connexions réseau virtuel, ExpressRoute Azure ou hybrides.
+* **Un réseau virtuel**: Service d’applications peut connecter des ressources de tooon local à l’aide des connexions hybrides, Azure ExpressRoute ou réseau virtuelles.
 
   Apprenez-en davantage sur les [connexions hybrides], [les réseaux virtuels] et [ExpressRoute].
 
@@ -79,15 +79,15 @@ Les fonctionnalités suivantes de la plate-forme sont utiles aux sites de produc
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Pour prendre en main Mobile Apps dans Azure App Service, terminez le didacticiel de [prise en main]. Le didacticiel explique les principes fondamentaux de la production d’un back end mobile et d’un client de votre choix. Il explique également comment intégrer l’authentification, la synchronisation hors connexion et les notifications push. Vous pouvez effectuer le didacticiel plusieurs fois, une fois pour chaque application cliente.
+tooget a démarré avec des applications mobiles dans Azure App Service complète hello [mise en route] didacticiel. didacticiel de Hello traite des concepts de base de hello de production d’un appareil mobile retour de fin et de client de votre choix. Il explique également comment intégrer l’authentification, la synchronisation hors connexion et les notifications push. Vous pouvez effectuer hello didacticiel plusieurs fois, une fois pour chaque application cliente.
 
 Pour plus d’informations sur Mobile Apps, consultez notre [parcours d’apprentissage].
-Pour plus d’informations sur la plateforme Azure App Service, consultez la rubrique [Azure App Service].
+Pour plus d’informations sur la plateforme Azure App Service de hello, consultez [Azure App Service].
 
 <!-- URLs. -->
-[Migrate your mobile service to App Service]: app-service-mobile-migrating-from-mobile-services.md
+[Migrate your mobile service tooApp Service]: app-service-mobile-migrating-from-mobile-services.md
 [Azure App Service]: ../app-service/app-service-value-prop-what-is.md
-[prise en main]: app-service-mobile-ios-get-started.md
+[mise en route]: app-service-mobile-ios-get-started.md
 [Stockage de tables Azure]:../cosmos-db/table-storage-how-to-use-dotnet.md
 [Azure Cosmos DB]: ../cosmos-db/documentdb-get-started.md
 [fonctionnalités d’authentification]: ./app-service-mobile-auth.md

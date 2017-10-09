@@ -1,6 +1,6 @@
 ---
-title: "Stratégies de ressources Azure pour les comptes de stockage | Microsoft Docs"
-description: "Décrit les stratégies d’Azure Resource Manager pour gérer le déploiement de comptes de stockage."
+title: "stratégies de ressources aaaAzure pour les comptes de stockage | Documents Microsoft"
+description: "Décrit les stratégies Azure Resource Manager pour gérer le déploiement hello de comptes de stockage."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,18 +14,18 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/05/2017
 ms.author: tomfitz
-ms.openlocfilehash: 6612ee61f5c50e743241b92030660cea7ae7094d
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: d37fc4bcf7cdec71b0e14f6231fc138bfb6a7893
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="apply-resource-policies-to-storage-accounts"></a>Appliquer des stratégies de ressources à des comptes de stockage
-Cette rubrique montre plusieurs [stratégies de ressources](resource-manager-policy.md) que vous pouvez appliquer aux comptes de stockage Azure. Ces stratégies garantissent la cohérence entre les comptes de stockage déployés dans votre organisation. 
+# <a name="apply-resource-policies-toostorage-accounts"></a>Appliquer des comptes de toostorage de stratégies de ressources
+Cette rubrique montre plusieurs [stratégies de ressources](resource-manager-policy.md) vous pouvez appliquer des comptes de stockage tooAzure. Ces stratégies garantissent la cohérence pour les comptes de stockage hello déployé dans votre organisation. 
 
 ## <a name="define-permitted-storage-account-types"></a>Définir les types de compte de stockage autorisés
 
-La stratégie suivante restreint les [types de compte de stockage](../storage/common/storage-redundancy.md) qu’il est possible de déployer :
+Hello stratégie suivante restreint qui [les types de compte de stockage](../storage/common/storage-redundancy.md) peut être déployé :
 
 ```json
 {
@@ -52,11 +52,11 @@ La stratégie suivante restreint les [types de compte de stockage](../storage/co
 }
 ```
 
-Une règle de stratégie similaire avec un paramètre permettant d’accepter les références SKU autorisées est disponible sous la forme d’une définition de stratégie prédéfinie. La stratégie prédéfinie possède l’ID de ressource `/providers/Microsoft.Authorization/policyDefinitions/7433c107-6db4-4ad1-b57a-a76dce0154a1`. 
+Une règle de stratégie similaire avec un paramètre pour l’acceptation de hello autorisé des références (SKU) est disponible en tant qu’une définition de stratégie intégré. stratégie intégrée de Hello a hello les ID de ressource de `/providers/Microsoft.Authorization/policyDefinitions/7433c107-6db4-4ad1-b57a-a76dce0154a1`. 
 
 ## <a name="define-permitted-access-tier"></a>Définir le niveau d’accès autorisé
 
-La stratégie suivante spécifie le type de [niveau d’accès](../storage/blobs/storage-blob-storage-tiers.md) qu’il est possible de spécifier pour les comptes de stockage :
+Hello stratégie suivante spécifie type hello de [couche d’accès aux](../storage/blobs/storage-blob-storage-tiers.md) qui peut être spécifiée pour les comptes de stockage :
 
 ```json
 {
@@ -86,7 +86,7 @@ La stratégie suivante spécifie le type de [niveau d’accès](../storage/blobs
 
 ## <a name="ensure-encryption-is-enabled"></a>Vérifier que le chiffrement est activé
 
-La stratégie suivante requiert que tous les comptes de stockage activent le [chiffrement des services de stockage](../storage/common/storage-service-encryption.md) :
+Hello suivant stratégie nécessite que tous les tooenable de comptes de stockage [chiffrement de service de stockage](../storage/common/storage-service-encryption.md):
 
 ```json
 {
@@ -110,9 +110,9 @@ La stratégie suivante requiert que tous les comptes de stockage activent le [ch
 }
 ```
 
-Cette règle de stratégie est également disponible sous forme de définition de stratégie prédéfinie avec l’ID de ressource `/providers/Microsoft.Authorization/policyDefinitions/7c5a74bf-ae94-4a74-8fcf-644d1e0e6e6f`.
+Cette règle de stratégie est également disponible sous une définition de stratégie intégrée avec l’ID de ressource hello de `/providers/Microsoft.Authorization/policyDefinitions/7c5a74bf-ae94-4a74-8fcf-644d1e0e6e6f`.
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Après avoir défini une règle de stratégie (comme le montrent les exemples précédents), vous devez créer la définition de stratégie et l’attribuer à une étendue. L’étendue peut être un abonnement, un groupe de ressources ou une ressource. Pour affecter des stratégies via le portail, consultez [Utiliser le portail Azure pour affecter et gérer les stratégies de ressources](resource-manager-policy-portal.md). Pour affecter des stratégies via l’API REST, PowerShell ou Azure CLI, consultez [Affecter et gérer des stratégies via un script](resource-manager-policy-create-assign.md). 
-* Pour obtenir des conseils sur l’utilisation de Resource Manager par les entreprises pour gérer efficacement les abonnements, voir [Structure d’Azure Enterprise - Gouvernance normative de l’abonnement](resource-manager-subscription-governance.md).
+* Après avoir défini une règle de stratégie (comme indiqué dans hello précédents exemples), vous devez la définition de la stratégie toocreate hello et affectez tooa étendue. étendue de Hello peut être un abonnement, le groupe de ressources ou la ressource. stratégies tooassign via le portail de hello, voir [tooassign de portail utilisez Azure et de gérer les stratégies de ressources](resource-manager-policy-portal.md). stratégies tooassign via l’API REST, PowerShell ou CLI d’Azure, consultez [affecter et gérer des stratégies dans le script](resource-manager-policy-create-assign.md). 
+* Pour obtenir des conseils comment les entreprises peuvent utiliser le Gestionnaire de ressources tooeffectively gérer les abonnements, consultez [une vue de structure Azure enterprise - gouvernance de l’abonnement normative](resource-manager-subscription-governance.md).
 

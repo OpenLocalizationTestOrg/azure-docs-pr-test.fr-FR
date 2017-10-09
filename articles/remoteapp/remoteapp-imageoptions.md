@@ -1,6 +1,6 @@
 ---
-title: "Créer une image Azure RemoteApp | Microsoft Docs"
-description: "En savoir plus sur les options disponibles pour la création d’images pour Azure RemoteApp"
+title: aaaCreate une image Azure RemoteApp | Documents Microsoft
+description: "En savoir plus sur les options de hello disponibles pour la création d’images pour Azure RemoteApp"
 services: remoteapp
 documentationcenter: 
 author: msmbaldwin
@@ -13,27 +13,27 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/26/2017
 ms.author: mbaldwin
-ms.openlocfilehash: 4b8ba6f264f982e03930c5ad4ccdb2d80f2c8665
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 54e63b6fa13addfcda96ce581910e1ac48d91e70
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-azure-remoteapp-image"></a>Création d’une image Azure RemoteApp
 > [!IMPORTANT]
-> Azure RemoteApp ne sera plus disponible à partir du 31 août 2017. Pour plus d’informations, lisez [l’annonce](https://go.microsoft.com/fwlink/?linkid=821148) .
+> Azure RemoteApp ne sera plus disponible à partir du 31 août 2017. Hello de lecture [annonce](https://go.microsoft.com/fwlink/?linkid=821148) pour plus d’informations.
 > 
 > 
 
-Azure RemoteApp utilise des images pour conserver les applications que vous partagez avec vos utilisateurs. (Nous prenons votre image et nous l’utilisons pour créer des machines virtuelles auxquelles les utilisateurs accéderont lorsqu’ils se connecteront à Azure RemoteApp.) Pour créer une collection Azure RemoteApp avec un choix d’applications, de type cloud ou hybride, commencez par créer une image à partir des applications installées. Créez ensuite une collection utilisant cette image, affectez des utilisateurs à la collection et publiez des applications pour ces utilisateurs.
+Azure RemoteApp utilise des images toohold hello applications que vous partagez avec vos utilisateurs. (Nous prendre votre image et l’utiliser machines virtuelles toocreate - ce que les utilisateurs de hello accèdent quand ils se connectent à Azure RemoteApp.) toocreate une collection Azure RemoteApp avec un choix d’applications, qu’il s’agisse de cloud ou hybride, vous commencez par créer une image avec les applications installées. Ensuite, créez un regroupement qui utilise cette image, affecter des utilisateurs toohello collection et publier des utilisateurs de toothose d’applications.
 
-Plusieurs choix s’offrent à vous pour créer ou utiliser des images. L’exécution de Windows Server 2012 R2 et l’installation du rôle Hôte de session Bureau à distance (RDSH) constituent les [exigences](remoteapp-imagereqs.md) de base pour le fonctionnement d’une image. La procédure commence à devenir intéressante au moment de choisir le mode de configuration.
+Plusieurs choix s’offrent à vous pour créer ou utiliser des images. Hello base [exigence](remoteapp-imagereqs.md) pour une image est qu’il exécutent Windows Server 2012 R2 et hello hôte de Session de bureau à distance (RDSH) rôle est installé. La procédure commence à devenir intéressante au moment de choisir le mode de configuration.
 
-Dans le cas des images, vous disposez des options suivantes :
+Vous avez hello options suivantes lorsqu’il s’agit de tooimages :
 
-* Vous pouvez importer et utiliser une [image basée sur une machine virtuelle Azure](remoteapp-image-on-azurevm.md). Cette fonction est utile pour les applications cœur de métier nécessitant des paramètres personnalisés. Vous pouvez personnaliser l’image à utiliser pour l’application.
+* Vous pouvez importer et utiliser une [image basée sur une machine virtuelle Azure](remoteapp-image-on-azurevm.md). Cette fonction est utile pour les applications cœur de métier nécessitant des paramètres personnalisés. Vous pouvez personnaliser toowork d’image hello pour une application hello.
 * Vous pouvez [créer et charger une image personnalisée](remoteapp-create-custom-image.md). Cette fonction est utile si vous disposez déjà d’une image que vous utilisez pour le déploiement local de vos services Bureau à distance.
-* Vous pouvez utiliser l’une des [images de modèle](remoteapp-images.md) incluses dans votre abonnement RemoteApp. Ces images sont créées et gérées par l’équipe RemoteApp et contiennent certaines applications standard (telles que la suite Office) que vous pouvez mettre à la disposition de vos utilisateurs. Notez que seule l’image d’Office 365 Pro Plus peut être utilisée dans un environnement de production.
+* Vous pouvez utiliser une des hello [images de modèle](remoteapp-images.md) inclus dans votre abonnement RemoteApp. Ces images sont créées et gérées par l’équipe de RemoteApp hello et contiennent certaines applications standards (par exemple hello Office suite) que vous pouvez créer des utilisateurs de tooyour disponibles. Notez que cette image d’Office 365 Pro Plus hello uniquement peut être utilisée dans un environnement de production.
 
-Quel que soit le mode de création ou la provenance de votre image, vérifiez que vous comprenez les [exigences de l’application](remoteapp-appreqs.md) afin de vous assurer que celle-ci fonctionne dans RemoteApp. L’étape suivante consiste à créer une collection [cloud](remoteapp-create-cloud-deployment.md) ou [hybride](remoteapp-create-hybrid-deployment.md).
+Quelle que soit l’où vous avez obtenu votre image ou comment vous la créez, vous souhaiterez toomake que vous comprenez hello [spécifications des applications](remoteapp-appreqs.md) tooensure votre application fonctionne correctement dans RemoteApp. Ensuite, la prochaine étape de hello est toocreate un [cloud](remoteapp-create-cloud-deployment.md) ou [hybride](remoteapp-create-hybrid-deployment.md) collection.
 

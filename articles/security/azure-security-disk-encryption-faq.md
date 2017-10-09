@@ -1,6 +1,6 @@
 ---
-title: FAQ Azure Disk Encryption | Microsoft Docs
-description: "Cet article offre des réponses aux questions courantes sur Microsoft Azure Disk Encryption pour les machines virtuelles IaaS Windows et Linux."
+title: aaaAzure Forum aux questions sur le chiffrement de disque | Documents Microsoft
+description: "Cet article fournit des réponses aux questions sur Microsoft Azure disque chiffrement pour Windows et les machines virtuelles IaaS Linux d’elles sonttrop."
 services: security
 documentationcenter: na
 author: deventiwari
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/11/2017
 ms.author: devtiw
-ms.openlocfilehash: 0d15bf42c156ea7a72c54d690f4016877913efe4
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 17f084628ba4ef22e9d37dd3052ef10f8eb2cd7d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-disk-encryption-frequently-asked-questions-faq"></a>Forum aux questions sur Azure Disk Encryption
 
@@ -31,7 +31,7 @@ Ce FAQ répond aux questions sur Azure Disk Encryption pour les machines virtuel
 
 **Q :** Avec quelles autres expériences utilisateur Azure Disk Encryption est-il disponible ?
 
-**R :** Azure Disk Encryption (disponibilité générale) prend en charge les modèles Azure Resource Manager, Azure PowerShell et Azure CLI. Cela vous donne une grande flexibilité, car vous disposez de trois options différentes pour activer le chiffrement des disques sur vos machines virtuelles IaaS. Vous trouverez plus d’informations et d’instructions étape par étape dans les scénarios et expériences Azure Disk Encryption.
+**R :** Azure Disk Encryption (disponibilité générale) prend en charge les modèles Azure Resource Manager, Azure PowerShell et Azure CLI. Cela vous donne une grande flexibilité, car vous disposez de trois options différentes pour activer le chiffrement des disques sur vos machines virtuelles IaaS. Plus d’informations sur l’expérience utilisateur hello et des instructions pas à pas est disponible dans des expériences et des scénarios de déploiement du chiffrement de disque Azure hello.
 
 **Q :** Combien coûte Azure Disk Encryption ?
 
@@ -43,7 +43,7 @@ Ce FAQ répond aux questions sur Azure Disk Encryption pour les machines virtuel
 
 **Q :** Quelles sont les distributions Linux prises en charge par Azure Disk Encryption ?
 
-**R :** Azure Disk Encryption est pris en charge sur les versions et distributions de serveur Linux suivantes :
+**R :** hello suivant les distributions Linux server et les versions est pris en charge le chiffrement des disques Azure :
 
 | Distribution Linux | Version | Type de volume pris en charge pour le chiffrement|
 | --- | --- |--- |
@@ -70,53 +70,53 @@ Ce FAQ répond aux questions sur Azure Disk Encryption pour les machines virtuel
 
 **Q :** Comment puis-je commencer à utiliser Azure Disk Encryption ?
 
-**R :** Les clients peuvent commencer par consulter le livre blanc sur Azure Disk Encryption situé [ici](https://docs.microsoft.com/azure/security/azure-security-disk-encryption)
+**R :** pour en savoir comment tooget démarrée par la lecture hello livre blanc de chiffrement de disque Azure situé [ici](https://docs.microsoft.com/azure/security/azure-security-disk-encryption)
 
 **Q :** Puis-je chiffrer des volumes de démarrage et de données avec Azure Disk Encryption ?
 
-**R :** Oui, vous pouvez chiffrer des volumes de démarrage et de données pour les machines virtuelles IaaS Windows et Linux. Pour les machines virtuelles Windows, vous ne pouvez pas chiffrer les données sans d’abord chiffrer le volume du système d’exploitation. Pour les machines virtuelles Linux, vous pouvez chiffrer le volume de données sans chiffrer le volume du système d’exploitation. Une fois que vous avez chiffré le volume du système d’exploitation sous Linux, la désactivation du chiffrement sur un volume du système d’exploitation pour les machines virtuelles IaaS Linux n’est pas prise en charge.
+**R :** Oui, vous pouvez chiffrer des volumes de démarrage et de données pour les machines virtuelles IaaS Windows et Linux. Pour les machines virtuelles Windows, vous ne pouvez pas chiffrer les données de hello sans hello encrpting premier volume de système d’exploitation. Pour les machines virtuelles Linux, vous pouvez chiffrer tout d’abord le volume de données hello sans encryptinng hello volume du système d’exploitation. Une fois que vous avez chiffré le volume de hello du système d’exploitation pour Liux, la désactivation du chiffrement sur un volume du système d’exploitation pour les machines virtuelles IaaS Linux n’est pas pris en charge
 
 **Q :** Azure Disk Encryption propose-t-il une fonctionnalité « BYOK » (apportez votre propre clé) ?
 
-**R :** Oui, vous pouvez fournir vos propres clés de chiffrement à clé. Ces clés sont sauvegardées dans Azure Key Vault, le magasin de clés d’Azure Disk Encryption. Pour plus d’informations sur les scénarios de prise en charge des clés de chiffrement à clé, consultez les scénarios et expériences de déploiement d’Azure Disk Encryption.
+**R :** Oui, vous pouvez fournir vos propres clés de chiffrement à clé. Ces clés sont sauvegardés dans le coffre de clés Azure, qui est le magasin de clés hello pour le chiffrement du disque Azure. Pour plus d’informations sur la clé de chiffrement à clé hello prend en charge les scénarios, consultez les expériences et des scénarios de déploiement du chiffrement de disque Azure hello
 
 **Q :** Puis-je utiliser une clé de chiffrement à clé créé par Azure ?
 
-**R :** Oui, vous pouvez utiliser Azure Key Vault pour générer la clé de chiffrement à clé pour une utilisation avec Azure Disk Encryption. Ces clés sont sauvegardées dans Azure Key Vault, le magasin de clés d’Azure Disk Encryption. Pour plus d’informations sur les scénarios de prise en charge des clés de chiffrement à clé, consultez les scénarios et expériences de déploiement d’Azure Disk Encryption.
+**R :** Oui, vous pouvez utiliser la clé de chiffrement d’Azure Key vault toogenerate pour une utilisation de chiffrement de disque Azure. Ces clés sont sauvegardés dans le coffre de clés Azure, qui est le magasin de clés hello pour le chiffrement du disque Azure. Pour plus d’informations sur la clé de chiffrement à clé hello prend en charge les scénarios, consultez les expériences et des scénarios de déploiement du chiffrement de disque Azure hello
 
-**Q :** Puis-je utiliser le service de gestion de clés local/HSM pour sauvegarder les clés de chiffrement ?
+**Q :** puis-je utiliser des clés de chiffrement local gestion de clés toosafeguard de service/HSM hello ?
 
-**R :** Vous ne pouvez pas utiliser le service de gestion de clés local/HSM pour sauvegarder les clés de chiffrement avec Azure Disk Encryption. Vous pouvez uniquement utiliser le service Azure Key Vault pour sauvegarder les clés de chiffrement. Pour plus d’informations sur les scénarios de prise en charge des clés de chiffrement à clé, consultez les scénarios et expériences de déploiement d’Azure Disk Encryption.
+**R :** vous ne pouvez pas utiliser les clés de chiffrement du gestion de clés toosafeguard de service/HSM hello hello localement avec le chiffrement de disque Azure. Vous pouvez uniquement utiliser des clés de chiffrement du service toosafeguard hello hello coffre de clés Azure. Pour plus d’informations sur la clé de chiffrement à clé hello prend en charge les scénarios, consultez les expériences et des scénarios de déploiement du chiffrement de disque Azure hello
 
-**Q :** Quelles sont les conditions requises pour configurer Azure Disk Encryption ?
+**Q :** quels sont le chiffrement de disque Azure hello conditions préalables tooconfigure ?
 
-**R :** Le script PowerShell prérequis avec Azure Disk Encryption pour créer l’application AAD, créer un coffre de clés ou en configurer un existant pour l’accès au chiffrement de disque et pour activer le chiffrement et sauvegarder les secrets et la clé.  Pour plus d’informations sur les scénarios de prise en charge des clés de chiffrement à clé, consultez les conditions requises, ainsi que les scénarios et expériences de déploiement d’Azure Disk Encryption.
+**R :** hello application disque Azure chiffrement requise PowerShell script toocreate AAD, créer nouveau coffre de clés ou le programme d’installation de coffre de clés existant pour le disque chiffrement accès tooenable chiffrement et sauvegarde des secrets et la clé.  Pour plus d’informations sur la clé de chiffrement à clé hello prend en charge les scénarios, consultez les conditions préalables de chiffrement de disque Azure hello et des expériences et des scénarios de déploiement
 
-**Q :** Où puis-je obtenir plus d’informations sur l’utilisation de PowerShell pour la configuration d’Azure Disk Encryption ?
+**Q :** où puis-je obtenir plus d’informations sur la façon de toouse PowerShell pour la configuration de chiffrement de disque Azure ?
 
-**R :** Vous pouvez consulter des articles très intéressants sur l’exécution de tâches Azure Disk Encryption de base, ainsi que des exemples de scénarios plus avancés. Pour en savoir plus sur les tâches de base, consultez le billet de blog en anglais [Azure Disk Encryption with Azure PowerShell - Part 1](https://blogs.msdn.microsoft.com/azuresecurity/2015/11/16/explore-azure-disk-encryption-with-azure-powershell/) (Explorer Azure Disk Encryption avec Azure PowerShell - Partie 1). Pour connaître les scénarios plus avancés, consultez le billet de blog en anglais [Azure Disk Encryption with Azure PowerShell – Part 2](https://blogs.msdn.microsoft.com/azuresecurity/2015/11/21/explore-azure-disk-encryption-with-azure-powershell-part-2/) (Explorer Azure Disk Encryption avec Azure PowerShell - Partie 2).
+**R :** Vous pouvez consulter des articles très intéressants sur l’exécution de tâches Azure Disk Encryption de base, ainsi que des exemples de scénarios plus avancés. Pour les tâches de base hello, consultez Explorer [le chiffrement de disque Azure avec Azure PowerShell - partie 1](https://blogs.msdn.microsoft.com/azuresecurity/2015/11/16/explore-azure-disk-encryption-with-azure-powershell/). Pour connaître les scénarios plus avancés, consultez le billet de blog en anglais [Azure Disk Encryption with Azure PowerShell – Part 2](https://blogs.msdn.microsoft.com/azuresecurity/2015/11/21/explore-azure-disk-encryption-with-azure-powershell-part-2/) (Explorer Azure Disk Encryption avec Azure PowerShell - Partie 2).
 
 **Q :** Quelle version d’Azure PowerShell est prise en charge par Azure Disk Encryption ?
 
-**R :** Utilisez la dernière version du Kit de développement logiciel (SDK) Azure PowerShell pour configurer Azure Disk Encryption. Téléchargez la dernière version d’[Azure PowerShell](https://github.com/Azure/azure-powershell/releases). Azure Disk Encryption n’est PAS pris en charge par le Kit de développement logiciel (SDK) Azure PowerShell version 1.1.0.
+**R :** utiliser hello la dernière version du Kit de développement logiciel Azure PowerShell version tooconfigure chiffrement de disque Azure. Télécharger la version la plus récente de hello [Azure PowerShell](https://github.com/Azure/azure-powershell/releases). Azure Disk Encryption n’est PAS pris en charge par le Kit de développement logiciel (SDK) Azure PowerShell version 1.1.0.
 
 > [!NOTE]
-> Il est déconseillé d’utiliser l’extension de la version préliminaire d’Azure Disk Encryption pour Linux. Pour plus d’informations, reportez-vous à [cette documentation](https://blogs.msdn.microsoft.com/azuresecurity/2017/07/12/deprecating-azure-disk-encryption-preview-extension-for-linux-iaas-vms/).
+> Hello, extension d’Aperçu de chiffrement de disque Linux Azure est déconseillée. Pour plus d’informations, consultez toodocumentation [ici](https://blogs.msdn.microsoft.com/azuresecurity/2017/07/12/deprecating-azure-disk-encryption-preview-extension-for-linux-iaas-vms/)
 
 **Q :** Puis-je appliquer le chiffrement de disque Azure sur mon image Linux personnalisée ?
 
-**R :** Vous ne pouvez pas appliquer le chiffrement de disque Azure sur votre image Linux personnalisée. Nous prenons uniquement en charge les images Linux de la galerie pour les distributions prises en charge indiquées ci-dessus. Actuellement, nous ne prenons pas en charge les images Linux personnalisées.
+**R :** Vous ne pouvez pas appliquer le chiffrement de disque Azure sur votre image Linux personnalisée. Nous prenons en charge les images Linux de la galerie uniquement hello pour hello pris en charge les versions indiquées ci-dessus. Actuellement, nous ne prenons pas en charge les images Linux personnalisées.
 
-**Q :** Puis-je appliquer des mises à jour sur une machine virtuelle Red Hat Linux à partir d’une mise à jour Yum ?
+**Q :** puis-je appliquer les mises à jour tooa Linux Red Hat VM à l’aide de la mise à jour Yum ?
 
 **R :** Oui, vous pouvez appliquer une mise à jour ou un correctif sur une machine virtuelle Red Hat Linux en suivant les instructions décrites[ici](https://blogs.msdn.microsoft.com/azuresecurity/2017/07/13/applying-updates-to-a-encrypted-azure-iaas-red-hat-vm-using-yum-update/)
 
-**Q :** Où puis-je poser des questions ou envoyer des commentaires ?
+**Q :** où puis-je accéder tooask question ou fournir des commentaires
 
-**R :** Vous pouvez poser vos questions ou envoyer vos commentaires sur le forum d’Azure Disk Encryption [ici](https://social.msdn.microsoft.com/Forums/home?forum=AzureDiskEncryption)
+**R :** vous permettent de poser des questions ou des commentaires sur le forum de chiffrement de disque Azure hello [ici](https://social.msdn.microsoft.com/Forums/home?forum=AzureDiskEncryption)
 
 ## <a name="see-also"></a>Voir aussi
-Ce document vous a fourni les réponses aux questions les plus courantes concernant Azure Disk Encryption. Pour en savoir plus sur ce service et ses fonctionnalités, consultez les pages suivantes :
+Dans ce document, vous avez appris plus hello plus fréquentes questions connexes tooAzure chiffrement de disque, pour plus d’informations sur ce service et de sa capacité à lire :
 
 - [Appliquer le chiffrement de disque dans Azure Security Center](https://docs.microsoft.com/azure/security-center/security-center-apply-disk-encryption)
 - [Chiffrement d’une machine virtuelle Azure](https://docs.microsoft.com/azure/security-center/security-center-disk-encryption)

@@ -1,6 +1,6 @@
 ---
-title: "Prise en main des représentations physiques Azure IoT Hub (Node) | Microsoft Docs"
-description: "Guide d’utilisation des représentations d’appareils Azure IoT Hub pour ajouter des balises, puis utiliser une requête IoT Hub. Vous utilisez les SDK Azure IoT pour Node.js afin d’implémenter l’application d’appareil simulé et une application de service qui ajoute les balises et exécute la requête IoT Hub."
+title: "aaaGet main jumeaux d’appareil Azure IoT Hub (nœud) | Documents Microsoft"
+description: "Comment toouse Azure IoT Hub appareil jumeaux tooadd balises, puis utilisez une requête IoT Hub. Vous utilisez hello kits de développement logiciel Azure IoT pour l’application d’appareil simulé Node.js tooimplement hello et une application de service qui ajoute des balises de hello et s’exécute hello requête de IoT Hub."
 services: iot-hub
 documentationcenter: node
 author: fsautomata
@@ -14,26 +14,26 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/25/2017
 ms.author: elioda
-ms.openlocfilehash: 633c9fd4f8a1d017d93148f8c2e860ccba14238c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: d60b8c3de85e9285e496b86e27d4ee31a0554a1e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-device-twins-node"></a>Prise en main des représentations d’appareils (Node)
 [!INCLUDE [iot-hub-selector-twin-get-started](../../includes/iot-hub-selector-twin-get-started.md)]
 
-À la fin de ce didacticiel, vous disposerez de deux applications console Node.js :
+À la fin de hello de ce didacticiel, vous aurez deux applications de console Node.js :
 
 * **AddTagsAndQuery.js**, application Node.js qui ajoute des balises et interroge des représentations d’appareil.
-* **TwinSimulatedDevice.js**, application Node.js qui simule un appareil se connectant à votre IoT Hub avec l’identité d’appareil créée précédemment, et signale son état de connectivité.
+* **TwinSimulatedDevice.js**, une application Node.js qui simule un appareil qui se connecte tooyour IoT hub avec l’identité de l’appareil hello créée précédemment et signale l’état de connectivité.
 
 > [!NOTE]
-> L’article [Kits de développement logiciel (SDK) Azure IoT][lnk-hub-sdks] fournit des informations sur les Kits de développement logiciel (SDK) IoT que vous pouvez utiliser pour générer des applications pour appareil et des applications principales.
+> article de Hello [kits de développement logiciel Azure IoT] [ lnk-hub-sdks] fournit des informations sur hello kits de développement logiciel Azure IoT que vous pouvez utiliser toobuild applications de périphérique et back-end.
 > 
 > 
 
-Pour réaliser ce didacticiel, vous avez besoin des éléments suivants :
+toocomplete ce didacticiel, vous devez suivant de hello :
 
 * Node.js version 0.10.x ou ultérieure.
 * Un compte Azure actif. (Si vous ne possédez pas de compte, vous pouvez créer un [compte gratuit][lnk-free-trial] en quelques minutes.)
@@ -42,21 +42,21 @@ Pour réaliser ce didacticiel, vous avez besoin des éléments suivants :
 
 [!INCLUDE [iot-hub-get-started-create-device-identity](../../includes/iot-hub-get-started-create-device-identity.md)]
 
-## <a name="create-the-service-app"></a>Créer l’application de service
-Dans cette section, vous créez une application console Node.js qui ajoute des métadonnées d’emplacement à la représentation d’appareil associée à **myDeviceId**. Elle interroge ensuite les jumeaux d’appareil stockés dans le hub IoT en sélectionnant les appareils situés aux États-Unis, puis ceux qui signalent une connexion mobile.
+## <a name="create-hello-service-app"></a>Créer l’application de service hello
+Dans cette section, vous créez une application de console Node.js qui ajoute le double d’appareil emplacement métadonnées toohello associé **myDeviceId**. Il interroge ensuite jumeaux de périphérique hello stockées dans hello IoT hub en sélectionnant les appareils hello situés dans hello nous et puis hello ceux qui signalent une connexion cellulaire.
 
-1. Créez un dossier vide nommé **addtagsandqueryapp**. Dans le dossier **addtagsandqueryapp**, créez un fichier package.json en utilisant la commande suivante à l’invite de commandes. Acceptez toutes les valeurs par défaut :
+1. Créez un dossier vide nommé **addtagsandqueryapp**. Bonjour **addtagsandqueryapp** dossier, créez un nouveau fichier package.json à l’aide de hello, la commande suivante à l’invite suivante. Acceptez les valeurs par défaut hello :
    
     ```
     npm init
     ```
-2. À l’invite de commandes, dans le dossier **addtagsandqueryapp**, exécutez la commande suivante pour installer le package **azure-iothub** :
+2. Votre invite de commandes Bonjour **addtagsandqueryapp** dossier, exécutez hello suivant commande tooinstall hello **azure-iothub** package :
    
     ```
     npm install azure-iothub --save
     ```
-3. À l’aide d’un éditeur de texte, créez un fichier **AddTagsAndQuery.js** dans le dossier **addtagsandqueryapp**.
-4. Ajoutez le code suivant au fichier **AddTagsAndQuery.js**, puis remplacez l’espace réservé **{iot hub connection string}** par la chaîne de connexion que vous avez copiée lors de la création de votre IoT Hub :
+3. À l’aide d’un éditeur de texte, créez un nouveau **AddTagsAndQuery.js** fichier Bonjour **addtagsandqueryapp** dossier.
+4. Ajouter hello suivant code toohello **AddTagsAndQuery.js** de fichiers et remplacez-le par hello **{chaîne de connexion de hub iot}** espace réservé par hello chaîne de connexion de IoT Hub vous avez copié lorsque vous avez créé votre hub :
    
         'use strict';
         var iothub = require('azure-iothub');
@@ -87,16 +87,16 @@ Dans cette section, vous créez une application console Node.js qui ajoute des m
             }
         });
    
-    L’objet **Registry** expose toutes les méthodes requises pour interagir avec des représentations d’appareil à partir du service. Le code précédent initialise l’objet **Registry**, récupère la représentation d’appareil de **myDeviceId**, puis met à jour ses balises avec les informations d’emplacement souhaitées.
+    Hello **Registre** objet expose tous les hello méthodes requis toointeract avec jumeaux de périphérique à partir du service de hello. code précédent de Hello initialise tout d’abord hello **Registre** de l’objet, puis récupère hello double de périphérique pour **myDeviceId**et enfin met à jour ses balises avec les informations d’emplacement hello souhaité.
    
-    Une fois les balises mises à jour, il appelle la fonction **queryTwins**.
-5. Ajoutez le code suivant à la fin de  **AddTagsAndQuery.js** pour implémenter la fonction **queryTwins**:
+    Après avoir hello hello de mise à jour des balises il hello d’appels **queryTwins** (fonction).
+5. Ajouter hello suivant du code à la fin de hello de **AddTagsAndQuery.js** tooimplement hello **queryTwins** (fonction) :
    
         var queryTwins = function() {
             var query = registry.createQuery("SELECT * FROM devices WHERE tags.location.plant = 'Redmond43'", 100);
             query.nextAsTwin(function(err, results) {
                 if (err) {
-                    console.error('Failed to fetch the results: ' + err.message);
+                    console.error('Failed toofetch hello results: ' + err.message);
                 } else {
                     console.log("Devices in Redmond43: " + results.map(function(twin) {return twin.deviceId}).join(','));
                 }
@@ -105,46 +105,46 @@ Dans cette section, vous créez une application console Node.js qui ajoute des m
             query = registry.createQuery("SELECT * FROM devices WHERE tags.location.plant = 'Redmond43' AND properties.reported.connectivity.type = 'cellular'", 100);
             query.nextAsTwin(function(err, results) {
                 if (err) {
-                    console.error('Failed to fetch the results: ' + err.message);
+                    console.error('Failed toofetch hello results: ' + err.message);
                 } else {
                     console.log("Devices in Redmond43 using cellular network: " + results.map(function(twin) {return twin.deviceId}).join(','));
                 }
             });
         };
    
-    Le code précédent exécute deux requêtes : la première sélectionne uniquement les représentations des appareils situés dans l’usine **Redmond43**et la seconde affine la requête pour sélectionner uniquement les appareils qui sont également connectés via un réseau cellulaire.
+    code de précédent Hello exécute deux requêtes : hello sélectionne tout d’abord uniquement les jumeaux appareil hello des périphériques situés dans hello **Redmond43** usine et hello deuxième affine hello requête tooselect uniquement hello pour les appareils qui sont également connectés via réseau cellulaire.
    
-    Notez que le code précédent, quand il crée l’objet **query**, spécifie un nombre maximal de documents retournés. L’objet **query** contient une propriété booléenne **hasMoreResults** permettant d’appeler les méthodes **nextAsTwin** plusieurs fois afin de récupérer tous les résultats. Une méthode appelée **next** est disponible pour les résultats qui ne sont pas des représentations d’appareil, par exemple, les résultats de requêtes d’agrégation.
-6. Exécutez l’application avec :
+    Notez que hello le code précédent, lorsqu’il crée hello **requête** d’objet, spécifie un nombre maximal de documents renvoyés. Hello **requête** objet contient un **hasMoreResults** propriété booléenne que vous pouvez utiliser tooinvoke hello **nextAsTwin** méthodes tooretrieve tous les résultats de plusieurs fois. Une méthode appelée **next** est disponible pour les résultats qui ne sont pas des représentations d’appareil, par exemple, les résultats de requêtes d’agrégation.
+6. Exécutez l’application hello avec :
    
         node AddTagsAndQuery.js
    
-    Vous devriez voir un appareil dans les résultats de la requête demandant tous les appareils situés à **Redmond43**, et aucun pour la requête limitant les résultats aux appareils utilisant un réseau cellulaire.
+    Vous devez voir un périphérique dans les résultats de hello pour poser des requêtes hello pour tous les appareils qui se trouve dans **Redmond43** et none pour les requêtes hello qui restreint hello toodevices qui utilisent un réseau cellulaire.
    
     ![][1]
 
-Dans la section suivante, vous allez créer une application d’appareil qui signale les informations de connectivité et modifie le résultat de la requête de la section précédente.
+Dans la section suivante de hello vous créez une application de périphérique qui fournit des informations de connectivité hello et modifications hello résultat de requête hello dans la section précédente de hello.
 
-## <a name="create-the-device-app"></a>Créer l’application d’appareil
-Dans cette section, vous allez créer une application console Node.js qui se connecte à votre hub en tant que **myDeviceId**, puis met à jour les propriétés signalées de sa représentation d’appareil afin qu’elles contiennent les informations indiquant qu’elle est connectée par le biais d’un réseau cellulaire.
+## <a name="create-hello-device-app"></a>Créer l’application hello
+Dans cette section, vous créez une application de console Node.js qui connecte le concentrateur tooyour **myDeviceId**et ensuite les mises à jour son double de l’appareil de signalé toocontain hello informations sur les propriétés qu’il est connecté à l’aide d’un réseau cellulaire.
 
 > [!NOTE]
-> Actuellement, des représentations d’appareil sont accessibles uniquement à partir d’appareils qui se connectent à IoT Hub à l’aide du protocole MQTT. Pour obtenir des instructions sur la conversion d’une application de périphérique existante pour utiliser MQTT, voir [Support MQTT][lnk-devguide-mqtt].
+> À ce stade, jumeaux de périphérique est accessibles uniquement à partir d’appareils qui se connectent tooIoT concentrateur à l’aide du protocole MQTT hello. Reportez-vous toohello [prise en charge MQTT] [ lnk-devguide-mqtt] article pour obtenir des instructions sur la façon de tooconvert existant appareil application toouse MQTT.
 > 
 > 
 
-1. Créez un dossier vide nommé **reportconnectivity**. Dans le dossier **reportconnectivity**, créez un fichier package.json en utilisant la commande suivante à l’invite de commandes. Acceptez toutes les valeurs par défaut :
+1. Créez un dossier vide nommé **reportconnectivity**. Bonjour **reportconnectivity** dossier, créez un nouveau fichier package.json à l’aide de hello, la commande suivante à l’invite suivante. Acceptez les valeurs par défaut hello :
    
     ```
     npm init
     ```
-2. À l’invite de commandes, dans le dossier **reportconnectivity**, exécutez la commande suivante pour installer les packages **azure-iot-device** et **azure-iot-device-mqtt** :
+2. Votre invite de commandes Bonjour **reportconnectivity** dossier, exécutez hello suivant commande tooinstall hello **azure iot-appareil**, et **azure-iot-périphérique-mqtt** package :
    
     ```
     npm install azure-iot-device azure-iot-device-mqtt --save
     ```
-3. À l’aide d’un éditeur de texte, créez un fichier **ReportConnectivity.js** dans le dossier **reportconnectivity**.
-4. Ajoutez le code suivant au fichier **ReportConnectivity.js**, puis remplacez l’espace réservé **{device connection string}** par la chaîne de connexion à l’appareil que vous avez copiée lors de la création de l’identité d’appareil **myDeviceId** :
+3. À l’aide d’un éditeur de texte, créez un nouveau **ReportConnectivity.js** fichier Bonjour **reportconnectivity** dossier.
+4. Ajouter hello suivant code toohello **ReportConnectivity.js** de fichiers et remplacez-le par hello **{chaîne de connexion de périphérique}** espace réservé avec la chaîne de connexion de périphérique hello vous avez copié lors de la création de hello **myDeviceId** identité d’appareil :
    
         'use strict';
         var Client = require('azure-iot-device').Client;
@@ -182,13 +182,13 @@ Dans cette section, vous allez créer une application console Node.js qui se con
         }
         });
    
-    L’objet **Client** expose toutes les méthodes requises pour interagir avec des représentations d’appareil à partir de l’appareil. Le code précédent, après avoir initialisé l’objet **Client**, récupère la représentation d’appareil de **myDeviceId**, puis met à jour sa propriété signalée avec les informations de connectivité.
-5. Exécuter l’application d’appareil
+    Hello **Client** objet expose toutes les méthodes hello nécessitent de toointeract avec jumeaux de périphérique à partir de l’appareil de hello. Hello le code précédent, une fois qu’il initialise hello **Client** de l’objet, récupère hello double de périphérique pour **myDeviceId** et met à jour sa propriété signalée avec les informations de connectivité hello.
+5. Exécutez l’application hello
    
         node ReportConnectivity.js
    
-    Vous devriez voir le message `twin state reported`.
-6. À présent que l’appareil a signalé ses informations de connectivité, il doit apparaître dans les deux requêtes. Accédez au dossier **addtagsandqueryapp**, puis réexécutez les requêtes :
+    Vous devez voir le message de type hello `twin state reported`.
+6. Maintenant que hello appareil signalé ses informations de connectivité, il doit s’afficher dans les deux requêtes. Accédez à hello **addtagsandqueryapp** hello et exécutez à nouveau des requêtes :
    
         node AddTagsAndQuery.js
    
@@ -197,13 +197,13 @@ Dans cette section, vous allez créer une application console Node.js qui se con
     ![][3]
 
 ## <a name="next-steps"></a>Étapes suivantes
-Dans ce didacticiel, vous avez configuré un nouveau hub IoT dans le portail Azure, puis créé une identité d’appareil dans le registre des identités du hub IoT. Vous avez ajouté des métadonnées d’appareil en tant que balises à partir d’une application principale et écrit une application pour appareil simulée pour signaler des informations de connectivité d’appareil dans le jumeau d’appareil. Vous avez également appris à interroger ces informations à l’aide du langage de requête IoT Hub de type SQL.
+Dans ce didacticiel, vous configuré un IoT hub Bonjour portail Azure et ensuite créé une identité d’appareil dans le Registre des identités de hello IoT hub. Vous ajouté des métadonnées de l’appareil sous forme de balises à partir d’une application back-end et a écrit un appareil simulé application tooreport appareil connectivité des informations en double du périphérique hello. Vous avez également appris tooquery ces informations à l’aide du langage de requête de type SQL IoT Hub hello.
 
-Utilisez les ressources suivantes :
+Hello utilisation suivant comment les ressources toolearn à :
 
-* Pour savoir comment envoyer les données de télémétrie à partir d’appareils, consultez le didacticiel [Prise en main d’IoT Hub][lnk-iothub-getstarted].
-* Pour savoir comment configurer des appareils à l’aide des propriétés de représentation d’appareil souhaitées, consultez le didacticiel [Utiliser des propriétés souhaitées pour configurer des appareils][lnk-twin-how-to-configure].
-* Pour savoir comment contrôler des appareils de façon interactive (par exemple en mettant en marche un ventilateur à partir d’une application contrôlée par l’utilisateur), consultez le didacticiel [Utiliser des méthodes directes][lnk-methods-tutorial].
+* envoyer la télémétrie des appareils avec hello [prise en main IoT Hub] [ lnk-iothub-getstarted] (didacticiel),
+* configurer des appareils à l’aide des propriétés de votre choix du double de l’appareil avec hello [utilisation souhaitée propriétés tooconfigure dispositifs] [ lnk-twin-how-to-configure] (didacticiel),
+* contrôler les périphériques de manière interactive (telles que l’activation sur un ventilateur à partir d’une application contrôlée par l’utilisateur), avec hello [utiliser les méthodes directes] [ lnk-methods-tutorial] didacticiel.
 
 <!-- images -->
 [1]: media/iot-hub-node-node-twin-getstarted/service1.png

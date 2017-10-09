@@ -6,7 +6,7 @@
 | Réplicas du cache Redis (pour la haute disponibilité) |1 |
 | Partitions dans un cache premium avec le clustering |10 |
 
-Les limites et les tailles des solutions de cache Redis Azure varient en fonction du niveau de tarification. Pour connaître les niveaux de tarification et les tailles associées, consultez la section [Tarification du cache Redis Azure](https://azure.microsoft.com/pricing/details/cache/).
+Les limites et les tailles des solutions de cache Redis Azure varient en fonction du niveau de tarification. hello toosee tarification niveaux et leur taille associée, consultez [tarification du cache Azure Redis](https://azure.microsoft.com/pricing/details/cache/).
 
 Pour plus d’informations sur les limites de configuration du cache Redis Azure, consultez la section [Configuration du serveur Redis par défaut](../articles/redis-cache/cache-configure.md#default-redis-server-configuration).
 

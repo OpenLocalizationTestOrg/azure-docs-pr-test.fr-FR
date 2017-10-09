@@ -1,5 +1,5 @@
 ---
-title: "Exemples et scénarios courants - Azure Logic Apps | Microsoft Docs"
+title: "aaaExamples & communs scénarios - Azure Logic Apps | Documents Microsoft"
 description: "Découvrez les applications logiques grâce à des exemples, des scénarios et des didacticiels."
 services: logic-apps
 author: jeffhollan
@@ -14,34 +14,34 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 08/9/2017
 ms.author: LADocs; jehollan
-ms.openlocfilehash: 50df1e3db239a6aa34ac91bfbd582625c5b0041b
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 17caa8539ec6a57726b9c6c07a71fb74caa07ccb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="examples-and-common-scenarios-for-azure-logic-apps"></a>Exemples et scénarios courants relatifs à Azure Logic Apps
 
-Voici quelques exemples et scénarios courants qui vous aideront à en savoir plus sur les nombreux modèles et fonctionnalités d’Azure Logic Apps.
+toohelp vous en savoir plus sur Bonjour plusieurs modèles et fonctionnalités dans Azure Logic Apps, Voici des exemples et des scénarios courants.
 
 ## <a name="key-scenarios-for-logic-apps"></a>Scénarios clés relatifs aux applications logiques
 
-Azure Logic Apps assure une orchestration et une intégration résilientes pour différents services. Le service Logic Apps est un service « sans serveur ». Ainsi, vous n’avez pas à vous soucier de la mise à l’échelle ou des instances. Il vous suffit de définir le flux de travail (déclencheurs et actions). La plateforme sous-jacente gère la mise à l’échelle, la disponibilité et les performances. L’utilisation d’Azure Logic Apps convient parfaitement à tout scénario impliquant la coordination de plusieurs actions, en particulier lorsque plusieurs systèmes entrent en jeu. Voici quelques modèles et exemples.
+Azure Logic Apps assure une orchestration et une intégration résilientes pour différents services. service d’applications de la logique de Hello est « sans serveur », vous n’avez pas tooworry relatives à l’échelle ou instances - vous avez toodo ne définir hello workflow (déclencheur et actions). plateforme sous-jacente de Hello gère la mise à l’échelle, la disponibilité et performances. N’importe quel scénario dans lequel vous devez toocoordinate plusieurs actions, plus particulièrement sur plusieurs systèmes, est une bonne cas d’utilisation pour Azure Logic Apps. Voici quelques modèles et exemples.
 
-## <a name="respond-to-triggers-and-extend-actions"></a>Répondre aux déclencheurs et étendre des actions
+## <a name="respond-tootriggers-and-extend-actions"></a>Répondre tootriggers et étendre des actions
 
-Chaque application logique commence avec un déclencheur. Par exemple, votre flux de travail peut être démarré par un événement de calendrier, un appel manuel ou un événement issu d’un système externe, tel que le déclencheur « when a file is added to an FTP server » (lorsqu’un fichier est ajouté à un serveur FTP). Actuellement, Azure Logic Apps prend en charge plus de 100 connecteurs prêts à l’emploi, des connecteurs SAP locaux à Microsoft Cognitive Services. Pour les systèmes et services pour lesquels aucun connecteur n’a été publié, vous pouvez également étendre les applications logiques.
+Chaque application logique commence avec un déclencheur. Par exemple, votre flux de travail peut commencer par un événement de planification, un appel manuels ou un événement à partir d’un système externe, par exemple hello « lorsqu’un fichier est ajouté tooan FTP serveur » de déclencheur. Azure Logic Apps prend actuellement en charge plus de 100 connecteurs prêt à l’emploi, allant de local SAP tooMicrosoft cognitifs Services. Pour les systèmes et services pour lesquels aucun connecteur n’a été publié, vous pouvez également étendre les applications logiques.
 
 * [Créer des actions ou des déclencheurs personnalisés](../logic-apps/logic-apps-create-api-app.md)
 * [Configurer des actions de longue durée pour les exécutions de flux de travail](../logic-apps/logic-apps-create-api-app.md)
-* [Répondre aux événements et actions externes à l’aide de webhooks](../logic-apps/logic-apps-create-api-app.md)
-* [Appeler, déclencher ou imbriquer des flux de travail avec des réponses synchrones aux requêtes HTTP](../logic-apps/logic-apps-http-endpoint.md)
-* [Didacticiel expliquant comment répondre aux webhooks SMS Twilio et envoyer une réponse textuelle](https://channel9.msdn.com/Blogs/Windows-Azure/Azure-Logic-Apps-Walkthrough-Webhook-Functions-and-an-SMS-Bot)
+* [Répondre tooexternal événements et actions avec webhooks](../logic-apps/logic-apps-create-api-app.md)
+* [Appelez, déclencheur, ou imbriquer des flux de travail avec les réponses synchrones tooHTTP demandes](../logic-apps/logic-apps-http-endpoint.md)
+* [Didacticiel : Répondre tooTwilio SMS webhooks et envoyer une réponse de texte](https://channel9.msdn.com/Blogs/Windows-Azure/Azure-Logic-Apps-Walkthrough-Webhook-Functions-and-an-SMS-Bot)
 * [Didacticiel expliquant comment créer un tableau de bord social reposant sur l’intelligence artificielle en quelques minutes avec Logic Apps et Power BI](http://aka.ms/logicappsdemo)
 
 ## <a name="error-handling-logging-and-control-flow-capabilities"></a>Gestion des erreurs, journalisation et fonctionnalités de flux de contrôle
 
-Les applications logiques incluent de puissantes fonctionnalités de flux de contrôle avancé, notamment des conditions, des commutateurs, des boucles et des étendues. Pour garantir la résilience de vos solutions, vous pouvez également implémenter la gestion des erreurs et des exceptions dans vos flux de travail. Pour la notification et les journaux de diagnostic relatifs à l’état d’exécution des flux de travail, Azure Logic Apps fournit également la surveillance et des alertes.
+Les applications logiques incluent de puissantes fonctionnalités de flux de contrôle avancé, notamment des conditions, des commutateurs, des boucles et des étendues. les solutions résilient tooensure, vous pouvez également implémenter erreur et gestion des exceptions dans vos workflows. Pour la notification et les journaux de diagnostic relatifs à l’état d’exécution des flux de travail, Azure Logic Apps fournit également la surveillance et des alertes.
 
 * [Effectuer différentes actions avec les instructions switch](../logic-apps/logic-apps-switch-case.md)
 * [Traiter les éléments dans des tableaux et collections avec des boucles et des lots dans les applications logiques](../logic-apps/logic-apps-loops-and-scopes.md)
@@ -52,15 +52,15 @@ Les applications logiques incluent de puissantes fonctionnalités de flux de con
 
 ## <a name="deploy-and-manage-logic-apps"></a>Déployer et gérer des applications logiques
 
-Vous pouvez développer et déployer des applications logiques entièrement avec Visual Studio, Visual Studio Team Services ou tout autre outil de compilation automatisée et contrôle de code source. Pour prendre en charge le déploiement de flux de travail et de connexions dépendantes d’un modèle de ressource, les applications logiques utilisent des modèles de déploiement de ressources Azure. Les outils Visual Studio génèrent automatiquement ces modèles, que vous pouvez archiver dans le contrôle de code source à des fins de contrôle de version.
+Vous pouvez développer et déployer des applications logiques entièrement avec Visual Studio, Visual Studio Team Services ou tout autre outil de compilation automatisée et contrôle de code source. déploiement toosupport pour les connexions dépendantes dans un modèle de ressource et les flux de travail, les applications de logique utilisent des modèles de déploiement de ressources Azure. Visual Studio tools génère automatiquement ces modèles, vous pouvez vérifier dans le contrôle toosource pour le contrôle de version.
 
 * [Créer un modèle de déploiement automatisé](../logic-apps/logic-apps-create-deploy-template.md)
 * [Créer et déployer des applications logiques à partir de Visual Studio](../logic-apps/logic-apps-deploy-from-vs.md)
-* [Surveiller l’intégrité de vos applications logiques](../logic-apps/logic-apps-monitor-your-logic-apps.md)
+* [Surveiller la santé de vos applications logique hello](../logic-apps/logic-apps-monitor-your-logic-apps.md)
 
 ## <a name="content-types-conversions-and-transformations-within-a-run"></a>Types de contenu, conversions et transformations d’une exécution
 
-Vous pouvez accéder à plusieurs types de contenu, les convertir et les transformer à l’aide des nombreuses fonctions du [langage de définition de flux de travail](http://aka.ms/logicappsdocs) d’Azure Logic Apps. Par exemple, vous pouvez effectuer des conversions entre une chaîne, JSON et XML avec les expressions de flux de travail `@json()` et `@xml()`. Le moteur Logic Apps préserve les types de contenu pour prendre en charge le transfert de contenu entre les services sans perte.
+Vous pouvez accéder, convertir et transformer plusieurs types de contenu à l’aide de hello de nombreuses fonctions Bonjour Azure Logic Apps [langage de définition de flux de travail](http://aka.ms/logicappsdocs). Par exemple, vous pouvez convertir entre une chaîne, JSON et XML avec hello `@json()` et `@xml()` les expressions de flux de travail. moteur de Logic Apps Hello conserve le transfert de contenu toosupport types de contenu de manière sans perte entre les services.
 
 * [Gérer les types de contenu non-JSON](../logic-apps/logic-apps-content-type.md), comme `application/xml`, `application/octet-stream` et`multipart/formdata`
 * [Fonctionnement des expressions de flux de travail dans les applications logiques](../logic-apps/logic-apps-author-definitions.md)
@@ -82,5 +82,5 @@ Les applications logiques offrent également une intégration avec de nombreux s
 ## <a name="next-steps"></a>Étapes suivantes
 
 - [Gérer les erreurs et les exceptions dans Azure Logic Apps](../logic-apps/logic-apps-exception-handling.md)
-- [Créer des définitions de flux de travail avec le langage de définition de flux de travail](../logic-apps/logic-apps-author-definitions.md)
+- [Créer des définitions de flux de travail avec le langage de définition de flux de travail hello](../logic-apps/logic-apps-author-definitions.md)
 - [Envoyer vos questions, commentaires ou suggestions concernant les améliorations que nous pourrions apporter à Azure Logic Apps](https://feedback.azure.com/forums/287593-logic-apps)

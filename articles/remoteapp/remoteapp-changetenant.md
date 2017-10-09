@@ -1,6 +1,6 @@
 ---
-title: Modifier le client Azure Active Directory dans Azure RemoteApp | Microsoft Docs
-description: "Apprenez à modifier le client Azure Active Directory associé à Azure RemoteApp"
+title: "client d’Azure Active Directory hello aaaChange dans Azure RemoteApp | Documents Microsoft"
+description: "Découvrez comment client Azure Active Directory de hello toochange associé à Azure RemoteApp"
 services: remoteapp
 documentationcenter: 
 author: msmbaldwin
@@ -13,39 +13,39 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/26/2017
 ms.author: mbaldwin
-ms.openlocfilehash: 7c6c4ded8a11d8399968b2c32aff055d7f3ae5f8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d0928b099b7fcfb3ab16077e295d7aaf519c3653
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="change-the-azure-active-directory-tenant-in-azure-remoteapp"></a>Modification du client Azure Active Directory dans Azure RemoteApp
+# <a name="change-hello-azure-active-directory-tenant-in-azure-remoteapp"></a>Changer le locataire d’Azure Active Directory hello dans Azure RemoteApp
 > [!IMPORTANT]
-> Azure RemoteApp ne sera plus disponible à partir du 31 août 2017. Pour plus d’informations, lisez [l’annonce](https://go.microsoft.com/fwlink/?linkid=821148) .
+> Azure RemoteApp ne sera plus disponible à partir du 31 août 2017. Hello de lecture [annonce](https://go.microsoft.com/fwlink/?linkid=821148) pour plus d’informations.
 > 
 > 
 
-Azure RemoteApp utilise Azure Active Directory (Azure AD) pour autoriser l’accès utilisateur. Le seul locataire Azure AD que vous pouvez utiliser dans Azure RemoteApp est celui qui est associé à l'abonnement Azure. Vous pouvez afficher l'abonnement associé dans la page **Paramètres** du portail. Examinez la colonne **Annuaire** dans l'onglet **Abonnements**.
+Azure RemoteApp utilise l’accès des utilisateurs tooallow Azure Active Directory (Azure AD). client Hello uniquement à Azure AD que vous pouvez utiliser dans Azure RemoteApp est hello associé hello abonnement Azure. Vous pouvez afficher les abonnement hello associé sur hello **paramètres** page hello portail. Examinez hello **active** colonne hello **abonnements** onglet.
 
 > [!NOTE]
-> Pour que cette modification réussisse, commencez par supprimer tous les utilisateurs dans le locataire Azure Active Directory existant à partir de toutes les collections Azure RemoteApp. Pour cela, accédez au portail Azure, puis à l'onglet **Azure RemoteApp** et ouvrez chaque collection Azure RemoteApp. Accédez à l’onglet **Utilisateurs** et supprimez les utilisateurs qui appartiennent à votre client Azure Active Directory actuel. Répétez l’opération pour toutes les collections Azure RemoteApp. Sans cela, vous ne serez pas en mesure de créer des collections ni de les corriger.
+> Pour cette modification toosucceed, tout d’abord supprimer tous les utilisateurs à partir de client Azure Active Directory existant hello de toutes les collections Azure RemoteApp. toodo, accédez toohello portail Azure, accédez toohello **Azure RemoteApp** onglet et ouvrir chaque collection Azure RemoteApp. Accédez toohello **utilisateurs** onglet et supprimer des utilisateurs qui appartiennent tooyour locataire d’Azure Active Directory actuel. Répétez l’opération pour toutes les collections Azure RemoteApp. Sans cela, vous ne serez pas en mesure de toocreate ou des collections de correctif.
 > 
 > 
 
-Si vous souhaitez utiliser un autre locataire, suivez ces étapes pour modifier l’association avec votre abonnement :
+Si vous voulez toouse un autre client, utilisez ces étapes toochange hello associé à votre abonnement :
 
-1. Dans le portail, supprimez les utilisateurs Azure AD auxquels vous avez donné accès aux collections Azure RemoteApp. (Voir la remarque précédente pour les étapes de cette procédure).
-2. Définissez un compte Microsoft (anciennement appelé Live ID) comme administrateur du service. (Ne savez pas si vous êtes déjà l'administrateur de service ? Vous pouvez vous en assurer en cliquant sur **Paramètres -> Administrateurs**.) À présent, voici comment effectuer les modifications
+1. Dans le portail hello, supprimez tout toowhich d’utilisateurs Azure AD vous avez donné accès tooAzure RemoteApp collections. (Voir Remarque hello ci-dessus pour obtenir des instructions sur la façon de toodo cela.)
+2. Définir un compte Microsoft (anciennement appelé Live ID) en tant qu’administrateur de Service hello. (Ne pas savoir si vous êtes déjà administrateur de service hello ? Vous pouvez vous en assurer en cliquant sur **Paramètres -> Administrateurs**.) À présent, voici comment effectuer les modifications
    
-   1. Cliquez sur l'utilisateur actuellement connecté dans le coin supérieur droit, puis cliquez sur **Afficher ma facture**.
-   2. Cliquez sur l'abonnement. Ensuite, sur la nouvelle page, faites défiler vers le bas et cliquez sur **Modifiez les données d'abonnement** à droite. (Triez du milieu en bas à droite, si cela peut vous aider.)
-   3. Saisissez le compte Microsoft pour l'utilisateur qui doit être l'administrateur du service.
-3. Déconnectez-vous maintenant du portail, puis reconnectez-vous avec le compte Microsoft que vous avez spécifié à l'étape précédente.
+   1. Cliquez sur un utilisateur dans le coin supérieur droit de hello hello, puis cliquez sur **afficher ma facture**.
+   2. Cliquez sur l’abonnement hello. Dans nouvelle page de hello, faites défiler la liste, puis cliquez sur **modifier les détails de l’abonnement** Bonjour droite. (Tri de hello intermédiaire en bas à droite, si cela vous aide à trouver.)
+   3. Type de compte Microsoft de hello pour utilisateur hello qui doit être administrateur de service hello.
+3. Maintenant, déconnectez-vous hello portail et puis reconnectez-vous avec hello compte Microsoft que vous avez spécifié à l’étape précédente de hello.
 4. Cliquez sur **Nouveau -> Services d’application -> Active Directory -> Annuaire -> Création personnalisée**.
-5. Sous **Annuaire**, choisissez **Utiliser un annuaire existant**. Vous allez devoir vous déconnecter du portail maintenant. Appuyez sur **Je suis prêt à me déconnecter**.
-6. Reconnectez-vous au portail en tant qu'un administrateur général de l'annuaire que vous souhaitez ajouter. (Si vous n'étiez pas déjà un administrateur général, vous le serez après vous être reconnecté et déconnecté.)
-7. Lors de votre connexion, il vous sera demandé si vous souhaitez utiliser votre locataire Active Directory existant avec votre abonnement. Cliquez sur **Continuer**, puis sur **Se déconnecter maintenant**.
-8. Connectez-vous à nouveau et revenez à **Paramètres -> Abonnements**. Sélectionnez votre abonnement, puis cliquez sur **Modifier l'annuaire**. Sélectionnez le locataire Azure AD à utiliser.
+5. Sous **Annuaire**, choisissez **Utiliser un annuaire existant**. Nous allons toohave toosign vous déconnecte du portail hello maintenant, choisissez **je suis prêt toobe me déconnecter**.
+6. Vous reconnecter à hello portail en tant qu’administrateur général du répertoire de hello souhaité tooadd. (Si vous n'étiez pas déjà un administrateur général, vous le serez après vous être reconnecté et déconnecté.)
+7. Vous êtes invité lors de la connexion si vous souhaitez toouse votre client Active Directory existant avec votre abonnement. Cliquez sur **Continuer**, puis sur **Se déconnecter maintenant**.
+8. Vous reconnecter et revenir trop**Paramètres -> abonnements**. Sélectionnez votre abonnement, puis cliquez sur **Modifier l'annuaire**. Sélectionnez le locataire hello Azure AD que vous souhaitez toouse.
 
-Vous pouvez à présent utiliser le client Azure AD pour contrôler l’accès à l’abonnement Azure et configurer l’accès utilisateur dans Azure RemoteApp.
+Vous pouvez maintenant utiliser hello AD Azure nouveau locataire toocontrol accès toohello accès d’utilisateur abonnement et tooconfigure Azure dans Azure RemoteApp.
 

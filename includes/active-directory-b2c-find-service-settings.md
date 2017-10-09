@@ -1,7 +1,9 @@
+Modifié par Sipi.
+
 [!INCLUDE [active-directory-b2c-switch-b2c-tenant](active-directory-b2c-switch-b2c-tenant.md)]
 
 [!INCLUDE [active-directory-b2c-portal-navigate-b2c-service](active-directory-b2c-portal-navigate-b2c-service.md)]
 
-Si Azure AD B2C ne figure pas dans la liste de services, développez la liste **Plus de services** en dessous de la barre de navigation sur le côté inférieur droit du portail. Recherchez **Azure AD B2C** et sélectionnez **Azure AD B2C** dans la liste des résultats. Vous pouvez également sélectionner l’icône représentant une étoile pour ajouter Azure AD B2C à la liste de vos services favoris.
+Si Azure AD B2C n’est pas dans la liste des services hello, développez **davantage de services** sous la barre de navigation de hello en hello en bas à gauche du portail de hello. Recherchez **Azure AD B2C** et sélectionnez **Azure AD B2C** dans la liste des résultats hello. Vous pouvez également sélectionner hello étoile tooadd Azure AD B2C il liste de vos services favoris.
 
 ![Recherche d’Azure AD B2C service](media/active-directory-b2c-find-service-settings/navigate-to-azure-ad-b2c.png)

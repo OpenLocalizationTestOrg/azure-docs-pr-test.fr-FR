@@ -1,5 +1,5 @@
 ---
-title: Gestion des erreurs et des exceptions - Azure Logic Apps | Microsoft Docs
+title: aaaError & exceptions - Azure Logic Apps | Documents Microsoft
 description: "Modèles de gestion des erreurs et des exceptions dans Azure Logic Apps"
 services: logic-apps
 documentationcenter: .net,nodejs,java
@@ -14,21 +14,21 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 10/18/2016
 ms.author: LADocs; jehollan
-ms.openlocfilehash: 9af2f71b3d288cc6f4e271d0915545d43a1249bc
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 326a252310c8dfb154e583f91c9421675e448d1f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="handle-errors-and-exceptions-in-azure-logic-apps"></a>Gérer les erreurs et les exceptions dans Azure Logic Apps
 
-Azure Logic Apps propose un ensemble complet d’outils et de modèles afin de garantir la résistance et la fiabilité de vos intégrations contre les défaillances. Toute architecture d’intégration nécessite que les temps d’arrêt et les problèmes soient gérés de manière appropriée. Logic Apps optimise la gestion des erreurs, en vous offrant les outils dont vous avez besoin pour gérer les exceptions et les erreurs qui se produisent dans vos flux de travail.
+Azure Logic Apps fournit des outils et modèles toohelp vous vérifiez que votre intégrations sont solide et fiable contre les défaillances. Architecture d’intégration pose problème hello de fabrication des temps d’arrêt tooappropriately que handle ou des problèmes à partir de systèmes dépendants. Logique d’applications facilite la gestion des erreurs une expérience de première classe, ce qui vous donne hello outils tooact sur les erreurs et exceptions dans vos workflows.
 
 ## <a name="retry-policies"></a>Stratégies de nouvelle tentative
 
-Le type de gestion des erreurs et des exceptions le plus simple consiste à utiliser une stratégie de nouvelle tentative. Cette stratégie définit si l’action doit faire l’objet d’une nouvelle tentative en cas d’expiration ou d’échec de la demande initiale (toute demande ayant entraîné une réponse 429 ou 5xx). Par défaut, toutes les actions font l’objet de 4 tentatives supplémentaires sur des intervalles de 20 secondes. Par conséquent, si la première demande reçoit une réponse `500 Internal Server Error`, le moteur de flux de travail s’interrompt pendant 20 secondes, puis tente à nouveau d’exécuter la demande. Si à l’issue de toutes les tentatives, la réponse renvoie toujours une exception ou un échec, le flux de travail continue et marque l’état de l’action comme `Failed`.
+Stratégie de nouvelle tentative est de type de base de hello d’exception et la gestion des erreurs. Si une demande initiale a expiré ou a échoué (toute demande qui entraîne un 429 ou réponse 5xx), cette stratégie définit si l’action de hello doit réessayer. Par défaut, toutes les actions font l’objet de 4 tentatives supplémentaires sur des intervalles de 20 secondes. Par conséquent, si la première demande de hello reçoit un `500 Internal Server Error` réponse, le moteur de flux de travail hello s’interrompt pendant 20 secondes et tentatives hello demande à nouveau. Si après toutes les nouvelles tentatives, hello réponse est toujours une exception ou une défaillance, le flux de travail de hello continue et marques hello l’état de l’action en tant que `Failed`.
 
-Vous pouvez configurer des stratégies de nouvelle tentative dans les **entrées** d’une action en particulier. Une stratégie de nouvelle tentative peut par exemple être configurée pour effectuer jusqu’à 4 tentatives avec des intervalles d’1 heure. Pour plus d’informations sur les propriétés d’entrée, voir [Actions et déclencheurs de flux de travail][retryPolicyMSDN].
+Vous pouvez configurer des stratégies de nouvelle tentative dans hello **entrées** pour une action particulière. Par exemple, vous pouvez configurer un tootry de stratégie de nouvelle tentative jusqu'à 4 fois sur des intervalles de 1 heure. Pour plus d’informations sur les propriétés d’entrée, voir [Actions et déclencheurs de flux de travail][retryPolicyMSDN].
 
 ```json
 "retryPolicy" : {
@@ -38,7 +38,7 @@ Vous pouvez configurer des stratégies de nouvelle tentative dans les **entrées
     }
 ```
 
-Si vous voulez que votre action HTTP effectue 4 tentatives et attende 10 minutes entre chacune d’entre elles, vous devez utiliser la définition suivante :
+Si vous souhaitiez votre tooretry d’action HTTP 4 fois et que vous attendez 10 minutes entre chaque tentative, vous utiliseriez hello définition :
 
 ```json
 "HTTP": 
@@ -57,11 +57,11 @@ Si vous voulez que votre action HTTP effectue 4 tentatives et attende 10 minut
 }
 ```
 
-Pour plus d’informations sur la syntaxe prise en charge, consultez la [section relative aux stratégies de nouvelle tentative sous Actions et déclencheurs de flux de travail][retryPolicyMSDN].
+Pour plus d’informations sur la syntaxe prise en charge, consultez hello [section stratégie de nouvelle tentative dans les Actions de flux de travail et les déclencheurs][retryPolicyMSDN].
 
-## <a name="catch-failures-with-the-runafter-property"></a>Identification des échecs avec la propriété RunAfter
+## <a name="catch-failures-with-hello-runafter-property"></a>Intercepter des échecs avec hello RunAfter propriété
 
-Chaque action d’application logique déclare quelles actions doivent se terminer avant de démarrer une autre action, hiérarchisant ainsi les étapes de votre flux de travail. Ce classement est connu sous le nom de propriété `runAfter` dans la définition de l’action. Cette propriété est un objet qui décrit les actions et les états d’action qui exécutent l’action. Par défaut, toutes les actions ajoutées par le biais du Concepteur d’application logique sont définies avec la propriété `runAfter` par rapport à l’étape précédente, si celle-ci était `Succeeded`. Toutefois, vous pouvez personnaliser cette valeur pour déclencher des actions lorsque les actions précédentes sont `Failed`, `Skipped` ou un ensemble de valeurs possible. Si vous souhaitez ajouter un élément à une rubrique Service Bus désignée suite à l’échec d’une action spécifique `Insert_Row`, vous pouvez utiliser la configuration `runAfter` suivante :
+Chaque action d’application logique déclare les actions que doivent se terminer avant le début d’action hello, telles que l’ordre des étapes de hello dans votre flux de travail. Dans la définition d’action hello, ce classement est connu comme hello `runAfter` propriété. Cette propriété est un objet qui décrit les actions et les États de l’action exécutent l’action de hello. Par défaut, toutes les actions sont ajoutées via hello Concepteur de logique d’application sont définies trop`runAfter` hello précédemment si hello étape précédente `Succeeded`. Toutefois, vous pouvez personnaliser cette actions toofire la valeur lorsque les actions précédentes ont `Failed`, `Skipped`, ou un ensemble possible de ces valeurs. Si vous souhaitiez tooadd un tooa élément désigné rubrique Service Bus après une action spécifique `Insert_Row` échoue, vous pouvez utiliser hello suivant `runAfter` configuration :
 
 ```json
 "Send_message": {
@@ -89,7 +89,7 @@ Chaque action d’application logique déclare quelles actions doivent se termin
 }
 ```
 
-Notez que la propriété `runAfter` est définie pour se déclencher si l’action `Insert_Row` est `Failed`. Pour exécuter l’action si l’état de l’action est `Succeeded`, `Failed` ou `Skipped`, utilisez cette syntaxe :
+Hello d’avis `runAfter` propriété a la valeur toofire si hello `Insert_Row` action est `Failed`. action de hello toorun si l’état de l’action hello est `Succeeded`, `Failed`, ou `Skipped`, utilisez la syntaxe suivante :
 
 ```json
 "runAfter": {
@@ -100,21 +100,21 @@ Notez que la propriété `runAfter` est définie pour se déclencher si l’acti
 ```
 
 > [!TIP]
-> Les actions qui s’exécutent suite à l’échec d’une action précédente et qui sont correctement exécutées seront marquées comme `Succeeded`. Ce comportement signifie que si vous avez correctement intercepté tous les échecs dans un flux de travail, l’exécution elle-même est marquée comme `Succeeded`.
+> Les actions qui s’exécutent suite à l’échec d’une action précédente et qui sont correctement exécutées seront marquées comme `Succeeded`. Cela signifie que si vous avec succès toutes les défaillances dans un flux de travail, hello exécuter lui-même est marqué comme `Succeeded`.
 
-## <a name="scopes-and-results-to-evaluate-actions"></a>Étendues et résultats permettant d’évaluer les actions
+## <a name="scopes-and-results-tooevaluate-actions"></a>Actions de tooevaluate étendues et les résultats
 
-De la même manière que vous pouvez exécuter des actions individuelles, vous pouvez également regrouper des actions au sein d’une [étendue](../logic-apps/logic-apps-loops-and-scopes.md) qui agit comme un regroupement logique d’actions. Les étendues sont utiles pour organiser vos actions d’application logique et pour effectuer des évaluations d’agrégation sur l’état d’une étendue. L’étendue elle-même se voit attribuer un état une fois toutes les actions de l’étendue effectuées. L’état de l’étendue est déterminé avec les mêmes critères que pour une exécution. Si la dernière action dans une branche de l’exécution est `Failed` ou `Aborted`, l’état est `Failed`.
+Toohow similaires que vous pouvez exécuter après des actions individuelles, vous pouvez également regrouper actions à l’intérieur d’un [étendue](../logic-apps/logic-apps-loops-and-scopes.md), qui agissent comme un regroupement logique des actions. Les étendues sont utiles pour organiser des actions de votre logique d’application et pour effectuer des évaluations d’agrégation sur état hello d’une étendue. étendue Hello lui-même reçoit un état une fois toutes les actions dans une portée ont terminé. état de l’étendue Hello est déterminé par hello mêmes critères comme une série de tests. Si la dernière action de hello dans une branche de l’exécution est `Failed` ou `Aborted`, l’état hello est `Failed`.
 
-Vous pouvez utiliser la propriété `runAfter` sur une étendue qui a été marquée comme `Failed` pour déclencher des actions spécifiques en raison d’échecs survenus dans l’étendue. L’exécution suite à l’échec d’une étendue vous permet de créer une seule action pour intercepter des échecs, si *des* actions figurent dans l’étendue.
+toofire des actions spécifiques pour les erreurs qui se sont produits au sein de la portée de hello, vous pouvez utiliser `runAfter` avec une étendue qui est marqué comme `Failed`. Si *tout* actions dans la portée de hello échouent, en cours d’exécution après l’échec d’une étendue vous permet de vous créer un toocatch action unique échecs.
 
-### <a name="getting-the-context-of-failures-with-results"></a>Obtention du contexte des échecs avec les résultats
+### <a name="getting-hello-context-of-failures-with-results"></a>Lors de l’obtention de contexte hello d’échecs de résultats
 
-Bien que l’interception des échecs d’une étendue soit très utile, vous aurez peut-être également besoin du contexte pour identifier précisément les actions qui ont échoué, ainsi que les codes d’erreur ou d’état renvoyés. La fonction de flux de travail `@result()` fournit le contexte dans le résultat de toutes les actions au sein d’une étendue.
+Bien qu’il est utile d’intercepter les défaillances d’une étendue, vous pouvez également vous toohelp de contexte que vous comprenez exactement quelles actions a échoué, et les erreurs ou les codes d’état retournés. Hello `@result()` fonction de workflow fournit le contexte relatif résultat hello de toutes les actions dans une étendue.
 
-`@result()` prend un paramètre unique, le nom de l’étendue, et renvoie un tableau de tous les résultats d’action dans cette étendue. Ces objets d’action incluent les mêmes attributs que l’objet `@actions()` , y compris l’heure de début de l’action, l’heure de fin de l’action, l’état de l’action, les entrées de l’action, les ID de corrélation d’action, ainsi que ses résultats. Vous pouvez facilement associer une fonction `@result()` avec une propriété `runAfter` pour envoyer le contexte de toutes les actions qui ont échoué dans une étendue.
+`@result()`prend un seul paramètre, le nom de l’étendue et retourne un tableau de tous les résultats d’action hello à partir de cette étendue. Ces objets action incluent hello même attributs sous la forme d’hello `@actions()` sort de l’objet, y compris l’heure de début d’action, heure de fin d’action, état de l’action, entrées d’action, ID de corrélation action et action. contexte toosend de toutes les actions qui ont échoué dans une étendue, vous pouvez facilement associer un `@result()` fonctionne avec un `runAfter`.
 
-Pour exécuter une action *pour chaque* action dans une étendue marquée comme `Failed`, filtrez les résultats sur les actions ayant échoué, et associez `@result()` avec une action **[Filtrer le tableau](../connectors/connectors-native-query.md)** et une boucle **[ForEach](../logic-apps/logic-apps-loops-and-scopes.md)**. Vous pouvez prendre le tableau des résultats filtrés et effectuer une action pour chaque échec à l’aide de la boucle **ForEach** . Cet exemple, suivi d’une explication détaillée, envoie une demande HTTP POST avec le corps de réponse de toutes les actions qui ont échoué dans l’étendue `My_Scope`.
+tooexecute une action *pour chaque* action dans une étendue qui `Failed`, tableau de hello de filtre de tooactions de résultats qui ont échoué, vous pouvez également associer des `@result()` avec un  **[filtre tableau](../connectors/connectors-native-query.md)**  action et un  **[ForEach](../logic-apps/logic-apps-loops-and-scopes.md)**  boucle. Vous pouvez prendre le tableau de résultats filtré hello et effectuer une action pour chaque défaillance à l’aide de hello **ForEach** boucle. Voici un exemple, suivi d’une explication détaillée, qui envoie une demande HTTP POST avec un corps de la réponse de toutes les actions qui ont échoué hello étendue hello `My_Scope`.
 
 ```json
 "Filter_array": {
@@ -155,22 +155,22 @@ Pour exécuter une action *pour chaque* action dans une étendue marquée comme 
 }
 ```
 
-Voici la procédure détaillée pour décrire ce qui se produit :
+Voici un toodescribe de procédure pas à pas détaillées que se passe-t-il :
 
-1. Pour obtenir le résultat de toutes les actions au sein de `My_Scope`, l’action **Filtrer le tableau** permet de filtrer `@result('My_Scope')`.
+1. résultat de hello tooget de toutes les actions dans `My_Scope`, hello **filtre tableau** filtres d’action `@result('My_Scope')`.
 
-2. La condition de l’action **Filtrer le tableau** est tout élément `@result()` dont l’état est égal à `Failed`. Cette condition filtre le tableau de tous les résultats d’action de `My_Scope` selon un tableau contenant uniquement les résultats d’action ayant échoué.
+2. Hello condition pour **filtre tableau** toute `@result()` élément ayant l’état égal trop`Failed`. Cette condition de filtre de tableau hello avec tous les résultats d’action à partir de `My_Scope` tableau tooan avec uniquement échec des résultats d’action.
 
-3. Exécution d’une action **For Each** sur les résultats du **tableau filtré**. Cette étape exécute une action *pour chaque* résultat d’action ayant échoué filtré précédemment.
+3. Effectuer un **pour chaque** action sur hello **filtrée de tableau** génère. Cette étape exécute une action *pour chaque* résultat d’action ayant échoué filtré précédemment.
 
-    Si une action unique dans l’étendue a échoué, les actions de `foreach` s’exécutent une seule fois. 
+    En cas d’échec d’une action unique dans la portée de hello, hello actions Bonjour `foreach` n'exécuter qu’une seule fois. 
     De nombreuses actions ayant échoué peuvent provoquer une action par échec.
 
-4. Envoi d’une requête HTTP POST sur le corps de réponse de l’élément `foreach`, ou `@item()['outputs']['body']`. La forme de l’élément `@result()` est identique à la forme `@actions()` et peut être analysée de la même façon.
+4. Envoyer une requête HTTP POST sur hello `foreach` élément corps de réponse, ou `@item()['outputs']['body']`. Hello `@result()` forme d’élément est de même hello comme hello `@actions()` mettre en forme et peut être analysé hello même façon.
 
-5. Deux en-têtes personnalisés avec le nom de l’action qui a échoué `@item()['name']` sont également inclus, ainsi que l’ID de suivi du client d’exécution qui a échoué `@item()['clientTrackingId']`.
+5. Inclure les deux en-têtes personnalisés avec le nom de l’action ayant échoué hello `@item()['name']` et Échec de l’exécution de client ID de suivi hello `@item()['clientTrackingId']`.
 
-Pour référence, voici un exemple d’un seul élément `@result()`, montrant le `name`, le `body`, et les propriétés `clientTrackingId` analysés dans l’exemple précédent. En dehors de `foreach`, `@result()` retourne un tableau de ces objets.
+Pour référence, Voici un exemple d’un seul `@result()` élément, montrant hello `name`, `body`, et `clientTrackingId` les propriétés qui sont analysées dans l’exemple précédent de hello. En dehors de `foreach`, `@result()` retourne un tableau de ces objets.
 
 ```json
 {
@@ -202,18 +202,18 @@ Pour référence, voici un exemple d’un seul élément `@result()`, montrant l
 }
 ```
 
-Vous pouvez utiliser les expressions ci-dessus pour exécuter différents modèles de gestion des exceptions. Vous pouvez choisir d’exécuter une seule action de gestion en dehors de l’étendue qui accepte l’intégralité du tableau filtré d’échecs et de supprimer `foreach`. Vous pouvez également inclure d’autres propriétés utiles à partir de la réponse `@result()` obtenue précédemment.
+tooperform la gestion des exceptions de différents modèles, vous pouvez utiliser des expressions hello indiquées précédemment. Vous pouvez choisir tooexecute une action en dehors de la portée hello qui accepte hello ensemble tableau filtré d’échecs d’exceptions unique et supprimer hello `foreach`. Vous pouvez également inclure d’autres propriétés utiles à partir de hello `@result()` réponse illustré précédemment.
 
 ## <a name="azure-diagnostics-and-telemetry"></a>Azure Diagnostics et télémétrie
 
-Les précédents modèles sont très utiles pour gérer les erreurs et les exceptions d’une exécution, mais vous pouvez également identifier les erreurs et y répondre indépendamment de l’exécution elle-même. 
-[Azure Diagnostics](../logic-apps/logic-apps-monitor-your-logic-apps.md) fournit un moyen simple d’envoyer tous les événements de flux de travail (y compris tous les états d’exécution et d’action) à un compte Azure Storage ou un concentrateur d’événements Azure. Vous pouvez surveiller les journaux et les mesures ou les publier dans n’importe quel outil de surveillance de votre choix pour évaluer les états d’exécution. Vous avez également la possibilité de transmettre tous les événements via le concentrateur d’événements Azure dans [Stream Analytics](https://azure.microsoft.com/services/stream-analytics/). Dans Stream Analytics, vous pouvez écrire des requêtes actives sans aucune anomalie, des moyennes ou des échecs dans les journaux de diagnostic. Stream Analytics peut facilement exporter ses résultats vers d’autres sources de données, telles que les files d’attente, les rubriques, SQL, Azure Cosmos DB et Power BI.
+Hello modèles précédents sont aisément toohandle et exceptions lors d’une exécution, mais vous pouvez également identifier et répondre tooerrors indépendant de hello exécuter lui-même. 
+[Diagnostics Azure](../logic-apps/logic-apps-monitor-your-logic-apps.md) fournit un moyen simple de toosend compte de stockage Azure tooan tous les flux de travail (y compris tous les États d’exécution et action) ou un concentrateur d’événements Azure. tooevaluate exécuter des États, vous pouvez surveiller les métriques et les journaux de hello, ou les publier dans n’importe quel outil de surveillance que vous préférez. Une option potentielle est toostream tous les événements hello via un concentrateur d’événements Azure dans [flux Analytique](https://azure.microsoft.com/services/stream-analytics/). Dans le flux de données Analytique, vous pouvez écrire des requêtes actives hors des anomalies, moyennes ou des défaillances de hello des journaux de diagnostic. Analytique de flux de sortie peut facilement tooother des sources de données, les files d’attente, rubriques, SQL, base de données Azure Cosmos et Power BI.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
 * [Voir comment un client conçoit la gestion des erreurs avec Azure Logic Apps](../logic-apps/logic-apps-scenario-error-and-exception-handling.md)
 * [Consultez d’autres exemples et scénarios Logic Apps](../logic-apps/logic-apps-examples-and-scenarios.md)
-* [Découvrez comment créer des déploiements automatisés pour des applications logiques](../logic-apps/logic-apps-create-deploy-template.md)
+* [Découvrez comment toocreate automatisé des déploiements pour logic apps](../logic-apps/logic-apps-create-deploy-template.md)
 * [Créer et déployer des applications logiques avec Visual Studio](logic-apps-deploy-from-vs.md)
 
 <!-- References -->

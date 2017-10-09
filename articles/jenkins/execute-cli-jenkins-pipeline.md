@@ -1,6 +1,6 @@
 ---
-title: "Exécuter l’interface de ligne de commande Azure avec Jenkins | Microsoft Docs"
-description: "Découvrez comment utiliser l’interface CLI Azure pour déployer une application web Java vers Azure dans un pipeline Jenkins"
+title: "aaaExecute hello CLI d’Azure avec Jenkins | Documents Microsoft"
+description: "Découvrez comment toouse CLI d’Azure toodeploy Java web tooAzure d’application dans le Pipeline de Jenkins"
 services: app-service\web
 documentationcenter: 
 author: mlearned
@@ -15,14 +15,14 @@ ms.workload: web
 ms.date: 6/7/2017
 ms.author: mlearned
 ms.custom: Jenkins
-ms.openlocfilehash: 5ca8338d4bf343f08fe70081cff755fa76a126a9
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 4bd1e12e6de1f010453ff51c835f84e7361962f4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-to-azure-app-service-with-jenkins-and-the-azure-cli"></a>Déploiement dans Azure App Service avec Jenkins et l’interface CLI Azure
-Pour déployer une application web Java dans Azure, vous pouvez utiliser l’interface CLI Azure dans le [pipeline Jenkins](https://jenkins.io/doc/book/pipeline/). Dans ce didacticiel, vous créez un pipeline CI/CD sur une machine virtuelle Azure et apprenez notamment comment :
+# <a name="deploy-tooazure-app-service-with-jenkins-and-hello-azure-cli"></a>Déployer tooAzure du Service d’applications avec Jenkins et hello CLI d’Azure
+toodeploy un tooAzure d’application web Java, vous pouvez utiliser CLI d’Azure dans [Jenkins Pipeline](https://jenkins.io/doc/book/pipeline/). Dans ce didacticiel, vous créez un pipeline CI/CD sur une machine virtuelle Azure et apprenez notamment comment :
 
 > [!div class="checklist"]
 > * Créer une machine virtuelle Jenkins
@@ -30,39 +30,39 @@ Pour déployer une application web Java dans Azure, vous pouvez utiliser l’int
 > * Créer une application web dans Azure
 > * Préparer un dépôt GitHub
 > * Créer un pipeline Jenkins
-> * Exécuter le pipeline et vérifier l’application web
+> * Exécuter le pipeline de hello et vérifiez que l’application web hello
 
-Ce didacticiel requiert Azure CLI version 2.0.4 ou ultérieure. Pour connaître la version de l’interface, exécutez `az --version`. Si vous devez mettre à niveau, consultez [Installation d’Azure CLI 2.0]( /cli/azure/install-azure-cli).
+Ce didacticiel requiert hello CLI d’Azure version 2.0.4 ou version ultérieure. version de hello toofind, exécutez `az --version`. Si vous avez besoin de tooupgrade, consultez [installer Azure CLI 2.0]( /cli/azure/install-azure-cli).
 
 [!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
 
 ## <a name="create-and-configure-jenkins-instance"></a>Créer et configurer l’instance Jenkins
-Si vous ne disposez pas encore d’un serveur maître Jenkins, commencez par utiliser le [modèle de solution](install-jenkins-solution-template.md), qui inclut le plug-in requis [Informations d’identification Azure](https://plugins.jenkins.io/azure-credentials) par défaut. 
+Si vous n’avez pas déjà un maître de Jenkins, commencer par hello [modèle de Solution](install-jenkins-solution-template.md), qui inclut la hello requis [informations d’identification Azure](https://plugins.jenkins.io/azure-credentials) plug-in par défaut. 
 
-Le plug-in Informations d’identification Azure vous permet de stocker les informations d’identification du principal de service Microsoft Azure dans Jenkins. Dans la version 1.2, nous avons ajouté la prise en charge afin que le pipeline Jenkins puisse obtenir les informations d’identification Azure. 
+plug-in des informations d’identification Azure Hello vous permet d’informations d’identification toostore Microsoft Azure service principales de Jenkins. Dans la version 1.2, nous avons ajouté la prise en charge de hello ce Jenkins Pipeline peut obtenir des informations d’identification Azure hello. 
 
 Vérifiez que vous disposez de la version 1.2 ou d’une version ultérieure :
-* Dans le tableau de bord Jenkins, cliquez sur **Gérer Jenkins -> Gestionnaire de plug-in ->** et recherchez **Informations d’identification Azure**. 
-* Mettez à jour le plug-in si la version est antérieure à la version 1.2.
+* Dans le tableau de bord hello Jenkins, cliquez sur **Jenkins de gérer -> Gestionnaire de plug-in ->** et recherchez **informations d’identification Azure**. 
+* Mettre à jour des plug-in hello si la version de hello est antérieure à la version 1.2.
 
-Java JDK et Maven sont également requis dans le serveur maître Jenkins. Pour les installer, connectez-vous au serveur maître Jenkins à l’aide de SSH et exécutez les commandes suivantes :
+Java JDK et Maven sont également requis dans master de Jenkins hello. tooinstall, connectez-vous dans master tooJenkins à l’aide de SSH, puis réexécutez hello suivant de commandes :
 ```bash
 sudo apt-get install -y openjdk-7-jdk
 sudo apt-get install -y maven
 ```
 
-## <a name="add-azure-service-principal-to-jenkins-credential"></a>Ajout du principal de service Azure aux informations d’identification Jenkins
+## <a name="add-azure-service-principal-toojenkins-credential"></a>Ajouter des informations d’identification de service Azure principal tooJenkins
 
-Les informations d’identification Azure sont nécessaires pour exécuter l’interface CLI Azure.
+Informations d’identification Azure sont nécessaire tooexecute CLI d’Azure.
 
-* Dans le tableau de bord Jenkins, cliquez sur **Informations d’identification > Système**. Cliquez sur **Informations d’identification globales (sans restriction)**.
-* Cliquez sur **Ajouter des informations d’identification** pour ajouter un [principal de service Microsoft Azure](https://docs.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli?toc=%2fazure%2fazure-resource-manager%2ftoc.json) en renseignant les valeurs suivantes : ID d’abonnement, ID de client, secret client et point de terminaison de jeton OAuth 2.0. Fournissez un ID qui sera utilisé dans une étape ultérieure.
+* Dans le tableau de bord hello Jenkins, cliquez sur **informations d’identification -> système ->**. Cliquez sur **Informations d’identification globales (sans restriction)**.
+* Cliquez sur **ajouter les informations d’identification** tooadd un [principal du service Microsoft Azure](https://docs.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli?toc=%2fazure%2fazure-resource-manager%2ftoc.json) en remplissant hello ID d’abonnement, ID de Client, question secrète du Client et OAuth 2.0 Token Endpoint. Fournissez un ID qui sera utilisé dans une étape ultérieure.
 
 ![Ajout d’informations d'identification](./media/execute-cli-jenkins-pipeline/add-credentials.png)
 
-## <a name="create-an-azure-app-service-for-deploying-the-java-web-app"></a>Créer un plan Azure App Service pour déployer l’application web Java
+## <a name="create-an-azure-app-service-for-deploying-hello-java-web-app"></a>Créer un Service d’application Azure pour le déploiement d’application web Java hello
 
-Créez un plan Azure App Service avec le niveau tarifaire **Gratuit** à l’aide de la commande d’interface de ligne de commande [az appservice plan create](/cli/azure/appservice/plan#create). Le plan App Service définit les ressources physiques utilisées pour héberger vos applications. Toutes les applications affectées à un plan App Service partagent ces ressources, ce qui vous permet de réduire les coûts lors de l’hébergement de plusieurs applications. 
+Créer un plan de Service d’application Azure avec hello **libre** tarification à l’aide de hello [création d’un plan de az](/cli/azure/appservice/plan#create) commande CLI. un plan de Hello définit hello ressources physiques utilisées toohost vos applications. Toutes les applications affectées tooan un plan de partagent ces ressources, ce qui vous toosave coût lors de l’hébergement de plusieurs applications. 
 
 ```azurecli-interactive
 az appservice plan create \
@@ -71,7 +71,7 @@ az appservice plan create \
     --sku FREE
 ```
 
-Lorsque le plan est prêt, l’interface de ligne de commande Azure affiche une sortie similaire à l’exemple suivant :
+Lorsque le plan de hello est prêt, hello Qu'azure CLI montre similaire de sortie toohello l’exemple suivant :
 
 ```json
 { 
@@ -91,7 +91,7 @@ Lorsque le plan est prêt, l’interface de ligne de commande Azure affiche une 
 
 ### <a name="create-an-azure-web-app"></a>Création d’une application web Azure
 
- Utilisez la commande d’interface de ligne de commande [az webapp create](/cli/azure/appservice/web#create) pour créer une définition d’application web dans le plan App Service `myAppServicePlan`. La définition d’application web fournit une URL pour accéder à votre application et permet de configurer plusieurs options pour déployer votre code dans Azure. 
+ Hello d’utilisation [az webapp créer](/cli/azure/appservice/web#create) toocreate de commande CLI une définition d’application web Bonjour `myAppServicePlan` plan App Service. définition d’application web Hello fournit à votre application un tooaccess URL et configure plusieurs options toodeploy tooAzure de votre code. 
 
 ```azurecli-interactive
 az webapp create \
@@ -100,9 +100,9 @@ az webapp create \
     --plan myAppServicePlan
 ```
 
-Remplacez l’espace réservé `<app_name>` avec votre propre nom d’application unique. Ce nom unique est utilisé dans le nom de domaine par défaut de l’application web. Pour cette raison, ce nom doit être unique sur l’ensemble des applications dans Azure. Vous pouvez mapper une entrée de nom de domaine personnalisée vers l’application web avant de l’exposer à vos utilisateurs.
+Hello de substitution `<app_name>` espace réservé avec votre propre nom d’application unique. Ce nom unique fait partie du nom de domaine par défaut hello pour l’application web de hello, par conséquent, le nom de hello doit toobe unique entre toutes les applications dans Azure. Vous pouvez mapper une application web de domaine personnalisé nom entrée toohello avant de vous exposez tooyour utilisateurs.
 
-Une fois que la définition de l’application web est prête, l’interface de ligne de commande Azure affiche des informations similaires à celles de l’exemple suivant : 
+Lors de la définition d’application web hello est prête, hello CLI d’Azure affiche des informations similaires toohello est l’exemple suivant : 
 
 ```json 
 {
@@ -121,9 +121,9 @@ Une fois que la définition de l’application web est prête, l’interface de 
 
 ### <a name="configure-java"></a>Configurer Java 
 
-Définissez la configuration d’exécution Java dont votre application a besoin avec la commande [az appservice web config update](/cli/azure/appservice/web/config#update).
+Configuration de hello Java runtime dont votre application a besoin par hello [mise à jour du fichier config web app service az](/cli/azure/appservice/web/config#update) commande.
 
-La commande suivante configure l’application web de manière à ce qu’elle s’exécute sur un JDK Java 8 récent et sur [Apache Tomcat](http://tomcat.apache.org/) 8.0.
+Hello commande suivante configure hello web application toorun sur une récente Java JDK de 8 et [Apache Tomcat](http://tomcat.apache.org/) 8.0.
 
 ```azurecli-interactive
 az webapp config set \ 
@@ -135,16 +135,16 @@ az webapp config set \
 ```
 
 ## <a name="prepare-a-github-repository"></a>Préparer un dépôt GitHub
-Ouvrez le dépôt [Application web Java simple pour Azure](https://github.com/azure-devops/javawebappsample). Pour répliquer le dépôt sur votre propre compte GitHub, cliquez sur le bouton **Bifurcation** en haut à droite.
+Ouvrez hello [Simple d’application Web Java pour Azure](https://github.com/azure-devops/javawebappsample) référentiel. toofork hello référentiel tooyour propre compte GitHub, cliquez sur hello **branchement** bouton dans le coin supérieur droit de hello.
 
-* Dans l’interface utilisateur web de GitHub, ouvrez le fichier **Jenkinsfile**. Cliquez sur l’icône du crayon pour modifier ce fichier et mettre à jour le groupe de ressources, ainsi que le nom de votre application web sur les lignes 20 et 21, respectivement.
+* Dans l’interface utilisateur web de GitHub, ouvrez le fichier **Jenkinsfile**. Cliquez sur hello crayon icône tooedit ce groupe de ressources de fichier tooupdate hello et le nom de votre application web sur la ligne 20 et 21 respectivement.
 
 ```java
 def resourceGroup = '<myResourceGroup>'
 def webAppName = '<app_name>'
 ```
 
-* Modifiez la ligne 23 pour mettre à jour l’ID des informations d’identification dans votre instance Jenkins
+* Modifier les informations d’identification ligne 23 tooupdate dans votre instance Jenkins
 
 ```java
 withCredentials([azureServicePrincipal('<mySrvPrincipal>')]) {
@@ -153,60 +153,60 @@ withCredentials([azureServicePrincipal('<mySrvPrincipal>')]) {
 ## <a name="create-jenkins-pipeline"></a>Créer un pipeline Jenkins
 Ouvrez Jenkins dans un navigateur web, cliquez sur **Nouvel élément**. 
 
-* Fournissez un nom pour le travail et sélectionnez **Pipeline**. Cliquez sur **OK**.
-* Ensuite, cliquez sur l’onglet **Pipeline**. 
+* Fournissez un nom pour le travail de hello et sélectionnez **Pipeline**. Cliquez sur **OK**.
+* Cliquez sur hello **Pipeline** onglet suivant. 
 * Pour **Définition**, sélectionnez **Script de pipeline à partir de SCM**.
 * Pour **SCM**, sélectionnez **Git**.
-* Entrez l’URL GitHub de votre dépôt dupliqué : https:\<votre dépôt dupliqué\>.git
+* Entrez hello GitHub URL pour votre référentiel RAMIFIÉ : https :\<votre dépôt RAMIFIÉ\>.git
 * Cliquez sur **Enregistrer**.
 
 ## <a name="test-your-pipeline"></a>Tester votre pipeline
-* Accédez au pipeline que vous avez créé, cliquez sur **Générer maintenant**
-* En quelques secondes, une build doit être générée. Vous pouvez y accéder et cliquer sur **Sortie de la console** pour afficher les détails
+* Accédez pipeline toohello vous avez créé, cliquez sur **générer maintenant**
+* Une build doit réussir en quelques secondes, et vous pouvez toohello build et cliquez sur **la sortie de Console** détails de hello toosee
 
 ## <a name="verify-your-web-app"></a>Vérifier votre application web
-Pour vérifier le déploiement du fichier WAR dans votre application web. Ouvrez un navigateur web :
+le fichier WAR tooverify hello est déployé avec succès l’application web tooyour. Ouvrez un navigateur web :
 
-* Accédez à http://&lt;app_name>.azurewebsites.net/api/calculator/ping  
+* Accédez toohttp : / /&lt;nom_application >.azurewebsites.net/api/calculator/ping  
 Vous voyez :
 
-        Welcome to Java Web App!!! This is updated!
+        Welcome tooJava Web App!!! This is updated!
         Sun Jun 17 16:39:10 UTC 2017
 
-* Accédez à http://&lt;app_name>.azurewebsites.net/api/calculator/add?x=&lt;x>&y=&lt;y> (remplacez &lt;x> et &lt;y> par n’importe quels chiffres) pour obtenir la somme de x et de y
+* Accédez toohttp : / /&lt;nom_application >.azurewebsites.net/api/calculator/add?x=&lt;x > & y =&lt;y > (remplacez &lt;x > et &lt;y > avec tous les nombres) somme hello tooget x et y
 
 ![Calculatrice : ajouter](./media/execute-cli-jenkins-pipeline/calculator-add.png)
 
-## <a name="deploy-to-azure-web-app-on-linux"></a>Déployer dans une application web Azure sous Linux
-Maintenant que vous savez comment utiliser l’interface CLI Azure dans votre pipeline Jenkins, vous pouvez modifier le script pour déployer dans une application web Azure sous Linux.
+## <a name="deploy-tooazure-web-app-on-linux"></a>Déployer tooAzure application Web sur Linux
+Maintenant que vous savez comment toouse CLI d’Azure dans votre Jenkins de pipeline, vous pouvez modifier hello script toodeploy tooan Azure Web App sur Linux.
 
-L’application web sous Linux prend en charge une méthode différente pour le déploiement, à savoir l’utilisation de Docker. Pour déployer, vous devez fournir un fichier Docker qui intègre votre application web et le runtime du service dans une image Docker. Le plug-in crée ensuite l’image, l’insère dans un registre Docker et déploie l’image dans votre application web.
+Web application sur Linux prend en charge un déploiement différemment toodo hello, qui est toouse Docker. toodeploy, vous devez tooprovide un fichier Dockerfile par les packages de votre application web avec le runtime du service dans une image Docker. plug-in Hello ensuite générer l’image de hello, poussez-le du Registre de tooa Docker et déployer l’application web de hello image tooyour.
 
-* Suivez les étapes décrites [ici](/azure/app-service-web/app-service-linux-how-to-create-web-app) pour créer une application web Azure qui s’exécute sous Linux.
-* Installez Docker sur votre instance Jenkins en suivant les instructions dans cet [article](https://docs.docker.com/engine/installation/linux/ubuntu/).
-* Créez un registre de conteneur dans le portail Azure à l’aide des étapes décrites [ici](/azure/container-registry/container-registry-get-started-azure-cli).
-* Dans le même dépôt dupliqué [Application web Java simple pour Azure](https://github.com/azure-devops/javawebappsample), modifiez le fichier **Jenkinsfile2** :
-    * Mettez à jour les lignes 18 à 21 à l’aide du nom de votre groupe de ressources, de votre application web et de l’enregistrement de contrôle d’accès, respectivement. 
+* Suivez les étapes de hello [ici](/azure/app-service-web/app-service-linux-how-to-create-web-app) toocreate une application Web de Azure en cours d’exécution sur Linux.
+* Installer Docker sur votre instance de Jenkins en suivant les instructions de hello dans ce [article](https://docs.docker.com/engine/installation/linux/ubuntu/).
+* Créer un conteneur de Registre Bonjour portail Azure à l’aide des étapes de hello [ici](/azure/container-registry/container-registry-get-started-azure-cli).
+* Dans hello même [Simple d’application Web Java pour Azure](https://github.com/azure-devops/javawebappsample) référentiel vous dupliquée, modifier hello **Jenkinsfile2** fichier :
+    * Ligne de 18-21, mettre à jour les noms de toohello de votre groupe de ressources, une application web et un ACR respectivement. 
         ```
         def webAppResourceGroup = '<myResourceGroup>'
         def webAppName = '<app_name>'
         def acrName = '<myRegistry>'
         ```
 
-    * Mettez à jour \<azsrvprincipal\> sur la ligne 24 à l’aide de vos informations d’identification
+    * Ligne 24, mise à jour \<azsrvprincipal\> tooyour d’identification
         ```
         withCredentials([azureServicePrincipal('<mySrvPrincipal>')]) {
         ```
 
-* Créez un pipeline Jenkins comme lors du déploiement dans l’application web Azure sous Windows, en utilisant **Jenkinsfile2** à la place.
+* Créer un pipeline Jenkins comme vous l’avez fait lors du déploiement d’application web de tooAzure dans Windows, cette fois, utilisez **Jenkinsfile2** à la place.
 * Exécutez votre nouveau travail.
-* Pour vérifier, dans l’interface CLI Azure, exécutez :
+* tooverify, dans Azure CLI, exécutez :
 
     ```
     az acr repository list -n <myRegistry> -o json
     ```
 
-    Vous obtenez le résultat suivant :
+    Vous obtenez hello suivant des résultats :
     
     ```
     [
@@ -214,15 +214,15 @@ L’application web sous Linux prend en charge une méthode différente pour le 
     ]
     ```
     
-    Accédez à http://&lt;app_name>.azurewebsites.net/api/calculator/ping. Le message suivant s’affiche : 
+    Accédez toohttp : / /&lt;nom_application >.azurewebsites.net/api/calculator/ping. Vous voyez le message de type hello : 
     
-        Welcome to Java Web App!!! This is updated!
+        Welcome tooJava Web App!!! This is updated!
         Sun Jul 09 16:39:10 UTC 2017
 
-    Accédez à http://&lt;app_name>.azurewebsites.net/api/calculator/add?x=&lt;x>&y=&lt;y> (remplacez &lt;x> et &lt;y> par n’importe quels chiffres) pour obtenir la somme de x et de y
+    Accédez toohttp : / /&lt;nom_application >.azurewebsites.net/api/calculator/add?x=&lt;x > & y =&lt;y > (remplacez &lt;x > et &lt;y > avec tous les nombres) somme hello tooget x et y
     
 ## <a name="next-steps"></a>Étapes suivantes
-Dans ce didacticiel, vous avez configuré un pipeline Jenkins qui extrait le code source dans le dépôt GitHub. Il exécute Maven pour générer un fichier war et utilise ensuite l’interface CLI Azure pour le déploiement vers Azure App Service. Vous avez appris à effectuer les actions suivantes :
+Dans ce didacticiel, vous avez configuré un pipeline de Jenkins extrait de code source de hello dans le référentiel GitHub. Exécute Maven toobuild un fichier war, puis utilise Azure CLI toodeploy tooAzure du Service d’applications. Vous avez appris à effectuer les actions suivantes :
 
 > [!div class="checklist"]
 > * Créer une machine virtuelle Jenkins
@@ -230,4 +230,4 @@ Dans ce didacticiel, vous avez configuré un pipeline Jenkins qui extrait le cod
 > * Créer une application web dans Azure
 > * Préparer un dépôt GitHub
 > * Créer un pipeline Jenkins
-> * Exécuter le pipeline et vérifier l’application web
+> * Exécuter le pipeline de hello et vérifiez que l’application web hello

@@ -1,6 +1,6 @@
 ---
-title: "Configurer l’authentification et l’autorisation pour une application personnalisée qui appelle l’API Insights Azure Time Series | Microsoft Docs"
-description: "Ce didacticiel explique comment configurer l’authentification et l’autorisation pour une application personnalisée qui appelle l’API Insights Azure Time Series"
+title: "aaaConfigure l’authentification et l’autorisation pour une application personnalisée qui appelle hello Azure temps série Insights API | Documents Microsoft"
+description: "Ce didacticiel explique comment tooconfigure l’authentification et l’autorisation pour une application personnalisée qui appelle hello Azure temps série Insights API"
 keywords: 
 services: time-series-insights
 documentationcenter: 
@@ -15,75 +15,75 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/24/2017
 ms.author: dmden
-ms.openlocfilehash: 4dd4865dc556e09a31d2cb7a32768aeb19ba9900
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 5043468bfc2af3c0d27e8602508d92ba2848409e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="authentication-and-authorization-for-azure-time-series-insights-api"></a>Authentification et autorisation pour l’API Insights Azure Time Series
 
-Cet article explique comment configurer une application personnalisée qui appelle l’API Insights Azure Tuime Series.
+Cet article explique comment tooconfigure une application personnalisée qui appelle hello Azure temps série Insights API.
 
 ## <a name="service-principal"></a>Principal du service
 
-Cette section explique comment configurer une application pour accéder à l’API Insights Azure Time Series pour le compte de l’application. L’application peut ensuite interroger des données ou publier des données de référence dans l’environnement Time Series Insights avec les informations d’identification de l’application au lieu de celles de l’utilisateur.
+Cette section explique comment tooconfigure un tooaccess application hello temps série Insights API au nom de l’application hello. application Hello pouvez interroger les données ou publier les données de référence d’environnement d’heure série Insights hello avec les informations d’identification de l’application et les informations d’identification hello utilisateur pas.
 
-Lorsque vous avez une application qui doit accéder à Time Series Insights, vous devez configurer une application Azure Active Directory et affecter des stratégies d’accès aux données dans l’environnement Time Series Insights. Cette approche est préférable à l’exécution de l’application avec vos propres informations d’identification, car :
+Lorsque vous avez une application qui doit tooaccess temps série Insights, vous devez configurer une application Azure Active Directory et affecter des stratégies d’accès données hello dans l’environnement de temps série Insights hello. Cette approche est préférable toorunning hello application vos propres informations d’identification, car :
 
-* Vous pouvez assigner à l’identité de l’application des autorisations différentes de vos propres autorisations. En règle générale, ces autorisations sont strictement limitées à ce que l’application doit faire. Par exemple, vous pouvez autoriser l’application à lire des données uniquement dans un environnement Time Series Insights particulier.
-* Il est inutile de modifier les informations d’identification de l’application si vos responsabilités évoluent.
-* Vous pouvez utiliser un certificat ou une clé d’application pour automatiser l’authentification lorsque vous exécutez un script sans assistance.
+* Vous pouvez affecter des autorisations identité d’application toohello différents de vos propres autorisations. En règle générale, ces autorisations sont limitée tooexactly quelle application hello doit toodo. Par exemple, vous pouvez autoriser hello application tooonly lire les données dans un environnement de temps série Insights particulier.
+* Vous n’avez les informations d’identification de l’application toochange hello si vos responsabilités changent.
+* Vous pouvez utiliser un certificat ou une authentification de clé tooautomate application lorsque vous exécutez un script sans assistance.
 
-Cet article explique comment effectuer ces étapes via le portail Azure. Elle se concentre sur une application à client unique conçue pour s’exécuter au sein d’une seule organisation. Les applications à client unique sont généralement utilisées pour des applications métier exécutées au sein de votre organisation.
+Cet article explique comment tooperform celles parcourt hello portail Azure. Il se concentre sur une application à locataire unique où application hello est prévue toorun dans une seule organisation. Les applications à client unique sont généralement utilisées pour des applications métier exécutées au sein de votre organisation.
 
-Le flux d’installation se compose de trois étapes principales :
+flux de programme d’installation Hello se compose de trois étapes principales :
 
 1. Créer une application dans Azure Active Directory.
-2. Autoriser cette application à accéder à l’environnement Time Series Insights.
-3. Utiliser l’ID et la clé d’application pour acquérir un jeton pour l’audience ou ressource `"https://api.timeseries.azure.com/"`. Le jeton permet ensuite d’appeler l’API Insights Azure Time Series.
+2. Autoriser cet environnement de temps série Insights application tooaccess hello.
+3. Utiliser les ID de l’application hello et clé tooacquire un jeton toohello `"https://api.timeseries.azure.com/"` audience ou une ressource. jeton de Hello peut ensuite être utilisé toocall hello temps série Insights API.
 
-Voici les étapes détaillées :
+Voici les étapes détaillées de hello :
 
-1. Dans le portail Azure, sélectionnez **Azure Active Directory** > **Inscriptions des applications** > **Nouvelle inscription d’application**.
+1. Bonjour portail Azure, sélectionnez **Azure Active Directory** > **inscriptions d’application** > **nouvelle inscription de l’application**.
 
    ![Nouvelle inscription d’application dans Azure Active Directory](media/authentication-and-authorization/active-directory-new-application-registration.png)  
 
-2. Donnez un nom à l’application, sélectionnez le type **Application web ou API**, sélectionnez un URI valide pour l’**URL de connexion**, puis cliquez sur **Créer**.
+2. Permettre à application hello un toobe de type hello nom, sélectionnez **application Web / API**, sélectionnez n’importe quel URI valide pour **URL de connexion**, puis cliquez sur **créer**.
 
-   ![Créer l’application dans Azure Active Directory](media/authentication-and-authorization/active-directory-create-web-api-application.png)
+   ![Créer l’application hello dans Azure Active Directory](media/authentication-and-authorization/active-directory-create-web-api-application.png)
 
-3. Sélectionnez votre application nouvellement créée, puis copiez son ID d’application dans votre éditeur de texte favori.
+3. Sélectionnez votre application nouvellement créée et copiez son éditeur de texte favori application ID tooyour.
 
-   ![Copier l’ID de l’application](media/authentication-and-authorization/active-directory-copy-application-id.png)
+   ![Copiez l’ID de l’application hello](media/authentication-and-authorization/active-directory-copy-application-id.png)
 
-4. Sélectionnez **Clés**, entrez le nom de clé, sélectionnez la date d’expiration, puis cliquez sur **Enregistrer**.
+4. Sélectionnez **clés**, entrez le nom de clé hello, d’expiration hello sélectionnez, puis cliquez sur **enregistrer**.
 
    ![sélectionner des clés d’application](media/authentication-and-authorization/active-directory-application-keys.png)
 
-   ![Entrer le nom et la date d’expiration de la clé, puis cliquer sur Enregistrer](media/authentication-and-authorization/active-directory-application-keys-save.png)
+   ![Entrez l’expiration et le nom de la clé hello et cliquez sur Enregistrer](media/authentication-and-authorization/active-directory-application-keys-save.png)
 
-5. Copiez la clé dans votre éditeur de texte.
+5. Éditeur de texte hello tooyour clé copie.
 
-   ![Copier la clé de l’application](media/authentication-and-authorization/active-directory-copy-application-key.png)
+   ![Copiez la clé de l’application hello](media/authentication-and-authorization/active-directory-copy-application-key.png)
 
-6. Pour l’environnement Time Series Insights, sélectionnez **Stratégies d’accès aux données**, puis cliquez sur **Ajouter**.
+6. Pour un environnement de temps série Insights hello, sélectionnez **des stratégies d’accès données** et cliquez sur **ajouter**.
 
-   ![Ajouter une nouvelle stratégie d’accès aux données à l’environnement Time Series Insights](media/authentication-and-authorization/time-series-insights-data-access-policies-add.png)
+   ![Ajouter nouveau données accès stratégie toohello temps série Insights environnement](media/authentication-and-authorization/time-series-insights-data-access-policies-add.png)
 
-7. Dans la boîte de dialogue **Sélectionner un utilisateur**, collez le nom de l’application (voir l’étape 2) ou l’ID de l’application (voir l’étape 3).
+7. Bonjour **sélectionner un utilisateur** boîte de dialogue, nom de l’application hello Coller (de l’étape 2) ou ID de l’application (à l’étape 3).
 
-   ![Rechercher une application dans la boîte de dialogue Sélectionner un utilisateur](media/authentication-and-authorization/time-series-insights-data-access-policies-select-user.png)
+   ![Rechercher une application dans la boîte de dialogue Sélectionner un utilisateur hello](media/authentication-and-authorization/time-series-insights-data-access-policies-select-user.png)
 
-8. Sélectionnez le rôle (**Lecteur** pour interroger des données, **Contributeur** pour interroger des données et modifier des données de référence), puis cliquez sur **OK**.
+8. Rôle de hello Select (**lecteur** pour interroger des données, **collaborateur** pour l’interrogation de données et la modification des données de référence) et cliquez sur **Ok**.
 
-   ![Choisir Lecteur ou Contributeur dans la boîte de dialogue Sélectionner un rôle](media/authentication-and-authorization/time-series-insights-data-access-policies-select-role.png)
+   ![Choisir le lecteur ou contributeur dans la boîte de dialogue Sélectionner un rôle hello](media/authentication-and-authorization/time-series-insights-data-access-policies-select-role.png)
 
-9. Enregistrer la stratégie en cliquant sur **OK**.
+9. Enregistrer la stratégie de hello en cliquant sur **Ok**.
 
-10. Pour acquérir un jeton pour le compte de l’application, utilisez l’ID d’application (voir l’étape 3) et la clé de l’application (voir l’étape 5). Le jeton peut ensuite être passé dans l’en-tête `Authorization` lorsque l’application appelle l’API Insights Azure Time Series.
+10. Utiliser l’ID d’application hello (à l’étape 3) et jeton de hello application tooacquire clé (à l’étape 5) au nom de l’application hello. Hello jeton peut ensuite être transmis dans hello `Authorization` en-tête lors de l’application hello appelle hello temps série Insights API.
 
-    Si vous utilisez C#, vous pouvez utiliser le code suivant pour acquérir le jeton pour le compte de l’application. Pour obtenir un exemple complet, voir [Interroger des données à l’aide de C#](time-series-insights-query-data-csharp.md).
+    Si vous utilisez c#, vous pouvez utiliser hello suivant le jeton de hello tooacquire de code pour le compte d’application hello. Pour obtenir un exemple complet, voir [Interroger des données à l’aide de C#](time-series-insights-query-data-csharp.md).
 
     ```csharp
     var authenticationContext = new AuthenticationContext(
@@ -91,12 +91,12 @@ Voici les étapes détaillées :
         TokenCache.DefaultShared);
 
     AuthenticationResult token = await authenticationContext.AcquireTokenAsync(
-        // Set the resource URI to the Azure Time Series Insights API
+        // Set hello resource URI toohello Azure Time Series Insights API
         resource: "https://api.timeseries.azure.com/", 
         clientCredential: new ClientCredential(
             // Application ID of application registered in Azure Active Directory
             clientId: "1bc3af48-7e2f-4845-880a-c7649a6470b8", 
-            // Application key of the application that's registered in Azure Active Directory
+            // Application key of hello application that's registered in Azure Active Directory
             clientSecret: "aBcdEffs4XYxoAXzLB1n3R2meNCYdGpIGBc2YC5D6L2="));
 
     string accessToken = token.AccessToken;
@@ -104,9 +104,9 @@ Voici les étapes détaillées :
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Utilisez l’ID et la clé de l’application dans votre application. Pour un exemple de code qui appelle l’API Time Series Insights, voir [Interroger des données à l’aide de C#](time-series-insights-query-data-csharp.md).
+Utiliser l’ID de l’application hello et la clé dans votre application. Pour un exemple de code qui appelle hello temps série Insights API, consultez [interroger des données à l’aide de C#](time-series-insights-query-data-csharp.md).
 
 ## <a name="see-also"></a>Voir aussi
 
-* [API de requête](/rest/api/time-series-insights/time-series-insights-reference-queryapi) pour la référence d’API de requête complète
-* [Créer un principal du service dans le portail Azure](../azure-resource-manager/resource-group-create-service-principal-portal.md)
+* [API de requête](/rest/api/time-series-insights/time-series-insights-reference-queryapi) pour la référence complète de l’API de requête de hello
+* [Créer un service principal Bonjour portail Azure](../azure-resource-manager/resource-group-create-service-principal-portal.md)

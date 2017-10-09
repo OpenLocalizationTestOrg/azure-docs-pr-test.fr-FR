@@ -1,5 +1,5 @@
 ---
-title: "Surveiller les modifications d’une machine virtuelle - Azure Event Grid et Azure Logic Apps | Microsoft Docs"
+title: "modifications de machine virtuelle aaaMonitor - grille d’événement Azure & Logic Apps | Documents Microsoft"
 description: "Vérifier les modifications de configuration dans des machines virtuelles (VM) à l’aide d’Azure Event Grid et Azure Logic Apps"
 keywords: "applications logiques, grilles d’événements, machine virtuelle, VM"
 services: logic-apps
@@ -11,24 +11,24 @@ ms.service: logic-apps
 ms.topic: article
 ms.date: 08/16/2017
 ms.author: LADocs; estfan
-ms.openlocfilehash: 4d4c16860dbec10162797a13c8f9f57106abd17f
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: f0633e598be6e7880a310e6f8e64f6738cc692b3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="monitor-virtual-machine-changes-with-azure-event-grid-and-logic-apps"></a>Surveiller les modifications d’une machine virtuelle avec Azure Event Grid et Azure Logic Apps
 
-Vous pouvez démarrer un [flux de travail d’application logique](../logic-apps/logic-apps-what-are-logic-apps.md) automatisé lorsque des événements spécifiques se produisent dans des ressources Azure ou tierces. Ces ressources peuvent publier ces événements dans une [grille d’événements Azure](../event-grid/overview.md). À son tour, la grille d’événements envoie ces événements aux abonnés qui possèdent des files d’attente, webhooks ou [hubs d’événements](../event-hubs/event-hubs-what-is-event-hubs.md) comme points de terminaison. En tant qu’abonné, votre application logique peut attendre ces événements dans la grille d’événements avant d’exécuter des flux de travail automatisés pour effectuer les tâches, sans qu’il soit nécessaire d’écrire du code.
+Vous pouvez démarrer un [flux de travail d’application logique](../logic-apps/logic-apps-what-are-logic-apps.md) automatisé lorsque des événements spécifiques se produisent dans des ressources Azure ou tierces. Ces ressources peuvent publier ces tooan événements [grille d’événement Azure](../event-grid/overview.md). À son tour, grille d’événement hello transmet ces toosubscribers les événements qui ont des files d’attente, webhooks, ou [concentrateurs d’événements](../event-hubs/event-hubs-what-is-event-hubs.md) comme points de terminaison. En tant qu’abonné, votre application logique peut attendre les événements à partir de la grille d’événement hello avant d’exécuter des flux de travail automatisés tooperform tâches - sans vous écrire de code.
 
-Par exemple, voici certains événements que les éditeurs peuvent envoyer aux abonnés via le service Azure Event Grid :
+Par exemple, Voici certains événements que toosubscribers via le service de grille d’événement Azure hello peuvent envoyer des serveurs de publication :
 
 * Créer, lire, mettre à jour ou supprimer une ressource. Par exemple, vous pouvez surveiller les modifications susceptibles d’être facturées sur votre abonnement Azure. 
 * Ajouter ou retirer une personne d’un abonnement Azure.
 * Votre application effectue une action particulière.
 * Un nouveau message apparaît dans une file d’attente.
 
-Ce didacticiel crée une application logique qui surveille les modifications apportées à une machine virtuelle et envoie des e-mails à ce sujet. Si vous créez une application logique avec abonnement aux événements d’une ressource Azure, ces événements sont transférés de cette ressource vers l’application logique par le biais d’une grille d’événements. Le didacticiel vous guide tout au long de la création de cette application logique :
+Ce didacticiel crée une application de logique qui surveille les modifications tooa virtual machine et envoie des messages électroniques sur ces modifications. Lorsque vous créez une application logique avec un abonnement aux événements pour une ressource Azure, les événements de flux à partir de cette ressource via une application de logique toohello événement grille. didacticiel de Hello vous guide tout au long de la création de cette application logique :
 
 ![Vue d’ensemble - surveiller une machine virtuelle avec une grille d’événements et une application logique](./media/monitor-virtual-machine-changes-event-grid-logic-app/monitor-virtual-machine-event-grid-logic-app-overview.png)
 
@@ -43,93 +43,93 @@ Ce didacticiel vous montre comment effectuer les opérations suivantes :
 
 * Un compte de messagerie sur [n’importe quel fournisseur de messagerie pris en charge par Azure Logic Apps](../connectors/apis-list.md), par exemple Outlook Office 365, Outlook.com ou Gmail, pour envoyer les notifications. Ce didacticiel utilise Outlook Office 365.
 
-* Une [machine virtuelle](https://azure.microsoft.com/services/virtual-machines). Si ce n’est pas déjà fait, créez une machine virtuelle en suivant le [didacticiel Créer une machine virtuelle](https://docs.microsoft.com/azure/virtual-machines/). Pour que la machine virtuelle publie des événements, [aucun autre élément n’est nécessaire](../event-grid/overview.md).
+* Une [machine virtuelle](https://azure.microsoft.com/services/virtual-machines). Si ce n’est pas déjà fait, créez une machine virtuelle en suivant le [didacticiel Créer une machine virtuelle](https://docs.microsoft.com/azure/virtual-machines/). machine virtuelle de hello toomake publier des événements, vous [n’avez pas besoin de toodo n’importe quel autre](../event-grid/overview.md).
 
 ## <a name="create-a-logic-app-that-monitors-events-from-an-event-grid"></a>Créer une application logique qui surveille les événements d’une grille d’événements
 
-Tout d’abord, créez une application logique et ajoutez un déclencheur Event Grid, qui surveille le groupe de ressources de votre machine virtuelle. 
+Tout d’abord, créez une application de la logique et ajout d’un déclencheur de grille d’événement qui surveille le groupe de ressources hello pour votre machine virtuelle. 
 
-1. Connectez-vous au [portail Azure](https://portal.azure.com). 
+1. Connectez-vous à toohello [portail Azure](https://portal.azure.com). 
 
-2. En haut à gauche du menu principal Azure, choisissez **Nouveau** > **Intégration d’entreprise** > **Application logique**.
+2. Hello coin supérieur gauche du menu Azure principal de hello, choisissez **nouveau** > **intégration** > **application logique**.
 
    ![Créer une application logique](./media/monitor-virtual-machine-changes-event-grid-logic-app/azure-portal-create-logic-app.png)
 
-3. Créez votre application logique avec les paramètres spécifiés dans le tableau suivant :
+3. Créer votre application logique avec les paramètres de hello spécifiés dans hello tableau suivant :
 
    ![Spécifier les détails de l’application logique](./media/monitor-virtual-machine-changes-event-grid-logic-app/create-logic-app-for-event-grid.png)
 
    | Paramètre | Valeur suggérée | Description | 
    | ------- | --------------- | ----------- | 
    | **Name** | *{nom-de-votre-application-logique}* | Donnez un nom unique à l’application logique. | 
-   | **Abonnement** | *{votre-abonnement-Azure}* | Sélectionnez le même abonnement Azure pour tous les services de ce didacticiel. | 
-   | **Groupe de ressources** | *{votre-groupe-de-ressources-Azure}* | Sélectionnez le même groupe de ressources Azure pour tous les services de ce didacticiel. | 
-   | **Emplacement** | *{votre-région-Azure}* | Sélectionnez la même région pour tous les services de ce didacticiel. | 
+   | **Abonnement** | *{votre-abonnement-Azure}* | Sélectionnez hello même abonnement Azure pour tous les services dans ce didacticiel. | 
+   | **Groupe de ressources** | *{votre-groupe-de-ressources-Azure}* | Sélectionnez hello même groupe de ressources Azure pour tous les services dans ce didacticiel. | 
+   | **Emplacement** | *{votre-région-Azure}* | Sélectionnez hello même région pour tous les services dans ce didacticiel. | 
    | | | 
 
-4. Lorsque vous êtes prêt, sélectionnez **Épingler au tableau de bord**, puis **Créer**.
+4. Lorsque vous êtes prêt, sélectionnez **code confidentiel toodashboard**, puis choisissez **créer**.
 
    Vous venez de créer une ressource Azure pour votre application logique. 
-   Une fois qu’Azure a déployé votre application logique, le Concepteur d’applications logiques vous propose des modèles courants pour faciliter vos premiers pas.
+   Une fois Azure déploie votre application logique, hello logique de concepteur d’applications affiche modèles pour les modèles courants commencer plus rapidement.
 
    > [!NOTE] 
-   > Lorsque vous sélectionnez **Épingler au tableau de bord**, votre application logique s’ouvre automatiquement dans le Concepteur d’applications logiques. Sinon, vous pouvez manuellement rechercher et ouvrir votre application logique.
+   > Lorsque vous sélectionnez **toodashboard du code confidentiel**, votre application logique s’ouvre automatiquement dans le Concepteur d’applications logique. Sinon, vous pouvez manuellement rechercher et ouvrir votre application logique.
 
 5. Déployez maintenant un modèle d’application logique. Sous **Modèles**, choisissez **Application logique vide**, afin de développer votre application logique à partir de zéro.
 
    ![Choisir le modèle d’application logique](./media/monitor-virtual-machine-changes-event-grid-logic-app/choose-logic-app-template.png)
 
-   Le Concepteur d’application logique vous montre à présent des [*connecteurs*](../connectors/apis-list.md) et des [*déclencheurs*](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts) qui vous permettent de démarrer votre application logique, ainsi que des actions que vous pouvez ajouter après un déclencheur pour effectuer des tâches. Un déclencheur est un événement qui crée une instance d’application logique et démarre le flux de l’application logique. 
-   Votre application logique a besoin d’un déclencheur comme premier élément.
+   Hello logique applications concepteur affiche maintenant vous [ *connecteurs* ](../connectors/apis-list.md) et [ *déclencheurs* ](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts) que vous pouvez utiliser toostart votre application logique et également les actions Vous pouvez ajouter après un tooperform déclencher les tâches. Un déclencheur est un événement qui crée une instance d’application logique et démarre le flux de l’application logique. 
+   Votre application logique a besoin d’un déclencheur en tant que premier élément de hello.
 
-6. Dans la zone de recherche, entrez « grille d’événements » comme filtre. Sélectionner le déclencheur : **Azure Event Grid - On a resource event**
+6. Dans la zone de recherche de hello, entrez « grille de l’événement » comme filtre. Sélectionner le déclencheur : **Azure Event Grid - On a resource event**
 
    ![Sélectionner le déclencheur : « Azure Event Grid - On a resource event »](./media/monitor-virtual-machine-changes-event-grid-logic-app/logic-app-event-grid-trigger.png)
 
-7. Lorsque vous y êtes invité, connectez-vous à Azure Event Grid avec vos informations d’identification Azure.
+7. Lorsque vous y êtes invité, connectez-vous tooAzure grille d’événement avec vos informations d’identification Azure.
 
    ![Se connecter avec des informations d’identification Azure](./media/monitor-virtual-machine-changes-event-grid-logic-app/sign-in-event-grid.png)
 
    > [!NOTE]
-   > Si vous êtes connecté avec un compte Microsoft personnel, par exemple @outlook.com ou @hotmail.com, le déclencheur Event Grid risque de ne pas apparaître correctement. Il existe une solution de contournement qui consiste à choisir [Se connecter avec le principal du service](/azure-resource-manager/resource-group-create-service-principal-portal.md), ou à s’authentifier en tant que membre de l’instance Azure Active Directory associée à l’abonnement Azure, par exemple, *nom-utilisateur*@emailoutlook.onmicrosoft.com.
+   > Si vous êtes connecté avec un compte Microsoft personnel, tel que @outlook.com ou @hotmail.com, déclencheur de grille d’événement hello peuvent ne pas apparaît correctement. Pour résoudre ce problème, choisissez [connexion avec Principal du Service](/azure-resource-manager/resource-group-create-service-principal-portal.md), ou de s’authentifier en tant que membre de hello Azure Active Directory qui est associé à votre abonnement Azure, par exemple, *nom d’utilisateur* @emailoutlook.onmicrosoft.com.
 
-8. Maintenant, abonnez votre application logique aux événements de l’éditeur. Renseignez les détails de votre abonnement aux événements, comme l’indique le tableau suivant :
+8. Maintenant vous abonner les événements de toopublisher de votre application logique. Fournissent des détails de hello pour votre abonnement d’événement comme spécifié dans hello tableau suivant :
 
    ![Spécifier les détails de l’abonnement aux événements](./media/monitor-virtual-machine-changes-event-grid-logic-app/logic-app-event-grid-trigger-details-generic.png)
 
    | Paramètre | Valeur suggérée | Description | 
    | ------- | --------------- | ----------- | 
-   | **Abonnement** | *{abonnement-Azure-de-la-machine-virtuelle}* | Sélectionnez l’abonnement Azure de l’éditeur d’événements. Dans le cadre de ce didacticiel, sélectionnez l’abonnement Azure de votre machine virtuelle. | 
-   | **Type de ressource** | Microsoft.Resources.resourceGroups | Sélectionnez le type de ressource de l’éditeur d’événements. Dans le cadre de ce didacticiel, sélectionnez la valeur spécifiée, afin que votre application logique ne surveille que les groupes de ressources. | 
-   | **Nom de la ressource** | *{nom-du-groupe-de-ressources-de-la-machine-virtuelle}* | Sélectionnez le nom de la ressource de l’éditeur. Pour ce didacticiel, sélectionnez le nom du groupe de ressources pour votre machine virtuelle. | 
-   | Pour les paramètres facultatifs, choisissez **Afficher les options avancées**. | *{voir les descriptions}* | * **Filtre de préfixe** : pour ce didacticiel, laissez ce paramètre vide. Le comportement par défaut s’applique à toutes les valeurs. Vous pouvez cependant spécifier une chaîne de préfixe en tant que filtre, par exemple, un chemin d’accès et un paramètre pour une ressource spécifique. <p>* **Filtre de suffixe** : pour ce didacticiel, laissez ce paramètre vide. Le comportement par défaut s’applique à toutes les valeurs. Vous pouvez cependant spécifier une chaîne de suffixe en tant que filtre, par exemple, une extension de nom de fichier, si vous ne souhaitez utiliser que des types de fichiers spécifiques.<p>* **Nom de l’abonnement** : indiquez un nom unique pour votre abonnement aux événements. |
+   | **Abonnement** | *{abonnement-Azure-de-la-machine-virtuelle}* | Sélectionnez un abonnement Azure de hello événements du serveur de publication. Pour ce didacticiel, sélectionnez hello abonnement Azure pour votre machine virtuelle. | 
+   | **Type de ressource** | Microsoft.Resources.resourceGroups | Sélectionnez le type de ressource hello événements du serveur de publication. Pour ce didacticiel, sélectionnez hello la valeur spécifiée pour votre application logique surveille uniquement les groupes de ressources. | 
+   | **Nom de la ressource** | *{nom-du-groupe-de-ressources-de-la-machine-virtuelle}* | Sélectionnez le nom de la ressource du serveur de publication hello. Pour ce didacticiel, sélectionnez le nom hello hello du groupe de ressources pour votre machine virtuelle. | 
+   | Pour les paramètres facultatifs, choisissez **Afficher les options avancées**. | *{voir les descriptions}* | * **Filtre de préfixe** : pour ce didacticiel, laissez ce paramètre vide. comportement par défaut de Hello correspond à toutes les valeurs. Vous pouvez cependant spécifier une chaîne de préfixe en tant que filtre, par exemple, un chemin d’accès et un paramètre pour une ressource spécifique. <p>* **Filtre de suffixe** : pour ce didacticiel, laissez ce paramètre vide. comportement par défaut de Hello correspond à toutes les valeurs. Vous pouvez cependant spécifier une chaîne de suffixe en tant que filtre, par exemple, une extension de nom de fichier, si vous ne souhaitez utiliser que des types de fichiers spécifiques.<p>* **Nom de l’abonnement** : indiquez un nom unique pour votre abonnement aux événements. |
    | | | 
 
    Une fois que vous avez terminé, votre déclencheur Event Grid peut se présenter ainsi :
    
    ![Détails d’un exemple de déclencheur de grille d’événements](./media/monitor-virtual-machine-changes-event-grid-logic-app/logic-app-event-grid-trigger-details.png)
 
-9. Enregistrez votre application logique. Dans la barre d’outils du concepteur, choisissez **Enregistrer**. Pour réduire et masquer les détails d’une action dans votre logique d’application, choisissez la barre de titre de l’action.
+9. Enregistrez votre application logique. Dans la barre d’outils Concepteur hello, choisissez **enregistrer**. toocollapse et masquer les détails d’une action dans votre logique d’application, choisissez barre de titre de l’action hello.
 
    ![Enregistrer votre application logique](./media/monitor-virtual-machine-changes-event-grid-logic-app/logic-app-event-grid-save.png)
 
-   Lorsque vous enregistrez votre application logique avec un déclencheur Event Grid, Azure crée automatiquement un abonnement aux événements de votre application logique pour la ressource que vous avez sélectionnée. Par conséquent, lorsque la ressource publie un événement dans la grille d’événements, cette grille d’événements transmet automatiquement l’événement à votre application logique. Cet événement déclenche votre application logique, puis crée et lance une instance du flux de travail que vous définissez dans les étapes suivantes.
+   Lorsque vous enregistrez votre application logique avec un déclencheur de grille d’événement, Azure crée automatiquement un abonnement aux événements pour votre ressource de tooyour sélectionné d’application logique. Par conséquent, lorsque les ressources hello publie une grille d’événement événements toohello, cette grille d’événement transmet automatiquement hello événement tooyour logique application. Cet événement déclenche votre application logique, puis crée et exécute une instance de flux de travail hello que vous définissez dans les étapes suivantes.
 
-Votre application logique est désormais en ligne ; elle écoute les événements de la grille d’événements, mais ne fait rien tant que vous n’avez pas ajouté d’actions au flux de travail. 
+Votre application logique est désormais en ligne et écoute tooevents à partir de la grille d’événement hello, mais n’a aucun effet sauf si vous ajoutez des flux de travail toohello actions. 
 
 ## <a name="add-a-condition-that-checks-for-virtual-machine-changes"></a>Ajouter une condition qui recherche les modifications apportées à la machine virtuelle
 
-Pour exécuter le flux de travail de votre application logique uniquement quand un événement spécifique se produit, ajoutez une condition qui recherche les opérations d’écriture sur la machine virtuelle. Lorsque cette condition est true, votre application logique vous envoie par courrier électronique des informations sur la machine virtuelle mise à jour.
+toorun votre workflow d’application logique uniquement quand un événement spécifique se produit, ajoutez une condition qui vérifie pour la machine virtuelle « opérations d’écriture ». Lorsque cette condition est true, votre application logique envoie à qu'envoyer par courrier électronique avec des détails sur l’ordinateur virtuel de hello mis à jour.
 
-1. Dans le Concepteur d’application logique, sous le déclencheur de votre grille d’événements, sélectionnez **Nouvelle étape** > **Ajouter une condition**.
+1. Dans le Concepteur d’application logique, avec un déclencheur d’événements grille hello, choisissez **nouvelle étape** > **ajouter une condition**.
 
-   ![Ajouter une condition à votre application logique](./media/monitor-virtual-machine-changes-event-grid-logic-app/logic-app-event-grid-add-condition-step.png)
+   ![Ajouter une application de la logique de condition tooyour](./media/monitor-virtual-machine-changes-event-grid-logic-app/logic-app-event-grid-add-condition-step.png)
 
-   Le Concepteur d’application logique ajoute une condition vide à votre flux de travail, y compris les chemins d’accès des actions à suivre selon que la condition est true ou false.
+   Concepteur d’application logique de Hello ajoute une condition vide tooyour du flux de travail, y compris toofollow de chemins d’accès d’action selon si la condition de hello est true ou false.
 
    ![Condition vide](./media/monitor-virtual-machine-changes-event-grid-logic-app/logic-app-add-empty-condition.png)
 
-2. Dans la zone **Condition**, choisissez **Modifier en mode avancé**.
+2. Bonjour **Condition** , choisissez **modifier en mode avancé**.
 Entrez cette expression :
 
    `@equals(triggerBody()?['data']['operationName'], 'Microsoft.Compute/virtualMachines/write')`
@@ -138,15 +138,15 @@ Entrez cette expression :
 
    ![Condition vide](./media/monitor-virtual-machine-changes-event-grid-logic-app/logic-app-condition-expression.png)
 
-   Cette expression vérifie si l’événement `body` contient un objet `data` dont la propriété `operationName` correspond à l’opération `Microsoft.Compute/virtualMachines/write`. 
+   Cette expression vérifie les événements hello `body` pour un `data` objet où hello `operationName` propriété est hello `Microsoft.Compute/virtualMachines/write` opération. 
    En savoir plus sur le [schéma d’un événement Event Grid](../event-grid/event-schema.md).
 
-3. Pour fournir une description de la condition, choisissez le bouton en forme **d’ellipse** (**...** ) sur la forme de la condition, puis sélectionnez **Renommer**.
+3. tooprovide une description de la condition de hello, choisissez hello **ellipses** (**...** ) sur la forme de condition hello bouton, puis choisissez **renommer**.
 
    > [!NOTE] 
-   > Les exemples suivants de ce didacticiel décrivent également les étapes du flux de travail de l’application logique.
+   > Hello exemples plus loin dans ce didacticiel également fournissent une description des étapes de flux de travail application hello logique.
 
-4. Choisissez maintenant **Modifier en mode de base** afin que l’expression se résolve automatiquement ainsi :
+4. Choisissez maintenant **modifier en mode de base** afin que l’expression de hello résout automatiquement comme indiqué :
 
    ![Condition d’application logique](./media/monitor-virtual-machine-changes-event-grid-logic-app/logic-app-condition-1.png)
 
@@ -154,72 +154,72 @@ Entrez cette expression :
 
 ## <a name="send-email-when-your-virtual-machine-changes"></a>Envoyer un courrier électronique lorsque votre machine virtuelle change
 
-Ajoutez maintenant une [ *action* ](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts) pour recevoir un message électronique lorsque la condition spécifiée est true.
+Ajoutez maintenant un [ *action* ](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts) afin que vous obtenez un message électronique lorsque hello spécifié la condition a la valeur true.
 
-1. Dans la zone **If true** de la condition, choisissez **Ajouter une action**.
+1. Dans la condition de hello **Si true** , choisissez **ajouter une action**.
 
    ![Ajouter une action lorsque la condition est true](./media/monitor-virtual-machine-changes-event-grid-logic-app/logic-app-condition-2.png)
 
-2. Dans la zone de recherche, entrez « e-mail » comme filtre. Selon votre fournisseur de messagerie, recherchez et sélectionnez le connecteur correspondant. Puis sélectionnez l’action « Envoyer un courrier électronique » pour votre connecteur. Par exemple : 
+2. Dans la zone de recherche de hello, entrez « email » comme filtre. Selon votre fournisseur de messagerie, recherchez et sélectionnez le connecteur correspondant de hello. Sélectionnez hello « envoyer le message électronique » action de votre connecteur. Par exemple : 
 
-   * Pour un compte professionnel ou scolaire Azure, sélectionnez le connecteur Outlook Office 365. 
-   * Pour des comptes personnels Microsoft, sélectionnez le connecteur Outlook.com. 
-   * Pour des comptes Gmail, sélectionnez le connecteur Gmail. 
+   * Pour Azure compte professionnel ou scolaire, sélectionnez hello Office 365 Outlook connector. 
+   * Pour les comptes Microsoft personnels, sélectionnez le connecteur du Outlook.com hello. 
+   * Pour les comptes Gmail, sélectionnez le connecteur du Gmail hello. 
 
-   Nous continuerons d’utiliser le connecteur Outlook Office 365. 
-   Si vous utilisez un autre fournisseur, les étapes restent les mêmes, mais votre interface utilisateur peut s’afficher différemment. 
+   Nous allons toocontinue hello Office 365 Outlook Connector. 
+   Si vous utilisez un autre fournisseur, hello étapes restent hello identiques, mais votre interface utilisateur peut apparaître différent. 
 
    ![Sélectionner l’action « Envoyer un courrier électronique »](./media/monitor-virtual-machine-changes-event-grid-logic-app/logic-app-send-email.png)
 
-3. Si vous ne disposez pas déjà d’une connexion pour votre fournisseur de messagerie, connectez-vous à votre compte de messagerie lorsque vous êtes invité vous identifier.
+3. Si vous ne disposez pas d’une connexion pour votre fournisseur de messagerie, compte de connexion tooyour par courrier électronique lorsque vous êtes invité pour l’authentification.
 
-4. Renseignez les détails de l’e-mail comme l’indique le tableau suivant :
+4. Fournissent des détails pour la messagerie hello comme spécifié dans hello tableau suivant :
 
    ![Action E-mail vide](./media/monitor-virtual-machine-changes-event-grid-logic-app/logic-app-empty-email-action.png)
 
    > [!TIP]
-   > Pour sélectionner certains des champs disponibles dans votre flux de travail, cliquez sur une zone d’édition afin d’ouvrir la liste **Contenu dynamique**, ou choisissez **Ajouter du contenu dynamique**. Pour voir davantage de champs, choisissez **Plus** pour chacune des sections de la liste. Pour fermer la liste **Contenu dynamique**, choisissez **Ajouter du contenu dynamique**.
+   > tooselect à partir des champs disponibles dans votre flux de travail, cliquez dans une zone d’édition ainsi que hello **contenu dynamique** liste s’ouvre, ou choisissez **ajouter du contenu dynamique**. Pour davantage de champs, choisissez **plus** pour chaque section dans la liste de hello. tooclose hello **contenu dynamique** , choisissez **ajouter du contenu dynamique**.
 
    | Paramètre | Valeur suggérée | Description | 
    | ------- | --------------- | ----------- | 
-   | **To** | *{adresse-e-mail-du-destinataire}* |Entrez l’adresse e-mail du destinataire. À des fins de test, vous pouvez utiliser votre propre adresse e-mail. | 
-   | **Objet** | Mise à jour de la ressource : **Subject**| Entrez le contenu de l’objet de l’e-mail. Dans le cadre de ce didacticiel, entrez le texte suggéré et sélectionnez le champ **Subject** de l’événement. Ici, l’objet de votre e-mail comprend le nom de la ressource mise à jour (machine virtuelle). | 
-   | **Corps** | Groupe de ressources : **Topic** <p>Type d’événement : **Event Type**<p>ID d’événement : **ID**<p>Heure : **Event Time** | Entrez le contenu du corps de l’e-mail. Dans le cadre de ce didacticiel, entrez le texte suggéré et sélectionnez les champs **Topic**, **Event Type**, **ID** et **Event Time** de façon à inclure dans votre e-mail le nom du groupe de ressources, le type d’événement, son horodatage et son ID pour la mise à jour. <p>Pour ajouter des lignes vides à votre contenu, appuyez sur Maj + Entrée. | 
+   | **To** | *{adresse-e-mail-du-destinataire}* |Entrez l’adresse de messagerie du destinataire hello. À des fins de test, vous pouvez utiliser votre propre adresse e-mail. | 
+   | **Objet** | Mise à jour de la ressource : **Subject**| Entrez le contenu hello pour l’objet de le du e-mail de hello. Pour ce didacticiel, entrez hello suggéré texte et l’événement hello sélectionnez **sujet** champ. Ici, l’objet du message électronique comprend nom hello pour la ressource de hello mis à jour (machine virtuelle). | 
+   | **Corps** | Groupe de ressources : **Topic** <p>Type d’événement : **Event Type**<p>ID d’événement : **ID**<p>Heure : **Event Time** | Entrer du contenu de hello pour les corps de messagerie hello. Pour ce didacticiel, entrez hello suggéré texte et l’événement hello sélectionnez **rubrique**, **Type d’événement**, **ID**, et **heure de l’événement** champs afin que votre adresse de messagerie inclut le nom de groupe de ressources hello, type d’événement, événement timestamp et l’ID d’événement de mise à jour hello. <p>tooadd des lignes vides dans votre contenu, appuyez sur MAJ + ENTRÉE. | 
    | | | 
 
    > [!NOTE] 
-   > Si vous sélectionnez un champ qui représente un tableau, le concepteur ajoute automatiquement une boucle **For each** autour de l’action qui référence ce tableau. De cette façon, votre application logique effectue cette action sur chaque élément du tableau.
+   > Si vous sélectionnez un champ qui représente un tableau, hello concepteur ajoute automatiquement une **pour chaque** boucle autour d’action hello qui fait référence à hello tableau. De cette façon, votre application logique effectue cette action sur chaque élément du tableau.
 
    Votre action d’e-mail peut maintenant se présenter ainsi :
 
-   ![Sélectionner les sorties à inclure dans le courrier électronique](./media/monitor-virtual-machine-changes-event-grid-logic-app/logic-app-send-email-details.png)
+   ![Sélectionnez les sorties tooinclude par courrier électronique](./media/monitor-virtual-machine-changes-event-grid-logic-app/logic-app-send-email-details.png)
 
    Et votre application logique terminée peut se présenter ainsi :
 
    ![Application logique terminée](./media/monitor-virtual-machine-changes-event-grid-logic-app/logic-app-completed.png)
 
-5. Enregistrez votre application logique. Pour réduire et masquer les détails de chaque action dans votre logique d’application, choisissez la barre de titre de l’action.
+5. Enregistrez votre application logique. toocollapse et masquer les détails de chaque action dans votre logique d’application, choisissez barre de titre de l’action hello.
 
    ![Enregistrer votre application logique](./media/monitor-virtual-machine-changes-event-grid-logic-app/logic-app-event-grid-save-completed.png)
 
-   Votre application logique est désormais en ligne, mais elle attend que votre machine virtuelle soit modifiée avant de faire quoi que ce soit. 
-   Pour tester maintenant votre application logique, passez à la section suivante.
+   Votre application logique est désormais en ligne, mais il attend pour l’ordinateur virtuel de tooyour modifications avant de faire quoi que ce soit. 
+   tootest votre application logique se poursuivre maintenant, toohello la prochaine section.
 
 ## <a name="test-your-logic-app-workflow"></a>Tester le flux de travail d’une application logique
 
-1. Pour vérifier que votre application logique reçoit des événements spécifiés, mettez à jour votre machine virtuelle. 
+1. toocheck que votre application logique est mise en route hello des événements spécifiés, mettez à jour de votre machine virtuelle. 
 
-   Par exemple, vous pouvez redimensionner votre machine virtuelle dans le portail Azure ou [redimensionner votre machine virtuelle avec Azure PowerShell](../virtual-machines/windows/resize-vm.md). 
+   Par exemple, vous pouvez redimensionner votre machine virtuelle dans hello portail Azure ou [redimensionner votre machine virtuelle avec Azure PowerShell](../virtual-machines/windows/resize-vm.md). 
 
    Après quelques instants, vous devriez recevoir un courrier électronique. Par exemple :
 
    ![Courrier électronique à propos de la mise à jour de la machine virtuelle](./media/monitor-virtual-machine-changes-event-grid-logic-app/email.png)
 
-2. Pour consulter l’historique des exécutions et des déclenchements de votre application logique, choisissez **Vue d’ensemble** dans le menu de votre application logique. Pour afficher plus de détails sur une exécution, sélectionnez la ligne correspondante.
+2. tooreview hello s’exécute et l’historique de déclencheur pour votre application logique, dans le menu Application logique, choisissez **vue d’ensemble**. tooview plus de détails sur l’exécution, choisissez les lignes hello pour cette exécution.
 
    ![Historique d’exécutions de l’application logique](./media/monitor-virtual-machine-changes-event-grid-logic-app/logic-app-run-history.png)
 
-3. Pour afficher les entrées et les sorties de chaque étape, développez celle que vous souhaitez vérifier. Ces informations peuvent vous aider à diagnostiquer et déboguer les problèmes de votre application logique.
+3. entrées de hello tooview et des sorties pour chaque étape, développez étape hello que vous souhaitez tooreview. Ces informations peuvent vous aider à diagnostiquer et déboguer les problèmes de votre application logique.
  
    ![Détails de l’historique des exécutions d’une application logique](./media/monitor-virtual-machine-changes-event-grid-logic-app/logic-app-run-history-details.png)
 
@@ -227,9 +227,9 @@ Félicitations, vous avez créé et exécuté une application logique qui survei
 
 ## <a name="clean-up-resources"></a>Supprimer des ressources
 
-Ce didacticiel utilise des ressources et effectue des actions qui peuvent entraîner des frais sur votre abonnement Azure. Par conséquent, lorsque vous aurez terminé de suivre ce didacticiel et d’effectuer les tests, veillez à désactiver ou à supprimer les ressources pour lesquelles vous ne souhaitez pas être facturé.
+Ce didacticiel utilise des ressources et effectue des actions qui peuvent entraîner des frais sur votre abonnement Azure. Par conséquent, lorsque vous avez terminé avec le didacticiel de hello et de test, assurez-vous de désactiver ou de supprimer les ressources où vous souhaitez éviter les frais tooincur.
 
-Vous pouvez empêcher l’exécution de votre application logique et envoyer un e-mail sans supprimer l’application. Dans le menu de votre application logique, **Vue d’ensemble**. Dans la barre d’outils, choisissez **Désactiver**.
+Vous pouvez arrêter votre application logique en cours d’exécution et l’envoi de courrier électronique sans supprimer l’application hello. Dans le menu de votre application logique, **Vue d’ensemble**. Dans la barre d’outils de hello, choisissez **désactiver**.
 
 ![Désactiver votre application logique](./media/monitor-virtual-machine-changes-event-grid-logic-app/turn-off-disable-logic-app.png)
 
@@ -239,9 +239,9 @@ Vous pouvez empêcher l’exécution de votre application logique et envoyer un 
 **R** : vous pouvez surveiller d’autres modifications de configuration, par exemple :
 
 * Une machine virtuelle se voit attribuer des droits de contrôle d’accès en fonction du rôle (RBAC).
-* Des modifications sont apportées à un groupe de sécurité réseau (NSG) sur une carte d’interface réseau (NIC).
+* Modifications tooa groupe de sécurité réseau (NSG) sur une interface réseau (NIC).
 * Des disques d’une machine virtuelle ont été ajoutés ou supprimés.
-* Une adresse IP publique est affectée à la carte d’interface réseau (NIC) d’une machine virtuelle.
+* Une adresse IP publique est affectée tooa carte réseau de machine virtuelle.
 
 ## <a name="next-steps"></a>Étapes suivantes
 

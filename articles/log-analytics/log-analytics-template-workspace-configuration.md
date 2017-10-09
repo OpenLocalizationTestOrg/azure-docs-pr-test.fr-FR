@@ -1,6 +1,6 @@
 ---
-title: "Utilisation de modèles Azure Resource Manager pour créer et configurer un espace de travail Log Analytics | Microsoft Docs"
-description: "Vous pouvez utiliser des modèles Azure Resource Manager pour créer et configurer des espaces de travail Log Analytics."
+title: "tooCreate de modèles Azure Resource Manager aaaUse et configurer un espace de travail Analytique de journal | Documents Microsoft"
+description: "Vous pouvez utiliser toocreate de modèles Azure Resource Manager et configurer des espaces de travail Analytique de journal."
 services: log-analytics
 documentationcenter: 
 author: richrundmsft
@@ -14,43 +14,43 @@ ms.devlang: json
 ms.topic: article
 ms.date: 06/01/2017
 ms.author: richrund
-ms.openlocfilehash: 505b741d14c594b22108298466c646bf723ce2d4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c8f413e982f5eeed73f463524ff6f239f26c9127
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-log-analytics-using-azure-resource-manager-templates"></a>Gérer Log Analytics à l’aide de modèles Azure Resource Manager
-Vous pouvez utiliser des [modèles Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md) pour créer et configurer des espaces de travail Log Analytics. Voici quelques exemples de tâches que vous pouvez effectuer avec des modèles :
+Vous pouvez utiliser [modèles Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md) toocreate et configurer les espaces de travail Analytique de journal. Voici quelques exemples de tâches hello que vous pouvez effectuer avec des modèles :
 
 * Créer un espace de travail
 * Ajouter une solution
 * Créer des recherches enregistrées
 * Créer un groupe d’ordinateurs
-* Activer la collecte de journaux IIS à partir d’ordinateurs sur lesquels l’agent Windows est installé
+* Activer la collecte de journaux IIS à partir d’ordinateurs avec l’agent Windows hello installé
 * Collecter les compteurs de performances d’ordinateurs Linux et Windows
 * Collecter les événements de Syslog sur des ordinateurs Linux 
 * Collecter les événements des journaux des événements Windows
 * Collecter des journaux des événements personnalisés
-* Ajouter l’agent Log Analytics à une machine virtuelle Azure
-* Configurer Log Analytics pour indexer les données collectées à l’aide des diagnostics Azure
+* Ajouter hello journal analytique agent tooan machine virtuelle Azure
+* Configurer le journal analytique tooindex collectées à l’aide des diagnostics Windows Azure
 
-Cet article fournit des exemples de modèle qui illustrent des opérations de configuration que vous pouvez effectuer à partir de modèles.
+Cet article fournit des exemples qui illustrent les configuration hello que vous pouvez effectuer à partir de modèles un modèle.
 
 ## <a name="create-and-configure-a-log-analytics-workspace"></a>Créer et configurer un espace de travail Log Analytics
-L’exemple de modèle suivant illustre comment :
+Hello suivant modèle illustre comment :
 
 1. Créer un espace de travail, y compris la rétention des données de paramètres
-2. Ajouter des solutions à l’espace de travail
+2. Ajouter des solutions toohello espace de travail
 3. Créer des recherches enregistrées
 4. Créer un groupe d’ordinateurs
-5. Activer la collecte de journaux IIS à partir d’ordinateurs sur lesquels l’agent Windows est installé
+5. Activer la collecte de journaux IIS à partir d’ordinateurs avec l’agent Windows hello installé
 6. Collecter les compteurs de performances de disque logique d’ordinateurs Linux (% d’Inodes utilisés, Mo libres, % d’espace utilisé, Transferts disque/s, Lectures disque/s, Écritures disque/s)
 7. Collecter les événements Syslog d’ordinateurs Linux
-8. Collecter les événements d’erreur et d’avertissement du journal des événements d’application d’ordinateurs Windows
+8. Collecter les événements d’erreur et avertissement hello journal des événements à partir d’ordinateurs Windows
 9. Collecter le compteur de performances Mo de mémoire disponible d’ordinateurs Windows
 10. Collecter un journal personnalisé 
-11. Collecter les journaux IIS et les journaux des événements Windows écrits par les diagnostics Azure dans un compte de stockage
+11. Collecter les journaux IIS et les journaux d’événements Windows écrits par le compte de stockage Azure diagnostics tooa
 
 ```
 {
@@ -95,13 +95,13 @@ L’exemple de modèle suivant illustre comment :
     "applicationDiagnosticsStorageAccountName": {
         "type": "string",
         "metadata": {
-          "description": "Name of the storage account with Azure diagnostics output"
+          "description": "Name of hello storage account with Azure diagnostics output"
         }
     },
     "applicationDiagnosticsStorageAccountResourceGroup": {
         "type": "string",
         "metadata": {
-          "description": "The resource group name containing the storage account with Azure diagnostics output"
+          "description": "hello resource group name containing hello storage account with Azure diagnostics output"
         }
     }
   },
@@ -426,12 +426,12 @@ L’exemple de modèle suivant illustre comment :
 }
 
 ```
-### <a name="deploying-the-sample-template"></a>Déploiement de l’exemple de modèle
-Pour déployer l’exemple de modèle :
+### <a name="deploying-hello-sample-template"></a>Exemple de modèle de déploiement hello
+toodeploy hello exemple de modèle :
 
-1. Enregistrez l’exemple joint dans un fichier, par exemple `azuredeploy.json`. 
-2. Modifiez le modèle afin de disposer de la configuration souhaitée.
-3. Utilisez PowerShell ou la ligne de commande pour déployer le modèle.
+1. Enregistrez hello attaché exemple dans un fichier, par exemple`azuredeploy.json` 
+2. Modifier hello modèle toohave hello configuration souhaitée
+3. Utilisez PowerShell ou hello modèle de hello toodeploy de ligne de commande
 
 #### <a name="powershell"></a>PowerShell
 `New-AzureRmResourceGroupDeployment -Name <deployment-name> -ResourceGroupName <resource-group-name> -TemplateFile azuredeploy.json`
@@ -444,15 +444,15 @@ azure group deployment create <my-resource-group> <my-deployment-name> --Templat
 
 
 ## <a name="example-resource-manager-templates"></a>Exemples de modèles Azure Resource Manager
-La galerie de modèles de démarrage rapide Azure comprend plusieurs modèles pour Log Analytics, destinés aux opérations suivantes :
+Galerie de modèles de démarrage rapide Azure Hello comprend plusieurs modèles pour Analytique de journal, notamment :
 
-* [Déployer une machine virtuelle exécutant Windows avec l’extension de machine virtuelle Log Analytics](https://azure.microsoft.com/documentation/templates/201-oms-extension-windows-vm/)
-* [Déployer une machine virtuelle exécutant Linux avec l’extension de machine virtuelle Log Analytics](https://azure.microsoft.com/documentation/templates/201-oms-extension-ubuntu-vm/)
+* [Déployer un ordinateur virtuel exécutant Windows avec hello extension de machine virtuelle Analytique de journal](https://azure.microsoft.com/documentation/templates/201-oms-extension-windows-vm/)
+* [Déployer une machine virtuelle exécutant Linux avec hello extension de machine virtuelle Analytique de journal](https://azure.microsoft.com/documentation/templates/201-oms-extension-ubuntu-vm/)
 * [Analyser Azure Site Recovery à l’aide d’un espace de travail Log Analytics existant](https://azure.microsoft.com/documentation/templates/asr-oms-monitoring/)
 * [Analyser les applications web Azure à l’aide d’un espace de travail Log Analytics existant](https://azure.microsoft.com/documentation/templates/101-webappazure-oms-monitoring/)
 * [Analyser SQL Azure à l’aide d’un espace de travail Log Analytics existant](https://azure.microsoft.com/documentation/templates/101-sqlazure-oms-monitoring/)
 * [Déployer un cluster Service Fabric et l’analyser avec un espace de travail Log Analytics existant](https://azure.microsoft.com/documentation/templates/service-fabric-oms/)
-* [Déployer un cluster Service Fabric et créer un espace de travail Log Analytics pour le surveiller](https://azure.microsoft.com/documentation/templates/service-fabric-vmss-oms/)
+* [Déployer un cluster Service Fabric et créer un toomonitor d’espace de travail Analytique de journal qu’il](https://azure.microsoft.com/documentation/templates/service-fabric-vmss-oms/)
 
 ## <a name="next-steps"></a>Étapes suivantes
 * [Déployer des agents dans des machines virtuelles Azure en utilisant des modèles Resource Manager](log-analytics-azure-vm-extension.md)

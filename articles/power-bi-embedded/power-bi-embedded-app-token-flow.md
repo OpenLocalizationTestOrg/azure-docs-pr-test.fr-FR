@@ -1,5 +1,5 @@
 ---
-title: Authentification et autorisation avec Power BI Embedded
+title: aaaAuthenticating et autorisation avec Power BI Embedded
 description: Authentification et autorisation avec Power BI Embedded
 services: power-bi-embedded
 documentationcenter: 
@@ -15,44 +15,44 @@ ms.tgt_pltfrm: NA
 ms.workload: powerbi
 ms.date: 03/11/2017
 ms.author: asaxton
-ms.openlocfilehash: 93027f0f5467e0b21c47bbcbc84c67cdd50b26b8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 483ca0499e8d03584e1151d3d278c0179d4b8fbe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="authenticating-and-authorizing-with-power-bi-embedded"></a>Authentification et autorisation avec Power BI Embedded
 
-Le service Power BI Embedded utilise des **clés** et des **jetons d’application** pour l’authentification et l’autorisation. Il n’utilise pas l’authentification explicite des utilisateurs finaux. Dans ce modèle, votre application gère l’authentification et l’autorisation de vos utilisateurs finaux. Quand cela est nécessaire, votre application crée et envoie les jetons d’application à notre service pour lui indiquer d’afficher le rendu du rapport demandé. Avec cette conception, votre application peut gérer l’authentification et l’autorisation des utilisateurs sans passer par Azure Active Directory. Cette option est toutefois possible.
+Hello service Power BI Embedded utilise **clés** et **application jetons** pour l’authentification et d’autorisation, au lieu de l’authentification de l’utilisateur final explicite. Dans ce modèle, votre application gère l’authentification et l’autorisation de vos utilisateurs finaux. Lorsque cela est nécessaire, votre application crée et envoie les jetons d’application hello qui indique à notre toorender service hello rapport demandé. Cette conception ne requiert pas votre toouse application Azure Active Directory pour l’authentification des utilisateurs et l’autorisation, bien que vous puissiez toujours.
 
-## <a name="two-ways-to-authenticate"></a>Deux méthodes d’authentification
+## <a name="two-ways-tooauthenticate"></a>Deux façons tooauthenticate
 
-**Clé** : vous pouvez utiliser des clés pour tous les appels d’API REST Power BI Embedded. Les clés se trouvent sur le **portail Azure** en cliquant sur **Tous les paramètres**, puis sur **Clés d’accès**. Traitez toujours votre clé comme s’il s’agissait d’un mot de passe. Ces clés ont des autorisations pour appeler toutes les API REST sur une collection d’espaces de travail donnée.
+**Clé** : vous pouvez utiliser des clés pour tous les appels d’API REST Power BI Embedded. les clés Hello se trouvent dans hello **portail Azure** en cliquant sur **tous les paramètres** , puis **clés d’accès**. Traitez toujours votre clé comme s’il s’agissait d’un mot de passe. Ces clés ont toomake autorisations toute API REST appeler sur une collection de l’espace de travail particulier.
 
-Pour utiliser une clé sur un appel REST, ajoutez l’en-tête d’autorisation suivant :            
+toouse une clé sur un appel REST, ajoutez hello suivant l’en-tête d’autorisation :            
 
     Authorization: AppKey {your key}
 
-**Jeton d’application** : les jetons d’application sont utilisés pour toutes les demandes d’incorporation. Ils sont conçus pour être exécutés côté client, afin qu’ils soient limités à un rapport unique. Il est également recommandé de définir un délai d’expiration.
+**Jeton d’application** : les jetons d’application sont utilisés pour toutes les demandes d’incorporation. Ils sont conçus toobe exécuter côté client, afin qu’elles soient restreints tooa unique tooset de pratique meilleur rapport et son délai d’expiration.
 
 Les jetons d’application sont un JWT (JSON Web Token) signé par l’une de vos clés.
 
-Votre jeton d’application peut contenir les revendications suivantes :
+Votre jeton d’application peut contenir hello suivant revendications :
 
 | Revendication | Description |
 | --- | --- |
-| **ver** |Version de jeton d’application. La version actuelle est 0.2.0. |
-| **aud** |Destinataire du jeton. Pour Power BI Embedded, utilisez : https://analysis.windows.net/powerbi/api. |
-| **iss** |Chaîne indiquant l’application qui a émis le jeton. |
-| **type** |Type de jeton d’application en cours de création. Le seul type pris en charge pour l’instant est **embed**. |
-| **wcn** |Nom de collection d’espace de travail pour lequel le jeton est émis. |
-| **wid** |ID d’espace de travail pour lequel le jeton est émis. |
-| **rid** |ID de rapport pour lequel le jeton est émis. |
-| **username** (facultatif) |Utilisé avec la fonction RLS, ceci est une chaîne qui peut aider à identifier l’utilisateur lors de l’application des règles RLS. |
-| **roles** (facultatif) |Chaîne contenant les rôles à sélectionner lors de l’application des règles de sécurité au niveau des lignes. Si vous transmettez plusieurs rôles, ils doivent l’être en tant que table de chaînes. |
-| **scp** (facultatif) |Chaîne contenant les étendues d’autorisation. Si vous transmettez plusieurs rôles, ils doivent l’être en tant que table de chaînes. |
-| **exp** (facultatif) |Indique l’heure d’expiration du jeton. Les heures doivent être transmises en tant qu’horodatages Unix. |
-| **nbf** (facultatif) |Indique l’heure de début de validité du jeton. Les heures doivent être transmises en tant qu’horodatages Unix. |
+| **ver** |version de Hello du jeton d’application hello. 0.2.0 est la version actuelle de hello. |
+| **aud** |Hello destiné destinataire du jeton de hello. Pour Power BI Embedded, utilisez : https://analysis.windows.net/powerbi/api. |
+| **iss** |Chaîne indiquant l’application hello qui a émis le jeton de hello. |
+| **type** |type Hello du jeton d’application en cours de création. Type hello uniquement pris en charge en cours est **incorporer**. |
+| **wcn** |Jeton hello de nom d’espace de travail collection est émise. |
+| **wid** |Le jeton d’espace de travail ID hello est envoyée. |
+| **rid** |Le jeton d’état ID hello est envoyée. |
+| **username** (facultatif) |Utilisé avec la sécurité RLS, ceci est une chaîne qui peut aider à identifier l’utilisateur de hello lors de l’application des règles RLS. |
+| **roles** (facultatif) |Chaîne contenant le hello rôles tooselect lors de l’application des règles de sécurité de niveau ligne. Si vous transmettez plusieurs rôles, ils doivent l’être en tant que table de chaînes. |
+| **scp** (facultatif) |Chaîne qui contient les étendues d’autorisations hello. Si vous transmettez plusieurs rôles, ils doivent l’être en tant que table de chaînes. |
+| **exp** (facultatif) |Indique le temps hello dans le hello jeton expire. Les heures doivent être transmises en tant qu’horodatages Unix. |
+| **nbf** (facultatif) |Indique le temps hello dans le hello jeton commence en cours valide. Les heures doivent être transmises en tant qu’horodatages Unix. |
 
 Un exemple de jeton d’application doit ressembler à ceci :
 
@@ -85,27 +85,27 @@ Body
 
 ```
 
-Il existe des méthodes disponibles dans les Kits de développement logiciel (SDK)qui facilitent la création de jetons d’application. Par exemple, pour .NET vous pouvez consulter la classe [Microsoft.PowerBI.Security.PowerBIToken](https://docs.microsoft.com/dotnet/api/microsoft.powerbi.security.powerbitoken) et les méthodes [CreateReportEmbedToken](https://docs.microsoft.com/dotnet/api/microsoft.powerbi.security.powerbitoken?redirectedfrom=MSDN#methods_).
+Méthodes sont disponibles dans les kits de développement logiciel qui facilitent la création d’apptokens de hello. Par exemple, pour .NET vous pouvez examiner hello [Microsoft.PowerBI.Security.PowerBIToken](https://docs.microsoft.com/dotnet/api/microsoft.powerbi.security.powerbitoken) classe et hello [CreateReportEmbedToken](https://docs.microsoft.com/dotnet/api/microsoft.powerbi.security.powerbitoken?redirectedfrom=MSDN#methods_) méthodes.
 
-Pour le Kit de développement logiciel (SDK) .NET, vous pouvez vous référer à [Étendues](https://docs.microsoft.com/dotnet/api/microsoft.powerbi.security.scopes).
+Pour hello .NET SDK, vous pouvez vous reporter trop[étendues](https://docs.microsoft.com/dotnet/api/microsoft.powerbi.security.scopes).
 
 ## <a name="scopes"></a>Étendues
 
-Si vous utilisez des jetons d’incorporation, vous souhaiterez peut-être limiter l’utilisation des ressources auxquelles vous donnez accès. Pour cette raison, vous pouvez générer un jeton avec des étendues d’autorisation.
+Lorsque vous utilisez les jetons incorporé, vous souhaiterez toorestrict de l’utilisation d’hello que vous autoriser à accéder. Dans cette optique, vous pouvez générer un jeton avec des autorisations étendues.
 
-Voici les étendues disponibles pour Power BI Embedded.
+Hello Voici étendues disponibles de hello pour Power BI Embedded.
 
-|Étendue|Description|
+|Scope|Description|
 |---|---|
-|Dataset.Read|Fournit l’autorisation de lire un jeu de données spécifié.|
-|Dataset.Write|Fournit l’autorisation d’écrire sur un jeu de données spécifié.|
-|Dataset.ReadWrite|Fournit l’autorisation de lire et d’écrire sur un jeu de données spécifié.|
-|Report.Read|Fournit l’autorisation d’afficher un rapport spécifié.|
-|Report.ReadWrite|Fournit l’autorisation d’afficher et de modifier un rapport spécifié.|
-|Workspace.Report.Create|Fournit une autorisation pour créer un rapport dans l’espace de travail spécifié.|
-|Workspace.Report.Copy|Fournit une autorisation pour cloner un rapport existant dans l’espace de travail spécifié.|
+|Dataset.Read|Fournit l’autorisation tooread hello spécifié le jeu de données.|
+|Dataset.Write|Fournit des toohello de toowrite d’autorisation spécifié jeu de données.|
+|Dataset.ReadWrite|Fournit le dataset sont recompilé toohello autorisation tooread et en écriture.|
+|Report.Read|Fournit l’autorisation tooview hello spécifié de rapport.|
+|Report.ReadWrite|Fournit la modifier et autorisation tooview hello rapport spécifié.|
+|Workspace.Report.Create|Fournit des autorisation toocreate un nouveau rapport dans hello spécifié espace de travail.|
+|Workspace.Report.Copy|Fournit des autorisation tooclone un rapport existant dans hello spécifié espace de travail.|
 
-Vous pouvez fournir plusieurs étendues à l’aide d’un espace entre les étendues comme suit.
+Vous pouvez fournir plusieurs étendues à l’aide d’un espace entre les portées hello hello suivante.
 
 ```
 string scopes = "Dataset.Read Workspace.Report.Create";
@@ -113,9 +113,9 @@ string scopes = "Dataset.Read Workspace.Report.Create";
 
 **Revendications requises - Étendues**
 
-scp: {scopesClaim} scopesClaim peut être une chaîne ou un tableau de chaînes répertoriant les permissions autorisées sur les ressources d’espace de travail (rapport, jeu de données, etc.)
+SCP : {scopesClaim} scopesClaim peut être une chaîne ou un tableau de chaînes, en notant hello les autorisations accordées tooworkspace ressources (rapports, jeu de données, etc.).
 
-Un jeton décodé, avec des étendues définies, ressemblerait à ceci :
+Un jeton décodé, avec des étendues définies, se présenterait comme toohello suivant.
 
 ```
 Header
@@ -146,13 +146,13 @@ Body
 |Opération|Ressource cible|Autorisations du jeton|
 |---|---|---|
 |Créer (en mémoire) un rapport basé sur un jeu de données.|Jeu de données|Dataset.Read|
-|Créer (en mémoire) un rapport basé sur un jeu de données et enregistrez le rapport.|Jeu de données|* Dataset.Read<br>* Workspace.Report.Create|
-|Afficher et explorer/modifier (en mémoire) un rapport existant. Report.Read implies Dataset.Read. Cela ne donne pas accès aux autorisations permettant d’enregistrer les modifications.|Rapport|Report.Read|
+|Créer (mémoire) un rapport basé sur un jeu de données et enregistrer le rapport de hello.|Jeu de données|* Dataset.Read<br>* Workspace.Report.Create|
+|Afficher et explorer/modifier (en mémoire) un rapport existant. Report.Read implies Dataset.Read. Cela n’autorise pas les autorisations toosave modifications.|Rapport|Report.Read|
 |Modifier et enregistrer un rapport existant.|Rapport|Report.ReadWrite|
 |Enregistrer la copie d’un rapport (Enregistrer sous).|Rapport|* Report.Read<br>* Workspace.Report.Copy|
 
-## <a name="heres-how-the-flow-works"></a>Voici comment fonctionne le flux :
-1. Copiez les clés API dans votre application. Vous pouvez obtenir les clés à partir du **portail Azure**.
+## <a name="heres-how-hello-flow-works"></a>Voici comment fonctionne les flux de hello
+1. Copiez hello API clés tooyour application. Vous pouvez obtenir les clés hello **Azure Portal**.
    
     ![](media/powerbi-embedded-get-started-sample/azure-portal.png)
 2. Le jeton envoie une revendication et comporte un délai d'expiration.
@@ -161,17 +161,17 @@ Body
 3. Le jeton est signé à l’aide des clés d'accès API.
    
     ![](media/powerbi-embedded-get-started-sample/power-bi-embedded-token-3.png)
-4. L’utilisateur demande à consulter un rapport.
+4. Utilisateur demande tooview un rapport.
    
     ![](media/powerbi-embedded-get-started-sample/power-bi-embedded-token-4.png)
 5. Le jeton est validé à l’aide d’une clé d'accès API.
    
    ![](media/powerbi-embedded-get-started-sample/power-bi-embedded-token-5.png)
-6. Power BI Embedded envoie un rapport à l'utilisateur.
+6. Power BI Embedded envoie un rapport toouser.
    
    ![](media/powerbi-embedded-get-started-sample/power-bi-embedded-token-6.png)
 
-Après que **Power BI Embedded** envoie un rapport à l’utilisateur, ce dernier peut afficher le rapport dans votre application personnalisée. Par exemple, si vous avez importé l’ [exemple PBIX Analyse des données de vente](http://download.microsoft.com/download/1/4/E/14EDED28-6C58-4055-A65C-23B4DA81C4DE/Analyzing_Sales_Data.pbix), l’exemple d’application a l’aspect suivant :
+Après avoir **Power BI Embedded** envoie un utilisateur toohello de rapports, utilisateur de hello peut afficher des rapports de hello dans votre application personnalisée. Par exemple, si vous avez importé hello [exemple d’analyse de vente données PBIX](http://download.microsoft.com/download/1/4/E/14EDED28-6C58-4055-A65C-23B4DA81C4DE/Analyzing_Sales_Data.pbix), hello exemple d’application web ressemble à ceci :
 
 ![](media/powerbi-embedded-get-started-sample/sample-web-app.png)
 
@@ -182,5 +182,5 @@ Après que **Power BI Embedded** envoie un rapport à l’utilisateur, ce dernie
 [Scénarios Microsoft Power BI Embedded courants](power-bi-embedded-scenarios.md)  
 [Prise en main de Microsoft Power BI Embedded](power-bi-embedded-get-started.md)  
 [Dépôt Git PowerBI-CSharp](https://github.com/Microsoft/PowerBI-CSharp)  
-Des questions ? [Essayer la communauté Power BI](http://community.powerbi.com/)
+Des questions ? [Essayez de hello Communauté Power BI](http://community.powerbi.com/)
 

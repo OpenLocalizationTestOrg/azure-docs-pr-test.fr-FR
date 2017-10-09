@@ -1,6 +1,6 @@
 ---
-title: "Configurer le proxy web pour un appareil de la gamme StorSimple 8000 | Microsoft Docs"
-description: "Découvrez comment utiliser Windows PowerShell for StorSimple pour configurer les paramètres du proxy web de votre appareil StorSimple."
+title: "aaaSet un proxy web pour appareil de série StorSimple 8000 | Documents Microsoft"
+description: "Découvrez comment toouse Windows PowerShell pour StorSimple tooconfigure web paramètres du proxy pour votre appareil StorSimple."
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,145 +14,145 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 04/19/2017
 ms.author: alkohli
-ms.openlocfilehash: 1109e44ed9c6aa8a0f7305b8a50410316711589c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ed34ff400df66a5f1950c21d5298b41acc538cca
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-web-proxy-for-your-storsimple-device"></a>Configurer le proxy web pour votre appareil StorSimple
 
 ## <a name="overview"></a>Vue d'ensemble
 
-Ce didacticiel explique comment utiliser Windows PowerShell for StorSimple afin de configurer et d’afficher les paramètres du proxy web pour votre appareil StorSimple. Les paramètres de proxy web sont utilisés par l’appareil StorSimple lors de la communication avec le cloud. Un serveur proxy web est utilisé pour ajouter une autre couche de sécurité, filtrer le contenu, mettre en cache les données afin d’alléger la bande passante voire faciliter l’analyse.
+Ce didacticiel décrit comment toouse Windows PowerShell pour StorSimple tooconfigure et vue web des paramètres du proxy pour votre appareil StorSimple. paramètres du proxy web Hello sont utilisées par l’appareil StorSimple hello lors de la communication avec le cloud de hello. Un serveur proxy web est tooadd utilisé une autre couche de sécurité, filtre le contenu, mettre en cache les besoins en bande passante tooease ou même aider analytique.
 
-Les instructions de ce didacticiel s’appliquent uniquement aux appareils physiques de la gamme StorSimple 8000. La configuration du proxy web n’est pas prise en charge sur StorSimple Cloud Appliance (8010 et 8020).
+Guide de Hello dans ce didacticiel s’applique uniquement tooStorSimple 8000 series périphériques physiques. Configuration du proxy Web n’est pas pris en charge sur hello StorSimple Appliance de Cloud (8010 et 8020).
 
-Le proxy web est une configuration _facultative_ pour votre appareil StorSimple. Vous pouvez configurer le proxy web uniquement via Windows PowerShell for StorSimple. La configuration est un processus en deux étapes :
+Le proxy web est une configuration _facultative_ pour votre appareil StorSimple. Vous pouvez configurer le proxy web uniquement via Windows PowerShell for StorSimple. configuration de Hello est un processus en deux étapes comme suit :
 
-1. Vous configurez tout d’abord les paramètres du proxy web via l’Assistant d’installation ou Windows PowerShell pour les applets de commande StorSimple.
-2. Puis, vous activez les paramètres du proxy web configurés via Windows PowerShell pour les applets de commande StorSimple.
+1. Tout d’abord, vous configurez les paramètres de proxy web via l’Assistant d’installation hello ou Windows PowerShell pour les applets de commande StorSimple.
+2. Vous ensuite activer des paramètres de proxy web hello configuré via Windows PowerShell pour les applets de commande StorSimple.
 
-Une fois la configuration du proxy web terminée, vous pouvez afficher les paramètres du proxy web configurés dans le service Microsoft Azure StorSimple Device Manager et Windows PowerShell pour StorSimple.
+Une fois la configuration du proxy web hello est terminée, vous pouvez afficher les paramètres de proxy web hello configuré dans le service du Gestionnaire de périphériques Microsoft Azure StorSimple hello et hello Windows PowerShell pour StorSimple.
 
 Après avoir lu ce didacticiel, vous pourrez :
 
 * Configurer le proxy web à l’aide de l’Assistant d’installation et des cmdlets.
 * Activer le proxy web à l’aide des cmdlets.
-* Afficher des paramètres du proxy web dans le portail Azure.
+* Afficher les paramètres de proxy web Bonjour portail Azure.
 * Résoudre les erreurs lors de la configuration du proxy web.
 
 
 ## <a name="configure-web-proxy-via-windows-powershell-for-storsimple"></a>Configurer le proxy web via Windows PowerShell pour StorSimple
 
-Vous utilisez l’une des procédures suivantes pour configurer les paramètres du proxy web :
+Vous utilisez Hello suivant tooconfigure les paramètres de proxy web :
 
-* L’assistant d’installation, qui vous guide dans les différentes étapes de configuration.
+* Le programme d’installation tooguide de l’Assistant vous guide dans les étapes de configuration hello.
 * Les applets de commande Windows PowerShell pour StorSimple
 
-Chacune de ces méthodes est abordée dans les sections suivantes.
+Chacune de ces méthodes est décrite dans les sections suivantes de hello.
 
-## <a name="configure-web-proxy-via-the-setup-wizard"></a>Configuration du proxy web à l’aide de l’assistant d’installation
+## <a name="configure-web-proxy-via-hello-setup-wizard"></a>Configurer le proxy web via l’Assistant d’installation Bonjour
 
-Utilisez l’Assistant d’installation pour vous accompagner dans les différentes étapes de configuration du proxy web. Procédez comme suit pour configurer le proxy web sur votre appareil.
+Utilisez hello le programme d’installation Assistant tooguide que vous guident hello les étapes de configuration du proxy web. Effectuer hello suivant de proxy web de tooconfigure étapes sur votre appareil.
 
-#### <a name="to-configure-web-proxy-via-the-setup-wizard"></a>Pour configurer le proxy web à l’aide de l’assistant d’installation
+#### <a name="tooconfigure-web-proxy-via-hello-setup-wizard"></a>proxy web tooconfigure via l’Assistant d’installation Bonjour
 
-1. Dans le menu de la console série, choisissez l’option 1, **Se connecter avec accès total** et spécifiez le **mot de passe administrateur**. Tapez la commande suivante pour démarrer une session de l’assistant d’installation :
+1. Dans le menu de console série hello, sélectionnez l’option 1, **connecter avec un accès complet** et fournir hello **mot de passe administrateur**. Tapez ce qui suit hello commande toostart une session de l’Assistant d’installation :
    
     `Invoke-HcsSetupWizard`
-2. Si c’est la première fois que vous utilisez l’Assistant d’installation pour inscrire un appareil, vous devez configurer tous les paramètres réseau requis jusqu’à atteindre la configuration du proxy web. Si votre appareil est déjà inscrit, acceptez tous les paramètres réseau configurés jusqu’à atteindre la configuration du proxy web. Dans l’assistant d’installation, lorsque vous êtes invité à configurer les paramètres du proxy web, entrez **Yes**.
-3. Pour l’option **Web Proxy URL**, spécifiez l’adresse IP ou le nom de domaine complet (FQDN) de votre serveur proxy web et le numéro de port TCP que vous souhaitez que votre appareil utilise lors de la communication avec le cloud. Utilisez le format suivant :
+2. Si c’est hello première fois que vous avez utilisé l’Assistant Installation de hello pour l’inscription de périphérique, vous devez tooconfigure tous les paramètres de réseau hello nécessaire jusqu'à ce que vous atteigniez la configuration du proxy web hello. Si votre appareil est déjà inscrit, acceptez tous les paramètres de réseau de hello configuré jusqu'à ce que vous atteigniez la configuration du proxy web hello. Dans l’Assistant Installation de hello, tooconfigure demandée web des paramètres de proxy, tapez **Oui**.
+3. Pourquoi **URL de Proxy Web**, spécifiez l’adresse IP de hello ou hello du nom de domaine complet (FQDN) de votre web proxy server et hello numéro de port TCP que vous aimeriez toouse de votre appareil pour communiquer avec hello cloud. Utilisez hello suivant le format :
    
-    `http://<IP address or FQDN of the web proxy server>:<TCP port number>`
+    `http://<IP address or FQDN of hello web proxy server>:<TCP port number>`
    
     Par défaut, le numéro de port TCP 8080 est spécifié.
-4. Choisissez le type d’authentification **NTLM**, **De base** ou **Aucun**. L’option De base est l’authentification la moins sécurisée pour la configuration du serveur proxy. NT LAN Manager (NTLM) est un protocole d’authentification hautement sécurisé et plus complexe qui utilise un système de messagerie à trois voies (parfois quatre si une intégrité supplémentaire est requise) pour authentifier un utilisateur. L’authentification par défaut est NTLM. Pour plus d’informations, voir la rubrique Authentification [de base](http://hc.apache.org/httpclient-3.x/authentication.html) et [NTLM](http://hc.apache.org/httpclient-3.x/authentication.html). 
+4. Choisissez le type d’authentification hello en tant que **NTLM**, **base**, ou **aucun**. Authentification de base est l’authentification moins sécurisée pour la configuration du serveur proxy hello hello. NT LAN Manager (NTLM) est un protocole d’authentification hautement sécurisé et complexe qui utilise un système de messagerie de trois facteurs (voire quatre si une intégrité supplémentaire est requise) tooauthenticate un utilisateur. Hello par défaut l’authentification est NTLM. Pour plus d’informations, voir la rubrique Authentification [de base](http://hc.apache.org/httpclient-3.x/authentication.html) et [NTLM](http://hc.apache.org/httpclient-3.x/authentication.html). 
    
    > [!IMPORTANT]
-   > **Dans le service StorSimple Device Manager, les graphiques d’analyse de l’appareil ne fonctionnent pas lorsque l’authentification de base ou NTLM est activée dans la configuration du serveur proxy pour l’appareil. Pour que les graphiques d’analyse fonctionnent, vous devez vous assurer que l’authentification est définie sur Aucune.**
+   > **Bonjour service du Gestionnaire de périphériques StorSimple, les graphiques de surveillance de périphérique hello ne fonctionnent pas lors de la base ou l’authentification NTLM est activée dans la configuration du serveur proxy hello pour appareil de hello. Pourquoi toowork des graphiques d’analyse, vous devez tooensure que l’authentification a la valeur tooNONE.**
   
-5. Si vous avez activé l’authentification, spécifiez le **nom d’utilisateur du proxy web** et le **mot de passe du proxy web**. Vous devez également confirmer le mot de passe.
+5. Si vous avez activé l’authentification de hello, fournissez un **nom d’utilisateur du Proxy Web** et un **mot de passe de Proxy Web**. Vous devez également le mot de passe tooconfirm hello.
    
     ![Configuration du proxy web sur l’appareil StorSimple1](./media/storsimple-configure-web-proxy/IC751830.png)
 
-Si vous inscrivez votre appareil pour la première fois, poursuivez l’inscription. Si votre appareil a déjà été inscrit, l’Assistant se ferme. Les paramètres configurés sont enregistrés.
+Si vous inscrivez votre appareil pour hello première fois, continuez de l’inscription de hello. Si votre appareil a déjà été enregistré, l’Assistant de hello se ferme. paramètres de Hello configuré sont enregistrés.
 
-Le proxy web est maintenant activé. Vous pouvez ignorer l’étape [d’activation du proxy web](#enable-web-proxy) et passer directement à [l’affichage des paramètres du proxy web dans le portail Azure](#view-web-proxy-settings-in-the-azure-portal).
+Le proxy web est maintenant activé. Vous pouvez ignorer hello [activer le proxy web](#enable-web-proxy) étape et passez directement trop[afficher les paramètres de proxy web Bonjour Azure portal](#view-web-proxy-settings-in-the-azure-portal).
 
 ## <a name="configure-web-proxy-via-windows-powershell-for-storsimple-cmdlets"></a>Configuration du proxy web via les applets de commande Windows PowerShell pour StorSimple
 
-Vous pouvez également configurer les paramètres du proxy web via  les applets de commande Windows PowerShell pour StorSimple Procédez comme suit pour configurer le proxy web.
+Une autre façon tooconfigure les paramètres proxy web est via hello Windows PowerShell pour les applets de commande StorSimple. Effectuer hello suivant le proxy web étapes tooconfigure.
 
-#### <a name="to-configure-web-proxy-via-cmdlets"></a>Configuration du proxy web via les applets de commande
-1. Dans le menu de la console série, sélectionnez l’option 1, **Ouvrir une session avec un accès total**. Lorsque vous y êtes invité, fournissez le **mot de passe administrateur de l’appareil**. Le mot de passe par défaut est `Password1`.
-2.  À l’invite de commandes, tapez :
+#### <a name="tooconfigure-web-proxy-via-cmdlets"></a>proxy web tooconfigure via les applets de commande
+1. Dans le menu de console série hello, sélectionnez l’option 1, **connecter avec un accès complet**. Lorsque vous y êtes invité, fournissez hello **mot de passe administrateur**. mot de passe par défaut Hello est `Password1`.
+2. À l’invite de commandes hello, tapez :
    
     `Set-HcsWebProxy -Authentication NTLM -ConnectionURI "<http://<IP address or FQDN of web proxy server>:<TCP port number>" -Username "<Username for web proxy server>"`
    
-    Spécifiez et confirmez le mot de passe lorsque vous y êtes invité.
+    Fournir et confirmer le mot de passe hello lorsque vous y êtes invité.
    
     ![Configuration du proxy web sur l’appareil StorSimple3](./media/storsimple-configure-web-proxy/IC751831.png)
 
-Le proxy web est désormais configuré et doit être activé.
+le proxy web Hello est désormais configuré et doit toobe activé.
 
 ## <a name="enable-web-proxy"></a>Activation du proxy web
 
-Le proxy web est désactivé par défaut. Après avoir configuré les paramètres du proxy web sur votre appareil StorSimple, utilisez Windows PowerShell pour StorSimple afin d’activer les paramètres du proxy web.
+Le proxy web est désactivé par défaut. Après avoir configuré les paramètres de proxy web hello sur votre appareil StorSimple, utilisez hello Windows PowerShell pour les paramètres de proxy web StorSimple tooenable hello.
 
 > [!NOTE]
-> **Cette étape n’est pas nécessaire si vous avez utilisé l’Assistant d’installation pour configurer le proxy web. Le proxy web est automatiquement activé par défaut après une session de l’assistant d’installation.**
+> **Cette étape n’est pas requise si vous avez utilisé le proxy web tooconfigure hello le programme d’installation Assistant. Le proxy web est automatiquement activé par défaut après une session de l’assistant d’installation.**
 
 
-Procédez comme suit dans Windows PowerShell pour StorSimple afin d’activer le proxy web sur votre appareil :
+Effectuez hello comme suit dans Windows PowerShell pour le proxy web de tooenable StorSimple sur votre appareil :
 
-#### <a name="to-enable-web-proxy"></a>Activation du proxy web
-1. Dans le menu de la console série, sélectionnez l’option 1, **Ouvrir une session avec un accès total**. Lorsque vous y êtes invité, fournissez le **mot de passe administrateur de l’appareil**. Le mot de passe par défaut est `Password1`.
-2.  À l’invite de commandes, tapez :
+#### <a name="tooenable-web-proxy"></a>proxy web tooenable
+1. Dans le menu de console série hello, sélectionnez l’option 1, **connecter avec un accès complet**. Lorsque vous y êtes invité, fournissez hello **mot de passe administrateur**. mot de passe par défaut Hello est `Password1`.
+2. À l’invite de commandes hello, tapez :
    
     `Enable-HcsWebProxy`
    
-    Vous avez maintenant activé la configuration du proxy web sur votre appareil StorSimple.
+    Vous avez maintenant activé la configuration du proxy web hello sur votre appareil StorSimple.
    
     ![Configuration du proxy web sur l’appareil StorSimple4](./media/storsimple-configure-web-proxy/IC751832.png)
 
-## <a name="view-web-proxy-settings-in-the-azure-portal"></a>Afficher des paramètres de proxy web dans le portail Azure
+## <a name="view-web-proxy-settings-in-hello-azure-portal"></a>Afficher les paramètres de proxy web Bonjour portail Azure
 
-Les paramètres du proxy web sont configurés via l’interface Windows PowerShell et ne peuvent pas être modifiés dans le portail. Vous pouvez toutefois afficher ces paramètres configurés dans le portail. Procédez comme suit pour afficher le proxy web.
+paramètres de proxy web Hello sont configurés via l’interface Windows PowerShell de hello et ne peut pas être modifiées dans le portail de hello. Vous pouvez, toutefois, afficher ces paramètres configurés dans le portail de hello. Effectuer hello suivant le proxy web étapes tooview.
 
-#### <a name="to-view-web-proxy-settings"></a>Affichage des paramètres du proxy web
-1. Accédez à **StorSimple Device Manager service (Service StorSimple Device Manager) > Appareils**. Sélectionnez un appareil et cliquez dessus, puis accédez à **Paramètres de l’appareil > Réseau**.
+#### <a name="tooview-web-proxy-settings"></a>paramètres de proxy web tooview
+1. Accédez trop**service du Gestionnaire de périphériques StorSimple > appareils**. Sélectionner, cliquez sur l’appareil, puis passez trop**paramètres du périphérique > réseau**.
 
     ![Cliquer sur Réseau](./media/storsimple-8000-configure-web-proxy/view-web-proxy-1.png)
 
-2. Dans le panneau **Paramètres réseau**, cliquez sur la vignette **Proxy web**.
+2. Bonjour **paramètres réseau** panneau, cliquez sur hello **proxy Web** vignette.
 
     ![Cliquer sur Proxy web](./media/storsimple-8000-configure-web-proxy/view-web-proxy-2.png)
 
-3. Dans le panneau **Proxy web**, passez en revue les paramètres configurés du proxy web sur votre appareil StorSimple.
+3. Bonjour **proxy Web** panneau, les paramètres de proxy web révision hello configuré sur votre appareil StorSimple.
    
     ![Afficher les paramètres de proxy web](./media/storsimple-8000-configure-web-proxy/view-web-proxy-3.png)
 
 
 ## <a name="errors-during-web-proxy-configuration"></a>Erreurs lors de la configuration du proxy web
 
-Si les paramètres du proxy web sont mal configurés, des messages d’erreur s’affichent dans Windows PowerShell pour StorSimple. Le tableau suivant décrit certains de ces messages d’erreur, leurs causes probables et les actions recommandées.
+Si les paramètres de proxy web hello sont incorrectement configurés, les messages d’erreur sont utilisateur toohello affichés dans Windows PowerShell pour StorSimple. Hello tableau suivant décrit certaines de ces messages d’erreur, leurs causes probables et les actions recommandées.
 
 | Numéro de série | Code d’erreur HRESULT | Cause principale possible | Action recommandée |
 |:--- |:--- |:--- |:--- |
-| 1. |0x80070001 |La commande est exécutée à partir du contrôleur passif et ne peut pas communiquer avec le contrôleur actif. |Exécutez cette commande depuis le contrôleur actif. Pour exécuter la commande à partir du contrôleur passif, vous devez résoudre la connectivité entre le contrôleur passif et le contrôleur actif. Vous devez contacter le Support Microsoft si cette connectivité est interrompue. |
-| 2. |0x800710dd - L’identificateur de l’opération n’est pas valide |Les paramètres du proxy ne sont pas pris en charge sur StorSimple Cloud Appliance. |Les paramètres du proxy ne sont pas pris en charge sur StorSimple Cloud Appliance. Ils peuvent uniquement être configurés sur un appareil StorSimple physique. |
-| 3. |0x80070057 - Paramètre non valide |L’un des paramètres fournis pour les paramètres de proxy n’est pas valide. |L’URI n’est pas fourni dans le format correct. Utilisez le format suivant : `http://<IP address or FQDN of the web proxy server>:<TCP port number>` |
-| 4. |0x800706ba - Serveur RPC indisponible |La cause première est l’une des suivantes :</br></br>Le cluster n’est pas disponible. </br></br>Le service Chemin de données n'est pas en cours d'exécution.</br></br>La commande est exécutée à partir du contrôleur passif et ne peut pas communiquer avec le contrôleur actif. |Contactez le Support Microsoft pour vous assurer que le cluster est disponible et que le service datapath est en cours d’exécution.</br></br>Exécutez la commande à partir du contrôleur actif. Si vous souhaitez exécuter la commande à partir du contrôleur passif, vous devez vous assurer que le contrôleur passif peut communiquer avec le contrôleur actif. Vous devez contacter le Support Microsoft si cette connectivité est interrompue. |
-| 5. |0x800706be - Échec de l’appel RPC |Le cluster est arrêté. |Contactez le Support Microsoft pour vous assurer que le cluster est disponible. |
-| 6. |0x8007138f - Ressource de cluster introuvable |Impossible de trouver la ressource de cluster du service de plateforme. Cela peut se produire lorsque l’installation ne s’est pas déroulée correctement. |Vous devrez peut-être effectuer une réinitialisation de votre appareil aux paramètres d’usine. Vous devrez peut-être créer une ressource de plateforme. Contactez le Support Microsoft pour les étapes suivantes. |
-| 7. |0x8007138c - La ressource de cluster n’est pas en ligne |Les ressources de plateforme ou datapath ne sont pas en ligne. |Contactez le Support Microsoft pour vous assurer que les ressources de service datapath et de plateforme sont en ligne. |
+| 1. |0x80070001 |Commande est exécutée à partir du contrôleur passif de hello et il n’est pas en mesure de toocommunicate avec le contrôleur actif de hello. |Exécutez la commande hello sur le contrôleur actif de hello. commande hello toorun à partir du contrôleur passif de hello, vous devez corriger connectivité hello de passif tooactive contrôleur. Vous devez contacter le Support Microsoft si cette connectivité est interrompue. |
+| 2. |0x800710dd - l’identificateur d’opération hello n’est pas valide |Les paramètres du proxy ne sont pas pris en charge sur StorSimple Cloud Appliance. |Les paramètres du proxy ne sont pas pris en charge sur StorSimple Cloud Appliance. Ils peuvent uniquement être configurés sur un appareil StorSimple physique. |
+| 3. |0x80070057 - Paramètre non valide |Un des paramètres de hello fournis pour les paramètres de proxy hello n’est pas valide. |Hello URI n’est pas fourni dans le format correct. Utilisez hello suivant le format :`http://<IP address or FQDN of hello web proxy server>:<TCP port number>` |
+| 4. |0x800706ba - Serveur RPC indisponible |cause première Hello est hello suivantes :</br></br>Le cluster n’est pas disponible. </br></br>Le service Chemin de données n'est pas en cours d'exécution.</br></br>commande Hello est exécutée à partir du contrôleur passif et il n’est pas en mesure de toocommunicate avec le contrôleur actif de hello. |Établir une tooensure de Support technique de Microsoft qui hello cluster est activé et service de chemin de données est en cours d’exécution.</br></br>Exécutez la commande hello à partir du contrôleur actif de hello. Si vous souhaitez que les commandes de hello toorun à partir du contrôleur passif de hello, vous devez vous assurer que hello peut communiquer avec le contrôleur actif de hello. Vous devez contacter le Support Microsoft si cette connectivité est interrompue. |
+| 5. |0x800706be - Échec de l’appel RPC |Le cluster est arrêté. |Faites appel au Support technique de Microsoft tooensure qui hello cluster est activé. |
+| 6. |0x8007138f - Ressource de cluster introuvable |Impossible de trouver la ressource de cluster du service de plateforme. Cela peut se produire lors de l’installation de hello n’était pas correcte. |Vous devrez peut-être tooperform usine sur votre appareil. Vous devrez peut-être toocreate une ressource de plateforme. Contactez le Support Microsoft pour les étapes suivantes. |
+| 7. |0x8007138c - La ressource de cluster n’est pas en ligne |Les ressources de plateforme ou datapath ne sont pas en ligne. |Contact toohelp de Support technique de Microsoft vous assurer que la ressource de service de plateforme et de chemin de données hello sont en ligne. |
 
 > [!NOTE]
-> * La liste des messages d’erreur ci-dessus n’est pas exhaustive.
-> * Les erreurs liées aux paramètres du proxy web ne s’afficheront pas dans le portail Azure de votre service StorSimple Device Manager. Si un problème survient au niveau du proxy web après la configuration, l’état de l’appareil affiche **Hors connexion** dans le portail Azure Classic.|
+> * Hello au-dessus de la liste des messages d’erreur n’est pas exhaustive.
+> * Paramètres du proxy erreurs connexes tooweb seront affichera pas Bonjour Azure portal dans votre service de gestionnaire de périphériques StorSimple. S’il existe un problème avec le proxy web après la configuration de hello, état d’appareil de hello devient trop**hors connexion** dans le portail classique de hello. |
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Si vous rencontrez des problèmes lors du déploiement de votre appareil ou la configuration des paramètres de proxy web, voir [Dépannage du déploiement de votre appareil StorSimple](storsimple-troubleshoot-deployment.md).
-* Pour apprendre à utiliser le service StorSimple Device Manager, consultez [Use the StorSimple Device Manager service to administer your StorSimple device](storsimple-8000-manager-service-administration.md) (Utiliser le service StorSimple Device Manager pour gérer votre appareil StorSimple).
+* Si vous rencontrez des problèmes lors du déploiement de votre appareil ou de configuration des paramètres de proxy web, consultez trop[résoudre les problèmes de déploiement de votre périphérique StorSimple](storsimple-troubleshoot-deployment.md).
+* toolearn comment toouse hello service du Gestionnaire de périphériques StorSimple, accédez trop[utilisez hello tooadminister du service Gestionnaire de périphériques StorSimple votre appareil StorSimple](storsimple-8000-manager-service-administration.md).
 

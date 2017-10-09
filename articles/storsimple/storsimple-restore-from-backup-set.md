@@ -1,6 +1,6 @@
 ---
-title: "Restauration d’un volume StorSimple à partir d’une sauvegarde | Microsoft Docs"
-description: "Explique comment utiliser la page Catalogue de sauvegarde du service StorSimple Manager pour restaurer un volume StorSimple à partir d’un jeu de sauvegarde."
+title: "un volume StorSimple à partir de la sauvegarde d’aaaRestore | Documents Microsoft"
+description: "Explique comment toouse hello StorSimple Manager service catalogue de sauvegarde page toorestore un volume StorSimple à partir d’un jeu de sauvegarde."
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,77 +14,77 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 08/17/2016
 ms.author: alkohli
-ms.openlocfilehash: 12484338f5b4d489604d70a657ef0992b6267297
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e0efa74b14603be41af0cfc5400de3c39ab8824e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="restore-a-storsimple-volume-from-a-backup-set"></a>Restauration d’un volume StorSimple à partir d’un jeu de sauvegarde
 [!INCLUDE [storsimple-version-selector-restore-from-backup](../../includes/storsimple-version-selector-restore-from-backup.md)]
 
 ## <a name="overview"></a>Vue d'ensemble
-La page **Catalogue de sauvegarde** affiche tous les jeux de sauvegarde créés lors de sauvegardes manuelles ou automatisées. Vous pouvez utiliser cette page pour répertorier toutes les sauvegardes pour une stratégie de sauvegarde ou un volume, sélectionner ou supprimer des sauvegardes, ou utiliser une sauvegarde pour restaurer ou cloner un volume.
+Hello **catalogue de sauvegarde** page affiche tous les jeux de sauvegarde hello qui sont créés lorsque des sauvegardes manuelles ou automatisées sont effectuées. Vous pouvez utiliser cette toolist page toutes les sauvegardes hello pour une stratégie de sauvegarde ou un volume, sélectionnez ou supprimer les sauvegardes, ou utiliser une sauvegarde toorestore ou cloner un volume.
 
  ![Page Catalogue de sauvegarde](./media/storsimple-restore-from-backup-set/HCS_BackupCatalog.png)
 
-Ce didacticiel explique comment utiliser la page **Catalogue de sauvegarde** pour restaurer un volume sur l’appareil à partir d’un jeu de sauvegarde.
+Ce didacticiel explique comment toouse hello **catalogue de sauvegarde** page toorestore un volume sur votre appareil à partir d’un jeu de sauvegarde.
 
-## <a name="how-to-use-the-backup-catalog"></a>Utilisation du catalogue de sauvegarde
-La page **Catalogue de sauvegarde** comprend une zone de requête qui vous permet d’affiner la sélection des ensembles de sauvegarde. Vous pouvez filtrer les jeux de sauvegarde récupérés selon les paramètres suivants :
+## <a name="how-toouse-hello-backup-catalog"></a>Comment toouse hello catalogue de sauvegarde
+Hello **catalogue de sauvegarde** page fournit une requête qui vous permet de toonarrow votre sélection du jeu de sauvegarde. Vous pouvez filtrer hello jeux de sauvegarde qui est récupérés en fonction de hello paramètres suivants :
 
-* **Appareil** : appareil sur lequel le jeu de sauvegarde a été créé.
-* **Stratégie de sauvegarde** ou **volume** : stratégie de sauvegarde ou volume associé à ce jeu de sauvegarde.
-* **De** et **À** : plage de dates et d’heures de création du jeu de sauvegarde.
+* **APPAREIL** – périphérique hello sur quel hello jeu de sauvegarde a été créé.
+* **Stratégie de sauvegarde** ou **volume** – hello stratégie de sauvegarde ou volume associé à ce jeu de sauvegarde.
+* **À partir de** et **à** : hello plage de date et heure de création de jeu de sauvegarde hello.
 
-Les jeux de sauvegarde filtrés sont ensuite affichés sous forme de tableau sur la base des attributs suivants :
+Hello jeux de sauvegarde filtrés sont ensuite sous forme de tableau en fonction de hello suivant des attributs :
 
-* **Nom** : nom de la stratégie de sauvegarde ou du volume associé à ce jeu de sauvegarde.
-* **Taille** : taille réelle du jeu de sauvegarde.
-* **Créé le** : date et heure auxquelles les sauvegardes ont été créées. 
-* **Type** : les jeux de sauvegarde peuvent être des instantanés locaux ou des instantanés cloud. Un instantané local est une sauvegarde de toutes les données de volume stockées localement sur l’appareil, tandis qu’un instantané cloud correspond à la sauvegarde des données de volume résidant dans le cloud. Les instantanés locaux offrent un accès plus rapide, alors que les instantanés cloud sont choisis pour la résilience des données.
-* **Initié par** : les sauvegardes peuvent être lancées automatiquement suivant une planification ou manuellement par un utilisateur. (Vous pouvez utiliser une stratégie de sauvegarde pour planifier des sauvegardes. Vous pouvez également utiliser l’option **Effectuer une sauvegarde** pour effectuer une sauvegarde interactive.)
+* **Nom** hello – nom de la stratégie de sauvegarde hello ou volume associé au jeu de sauvegarde hello.
+* **Taille** – hello taille réelle du jeu de sauvegarde hello.
+* **Créé sur** : date de hello et l’heure de création des sauvegardes de hello. 
+* **Type** : les jeux de sauvegarde peuvent être des instantanés locaux ou des instantanés cloud. Un instantané local est une sauvegarde de toutes vos données de volume stockées localement sur le périphérique de hello, tandis qu’un instantané cloud fait référence sauvegarde toohello des données de volume résidant dans le cloud de hello. Les instantanés locaux offrent un accès plus rapide, alors que les instantanés cloud sont choisis pour la résilience des données.
+* **Initié par** : les sauvegardes hello peuvent être lancées automatiquement en fonction de tooa planification ou manuellement par un utilisateur. (Vous pouvez utiliser les sauvegardes tooschedule stratégie de sauvegarde. Vous pouvez également utiliser hello **sauvegarde** option tootake une sauvegarde interactive.)
 
-## <a name="how-to-restore-your-storsimple-volume-from-a-backup"></a>Comment restaurer votre volume StorSimple à partir d’une sauvegarde
-Vous pouvez utiliser la page **Catalogue de sauvegarde** pour restaurer votre volume StorSimple à partir d’une sauvegarde spécifique. 
+## <a name="how-toorestore-your-storsimple-volume-from-a-backup"></a>Comment toorestore votre volume StorSimple à partir d’une sauvegarde
+Vous pouvez utiliser hello **catalogue de sauvegarde** page toorestore votre volume StorSimple à partir d’une sauvegarde spécifique. 
 
 > [!WARNING]
-> La restauration à partir d’une sauvegarde remplace les volumes existants à partir de la sauvegarde. Cela peut entraîner la perte des données qui ont été écrites après la sauvegarde.
+> Restauration à partir d’une sauvegarde remplace les volumes existants hello à partir de la sauvegarde de hello. Cela peut entraîner une perte de hello de toutes les données écrites après que hello sauvegarde a été effectuée.
 > 
 > 
 
-Avant de lancer la restauration d’un volume, assurez-vous que celui-ci est hors connexion. Vous devrez mettre le volume hors connexion sur l’ordinateur hôte en premier, puis sur l’appareil. Suivez les étapes de la [Mise hors connexion d’un volume](storsimple-manage-volumes.md#take-a-volume-offline). Procédez comme suit pour restaurer un volume à partir d’un jeu de sauvegarde.
+Avant de lancer une restauration sur un volume, vérifiez que le volume de hello est hors connexion. Vous devez tout d’abord les volumes hello tootake hors connexion sur l’ordinateur hôte de hello et puis hello appareil. Suivez les étapes de hello dans [mettre un volume hors connexion](storsimple-manage-volumes.md#take-a-volume-offline). Effectuer hello suivant les étapes toorestore un volume à partir d’un jeu de sauvegarde.
 
-### <a name="to-restore-from-a-backup-set"></a>Pour restaurer à partir d’un jeu de sauvegarde
-1. Dans la page du service StorSimple Manager, cliquez sur l’onglet **Catalogue de sauvegarde** .
+### <a name="toorestore-from-a-backup-set"></a>toorestore à partir d’un jeu de sauvegarde
+1. Sur la page du service StorSimple Manager hello, cliquez sur hello **catalogue de sauvegarde** onglet.
    
     ![Catalogue de sauvegarde](./media/storsimple-restore-from-backup-set/HCS_Restore.png)
 2. Sélectionnez un jeu de sauvegarde comme suit :
    
-   1. Sélectionnez l’appareil approprié.
-   2. Dans la liste déroulante, choisissez la stratégie de sauvegarde ou le volume pour la sauvegarde à sélectionner.
-   3. Indiquez l’intervalle de temps.
-   4. Cliquez sur l’icône en forme de coche  ![icône en forme de coche](./media/storsimple-restore-from-backup-set/HCS_CheckIcon.png) pour exécuter cette requête.
+   1. Sélectionnez le périphérique approprié de hello.
+   2. Dans la liste déroulante hello, choisissez que vous souhaitez tooselect la stratégie de sauvegarde ou volume hello pour la sauvegarde de hello.
+   3. Spécifiez la plage de temps hello.
+   4. Cliquez sur une icône de coche hello ![icône en forme de coche](./media/storsimple-restore-from-backup-set/HCS_CheckIcon.png) tooexecute cette requête.
       
-      Les sauvegardes associées au volume ou à la stratégie de sauvegarde sélectionné doivent figurer dans la liste des jeux de sauvegarde.
-3. Développez le jeu de sauvegarde pour afficher les volumes associés. Ces volumes doivent être mis hors connexion sur l’hôte et l’appareil avant leur restauration. Suivez les étapes de la [Mise hors connexion d’un volume](storsimple-manage-volumes.md#take-a-volume-offline).
+      Hello sauvegardes associées de stratégie de sauvegarde ou volume hello sélectionné doivent apparaître dans la liste hello des jeux de sauvegarde.
+3. Développez hello jeu de sauvegarde tooview hello associée des volumes. Ces volumes doivent être mis hors connexion sur l’hôte de hello et de périphérique avant de les restaurer. Suivez les étapes de hello dans [mettre un volume hors connexion](storsimple-manage-volumes.md#take-a-volume-offline).
    
    > [!IMPORTANT]
-   > Veillez à mettre les volumes hors connexion sur l’ordinateur hôte avant de les mettre hors connexion sur l’appareil. Sans quoi, vous vous exposez à un risque d’altération des données.
+   > Assurez-vous que vous avez effectué des volumes hello hors connexion sur l’ordinateur hôte de hello tout d’abord, avant de mettre hors connexion les volumes hello sur le périphérique de hello. Si vous ne prenez pas les volumes hello hors connexion sur l’ordinateur hôte de hello, il pourrait endommager toodata corruption.
    > 
    > 
-4. Sélectionnez un jeu de sauvegarde. Cliquez sur **Restaurer** en bas de la page.
+4. Sélectionnez un jeu de sauvegarde. Cliquez sur **restaurer** bas hello de page de hello.
 5. Vous êtes invité à confirmer l’opération. 
    
     ![Page Confirmation](./media/storsimple-restore-from-backup-set/HCS_ConfirmRestore.png)
-6. Passez en revue les informations de restauration, puis cliquez sur l’icône en forme de coche ![icône en forme de coche](./media/storsimple-restore-from-backup-set/HCS_CheckIcon.png). Cette opération lance une tâche de restauration que vous pouvez afficher en accédant à la page **Tâches** . 
-7. Une fois la restauration terminée, vous pouvez vérifier que le contenu de vos volumes a été remplacé par les volumes provenant de la sauvegarde.
+6. Passez en revue les informations de restauration hello et cliquez sur une icône de coche hello ![icône de coche](./media/storsimple-restore-from-backup-set/HCS_CheckIcon.png). Ceci lancera un travail de restauration que vous pouvez afficher en accédant à hello **travaux** page. 
+7. Une fois la restauration de hello est terminée, vous pouvez vérifier que le contenu hello de vos volumes est remplacés par les volumes de sauvegarde de hello.
 
-![Vidéo disponible](./media/storsimple-restore-from-backup-set/Video_icon.png) **Vidéo disponible**
+![Vidéo disponible](./media/storsimple-restore-from-backup-set/Video_icon.png)**Vidéo disponible**
 
-Pour visionner une vidéo expliquant comment utiliser les fonctionnalités de clonage et de restauration dans StorSimple pour récupérer des fichiers supprimés, cliquez [ici](https://azure.microsoft.com/documentation/videos/storsimple-recover-deleted-files-with-storsimple/).
+toowatch une vidéo qui montre comment vous pouvez utiliser hello clone et restaurer les fonctionnalités dans les fichiers de StorSimple toorecover supprimé, cliquez sur [ici](https://azure.microsoft.com/documentation/videos/storsimple-recover-deleted-files-with-storsimple/).
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Découvrez comment [gérer des volumes StorSimple](storsimple-manage-volumes.md).
-* Découvrez comment [utiliser le service StorSimple Manager pour gérer votre appareil StorSimple](storsimple-manager-service-administration.md).
+* Découvrez comment trop[StorSimple de gérer les volumes](storsimple-manage-volumes.md).
+* Découvrez comment trop[utilisez hello tooadminister du service StorSimple Manager de votre appareil StorSimple](storsimple-manager-service-administration.md).
 

@@ -1,6 +1,6 @@
 ---
-title: "Déplacer des ressources d’application web vers un autre groupe de ressources"
-description: "Décrit les scénarios dans lesquels vous pouvez déplacer des applications web et services d’application d’un groupe de ressources vers un autre."
+title: "Ressources d’application Web d’aaaMove tooanother groupe de ressources"
+description: "Décrit des scénarios hello où vous pouvez déplacer des applications Web et les Services d’application à partir d’un groupe de ressources tooanother."
 services: app-service
 documentationcenter: 
 author: ZainRizvi
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/21/2016
 ms.author: zarizvi
-ms.openlocfilehash: 1b5059dc052005b6079f70ecf6771a3771df8d87
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 931012fee656b7f8a4b2c225c38739a9171d3b2e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="supported-move-configurations"></a>Configurations de déplacement prises en charge
-Vous pouvez déplacer des ressources d’application web Azure à l’aide de l’[API de déplacement des ressources Azure Manager](../azure-resource-manager/resource-group-move-resources.md).
+Vous pouvez déplacer des ressources de l’application Web Azure à l’aide de hello [API ressources déplacer du Gestionnaire de ressources](../azure-resource-manager/resource-group-move-resources.md).
 
-Les applications web Azure prennent actuellement en charge les scénarios de déplacement suivants :
+Les applications Web Azure prend actuellement en charge hello déplacer les scénarios suivants :
 
-* Déplacez tout le contenu d’un groupe de ressources (applications web, plans de service d’application et certificats) vers un autre groupe de ressources. 
+* Déplacer hello tout le contenu d’un groupe de ressources (les applications web, les plans de service d’application et les certificats) groupe de ressources tooanother. 
    > [!Note]
-   > Le groupe de ressources de destination ne peut pas contenir de ressources Microsoft.Web dans ce scénario.
+   > groupe de ressources Hello destination ne peut pas contenir toutes les ressources Microsoft.Web dans ce scénario.
 
-* Déplacez des applications web individuelles vers un groupe de ressources différent, tout en les hébergeant toujours dans leur plan de service d’application actuel (le plan de service d’application reste dans l’ancien groupe de ressources).
+* Déplacer le groupe de ressources différent de tooa des applications web individuelles, tout en hébergeant les dans leur plan app service en cours (hello app service plan reste dans le groupe de ressources ancien hello).
 
 

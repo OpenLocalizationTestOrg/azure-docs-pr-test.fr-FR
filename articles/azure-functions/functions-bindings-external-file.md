@@ -1,5 +1,5 @@
 ---
-title: "Liaisons de fichier externe Azure Functions (version préliminaire) | Microsoft Docs"
+title: "liaisons du fichier externe de fonctions aaaAzure (version préliminaire) | Documents Microsoft"
 description: Utilisation de liaisons du fichiers externes dans Azure Functions
 services: functions
 documentationcenter: 
@@ -14,16 +14,16 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 04/12/2017
 ms.author: alkarche
-ms.openlocfilehash: 2082e4e9b23271be93f3e3ab43997c3243238da8
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 583d9c0b871dc68a79614749ba6ac6711fa820fa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-functions-external-file-bindings-preview"></a>Liaisons de fichiers externes Azure Functions (version préliminaire)
-Cet article montre comment manipuler les fichiers à partir de différents fournisseurs SaaS (par exemple, OneDrive, Dropbox) au sein de votre fonction en utilisant des liaisons intégrées. Azure Functions prend en charge les liaisons de déclencheur, d’entrée et de sortie pour les fichiers externes.
+Cet article explique comment toomanipulate fichiers à partir de SaaS différents fournisseurs (par exemple, OneDrive, Dropbox) dans votre fonction utilisant des liaisons intégrées. Azure Functions prend en charge les liaisons de déclencheur, d’entrée et de sortie pour les fichiers externes.
 
-Cette liaison crée des connexions d’API aux fournisseurs SaaS, ou utilise des connexions d’API existantes à partir du groupe de ressources de votre application Function App.
+Cette liaison crée des connexions de l’API tooSaaS fournisseurs, ou utilise des connexions API existantes du groupe de ressources de votre application de fonction.
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
@@ -44,21 +44,21 @@ Cette liaison crée des connexions d’API aux fournisseurs SaaS, ou utilise des
 
 ## <a name="external-file-trigger-binding"></a>Liaison de déclencheur de fichier externe
 
-Le déclencheur de fichier externe Azure vous permet de surveiller un dossier à distance et d’exécuter votre code de fonction en cas de détection de modifications.
+déclencheur de fichier externe Azure Hello vous permet de surveiller un dossier distant et exécuter votre code de fonction lorsque des modifications sont détectées.
 
-Le déclencheur de fichier externe utilise les objets JSON suivants dans le tableau `bindings` de function.json
+déclencheur de fichier externe Hello utilise hello objets JSON Bonjour suivants `bindings` tableau de function.json
 
 ```json
 {
   "type": "apiHubFileTrigger",
   "name": "<Name of input parameter in function signature>",
   "direction": "in",
-  "path": "<folder to monitor, and optionally a name pattern - see below>",
+  "path": "<folder toomonitor, and optionally a name pattern - see below>",
   "connection": "<name of external file connection - see above>"
 }
 ```
 <!---
-See one of the following subheadings for more information:
+See one of hello following subheadings for more information:
 
 * [Name patterns](#pattern)
 * [File receipts](#receipts)
@@ -68,14 +68,14 @@ See one of the following subheadings for more information:
 <a name="pattern"></a>
 
 ### <a name="name-patterns"></a>Modèles de nom
-Vous pouvez spécifier un modèle de nom de fichier dans la propriété `path` . Le dossier référencé doit exister dans le fournisseur SaaS.
+Vous pouvez spécifier un modèle de nom de fichier Bonjour `path` propriété. dossier Hello référencé doit exister dans le fournisseur de SaaS hello.
 Exemples :
 
 ```json
 "path": "input/original-{name}",
 ```
 
-Ce chemin d’accès trouverait un fichier appelé *original-File1.txt* dans le dossier *input*, et la variable `name` du code de fonction présenterait la valeur `File1.txt`.
+Ce chemin d’accès est de trouver un fichier nommé *d’origine-File1.txt* Bonjour *d’entrée* dossier et la valeur de hello de hello `name` variable dans le code de la fonction serait `File1.txt`.
 
 Autre exemple :
 
@@ -83,49 +83,49 @@ Autre exemple :
 "path": "input/{filename}.{fileextension}",
 ```
 
-Ce chemin d’accès trouverait également un fichier nommé *original-File1.txt*, et les variables `filename` et `fileextension` du code de fonction présenteraient respectivement les valeurs *original-File1* et *txt*.
+Ce chemin d’accès est également trouver un fichier nommé *d’origine-File1.txt*et la valeur hello Hello `filename` et `fileextension` variables dans le code de la fonction serait *d’origine-File1* et  *txt*.
 
-Vous pouvez restreindre le type des fichiers à l’aide d’une valeur fixe pour l’extension de fichier. Par exemple :
+Vous pouvez limiter le type de fichier hello de fichiers à l’aide d’une valeur fixe pour l’extension de fichier hello. Par exemple :
 
 ```json
 "path": "samples/{name}.png",
 ```
 
-Dans ce cas, seuls les fichiers *.png* dans le dossier *samples* déclenchent la fonction.
+Dans ce cas, seul *.png* fichiers Bonjour *exemples* dossier déclencheur hello (fonction).
 
-Les accolades sont des caractères spéciaux dans les modèles de nom. Pour spécifier des noms de fichier qui présentent des accolades, doublez ces dernières.
+Les accolades sont des caractères spéciaux dans les modèles de nom. toospecify les noms de fichiers qui ont des accolades dans nom hello, accolades doubles hello.
 Par exemple :
 
 ```json
 "path": "images/{{20140101}}-{name}",
 ```
 
-Ce chemin trouverait un fichier nommé *{20140101}-soundfile.mp3* dans le dossier *images*, et la valeur de la variable `name` dans le code de fonction serait *soundfile.mp3*.
+Ce chemin d’accès est de trouver un fichier nommé *{20140101}-soundfile.mp3* Bonjour *images* dossier et hello `name` valeur de la variable dans le code de la fonction hello serait *soundfile.mp3*.
 
 <a name="receipts"></a>
 
 <!--- ### File receipts
-The Azure Functions runtime makes sure that no external file trigger function gets called more than once for the same new or updated file.
-It does so by maintaining *file receipts* to determine if a given file version has been processed.
+hello Azure Functions runtime makes sure that no external file trigger function gets called more than once for hello same new or updated file.
+It does so by maintaining *file receipts* toodetermine if a given file version has been processed.
 
-File receipts are stored in a folder named *azure-webjobs-hosts* in the Azure storage account for your function app
-(specified by the `AzureWebJobsStorage` app setting). A file receipt has the following information:
+File receipts are stored in a folder named *azure-webjobs-hosts* in hello Azure storage account for your function app
+(specified by hello `AzureWebJobsStorage` app setting). A file receipt has hello following information:
 
-* The triggered function ("*&lt;function app name>*.Functions.*&lt;function name>*", for example: "functionsf74b96f7.Functions.CopyFile")
-* The folder name
-* The file type ("BlockFile" or "PageFile")
-* The file name
-* The ETag (a file version identifier, for example: "0x8D1DC6E70A277EF")
+* hello triggered function ("*&lt;function app name>*.Functions.*&lt;function name>*", for example: "functionsf74b96f7.Functions.CopyFile")
+* hello folder name
+* hello file type ("BlockFile" or "PageFile")
+* hello file name
+* hello ETag (a file version identifier, for example: "0x8D1DC6E70A277EF")
 
-To force reprocessing of a file, delete the file receipt for that file from the *azure-webjobs-hosts* folder manually.
+tooforce reprocessing of a file, delete hello file receipt for that file from hello *azure-webjobs-hosts* folder manually.
 --->
 <a name="poison"></a>
 
 ### <a name="handling-poison-files"></a>Gestion des fichiers incohérents
-En cas d’échec d’une fonction de déclenchement de fichier externe, Azure Functions réessaie cette fonction jusqu’à 5 fois par défaut (première tentative comprise) pour un fichier donné.
-Si toutes les 5 tentatives échouent, Functions ajoute un message à une file d’attente Stockage nommée *webjobs-apihubtrigger-poison*. Le message en file d’attente associé aux fichiers incohérents correspond à un objet JSON, qui contient les propriétés suivantes :
+En cas d’échec d’une fonction de déclencheur de fichier externe, les fonctions de Azure essaie de nouveau cette fonction des heures de too5 par défaut (y compris la première tentative de hello) pour un fichier donné.
+Si toutes les 5 tentatives échouent, les fonctions ajoute un message tooa stockage file d’attente nommée *webjobs-apihubtrigger-incohérents*. message de file d’attente Hello pour les fichiers de messages incohérents est un objet JSON qui contient les propriétés suivantes de hello :
 
-* FunctionId (au format *&lt;nom de l’application de fonctions>*.Functions.*&lt;nom de la fonction>*)
+* ID de fonction (au format de hello  *&lt;nom de l’application fonction >*. Fonctions.  *&lt;nom de la fonction >*)
 * FileType
 * FolderName
 * FileName
@@ -135,16 +135,16 @@ Si toutes les 5 tentatives échouent, Functions ajoute un message à une file d�
 <a name="triggerusage"></a>
 
 ## <a name="trigger-usage"></a>Utilisation du déclencheur
-Dans les fonctions C#, vous liez les données de fichier d’entrée à l’aide d’un paramètre nommé dans la signature de la fonction, comme `<T> <name>`.
-Où `T` est le type de données dans lequel vous souhaitez désérialiser les données, et `paramName` le nom que vous avez spécifié dans le [code JSON du déclencheur](#trigger). Dans les fonctions Node.js, vous accédez aux données de fichier d’entrée en utilisant `context.bindings.<name>`.
+Dans les fonctions C#, vous lier des données de fichier d’entrée toohello à l’aide d’un paramètre nommé dans votre signature de fonction, comme `<T> <name>`.
+Où `T` est que les données de hello toodeserialize, de type de données de hello et `paramName` est le nom hello spécifié dans le [déclencher JSON](#trigger). Dans les fonctions de Node.js, vous accédez à l’aide des données de fichier d’entrée hello `context.bindings.<name>`.
 
-Le fichier peut être désérialisé dans l’un des types suivants :
+fichier de Hello pouvant être désérialisé dans n’importe quel Hello les types suivants :
 
 * N’importe quel [objet](https://msdn.microsoft.com/library/system.object.aspx) : utile pour les données de fichier sérialisées en JSON.
-  Si vous déclarez un type d’entrée personnalisé (par exemple, `FooType`), Azure Functions tente de désérialiser les données JSON dans le type spécifié.
+  Si vous déclarez un type d’entrée personnalisé (par exemple, `FooType`), des données JSON toodeserialize hello tente de fonctions d’Azure vers le type spécifié.
 * Chaîne : utile pour les données de fichier texte.
 
-Dans les fonctions C#, vous pouvez également effectuer une liaison vers un des types suivants (le runtime Functions tente de désérialiser les données du fichier à l’aide de ce type) :
+Dans les fonctions C#, vous pouvez également lier tooany des types suivants de hello et hello fonctions runtime essaie de désérialiser des données de fichier hello à l’aide de ce type :
 
 * `string`
 * `byte[]`
@@ -153,7 +153,7 @@ Dans les fonctions C#, vous pouvez également effectuer une liaison vers un des 
 * `TextReader`
 
 ## <a name="trigger-sample"></a>Exemple de déclencheur
-Supposons le code function.json suivant, qui définit un déclencheur de fichier externe :
+Supposez que vous avez hello suivant function.json, qui définit un déclencheur de fichier externe :
 
 ```json
 {
@@ -170,7 +170,7 @@ Supposons le code function.json suivant, qui définit un déclencheur de fichier
 }
 ```
 
-Consultez l’exemple dans le langage de votre choix pour voir comment enregistrer le contenu de chaque fichier ajouté au dossier surveillé.
+Voir exemple hello spécifiques au langage qui enregistre le contenu de hello de chaque fichier qui est ajouté à toohello les dossier surveillé.
 
 * [C#](#triggercsharp)
 * [Node.JS](#triggernodejs)
@@ -208,9 +208,9 @@ module.exports = function(context) {
 <a name="input"></a>
 
 ## <a name="external-file-input-binding"></a>Liaison d’entrée de fichier externe
-La liaison d’entrée de fichier externe Azure vous permet d’utiliser un fichier à partir d’un dossier externe dans votre fonction.
+liaison d’entrée de fichier externe Azure Hello vous permet de toouse un fichier à partir d’un dossier externe dans votre fonction.
 
-L’entrée de fichier externe d’une fonction utilise les objets JSON suivants dans le tableau `bindings` de function.json :
+fonction tooa d’entrée de fichier externe Hello utilise hello objets JSON Bonjour suivants `bindings` tableau de function.json :
 
 ```json
 {
@@ -222,23 +222,23 @@ L’entrée de fichier externe d’une fonction utilise les objets JSON suivants
 },
 ```
 
-Notez les points suivants :
+Notez hello suivantes :
 
-* `path` doit contenir le nom du dossier et le nom du fichier. Par exemple, si votre fonction contient un [déclencheur de file d’attente](functions-bindings-storage-queue.md), vous pouvez utiliser `"path": "samples-workitems/{queueTrigger}"` pour pointer vers un fichier dans le dossier `samples-workitems` avec un nom qui correspond au nom de fichier spécifié dans le message du déclencheur.   
+* `path`doit contenir le nom du dossier hello et nom de fichier hello. Par exemple, si vous avez un [déclencheur de la file d’attente](functions-bindings-storage-queue.md) dans votre fonction, vous pouvez utiliser `"path": "samples-workitems/{queueTrigger}"` toopoint tooa fichier hello `samples-workitems` dossier avec un nom qui correspond au nom de fichier hello spécifié dans le message d’appel du déclencheur.   
 
 <a name="inputusage"></a>
 
 ## <a name="input-usage"></a>Utilisation en entrée
-Dans les fonctions C#, vous liez les données de fichier d’entrée à l’aide d’un paramètre nommé dans la signature de la fonction, comme `<T> <name>`.
-Où `T` est le type de données dans lequel vous souhaitez désérialiser les données, et `paramName` le nom que vous avez spécifié dans la [liaison d’entrée](#input). Dans les fonctions Node.js, vous accédez aux données de fichier d’entrée en utilisant `context.bindings.<name>`.
+Dans les fonctions C#, vous lier des données de fichier d’entrée toohello à l’aide d’un paramètre nommé dans votre signature de fonction, comme `<T> <name>`.
+Où `T` est que les données de hello toodeserialize, de type de données de hello et `paramName` est le nom hello spécifié dans le [liaison d’entrée](#input). Dans les fonctions de Node.js, vous accédez à l’aide des données de fichier d’entrée hello `context.bindings.<name>`.
 
-Le fichier peut être désérialisé dans l’un des types suivants :
+fichier de Hello pouvant être désérialisé dans n’importe quel Hello les types suivants :
 
 * N’importe quel [objet](https://msdn.microsoft.com/library/system.object.aspx) : utile pour les données de fichier sérialisées en JSON.
-  Si vous déclarez un type d’entrée personnalisé (par exemple, `InputType`), Azure Functions tente de désérialiser les données JSON dans le type spécifié.
+  Si vous déclarez un type d’entrée personnalisé (par exemple, `InputType`), des données JSON toodeserialize hello tente de fonctions d’Azure vers le type spécifié.
 * Chaîne : utile pour les données de fichier texte.
 
-Dans les fonctions C#, vous pouvez également effectuer une liaison vers un des types suivants (le runtime Functions tente de désérialiser les données du fichier à l’aide de ce type) :
+Dans les fonctions C#, vous pouvez également lier tooany des types suivants de hello et hello fonctions runtime essaie de désérialiser des données de fichier hello à l’aide de ce type :
 
 * `string`
 * `byte[]`
@@ -250,9 +250,9 @@ Dans les fonctions C#, vous pouvez également effectuer une liaison vers un des 
 <a name="output"></a>
 
 ## <a name="external-file-output-binding"></a>Liaison de sortie de fichier externe
-La liaison de sortie de fichier externe Azure vous permet d’écrire des fichiers sur un dossier externe dans votre fonction.
+liaison vous permet de toowrite fichiers tooan un dossier externe dans votre fonction de sortie Hello Azure fichier externe.
 
-La sortie de fichier externe pour une fonction utilise les objets JSON suivants dans le tableau `bindings` de function.json :
+les fichiers externes Hello de sortie pour une fonction utilise hello objets JSON Bonjour suivants `bindings` tableau de function.json :
 
 ```json
 {
@@ -264,22 +264,22 @@ La sortie de fichier externe pour une fonction utilise les objets JSON suivants 
 }
 ```
 
-Notez les points suivants :
+Notez hello suivantes :
 
-* `path` doit contenir le nom du dossier et le nom du fichier sur lequel écrire. Par exemple, si votre fonction contient un [déclencheur de file d’attente](functions-bindings-storage-queue.md), vous pouvez utiliser `"path": "samples-workitems/{queueTrigger}"` pour pointer vers un fichier dans le dossier `samples-workitems` avec un nom qui correspond au nom de fichier spécifié dans le message du déclencheur.   
+* `path`doit contenir le nom du dossier hello et toowrite de nom de fichier hello pour. Par exemple, si vous avez un [déclencheur de la file d’attente](functions-bindings-storage-queue.md) dans votre fonction, vous pouvez utiliser `"path": "samples-workitems/{queueTrigger}"` toopoint tooa fichier hello `samples-workitems` dossier avec un nom qui correspond au nom de fichier hello spécifié dans le message d’appel du déclencheur.   
 
 <a name="outputusage"></a>
 
 ## <a name="output-usage"></a>Utilisation en sortie
-Dans les fonctions C#, vous liez le fichier de sortie à l’aide du paramètre `out` nommé dans la signature de la fonction, par exemple, `out <T> <name>`, où `T` est le type de données dans lequel vous souhaitez sérialiser les données, et `paramName` le nom que vous avez spécifié dans la [liaison de sortie](#output). Dans les fonctions Node.js, vous accédez au fichier de sortie en utilisant `context.bindings.<name>`.
+Dans les fonctions C#, vous liez fichier de sortie toohello à l’aide de hello nommé `out` paramètre dans votre signature de fonction, comme `out <T> <name>`, où `T` est que les données de hello tooserialize, de type de données de hello et `paramName` est hello nom que vous avez spécifié dans le [liaison de sortie](#output). Dans les fonctions de Node.js, vous accédez à l’aide de fichiers de sortie hello `context.bindings.<name>`.
 
-Vous pouvez écrire dans le fichier de sortie à l’aide d’un des types suivants :
+Vous pouvez écrire le fichier de sortie toohello à l’aide de hello les types suivants :
 
 * N’importe quel [objet](https://msdn.microsoft.com/library/system.object.aspx) : utile pour la sérialisation JSON.
-  Si vous déclarez un type de sortie personnalisée (par exemple, `out OutputType paramName`), Azure Functions tente de sérialiser un objet en JSON. Si le paramètre de sortie est Null quand la fonction s’arrête, le runtime Functions crée un fichier comme objet Null.
-* Chaîne : (`out string paramName`) utile pour les données de fichier texte. Le runtime Functions crée un fichier uniquement si le paramètre de chaîne n’est pas Null quand la fonction s’arrête.
+  Si vous déclarez un type de sortie personnalisée (par exemple, `out OutputType paramName`), les fonctions Azure tente tooserialize objet dans JSON. Si le paramètre de sortie hello est null lorsque hello fonction s’arrête, hello fonctions runtime crée un fichier en tant qu’objet null.
+* Chaîne : (`out string paramName`) utile pour les données de fichier texte. Hello fonctions runtime crée un fichier uniquement si le paramètre de chaîne est non null lorsque hello fonction s’arrête.
 
-Dans les fonctions C#, vous pouvez également définir une sortie vers les types suivants :
+Dans les fonctions de c#, vous pouvez également copier tooany Hello les types suivants :
 
 * `TextWriter`
 * `Stream`
@@ -293,7 +293,7 @@ Dans les fonctions C#, vous pouvez également définir une sortie vers les types
 <a name="sample"></a>
 
 ## <a name="input--output-sample"></a>Entrée + Exemple de sortie
-Supposons le code function.json suivant, qui définit un [déclencheur de file d’attente Stockage](functions-bindings-storage-queue.md), une entrée de fichier externe et une sortie de fichier externe :
+Supposons que vous avez hello suivant function.json, qui définit un [déclencheur de file d’attente de stockage](functions-bindings-storage-queue.md), l’entrée d’un fichier externe et un fichier externe de sortie :
 
 ```json
 {
@@ -324,7 +324,7 @@ Supposons le code function.json suivant, qui définit un [déclencheur de file d
 }
 ```
 
-Consultez l’exemple dans le langage de votre choix pour voir comment copier le fichier d’entrée dans le fichier de sortie.
+Voir exemple hello spécifiques au langage qui copie le fichier de sortie toohello hello fichier d’entrée.
 
 * [C#](#incsharp)
 * [Node.JS](#innodejs)

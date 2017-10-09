@@ -1,6 +1,6 @@
 ---
-title: "Liaisons HTTP et webhook d’Azure Functions | Microsoft Docs"
-description: "Découvrez comment utiliser des déclencheurs et des liaisons HTTP et webhook dans Azure Functions."
+title: les liaisons HTTP de fonctions et webhook aaaAzure | Documents Microsoft
+description: "Comprendre comment toouse HTTP et webhook déclenche et les liaisons dans les fonctions d’Azure."
 services: functions
 documentationcenter: na
 author: mattchenderson
@@ -16,21 +16,21 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 11/18/2016
 ms.author: mahender
-ms.openlocfilehash: 71c0d22c4b1824078982b9d1cc76645f947ae603
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: c23b7a1443d492ed78c595e97d1d778a7ab12416
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-functions-http-and-webhook-bindings"></a>Liaisons HTTP et webhook Azure Functions
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-Cet article explique comment configurer et utiliser des déclencheurs et liaisons HTTP dans Azure Functions.
-Ces éléments vous permettent d’utiliser Azure Functions pour générer des API sans serveur et répondre aux webhooks.
+Cet article explique comment tooconfigure et utiliser HTTP déclenche et les liaisons dans les fonctions d’Azure.
+Avec ces options, vous pouvez utiliser les toowebhooks de toobuild de fonctions d’Azure sans serveur de répondre et API.
 
-Fonctions Azure fournit les liaisons suivantes :
-- Un [déclencheur HTTP](#httptrigger) vous permet d’appeler une fonction avec une requête HTTP. Vous pouvez personnaliser cela pour répondre aux [webhooks](#hooktrigger).
-- Un [liaison de sortie HTTP](#output) permet de répondre à la demande.
+Les fonctions Azure fournit hello suivant des liaisons :
+- Un [déclencheur HTTP](#httptrigger) vous permet d’appeler une fonction avec une requête HTTP. Cela peut être trop personnalisé toorespond[webhooks](#hooktrigger).
+- Un [liaison de sortie HTTP](#output) vous permet de toorespond toohello demande.
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
@@ -39,14 +39,14 @@ Fonctions Azure fournit les liaisons suivantes :
 <a name="httptrigger"></a>
 
 ## <a name="http-trigger"></a>Déclencheur HTTP
-Le déclencheur HTTP exécute votre fonction en réponse à une requête HTTP. Vous pouvez personnaliser la fonction pour répondre à une URL particulière ou à un ensemble de méthodes HTTP. Vous pouvez également configurer un déclencheur HTTP pour répondre aux webhooks. 
+déclencheur HTTP Hello exécutera votre fonction dans la demande de réponse tooan HTTP. Vous pouvez le personnaliser URL de toorespond tooa particulière ou un ensemble de méthodes HTTP. Un déclencheur HTTP peut également être configuré toorespond toowebhooks. 
 
-Si vous utilisez le portail des fonctions, vous pouvez également commencer immédiatement à utiliser un modèle existant. Sélectionnez **Nouvelle fonction**, puis choisissez « API et webhooks » dans la liste déroulante **Scénario**. Sélectionnez un des modèles, puis cliquez sur **Créer**.
+Si vous utilisez le portail de fonctions hello, vous pouvez également commencer immédiatement à l’aide d’un modèle existant. Sélectionnez **nouvelle fonction** et choisissez « Webhooks & de l’API » hello **scénario** liste déroulante. Sélectionnez un des modèles de hello et cliquez sur **créer**.
 
-Par défaut, un déclencheur HTTP répondra à la demande avec un code d’état HTTP 200 OK et un corps vide. Pour modifier la réponse, configurez une [liaison de sortie HTTP](#output).
+Par défaut, un déclencheur HTTP répondra demande toohello avec un code d’état HTTP 200 OK et un corps vide. toomodify hello réponse, configurez un [liaison de sortie HTTP](#output)
 
 ### <a name="configuring-an-http-trigger"></a>Configuration d’un déclencheur HTTP
-Pour définir un déclencheur HTTP, incluez un objet JSON similaire au suivant dans le tableau `bindings` de function.json :
+Un déclencheur HTTP est défini en incluant un toohello similaire d’objet JSON suivant Bonjour `bindings` tableau de function.json :
 
 ```json
 {
@@ -58,37 +58,37 @@ Pour définir un déclencheur HTTP, incluez un objet JSON similaire au suivant d
     "route": "values/{id}"
 },
 ```
-La liaison prend en charge les propriétés suivantes :
+liaison de Hello prend en charge hello propriétés suivantes :
 
-* **name** : obligatoire - nom de variable utilisé dans le code de la fonction pour la demande ou dans le corps de la demande. Voir [Utilisation d’un déclencheur HTTP à partir d’un code](#httptriggerusage).
-* **type** : obligatoire - doit être « httpTrigger ».
-* **direction** : obligatoire - doit être « in ».
-* _authLevel_ : détermine, le cas échéant, les clés qui doivent être présentes dans la demande pour appeler la fonction. Voir [Utilisation de clés](#keys) ci-dessous. Les valeurs possibles sont les suivantes :
+* **nom** : requise : nom de la variable hello utilisée dans le code de fonction de requête de hello ou de corps de la demande. Voir [Utilisation d’un déclencheur HTTP à partir d’un code](#httptriggerusage).
+* **type** : requise : doit être défini trop « httpTrigger ».
+* **direction** : requise : doit être défini trop « in ».
+* _authLevel_ : ce paramètre détermine les clés, le cas échéant, doivent toobe présent sur demande de hello dans la fonction d’ordre tooinvoke hello. Voir [Utilisation de clés](#keys) ci-dessous. valeur de Hello peut être hello suivantes :
     * _anonymous_ : aucune clé API n’est requise.
-    * _function_ : une clé API spécifique de la fonction est requise. Il s’agit de la valeur par défaut si aucune valeur n’est fournie.
-    * _admin_ : la clé principale est requise.
-* **methods** : il s’agit d’un tableau des méthodes HTTP auxquelles la fonction répond. À défaut de spécification, la fonction répond à toutes les méthodes HTTP. Voir [Personnalisation du point de terminaison HTTP](#url).
-* **route** : définit le modèle de routage, en contrôlant les URL de demande auxquelles votre fonction répond. La valeur par défaut est `<functionname>`. Voir [Personnalisation du point de terminaison HTTP](#url).
-* **webHookType** : configure le déclencheur HTTP pour qu’il agisse en tant que récepteur de webhook pour le fournisseur spécifié. Si cette valeur est choisie, la propriété _methods_ ne doit pas être définie. Voir [Réponse aux webhooks](#hooktrigger). Les valeurs possibles sont les suivantes :
+    * _function_ : une clé API spécifique de la fonction est requise. Cela est hello par défaut si aucun n’est fourni.
+    * _administrateur_ : hello la clé principale est requise.
+* **méthodes** : il s’agit d’un tableau de méthodes hello HTTP (fonction) hello toowhich répondra. Si non spécifié, fonction hello répondra tooall HTTP méthodes. Consultez [personnalisation de point de terminaison hello HTTP](#url).
+* **itinéraire** : modèle d’itinéraire hello, contrôle toowhich définit votre fonction répondra des URL de la requête. Bonjour valeur par défaut si aucun n’est fourni est `<functionname>`. Consultez [personnalisation de point de terminaison hello HTTP](#url).
+* **webHookType** : Cela configure tooact de déclencheur hello HTTP comme un récepteur de webhook pour le fournisseur spécifié de hello. Hello _méthodes_ propriété ne doit pas être définie si cela est choisi. Consultez [réponse toowebhooks](#hooktrigger). valeur de Hello peut être hello suivantes :
     * _genericJson_ : point de terminaison webhook à usage général sans logique pour un fournisseur spécifique.
-    * _github_ : la fonction répond aux webhooks GitHub. Si cette valeur est choisie, la propriété _authLevel_ ne doit pas être définie.
-    * _slack_ : la fonction répond aux webhooks Slack. Si cette valeur est choisie, la propriété _authLevel_ ne doit pas être définie.
+    * _github_ : fonction hello répondra tooGitHub webhooks. Hello _authLevel_ propriété ne doit pas être définie si cela est choisi.
+    * _marge_ : fonction hello répondra tooSlack webhooks. Hello _authLevel_ propriété ne doit pas être définie si cela est choisi.
 
 <a name="httptriggerusage"></a>
 ### <a name="working-with-an-http-trigger-from-code"></a>Utilisation d’un déclencheur HTTP à partir d’un code
-Pour les fonctions C# et F #, vous pouvez déclarer le type de votre entrée de déclenchement en tant que `HttpRequestMessage` ou type personnalisé. Si vous choisissez `HttpRequestMessage`, vous obtenez un accès complet à l’objet de la demande. Pour un type personnalisé (par exemple, un objet CLR traditionnel), Functions tente d’analyser le corps de la demande en tant que JSON pour compléter les propriétés de l’objet.
+Pour les fonctions de c# et F #, vous pouvez déclarer type hello de votre toobe d’entrée de déclencheur soit `HttpRequestMessage` ou un type personnalisé. Si vous choisissez `HttpRequestMessage`, vous obtiendrez un objet de demande toohello un accès complet. Pour un type personnalisé (par exemple, un POCO), les fonctions va tenter de corps de la demande tooparse hello en tant que propriétés de l’objet JSON toopopulate hello.
 
-Dans le cas des fonctions Node.js, le runtime Functions fournit le corps de requête plutôt que l’objet de requête.
+Pour les fonctions de Node.js hello fonctions runtime fournit des corps de la demande au lieu de l’objet de demande hello hello.
 
 Pour des exemples d’utilisation, voir [Exemples de déclencheur HTTP](#httptriggersample).
 
 
 <a name="output"></a>
 ## <a name="http-response-output-binding"></a>Liaison de sortie de réponse HTTP
-Utilisez la liaison de sortie HTTP pour répondre à l’expéditeur de la demande HTTP. Cette liaison requiert un déclencheur HTTP, et vous permet de personnaliser la réponse associée à la demande du déclencheur. Si aucune liaison de sortie HTTP n’est spécifiée, un déclencheur HTTP renvoie HTTP 200 OK avec un corps vide. 
+Utilisez l’expéditeur de demande HTTP liaison toorespond toohello hello HTTP sortie. Cette liaison requiert un déclencheur HTTP et vous permet de réponse de hello toocustomize associée demande du déclencheur hello. Si aucune liaison de sortie HTTP n’est spécifiée, un déclencheur HTTP renvoie HTTP 200 OK avec un corps vide. 
 
 ### <a name="configuring-an-http-output-binding"></a>Configuration d’une liaison de sortie HTTP
-La liaison de sortie HTTP est définie en incluant dans le tableau `bindings` de function.json un objet JSON similaire à celui-ci :
+Hello HTTP de la liaison est définie en incluant un toohello similaire d’objet JSON suivant Bonjour sortie `bindings` tableau de function.json :
 
 ```json
 {
@@ -97,38 +97,38 @@ La liaison de sortie HTTP est définie en incluant dans le tableau `bindings` de
     "direction": "out"
 }
 ```
-La liaison contient les propriétés suivantes :
+liaison de Hello contient hello propriétés suivantes :
 
-* **name** : obligatoire - nom de variable utilisé dans le code de fonction pour la réponse. Voir [Utilisation d’une liaison de sortie HTTP à partir d’un code](#outputusage).
-* **type** : obligatoire - doit être « http ».
-* **direction** : obligatoire - doit être « out ».
+* **nom** : requise : hello nom de la variable utilisée dans le code de fonction pour la réponse de hello. Voir [Utilisation d’une liaison de sortie HTTP à partir d’un code](#outputusage).
+* **type** : requise : doit être défini trop « http ».
+* **direction** : requise : doit être défini trop « sortie ».
 
 <a name="outputusage"></a>
 ### <a name="working-with-an-http-output-binding-from-code"></a>Utilisation d’une liaison de sortie HTTP à partir d’un code
-Vous pouvez utiliser le paramètre de sortie (par exemple, « res ») pour répondre à l’appelant HTTP ou webhook. Vous pouvez également utiliser le modèle `Request.CreateResponse()` (C#) ou `context.res` (Node.JS) standard pour retourner votre réponse. Pour des exemples d’utilisation de cette dernière méthode, voir [Exemples de déclencheurs HTTP](#httptriggersample) et [Exemples de déclencheurs webhook](#hooktriggersample).
+Vous pouvez utiliser hello sortie paramètre (par exemple, « res ») toorespond toohello http ou webhook appelant. Vous pouvez également utiliser la norme `Request.CreateResponse()` (c#) ou `context.res` (Node.JS) modèle tooreturn votre réponse. Pour des exemples qui illustrent comment toouse hello cette dernière méthode, consultez [exemples de déclencheur HTTP](#httptriggersample) et [exemples de déclencheurs de Webhook](#hooktriggersample).
 
 
 <a name="hooktrigger"></a>
-## <a name="responding-to-webhooks"></a>Réponse aux webhooks
-Un déclencheur HTTP avec la propriété _webHookType_ sera configuré pour répondre aux [webhooks](https://en.wikipedia.org/wiki/Webhook). La configuration de base utilise le paramètre « genericJson ». Cela limite les demandes à celles utilisant HTTP Post et le type de contenu `application/json`.
+## <a name="responding-toowebhooks"></a>Répondre toowebhooks
+Un déclencheur HTTP avec hello _webHookType_ propriété sera configuré toorespond trop[webhooks](https://en.wikipedia.org/wiki/Webhook). configuration de base Hello utilise le paramètre de « genericJson » hello. Ce qui réduit les demandes tooonly celles de l’utilisation de HTTP POST et hello `application/json` le type de contenu.
 
-Le déclencheur peut en outre être adapté à un fournisseur de webhook spécifique (par exemple, [GitHub](https://developer.github.com/webhooks/) et [Slack](https://api.slack.com/outgoing-webhooks)). Si un fournisseur est spécifié, le runtime Functions peut se charger de la logique de validation du fournisseur à votre place.  
+Hello déclencheur peut en outre être adaptés tooa webhook spécifique fournisseur (par exemple, [GitHub](https://developer.github.com/webhooks/) et [Slack](https://api.slack.com/outgoing-webhooks)). Si un fournisseur est spécifié, hello fonctions runtime peut prendre en charge la logique de validation du fournisseur hello pour vous.  
 
 ### <a name="configuring-github-as-a-webhook-provider"></a>Configurer GitHub en tant que fournisseur de webhooks
-Pour répondre aux webhooks GitHub, commencez par créer votre fonction avec un déclencheur HTTP, et définir la propriété _webHookType_ sur « github ». Ensuite, copiez son [URL](#url) et sa [clé API](#keys) vers la page **Ajouter un Webhook** de votre référentiel GitHub. Pour plus d’informations, voir la documentation [Création de webhooks](http://go.microsoft.com/fwlink/?LinkID=761099&clcid=0x409).
+toorespond tooGitHub webhooks, commencez par créer votre fonction avec un déclencheur de HTTP et définir hello _webHookType_ propriété trop « github ». Ensuite, copiez son [URL](#url) et sa [clé API](#keys) vers la page **Ajouter un Webhook** de votre référentiel GitHub. Pour plus d’informations, voir la documentation [Création de webhooks](http://go.microsoft.com/fwlink/?LinkID=761099&clcid=0x409).
 
 ![](./media/functions-bindings-http-webhook/github-add-webhook.png)
 
 ### <a name="configuring-slack-as-a-webhook-provider"></a>Configuration de Slack en tant que fournisseur de webhook
-La webhook de Slack génère un jeton à votre place au lieu de vous laisser le spécifier. Vous devez donc configurer une clé spécifique de la fonction avec le jeton reçu de Slack. Voir [Utilisation de clés](#keys).
+webhook de marge Hello génère un jeton au lieu de ce qui vous permet de spécifier, vous devez donc configurer une clé spécifiques à une fonction avec jeton hello à partir de la marge. Voir [Utilisation de clés](#keys).
 
 <a name="url"></a>
-## <a name="customizing-the-http-endpoint"></a>Personnalisation du point de terminaison HTTP
-Par défaut, lorsque vous créez une fonction pour un déclencheur HTTP ou un WebHook, la fonction est adressable avec un itinéraire de la forme :
+## <a name="customizing-hello-http-endpoint"></a>Personnalisation de point de terminaison HTTP hello
+Par défaut, lorsque vous créez une fonction d’un déclencheur HTTP, ou WebHook, fonction hello est adressable avec un itinéraire de formulaire de hello :
 
     http://<yourapp>.azurewebsites.net/api/<funcname> 
 
-Vous pouvez personnaliser cet itinéraire en utilisant la propriété facultative `route` sur la liaison d’entrée du déclencheur HTTP. Par exemple, le fichier *function.json* suivant définit une propriété `route` pour un déclencheur HTTP :
+Vous pouvez personnaliser cet itinéraire à l’aide de hello facultatif `route` propriété sur le déclencheur de hello HTTP d’entrée de liaison. Par exemple, hello suivant *function.json* fichier définit un `route` propriétés d’un déclencheur HTTP :
 
 ```json
     {
@@ -149,11 +149,11 @@ Vous pouvez personnaliser cet itinéraire en utilisant la propriété facultativ
     }
 ```
 
-Avec cette configuration, la fonction est désormais adressable avec l’itinéraire suivant au lieu de l’itinéraire d’origine.
+À l’aide de cette configuration, fonction hello est maintenant adressable par hello suivant l’itinéraire au lieu de l’itinéraire d’origine de hello.
 
     http://<yourapp>.azurewebsites.net/api/products/electronics/357
 
-Cela permet au code de la fonction de prendre en charge deux paramètres dans l’adresse, « category » et « id ». Vous pouvez utiliser les [contraintes d’itinéraire des API Web](https://www.asp.net/web-api/overview/web-api-routing-and-actions/attribute-routing-in-web-api-2#constraints) de votre choix avec vos paramètres. Le code de la fonction C# suivant utilise les deux paramètres.
+Cela permet au code de fonction hello toosupport deux des paramètres dans l’adresse de hello, « catégorie » et « id ». Vous pouvez utiliser les [contraintes d’itinéraire des API Web](https://www.asp.net/web-api/overview/web-api-routing-and-actions/attribute-routing-in-web-api-2#constraints) de votre choix avec vos paramètres. Hello suivant le code de fonction c# utilise les deux paramètres.
 
 ```csharp
     public static Task<HttpResponseMessage> Run(HttpRequestMessage req, string category, int? id, 
@@ -166,7 +166,7 @@ Cela permet au code de la fonction de prendre en charge deux paramètres dans l�
     }
 ```
 
-Voici le code de la fonction Node.js qui utilise les mêmes paramètres d’itinéraire.
+Voici les paramètres d’itinéraire même hello de toouse code Node.js (fonction).
 
 ```javascript
     module.exports = function (context, req) {
@@ -176,13 +176,13 @@ Voici le code de la fonction Node.js qui utilise les mêmes paramètres d’itin
 
         if (!id) {
             context.res = {
-                // status: 200, /* Defaults to 200 */
+                // status: 200, /* Defaults too200 */
                 body: "All " + category + " items were requested."
             };
         }
         else {
             context.res = {
-                // status: 200, /* Defaults to 200 */
+                // status: 200, /* Defaults too200 */
                 body: category + " item with id = " + id + " was requested."
             };
         }
@@ -191,7 +191,7 @@ Voici le code de la fonction Node.js qui utilise les mêmes paramètres d’itin
     } 
 ```
 
-Par défaut, tous les itinéraires de fonction sont préfixés par *api*. Vous pouvez également personnaliser ou supprimer le préfixe avec la propriété `http.routePrefix` dans votre fichier *host.json*. L’exemple suivant supprime le préfixe d’itinéraire *api* en sélectionnant une chaîne vide pour le préfixe dans le fichier *host.json*.
+Par défaut, tous les itinéraires de fonction sont préfixés par *api*. Vous pouvez également personnaliser ou supprimer le préfixe hello à l’aide de hello `http.routePrefix` propriété dans votre *host.json* fichier. exemple Hello supprime hello *api* préfixe d’itinéraire à l’aide d’une chaîne vide pour le préfixe hello Bonjour *host.json* fichier.
 
 ```json
     {
@@ -201,52 +201,52 @@ Par défaut, tous les itinéraires de fonction sont préfixés par *api*. Vous p
     }
 ```
 
-Pour plus d’informations sur la mise à jour du fichier *host.json* de votre fonction, consultez [Mettre à jour les fichiers Function App](functions-reference.md#fileupdate). 
+Pour plus d’informations sur la façon de tooupdate hello *host.json* fichier de votre fonction, consultez [fonctionnement des fichiers de l’application tooupdate](functions-reference.md#fileupdate). 
 
 Pour plus d’informations sur les autres propriétés que vous pouvez configurer dans votre fichier *host.json*, consultez la [référence host.json](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json).
 
 
 <a name="keys"></a>
 ## <a name="working-with-keys"></a>Utilisation de clés
-HttpTriggers peut tirer parti des clés pour renforcer la sécurité. Un HttpTrigger standard peut les utiliser en tant que clés API, en exigeant que la clé soit présente dans la requête. Les webhooks peuvent utiliser des clés pour autoriser des demandes de plusieurs façons, selon ce que le fournisseur prend en charge.
+HttpTriggers peut tirer parti des clés pour renforcer la sécurité. Un standard HttpTrigger pouvez les utiliser comme une clé d’API, nécessitant toobe de clé hello présent sur la demande de hello. Webhooks peut utiliser des clés tooauthorize demandes de plusieurs façons, selon le fournisseur hello prend en charge.
 
-Les clés sont stockées dans votre Function App dans Azure, et chiffrées au repos. Pour afficher vos clés, créez des clés, ou restaurez des clés avec de nouvelles valeurs, accédez à l’une de vos fonctions au sein du portail, puis sélectionnez « Gérer ». 
+Les clés sont stockées dans votre Function App dans Azure, et chiffrées au repos. tooview vos clés, créer de nouveaux ou toonew les valeurs de clés de restauration, accédez tooone de vos fonctions au sein du portail de hello et sélectionnez « Gérer ». 
 
 Il existe deux types de clés :
-- **Clés d’hôte** : ces clés sont partagées par toutes les fonctions au sein de la Function App. Utilisées en tant que clés API, elles permettent d’accéder à toute fonction au sein de la Function App.
-- **Clés de fonction** : ces clés s’appliquent uniquement aux fonctions spécifiques sous lesquelles elles sont définies. Utilisées en tant que clés API, elles permettent d’accéder uniquement à ces fonctions.
+- **Clés d’hôtes**: ces clés sont partagés par toutes les fonctions de l’application de fonction hello. Lorsqu’il est utilisé comme une clé d’API, permettent de fonction tooany d’accès au sein de l’application de fonction hello.
+- **Touches de fonction**: ces clés s’appliquent uniquement toohello des fonctions spécifiques dans lesquelles ils sont définis. Lorsqu’il est utilisé comme une clé d’API, ils ne permettre access toothat (fonction).
 
-Chaque clé est nommée pour référence et il existe une clé par défaut (nommée « default ») au niveau fonction et hôte. Le **clé principale** est une clé d’hôte par défaut nommée « _master » qui est définie pour chaque Function App et qui ne peut pas être révoquée. Elle fournit un accès administratif aux API de runtime. L’utilisation de `"authLevel": "admin"` dans le JSON de liaison nécessite que cette clé soit présentée à la demande. Une autre clé entraînerait un échec d’autorisation.
+Chaque clé est nommé pour référence et il existe une clé par défaut (nommée « default ») au niveau de fonction et l’hôte hello. Hello **clé principale de** est une clé d’hôte par défaut nommée « _master » qui est défini pour chaque application de la fonction et ne peuvent pas être révoqués. Il fournit des API d’exécution d’un accès administratif toohello. À l’aide de `"authLevel": "admin"` Bonjour JSON de liaison requiert cette clé toobe présenté à la demande de hello ; une autre clé entraîne un échec d’autorisation.
 
 > [!NOTE]
-> En raison des autorisations élevées qu’accorde la clé principale, vous ne devez pas partager celle-ci avec des tiers, ou la distribuer dans des applications clientes natives. Faites preuve de prudence lors du choix du niveau d’autorisation administrateur.
+> Échéance toohello élevés des autorisations accordées par la clé principale de hello, vous ne devez pas partager cette clé avec des tiers ou le distribuer dans les applications clientes natives. Faites preuve de prudence lorsque vous choisissez le niveau d’autorisation d’admin hello.
 > 
 > 
 
 ### <a name="api-key-authorization"></a>Autorisation de clé API
-Par défaut, un HttpTrigger requiert une clé API dans la requête HTTP. Par conséquent, votre requête HTTP ressemble normalement à ceci :
+Par défaut, un HttpTrigger requiert une clé d’API dans la demande HTTP hello. Par conséquent, votre requête HTTP ressemble normalement à ceci :
 
     https://<yourapp>.azurewebsites.net/api/<function>?code=<ApiKey>
 
-Cette clé peut être incluse dans une variable de chaîne de requête nommée `code` ou dans un en-tête HTTP `x-functions-key`. La valeur de la clé peut être toute clé de fonction définie pour la fonction, ou toute clé d’hôte.
+clé de Hello peut être inclus dans une variable de chaîne de requête nommée `code`, comme indiqué ci-dessus, ou il peut être inclus dans un `x-functions-key` en-tête HTTP. valeur de Hello de clé de hello peut être n’importe quelle touche de fonction définis pour la fonction de hello ou n’importe quelle touche de l’hôte.
 
-Vous pouvez autoriser des demandes sans clé ou spécifier que la clé principale doit être utilisée en modifiant la propriété `authLevel` dans le JSON de liaison (voir [Déclencheur HTTP](#httptrigger)).
+Vous pouvez choisir des demandes tooallow sans clés ou spécifier que la clé principale hello doit être utilisée en modifiant les hello `authLevel` propriété Bonjour liaison JSON (voir [déclencheur HTTP](#httptrigger)).
 
 ### <a name="keys-and-webhooks"></a>Clés et webhooks
-Une autorisation de webhook est gérée par le composant récepteur de webhook, qui fait partie du HttpTrigger, et le mécanisme varie en fonction du type de webhook. Toutefois, chaque mécanisme dépend d’une clé. Par défaut, la clé de fonction nommée « default » est utilisée. Si vous souhaitez utiliser une autre clé, vous devez configurer le fournisseur de webhook pour envoyer le nom de clé avec la demande de l’une des manières suivantes :
+Autorisation de Webhook est gérée par le composant récepteur hello webhook, partie hello HttpTrigger et le mécanisme de hello varie selon le type de webhook hello. Toutefois, chaque mécanisme dépend d’une clé. Par défaut, touche de fonction hello nommée « default » est utilisée. Si vous le souhaitez toouse une autre clé, vous devez tooconfigure hello webhook fournisseur toosend hello nom de clé avec requête hello de hello suivant façons :
 
-- **Chaîne de requête** : le fournisseur transmet le nom de clé dans le paramètre de chaîne de requête `clientid` (par exemple, `https://<yourapp>.azurewebsites.net/api/<funcname>?clientid=<keyname>`).
-- **En-tête de demande** : le fournisseur transmet le nom de clé dans l’en-tête `x-functions-clientid`.
+- **Chaîne de requête**: fournisseur de hello transmet le nom de la clé hello Bonjour `clientid` le paramètre de chaîne de requête (par exemple, `https://<yourapp>.azurewebsites.net/api/<funcname>?clientid=<keyname>`).
+- **En-tête de demande**: fournisseur de hello transmet le nom de la clé hello Bonjour `x-functions-clientid` en-tête.
 
 > [!NOTE]
-> Les clés de fonction prennent le pas sur les clés d’hôte. Si les deux clés portent le même nom, la clé de fonction est utilisée.
+> Les clés de fonction prennent le pas sur les clés d’hôte. Si deux clés sont définies avec le même nom, hello de hello touche de fonction sera utilisé.
 > 
 > 
 
 
 <a name="httptriggersample"></a>
 ## <a name="http-trigger-samples"></a>Exemples de déclencheur HTTP
-Supposons que le tableau `bindings` de function.json contient le déclencheur HTTP suivant :
+Supposez que vous avez hello suivant déclencheur HTTP Bonjour `bindings` tableau de function.json :
 
 ```json
 {
@@ -257,7 +257,7 @@ Supposons que le tableau `bindings` de function.json contient le déclencheur HT
 },
 ```
 
-Voir l’exemple spécifique du langage qui recherche un paramètre `name` dans la chaîne de requête ou dans le corps de la requête HTTP.
+Consultez l’exemple hello spécifiques à une langue qui recherche un `name` paramètre dans la chaîne de requête hello ou corps hello de demande de hello HTTP.
 
 * [C#](#httptriggercsharp)
 * [F#](#httptriggerfsharp)
@@ -282,16 +282,16 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
     // Get request body
     dynamic data = await req.Content.ReadAsAsync<object>();
 
-    // Set name to query string or body data
+    // Set name tooquery string or body data
     name = name ?? data?.name;
 
     return name == null
-        ? req.CreateResponse(HttpStatusCode.BadRequest, "Please pass a name on the query string or in the request body")
+        ? req.CreateResponse(HttpStatusCode.BadRequest, "Please pass a name on hello query string or in hello request body")
         : req.CreateResponse(HttpStatusCode.OK, "Hello " + name);
 }
 ```
 
-Vous pouvez également lier à un POCO au lieu de `HttpRequestMessage`. Ceci est alimenté à partir du corps de la demande, analysé en tant que JSON. De même, un type peut être passé à la sortie de réponse HTTP qui lie, et ceci est retourné en tant que corps de la réponse, avec un code d’état 200.
+Vous pouvez également lier tooa POCO au lieu de `HttpRequestMessage`. Cela sera être intégré à partir du corps hello de demande hello, analysée au format JSON. De même, un type peut être passé en sortie de réponse HTTP de toohello de liaison, et cela sera retourné en tant que corps de réponse hello, avec un code de 200 état.
 ```csharp
 using System.Net;
 using System.Threading.Tasks;
@@ -327,11 +327,11 @@ let Run(req: HttpRequestMessage) =
             try
                 return req.CreateResponse(HttpStatusCode.OK, "Hello " + data?name)
             with e ->
-                return req.CreateErrorResponse(HttpStatusCode.BadRequest, "Please pass a name on the query string or in the request body")
+                return req.CreateErrorResponse(HttpStatusCode.BadRequest, "Please pass a name on hello query string or in hello request body")
     } |> Async.StartAsTask
 ```
 
-Vous avez besoin d’un fichier `project.json` qui utilise NuGet pour référencer les assemblys `FSharp.Interop.Dynamic` et `Dynamitey`, comme suit :
+Vous avez besoin une `project.json` fichier qui utilise NuGet tooreference hello `FSharp.Interop.Dynamic` et `Dynamitey` assemblys, comme suit :
 
 ```json
 {
@@ -346,7 +346,7 @@ Vous avez besoin d’un fichier `project.json` qui utilise NuGet pour référenc
 }
 ```
 
-Ce code utilisera NuGet pour extraire vos dépendances et les référencera dans votre script.
+Cette option NuGet toofetch les dépendances et les référencer dans votre script.
 
 <a name="httptriggernodejs"></a>
 ### <a name="http-trigger-sample-in-nodejs"></a>Exemple de déclencheur HTTP en Node.js
@@ -356,14 +356,14 @@ module.exports = function(context, req) {
 
     if (req.query.name || (req.body && req.body.name)) {
         context.res = {
-            // status: 200, /* Defaults to 200 */
+            // status: 200, /* Defaults too200 */
             body: "Hello " + (req.query.name || req.body.name)
         };
     }
     else {
         context.res = {
             status: 400,
-            body: "Please pass a name on the query string or in the request body"
+            body: "Please pass a name on hello query string or in hello request body"
         };
     }
     context.done();
@@ -374,7 +374,7 @@ module.exports = function(context, req) {
 
 <a name="hooktriggersample"></a>
 ## <a name="webhook-samples"></a>Exemples de webhook
-Supposons que le tableau `bindings` de function.json contient le déclencheur de webhook suivant :
+Supposez que vous avez hello suivant déclencheur webhook Bonjour `bindings` tableau de function.json :
 
 ```json
 {
@@ -385,7 +385,7 @@ Supposons que le tableau `bindings` de function.json contient le déclencheur de
 },
 ```
 
-Voir l’exemple spécifique du langage qui journalise les commentaires de problème GitHub.
+Voir exemple hello spécifiques au langage qui enregistre les commentaires de problème GitHub.
 
 * [C#](#hooktriggercsharp)
 * [F#](#hooktriggerfsharp)

@@ -1,0 +1,17 @@
+Chaque ordinateur client qui se connecte tooa virtuel à l’aide de Point-to-Site doit avoir un certificat client est installé. certificat de client Hello est généré à partir du certificat racine de hello et installé sur chaque ordinateur client. Si un certificat client valide n’est pas installé et hello tentatives tooconnect toohello réseau virtuel, l’authentification échoue.
+
+Vous pouvez générer un certificat unique pour chaque client, ou vous pouvez utiliser hello même certificat pour plusieurs clients. certificats de client unique Hello parti toogenerating est hello capacité toorevoke un seul certificat. Sinon, si plusieurs clients sont à l’aide de hello même certificat de client et que vous devez toorevoke, vous avez toogenerate et installer de nouveaux certificats pour tous les hello les clients qui utilisent ce tooauthenticate de certificat.
+
+Vous pouvez générer des certificats de client à l’aide de hello méthodes suivantes :
+
+- **Certificat d’entreprise :**
+
+  - Si vous utilisez une solution de certificat d’entreprise, générer un certificat de client avec le format de valeur de nom commun hello 'name@yourdomain.com', au lieu du format « domaine\nom d’utilisateur » de hello.
+  - Assurez-vous que le certificat de client de hello est basé sur le modèle de certificat hello 'User' a « Authentification Client » en tant que premier élément dans la liste d’utiliser hello de hello, plutôt que de Smart Card Logon, etc.. Vous pouvez vérifier le certificat de hello en double-cliquant sur le certificat de client hello et en affichant **détails > utilisation améliorée de la clé**.
+
+- **Certificat racine auto-signé :** il est important de suivre les étapes de hello dans un des articles de certificat hello P2S ci-dessous. Dans le cas contraire, certificats hello client que vous créez ne sont pas compatibles avec les connexions P2S et les clients reçoivent une erreur lors de la tentative de tooconnect. étapes Hello, que ce soit de hello suivant articles génèrent un certificat de client compatible : 
+
+  * [Instructions pour Windows 10 PowerShell](../articles/vpn-gateway/vpn-gateway-certificates-point-to-site.md#clientcert): les instructions suivantes requièrent des certificats toogenerate PowerShell et Windows 10. les certificats de Hello générés peuvent être installés sur n’importe quel client P2S pris en charge.
+  * [Instructions de MakeCert](../articles/vpn-gateway/vpn-gateway-certificates-point-to-site-makecert.md): utilisez MakeCert si vous n’avez pas accès tooa Windows 10 ordinateur toouse toogenerate certificats. MakeCert déconseillée, mais vous pouvez toujours utiliser MakeCert toogenerate certificats. les certificats de Hello générés peuvent être installés sur n’importe quel client P2S pris en charge.
+
+  Lorsque vous générez un certificat client à partir d’un certificat racine auto-signé à l’aide de hello précédant les instructions, il a automatiquement installé sur l’ordinateur hello que vous avez utilisé toogenerate. Si vous voulez tooinstall un certificat client sur un autre ordinateur client, vous devez tooexport sous la forme d’un fichier .pfx, ainsi que de la chaîne de certificat entière hello. Cette opération crée un fichier .pfx qui contient des informations de certificat racine hello qui est requises pour authentifier les hello client toosuccessfully. Pour plus d’étapes tooexport un certificat, consultez [certificats - exporter un certificat client](../articles/vpn-gateway/vpn-gateway-certificates-point-to-site.md#clientexport).

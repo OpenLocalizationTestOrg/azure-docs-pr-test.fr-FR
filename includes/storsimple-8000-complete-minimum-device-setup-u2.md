@@ -1,31 +1,31 @@
 <!--author=alkohli last changed: 01/12/17-->
 
-#### <a name="to-complete-the-minimum-storsimple-device-setup"></a>Pour mener à bien la configuration minimale d’un appareil StorSimple
+#### <a name="toocomplete-hello-minimum-storsimple-device-setup"></a>installation du périphérique StorSimple minimale toocomplete hello
 
    > [!NOTE]
-   > Vous ne pouvez pas modifier le nom de l’appareil une fois la configuration de l’appareil terminée.
+   > Impossible de modifier le nom de l’appareil hello une fois que le programme d’installation minimale de l’appareil de hello est terminé.
    
-1. Sélectionnez votre appareil et cliquez dessus dans la liste tubulaire des appareils du panneau **Appareils**. L’appareil se trouve à l’état **Prêt pour la configuration**. Le panneau **Configurer l’appareil** s’ouvre.
+1. À partir de la liste tabulaire des appareils de hello hello **périphériques** panneau, sélectionnez et cliquez sur votre appareil. Appareil de Hello est dans un **prêt tooset des** état. Hello **configurer le périphérique** panneau s’ouvre.
 
      ![Interfaces réseau de la configuration minimale d’un appareil StorSimple](./media/storsimple-8000-complete-minimum-device-setup-u2/step4minconfig1.png)
 
-2. Dans le panneau **Configurer l’appareil** :
+2. Bonjour **configurer le périphérique** panneau :
    
-   1. Entrez un **Nom convivial** pour votre appareil. Le nom de l’appareil par défaut reflète des informations telles que le modèle de l’appareil et son numéro de série. Vous pouvez attribuer un nom convivial allant jusqu'à 64 caractères pour gérer l’appareil.
-   2. Définissez le **fuseau horaire** en fonction de l'emplacement géographique de l’appareil déployé. Votre appareil utilise ce fuseau horaire pour toutes les opérations planifiées.
-   3. Sous les **paramètres DATA 0** :
+   1. Entrez un **Nom convivial** pour votre appareil. nom de périphérique par défaut Hello reflète les informations telles que le modèle d’appareil hello et numéro de série. Vous pouvez affecter un nom convivial des too64 caractères toomanage votre appareil.
+   2. Ensemble hello **fuseau horaire** basés sur l’emplacement géographique de hello dans le hello appareil est en cours de déploiement. Votre appareil utilise ce fuseau horaire pour toutes les opérations planifiées.
+   3. Sous hello **DATA 0 paramètres**:
 
-       1. Votre interface réseau DATA 0 s’affiche comme étant activée avec les paramètres réseau (IP, sous-réseau, passerelle) configurés via l’Assistant d’installation. DATA 0 est également automatiquement activé pour le cloud, ainsi que pour l’iSCSI.
+       1. Votre DATA 0 interface réseau montre comme activé avec hello les paramètres (IP, sous-réseau, passerelle) configurés via l’Assistant d’installation hello réseau. DATA 0 est également automatiquement activé pour le cloud, ainsi que pour l’iSCSI.
 
-       2. Entrez les adresses IP fixes pour les contrôleurs 0 et 1. **Les adresses IP fixes des contrôleurs doivent être disponibles au sein du sous-réseau accessible par l'adresse IP de l’appareil.** Si l’interface du réseau DATA 0 est configurée pour le protocole IPv4, les adresses IP fixes doivent être fournies au format IPv4. Si vous avez fourni un préfixe pour la configuration du protocole IPv6, ces champs sont automatiquement remplis par des adresses IP fixes.
+       2. Fournissent des hello des adresses IP pour le contrôleur 0 et 1. **les adresses IP fixé des contrôleurs de Hello besoin toobe libre des adresses IP de sous-réseau hello accessible par l’adresse IP du périphérique hello.** Si hello DATA 0, l’interface a été configurée pour IPv4, hello fixe IP adresses besoin toobe prévue hello format IPv4. Si vous avez indiqué un préfixe pour la configuration IPv6, hello des adresses IP fixes sont remplis automatiquement dans ces champs.
 
             ![Interfaces réseau de la configuration minimale d’un appareil StorSimple](./media/storsimple-8000-complete-minimum-device-setup-u2/step4minconfig2.png)
 
-            Les adresses IP fixes du contrôleur servent à traiter les mises à jour de l’appareil. Par conséquent, les adresses IP fixes doivent être routables et être en mesure de se connecter à Internet. Vous pouvez vérifier que vos adresses IP de contrôleur fixe sont routables à l’aide de l’applet de commande [Test-HcsmConnection][Test]. Dans l’exemple suivant, les adresses IP de contrôleur fixe sont routées à Internet et peuvent accéder aux serveurs Microsoft Update.
+            Hello fixe d’adresses IP pour le contrôleur de hello sont utilisées pour la maintenance des appareils de toohello hello mises à jour. Par conséquent, hello adresses IP fixé doit être routables et capables de tooconnect toohello Internet. Vous pouvez vérifier que votre contrôleur fixe des adresses IP sont routables à l’aide de hello [Test-HcsmConnection] [ Test] applet de commande. Hello affiche fixé de contrôleur des adresses IP est routé toohello Internet et peut accéder à l’exemple suivant hello serveurs Microsoft Update.
 
             ![Test-HcsmConnection indiquant les adresses IP routables](./media/storsimple-8000-complete-minimum-device-setup-u2/step4minconfig3.png)
 
-1. Cliquez sur **OK**. La configuration de l’appareil démarre. Lorsque la configuration de l’appareil est terminée, vous êtes averti. L’état de l’appareil devient **En ligne** dans le panneau **Appareils**.
+1. Cliquez sur **OK**. configuration de l’appareil Hello démarre. Lors de la configuration de l’appareil hello est terminée, vous êtes averti. Hello trop de modifications d’état de périphérique**Online** Bonjour **périphériques** panneau.
 
     ![Interfaces réseau de la configuration minimale d’un appareil StorSimple](./media/storsimple-8000-complete-minimum-device-setup-u2/step4minconfig4.png)
 

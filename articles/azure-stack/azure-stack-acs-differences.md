@@ -1,6 +1,6 @@
 ---
 title: "Stockage Azure Stack : différences et points à prendre en compte"
-description: "Découvrez les différences entre le stockage Azure Stack et le stockage Azure, ainsi que les points à prendre en compte quand vous déployez Azure Stack."
+description: "Comprendre les différences de hello entre Azure pile de stockage et le stockage Azure, ainsi que des considérations relatives au déploiement de pile de Azure."
 services: azure-stack
 documentationcenter: 
 author: xiaofmao
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 06/22/2017
 ms.author: xiaofmao
-ms.openlocfilehash: beb2d26afb8ddc5e85b1828c71de5cbd9e678fe1
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: a1f8e2180b046b835c89fd658e2dbaff004b8786
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-stack-storage-differences-and-considerations"></a>Stockage Azure Stack : différences et points à prendre en compte
-Le stockage Azure Stack est l’ensemble des services cloud de stockage fournis dans Microsoft Azure Stack. Le stockage Azure Stack fournit des fonctionnalités de gestion des objets blob, des tables, des files d’attente et des comptes avec une sémantique Azure cohérente.
+Stockage Azure de pile est ensemble hello des services de cloud de stockage dans la pile de Microsoft Azure. Le stockage Azure Stack fournit des fonctionnalités de gestion des objets blob, des tables, des files d’attente et des comptes avec une sémantique Azure cohérente.
 
-Cet article récapitule les différences connues entre le stockage Azure Stack et le stockage Azure. Il expose également les principaux points à prendre en compte quand vous déployez Azure Stack. Pour connaître les différences majeures entre Azure Stack et Azure, consultez la rubrique [Principales considérations](azure-stack-considerations.md).
+Cet article résume les hello connu des différences de pile le stockage Azure à partir du stockage Azure. Il récapitule également les autres tookeep considérations à l’esprit lorsque vous déployez Azure pile. toolearn sur les principales différences entre la pile d’Azure et d’Azure, consultez hello [considérations relatives à la clé](azure-stack-considerations.md) rubrique.
 
 ## <a name="cheat-sheet-storage-differences"></a>Aide-mémoire : différences entre les stockages
 
@@ -44,11 +44,11 @@ Cet article récapitule les différences connues entre le stockage Azure Stack e
 
 ### <a name="metrics"></a>Mesures
 Il existe également des différences sur le plan des métriques de stockage :
-* Les données de transaction dans les métriques de stockage ne font pas la distinction entre la bande passante réseau interne et externe.
-* Les données de transaction dans les métriques de stockage ne prennent pas en compte l’accès des machines virtuelles aux disques montés.
+* les données de transaction Hello dans des indicateurs de stockage ne fait aucune distinguent la bande passante du réseau interne ou externe.
+* les données de transaction Hello dans les mesures de stockage n’incluent pas de disques de machine virtuelle accès toohello monté.
 
 ## <a name="api-version"></a>Version de l'API
-Les versions suivantes sont prises en charge avec le stockage Azure Stack :
+Hello versions suivantes est prises en charge avec le stockage de pile Azure :
 
 * Services de données du stockage Azure : [version du 05-04-2015 de l’API REST](https://docs.microsoft.com/en-us/rest/api/storageservices/Version-2015-04-05?redirectedfrom=MSDN)
 * Services de gestion du stockage Azure : [préversion du 01-05-2015, version du 15-06-2015 et version du 01-01-2016](https://docs.microsoft.com/en-us/rest/api/storagerp/?redirectedfrom=MSDN) 
@@ -56,5 +56,5 @@ Les versions suivantes sont prises en charge avec le stockage Azure Stack :
 ## <a name="next-steps"></a>Étapes suivantes
 
 * [Bien démarrer avec les outils de développement du stockage Azure Stack](azure-stack-storage-dev.md)
-* [Présentation du stockage Azure Stack](azure-stack-storage-overview.md)
+* [Introduction tooAzure pile de stockage](azure-stack-storage-overview.md)
 

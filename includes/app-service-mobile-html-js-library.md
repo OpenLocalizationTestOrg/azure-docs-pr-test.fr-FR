@@ -1,12 +1,12 @@
 ## <a name="create-client"></a>Créer une connexion cliente
-Créez une connexion cliente en créant un objet `WindowsAzure.MobileServiceClient` .  Remplacez `appUrl` par l’URL de votre application mobile.
+Créez une connexion cliente en créant un objet `WindowsAzure.MobileServiceClient` .  Remplacez `appUrl` avec la tooyour URL de l’application Mobile.
 
 ```
 var client = WindowsAzure.MobileServiceClient(appUrl);
 ```
 
 ## <a name="table-reference"></a>Utilisation des tables
-Pour accéder aux données ou les mettre à jour, créez une référence à la table principale. Remplacez `tableName` par le nom de votre table.
+tooaccess ou mise à jour des données, créez une table de serveur principal de référence toohello. Remplacez `tableName` par nom de hello de votre table
 
 ```
 var table = client.getTable(tableName);
@@ -23,23 +23,23 @@ Une fois que vous disposez d’une référence de table, vous pouvez continuer �
 * [Suppression de données](#deleting)
 
 ### <a name="querying"></a>Procédure : interrogation d’une référence de table
-Une fois que vous disposez d’une référence de table, vous pouvez l’utiliser pour rechercher des données sur le serveur.  Les requêtes sont effectuées dans un langage de type LINQ.
-Pour retourner toutes les données de la table, utilisez le code suivant :
+Une fois que vous avez une référence de table, vous pouvez l’utiliser tooquery des données sur le serveur de hello.  Les requêtes sont effectuées dans un langage de type LINQ.
+tooreturn de code de toutes les données à partir de la table hello, hello utilisation suivant :
 
 ```
 /**
- * Process the results that are received by a call to table.read()
+ * Process hello results that are received by a call tootable.read()
  *
- * @param {Object} results the results as a pseudo-array
- * @param {int} results.length the length of the results array
- * @param {Object} results[] the individual results
+ * @param {Object} results hello results as a pseudo-array
+ * @param {int} results.length hello length of hello results array
+ * @param {Object} results[] hello individual results
  */
 function success(results) {
    var numItemsRead = results.length;
 
    for (var i = 0 ; i < results.length ; i++) {
        var row = results[i];
-       // Each row is an object - the properties are the columns
+       // Each row is an object - hello properties are hello columns
    }
 }
 
@@ -52,12 +52,12 @@ table
     .then(success, failure);
 ```
 
-La fonction success est appelée avec les résultats.  Ne recourez pas à `for (var i in results)` dans la fonction success, car cette action entraîne une itération sur les informations contenues dans les résultats quand d’autres fonctions de requête (telles que `.includeTotalCount()`) sont utilisées.
+fonction de réussite Hello est appelée avec les résultats hello.  N’utilisez pas `for (var i in results)` en cas de réussite hello de fonction qui effectue une itération sur les informations qui sont incluses dans les résultats de hello lorsque autres fonctions de requête (tel que `.includeTotalCount()`) sont utilisés.
 
-Pour plus d’informations sur la syntaxe de requête, consultez la [documentation de l’objet Query].
+Pour plus d’informations sur la syntaxe de requête de hello, consultez hello [documentation de l’objet de requête].
 
-#### <a name="table-filter"></a>Filtrage des données sur le serveur
-Vous pouvez utiliser une clause `where` sur la référence de table :
+#### <a name="table-filter"></a>Le filtrage des données sur le serveur de hello
+Vous pouvez utiliser un `where` clause sur la référence de table hello :
 
 ```
 table
@@ -66,7 +66,7 @@ table
     .then(success, failure);
 ```
 
-Vous pouvez également utiliser une fonction qui filtre l’objet.  Dans ce cas, la variable `this` est affectée à l’objet en cours de filtrage.  Le code suivant est équivalent à l’exemple précédent sur le plan fonctionnel :
+Vous pouvez également utiliser une fonction qui permet de filtrer l’objet de hello.  Dans ce cas, hello `this` est affectée à la variable objet en cours de toothe filtrée.  Hello suivant de code est un exemple de préalable de toohello équivalentes :
 
 ```
 function filterByUserId(currentUserId) {
@@ -80,12 +80,12 @@ table
 ```
 
 #### <a name="table-paging"></a>Pagination des données
-Utilisez les méthodes `take()` et `skip()`.  Par exemple, si vous souhaitez fractionner la table en enregistrements de 100 lignes :
+Utiliser hello `take()` et `skip()` méthodes.  Par exemple, si vous le souhaitez table de hello toosplit en ligne de 100 enregistrements :
 
 ```
 var totalCount = 0, pages = 0;
 
-// Step 1 - get the total number of records
+// Step 1 - get hello total number of records
 table.includeTotalCount().take(0).read(function (results) {
     totalCount = results.totalCount;
     pages = Math.floor(totalCount/100) + 1;
@@ -103,12 +103,12 @@ function loadPage(pageNum) {
 }
 ```
 
-La méthode `.includeTotalCount()` est utilisée pour ajouter un champ totalCount à l’objet results.  Le champ totalCount est rempli avec le nombre total d’enregistrements qui est retourné si aucune pagination n’est utilisée.
+Hello `.includeTotalCount()` méthode est utilisée tooadd un objet de résultats totalCount champ toohello.  Le champ totalCount est rempli avec le nombre total de hello d’enregistrements qui serait retournée si aucune pagination n’est utilisée.
 
-Vous pouvez ensuite utiliser la variable pages et des boutons d’interface utilisateur pour fournir une liste de pages ; utilisez `loadPage()` pour charger les nouveaux enregistrements pour chaque page.  Implémentez la mise en cache pour accélérer l’accès aux enregistrements qui ont déjà été chargés.
+Vous pouvez ensuite utiliser la variable de pages hello et certains tooprovide de boutons de l’interface utilisateur une liste de la page ; Utilisez `loadPage()` pour charger les nouveaux enregistrements de hello pour chaque page.  Implémenter la mise en cache toorecords accès toospeed qui ont déjà été chargés.
 
 #### <a name="sorting-data"></a>Procédure : renvoi de données triées
-Utilisez les méthodes de requête `.orderBy()` ou `.orderByDescending()` :
+Hello d’utilisation `.orderBy()` ou `.orderByDescending()` méthodes de requête :
 
 ```
 table
@@ -117,10 +117,10 @@ table
     .then(success, failure);
 ```
 
-Pour plus d’informations sur l’objet Query, consultez la [documentation de l’objet Query].
+Pour plus d’informations sur l’objet de requête hello, consultez hello [documentation de l’objet de requête].
 
 ### <a name="inserting"></a>Procédure : insertion de données
-Créez un objet JavaScript avec la date appropriée et appelez `table.insert()` de façon asynchrone :
+Créer un objet JavaScript avec date appropriée de hello et appelez `table.insert()` asynchrone :
 
 ```javascript
 var newItem = {
@@ -135,12 +135,12 @@ table
     }, failure);
 ```
 
-Une fois l’insertion correctement effectuée, l’élément inséré est retourné avec les champs supplémentaires qui sont nécessaires pour les opérations de synchronisation.  Mettez à jour votre propre cache avec ces informations en vue des mises à jour ultérieures.
+Sur la réussite de l’insertion, hello inséré élément est renvoyé hello autres champs qui sont requis pour les opérations de synchronisation.  Mettez à jour votre propre cache avec ces informations en vue des mises à jour ultérieures.
 
-Le Kit de développement logiciel (SDK) de serveur Node.js Azure Mobile Apps prend en charge le schéma dynamique à des fins de développement.  Le schéma dynamique vous permet d’ajouter des colonnes à la table en les spécifiant dans une opération d’insertion ou de mise à jour.  Nous vous recommandons de désactiver le schéma dynamique avant de déplacer votre application vers un environnement de production.
+Bonjour Azure Mobile Apps Node.js serveur SDK prend en charge le schéma dynamique à des fins de développement.  Le schéma dynamique vous permet de table de toohello tooadd colonnes en les spécifiant dans une opération insert ou update.  Nous vous recommandons de désactiver le schéma dynamique avant le déplacement de tooproduction de votre application.
 
 ### <a name="modifying"></a>Procédure : modification des données
-Comme dans le cas de la méthode `.insert()`, vous devez créer un objet de mise à jour, puis appeler `.update()`.  L’objet de mise à jour doit contenir l’ID de l’enregistrement à mettre à jour, obtenu au moment de la lecture de l’enregistrement ou de l’appel de `.insert()`.
+Similaire toohello `.insert()` (méthode), vous devez créer un objet de la mise à jour et appelez ensuite `.update()`.  Hello objet mise à jour doit contenir des ID de hello de hello enregistrement toobe est mis à jour - hello ID est obtenu lors de la lecture de l’enregistrement de hello ou lors de l’appel `.insert()`.
 
 ```javascript
 var updateItem = {
@@ -156,7 +156,7 @@ table
 ```
 
 ### <a name="deleting"></a>Procédure : suppression de données
-Pour supprimer un enregistrement, appelez la méthode `.del()`.  Transmettez l’ID d’une référence d’objet :
+toodelete un enregistrement, appel hello `.del()` (méthode).  Transmettez hello ID dans une référence d’objet :
 
 ```
 table

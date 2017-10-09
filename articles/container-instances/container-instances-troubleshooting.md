@@ -1,6 +1,6 @@
 ---
-title: "Résolution des problèmes liés à Azure Container Instances"
-description: "Découvrez comment résoudre les problèmes liés à Azure Container Instances"
+title: aaaTroubleshooting les Instances du conteneur Azure
+description: "Découvrez comment tootroubleshoot problèmes avec les Instances du conteneur Azure"
 services: container-instances
 documentationcenter: 
 author: seanmck
@@ -17,25 +17,25 @@ ms.workload: na
 ms.date: 08/03/2017
 ms.author: seanmck
 ms.custom: mvc
-ms.openlocfilehash: 86fa4b7dca7c362f95c0243a33f03d1f2dd3ab42
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: dfec636a0a174c74a6f2e9d9c4da6e871f8d2fda
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshoot-deployment-issues-with-azure-container-instances"></a>Résoudre les problèmes de déploiement liés à Azure Container Instances
 
-Cet article explique comment résoudre les problèmes de déploiement de conteneurs sur Azure Container Instances. Il décrit également les problèmes courants que vous risquez de rencontrer.
+Cet article explique comment tootroubleshoot problèmes lors du déploiement de conteneurs tooAzure les Instances du conteneur. Elle décrit également les problèmes courants de hello que vous risquez de rencontrer.
 
 ## <a name="getting-diagnostic-events"></a>Récupération des événements de diagnostic
 
-Pour afficher les journaux à partir de votre code d’application dans un conteneur, vous pouvez utiliser la commande [az container logs](/cli/azure/container#logs). Toutefois, si votre conteneur ne se déploie pas correctement, vous devez examiner les informations de diagnostic fournies par le fournisseur de ressources Azure Container Instances. Pour afficher les événements liés à votre conteneur, exécutez la commande suivante :
+journaux tooview à partir de votre code d’application dans un conteneur, vous pouvez utiliser hello [az conteneur journaux](/cli/azure/container#logs) commande. Mais si votre conteneur ne déploie pas correctement, vous devez tooreview hello des informations de diagnostic fournies par le fournisseur de ressources des Instances de conteneurs Azure hello. événements de hello tooview pour votre conteneur, exécutez hello de commande suivante :
 
 ```azurecli-interactive
 az container show -n mycontainername -g myresourcegroup
 ```
 
-La sortie inclut les propriétés principales de votre conteneur, ainsi que les événements de déploiement :
+sortie de Hello inclut des propriétés principales de hello de votre conteneur, ainsi que les événements de déploiement :
 
 ```bash
 {
@@ -91,9 +91,9 @@ La sortie inclut les propriétés principales de votre conteneur, ainsi que les 
 
 La plupart des erreurs de déploiement sont liées à quelques problèmes courants.
 
-### <a name="unable-to-pull-image"></a>Impossible d’extraire l’image
+### <a name="unable-toopull-image"></a>Impossible de toopull image
 
-Si Azure Container Instances ne parvient pas à extraire votre image initialement, il réessaie pendant une certaine période, sans succès. Des événements tels que les suivants sont alors affichés :
+Si les Instances du conteneur Azure est impossible toopull votre image au départ, il effectue une nouvelle tentative pendant une certaine période avant l’échec par la suite. Si l’image de hello ne peut pas être extraite, événements comme hello suivantes sont affichées :
 
 ```bash
 "events": [
@@ -108,7 +108,7 @@ Si Azure Container Instances ne parvient pas à extraire votre image initialemen
     "count": 1,
     "firstTimestamp": "2017-08-03T22:19:32+00:00",
     "lastTimestamp": "2017-08-03T22:19:32+00:00",
-    "message": "Failed: Failed to pull image \"microsoft/aci-hellowrld\": rpc error: code 2 desc Error: image microsoft/aci-hellowrld:latest not found",
+    "message": "Failed: Failed toopull image \"microsoft/aci-hellowrld\": rpc error: code 2 desc Error: image microsoft/aci-hellowrld:latest not found",
     "type": "Warning"
   },
   {
@@ -121,11 +121,11 @@ Si Azure Container Instances ne parvient pas à extraire votre image initialemen
 ]
 ```
 
-Pour résoudre cette situation, supprimez le conteneur et essayez de le redéployer, en veillant à taper correctement le nom de l’image.
+tooresolve, supprimer le conteneur de hello et réessayez votre déploiement, qui paient attention particulière que vous avez tapé un nom de l’image hello correctement.
 
 ### <a name="container-continually-exits-and-restarts"></a>Le conteneur s’arrête et redémarre en permanence
 
-Azure Container Instances prend uniquement en charge les services de longue durée. Si votre conteneur s’exécute jusqu’au bout et s’arrête, il redémarre et se réexécute automatiquement. Si cela se produit, les événements tels que ceux qui suivent sont affichés. Notez que le conteneur démarre correctement, puis redémarre rapidement. L’API Container Instances inclut une propriété `retryCount` qui indique combien de fois un conteneur particulier a redémarré.
+Azure Container Instances prend uniquement en charge les services de longue durée. Si votre conteneur s’exécute toocompletion et s’arrête, il automatiquement redémarre et s’exécute à nouveau. Si cela se produit, les événements tels que ceux qui suivent sont affichés. Notez que le conteneur de hello démarre correctement, puis redémarre rapidement. Hello API des Instances de conteneur inclut un `retryCount` propriété qui indique combien de fois un conteneur particulier a redémarré.
 
 ```bash
 "events": [
@@ -189,13 +189,13 @@ Azure Container Instances prend uniquement en charge les services de longue dur�
 ```
 
 > [!NOTE]
-> La plupart des images conteneur pour les distributions Linux définissent un interpréteur de commandes, tel que bash, comme commande par défaut. Un interpréteur de commandes n’étant pas en soi un service de longue durée, ces conteneurs quittent la procédure immédiatement et entrent dans une boucle de redémarrage.
+> La plupart des images de conteneur pour les distributions Linux définir un interpréteur de commandes, tels que bash, comme la commande hello par défaut. Un interpréteur de commandes n’étant pas en soi un service de longue durée, ces conteneurs quittent la procédure immédiatement et entrent dans une boucle de redémarrage.
 
-### <a name="container-takes-a-long-time-to-start"></a>Le démarrage du conteneur prend beaucoup de temps
+### <a name="container-takes-a-long-time-toostart"></a>Conteneur prend un toostart beaucoup de temps
 
-Si le démarrage de votre conteneur prend beaucoup de temps, commencez par examiner la taille de votre image conteneur. Étant donné qu’Azure Container Instances extrait l’image conteneur à la demande, le temps de démarrage est directement lié à la taille de cette image.
+Si votre conteneur prend un toostart beaucoup de temps, mais finit par aboutit, commencez par examiner de taille hello de votre image de conteneur. Étant donné que les Instances du conteneur Azure extrait l’image de conteneur à la demande, le temps de démarrage de hello vous rencontrez est directement lié tooits taille.
 
-Vous pouvez afficher la taille de votre image conteneur à l’aide de l’interface CLI Docker :
+Vous pouvez afficher la taille de hello de votre image de conteneur à l’aide de hello Docker CLI :
 
 ```bash
 docker images
@@ -208,6 +208,6 @@ REPOSITORY                             TAG                 IMAGE ID            C
 microsoft/aci-helloworld               latest              7f78509b568e        13 days ago         68.1MB
 ```
 
-Pour que l’image conserve une petite taille, faites en sorte que l’image finale ne contienne aucun élément qui soit superflu au moment de l’exécution. Pour ce faire, vous pouvez utiliser des [builds à plusieurs étapes](https://docs.docker.com/engine/userguide/eng-image/multistage-build/). Grâce aux builds à plusieurs étapes, vous pouvez facilement faire en sorte que l’image finale ne contienne que les artefacts nécessaires à votre application, à l’exclusion de tout contenu supplémentaire qui était requis au moment de la génération.
+tailles d’image clé tookeeping Hello small est de vous assurer que votre image finale ne contienne pas tout ce qui n’est pas nécessaire lors de l’exécution. Une façon toodo avec [en plusieurs builds](https://docs.docker.com/engine/userguide/eng-image/multistage-build/). En plusieurs builds rendent tooensure facile qu’image finale de hello contient des artefacts hello uniquement vous avez besoin pour votre application, et pas les hello supplémentaire de contenu qui a été requis au moment de la génération.
 
-Une autre façon de réduire l’impact de l’extraction de l’image sur le temps de démarrage de votre conteneur consiste à héberger l’image conteneur à l’aide d’Azure Container Registry dans la région où vous envisagez d’utiliser Azure Container Instances. Cette opération raccourcit le chemin réseau que l’image conteneur doit parcourir, réduisant considérablement le temps de téléchargement.
+Hello autre impact n’hello tooreduce moyen de l’extraction d’image hello dans les temps de démarrage de votre conteneur est image de conteneur hello toohost à l’aide de hello Registre de conteneur Azure Bonjour même région où vous prévoyez d’Instances de conteneurs toouse Azure. Cela réduit le chemin d’accès réseau hello qui hello tootravel de besoins image conteneur, raccourcir considérablement les temps de téléchargement hello.

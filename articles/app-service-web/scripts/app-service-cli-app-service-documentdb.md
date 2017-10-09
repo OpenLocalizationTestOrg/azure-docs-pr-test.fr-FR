@@ -1,6 +1,6 @@
 ---
-title: "Exemple de script Azure CLI - Connecter une application web à une instance Cosmos DB | Microsoft Docs"
-description: "Exemple de script Azure CLI - Connecter une application web à une instance Cosmos DB"
+title: "aaaAzure exemple de Script CLI - se connecter à un tooCosmos d’application web DB | Documents Microsoft"
+description: "Le Script CLI Azure exemple - se connecter à un tooCosmos d’application web DB"
 services: appservice
 documentationcenter: appservice
 author: syntaxc4
@@ -16,15 +16,15 @@ ms.workload: web
 ms.date: 06/19/2017
 ms.author: cfowler
 ms.custom: mvc
-ms.openlocfilehash: ff5e7a794033cc51120831e09b055a86affb28a4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1f2123378b9d5812fa793730f7fa5a5bc9ab63c1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-a-web-app-to-cosmos-db"></a>Connecter une application web à Cosmos DB
+# <a name="connect-a-web-app-toocosmos-db"></a>Se connecter à un tooCosmos d’application web DB
 
-Dans ce scénario, vous allez apprendre à créer un compte Azure Cosmos DB et une application web Azure. Ensuite, vous allez lier l’instance Cosmos DB à l’application web par le biais des paramètres de l’application.
+Dans ce scénario, vous allez apprendre comment toocreate un compte de base de données Azure Cosmos et Azure web app. Ensuite, vous allez lier hello Cosmos DB toohello web app à l’aide des paramètres de l’application.
 
 
 [!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
@@ -32,7 +32,7 @@ Dans ce scénario, vous allez apprendre à créer un compte Azure Cosmos DB et u
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-Si vous choisissez d’installer et d’utiliser l’interface de ligne de commande localement, vous devez exécuter Azure CLI version 2.0 ou une version ultérieure pour poursuivre la procédure décrite dans cet article. Exécutez `az --version` pour trouver la version. Si vous devez installer ou mettre à niveau, consultez [Installation d’Azure CLI 2.0]( /cli/azure/install-azure-cli). 
+Si vous choisissez tooinstall et que vous utilisez hello CLI localement, cette rubrique requiert que vous exécutez hello CLI d’Azure version 2.0 ou ultérieure. Exécutez `az --version` version de hello toofind. Si vous avez besoin de tooinstall ou mise à niveau, consultez [installer Azure CLI 2.0]( /cli/azure/install-azure-cli). 
 
 ## <a name="sample-script"></a>Exemple de script
 
@@ -42,19 +42,19 @@ Si vous choisissez d’installer et d’utiliser l’interface de ligne de comma
 
 ## <a name="script-explanation"></a>Explication du script
 
-Ce script utilise les commandes suivantes pour créer un groupe de ressources, une application web, une instance Cosmos DB et toutes les ressources associées. Chaque commande du tableau renvoie à une documentation spécifique.
+Ce script utilise hello suivant de commandes toocreate un groupe de ressources, l’application web, Cosmos DB et toutes les ressources. Chaque commande figurant dans la documentation spécifique du toocommand liens table hello.
 
 | Commande | Remarques |
 |---|---|
 | [az group create](https://docs.microsoft.com/cli/azure/group#create) | Crée un groupe de ressources dans lequel toutes les ressources sont stockées. |
 | [az appservice plan create](https://docs.microsoft.com/cli/azure/appservice/plan#create) | Crée un plan App Service. Cela équivaut à une batterie de serveurs pour votre application web Azure. |
 | [az webapp create](https://docs.microsoft.com/cli/azure/webapp#create) | Crée une application web Azure. |
-| [az cosmosdb create](https://docs.microsoft.com/en-us/cli/azure/cosmosdb#create) | Crée un compte Cosmos DB. Il s’agit de l’emplacement où les données seront stockées. |
-| [az cosmosdb list-keys](https://docs.microsoft.com/en-us/cli/azure/cosmosdb#list-keys) | Liste les clés d’accès au compte Cosmos DB spécifié. |
+| [az cosmosdb create](https://docs.microsoft.com/en-us/cli/azure/cosmosdb#create) | Crée un compte Cosmos DB. Cela consiste à stocker des données de salutation. |
+| [az cosmosdb list-keys](https://docs.microsoft.com/en-us/cli/azure/cosmosdb#list-keys) | Répertorie les clés d’accès hello pour hello spécifié de compte de base de données Cosmos. |
 | [az webapp config appsettings set](https://docs.microsoft.com/cli/azure/webapp/config/appsettings#set) | Crée ou met à jour un paramètre d’application pour une application web Azure. Les paramètres d’application sont exposés en tant que variables d’environnement pour votre application. |
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Pour plus d’informations sur l’interface Azure CLI, consultez la [documentation relative à l’interface Azure CLI](https://docs.microsoft.com/cli/azure/overview).
+Pour plus d’informations sur hello CLI d’Azure, consultez [documentation relative à Azure CLI](https://docs.microsoft.com/cli/azure/overview).
 
-Vous trouverez des exemples supplémentaires de scripts CLI App Service dans la [documentation relative à Azure App Service](../app-service-cli-samples.md).
+Vous trouverez des exemples de script CLI de Service d’application supplémentaires Bonjour [documentation d’Azure App Service](../app-service-cli-samples.md).

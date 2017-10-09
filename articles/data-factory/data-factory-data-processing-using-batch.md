@@ -1,6 +1,6 @@
 ---
-title: "Traiter des jeux de données volumineux à l’aide de Data Factory et Batch | Microsoft Docs"
-description: "Décrit comment traiter de grandes quantités de données dans un pipeline Azure Data Factory en utilisant une capacité de traitement parallèle d’Azure Batch."
+title: "jeux de données à grande échelle aaaProcess à l’aide de la fabrique de données et de traitement par lots | Documents Microsoft"
+description: "Décrit comment tooprocess de grandes quantités de données dans une fabrique de données Azure de pipeline à l’aide des capacités de traitement parallèle de traitement par lots Azure."
 services: data-factory
 documentationcenter: 
 author: spelluru
@@ -14,124 +14,124 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/19/2017
 ms.author: spelluru
-ms.openlocfilehash: 9defbf7a6a515740fa3b3cb1c67a2f5f9d9baa01
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 6788f02de555d2e9d6588cc990a39043866d7e97
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="process-large-scale-datasets-using-data-factory-and-batch"></a>Traiter des jeux de données volumineux à l’aide de Data Factory et Batch
-Cet article décrit une architecture d’un exemple de solution qui déplace et traite des jeux de données volumineux de manière automatique et planifiée. Il fournit également une procédure de bout en bout pour implémenter la solution à l’aide d’Azure Data Factory et d’Azure Batch.
+Cet article décrit une architecture d’un exemple de solution qui déplace et traite des jeux de données volumineux de manière automatique et planifiée. Il fournit également une solution de hello tooimplement procédure pas à pas de bout en bout à l’aide d’Azure Data Factory et Azure Batch.
 
-Cet article est plus long que nos articles habituels car il contient une procédure pas à pas d’un exemple de solution complète. Si vous débutez avec Batch et Data Factory, vous découvrirez différentes informations sur ces services et comment ils fonctionnent ensemble. Si vous connaissez déjà ces services et que vous concevez/élaborez une solution, vous pouvez vous concentrer uniquement sur la [section architecture](#architecture-of-sample-solution) de l’article. Si vous développez un prototype ou une solution, vous pouvez également suivre nos instructions détaillées dans la [procédure pas à pas](#implementation-of-sample-solution). N’hésitez pas à nous faire part de vos commentaires sur ce contenu et son utilisation.
+Cet article est plus long que nos articles habituels car il contient une procédure pas à pas d’un exemple de solution complète. Si vous êtes tooBatch nouvelle fabrique de données, vous pouvez en savoir plus sur ces services et comment ils fonctionnent ensemble. Si vous connaissez vos services de hello et sont conception/élaboration d’une solution, vous pouvez concentrer uniquement sur hello [section architecture](#architecture-of-sample-solution) de hello article et si vous développez un prototype ou une solution, vous pouvez également tootry out instructions détaillées dans hello [procédure pas à pas](#implementation-of-sample-solution). N’hésitez pas à nous faire part de vos commentaires sur ce contenu et son utilisation.
 
-Tout d’abord, découvrons de quelle manière les services Data Factory et Batch permettent de traiter des jeux de données volumineux dans le cloud.     
+Tout d’abord, nous allons voir comment les services de fabrique de données et de traitement par lots peuvent aider à avec le traitement de grands volumes de données dans le cloud de hello.     
 
 ## <a name="why-azure-batch"></a>Pourquoi Azure Batch ?
-Azure Batch vous permet d’exécuter efficacement dans le cloud des applications de calcul haute performance (HPC) en parallèle et à grande échelle. Ce service de plateforme planifie les travaux nécessitant une grande quantité de ressources système à exécuter sur une collection gérée de machines virtuelles. Il peut mettre automatiquement à l’échelle les ressources de calcul pour répondre aux besoins du travail.
+Traitement par lots Azure vous permet de toorun (HPC) informatique à grande échelle en parallèle et haute performance des applications efficacement dans le cloud de hello. Il s’agit d’un service de plateforme qui planifie toorun de travail de calcul intensif sur une collection gérée de machines virtuelles, et peut automatiquement montée en puissance de calcul ressources toomeet hello aux besoins de vos tâches.
 
-Avec le service Batch, vous définissez des ressources de calcul Azure pour exécuter vos applications en parallèle et à grande échelle. Vous pouvez exécuter des travaux à la demande ou selon un calendrier précis, sans avoir à créer, configurer et gérer manuellement un cluster HPC, des machines virtuelles individuelles, des réseaux virtuels ou une infrastructure complexe de planification des tâches et des travaux.
+Avec hello service Batch, vous définissez tooexecute des ressources de calcul Azure vos applications en parallèle et à grande échelle. Vous pouvez exécuter à la demande ou planifiées travaux et que vous n’avez pas besoin toomanually créer, configurer et gérer un cluster HPC, les machines virtuelles, les réseaux virtuels ou une tâche complexe et infrastructure de planification de tâches.
 
-Si vous ne connaissez pas Azure Batch, consultez les articles suivants qui vous aideront à comprendre l’architecture/l’implémentation de la solution décrite dans cet article.   
+Consultez hello suivant articles si vous n’êtes pas familiarisé avec Azure Batch car cela permet de comprendre l’architecture de hello/implémentation de solution hello décrite dans cet article.   
 
 * [Notions de base d’Azure Batch](../batch/batch-technical-overview.md)
 * [Aperçu des fonctionnalités d’Azure Batch](../batch/batch-api-basics.md)
 
-(facultatif) Pour en savoir plus sur Azure Batch, voir [Parcours d’apprentissage pour Azure Batch](https://azure.microsoft.com/documentation/learning-paths/batch/).
+(facultatif) toolearn en savoir plus sur le traitement par lots Azure, consultez hello [cursus pour Azure Batch](https://azure.microsoft.com/documentation/learning-paths/batch/).
 
 ## <a name="why-azure-data-factory"></a>Pourquoi Azure Data Factory ?
-Data Factory est un service d’intégration de données dans le cloud qui gère et automatise le déplacement et la transformation des données. Grâce au service Data Factory, vous pouvez créer des pipelines de données gérés pour déplacer les données des magasins de données locaux et cloud vers un magasin de données centralisé (par exemple : le stockage d’objets blob Azure) et traiter/transformer les données à l’aide de services tels que Azure HDInsight et Azure Machine Learning. Vous pouvez également configurer les pipelines de données pour qu’ils s’exécutent de manière programmée (toutes les heures, tous les jours, toutes les semaines, etc.), mais aussi les surveiller et les gérer en un coup d’œil afin d’identifier les problèmes et de prendre les mesures adéquates.
+Fabrique de données est un service d’intégration de données basés sur le cloud qui orchestre et automatise le déplacement de hello et la transformation de données. À l’aide du service de fabrique de données hello, vous pouvez créer des pipelines de données managées déplacement les données du site et de magasin de données centralisé de données magasins tooa le cloud (par exemple : stockage d’objets Blob Azure) et le processus/transformer les données à l’aide des services tels que Azure HDInsight Azure Apprentissage automatique. Vous pouvez également planifier toorun des pipelines de données dans une manière planifiée (horaire, quotidienne, hebdomadaire, etc.) et un moniteur et les gérer un problèmes de tooidentify coup de œil et prenez les mesures.
 
-Si vous ne connaissez pas Azure Data Factory, consultez les articles suivants qui vous aideront à comprendre l’architecture/l’implémentation de la solution décrite dans cet article.  
+Consultez hello suivant articles si vous n’êtes pas familiarisé avec Azure Data Factory car cela permet de comprendre l’architecture de hello/implémentation de solution hello décrite dans cet article.  
 
 * [Présentation d’Azure Data Factory](data-factory-introduction.md)
 * [Générer votre premier pipeline de données](data-factory-build-your-first-pipeline.md)   
 
-(facultatif) Pour en savoir plus sur Azure Data Factory, voir [Parcours d’apprentissage Azure Data Factory](https://azure.microsoft.com/documentation/learning-paths/data-factory/).
+(facultatif) toolearn en savoir plus sur Azure Data Factory, consultez hello [cursus pour Azure Data Factory](https://azure.microsoft.com/documentation/learning-paths/data-factory/).
 
 ## <a name="data-factory-and-batch-together"></a>Intégration de Data Factory et Batch
-Data Factory comprend des activités intégrées telles que l’activité de copie pour copier/déplacer des données à partir d’un magasin de données source vers un magasin de données de destination et l’activité Hive pour traiter les données à l’aide de clusters Hadoop (HDInsight) dans Azure. Consultez l’article [Activités de transformation des données](data-factory-data-transformation-activities.md) pour obtenir la liste des activités de transformation prises en charge.
+Fabrique de données inclut des activités intégrées, telles que le magasin de données de toocopy/déplacement de l’activité de copie à partir de la source données tooa banque de données de destination et activité de la ruche tooprocess à l’aide (HDInsight) les clusters Hadoop sur Azure. Consultez l’article [Activités de transformation des données](data-factory-data-transformation-activities.md) pour obtenir la liste des activités de transformation prises en charge.
 
-Il vous permet également de créer des activités .NET personnalisées pour déplacer ou traiter les données selon votre propre logique et d’exécuter ces activités dans un cluster Azure HDInsight ou dans un pool de machines virtuelles Azure Batch. Lorsque vous utilisez Azure Batch, vous pouvez configurer la mise à l’échelle automatique du pool (ajouter ou supprimer des machines virtuelles en fonction de la charge de travail) selon une formule que vous définissez.     
+Aussi, il permet de vous toocreate .NET des activités personnalisées toomove ou traitent des données avec votre propre logique et exécuter ces activités sur un cluster Azure HDInsight ou sur un pool de traitement par lots Azure des machines virtuelles. Lorsque vous utilisez le traitement par lots Azure, vous pouvez configurer hello pool tooauto à l’échelle (ajouter ou supprimer des ordinateurs virtuels en fonction de la charge de travail hello) basé sur une formule que vous fournissez.     
 
 ## <a name="architecture-of-sample-solution"></a>Architecture de l’exemple de solution
-Même si l’architecture décrite dans cet article est associée à une solution simple, elle s’applique à des scénarios complexes, tels que la modélisation des risques par les services financiers, le traitement et la restitution d’images, ou encore l’analyse génomique.
+Bien que l’architecture de hello décrite dans cet article est une solution simple, il est toocomplex pertinentes des scénarios tels que le risque de modélisation par les services financiers, le traitement d’image et rendu et analyse génomique.
 
-Le diagramme illustre 1) la manière dont Data Factory orchestre le déplacement et le traitement des données, et (2) la manière dont Azure Batch traite les données en parallèle. Téléchargez et imprimez le diagramme pour le consulter facilement (11 x 17 pouces ou format A3) : [Calcul haute performance et orchestration de données à l’aide des services Azure Batch et Data Factory](http://go.microsoft.com/fwlink/?LinkId=717686).
+Hello illustre 1) la fabrique de données orchestre le déplacement des données et le traitement et 2) de quelle façon Azure Batch traite hello des données de manière parallèle. Téléchargement et diagramme d’impression hello pour faciliter la référence (11 x 17 pouces. ou format A3) : [Calcul haute performance et orchestration de données à l’aide des services Azure Batch et Data Factory](http://go.microsoft.com/fwlink/?LinkId=717686).
 
 [![Diagramme de traitement des données à grande échelle](./media/data-factory-data-processing-using-batch/image1.png)](http://go.microsoft.com/fwlink/?LinkId=717686)
 
-La liste suivante fournit les étapes de base du processus. La solution inclut du code et des explications relatives à la génération de la solution de bout en bout.
+Hello liste suivante fournit les étapes de base hello du processus de hello. solution de Hello inclut le code et des explications pour les solutions de bout en bout toobuild hello.
 
-1. **Configurez Azure Batch avec un pool de nœuds de calcul (machines virtuelles)**. Vous pouvez spécifier le nombre de nœuds et la taille de chacun d’eux.
+1. **Configurez Azure Batch avec un pool de nœuds de calcul (machines virtuelles)**. Vous pouvez spécifier le nombre de hello de nœuds et la taille de chaque nœud.
 2. **Créez une instance Azure Data Factory** configurée avec des entités qui représentent respectivement le stockage d’objets blob Azure, le service de calcul Azure Batch, les données en entrée et sortie, ainsi qu’un flux de travail, ou pipeline, d’activités qui déplacent et transforment des données.
-3. **Créez une activité .NET personnalisée dans le pipeline Data Factory**. L’activité est votre code utilisateur qui s’exécute sur le pool Azure Batch.
+3. **Créer une activité .NET personnalisée dans le pipeline de Data Factory hello**. activité Hello est votre code utilisateur qui s’exécute sur hello pool Azure Batch.
 4. **Stockez de grandes quantités de données d’entrée en tant qu’objets blob dans Azure Storage**. Les données sont divisées en tranches logiques (généralement basées sur l’heure).
-5. **Data Factory copie vers l’emplacement secondaire les données qui sont traitées en parallèle**.
-6. **Data Factory exécute l’activité personnalisée à l’aide du pool alloué par Batch**. Data Factory peut exécuter plusieurs activités simultanément. Chaque activité traite une tranche de données. Les résultats sont stockés dans Azure Storage.
-7. **Data Factory déplace les résultats finaux vers un troisième emplacement**, soit pour les distribuer via une application, soit pour les traiter avec d’autres outils.
+5. **Fabrique de données copie les données traitées en parallèle** toohello les emplacement secondaire.
+6. **Fabrique de données s’exécute l’activité personnalisée hello est à l’aide de pool hello allouée par lot**. Data Factory peut exécuter plusieurs activités simultanément. Chaque activité traite une tranche de données. résultats de Hello sont stockés dans le stockage Azure.
+7. **Fabrique de données déplace le troisième emplacement hello résultats finaux tooa**, soit pour la distribution via une application, ou pour un traitement ultérieur par d’autres outils.
 
 ## <a name="implementation-of-sample-solution"></a>Implémentation de l’exemple de solution
-L’exemple de solution est volontairement simple et a pour objectif de vous montrer comment utiliser conjointement les services Data Factory et Batch pour traiter des jeux de données. La solution compte le nombre d’occurrences d’un terme de recherche (« Microsoft ») dans les fichiers d’entrée organisés en série chronologique. Il renvoie le nombre de fichiers de sortie.
+exemple de solution Hello est volontairement simple et est tooshow vous comment toouse Data Factory et traitement par lots ensemble tooprocess jeux de données. solution de Hello simplement nombre hello d’occurrences d’un terme à rechercher (« Microsoft ») dans les fichiers d’entrée organisés dans une série chronologique. Il génère des fichiers de toooutput hello count.
 
-**Temps** : si vous maîtrisez Azure, Data Factory et Batch et que vous disposez des composants requis listés ci-dessous, cette solution devrait vous prendre entre 1 et 2 heures.
+**Heure**: Si vous êtes familiarisé avec les concepts de base d’Azure Data Factory et traitement par lots, et ont des conditions préalables de hello terminé répertoriées ci-dessous, nous estimons cette solution prend toocomplete de 1 à 2 heures.
 
 ### <a name="prerequisites"></a>Composants requis
 #### <a name="azure-subscription"></a>Abonnement Azure
 Si vous n’êtes pas abonné, vous pouvez créer un compte d’essai gratuit en quelques minutes. Voir [essai gratuit](https://azure.microsoft.com/pricing/free-trial/).
 
 #### <a name="azure-storage-account"></a>Compte Azure Storage
-Dans ce didacticiel, vous utilisez un compte de stockage Azure pour stocker des données. Si vous ne possédez pas de compte de stockage Azure, voir [Création d’un compte de stockage](../storage/common/storage-create-storage-account.md#create-a-storage-account). L’exemple de solution utilise un stockage d’objets blob.
+Vous utilisez un compte de stockage Azure pour stocker les données de hello dans ce didacticiel. Si vous ne possédez pas de compte de stockage Azure, voir [Création d’un compte de stockage](../storage/common/storage-create-storage-account.md#create-a-storage-account). exemple de solution Hello utilise le stockage d’objets blob.
 
 #### <a name="azure-batch-account"></a>Compte Azure Batch
-Créez un compte Azure Batch via le [portail Azure](http://manage.windowsazure.com/). Voir [Créer et gérer un compte Azure Batch](../batch/batch-account-create-portal.md). Notez la clé et le nom du compte Azure Batch. Vous pouvez également créer un compte Azure Batch à l’aide de l’applet de commande [New-AzureRmBatchAccount](https://msdn.microsoft.com/library/mt603749.aspx) . Pour obtenir des instructions détaillées sur l’utilisation de cette applet de commande, voir [Prise en main des applets de commande Azure Batch PowerShell](../batch/batch-powershell-cmdlets-get-started.md) .
+Créer un compte Azure Batch hello [portail Azure](http://manage.windowsazure.com/). Voir [Créer et gérer un compte Azure Batch](../batch/batch-account-create-portal.md). Notez hello Azure Batch compte et le nom de clé du compte. Vous pouvez également utiliser [New-AzureRmBatchAccount](https://msdn.microsoft.com/library/mt603749.aspx) toocreate de l’applet de commande un compte Azure Batch. Pour obtenir des instructions détaillées sur l’utilisation de cette applet de commande, voir [Prise en main des applets de commande Azure Batch PowerShell](../batch/batch-powershell-cmdlets-get-started.md) .
 
-L’exemple de solution utilise Azure Batch (indirectement via un pipeline Azure Data Factory) pour traiter des données en parallèle sur un pool de nœuds de calcul (une collection gérée de machines virtuelles).
+exemple de solution Hello utilise des données de tooprocess d’Azure Batch (indirectement via un pipeline Azure Data Factory) de manière parallèle sur un pool de nœuds de calcul (une collection managée d’ordinateurs virtuels).
 
 #### <a name="azure-batch-pool-of-virtual-machines-vms"></a>Pool de machines virtuelles Azure Batch
 Créez un **pool Azure Batch** comprenant au moins 2 nœuds de calcul.
 
-1. Dans le [portail Azure](https://portal.azure.com), cliquez sur **Parcourir** dans le menu de gauche, puis cliquez sur **Comptes Batch**.
-2. Sélectionnez votre compte Azure Batch pour ouvrir le panneau **Compte Batch** .
+1. Bonjour [portail Azure](https://portal.azure.com), cliquez sur **Parcourir** dans hello du menu de gauche, puis cliquez sur **comptes Batch**.
+2. Sélectionnez votre hello tooopen du compte Azure Batch **compte Batch** panneau.
 3. Cliquez sur la vignette **Pools** .
-4. Dans le panneau **Pools** , cliquez sur le bouton Ajouter de la barre d’outils pour ajouter un pool.
-   1. Entrez un ID pour le pool (**ID du pool**). Notez **l’ID du pool**, car vous en aurez besoin lors de la création de la solution Data Factory.
-   2. Spécifiez **Windows Server 2012 R2** pour le paramètre de famille du système d’exploitation.
+4. Bonjour **Pools** panneau, cliquez sur le bouton Ajouter dans la barre d’outils de hello tooadd un pool.
+   1. Entrez un ID de pool de hello (**ID du Pool**). Hello de note **ID de pool de hello**; vous en avez besoin lors de la création de solutions de Data Factory hello.
+   2. Spécifiez **Windows Server 2012 R2** pour le paramètre de famille du système d’exploitation hello.
    3. Sélectionnez le **niveau tarifaire du nœud**.
-   4. Entrez **2** comme valeur du paramètre **Quantité dédiée cible**.
-   5. Entrez **2** comme valeur du paramètre **Nombre maximal de tâches par nœud**.
-   6. Cliquez sur **OK** pour créer le pool.
+   4. Entrez **2** en tant que valeur pour hello **cible dédié** paramètre.
+   5. Entrez **2** en tant que valeur pour hello **nombre maximal de tâches par nœud** paramètre.
+   6. Cliquez sur **OK** pool de hello toocreate.
 
-#### <a name="azure-storage-explorer"></a>Azure Storage Explorer
-[Azure Storage Explorer 6 (outil)](https://azurestorageexplorer.codeplex.com/) ou [CloudXplorer](http://clumsyleaf.com/products/cloudxplorer) (à partir du logiciel ClumsyLeaf). Vous utilisez ces outils pour consulter et modifier les données de vos projets Stockage Azure, notamment les journaux de vos applications hébergées dans le cloud.
+#### <a name="azure-storage-explorer"></a>Explorateur de stockage Azure
+[Azure Storage Explorer 6 (outil)](https://azurestorageexplorer.codeplex.com/) ou [CloudXplorer](http://clumsyleaf.com/products/cloudxplorer) (à partir du logiciel ClumsyLeaf). Vous utilisez ces outils pour examiner et modifier les données de salutation dans vos projets de stockage Azure, notamment les journaux de hello de vos applications hébergés dans le cloud.
 
 1. Créez un conteneur nommé **mycontainer** avec un accès privé (par d’accès anonyme).
-2. Si vous utilisez **CloudXplorer**, créez des dossiers et sous-dossiers avec la structure suivante :
+2. Si vous utilisez **CloudXplorer**, créer des dossiers et sous-dossiers avec hello suivant structure :
 
    ![](./media/data-factory-data-processing-using-batch/image3.png)
 
-   `Inputfolder` et `outputfolder` sont des dossiers de niveau supérieur de `mycontainer`. Le dossier `inputfolder` contient des sous-dossiers horodatés (AAAA-MM-JJ-HH).
+   `Inputfolder` et `outputfolder` sont des dossiers de niveau supérieur de `mycontainer`. Hello `inputfolder` a des sous-dossiers contenant les cachets de date et d’heure (AAAA-MM-JJ-HH).
 
-   Si vous utilisez **l’Explorateur de stockage Azure**, à l’étape suivante, vous devez charger les fichiers nommés `inputfolder/2015-11-16-00/file.txt`, `inputfolder/2015-11-16-01/file.txt` et ainsi de suite. Cette étape crée automatiquement les dossiers.
-3. Créez sur votre ordinateur un fichier texte **file.txt** contenant le mot clé **Microsoft**. Par exemple, « activité de test personnalisé Microsoft ».
-4. Chargez le fichier dans les dossiers d’entrée suivants du stockage d’objets blob Azure.
+   Si vous utilisez **Azure Storage Explorer**, à l’étape suivante de hello, vous avez besoin des fichiers de tooupload avec des noms : `inputfolder/2015-11-16-00/file.txt`, `inputfolder/2015-11-16-01/file.txt` et ainsi de suite. Cette étape crée automatiquement des dossiers de hello.
+3. Créez un fichier texte **fichier.txt** sur votre ordinateur avec un contenu qui a le mot clé de hello **Microsoft**. Par exemple, « activité de test personnalisé Microsoft ».
+4. Téléchargez toohello de fichier hello suivant des dossiers d’entrée dans le stockage blob Azure.
 
    ![](./media/data-factory-data-processing-using-batch/image4.png)
 
-   Si vous utilisez **l’Explorateur de stockage Azure**, chargez le fichier **file.txt** dans **mycontainer**. Cliquez sur **Copy** (Copier) dans la barre d’outils pour créer une copie de l’objet blob. Dans la boîte de dialogue **Copy Blob** (Copie de l’objet blob), remplacez le **nom d’objet blob de destination** par `inputfolder/2015-11-16-00/file.txt`. Répétez cette étape pour créer `inputfolder/2015-11-16-01/file.txt`, `inputfolder/2015-11-16-02/file.txt`, `inputfolder/2015-11-16-03/file.txt`, `inputfolder/2015-11-16-04/file.txt` et ainsi de suite. Cette action crée automatiquement les dossiers.
-5. Créez un autre conteneur nommé : `customactivitycontainer`. Vous chargez le fichier zip d’activité personnalisée dans ce conteneur.
+   Si vous utilisez **Azure Storage Explorer**, téléchargez le fichier de hello **fichier.txt** trop**mycontainer**. Cliquez sur **copie** sur la barre d’outils de hello toocreate une copie de l’objet blob de hello. Bonjour **Copy Blob** boîte de dialogue, modification hello **nom d’objet blob de destination** trop`inputfolder/2015-11-16-00/file.txt`. Répétez cette étape toocreate `inputfolder/2015-11-16-01/file.txt`, `inputfolder/2015-11-16-02/file.txt`, `inputfolder/2015-11-16-03/file.txt`, `inputfolder/2015-11-16-04/file.txt` et ainsi de suite. Cette action crée automatiquement des dossiers de hello.
+5. Créez un autre conteneur nommé : `customactivitycontainer`. Vous téléchargez des conteneurs de toothis de fichiers zip activité personnalisée hello.
 
 #### <a name="visual-studio"></a>Visual Studio
-Installez Microsoft Visual Studio 2012 ou version ultérieure pour créer l’activité Batch personnalisée à utiliser dans la solution Data Factory.
+Installer Microsoft Visual Studio 2012 ou version ultérieure toocreate hello personnalisé lot activité toobe utilisé Bonjour solution de fabrique de données.
 
-### <a name="high-level-steps-to-create-the-solution"></a>Principales étapes pour créer la solution
-1. Créez une activité personnalisée contenant la logique de traitement des données.
-2. Créez une fabrique de données Azure qui utilise l’activité personnalisée :
+### <a name="high-level-steps-toocreate-hello-solution"></a>Solution de hello toocreate étapes principales
+1. Créer une activité personnalisée qui contient la logique de traitement des données hello.
+2. Créez une fabrique de données Azure qui utilise l’activité personnalisée hello :
 
-### <a name="create-the-custom-activity"></a>Création de l’activité personnalisée
-L’activité personnalisée de Data Factory est au cœur de cet exemple de solution. L’exemple de solution utilise Azure Batch pour exécuter l’activité personnalisée. Pour les informations de base relatives au développement d’activités personnalisées et leur utilisation dans des pipelines Azure Data Factory, voir [Utilisation des activités personnalisées dans un pipeline Azure Data Factory](data-factory-use-custom-activities.md) .
+### <a name="create-hello-custom-activity"></a>Créer l’activité personnalisée hello
+Hello activité personnalisée de fabrique de données est le cœur de hello de cet exemple de solution. exemple de solution Hello utilise l’activité personnalisée de traitement par lots Azure toorun hello. Consultez [utiliser des activités personnalisées dans un pipeline Azure Data Factory](data-factory-use-custom-activities.md) pour des activités personnalisées hello des informations de base toodevelop et l’utilisation dans Azure Data Factory pipelines.
 
-Pour créer une activité personnalisée .NET utilisable dans un pipeline Azure Data Factory, vous devez créer un projet de **bibliothèque de classes .NET** contenant une classe qui implémente cette interface **IDotNetActivity**. Cette interface possède une seule méthode : **Execute**. Voici la signature de la méthode :
+toocreate une activité personnalisée .NET que vous pouvez utiliser dans un pipeline Azure Data Factory, vous devez toocreate une **bibliothèque de classes .NET** projet avec une classe qui implémente cette **IDotNetActivity** interface. Cette interface possède une seule méthode : **Execute**. Voici la signature hello de méthode hello :
 
 ```csharp
 public IDictionary<string, string> Execute(
@@ -141,38 +141,38 @@ public IDictionary<string, string> Execute(
             IActivityLogger logger)
 ```
 
-La méthode comporte quelques composants clés qu’il est important d’assimiler.
+méthode Hello a quelques composants clés que vous avez besoin de toounderstand.
 
-* La méthode accepte quatre paramètres :
+* méthode Hello accepte quatre paramètres :
 
-  1. **linkedServices**. Liste énumérable de services liés qui relie les sources de données d’entrée/sortie (par exemple, Stockage Blob Azure) à la fabrique de données. Dans cet exemple, il s’agit du seul service lié de type Azure Storage utilisé à la fois pour les données d’entrée et de sortie.
-  2. **jeux de données**. liste énumérable de jeux de données. Vous pouvez utiliser ce paramètre pour obtenir les emplacements et les schémas définis par les jeux de données d’entrée et de sortie.
-  3. **activity**. ce paramètre représente l’entité de calcul actuelle (dans ce cas, un service Azure Batch).
-  4. **logger**. L’enregistreur vous permet d’écrire des commentaires de débogage qui apparaîtront en tant que journal « utilisateur » pour le pipeline.
-* La méthode retourne un dictionnaire qui peut être utilisé pour enchaîner ultérieurement des activités personnalisées. Cette fonctionnalité n’étant pas encore implémentée, seul un dictionnaire vide est retourné par la méthode.
+  1. **linkedServices**. Une liste énumérable de services liés qui relient les sources de données d’entrée/sortie (par exemple : stockage d’objets Blob Azure) fabrique de données toohello. Dans cet exemple, il s’agit du seul service lié de type Azure Storage utilisé à la fois pour les données d’entrée et de sortie.
+  2. **jeux de données**. liste énumérable de jeux de données. Vous pouvez utiliser ce emplacements de paramètre tooget hello et les schémas définis par les jeux de données d’entrée et de sortie.
+  3. **activity**. Ce paramètre représente hello calcul entité actuelle - dans ce cas, un service Azure Batch.
+  4. **logger**. vous permet d’enregistreur d’événements Hello que écrire des commentaires de débogage cette surface comme hello « Utilisateur » pour ouvrir une session hello pipeline.
+* méthode Hello retourne un dictionnaire qui peut être des activités personnalisées toochain utilisées ensemble dans un avenir hello. Cette fonctionnalité n’est pas encore implémentée, par conséquent, renvoyer un dictionnaire vide à partir de la méthode hello.
 
-#### <a name="procedure-create-the-custom-activity"></a>Procédure : Création de l’activité personnalisée
+#### <a name="procedure-create-hello-custom-activity"></a>Procédure : Créer l’activité personnalisée hello
 1. Créez un projet de bibliothèque de classes .NET dans Visual Studio 2013.
 
    1. Lancez **Visual Studio 2012**/**2013/2015**.
-   2. Cliquez sur **Fichier**, pointez le curseur de la souris sur **Nouveau**, puis cliquez sur **Projet**.
-   3. Développez **Modèles**, puis sélectionnez **Visual C\#**. Dans cette procédure pas à pas, vous utilisez C\#, mais vous pouvez utiliser un autre langage .NET pour développer l’activité personnalisée.
-   4. Sélectionnez **Bibliothèque de classes** dans la liste des types de projet, sur la droite.
-   5. Entrez **MyDotNetActivity** for the **Nom**.
-   6. Sélectionnez **C:\\ADF** comme **emplacement**. Créez le dossier **ADF** s’il n’existe pas.
-   7. Cliquez sur **OK** pour créer le projet.
-2. Cliquez sur **Outils**, pointez le curseur de la souris sur **Gestionnaire de package NuGet**, puis cliquez sur **Console du gestionnaire de package**.
-3. Dans la **Console du gestionnaire de package**, exécutez la commande suivante pour importer l’élément **Microsoft.Azure.Management.DataFactories**.
+   2. Cliquez sur **fichier**, pointez trop**nouveau**, puis cliquez sur **projet**.
+   3. Développez **Modèles**, puis sélectionnez **Visual C\#**. Dans cette procédure pas à pas, vous utilisez C\#, mais vous pouvez utiliser n’importe quel langage .NET toodevelop hello personnalisée activité.
+   4. Sélectionnez **bibliothèque de classes** à partir de la liste hello des types de projets sur hello droite.
+   5. Entrez **MyDotNetActivity** pour hello **nom**.
+   6. Sélectionnez **C:\\ADF** pour hello **emplacement**. Créer le dossier de hello **ADF** s’il n’existe pas.
+   7. Cliquez sur **OK** projet hello de toocreate.
+2. Cliquez sur **outils**, pointez trop**Gestionnaire de Package NuGet**, puis cliquez sur **Package Manager Console**.
+3. Bonjour **Package Manager Console**, exécutez hello suivant commande tooimport **Microsoft.Azure.Management.DataFactories**.
 
     ```powershell
     Install-Package Microsoft.Azure.Management.DataFactories
     ```
-4. Importez le package NuGet **Azure Storage** dans le projet. Vous en avez besoin, car vous utilisez l’API de stockage d’objets Blob dans cet exemple.
+4. Hello d’importation **Azure Storage** package NuGet dans le projet de toohello. Vous avez besoin de ce package, car vous utilisez des API de stockage d’objets Blob hello dans cet exemple.
 
     ```powershell
     Install-Package Azure.Storage
     ```
-5. Ajoutez les instructions **using** suivantes au fichier source du projet.
+5. Ajoutez hello suivant **à l’aide de** directives toohello source fichier hello projet.
 
     ```csharp
     using System.IO;
@@ -186,22 +186,22 @@ La méthode comporte quelques composants clés qu’il est important d’assimil
     using Microsoft.WindowsAzure.Storage;
     using Microsoft.WindowsAzure.Storage.Blob;
     ```
-6. Remplacez le nom de **l’espace de noms** par **MyDotNetActivityNS**.
+6. Modifier le nom de hello hello **espace de noms** trop**MyDotNetActivityNS**.
 
     ```csharp
     namespace MyDotNetActivityNS
     ```
-7. Remplacez le nom de la classe par **MyDotNetActivity** et dérivez-le de l’interface **IDotNetActivity**, comme indiqué ci-dessous.
+7. Modifier le nom hello de classe hello trop**MyDotNetActivity** et la dériver de hello **IDotNetActivity** interface comme indiqué ci-dessous.
 
     ```csharp
     public class MyDotNetActivity : IDotNetActivity
     ```
-8. Implémentez (ajoutez) la méthode **Execute** de l’interface **IDotNetActivity** dans la classe **MyDotNetActivity** et copiez l’exemple de code suivant dans la méthode. Pour une explication de la logique utilisée dans cette méthode, voir la section [Méthode Execute](#execute-method) .
+8. Hello d’implémenter (Ajouter) **Execute** méthode Hello **IDotNetActivity** interface toohello **MyDotNetActivity** classe et copie hello suivant l’exemple de méthode toohello de code. Consultez hello [exécuter une méthode](#execute-method) section pour une explication pour la logique de hello utilisée dans cette méthode.
 
     ```csharp
     /// <summary>
-    /// Execute method is the only method of IDotNetActivity interface you must implement.
-    /// In this sample, the method invokes the Calculate method to perform the core logic.  
+    /// Execute method is hello only method of IDotNetActivity interface you must implement.
+    /// In this sample, hello method invokes hello Calculate method tooperform hello core logic.  
     /// </summary>
     public IDictionary<string, string> Execute(
        IEnumerable<LinkedService> linkedServices,
@@ -218,7 +218,7 @@ La méthode comporte quelques composants clés qu’il est important d’assimil
        foreach (LinkedService ls in linkedServices)
            logger.Write("linkedService.Name {0}", ls.Name);
     
-       // using First method instead of Single since we are using the same
+       // using First method instead of Single since we are using hello same
        // Azure Storage linked service for input and output.
        inputLinkedService = linkedServices.First(
            linkedService =>
@@ -226,18 +226,18 @@ La méthode comporte quelques composants clés qu’il est important d’assimil
            inputDataset.Properties.LinkedServiceName).Properties.TypeProperties
            as AzureStorageLinkedService;
     
-       string connectionString = inputLinkedService.ConnectionString; // To create an input storage client.
+       string connectionString = inputLinkedService.ConnectionString; // toocreate an input storage client.
        string folderPath = GetFolderPath(inputDataset);
        string output = string.Empty; // for use later.
     
-       // create storage client for input. Pass the connection string.
+       // create storage client for input. Pass hello connection string.
        CloudStorageAccount inputStorageAccount = CloudStorageAccount.Parse(connectionString);
        CloudBlobClient inputClient = inputStorageAccount.CreateCloudBlobClient();
     
-       // initialize the continuation token before using it in the do-while loop.
+       // initialize hello continuation token before using it in hello do-while loop.
        BlobContinuationToken continuationToken = null;
        do
-       {   // get the list of input blobs from the input storage client object.
+       {   // get hello list of input blobs from hello input storage client object.
            BlobResultSegment blobList = inputClient.ListBlobsSegmented(folderPath,
                                     true,
                                     BlobListingDetails.Metadata,
@@ -246,43 +246,43 @@ La méthode comporte quelques composants clés qu’il est important d’assimil
                                     null,
                                     null);
     
-           // Calculate method returns the number of occurrences of
-           // the search term (“Microsoft”) in each blob associated
-           // with the data slice.
+           // Calculate method returns hello number of occurrences of
+           // hello search term (“Microsoft”) in each blob associated
+           // with hello data slice.
            //
-           // definition of the method is shown in the next step.
+           // definition of hello method is shown in hello next step.
            output = Calculate(blobList, logger, folderPath, ref continuationToken, "Microsoft");
     
        } while (continuationToken != null);
     
-       // get the output dataset using the name of the dataset matched to a name in the Activity output collection.
+       // get hello output dataset using hello name of hello dataset matched tooa name in hello Activity output collection.
        Dataset outputDataset = datasets.Single(dataset => dataset.Name == activity.Outputs.Single().Name);
     
        folderPath = GetFolderPath(outputDataset);
     
-       logger.Write("Writing blob to the folder: {0}", folderPath);
+       logger.Write("Writing blob toohello folder: {0}", folderPath);
     
-       // create a storage object for the output blob.
+       // create a storage object for hello output blob.
        CloudStorageAccount outputStorageAccount = CloudStorageAccount.Parse(connectionString);
-       // write the name of the file.
+       // write hello name of hello file.
        Uri outputBlobUri = new Uri(outputStorageAccount.BlobEndpoint, folderPath + "/" + GetFileName(outputDataset));
     
        logger.Write("output blob URI: {0}", outputBlobUri.ToString());
-       // create a blob and upload the output text.
+       // create a blob and upload hello output text.
        CloudBlockBlob outputBlob = new CloudBlockBlob(outputBlobUri, outputStorageAccount.Credentials);
-       logger.Write("Writing {0} to the output blob", output);
+       logger.Write("Writing {0} toohello output blob", output);
        outputBlob.UploadText(output);
     
-       // The dictionary can be used to chain custom activities together in the future.
+       // hello dictionary can be used toochain custom activities together in hello future.
        // This feature is not implemented yet, so just return an empty dictionary.
        return new Dictionary<string, string>();
     }
     ```
-9. Ajoutez les méthodes d’assistance suivantes à la classe. Ces méthodes sont appelées par la méthode **Execute** . Plus important encore, la méthode **Calculate** isole le code qui effectue une itération dans chaque objet blob.
+9. Ajoutez hello suivant classe toohello de méthodes d’assistance. Ces méthodes sont appelées par hello **Execute** (méthode). Plus important encore, hello **Calculate** méthode isole code hello qui effectue une itération dans chaque objet blob.
 
     ```csharp
     /// <summary>
-    /// Gets the folderPath value from the input/output dataset.
+    /// Gets hello folderPath value from hello input/output dataset.
     /// </summary>
     private static string GetFolderPath(Dataset dataArtifact)
     {
@@ -301,7 +301,7 @@ La méthode comporte quelques composants clés qu’il est important d’assimil
     }
     
     /// <summary>
-    /// Gets the fileName value from the input/output dataset.
+    /// Gets hello fileName value from hello input/output dataset.
     /// </summary>
     
     private static string GetFileName(Dataset dataArtifact)
@@ -321,8 +321,8 @@ La méthode comporte quelques composants clés qu’il est important d’assimil
     }
     
     /// <summary>
-    /// Iterates through each blob (file) in the folder, counts the number of instances of search term in the file,
-    /// and prepares the output text that is written to the output blob.
+    /// Iterates through each blob (file) in hello folder, counts hello number of instances of search term in hello file,
+    /// and prepares hello output text that is written toohello output blob.
     /// </summary>
     
     public static string Calculate(BlobResultSegment Bresult, IActivityLogger logger, string folderPath, ref BlobContinuationToken token, string searchTerm)
@@ -341,13 +341,13 @@ La méthode comporte quelques composants clés qu’il est important d’assimil
                                 where word.ToLowerInvariant() == searchTerm.ToLowerInvariant()
                                 select word;
                int wordCount = matchQuery.Count();
-               output += string.Format("{0} occurrences(s) of the search term \"{1}\" were found in the file {2}.\r\n", wordCount, searchTerm, inputBlob.Name);
+               output += string.Format("{0} occurrences(s) of hello search term \"{1}\" were found in hello file {2}.\r\n", wordCount, searchTerm, inputBlob.Name);
            }
        }
        return output;
     }
     ```
-    La méthode **GetFolderPath** renvoie le chemin d’accès au dossier vers lequel pointe le jeu de données et la méthode **GetFileName** renvoie le nom de l’objet blob/fichier vers lequel pointe le jeu de données.
+    Hello **GetFolderPath** méthode renvoie hello chemin toohello dossier ce Bonjour dataset points tooand Bonjour **GetFileName** méthode retourne les nom hello de hello/fichier blob qui hello pour les points de jeu de données.
 
     ```csharp
 
@@ -360,26 +360,26 @@ La méthode comporte quelques composants clés qu’il est important d’assimil
             "folderPath": "mycontainer/inputfolder/{Year}-{Month}-{Day}-{Hour}",
     ```
 
-    La méthode **Calculate** calcule le nombre d’instances du mot-clé **Microsoft** dans les fichiers d’entrée (objets blob du dossier). Le terme de recherche (« Microsoft ») est codé en dur dans le code.
+    Hello **Calculate** (méthode) calcule le nombre de hello d’instances du mot clé **Microsoft** dans les fichiers d’entrée de hello (objets BLOB dans le dossier de hello). terme de recherche Hello (« Microsoft ») est codé en dur dans le code hello.
 
-1. Compilez le projet. Cliquez sur l’option **Générer** du menu, puis sur **Générer la solution**.
-2. Lancez **l’Explorateur Windows** et accédez au dossier **bin\\debug** ou **bin\\release** (selon le type de build).
-3. Créez un fichier zip **MyDotNetActivity.zip** contenant tous les fichiers binaires dans le dossier **\\bin\\Debug**. Vous pouvez également inclure le fichier MyDotNetActivity.**pdb** afin d’obtenir des détails supplémentaires, tels que le numéro de ligne du code source à l’origine du problème en cas de défaillance.
+1. Compilez le projet de hello. Cliquez sur **générer** de hello menu et cliquez sur **générer la Solution**.
+2. Lancez **l’Explorateur Windows**et accédez trop**bin\\déboguer** ou **bin\\release** dossier en fonction de type hello de build.
+3. Créer un fichier zip **MyDotNetActivity.zip** qui contient tous les fichiers binaires de hello Bonjour  **\\bin\\déboguer** dossier. Vous souhaiterez peut-être tooinclude hello MyDotNetActivity. **pdb** de fichiers afin que vous obtenez des informations supplémentaires telles que le numéro de ligne dans le code source hello qui a provoqué le problème de hello lorsqu’une défaillance se produit.
 
    ![](./media/data-factory-data-processing-using-batch/image5.png)
-4. Chargez le fichier **MyDotNetActivity.zip** en tant qu’objet blob dans le conteneur d’objets blob `customactivitycontainer` du Stockage Blob Azure qu’utilise le service lié **StorageLinkedService** dans **ADFTutorialDataFactory**. S’il n’existe pas déjà, créez le conteneur d’objets blob `customactivitycontainer`.
+4. Télécharger **MyDotNetActivity.zip** comme un conteneur d’objets blob blob toohello : `customactivitycontainer` Bonjour Azure stockage d’objets blob que hello **StorageLinkedService** service Bonjour lié  **ADFTutorialDataFactory** utilise. Créer le conteneur d’objets blob hello `customactivitycontainer` si elle n’existe pas déjà.
 
 #### <a name="execute-method"></a>Méthode Execute
-Cette section fournit des informations et remarques supplémentaires concernant le code contenu dans la méthode Execute.
+Cette section fournit plus de détails et remarques sur le code hello Bonjour méthode Execute.
 
-1. Les membres nécessaires pour l’itération dans la collection d’entrée se trouvent dans l’espace de noms [Microsoft.WindowsAzure.Storage.Blob](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.blob.aspx) . L’itération dans la collection d’objets blob requiert d’utiliser la classe **BlobContinuationToken** . Vous devez utiliser une boucle do-while en utilisant le jeton pour sortir de la boucle. Pour plus d’informations, voir [Utilisation du stockage d’objets blob à partir de .NET](../storage/blobs/storage-dotnet-how-to-use-blobs.md). Une boucle de base est illustrée ici :
+1. membres Hello pour itérer la collection d’entrée de hello sont trouvent dans hello [Microsoft.WindowsAzure.Storage.Blob](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.storage.blob.aspx) espace de noms. Itération dans la collection d’objets blob hello requiert l’utilisation de hello **BlobContinuationToken** classe. Fondamentalement, vous devez utiliser un-boucle avec jeton hello en tant que mécanisme de hello pour quitter hello boucle while. Pour plus d’informations, consultez [comment toouse stockage d’objets Blob à partir de .NET](../storage/blobs/storage-dotnet-how-to-use-blobs.md). Une boucle de base est illustrée ici :
 
     ```csharp
-    // Initialize the continuation token.
+    // Initialize hello continuation token.
     BlobContinuationToken continuationToken = null;
     do
     {
-    // Get the list of input blobs from the input storage client object.
+    // Get hello list of input blobs from hello input storage client object.
     BlobResultSegment blobList = inputClient.ListBlobsSegmented(folderPath,
     
                          true,
@@ -395,60 +395,60 @@ Cette section fournit des informations et remarques supplémentaires concernant 
     } while (continuationToken != null);
 
     ```
-   Pour plus de détails, voir la documentation sur la méthode [ListBlobsSegmented](https://msdn.microsoft.com/library/jj717596.aspx) .
-2. Le code permettant de parcourir l’ensemble d’objets blob s’inscrit logiquement dans la boucle do-while. Dans la méthode **Execute**, la boucle do-while transmet la liste d’objets blob à une méthode nommée **Calculate**. La méthode renvoie une variable de chaîne nommée **output** , qui correspond au résultat de l’itération dans tous les objets blob du segment.
+   Consultez la documentation de hello pour hello [ListBlobsSegmented](https://msdn.microsoft.com/library/jj717596.aspx) méthode pour plus d’informations.
+2. Hello code de travail dans le jeu d’objets BLOB hello logiquement dans hello faire-une boucle while. Bonjour **Execute** (méthode), hello-lors de la boucle transmet liste hello d’objets BLOB méthode tooa nommée **Calculate**. méthode Hello retourne une variable chaîne nommée **sortie** qui est le résultat de hello d’avoir parcouru de tous les objets BLOB de hello dans le segment de hello.
 
-   Elle retourne le nombre d’occurrences du terme de recherche (**Microsoft**) dans l’objet blob transmis à la méthode **Calculate**.
+   Elle retourne le nombre de hello d’occurrences du terme de recherche hello (**Microsoft**) dans l’objet blob de hello passé toohello **Calculate** (méthode).
 
     ```csharp
-    output += string.Format("{0} occurrences of the search term \"{1}\" were found in the file {2}.\r\n", wordCount, searchTerm, inputBlob.Name);
+    output += string.Format("{0} occurrences of hello search term \"{1}\" were found in hello file {2}.\r\n", wordCount, searchTerm, inputBlob.Name);
     ```
-3. Une fois l’exécution de la méthode **Calculate** terminée, vous devez écrire le résultat dans un nouvel objet blob. Par conséquent, pour chaque ensemble d’objets blob traité, un nouvel objet blob peut être écrit avec les résultats correspondants. Pour écrire dans un nouvel objet blob, commencez par rechercher le jeu de données de sortie.
+3. Une fois hello **Calculate** méthode a procédé hello, elle doit être écrite tooa nouvel objet blob. Par conséquent, pour chaque jeu d’objets BLOB traité, un nouvel objet blob peut être écrites avec les résultats hello. un nouvel objet blob toowrite tooa, le premier jeu de données de la sortie de hello rechercher.
 
     ```csharp
-    // Get the output dataset using the name of the dataset matched to a name in the Activity output collection.
+    // Get hello output dataset using hello name of hello dataset matched tooa name in hello Activity output collection.
     Dataset outputDataset = datasets.Single(dataset => dataset.Name == activity.Outputs.Single().Name);
     ```
-4. Le code appelle également une méthode d’assistance, **GetFolderPath** , pour récupérer le chemin d’accès au dossier (nom du conteneur de stockage).
+4. code de Hello appelle également une méthode d’assistance : **GetFolderPath** chemin du dossier hello tooretrieve (nom de conteneur de stockage hello).
 
     ```csharp
     folderPath = GetFolderPath(outputDataset);
     ```
-   La méthode **GetFolderPath** effectue un cast de l’objet DataSet dans un AzureBlobDataSet, qui comporte une propriété nommée FolderPath.
+   Hello **GetFolderPath** casts hello DataSet objet tooan AzureBlobDataSet, qui a une propriété nommée FolderPath.
 
     ```csharp
     AzureBlobDataset blobDataset = dataArtifact.Properties.TypeProperties as AzureBlobDataset;
     
     return blobDataset.FolderPath;
     ```
-5. Le code appelle la méthode **GetFileName** pour récupérer le nom du fichier (nom de l’objet blob). Le code est similaire au code présenté ci-dessus pour obtenir le chemin d’accès au dossier.
+5. appels de code Bonjour Bonjour **GetFileName** méthode tooretrieve hello fichier nom (blob). code de Hello est similaire toohello au-dessus de chemin d’accès du dossier code tooget hello.
 
     ```csharp
     AzureBlobDataset blobDataset = dataArtifact.Properties.TypeProperties as AzureBlobDataset;
     
     return blobDataset.FileName;
     ```
-6. Le nom du fichier est écrit grâce à la création d’un objet URI. Le constructeur d’URI utilise la propriété **BlobEndpoint** pour renvoyer le nom du conteneur. Le nom de fichier et le chemin du dossier sont ajoutés pour construire l’URI de l’objet blob de sortie.  
+6. nom de Hello du fichier de hello est écrit en créant un objet URI. constructeur d’URI Hello utilise hello **BlobEndpoint** nom du conteneur de propriété tooreturn hello. nom de fichier et le chemin du dossier Hello sont ajoutés tooconstruct hello sortie URI d’objet blob.  
 
     ```csharp
-    // Write the name of the file.
+    // Write hello name of hello file.
     Uri outputBlobUri = new Uri(outputStorageAccount.BlobEndpoint, folderPath + "/" + GetFileName(outputDataset));
     ```
-7. Le nom du fichier ayant été écrit, vous pouvez à présent écrire la chaîne de sortie de la méthode **Calculate** dans un nouvel objet blob :
+7. Hello nom de fichier de hello a été écrit et vous pouvez maintenant écrire la chaîne de sortie hello de hello **Calculate** un nouvel objet blob méthode tooa :
 
     ```csharp
-    // Create a blob and upload the output text.
+    // Create a blob and upload hello output text.
     CloudBlockBlob outputBlob = new CloudBlockBlob(outputBlobUri, outputStorageAccount.Credentials);
-    logger.Write("Writing {0} to the output blob", output);
+    logger.Write("Writing {0} toohello output blob", output);
     outputBlob.UploadText(output);
     ```
 
-### <a name="create-the-data-factory"></a>Création de la fabrique de données
-Dans la section [Création de l’activité personnalisée](#create-the-custom-activity) , vous avez créé une activité personnalisée et chargé le fichier zip contenant les fichiers binaires et le fichier PDB dans un conteneur d’objets blob Azure. Dans cette section, vous allez créer une **fabrique de données** Azure avec un **pipeline** qui utilise **l’activité personnalisée**.
+### <a name="create-hello-data-factory"></a>Créer la fabrique de données hello
+Bonjour [créer l’activité personnalisée hello](#create-the-custom-activity) section, vous avez créé une activité personnalisée et téléchargé hello zip avec des fichiers binaires et hello PDB fichier tooan conteneur d’objets blob Azure. Dans cette section, vous créez un Azure **fabrique de données** avec un **pipeline** qui utilise hello **activité personnalisée**.
 
-Le jeu de données d’entrée de l’activité personnalisée représente les objets blob (fichiers) contenus dans le dossier d’entrée (`mycontainer\\inputfolder`) du stockage d’objets blob. Le jeu de données de sortie de l’activité représente les objets blob de sortie contenus dans le dossier de sortie (`mycontainer\\outputfolder`) du stockage d’objets blob.
+Hello dataset d’entrée d’activité personnalisée hello représente des objets BLOB de hello (fichiers) dans le dossier d’entrée de hello (`mycontainer\\inputfolder`) dans le stockage blob. jeu de données de sortie Hello d’activité hello représente des objets BLOB de sortie hello dans le dossier de sortie hello (`mycontainer\\outputfolder`) dans le stockage blob.
 
-Déposez un ou plusieurs fichiers dans les dossiers d’entrée :
+Supprimer un ou plusieurs fichiers dans les dossiers d’entrée hello :
 
 ```
 mycontainer -\> inputfolder
@@ -459,97 +459,97 @@ mycontainer -\> inputfolder
     2015-11-16-04
 ```
 
-Par exemple, déposez un fichier (file.txt) avec le contenu suivant dans chacun des dossiers.
+Par exemple, faites glisser un fichier (fichier.txt) avec hello suivant contenu dans chacun des dossiers de hello.
 
 ```
 test custom activity Microsoft test custom activity Microsoft
 ```
 
-Le dossier d’entrée correspond à une tranche dans Azure Data Factory, même s’il contient plusieurs fichiers. Lorsque chaque tranche est traitée par le pipeline, l’activité personnalisée effectue une itération dans tous les objets blob du dossier d’entrée pour la tranche en question.
+Chaque dossier d’entrée correspond tranche tooa dans Azure Data Factory, même si le dossier de hello a 2 ou plusieurs fichiers. Lorsque chaque tranche est traitée par le pipeline de hello, activité personnalisée hello itère tous les objets BLOB de hello dans le dossier d’entrée de hello pour cette tranche.
 
-Vous voyez cinq fichiers de sortie avec le même contenu. Par exemple, le fichier de sortie résultant du traitement du fichier figurant dans le dossier 2015-11-16-00 a le contenu suivant :
+Vous voyez cinq fichiers de sortie avec hello même contenu. Par exemple, le fichier de sortie hello de traiter le fichier hello dans le dossier de hello 2015-11-16-00 a hello suivant le contenu :
 
 ```
-2 occurrences(s) of the search term "Microsoft" were found in the file inputfolder/2015-11-16-00/file.txt.
+2 occurrences(s) of hello search term "Microsoft" were found in hello file inputfolder/2015-11-16-00/file.txt.
 ```
 
-Si vous déposez plusieurs fichiers (file.txt, file2.txt, file3.txt) ayant le même contenu dans le dossier d’entrée, le contenu suivant apparaît dans le fichier de sortie. Dans cet exemple, chaque dossier (2015-11-16-00, etc.) correspond à une tranche, même si le dossier contient plusieurs fichiers d’entrée.
+Si vous supprimez plusieurs fichiers (fichier.txt, file2.txt, file3.txt) avec hello même contenu toohello des dossiers d’entrée, vous voyez hello suivant contenu dans le fichier de sortie hello. Chaque dossier (2015-11-16-00, etc.) correspondant tranche tooa dans cet exemple, même si le dossier de hello a plusieurs fichiers d’entrée.
 
 ```csharp
-2 occurrences(s) of the search term "Microsoft" were found in the file inputfolder/2015-11-16-00/file.txt.
-2 occurrences(s) of the search term "Microsoft" were found in the file inputfolder/2015-11-16-00/file2.txt.
-2 occurrences(s) of the search term "Microsoft" were found in the file inputfolder/2015-11-16-00/file3.txt.
+2 occurrences(s) of hello search term "Microsoft" were found in hello file inputfolder/2015-11-16-00/file.txt.
+2 occurrences(s) of hello search term "Microsoft" were found in hello file inputfolder/2015-11-16-00/file2.txt.
+2 occurrences(s) of hello search term "Microsoft" were found in hello file inputfolder/2015-11-16-00/file3.txt.
 ```
 
-Le fichier de sortie comprend désormais trois lignes, une par fichier d’entrée (objet blob) dans le dossier associé à la tranche (2015-11-16-00).
+fichier de sortie Hello a trois lignes à présent, un pour chaque fichier d’entrée (blob) dans le dossier hello associé à la tranche de hello (2015-11-16-00).
 
-Une tâche est créée pour chaque exécution d’activité. Dans cet exemple, le pipeline ne contient qu’une seule activité. Quand le pipeline traite une tranche, l’activité personnalisée s’exécute sur Azure Batch pour traiter la tranche. Étant donné qu’il y a cinq tranches (chacune pouvant comporter plusieurs objets blob ou fichiers), cinq tâches sont créées dans Azure Batch. Quand une tâche s’exécute sur Batch, c’est en fait l’activité personnalisée qui s’exécute.
+Une tâche est créée pour chaque exécution d’activité. Dans cet exemple, il n'est qu’une seule activité dans le pipeline de hello. Lorsqu’une tranche est traitée par le pipeline de hello, activité personnalisée hello s’exécute sur un secteur de traitement par lots Azure tooprocess hello. Étant donné qu’il y a cinq tranches (chacune pouvant comporter plusieurs objets blob ou fichiers), cinq tâches sont créées dans Azure Batch. Lorsqu’une tâche s’exécute sur le lot, il est réellement hello activité personnalisée qui est en cours d’exécution.
 
-La procédure pas à pas suivante fournit des détails supplémentaires.
+Hello, procédure pas à pas fournit des détails supplémentaires.
 
-#### <a name="step-1-create-the-data-factory"></a>Étape 1 : Créer la fabrique de données
-1. Une fois connecté au [portail Azure](https://portal.azure.com/), procédez comme suit :
+#### <a name="step-1-create-hello-data-factory"></a>Étape 1 : Créer la fabrique de données hello
+1. Une fois connecté toohello [portail Azure](https://portal.azure.com/), hello comme suit :
 
-   1. Cliquez sur **NOUVEAU** dans le menu de gauche.
-   2. Dans le panneau **Nouveau**, cliquez sur **Données et analyses**.
-   3. Cliquez sur **Data Factory** dans le panneau **Analyse des données**.
-2. Dans le panneau **Nouvelle fabrique de données**, spécifiez le nom **CustomActivityFactory**. Le nom de la fabrique de données Azure doit être un nom global unique. Si l’erreur **Data factory name “CustomActivityFactory” is not available** (Le nom de la fabrique de données « CustomActivityFactory » n’est pas disponible) s’affiche, changez le nom de la fabrique de données (par exemple, **votrenomCustomActivityFactory**), puis tentez de la recréer.
+   1. Cliquez sur **nouveau** sur le menu de gauche hello.
+   2. Cliquez sur **données + Analytique** Bonjour **nouveau** panneau.
+   3. Cliquez sur **Data Factory** sur hello **analytique des données** panneau.
+2. Bonjour **nouvelle fabrique de données** panneau, entrez **CustomActivityFactory** pour hello nom. nom de Hello de fabrique de données Azure hello doit être globalement unique. Si vous recevez une erreur de hello : **nom de fabrique de données « CustomActivityFactory » n’est pas disponible**, modifiez le nom hello hello fabrique de données (par exemple, **yournameCustomActivityFactory**) et essayez de créer à nouveau.
 3. Cliquez sur **NOM DU GROUPE DE RESSOURCES**pour sélectionner un groupe de ressources existant, ou créez un groupe de ressources.
-4. Veillez à utiliser l’abonnement et la région correspondant à ceux dans lesquels vous voulez créer la fabrique de données.
-5. Cliquez sur **Créer** dans le panneau **Nouvelle fabrique de données**.
-6. La fabrique de données apparaît comme étant en cours de création dans le **Tableau de bord** du portail Azure.
-7. Une fois la fabrique de données créée, la page correspondante s’affiche et indique son contenu.
+4. Vérifiez que vous utilisez le bon abonnement de hello et région où vous souhaitez toobe de fabrique de données hello créé.
+5. Cliquez sur **créer** sur hello **nouvelle fabrique de données** panneau.
+6. Vous voyez la fabrique de données hello en cours de création dans hello **tableau de bord** de hello portail Azure.
+7. Une fois que la fabrique de données hello a été créé avec succès, vous voyez page de fabrique de données hello, qui vous indique hello contenu hello fabrique de données.
 
    ![](./media/data-factory-data-processing-using-batch/image6.png)
 
 #### <a name="step-2-create-linked-services"></a>Étape 2 : Créer des services liés
-Les services liés se chargent de lier des magasins de données ou des services de calcul à une fabrique de données Azure. Dans cette étape, vous allez lier vos comptes **Stockage Azure** et **Azure Batch** à votre fabrique de données.
+Services liés lier des magasins de données ou la fabrique de données Azure tooan de services de calcul. Dans cette étape, vous liez votre **Azure Storage** compte et **Azure Batch** fabrique de données tooyour de compte.
 
-#### <a name="create-azure-storage-linked-service"></a>Créer le service lié Azure Storage
-1. Cliquez sur la vignette **Créer et déployer** dans le panneau **DATA FACTORY** de **CustomActivityFactory**. Data Factory Editor s’affiche.
-2. Cliquez sur **Nouvelle banque de données** dans la barre de commandes et choisissez **Stockage Azure**. Le script JSON de création d’un service lié Microsoft Azure Storage doit apparaître dans l’éditeur.
+#### <a name="create-azure-storage-linked-service"></a>Créer le service lié Stockage Azure
+1. Cliquez sur hello **auteur et déployer** vignette sur hello **DATA FACTORY** panneau pour **CustomActivityFactory**. Vous consultez hello éditeur Data Factory.
+2. Cliquez sur **nouveau magasin de données** hello de barre de commandes et choisissez **le stockage Azure.** Vous devez voir hello script JSON pour la création d’un stockage Azure lié à service dans l’éditeur de hello.
 
    ![](./media/data-factory-data-processing-using-batch/image7.png)
 
-3. Remplacez **account name** par le nom de votre compte de stockage Azure et **account key** par sa clé d’accès. Pour savoir comment obtenir votre clé d’accès de stockage, voir [Affichage, copie et régénération de clés d’accès de stockage](../storage/common/storage-create-storage-account.md#manage-your-storage-account).
+3. Remplacez **nom de compte** avec le nom de hello de votre compte de stockage Azure et **clé de compte** avec la clé d’accès hello Hello compte de stockage Azure. toolearn comment tooget votre stockage accéder aux clés, voir [clés d’accès afficher, copier et régénérer stockage](../storage/common/storage-create-storage-account.md#manage-your-storage-account).
 
-4. Cliquez sur l’option **Déployer** de la barre de commandes pour déployer le service lié.
+4. Cliquez sur **déployer** sur toodeploy hello lié service de la barre de commandes hello.
 
    ![](./media/data-factory-data-processing-using-batch/image8.png)
 
 #### <a name="create-azure-batch-linked-service"></a>Créer un service lié Azure Batch
-Au cours de cette étape, vous créez un service lié pour votre compte **Azure Batch**, qui est utilisé pour exécuter l’activité personnalisée Data Factory.
+Dans cette étape, vous créez un service lié pour votre **Azure Batch** compte d’activité personnalisée de la fabrique de données utilisé toorun hello.
 
-1. Cliquez sur **Nouveau calcul** dans la barre de commandes et choisissez **Azure Batch**. Le script JSON pour la création d’un service lié Azure Batch doit apparaître dans l’éditeur.
-2. Dans le script JSON :
+1. Cliquez sur **nouveau calcul** hello de barre de commandes et choisissez **Azure Batch.** Vous devez voir hello script JSON pour la création d’un traitement par lots Azure lié à service dans l’éditeur de hello.
+2. Bonjour script JSON :
 
-   1. Remplacez **nom de compte** par le nom de votre compte Azure Batch.
-   2. Remplacez **clé d’accès** avec la clé d’accès du compte Azure Batch.
-   3. Entrez l’ID du pool pour la propriété **poolName****.** Pour cette propriété, vous pouvez spécifier le nom de pool ou l’ID de pool.
-   4. Entrez l’URI du lot pour la propriété JSON **batchUri** .
+   1. Remplacez **nom de compte** avec nom hello de votre compte Azure Batch.
+   2. Remplacez **clé d’accès** avec la clé d’accès hello Hello compte Azure Batch.
+   3. Entrez les ID de hello du pool de hello pour hello **poolName** propriété**.** Pour cette propriété, vous pouvez spécifier le nom de pool ou l’ID de pool.
+   4. Entrez le lot hello URI pour hello **batchUri** propriété JSON.
 
       > [!IMPORTANT]
-      > **L’URL** figurant dans le **panneau du compte Azure Batch** est au format suivant : \<nomducompte\>.\<région\>.batch.azure.com. Pour la propriété **batchUri** dans le fichier JSON, vous devez **supprimer « nomducompte ».** de l’URL. Exemple : `"batchUri": "https://eastus.batch.azure.com"`.
+      > Hello **URL** de hello **Panneau de compte Azure Batch** est Bonjour suivant le format : \<accountname\>.\< région\>. batch.azure.com. Pourquoi **batchUri** propriété Bonjour JSON, vous devez trop**supprimer « accountname ».** à partir de l’URL de hello. Exemple : `"batchUri": "https://eastus.batch.azure.com"`.
       >
       >
 
       ![](./media/data-factory-data-processing-using-batch/image9.png)
 
-      Pour la propriété **poolName** , vous pouvez également spécifier l’ID du pool au lieu du nom du pool.
+      Pourquoi **poolName** propriété, vous pouvez également spécifier d’ID hello du pool hello au lieu du nom de hello du pool de hello.
 
       > [!NOTE]
-      > Le service Data Factory ne prend pas en charge l’option à la demande pour Azure Batch contrairement à HDInsight. Vous pouvez uniquement utiliser votre propre pool Azure Batch dans une fabrique de données Azure.
+      > Hello service Data Factory ne prend en charge une option à la demande de traitement par lots Azure comme il le fait pour HDInsight. Vous pouvez uniquement utiliser votre propre pool Azure Batch dans une fabrique de données Azure.
       >
       >
-   5. Spécifiez **StorageLinkedService** for the **StorageLinkedService** . Vous avez créé ce service lié à l’étape précédente. Ce stockage est utilisé en tant que zone de transit pour les fichiers et les journaux.
-3. Cliquez sur l’option **Déployer** de la barre de commandes pour déployer le service lié.
+   5. Spécifiez **StorageLinkedService** pour hello **linkedServiceName** propriété. Vous avez créé ce service lié à l’étape précédente de hello. Ce stockage est utilisé en tant que zone de transit pour les fichiers et les journaux.
+3. Cliquez sur **déployer** sur toodeploy hello lié service de la barre de commandes hello.
 
 #### <a name="step-3-create-datasets"></a>Étape 3 : Créer les jeux de données
-Dans cette étape, vous allez créer des jeux de données pour représenter les données d’entrée et de sortie.
+Dans cette étape, vous créez une entrée de toorepresent de jeux de données et les données de sortie.
 
 #### <a name="create-input-dataset"></a>Créer le jeu de données d’entrée
-1. Dans **l’éditeur** de Data Factory, cliquez sur le bouton **Nouveau jeu de données** de la barre d’outils et sélectionnez **Stockage Blob Azure** dans le menu déroulant.
-2. Remplacez le script JSON affiché dans le volet droit par l’extrait de code JSON suivant :
+1. Bonjour **éditeur** pour hello fabrique de données, cliquez sur **nouveau dataset** bouton de barre d’outils hello et cliquez sur **le stockage Blob Azure** à partir du menu déroulant de hello.
+2. Remplacez hello JSON dans le volet de droite hello hello suivant extrait de code JSON :
 
     ```json
     {
@@ -607,11 +607,11 @@ Dans cette étape, vous allez créer des jeux de données pour représenter les 
     }
     ```
 
-    Plus loin dans cette procédure pas à pas, vous allez créer un pipeline associé à l’heure de début 2015-11-16T00:00:00Z et à l’heure de fin 2015-11-16T05:00:00Z. Ce pipeline est planifié pour produire des données **toutes les heures**, ce qui signifie que l’on obtient 5 tranches d’entrée/sortie (comprises entre **00**: 00:00 et \>**05**: 00:00).
+    Plus loin dans cette procédure pas à pas, vous allez créer un pipeline associé à l’heure de début 2015-11-16T00:00:00Z et à l’heure de fin 2015-11-16T05:00:00Z. Elle est planifiée tooproduce données **toutes les heures**, il y a 5 tranches d’entrée/sortie (entre **00**: 00:00 -\> **05**: 00:00).
 
-    Les paramètres **frequency** et **interval** du jeu de données d’entrée sont respectivement définis sur **Hour** et sur **1**, ce qui signifie que la tranche d’entrée est disponible toutes les heures.
+    Hello **fréquence** et **intervalle** de jeu de données d’entrée hello est défini trop**heure** et **1**, ce qui signifie que hello entrée tranche est disponible toutes les heures.
 
-    Voici les heures de début de chaque tranche, représentées par la variable système **SliceStart** dans l’extrait de code JSON ci-dessus.
+    Voici les heures de début hello pour chaque secteur, qui sont représentées par **SliceStart** variable système Bonjour ci-dessus extrait de code JSON.
 
     | **Tranche** | **Heure de début**          |
     |-----------|-------------------------|
@@ -621,7 +621,7 @@ Dans cette étape, vous allez créer des jeux de données pour représenter les 
     | 4         | 2015-11-16T**03**:00:00 |
     | 5         | 2015-11-16T**04**:00:00 |
 
-    La valeur **folderPath** est calculée à l’aide de la partie année, mois, jour et heure de l’heure de début de la tranche (**SliceStart**). Par conséquent, voici comment un dossier d’entrée est mappé à une tranche.
+    Hello **folderPath** est calculée à l’aide de partie de hello année, mois, jour et heure de l’heure de début de tranche hello (**SliceStart**). Par conséquent, voici comment un dossier d’entrée est mappé tooa tranche.
 
     | **Tranche** | **Heure de début**          | **Dossier d’entrée**  |
     |-----------|-------------------------|-------------------|
@@ -631,13 +631,13 @@ Dans cette étape, vous allez créer des jeux de données pour représenter les 
     | 4         | 2015-11-16T**03**:00:00 | 2015-11-16-**03** |
     | 5         | 2015-11-16T**04**:00:00 | 2015-11-16-**04** |
 
-1. Dans la barre d’outils, cliquez sur **Déployer** pour créer et déployer la table **InputDataset**.
+1. Cliquez sur **déployer** hello toocreate de barre d’outils et déployer hello **InputDataset** table.
 
 #### <a name="create-output-dataset"></a>Créer un jeu de données de sortie
-Au cours de cette étape, vous créez un autre jeu de données de type AzureBlob pour représenter les données de sortie.
+Dans cette étape, vous créez un autre jeu de données de type de données de sortie AzureBlob toorepresent hello.
 
-1. Dans **l’éditeur** de Data Factory, cliquez sur le bouton **Nouveau jeu de données** de la barre d’outils et sélectionnez **Stockage Blob Azure** dans le menu déroulant.
-2. Remplacez le script JSON affiché dans le volet droit par l’extrait de code JSON suivant :
+1. Bonjour **éditeur** pour hello fabrique de données, cliquez sur **nouveau dataset** bouton de barre d’outils hello et cliquez sur **le stockage Blob Azure** à partir du menu déroulant de hello.
+2. Remplacez hello JSON dans le volet de droite hello hello suivant extrait de code JSON :
 
     ```json
     {
@@ -667,7 +667,7 @@ Au cours de cette étape, vous créez un autre jeu de données de type AzureBlob
     }
     ```
 
-    Un objet blob/fichier de sortie est généré pour chaque tranche d’entrée. Voici la procédure de nommage des fichiers de sortie pour chaque tranche. Tous les fichiers de sortie sont générés dans un seul dossier de sortie : `mycontainer\\outputfolder`.
+    Un objet blob/fichier de sortie est généré pour chaque tranche d’entrée. Voici la procédure de nommage des fichiers de sortie pour chaque tranche. Tous les fichiers de sortie hello sont générés dans un dossier de sortie : `mycontainer\\outputfolder`.
 
     | **Tranche** | **Heure de début**          | **Fichier de sortie**       |
     |-----------|-------------------------|-----------------------|
@@ -677,20 +677,20 @@ Au cours de cette étape, vous créez un autre jeu de données de type AzureBlob
     | 4         | 2015-11-16T**03**:00:00 | 2015-11-16-**03.txt** |
     | 5         | 2015-11-16T**04**:00:00 | 2015-11-16-**04.txt** |
 
-    N’oubliez pas que tous les fichiers figurant dans un dossier d’entrée (par exemple, 2015-11-16-00) font partie d’une tranche associée à l’heure de début (2015-11-16-00). Lorsque cette tranche est traitée, l’activité personnalisée parcourt chaque fichier et génère une ligne dans le fichier de sortie avec le nombre d’occurrences du terme de recherche (« Microsoft »). Si le dossier 2015-11-16-00 contient trois fichiers, le fichier de sortie 2015-11-16-00.txt comprend trois lignes.
+    Souvenez-vous que tous les hello des fichiers dans un dossier d’entrée (par exemple : 2015-11-16-00) font partie d’une tranche avec l’heure de début hello : 2015-11-16-00. Lorsque cette tranche est traitée, activité personnalisée hello parcourt chaque fichier et produit une ligne dans le fichier de sortie hello avec numéro hello d’occurrences du terme de recherche (« Microsoft »). S’il existe trois fichiers dans le dossier hello 2015-11-16-00, il existe trois lignes dans le fichier de sortie hello : 2015-11-16-00.txt.
 
-1. Dans la barre d’outils, cliquez sur **Déployer** pour créer et déployer la table **OutputDataset**.
+1. Cliquez sur **déployer** hello toocreate de barre d’outils et déployer hello **OutputDataset**.
 
-#### <a name="step-4-create-and-run-the-pipeline-with-custom-activity"></a>Étape 4 : Créer et exécuter le pipeline avec une activité personnalisée
-Au cours de cette étape, vous créez un pipeline comprenant une seule activité, l’activité personnalisée que vous avez créée précédemment.
+#### <a name="step-4-create-and-run-hello-pipeline-with-custom-activity"></a>Étape 4 : Créer et exécuter le pipeline de hello avec une activité personnalisée
+Dans cette étape, vous créez un pipeline avec une activité, activité personnalisée hello est créé précédemment.
 
 > [!IMPORTANT]
-> Si vous n’avez pas chargé le fichier **file.txt** dans les dossiers d’entrée du conteneur d’objets blob, veuillez le faire avant de créer le pipeline. La propriété **isPaused** étant définie sur false dans le fichier JSON du pipeline, le pipeline s’exécute immédiatement, car la date de **début** se situe dans le passé.
+> Si vous n’avez pas téléchargé hello **fichier.txt** tooinput des dossiers dans le conteneur d’objets blob hello, le faire avant de créer le pipeline de hello. Hello **isPaused** propriété a la valeur toofalse dans le pipeline hello JSON, pour que le pipeline de hello s’exécute immédiatement comme hello **Démarrer** la date est hello passée.
 >
 >
 
-1. Dans Data Factory Editor, cliquez sur **Nouveau pipeline** dans la barre de commandes. Si vous ne voyez pas apparaître la commande, cliquez sur **... (points de suspension)** pour l’afficher.
-2. Remplacez le script JSON affiché dans le volet droit par le script JSON suivant :
+1. Bonjour éditeur Data Factory, cliquez sur **nouveau pipeline** sur la barre de commandes hello. Si vous ne voyez pas la commande hello, cliquez sur **... (Points de suspension)**  toosee il.
+2. Remplacez hello JSON dans le volet de droite hello hello JSON script suivant :
 
     ```json
     {
@@ -735,101 +735,101 @@ Au cours de cette étape, vous créez un pipeline comprenant une seule activité
       }
     }
     ```
-   Notez les points suivants :
+   Hello Notez les points suivants :
 
-   * Le pipeline ne comprend qu’une seule activité du type **DotNetActivity**.
-   * Le paramètre **AssemblyName** est défini sur le nom de la DLL **MyDotNetActivity.dll**.
-   * Le paramètre **EntryPoint** est défini sur **MyDotNetActivityNS.MyDotNetActivity**. Il s’agit essentiellement de \<namespace\>.\<classname\> dans votre code.
-   * **PackageLinkedService** est défini sur **StorageLinkedService**, qui pointe vers le stockage d’objets blob contenant le fichier .zip de l’activité personnalisée. Si vous utilisez des comptes de stockage différents pour les fichiers d’entrée/sortie et le fichier zip de l’activité personnalisée, vous devez créer un autre service lié Stockage Azure. Cet article suppose que vous utilisez le même compte Azure Storage.
-   * Le paramètre **PackageFile** est défini sur **customactivitycontainer/MyDotNetActivity.zip**. Il est au format : \<conteneur_du_zip\>/\<nom_du_zip.zip\>.
-   * L’activité personnalisée utilise **InputDataset** comme entrée et **OutputDataset** comme sortie.
-   * La propriété **linkedServiceName** de l’activité personnalisée pointe vers **AzureBatchLinkedService**, ce qui indique à Azure Data Factory que l’activité personnalisée doit s’exécuter sur Azure Batch.
-   * Le paramètre **concurrency** est important. Si vous utilisez la valeur par défaut, 1, même si vous avez plusieurs nœuds de calcul dans le pool Azure Batch, les tranches sont traitées successivement. Par conséquent, vous ne profitez pas de la capacité de traitement en parallèle d’Azure Batch. Si vous définissez **concurrency** sur une valeur plus élevée, par exemple 2, deux tranches (correspondant à deux tâches dans Azure Batch) peuvent être traitées simultanément, auquel cas les deux machines virtuelles du pool Azure Batch sont utilisées. Vous devez par conséquent définir la propriété concurrency de façon appropriée.
-   * Par défaut, une seule tâche (tranche) est exécutée sur une machine virtuelle à un moment donné. La raison est que, par défaut, le paramètre **Maximum tasks per VM** (Nombre maximal de tâches par machine virtuelle) est défini sur 1 pour un pool Azure Batch. En rapport avec les conditions préalables, vous avez créé un pool pour lequel cette propriété est définie sur 2, de sorte que deux tranches Data Factory peuvent s’exécuter simultanément sur une machine virtuelle.
+   * Il n'est qu’une seule activité dans le pipeline de hello et qui est de type : **DotNetActivity**.
+   * **AssemblyName** a la valeur nom toohello Hello DLL : **MyDotNetActivity.dll**.
+   * **Point d’entrée** est défini trop**MyDotNetActivityNS.MyDotNetActivity**. Il s’agit essentiellement de \<namespace\>.\<classname\> dans votre code.
+   * **PackageLinkedService** est défini trop**StorageLinkedService** qui pointe le stockage d’objets blob toohello qui contient le fichier zip d’activité personnalisée hello. Si vous utilisez des comptes de stockage Azure différents pour les fichiers d’entrée/sortie et le fichier zip d’activité personnalisée hello, vous avez toocreate un autre Azure Storage service lié. Cet article suppose que vous utilisez hello même compte de stockage Azure.
+   * **PackageFile** est défini trop**customactivitycontainer/MyDotNetActivity.zip**. Il est au format de hello : \<containerforthezip\>/\<nameofthezip.zip\>.
+   * activité personnalisée Hello prend **InputDataset** en tant qu’entrée et **OutputDataset** en tant que sortie.
+   * Hello **linkedServiceName** toohello la propriété d’activité personnalisée hello pointe **AzureBatchLinkedService**, ce qui indique à Azure Data Factory pour cette activité personnalisée hello doit toorun sur Azure Batch.
+   * Hello **concurrency** paramètre est important. Si vous utilisez la valeur par défaut de hello, qui est 1, même si vous disposez de 2 ou de plusieurs nœuds dans le pool de traitement par lots Azure hello, tranches de hello sont traitées une après l’autre. Par conséquent, vous prenez pas parti des capacités de traitement parallèle de hello de traitement par lots Azure. Si vous définissez **concurrency** tooa plus élevée, par exemple 2, cela signifie que deux tranches (correspond tootwo des tâches de traitement par lots Azure) peuvent être traités en hello même moment, dans ce cas, les deux ordinateurs virtuels de hello Bonjour Azure Batch pool sont utilisées. Par conséquent, définir concurrency, propriété hello en conséquence.
+   * Par défaut, une seule tâche (tranche) est exécutée sur une machine virtuelle à un moment donné. Hello raison est que, par défaut, hello **Maximum de tâches par ordinateur virtuel** a la valeur too1 pour un pool de traitement par lots Azure. Dans le cadre des conditions préalables, vous avez créé un pool avec cette too2 set de propriété, donc deux tranches de fabrique de données peuvent s’exécuter sur un ordinateur virtuel à hello même temps.
 
-    -   **isPaused** est définie sur false. Le pipeline s’exécute immédiatement dans cet exemple car les tranches débutent à une date antérieure. Vous pouvez définir cette propriété sur true pour suspendre le pipeline et lui réaffecter la valeur false pour reprendre l’exécution.
+    -   **isPaused** propriété a la valeur toofalse par défaut. pipeline de Hello s’exécute immédiatement dans cet exemple, car le début des tranches de hello Bonjour passées. Vous pouvez définir ce pipeline de propriété tootrue toopause hello et affectez-lui arrière toofalse toorestart.
 
-    -   Cinq heures séparent les heures de **début** et de **fin**, et les tranches sont produites toutes les heures, ce qui signifie que cinq tranches sont produites par le pipeline.
+    -   Hello **Démarrer** temps et **fin** fois éloignés de cinq heures et tranches de produits toutes les heures, afin de cinq tranches sont produits par le pipeline de hello.
 
-1. Cliquez sur **Déployer** dans la barre de commandes pour déployer le pipeline.
+1. Cliquez sur **déployer** sur le pipeline de hello toodeploy de barre de commandes hello.
 
-#### <a name="step-5-test-the-pipeline"></a>Étape 5 : Tester le pipeline
-Au cours de cette étape, vous testez le pipeline en déposant des fichiers dans les dossiers d’entrée. Commençons par tester le pipeline avec un fichier par dossier d’entrée.
+#### <a name="step-5-test-hello-pipeline"></a>Étape 5 : Tester le pipeline de hello
+Dans cette étape, vous tester le pipeline de hello en supprimant les fichiers dans des dossiers d’entrée de hello. Commençons par le pipeline de hello test avec un fichier par un seul dossier d’entrée.
 
-1. Dans le panneau Data Factory du portail Azure, cliquez sur **Diagramme**.
+1. Dans le panneau de la fabrique de données hello Bonjour portail Azure, cliquez sur **diagramme**.
 
    ![](./media/data-factory-data-processing-using-batch/image10.png)
-2. Dans la vue de diagramme, double-cliquez sur le jeu de données d’entrée **InputDataset**.
+2. Dans la vue de diagramme hello, double-cliquez sur le jeu de données d’entrée : **InputDataset**.
 
    ![](./media/data-factory-data-processing-using-batch/image11.png)
-3. Vous devriez voir le panneau **InputDataset** avec les cinq tranches prêtes. Notez **l’HEURE DE DÉBUT DE LA TRANCHE** et **l’HEURE DE FIN DE LA TRANCHE** pour chaque tranche.
+3. Vous devez voir hello **InputDataset** panneau avec toutes les cinq tranches prêt. Hello d’avis **l’heure de début de la tranche** et **heure de fin de la tranche** pour chaque secteur.
 
    ![](./media/data-factory-data-processing-using-batch/image12.png)
-4. Dans la **vue de diagramme**, cliquez sur **OutputDataset**.
-5. Si elles ont déjà été produites, les cinq tranches de sortie doivent être à l’état Prêt.
+4. Bonjour **vue de diagramme**, cliquez maintenant sur **OutputDataset**.
+5. Vous devez voir que les cinq tranches de sortie hello sont dans l’état prêt hello si elles ont déjà été générés.
 
    ![](./media/data-factory-data-processing-using-batch/image13.png)
-6. Pour afficher les **tâches** associées aux **tranches** et voir la machine virtuelle sur laquelle chaque tranche a été exécutée, utilisez le portail Azure. Consultez la section [Intégration de Data Factory et Batch](#data-factory-and-batch-integration) pour plus d’informations.
-7. Les fichiers de sortie devraient apparaître dans le dossier `outputfolder` de `mycontainer` dans votre Stockage Blob Azure.
+6. Hello de tooview portail Azure utilisation **tâches** associé hello **tranches** et voir les ordinateurs virtuels chaque tranche s’exécutait sur. Consultez la section [Intégration de Data Factory et Batch](#data-factory-and-batch-integration) pour plus d’informations.
+7. Vous devez voir les fichiers de sortie hello Bonjour `outputfolder` de `mycontainer` dans votre Azure stockage d’objets blob.
 
    ![](./media/data-factory-data-processing-using-batch/image15.png)
 
-   Vous devriez voir cinq fichiers de sortie, un par tranche d’entrée. Chaque fichier de sortie doit avoir contenu similaire à ce qui suit :
+   Vous devriez voir cinq fichiers de sortie, un par tranche d’entrée. Chaque Hello sortie de fichier doit avoir le contenu toohello similaire suivant de sortie :
 
     ```
-    2 occurrences(s) of the search term "Microsoft" were found in the file inputfolder/2015-11-16-00/file.txt.
+    2 occurrences(s) of hello search term "Microsoft" were found in hello file inputfolder/2015-11-16-00/file.txt.
     ```
-   Le diagramme suivant illustre la manière dont les tranches Data Factory sont mappées à des tâches dans Azure Batch. Dans cet exemple, une tranche n’est exécutée qu’une seule fois.
+   Hello diagramme suivant illustre comment les tranches de Data Factory hello mappent tootasks dans Azure Batch. Dans cet exemple, une tranche n’est exécutée qu’une seule fois.
 
    ![](./media/data-factory-data-processing-using-batch/image16.png)
-8. À présent, essayons avec plusieurs fichiers dans un dossier. Créez des fichiers **file2.txt**, **file3.txt**, **file4.txt** et **file5.txt** ayant le même contenu que le fichier file.txt dans le dossier **2015-11-06-01**.
-9. Dans le dossier de sortie, **supprimez** le fichier de sortie **2015-11-16-01.txt**.
-10. À présent, dans le panneau **OutputDataset**, cliquez avec le bouton droit sur la tranche dont **l’HEURE DE DÉBUT DE LA TRANCHE** a la valeur **16/11/2015 01:00:00 AM**, puis cliquez sur **Exécuter** pour réexécuter/re-traiter la tranche. À présent, la tranche contient cinq fichiers au lieu d’un seul.
+8. À présent, essayons avec plusieurs fichiers dans un dossier. Créer des fichiers : **file2.txt**, **file3.txt**, **file4.txt**, et **file5.txt** avec hello même contenu que dans fichier.txt dans le dossier de hello : **2015-11-06-01**.
+9. Dans le dossier de sortie hello **supprimer** fichier de sortie hello : **2015-11-16-01.txt**.
+10. Maintenant, dans hello **OutputDataset** panneau, la tranche de hello avec le bouton avec **l’heure de début de la tranche** défini trop**16/11/2015 01:00:00 AM**, puis cliquez sur **exécuter**tranche de hello toorerun/ré-process. À présent, la tranche de hello contient cinq fichiers au lieu d’un seul fichier.
 
     ![](./media/data-factory-data-processing-using-batch/image17.png)
-11. Une fois la tranche exécutée, quand son état est **Prêt**, vérifiez le contenu de son fichier de sortie (**2015-11-16-01.txt**) dans le dossier `outputfolder` de `mycontainer` dans votre stockage d’objets blob. Il doit y avoir une ligne pour chaque fichier de la tranche.
+11. Une fois que la tranche de hello s’exécute et son état est **prêt**, vérifiez le contenu dans le fichier de sortie hello pour cette tranche hello (**2015-11-16-01.txt**) Bonjour `outputfolder` de `mycontainer` dans votre stockage d’objets blob. Il doit être une ligne pour chaque fichier de tranche de hello.
 
     ```
-    2 occurrences(s) of the search term "Microsoft" were found in the file inputfolder/2015-11-16-01/file.txt.
-    2 occurrences(s) of the search term "Microsoft" were found in the file inputfolder/2015-11-16-01/file2.txt.
-    2 occurrences(s) of the search term "Microsoft" were found in the file inputfolder/2015-11-16-01/file3.txt.
-    2 occurrences(s) of the search term "Microsoft" were found in the file inputfolder/2015-11-16-01/file4.txt.
-    2 occurrences(s) of the search term "Microsoft" were found in the file inputfolder/2015-11-16-01/file5.txt.
+    2 occurrences(s) of hello search term "Microsoft" were found in hello file inputfolder/2015-11-16-01/file.txt.
+    2 occurrences(s) of hello search term "Microsoft" were found in hello file inputfolder/2015-11-16-01/file2.txt.
+    2 occurrences(s) of hello search term "Microsoft" were found in hello file inputfolder/2015-11-16-01/file3.txt.
+    2 occurrences(s) of hello search term "Microsoft" were found in hello file inputfolder/2015-11-16-01/file4.txt.
+    2 occurrences(s) of hello search term "Microsoft" were found in hello file inputfolder/2015-11-16-01/file5.txt.
     ```
 
 > [!NOTE]
-> Si vous n’avez pas supprimé le fichier de sortie 2015-11-16-01.txt avant d’essayer avec cinq fichiers d’entrée, vous devez voir une ligne pour l’exécution de la tranche précédente, et cinq lignes pour l’exécution de la tranche actuelle. Par défaut, le contenu est ajouté au fichier de sortie s’il existe.
+> Si vous n’avez pas supprimé 2015 dans le fichier de sortie hello-11-16-01.txt avant d’essayer de cinq fichiers d’entrée, vous voyez une seule ligne à partir de la tranche de hello précédente exécution et les cinq lignes à partir de la tranche hello exécuter. Par défaut, le contenu de hello est ajouté toooutput fichier s’il existe déjà.
 >
 >
 
 #### <a name="data-factory-and-batch-integration"></a>Intégration de Data Factory et Batch
-Le service Data Factory crée un travail dans Azure Batch sous le nom `adf-poolname:job-xxx`.
+Hello service Data Factory crée un travail en traitement par lots Azure avec le nom de hello : `adf-poolname:job-xxx`.
 
 ![Azure Data Factory - Travaux Batch](media/data-factory-data-processing-using-batch/data-factory-batch-jobs.png)
 
-Une tâche dans le travail est créée pour chaque exécution d’activité d’une tranche. Si 10 tranches sont prêtes à être traitées, 10 tâches seront créées dans le travail. Plusieurs tranches peuvent être exécutées en parallèle si vous disposez de plusieurs nœuds de calcul dans le pool. Vous pouvez également avoir plusieurs tranches exécutées sur le même nœud de calcul si le nombre maximum de tâches par nœud de calcul est défini sur une valeur supérieure à 1.
+Une tâche dans la tâche de hello est créée pour chaque exécution de l’activité d’un secteur. S’il y a 10 toobe prêt tranches traitées, 10 tâches sont créés dans la tâche de hello. Vous pouvez avoir plusieurs tranches en cours d’exécution en parallèle si vous avez plusieurs nœuds de calcul dans le pool de hello. Si le nombre maximum de tâches hello par calcul nœud est défini trop > 1, il peut y avoir plusieurs une découper en cours d’exécution sur hello même calcul.
 
-Dans cet exemple, il y a cinq tranches, donc cinq tâches dans Azure Batch. Avec la propriété **concurrency** définie sur **5** dans le fichier JSON du pipeline dans Azure Data Factory, et le paramètre **Nombre maximal de tâches par machine virtuelle** défini sur **2** dans le pool Azure Batch avec **2** machines virtuelles, les tâches s’exécutent très rapidement (vérifiez les heures de début et de fin des tâches).
+Dans cet exemple, il y a cinq tranches, donc cinq tâches dans Azure Batch. Avec hello **concurrency** défini trop**5** Bonjour pipeline JSON dans Azure Data Factory et **Maximum de tâches par ordinateur virtuel** défini trop**2** dans Azure Batch pool **2** machines virtuelles, hello l’exécution des tâches rapide (Vérifiez les heures de début et de fin pour les tâches).
 
-Utilisez le portail pour afficher le travail Batch et ses tâches associées avec des **tranches** et voir sur quelle machine virtuelle chaque tranche s’est exécutée.
+Utilisez hello tooview portail hello par lots et ses tâches associées hello **tranches** et voir les ordinateurs virtuels chaque tranche s’exécutait sur.
 
 ![Azure Data Factory - Tâches de travaux Batch](media/data-factory-data-processing-using-batch/data-factory-batch-job-tasks.png)
 
-### <a name="debug-the-pipeline"></a>Déboguer le pipeline
+### <a name="debug-hello-pipeline"></a>Déboguer hello pipeline
 Le débogage consiste à utiliser quelques techniques de base :
 
-1. Si la tranche d’entrée n’est pas définie sur **Prêt**, vérifiez que la structure du dossier d’entrée est correcte et que le fichier file.txt est présent dans les dossiers d’entrée.
+1. Si la tranche de hello d’entrée n’est pas défini trop**prêt**, vérifiez que la structure de dossiers d’entrée de hello est correct et fichier.txt existe dans les dossiers d’entrée hello.
 
    ![](./media/data-factory-data-processing-using-batch/image3.png)
-2. Dans la méthode **Execute** de votre activité personnalisée, utilisez l’objet **IActivityLogger** pour journaliser les informations qui vous aident à résoudre d’éventuels problèmes. Les messages consignés s’affichent dans le fichier user\_0.log.
+2. Bonjour **Execute** méthode de votre activité personnalisée, utilisez hello **IActivityLogger** informations toolog objet qui vous permet de résoudre les problèmes. messages Hello connecté apparaissent dans les utilisateur hello\_fichier journal de 0.
 
-   Dans le panneau **OutputDataset**, cliquez sur la tranche pour afficher le panneau **TRANCHE DE DONNÉES** correspondant à cette tranche. Les **activités exécutées** pour cette tranche s’affichent. Vous devez normalement voir une exécution d’activité pour la tranche. Si vous cliquez sur **Exécuter** dans la barre de commandes, vous pouvez démarrer une autre exécution d’activité pour la même tranche.
+   Bonjour **OutputDataset** panneau, cliquez sur Bonjour tranche toosee Bonjour **tranche de données** panneau pour ce secteur. Les **activités exécutées** pour cette tranche s’affichent. Vous devez voir une activité à exécuter pour la tranche de hello. Si vous cliquez sur **exécuter** dans la barre de commandes hello, vous pouvez démarrer une autre activité exécutée pour hello même secteur.
 
-   Lorsque vous cliquez sur l’exécution d’activité, le panneau **DÉTAILS DE L’EXÉCUTION D’ACTIVITÉ** s’affiche avec une liste de fichiers journaux. Les messages consignés s’affichent dans le fichier **user\_0.log**. Lorsqu’une erreur se produit, vous verrez trois exécutions d’activité car le nombre de tentatives est défini sur 3 dans le script JSON du pipeline et de l’activité. Lorsque vous cliquez sur l’exécution de l’activité, vous accédez aux fichiers journaux qui vous permettront de résoudre l’erreur.
+   Lorsque vous cliquez sur exécution de l’activité hello, vous voyez hello **détails de l’activité exécuter** panneau avec une liste des fichiers journaux. Vous consultez les messages enregistrés dans hello **utilisateur\_0 journal** fichier. Lorsqu’une erreur se produit, vous voyez trois exécutions d’activité, car de nouvelles tentatives hello est définie too3 dans pipeline/activité hello JSON. Lorsque vous cliquez sur exécution de l’activité hello, vous voyez que vous pouvez consulter les erreurs de hello tootroubleshoot des fichiers journaux hello.
 
    ![](./media/data-factory-data-processing-using-batch/image18.png)
 
-   Dans la liste des fichiers journaux, cliquez sur le fichier **user-0.log**. Le volet droit affiche les résultats de l’utilisation de la méthode **IActivityLogger.Write** .
+   Dans la liste hello des fichiers journaux, cliquez sur hello **0.log de l’utilisateur**. Dans le panneau droit hello sont des résultats de l’utilisation de hello hello **IActivityLogger.Write** (méthode).
 
    ![](./media/data-factory-data-processing-using-batch/image19.png)
 
@@ -844,32 +844,32 @@ Le débogage consiste à utiliser quelques techniques de base :
     
     Trace\_T\_D\_12/6/2015 1:43:38 AM\_T\_D\_\_T\_D\_Information\_T\_D\_0\_T\_D\_Activity e3817da0-d843-4c5c-85c6-40ba7424dce2 finished successfully
     ```
-3. Incluez le fichier **PDB** dans le fichier zip afin que les détails de l’erreur incluent des informations telles que la **pile des appels** quand une erreur se produit.
-4. Tous les fichiers contenus dans le fichier zip de l’activité personnalisée doivent se trouver au **niveau supérieur** et ne contenir aucun sous-dossier.
+3. Inclure hello **PDB** fichiers dans le fichier zip de hello afin que les détails de l’erreur hello ont des informations telles que **pile des appels** lorsqu’une erreur se produit.
+4. Tous les hello des fichiers dans le fichier zip de hello pour l’activité personnalisée hello doit se trouver au hello **niveau supérieur** avec aucun des sous-dossiers.
 
    ![](./media/data-factory-data-processing-using-batch/image20.png)
-5. Assurez-vous que les paramètres **assemblyName** (MyDotNetActivity.dll), **entryPoint** (MyDotNetActivityNS.MyDotNetActivity), **packageFile** (customactivitycontainer/Mydotnetactivity.zip) et **packageLinkedService** (qui doit pointer vers le Stockage Blob Azure contenant le fichier .zip) sont définis sur des valeurs correctes.
-6. Si vous avez corrigé une erreur et souhaitez relancer le traitement de la tranche, cliquez avec le bouton droit sur la tranche dans le panneau **OutputDataset** puis cliquez sur **Exécuter**.
+5. Vérifiez que hello **assemblyName** (MyDotNetActivity.dll), **entryPoint** (MyDotNetActivityNS.MyDotNetActivity), **packageFile** (customactivitycontainer / MyDotNetActivity.zip), et **packageLinkedService** (doit point toohello Azure stockage d’objets blob qui contient le fichier zip de hello) sont définies les valeurs toocorrect.
+6. Si vous avez corrigé une tranche hello tooreprocess erreur et que vous souhaitez, cliquez sur tranche hello Bonjour **OutputDataset** panneau, cliquez sur **exécuter**.
 
    ![](./media/data-factory-data-processing-using-batch/image21.png)
 
    > [!NOTE]
-   > Vous voyez un **conteneur** dans votre Stockage Blob Azure nommé `adfjobs`. Ce conteneur n’est pas automatiquement supprimé, mais vous pouvez le supprimer en toute sécurité après avoir testé la solution. De même, la solution Data Factory crée un **travail** Azure Batch nommé `adf-\<pool ID/name\>:job-0000000001`. Si vous le souhaitez, vous pouvez supprimer ce travail après avoir testé la solution.
+   > Vous voyez un **conteneur** dans votre Stockage Blob Azure nommé `adfjobs`. Ce conteneur n’est pas supprimé automatiquement, mais vous pouvez le supprimer en toute sécurité après avoir effectué la solution hello test. De même, hello solution de fabrique de données crée un lot d’Azure **travail** nommé : `adf-\<pool ID/name\>:job-0000000001`. Vous pouvez supprimer cette tâche après avoir testé les solutions hello si vous le souhaitez.
    >
    >
-7. L’activité personnalisée n’utilise pas le ficher **app.config** de votre package. Par conséquent, si votre code lit des chaînes de connexion dans le fichier de configuration, il ne fonctionne pas lors de l’exécution. Quand vous utilisez Azure Batch, la meilleure pratique consiste à stocker les clés secrètes dans un coffre de clés **Azure KeyVault**, à utiliser un principal de service basé sur certificat pour protéger le coffre de clés et à distribuer le certificat à un pool Azure Batch. L’activité personnalisée .NET peut alors accéder aux secrets du coffre de clés au moment de l’exécution. Cette solution est générique et peut s’adapter à n’importe quel type de clé secrète, et pas uniquement aux chaînes de connexion.
+7. activité personnalisée Hello n’utilise pas hello **app.config** fichier à partir de votre package. Par conséquent, si votre code lit les chaînes de connexion à partir du fichier de configuration hello, il ne fonctionne pas lors de l’exécution. Hello meilleures pratiques lors de l’utilisation d’Azure Batch est toohold les clés secrètes dans un **Azure KeyVault**, utilisez un keyvault de hello basée sur certificat de service principal tooprotect et distribuer le pool de traitement par lots hello certificat tooAzure. Hello les activités personnalisées .NET puis peuvent accéder aux clés secrètes hello KeyVault lors de l’exécution. Cette solution est générique et peut évoluer type tooany du secret, pas seulement les chaînes de connexion.
 
-    Il existe une solution plus simple (mais non recommandée) : vous pouvez créer un **service lié SQL Azure** avec des paramètres de chaîne de connexion, puis créer un jeu de données qui utilise le service lié et chaîner le jeu de données à l’activité .NET personnalisée en tant que jeu de données d’entrée factice. Vous pouvez accéder ensuite à la chaîne de connexion du service lié dans le code de l’activité personnalisée. Cette fois-ci, le code devrait fonctionner sans problème lors de l’exécution.  
+    Il existe une solution plus facile (mais pas une meilleure pratique) : vous pouvez créer un **service lié Azure SQL** avec les paramètres de chaîne de connexion, créez un dataset qu’utilise hello service lié et le jeu de données chaîne hello comme un jeu de données d’entrée factice activité de .NET personnalisée toohello. Vous pouvez ensuite hello d’accès liées la chaîne de connexion du service dans le code d’activité personnalisée hello et il doit fonctionner correctement lors de l’exécution.  
 
-#### <a name="extend-the-sample"></a>Étendre l’exemple
-Vous pouvez étendre cet exemple pour en savoir plus sur les fonctionnalités d’Azure Data Factory et d’Azure Batch. Par exemple, pour traiter des tranches d’une autre plage de temps, procédez comme suit :
+#### <a name="extend-hello-sample"></a>Étendre l’exemple hello
+Vous pouvez étendre cet exemple toolearn plus d’informations sur les fonctionnalités d’Azure Data Factory et Azure Batch. Par exemple, les tranches tooprocess dans une plage de temps différente, hello comme suit :
 
-1. Ajoutez au dossier `inputfolder` les sous-dossiers 2015-11-16-05, 2015-11-16-06, 201-11-16-07, 2011-11-16-08 et 2015-11-16-09, et placez les fichiers d’entrée dans ces dossiers. Modifiez l’heure de fin pour le pipeline de `2015-11-16T05:00:00Z` à `2015-11-16T10:00:00Z`. Dans la **vue de diagramme**, double-cliquez sur **InputDataset** et vérifiez que les tranches d’entrée sont prêtes. Double-cliquez sur **OuptutDataset** pour vérifier l’état des tranches de sortie. Si leur état est Prêt, vérifiez les fichiers de sortie dans le dossier de sortie.
-2. Augmentez ou réduisez la valeur du paramètre **concurrency** pour comprendre comment il affecte les performances de votre solution, en particulier le traitement qui se produit sur Azure Batch. (Pour plus d’informations sur le paramètre **concurrency** , voir l’étape 4 : Créer et exécuter le pipeline.)
-3. Créez un pool avec une valeur **Maximum tasks per VM**(Nombre maximal de tâches par machine virtuelle) supérieure/inférieure. Mettez à jour le service lié Azure Batch dans la solution Data Factory pour utiliser le nouveau pool créé. (Pour plus d’informations sur le paramètre **Maximum tasks per VM** , voir l’étape 4 : Créer et exécuter le pipeline.)
-4. Créez un pool Azure Batch avec la fonctionnalité **autoscale** . La mise à l’échelle automatique des nœuds de calcul dans un pool Azure Batch est en fait un ajustement dynamique de la puissance de traitement utilisée par votre application. 
+1. Ajouter hello suivant sous-dossiers Bonjour `inputfolder`: 2015-11-16-05, 2015-11-16-06 201-11-16-07, 2011-11-16-08, 2015-11-16-09 et place les fichiers d’entrée dans ces dossiers. Modifier l’heure de fin hello pour le pipeline hello à partir de `2015-11-16T05:00:00Z` trop`2015-11-16T10:00:00Z`. Bonjour **vue de diagramme**, double-cliquez sur hello **InputDataset**et vérifiez que les tranches d’entrée hello sont prêtes. Double-cliquez sur **OuptutDataset** état de hello toosee de tranches de sortie. S’ils sont dans l’état prêt, vérifiez le dossier de sortie hello pour les fichiers de sortie hello.
+2. Augmenter ou diminuer hello **concurrency** paramètre toounderstand comment il affecte les performances de hello de votre solution, en particulier hello du traitement qui se produit sur Azure Batch. (Consultez l’étape 4 : créer et exécuter le pipeline de hello pour plus d’informations sur hello **concurrency** paramètre.)
+3. Créez un pool avec une valeur **Maximum tasks per VM**(Nombre maximal de tâches par machine virtuelle) supérieure/inférieure. toouse hello nouveau pool est créé, hello de mise à jour de service lié Azure Batch dans la solution de Data Factory hello. (Consultez l’étape 4 : créer et exécuter le pipeline de hello pour plus d’informations sur hello **Maximum de tâches par ordinateur virtuel** paramètre.)
+4. Créez un pool Azure Batch avec la fonctionnalité **autoscale** . Automatiquement mise à l’échelle des nœuds de calcul dans un pool Azure Batch est ajustement dynamique de hello de puissance utilisée par votre application de traitement. 
 
-    Cet exemple de formule permet d’obtenir le comportement suivant : quand le pool est créé, il commence avec 1 machine virtuelle. La métrique $PendingTasks définit le nombre de tâches dans l’état En cours d’exécution + Actif (en file d’attente).  Cette formule recherche le nombre moyen de tâches en attente au cours des 180 dernières secondes et définit TargetDedicated en conséquence. Elle garantit que TargetDedicated ne va jamais au-delà de 25 machines virtuelles. Par conséquent, à mesure que de nouvelles tâches sont envoyées, le pool s’accroît automatiquement et, au fil de la réalisation des tâches, les machines virtuelles se libèrent une à une et la mise à l’échelle automatique réduit ces machines virtuelles. Vous pouvez ajuster startingNumberOfVMs et maxNumberofVMs selon vos besoins.
+    Hello exemple de formule ici atteint hello suivant comportement : lorsque hello pool est initialement créé, il commence par 1 machine virtuelle. $PendingTasks mesure définit le nombre hello de tâches en cours d’exécution + active (en file d’attente) état.  formule de Hello recherche hello moyenne d’attente de tâches Bonjour 180 dernières secondes et définit les élément TargetDedicated en conséquence. Elle garantit que TargetDedicated ne va jamais au-delà de 25 machines virtuelles. Par conséquent, comme les nouvelles tâches sont envoyés, pool croît automatiquement en tant que tâches se terminent, machines virtuelles deviennent libre un par un et hello échelle réduit ces machines virtuelles. startingNumberOfVMs et maxNumberofVMs peut être ajustée tooyour besoins.
  
     Formule de mise à l’échelle automatique :
 
@@ -883,28 +883,28 @@ Vous pouvez étendre cet exemple pour en savoir plus sur les fonctionnalités d�
 
    Pour plus d’informations, consultez [Mettre automatiquement à l’échelle les nœuds de calcul dans un pool Azure Batch](../batch/batch-automatic-scaling.md) .
 
-   Si le pool utilise la valeur par défaut du paramètre [autoScaleEvaluationInterval](https://msdn.microsoft.com/library/azure/dn820173.aspx), le service Batch peut mettre 15 à 30 minutes à préparer la machine virtuelle avant d’exécuter l’activité personnalisée.  Si le pool utilise une autre valeur pour autoScaleEvaluationInterval, le service Batch peut prendre la durée d’autoScaleEvaluationInterval + 10 minutes.
-5. Dans l’exemple de solution, la méthode **Execute** appelle la méthode **Calculate** qui traite une tranche de données d’entrée pour produire une tranche de données de sortie. Vous pouvez écrire votre propre méthode pour traiter les données d’entrée, et remplacer l’appel de la méthode Calculate dans la méthode Execute par un appel à votre méthode.
+   Si le pool de hello utilise par défaut de hello [autoScaleEvaluationInterval](https://msdn.microsoft.com/library/azure/dn820173.aspx), hello service Batch peut prendre 15 à 30 minutes tooprepare hello machine virtuelle avant d’exécuter l’activité personnalisée hello.  Si le pool de hello utilise un autre autoScaleEvaluationInterval, hello service Batch peut prendre autoScaleEvaluationInterval + 10 minutes.
+5. Dans la solution de l’exemple hello hello **Execute** méthode appelle hello **Calculate** méthode qui traite une tooproduce de tranche de données d’entrée une tranche de données de sortie. Vous pouvez écrire votre propre méthode tooprocess les données d’entrée et remplacez l’appel de méthode Calculate hello dans la méthode d’exécution hello avec une méthode d’appel tooyour.
 
-### <a name="next-steps-consume-the-data"></a>Étapes suivantes : Consommer les données
-Après avoir traité des données, vous pouvez les employer avec des outils en ligne tels que **Microsoft Power BI**. Voici des liens pour vous aider à comprendre Power BI et comment l’utiliser dans Azure :
+### <a name="next-steps-consume-hello-data"></a>Étapes suivantes : consommer des données de hello
+Après avoir traité des données, vous pouvez les employer avec des outils en ligne tels que **Microsoft Power BI**. Voici toohelp liens comprendre de Power BI et comment toouse dans Azure :
 
 * [Explorer un jeu de données dans Power BI](https://powerbi.microsoft.com/documentation/powerbi-service-get-data/)
-* [Prise en main de Power BI Desktop](https://powerbi.microsoft.com/documentation/powerbi-desktop-getting-started/)
+* [Prise en main de hello Power BI Desktop](https://powerbi.microsoft.com/documentation/powerbi-desktop-getting-started/)
 * [Actualisation des données dans Power BI](https://powerbi.microsoft.com/documentation/powerbi-refresh-data/)
 * [Azure et Power BI](https://powerbi.microsoft.com/documentation/powerbi-azure-and-power-bi/)
 
 ## <a name="references"></a>Références
-* [Azure Data Factory](https://azure.microsoft.com/documentation/services/data-factory/)
+* [Azure Data Factory](https://azure.microsoft.com/documentation/services/data-factory/)
 
-  * [Présentation du service Azure Data Factory](data-factory-introduction.md)
+  * [Introduction tooAzure service Data Factory](data-factory-introduction.md)
   * [Prise en main d’Azure Data Factory](data-factory-build-your-first-pipeline.md)
   * [Utilisation des activités personnalisées dans un pipeline Azure Data Factory](data-factory-use-custom-activities.md)
 * [Azure Batch](https://azure.microsoft.com/documentation/services/batch/)
 
   * [Notions de base d’Azure Batch](../batch/batch-technical-overview.md)
   * [Vue d’ensemble des fonctionnalités d’Azure Batch](../batch/batch-api-basics.md)
-  * [Création et gestion d’un compte Azure Batch dans le portail Azure](../batch/batch-account-create-portal.md)
+  * [Créer et gérer le compte Azure Batch Bonjour portail Azure](../batch/batch-account-create-portal.md)
   * [Get started with the .NET Azure Batch Library .NET](../batch/batch-dotnet-get-started.md)
 
 [batch-explorer]: https://github.com/Azure/azure-batch-samples/tree/master/CSharp/BatchExplorer

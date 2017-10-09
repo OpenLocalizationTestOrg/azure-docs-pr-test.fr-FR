@@ -1,22 +1,22 @@
-Pour ajouter une balise à un groupe de ressources, utilisez **azure group set**. Si le groupe de ressources ne comporte aucune balise, transmettez la balise.
+tooadd un groupe de ressources tooa de balise, utilisez **jeu de groupes azure**. Si le groupe de ressources hello n’a pas de balises existantes, passez dans la balise de hello.
 
 ```azurecli
 azure group set -n tag-demo-group -t Dept=Finance
 ```
 
-Les balises sont mises à jour en tant qu'ensemble. Si vous souhaitez ajouter une balise à un groupe de ressources comportant déjà des balises, transmettez toutes les balises. 
+Les balises sont mises à jour en tant qu'ensemble. Si vous souhaitez tooadd balise tooa groupe de ressources qui a des balises existantes, passer toutes les balises hello. 
 
 ```azurecli
 azure group set -n tag-demo-group -t Dept=Finance;Environment=Production;Project=Upgrade
 ```
 
-Les balises ne sont pas héritées par les ressources d’un groupe de ressources. Pour ajouter une balise à une ressource, utilisez **azure resource set**. Transmettez le numéro de version d’API associé au type de ressource auquel vous ajoutez la balise. Si vous avez besoin de récupérer la version d’API, utilisez la commande ci-après avec le fournisseur de ressources pour le type que vous définissez :
+Les balises ne sont pas héritées par les ressources d’un groupe de ressources. tooadd une ressource tooa de balise, utilisez **jeu de Ressources azure**. Passez hello numéro de version d’API pour le type de ressource hello que vous ajoutez la balise hello. Si vous avez besoin de version de hello API tooretrieve, utilisez hello commande avec le fournisseur de ressources hello pour le type de hello que configuration suivante :
 
 ```azurecli
 azure provider show -n Microsoft.Storage --json
 ```
 
-Dans les résultats, recherchez le type de ressource souhaité.
+Dans les résultats de hello, recherchez le type de ressource hello.
 
 ```azurecli
 "resourceTypes": [
@@ -38,13 +38,13 @@ Ensuite, indiquez cette version d’API, le nom du groupe de ressources, le nom 
 azure resource set -g tag-demo-group -n storagetagdemo -r Microsoft.Storage/storageAccounts -t Dept=Finance -o 2016-01-01
 ```
 
-Les balises se trouvent directement dans les ressources et les groupes de ressources. Pour afficher les balises existantes, récupérez un groupe de ressources ainsi que ses ressources avec **azure group show**.
+Les balises se trouvent directement dans les ressources et les groupes de ressources. toosee les balises existantes hello, obtenir un groupe de ressources et ses ressources avec **afficher de groupe azure**.
 
 ```azurecli
 azure group show -n tag-demo-group --json
 ```
 
-Ce qui renvoie des métadonnées sur le groupe de ressources, y compris toutes les balises appliquées.
+Qui retourne des métadonnées sur le groupe de ressources hello, y compris toute tooit balises appliquées.
 
 ```azurecli
 {
@@ -63,25 +63,25 @@ Ce qui renvoie des métadonnées sur le groupe de ressources, y compris toutes l
 }
 ```
 
-Vous affichez les balises d’une ressource spécifique avec **azure resource show**.
+Vous permet d’afficher à l’aide de balises hello pour une ressource particulière **afficher des Ressources azure**.
 
 ```azurecli
 azure resource show -g tag-demo-group -n storagetagdemo -r Microsoft.Storage/storageAccounts -o 2016-01-01 --json
 ```
 
-Pour récupérer toutes les ressources avec une valeur de balise, utilisez la commande suivante :
+tooretrieve toutes les ressources hello avec une valeur de balise, utilisez :
 
 ```azurecli
 azure resource list -t Dept=Finance --json
 ```
 
-Pour récupérer tous les groupes de ressources avec une valeur de balise, utilisez la commande suivante :
+tooretrieve tous les groupes de ressources hello avec une valeur de balise, utilisez :
 
 ```azurecli
 azure group list -t Dept=Finance
 ```
 
-Vous pouvez visualiser les balises existantes dans votre abonnement avec la commande suivante :
+Vous pouvez afficher les balises existantes hello dans votre abonnement avec hello de commande suivante :
 
 ```azurecli
 azure tag list

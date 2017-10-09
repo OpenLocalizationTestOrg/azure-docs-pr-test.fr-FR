@@ -1,5 +1,5 @@
 ---
-title: "Utiliser .NET Core dans une application web sur Linux | Microsoft Docs"
+title: "aaaUse .NET Core dans l’application Web sur Linux | Documents Microsoft"
 description: Utilisez .NET Core dans une application web sur Linux.
 keywords: azure app service, application web, dotnet, core, linux, oss
 services: app-service
@@ -15,40 +15,40 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: aelnably;wesmc;mikono;rachelap
-ms.openlocfilehash: 9226dfb90e52ac2cae2cfc4af7c0705a93f56b44
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 9b7fb7185dff2c99ed88e7937d455177504937b4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-net-core-in-an-azure-web-app-on-linux"></a>Utiliser .NET Core dans une application web Azure sur Linux #
 
 [!INCLUDE [app-service-linux-preview](../../includes/app-service-linux-preview.md)]
 
-Une [application web](https://docs.microsoft.com/azure/app-service-web/app-service-linux-intro) sur Linux fournit un service d’hébergement web hautement évolutif appliquant des mises à jour correctives automatiques à l’aide du système d’exploitation Linux. Ce didacticiel contient des instructions détaillées montrant comment créer une application [.NET Core](https://docs.microsoft.com/aspnet/core/) sur une application web Azure sur Linux. 
+[Application Web](https://docs.microsoft.com/azure/app-service-web/app-service-linux-intro) sur Linux fournit un service d’hébergement web hautement évolutifs et correction automatique à l’aide du système d’exploitation de Linux hello. Ce didacticiel contient des instructions pas à pas montrant comment toocreate un [.NET Core](https://docs.microsoft.com/aspnet/core/) application sur l’application web Azure sous Linux. 
 
 ![Application web sous Linux][10]
 
-Vous pouvez suivre les étapes ci-dessous en utilisant un ordinateur Mac, Windows ou Linux.
+Vous pouvez suivre les étapes de hello ci-dessous à l’aide d’un ordinateur Mac, Windows ou Linux.
 
 ## <a name="prerequisites"></a>Composants requis ##
 
-Pour suivre ce didacticiel : 
+toocomplete ce didacticiel : 
 
-* Installez le [kit de développement logiciel (SDK) .NET Core](https://www.microsoft.com/net/download/core).
+* Installer hello [le Kit de développement .NET Core](https://www.microsoft.com/net/download/core).
 * Installez [Git](https://git-scm.com/downloads).
 
 [!INCLUDE [Free trial note](../../includes/quickstarts-free-trial-note.md)]
 
 ## <a name="create-a-local-net-core-application"></a>Créer une application .NET Core locale ##
 
-Démarrez une nouvelle session de terminal. Créez un répertoire nommé `hellodotnetcore` et remplacez le répertoire actuel par ce dernier. Tapez ensuite la commande suivante : 
+Démarrez une nouvelle session de terminal. Créez un répertoire nommé `hellodotnetcore`et modifier hello Active directory tooit. Puis tapez ce qui suit hello : 
 
 ```
 dotnet new web
 ``` 
 
-  Cette commande crée trois fichiers (*hellodotnetcore.csproj*, *Program.cs* et *Startup.cs*) et un dossier vide (*wwwroot/*) sous le répertoire actuel. Le contenu du fichier `.csproj` doit ressembler à ce qui suit : 
+  Cette commande crée trois fichiers (*hellodotnetcore.csproj*, *Program.cs*, et *Startup.cs*) et un dossier vide (*wwwroot /*) sous le répertoire en cours de hello. Hello contenu de `.csproj` fichier doit ressembler à hello suivantes : 
 
 ```xml
   <!-- Empty lines are omitted. -->
@@ -66,11 +66,11 @@ dotnet new web
   </Project>
 ```
 
-Étant donné que cette application est une application web, une référence à un package ASP.NET Core a été automatiquement ajoutée au fichier *hellodotnetcore.csproj*. Le numéro de version du package est défini en fonction de l’infrastructure choisie. Cet exemple fait référence à ASP.NET Core version 1.1.2, car .NET Core 1.1 est utilisé.
+Étant donné que cette application est une application web, un tooan référence package ASP.NET Core a été automatiquement ajouté toohello *hellodotnetcore.csproj* fichier. numéro de version de Hello du package de hello est définie en fonction de toohello choisi framework. Cet exemple fait référence à ASP.NET Core version 1.1.2, car .NET Core 1.1 est utilisé.
 
-## <a name="build-and-test-the-application-locally"></a>Générer et tester l’application localement ##
+## <a name="build-and-test-hello-application-locally"></a>Générer et tester l’application hello localement ##
 
-Vous pouvez générer et exécuter votre application .NET Core avec la commande `dotnet restore` suivie de la commande `dotnet run`, comme indiqué ici :
+Vous pouvez générer et exécuter votre application .NET Core par hello `dotnet restore` commande suivie hello `dotnet run` de commande, comme indiqué ici :
 
 ```
 dotnet restore
@@ -78,54 +78,54 @@ dotnet run
 ```
 
 
-Lorsque l’application démarre, elle affiche un message indiquant que l’application écoute les demandes entrantes au niveau d’un port. 
+Lors de l’application hello démarre, il affiche un message indiquant l’application hello est à l’écoute des demandes tooincoming à un port. 
 
 ```bash
 Hosting environment: Production
 Content root path: C:\hellodotnetcore
 Now listening on: http://localhost:5000
-Application started. Press Ctrl+C to shut down.
+Application started. Press Ctrl+C tooshut down.
 ```
 
-Testez-la en accédant à `http://localhost:5000/` avec votre navigateur. Si tout fonctionne correctement, vous voyez « Hello World! » comme texte de résultat.
+Testez-le en parcourant trop`http://localhost:5000/` avec votre navigateur. Si tout fonctionne correctement, vous voyez « Hello World! » en tant que texte hello du résultat.
 
 ![Tester avec un navigateur][7]
 
-## <a name="create-a-net-core-app-in-the-azure-portal"></a>Créer une application .NET Core dans le portail Azure ##
+## <a name="create-a-net-core-app-in-hello-azure-portal"></a>Créer une application .NET Core Bonjour portail Azure ##
 
-Vous devez d’abord créer une application web vide. Connectez-vous au [portail Azure](https://portal.azure.com/) et créez une [application web sur Linux](https://portal.azure.com/#create/Microsoft.AppSvcLinux).
+Tout d’abord, vous devez toocreate une application web vide. Connectez-vous à toohello [portail Azure](https://portal.azure.com/) et créer un nouveau [l’application Web sur Linux](https://portal.azure.com/#create/Microsoft.AppSvcLinux).
 
 ![Création d’une application web][1]
 
-Lorsque la page **Créer** s’ouvre, fournissez des détails sur votre application web :
+Hello lorsque **créer** s’ouvre, fournissez des détails sur votre application web :
 
 ![Choix d’une pile d’exécution .NET Core][2]
 
-Utilisez le tableau suivant comme guide pour remplir la page **Créer**, puis sélectionnez **OK** et **Créer** pour créer l’application.
+Suivant de hello d’utilisation de table comme un toofill guide out hello **créer** page, puis sélectionnez **OK** et **créer** toocreate hello application.
 
 | Paramètre      | Valeur suggérée  | Description                                        |
 | ------------ | ---------------- | -------------------------------------------------- |
-| Nom de l’application | hellodotnetcore  | Nom de votre application. Ce nom doit être unique. |
-| Abonnement | Choisir un abonnement existant | Abonnement Azure. |
-| Groupe de ressources | myResourceGroup |  Groupe de ressources Azure qui hébergera l’application web. |
-| Plan App Service | Nom de plan App Service existant |  Plan App Service.  |
-| Configurer le conteneur | .NET Core 1.1 | Type de conteneur pour cette application web : intégré, Docker ou registre privé. |
-| Source d’image  | Intégration  |  Source de l’image. |
-| Pile d’exécution  | .NET Core 1.1  | Version et pile d’exécution.  |
+| Nom de l’application | hellodotnetcore  | nom Hello de votre application. Ce nom doit être unique. |
+| Abonnement | Choisir un abonnement existant | Hello abonnement Azure. |
+| Groupe de ressources | myResourceGroup |  ressource Azure groupe toocontain hello web application Hello. |
+| Plan App Service | Nom de plan App Service existant |  Hello plan App Service.  |
+| Configurer le conteneur | .NET Core 1.1 | type de conteneur pour cette application web de Hello : Registre intégrées, Docker ou Private. |
+| Source d’image  | Intégration  |  source de Hello d’image de hello. |
+| Pile d’exécution  | .NET Core 1.1  | pile de runtime Hello et la version.  |
 
 ## <a name="deploy-your-application-via-git"></a>Déployer votre application via Git ##
 
-Utilisez Git pour déployer l’application .NET Core sur une application web Azure App Service sur Linux.
+Utiliser Git toodeploy hello .NET Core application tooAzure application de Service d’applications Web sur Linux.
 
-Un déploiement Git est déjà configuré sur la nouvelle application web Azure. Vous trouverez l’URL de déploiement Git en suivant l’URL suivante après avoir inséré le nom de votre application web :
+application web Azure Hello possède déjà un déploiement Git configuré. Vous trouverez des URL de déploiement Git hello en naviguant toohello suivant URL après avoir inséré le nom de votre application web :
 
 ```https://{your web app name}.scm.azurewebsites.net/api/scm/info```
 
-L’URL Git a la forme suivante, selon le nom de votre application web :
+Hello URL Git a hello suivant du formulaire basé sur le nom de votre application web :
 
 ```https://{your web app name}.scm.azurewebsites.net/{your web app name}.git```
 
-Exécutez les commandes suivantes pour déployer l’application locale sur votre application web Azure : 
+Exécutez hello suivant de commandes toodeploy hello application locale tooyour Azure web app : 
  
 ```bash
 git init
@@ -135,9 +135,9 @@ git commit -m "Initial deployment commit"
 git push azure master
 ```
 
-Vous n’avez pas besoin d’envoyer de fichiers sous les répertoires *bin/* ou *obj/*, car votre application est générée dans le cloud lorsque les fichiers source de l’application sont envoyés à Azure. Une fois le processus de génération terminé, les fichiers binaires sont copiés dans le répertoire de l’application à l’emplacement */home/site/wwwroot/*.
+Vous n’avez pas besoin toopush tous les fichiers sous *bin /* ou *obj /* répertoires, car votre application est générée dans le cloud de hello lorsque hello l’application fichiers sources sont envoyées tooAzure. Une fois le processus de génération hello est terminée, les fichiers binaires sont copiés dans le répertoire de l’application hello dans */home/site/wwwroot/*.
 
-Vérifiez que les opérations de déploiement à distance réussissent. L’envoi des opérations peut prendre un certain temps, car la résolution de package et le processus de génération s’exécutent dans le cloud. Plusieurs messages d’état s’afficheront, y compris ceux indiquant que les fichiers ont été copiés. Le résultat doit être semblable à ce qui suit :
+Vérifiez que les opérations de déploiement à distance de hello signalent la réussite. Les opérations de push peuvent prendre un certain temps depuis la résolution de package et s’exécutent dans le cloud de hello de processus de génération. Plusieurs messages d’état s’afficheront, y compris ceux indiquant que les fichiers ont été copiés. sortie de Hello doit ressembler similaire toohello suivantes :
 
 ```bash
 /* some output has been removed for brevity */
@@ -151,14 +151,14 @@ remote: Omitting next output lines...
 remote: Finished successfully.
 remote: Running post deployment commands...
 remote: Deployment successful.
-To https://hellodotnetcore.scm.azurewebsites.net/
+toohttps://hellodotnetcore.scm.azurewebsites.net/
  * [new branch]           master -> master
 
 ```
 
-Une fois le déploiement terminé, redémarrez votre application web pour que le déploiement prenne effet. Pour ce faire, accédez au portail Azure, puis à la page **Vue d’ensemble** de votre application web. Sélectionnez le bouton **Redémarrer** sur la page. Quand une fenêtre contextuelle s’affiche, sélectionnez **Oui** pour confirmer. Vous pouvez ensuite parcourir votre application web, comme illustré ici :
+Une fois le déploiement de hello est terminée, redémarrez votre application web pour effet de tootake déploiement hello. toodo, accédez toohello portail Azure et accédez toohello **vue d’ensemble** page de votre application web. Sélectionnez hello **redémarrer** bouton dans la page de hello. Quand une fenêtre contextuelle s’affiche, sélectionnez **Oui** tooconfirm. Vous pouvez ensuite parcourir votre application web, comme illustré ici :
 
-![Exploration de l’application .NET Core déployée sur Azure App Service sur Linux][10]
+![Navigation .NET Core application déployée tooAzure du Service d’applications sur Linux][10]
 
 [!INCLUDE [Clean-up section](../../includes/clean-up-section-portal.md)]
 

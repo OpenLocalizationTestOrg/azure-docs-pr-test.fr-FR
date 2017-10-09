@@ -1,7 +1,7 @@
 ---
-title: "Importer des données à partir d’un fichier dans Azure Machine Learning Studio | Microsoft Docs"
-description: "Découvrez comment charger un fichier de données d’apprentissage de votre disque dur sur Azure Machine Learning Studio. Un module de jeu de données est ainsi créé dans l’espace de travail."
-keywords: "importer des données, format de données, types de données, sources de données, données d’apprentissage"
+title: "aaaImport des données à partir d’un fichier dans Azure Machine Learning Studio | Documents Microsoft"
+description: "Découvrez comment tooupload données d’apprentissage de fichiers à partir de votre disque dur de tooAzure Machine Learning Studio. Cette opération crée un module de jeu de données dans l’espace de travail hello."
+keywords: "importer des données, format de données, types de données, sources de données, données d'apprentissage"
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -15,31 +15,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/20/2017
 ms.author: garye;bradsev
-ms.openlocfilehash: 18010864160ceb2d76aea37196e6944bbe426457
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 636facd9042145382c953a1c75969149ede6f6fe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="import-training-data-from-a-file-on-your-hard-drive-into-machine-learning-studio"></a>Importer des données d’apprentissage à partir d’un fichier situé sur votre disque dur dans Machine Learning Studio
 [!INCLUDE [import-data-into-aml-studio-selector](../../includes/machine-learning-import-data-into-aml-studio.md)]
 
-Découvrez comment charger un fichier de données de votre disque dur pour vous en servir comme données d’apprentissage dans Azure Machine Learning Studio. En important le fichier de données, vous disposez d’un module de jeu de données prêt à l’emploi dans votre espace de travail.
+Découvrez comment tooupload des données de fichiers à partir de votre toouse de disque dur en tant que données d’apprentissage dans Azure Machine Learning Studio. En important un fichier de données hello, vous avez un module de jeu de données prêt à être utilisé dans votre espace de travail.
 
-## <a name="steps-to-import-data-from-a-local-file"></a>Étapes d’importation des données à partir d’un fichier local
-Pour importer des données à partir d’un disque dur local, procédez comme suit :
+## <a name="steps-tooimport-data-from-a-local-file"></a>Données de tooimport étapes à partir d’un fichier local
+tooimport des données à partir d’un disque dur local, procédez comme hello suivant :
 
-1. Cliquez sur **+NOUVEAU** en bas de la fenêtre de Machine Learning Studio.
+1. Cliquez sur **+ nouveau** bas hello de fenêtre de Machine Learning Studio hello.
 2. Sélectionnez **JEU DE DONNÉES** et **DEPUIS UN FICHIER LOCAL**.
-3. Dans la boîte de dialogue **Télécharger un nouveau jeu de données** , recherchez le fichier que vous souhaitez télécharger
-4. Saisissez un nom, identifiez le type de données puis saisissez éventuellement une description. Une description est recommandée : elle vous permet d’enregistrer des caractéristiques relatives aux données que vous souhaitez mémoriser pour une utilisation future.
-5. La case à cocher **Il s'agit de la nouvelle version d'un jeu de donnée existant** vous permet de mettre à jour un jeu de données existant avec de nouvelles données. Cliquez sur cette case à cocher, puis saisissez le nom d’un jeu de données existant.
+3. Bonjour **télécharger un nouveau dataset** boîte de dialogue Parcourir toohello fichier tooupload
+4. Entrez un nom, identifiez le type de données hello et entrez éventuellement une description. Une description est recommandée : il vous permet de toorecord les caractéristiques données hello que vous souhaitez tooremember lors de l’utilisation des données de hello dans les futures hello.
+5. case à cocher de Hello **c’est hello une nouvelle version d’un dataset existant** vous permet de tooupdate un dataset existant avec les nouvelles données. Cliquez sur cette case à cocher, puis entrez les nom hello d’un dataset existant.
 
 ![Charger un nouveau jeu de données](media/machine-learning-import-data-from-local-file/upload-dataset.png)
 
-Pendant le téléchargement, vous verrez un message indiquant que votre fichier est en cours de téléchargement. Le temps de téléchargement dépend de la taille de vos données et de la vitesse de votre connexion au service. Si vous savez que le fichier prendra du temps, vous pouvez faire autre chose dans Machine Learning Studio en attendant. Cependant, la fermeture du navigateur entraîne l’échec du téléchargement.
+Pendant le téléchargement, vous verrez un message indiquant que votre fichier est en cours de téléchargement. Télécharger temps dépend de la taille de hello de vos données et hello la vitesse de votre service de toohello de connexion. Si vous connaissez les fichier hello prendra un certain temps, vous pouvez effectuer d’autres opérations à l’intérieur de Machine Learning Studio pendant que vous attendez. Toutefois, la fermeture du navigateur de hello, toofail de téléchargement de données hello.
 
 ## <a name="dataset-module-is-ready-for-use"></a>Module de jeu de données prêt à l’emploi
-Une fois que vos données sont téléchargées, elles sont stockées dans un module de jeu de données et sont disponibles pour n'importe quelle expérience dans votre espace de travail.
+Une fois téléchargées vos données, il est stocké dans un module de jeu de données et est expérience tooany disponibles dans votre espace de travail.
 
-Quand vous éditez une expérimentation, les jeux de données que vous avez créés apparaissent sous **Mes jeux de données** dans la liste **Jeux de données enregistrés** de la palette des modules. Vous pouvez glisser-déplacer le jeu de données dans le canevas de l’expérience en vue d’affiner l’analyse et Machine Learning.
+Lorsque vous modifiez une expérience, vous pouvez trouver hello de jeux de données que vous avez créé dans hello **mes Datasets** liste sous hello **jeux de données enregistrés** liste dans la palette de module hello. Vous pouvez glisser -déplacer hello le jeu de données sur le canevas de l’expérience hello lorsque vous souhaitez toouse hello dataset pour davantage d’analytique et l’apprentissage.

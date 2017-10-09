@@ -1,5 +1,5 @@
 ---
-title: "Suivi des dépendances dans Azure Application Insights | Microsoft Docs"
+title: "aaaDependency suivi des modifications dans l’Application Azure Insights | Documents Microsoft"
 description: "Analysez l'utilisation, la disponibilité et les performances de votre application web locale ou Microsoft Azure avec Application Insights."
 services: application-insights
 documentationcenter: .net
@@ -13,18 +13,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/04/2017
 ms.author: bwren
-ms.openlocfilehash: 6e0b67ba98af27017901608dde4401600eb9957f
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: e72f5465462ae8e64363cbbaa62911aff636c504
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="set-up-application-insights-dependency-tracking"></a>Configurer Application Insights : suivi des dépendances
-Un *dépendance* est un composant externe qui est appelé par votre application. Il s’agit habituellement d’un service appelé à l’aide de HTTP, d’une base de données ou d’un système de fichiers. [Application Insights](app-insights-overview.md) mesure combien de temps votre application attend les dépendances et la fréquence à laquelle un appel de dépendance échoue. Vous pouvez examiner des appels spécifiques et les associer à des demandes et des exceptions.
+Un *dépendance* est un composant externe qui est appelé par votre application. Il s’agit habituellement d’un service appelé à l’aide de HTTP, d’une base de données ou d’un système de fichiers. [Application Insights](app-insights-overview.md) mesure combien de temps votre application attend les dépendances et la fréquence à laquelle un appel de dépendance échoue. Vous pouvez examiner les appels spécifiques et les associer à toorequests et les exceptions.
 
 ![Exemples de graphiques](./media/app-insights-asp-net-dependencies/10-intro.png)
 
-Le moniteur de dépendance prêt à l’emploi signale les appels aux types de dépendances suivants :
+Moniteur de dépendance d’out of box Hello indique actuellement types toothese d’appels de dépendances :
 
 * Serveur
   * Bases de données SQL
@@ -36,103 +36,103 @@ Le moniteur de dépendance prêt à l’emploi signale les appels aux types de d
 
 La surveillance fonctionne en utilisant l’[instrumentation de code octet](https://msdn.microsoft.com/library/z9z62c29.aspx) autour des méthodes sélectionnées. La surcharge de performances est minime.
 
-Vous pouvez écrire vos propres appels de SDK pour surveiller d’autres dépendances, à la fois dans le code client et serveur, à l’aide de l’[API TrackDependency](app-insights-api-custom-events-metrics.md#trackdependency).
+Vous pouvez également écrire votre propre SDK appelle toomonitor autres dépendances, à la fois dans le code client et serveur de hello, à l’aide de hello [TrackDependency API](app-insights-api-custom-events-metrics.md#trackdependency).
 
 ## <a name="set-up-dependency-monitoring"></a>Configurer la surveillance des dépendances
-Les informations sur les dépendances partielles sont collectées automatiquement par le [SDK Application Insights](app-insights-asp-net.md). Pour obtenir des données complètes, installez l’agent approprié pour le serveur hôte.
+Informations de dépendance partiel sont automatiquement collectées par hello [Application Insights SDK](app-insights-asp-net.md). tooget complète des données, installez agent approprié de hello pour le serveur hôte de hello.
 
 | Plateforme | Installer |
 | --- | --- |
-| Serveur IIS |[Installez Status Monitor sur votre serveur](app-insights-monitor-performance-live-website-now.md) ou [mettez à niveau votre application avec .NET Framework version 4.6 ou ultérieure](http://go.microsoft.com/fwlink/?LinkId=528259) et installez le [SDK Application Insights](app-insights-asp-net.md) dans votre application. |
-| Application web Azure |Dans le panneau de configuration de votre application web, [ouvrez le panneau Application Insights](app-insights-azure-web-apps.md) et choisissez l’installation si vous y êtes invité. |
+| Serveur IIS |Soit [installer Status Monitor sur votre serveur](app-insights-monitor-performance-live-website-now.md) ou [mise à niveau de votre infrastructure d’application too.NET 4.6 ou version ultérieure](http://go.microsoft.com/fwlink/?LinkId=528259) et installer hello [Application Insights SDK](app-insights-asp-net.md) dans votre application. |
+| Application web Azure |Dans le panneau de configuration web app, [panneau d’Application Insights hello ouvert dans le panneau de configuration web application](app-insights-azure-web-apps.md) et choisir l’installation si vous y êtes invité. |
 | Service cloud Azure |[Utilisez une tâche de démarrage](app-insights-cloudservices.md) ou [installez le .NET Framework version 4.6 ou ultérieure](../cloud-services/cloud-services-dotnet-install-dotnet.md). |
 
-## <a name="where-to-find-dependency-data"></a>Où trouver des données sur les dépendances
+## <a name="where-toofind-dependency-data"></a>Où les données de dépendance toofind
 * [Mise en correspondance d’applications](#application-map) visualise les dépendances entre votre application et les composants voisins.
 * [Les panneaux de performances, de navigateurs et d’échecs](#performance-and-blades) affichent les données sur les dépendances de serveur.
 * [Les panneaux de navigateurs](#ajax-calls) montrent les appels AJAX provenant des navigateurs de vos utilisateurs.
-* [Parcourez les requêtes lentes ou ayant échoué](#diagnose-slow-requests) pour vérifier leurs appels de dépendances.
-* Vous pouvez utiliser [Analytics](#analytics) pour interroger des données de dépendances.
+* [Parcourez les requêtes lents ou ayant échoué](#diagnose-slow-requests) toocheck appelle de leurs dépendances.
+* [Analytique](#analytics) peuvent être des données de dépendance tooquery utilisé.
 
-## <a name="application-map"></a>Mise en correspondance d'applications
-Mise en correspondance d'applications fonctionne comme une aide visuelle pour découvrir les dépendances entre les composants de votre application. Il est généré automatiquement à partir de la télémétrie de votre application. Cet exemple montre les appels AJAX provenant des scripts de navigateur et les appels REST de l’application serveur à deux services externes.
+## <a name="application-map"></a>Plan de l’application
+Mappage d’application agit comme un dépendances de toodiscovering aide visuelle entre les composants hello de votre application. Il est automatiquement généré à partir de la télémétrie hello à partir de votre application. Cet exemple montre les appels AJAX à partir de scripts de navigateur hello et reste à partir du serveur de hello services externes d’application tootwo.
 
-![Mise en correspondance d'applications](./media/app-insights-asp-net-dependencies/08.png)
+![Plan de l’application](./media/app-insights-asp-net-dependencies/08.png)
 
-* **Accédez à partir des zones** aux graphiques de dépendances pertinents et d’autres graphiques.
-* **Épinglez la mise en correspondance** sur le [tableau de bord](app-insights-dashboards.md), où elle sera entièrement opérationnelle.
+* **Accédez à partir de boîtes de hello** toorelevant dépendance et autres graphiques.
+* **Mappage de code confidentiel hello** toohello [tableau de bord](app-insights-dashboards.md), où il ne sera pas complètement fonctionnelle.
 
 [En savoir plus](app-insights-app-map.md).
 
 ## <a name="performance-and-failure-blades"></a>Panneaux de performances et d’échecs
-Le panneau de performances indique la durée des appels de dépendances effectués par l’application serveur. Il existe un graphique de synthèse et un tableau segmenté par appel.
+Panneau de performances Hello montre la durée hello d’appels de dépendance effectués par l’application de serveur hello. Il existe un graphique de synthèse et un tableau segmenté par appel.
 
 ![Graphiques de dépendances du panneau de performances](./media/app-insights-asp-net-dependencies/dependencies-in-performance-blade.png)
 
-Parcourez les graphiques de synthèses ou les éléments du tableau pour rechercher les occurrences brutes de ces appels.
+Cliquez sur les graphiques de résumé hello ou hello table éléments toosearch brut occurrences de ces appels.
 
 ![Instances d’appels de dépendances](./media/app-insights-asp-net-dependencies/dependency-call-instance.png)
 
-Le **Nombre d’échecs** est affiché dans le panneau **Échecs**. Un échec est tout code de retour non compris dans la plage 200-399 ou inconnu.
+**Nombre d’échecs** figurent sur hello **échecs** panneau. Une défaillance est tout code de retour n’est pas de hello plage 200-399, ou inconnu.
 
 > [!NOTE]
-> **100 % d’échecs ?** Cela signifie probablement que vous obtenez uniquement des données de dépendances partielles. Vous devez [configurer une surveillance des dépendances adaptée à votre plateforme](#set-up-dependency-monitoring).
+> **100 % d’échecs ?** Cela signifie probablement que vous obtenez uniquement des données de dépendances partielles. Vous devez trop[configurer tooyour approprié plateforme d’analyse de dépendance](#set-up-dependency-monitoring).
 >
 >
 
 ## <a name="ajax-calls"></a>Appels AJAX
-Le panneau Navigateurs affiche la durée et le taux d’échec des appels AJAX à partir de [JavaScript dans vos pages web](app-insights-javascript.md). Ils sont affichés en tant que dépendances.
+Panneau de navigateurs Hello montre la durée de hello et taux d’échec d’AJAX appelle à partir de [JavaScript dans vos pages web](app-insights-javascript.md). Ils sont affichés en tant que dépendances.
 
 ## <a name="diagnosis"></a> Diagnostiquer les demandes lentes
-Chaque événement de demande est associé aux appels de dépendances, exceptions et autres événements qui sont suivis pendant que votre application traite la demande. Ainsi, si certaines demandes présentent de médiocres performances, vous pouvez savoir si cela est dû à la lenteur des réponses d’une dépendance.
+Chaque événement de requête est associé à des appels de dépendance hello, exceptions et autres événements qui sont suivies lors du traitement de votre application hello demande. Si vous effectuant certaines demandes mal, vous pouvez trouver si elle est en raison de réponses tooslow à partir d’une dépendance.
 
 Prenons un exemple.
 
-### <a name="tracing-from-requests-to-dependencies"></a>Traçage des demandes aux dépendances
-Ouvrez le panneau Performances et examinez la grille des demandes :
+### <a name="tracing-from-requests-toodependencies"></a>Le suivi de demandes toodependencies
+Ouvrez le panneau de performances hello et observez la grille hello de demandes :
 
 ![Liste de demandes avec moyennes et nombres](./media/app-insights-asp-net-dependencies/02-reqs.png)
 
-La durée de la première est très longue. Examinons-la pour en savoir plus.
+haut Hello un est très longue. Voyons si nous pouvons découvrir où hello durée.
 
-Cliquez sur cette ligne pour afficher les événements de la demande :
+Cliquez sur cette ligne toosee les événements de demande individuelle :
 
 ![Liste des occurrences de demande](./media/app-insights-asp-net-dependencies/03-instances.png)
 
-Cliquez sur n’importe quelle instance de longue durée pour l’examiner de plus près, et faites défiler la page jusqu’aux appels de dépendances distantes associés à cette demande :
+Cliquez sur n’importe quel tooinspect d’instance longue il plus et faites défiler toohello dépendance distant appels connexes toothis demande :
 
-![Rechercher des appels de dépendances distantes, identifier une durée anormale](./media/app-insights-asp-net-dependencies/04-dependencies.png)
+![Rechercher des dépendances de tooRemote d’appels, d’identifier la durée inhabituelle](./media/app-insights-asp-net-dependencies/04-dependencies.png)
 
-Il semble que la plupart du temps passé au traitement de cette demande ait été consacré à l’appel d’un service local.
+Il semble que la plupart des hello maintenance de temps passé à cette demande dans un service d’appel tooa local.
 
-Sélectionnez cette ligne pour obtenir plus d’informations :
+Sélectionnez cette ligne de tooget plus d’informations :
 
-![Cliquez sur cette dépendance distante pour identifier la cause](./media/app-insights-asp-net-dependencies/05-detail.png)
+![Parcourez cette dépendance à distance tooidentify hello soient à l’origine](./media/app-insights-asp-net-dependencies/05-detail.png)
 
-Il semblerait que ce soit la cause du problème. Maintenant que nous avons identifié le problème, il nous suffit de découvrir pourquoi cet appel est si lent.
+Il semble que c’est là problème de hello. Nous avez correspondant à des problème de hello, donc maintenant nous juste besoin toofind out pourquoi cet appel prend autant de temps.
 
 ### <a name="request-timeline"></a>Chronologie de demande
-Dans un autre cas, aucun appel de dépendance n’est particulièrement long. Mais en basculant vers la vue chronologique, nous pouvons voir où le délai s’est produit dans notre traitement interne :
+Dans un autre cas, aucun appel de dépendance n’est particulièrement long. Mais en basculant l’affichage de la chronologie toohello, nous pouvons voir où le délai de hello s’est produite dans notre traitement interne :
 
-![Rechercher des appels de dépendances distantes, identifier une durée anormale](./media/app-insights-asp-net-dependencies/04-1.png)
+![Rechercher des dépendances de tooRemote d’appels, d’identifier la durée inhabituelle](./media/app-insights-asp-net-dependencies/04-1.png)
 
-Il semble y avoir un long délai après le premier appel de dépendance. Nous devons examiner notre code pour savoir pourquoi.
+Il semble toobe un grand écart après le premier appel de dépendance hello, donc nous devons examiner notre toosee code pourquoi qui est.
 
 ### <a name="profile-your-live-site"></a>Profiler votre site en ligne
 
-Vous voulez savoir à quoi tout ce temps a été consacré ? Le [profileur d’Application Insights](app-insights-profiler.md) effectue le suivi des appels HTTP vers votre site dynamique et vous indique les fonctions de votre code qui ont pris le plus de temps.
+Aucune idée où des temps de hello ? Hello [profileur d’Application Insights](app-insights-profiler.md) suivis HTTP appelle tooyour site en ligne et vous montre les fonctions dans votre code a duré plus longtemps hello.
 
 ## <a name="failed-requests"></a>Demandes ayant échoué
-Les échecs de demandes peuvent également être associés à des échecs d’appels de dépendances. Là encore, nous pouvons tout parcourir d’un simple clic pour localiser le problème.
+Demandes ayant échoué peuvent également être associées toodependencies d’appels ayant échoué. Là encore, nous pouvons cliquer tootrack problème de hello.
 
-![Cliquez sur le graphique des demandes ayant échoué](./media/app-insights-asp-net-dependencies/06-fail.png)
+![Cliquez sur le graphique de demandes ayant échoué hello](./media/app-insights-asp-net-dependencies/06-fail.png)
 
-Accédez à une occurrence d’une demande ayant échoué et examinez les événements associés.
+Parcourez occurrence tooan d’une demande ayant échouée et consulter ses événements associés.
 
-![Cliquez sur un type de demande, cliquez sur l’instance pour obtenir une vue différente de la même instance, cliquez dessus pour obtenir des informations relatives à l’exception.](./media/app-insights-asp-net-dependencies/07-faildetail.png)
+![Cliquez sur un type de requête, cliquez sur hello tooget tooa autre vue d’instance de hello même instance, cliquez dessus tooget détails de l’exception.](./media/app-insights-asp-net-dependencies/07-faildetail.png)
 
 ## <a name="analytics"></a>Analyse
-Vous pouvez suivre les dépendances dans le [langage de requête Log Analytics](https://docs.loganalytics.io/). Voici quelques exemples.
+Vous pouvez suivre les dépendances dans hello [de langage de requête Analytique de journal](https://docs.loganalytics.io/). Voici quelques exemples.
 
 * Rechercher les appels de dépendances ayant échoué :
 
@@ -172,11 +172,11 @@ Vous pouvez suivre les dépendances dans le [langage de requête Log Analytics]
 
 
 ## <a name="custom-dependency-tracking"></a>Suivi personnalisé des dépendances
-Le module de suivi des dépendances standard découvre automatiquement les dépendances externes, telles que des bases de données et des API REST. Mais vous souhaiterez peut-être traiter d’autres composants de la même façon.
+module de suivi de la dépendance standard Hello découvre automatiquement les dépendances externes telles que les bases de données et les API REST. Toutefois, vous pouvez toobe de certains composants supplémentaires traité Bonjour même façon.
 
-Vous pouvez écrire du code qui envoie des informations de dépendance, en utilisant la même [API TrackDependency](app-insights-api-custom-events-metrics.md#trackdependency) que celle utilisée par les modules standard.
+Vous pouvez écrire du code qui envoie des informations de dépendance, à l’aide de hello même [TrackDependency API](app-insights-api-custom-events-metrics.md#trackdependency) qui est utilisé par les modules standard hello.
 
-Par exemple, si vous générez votre code avec un assembly que vous n’avez pas écrit vous-même, vous pouvez minuter tous les appels vers cet assembly afin de déterminer sa contribution dans votre temps de réponse. Pour afficher ces données dans les graphiques de dépendance d’Application Insights, envoyez-les en utilisant `TrackDependency`.
+Par exemple, si vous générez votre code avec un assembly que vous n’avez pas l’écrire vous-même, tous les tooit d’appels hello impossible du temps, toofind effectue la contribution il tooyour réponse délai d’attente. envoyer des données affichées dans les graphiques de dépendance hello dans Application Insights, toohave à l’aide de `TrackDependency`.
 
 ```C#
 
@@ -193,16 +193,16 @@ Par exemple, si vous générez votre code avec un assembly que vous n’avez pas
             }
 ```
 
-Si vous souhaitez désactiver le module de suivi des dépendances standard, supprimez la référence à DependencyTrackingTelemetryModule dans [ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md).
+Si vous souhaitez tooswitch désactiver le module de suivi hello dépendance standard, supprimez tooDependencyTrackingTelemetryModule de référence hello dans [ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md).
 
 ## <a name="troubleshooting"></a>Résolution des problèmes
 *L’indicateur de réussite de la dépendance affiche toujours True ou False.*
 
 *La requête SQL n’est pas affichée en entier.*
 
-* Effectuez une mise à niveau vers la dernière version du Kit de développement logiciel (SDK). Si votre version de .NET est inférieur à 4.6 :
-  * Hôte IIS : installez l’[Agent Application Insights](app-insights-monitor-performance-live-website-now.md) sur les serveurs hôtes.
-  * Application web Azure : ouvrez l’onglet Application Insights dans le panneau de configuration de l’application web et installez Application Insights.
+* Mettre à niveau la version la plus récente du Kit de développement logiciel de hello toohello. Si votre version de .NET est inférieur à 4.6 :
+  * Hôte IIS : installer [Application Insights Agent](app-insights-monitor-performance-live-website-now.md) sur les serveurs hôtes de hello.
+  * Application web Azure : ouvrir Application Insights onglet hello web application le panneau de configuration et installez Application Insights.
 
 ## <a name="video"></a>Vidéo
 

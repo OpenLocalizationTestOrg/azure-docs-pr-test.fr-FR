@@ -1,5 +1,5 @@
 ---
-title: "Décodage EDIFACT B2B Logic Apps contenant un segment UNH2.5 - Azure Logic Apps | Documents Microsoft"
+title: "aaaLogic B2B applications edifact décoder résoudre UNH2.5 - Azure Logic Apps | Documents Microsoft"
 description: "Décodage EDIFACT B2B contenant un segment UNH2.5 - Azure Logic Apps"
 services: logic-apps
 documentationcenter: .net,nodejs,java
@@ -14,40 +14,40 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/27/2017
 ms.author: LADocs; padmavc
-ms.openlocfilehash: 62ad8183cc6e9f56255b2729a04ee7710d00a21a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6d85242d0f828fa52cdc9689938f3ba1e51b1183
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-handle-edifact-documents-having-unh25-segment"></a>Gérer les documents EDIFACT contenant un segment UNH2.5
-Lorsque UNH2.5 est présent dans le document EDIFACT, il est utilisé pour la recherche de schéma. 
+# <a name="how-toohandle-edifact-documents-having-unh25-segment"></a>Comment toohandle EDIFACT documents ayant UNH2.5 segment
+Lorsque UNH2.5 est présent dans le document de hello EDIFACT, il est utilisé pour la recherche de schéma. 
 
-Exemple : le champ UNH est **EAN008** dans le message EDIFACT  
+Exemple : champ UNH de hello est **EAN008** dans le message de salutation EDIFACT  
 UNH+SSDD1+ORDERS:D:03B:UN:**EAN008**'  
 
-Étapes à suivre pour gérer le message 
-1. Mettre à jour le schéma
-2. Vérifier les paramètres de l’accord  
+Message de type hello toohandle toofollow étapes 
+1. Mettre à jour le schéma de hello
+2. Vérifiez les paramètres de l’accord hello  
 
-## <a name="update-the-schema"></a>Mettre à jour le schéma
-Pour traiter le message, vous devez déployer un schéma avec le nom de nœud racine UNH2.5.  Pour l’exemple donné, le nom racine du schéma est **EFACT_D03B_ORDERS_EAN008**  
+## <a name="update-hello-schema"></a>Mettre à jour le schéma de hello
+message de type hello tooprocess, vous devez toodeploy un schéma avec le nom de nœud racine hello UNH2.5.  Pour obtenir un exemple, nom racine du schéma hello serait **EFACT_D03B_ORDERS_EAN008**  
 
-Pour chaque D03B_ORDERS avec un autre segment UNH2.5, vous devez déployer un schéma individuel.  
+Pour chaque D03B_ORDERS avec un segment UNH2.5 différent, vous devriez toodeploy un schéma individuel.  
 
-## <a name="add-schema-to-the-edifact-agreement"></a>Ajouter un schéma à l’accord EDIFACT
+## <a name="add-schema-toohello-edifact-agreement"></a>Ajouter un accord EDIFACT toohello schéma
 ### <a name="edifact-decode"></a>Décodage EDIFACT
-Pour décoder le message entrant, configurez le schéma EDIFACT dans les paramètres de réception de l’accord EDIFACT.
-1. Ajouter le schéma au compte d’intégration    
-2. Configurez le schéma EDIFACT dans les paramètres de réception de l’accord EDIFACT. 
-3. Sélectionnez un accord EDIFACT et cliquez sur **Modifier au format JSON**.  Ajoutez la valeur UNH2.5 dans l’accord de réception **schemaReferences**
-![](./media/logic-apps-enterprise-integration-edifact_inputfile_unh2.5/image1.png).
+tooDecode hello message entrant, configurer hello schéma Bonjour EDIFACT les paramètres de réception de contrat
+1. Ajouter le compte d’intégration hello schéma toohello    
+2. Configurer le schéma de hello Bonjour EDIFACT les paramètres de réception de contrat. 
+3. Sélectionnez un accord EDIFACT et cliquez sur **Modifier au format JSON**.  Ajouter la valeur UNH2.5 Bonjour accord de réception **schemaReferences**
+![](./media/logic-apps-enterprise-integration-edifact_inputfile_unh2.5/image1.png)
 
 ### <a name="edifact-encode"></a>Encodage EDIFACT
-Pour encoder le message entrant, configurez le schéma EDIFACT dans les paramètres d’envoi de l’accord EDIFACT.
-1. Ajouter le schéma au compte d’intégration    
-2. Configurez le schéma EDIFACT dans les paramètres d’envoi de l’accord EDIFACT. 
-3. Sélectionnez un accord EDIFACT et cliquez sur **Modifier au format JSON**.  Ajoutez la valeur UNH2.5 dans l’accord d’envoi **schemaReferences**
+tooEncode hello message entrant, configurer le schéma de hello dans les paramètres d’envoi hello EDIFACT accord
+1. Ajouter le compte d’intégration hello schéma toohello    
+2. Configurer le schéma de hello dans les paramètres d’envoi un accord EDIFACT hello. 
+3. Sélectionnez un accord EDIFACT et cliquez sur **Modifier au format JSON**.  Ajouter la valeur UNH2.5 Bonjour envoyer l’accord **schemaReferences**
 ![](./media/logic-apps-enterprise-integration-edifact_inputfile_unh2.5/image2.png)
 
 ## <a name="next-steps"></a>Étapes suivantes

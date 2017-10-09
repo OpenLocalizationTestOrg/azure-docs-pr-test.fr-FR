@@ -1,6 +1,6 @@
 ---
-title: "Vérifier la connectivité avec Azure Network Watcher - API CLI2.0 | Microsoft Docs"
-description: "Cette page explique comment vérifier la connectivité avec Network Watcher à l’aide d’Azure CLI 2.0"
+title: "connectivité aaaCheck avec l’Observateur réseau de Azure - Azure CLI 2.0 | Documents Microsoft"
+description: "Cette page explique comment vérifier des toouse connectivité avec l’Observateur réseau à l’aide d’Azure CLI 2.0"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -13,11 +13,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/11/2017
 ms.author: gwallace
-ms.openlocfilehash: c1deaa40bfda0bf3858ad56d3d6a90df34351278
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: e94e0fad03fd36ebf4e1fdf9e3cfee934b289deb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="check-connectivity-with-azure-network-watcher-using-azure-cli-20"></a>Vérifier la connectivité avec Azure Network Watcher à l’aide d’Azure CLI 2.0
 
@@ -26,24 +26,24 @@ ms.lasthandoff: 08/18/2017
 > - [CLI 2.0](network-watcher-connectivity-cli.md)
 > - [API REST Azure](network-watcher-connectivity-rest.md)
 
-Découvrez comment utiliser la connectivité pour vérifier si une connexion TCP directe entre une machine virtuelle et un point de terminaison donné peut être établie.
+Découvrez comment toouse connectivité tooverify si une connexion TCP directe à partir d’un tooa de machine virtuelle donné du point de terminaison peut être établie.
 
 ## <a name="before-you-begin"></a>Avant de commencer
 
-Cet article part du principe que vous disposez des ressources suivantes :
+Cet article suppose que vous avez hello suivant des ressources :
 
-* Une instance de Network Watcher dans la région où vous souhaitez vérifier la connectivité.
+* Une instance de l’Observateur réseau dans la région de hello souhaité toocheck connectivité.
 
-* Des machines virtuelles avec lesquelles vérifier la connectivité.
+* Machines virtuelles toocheck la connectivité avec.
 
 [!INCLUDE [network-watcher-preview](../../includes/network-watcher-public-preview-notice.md)]
 
 > [!IMPORTANT]
-> La vérification de la connectivité requiert une extension de machine virtuelle `AzureNetworkWatcherExtension`. Pour installer l’extension sur une machine virtuelle Windows, consultez la page [Azure Network Watcher Agent virtual machine extension for Windows](../virtual-machines/windows/extensions-nwa.md) (Extension de machine virtuelle Azure Network Watcher Agent pour Windows). Pour une machine virtuelle Linux, consultez la page [Azure Network Watcher Agent virtual machine extension for Linux](../virtual-machines/linux/extensions-nwa.md) (Extension de machine virtuelle Azure Network Watcher Agent pour Linux).
+> La vérification de la connectivité requiert une extension de machine virtuelle `AzureNetworkWatcherExtension`. Pour installer l’extension de hello sur une machine virtuelle Windows, visitez [extension de machine virtuelle d’Agent de l’Observateur réseau Azure pour Windows](../virtual-machines/windows/extensions-nwa.md) et de, visitez Linux VM [extension de machine virtuelle Azure réseau Observateur Agent pour Linux](../virtual-machines/linux/extensions-nwa.md).
 
-## <a name="register-the-preview-capability"></a>Inscrire la fonction de version préliminaire 
+## <a name="register-hello-preview-capability"></a>Inscrire la fonction d’aperçu hello 
 
-La vérification de connectivité est actuellement en préversion publique. Pour l’utiliser, cette fonctionnalité doit être inscrite. Pour ce faire, exécutez l’exemple de commande CLI suivant :
+Vérification de la connectivité est actuellement en version préliminaire publique, toouse cette fonctionnalité, qu'il doit toobe inscrit. toodo, exécution hello suivant l’exemple de l’interface CLI
 
 ```azurecli 
 az feature register --namespace Microsoft.Network --name AllowNetworkWatcherConnectivityCheck
@@ -51,13 +51,13 @@ az feature register --namespace Microsoft.Network --name AllowNetworkWatcherConn
 az provider register --namespace Microsoft.Network 
 ``` 
 
-Pour vérifier que l’inscription s’est bien déroulée, exécutez la commande de l’interface de ligne de commande suivante :
+l’inscription de hello tooverify a réussi, exécutez hello CLI commande suivante :
 
 ```azurecli
 az feature show --namespace Microsoft.Network --name AllowNetworkWatcherConnectivityCheck 
 ```
 
-Si la fonctionnalité a été correctement inscrite, vous devez obtenir la sortie suivante : 
+Si la fonctionnalité de hello a été inscrit correctement, sortie de hello doit correspondre au suivant de hello : 
 
 ```json
 {
@@ -70,9 +70,9 @@ Si la fonctionnalité a été correctement inscrite, vous devez obtenir la sorti
 }
 ``` 
 
-## <a name="check-connectivity-to-a-virtual-machine"></a>Vérifier la connectivité à une machine virtuelle
+## <a name="check-connectivity-tooa-virtual-machine"></a>Vérifiez la connectivité tooa virtual machine
 
-Cet exemple vérifie la connectivité à une machine virtuelle de destination sur le port 80.
+Cet exemple vérifie l’ordinateur virtuel de destination de tooa connectivité via le port 80.
 
 ### <a name="example"></a>Exemple
 
@@ -82,7 +82,7 @@ az network watcher test-connectivity --resource-group ContosoRG --source-resourc
 
 ### <a name="response"></a>Réponse
 
-La réponse suivante est tirée de l’exemple précédent.  Dans cette réponse, `ConnectionStatus` est **Inaccessible**. Vous pouvez constater que toutes les sondes envoyées ont échoué. La connectivité a échoué au niveau de l’appliance virtuelle en raison de `NetworkSecurityRule`, configuré par l’utilisateur et nommé **UserRule_Port80**, destiné à bloquer le trafic entrant sur le port 80. Ces informations peuvent être utilisées pour mener des recherches sur les problèmes de connexion.
+Hello suivant la réponse est à partir de l’exemple précédent de hello.  Dans cette réponse, hello `ConnectionStatus` est **inaccessible**. Vous pouvez voir que tous les hello sondes envoyées ayant échouées. Échec de la connectivité de Hello au niveau de l’appliance virtuelle hello tooa échéance configurée par l’utilisateur `NetworkSecurityRule` nommé **UserRule_Port80**, configuré tooblock du trafic entrant sur le port 80. Ces informations peuvent être utilisées tooresearch les problèmes de connexion.
 
 ```json
 {
@@ -153,7 +153,7 @@ Nic0/ipConfigurations/ipconfig1",
 
 ## <a name="validate-routing-issues"></a>Valider les problèmes de routage
 
-Cet exemple vérifie la connectivité entre une machine virtuelle et un point de terminaison distant.
+exemple de Hello vérifie la connectivité entre un ordinateur virtuel et un point de terminaison distant.
 
 ### <a name="example"></a>Exemple
 
@@ -163,7 +163,7 @@ az network watcher test-connectivity --resource-group ContosoRG --source-resourc
 
 ### <a name="response"></a>Réponse
 
-Dans l’exemple suivant, `connectionStatus` est **Inaccessible**. Dans les informations relatives à `hops`, vous pouvez constater sous `issues` que le trafic a été bloqué par `UserDefinedRoute`.
+Dans l’exemple suivant de hello, hello `connectionStatus` est affiché comme **inaccessible**. Bonjour `hops` plus d’informations, vous pouvez voir sous `issues` que le trafic de hello a été bloqué échéance tooa `UserDefinedRoute`.
 
 ```json
 {
@@ -211,7 +211,7 @@ pNic0/ipConfigurations/ipconfig1",
 
 ## <a name="check-website-latency"></a>Vérifier la latence du site Web
 
-L’exemple suivant vérifie la connectivité à un site Web.
+Hello exemple suivant vérifie le site Web du tooa hello connectivité.
 
 ### <a name="example"></a>Exemple
 
@@ -221,7 +221,7 @@ az network watcher test-connectivity --resource-group ContosoRG --source-resourc
 
 ### <a name="response"></a>Réponse
 
-Dans la réponse suivante, vous pouvez constater que `connectionStatus` apparaît **Joignable**. Lorsqu’une connexion est établie, les valeurs de latence sont fournies.
+Bonjour suivant la réponse, vous pouvez voir hello `connectionStatus` affiche sous la forme **joignable**. Lorsqu’une connexion est établie, les valeurs de latence sont fournies.
 
 ```json
 {
@@ -255,9 +255,9 @@ pNic0/ipConfigurations/ipconfig1",
 }
 ```
 
-## <a name="check-connectivity-to-a-storage-endpoint"></a>Vérifier la connectivité à un point de terminaison de stockage
+## <a name="check-connectivity-tooa-storage-endpoint"></a>Vérifiez le point de terminaison de stockage de connectivité tooa
 
-L’exemple suivant vérifie la connectivité entre une machine virtuelle et un compte de stockage blob.
+Hello exemple suivant vérifie la hello connectivité à partir d’un compte de stockage de blog de l’ordinateur virtuel tooa.
 
 ### <a name="example"></a>Exemple
 
@@ -267,7 +267,7 @@ az network watcher test-connectivity --resource-group ContosoRG --source-resourc
 
 ### <a name="response"></a>Réponse
 
-Le code json suivant est un exemple de réponse tiré de l’exécution de la cmdlet précédente. Si la vérification est réussie, la propriété `connectionStatus` apparaît **Joignable**.  Les détails concernant le nombre de tronçons nécessaires pour accéder à l’objet blob de stockage et la latence vous sont fournis.
+Hello json suivant est hello exemple de réponse à partir de l’applet de commande précédente hello en cours d’exécution. Comme la vérification de hello est réussie, hello `connectionStatus` propriété s’affiche en tant que **joignable**.  Vous trouverez détails hello concernant le nombre de hello de blob de stockage hello sauts tooreach requis et la latence.
 
 ```json
 {
@@ -302,6 +302,6 @@ Le code json suivant est un exemple de réponse tiré de l’exécution de la cm
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Découvrez comment automatiser les captures de paquets avec des alertes de machine virtuelle en consultant [Create an alert triggered packet capture (Créer une capture de paquets déclenchée par alerte)](network-watcher-alert-triggered-packet-capture.md)
+Découvrez comment de captures de paquets de tooautomate d’alertes de l’ordinateur virtuel en consultant [créer une capture de paquets déclenchées alerte](network-watcher-alert-triggered-packet-capture.md)
 
 Recherchez si certains types de trafic sont autorisés au sein ou en dehors de votre machine virtuelle en consultant [Check IP flow verify (Vérifier les flux IP)](network-watcher-check-ip-flow-verify-portal.md)

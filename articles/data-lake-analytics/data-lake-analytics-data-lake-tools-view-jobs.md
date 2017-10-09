@@ -1,6 +1,6 @@
 ---
-title: "Utilisation de l’Explorateur de travaux et de la Vue des travaux pour les travaux Azure Data Lake Analytics | Microsoft Docs"
-description: "Découvrez comment utiliser l’Explorateur de travaux et la Vue des travaux pour les travaux Azure Data Lake Analytics. "
+title: "aaaUse navigateur de travail et de la vue des travaux pour les travaux de l’Analytique de LAC de données Azure | Documents Microsoft"
+description: "Découvrez comment toouse navigateur de travail et de la vue des travaux pour les travaux de l’Analytique de LAC de données Azure. "
 services: data-lake-analytics
 documentationcenter: 
 author: mumian
@@ -14,25 +14,25 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 08/02/2017
 ms.author: jgao
-ms.openlocfilehash: 8f1729f84a4fde2a56427a41b356d6263818519e
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: c45e618426808349ca380b1bcfaefd4c947ce7ab
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-job-browser-and-job-view-for-azure-data-lake-analytics-jobs"></a>Utilisation de l’Explorateur de travaux et la Vue des travaux pour les travaux Azure Data Lake Analytics
-Le service Azure Data Lake Analytics archive les travaux soumis dans un [magasin de requêtes](#query-store). Dans cet article, vous allez apprendre à utiliser l’Explorateur de travaux et la Vue des travaux dans Azure Data Lake Tools pour Visual Studio pour trouver les informations d’historique des travaux. 
+Analytique de LAC de données Azure service archives Hello soumis des travaux dans un [magasin de requêtes](#query-store). Dans cet article, vous découvrez comment toouse navigateur de projet et affichage du travail dans Azure Data Lake Tools pour hello de toofind Visual Studio historique de la tâche d’informations. 
 
-Par défaut, le service Data Lake Analytics archive les travaux des 30 derniers jours. La période d’expiration peut être configurée à partir du portail Azure en définissant la stratégie d’expiration personnalisée. Vous ne pourrez plus accéder aux informations des travaux après l’expiration. 
+Par défaut, hello service de données Lake Analytique archive les travaux hello pendant 30 jours. période d’expiration de Hello peut être configuré à partir de hello portail Azure en configurant la stratégie d’expiration de hello personnalisé. Vous ne serez pas en mesure de tooaccess informations sur les travaux hello après expiration. 
 
 ## <a name="prerequisites"></a>Composants requis
 Voir [Data Lake Tools for Visual Studio - Composants requis](data-lake-analytics-data-lake-tools-get-started.md#prerequisites).
 
-## <a name="open-the-job-browser"></a>Ouverture de l’Explorateur de travaux
-Accédez à l’Explorateur de travaux via **Explorateur de serveurs>Azure>Data Lake Analytics>Travaux** dans Visual Studio.  L’explorateur de travaux vous permet d’accéder au magasin de requêtes d’un compte Data Lake Analytics. Il présente le magasin des requêtes sur la gauche, lequel indique des informations de base sur les travaux, et la vue du travail sur la droite, laquelle indique des informations détaillées sur les travaux.
+## <a name="open-hello-job-browser"></a>Ouvrez hello navigateur de travail
+Accès hello navigateur travail via **l’Explorateur de serveurs > Azure > Analytique lac de données > travaux** dans Visual Studio.  Hello navigateur de travail, vous pouvez accéder aux magasin de requêtes hello d’un compte Analytique lac de données. Navigateur de travail affiche le magasin de requêtes sur hello gauche, informations sur les travaux de base et vue des travaux sur l’affichage de droite hello détaillées des informations sur les travaux.
 
 ## <a name="job-view"></a>Vue des travaux
-La Vue des travaux affiche des informations détaillées sur un travail. Pour ouvrir un travail, vous pouvez double-cliquer sur un travail dans l’Explorateur de travaux ou l’ouvrir à partir du menu Data Lake en cliquant sur Vue des travaux. Une boîte de dialogue indiquant l’URL du travail devrait apparaître.
+Vue montre hello des informations détaillées d’un travail de la tâche. tooopen un travail, vous pouvez double-cliquez sur une tâche Bonjour navigateur de projet ou ouvrez à partir du menu de Data Lake hello en cliquant sur la vue des travaux. Vous devez voir une boîte de dialogue renseignée avec l’URL de tâche hello.
 
 ![Data Lake Tools pour Visual Studio - Explorateur de travaux](./media/data-lake-analytics-data-lake-tools-view-jobs/data-lake-tools-job-view.png)
 
@@ -40,101 +40,101 @@ La Vue des travaux contient les éléments suivants :
 
 * Résumé des tâches
   
-    Actualisez la Vue des travaux pour afficher les informations les plus récentes sur les travaux en cours d’exécution.
+    Hello vue des travaux d’actualisation toosee hello les informations les plus récentes des travaux en cours d’exécution.
   
   * Statut de tâche (graphique) :
     
-      Le statut de tâche indique les phases du travail :
+      État de la tâche présente les phases de travail hello :
     
       ![Azure Data Lake Analytics - Statut des phases du travail](./media/data-lake-analytics-data-lake-tools-view-jobs/data-lake-tools-job-phases.png)
     
-    * Préparation : téléchargez votre script dans le cloud, en compilant et en optimisant le script à l’aide du service de compilation.
-    * En attente : les travaux sont mis en file d’attente de ressources suffisantes, ou les travaux dépassent la limite maximale de travaux simultanés par compte. Le paramètre de priorité détermine l’ordre des travaux mis en file d’attente : plus le numéro est faible, plus la priorité est élevée.
-    * En cours d’exécution : le travail est en cours d’exécution dans votre compte Data Lake Analytics.
-    * Finalisation : le travail se termine (par exemple, finalisation du fichier).
+    * Préparation : Téléchargez votre cloud toohello de script, la compilation et l’optimisation de script hello à l’aide du service de compilation hello.
+    * En attente : Les travaux sont en file d’attente lactosérum qu’ils sont en attente suffisamment de ressources ou les travaux hello dépassent travaux simultanés de hello max par limitation de votre compte. paramètre de priorité Hello détermine la séquence hello des travaux en file d’attente - hello hello inférieure, une priorité plus élevée hello hello.
+    * En cours d’exécution : tâche de hello est réellement en cours d’exécution dans votre compte Analytique lac de données.
+    * Finalisation : fin du travail de hello (par exemple, la finalisation de fichier de hello).
       
-      Le travail peut échouer à chaque phase. Par exemple, en cas d’erreurs de compilation dans la phase de préparation, d’erreurs d’expiration de délai lors de la phase de mise en file d’attente et d’erreurs d’exécution dans la phase d’exécution, etc.
+      travail de Hello peut échouer dans chaque phase. Par exemple, les erreurs de compilation dans la phase de préparation hello, erreurs de délai d’attente dans la phase de hello en file d’attente et les erreurs d’exécution dans la phase en cours d’exécution de hello, etc..
   * Informations de base
     
-      Les informations de base sur le travail apparaissent dans la partie inférieure du volet Résumé des tâches.
+      informations de base de tâche Hello s’affiche dans la partie inférieure de hello du Panneau de résumé de la tâche hello.
     
       ![Azure Data Lake Analytics - Statut des phases du travail](./media/data-lake-analytics-data-lake-tools-view-jobs/data-lake-tools-job-info.png)
     
-    * Résultat du travail : A réussi ou a échoué. Le travail peut échouer à chaque phase.
+    * Résultat du travail : A réussi ou a échoué. tâche de Hello peut échouer dans chaque phase.
     * Durée totale : temps écoulé (durée) entre l’heure de soumission et l’heure de fin.
-    * Durée totale de calcul : somme des temps d’exécution de chaque vertex, que vous pouvez considérer comme le temps d’exécution du travail dans un seul vertex. Reportez-vous à la valeur Total des vertex pour plus d’informations sur les vertex.
-    * Heure de soumission/début/fin : heure à laquelle le service Data Lake Analytics reçoit le travail soumis/commence à exécuter le travail/termine le travail avec succès ou non.
-    * Compilation/En attente/en cours d’exécution : temps écoulé durant la phase de préparation/en attente/en cours d’exécution.
-    * Compte : compte Data Lake Analytics utilisé pour exécuter le travail.
-    * Auteur : utilisateur qui a envoyé le travail. Il peut s’agit du compte d’une personne réelle ou d’un compte système.
-    * Priorité : priorité du travail. Plus le numéro est faible, plus la priorité est élevée. Cette valeur affecte uniquement l’ordre des travaux dans la file d’attente. Définir une priorité plus élevée n’accélère pas les travaux en cours d’exécution.
-    * Parallélisme : nombre maximal d’unités de données Azure Lake Analytics (ADLAU) simultanées demandées, également appelées vertex. Actuellement, un vertex est égal à une machine virtuelle avec deux cœurs virtuels et six Go de RAM, mais cette quantité peut être mise à niveau dans les prochaines mises à jour Data Lake Analytics.
-    * Octets restants : octets qui restent à traiter jusqu'à ce que la tâche soit terminée.
-    * Octets lus/écrits : octets qui ont été lus/écrits depuis le lancement du travail.
-    * Total des vertex : le travail est divisé en plusieurs éléments, chaque élément étant appelé un vertex. Cette valeur indique le nombre d’éléments qui composent le travail. Vous pouvez considérer un vertex comme une unité de processus de base, également appelée Azure Data Lake Analytics Unit (ADLAU), et les vertex peuvent être exécutés dans un parallélisme. 
-    * Terminé/En cours d’exécution/Échec : nombre de vertex terminés/en cours d’exécution/ayant échoué. Les vertex peuvent échouer en raison d’erreurs au niveau du code utilisateur et du système, mais le système tente de relancer automatiquement plusieurs fois les vertex ayant échoué. Si le vertex échoue toujours après une nouvelle tentative, la totalité du travail échoue.
+    * Durée totale de calcul : somme hello chaque sommet de durée d’exécution, vous pouvez envisager qu'il est exécuté comme hello heure à laquelle cette tâche hello dans uniquement un sommet. Consultez tooTotal sommets toofind plus d’informations sur les sommets.
+    * Heure de soumission/début/fin : heure hello lorsque hello service de données Lake Analytique reçoit hello de toorun/démarrage de l’envoi de travail/Fin travail de hello correctement ou non.
+    * Compilation en file d’attente/en cours d’exécution : Durée totale d’exécution est passée au cours de la phase de préparation en file d’attente/en cours d’exécution hello.
+    * : Hello Analytique lac de données compte utilisé pour exécuter le travail de hello.
+    * Auteur : hello utilisateur envoyé hello travail, il peut être le compte d’une personne réelle ou un compte système.
+    * Priorité : priorité de hello du travail de hello. Hello hello numéro inférieur, une priorité plus élevée hello hello. Il affecte uniquement la séquence hello de travaux de hello dans la file d’attente hello. Définir une priorité plus élevée n’accélère pas les travaux en cours d’exécution.
+    * Parallélisme : hello a demandé un nombre maximal simultanées Azure Lake Analytique des unités de données (ADLAUs), également appelé sommets. Actuellement, un sommet est égal tooone machine virtuelle avec deux cœurs virtuels et six Go de RAM, bien que cela peut être mis à niveau dans les futures Analytique lac de données mises à jour.
+    * Octets de gauche : Des octets toobe traité tant que hello tâche se termine.
+    * Octets lus/écrits : octets qui ont été lus/écrits depuis le démarrage en cours d’exécution du travail de hello.
+    * Nombre total de sommets : tâche de hello est divisé en plusieurs éléments de travail, chaque élément de travail est appelé un sommet. Cette valeur décrit le travail de hello combien éléments de travail se compose de. Vous pouvez considérer un vertex comme une unité de processus de base, également appelée Azure Data Lake Analytics Unit (ADLAU), et les vertex peuvent être exécutés dans un parallélisme. 
+    * S’est terminée en cours d’exécution/Échec : hello nombre de sommets de terminée ou d’en cours d’exécution/échec. Sommets peuvent échouer en raison de pannes du système et de code utilisateur tooboth, mais échec de tentatives de système hello sommets automatiquement plusieurs fois. Si les sommets hello sont toujours en échec après une nouvelle tentative, l’ensemble du projet hello échoue.
 * Graphique du travail
   
-    Un script SQL-U représente la logique de la transformation des données d’entrée en données de sortie. Le script est compilé et optimisé pour un plan d’exécution physique lors la phase de préparation. Graphique du travail permet d’afficher le plan d’exécution physique.  Le diagramme suivant illustre ce processus :
+    Un script U-SQL représente hello une logique de transformation des données toooutput de données d’entrée. script de Hello est compilée et optimisée du plan d’exécution physique tooa au niveau de la phase de préparation hello. Graphique de travail est un plan d’exécution physique tooshow hello.  Hello suivant schéma illustre les processus hello :
   
     ![Azure Data Lake Analytics - Statut des phases du travail](./media/data-lake-analytics-data-lake-tools-view-jobs/data-lake-tools-logical-to-physical-plan.png)
   
-    Un travail est divisé en plusieurs éléments. Chaque élément est appelé un vertex. Les vertex sont regroupés en Super Vertex (également appelé phase) et visualisés sous la forme d’un graphique de travail. Les panneaux verts dans le graphique du travail indiquant les différentes phases.
+    Un travail est divisé en plusieurs éléments. Chaque élément est appelé un vertex. les sommets Hello sont regroupés en tant que Super sommets (également appelé phase) et affichées sous la forme graphique du travail. plaquettes de scène vert Hello dans le graphique de travail hello indiquent les étapes hello.
   
-    Chaque vertex d’une phase effectue le même type de travail en utilisant différentes parties des mêmes données. Par exemple, si vous disposez d’un fichier contenant un To de données et des centaines de vertex à lire, chaque vertex lit un bloc de données. Ces vertex sont regroupés dans la même phase et effectuent le même travail sur différentes parties du même fichier d’entrée.
+    Chaque sommet d’une étape fait hello même type de travailler avec des différents éléments de hello même données. Par exemple, si vous disposez d’un fichier contenant un To de données et des centaines de vertex à lire, chaque vertex lit un bloc de données. Ces derniers sont regroupés dans hello même étape et faire de même fonctionnent sur différentes parties du même fichier d’entrée.
   
   * <a name="state-information"></a>Informations sur la phase
     
-      Au cours d’une phase spécifique, certains nombres apparaissent dans le panneau.
+      Dans une étape spécifique, des nombres sont affichés dans le résumé de hello.
     
       ![Azure Data Lake Analytics - Phase du graphique du travail](./media/data-lake-analytics-data-lake-tools-view-jobs/data-lake-tools-job-graph-stage.png)
     
-    * SV1 Extract : nom d’une phase, défini par un nombre et par la méthode d’opération.
-    * 84 vertex : nombre total de vertex dans cette phase. Le chiffre indique le nombre d’éléments de travail qui composent cette phase.
-    * 12.90 s/vertex : temps d’exécution moyen du vertex pour cette phase. Ce chiffre est calculé à l’aide de la fonction SUM (temps d’exécution de chaque vertex)/(nombre de vertex). Ce qui signifie que si vous avez pu attribuer tous les vertex exécutés dans le parallélisme, la totalité de la phase s’est terminée en 12,90 s. Cela signifie également que si tout le travail de cette phase a été effectué en série, le coût équivaudrait au nombre de vertex * temps moyen.
+    * SV1 Extraire : nom hello d’une étape, nommée par une méthode d’opération numéro et hello.
+    * 84 sommets : hello nombre total de sommets dans cette étape. la figure Hello indique le nombre d’éléments de travail est divisé dans cette étape.
+    * 12.90 de vertex/s : hello des temps d’exécution moyen de sommets pour cette étape. Ce chiffre est calculé à l’aide de la fonction SUM (temps d’exécution de chaque vertex)/(nombre de vertex). Ce qui signifie que si vous pouvez attribuer tous les sommets hello exécutées dans le parallélisme, hello entière est terminé dans 12.90 s. Cela signifie également que si tous les hello travail dans cette étape est effectuée en série, hello coût serait #vertices * temps de réponse moyen.
     * 850 895 lignes écrites : nombre total de lignes écrites au cours de cette phase.
     * R/W : quantité de données lues/écrites au cours de cette phase, en octets.
-    * Couleurs : couleurs utilisées dans cette phase pour indiquer le statut des différents vertex.
+    * Couleurs : Les couleurs sont utilisées dans l’état de différents sommets tooindicate l’étape hello.
       
-      * Vert indique que le vertex a réussi.
-      * Orange indique que le vertex a été relancé. Le vertex relancé a échoué mais il a été correctement automatiquement relancé par le système et la totalité de la phase s’est terminée avec succès. Si le vertex relancé échoue toujours, la couleur passe au rouge et la totalité du travail échoue.
-      * Rouge indique un échec, c’est-à-dire qu’un vertex a été relancé plusieurs fois par le système mais échoue toujours. Ce scénario provoque l’échec de la totalité du travail.
+      * Vert indique les sommets hello sont réussi.
+      * Orange indique les sommets hello sont retentée. les sommets Hello retentée a échoué, mais sont tentée à nouveau automatiquement et correctement par hello système hello global est terminé avec succès. Si les sommets hello retenté mais échoue encore, couleur de hello devient rouge et hello ensemble du projet a échoué.
+      * Rouge indique un échec, ce qui signifie que certaines un sommet avait été retentée plusieurs fois par le système de hello mais toujours a échoué. Ce scénario provoque toofail d’ensemble du projet hello.
       * Bleu signifie qu’un vertex est en cours d’exécution.
-      * Blanc indique que le vertex est en attente. Le vertex peut attendre d’être replanifié lorsqu’une unité ADLAU devient disponible, ou attendre d’autres informations si les données d’entrée ne sont pas prêtes.
+      * Blanc indique hello sommet est en attente. les sommets Hello peuvent être toobe en attente planifiée une fois qu’un ADLAU est disponible, ou elle peut être en attente pour l’entrée, car ses données d’entrée n’est peut-être pas prêtes.
       
-      Vous trouverez plus de détails sur la phase en plaçant le curseur de la souris sur un état :
+      Vous trouverez plus de détails pour l’étape de hello en plaçant le curseur de la souris par un état :
       
       ![Azure Data Lake Analytics - Détails de la phase du graphique du travail](./media/data-lake-analytics-data-lake-tools-view-jobs/data-lake-tools-job-graph-stage-details.png)
-  * Vertex : décrit les détails des vertex, par exemple le nombre total de vertex, le nombre de vertex terminés, ayant échoué, toujours en cours d’exécution, en attente, etc.
-  * Lecture des données dans un ou plusieurs pods : les fichiers et les données sont stockés dans plusieurs pods dans un système de fichiers distribués. Cette valeur décrit la quantité de données lues dans le même pod ou dans plusieurs pods.
-  * Durée totale de calcul : somme des temps d’exécution de chaque vertex au cours de la phase, que vous pouvez considérer comme le temps nécessaire si la totalité du travail de cette phase est exécutée dans un seul vertex.
-  * Données et lignes écrites/lues : indique la quantité de données ou de lignes qui ont été lues/écrites, ou qui doivent être lues.
+  * Sommets : Décrit les hello sommets plus d’informations, par exemple, le nombre de sommets au total, le nombre de sommets ont été effectuées, sont elles a échoué ou est toujours en attente en cours d’exécution, etc..
+  * Lecture des données dans un ou plusieurs pods : les fichiers et les données sont stockés dans plusieurs pods dans un système de fichiers distribués. valeur Hello ici décrit la quantité de données a été lue hello même les zones ou cross-pod.
+  * Nombre total de temps de calcul : somme de hello de chaque exécution de sommets dans la phase de hello, vous pouvez le considérer comme hello temps si tout le travail dans la phase de hello est exécuté dans uniquement un sommet.
+  * Données et les lignes écrites/lecture : indique la quantité données ou les lignes ont été lus/écrits, ou doivent toobe lire.
   * Échecs de lecture de vertex : indique le nombre de vertex qui ont échoué lors de la lecture de données.
-  * Ignorer les vertex en double : si un vertex s’exécute trop lentement, le système peut configurer plusieurs vertex afin qu’ils exécutent le même élément de travail. Les vertex redondants sont supprimés dès qu’un des vertex se termine avec succès. Cette option enregistre le nombre de vertex qui ont été ignorés car représentant des doublons dans la phase.
-  * Révocations de vertex : le vertex a réussi mais a été réexécuté ultérieurement pour certaines raisons. Par exemple, si un vertex en aval perd des données d’entrée intermédiaires, il demandera au vertex en amont de s’exécuter à nouveau.
-  * Exécutions de planifications de vertex : durée totale de planification des vertex.
-  * Données minimales/moyennes/maximales lues : valeur minimale/moyenne/maximale des données lues pour chaque vertex.
-  * Durée : temps écoulé d’une phase. Vous devez charger le profil pour afficher cette valeur.
+  * Ignore les sommets en double : si un sommet s’exécute trop lentement, système de hello peut planifier plusieurs sommets toorun hello même élément de travail. Les sommets reductant seront supprimées une fois les sommets hello se terminent avec succès. Sommet en double ignore le nombre de hello d’enregistrements de sommets sont ignorées en tant que doublons dans la phase de hello.
+  * Révocations de sommets : les sommets hello a réussi, mais obtenir réexécuter ultérieurement en raison des raisons de toosome. Par exemple, si en aval sommet perd des données d’entrée intermédiaire, il demandera hello vertex en amont toorerun.
+  * Exécutions de planification de sommets : durée totale hello les sommets hello ont été planifiées.
+  * Lecture de données moyenne/Min/Max sommets : hello minimale/moyenne/maximale de chaque sommet lire les données.
+  * Durée : hello durée totale d’exécution que prend d’une étape, vous devez tooload profil toosee cette valeur.
   * Lecture de travail
     
-      Data Lake Analytics exécute les travaux et archive les informations sur l’exécution des vertex de ces travaux, par exemple l’heure à laquelle les vertex ont démarré, se sont arrêtés, ont échoué, comment ils ont été relancés, etc. Toutes les informations sont automatiquement consignées dans le magasin de requêtes puis stockées dans le profil de travail. Vous pouvez télécharger le profil de travail via l’option « Charger le profil » de la Vue des travaux, et vous pouvez afficher l’option Lecture de travail après avoir téléchargé le profil de travail.
+      Analytique de LAC de données exécute les travaux et les archives hello sommets en cours d’exécution d’informations de travaux hello, par exemple lorsque les sommets hello sont démarrés, arrêtés, a échoué et comment ils sont retentées, etc.. Toutes les informations de hello est automatiquement enregistré dans le magasin de requêtes hello et stockée dans son profil de travail. Vous pouvez télécharger hello profil de travail via « Profil de charge » dans la vue des travaux, et vous pouvez afficher hello lecture de la tâche après avoir téléchargé hello profil de travail.
     
-      Lecture de travail est une visualisation symbolique des opérations effectuées dans le cluster. Elle vous permet de surveiller la progression de l'exécution du travail et de détecter visuellement les anomalies de performance et les goulots d'étranglement très rapidement (moins de 30 s généralement).
+      Lecture de la tâche est une visualisation parfaite illustration des sites, ce qui est arrivé dans le cluster de hello. Elle vous permet de surveiller la progression de l'exécution du travail et de détecter visuellement les anomalies de performance et les goulots d'étranglement très rapidement (moins de 30 s généralement).
   * Affichage du tableau (Heat Map) du travail 
     
-      Le tableau du travail peut être sélectionné dans la liste déroulante Affichage du menu Graphique du travail. 
+      Carte thermique des travaux peut être sélectionné via la liste déroulante hello affichage graphique de la tâche. 
     
       ![Azure Data Lake Analytics - Tableau du graphique du travail](./media/data-lake-analytics-data-lake-tools-view-jobs/data-lake-tools-job-graph-heat-map-display.png)
     
-      Cette option indique les valeurs d’E/S, de temps et de débit d’un travail, vous permettant d’identifier les zones où le travail passe le plus de temps, ou si votre travail est un travail avec des limites d’E/S et ainsi de suite.
+      Il affiche la carte de chaleur hello d’e/s, temps et le débit d’une tâche, par le biais duquel vous pouvez rechercher où le travail de hello consacre à la plupart du temps de hello, ou si votre projet est un travail de la limite d’e/s et ainsi de suite.
     
       ![Azure Data Lake Analytics - Exemple de tableau du graphique du travail](./media/data-lake-analytics-data-lake-tools-view-jobs/data-lake-tools-job-graph-heat-map-example.png)
     
-    * Progression : progression de l’exécution du travail. Pour en savoir plus, consultez les [informations de la phase](#stage-information).
-    * Données lues/écrites : tableau des données totales lues/écrites à chaque phase.
-    * Temps de calcul : tableau de la fonction SUM (temps d’exécution de chaque vertex), que vous pouvez considérer comme le temps nécessaire si la totalité du travail de cette phase est exécutée dans 1 seul vertex.
-    * Temps d’exécution moyen par nœud : tableau de la fonction SUM (temps d’exécution de chaque vertex) / (nombre de vertex). Ce qui signifie que si vous avez pu attribuer tous les vertex exécutés dans le parallélisme, la totalité de la phase sera effectuée dans ce laps de temps.
-    * Débit d’entrée/sortie : tableau du débit d’entrée/sortie de chaque phase, vous permettant de vérifier si votre travail comporte des limites d’E/S.
+    * Progression : hello la progression de l’exécution de travaux, voir les informations de [plus d’informations à l’étape](#stage-information).
+    * Les données en lecture/écriture : carte thermique hello du total des données en lecture/écriture à chaque étape.
+    * Temps de calcul : hello carte thermique de somme (heure de l’exécution chaque sommet), vous pouvez considérer ceci la durée pendant laquelle il faudrait si tout le travail dans la phase de hello est exécuté avec les 1 uniquement sommets.
+    * Durée moyenne d’exécution par nœud : carte thermique hello de somme (heure de l’exécution chaque sommet) / (nombre de sommets). Ce qui signifie que si vous pouvez attribuer tous les sommets hello exécutées dans le parallélisme, ensemble de la scène hello est effectuée dans ce laps de temps.
+    * Débit d’entrée/sortie : hello carte thermique de débit d’entrée/sortie de chaque étape, vous pouvez vérifier si votre travail est une tâche liée d’e/s via ce.
 * Opérations sur les métadonnées
   
     Vous pouvez effectuer certaines opérations sur les métadonnées dans votre script SQL-U, notamment créer une base de données, supprimer une table, etc. Ces opérations sont affichées dans Opération sur les métadonnées après compilation. Vous pouvez rechercher des assertions, créer des entités, ou déposer ici des entités.
@@ -142,37 +142,37 @@ La Vue des travaux contient les éléments suivants :
     ![Azure Data Lake Analytics - Opérations sur les métadonnées dans la Vue des travaux](./media/data-lake-analytics-data-lake-tools-view-jobs/data-lake-tools-job-view-metadata-operations.png)
 * Historique de l'état
   
-    L’historique de l’état est également affiché dans le Résumé des tâches, mais vous pouvez obtenir plus de détails ici. Vous trouverez des informations détaillées telles l’heure à laquelle le travail a été préparé, mis en attente, démarré et terminé. Vous pouvez également afficher le nombre de fois où le travail a été compilé (valeur CcsAttempts : 1), l’heure à laquelle le travail a été réellement réparti vers le cluster (valeur Détail : répartition du travail vers le cluster), etc.
+    Hello historique de l’état est également affichée dans le résumé de la tâche, mais vous pouvez obtenir plus de détails ici. Vous pouvez trouver hello détaillée des informations telles que lorsque le travail de hello a été préparé, en file d’attente, démarré, s’est terminée. Vous pouvez également rechercher combien de fois le travail de hello a été compilé (hello CcsAttempts : 1), lorsque est réellement cluster de hello travail distribué toohello (hello détail : la distribution toocluster de travail), etc..
   
     ![Azure Data Lake Analytics - Historique de l’état dans la Vue des travaux](./media/data-lake-analytics-data-lake-tools-view-jobs/data-lake-tools-job-view-state-history.png)
 * Diagnostics
   
-    L’outil diagnostique automatiquement l’exécution du travail. Vous recevrez des alertes lorsqu'il y a des erreurs ou des problèmes de performances dans vos travaux. Veuillez noter que vous devez télécharger le profil pour obtenir ici des informations complètes. 
+    outil de Hello permet de diagnostiquer automatiquement l’exécution du travail. Vous recevrez des alertes lorsqu'il y a des erreurs ou des problèmes de performances dans vos travaux. Notez que vous devez toodownload profil tooget complètes informations ici. 
   
     ![Azure Data Lake Analytics - Diagnostics dans la Vue des travaux](./media/data-lake-analytics-data-lake-tools-view-jobs/data-lake-tools-job-view-diagnostics.png)
   
-  * Avertissement : une alerte apparaît ici avec un avertissement du compilateur. Vous pouvez cliquer sur « x problème(s) » pour obtenir plus de détails une fois l’alerte affichée.
+  * Avertissement : une alerte apparaît ici avec un avertissement du compilateur. Vous pouvez cliquer sur « x ou les problèmes » lien toohave plus de détails une fois hello alerte s’affiche.
   * Exécution trop longue du vertex : si un vertex expire (par exemple, après 5 heures), les problèmes sont décrits ici.
-  * Utilisation des ressources : si vous avez alloué trop ou pas assez de parallélisme que nécessaire, les problèmes sont décrits ici. Vous pouvez également cliquer sur Utilisation des ressources pour obtenir plus d’informations et analyser des scénarios afin de trouver une meilleure allocation des ressources (pour plus d’informations, consultez ce guide).
+  * Utilisation des ressources : si vous avez alloué trop ou pas assez de parallélisme que nécessaire, les problèmes sont décrits ici. Également vous pouvez cliquez sur toosee de l’utilisation des ressources plus d’informations et effectuer des scénarios toofind une meilleure allocation de ressources (pour plus d’informations, consultez ce guide).
   * Vérification de la mémoire : si un vertex utilise plus de 5 Go de mémoire, les problèmes sont décrits ici. L’exécution du travail peut être annulée par le système s’il utilise davantage de mémoire que la limitation du système.
 
 ## <a name="job-detail"></a>Détail du travail
-L’option Détail de la tâche affiche des informations détaillées sur le travail, y compris le script, les ressources et la vue d’exécution du vertex.
+Détail du travail affiche hello des informations détaillées de tâche hello, y compris la vue de l’exécution de sommets, de ressources et de Script.
 
 ![Azure Data Lake Analytics - Détail du travail](./media/data-lake-analytics-data-lake-tools-view-jobs/data-lake-tools-job-details.png)
 
 * Script
   
-    Le script SQL-U du travail est stocké dans le magasin de requêtes. Vous pouvez consulter le script U-SQL d’origine et le soumettre à nouveau si nécessaire.
+    Hello script U-SQL de la tâche de hello est stocké dans le magasin de requêtes hello. Vous pouvez afficher le script U-SQL d’origine de hello et nouveau il si nécessaire.
 * Ressources
   
-    Les sorties de compilation du travail sont stockés dans le magasin de requêtes via l’option Ressources. Par exemple, vous pouvez rechercher ici l’expression « algebra.xml », utilisée pour afficher le graphique du travail, les assemblys que vous avez enregistrés, etc.
+    Vous pouvez trouver des sorties de compilation hello travail stockés dans le magasin de requêtes hello via des ressources. Par exemple, vous pouvez rechercher « algebra.xml » est utilisé tooshow hello travail graphique, les assemblys hello que vous vous êtes inscrit, etc. ici.
 * Vue d’exécution du vertex
   
-    Affiche des détails sur l’exécution des vertex. Le profil du travail archive chaque journal d’exécution du vertex, notamment le total des données lues/écrites, le temps d’exécution, l’état, etc. Dans cette vue, vous pouvez obtenir plus d’informations sur la façon dont un travail a été exécuté. Pour plus d’informations, consultez [Utilisation de la vue d’exécution du vertex dans Azure Data Lake Tools pour Visual Studio](data-lake-analytics-data-lake-tools-use-vertex-execution-view.md).
+    Affiche des détails sur l’exécution des vertex. chaque journal d’exécution de sommets, telles que les données total en lecture/écriture, exécution, état, etc. les archives Hello profil de travail. Dans cette vue, vous pouvez obtenir plus d’informations sur la façon dont un travail a été exécuté. Pour plus d’informations, consultez [hello d’utilisation vue de l’exécution de sommets dans Data Lake Tools pour Visual Studio](data-lake-analytics-data-lake-tools-use-vertex-execution-view.md).
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Pour consigner les informations de diagnostic, consultez [Accès aux journaux de diagnostic d’Azure Data Lake Analytics](data-lake-analytics-diagnostic-logs.md)
-* Pour voir une requête plus complexe, consultez [Analyse de journaux des sites web à l'aide d'Azure Data Lake Analytics](data-lake-analytics-analyze-weblogs.md).
-* Pour utiliser la vue d’exécution du vertex, consultez [Utilisation de la vue d’exécution du vertex dans Data Lake Tools pour Visual Studio](data-lake-analytics-data-lake-tools-use-vertex-execution-view.md)
+* toolog des informations de diagnostic, consultez [l’accès aux journaux de diagnostic pour l’Analytique de LAC de données Azure](data-lake-analytics-diagnostic-logs.md)
+* toosee une requête plus complexe, consultez [site Web d’analyse se connecte à l’aide d’Analytique de LAC de données Azure](data-lake-analytics-analyze-weblogs.md).
+* vue de l’exécution de sommets toouse, consultez [hello d’utilisation vue de l’exécution de sommets dans Data Lake Tools pour Visual Studio](data-lake-analytics-data-lake-tools-use-vertex-execution-view.md)
 

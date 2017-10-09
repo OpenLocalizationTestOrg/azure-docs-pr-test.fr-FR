@@ -1,6 +1,6 @@
 ---
-title: Utilisation du stockage Azure dans les applications Windows Store | Microsoft Docs
-description: "Apprenez à créer une application Windows Store qui utilise les services Azure Blob Storage, Queue Storage, Table Storage et File Storage."
+title: aaaUse stockage Azure dans les applications du Windows Store | Documents Microsoft
+description: "Découvrez comment toocreate du Windows Store application qui utilise le stockage d’objets Blob Azure, de file d’attente, de Table ou de fichier."
 services: storage
 documentationcenter: 
 author: mmacy
@@ -14,20 +14,20 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 12/08/2016
 ms.author: marsma
-ms.openlocfilehash: 43d38584270fbbbe6fa4e4ff8cef72ca44e14acc
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: ac21b0695c0d77c1d81c1b921718fb929945d45e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-azure-storage-in-windows-store-apps"></a>Utilisation d'Azure Storage dans les applications Windows Store
+# <a name="how-toouse-azure-storage-in-windows-store-apps"></a>Comment toouse le stockage Azure dans les applications du Windows Store
 ## <a name="overview"></a>Vue d'ensemble
-Ce guide montre comment commencer le développement d'une application Windows Store utilisant Azure Storage.
+Ce guide montre comment tooget démarrer avec le développement d’une application Windows Store qui utilise le stockage Azure.
 
 ## <a name="download-required-tools"></a>Téléchargement des outils nécessaires
-* [Visual Studio](https://www.visualstudio.com/downloads/) permet de générer, de déboguer, de localiser, de mettre en package et de déployer des applications Windows Store en toute simplicité. Visual Studio 2012 ou une version ultérieure est nécessaire.
-* La [bibliothèque cliente d’Azure Storage](https://www.nuget.org/packages/WindowsAzure.Storage) fournit une bibliothèque de classes Windows Runtime qui permet d’utiliser Azure Storage.
-* [outils de services de données WCF pour applications Windows Store](http://www.microsoft.com/download/details.aspx?id=30714) développent l’expérience Ajouter une référence de service avec la prise en charge OData côté client pour les applications Windows Store dans Visual Studio.
+* [Visual Studio](https://www.visualstudio.com/downloads/) rend facile toobuild, déboguer, localiser, empaqueter et déployer des applications du Windows Store. Visual Studio 2012 ou une version ultérieure est nécessaire.
+* Hello [bibliothèque cliente de stockage Azure](https://www.nuget.org/packages/WindowsAzure.Storage) fournit une bibliothèque de classes Windows Runtime pour travailler avec le stockage Azure.
+* [WCF données Services Tools pour applications du Windows Store](http://www.microsoft.com/download/details.aspx?id=30714) étend l’expérience d’ajouter une référence de Service hello avec prise en charge de OData côté client pour les applications du Windows Store dans Visual Studio.
 
 ## <a name="develop-apps"></a>Développement d'applications
 ### <a name="getting-ready"></a>Préparation
@@ -35,19 +35,19 @@ Créez un projet d'application Windows Store dans Visual Studio 2012 ou version
 
 ![store-apps-storage-vs-project][store-apps-storage-vs-project]
 
-Ensuite, ajoutez une référence à la bibliothèque cliente Azure Storage. Pour cela, cliquez avec le bouton droit sur **Références**, choisissez **Ajouter une référence**, puis recherchez la bibliothèque cliente Storage pour Windows Runtime que vous avez téléchargée :
+Ensuite, ajoutez une référence de toohello bibliothèque cliente de stockage Azure en cliquant sur **références**, puis sur **ajouter une référence**, puis accédez toohello bibliothèque cliente de stockage pour Windows Runtime que vous avez télécharger :
 
 ![store-apps-storage-choose-library][store-apps-storage-choose-library]
 
-### <a name="using-the-library-with-the-blob-and-queue-services"></a>Utilisation de la bibliothèque avec les services blob et de file d'attente
-À ce stade, votre application est prête à appeler les services Azure Blob et de file d'attente. Ajoutez les instructions **using** suivantes afin que les types Azure Storage soient référencés directement :
+### <a name="using-hello-library-with-hello-blob-and-queue-services"></a>À l’aide de la bibliothèque hello avec hello Blob et les services de file d’attente
+À ce stade, votre application est prête toocall hello services Blob et Azure file d’attente. Ajoutez hello suivant **à l’aide de** instructions afin que les types de stockage Azure peuvent être référencés directement :
 
 ```csharp
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Auth;
 ```
 
-Ensuite, ajoutez un bouton sur votre page. Ajoutez le code suivant dans son événement **Cliquer** et modifiez votre méthode de gestionnaire d'événements grâce au [mot clé async](http://msdn.microsoft.com/library/vstudio/hh156513.aspx):
+Ensuite, ajoutez une page tooyour de bouton. Ajouter hello suivant code tooits **cliquez sur** événement et modifier votre méthode de gestionnaire d’événements à l’aide de hello [mot clé async](http://msdn.microsoft.com/library/vstudio/hh156513.aspx):
 
 ```csharp
 var credentials = new StorageCredentials(accountName, accountKey);
@@ -57,22 +57,22 @@ var container = blobClient.GetContainerReference("container1");
 await container.CreateIfNotExistsAsync();
 ```
 
-Ce code suppose que vous disposez de deux variables de chaîne, *accountName* et *accountKey*. Elles représentent le nom de votre compte de stockage et la clé de compte associée à ce compte.
+Ce code suppose que vous disposez de deux variables de chaîne, *accountName* et *accountKey*. Ils représentent nom hello de votre compte et hello clé compte de stockage qui est associée à ce compte.
 
-Générez et exécutez l’application. Si vous cliquez sur le bouton, l'application vérifiera si un conteneur nommé *container1* existe dans votre compte, puis le créera si ce n'est pas le cas.
+Générez et exécutez l’application hello. En cliquant sur bouton de hello vérifie si un conteneur nommé *container1* existe dans votre compte, puis le créer dans le cas contraire.
 
-### <a name="using-the-library-with-the-table-service"></a>Utilisation de la bibliothèque avec le service de Table
-Les types utilisés pour communiquer avec le service de Table Azure dépendent des services de données WCF pour la bibliothèque d'applications Windows Store. Ensuite, ajoutez une référence aux bibliothèques WCF requises en utilisant la console du Gestionnaire de package :
+### <a name="using-hello-library-with-hello-table-service"></a>À l’aide de la bibliothèque de hello hello service de Table
+Les types qui sont toocommunicate utilisé avec le service de Table Azure hello dépendent de WCF Data Services pour la bibliothèque d’applications du Windows Store hello. Ensuite, ajoutez qu'une référence toohello requis les bibliothèques WCF à l’aide de hello Console du Gestionnaire de Package :
 
 ![store-apps-storage-package-manager][store-apps-storage-package-manager]
 
-Utilisez la commande suivante pour faire pointer le Gestionnaire de package sur l'emplacement de votre ordinateur :
+Utilisez hello suivant commande toopoint toohello du Gestionnaire de Package emplacement sur votre ordinateur :
 
     Install-Package Microsoft.Data.OData.WindowsStore -Source "C:\Program Files (x86)\Microsoft WCF Data Services\5.0\bin\NuGet"
 
-Cette commande ajoutera automatiquement toutes les références requises à votre projet. Si vous ne souhaitez pas utiliser la console du Gestionnaire de package, vous pouvez ajouter le dossier NuGet de services de données WCF sur votre ordinateur local dans la liste des sources de package, puis ajouter la référence via l'interface utilisateur comme décrit dans [Gestion des packages NuGet à l'aide de la boîte de dialogue](http://docs.nuget.org/docs/start-here/Managing-NuGet-Packages-Using-The-Dialog).
+Cette commande ajoute automatiquement le projet de tooyour toutes les références requises. Si vous ne souhaitez pas toouse hello Console du Gestionnaire de Package, vous pouvez ajouter un dossier de NuGet de Services de données WCF hello dans votre liste de toohello ordinateur local des sources de package et ajouter ensuite référence hello via hello l’interface utilisateur, comme décrit dans [la gestion de l’aide de Packages NuGet boîte de dialogue de Hello](http://docs.nuget.org/docs/start-here/Managing-NuGet-Packages-Using-The-Dialog).
 
-Une fois le package NuGet de services de données WCF référencé, modifiez le code dans l'événement **Cliquer** de votre bouton :
+Lorsque vous avez référencé package NuGet de Services de données WCF de hello, modifiez le code hello dans votre bouton **cliquez sur** événement :
 
 ```csharp
 var credentials = new StorageCredentials(accountName, accountKey);
@@ -84,7 +84,7 @@ await table.CreateIfNotExistsAsync();
 
 Ce code vérifie qu'une table nommée *table1* existe dans votre compte puis la crée si ce n'est pas le cas.
 
-Vous pouvez également ajouter une référence dans Microsoft.WindowsAzure.Storage.Table.dll, disponible dans le même package que vous avez téléchargé. Cette bibliothèque contient des fonctionnalités supplémentaires, telles qu'une sérialisation basée sur la réflexion et des requêtes génériques. Notez que cette bibliothèque ne prend pas en charge le code JavaScript.
+Vous pouvez également ajouter une référence tooMicrosoft.WindowsAzure.Storage.Table.dll, qui est disponible dans le même package que vous avez téléchargé de hello. Cette bibliothèque contient des fonctionnalités supplémentaires, telles qu'une sérialisation basée sur la réflexion et des requêtes génériques. Notez que cette bibliothèque ne prend pas en charge le code JavaScript.
 
 [store-apps-storage-vs-project]: ./media/storage-use-store-apps/store-apps-storage-vs-project.png
 [store-apps-storage-choose-library]: ./media/storage-use-store-apps/store-apps-storage-choose-library.png

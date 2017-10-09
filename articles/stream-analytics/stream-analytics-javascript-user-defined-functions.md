@@ -1,5 +1,5 @@
 ---
-title: "Fonctions JavaScript définies par l’utilisateur Azure Stream Analytics | Microsoft Docs"
+title: "les fonctions aaaAzure JavaScript Analytique de flux de données définis par l’utilisateur | Documents Microsoft"
 description: "Effectuer des requêtes avancées avec les fonctions JavaScript définies par l’utilisateur"
 keywords: "JavaScript, fonctions définies par l’utilisateur"
 services: stream-analytics
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 03/28/2017
 ms.author: jeffstok
-ms.openlocfilehash: e4a9e6c7078031240c22a51378c0459426b7f626
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 28eeb8f6437c23989e8887687b950361fed4414c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-stream-analytics-javascript-user-defined-functions"></a>Fonctions JavaScript définies par l’utilisateur Azure Stream Analytics
-Azure Stream Analytics prend en charge les fonctions définies par l’utilisateur écrites en JavaScript. Avec le large éventail de méthodes **String**, **RegExp**, **Math**, **Array** et **Date** que fournit JavaScript, les transformations complexes de données des travaux Stream Analytics sont plus faciles à créer.
+Azure Stream Analytics prend en charge les fonctions définies par l’utilisateur écrites en JavaScript. Série de hello **chaîne**, **RegExp**, **mathématiques**, **tableau**, et **Date** méthodes qui JavaScript fournit, les transformations de données complexes avec des tâches de flux de données Analytique deviennent toocreate plus facile.
 
 ## <a name="javascript-user-defined-functions"></a>Fonctions JavaScript définies par l’utilisateur
-Les fonctions JavaScript définies par l’utilisateur prennent en charge les fonctions scalaires de calcul pur sans état qui ne nécessitent pas de connectivité externe. La valeur renvoyée par une fonction ne peut être qu’une valeur (unique) scalaire. Une fois que vous avez ajouté une fonction JavaScript définie par l’utilisateur à un travail, vous pouvez utiliser la fonction n’importe où dans la requête, comme une fonction scalaire intégrée.
+Les fonctions JavaScript définies par l’utilisateur prennent en charge les fonctions scalaires de calcul pur sans état qui ne nécessitent pas de connectivité externe. Hello retournent la valeur d’une fonction peut uniquement être une valeur scalaire (unique). Après avoir ajouté un travail de tooa de fonction définie par l’utilisateur de JavaScript, vous pouvez utiliser fonction hello n’importe où dans la requête de hello, comme une fonction scalaire intégrée.
 
 Voici quelques scénarios dans lesquels les fonctions JavaScript définies par l’utilisateur vous seront utiles :
 * Analyse et manipulation de chaînes avec des fonctions d’expressions régulières, par exemple **Regexp_Replace()** et **Regexp_Extract()**
@@ -37,31 +37,31 @@ Voici quelques actions que vous ne pouvez pas effectuer avec une fonction JavaSc
 * Sérialisation ou désérialisation à un format d’événement personnalisé sur les entrées/sorties
 * Création d’agrégats personnalisés
 
-Bien qu’elles ne soient pas bloquées dans la définition des fonctions, évitez d’utiliser des fonctions telles que **Date.GetDate()** ou **Math.random()**. Ces fonctions ne retournent **pas** le même résultat à chaque fois que vous les appelez et le service Azure Stream Analytics ne conserve pas de journal des appels de fonction et des résultats retournés. Si une fonction retourne un résultat différent sur les mêmes événements, la reproductibilité n’est pas garantie lorsqu’un travail est relancé par vos soins ou par le service Stream Analytics.
+Bien que les fonctions comme **Date.GetDate()** ou **Math.Random ()** ne sont pas bloqués dans la définition de fonctions hello, vous devez éviter leur utilisation. Ces fonctions **pas** retour hello même résultat chaque fois que vous les appelez et hello service d’Analytique de flux de données Azure ne conserve pas un journal d’appels de fonction et a renvoyé des résultats. Si une fonction retourne un résultat différent sur hello événements mêmes, la répétabilité n’est pas garantie lorsqu’un travail est redémarré par vous ou par le service de flux de données Analytique hello.
 
-## <a name="add-a-javascript-user-defined-function-in-the-azure-portal"></a>Ajouter une fonction JavaScript définie par l’utilisateur dans le portail Azure
-Pour créer une simple fonction JavaScript définie par l’utilisateur dans un travail Stream Analytics existant, suivez ces étapes :
+## <a name="add-a-javascript-user-defined-function-in-hello-azure-portal"></a>Ajouter une fonction définie par l’utilisateur de JavaScript dans hello portail Azure
+toocreate une fonction définie par l’utilisateur JavaScript simple sous une tâche de flux de données Analytique existante, procédez comme suit :
 
-1.  Dans le portail Azure, recherchez votre travail Stream Analytics.
+1.  Bonjour portail Azure, recherchez votre tâche de flux de données Analytique.
 2.  Sous **TOPOLOGIE DE LA TÂCHE**, sélectionnez votre fonction. Une liste vide de fonctions apparaît.
-3.  Pour créer une fonction définie par l’utilisateur, sélectionnez **Ajouter**.
-4.  Dans le panneau **Nouvelle fonction**, pour **Type de fonction**, sélectionnez **JavaScript**. Un modèle de fonction par défaut apparaît dans l’éditeur.
-5.  Pour l’**alias de fonction définie par l’utilisateur**, entrez **hex2Int**, puis modifiez l’implémentation de la fonction de la façon suivante :
+3.  toocreate une nouvelle fonction définie par l’utilisateur, sélectionnez **ajouter**.
+4.  Sur hello **nouvelle fonction** panneau, pour **Type de fonction**, sélectionnez **JavaScript**. Un modèle de fonction par défaut s’affiche dans l’éditeur de hello.
+5.  Pourquoi **alias des UDF**, entrez **hex2Int**, modifiez l’implémentation de fonction hello comme suit :
 
     ```
-    // Convert Hex value to integer.
+    // Convert Hex value toointeger.
     function main(hexValue) {
         return parseInt(hexValue, 16);
     }
     ```
 
-6.  Sélectionnez **Enregistrer**. La fonction apparaît dans la liste des fonctions.
-7.  Sélectionnez la nouvelle fonction **hex2Int** pour vérifier sa définition. Toutes les fonctions ont un préfixe **UDF** ajouté à l’alias de la fonction. Vous devez *inclure le préfixe* quand vous appelez la fonction dans votre requête Stream Analytics. Dans ce cas, vous appelez **UDF.hex2Int**.
+6.  Sélectionnez **Enregistrer**. Votre fonction apparaît dans la liste des fonctions hello.
+7.  Sélectionnez hello nouvelle **hex2Int** la fonction et vérifiez la définition de fonction hello. Toutes les fonctions ont un **UDF** alias de préfixe de fonction toohello ajouté. Vous devez trop*inclure hello préfixe* lorsque vous appelez la fonction hello dans votre requête Analytique de flux de données. Dans ce cas, vous appelez **UDF.hex2Int**.
 
 ## <a name="call-a-javascript-user-defined-function-in-a-query"></a>Appeler une fonction JavaScript définie par l’utilisateur dans une requête
 
-1. Dans l’éditeur de requêtes, sous **TOPOLOGIE DE LA TÂCHE**, sélectionnez **Requête**.
-2.  Modifiez votre requête, puis appelez la fonction définie par l’utilisateur comme suit :
+1. Bonjour éditeur de requête, sous **travail topologie**, sélectionnez **requête**.
+2.  Modifier votre requête, puis appelez la fonction hello défini par l’utilisateur, comme suit :
 
     ```
     SELECT
@@ -73,8 +73,8 @@ Pour créer une simple fonction JavaScript définie par l’utilisateur dans un 
         InputStream
     ```
 
-3.  Pour charger l’exemple de fichier de données, cliquez avec le bouton droit sur l’entrée du travail.
-4.  Pour tester votre requête, sélectionnez **Test**.
+3.  fichier de données exemple hello tooupload, entrée de tâche avec le bouton hello.
+4.  tootest votre requête, sélectionnez **Test**.
 
 
 ## <a name="supported-javascript-objects"></a>Objets JavaScript pris en charge
@@ -82,11 +82,11 @@ Les fonctions JavaScript définies par l’utilisateur Azure Stream Analytics pr
 
 ### <a name="stream-analytics-and-javascript-type-conversion"></a>Conversion de type Stream Analytics et JavaScript
 
-Il existe des différences entre les types pris en charge dans le langage de requête Stream Analytics et JavaScript. Le tableau suivant répertorie les mappages de conversion entre les deux :
+Il existe des différences entre les types hello qui prennent en charge de langage de requête de flux de données Analytique hello et JavaScript. Ce tableau répertorie les mappages de conversion hello entre hello deux :
 
 Stream Analytics | JavaScript
 --- | ---
-bigint | Number (JavaScript ne peut représenter les entiers que jusqu’à 2^53 précisément)
+bigint | Nombre (JavaScript peut représenter uniquement des entiers des tooprecisely 2 ^ 53)
 DateTime | Date (JavaScript ne prend en charge que les millisecondes)
 double | Number
 nvarchar(MAX) | String
@@ -100,7 +100,7 @@ Voici les conversions de JavaScript à Stream Analytics :
 
 JavaScript | Stream Analytics
 --- | ---
-Number | Bigint (si le nombre est rond et entre long.MinValue et long.MaxValue, sinon, double)
+Number | Bigint (si le nombre de hello est arrondi et entre long. MinValue et long. MaxValue ; dans le cas contraire, il est double)
 Date | DateTime
 String | nvarchar(MAX)
 Object | Enregistrement
@@ -108,14 +108,14 @@ Tableau | Tableau
 Null, Undefined | NULL
 Un autre type (par exemple une fonction ou une erreur) | Non pris en charge (entraîne une erreur d’exécution)
 
-## <a name="troubleshooting"></a>résolution des problèmes
-Les erreurs d’exécution JavaScript sont considérées comme irrécupérables et remontées par le biais du journal d’activité. Pour récupérer le journal, dans le portail Azure, accédez à votre travail et sélectionnez **Journal d’activité**.
+## <a name="troubleshooting"></a>Résolution des problèmes
+Erreurs d’exécution JavaScript sont considérées comme irrécupérables et sont exposés via le journal d’activité hello. tooretrieve hello journal, hello portail Azure, accédez tooyour travail et sélectionnez **le journal d’activité**.
 
 
 ## <a name="other-javascript-user-defined-function-patterns"></a>Autres modèles de fonctions JavaScript définies par l’utilisateur
 
-### <a name="write-nested-json-to-output"></a>Écrire du code JSON imbriqué en sortie
-Si vous avez une étape de traitement de suivi qui prend la sortie du travail Stream Analytics en entrée et qu’un format JSON est requis, vous pouvez écrire une chaîne JSON comme sortie. L’exemple suivant appelle la fonction **JSON.stringify()** pour compresser toutes les paires nom/valeur de l’entrée, puis les écrire sous la forme d’une valeur de chaîne unique en sortie.
+### <a name="write-nested-json-toooutput"></a>Écrire des toooutput JSON imbriquée
+Si vous disposez d’une étape de traitement suivi qui utilise une tâche de flux de données Analytique de sortie en tant qu’entrée, et il requiert un format JSON, vous pouvez écrire un toooutput de chaîne JSON. Hello l’exemple suivant appelle hello **JSON.stringify()** toopack toutes les paires nom/valeur de hello d’entrée et de les écrivent en tant que valeur de chaîne unique dans la sortie de fonction.
 
 **Définition de la fonction JavaScript définie par l’utilisateur :**
 
@@ -142,7 +142,7 @@ FROM
 Pour obtenir de l’aide supplémentaire, essayez notre [forum Azure Stream Analytics](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics).
 
 ## <a name="next-steps"></a>Étapes suivantes
-* [Présentation d’Azure Stream Analytics](stream-analytics-introduction.md)
+* [Introduction tooAzure Analytique de flux de données](stream-analytics-introduction.md)
 * [Prise en main d’Azure Stream Analytics](stream-analytics-real-time-fraud-detection.md)
 * [Mise à l'échelle des travaux Azure Stream Analytics](stream-analytics-scale-jobs.md)
 * [Références sur le langage des requêtes Azure Stream Analytics](https://msdn.microsoft.com/library/azure/dn834998.aspx)

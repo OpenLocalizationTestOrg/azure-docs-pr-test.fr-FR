@@ -1,5 +1,5 @@
 ---
-title: Exemples de CLI du Cache Redis Azure | Microsoft Docs
+title: exemples de cache CLI Redis aaaAzure | Documents Microsoft
 description: Exemples de CLI pour le Cache Redis Azure.
 services: redis-cache
 documentationcenter: 
@@ -14,15 +14,15 @@ ms.devlang: azurecli
 ms.topic: article
 ms.date: 04/14/2017
 ms.author: sdanie
-ms.openlocfilehash: a3debf3380b57faa5b7b30f612698fe6de5b7067
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a2eb6f7267951faca599a43ff29b46beb05fea6d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-cli-samples-for-azure-redis-cache"></a>Exemples de CLI pour le Cache Redis Azure
 
-Le tableau suivant contient des liens vers des scripts Bash créés à l’aide de l’interface de ligne de commande Azure.
+Hello tableau suivant inclut des liens toobash scripts créés à l’aide de hello CLI d’Azure.
 
 | | |
 |---|---|
@@ -30,9 +30,9 @@ Le tableau suivant contient des liens vers des scripts Bash créés à l’aide 
 | [Créer un cache](./scripts/create-cache.md) | Crée un groupe de ressources et un Cache Redis Azure de niveau de base. |
 | [Créer un cache Premium avec clustering](./scripts/create-premium-cache-cluster.md) | Crée un groupe de ressources et un cache de niveau Premium avec activation du clustering.|
 | [Obtenir les détails du cache](./scripts/show-cache.md) | Obtient les détails d’une instance du Cache Redis Azure, dont l’état d’approvisionnement. |
-| [Obtenir le nom d’hôte, les ports et les clés](./scripts/cache-keys-ports.md) | Obtient le nom d’hôte, les ports et les clés pour une instance du Cache Redis Azure. |
+| [Obtenir le nom d’hôte hello, les ports et les clés](./scripts/cache-keys-ports.md) | Obtient le nom d’hôte hello, les ports et les clés d’une instance de Cache Redis Azure. |
 |**Application web avec cache**||
-| [Connecter une application web à un cache redis](./../app-service-web/scripts/app-service-cli-app-service-redis.md) | Crée une application web Azure et un Cache Redis, puis ajoute les détails de connexion Redis aux paramètres d’application. |
+| [Se connecter à un cache de redis tooa web app](./../app-service-web/scripts/app-service-cli-app-service-redis.md) | Crée une application web Azure et un cache redis, puis ajoute les paramètres de l’application hello redis connexion détails toohello. |
 |**Supprimer un cache**||
 | [Supprimer un cache](./scripts/delete-cache.md) | Supprime une instance du Cache Redis Azure  |
 | | |

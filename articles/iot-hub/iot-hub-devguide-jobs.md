@@ -1,6 +1,6 @@
 ---
-title: "Présentation des tâches Azure IoT Hub | Microsoft Docs"
-description: "Guide du développeur - Planification des travaux à exécuter sur plusieurs appareils connectés à votre IoT Hub. Les tâches peuvent mettre à jour les balises et les propriétés souhaitées, et appeler des méthodes directes sur plusieurs appareils."
+title: travaux de Azure IoT Hub aaaUnderstand | Documents Microsoft
+description: "Guide du développeur - planification toorun travaux sur plusieurs périphériques connectés tooyour IoT hub. Les tâches peuvent mettre à jour les balises et les propriétés souhaitées, et appeler des méthodes directes sur plusieurs appareils."
 services: iot-hub
 documentationcenter: .net
 author: juanjperez
@@ -14,36 +14,36 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 09/30/2016
 ms.author: juanpere
-ms.openlocfilehash: abb7f80662650efa8f158f32125ebc5350cb4f62
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8be134e6c379feae5087df8f562a74505c57afee
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="schedule-jobs-on-multiple-devices"></a>Planifier des travaux sur plusieurs appareils
 ## <a name="overview"></a>Vue d'ensemble
-Comme décrit dans les articles précédents, Azure IoT Hub utilise un certain nombre de composantes ([balises et propriétés de jumeau d’appareil][lnk-twin-devguide], et [méthodes directes][lnk-dev-methods]).  Généralement, les applications principales permettent aux administrateurs et opérateurs d’appareil de mettre à jour et d’interagir avec les appareils IoT par lots et à une heure planifiée.  Les travaux englobent l’exécution des mises à jour des jumeaux d’appareil et des méthodes directes sur un ensemble d’appareils à une heure planifiée.  Par exemple, un opérateur peut utiliser une application principale qui lance et suit un travail pour le redémarrage d’un ensemble d’appareils dans le bâtiment 43 à l’étage 3 à une heure qui ne perturbera pas les opérations du bâtiment.
+Comme décrit dans les articles précédents, Azure IoT Hub utilise un certain nombre de composantes ([balises et propriétés de jumeau d’appareil][lnk-twin-devguide], et [méthodes directes][lnk-dev-methods]).  En règle générale, les applications back-end activer tooupdate administrateurs et opérateurs de périphérique et d’interagissent avec des appareils IoT en bloc et à une heure planifiée.  Travaux encapsulent l’exécution de hello de mises à jour des deux périphériques et méthodes directes par rapport à un ensemble d’appareils à la fois de la planification.  Par exemple, un opérateur utiliseriez une application back-end lancer et suivre un travail de tooreboot un ensemble d’appareils dans la construction de 43 et étage 3 à un moment qui ne serait pas toohello sans interruption des opérations de construction de hello.
 
-### <a name="when-to-use"></a>Quand utiliser
-Pensez utiliser les travaux dans ce cas : une solution principale doit planifier et suivre la progression des activités suivantes sur un ensemble d’appareils :
+### <a name="when-toouse"></a>Lorsque toouse
+Pensez à l’aide de travaux lorsque : une solution principaux besoins tooschedule et les suivre la progression des hello suivant des activités sur un ensemble de périphériques :
 
 * Mettre à jour les propriétés souhaitées
 * Mettre à jour les balises
 * Appeler des méthodes directes
 
 ## <a name="job-lifecycle"></a>Cycle de vie de tâche
-Les travaux sont lancés par l’application principale de la solution et maintenus par IoT Hub.  Vous pouvez lancer un travail via une URI de service (`{iot hub}/jobs/v2/{device id}/methods/<jobID>?api-version=2016-11-14`) et vérifier la progression d’un travail en cours via une URI de service (`{iot hub}/jobs/v2/<jobId>?api-version=2016-11-14`).  Une fois qu’un travail est initialisé, la vérification des travaux permet à l’application principale d’actualiser l’état des tâches en cours d’exécution.
+Tâches sont lancées par hello solution back-end et gérées par IoT Hub.  Vous pouvez lancer un travail via une URI de service (`{iot hub}/jobs/v2/{device id}/methods/<jobID>?api-version=2016-11-14`) et vérifier la progression d’un travail en cours via une URI de service (`{iot hub}/jobs/v2/<jobId>?api-version=2016-11-14`).  Une fois qu’un travail est initié, interrogation pour les travaux Active l’état de hello hello principal application toorefresh de travaux en cours d’exécution.
 
 > [!NOTE]
-> Lorsque vous lancez une tâche, les noms et valeurs de propriété peuvent contenir uniquement des caractères alphanumériques US-ASCII imprimables, à l’exception des caractères suivants : ``{'$', '(', ')', '<', '>', '@', ',', ';', ':', '\', '"', '/', '[', ']', '?', '=', '{', '}', SP, HT}``.
+> Lorsque vous lancez un travail, les valeurs et les noms de propriété ne peuvent contenir US-ASCII imprimable alphanumérique, à l’exception dans l’ensemble suivant de hello : ``{'$', '(', ')', '<', '>', '@', ',', ';', ':', '\', '"', '/', '[', ']', '?', '=', '{', '}', SP, HT}``.
 > 
 > 
 
-## <a name="reference-topics"></a>Rubriques de référence :
-Les rubriques de référence suivantes vous fournissent des informations supplémentaires sur l’utilisation des travaux.
+## <a name="reference-topics"></a>Rubriques de référence :
+Hello rubriques de référence suivantes vous fournit plus d’informations sur l’utilisation de travaux.
 
-## <a name="jobs-to-execute-direct-methods"></a>Tâches pour exécuter des méthodes directes
-Voici les détails de la requête HTTP 1.1 pour exécuter une [méthode directe][lnk-dev-methods] sur un ensemble d’appareils en utilisant un travail :
+## <a name="jobs-tooexecute-direct-methods"></a>Méthodes de travaux tooexecute directes
+Détails pour l’exécution de la demande hello HTTP 1.1 est Hello suivant un [méthode directe] [ lnk-dev-methods] sur un ensemble de périphériques à l’aide d’une tâche :
 
     ```
     PUT /jobs/v2/<jobId>?api-version=2016-11-14
@@ -66,7 +66,7 @@ Voici les détails de la requête HTTP 1.1 pour exécuter une [méthode directe
         maxExecutionTimeInSeconds: <maxExecutionTimeInSeconds>        
     }
     ```
-La condition de requête peut également être un ID d’appareil unique ou figurer sur une liste d’ID comme illustré ci-dessous
+condition de requête Hello peut également être sur un seul Id de périphérique ou sur une liste d’ID de l’appareil comme indiqué ci-dessous
 
 **Exemples**
 ```
@@ -76,8 +76,8 @@ queryCondition = "deviceId IN ['MyDevice1']
 ```
 Le [langage de requête IoT Hub][lnk-query] couvre le langage de requête IoT Hub plus en détail.
 
-## <a name="jobs-to-update-device-twin-properties"></a>Travaux pour mettre à jour les propriétés d’un jumeau d’appareil
-Voici les détails de la requête HTTP 1.1 pour mettre à jour les propriétés d’un jumeau d’appareil à l’aide d’un travail :
+## <a name="jobs-tooupdate-device-twin-properties"></a>Propriétés de travaux tooupdate périphérique double
+Hello Voici des détails de la demande de mise à jour des propriétés de l’appareil double à l’aide d’un travail hello HTTP 1.1 :
 
     ```
     PUT /jobs/v2/<jobId>?api-version=2016-11-14
@@ -97,7 +97,7 @@ Voici les détails de la requête HTTP 1.1 pour mettre à jour les propriétés 
     ```
 
 ## <a name="querying-for-progress-on-jobs"></a>Vérification de la progression des travaux
-Voici les détails de la requête HTTP 1.1 pour [interroger des travaux][lnk-query] :
+Hello Voici hello détails de la demande HTTP 1.1 pour [interrogation pour les travaux][lnk-query]:
 
     ```
     GET /jobs/v2/query?api-version=2016-11-14[&jobType=<jobType>][&jobStatus=<jobStatus>][&pageSize=<pageSize>][&continuationToken=<continuationToken>]
@@ -108,49 +108,49 @@ Voici les détails de la requête HTTP 1.1 pour [interroger des travaux][lnk-qu
     User-Agent: <sdk-name>/<sdk-version>
     ```
 
-Le paramètre continuationToken est fourni dans la réponse.  
+Hello continuationToken est fournie à partir de la réponse de hello.  
 
 ## <a name="jobs-properties"></a>Propriétés des travaux
-Voici une liste de propriétés et de descriptions correspondantes qui peuvent être utilisées lors de la vérification de travaux ou des résultats de travaux.
+Hello Voici une liste de propriétés et les descriptions correspondantes, ce qui peuvent être utilisées lors de l’interrogation pour les tâches ou les résultats de la tâche.
 
 | Propriété | Description |
 | --- | --- |
-| **jobId** |L’application a fourni un ID pour le travail. |
-| **startTime** |L’application a fourni l’heure de début (ISO-8601) pour le travail. |
-| **endTime** |IoT Hub a fourni la date (ISO-8601) de fin du travail. Valide uniquement lorsque la tâche atteint l’état « terminé ». |
+| **jobId** |Application fourni un ID de tâche de hello. |
+| **startTime** |Heure de début application fournie (ISO-8601) pour le travail de hello. |
+| **endTime** |IoT Hub fourni date (ISO-8601) de fin du travail hello. Valide uniquement lorsque le travail de hello atteint l’état de hello 'terminé'. |
 | **type** |Types de tâches : |
-| **scheduledUpdateTwin** : travail permettant de mettre à jour un ensemble de propriétés souhaitées ou de balises. | |
-| **scheduledDeviceMethod** : travail permettant d’appeler une méthode d’appareil sur un ensemble de jumeaux d’appareil. | |
-| **statut** |État actuel du travail. Valeurs possibles pour l'état : |
-| **pending** : planifié et en attente de récupération par le service du travail. | |
-| **scheduled** : planifié pour une date ultérieure. | |
+| **scheduledUpdateTwin**: un tooupdate de travail utilisé un ensemble de propriétés souhaitées ou de balises. | |
+| **scheduledDeviceMethod**: un tooinvoke de travail utilisé une méthode de l’appareil sur un ensemble de jumeaux de périphérique. | |
+| **statut** |État actuel du travail de hello. Valeurs possibles pour l'état : |
+| **en attente** : planifié et en attente toobe récupéré par le service de travail hello. | |
+| **planifiée** : planifiée pour une heure dans hello futures. | |
 | **running** : le travail est actuellement actif. | |
 | **cancelled** : le travail a été annulé. | |
 | **failed** : échec de la tâche. | |
-| **completed** : le travail est terminé..</seg> | |
-| **deviceJobStatistics** |Statistiques relatives à l’exécution du travail. |
+| **completed** : le travail est terminé..&lt;/seg&gt; | |
+| **deviceJobStatistics** |Statistiques sur l’exécution de la tâche hello. |
 
 Propriétés **deviceJobStatistics**.
 
 | Propriété | Description |
 | --- | --- |
-| **deviceJobStatistics.deviceCount** |Nombre d’appareils du travail. |
-| **deviceJobStatistics.failedCount** |Nombre d’appareils sur lesquels le travail a échoué. |
-| **deviceJobStatistics.succeededCount** |Nombre d’appareils sur lesquels le travail a réussi. |
-| **deviceJobStatistics.runningCount** |Nombre d’appareils qui exécutent actuellement le travail. |
-| **deviceJobStatistics.pendingCount** |Nombre d’appareils en attente d’exécution du travail. |
+| **deviceJobStatistics.deviceCount** |Nombre de périphériques dans la tâche de hello. |
+| **deviceJobStatistics.failedCount** |Nombre d’appareils où le travail de hello a échoué. |
+| **deviceJobStatistics.succeededCount** |Nombre de périphériques sur lequel le travail de hello a réussi. |
+| **deviceJobStatistics.runningCount** |Nombre de périphériques qui sont en cours d’exécution des travaux de hello. |
+| **deviceJobStatistics.pendingCount** |Nombre de périphériques qui sont en attente de travail de hello toorun. |
 
 ### <a name="additional-reference-material"></a>Matériel de référence supplémentaire
-Les autres rubriques de référence dans le Guide du développeur IoT Hub comprennent :
+Les autres rubriques de référence de hello guide du développeur IoT Hub sont les suivantes :
 
-* La rubrique [Points de terminaison IoT Hub][lnk-endpoints] décrit les différents points de terminaison que chaque IoT Hub expose pour les opérations d’exécution et de gestion.
-* La rubrique [Quotas et limitation][lnk-quotas] décrit les quotas appliqués au service IoT Hub, et le comportement de limitation auquel s’attendre en cas d’utilisation du service.
-* La section [Azure IoT device et service SDK][lnk-sdks] répertorie les Kits de développement logiciel (SDK) en différents langages que vous pouvez utiliser lors du développement d’applications d’appareil et de service qui interagissent avec IoT Hub.
-* L’article [Langage de requête d’IoT Hub pour les jumeaux d’appareil, les travaux et le routage des messages][lnk-query] décrit le langage de requête d’IoT Hub permettant de récupérer, à partir d’IoT Hub, des informations relatives à vos jumeaux d’appareil et à vos travaux.
-* La rubrique [Prise en charge de MQTT au niveau d’IoT Hub][lnk-devguide-mqtt] fournit des informations supplémentaires sur la prise en charge du protocole MQTT par IoT Hub.
+* [Points de terminaison IoT Hub] [ lnk-endpoints] décrit hello différents points de terminaison qui expose de chaque IoT hub pour les opérations de gestion et d’exécution.
+* [Limitation et les quotas] [ lnk-quotas] décrit les quotas hello qui s’appliquent toohello IoT Hub service hello limitation tooexpect de comportement lorsque vous utilisez le service de hello.
+* [Azure IoT périphérique et service kits de développement logiciel] [ lnk-sdks] listes hello langue différents kits de développement logiciel vous une utilisation lorsque vous développez des applications de périphérique et le service qui interagissent avec IoT Hub.
+* [Langage de requête IoT Hub jumeaux d’appareil, les tâches et le routage des messages] [ lnk-query] décrit le langage de requête IoT Hub vous pouvez utiliser les informations de tooretrieve à partir de IoT Hub sur votre jumeaux de périphérique et les travaux de hello.
+* [Prise en charge IoT Hub MQTT] [ lnk-devguide-mqtt] fournit plus d’informations sur la prise en charge IoT Hub pour le protocole MQTT hello.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Si vous souhaitez tenter de mettre en pratique certains des concepts décrits dans cet article, vous serez peut-être intéressé par les didacticiels IoT Hub suivants :
+Si vous souhaitez que tootry certains des concepts hello décrits dans cet article, peut vous intéresser hello suivant IoT Hub didacticiel :
 
 * [Planifier et diffuser des travaux][lnk-jobs-tutorial]
 

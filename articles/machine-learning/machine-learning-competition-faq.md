@@ -1,5 +1,5 @@
 ---
-title: FAQ sur les concours Cortana Intelligence | Microsoft Docs
+title: aaaCortana Intelligence concours FAQ | Documents Microsoft
 description: Forum Aux Questions sur les concours Microsoft Cortana Intelligence.
 services: machine-learning
 documentationcenter: 
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/10/2017
 ms.author: haining;garye
-ms.openlocfilehash: 4ed387d9ef595312d4fcde78b2fdc3644e96ee27
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: de51de4fed0f4e54d02af430706de01e05b50495
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="microsoft-cortana-intelligence-competitions-faq"></a>FAQ sur les concours Microsoft Cortana Intelligence
 **Que sont les concours Cortana Intelligence ?**
 
-Les concours Microsoft Cortana Intelligence nous permettent de rassembler une communauté mondiale de passionnés de données pour résoudre de manière collective certains des problèmes de science des données les plus complexes au monde. Les concours Cortana Intelligence permettent aux passionnés de données du monde entier de se mesurer les uns aux autres et de créer des modèles de science des données très précis et intelligents. Nos concours hébergés sont basés sur des jeux de données uniques mis à la disposition du public pour la première fois. Les participants peuvent gagner des récompenses ou obtenir une reconnaissance via notre classement public des 10 premiers. Cliquez [ici](http://aka.ms/CIComp) pour accéder à la page d’accueil des concours.
+Hello Microsoft Cortana Intelligence concours nous permettent de toounite une communauté internationale de passionnés de données par collectivement résolution des problèmes de science des données plus complexes au monde hello. Cortana Intelligence concours autoriser les passionnés de données à partir de hello world toocompete et générer des modèles de science des données très précises et intelligent. Notre concours hébergés sont basés sur des jeux de données uniques qui ont été apportées disponibles publiquement pour hello première fois. Les participants peuvent gagner des récompenses ou obtenir une reconnaissance via notre classement public des 10 premiers. Accédez [ici](http://aka.ms/CIComp) tooaccess hello concours page d’accueil.
 
 **À quelle fréquence Microsoft lancera-t-il les nouveaux concours ?**
 
@@ -35,82 +35,82 @@ Utilisez notre [forum Microsoft Azure Machine Learning](https://social.msdn.micr
 
 **Comment participer à un concours ?**
 
-Accédez à la page d’accueil des [concours](https://gallery.cortanaintelligence.com/competitions) via la [galerie Cortana Intelligence](https://gallery.cortanaintelligence.com/) ou accédez à [http://aka.ms/CIComp](http://aka.ms/CIComp). La page d’accueil répertorie tous les concours en cours. Les instructions et les règles de participation détaillées, les prix à remporter et la durée sont indiqués sur la page d’inscription de chaque concours.
+Hello d’accès [concours](https://gallery.cortanaintelligence.com/competitions) page d’accueil dans hello [Cortana Intelligence galerie](https://gallery.cortanaintelligence.com/), ou accédez trop[http://aka.ms/CIComp](http://aka.ms/CIComp). page d’accueil Hello répertorie tous les concours qui sont en cours d’exécution. Les instructions et les règles de participation détaillées, les prix à remporter et la durée sont indiqués sur la page d’inscription de chaque concours.
 
-1. Recherchez le concours auquel que vous voulez participer, lisez toutes les instructions et regardez le didacticiel vidéo, puis cliquez sur le bouton **Participer au concours** pour copier l’expérience de démarrage dans votre espace de travail Azure Machine Learning existant. Si vous n’avez pas accès à un espace de travail, vous devez en créer un au préalable. Exécutez l’expérience de démarrage, observez les mesures de performance, puis utilisez votre créativité pour améliorer les performances du modèle. Cette étape occupera la majeure partie de votre temps.   
+1. Rechercher à concurrence de hello vous aimeriez tooparticipate, de lire toutes les instructions de hello et didacticiel de hello espion vidéo, puis cliquez sur hello **entrer la concurrence** hello toocopy de bouton expérience de démarrage dans votre ordinateur Azure existant Espace de travail de l’apprentissage. Si vous ne disposez pas d’espace de travail access tooa, vous devez en créer un au préalable. Exécutez hello Starter expérience, observez les mesures de performance hello, puis utilisez vos performances de hello créativité tooimprove du modèle de hello. Vous allez probablement dépenser majorité hello de votre temps dans cette étape.   
 
-2. Créez une expérience prédictive avec le modèle formé en dehors de votre expérience de démarrage. Ensuite, ajustez soigneusement les schémas d’entrée et de sortie du service web pour qu’ils soient conformes aux exigences spécifiées dans la documentation du concours. Le didacticiel contient généralement des instructions détaillées sur la procédure à suivre. Vous pouvez également regarder la vidéo du didacticiel, si elle est disponible.   
+2. Créer une expérience prédictive avec modèle formé de hello hors de votre expérience de démarrage. Puis ajuster l’entrée de hello avec précaution et schéma de hello web service tooensure que remplit les exigences toohello spécifiés dans la documentation de concurrence hello de sortie. document de didacticiel Hello généralement sera ont des instructions détaillées pour cela. Vous pouvez également regarder la vidéo de didacticiel hello, s’il est disponible.   
 
-3. Déployez un service web en dehors de votre expérience prédictive. Testez votre service web à l’aide du bouton **Test** ou du modèle Excel créé automatiquement pour vous afin de vérifier que le service fonctionne correctement.   
+3. Déployez un service web en dehors de votre expérience prédictive. Tester votre service web à l’aide de hello **Test** bouton ou hello modèle Excel créé automatiquement pour vous tooensure fonctionne correctement.   
 
-4. Envoyez votre service web, qui est votre contribution au concours, et consultez votre score public dans la page de concours de la galerie Cortana Intelligence. Enfin, réjouissez-vous si vous faites partie du classement.  
+4. Soumission de votre service web en tant qu’entrée de concurrence hello et consultez votre score public dans la page de concurrence de la galerie de Cortana Intelligence hello. Honorant et si vous le faites sur le classement de hello !  
 
-Une fois que vous avez correctement envoyé une contribution, vous pouvez revenir à l’expérience de démarrage que vous avez copiée, effectuer une itération, mettre à jour votre expérience prédictive, mettre à jour le service web et envoyer une nouvelle contribution.   
+Après avoir envoyé avec succès une entrée, vous pouvez revenir en arrière tooyour copiés expérience de démarrage, effectuer une itération et mettre à jour votre expérience prédictive, hello web service mise à jour et envoyer une nouvelle entrée.   
 
 **Puis-je utiliser des outils open source pour participer à ces concours ?**
 
-Les participants au concours bénéficient d’Azure Machine Learning Studio, d’un service cloud dans Cortana Intelligence Suite pour développer les modèles de science des données et créer les contributions à envoyer dans le cadre du concours. Machine Learning Studio fournit non seulement une interface utilisateur graphique pour créer des expériences d’apprentissage automatique, mais il vous permet également de proposer vos propres scripts R et/ou Python pour une exécution native. Les runtimes R et Python dans Studio comprennent un ensemble complet de packages R/Python open source, et vous pouvez également importer vos propres packages dans le cadre de l’expérience. Studio comporte également un service Jupyter Notebook intégré pour vous permettre d’explorer les données comme vous le souhaitez. Bien sûr, vous pouvez toujours télécharger les jeux de données utilisés dans le concours et les explorer dans l’outil de votre choix en dehors de Machine Learning Studio. 
+Azure Machine Learning Studio, un service cloud dans Cortana Intelligence Suite pour le développement de modèles de science des données hello et toocreate les entrées de concurrence pour l’envoi de tirer parti des participants de concurrence Hello. Machine Learning Studio fournit non seulement une interface utilisateur graphique permettant de construire des expériences d’apprentissage automatique, il vous permet également de toobring vos propres R et/ou les Python de scripts pour l’exécution native. Hello R et les runtimes Python dans Studio sont fournis avec un ensemble de packages de R/Python open source, et vous pouvez importer vos propres packages dans le cadre de l’expérience hello également. Studio propose également un service de bloc-notes Jupyter intégré pour vous toodo style libre exploration de données. Bien entendu, vous pouvez toujours télécharger hello de jeux de données utilisés dans une concurrence hello et Explorer dans votre outil préféré en dehors de la Machine Learning Studio. 
 
-**Dois-je être un scientifique de données pour participer ?**
+**Toobe un tooenter chercheur de données ai-je besoin ?**
 
-Non. En fait, nous encourageons les passionnés de données, ceux qui s’intéressent à la science des données et les scientifiques de données en herbe à participer à notre concours. Nous avons conçu des documents de support pour permettre à tout le monde de participer. Notre public cible est le suivant :
+Non. En fait, nous vous invitons passionnés de données, ceux d’obtenir des informations sur la science des données et autres tooenter chercheurs de données apprentis notre concours. Nous avons conçu prise en charge des documents tooallow tout le monde toocompete. Notre public cible est le suivant :
 
-* **Développeurs de données**, **scientifiques de données**, **professionnels du décisionnel** et de **l’analyse** : ceux qui sont chargés de produire des données et du contenu d’analyse que d’autres utiliseront
-* **Gestionnaires de données** : ceux qui disposent de connaissances sur les données, ce qu’elles signifient, comment elles sont censées être utilisées et dans quel but
+* **Les développeurs de données**, **chercheurs de données**, **BI** et **les professionnels de l’Analytique**: ceux qui sont responsables de la production de contenu de données et analytique pour d’autres tooconsume
+* **Gestionnaires de données**: ceux qui ont des connaissances hello sur hello données, ce que cela signifie et comment il vise toobe utilisée et leur usage
 * **Étudiants**et & **chercheurs** : ceux qui étudient et acquièrent des compétences liées aux données par le biais de programmes académiques dans les universités ou ceux qui participent aux cours ouverts en ligne
 
 **Puis-je participer avec mes collaborateurs en équipe ?**
 
-La plateforme de concours ne prend actuellement pas en charge la participation en équipe. Chaque contribution au concours est associée à une seule identité d’utilisateur. 
+plateforme de concurrence Hello ne prend en charge la participation d’équipe. Chaque entrée de la concurrence est identité d’utilisateur unique tooa liée. 
 
-**Dois-je payer pour participer à un concours ?**
+**Tooparticipate toopay dans une concurrence ai-je besoin ?**
 
-La participation aux concours est gratuite. Toutefois, vous devez avoir accès à un espace de travail Microsoft Azure Machine Learning pour pouvoir participer. Vous pouvez créer un espace de travail gratuit sans carte de crédit en vous connectant simplement avec un compte Microsoft valide ou un compte Office 365. Si vous êtes déjà client d’Azure ou de Cortana Intelligence Suite, vous pouvez créer et utiliser un espace de travail standard dans le même abonnement Azure. Si vous souhaitez acheter un abonnement Azure, accédez à la page de [tarification Azure](https://azure.microsoft.com/pricing). Notez que les tarifs standards s’appliquent lors de l’utilisation d’un espace de travail standard pour créer des expériences. Pour plus d’informations, consultez les [informations sur la tarification Azure Machine Learning](https://azure.microsoft.com/pricing/details/machine-learning/). 
+Concours sont tooparticipate disponible dans. Toutefois, vous doivent-elles tooparticipate d’espace de travail access tooan Azure Machine Learning. Vous pouvez créer un espace de travail gratuit sans carte de crédit en vous connectant simplement avec un compte Microsoft valide ou un compte Office 365. Si vous êtes déjà un client Azure ou Cortana Intelligence Suite, vous pouvez créer et utiliser un espace de travail Standard hello même abonnement Azure. Si vous souhaitez que toopurchase un abonnement Azure, accédez à toohello [tarification Azure](https://azure.microsoft.com/pricing) page. Notez que des frais standard hello ne s’appliquent lors de l’utilisation d’une expérimentation de tooconstruct d’espace de travail Standard. Pour plus d’informations, consultez les [informations sur la tarification Azure Machine Learning](https://azure.microsoft.com/pricing/details/machine-learning/). 
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 **Qu’est-ce que les scores publics et privés ?**
 
-Dans la plupart des concours, vous recevez un score public pour chaque envoi effectué, généralement dans les 10 à 20 minutes. À la fin du concours, vous recevez un score privé qui est utilisé pour le classement final. 
+Dans la plupart des concours, vous recevez un score public pour chaque envoi effectué, généralement dans les 10 à 20 minutes. Mais, après la fin de la concurrence de hello, vous recevrez un score privé qui est utilisé pour le classement final. 
 
 Voici ce qui se passe :
 
-* Le jeu de données utilisé dans le concours est divisé de façon aléatoire par stratification des données de formation et de test. Le fractionnement aléatoire est stratifié pour garantir la cohérence des distributions des étiquettes dans les données de formation et de test.
-* Les données de formation sont chargées et fournies dans le cadre de l’expérience de démarrage dans la configuration du module Importer des données.
-* Les données de test sont à leur tour divisées en données de test publiques et privées, à l’aide de la même stratification.
-* Les données de test publiques sont utilisées pour l’évaluation initiale. Le résultat correspond au score public et apparaît dans votre historique d’envoi quand vous envoyez votre contribution. Ce score est calculé pour chaque contribution que vous envoyez. Ce score public est utilisé pour vous positionner dans le classement public.
-* Les données de test privées sont utilisées pour la dernière évaluation après la fin du concours. Ceci est appelé le score privé. 
-* Pour chaque participant, un nombre fixe de contributions que vous avez envoyées et qui ont reçu le score public le plus élevé est automatiquement sélectionné pour participer à l’élaboration du score privé (ce nombre peut varier en fonction du concours). La contribution qui reçoit le score privé le plus élevé est alors sélectionnée pour participer au classement final, ce qui permet de déterminer les gagnants du prix.  
+* jeu de données complet Hello utilisé dans une concurrence hello est fractionnée de façon aléatoire stratification en apprentissage des données et de test (hello restant). fractionnement aléatoire de Hello est stratifié tooensure que les distributions hello des étiquettes dans l’apprentissage et le test de données sont cohérentes.
+* données d’apprentissage Hello sont téléchargées et indiquées tooyou comme une partie de hello expérience de démarrage dans la configuration du module hello importer des données.
+* Hello données de test est divisé en public et les données de test privées, à l’aide de hello stratification même.
+* les données de test publique Hello sont utilisées pour round initiale de hello de score. Hello résultat s’appelle tooas hello score public et il est ce que vous voyez dans votre historique d’envoi lorsque vous envoyez votre entrée. Ce score est calculé pour chaque contribution que vous envoyez. Ce score public est toorank utilisé sur le classement des publics de hello.
+* les données de test privé Hello sont utilisées pour hello dernière série de notation après la fin de la concurrence de hello. Cela est référencé tooas score privé. 
+* Pour chaque participant, un nombre fixe d’entrées avec des scores publique la plus élevées de hello est round score privée à hello de tooenter sélectionnées automatiquement (ce nombre peut varier en fonction de la concurrence de hello). entrée Hello avec le score privé hello plus élevé est sélectionné tooenter hello dernier classement, qui détermine les vainqueurs de prix hello.  
 
 **Les clients peuvent-ils héberger un concours sur notre plateforme ?**
 
-Nous accueillons les organisations tierces qui souhaitent collaborer avec nous et héberger des concours publics et privés sur notre plateforme. Nous disposons d’une équipe d’intégration des concours disposée à expliquer le processus d’intégration de ces concours.  Contactez-nous à l’adresse [compsupport@microsoft.com](mailto:compsupport@microsoft.com) pour plus de détails. 
+Nous Bienvenue 3 rd-party organisations toopartner avec nous et héberger le concours publiques et privées sur notre plateforme. Nous disposons d’une équipe d’intégration de concurrence qui est heureux toodiscuss hello le processus d’intégration pour ces concours.  Contactez-nous à l’adresse [compsupport@microsoft.com](mailto:compsupport@microsoft.com) pour plus de détails. 
 
-**Quelles sont les limitations pour les envois ?**
+**Quelles sont les limites de hello pour les envois ?**
 
-Un concours standard peut choisir de limiter le nombre de contributions que vous pouvez envoyer par 24 heures (heure UTC 00:00:00 à 23:59:59) et le nombre total de contributions que vous pouvez envoyer pendant la durée du concours. Vous recevez un message d’erreur approprié quand une limite est dépassée. 
+Une concurrence classique peut choisir toolimit hello nombre d’entrées vous pouvez envoyer dans un intervalle de 24 heures (too23:59:59 de 00:00:00 heure UTC) et hello nombre total d’entrées que vous pouvez envoyer sur une durée hello de concurrence de hello. Vous recevez un message d’erreur approprié quand une limite est dépassée. 
 
 **Que se passe-t-il si je remporte un concours ?**
 
-Microsoft vérifiera les résultats du classement privé, puis nous vous contacterons. Vérifiez que votre adresse de messagerie dans votre profil utilisateur est à jour.
+Microsoft vérifiera résultats hello de classement des privé de hello, puis nous allons vous contacter. Assurez-vous que votre adresse de messagerie dans votre profil utilisateur est toodate.
 
-**Comment obtenir les gains si je remporte un concours ?**
+**Comment sera obtenir les gains hello si je concours ?**
 
-Si vous êtes le gagnant d’un concours, vous devrez signer une déclaration d’éligibilité, de licence et de non-droit. Ce formulaire réitère les règles du concours. Les gagnants devront remplir un formulaire fiscal W-9 des États-Unis ou un formulaire W-8BEN pour ceux qui ne sont pas des contribuables situés aux États-Unis. Nous contactons tous les gagnants dans le cadre du processus de paiement des récompenses sur leur e-mail d’inscription. Reportez-vous à nos [Conditions générales](http://aka.ms/comptermsandconditions) pour plus de détails.
+Si vous êtes un gagnant de concurrence, vous devez toosign une déclaration d’éligibilité, la licence et la mise en production à partir de. Ce formulaire réitère hello les règles de concurrence. Gagnants doivent toofill un formulaire de taxe nous W-9, ou un formulaire W-8BEN s’ils ne sont pas les assujettis aux États-Unis. Nous contacte tous les vainqueurs dans le cadre du processus de paiement de récompense hello à l’aide de leur courrier électronique d’inscription. Reportez-vous tooour [termes et Conditions](http://aka.ms/comptermsandconditions) pour plus d’informations.
 
-**Que se passe-t-il si plusieurs contributions reçoivent le même score ?**
+**Que se passe-t-il si plusieurs entrées reçoit hello même score ?**
 
-L’heure d’envoi est décisive. La contribution envoyée plut tôt est mieux classée que celle envoyée plus tard.
+heure de soumission Hello est décisive hello. entrée Hello soumise précédemment outranks entrée hello soumise à plus tard.
 
 **Puis-je participer avec un espace de travail invité ?**
 
-Non. Vous devez utiliser un espace de travail gratuit ou standard pour participer. Vous pouvez ouvrir l’expérience de démarrage du concours dans un espace de travail invité, mais vous ne serez pas en mesure de créer à partir de celui-ci une contribution valide à envoyer. 
+Non. Vous devez utiliser un gratuit ou un tooparticipate de l’espace de travail Standard. Vous pouvez ouvrir hello concurrence starter expérience dans un espace de travail de l’invité, mais vous ne serez pas en mesure de toocreate une entrée valide pour l’envoi à partir de cet espace de travail. 
 
 **Puis-je participer avec un espace de travail dans une autre région Azure ?**
 
-La plateforme de concours ne prend actuellement en charge que les contributions envoyées à partir d’un espace de travail dans la région Azure **Sud du Centre des États-Unis**. Tous les espaces de travail gratuits résident dans le Sud du Centre des États-Unis, ce qui vous permet d’envoyer une contribution à partir de n’importe quel espace de travail gratuit. Si vous choisissez d’utiliser un espace de travail standard, assurez-vous simplement qu’il réside dans la région Azure Sud du Centre des États-Unis, sinon votre contribution échouera. 
+Actuellement, plateforme de concurrence hello prend uniquement en charge entrées envoyées à partir d’un espace de travail Bonjour **Amérique du Sud** région Azure. Tous les espaces de travail gratuits résident dans le Sud du Centre des États-Unis, ce qui vous permet d’envoyer une contribution à partir de n’importe quel espace de travail gratuit. Si vous choisissez toouse un espace de travail Standard, assurez-vous juste qu’il réside dans la région Sud centrale nous Azure hello, sinon votre soumission ne réussisse. 
 
 **Conservons-nous les solutions/contributions des concours des utilisateurs ?**
 
-Les contributions d’utilisateur sont conservées uniquement à des fins d’évaluation pour identifier les solutions gagnantes. Reportez-vous à nos [Conditions générales](http://aka.ms/comptermsandconditions) pour les détails.
+Entrées d’utilisateur sont conservées uniquement pour les solutions gagnante du hello tooidentify à des fins d’évaluation. Reportez-vous tooour [termes et Conditions](http://aka.ms/comptermsandconditions) pour plus de détails.
 

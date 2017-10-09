@@ -1,5 +1,5 @@
 ---
-title: "Mise à l’échelle automatique avancée à l’aide de Machines virtuelles Azure | Microsoft Docs"
+title: "aaaAdvanced mise à l’échelle à l’aide de Machines virtuelles Azure | Documents Microsoft"
 description: "Utilisez Resource Manager et VM Scale Sets avec plusieurs règles et profils qui envoient un e-mail et appellent les URL webhook avec des actions de mise à l’échelle."
 author: anirudhcavale
 manager: orenr
@@ -14,32 +14,32 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/22/2016
 ms.author: ancav
-ms.openlocfilehash: 80955535c8d863cd3d8d1b77e2ab8bc016b6d9f3
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: ecb01e3094f715837b75ef07a7dbecdf0f2e78f1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="advanced-autoscale-configuration-using-resource-manager-templates-for-vm-scale-sets"></a>Configuration avancée de la mise à l’échelle automatique à l’aide des modèles Resource Manager pour VM Scale Sets
 Vous pouvez diminuer ou augmenter la taille des instances dans VM Scale Sets en fonction de certains seuils de métriques de performances, selon une planification périodique ou à une date donnée. Vous pouvez également configurer des e-mails et des webhooks de notification pour les actions de mise à l’échelle. Cette procédure pas à pas présente un exemple de configuration de ces objets à l’aide d’un modèle Resource Manager sur un groupe de machines virtuelles identiques (VM Scale Set).
 
 > [!NOTE]
-> Bien que cette procédure concerne plus spécifiquement jeux de mise à l’échelle de machines virtuelles, les mêmes informations s’appliquent pour la mise à l’échelle automatique des [services cloud](https://azure.microsoft.com/services/cloud-services/) et [d’App Service - Applications web](https://azure.microsoft.com/services/app-service/web/).
-> Pour utiliser un simple paramètre de mise à l’échelle (avec diminution ou augmentation de la taille des instances) sur un groupe de machines virtuelles identiques à partir d’une simple métrique de performances (par exemple, ressources processeur), reportez-vous à la documentation [Linux](../virtual-machine-scale-sets/virtual-machine-scale-sets-linux-autoscale.md) et [Windows](../virtual-machine-scale-sets/virtual-machine-scale-sets-windows-autoscale.md)
+> Pendant cette procédure pas à pas décrit les étapes de hello pour les jeux de mise à l’échelle de machine virtuelle, hello mêmes informations s’applique tooautoscaling [Services de cloud computing](https://azure.microsoft.com/services/cloud-services/), et [du Service d’applications - applications Web](https://azure.microsoft.com/services/app-service/web/).
+> Pour une échelle simple entrée/sortie paramètre sur un ensemble d’échelle de machine virtuelle sur une mesure de performance simples tels que le processeur, reportez-vous à toohello [Linux](../virtual-machine-scale-sets/virtual-machine-scale-sets-linux-autoscale.md) et [Windows](../virtual-machine-scale-sets/virtual-machine-scale-sets-windows-autoscale.md) documents
 >
 >
 
 ## <a name="walkthrough"></a>Procédure pas à pas
-Dans cette procédure pas à pas, nous utilisons [Azure Resource Explorer](https://resources.azure.com/) pour configurer et mettre à jour le paramètre de mise à l’échelle automatique pour un groupe de machines virtuelles identiques. L’Explorateur de ressources Azure est un moyen simple de gérer des ressources Azure via des modèles Resource Manager. Si vous débutez avec l’Explorateur de ressources Azure, lisez [cette introduction](https://azure.microsoft.com/blog/azure-resource-explorer-a-new-tool-to-discover-the-azure-api/).
+Dans cette procédure pas à pas, nous utilisons [Explorateur de ressources Azure](https://resources.azure.com/) tooconfigure et mise à jour le paramètre de mise à l’échelle hello pour un ensemble d’échelle. L’Explorateur de ressources Azure est un toomanage facilement les ressources Azure via le Gestionnaire de ressources des modèles. Si vous ne le nouvel outil de l’Explorateur de ressources tooAzure, lisez [cette introduction](https://azure.microsoft.com/blog/azure-resource-explorer-a-new-tool-to-discover-the-azure-api/).
 
-1. Déployez un nouveau groupe de machines virtuelles identiques avec un paramètre de mise à l’échelle automatique de base. Cet article utilise celui de la galerie de démarrage rapide Azure, qui comporte un groupe de machines virtuelles identiques Windows avec un modèle de mise à l’échelle automatique de base. Les groupes de machines virtuelles identiques Linux fonctionnent de la même façon.
-2. Une fois le groupe créé, accédez à la ressource du groupe à partir de l’Explorateur de ressources Azure. Le code suivant apparaît sous le nœud Microsoft.Insights.
+1. Déployez un nouveau groupe de machines virtuelles identiques avec un paramètre de mise à l’échelle automatique de base. Cet article utilise une hello de hello galerie de démarrage rapide Azure, une fenêtre a été mise à l’échelle est définie avec un modèle de base de mise à l’échelle. Échelle de Linux définit travail hello identique.
+2. Après la création d’un ensemble d’échelle hello, accédez toohello échelle jeu de ressources à partir de l’Explorateur de ressources Azure. Vous consultez suivant hello sous le nœud de Microsoft.Insights.
 
     ![Azure Explorer](./media/insights-advanced-autoscale-vmss/azure_explorer_navigate.png)
 
-    L’exécution du modèle a créé un paramètre de mise à l’échelle automatique par défaut portant le nom **'autoscalewad'**. Dans la partie droite, vous pouvez afficher la définition complète de ce paramètre de mise à l’échelle. Dans ce cas, le paramètre de mise à l’échelle par défaut est associé à une règle de diminution et d’augmentation de la taille des instances basé sur le % de processeur.  
+    l’exécution du modèle Hello a créé un paramètre de mise à l’échelle par défaut avec le nom de hello **'autoscalewad'**. Sur le côté droit de hello, vous pouvez afficher la définition complète de hello de ce paramètre de mise à l’échelle. Dans ce cas, le paramètre de mise à l’échelle par défaut hello est fourni avec une règle de montée en puissance parallèle et de mise à l’échelle de % en fonction du processeur.  
 
-3. Vous pouvez maintenant ajouter d’autres profils et règles à partir d’un calendrier ou d’exigences spécifiques. Nous allons créer un paramètre de mise à l’échelle automatique avec trois profils. Pour comprendre les profils et les règles de mise à l’échelle automatique, consultez [Meilleures pratiques pour la mise à l’échelle automatique d’Azure Insights](insights-autoscale-best-practices.md).  
+3. Vous pouvez maintenant ajouter plus de profils et de règles basées sur la planification de hello ou des exigences spécifiques. Nous allons créer un paramètre de mise à l’échelle automatique avec trois profils. toounderstand profils et les règles de mise à l’échelle, passez en revue [mise à l’échelle les meilleures pratiques](insights-autoscale-best-practices.md).  
 
     | Profils et règles | Description |
     |--- | --- |
@@ -53,20 +53,20 @@ Dans cette procédure pas à pas, nous utilisons [Azure Resource Explorer](https
 
 4. Voici un scénario de mise à l’échelle hypothétique que nous utiliserons pour cette procédure pas à pas.
 
-    * **Selon la charge** : je souhaite diminuer ou augmenter la taille des instances en fonction de la charge de mon application hébergée sur mon groupe de machines virtuelles identiques.*
-    * **Taille de la file d’attente** : j’utilise une file d’attente Service Bus pour les messages entrants dans mon application. J’utilise le nombre de messages de la file d’attente et le % processeur, et je configure un profil par défaut pour déclencher une action de mise à l’échelle si le nombre de messages ou le % processeur atteint le seuil défini.*
-    * **Heure de la journée** : je souhaite définir un profil hebdomadaire basé sur « l’heure de la journée », appelé « Heures dans la matinée, en semaine ». Au vu des données historiques, je sais qu’il est préférable d’avoir un certain nombre d’instances de machine virtuelle pour gérer la charge de mon application pendant cette période.*
-    * **Dates particulières** : j’ai ajouté un profil « Jour de lancement de produit ». Je planifie à l’avance des dates spécifiques afin que mon application soit prête à gérer la charge, en fonction des annonces marketing et des dates d’introduction de nouveaux produits dans l’application.*
-    * *Les deux derniers profils peuvent également contenir d’autres règles basées sur les métriques de performances. Dans mon cas, j’ai décidé de ne pas en utiliser et de me concentrer uniquement sur les règles basées sur les métriques de performances par défaut. Les règles sont facultatives pour les profils récurrents et les profils basés sur la date.*
+    * **Charge en fonction** -j’aimerais tooscale ou selon la charge de hello sur mon application hébergée sur mon set.* de mise à l’échelle
+    * **Taille de file d’attente de message** -utiliser une file d’attente du Bus de Service pour l’application de toomy de messages entrants hello. Utilisez de hello file d’attente messages et % de l’UC et de la configurer un tootrigger de profil par défaut une action de mise à l’échelle de nombre de messages ou de l’UC accès hello threshold.*
+    * **Heure de la semaine et jour** -je voudrais un profil « heure du jour de hello' basé périodique hebdomadaire appelé « Jours ouvrables matin ». Selon les données d’historique, savoir qu’il est mieux toohave certain nombre d’ordinateurs virtuels instances toohandle le chargement de mon application au cours de cette time.*
+    * **Dates particulières** : j’ai ajouté un profil « Jour de lancement de produit ». Planifier l’avance des dates spécifiques afin de mon application est la charge de hello toohandle prêt en raison des annonces marketing et lorsqu’un nouveau produit mis en place hello application.*
+    * *profils de deux derniers Hello peuvent également avoir des autres règles en fonction métriques de performances au sein de celles-ci. Dans ce cas, j’ai ne décidé pas les toohave un et à la place toorely sur les mesures de performance hello par défaut en fonction de règles. Les règles sont facultatives pour hello périodique et date en fonction des profils.*
 
-    La définition des priorités des profils et des règles du moteur de mise à l’échelle automatique est également décrite dans l’article [Meilleures pratiques pour la mise à l’échelle automatique d’Azure Insights](insights-autoscale-best-practices.md).
+    Définition des priorités des profils de hello et des règles du moteur de mise à l’échelle sont également capturées dans hello [échelle meilleures pratiques](insights-autoscale-best-practices.md) l’article.
     Pour obtenir une liste des métriques communément utilisées pour la mise à l’échelle, consultez [Métriques courantes pour la mise à l’échelle automatique d’Azure Insights](insights-autoscale-common-metrics.md)
 
-5. Assurez-vous que vous utilisez l’Explorateur de ressources en mode **lecture/écriture**
+5. Vérifiez que vous êtes sur hello **en lecture/écriture** mode dans l’Explorateur de ressources
 
     ![Autoscalewad, paramètre de mise à l’échelle automatique par défaut](./media/insights-advanced-autoscale-vmss/autoscalewad.png)
 
-6. Cliquez sur Modifier. **Remplacez** l’élément « profiles » dans le paramètre de mise à l’échelle automatique par la configuration suivante :
+6. Cliquez sur Modifier. **Remplacez** élément les profils « hello » dans le paramètre de mise à l’échelle par hello configuration suivante :
 
     ![profils](./media/insights-advanced-autoscale-vmss/profiles.png)
 
@@ -200,14 +200,14 @@ Dans cette procédure pas à pas, nous utilisons [Azure Resource Explorer](https
             }
           }
     ```
-    Pour les champs pris en charge et leurs valeurs, consultez la [documentation API REST de la mise à l’échelle automatique](https://msdn.microsoft.com/en-us/library/azure/dn931928.aspx). Votre paramètre de mise à l’échelle automatique contient à présent les trois profils expliqués précédemment.
+    Pour les champs pris en charge et leurs valeurs, consultez la [documentation API REST de la mise à l’échelle automatique](https://msdn.microsoft.com/en-us/library/azure/dn931928.aspx). Le paramètre de mise à l’échelle contient désormais hello trois profils expliqués précédemment.
 
-7. Examinons pour finir la section **notification** de la mise à l’échelle automatique. Les notifications de mise à l’échelle automatique permettent de faire trois choses au moment du déclenchement d’une action de diminution ou d’augmentation de la taille des instances.
-   - Avertir l’administrateur et les co-administrateurs de votre abonnement
+7. Pour finir, observez hello échelle **notification** section. Les notifications de mise à l’échelle permettent toodo trois choses lors d’une montée en puissance, ou dans l’action est déclenchée avec succès.
+   - Avertir hello admin et les coadministrateurs de votre abonnement
    - Envoyer un e-mail à un ensemble d’utilisateurs
-   - Déclencher un appel webhook. Quand il est déclenché, ce webhook envoie les métadonnées relatives à la condition de mise à l’échelle automatique et à la ressource du groupe de machines virtuelles identiques. Pour plus d’informations sur la charge utile du webhook de mise à l’échelle automatique, consultez la page [Utilisation d’actions de mise à l’échelle automatique pour envoyer des notifications d’alerte webhook et par courrier électronique dans Azure Insights](insights-autoscale-to-webhook-email.md).
+   - Déclencher un appel webhook. Lorsqu’il est déclenché, ce webhook envoie des métadonnées sur la condition d’échelle hello et ensemble d’échelle de hello de ressource. toolearn en savoir plus sur la charge utile de hello de webhook de l’échelle automatique, consultez [Webhook de configurer et de Notifications par courrier électronique pour la mise à l’échelle](insights-autoscale-to-webhook-email.md).
 
-   Ajoutez le code suivant au paramètre de mise à l’échelle automatique en remplaçant votre élément **notification** dont la valeur est null
+   Ajouter hello après le remplacement de paramètre de mise à l’échelle toohello votre **notification** élément dont la valeur est null
 
    ```
    "notifications": [
@@ -235,12 +235,12 @@ Dans cette procédure pas à pas, nous utilisons [Azure Resource Explorer](https
 
    ```
 
-   Cliquez sur le bouton **Put** dans l’Explorateur de ressources pour mettre à jour le paramètre de mise à l’échelle automatique.
+   Accès **Put** bouton dans le paramètre de mise à l’échelle de l’Explorateur de ressources tooupdate hello.
 
-Vous avez mis à jour un paramètre de mise à l’échelle automatique sur un groupe de machines virtuelles identiques pour inclure plusieurs profils de mise à l’échelle ainsi que des notifications de mise à l’échelle.
+Vous avez de mises à jour un paramètre sur un tooinclude de jeu de mise à l’échelle de machine virtuelle plusieurs profils de mise à l’échelle d’échelle automatique et des notifications de mise à l’échelle.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Suivez ces liens pour en savoir plus sur la mise à l’échelle automatique.
+Utilisez ces informations supplémentaires sur l’échelle automatique de toolearn de liens.
 
 [Dépanner la mise à l’échelle automatique avec des jeux de mise à l’échelle de machine virtuelle](../virtual-machine-scale-sets/virtual-machine-scale-sets-troubleshoot.md)
 

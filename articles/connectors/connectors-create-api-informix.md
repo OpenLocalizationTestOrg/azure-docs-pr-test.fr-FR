@@ -1,5 +1,5 @@
 ---
-title: Ajouter le connecteur Informix dans vos applications logiques | Microsoft Docs
+title: connecteur de Informix aaaAdd hello dans vos applications logiques | Documents Microsoft
 description: "Vue d’ensemble du connecteur Informix avec les paramètres d’API REST"
 services: 
 documentationcenter: 
@@ -15,16 +15,16 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 09/26/2016
 ms.author: plarsen; ladocs
-ms.openlocfilehash: b2e755b5b1b4939eac90ac55ba8398c5687124c8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7a163e2ebf00fa3109b93e34845d922c2174a48d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-informix-connector"></a>Prise en main du connecteur Informix
-Microsoft Connector for Informix connecte Logic Apps aux ressources stockées dans une base de données IBM Informix. Le connecteur Informix inclut un client Microsoft permettant de communiquer avec les ordinateurs serveur Informix distants via un réseau TCP/IP. Cela inclut les bases de données cloud, telles que IBM Informix pour Windows en cours d’exécution dans la virtualisation Azure et les bases de données locales utilisant la passerelle de données locale. Consultez la [liste prise en charge](connectors-create-api-informix.md#supported-informix-platforms-and-versions) des plates-formes et versions IBM Informix (dans cette rubrique).
+# <a name="get-started-with-hello-informix-connector"></a>Prise en main connecteur de Informix hello
+Microsoft connector pour Informix connecte tooresources Logic Apps stockées dans une base de données IBM Informix. connecteur de Informix Hello inclut un ordinateurs client Microsoft toocommunicate tooremote Informix serveur sur un réseau TCP/IP. Cela inclut les bases de données cloud, tels que IBM Informix pour Windows en cours d’exécution dans la virtualisation Azure et des bases de données à l’aide de la passerelle de données locale hello sur site. Consultez hello [prise en charge de la liste](connectors-create-api-informix.md#supported-informix-platforms-and-versions) de IBM Informix plateformes et versions (dans cette rubrique).
 
-Le connecteur prend en charge les opérations de base de données suivantes :
+connecteur de Hello prend en charge hello des opérations de base de données suivantes :
 
 * énumération des tables de base de données ;
 * lecture d’une ligne à l’aide de l’instruction SELECT ;
@@ -33,12 +33,12 @@ Le connecteur prend en charge les opérations de base de données suivantes :
 * modification d’une ligne à l’aide de l’instruction UPDATE ;
 * suppression d’une ligne à l’aide de l’instruction DELETE.
 
-Cette rubrique décrit comment utiliser le connecteur dans une application logique pour traiter les opérations de base de données.
+Cette rubrique vous montre les opérations de données dans un tooprocess d’application de la logique d’un connecteur toouse hello.
 
-Pour plus d’informations sur Logic Apps, voir [Créer une application logique](../logic-apps/logic-apps-create-a-logic-app.md).
+toolearn en savoir plus sur les applications de la logique, consultez [créer une application logique](../logic-apps/logic-apps-create-a-logic-app.md).
 
 ## <a name="available-actions"></a>Actions disponibles
-Ce connecteur prend en charge les actions d’application logique suivantes :
+Ce connecteur prend en charge hello suivant des actions de logique d’application :
 
 * Getables
 * GetRow
@@ -48,25 +48,25 @@ Ce connecteur prend en charge les actions d’application logique suivantes :
 * DeleteRow
 
 ## <a name="list-tables"></a>Affichage de la liste des tables
-La création d’une application logique pour une opération quelconque implique de nombreuses étapes exécutées par le biais du Portail Microsoft Azure.
+Création d’une application logique pour toute opération se compose de nombreuses étapes effectuées par le biais du portail Microsoft Azure hello.
 
-Dans l’application logique, vous pouvez ajouter une action pour répertorier les tables dans une base de données Informix. Cette action indique au connecteur de traiter une instruction de schéma Informix, telle que `CALL SYSIBM.SQLTABLES`.
+Au sein de l’application logique de hello, vous pouvez ajouter des tables de toolist d’une action dans une base de données Informix. Cette action fait en sorte que hello connecteur tooprocess une instruction de schéma Informix, tel que `CALL SYSIBM.SQLTABLES`.
 
 ### <a name="create-a-logic-app"></a>Créer une application logique
-1. Dans le **Panneau de démarrage Azure**, sélectionnez **+** (signe plus), **Web + mobile**, puis **Application logique**.
-2. Entrez le **Nom**, tel que `InformixgetTables`, **Abonnement**, **Groupe de ressources**, **Emplacement** et **Plan App Service**. Sélectionnez **Épingler au tableau de bord**, puis sélectionnez **Créer**.
+1. Bonjour **Azure démarrer carte**, sélectionnez  **+**  (signe plus), **Web + Mobile**, puis **application logique**.
+2. Entrez hello **nom**, tel que `InformixgetTables`, **abonnement**, **groupe de ressources**, **emplacement**, et **application Plan de service**. Sélectionnez **code confidentiel toodashboard**, puis sélectionnez **créer**.
 
 ### <a name="add-a-trigger-and-action"></a>Ajouter un déclencheur et une action
-1. Dans **Concepteur d’applications logiques**, sélectionnez **Blank LogicApp** (Application logique vide) dans la liste **Modèles**.
-2. Dans la liste **déclencheurs**, sélectionnez **Périodicité**. 
-3. Dans le déclencheur **Périodicité**, sélectionnez **Modifier**, sélectionnez la liste déroulante **Fréquence** et sélectionnez **Jour**, puis sélectionnez **Intervalle** et tapez **7**.  
-4. Sélectionnez **+ Nouvelle étape**, puis sélectionnez **Ajouter une action**.
-5. Dans la liste **actions**, tapez **informix** dans la zone de modification **Search for more actions** (Rechercher d’autres actions), puis sélectionnez **Informix - Get tables (Preview)** (Informix - Obtenir les tables (version préliminaire)).
+1. Bonjour **Concepteur d’applications logique**, sélectionnez **LogicApp vide** Bonjour **modèles** liste.
+2. Bonjour **déclencheurs** liste, sélectionnez **périodicité**. 
+3. Bonjour **périodicité** déclencheur, sélectionnez **modifier**, sélectionnez **fréquence** tooselect de liste déroulante **jour**, puis sélectionnez  **Intervalle** tootype **7**.  
+4. Sélectionnez hello **+ nouvelle étape** zone, puis sélectionnez **ajouter une action**.
+5. Bonjour **actions** , tapez **informix** Bonjour **recherche pour plusieurs actions** zone d’édition, puis **Informix - Get tables (version préliminaire)**.
    
    ![](./media/connectors-create-api-informix/InformixconnectorActions.png)  
-6. Dans le volet de configuration **Informix - Get tables** (Informix - Obtenir les tables), sélectionnez la **case** pour activer l’option **Connect via on-premises data gateway** (Connecter par le biais de la passerelle de données locale). Vous remarquerez que les paramètres de cloud sont remplacés par les paramètres locaux.
+6. Bonjour **Informix - Get tables** volet de configuration, sélectionnez **case à cocher** tooenable **se connecter via la passerelle de données locale**. Remarquez que les paramètres de hello tooon site cloud.
    
-   * Renseignez la zone **Serveur**sous la forme d’une adresse ou d’un alias suivis d’un caractère deux-points et d’un numéro de port. Par exemple, tapez `ibmserver01:9089`.
+   * Valeur de type de **Server**, sous forme de hello d’adresse ou alias de numéro de port de deux-points. Par exemple, tapez `ibmserver01:9089`.
    * Renseignez la zone **Base de données**. Par exemple, tapez `nwind`.
    * Renseignez la zone **Authentification**. Par exemple, sélectionnez **De base**.
    * Renseignez la zone **Nom d’utilisateur**. Par exemple, tapez `informix`.
@@ -75,13 +75,13 @@ Dans l’application logique, vous pouvez ajouter une action pour répertorier l
 7. Sélectionnez **Créer**, puis sélectionnez **Enregistrer**. 
    
     ![](./media/connectors-create-api-informix/InformixconnectorOnPremisesDataGatewayConnection.png)
-8. Au niveau du panneau **InformixgetTables**, dans la liste **Toutes les exécutions** figurant sous **Résumé**, sélectionnez le premier élément répertorié (dernière exécution).
-9. Dans le panneau **Exécution d’application logique**, sélectionnez **Détails de l’exécution**. Dans la liste **Action**, sélectionnez **Get_tables**. Examinez la zone **État**, qui doit présenter la valeur **Opération réussie**. Sélectionnez le **lien Entrées** pour afficher les entrées. Sélectionnez le **lien Sorties**, et visualisez les sorties, qui doivent inclure une liste de tables.
+8. Bonjour **InformixgetTables** panneau, au sein de hello **toutes les séries** liste sous **Résumé**, sélectionnez hello premiers dans la liste, élément (la dernière exécution).
+9. Bonjour **application logique exécuter** panneau, sélectionnez **détails de l’exécution**. Au sein de hello **Action** liste, sélectionnez **Get_tables**. Consultez la valeur hello pour **état**, qui doit être **Succeeded**. Sélectionnez hello **lien d’entrées** tooview les entrées de hello. Sélectionnez hello **sorties lien**et fournit en sortie hello d’affichage ; qui doit inclure une liste de tables.
    
    ![](./media/connectors-create-api-informix/InformixconnectorGetTablesLogicAppRunOutputs.png)
 
-## <a name="create-the-connections"></a>Créer les connexions
-Ce connecteur prend en charge les connexions aux bases de données locales et dans le cloud à l’aide des propriétés de connexion ci-après. 
+## <a name="create-hello-connections"></a>Créer des connexions de hello
+Ce connecteur prend en charge les connexions toodatabase localement et dans le cloud de hello à l’aide de hello des propriétés de connexion suivantes. 
 
 | Propriété | Description |
 | --- | --- |
@@ -90,191 +90,191 @@ Ce connecteur prend en charge les connexions aux bases de données locales et da
 | Authentification |facultatif. Accepte la valeur d’élément de liste De base ou Windows (Kerberos). |
 | Nom d’utilisateur |Obligatoire. Accepte une valeur de chaîne. |
 | Mot de passe |Obligatoire. Accepte une valeur de chaîne. |
-| Passerelle |Obligatoire. Accepte une valeur d’élément de liste représentant la passerelle de données locale définie pour Logic Apps dans le groupe de stockage. |
+| Passerelle |Obligatoire. Accepte une valeur d’élément de liste, représentant les données passerelle définie tooLogic applications hello local au sein du groupe de stockage hello. |
 
-## <a name="create-the-on-premises-gateway-connection"></a>Créer la connexion de passerelle locale
-Ce connecteur peut accéder à une base de données Informix locale à l’aide de la passerelle de données locale. Pour plus d’informations, voir les rubriques consacrées aux passerelles. 
+## <a name="create-hello-on-premises-gateway-connection"></a>Créez hello local de connexion à la passerelle
+Ce connecteur peut accéder à une base de données Informix localement à l’aide de la passerelle de données locale hello. Pour plus d’informations, voir les rubriques consacrées aux passerelles. 
 
-1. Dans le volet de configuration **Passerelles**, sélectionnez la **case** pour activer l’option **Connect via on-premises data gateway** (Connecter par le biais de la passerelle de données locale). Vous pouvez remarquer que les paramètres de cloud sont remplacés par les paramètres locaux.
-2. Renseignez la zone **Serveur**sous la forme d’une adresse ou d’un alias suivis d’un caractère deux-points et d’un numéro de port. Par exemple, tapez `ibmserver01:9089`.
+1. Bonjour **passerelles** volet de configuration, sélectionnez **case à cocher** tooenable **se connecter via la passerelle**. Consultez hello paramètres changent de cloud tooon local.
+2. Valeur de type de **Server**, sous forme de hello d’adresse ou alias de numéro de port de deux-points. Par exemple, tapez `ibmserver01:9089`.
 3. Renseignez la zone **Base de données**. Par exemple, tapez `nwind`.
 4. Renseignez la zone **Authentification**. Par exemple, sélectionnez **De base**.
 5. Renseignez la zone **Nom d’utilisateur**. Par exemple, tapez `informix`.
 6. Renseignez la zone **Mot de passe**. Par exemple, tapez `Password1`.
 7. Renseignez la zone **Passerelle**. Par exemple, sélectionnez **datagateway01**.
-8. Sélectionnez **Créer** pour continuer. 
+8. Sélectionnez **créer** toocontinue. 
    
     ![](./media/connectors-create-api-informix/InformixconnectorOnPremisesDataGatewayConnection.png)
 
-## <a name="create-the-cloud-connection"></a>Créer la connexion cloud
+## <a name="create-hello-cloud-connection"></a>Créer la connexion de cloud hello
 Ce connecteur peut accéder à une base de données Informix cloud. 
 
-1. Dans le volet de configuration **Passerelles**, laissez la **case** décochée pour désactiver l’option **Connect via on-premises data gateway** (Connecter par le biais de la passerelle de données locale). 
+1. Bonjour **passerelles** volet de configuration, laissez le champ hello **case à cocher** désactivé (décoché la case) **se connecter via la passerelle**. 
 2. Renseignez la zone **Nom de la connexion**. Par exemple, tapez `hisdemo2`.
-3. Renseignez la zone **Informix server name**(Nom du serveur Informix) sous la forme d’une adresse ou d’un alias suivis d’un caractère deux-points et d’un numéro de port. Par exemple, tapez `hisdemo2.cloudapp.net:9089`.
+3. Valeur de type de **nom du serveur Informix**, sous forme de hello d’adresse ou alias de numéro de port de deux-points. Par exemple, tapez `hisdemo2.cloudapp.net:9089`.
 4. Renseignez la zone **Informix database name**(Nom de la base de données Informix). Par exemple, tapez `nwind`.
 5. Renseignez la zone **Nom d’utilisateur**. Par exemple, tapez `informix`.
 6. Renseignez la zone **Mot de passe**. Par exemple, tapez `Password1`.
-7. Sélectionnez **Créer** pour continuer. 
+7. Sélectionnez **créer** toocontinue. 
    
     ![](./media/connectors-create-api-informix/InformixconnectorCloudConnection.png)
 
 ## <a name="fetch-all-rows-using-select"></a>Extraire toutes les lignes à l’aide de l’instruction SELECT
-Vous pouvez créer une action d’application logique pour extraire toutes les lignes dans la table Informix. Cette action indique au connecteur de traiter une instruction SELECT Informix, telle que `SELECT * FROM AREA`.
+Vous pouvez créer un toofetch d’action d’application logique toutes les lignes dans la table de Informix hello. Cette action fait en sorte que hello connecteur tooprocess une instruction SELECT de Informix, tel que `SELECT * FROM AREA`.
 
 ### <a name="create-a-logic-app"></a>Créer une application logique
-1. Dans le **Panneau de démarrage Azure**, sélectionnez **+** (signe plus), **Web + mobile**, puis **Application logique**.
-2. Renseignez les zones **Nom** (par exemple, « **InformixgetRows** »), **Abonnement**, **Groupe de ressources**, **Emplacement** et **Plan App Service**. Sélectionnez **Épingler au tableau de bord**, puis sélectionnez **Créer**.
+1. Bonjour **Azure démarrer carte**, sélectionnez  **+**  (signe plus), **Web + Mobile**, puis **application logique**.
+2. Entrez hello **nom** (par exemple) « **InformixgetRows** »), **Abonnement**, **Groupe de ressources**, **Emplacement** et **Plan App Service**. Sélectionnez **code confidentiel toodashboard**, puis sélectionnez **créer**.
 
 ### <a name="add-a-trigger-and-action"></a>Ajouter un déclencheur et une action
-1. Dans **Concepteur d’applications logiques**, sélectionnez **Blank LogicApp** (Application logique vide) dans la liste **Modèles**.
-2. Dans la liste **déclencheurs**, sélectionnez **Périodicité**. 
-3. Dans le déclencheur **Périodicité**, sélectionnez **Modifier**, sélectionnez la liste déroulante **Fréquence** et sélectionnez **Jour**, puis sélectionnez **Intervalle** et tapez **7**. 
-4. Sélectionnez **+ Nouvelle étape**, puis sélectionnez **Ajouter une action**.
-5. Dans la liste **actions**, tapez **informix** dans la zone de modification **Search for more actions** (Rechercher d’autres actions), puis sélectionnez **Informix - Get rows (Preview)** (Informix - Obtenir les lignes (version préliminaire)).
-6. Dans l’action **Get rows (Preview)** (Obtenir les lignes (version préliminaire)), sélectionnez **Modifier la connexion**.
-7. Dans le volet de configuration **Connexions**, sélectionnez **Créer**. 
+1. Bonjour **Concepteur d’applications logique**, sélectionnez **LogicApp vide** Bonjour **modèles** liste.
+2. Bonjour **déclencheurs** liste, sélectionnez **périodicité**. 
+3. Bonjour **périodicité** déclencheur, sélectionnez **modifier**, sélectionnez **fréquence** tooselect de liste déroulante **jour**, puis sélectionnez  **Intervalle** tootype **7**. 
+4. Sélectionnez hello **+ nouvelle étape** zone, puis sélectionnez **ajouter une action**.
+5. Bonjour **actions** , tapez **informix** Bonjour **recherche pour plusieurs actions** zone d’édition, puis **Informix - Get lignes (version préliminaire)** .
+6. Bonjour **obtenir des lignes (version préliminaire)** action, sélectionnez **modifier la connexion**.
+7. Bonjour **connexions** volet de configuration, sélectionnez **nouvel**. 
    
     ![](./media/connectors-create-api-informix/InformixconnectorNewConnection.png)
-8. Dans le volet de configuration **Passerelles**, laissez la **case** décochée pour désactiver l’option **Connect via on-premises data gateway** (Connecter par le biais de la passerelle de données locale).
+8. Bonjour **passerelles** volet de configuration, laissez le champ hello **case à cocher** désactivé (décoché la case) **se connecter via la passerelle**.
    
    * Renseignez la zone **Nom de la connexion**. Par exemple, tapez `HISDEMO2`.
-   * Renseignez la zone **Informix server name**(Nom du serveur Informix) sous la forme d’une adresse ou d’un alias suivis d’un caractère deux-points et d’un numéro de port. Par exemple, tapez `HISDEMO2.cloudapp.net:9089`.
+   * Valeur de type de **nom du serveur Informix**, sous forme de hello d’adresse ou alias de numéro de port de deux-points. Par exemple, tapez `HISDEMO2.cloudapp.net:9089`.
    * Renseignez la zone **Informix database name**(Nom de la base de données Informix). Par exemple, tapez `NWIND`.
    * Renseignez la zone **Nom d’utilisateur**. Par exemple, tapez `informix`.
    * Renseignez la zone **Mot de passe**. Par exemple, tapez `Password1`.
-9. Sélectionnez **Créer** pour continuer.
+9. Sélectionnez **créer** toocontinue.
    
     ![](./media/connectors-create-api-informix/InformixconnectorCloudConnection.png)
-10. Dans la liste **Nom de la table**, sélectionnez la **flèche vers le bas**, puis sélectionnez **AREA**.
-11. Si vous le souhaitez, sélectionnez **Afficher les options avancées** pour spécifier les options de requête.
+10. Bonjour **nom de la Table** liste, sélectionnez hello **bas**, puis sélectionnez **zone**.
+11. Si vous le souhaitez, sélectionnez **Show advanced options** toospecify les options de requête.
 12. Sélectionnez **Enregistrer**. 
     
     ![](./media/connectors-create-api-informix/InformixconnectorGetRowsTableName.png)
-13. Au niveau du panneau **InformixgetRows**, dans la liste **Toutes les exécutions** figurant sous **Résumé**, sélectionnez le premier élément répertorié (dernière exécution).
-14. Dans le panneau **Exécution d’application logique**, sélectionnez **Détails de l’exécution**. Dans la liste **Action**, sélectionnez **Get_rows**. Examinez la zone **État**, qui doit présenter la valeur **Opération réussie**. Sélectionnez le **lien Entrées** pour afficher les entrées. Sélectionnez le **lien Sorties**, et visualisez les sorties, qui doivent inclure une liste de lignes.
+13. Bonjour **InformixgetRows** panneau, au sein de hello **toutes les séries** liste sous **Résumé**, sélectionnez hello premiers dans la liste, élément (la dernière exécution).
+14. Bonjour **application logique exécuter** panneau, sélectionnez **détails de l’exécution**. Au sein de hello **Action** liste, sélectionnez **Get_rows**. Consultez la valeur hello pour **état**, qui doit être **Succeeded**. Sélectionnez hello **lien d’entrées** tooview les entrées de hello. Sélectionnez hello **sorties lien**et fournit en sortie hello d’affichage ; qui doit inclure une liste de lignes.
     
     ![](./media/connectors-create-api-informix/InformixconnectorGetRowsOutputs.png)
 
 ## <a name="add-one-row-using-insert"></a>ajout d’une ligne à l’aide de l’instruction INSERT ;
-Vous pouvez créer une action d’application logique pour ajouter une ligne dans une table Informix. Cette action indique au connecteur de traiter une instruction INSERT Informix, telle que `INSERT INTO AREA (AREAID, AREADESC, REGIONID) VALUES ('99999', 'Area 99999', 102)`.
+Vous pouvez créer une logique application action tooadd une ligne dans une table Informix. Cette action fait en sorte que hello connecteur tooprocess une instruction INSERT de Informix, tel que `INSERT INTO AREA (AREAID, AREADESC, REGIONID) VALUES ('99999', 'Area 99999', 102)`.
 
 ### <a name="create-a-logic-app"></a>Créer une application logique
-1. Dans le **Panneau de démarrage Azure**, sélectionnez **+** (signe plus), **Web + mobile**, puis **Application logique**.
-2. Entrez le **Nom**, tel que `InformixinsertRow`, **Abonnement**, **Groupe de ressources**, **Emplacement** et **Plan App Service**. Sélectionnez **Épingler au tableau de bord**, puis sélectionnez **Créer**.
+1. Bonjour **Azure démarrer carte**, sélectionnez  **+**  (signe plus), **Web + Mobile**, puis **application logique**.
+2. Entrez hello **nom**, tel que `InformixinsertRow`, **abonnement**, **groupe de ressources**, **emplacement**, et **application Plan de service**. Sélectionnez **code confidentiel toodashboard**, puis sélectionnez **créer**.
 
 ### <a name="add-a-trigger-and-action"></a>Ajouter un déclencheur et une action
-1. Dans **Concepteur d’applications logiques**, sélectionnez **Blank LogicApp** (Application logique vide) dans la liste **Modèles**.
-2. Dans la liste **déclencheurs**, sélectionnez **Périodicité**. 
-3. Dans le déclencheur **Périodicité**, sélectionnez **Modifier**, sélectionnez la liste déroulante **Fréquence** et sélectionnez **Jour**, puis sélectionnez **Intervalle** et tapez **7**. 
-4. Sélectionnez **+ Nouvelle étape**, puis sélectionnez **Ajouter une action**.
-5. Dans la liste **actions**, tapez **informix** dans la zone de modification **Search for more actions** (Rechercher d’autres actions), puis sélectionnez **Informix - Insert row (Preview)** (Informix - Insérer une ligne (version préliminaire)).
-6. Dans l’action **Get rows (Preview)** (Obtenir les lignes (version préliminaire)), sélectionnez **Modifier la connexion**. 
-7. Dans le volet de configuration **Connexions** , sélectionnez une connexion. Par exemple, sélectionnez **hisdemo2**.
+1. Bonjour **Concepteur d’applications logique**, sélectionnez **LogicApp vide** Bonjour **modèles** liste.
+2. Bonjour **déclencheurs** liste, sélectionnez **périodicité**. 
+3. Bonjour **périodicité** déclencheur, sélectionnez **modifier**, sélectionnez **fréquence** tooselect de liste déroulante **jour**, puis sélectionnez  **Intervalle** tootype **7**. 
+4. Sélectionnez hello **+ nouvelle étape** zone, puis sélectionnez **ajouter une action**.
+5. Bonjour **actions** , tapez **informix** Bonjour **recherche pour plusieurs actions** zone d’édition, puis **Informix - ligne d’insertion (version préliminaire)**.
+6. Bonjour **obtenir des lignes (version préliminaire)** action, sélectionnez **modifier la connexion**. 
+7. Bonjour **connexions** volet de configuration, sélectionnez tooselect une connexion. Par exemple, sélectionnez **hisdemo2**.
    
     ![](./media/connectors-create-api-informix/InformixconnectorChangeConnection.png)
-8. Dans la liste **Nom de la table**, sélectionnez la **flèche vers le bas**, puis sélectionnez **AREA**.
+8. Bonjour **nom de la Table** liste, sélectionnez hello **bas**, puis sélectionnez **zone**.
 9. Entrez des valeurs pour toutes les colonnes requises (signalées par un astérisque rouge). Par exemple, tapez `99999` pour **AREAID**, tapez `Area 99999`, puis tapez la valeur `102` pour **REGIONID**. 
 10. Sélectionnez **Enregistrer**.
     
     ![](./media/connectors-create-api-informix/InformixconnectorInsertRowValues.png)
-11. Au niveau du panneau **InformixinsertRow**, dans la liste **Toutes les exécutions** figurant sous **Résumé**, sélectionnez le premier élément répertorié (dernière exécution).
-12. Dans le panneau **Exécution d’application logique**, sélectionnez **Détails de l’exécution**. Dans la liste **Action**, sélectionnez **Get_rows**. Examinez la zone **État**, qui doit présenter la valeur **Opération réussie**. Sélectionnez le **lien Entrées** pour afficher les entrées. Sélectionnez le **lien Sorties**, et visualisez les sorties, qui doivent inclure la nouvelle ligne.
+11. Bonjour **InformixinsertRow** panneau, au sein de hello **toutes les séries** liste sous **Résumé**, sélectionnez hello premiers dans la liste, élément (la dernière exécution).
+12. Bonjour **application logique exécuter** panneau, sélectionnez **détails de l’exécution**. Au sein de hello **Action** liste, sélectionnez **Get_rows**. Consultez la valeur hello pour **état**, qui doit être **Succeeded**. Sélectionnez hello **lien d’entrées** tooview les entrées de hello. Sélectionnez hello **sorties lien**et fournit en sortie hello d’affichage ; qui doit inclure la ligne hello.
     
     ![](./media/connectors-create-api-informix/InformixconnectorInsertRowOutputs.png)
 
 ## <a name="fetch-one-row-using-select"></a>Extraire une ligne à l’aide de l’instruction SELECT
-Vous pouvez créer une action d’application logique pour extraire une ligne dans une table Informix. Cette action indique au connecteur de traiter une instruction SELECT WHERE Informix, telle que `SELECT FROM AREA WHERE AREAID = '99999'`.
+Vous pouvez créer une logique application action toofetch une ligne dans une table Informix. Cette action fait en sorte que hello connecteur tooprocess une instruction Informix sélectionnez où, tel que `SELECT FROM AREA WHERE AREAID = '99999'`.
 
 ### <a name="create-a-logic-app"></a>Créer une application logique
-1. Dans le **Panneau de démarrage Azure**, sélectionnez **+** (signe plus), **Web + mobile**, puis **Application logique**.
-2. Entrez le **Nom**, tel que `InformixgetRow`, **Abonnement**, **Groupe de ressources**, **Emplacement** et **Plan App Service**. Sélectionnez **Épingler au tableau de bord**, puis sélectionnez **Créer**.
+1. Bonjour **Azure démarrer carte**, sélectionnez  **+**  (signe plus), **Web + Mobile**, puis **application logique**.
+2. Entrez hello **nom**, tel que `InformixgetRow`, **abonnement**, **groupe de ressources**, **emplacement**, et **application Plan de service**. Sélectionnez **code confidentiel toodashboard**, puis sélectionnez **créer**.
 
 ### <a name="add-a-trigger-and-action"></a>Ajouter un déclencheur et une action
-1. Dans **Concepteur d’applications logiques**, sélectionnez **Blank LogicApp** (Application logique vide) dans la liste **Modèles**.
-2. Dans la liste **déclencheurs**, sélectionnez **Périodicité**. 
-3. Dans le déclencheur **Périodicité**, sélectionnez **Modifier**, sélectionnez la liste déroulante **Fréquence** et sélectionnez **Jour**, puis sélectionnez **Intervalle** et tapez **7**. 
-4. Sélectionnez **+ Nouvelle étape**, puis sélectionnez **Ajouter une action**.
-5. Dans la liste **actions**, tapez **informix** dans la zone de modification **Search for more actions** (Rechercher d’autres actions), puis sélectionnez **Informix - Get rows (Preview)** (Informix - Obtenir les lignes (version préliminaire)).
-6. Dans l’action **Get rows (Preview)** (Obtenir les lignes (version préliminaire)), sélectionnez **Modifier la connexion**. 
-7. Dans le volet de configuration **Connexions** , sélectionnez une connexion existante. Par exemple, sélectionnez **hisdemo2**.
+1. Bonjour **Concepteur d’applications logique**, sélectionnez **LogicApp vide** Bonjour **modèles** liste.
+2. Bonjour **déclencheurs** liste, sélectionnez **périodicité**. 
+3. Bonjour **périodicité** déclencheur, sélectionnez **modifier**, sélectionnez **fréquence** tooselect de liste déroulante **jour**, puis sélectionnez  **Intervalle** tootype **7**. 
+4. Sélectionnez hello **+ nouvelle étape** zone, puis sélectionnez **ajouter une action**.
+5. Bonjour **actions** , tapez **informix** Bonjour **recherche pour plusieurs actions** zone d’édition, puis **Informix - Get lignes (version préliminaire)** .
+6. Bonjour **obtenir des lignes (version préliminaire)** action, sélectionnez **modifier la connexion**. 
+7. Bonjour **connexions** volet de configurations, sélectionnez tooselect une connexion existante. Par exemple, sélectionnez **hisdemo2**.
    
     ![](./media/connectors-create-api-informix/InformixconnectorChangeConnection.png)
-8. Dans la liste **Nom de la table**, sélectionnez la **flèche vers le bas**, puis sélectionnez **AREA**.
+8. Bonjour **nom de la Table** liste, sélectionnez hello **bas**, puis sélectionnez **zone**.
 9. Entrez des valeurs pour toutes les colonnes requises (signalées par un astérisque rouge). Par exemple, tapez `99999` pour **AREAID**. 
-10. Si vous le souhaitez, sélectionnez **Afficher les options avancées** pour spécifier les options de requête.
+10. Si vous le souhaitez, sélectionnez **Show advanced options** toospecify les options de requête.
 11. Sélectionnez **Enregistrer**. 
     
     ![](./media/connectors-create-api-informix/InformixconnectorGetRowValues.png)
-12. Au niveau du panneau **InformixgetRow**, dans la liste **Toutes les exécutions** figurant sous **Résumé**, sélectionnez le premier élément répertorié (dernière exécution).
-13. Dans le panneau **Exécution d’application logique**, sélectionnez **Détails de l’exécution**. Dans la liste **Action**, sélectionnez **Get_rows**. Examinez la zone **État**, qui doit présenter la valeur **Opération réussie**. Sélectionnez le **lien Entrées** pour afficher les entrées. Sélectionnez le **lien Sorties**, et visualisez les sorties, qui doivent inclure une ligne.
+12. Bonjour **InformixgetRow** panneau, au sein de hello **toutes les séries** liste sous **Résumé**, sélectionnez hello premiers dans la liste, élément (la dernière exécution).
+13. Bonjour **application logique exécuter** panneau, sélectionnez **détails de l’exécution**. Au sein de hello **Action** liste, sélectionnez **Get_rows**. Consultez la valeur hello pour **état**, qui doit être **Succeeded**. Sélectionnez hello **lien d’entrées** tooview les entrées de hello. Sélectionnez hello **sorties lien**et fournit en sortie hello d’affichage ; qui doit inclure la ligne.
     
     ![](./media/connectors-create-api-informix/InformixconnectorGetRowOutputs.png)
 
 ## <a name="change-one-row-using-update"></a>Modifier une ligne à l’aide de l’instruction UPDATE
-Vous pouvez créer une action d’application logique pour modifier une ligne dans une table Informix. Cette action indique au connecteur de traiter une instruction UPDATE Informix, telle que `UPDATE AREA SET AREAID = '99999', AREADESC = 'Area 99999', REGIONID = 102)`.
+Vous pouvez créer une logique application action toochange une ligne dans une table Informix. Cette action fait en sorte que hello connecteur tooprocess une instruction de mise à jour Informix, tel que `UPDATE AREA SET AREAID = '99999', AREADESC = 'Area 99999', REGIONID = 102)`.
 
 ### <a name="create-a-logic-app"></a>Créer une application logique
-1. Dans le **Panneau de démarrage Azure**, sélectionnez **+** (signe plus), **Web + mobile**, puis **Application logique**.
-2. Entrez le **Nom**, tel que `InformixupdateRow`, **Abonnement**, **Groupe de ressources**, **Emplacement** et **Plan App Service**. Sélectionnez **Épingler au tableau de bord**, puis sélectionnez **Créer**.
+1. Bonjour **Azure démarrer carte**, sélectionnez  **+**  (signe plus), **Web + Mobile**, puis **application logique**.
+2. Entrez hello **nom**, tel que `InformixupdateRow`, **abonnement**, **groupe de ressources**, **emplacement**, et **application Plan de service**. Sélectionnez **code confidentiel toodashboard**, puis sélectionnez **créer**.
 
 ### <a name="add-a-trigger-and-action"></a>Ajouter un déclencheur et une action
-1. Dans **Concepteur d’applications logiques**, sélectionnez **Blank LogicApp** (Application logique vide) dans la liste **Modèles**.
-2. Dans la liste **déclencheurs**, sélectionnez **Périodicité**. 
-3. Dans le déclencheur **Périodicité**, sélectionnez **Modifier**, sélectionnez la liste déroulante **Fréquence** et sélectionnez **Jour**, puis sélectionnez **Intervalle** et tapez **7**. 
-4. Sélectionnez **+ Nouvelle étape**, puis sélectionnez **Ajouter une action**.
-5. Dans la liste **actions**, tapez **informix** dans la zone de modification **Search for more actions** (Rechercher d’autres actions), puis sélectionnez **Informix - Update row (Preview)** (Informix - Mettre à jour une ligne (version préliminaire)).
-6. Dans l’action **Get rows (Preview)** (Obtenir les lignes (version préliminaire)), sélectionnez **Modifier la connexion**. 
-7. Dans le volet de configuration **Connexions** , sélectionnez une connexion existante. Par exemple, sélectionnez **hisdemo2**.
+1. Bonjour **Concepteur d’applications logique**, sélectionnez **LogicApp vide** Bonjour **modèles** liste.
+2. Bonjour **déclencheurs** liste, sélectionnez **périodicité**. 
+3. Bonjour **périodicité** déclencheur, sélectionnez **modifier**, sélectionnez **fréquence** tooselect de liste déroulante **jour**, puis sélectionnez  **Intervalle** tootype **7**. 
+4. Sélectionnez hello **+ nouvelle étape** zone, puis sélectionnez **ajouter une action**.
+5. Bonjour **actions** , tapez **informix** Bonjour **recherche pour plusieurs actions** zone d’édition, puis **Informix - la ligne à jour (version préliminaire)**.
+6. Bonjour **obtenir des lignes (version préliminaire)** action, sélectionnez **modifier la connexion**. 
+7. Bonjour **connexions** volet de configurations, sélectionnez tooselect une connexion existante. Par exemple, sélectionnez **hisdemo2**.
    
     ![](./media/connectors-create-api-informix/InformixconnectorChangeConnection.png)
-8. Dans la liste **Nom de la table**, sélectionnez la **flèche vers le bas**, puis sélectionnez **AREA**.
+8. Bonjour **nom de la Table** liste, sélectionnez hello **bas**, puis sélectionnez **zone**.
 9. Entrez des valeurs pour toutes les colonnes requises (signalées par un astérisque rouge). Par exemple, tapez `99999` pour **AREAID**, tapez `Updated 99999`, puis tapez la valeur `102` pour **REGIONID**. 
 10. Sélectionnez **Enregistrer**. 
     
     ![](./media/connectors-create-api-informix/InformixconnectorUpdateRowValues.png)
-11. Au niveau du panneau **InformixupdateRow**, dans la liste **Toutes les exécutions** figurant sous **Résumé**, sélectionnez le premier élément répertorié (dernière exécution).
-12. Dans le panneau **Exécution d’application logique**, sélectionnez **Détails de l’exécution**. Dans la liste **Action**, sélectionnez **Get_rows**. Examinez la zone **État**, qui doit présenter la valeur **Opération réussie**. Sélectionnez le **lien Entrées** pour afficher les entrées. Sélectionnez le **lien Sorties**, et visualisez les sorties, qui doivent inclure la nouvelle ligne.
+11. Bonjour **InformixupdateRow** panneau, au sein de hello **toutes les séries** liste sous **Résumé**, sélectionnez hello premiers dans la liste, élément (la dernière exécution).
+12. Bonjour **application logique exécuter** panneau, sélectionnez **détails de l’exécution**. Au sein de hello **Action** liste, sélectionnez **Get_rows**. Consultez la valeur hello pour **état**, qui doit être **Succeeded**. Sélectionnez hello **lien d’entrées** tooview les entrées de hello. Sélectionnez hello **sorties lien**et fournit en sortie hello d’affichage ; qui doit inclure la ligne hello.
     
     ![](./media/connectors-create-api-informix/InformixconnectorUpdateRowOutputs.png)
 
 ## <a name="remove-one-row-using-delete"></a>suppression d’une ligne à l’aide de l’instruction DELETE.
-Vous pouvez créer une action d’application logique pour supprimer une ligne dans une table Informix. Cette action indique au connecteur de traiter une instruction DELETE Informix, telle que `DELETE FROM AREA WHERE AREAID = '99999'`.
+Vous pouvez créer une logique application action tooremove une ligne dans une table Informix. Cette action fait en sorte que hello connecteur tooprocess une instruction DELETE de Informix, tel que `DELETE FROM AREA WHERE AREAID = '99999'`.
 
 ### <a name="create-a-logic-app"></a>Créer une application logique
-1. Dans le **Panneau de démarrage Azure**, sélectionnez **+** (signe plus), **Web + mobile**, puis **Application logique**.
-2. Entrez le **Nom**, tel que `InformixdeleteRow`, **Abonnement**, **Groupe de ressources**, **Emplacement** et **Plan App Service**. Sélectionnez **Épingler au tableau de bord**, puis sélectionnez **Créer**.
+1. Bonjour **Azure démarrer carte**, sélectionnez  **+**  (signe plus), **Web + Mobile**, puis **application logique**.
+2. Entrez hello **nom**, tel que `InformixdeleteRow`, **abonnement**, **groupe de ressources**, **emplacement**, et **application Plan de service**. Sélectionnez **code confidentiel toodashboard**, puis sélectionnez **créer**.
 
 ### <a name="add-a-trigger-and-action"></a>Ajouter un déclencheur et une action
-1. Dans **Concepteur d’applications logiques**, sélectionnez **Blank LogicApp** (Application logique vide) dans la liste **Modèles**.
-2. Dans la liste **déclencheurs**, sélectionnez **Périodicité**. 
-3. Dans le déclencheur **Périodicité**, sélectionnez **Modifier**, sélectionnez la liste déroulante **Fréquence** et sélectionnez **Jour**, puis sélectionnez **Intervalle** et tapez **7**. 
-4. Sélectionnez **+ Nouvelle étape**, puis sélectionnez **Ajouter une action**.
-5. Dans la liste **actions**, tapez **informix** dans la zone de modification **Search for more actions** (Rechercher d’autres actions), puis sélectionnez **Informix - Delete row (Preview)** (Informix - Supprimer une ligne (version préliminaire)).
-6. Dans l’action **Get rows (Preview)** (Obtenir les lignes (version préliminaire)), sélectionnez **Modifier la connexion**. 
-7. Dans le volet de configuration **Connexions** , sélectionnez une connexion existante. Par exemple, sélectionnez **hisdemo2**.
+1. Bonjour **Concepteur d’applications logique**, sélectionnez **LogicApp vide** Bonjour **modèles** liste.
+2. Bonjour **déclencheurs** liste, sélectionnez **périodicité**. 
+3. Bonjour **périodicité** déclencheur, sélectionnez **modifier**, sélectionnez **fréquence** tooselect de liste déroulante **jour**, puis sélectionnez  **Intervalle** tootype **7**. 
+4. Sélectionnez hello **+ nouvelle étape** zone, puis sélectionnez **ajouter une action**.
+5. Bonjour **actions** , tapez **informix** Bonjour **recherche pour plusieurs actions** zone d’édition, puis **Informix - supprimer la ligne (version préliminaire)**.
+6. Bonjour **obtenir des lignes (version préliminaire)** action, sélectionnez **modifier la connexion**. 
+7. Bonjour **connexions** volet de configurations, sélectionnez une connexion existante. Par exemple, sélectionnez **hisdemo2**.
    
     ![](./media/connectors-create-api-informix/InformixconnectorChangeConnection.png)
-8. Dans la liste **Nom de la table**, sélectionnez la **flèche vers le bas**, puis sélectionnez **AREA**.
+8. Bonjour **nom de la Table** liste, sélectionnez hello **bas**, puis sélectionnez **zone**.
 9. Entrez des valeurs pour toutes les colonnes requises (signalées par un astérisque rouge). Par exemple, tapez `99999` pour **AREAID**. 
 10. Sélectionnez **Enregistrer**. 
     
     ![](./media/connectors-create-api-informix/InformixconnectorDeleteRowValues.png)
-11. Au niveau du panneau **InformixdeleteRow**, dans la liste **Toutes les exécutions** figurant sous **Résumé**, sélectionnez le premier élément répertorié (dernière exécution).
-12. Dans le panneau **Exécution d’application logique**, sélectionnez **Détails de l’exécution**. Dans la liste **Action**, sélectionnez **Get_rows**. Examinez la zone **État**, qui doit présenter la valeur **Opération réussie**. Sélectionnez le **lien Entrées** pour afficher les entrées. Sélectionnez le **lien Sorties**, et visualisez les sorties, qui doivent inclure la ligne supprimée.
+11. Bonjour **InformixdeleteRow** panneau, au sein de hello **toutes les séries** liste sous **Résumé**, sélectionnez hello premiers dans la liste, élément (la dernière exécution).
+12. Bonjour **application logique exécuter** panneau, sélectionnez **détails de l’exécution**. Au sein de hello **Action** liste, sélectionnez **Get_rows**. Consultez la valeur hello pour **état**, qui doit être **Succeeded**. Sélectionnez hello **lien d’entrées** tooview les entrées de hello. Sélectionnez hello **sorties lien**et fournit en sortie hello d’affichage ; qui doit inclure la ligne de hello supprimé.
     
     ![](./media/connectors-create-api-informix/InformixconnectorDeleteRowOutputs.png)
 
 ## <a name="supported-informix-platforms-and-versions"></a>Plateformes et versions Informix prises en charge
-Ce connecteur prend en charge les versions IBM Informix ci-après en cas de configuration pour la prise en charge des connexions client DRDA (Distributed Relational Database Architecture).
+Ce connecteur prend en charge hello lors configuré suivantes : les versions IBM Informix, les connexions client toosupport DRDA Distributed Relational Database Architecture ().
 
 * IBM Informix 12.1
 * IBM Informix 11.7
 
-## <a name="connector-specific-details"></a>Détails spécifiques aux connecteurs
+## <a name="connector-specific-details"></a>Détails spécifiques du connecteur
 
-Consultez tous les déclencheurs et les actions définies dans le swagger, ainsi que les éventuelles limites dans les [détails des connecteurs](/connectors/informix/). 
+Afficher les déclencheurs et les actions définies dans les swagger hello et également voir les limites Bonjour [détails du connecteur](/connectors/informix/). 
 
 ## <a name="next-steps"></a>Étapes suivantes
-[Créez une application logique](../logic-apps/logic-apps-create-a-logic-app.md). Explorez les autres connecteurs disponibles dans les applications logiques en consultant notre [liste d’API](apis-list.md).
+[Créer une application logique](../logic-apps/logic-apps-create-a-logic-app.md). Explorer hello tous les autres connecteurs disponibles dans les applications logique à notre [liste des API](apis-list.md).
 

@@ -1,6 +1,6 @@
 ---
-title: "Ajout de la mise en cache pour améliorer les performances de Gestion des API Azure | Microsoft Docs"
-description: "Apprenez à améliorer la latence, la consommation de bande passante et la charge du service web pour les appels du service Gestion des API."
+title: aaaAdd mise en cache des performances tooimprove dans Gestion des API Azure | Documents Microsoft
+description: "Découvrez comment tooimprove hello latence, la consommation de bande passante et service web de charge pour les appels de service de gestion des API."
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 12/15/2016
 ms.author: apimpm
-ms.openlocfilehash: 59c595f0d5ce849f44c46fdb6cab0b44d35fffa0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 056ab7cf788218327e30bd5c028b76e3b1977fb0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-caching-to-improve-performance-in-azure-api-management"></a>Ajout de mise en cache pour améliorer les performances dans Gestion des API Azure
+# <a name="add-caching-tooimprove-performance-in-azure-api-management"></a>Ajouter des performances tooimprove mise en cache dans la gestion des API Azure
 Les opérations dans Gestion des API Azure peuvent être configurées pour mettre en cache la réponse. La mise en cache de la réponse peut réduire de façon importante la latence de l'API, la consommation de bande passante et la charge du service web pour les données qui ne changent pas fréquemment.
 
-Ce guide vous montre comment ajouter une mise en cache de la réponse pour votre API et configurer des stratégies pour les exemples d’opérations de l’API Echo. Vous pouvez ensuite appeler l’opération depuis le portail des développeurs pour vérifier l’action de mise en cache.
+Ce guide vous montre comment tooadd réponse mise en cache pour votre API et de configurer des stratégies pour les opérations de l’API d’écho exemple hello. Vous pouvez ensuite appeler l’opération de hello de hello développeur tooverify portail mise en cache en action.
 
 > [!NOTE]
 > Pour plus d’informations sur la mise en cache des éléments par clé à l’aide d’expressions de stratégie, consultez [Mise en cache personnalisée dans la gestion des API Azure](api-management-sample-cache-by-key.md).
@@ -31,54 +31,54 @@ Ce guide vous montre comment ajouter une mise en cache de la réponse pour votre
 > 
 
 ## <a name="prerequisites"></a>Composants requis
-Avant de suivre la procédure décrite dans ce guide, vous devez disposer d’une instance de service de Gestion des API avec une API et un produit configurés. Si vous n’avez pas encore créé une instance de service Gestion des API, consultez la page de [création d’une instance de service Gestion des API][Create an API Management service instance] dans le didacticiel de [prise en main de Gestion des API Azure][Get started with Azure API Management].
+Avant de hello suivant les étapes de ce guide, vous devez disposer d’une instance de service de gestion des API avec une API et un produit configuré. Si vous n’avez pas encore créé une instance de service de gestion des API, consultez [de créer une instance de service de gestion des API] [ Create an API Management service instance] Bonjour [prise en main Azure API Management] [ Get started with Azure API Management] didacticiel.
 
-## <a name="configure-caching"> </a>Configuration d’une opération de mise en cache
-Dans cette étape, vous allez consulter les paramètres de mise en cache de l’opération **GET Resource (cached)** de l’exemple d’API Echo.
+## <a name="configure-caching"></a>Configuration d’une opération de mise en cache
+Dans cette étape, vous allez examiner hello mise en cache des paramètres de hello **obtenir des ressources (mise en cache)** l’opération de l’exemple hello Echo API.
 
 > [!NOTE]
-> Chaque instance du service Gestion des API est préconfigurée avec une API Echo qui peut être utilisée pour faire des expériences et en savoir plus sur la gestion des API. Pour plus d'informations, consultez la page [Prise en main de Gestion des API Azure][Get started with Azure API Management].
+> Chaque instance de service de gestion des API est préconfiguré avec une API d’écho qui peuvent être utilisé tooexperiment avec et en savoir plus sur la gestion des API. Pour plus d'informations, consultez la page [Prise en main de Gestion des API Azure][Get started with Azure API Management].
 > 
 > 
 
-Pour commencer, cliquez sur **Portail des éditeurs** dans le portail Azure de votre service Gestion des API. Vous accédez au portail des éditeurs Gestion des API.
+tooget démarré, cliquez sur **portail de publication** Bonjour portail Azure pour votre service de gestion des API. Cela vous prend un portail de publication de gestion des API toohello.
 
 ![Portail des éditeurs][api-management-management-console]
 
-Cliquez sur **API** dans le menu **Gestion des API** à gauche, puis sur **API Echo**.
+Cliquez sur **API** de hello **gestion des API** menu sur hello gauche, puis cliquez sur **Echo API**.
 
 ![API Echo][api-management-echo-api]
 
-Cliquez sur l’onglet **Opérations**, puis sur l’opération **GET Resource (cached)** dans la liste **Opérations**.
+Cliquez sur hello **Operations** onglet, puis cliquez sur hello **obtenir des ressources (mise en cache)** opération hello **Operations** liste.
 
 ![Echo API operations][api-management-echo-api-operations]
 
-Cliquez sur l’onglet **Mise en cache** pour consulter les paramètres de mise en cache de cette opération.
+Cliquez sur hello **mise en cache** hello de tooview onglet mise en cache des paramètres pour cette opération.
 
 ![Caching tab][api-management-caching-tab]
 
-Pour activer la mise en cache pour une opération, sélectionnez la case à cocher **Activer** . Dans cet exemple, la mise en cache est activée.
+tooenable mise en cache pour une opération, sélectionnez hello **activer** case à cocher. Dans cet exemple, la mise en cache est activée.
 
-Chaque réponse de l’opération est générée en fonction des valeurs des champs **Variation par paramètres de chaîne de requête** et **Variation par en-têtes**. Si vous souhaitez mettre en cache plusieurs réponses en fonction des paramètres ou des en-têtes de la chaîne de requête, vous pouvez les configurer dans ces deux champs.
+Chaque réponse de l’opération est indexé, en fonction des valeurs hello hello **variation par paramètres de chaîne de requête** et **variation par en-têtes** champs. Si vous souhaitez toocache plusieurs réponses selon les paramètres de chaîne de requête ou les en-têtes, vous pouvez les configurer dans ces deux champs.
 
-**Durée** spécifie l'intervalle d'expiration des réponses mises en cache. Dans cet exemple, l’intervalle est de **3600** secondes, ce qui équivaut à une heure.
+**Durée** Spécifie l’intervalle d’expiration de hello des réponses de hello mis en cache. Dans cet exemple, l’intervalle de salutation est **3600** secondes, ce qui est équivalent tooone heure.
 
-Selon la configuration de mise en cache de cet exemple, la première demande envoyée à l’opération **GET Resource (cached)** renvoie une réponse du service principal. Cette réponse sera mise en cache, du fait des en-têtes et des paramètres de chaîne de requête spécifiés. Les autres appels à l'opération comportant des paramètres correspondants recevront la réponse mise en cache, jusqu'à expiration de la durée de mise en cache.
+À l’aide de hello mise en cache de configuration dans cet exemple, hello première demande toohello **obtenir des ressources (mise en cache)** opération renvoie une réponse à partir du service principal de hello. Cette réponse est mises en cache, indexé par hello spécifié paramètres de chaîne de requête et les en-têtes. Les appels suivants toohello opération, avec des paramètres, de correspondance aura hello mis en cache la réponse retourné, jusqu'à ce que l’intervalle de durée hello du cache a expiré.
 
-## <a name="caching-policies"> </a>Révision des stratégies de mise en cache
-Dans cette étape, vous allez consulter les paramètres de mise en cache de l’opération **GET Resource (cached)** de l’exemple d’API Echo.
+## <a name="caching-policies"></a>Hello révision des stratégies de mise en cache
+Dans cette étape, vous passez en revue hello mise en cache des paramètres pour hello **obtenir des ressources (mise en cache)** l’opération de l’exemple hello Echo API.
 
-Lorsque les paramètres de mise en cache sont configurés pour une opération dans l'onglet **Mise en cache** , les stratégies de mise en cache sont ajoutées pour cette opération. Ces stratégies peuvent être consultées et modifiées dans l'éditeur de stratégies.
+Lorsque les paramètres de mise en cache sont configurés pour une opération sur hello **mise en cache** sous l’onglet mise en cache des stratégies sont ajoutés pour l’opération de hello. Ces stratégies peuvent être affichées et modifiées dans l’éditeur de stratégie hello.
 
-Cliquez sur **Stratégies** dans le menu **Gestion des API** à gauche, puis sélectionnez **Echo API / GET Resource (cached)** dans la liste déroulante **Opération**.
+Cliquez sur **stratégies** de hello **gestion des API** menu hello gauche et sélectionnez **Echo API / obtenir des ressources (mise en cache)** de hello **opération**liste déroulante.
 
 ![Policy scope operation][api-management-operation-dropdown]
 
-Affiche les stratégies de cette opération dans l'éditeur de stratégies.
+Cela affiche les stratégies de hello pour cette opération dans l’éditeur de stratégie hello.
 
 ![API Management policy editor][api-management-policy-editor]
 
-La définition de stratégie de cette opération comprend les stratégies qui définissent la configuration de la mise en cache que nous avons vues dans l'onglet **Mise en cache** lors de l'étape précédente.
+définition de la stratégie Hello pour cette opération inclut hello stratégies qui définissent hello mise en cache de configuration qui ont été vérifiés à l’aide de hello **mise en cache** onglet à l’étape précédente de hello.
 
 ```xml
 <policies>
@@ -98,49 +98,49 @@ La définition de stratégie de cette opération comprend les stratégies qui d�
 ```
 
 > [!NOTE]
-> Les modifications apportées aux stratégies de mise en cache dans l’éditeur de stratégies sont affichées sous l’onglet **Mise en cache** d’une opération, et vice-versa.
+> Toohello modifications mise en cache des stratégies dans l’éditeur de stratégie hello apparaîtront sur hello **mise en cache** onglet d’une opération et vice versa.
 > 
 > 
 
-## <a name="test-operation"> </a>Appel d’une opération et test de la mise en cache
-Pour voir la mise en cache en action, nous pouvons appeler l'opération depuis le portail des développeurs. Cliquez sur **Portail de développement** dans le menu supérieur droit.
+## <a name="test-operation"></a>Appeler une opération et tester la mise en cache hello
+toosee hello mise en cache en action, nous pouvons appeler l’opération de hello à partir du portail des développeurs hello. Cliquez sur **portail des développeurs** dans le menu supérieur droit de hello.
 
 ![Portail des développeurs][api-management-developer-portal-menu]
 
-Cliquez sur **API** dans le menu supérieur, puis sélectionnez **API Echo**.
+Cliquez sur **API** dans hello menu supérieur, puis sélectionnez **Echo API**.
 
 ![API Echo][api-management-apis-echo-api]
 
-> Si vous n'avez qu'une API configurée ou visible dans votre compte, cliquez sur des API pour accéder directement aux opérations associées.
+> Si vous n'avez qu’une seule API configurée ou tooyour visible compte, puis en cliquant sur API vous amène directement operations toohello pour cette API.
 > 
 > 
 
-Sélectionnez l’opération **Ressource GET (cached)**, puis cliquez sur **Ouvrir la console**.
+Sélectionnez hello **obtenir des ressources (mise en cache)** opération, puis cliquez sur **ouvrir la Console**.
 
 ![Open console][api-management-open-console]
 
-La console vous permet d'appeler des opérations directement depuis le portail des développeurs.
+Hello console permet les opérations tooinvoke directement depuis le portail des développeurs hello.
 
 ![Console][api-management-console]
 
-Conservez les valeurs par défaut de **param1** et **param2**.
+Conserver les valeurs par défaut de hello **param1** et **param2**.
 
-Sélectionnez la clé souhaitée dans la liste déroulante **subscription-key** . Si votre compte n’a qu’un abonnement, celui-ci est déjà sélectionné.
+Sélectionnez hello clé souhaitée à partir de hello **clé d’abonnement** liste déroulante. Si votre compte n’a qu’un abonnement, celui-ci est déjà sélectionné.
 
-Entrez **sampleheader:value1** dans la zone de texte des **en-têtes de la demande**.
+Entrez **sampleheader:value1** Bonjour **en-têtes de demande** zone de texte.
 
-Cliquez sur **HTTP Get** et notez les en-têtes de réponse.
+Cliquez sur **HTTP Get** et prenez note de hello en-têtes de réponse.
 
-Entrez **sampleheader:value2** dans la zone de texte des **en-têtes de la demande**, puis cliquez sur **HTTP Get**.
+Entrez **sampleheader:value2** Bonjour **en-têtes de demande** zone de texte, puis cliquez sur **HTTP Get**.
 
-Notez que la valeur de **sampleheader** est toujours **value1** dans la réponse. Essayez d'autres valeurs. Vous constatez que la réponse mise en cache lors du premier appel est renvoyée.
+Notez que valeur hello de **sampleheader** est toujours **value1** dans la réponse de hello. Essayez certaines des valeurs différentes, et notez que hello réponse mise en cache à partir du premier appel de hello est retournée.
 
-Entrez **25** dans le champ **param2**, puis cliquez sur **HTTP Get**.
+Entrez **25** dans hello **param2** champ, puis cliquez sur **HTTP Get**.
 
-Notez que la valeur de **sampleheader** dans la réponse est désormais **value2**. Comme les résultats de l'opération dépendent de la chaîne de requête, la réponse précédemment mise en cache n'est pas renvoyée.
+Notez que valeur hello de **sampleheader** Bonjour réponse est désormais **value2**. Étant donné que les résultats de l’opération hello sont indexées par chaîne de requête, la réponse mise en cache de hello précédente n’a pas retourné.
 
-## <a name="next-steps"> </a>Étapes suivantes
-* Pour plus d’informations sur les stratégies de mise en cache, voir la section [Stratégies de mise en cache][Caching policies] dans [Référence de stratégie de Gestion des API][API Management policy reference].
+## <a name="next-steps"></a>Étapes suivantes
+* Pour plus d’informations sur la mise en cache des stratégies, consultez [mise en cache des stratégies] [ Caching policies] Bonjour [référence de stratégie de gestion des API][API Management policy reference].
 * Pour plus d’informations sur la mise en cache des éléments par clé à l’aide d’expressions de stratégie, consultez [Mise en cache personnalisée dans la gestion des API Azure](api-management-sample-cache-by-key.md).
 
 [api-management-management-console]: ./media/api-management-howto-cache/api-management-management-console.png
@@ -155,10 +155,10 @@ Notez que la valeur de **sampleheader** dans la réponse est désormais **value2
 [api-management-console]: ./media/api-management-howto-cache/api-management-console.png
 
 
-[How to add operations to an API]: api-management-howto-add-operations.md
-[How to add and publish a product]: api-management-howto-add-products.md
+[How tooadd operations tooan API]: api-management-howto-add-operations.md
+[How tooadd and publish a product]: api-management-howto-add-products.md
 [Monitoring and analytics]: api-management-monitoring.md
-[Add APIs to a product]: api-management-howto-add-products.md#add-apis
+[Add APIs tooa product]: api-management-howto-add-products.md#add-apis
 [Publish a product]: api-management-howto-add-products.md#publish-product
 [Get started with Azure API Management]: api-management-get-started.md
 
@@ -168,6 +168,6 @@ Notez que la valeur de **sampleheader** dans la réponse est désormais **value2
 [Create an API Management service instance]: api-management-get-started.md#create-service-instance
 
 [Configure an operation for caching]: #configure-caching
-[Review the caching policies]: #caching-policies
-[Call an operation and test the caching]: #test-operation
+[Review hello caching policies]: #caching-policies
+[Call an operation and test hello caching]: #test-operation
 [Next steps]: #next-steps

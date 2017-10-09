@@ -1,10 +1,10 @@
 
 <!--author=SharS last changed: 11/06/15-->
 
-#### <a name="to-delete-a-storsimple-backup-policy"></a>Pour supprimer une stratégie de sauvegarde StorSimple
-1. Sur la page **Démarrage rapide**, cliquez sur l’onglet **Stratégies de sauvegarde**. La page **Stratégies de sauvegarde** s’affiche.
-2. Sélectionnez la stratégie en cliquant n’importe où dans la ligne correspondante, à l’exception de la première colonne, puis cliquez sur **Supprimer** en bas de la page.
-3. Vous êtes invité à confirmer l’opération. N’oubliez pas que la suppression d’une stratégie de sauvegarde entraîne celle de toutes les sauvegardes associées. Cliquez sur **Oui** pour supprimer.
+#### <a name="toodelete-a-storsimple-backup-policy"></a>toodelete une stratégie de sauvegarde StorSimple
+1. Sur l’appareil de hello **Quick Start** , cliquez sur hello **stratégies de sauvegarde** onglet. Cette opération prendra toohello **stratégies de sauvegarde** page.
+2. Sélectionnez la stratégie de hello en cliquant sur n’importe où dans la ligne correspondante de hello, à l’exception de première colonne de hello, puis cliquez sur **supprimer** bas hello de page de hello.
+3. Vous êtes invité à confirmer l’opération. N’oubliez pas que la suppression d’une stratégie de sauvegarde supprimera toutes les hello associés à des sauvegardes. Cliquez sur **Oui** toodelete.
 
-La page **Stratégies de sauvegarde** affiche la nouvelle liste des stratégies.
+Hello **stratégies de sauvegarde** page sera mis à jour toodisplay hello nouvelle liste de stratégies.
 

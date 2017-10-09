@@ -1,9 +1,9 @@
 <!--author=SharS last changed: 9/17/15-->
 
-#### <a name="to-get-the-iqn-of-a-windows-host"></a>Pour obtenir le nom qualifié d’un hôte Windows
-1. Démarrez l’initiateur Microsoft iSCSI sur l’hôte Windows. Cliquez sur **Démarrer** > **Outils d’administration** > **Initiateur iSCSI**.
-2. Dans la fenêtre **Propriétés de l’initiateur iSCSI**, sous l’onglet **Configuration**, sélectionnez et copiez la chaîne affichée dans le champ **Nom de l’initiateur**.
+#### <a name="tooget-hello-iqn-of-a-windows-host"></a>tooget hello IQN d’un hôte Windows
+1. Démarrez l’initiateur iSCSI Microsoft hello sur votre hôte Windows. Cliquez sur **Démarrer** > **Outils d’administration** > **Initiateur iSCSI**.
+2. Bonjour **propriétés de l’initiateur iSCSI** fenêtre hello **Configuration** , sélectionnez et copiez les chaîne hello de hello **nom de l’initiateur** champ.
    
-    ![Propriétés de l’initiateur iSCSI](./media/storsimple-get-iqn/HCS_iSCSIInitiatorPropertiesFigureIQN-include.png)
+    ![iSCSI Initiator Properties](./media/storsimple-get-iqn/HCS_iSCSIInitiatorPropertiesFigureIQN-include.png)
 3. Enregistrez cette chaîne.
 

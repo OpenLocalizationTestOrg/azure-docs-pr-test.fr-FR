@@ -1,5 +1,5 @@
 ---
-title: "Équilibrer la charge des conteneurs Kubernetes dans un cluster Azure | Microsoft Docs"
+title: "aaaLoad équilibrer Kubernetes des conteneurs dans Azure | Documents Microsoft"
 description: "Connectez-vous en externe et équilibrez la charge sur plusieurs conteneurs dans un cluster Kubernetes dans Azure Container Service."
 services: container-service
 documentationcenter: 
@@ -17,52 +17,52 @@ ms.workload: na
 ms.date: 05/17/2017
 ms.author: danlep
 ms.custom: mvc
-ms.openlocfilehash: ab46bb204f14424e394ced499ffbc0ef1cada15b
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 8073c8d3a015a53a532c326749571cb2582e1bac
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="load-balance-containers-in-a-kubernetes-cluster-in-azure-container-service"></a>Équilibrer la charge des conteneurs dans un cluster Kubernetes dans Azure Container Service 
-Cet article présente l’équilibrage de charge dans un cluster Kubernetes dans Azure Container Service. L’équilibrage de charge fournit une adresse IP accessible en externe pour le service et distribue le trafic réseau entre les blocs en cours d’exécution dans les machines virtuelles de l’agent.
+Cet article présente l’équilibrage de charge dans un cluster Kubernetes dans Azure Container Service. L’équilibrage de charge fournit une adresse IP accessible en externe pour le service de hello et distribue le trafic réseau entre les blocs hello en cours d’exécution dans des machines virtuelles de l’agent.
 
-Vous pouvez configurer un service Kubernetes pour utiliser l’[équilibrage de charge Azure](../../load-balancer/load-balancer-overview.md) afin de gérer le trafic réseau externe (TCP). Avec une configuration supplémentaire, l’équilibrage de charge et le routage du trafic HTTP ou HTTPS ou des scénarios plus avancés sont possibles.
+Vous pouvez configurer un toouse de service Kubernetes [équilibrage de charge Azure](../../load-balancer/load-balancer-overview.md) toomanage externe (TCP) le trafic. Avec une configuration supplémentaire, l’équilibrage de charge et le routage du trafic HTTP ou HTTPS ou des scénarios plus avancés sont possibles.
 
 ## <a name="prerequisites"></a>Conditions préalables
 * [Déployer un cluster Kubernetes](container-service-kubernetes-walkthrough.md) dans Azure Container Service
-* [Connecter votre client](../container-service-connect.md) à votre cluster
+* [Connectez votre client](../container-service-connect.md) tooyour cluster
 
 ## <a name="azure-load-balancer"></a>Équilibrage de charge Azure
 
-Par défaut, un cluster Kubernetes déployé dans le Azure Container Service inclut un équilibrage de charge Azure accessible sur Internet pour les machines virtuelles de l’agent. (Une ressource d’équilibrage de charge distincte est configurée pour les machines virtuelles principales). L’équilibrage de charge Azure est de type Couche 4. Actuellement, l’équilibrage de charge ne prend en charge que le trafic TCP Kubernetes.
+Par défaut, un cluster Kubernetes déployé dans le Service de conteneur Azure comprend un équilibrage de charge Azure connecté à Internet pour l’agent hello machines virtuelles. (Une ressource d’équilibrage de charge distinct est configurée pour le maître hello machines virtuelles). L’équilibrage de charge Azure est de type Couche 4. Actuellement, équilibrage de charge hello prend uniquement en charge le trafic TCP dans Kubernetes.
 
-Lorsque vous créez un service Kubernetes, vous pouvez configurer automatiquement l’équilibrage de charge Azure afin d’autoriser l’accès au service. Pour configurer l’équilibrage de charge, définissez le service `type` sur `LoadBalancer`. L'équilibrage de charge crée une règle qui mappe l'adresse IP publique et le numéro de port du trafic du service entrant aux adresses IP privées et aux numéros de port des blocs dans les machines virtuelles de l’agent (et inversement pour le trafic de réponse. 
+Lorsque vous créez un service Kubernetes, vous pouvez automatiquement configurer le service de toohello accès tooallow équilibrage de charge Azure hello. équilibrage de charge tooconfigure hello, jeu hello service `type` trop`LoadBalancer`. équilibrage de charge Hello crée une règle toomap une adresse IP publique et de numéro de port d’entrant service trafic toohello des adresses IP privées et de numéros de port de POD de hello dans les machines virtuelles de l’agent (et vice versa pour le trafic de réponse). 
 
- Voici deux exemples montrant comment définir le service Kubernetes `type` sur `LoadBalancer`. (Après avoir testé ces exemples, supprimez les déploiements si vous n’en avez plus besoin).
+ Voici deux exemples montrant comment tooset hello Kubernetes service `type` trop`LoadBalancer`. (Après les exemples hello lors de la tentative, supprimez les déploiements hello si vous n’en avez plus besoin.).
 
-### <a name="example-use-the-kubectl-expose-command"></a>Par exemple : utilisez la commande `kubectl expose` 
-La [procédure pas à pas Kubernetes](container-service-kubernetes-walkthrough.md) inclut un exemple montrant comment exposer un service avec la commande `kubectl expose` et son indicateur `--type=LoadBalancer`. Voici la procédure à suivre :
+### <a name="example-use-hello-kubectl-expose-command"></a>L’exemple : Hello d’utilisation `kubectl expose` commande 
+Hello [Kubernetes procédure pas à pas](container-service-kubernetes-walkthrough.md) inclut un exemple de procédure tooexpose un service avec hello `kubectl expose` commande et son `--type=LoadBalancer` indicateur. Voici les étapes hello :
 
-1. Démarrez un nouveau déploiement de conteneur. Par exemple, la commande suivante démarre un nouveau déploiement appelé `mynginx`. Le déploiement se compose de trois conteneurs en fonction de l’image Docker pour le serveur web Nginx.
+1. Démarrez un nouveau déploiement de conteneur. Par exemple, hello suivant de commande lance un nouveau déploiement appelé `mynginx`. déploiement de Hello se compose de trois conteneurs basés sur l’image de Docker hello pour le serveur de web Nginx hello.
 
     ```console
     kubectl run mynginx --replicas=3 --image nginx
     ```
-2. Vérifiez que les contrôleurs sont en cours d’exécution. Par exemple, si vous interrogez les conteneurs avec `kubectl get pods`, vous voyez une sortie similaire à ce qui suit :
+2. Vérifiez que les conteneurs hello sont en cours d’exécution. Par exemple, si vous interrogez des conteneurs hello avec `kubectl get pods`, sortie similaire toohello suivante :
 
     ![Obtenir des conteneurs Nginx](./media/container-service-kubernetes-load-balancing/nginx-get-pods.png)
 
-3. Pour configurer l’équilibrage de charge afin d’accepter le trafic externe au déploiement, exécutez `kubectl expose` avec `--type=LoadBalancer`. La commande suivante expose le serveur Nginx sur le port 80 :
+3. tooconfigure hello équilibrage tooaccept trafic externe toohello déploiement, exécutez `kubectl expose` avec `--type=LoadBalancer`. Hello commande suivante expose serveur Nginx de hello sur le port 80 :
 
     ```console
     kubectl expose deployments mynginx --port=80 --type=LoadBalancer
     ```
 
-4. Tapez `kubectl get svc` pour afficher l’état des services dans le cluster. Pendant que l’équilibrage de charge configure la règle, l’élément `EXTERNAL-IP` du service apparaît en tant que `<pending>`. Après quelques minutes, l’adresse IP externe est configurée : 
+4. Type `kubectl get svc` état de hello toosee hello des services inclus dans le cluster de hello. Lors de l’équilibrage de charge hello configure la règle de hello, hello `EXTERNAL-IP` Hello service apparaît en tant que `<pending>`. Après quelques minutes, l’adresse IP externe de hello est configurée : 
 
     ![Configurer l’équilibrage de charge Azure](./media/container-service-kubernetes-load-balancing/nginx-external-ip.png)
 
-5. Vérifiez que vous pouvez accéder au service avec l’adresse IP externe. Par exemple, ouvrez un navigateur web à l’adresse IP indiquée. Le navigateur affiche le serveur web Nginx en cours d’exécution dans un des conteneurs. Ou exécutez la commande `curl` ou `wget`. Par exemple :
+5. Vérifiez que vous avez accès service hello à l’adresse IP externe de hello. Par exemple, ouvrez une adresse IP toohello navigateur web indiquée. navigateur de Hello affiche le serveur de web Nginx hello en cours d’exécution dans un des conteneurs de hello. Ou exécution hello `curl` ou `wget` commande. Par exemple :
 
     ```
     curl 13.82.93.130
@@ -72,19 +72,19 @@ La [procédure pas à pas Kubernetes](container-service-kubernetes-walkthrough.m
 
     ![Accéder à Nginx avec Curl](./media/container-service-kubernetes-load-balancing/curl-output.png)
 
-6. Pour afficher la configuration de l’équilibrage de charge Azure, accédez au [portail Azure](https://portal.azure.com).
+6. configuration de hello toosee d’équilibrage de charge Azure hello, accédez toohello [portail Azure](https://portal.azure.com).
 
-7. Recherchez le groupe de ressources du cluster de votre service de conteneur et sélectionnez l’équilibrage de charge pour les machines virtuelles de l’agent. Son nom devrait être identique à celui du service de conteneur. (Ne choisissez pas l’équilibrage de charge pour les nœuds principaux, celui dont le nom inclut **master kg**.) 
+7. Rechercher un groupe de ressources hello pour votre cluster de service de conteneur et sélectionnez l’équilibrage de charge hello pour l’agent hello machines virtuelles. Son nom doit être hello même en tant que service de conteneur hello. (Ne pas choisir d’équilibrage de charge hello pour les nœuds principaux hello, hello une dont le nom inclut **master kg**.) 
 
     ![Équilibrage de charge dans le groupe de ressources](./media/container-service-kubernetes-load-balancing/container-resource-group-portal.png)
 
-8. Pour afficher les détails de la configuration d’équilibrage de charge, cliquez sur **Règles d’équilibrage de la charge** et sur le nom de la règle qui a été configurée.
+8. Détails de hello toosee de configuration d’équilibrage de charge hello, cliquez sur **règles d’équilibrage de charge** et le nom hello de règle hello qui a été configuré.
 
     ![Règles d'équilibrage de charge](./media/container-service-kubernetes-load-balancing/load-balancing-rules.png) 
 
-### <a name="example-specify-type-loadbalancer-in-the-service-configuration-file"></a>Exemple : spécifiez `type: LoadBalancer` dans le fichier de configuration de service
+### <a name="example-specify-type-loadbalancer-in-hello-service-configuration-file"></a>Exemple : Spécification `type: LoadBalancer` dans le fichier de configuration de service hello
 
-Si vous déployez une application de conteneur Kubernetes à partir d’un [fichier de configuration de service](https://kubernetes.io/docs/user-guide/services/operations/#service-configuration-file) YAML ou JSON, spécifiez un équilibreur de charge externe en ajoutant la ligne suivante à la spécification du service :
+Si vous déployez une application de conteneur Kubernetes à partir de JSON YAML [fichier de configuration de service](https://kubernetes.io/docs/user-guide/services/operations/#service-configuration-file), spécifiez un équilibrage de charge externe en ajoutant hello suivant ligne toohello service spécification :
 
 ```YAML
  "type": "LoadBalancer"
@@ -92,53 +92,53 @@ Si vous déployez une application de conteneur Kubernetes à partir d’un [fich
 
 
 
-Les étapes suivantes utilisent l’[exemple Guestbook (livre d’or)](https://github.com/kubernetes/kubernetes/tree/master/examples/guestbook) Kubernetes. Cet exemple s’appuie sur une application web multiniveau basée sur des images Redis et PHP Docker. Dans le fichier de configuration de service, vous pouvez spécifier que le serveur PHP frontal utilise l’équilibrage de charge Azure.
+Hello étapes suivantes utilisent hello Kubernetes [or exemple](https://github.com/kubernetes/kubernetes/tree/master/examples/guestbook). Cet exemple s’appuie sur une application web multiniveau basée sur des images Redis et PHP Docker. Vous pouvez spécifier dans le fichier de configuration de service hello que serveur hello frontal PHP utilise l’équilibrage de charge Azure hello.
 
-1. Téléchargez le fichier `guestbook-all-in-one.yaml` à partir de [GitHub](https://github.com/kubernetes/kubernetes/tree/master/examples/guestbook/all-in-one). 
-2. Recherchez l’élément `spec` pour le service `frontend`.
-3. Supprimez les marques de commentaire de la ligne `type: LoadBalancer`.
+1. Télécharger le fichier de hello `guestbook-all-in-one.yaml` de [GitHub](https://github.com/kubernetes/kubernetes/tree/master/examples/guestbook/all-in-one). 
+2. Recherchez hello `spec` pour hello `frontend` service.
+3. Supprimez les commentaires hello ligne `type: LoadBalancer`.
 
     ![Équilibrage de charge dans la configuration du service](./media/container-service-kubernetes-load-balancing/guestbook-frontend-loadbalance.png)
 
-4. Enregistrez le fichier, puis déployez l’app en exécutant la commande ci-dessous :
+4. Enregistrer le fichier de hello et déployer l’application hello en exécutant hello de commande suivante :
 
     ```
     kubectl create -f guestbook-all-in-one.yaml
     ```
 
-5. Tapez `kubectl get svc` pour afficher l’état des services dans le cluster. Pendant que l’équilibrage de charge configure la règle, l’élément `EXTERNAL-IP` du service `frontend` apparaît sous la forme `<pending>`. Après quelques minutes, l’adresse IP externe est configurée : 
+5. Type `kubectl get svc` état de hello toosee hello des services inclus dans le cluster de hello. Lors de l’équilibrage de charge hello configure la règle de hello, hello `EXTERNAL-IP` Hello `frontend` service apparaît sous la forme `<pending>`. Après quelques minutes, l’adresse IP externe de hello est configurée : 
 
     ![Configurer l’équilibrage de charge Azure](./media/container-service-kubernetes-load-balancing/guestbook-external-ip.png)
 
-6. Vérifiez que vous pouvez accéder au service avec l’adresse IP externe. Par exemple, vous pouvez ouvrir un navigateur web à l’adresse IP externe du service.
+6. Vérifiez que vous avez accès service hello à l’adresse IP externe de hello. Par exemple, vous pouvez ouvrir une web navigateur toohello adresse IP externe du service de hello.
 
     ![Accéder en externe au livre d’or](./media/container-service-kubernetes-load-balancing/guestbook-web.png)
 
     Vous pouvez ajouter des entrées du livre d’or.
 
-7. Pour afficher la configuration de l’équilibrage de charge Azure, recherchez la ressource d’équilibrage de charge du cluster dans le [portail Azure](https://portal.azure.com). Consultez les étapes décrites dans l’exemple précédent.
+7. configuration de hello toosee d’équilibrage de charge Azure hello, recherchez pour la ressource de programme d’équilibrage de charge hello cluster hello Bonjour [portail Azure](https://portal.azure.com). Consultez les étapes dans l’exemple précédent de hello hello.
 
 ### <a name="considerations"></a>Considérations
 
-* La création de la règle d’équilibrage de charge est effectuée de façon asynchrone, et des informations concernant l’équilibrage approvisionné sont publiées dans le champ `status.loadBalancer` du service.
-* Une adresse IP virtuelle est automatiquement attribuée à chaque service dans l’équilibreur de charge.
-* Si vous souhaitez accéder à l’équilibrage de charge à l’aide d’un nom DNS, contactez votre fournisseur de services de domaine afin de créer un nom DNS pour l’adresse IP de la règle.
+* La création de la règle d’équilibrage de charge hello se produit de façon asynchrone, et plus d’informations sur l’équilibrage de hello configuré sont publiés dans le service hello `status.loadBalancer` champ.
+* Chaque service est affecté automatiquement sa propre adresse IP virtuelle de l’équilibreur de charge hello.
+* Si vous souhaitez l’équilibrage de charge hello tooreach par un nom DNS, fonctionne avec votre toocreate de fournisseur de service de domaine un nom DNS pour l’adresse IP de la règle hello.
 
 ## <a name="http-or-https-traffic"></a>Trafic HTTP ou HTTPS
 
-Pour équilibrer le trafic HTTP ou HTTPS des applications web de conteneur et gérer les certificats du protocole TLS (Transport Security Layer), vous pouvez utiliser la ressource [Entrée](https://kubernetes.io/docs/user-guide/ingress/) de Kubernetes. Une entrée est une collection de règles qui autorisent les connexions entrantes à joindre les services du cluster. Pour qu’une ressource Entrée fonctionne, le cluster Kubernetes doit avoir un [contrôleur d’entrée](https://kubernetes.io/docs/user-guide/ingress/#ingress-controllers) en cours d’exécution.
+Solde de tooload HTTP ou HTTPS trafic toocontainer les applications web et de gérer les certificats de sécurité de la couche transport (TLS), vous pouvez utiliser hello Kubernetes [entrée](https://kubernetes.io/docs/user-guide/ingress/) ressource. Une entrée est une collection de règles qui autorisent les connexions entrantes tooreach les services de cluster de hello. Pour un toowork de ressource en entrée, le cluster de Kubernetes de hello doit avoir un [contrôleur d’entrée](https://kubernetes.io/docs/user-guide/ingress/#ingress-controllers) en cours d’exécution.
 
-Azure Container Service n’implémente pas automatiquement un contrôleur d’entrée Kubernetes. Plusieurs implémentations de contrôleur sont disponibles. Actuellement, le [contrôleur d’entrée Nginx](https://github.com/kubernetes/ingress/tree/master/examples/deployment/nginx) est recommandé pour configurer les règles d’entrée et équilibrer la charge du trafic HTTP et HTTPS. 
+Azure Container Service n’implémente pas automatiquement un contrôleur d’entrée Kubernetes. Plusieurs implémentations de contrôleur sont disponibles. Actuellement, hello [contrôleur d’entrée de Nginx](https://github.com/kubernetes/ingress/tree/master/examples/deployment/nginx) est recommandé de règles d’entrée tooconfigure et équilibrer la charge du trafic HTTP et HTTPS. 
 
-Pour plus d’informations, consultez la [documentation du contrôleur d’entrée Nginx](https://github.com/kubernetes/ingress/tree/master/controllers/nginx/README.md).
+Pour plus d’informations, consultez hello [documentation du contrôleur Nginx entrée](https://github.com/kubernetes/ingress/tree/master/controllers/nginx/README.md).
 
 > [!IMPORTANT]
-> Lorsque vous utilisez le contrôleur d’entrée Nginx dans Azure Container Service, vous devez exposer le déploiement du contrôleur en tant que service avec `type: LoadBalancer`. Cette opération configure l’équilibrage de charge Azure pour acheminer le trafic vers le contrôleur. Pour plus d'informations, consultez la section précédente.
+> Lorsque vous utilisez hello contrôleur de Nginx entrée dans le conteneur de Service Azure, vous devez exposer le déploiement de contrôleur hello en tant que service avec `type: LoadBalancer`. Cela configure le contrôleur de toohello hello Azure charge équilibrage tooroute le trafic. Pour plus d’informations, consultez la section précédente de hello.
 
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* Consultez la [documentation de l’équilibrage de charge Kubernetes](https://kubernetes.io/docs/user-guide/load-balancer/)
+* Consultez hello [Kubernetes LoadBalancer documentation](https://kubernetes.io/docs/user-guide/load-balancer/)
 * En savoir plus sur les [contrôleurs d’entrée, en particulier le contrôleur d’entrée Kubernetes](https://kubernetes.io/docs/user-guide/ingress/)
 * Consultez les [exemples Kubernetes](https://github.com/kubernetes/kubernetes/tree/master/examples)
 

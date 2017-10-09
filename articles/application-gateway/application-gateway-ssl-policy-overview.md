@@ -1,6 +1,6 @@
 ---
-title: "Vue d’ensemble de la stratégie SSL pour Azure Application Gateway | Microsoft Docs"
-description: "Les informations sur Azure Application Gateway vous permettent de configurer la stratégie SSL"
+title: "vue d’ensemble de la stratégie aaaSSL pour la passerelle d’Application Azure | Documents Microsoft"
+description: "En savoir plus sur la passerelle d’Application Azure vous permet de stratégie SSL de tooconfigure"
 services: application gateway
 documentationcenter: na
 author: amsriva
@@ -14,21 +14,21 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure services
 ms.date: 08/03/2017
 ms.author: amsriva
-ms.openlocfilehash: 938591bc2422f3137492e86fc60f7d5529596424
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 80dbc437da3dba8a558c518ecdbb5927a11a2ed9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="application-gateway-ssl-policy-overview"></a>Vue d’ensemble de la stratégie SSL Application Gateway
 
-Application Gateway vous permet de centraliser la gestion des certificats SSL et de réduire la surcharge de chiffrement et de déchiffrement à partir d’une batterie de serveurs principaux. Cette gestion SSL centralisée permet également de spécifier une stratégie SSL centrale adaptée à vos besoins de sécurité de l’organisation. Cela vous aide à répondre aux exigences de conformité ainsi qu’aux instructions de sécurité et pratiques recommandées.
+Passerelle d’application vous permet de gestion des certificats SSL toocentralize et réduire les frais de chiffrement et le déchiffrement à partir d’une batterie de serveurs principaux. Cette SSL centralisée gère également vous permet de toospecify une SSL centrale stratégie adaptée aux exigences de sécurité de l’organisation tooyour. Cela vous aide à répondre aux exigences de conformité ainsi qu’aux instructions de sécurité et pratiques recommandées.
 
-La stratégie SSL inclut le contrôle de la version du protocole SSL ainsi que des suites de chiffrement et de l’ordre dans lequel les chiffrements sont utilisés lors d’une négociation SSL. Ainsi, Application Gateway offre deux mécanismes pour permettre aux clients de contrôler la stratégie SSL : la stratégie prédéfinie et la stratégie personnalisée.
+Stratégie SSL inclut un contrôle de version du protocole SSL, ainsi que les suites de chiffrement et ordre de hello chiffrements sont utilisés lors d’une négociation SSL. Dans cette Application Gateway offre de stratégie SSL de deux mécanismes tooallow clients toocontrol, prédéfini ou une stratégie personnalisée.
 
 ## <a name="predefined-ssl-policy"></a>Stratégie SSL prédéfinie
 
-Application Gateway comporte trois stratégies de sécurité prédéfinies. Vous pouvez configurer votre passerelle avec n’importe laquelle de ces stratégies pour obtenir le niveau de sécurité approprié. Les noms de stratégie sont annotés en fonction de leur année et leur mois de configuration. Chaque stratégie offre différentes versions de protocole SSL et de suites de chiffrement. Il est recommandé d’utiliser les dernières stratégies SSL pour garantir la meilleure sécurité SSL. Aujourd'hui, Application Gateway permet aux utilisateurs de choisir l’une des stratégies prédéfinies suivantes.
+Application Gateway comporte trois stratégies de sécurité prédéfinies. Vous pouvez configurer votre passerelle avec un de ces stratégies tooget hello niveau de sécurité approprié. les noms de stratégie Hello sont annotées par année de hello et mois dans lequel ils ont été configurés. Chaque stratégie offre différentes versions de protocole SSL et de suites de chiffrement. Il est recommandé de toouse hello plus récent SSL stratégies tooensure hello meilleure sécurité SSL. Passerelle d’application aujourd'hui permet toochoose les utilisateurs à partir d’une des suivantes de hello prédéfinie.
 
 ### <a name="appgwsslpolicy20150501"></a>AppGwSslPolicy20150501
 
@@ -59,17 +59,17 @@ Application Gateway comporte trois stratégies de sécurité prédéfinies. Vous
 
 ## <a name="custom-ssl-policy"></a>Stratégie SSL personnalisée
 
-Si une stratégie SSL prédéfinie doit être configurée pour vos besoins, vous devez définir votre propre stratégie SSL personnalisée. Dans ce cas, vous avez un contrôle complet sur la version minimale du protocole SSL pour la prise en charge, ainsi que sur les suites de chiffrement prises en charge et leur ordre de priorité.
+Si une stratégie SSL prédéfinie doit toobe configuré pour vos besoins, vous avez doit définir votre propre stratégie SSL personnalisé. Dans ce cas, vous contrôlez totalement hello minimale SSL protocol version toosupport ainsi prise en charge des suites de chiffrement et de leur ordre de priorité.
  
 Versions du protocole SSL :
 
 * Les protocoles SSL 2.0 et 3.0 sont désactivés par défaut pour toutes les passerelles Application Gateway. Ces versions de protocole ne sont pas configurables.
-* La définition de la stratégie SSL personnalisée vous permet de sélectionner l’un des trois protocoles suivants comme version minimale du protocole SSL pour votre passerelle : TLSv1_0, TLSv1_1, TLSv1_2.
+* Personnalisé donne SSL de stratégie définition vous option tooselect l’un de hello suivant des trois protocoles en tant que version de protocole SSL minimale hello pour votre passerelle TLSv1_0, TLSv1_1, TLSv1_2.
 * Si aucune stratégie SSL n’est définie, les trois protocoles (TLSv1_0, TLSv1_1, TLSv1_2) sont activés.
 
 Suite de chiffrement :
 
-Application Gateway prend en charge les suites de chiffrement suivantes à partir desquelles vous pouvez choisir votre stratégie personnalisée. L’ordre des suites de chiffrement détermine l’ordre de priorité pendant la négociation SSL.
+Passerelle d’application prend en charge hello suivant des suites de chiffrement à partir de laquelle votre stratégie personnalisée peut être choisie. Hello classement hello des suites de chiffrement détermine les ordre de priorité hello pendant la négociation SSL.
 
 Suites de chiffrement disponibles :
 

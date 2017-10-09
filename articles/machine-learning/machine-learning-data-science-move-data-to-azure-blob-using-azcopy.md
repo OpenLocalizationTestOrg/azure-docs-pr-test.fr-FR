@@ -1,6 +1,6 @@
 ---
-title: "Déplacer des données vers et depuis le stockage d’objets blob Azure à l’aide d’AzCopy | Microsoft Docs"
-description: "Déplacer des données vers et depuis le stockage d’objets blob Azure à l’aide d’AzCopy"
+title: "tooand de données aaaMove à partir du stockage d’objets Blob Azure à l’aide de AzCopy | Documents Microsoft"
+description: "Déplacer les données tooand à partir du stockage d’objets Blob Azure à l’aide d’AzCopy"
 services: machine-learning,storage
 documentationcenter: 
 author: bradsev
@@ -14,61 +14,61 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: bradsev
-ms.openlocfilehash: a41ccdd5739a5b10cef201910abd639ae3126c02
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: b381ba004ac16879b6c633950d03d13ad82d5b72
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="move-data-to-and-from-azure-blob-storage-using-azcopy"></a>Déplacer des données vers et depuis Stockage Blob Azure à l’aide d’AzCopy
-AzCopy est un utilitaire de ligne de commande conçu pour charger, télécharger et copier des données vers et à partir d'un stockage de fichiers, d'objets blob et de tables Microsoft Azure.
+# <a name="move-data-tooand-from-azure-blob-storage-using-azcopy"></a>Déplacer les données tooand à partir du stockage d’objets Blob Azure à l’aide d’AzCopy
+AzCopy est un utilitaire de ligne de commande conçu pour le téléchargement, le téléchargement et la copie tooand de données à partir d’objets blob Microsoft Azure, de fichiers et de stockage de table.
 
-Pour obtenir des instructions sur l’installation d’AzCopy et des informations supplémentaires sur son utilisation avec la plateforme Azure, consultez [Prise en maint de l’utilitaire de ligne de commande AzCopy](../storage/common/storage-use-azcopy.md).
+Pour obtenir des instructions sur l’installation des AzCopy et des informations supplémentaires sur l’utilisation d’hello plateforme Azure, consultez [prise en main de l’utilitaire de ligne de commande AzCopy de hello](../storage/common/storage-use-azcopy.md).
 
 [!INCLUDE [blob-storage-tool-selector](../../includes/machine-learning-blob-storage-tool-selector.md)]
 
 > [!NOTE]
-> Si vous utilisez une machine virtuelle qui a été configurée avec les scripts fournis par les [machines virtuelles de science des données dans Azure](machine-learning-data-science-virtual-machines.md), cela signifie qu’AzCopy est déjà installé sur la machine virtuelle.
+> Si vous utilisez une machine virtuelle qui a été configuré avec des scripts hello fournies par [des machines virtuelles de science des données dans Azure](machine-learning-data-science-virtual-machines.md), puis AzCopy est déjà installé sur hello machine virtuelle.
 > 
 > [!NOTE]
-> Pour une présentation complète du stockage d’objets blob Azure, consultez les articles [Fonctionnalités de base des objets blob Azure](../storage/blobs/storage-dotnet-how-to-use-blobs.md) et [Service Blob Azure](https://msdn.microsoft.com/library/azure/dd179376.aspx).
+> Pour un stockage d’objets blob tooAzure présentation complète, consultez trop[principes de base Azure Blob](../storage/blobs/storage-dotnet-how-to-use-blobs.md) et trop[Service d’objets Blob Azure](https://msdn.microsoft.com/library/azure/dd179376.aspx).
 > 
 > 
 
 ## <a name="prerequisites"></a>Composants requis
-Ce document suppose que vous disposez d’un abonnement Azure, d’un compte de stockage et de la clé de stockage correspondante pour ce compte. Avant de charger ou télécharger des données, vous devez connaître le nom et la clé de votre compte Azure Storage.
+Ce document suppose que vous avez un abonnement Azure, un compte de stockage et hello clé de stockage correspondante pour ce compte. Avant de charger ou télécharger des données, vous devez connaître le nom et la clé de votre compte Azure Storage.
 
-* Pour configurer un abonnement Azure, consultez [Essai gratuit pendant un mois](https://azure.microsoft.com/pricing/free-trial/).
+* tooset d’un abonnement Azure, consultez [version d’évaluation d’un mois gratuite](https://azure.microsoft.com/pricing/free-trial/).
 * Pour obtenir des instructions sur la création d’un compte de stockage, ainsi que des informations sur le compte et la clé, consultez [À propos des comptes de stockage Azure](../storage/common/storage-create-storage-account.md).
 
 ## <a name="run-azcopy-commands"></a>Exécuter des commandes AzCopy
-Pour exécuter des commandes AzCopy, ouvrez une fenêtre de commande, puis naviguez jusqu'au répertoire d'installation d’AzCopy sur votre ordinateur, où se trouve l'exécutable AzCopy.exe. 
+commandes AzCopy de toorun, ouvrez une fenêtre de commande et accédez de répertoire d’installation toohello AzCopy sur votre ordinateur où se trouve le fichier exécutable de AzCopy.exe hello. 
 
-La syntaxe de base d’une commande AzCopy est :
+syntaxe de base Hello pour les commandes AzCopy est la suivante :
 
     AzCopy /Source:<source> /Dest:<destination> [Options]
 
 > [!NOTE]
-> Vous pouvez ajouter l’emplacement d’installation d’AzCopy au chemin système puis exécuter les commandes depuis n’importe quel répertoire. Par défaut, AzCopy est installé dans *%ProgramFiles(x86)%\Microsoft SDKs\Azure\AzCopy* ou *%ProgramFiles%\Microsoft SDKs\Azure\AzCopy*.
+> Vous pouvez ajouter le chemin d’accès de hello AzCopy installation emplacement tooyour système et puis exécutez les commandes hello à partir de n’importe quel répertoire. Par défaut, AzCopy est installé trop*% ProgramFiles% (x86) %\Microsoft SDKs\Azure\AzCopy* ou *%ProgramFiles%\Microsoft SDKs\Azure\AzCopy*.
 > 
 > 
 
-## <a name="upload-files-to-an-azure-blob"></a>Téléchargement de fichiers vers un objet blob Azure
-Pour télécharger un fichier, utilisez la commande suivante :
+## <a name="upload-files-tooan-azure-blob"></a>Télécharger les fichiers tooan objets blob Azure
+tooupload un fichier, utilisez hello de commande suivante :
 
     # Upload from local file system
     AzCopy /Source:<your_local_directory> /Dest: https://<your_account_name>.blob.core.windows.net/<your_container_name> /DestKey:<your_account_key> /S
 
 
 ## <a name="download-files-from-an-azure-blob"></a>Téléchargement de fichiers à partir d'un objet blob Azure
-Pour télécharger un fichier à partir d’un objet blob Azure, utilisez la commande suivante :
+toodownload un fichier à partir d’un objet blob Azure, hello utilisez commande suivante :
 
-    # Downloading blobs to local file system
+    # Downloading blobs toolocal file system
     AzCopy /Source:https://<your_account_name>.blob.core.windows.net/<your_container_name>/<your_sub_directory_at_blob>  /Dest:<your_local_directory> /SourceKey:<your_account_key> /Pattern:<file_pattern> /S
 
 
 ## <a name="transfer-blobs-between-azure-containers"></a>Transfert d’objets blob entre des conteneurs Azure
-Pour transférer des objets blob entre des conteneurs Azure, utilisez la commande suivante :
+BLOB tootransfer entre les conteneurs Azure, utilisez hello de commande suivante :
 
     # Transferring blobs between Azure containers
     AzCopy /Source:https://<your_account_name1>.blob.core.windows.net/<your_container_name1>/<your_sub_directory_at_blob1> /Dest:https://<your_account_name2>.blob.core.windows.net/<your_container_name2>/<your_sub_directory_at_blob2> /SourceKey:<your_account_key1> /DestKey:<your_account_key2> /Pattern:<file_pattern> /S
@@ -76,16 +76,16 @@ Pour transférer des objets blob entre des conteneurs Azure, utilisez la command
     <your_account_name>: your storage account name
     <your_account_key>: your storage account key
     <your_container_name>: your container name
-    <your_sub_directory_at_blob>: the sub directory in the container
-    <your_local_directory>: directory of local file system where files to be uploaded from or the directory of local file system files to be downloaded to
-    <file_pattern>: pattern of file names to be transferred. The standard wildcards are supported
+    <your_sub_directory_at_blob>: hello sub directory in hello container
+    <your_local_directory>: directory of local file system where files toobe uploaded from or hello directory of local file system files toobe downloaded to
+    <file_pattern>: pattern of file names toobe transferred. hello standard wildcards are supported
 
 
 ## <a name="tips-for-using-azcopy"></a>Conseils d'utilisation d’AzCopy
 > [!TIP]
 > 1. Lors du **chargement** de fichiers, le paramètre */S* charge les fichiers de manière récursive. Sans ce paramètre, les fichiers situés dans les sous-répertoires ne sont pas téléchargés.  
-> 2. Lors du **téléchargement** du fichier, */S* recherche le conteneur de manière récursive jusqu’à ce que tous les fichiers du répertoire spécifié et de ses sous-répertoires ou que tous les fichiers répondant au critère spécifié dans le répertoire concerné et ses sous-répertoires soient téléchargés.  
-> 3. Vous ne pouvez pas spécifier un **fichier de blob** à télécharger, à l’aide du paramètre */Source* . Pour télécharger un fichier spécifique, spécifiez le nom du fichier à télécharger à l’aide du paramètre */Pattern* . **/S** peut être utilisé pour qu’AzCopy recherche un modèle de nom de fichier de manière récursive. Sans le paramètre /Pattern, AzCopy télécharge tous les fichiers de ce répertoire.
+> 2. Lorsque **téléchargement** fichier */S* recherches hello conteneur de manière récursive jusqu'à ce que tous les fichiers dans le répertoire spécifié de hello et ses sous-répertoires, ou tous les fichiers qui correspondent aux hello modèle spécifié dans hello donné répertoire et ses sous-répertoires, sont téléchargées.  
+> 3. Vous ne pouvez pas spécifier un **fichier blob spécifique** toodownload à l’aide de hello */Source* paramètre. toodownload un fichier spécifique, spécifiez toodownload de nom du fichier de blob hello à l’aide de hello */modèle* paramètre. **/S** paramètre peut être utilisé toohave AzCopy, recherchez un modèle de nom de fichier manière récursive. Sans paramètre de modèle hello, AzCopy télécharge tous les fichiers dans ce répertoire.
 > 
 > 
 

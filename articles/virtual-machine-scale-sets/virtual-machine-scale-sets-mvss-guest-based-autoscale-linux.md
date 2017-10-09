@@ -1,6 +1,6 @@
 ---
 title: "Utiliser la mise à l’échelle automatique Azure avec des mesures invitées dans un modèle de groupe identique Linux | Microsoft Docs"
-description: "Découvrez comment effectuer la mise à l’échelle automatique en utilisant des mesures invitées dans un modèle de groupe de machines virtuelles identiques Linux"
+description: "Découvrez comment tooautoscale à l’aide des métriques d’invité dans un modèle d’ensemble d’échelle de Machine virtuelle Linux"
 services: virtual-machine-scale-sets
 documentationcenter: 
 author: gatneil
@@ -15,21 +15,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: negat
-ms.openlocfilehash: ac0bbb4dbfccca3f3fc31526aeff11afe55d44be
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 7afbef943a5f15c7a72dcf7114f46d521c504424
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="autoscale-using-guest-metrics-in-a-linux-scale-set-template"></a>Mise à l’échelle automatique en utilisant des mesures invitées dans un modèle de groupe identique Linux
 
-Dans Azure, il existe deux types de mesures collectées sur les machines virtuelles et les groupes identiques : certaines proviennent de la machine virtuelle hôte et d’autres de la machine virtuelles invitée. Les mesures hôtes ne requièrent aucune configuration supplémentaire, car elles sont collectées par la machine virtuelle hôte, tandis que les mesures invitées nécessitent d’installer [l’extension Windows Azure Diagnostics](../virtual-machines/windows/extensions-diagnostics-template.md) ou [l’extension Linux Azure Diagnostics](../virtual-machines/linux/diagnostic-extension.md) sur la machine virtuelle invitée. L’utilisation des mesures invitées à la place des mesures hôtes est courante, car les premières sont plus variées que les dernières. Les mesures de consommation de la mémoire, notamment, ne sont disponibles que via les mesures invitées. Les mesures hôtes prises en charge sont répertoriées [ici](../monitoring-and-diagnostics/monitoring-supported-metrics.md), et les mesures invitées couramment utilisées [ici](../monitoring-and-diagnostics/insights-autoscale-common-metrics.md). Cet article explique comment modifier le [modèle de groupe identique viable minimal](./virtual-machine-scale-sets-mvss-start.md) pour qu’il utilise des règles de mise à l’échelle automatique en fonction des mesures invitées des groupes identiques Linux.
+Il existe deux types de mesures dans Azure qui sont rassemblées à partir d’ordinateurs virtuels et mettre à l’échelle des jeux : certains proviennent de hello héberger l’ordinateur virtuel et d’autres proviennent de machine virtuelle invitée la hello. Mesures d’ordinateur hôte ne nécessitent pas le programme d’installation supplémentaire, car ils sont collectés par l’hôte hello machine virtuelle, tandis que les métriques invité nécessitent tooinstall hello [extension des Diagnostics Windows Azure](../virtual-machines/windows/extensions-diagnostics-template.md) ou hello [Linux Azure Diagnostics extension](../virtual-machines/linux/diagnostic-extension.md) Bonjour ordinateur virtuel invité. Une raison toouse invité mesures courantes au lieu de mesures d’ordinateur hôte est que les métriques invité offrent un plus large éventail de mesures que les mesures de l’hôte. Les mesures de consommation de la mémoire, notamment, ne sont disponibles que via les mesures invitées. mesures d’ordinateur hôte Hello pris en charge sont répertoriés [ici](../monitoring-and-diagnostics/monitoring-supported-metrics.md), et les métriques invité couramment utilisés sont répertoriés [ici](../monitoring-and-diagnostics/insights-autoscale-common-metrics.md). Cet article explique comment toomodify hello [échelle viable minimale définie modèle](./virtual-machine-scale-sets-mvss-start.md) toouse les règles de mise à l’échelle en fonction de mesures d’invité pour Linux identiques.
 
-## <a name="change-the-template-definition"></a>Modifier la définition du modèle
+## <a name="change-hello-template-definition"></a>Modifier la définition de modèle hello
 
-Notre modèle de groupe identique viable minimal peut être consulté [ici](https://raw.githubusercontent.com/gatneil/mvss/minimum-viable-scale-set/azuredeploy.json) et notre modèle de déploiement de groupe identique Linux avec mise à l’échelle automatique basée sur des invités peut être consulté [ici](https://raw.githubusercontent.com/gatneil/mvss/guest-based-autoscale-linux/azuredeploy.json). Examinons le différentiel utilisé pour créer ce modèle (`git diff minimum-viable-scale-set existing-vnet`), élément par élément :
+Notre modèle de jeu minimale viable peut être consulté [ici](https://raw.githubusercontent.com/gatneil/mvss/minimum-viable-scale-set/azuredeploy.json), et de notre modèle de déploiement de mise à l’échelle de hello Linux avec mise à l’échelle basée sur invité peut être consulté [ici](https://raw.githubusercontent.com/gatneil/mvss/guest-based-autoscale-linux/azuredeploy.json). Examinons hello diff utilisé toocreate ce modèle (`git diff minimum-viable-scale-set existing-vnet`) élément par élément :
 
-Ajoutons tout d’abord les paramètres de `storageAccountName` et `storageAccountSasToken`. L’agent de diagnostic stocke les données de mesure dans une [table](../cosmos-db/table-storage-how-to-use-dotnet.md) de ce compte de stockage. À compter de la version 3.0 de l’agent de diagnostic Linux, l’utilisation d’une clé d’accès de stockage n’est plus prise en charge. Nous devons utiliser un [jeton SAP](../storage/common/storage-dotnet-shared-access-signature-part-1.md).
+Ajoutons tout d’abord les paramètres de `storageAccountName` et `storageAccountSasToken`. agent de diagnostics Hello stockera les données de mesure dans un [table](../cosmos-db/table-storage-how-to-use-dotnet.md) dans ce compte de stockage. À compter de l’Agent de Diagnostics Linux version 3.0 de hello, à l’aide d’une clé d’accès de stockage n’est plus pris en charge. Nous devons utiliser un [jeton SAP](../storage/common/storage-dotnet-shared-access-signature-part-1.md).
 
 ```diff
      },
@@ -45,7 +45,7 @@ Ajoutons tout d’abord les paramètres de `storageAccountName` et `storageAccou
    },
 ```
 
-Ensuite, nous modifions le groupe identique `extensionProfile` pour y inclure l’extension de diagnostic. Dans cette configuration, nous spécifions l’ID de ressource du groupe identique à partir duquel collecter les mesures, ainsi que le compte de stockage et le jeton SAP à utiliser pour les stocker. Nous spécifions également la fréquence d’agrégation des mesures (dans ce cas, chaque minute) et les mesures à suivre (dans ce cas, le pourcentage de mémoire utilisée). Pour plus d’informations sur cette configuration et les mesures autres que le pourcentage de mémoire utilisée, consultez [cette documentation](../virtual-machines/linux/diagnostic-extension.md).
+Ensuite, nous modifions l’ensemble d’échelle hello `extensionProfile` extension de diagnostics tooinclude hello. Dans cette configuration, nous spécifier les ID de mise à l’échelle hello jeu toocollect les métriques à partir de la ressource hello, ainsi que hello compte de stockage et les métriques SAS toouse jeton toostore hello. Nous avons également de spécifier la fréquence à laquelle les métriques de hello sont agrégés (dans ce cas, toutes les minutes) et le tootrack métriques (dans ce cas mémoire utilisée pour cent). Pour plus d’informations sur cette configuration et les mesures autres que le pourcentage de mémoire utilisée, consultez [cette documentation](../virtual-machines/linux/diagnostic-extension.md).
 
 ```diff
                  }
@@ -108,7 +108,7 @@ Ensuite, nous modifions le groupe identique `extensionProfile` pour y inclure l�
        }
 ```
 
-Enfin, nous ajoutons une ressource `autoscaleSettings` pour configurer la mise à l’échelle automatique en fonction de ces mesures. Cette ressource contient une clause `dependsOn` qui fait référence au groupe identique pour s’assurer que ce groupe existe avant d’essayer de le soumettre à une mise à l’échelle automatique. Pour baser la mise à l’échelle automatique sur une autre mesure, nous utiliserions la propriété `counterSpecifier` de la configuration de l’extension de diagnostic en tant que propriété `metricName` dans la configuration de la mise à l’échelle automatique. Pour plus d’informations sur la configuration de la mise à l’échelle automatique, consultez les [meilleures pratiques en matière de mise à l’échelle automatique](..//monitoring-and-diagnostics/insights-autoscale-best-practices.md) et la [documentation de référence de l’API REST Azure Monitor](https://msdn.microsoft.com/library/azure/dn931928.aspx).
+Enfin, nous ajoutons un `autoscaleSettings` tooconfigure mise à l’échelle les ressources en fonction de ces mesures. Cette ressource a un `dependsOn` la clause qui fait référence à l’échelle de hello définie tooensure hello identiques existe avant de tenter de tooautoscale il. Si vous choisissez un autre tooautoscale métrique sur, nous utiliseriez hello `counterSpecifier` à partir de la configuration de l’extension diagnostics hello comme hello `metricName` dans la configuration de mise à l’échelle hello. Pour plus d’informations sur la configuration de l’échelle automatique, consultez hello [mise à l’échelle les meilleures pratiques](..//monitoring-and-diagnostics/insights-autoscale-best-practices.md) et hello [documentation de référence API REST de Azure analyse](https://msdn.microsoft.com/library/azure/dn931928.aspx).
 
 ```diff
 +    },

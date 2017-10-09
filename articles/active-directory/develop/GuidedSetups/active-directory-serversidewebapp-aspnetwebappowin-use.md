@@ -1,5 +1,5 @@
 ---
-title: "Prise en main d’Azure AD v2 avec les applications de serveur web ASP.NET - Utilisation | Documents Microsoft"
+title: aaaAzure AD v2 ASP.NET Web Server mise en route - utilisez | Documents Microsoft
 description: "Implémentation de la connexion Microsoft dans une solution ASP.NET avec une application basée sur un navigateur web traditionnel utilisant le standard OpenID Connect"
 services: active-directory
 documentationcenter: dev-center-name
@@ -15,21 +15,21 @@ ms.workload: identity
 ms.date: 05/09/2017
 ms.author: andret
 ms.custom: aaddev
-ms.openlocfilehash: 3b7d29e48c91f40e8782a5e32a52998b815fe331
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 03afce6fa6598215e8c4af841c00762c143a0cd4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-## <a name="add-a-controller-to-handle-sign-in-and-sign-out-requests"></a>Ajouter un contrôleur pour gérer les demandes de connexion et de déconnexion
+## <a name="add-a-controller-toohandle-sign-in-and-sign-out-requests"></a>Ajouter un contrôleur toohandle les demandes de connexion et déconnexion
 
-Cette étape explique comment créer un contrôleur pour exposer les méthodes de connexion et de déconnexion.
+Cet montre étape comment toocreate un nouveau tooexpose de contrôleur connectez-vous et les méthodes de déconnexion.
 
-1.  Cliquez avec le bouton droit sur le dossier `Controllers` et sélectionnez `Add` > `Controller`.
+1.  Cliquez avec le bouton droit sur hello `Controllers` et sélectionnez`Add` > `Controller`
 2.  Sélectionnez `MVC (.NET version) Controller – Empty`.
 3.  Cliquez sur *Ajouter*.
 4.  Nommez-le `HomeController`, puis cliquez sur *Ajouter*.
-5.  Ajoutez les références *OWIN* à la classe :
+5.  Ajouter *OWIN* fait référence à la classe de toohello :
 
 ```csharp
 using Microsoft.Owin.Security;
@@ -39,14 +39,14 @@ using Microsoft.Owin.Security.OpenIdConnect;
 <!-- Workaround for Docs conversion bug -->
 <ol start="6">
 <li>
-Ajoutez les deux méthodes ci-dessous pour gérer la connexion à votre contrôleur et la déconnexion de celui-ci en lançant une demande d’authentification via du code :
+Ajouter deux méthodes de hello ci-dessous toohandle connexion et déconnexion tooyour contrôleur en lançant une stimulation d’authentification via le code :
 </li>
 </ol>
 
 ```csharp
 /// <summary>
 /// Send an OpenID Connect sign-in request.
-/// Alternatively, you can just decorate the SignIn method with the [Authorize] attribute
+/// Alternatively, you can just decorate hello SignIn method with hello [Authorize] attribute
 /// </summary>
 public void SignIn()
 {
@@ -69,13 +69,13 @@ public void SignOut()
 }
 ```
 
-## <a name="create-the-apps-home-page-to-sign-in-users-via-a-sign-in-button"></a>Créer la page d’accueil de l’application pour connecter des utilisateurs via un bouton de connexion
+## <a name="create-hello-apps-home-page-toosign-in-users-via-a-sign-in-button"></a>Créer des toosign page d’accueil de l’application hello dans utilisateurs via un bouton de connexion
 
-Dans Visual Studio, créez une vue pour ajouter le bouton de connexion et afficher les informations de l’utilisateur après l’authentification :
+Dans Visual Studio, créez un nouvelle vue tooadd hello bouton de connexion et afficher des informations de l’utilisateur après l’authentification :
 
-1.  Cliquez avec le bouton droit sur le dossier `Views\Home` et sélectionnez `Add View`.
+1.  Cliquez avec le bouton droit sur hello `Views\Home` et sélectionnez`Add View`
 2.  Nommez-le `Index`.
-3.  Ajoutez le code HTML suivant, qui inclut le bouton de connexion, au fichier :
+3.  Ajoutez hello suivant le format HTML, ce qui inclut hello bouton de connexion, toohello fichier :
 
 ```html
 <html>
@@ -86,7 +86,7 @@ Dans Visual Studio, créez une vue pour ajouter le bouton de connexion et affich
 <body>
 @if (!Request.IsAuthenticated)
 {
-    <!-- If the user is not authenticated, display the sign-in button -->
+    <!-- If hello user is not authenticated, display hello sign-in button -->
     <a href="@Url.Action("SignIn", "Home")" style="text-decoration: none;">
         <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="300px" height="50px" viewBox="0 0 3278 522" class="SignInButton">
         <style type="text/css">.fil0:hover {fill: #4B4B4B;} .fnt0 {font-size: 260px;font-family: 'Segoe UI Semibold', 'Segoe UI'; text-decoration: none;}</style>
@@ -116,39 +116,39 @@ else
 ```
 <!--start-collapse-->
 ### <a name="more-information"></a>Informations complémentaires
-> Cette page ajoute un bouton de connexion au format SVG avec un arrière-plan noir :<br/>![Se connecter avec Microsoft](media/active-directory-serversidewebapp-aspnetwebappowin-use/aspnetsigninbuttonsample.png)<br/> Pour accéder à d’autres boutons de connexion, rendez-vous sur [cette page](https://docs.microsoft.com/azure/active-directory/develop/active-directory-branding-guidelines "Branding guidelines").
+> Cette page ajoute un bouton de connexion au format SVG avec un arrière-plan noir :<br/>![Se connecter avec Microsoft](media/active-directory-serversidewebapp-aspnetwebappowin-use/aspnetsigninbuttonsample.png)<br/> Pour les boutons de connexion plus, consultez le site toohello [cette page](https://docs.microsoft.com/azure/active-directory/develop/active-directory-branding-guidelines "instructions de personnalisation").
 <!--end-collapse-->
 
-## <a name="add-a-controller-to-display-users-claims"></a>Ajouter un contrôleur pour afficher les revendications de l’utilisateur
-Ce contrôleur démontre les utilisations de l’attribut `[Authorize]` pour protéger un contrôleur. Cet attribut limite l’accès au contrôleur en autorisant uniquement les utilisateurs authentifiés. Le code ci-dessous tire parti de l’attribut pour afficher les revendications de l’utilisateur qui ont été récupérées dans le cadre de la connexion.
+## <a name="add-a-controller-toodisplay-users-claims"></a>Ajouter des revendications d’un utilisateur toodisplay contrôleur
+Ce contrôleur montre hello utilise Hello `[Authorize]` tooprotect un contrôleur d’attribut. Cet attribut limite le contrôleur d’accès toohello en autorisant uniquement les utilisateurs authentifiés. Hello de code ci-dessous utilise les revendications d’utilisateur hello attribut toodisplay qui ont été récupérées dans le cadre de la connexion au hello.
 
-1.  Cliquez avec le bouton droit sur le dossier `Controllers` et sélectionnez `Add` > `Controller`
+1.  Cliquez avec le bouton droit sur hello `Controllers` dossier :`Add` > `Controller`
 2.  Sélectionnez `MVC {version} Controller – Empty`.
 3.  Cliquez sur *Ajouter*.
 4.  Nommez-le `ClaimsController`.
-5.  Remplacez le code de votre classe de contrôleur par le code ci-dessous afin d’ajouter l’attribut `[Authorize]` à la classe :
+5.  Remplacez le code de hello de votre classe de contrôleur avec le code hello ci-dessous - ajoute hello `[Authorize]` toohello classe d’attributs :
 
 ```csharp
 [Authorize]
 public class ClaimsController : Controller
 {
     /// <summary>
-    /// Add user's claims to viewbag
+    /// Add user's claims tooviewbag
     /// </summary>
     /// <returns></returns>
     public ActionResult Index()
     {
         var claimsPrincipalCurrent = System.Security.Claims.ClaimsPrincipal.Current;
-        //You get the user’s first and last name below:
+        //You get hello user’s first and last name below:
         ViewBag.Name = claimsPrincipalCurrent.FindFirst("name").Value;
 
-        // The 'preferred_username' claim can be used for showing the username
+        // hello 'preferred_username' claim can be used for showing hello username
         ViewBag.Username = claimsPrincipalCurrent.FindFirst("preferred_username").Value;
 
-        // The subject claim can be used to uniquely identify the user across the web
+        // hello subject claim can be used toouniquely identify hello user across hello web
         ViewBag.Subject = claimsPrincipalCurrent.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier).Value;
 
-        // TenantId is the unique Tenant Id - which represents an organization in Azure AD
+        // TenantId is hello unique Tenant Id - which represents an organization in Azure AD
         ViewBag.TenantId = claimsPrincipalCurrent.FindFirst("http://schemas.microsoft.com/identity/claims/tenantid").Value;
 
         return View();
@@ -158,16 +158,16 @@ public class ClaimsController : Controller
 
 <!--start-collapse-->
 ### <a name="more-information"></a>Informations complémentaires
-> En raison de l’utilisation de l’attribut `[Authorize]`, toutes les méthodes de ce contrôleur peuvent uniquement être exécutées si l’utilisateur est authentifié. Si l’utilisateur n’est pas authentifié et tente d’accéder au contrôleur, OWIN initialise une demande d’authentification et oblige l’utilisateur à s’authentifier. Le code ci-dessus examine la collection de revendications de l’instance `ClaimsPrincipal.Current` pour les attributs utilisateur spécifiques inclus dans le jeton de l’utilisateur. Ces attributs incluent le nom complet et le nom d’utilisateur de l’utilisateur, ainsi que le sujet d’identificateur d’utilisateur global. Il contient également le *ID client*, qui représente l’identifiant de l’organisation de l’utilisateur. 
+> En raison de l’utilisation de hello Hello `[Authorize]` attribut, toutes les méthodes de ce contrôleur peut être exécutée uniquement si hello utilisateur est authentifié. Si l’utilisateur de hello n’est pas authentifié et tente de contrôleur de hello tooaccess, OWIN sera initier une demande d’authentification et forcer hello utilisateur tooauthenticate. collection de hello des revendications de code Hello ci-dessus examine hello `ClaimsPrincipal.Current` instance pour les attributs d’utilisateur spécifiques inclus dans le jeton de l’utilisateur hello. Ces attributs incluent hello son nom complet et nom d’utilisateur, ainsi que d’objet d’identificateur hello utilisateur global. Il contient également hello *ID client*, qui représente l’ID de hello pour l’organisation de l’utilisateur hello. 
 <!--end-collapse-->
 
-## <a name="create-a-view-to-display-the-users-claims"></a>Créer une vue pour afficher les revendications de l’utilisateur
+## <a name="create-a-view-toodisplay-hello-users-claims"></a>Créer une vue de l’utilisateur toodisplay hello
 
-Dans Visual Studio, créez une vue pour afficher les revendications de l’utilisateur dans une page web :
+Dans Visual Studio, créez une nouvelle vue de revendications d’utilisateur toodisplay hello dans une page web :
 
-1.  Cliquez avec le bouton droit sur le dossier `Views\Claims` et sélectionnez `Add View`.
+1.  Cliquez avec le bouton droit sur hello `Views\Claims` dossier et :`Add View`
 2.  Nommez-le `Index`.
-3.  Ajoutez le code HTML suivant au fichier :
+3.  Ajoutez hello HTML toohello fichier suivant :
 
 ```html
 <html>

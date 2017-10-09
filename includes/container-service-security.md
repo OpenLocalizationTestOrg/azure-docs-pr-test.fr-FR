@@ -1,0 +1,56 @@
+# <a name="securing-docker-containers-in-azure-container-service"></a>Sécurisation des conteneurs Docker dans Azure Container Service
+
+Cet article présente les considérations et recommandations relatives à la sécurisation des conteneurs Docker déployés dans Azure Container Service. La plupart de ces considérations s’appliquent généralement les conteneurs tooDocker déployés dans Azure ou d’autres environnements. 
+
+## <a name="image-security"></a>Sécurité des images
+
+Les conteneurs sont créés à partir d’images stockées dans un ou plusieurs référentiels. Ces référentiels peuvent appartenir toopublic ou registres de conteneur privé. [Docker Hub](https://hub.docker.com/) est par exemple un registre public. Un exemple d’un Registre privé est hello [Registre approuvé de Docker](https://docs.docker.com/datacenter/dtr/2.0/), ce qui peut être installé sur site ou dans un cloud privé virtuel. Il existe également des services de registres de conteneurs privés basés sur le cloud, notamment [Azure Container Registry](../articles/container-registry/container-registry-intro.md).
+
+### <a name="public-and-private-images"></a>Images publiques et privées
+En général, comme avec n’importe quel package logiciel publié publiquement, une image conteneur disponible publiquement ne garantit en aucun cas la sécurité. Les images conteneur comprennent plusieurs couches logicielles, chacune pouvant contenir des vulnérabilités. Il est l’origine de hello toounderstand clé de l’image de conteneur hello, y compris hello le propriétaire de l’image hello (toodetermine s’il s’agit d’une source fiable ou non), hello des couches logicielles d' que se compose et hello versions des logiciels. 
+
+Par exemple, si vous accédez toohello officiel [nginx référentiel](https://hub.docker.com/_/nginx/) dans le Hub d’ancrage et accédez toohello **balises** onglet, vous voyez des vulnérabilités à code de couleurs dans chaque image. Chaque couleur représente une vulnérabilité de hello d’une couche d’image de hello. Pour plus d’informations sur l’analyse des vulnérabilités dans Docker Hub, consultez [Understanding official repos on Docker Hub](https://blog.docker.com/2015/06/understanding-official-repos-docker-hub/) (Présentation des référentiels officiels sur Docker Hub).
+
+![Images Nginx dans Docker Hub](./media/container-service-security/docker-hub-nginx.png)
+
+Les entreprises soucient sur la sécurité et tooprotect eux-mêmes contre les attaques de sécurité doivent stocker et récupérer des images à partir d’un Registre privé, tels que le Registre de conteneur Azure ou de Registre approuvé de Docker. Dans Ajout tooproviding un Registre privé managé, Registre de conteneur Azure prend en charge [l’authentification basée sur le principal du service](../articles/container-registry/container-registry-authentication.md) via Azure Active Directory pour les flux de l’authentification de base, y compris l’accès en fonction du rôle pour en lecture seule, écriture et des autorisations de propriétaire.
+
+### <a name="image-security-scanning"></a>Analyse de la sécurité des images
+
+Même si vous utilisez un Registre privé, il est une image de toouse recommandé pour la validation de renforcer la sécurité des solutions d’analyse. Chaque couche logicielle dans une image de conteneur est sujette toovulnerabilities indépendant des autres couches dans l’image de conteneur hello. Comme plus en plus de sociétés démarrage déployer leurs charges de travail de production basées sur les technologies de conteneur, analyse de l’image devient prévention tooensure important des menaces de sécurité par rapport à leur organisation. 
+
+Sécurité et l’analyse des solutions telles que [Twistlock](https://www.twistlock.com/2016/11/07/twistlock-supports-azure-container-registry) et [Aqua sécurité](http://blog.aquasec.com/image-vulnerability-scanning-in-azure-container-registry), entre autres, peuvent être des images de conteneur dans un Registre privé tooscan utilisé et identifier les vulnérabilités potentielles. Il est important de fournir de la profondeur de hello toounderstand d’analyse que hello différentes solutions. Par exemple, certaines solutions peuvent uniquement vérifier par recoupement les couches de l’image en se basant sur des vulnérabilités connues. Ces solutions ne peuvent pas être tooverify en mesure de logiciels de couche d’image générés par certains logiciels de gestionnaire de package. D’autres solutions proposent une analyse plus en profondeur et peuvent détecter des vulnérabilités dans n’importe quel logiciel faisant partie d’un package.
+
+### <a name="production-deployment-rules-and-audit"></a>Audit et règles de déploiement en production
+Une fois qu’une application est déployée en production, il est essentiel tooset quelques tooensure de règles que les images utilisées dans les environnements de production sont sécurisées et ne contenir aucun des vulnérabilités.
+
+* En règle générale, les images de vulnérabilités, même mineures, pas convient toorun dans un environnement de production. En outre, toutes les images déployées en production doivent idéalement être enregistrés dans un Registre privée, sélectionnez tooa accessible peu. Il est également important tookeep hello nombre de production small images : tooensure qu’ils puissent être gérés efficacement.
+
+* Dans la mesure où il s’agit d’origine de hello toopinpoint dur des logiciels à partir d’une image de conteneur disponible publiquement, il est un images toobuild de bonnes pratiques de tooensure connaissance de la source d’origine hello de couche de hello. Lorsque surfaces une vulnérabilité dans une image de conteneur automatique intégrée, les clients peuvent trouver une résolution de tooa de chemin d’accès plus rapide. Une image publique, clients, doit disposer racine hello toofind un toofix publique image il ou obtenir une autre image sécurisée à partir du serveur de publication hello.
+
+* Une image numérisée soigneusement déployée en production n’est pas garantie toobe des toodate pour la durée de vie de hello d’application hello. Des vulnérabilités de sécurité peuvent être signalées pour les couches d’image de hello qui n’étaient pas précédemment appelés ou ont été introduites après le déploiement de production hello. L’audit périodique d’images déployées en production est nécessaire tooidentify les images qui sont obsolètes ou qui n’ont pas été mis à jour dans un certain temps. Une peut utiliser des méthodologies de déploiement de bleu-vert et le déploiement des images de conteneur tooupdate mécanismes de mise à niveau sans interruption de service. Analyse de l’image peut faire avec les outils décrits dans la précédente section de hello. 
+
+* Un pipeline d’intégration continue (CI) toobuild images et analyse de la sécurité intégrée peuvent aider à maintenir des registres privés sécurisées avec les images de conteneur sécurisé. Hello analyse de la vulnérabilité intégrées à la solution de l’élément de configuration hello garantit que les images qui ont réussi tous les tests de hello envoyées toohello de Registre privé à partir de la production à laquelle les charges de travail sont déployés. Un échec de l’élément de configuration de pipeline permet de s’assurer que les images vulnérables ne sont pas répercutées dans les registres privés hello utilisé pour les déploiements de charge de travail de production. Elle automatise aussi l’analyse de la sécurité des images si celles-ci sont nombreuses. Il s’agit d’une bonne alternative aux audits manuels des images visant à contrôler la présence de vulnérabilités de sécurité, qui sont des processus longs, fastidieux et sujets aux erreurs.
+
+## <a name="host-level-container-isolation"></a>Isolation du conteneur au niveau de l’hôte
+Lorsqu’un client déploie des applications de conteneur sur des ressources Azure, elles sont déployées au niveau d’un abonnement dans des groupes de ressources et ne sont pas mutualisées. Cela signifie que si un client partage un abonnement avec d’autres personnes, aucune limite n’est qui peut être créés entre les deux déploiements Bonjour même abonnement. Par conséquent, la sécurité au niveau du conteneur n’est pas garantie. 
+
+Il est également toounderstand critiques que les conteneurs partagent noyau de hello et ressources hello d’hôte hello (qui, dans le conteneur de Service Azure, est une machine virtuelle de Azure dans un cluster). Par conséquent, les conteneurs s’exécutant en production doivent être exécutés en mode d’utilisateur sans privilège. Un conteneur en cours d’exécution avec des privilèges racine peut compromettre l’ensemble de l’environnement hello. Avec un accès de niveau racine dans un conteneur, un pirate peut accéder des droits racines complets de toohello sur l’ordinateur hôte de hello. En outre, il est important toorun des conteneurs avec les systèmes de fichiers en lecture seule. Cela empêche une personne qui a accès toohello compromis conteneur toowrite scripts malveillants toohello système de fichiers et d’accéder à des fichiers de tooother. De même, il est important toolimit ressources de hello (par exemple, mémoire, UC et la bande passante réseau) allouées tooa conteneur. Cela permet d’empêcher les pirates d’encombrer les ressources et les activités illégales telles que la fraude de carte de crédit ou d’exploration de données bitcoin, ce qui peut empêcher les autres conteneurs de s’exécuter sur un cluster ou l’hôte de hello fait-il l’objet.
+
+## <a name="orchestrator-considerations"></a>Considérations relatives aux orchestrateurs
+
+Chaque orchestrateur disponible dans Azure Container Service possède ses propres considérations relatives à la sécurité. Par exemple, vous devez limiter les nœuds tooorchestrator d’accès SSH directes dans le conteneur de Service. Au lieu de cela, vous devez utiliser l’interface utilisateur de chaque orchestrator ou les outils de ligne de commande (telles que `kubectl` pour Kubernetes) environnement de conteneur hello toomanage sans accéder aux ordinateurs hôtes hello. Pour plus d’informations, consultez [rendre une connexion à distance tooa Kubernetes, contrôleur de domaine/système d’exploitation, Docker Swarm cluster ou](../articles/container-service/kubernetes/container-service-connect.md).
+
+Pour plus d’informations de sécurité spécifiques à orchestrator supplémentaires, consultez hello suivant des ressources :
+
+* **Kubernetes** : [Security Best Practices for Kubernetes Deployment](http://blog.kubernetes.io/2016/08/security-best-practices-kubernetes-deployment.html) (Meilleures pratiques en matière de sécurité pour les déploiements Kubernetes)
+
+* **DC/OS** : [Securing Your Cluster](https://dcos.io/docs/1.8/administration/securing-your-cluster/) (Sécurisation de votre cluster)
+
+* **Docker Swarm** : [Docker Security](https://www.docker.com/docker-security) (Sécurité Docker)
+
+## <a name="next-steps"></a>Étapes suivantes
+
+* Pour plus d’informations sur la sécurité d’architecture et le conteneur Docker, consultez [Introduction tooContainer sécurité](https://www.docker.com/sites/default/files/WP_IntrotoContainerSecurity_08.19.2016.pdf).
+
+* Pour plus d’informations sur la sécurité de la plateforme Azure, consultez hello [Azure Security Center](https://www.microsoft.com/en-us/trustcenter/cloudservices/azure).

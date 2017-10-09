@@ -1,6 +1,6 @@
 ---
-title: "Utilisation de Microsoft Azure Service Bus avec le Kit de développement logiciel (SDK) WebJobs"
-description: "Apprenez à utiliser les files d’attente et les rubriques Azure Service Bus avec le Kit de développement logiciel (SDK) WebJobs."
+title: aaaHow toouse Azure Service Bus avec hello WebJobs SDK
+description: "Découvrez comment les files d’attente du Bus des services Azure toouse et des rubriques avec hello WebJobs SDK."
 services: app-service\web, service-bus
 documentationcenter: .net
 author: ggailey777
@@ -14,19 +14,19 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 06/01/2016
 ms.author: glenga
-ms.openlocfilehash: 7cec03cae5d20d1ead9eb24e99415c33d8b76f05
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: cb801a9320a20c276da4f48c8941c09d3f09bb1e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-azure-service-bus-with-the-webjobs-sdk"></a>Utilisation de Microsoft Azure Service Bus avec le Kit de développement logiciel (SDK) WebJobs
-## <a name="overview"></a>Vue d’ensemble
-Ce guide fournit des exemples de code c# qui montrent comment déclencher un processus lors de la réception d’un message Azure Service Bus. Les exemples de code utilisent le [Kit de développement logiciel (SDK) WebJobs](websites-dotnet-webjobs-sdk.md) version 1.x.
+# <a name="how-toouse-azure-service-bus-with-hello-webjobs-sdk"></a>Comment toouse Azure Service Bus avec hello WebJobs SDK
+## <a name="overview"></a>Vue d'ensemble
+Ce guide fournit des c# des exemples de code qui montrent comment tootrigger un processus lors de la réception d’un message d’Azure Service Bus. utilisation des exemples de code de Hello [WebJobs SDK](websites-dotnet-webjobs-sdk.md) version 1.x.
 
-Ce guide suppose que vous savez [comment créer un projet WebJob dans Visual Studio avec des chaînes de connexion qui pointent vers votre compte de stockage](websites-dotnet-webjobs-sdk-get-started.md).
+guide de Hello suppose que vous connaissez [comment toocreate un projet de la tâche Web dans Visual Studio avec connexion chaînes ce compte de stockage point tooyour](websites-dotnet-webjobs-sdk-get-started.md).
 
-Les extraits de code présentent uniquement les fonctions, et non le code chargé de créer l’objet `JobHost` comme dans cet exemple :
+extraits de code Hello affichent uniquement les fonctions, ne Hello pas de code qui crée hello `JobHost` objet comme dans cet exemple :
 
 ```
 public class Program
@@ -41,12 +41,12 @@ public class Program
 }
 ```
 
-Le référentiel azure-webjobs-sdk-samples sur GitHub.com contient un [exemple de code complet Service Bus](https://github.com/Azure/azure-webjobs-sdk-samples/blob/master/BasicSamples/ServiceBus/Program.cs) .
+A [exemple de code complet Service Bus](https://github.com/Azure/azure-webjobs-sdk-samples/blob/master/BasicSamples/ServiceBus/Program.cs) est dans le référentiel de tâches Web azure-exemples sdk hello sur GitHub.com.
 
 ## <a id="prerequisites"></a> Conditions préalables
-Pour utiliser Service Bus, vous devez installer le package NuGet [Microsoft.Azure.WebJobs.ServiceBus](https://www.nuget.org/packages/Microsoft.Azure.WebJobs.ServiceBus/) en plus des autres packages du Kit de développement logiciel (SDK) WebJobs. 
+toowork avec Service Bus vous avez tooinstall hello [Microsoft.Azure.WebJobs.ServiceBus](https://www.nuget.org/packages/Microsoft.Azure.WebJobs.ServiceBus/) NuGet package en outre toohello autres packages WebJobs SDK. 
 
-Vous devez aussi définir la chaîne de connexion AzureWebJobsServiceBus en plus des chaînes de connexion de stockage.  Pour cela, vous pouvez utiliser la section `connectionStrings` du fichier App.config, comme illustré dans l’exemple suivant :
+Vous avez également la chaîne de connexion AzureWebJobsServiceBus tooset hello dans les chaînes de connexion de stockage toohello Ajout.  Cela Bonjour `connectionStrings` section du fichier App.config de hello, comme indiqué dans hello l’exemple suivant :
 
         <connectionStrings>
             <add name="AzureWebJobsDashboard" connectionString="DefaultEndpointsProtocol=https;AccountName=[accountname];AccountKey=[accesskey]"/>
@@ -54,20 +54,20 @@ Vous devez aussi définir la chaîne de connexion AzureWebJobsServiceBus en plus
             <add name="AzureWebJobsServiceBus" connectionString="Endpoint=sb://[yourServiceNamespace].servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=[yourKey]"/>
         </connectionStrings>
 
-Pour un exemple de projet incluant la valeur de la chaîne de connexion de Service Bus dans le fichier App.config, consultez [Exemple de Service Bus](https://github.com/Azure/azure-webjobs-sdk-samples/tree/master/BasicSamples/ServiceBus). 
+Pour un exemple de projet qui inclut un paramètre de chaîne de connexion de Service Bus hello dans le fichier App.config hello, consultez [exemple de Service Bus](https://github.com/Azure/azure-webjobs-sdk-samples/tree/master/BasicSamples/ServiceBus). 
 
-Les chaînes de connexion peuvent également être définies dans l’environnement d’exécution Azure, qui remplace ensuite les valeurs de App.config quand la tâche web s’exécute dans Azure. Pour plus d’informations, consultez [Prise en main du SDK WebJobs](websites-dotnet-webjobs-sdk-get-started.md#configure-the-web-app-to-use-your-azure-sql-database-and-storage-account).
+chaînes de connexion Hello peuvent également être définies dans l’environnement d’exécution Azure hello, qui remplace ensuite les paramètres App.config hello lorsque hello la tâche Web s’exécute dans Azure. Pour plus d’informations, consultez [prise en main hello WebJobs SDK](websites-dotnet-webjobs-sdk-get-started.md#configure-the-web-app-to-use-your-azure-sql-database-and-storage-account).
 
-## <a id="trigger"></a> Déclenchement d’une fonction durant la réception d’un message en file d’attente Service Bus
-Pour écrire une fonction que le Kit de développement logiciel (SDK) WebJobs appelle durant la réception d’un message en file d’attente, utilisez l’attribut `ServiceBusTrigger` . Le constructeur d’attribut prend un paramètre qui spécifie le nom de la file d’attente à interroger.
+## <a id="trigger"></a>Comment tootrigger une fonction quand un Bus de Service de file d’attente de message est reçu
+toowrite une fonction qui hello WebJobs SDK appelle lors de la réception d’un message de la file d’attente, utilisez hello `ServiceBusTrigger` attribut. constructeur d’attribut Hello prend un paramètre qui spécifie le nom hello de toopoll de file d’attente hello.
 
 ### <a name="how-servicebustrigger-works"></a>Fonctionnement de ServiceBusTrigger
-Le Kit de développement logiciel (SDK) reçoit un message en mode `PeekLock` et appelle l’élément `Complete` sur le message si la fonction se termine correctement. Si la fonction échoue, il appelle l’élément `Abandon`. Si la fonction s’exécute au-delà du délai imparti à `PeekLock`, le verrou est automatiquement renouvelé.
+Kit de développement logiciel Hello reçoit un message dans `PeekLock` mode et les appels `Complete` sur le message de type hello si hello est terminée avec succès, ou des appels `Abandon` si hello fonction échoue. Si la fonction hello s’exécute plus longtemps que hello `PeekLock` délai d’attente, les verrous hello est automatiquement renouvelée.
 
-Service Bus effectue sa propre gestion de la file d’attente de messages incohérents, qui ne peut pas être contrôlée ou configurée par le Kit de développement logiciel (SDK) WebJobs. 
+Bus de service effectue sa propre gestion de la file d’attente de messages incohérents qui ne peut pas être contrôlée ou configurée par hello WebJobs SDK. 
 
 ### <a name="string-queue-message"></a>Message de file d’attente de chaîne
-L’exemple de code suivant lit un message de file d’attente qui contient une chaîne qu’il écrit dans le tableau de bord du Kit de développement logiciel (SDK) WebJobs.
+Hello exemple de code suivant lit un message de la file d’attente qui contient une chaîne et écrit la chaîne de hello toohello du tableau de bord WebJobs SDK.
 
         public static void ProcessQueueMessage([ServiceBusTrigger("inputqueue")] string message, 
             TextWriter logger)
@@ -75,20 +75,20 @@ L’exemple de code suivant lit un message de file d’attente qui contient une 
             logger.WriteLine(message);
         }
 
-**Remarque :** si vous créez les messages en file d’attente dans une application qui n’utilise pas le Kit de développement logiciel (SDK) WebJobs, veillez à attribuer au paramètre [BrokeredMessage.ContentType](http://msdn.microsoft.com/library/microsoft.servicebus.messaging.brokeredmessage.contenttype.aspx) la valeur « text/plain ».
+**Remarque :** si vous créez hello messages de la file d’attente dans une application qui n’utilise pas hello WebJobs SDK, assurez-vous que tooset [BrokeredMessage.ContentType](http://msdn.microsoft.com/library/microsoft.servicebus.messaging.brokeredmessage.contenttype.aspx) trop « text/plain ».
 
 ### <a name="poco-queue-message"></a>Message de file d’attente POCO
-Le Kit de développement logiciel (SDK) désérialise automatiquement un message en file d’attente qui contient JSON pour un type d’objet POCO [(Plain Old CLR Object](http://en.wikipedia.org/wiki/Plain_Old_CLR_Object)). L’exemple de code suivant lit un message en file d’attente qui contient un objet `BlobInformation` doté d’une propriété `BlobName` :
+Hello SDK désérialise automatiquement un message de la file d’attente contenant du texte JSON pour un POCO [(objet CLR simple](http://en.wikipedia.org/wiki/Plain_Old_CLR_Object)) type. Hello exemple de code suivant lit un message de la file d’attente qui contient un `BlobInformation` objet qui a un `BlobName` propriété :
 
         public static void WriteLogPOCO([ServiceBusTrigger("inputqueue")] BlobInformation blobInfo,
             TextWriter logger)
         {
-            logger.WriteLine("Queue message refers to blob: " + blobInfo.BlobName);
+            logger.WriteLine("Queue message refers tooblob: " + blobInfo.BlobName);
         }
 
-Pour obtenir des exemples de code montrant comment utiliser les propriétés de l’objet POCO de façon à les rendre compatibles avec les objets blob et les tables contenus d’une même fonction, consultez la [version de cet article qui traite des files d’attente de stockage](websites-dotnet-webjobs-sdk-storage-queues-how-to.md#pocoblobs).
+Pour obtenir des exemples de code montrant comment les propriétés de toouse de toowork POCO hello avec les objets BLOB et tables dans hello même fonction, consultez hello [version de files d’attente de stockage de cet article](websites-dotnet-webjobs-sdk-storage-queues-how-to.md#pocoblobs).
 
-Si votre code qui crée le message de la file d'attente n'utilise pas le SDK WebJobs, utilisez du code similaire à l'exemple suivant :
+Si votre code qui crée le message de file d’attente hello n’utilise pas hello WebJobs SDK, utilisez toohello similaire de code exemple suivant :
 
         var client = QueueClient.CreateFromConnectionString(ConfigurationManager.ConnectionStrings["AzureWebJobsServiceBus"].ConnectionString, "blobadded");
         BlobInformation blobInformation = new BlobInformation () ;
@@ -96,13 +96,13 @@ Si votre code qui crée le message de la file d'attente n'utilise pas le SDK Web
         client.Send(message);
 
 ### <a name="types-servicebustrigger-works-with"></a>Types utilisés par ServiceBusTrigger
-Outre les types d’objet POCO et `string`, vous pouvez utiliser l’attribut `ServiceBusTrigger` avec un tableau d’octets ou un objet `BrokeredMessage`.
+En outre `string` et types POCO, vous pouvez utiliser hello `ServiceBusTrigger` attribut avec un tableau d’octets ou un `BrokeredMessage` objet.
 
-## <a id="create"></a> Création de messages de file d’attente Service Bus
-Pour écrire une fonction qui crée un message de file d’attente, utilisez l’attribut `ServiceBus` et transmettez le nom de la file d’attente au constructeur d’attribut. 
+## <a id="create"></a>Comment toocreate Bus de Service de file d’attente des messages
+une fonction qui crée un nouveau message de file d’attente de toowrite utiliser hello `ServiceBus` d’attribut et passez dans le constructeur d’attribut toohello nom hello file d’attente. 
 
 ### <a name="create-a-single-queue-message-in-a-non-async-function"></a>Création d’un message de file d’attente unique dans une fonction non asynchrone
-L’exemple de code suivant utilise un paramètre de sortie pour créer un message dans la file d’attente « outputqueue » avec le même contenu que le message reçu dans la file d’attente « inputqueue ».
+Hello suivant l’exemple de code utilise un toocreate de paramètre de sortie un nouveau message dans la file d’attente hello nommé « outputqueue » avec hello même contenu en tant que hello message reçu dans la file d’attente hello nommé « inputqueue ».
 
         public static void CreateQueueMessage(
             [ServiceBusTrigger("inputqueue")] string queueMessage,
@@ -111,17 +111,17 @@ L’exemple de code suivant utilise un paramètre de sortie pour créer un messa
             outputQueueMessage = queueMessage;
         }
 
-Le paramètre de sortie utilisé pour créer un message de file d’attente unique peut être de l’un des types suivants :
+le paramètre de sortie Hello pour la création d’un message de la file d’attente unique peut être un des types suivants de hello :
 
 * `string`
 * `byte[]`
 * `BrokeredMessage`
 * Type POCO sérialisable que vous définissez. Sérialisé automatiquement au format JSON.
 
-Pour les paramètres de type POCO, un message de file d’attente est toujours créé au moment où la fonction se termine ; si le paramètre a la valeur null, le Kit de développement logiciel (SDK) crée un message de file d’attente qui retourne la valeur null quand le message est reçu et désérialisé. Pour les autres types, si le paramètre a la valeur null, aucun message de file d’attente n’est créé.
+Pour les paramètres de type POCO, un message de la file d’attente est toujours créé lors de la fonction hello se termine. Si le paramètre hello est null, hello SDK crée un message de la file d’attente qui retourne la valeur null lorsque le message de type hello est reçu et désérialisé. Pour hello autres types, si le paramètre hello est null aucun message de la file d’attente n’est créée.
 
 ### <a name="create-multiple-queue-messages-or-in-async-functions"></a>Création de plusieurs messages de file d’attente dans des fonctions asynchrones
-Pour créer plusieurs messages, utilisez l’attribut `ServiceBus` avec `ICollector<T>` ou `IAsyncCollector<T>`, comme illustré dans l’exemple de code suivant :
+toocreate plusieurs messages, utilisez hello `ServiceBus` d’attribut avec `ICollector<T>` ou `IAsyncCollector<T>`, comme indiqué dans hello suivant l’exemple de code :
 
         public static void CreateQueueMessages(
             [ServiceBusTrigger("inputqueue")] string queueMessage,
@@ -133,10 +133,10 @@ Pour créer plusieurs messages, utilisez l’attribut `ServiceBus` avec `ICollec
             outputQueueMessage.Add(queueMessage + "2");
         }
 
-Chaque message de file d’attente est créé immédiatement après l’appel de la méthode `Add` .
+Chaque message de la file d’attente est créée immédiatement lorsque hello `Add` méthode est appelée.
 
-## <a id="topics"></a>Utilisation des rubriques Service Bus
-Pour écrire une fonction que le Kit de développement logiciel (SDK) appelle au moment où un message est reçu sur une rubrique Service Bus, utilisez l’attribut `ServiceBusTrigger` avec le constructeur qui prend le nom de rubrique et le nom d’abonnement, comme illustré dans l’exemple de code suivant :
+## <a id="topics"></a>Comment toowork avec des rubriques Service Bus
+toowrite une fonction qui hello du Kit de développement appelle lorsqu’un message est reçu sur une rubrique Service Bus, utilisez hello `ServiceBusTrigger` attribut avec constructeur hello qui prend le nom de la rubrique et le nom d’abonnement, comme indiqué dans hello suivant l’exemple de code :
 
         public static void WriteLog([ServiceBusTrigger("outputtopic","subscription1")] string message,
             TextWriter logger)
@@ -144,32 +144,32 @@ Pour écrire une fonction que le Kit de développement logiciel (SDK) appelle au
             logger.WriteLine("Topic message: " + message);
         }
 
-Pour créer un message sur une rubrique, utilisez l’attribut `ServiceBus` avec un nom de rubrique, comme vous le faites avec un nom de file d’attente.
+toocreate un message à une rubrique, utilisez hello `ServiceBus` d’attribut avec un Bonjour de nom de rubrique même façon que vous l’utilisez avec un nom de file d’attente.
 
 ## <a name="features-added-in-release-11"></a>Fonctionnalités ajoutées dans la version 1.1
-Les fonctionnalités suivantes ont été ajoutées dans la version 1.1 :
+Hello suivant les fonctionnalités ont été ajoutée dans la version 1.1 :
 
 * Autoriser la personnalisation complète du traitement des messages via `ServiceBusConfiguration.MessagingProvider`.
-* `MessagingProvider` prend en charge la personnalisation de `MessagingFactory` et `NamespaceManager` de Service Bus.
-* Un modèle de stratégie `MessageProcessor` vous permet de spécifier un processeur par file d'attente/rubrique.
+* `MessagingProvider`prend en charge la personnalisation de hello Service Bus `MessagingFactory` et `NamespaceManager`.
+* A `MessageProcessor` modèle de stratégie vous permet de toospecify un processeur par file d’attente/rubrique.
 * L'accès concurrentiel de traitement des message est pris en charge par défaut. 
 * Personnalisation facile de `OnMessageOptions` via `ServiceBusConfiguration.MessageOptions`.
-* Autoriser la spécification des [AccessRights](https://github.com/Azure/azure-webjobs-sdk-samples/blob/master/BasicSamples/ServiceBus/Functions.cs#L71) sur `ServiceBusTriggerAttribute`/`ServiceBusAttribute` (pour les scénarios où vous ne disposez pas des droits de gestion). Notez qu’Azure WebJobs ne peut pas configurer automatiquement des files d’attente et des rubriques inexistantes sans gérer les droits d’accès.
+* Autoriser [AccessRights](https://github.com/Azure/azure-webjobs-sdk-samples/blob/master/BasicSamples/ServiceBus/Functions.cs#L71) toobe spécifié sur `ServiceBusTriggerAttribute` / `ServiceBusAttribute` (pour les scénarios où vous ne disposez pas gérer les droits). Notez que les tâches Web Azure est files d’attente d’inexistant tooautomatically Impossible de configurer et de rubriques sans AccessRights de gérer.
 
-## <a id="queues"></a>Sujets connexes traités dans l’article de procédure relatif aux files d’attente de stockage
-Pour en savoir plus sur les scénarios de Kit de développement logiciel (SDK) WebJobs non spécifiques de Service Bus, voir [Utilisation du stockage de file d’attente Azure avec le Kit de développement logiciel (SDK) WebJobs](websites-dotnet-webjobs-sdk-storage-queues-how-to.md). 
+## <a id="queues"></a>Rubriques connexes couvertes par les files d’attente de stockage hello procédure-tooarticle
+Pour plus d’informations sur les scénarios de WebJobs SDK tooService non spécifique des Bus, consultez [comment toouse Azure file d’attente de stockage avec hello WebJobs SDK](websites-dotnet-webjobs-sdk-storage-queues-how-to.md). 
 
-Les sujets abordés dans cet article sont les suivants :
+Les sujets abordés dans cet article hello suivants :
 
 * Fonctions asynchrones
 * Instances multiples
 * Arrêt approprié
-* Utilisation des attributs du Kit de développement logiciel (SDK) WebJobs dans le corps d’une fonction
-* Définition des chaînes de connexion du SDK dans le code
+* Utiliser les attributs de WebJobs SDK dans le corps d’une fonction de hello
+* Définir des chaînes de connexion du Kit de développement logiciel hello dans le code
 * Définition des valeurs des paramètres de constructeur du Kit de développement logiciel (SDK) WebJobs dans le code
 * Déclenchement manuel d’une fonction
 * Écriture de journaux
 
 ## <a id="nextsteps"></a> Étapes suivantes
-Ce guide fournit des exemples de code qui indiquent comment gérer des scénarios courants pour l’utilisation d’Azure Service Bus. Pour plus d’informations sur l’utilisation d’Azure Webjobs et du Kit de développement logiciel (SDK) WebJobs Azure, consultez la rubrique [Azure Webjobs - Ressources recommandées](http://go.microsoft.com/fwlink/?linkid=390226).
+Ce guide a fourni le code des exemples qui montrent comment toohandle des scénarios courants pour l’utilisation avec Azure Service Bus. Pour plus d’informations sur la façon dont toouse tâches Web Azure et hello WebJobs SDK, consultez [Azure WebJobs recommandé de ressources](http://go.microsoft.com/fwlink/?linkid=390226).
 

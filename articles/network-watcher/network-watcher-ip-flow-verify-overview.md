@@ -1,6 +1,6 @@
 ---
-title: "Présentation de la vérification des flux IP dans Azure Network Watcher | Microsoft Docs"
-description: "Cette page fournit une vue d’ensemble de la fonctionnalité de vérification des flux IP de Network Watcher"
+title: "flux de tooIP aaaIntroduction Vérifiez dans l’Observateur réseau de Azure | Documents Microsoft"
+description: "Cette page fournit une vue d’ensemble de hello IP de l’Observateur réseau flux vérifier la capacité"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,25 +14,25 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 9c0dfc449b3d93d8aa4551ce16476c8313d731fc
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b648a4816a7ffdc6ca54462944b574e2395e8298
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-ip-flow-verify-in-azure-network-watcher"></a>Présentation de la vérification des flux IP dans Azure Network Watcher
+# <a name="introduction-tooip-flow-verify-in-azure-network-watcher"></a>Flux de tooIP introduction Vérifiez dans l’Observateur réseau de Azure
 
-La vérification des flux IP contrôle si un paquet est autorisé ou refusé en direction ou en provenance d’une machine virtuelle en fonction des informations à 5 tuples. Ces informations se composent de la direction, du protocole, de l’adresse IP locale, de l’adresse IP distante, du port local et du port distant. Si le paquet est refusé par un groupe de sécurité, le nom de la règle qui a refusé le paquet est renvoyé. Même si toutes les adresses IP source et de destination peuvent être choisies, cette fonctionnalité permet aux administrateurs de diagnostiquer rapidement les problèmes de connectivité en provenance ou à destination d’Internet et en provenance ou à destination de l’environnement local.
+Les flux IP vérifier si un paquet est autorisé ou refusé tooor à partir d’un ordinateur virtuel en fonction des informations de 5-tuple. Ces informations se composent de la direction, du protocole, de l’adresse IP locale, de l’adresse IP distante, du port local et du port distant. Si les paquets hello sont refusée par un groupe de sécurité, nom hello de règle hello refusé les paquets hello est retournée. Alors que toutes les adresses IP source ou de destination peut être choisie, cette fonctionnalité permet aux administrateurs de diagnostiquer rapidement les problèmes de connectivité à partir d’ou toohello internet et à partir d’ou l’environnement local de toohello.
 
-La vérification des flux IP cible une interface réseau d’une machine virtuelle. Le flux de trafic est ensuite vérifié en fonction des paramètres configurés vers ou à partir de cette interface réseau. Cette fonctionnalité est utile pour confirmer si une règle d’un groupe de sécurité réseau bloque le trafic entrant ou sortant d’une machine virtuelle.
+La vérification des flux IP cible une interface réseau d’une machine virtuelle. Flux de trafic est ensuite vérifié selon tooor de paramètres hello configuré à partir de cette interface réseau. Cette fonctionnalité est utile pour confirmer si une règle dans un groupe de sécurité réseau bloque entrée ou sortie tooor le trafic à partir d’un ordinateur virtuel.
 
-Une instance de Network Watcher doit être créée dans toutes les régions dans lesquelles vous prévoyez d’exécuter la vérification des flux IP. Network Watcher est un service régional et peut uniquement être exécuté sur des ressources de la même région. Cela n’affecte pas les résultats de la vérification des flux IP, puisque l’itinéraire associé à la carte réseau est toujours renvoyé.
+Une instance de l’Observateur réseau besoins toobe est créé dans toutes les régions que vous envisagez de flux d’IP toorun vérifier. L’Observateur réseau est un service régional et peut uniquement être exécuté sur les ressources Bonjour même région. Cela n’affecte pas hello résultats de flux de l’IP vérifier comme itinéraire hello associé hello que s’affichera toujours de carte réseau.
 
 ![1][1]
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Consultez l’article suivant pour savoir si un paquet est autorisé ou refusé pour une machine virtuelle spécifique via le portail. [Vérifier si le trafic est autorisé ou refusé en direction ou en provenance d’une machine virtuelle avec le composant de vérification des flux IP d’Azure Network Watcher](network-watcher-check-ip-flow-verify-portal.md)
+Visitez hello suivant article toolearn si un paquet est autorisé ou refusé pour un ordinateur virtuel spécifique via le portail de hello. [Vérifiez si le trafic est autorisé sur une machine virtuelle avec IP flux vérifier à l’aide du portail de hello](network-watcher-check-ip-flow-verify-portal.md)
 
 [1]: ./media/network-watcher-ip-flow-verify-overview/figure1.png
 

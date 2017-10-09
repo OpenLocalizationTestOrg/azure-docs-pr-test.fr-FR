@@ -1,6 +1,6 @@
 ---
-title: "API de facturation Azure Enterprise - Périodes de facturation | Microsoft Docs"
-description: "En savoir plus sur les API de création de rapports qui permettent aux clients d’Azure Enterprise d’extraire leurs données de consommation par programme."
+title: "aaaAzure API Enterprise sur la facturation - périodes de facturation | Documents Microsoft"
+description: "Découvrez hello API de Reporting qui permettent aux données de consommation de toopull clients entreprise Azure par programme."
 services: 
 documentationcenter: 
 author: aedwin
@@ -15,26 +15,26 @@ ms.tgt_pltfrm: na
 ms.workload: billing
 ms.date: 04/25/2017
 ms.author: aedwin
-ms.openlocfilehash: c6880b79189e0683387a7aafbd6fa4805b3b42ef
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: d4e17f25b22729a7f213306fb019ee0dbeca87ff
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="reporting-apis-for-enterprise-customers---billing-periods"></a>API de création de rapports pour les clients Enterprise : périodes de facturation
 
-L’API Périodes de facturation renvoie une liste des périodes de facturation contenant les données de consommation pour l’abonnement indiqué, par ordre chronologique inverse. Chaque période contient une propriété qui pointe vers l’API Route (Itinéraire) pour les quatre ensembles de données : BalanceSummary (Solde et résumé), UsageDetails (Détails d’utilisation), Marketplace Charges (Frais de la Place de marché) et PriceSheet (Grille tarifaire). Si la période n’a pas de données, la propriété correspondante est Null. 
+Hello API de périodes de facturation retourne une liste de facturation des périodes qui contiennent des données de consommation pour hello spécifiée d’inscription dans l’ordre chronologique inverse. Chaque période contient une propriété pointant itinéraire d’API toohello pour hello quatre ensembles de données - BalanceSummary, UsageDetails, les frais de Marktplace et PriceSheet. Si la période de hello n’a pas de données, la propriété correspondante de hello est null. 
 
 
-##<a name="request"></a>Requête 
-Les propriétés d’en-tête communes qui doivent être ajoutées sont spécifiées [ici](billing-enterprise-api.md). 
+##<a name="request"></a>Demande 
+Propriétés d’en-tête commun nécessitant toobe ajouté sont spécifiées [ici](billing-enterprise-api.md). 
 
 |Méthode | URI de demande|
 |-|-|
 |GET| https://consumption.azure.com/v2/enrollments/{enrollmentNumber}/billingperiods|
 
 > [!Note]
-> Pour utiliser la version d’évaluation de l’API, remplacez v2 par v1 dans l’URL ci-dessus.
+> version d’évaluation hello toouse de l’API, remplacez v2 v1 Bonjour au-dessus des URL.
 >
 
 ## <a name="response"></a>Réponse
@@ -59,13 +59,13 @@ Les propriétés d’en-tête communes qui doivent être ajoutées sont spécifi
 
 |Nom de la propriété| Type| Description
 |-|-|-|
-|billingPeriodId| chaîne| ID unique qui représente une période de facturation donnée|
-|billingStart| datetime| Chaîne ISO 8601 représentant la date de début de la période|
-|billingEnd| datetime| Chaîne ISO 8601 représentant la date de fin de la période|
-|balanceSummary| string| Chemin d’accès d’URL qui route vers les données de résumé de solde pour cette période|
-|usageDetails| string| Chemin d’accès d’URL qui route vers les données de détails d’utilisation pour cette période|
-|marketplaceCharges| string| Chemin d’accès d’URL qui route vers les données de frais de Place de marché pour cette période|
-|priceSheet| string| Chemin d’accès d’URL qui route vers les données de grille tarifaire pour cette période|
+|billingPeriodId| string| Hello Id unique qui représente une période de facturation particulière|
+|billingStart| datetime| Chaîne ISO 8601 représentant la date de début de la période de hello|
+|billingEnd| datetime| Chaîne ISO 8601 représentant la date de fin de la période de hello|
+|balanceSummary| string| chemin d’accès URL Hello qui achemine les données de résumé de solde toohello pour cette période|
+|usageDetails| string| chemin d’accès URL Hello qui achemine les données des détails d’utilisation de toohello pour cette période|
+|marketplaceCharges| string| chemin d’accès URL Hello qui achemine les données de frais Marketplace toohello pour cette période|
+|priceSheet| string| chemin d’accès URL Hello qui achemine les données de PriceSheet toohello pour cette période|
 
 <br/>
 ## <a name="see-also"></a>Voir aussi

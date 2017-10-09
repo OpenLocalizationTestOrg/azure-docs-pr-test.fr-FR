@@ -1,5 +1,5 @@
 ---
-title: "Bonnes pratiques pour la mise à l’échelle automatique | Microsoft Docs"
+title: "pratiques aaaBest pour la mise à l’échelle | Documents Microsoft"
 description: "Modèles de mise à l’échelle automatique d’Azure pour Web Apps, Virtual Machine Scale Sets et Cloud Services"
 author: anirudhcavale
 manager: orenr
@@ -14,144 +14,144 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/07/2017
 ms.author: ancav
-ms.openlocfilehash: 54dad831287376db7fb2dc46e4591be1499dc072
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: eb731c15e440af93a2675210583878814d0d8818
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="best-practices-for-autoscale"></a>Meilleures pratiques pour la mise à l’échelle automatique
-Cet article présente les bonnes pratiques relatives à la mise à l’échelle automatique dans Azure. La mise à l’échelle automatique Azure Monitor s’applique uniquement aux [jeux de mise à l’échelle de machine virtuelle](https://azure.microsoft.com/services/virtual-machine-scale-sets/), [services cloud](https://azure.microsoft.com/services/cloud-services/) et à [App Service - Web Apps](https://azure.microsoft.com/services/app-service/web/). Les autres services Azure utilisent des méthodes de mise à l’échelle différentes.
+Cet article explique les meilleures pratiques tooautoscale, dans Azure. Mise à l’échelle du moniteur Azure s’applique uniquement trop[machines virtuelles identiques](https://azure.microsoft.com/services/virtual-machine-scale-sets/), [Services de cloud computing](https://azure.microsoft.com/services/cloud-services/), et [du Service d’applications - applications Web](https://azure.microsoft.com/services/app-service/web/). Les autres services Azure utilisent des méthodes de mise à l’échelle différentes.
 
 ## <a name="autoscale-concepts"></a>Concepts de la mise à l’échelle automatique
 * Une ressource ne peut avoir qu’ *un* paramètre de mise à l’échelle automatique
 * Un paramètre de mise à l’échelle automatique peut comporter un ou plusieurs profils et chaque profil peut avoir une ou plusieurs règles de mise à l’échelle automatique.
-* Un paramètre de mise à l’échelle automatique met à l’échelle les instances horizontalement, c’est-à-dire vers *l’extérieur* en augmentant la taille des instances et vers *l’intérieur* en diminuant la taille des instances.
+* Un paramètre de mise à l’échelle s’adapte instances horizontalement, qui est *hors* en augmentant les instances hello et *dans* en diminuant le nombre de hello d’instances.
   Un paramètre de mise à l’échelle automatique a une valeur d’instances maximum, minimum et par défaut.
-* Une tâche de mise à l’échelle automatique lit la mesure associée à mettre à l’échelle, en vérification qu’elle a dépassé le seuil configuré pour l’augmentation ou la diminution de taille d’instance. Vous pouvez afficher une liste des mesures pour la mise à l’échelle automatique dans la rubrique [Mesures courantes de mise à l’échelle automatique Azure Monitor](insights-autoscale-common-metrics.md).
-* Tous les seuils sont calculés au niveau de l’instance. Par exemple, « l’augmentation de la taille des instances de 1 instance lorsque la moyenne du processeur est supérieure à 80 % quand le nombre d’instances est égal à 2 » signifie l’augmentation de la taille des instances lorsque la moyenne du processeur sur toutes les instances est supérieure à 80 %.
-* Vous recevez toujours les notifications d’erreur par e-mail. Plus précisément, le propriétaire, le collaborateur et les lecteurs de la ressource cible reçoivent un e-mail. Vous recevez également un e-mail de *récupération* lorsque la mise à l’échelle automatique se rétablit après une défaillance et fonctionne à nouveau normalement.
-* Vous pouvez choisir de recevoir une notification d’action réussie de mise à l’échelle par e-mail et webhooks.
+* Un travail de mise à l’échelle lit toujours hello associés aux métrique tooscale en vérifiant si elle a atteint hello le seuil configuré pour la montée en puissance parallèle ou d’échelle. Vous pouvez afficher une liste des mesures pour la mise à l’échelle automatique dans la rubrique [Mesures courantes de mise à l’échelle automatique Azure Monitor](insights-autoscale-common-metrics.md).
+* Tous les seuils sont calculés au niveau de l’instance. Par exemple, « montée en puissance par 1 instance lorsque moyenne du processeur > 80 % lorsque le nombre d’instances est 2 », signifie la montée en puissance parallèle lorsque hello moyenne du processeur entre toutes les instances est supérieur à 80 %.
+* Vous recevez toujours les notifications d’erreur par e-mail. Plus précisément, hello propriétaire, collaborateur et les lecteurs de ressources cible de hello reçoivent le message électronique. Vous recevez également un e-mail de *récupération* lorsque la mise à l’échelle automatique se rétablit après une défaillance et fonctionne à nouveau normalement.
+* Vous pouvez participer tooreceive une notification d’action réussie de l’échelle par e-mail et de webhooks.
 
 ## <a name="autoscale-best-practices"></a>Meilleures pratiques relatives à la mise à l’échelle automatique
-Utilisez les meilleures pratiques suivantes lorsque vous utilisez la mise à l’échelle automatique.
+Utilisez hello suivant les meilleures pratiques que vous utilisez la mise à l’échelle.
 
-### <a name="ensure-the-maximum-and-minimum-values-are-different-and-have-an-adequate-margin-between-them"></a>Vérifiez que les valeurs minimales et maximales sont différentes et séparées par une marge suffisante.
-Si le paramètre a une valeur minimum = 2, une valeur maximum = 2 et que le nombre d’instances actuel est égal à 2, aucune action de mise à l’échelle ne peut se produire. Conservez une marge suffisante entre les nombres d’instances minimum et maximum, qui sont inclusifs. La mise à l’échelle agit toujours entre ces limites.
+### <a name="ensure-hello-maximum-and-minimum-values-are-different-and-have-an-adequate-margin-between-them"></a>Vérifiez les valeurs minimale et maximale hello sont différents et ont une marge suffisante entre eux
+Si vous disposez d’un paramètre qui a minimum = 2, maximale = 2 et le nombre d’instances actuelles hello est 2, aucune action de mise à l’échelle ne peut se produire. Conserver une marge suffisante entre les nombres d’instance minimum et maximum hello, qui sont inclus. La mise à l’échelle agit toujours entre ces limites.
 
 ### <a name="manual-scaling-is-reset-by-autoscale-min-and-max"></a>La mise à l’échelle manuelle est réinitialisée par les valeurs min et max de mise à l’échelle
-Si vous mettez à jour manuellement le nombre d’instances avec une valeur inférieure au minimum ou supérieure au maximum, le moteur de mise à l’échelle s’ajuste automatiquement à la valeur minimale (si elle est inférieure) ou à la valeur maximale (le cas ci-dessus). Par exemple, vous définissez la plage entre 3 et 6. Si vous avez une seule instance en cours d’exécution, le moteur de mise à l’échelle automatique met à l’échelle sur 3 instances lors de sa prochaine exécution. De même, pour 8 instances, il diminuerait ce nombre à 6 lors de sa prochaine exécution.  La mise à l’échelle manuelle est temporaire, sauf si vous réinitialisez aussi les règles de mise à l’échelle.
+Si vous mettez à jour hello instance nombre tooa valeur ci-dessus manuellement ou que vous inférieure hello, hello du moteur de mise à l’échelle automatiquement met à l’échelle minimale de toohello précédent (le cas ci-dessous) ou hello maximale (le cas ci-dessus). Par exemple, vous définissez plage hello entre 3 et 6. Si vous avez une instance en cours d’exécution, moteur de mise à l’échelle hello dimensionne too3 instances lors de sa prochaine exécution. De même, il serait mise à l’échelle de 8 instances sauvegarder too6 lors de sa prochaine exécution.  Mise à l’échelle manuelle est temporaire, sauf si vous réinitialisez également les règles de mise à l’échelle hello.
 
 ### <a name="always-use-a-scale-out-and-scale-in-rule-combination-that-performs-an-increase-and-decrease"></a>Utilisez toujours une combinaison de règle d’augmentation et de diminution de la taille des instances qui exécute une augmentation et une diminution
-Si vous n’utilisez qu’une partie de la combinaison, la mise à l’échelle automatique augmente ou diminue la taille des instances uniquement pour cette partie jusqu’à ce que la valeur maximum ou minimum soit atteinte.
+Si vous utilisez uniquement une partie de la combinaison de hello, mise à l’échelle mise à l’échelle en unique, ou, jusqu'à ce que hello maximum ou minimum, a été atteint.
 
-### <a name="do-not-switch-between-the-azure-portal-and-the-azure-classic-portal-when-managing-autoscale"></a>Ne basculez pas entre le portail Azure et le portail Azure Classic lors de la gestion de la mise à l’échelle automatique.
-Pour Services cloud et App Services (Web Apps), utilisez le portail Azure (portal.azure.com) pour créer et gérer les paramètres de mise à l’échelle automatique. Pour Virtual Machine Scale Sets, utilisez PowerShell, l’interface de ligne de commande (CLI) ou l’API REST pour créer et gérer les paramètres de mise à l’échelle automatique. Ne basculez pas entre le portail Azure Classic (manage.windowsazure.com) et le portail Azure (portal.azure.com) lors de la gestion des configurations de mise à l’échelle automatique. Le portail Azure Classic et son serveur principal sous-jacent présentent des limitations. Accédez au portail Azure pour gérer la mise à l’échelle automatique à l’aide d’une interface utilisateur graphique. Les options disponibles sont : Autoscale PowerShell, l’interface de ligne de commande (CLI) ou l’API REST (via Azure Resource Explorer).
+### <a name="do-not-switch-between-hello-azure-portal-and-hello-azure-classic-portal-when-managing-autoscale"></a>Ne passez pas de type hello portail Azure et hello portail Azure classic, lors de la gestion de mise à l’échelle
+Pour les Services de cloud computing et les Services d’application (applications Web), utilisez hello portail Azure (portal.azure.com) toocreate et gérer les paramètres de mise à l’échelle. Pour les machines virtuelles identiques toocreate PowerShell, CLI ou l’API REST et gérer le paramètre de mise à l’échelle. Ne change pas entre hello portail Azure classic (manage.windowsazure.com) et hello portail Azure (portal.azure.com) lors de la gestion des configurations de mise à l’échelle. Hello portail Azure classic et ses principales sous-jacente présente des limitations. Déplacez la mise à l’échelle de toohello toomanage portail Azure à l’aide d’une interface utilisateur graphique. les options de Hello sont toouse hello échelle PowerShell, CLI ou une API REST (via l’Explorateur de ressources Azure).
 
-### <a name="choose-the-appropriate-statistic-for-your-diagnostics-metric"></a>Sélection de la statistique appropriée pour votre mesure de diagnostic
-Pour les mesures de diagnostics, vous pouvez choisir entre *Moyen*, *Minimum*, *Maximum* et *Total* comme mesure de mise à l’échelle. La statistique la plus courante est *Moyen*.
+### <a name="choose-hello-appropriate-statistic-for-your-diagnostics-metric"></a>Choisir hello de statistique appropriée pour vos métriques de diagnostic
+Pour les métriques de diagnostics, vous pouvez choisir parmi *moyenne*, *Minimum*, *maximale* et *Total* comme une mesure tooscale par. Hello plus courante est *moyenne*.
 
-### <a name="choose-the-thresholds-carefully-for-all-metric-types"></a>Sélection des seuils pour tous les types de mesure
+### <a name="choose-hello-thresholds-carefully-for-all-metric-types"></a>Choisissez les seuils hello avec soin pour tous les types de mesure
 Nous vous recommandons de choisir avec soin des seuils différents pour l’augmentation de la taille des instances et la diminution de la taille des instances en fonction des pratiques.
 
-Nous vous *déconseillons* de choisir des paramètres de mise à l’échelle tels que les exemples ci-dessous, avec des valeurs de seuil très similaires ou identiques pour l’augmentation et la diminution de la taille des instances :
+Nous *déconseillons* comme exemples hello ci-dessous avec les paramètres de mise à l’échelle hello des valeurs de seuil d’identiques ou très similaires pour et dans les conditions :
 
 * Augmenter les instances de 1 lorsque le nombre de threads <= 600
 * Diminuer les instances de 1 lorsque le nombre de threads >= 600
 
-Examinons un exemple de ce qui peut entraîner un comportement qui peut sembler déroutant. Examinez la séquence suivante.
+Examinons un exemple de ce qui peut entraîner le comportement tooa qui peut sembler déroutant. Envisagez de hello suivant la séquence.
 
-1. Supposons qu’il existe 2 instances pour commencer et ensuite, le nombre moyen de threads par instance atteint 625.
+1. Supposons il existe 2 toobegin instances avec et le nombre moyen de hello de threads par instance développe ensuite too625.
 2. La mise à l’échelle automatique augmente la taille des instances en ajoutant une 3ème instance.
-3. Ensuite, supposons que le nombre de threads moyen entre les instances diminue pour atteindre 575.
-4. Avant la descente en puissance, la mise à l’échelle automatique essaye d’estimer quel sera l’état final en cas de diminution de la taille des instances. Par exemple, 575 x 3 (nombre d’instances actuel) = 1 725 / 2 (nombre final d’instances lors de la descente en puissance) = 862,5 threads. Cela signifie que la mise à l’échelle automatique augmenterait immédiatement la taille des instances même après la diminution des instances, si le nombre moyen de threads reste le même ou même baisse d’une petite quantité. Toutefois, en cas de nouvelle montée en puissance, l’ensemble du processus se répète, menant à une boucle infinie.
-5. Pour éviter ce problème , la mise à l’échelle automatique ne descend pas du tout en puissance. Au lieu de cela, elle ignore et réévalue la condition lors de la prochaine exécution de la tâche du service. Cela peut perturber de nombreuses personnes, car la mise à l’échelle automatique semble ne pas fonctionner lorsque le nombre moyen de threads est de 575.
+3. Ensuite, supposons que le nombre de threads de moyenne hello sur l’instance trouve too575.
+4. Avant la mise à l’échelle vers le bas, mise à l’échelle tente tooestimate quel état final hello sera si elle est redimensionnée dans. Par exemple, 575 x 3 (nombre d’instances actuel) = 1 725 / 2 (nombre final d’instances lors de la descente en puissance) = 862,5 threads. Cela signifie qu’autoscale aurait tooimmediately montée en puissance parallèle à nouveau même après que elle à l’échelle, si hello moyen thread count reste hello même ou même situe uniquement une petite quantité. Toutefois, si elle mis à l’échelle, reprenez d’ensemble du processus hello, début boucle infinie de tooan.
+5. tooavoid cette situation (appelée « battements »), mise à l’échelle n’évolue pas vers le bas du tout. Au lieu de cela, il ignore et réévalue condition hello nouveau hello prochaine heure hello du service s’exécute. Cela pourrait perturber de nombreuses personnes, car la mise à l’échelle ne s’affichent toowork lorsque le nombre de threads moyenne hello était 575.
 
-Lors d’une mise à l’échelle, l’estimation permet d’éviter les situations de « bagottement », où la taille des instances est continuellement modifiée (diminuée puis augmentée, et inversement). Gardez ce comportement à l’esprit lorsque vous choisissez les mêmes seuils pour la diminution et l’augmentation de la taille des instances.
+Estimation lors d’une mise à l’échelle est prévue tooavoid « bagottement » les situations où les actions de mise à l’échelle et de montée en puissance parallèle accéder en permanence dans les deux sens. Gardez ce comportement à l’esprit lorsque vous choisissez hello mêmes seuils pour la montée en puissance parallèle et dans.
 
-Nous vous recommandons de choisir une marge suffisante entre les seuils de diminution et d’augmentation de la taille des instances. Par exemple, examinez la combinaison de règles suivante bien plus adaptée.
+Nous vous recommandons de choisir une marge suffisante entre hello montée en puissance parallèle et de seuils. Par exemple, considérez hello suivant la meilleure combinaison de la règle.
 
 * Augmenter les instances de 1 lorsque le % du processeur >= 80
 * Diminuer les instances de 1 lorsque le % du processeur <= 60
 
 Dans ce cas  
 
-1. Supposons qu’il existe 2 instances pour commencer.
-2. Si le pourcentage moyen du processeur entre les instances atteint 80, la mise à l’échelle automatique augmente la taille des instances en ajoutant une troisième instance.
-3. Supposons maintenant qu’au fil du temps, le pourcentage du processeur baisse à 60.
-4. La règle de diminution de la taille des instances de la mise à l’échelle automatique évalue l’état final en cas de diminution de la taille des instances. Par exemple, 60 x 3 (nombre d’instances actuel) = 180 / 2 (nombre final d’instances lors de la descente en puissance) = 90. Par conséquent, la mise à l’échelle automatique ne diminue pas la taille des instances, car il lui faudrait de nouveau monter en puissance immédiatement. Au lieu de cela, elle ignore la descente en puissance.
-5. Lors de la vérification de mise à l’échelle de temps suivante, l’UC continue sa diminution à 50. Une nouvelle estimation est effectuée : 3 x 50 instances = 150 / 2 instances = 75, ce qui est inférieur au seuil d’augmentation de la taille des instances qui est de 80, la diminution de la taille des instances s’exécute pour obtenir 2 instances.
+1. Supposons que 2 toostart instances avec.
+2. Si hello % de l’UC moyenne entre les instances est too80, mise à l’échelle dotée de l’ajout d’une troisième instance de.
+3. Supposons maintenant que sur le temps hello processeur % situe too60.
+4. L’échelle de règle de mise à l’échelle évalue l’état final de hello s’il s’agissait de tooscale. Par exemple, 60 x 3 (nombre d’instances actuel) = 180 / 2 (nombre final d’instances lors de la descente en puissance) = 90. Par conséquent, mise à l’échelle ne pas échelle-dans, car cela aurait tooscale montée immédiatement. Au lieu de cela, elle ignore la descente en puissance.
+5. échelle de temps suivant Hello vérifie, hello du processeur continue toofall too50. Elle estime à nouveau - instance 50 x 3 = 150 / 2 instances = 75, ce qui est sous le seuil de montée en puissance parallèle hello 80, afin qu’il met à l’échelle dans les instances de too2 avec succès.
 
 ### <a name="considerations-for-scaling-threshold-values-for-special-metrics"></a>Considérations relatives aux valeurs de seuil de la mise à l’échelle pour les mesures spéciales
- Pour les mesures spéciales, telles que les mesures de longueur de file d’attente Service Bus ou de stockage, le seuil correspond au nombre moyen de messages disponibles en fonction du nombre actuel d’instances. Choisissez soigneusement la valeur de seuil pour cette mesure.
+ Pour les mesures spéciales telles que métrique de longueur de file d’attente du Bus de Service ou de stockage, seuil de hello est le nombre moyen de hello de messages disponibles par le nombre actuel d’instances. Choisissez soigneusement hello choisir la valeur de seuil de hello pour cette mesure.
 
-Examinons un exemple qui vous permettra de mieux comprendre ce comportement.
+Nous allons illustrer avec un exemple tooensure vous comprenez le comportement de hello mieux.
 
 * Augmenter les instances de 1 lorsque le nombre de messages de file d’attente de stockage >= 50
 * Diminuer les instances de 1 lorsque le nombre de messages de file d’attente de stockage <= 10
 
-Examinez la séquence suivante :
+Tenez compte des hello suivant séquence :
 
 1. Il existe 2 instances de file d’attente de stockage.
-2. Les messages continuent d’arriver et lorsque vous examinez la file d’attente de stockage, le nombre total est de 50. Vous pourriez supposer que la mise à l’échelle automatique devrait démarrer une action de montée en charge. Toutefois, notez que le nombre de messages par instance est de 50/2 = 25 messages. Par conséquent, la montée en charge ne se produit pas. Pour que la montée en charge se produise, le nombre total de messages dans la file d’attente de stockage doit être égal à 100.
-3. Ensuite, supposons que le nombre total de messages atteigne 100.
-4. Une 3e instance de file d'attente de stockage est ajoutée en raison d’une action de montée en charge.  La prochaine action de montée en charge ne se produira que lorsque le nombre total de messages dans la file d’attente atteindra 150, car 150/3 = 50.
-5. Maintenant, le nombre de messages dans la file d’attente diminue. Avec 3 instances, la première action de diminution de la taille des instances se produit lorsque le nombre total de messages dans la file d’attente atteint 30, ce qui donne 30/3=10 messages par instance, ce qui correspond au seuil de diminution de la taille des instances.
+2. Messages conservent à venir et lorsque vous examinez la file d’attente de stockage hello, nombre total de hello lit 50. Vous pourriez supposer que la mise à l’échelle automatique devrait démarrer une action de montée en charge. Toutefois, notez que le nombre de messages par instance est de 50/2 = 25 messages. Par conséquent, la montée en charge ne se produit pas. Pour hello premier toohappen de montée en puissance parallèle, le nombre de messages total hello dans la file d’attente de stockage hello doit être 100.
+3. Ensuite, supposons que le nombre de messages total hello atteint 100.
+4. Une instance de file d’attente de stockage 3e est ajoutée en raison de l’action de montée en puissance parallèle tooa.  Hello prochaine action montée en puissance parallèle n’aura lieu que hello total nombre de messages dans la file d’attente hello atteint 150 car 150/3 = 50.
+5. Nombre de hello de messages dans la file d’attente hello obtient désormais plus petit. Avec 3 instances, hello première échelle dans action qui se produit lorsque hello nombre total de messages dans les files d’attente additionner too30 car 30/3 = 10 messages par instance, qui est le seuil d’échelle dans hello.
 
 ### <a name="considerations-for-scaling-when-multiple-profiles-are-configured-in-an-autoscale-setting"></a>Considérations relatives à la mise à l’échelle lorsque plusieurs profils sont configurés dans un paramètre de mise à l’échelle automatique
 Dans un paramètre de mise à l’échelle automatique, vous pouvez choisir un profil par défaut, qui est toujours appliqué indépendamment de toute planification ou de l’heure, ou vous pouvez choisir un profil récurrent ou un profil pour une durée fixe avec une plage de dates et d’heures.
 
-Lorsque le service de mise à l’échelle automatique traite ces éléments, il vérifie toujours ce qui suit dans l’ordre :
+Lorsque le service de mise à l’échelle les traite, il vérifie toujours Bonjour suivant l’ordre :
 
 1. Profil de date fixe
 2. Profil récurrent
 3. Profil par défaut (« Toujours »)
 
-Si une condition de profil est remplie, la mise à l’échelle automatique ne vérifie pas la condition de profil suivante. La mise à l’échelle automatique ne traite qu’un seul profil à la fois. Cela signifie que si vous souhaitez également inclure une condition de traitement d’un profil de niveau inférieur, vous devez également inclure ces règles dans le profil actuel.
+Si une profil condition est remplie, mise à l’échelle ne vérifie pas de condition de profil suivante hello en dessous. La mise à l’échelle automatique ne traite qu’un seul profil à la fois. Cela signifie que si vous souhaitez tooalso incluent une condition de traitement d’un profil de niveau inférieur, vous devez inclure ces règles également dans le profil actuel de hello.
 
 Examinons cela à l’aide d’un exemple :
 
-L’image ci-dessous illustre un paramètre de mise à l’échelle automatique avec un profil par défaut d’instances minimum = 2 et d’instances maximum = 10. Dans cet exemple, les règles sont configurées pour la montée en charge lorsque le nombre de messages dans la file d’attente est supérieur à 10 et une diminution de la taille des instances lorsque le nombre de messages dans la file d’attente est inférieur à 3. À présent, la ressource peut évoluer entre 2 et 10 instances.
+image de Hello ci-dessous illustre un paramètre de mise à l’échelle avec un profil par défaut d’instances minimum = instances 2 et maximales = 10. Dans cet exemple, les règles sont tooscale configuré à la sortie lorsque le nombre de messages hello dans la file d’attente hello est supérieur à 10 et de la mise à l’échelle lorsque le nombre de messages hello dans la file d’attente hello est inférieure à 3. Désormais, les ressources hello peuvent évoluer entre 2 et 10 instances.
 
-En outre, il existe un profil récurrent défini pour Lundi. Il est défini pour des instances minimum = 2 et des instances maximum = 12. Cela signifie que le lundi, la première fois que la mise à l’échelle automatique vérifie cette condition, si le nombre d’instances est égal à 2, il est mis à l’échelle pour correspondre au nouveau niveau minimum de 3. Tant que la mise à l’échelle automatique rencontre cette condition de profil respectée (lundi), elle ne traite que les règles de montée/descente en puissance basées sur le processeur configurées pour ce profil. À ce stade, elle ne vérifie pas la longueur de la file d’attente. Toutefois, si vous souhaitez également que la condition de longueur de la file d’attente soit vérifiée, vous devez inclure les règles du profil par défaut dans votre profil de Lundi.
+En outre, il existe un profil récurrent défini pour Lundi. Il est défini pour des instances minimum = 2 et des instances maximum = 12. Cela signifie que le lundi, échelle de temps de première hello vérifie cette condition, si le nombre d’instances hello est 2, il met à l’échelle toohello nouveau minimum de 3. Tant que la mise à l’échelle continue toofind cette condition profil mis en correspondance (lundi), elle traite uniquement en fonction de l’UC scale-out/dans règles hello configurés pour ce profil. À ce stade, il ne vérifie pas la longueur de file d’attente hello. Toutefois, si vous voulez également hello toobe du condition longueur de file d’attente activée, vous devez inclure également ces règles de profil par défaut de hello dans votre profil lundi.
 
-De même, lorsque la mise à l’échelle automatique bascule vers le profil par défaut, elle vérifie d’abord si les conditions minimales et maximales sont remplies. Si le nombre d’instances à ce moment-là est égal à 12, la taille des instances diminue jusqu’à 10, le maximum autorisé pour le profil par défaut.
+De même, lors de la mise à l’échelle bascule le profil par défaut de toohello précédent, il vérifie d’abord si les conditions minimales et maximales hello sont remplies. Si le nombre de hello d’instances au moment de hello est 12, il met à l’échelle dans too10, hello maximale autorisée pour le profil par défaut de hello.
 
 ![paramètres de mise à l’échelle automatique](./media/insights-autoscale-best-practices/insights-autoscale-best-practices-2.png)
 
 ### <a name="considerations-for-scaling-when-multiple-rules-are-configured-in-a-profile"></a>Considérations relatives à la mise à l’échelle lorsque plusieurs règles sont configurées dans un profil
-Il existe des cas où vous devrez définir plusieurs règles dans un profil. L’ensemble de règles de mise à l’échelle automatique suivant est utilisé par les services lorsque plusieurs règles sont définies.
+Il existe des cas où vous avez peut-être tooset plusieurs règles dans un profil. Hello suivant l’ensemble de règles de mise à l’échelle est utilisé par les services utilisent lorsque plusieurs règles sont définies.
 
 Pour *l’augmentation de la taille des instances*, la mise à l’échelle automatique s’exécute si une règle est respectée.
-Pour la *diminution de la taille des instances*, la mise à l’échelle automatique nécessite que toutes les règles soient respectées.
+Sur *dans l’échelle*, mise à l’échelle requièrent toutes les règles toobe remplie.
 
-Pour illustrer cela, supposons que vous disposez des 4 règles de mise à l’échelle automatique suivantes :
+tooillustrate, supposez que vous avez hello suivant les règles de mise à l’échelle 4 :
 
 * Si UC < 30 %, diminuer la taille des instances de 1
 * Si Mémoire < 50 %, diminuer la taille des instances de 1
 * Si UC > 75 %, augmenter la taille des instances de 1
 * Si Mémoire > 75 %, augmenter la taille des instances de 1
 
-Alors, ce qui suit se produit :
+Puis hello suivante se produit :
 
 * Si le processeur est de 76 % et la mémoire est de 50 %, une augmentation de la taille des instances se produit.
 * Si le processeur est de 50 % et la mémoire est de 76 %, une augmentation de la taille des instances se produit.
 
-En revanche, si le processeur est de 25 % et la mémoire est de 51 %, la mise à l’échelle automatique ne diminue **pas** la taille des instances. Pour diminuer la taille des instances, le processeur doit être de 29 % et la mémoire de 49 %.
+Hello d’autre part, si le processeur est 25 % et la mémoire est mise à l’échelle de 51 % **pas** dans l’échelle. Dans l’ordre dans tooscale, processeur doit être 29 % et la mémoire 49 %.
 
 ### <a name="always-select-a-safe-default-instance-count"></a>Sélectionnez toujours un nombre d’instances par défaut sans échec
-Le nombre d’instances par défaut est important, car la mise à l’échelle de vos services s’effectue en fonction de ce nombre lorsque les mesures ne sont pas disponibles. Par conséquent, sélectionnez un nombre d’instances par défaut qui est sécurisé pour vos charges de travail.
+nombre d’instances par défaut Hello est important de mise à l’échelle met à l’échelle le nombre de toothat service lorsque les mesures ne sont pas disponibles. Par conséquent, sélectionnez un nombre d’instances par défaut qui est sécurisé pour vos charges de travail.
 
 ### <a name="configure-autoscale-notifications"></a>Configuration des notifications de mise à l’échelle automatique
-La mise à l’échelle automatique notifie par e-mail les administrateurs et les collaborateurs de la ressource si l’une des conditions suivantes se produit :
+Mise à l’échelle avertit les administrateurs de hello et collaborateurs de ressource de hello par courrier électronique en cas de hello conditions suivantes :
 
-* le service de mise à l’échelle automatique ne parvient pas à effectuer une action.
-* Les mesures ne sont pas disponibles pour que le service de mise à l’échelle automatique prenne une décision de mise à l’échelle.
-* Les mesures sont de nouveau disponibles (récupération) pour prendre une décision de mise à l’échelle.
-  Outre les conditions ci-dessus, vous pouvez configurer des notifications par e-mail ou webhook pour être averti en cas d’action de mise à l’échelle réussie.
+* service de mise à l’échelle échoue tootake une action.
+* Métriques ne sont pas disponibles pour le service de mise à l’échelle toomake une décision de mise à l’échelle.
+* Les métriques sont disponible (récupération) à nouveau toomake une décision de mise à l’échelle.
+  En outre toohello les conditions ci-dessus, vous pouvez configurer tooget de notifications par courrier électronique ou webhook notifié des actions de mise à l’échelle réussie.
   
-Vous pouvez également utiliser une alerte de journal d’activité pour surveiller l’intégrité du moteur de mise à l’échelle automatique. Voici des exemples pour [créer une alerte de journal d’activité pour surveiller toutes les opérations du moteur de mise à l’échelle automatique dans votre abonnement](https://github.com/Azure/azure-quickstart-templates/tree/master/monitor-autoscale-alert) ou [créer une alerte de journal d’activité pour surveiller tous les échecs d’opérations de mise à l’échelle automatique dans votre abonnement](https://github.com/Azure/azure-quickstart-templates/tree/master/monitor-autoscale-failed-alert).
+Vous pouvez également utiliser un état d’intégrité de journal d’activité toomonitor alerte hello du moteur de mise à l’échelle hello. Voici des exemples trop[créer une alerte de journal activité toomonitor toutes les opérations du moteur de mise à l’échelle de votre abonnement](https://github.com/Azure/azure-quickstart-templates/tree/master/monitor-autoscale-alert) ou trop[créer une alerte de journal activité toomonitor tout échec de la mise à l’échelle de la mise à l’échelle dans / mise à l’échelle des opérations votre abonnement](https://github.com/Azure/azure-quickstart-templates/tree/master/monitor-autoscale-failed-alert).
 
 ## <a name="next-steps"></a>Étapes suivantes
-- [Créer une alerte de journal d’activité pour surveiller toutes les opérations du moteur de mise à l’échelle automatique dans votre abonnement.](https://github.com/Azure/azure-quickstart-templates/tree/master/monitor-autoscale-alert)
-- [Créer une alerte de journal d’activité pour surveiller tous les échecs d’opérations de mise à l’échelle automatique dans votre abonnement](https://github.com/Azure/azure-quickstart-templates/tree/master/monitor-autoscale-failed-alert)
+- [Créer une alerte de journal activité toomonitor toutes les opérations du moteur de mise à l’échelle de votre abonnement.](https://github.com/Azure/azure-quickstart-templates/tree/master/monitor-autoscale-alert)
+- [Créer une alerte de journal activité toomonitor tout échec de la mise à l’échelle de la mise à l’échelle dans / monter en charge les opérations de votre abonnement](https://github.com/Azure/azure-quickstart-templates/tree/master/monitor-autoscale-failed-alert)

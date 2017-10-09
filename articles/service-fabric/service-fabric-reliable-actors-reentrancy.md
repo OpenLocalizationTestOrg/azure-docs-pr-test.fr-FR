@@ -1,6 +1,6 @@
 ---
-title: "Réentrance dans les microservices Azure basés sur acteur | Microsoft Docs"
-description: "Présentation de la réentrance pour Service Fabric Reliable Actors"
+title: "aaaReentrancy dans microservices de Azure basé sur acteur | Documents Microsoft"
+description: "Tooreentrancy d’introduction pour Service Fabric Reliable Actors"
 services: service-fabric
 documentationcenter: .net
 author: vturecek
@@ -14,16 +14,16 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/29/2017
 ms.author: vturecek
-ms.openlocfilehash: 00fcccb379bf1ba3875fbaba57a05b00fa228622
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 61c69bcf0f100e075d19ba155954c05789b71761
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="reliable-actors-reentrancy"></a>Réentrance Reliable Actors
-Par défaut, le runtime Reliable Actors autorise la réentrance des appels logiques selon le contexte. Cela permet de réentrer des acteurs s'ils se trouvent dans la même chaîne de contexte d'appel. Par exemple, un acteur A envoie un message à un acteur B qui envoie le message à un acteur C. Dans le cadre du traitement du message, si l’acteur C appelle l’acteur A, le message est réentrant et donc autorisé. Tout autre message faisant partie d’un contexte d’appel différent est bloqué au niveau de l’acteur A jusqu’à ce qu’il termine le traitement.
+par défaut, Hello Reliable Actors runtime, permet de réentrance basée sur le contexte d’appel logique. Ainsi, reentrant de toobe acteurs s’ils sont en hello même appeler la chaîne du contexte. Par exemple, acteur A envoie un message de tooActor B, qui envoie un message de tooActor C. Dans le cadre du traitement du message de salutation, si acteur C appelle acteur A, message de type hello est réentrant, afin qu’il sera possible. Tout autre message faisant partie d’un contexte d’appel différent est bloqué au niveau de l’acteur A jusqu’à ce qu’il termine le traitement.
 
-Deux options disponibles pour la réentrance des acteurs sont définies dans l’enum `ActorReentrancyMode` :
+Il existe deux options disponibles pour la réentrance acteur définie dans hello `ActorReentrancyMode` enum :
 
 * `LogicalCallContext` (comportement par défaut)
 * `Disallowed` : désactive la réentrance
@@ -42,9 +42,9 @@ public enum ActorReentrancyMode
     Disallowed(2)
 }
 ```
-Vous pouvez configurer la réentrance dans les paramètres d’un `ActorService`lors de l’inscription. Le paramètre s’applique à toutes les instances d’acteur créées dans le service d’acteur.
+Vous pouvez configurer la réentrance dans les paramètres d’un `ActorService`lors de l’inscription. paramètre de Hello applique des instances d’acteur tooall créés dans le service d’acteur hello.
 
-L’exemple suivant montre un service d’acteur qui affecte la valeur `ActorReentrancyMode.Disallowed`au mode de réentrance. Dans ce cas, si un acteur envoie un message réentrant à un autre acteur, une exception de type `FabricException` est levée.
+Hello suivant montre un service d’acteur qui définit le mode de réentrance hello trop`ActorReentrancyMode.Disallowed`. Dans ce cas, si un intervenant envoie un acteur tooanother message réentrant, une exception de type `FabricException` sera levée.
 
 ```csharp
 static class Program
@@ -110,4 +110,4 @@ static class Program
 
 
 ## <a name="next-steps"></a>Étapes suivantes
-* En savoir plus sur la réentrance dans la [documentation de référence de l’API Actor](https://msdn.microsoft.com/library/azure/dn971626.aspx)
+* En savoir plus sur la réentrance Bonjour [documentation de référence des API d’acteur](https://msdn.microsoft.com/library/azure/dn971626.aspx)

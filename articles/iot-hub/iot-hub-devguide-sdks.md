@@ -1,6 +1,6 @@
 ---
-title: Comprendre les kits IoT Azure SDK | Microsoft Docs
-description: "Guide du développeur - informations et liens vers divers kits Azure IoT device et service SDK que vous pouvez utiliser pour créer des applications d’appareil et des applications principales."
+title: "aaaUnderstand hello kits de développement logiciel Azure IoT | Documents Microsoft"
+description: "Guide du développeur - informations et liens toohello différents SDK de périphérique et le service Azure IoT que vous pouvez utiliser les applications de périphérique toobuild et principal."
 services: iot-hub
 documentationcenter: 
 author: dominicbetts
@@ -15,50 +15,50 @@ ms.workload: na
 ms.date: 06/16/2017
 ms.author: dobett
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: bcbf4b9633f58293edb19aeb33dec6602ac4ec8f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e319451ca97876666e1c011ee0e1a73d0a0f1ed1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="understand-and-use-azure-iot-sdks"></a>Comprendre et utiliser les kits Azure IoT SDK
 
 Il existe trois catégories de kit SDK à utiliser avec IoT Hub :
 
-* Les kits **device SDK** vous permettent de créer des applications qui s’exécuteront sur vos appareils IoT. Ces applications envoient des données de télémétrie à votre hub IoT et reçoivent éventuellement des messages provenant de votre hub IoT.
+* **Kits de développement logiciel appareil** permettent de toobuild les applications qui s’exécutent sur vos appareils IoT. Ces applications IoT hub tooyour de télémétrie d’envoi et éventuellement recevoir des messages à partir de votre hub IoT.
 
-* Les kits **service SDK** vous permettent de gérer votre hub IoT et éventuellement d’envoyer des messages à vos appareils IoT.
+* **Kits de développement logiciel service** activer vous toomanage votre IoT hub et éventuellement envoyer des messages tooyour des appareils IoT.
 
-* **Azure IoT Edge** permet de créer des passerelles pour activer les appareils qui n’utilisent pas l’un des protocoles pris en charge, ou lorsque vous devez traiter des messages en périphérie.
+* **Azure IoT bord** vous permet des appareils toobuild passerelles tooenable qui n’utilisez pas un des protocoles de hello pris en charge, ou lorsque vous devez tooprocess des messages sur les bords de hello.
 
-Les kits SDK prennent en charge plusieurs langages de programmation.
+Kits de développement logiciel sont fournis toosupport plusieurs langages de programmation.
 
 ## <a name="azure-iot-device-sdks"></a>Kits Azure IoT device SDK
 
-Les kits Microsoft Azure IoT device SDK contiennent du code qui facilite la création d’appareils et d’applications qui se connectent aux services Azure IoT Hub et sont gérés par eux.
+Hello kits de développement logiciel de Microsoft Azure IoT appareil contenir du code qui facilite la construction des appareils et applications qui se connectent tooand sont gérées par les services Azure IoT Hub.
 
-Vous pouvez télécharger les kits Azure IoT device SDK suivants à partir de GitHub :
+Hello des kits de développement Azure IoT périphérique suivantes sont toodownload disponible à partir de GitHub :
 
-* [Azure IoT device SDK pour C][lnk-c-device-sdk] : écrit en C ANSI (C99) pour la portabilité et la compatibilité de nombreuses plateformes. Il existe deux bibliothèques clientes d’appareil pour C, **iothub_client** de bas niveau et **serializer**.
+* [Azure IoT device SDK pour C][lnk-c-device-sdk] : écrit en C ANSI (C99) pour la portabilité et la compatibilité de nombreuses plateformes. Il existe deux bibliothèques de client de périphérique pour C, hello bas niveau **iothub_client** et hello **sérialiseur**.
 * [Azure IoT device SDK pour .NET][lnk-dotnet-device-sdk]
 * [Azure IoT device SDK pour Java][lnk-java-device-sdk]
 * [Azure IoT device SDK pour Node.js][lnk-node-device-sdk]
 * [Azure IoT device SDK pour Python][lnk-python-device-sdk]
 
 > [!NOTE]
-> Consultez les fichiers lisez-moi dans les dépôts GitHub pour plus d’informations sur l’utilisation du langage et des gestionnaires de packages spécifiques à la plateforme pour installer les fichiers binaires et dépendances sur votre ordinateur de développement.
+> Consultez les fichiers readme dans hello dans des référentiels GitHub hello pour plus d’informations sur l’utilisation de langage et les binaires de tooinstall spécifique à la plateforme package gestionnaires et les dépendances sur votre ordinateur de développement.
 > 
 > 
 
 ### <a name="os-platform-and-hardware-compatibility"></a>Compatibilité des plateformes de système d’exploitation et du matériel
 
-Pour plus d’informations sur la compatibilité des kits SDK avec des appareils physiques spécifiques, consultez le [catalogue d’appareils Azure Certified pour IoT][lnk-certified].
+Pour plus d’informations sur la compatibilité du Kit de développement logiciel avec des périphériques matériels spécifiques, consultez hello [Azure certifié pour le catalogue de périphérique IoT][lnk-certified].
 
 ## <a name="azure-iot-service-sdks"></a>Kits Azure IoT service SDK
 
-Les kits Azure IoT service SDK contiennent du code pour faciliter la création d’applications qui interagissent directement avec IoT Hub pour gérer les appareils et la sécurité.
+service de Azure IoT Hello kits de développement logiciel contiennent toofacilitate code création d’applications qui interagissent directement avec la sécurité et les appareils toomanage IoT Hub.
 
-Vous pouvez télécharger les kits Azure IoT service SDK suivants à partir de GitHub :
+Hello SDK de service Azure IoT suivantes est toodownload disponible à partir de GitHub :
 
 * [Azure IoT service SDK pour .NET][lnk-dotnet-service-sdk]
 * [Azure IoT service SDK pour Node.js][lnk-node-service-sdk]
@@ -67,17 +67,17 @@ Vous pouvez télécharger les kits Azure IoT service SDK suivants à partir de G
 * [Azure IoT service SDK pour C][lnk-c-service-sdk]
 
 > [!NOTE]
-> Consultez les fichiers lisez-moi dans les dépôts GitHub pour plus d’informations sur l’utilisation du langage et des gestionnaires de packages spécifiques à la plateforme pour installer les fichiers binaires et dépendances sur votre ordinateur de développement.
+> Consultez les fichiers readme dans hello dans des référentiels GitHub hello pour plus d’informations sur l’utilisation de langage et les binaires de tooinstall spécifique à la plateforme package gestionnaires et les dépendances sur votre ordinateur de développement.
 
-## <a name="azure-iot-edge"></a>Azure IoT Edge
+## <a name="azure-iot-edge"></a>Azure IoT Edge
 
-Azure IoT Edge contient l’infrastructure et les modules nécessaires pour créer des solutions de passerelle IoT. Vous pouvez étendre IoT Edge pour créer des passerelles adaptées à n’importe quel scénario de bout en bout.
+Azure IoT bord contient hello infrastructure et les modules toocreate IoT solutions de passerelle. Vous pouvez étendre le scénario de bout en bout IoT bord toocreate passerelles tooany adaptés.
 
 [Azure IoT Edge][lnk-iot-edge] est téléchargeable à partir de GitHub.
 
 ## <a name="online-api-reference-documentation"></a>Documentation de référence sur les API en ligne
 
-La liste suivant contient des liens vers la documentation de référence sur les API en ligne pour les bibliothèques d’appareils, de services et de passerelles Azure IoT :
+Hello liste suivante contient des liens tooonline API documentation de référence sur Azure IoT DISPOSITIF, service et les bibliothèques de passerelle :
 
 * [Internet des objets (IoT) .NET][lnk-dotnet-ref]
 * [IoT Hub REST][lnk-rest-ref]

@@ -1,7 +1,7 @@
 | RESSOURCE | GRATUITE (ÉVALUATION) | DÉVELOPPEUR | DE BASE | STANDARD | PREMIUM |
 | --- | --- | --- | --- | --- | --- |
 | Montée en charge |N/A |N/A |Oui, par incréments de 1 unité De base |Oui, par incréments de 1 unité Standard |Oui, par incréments de 1 unité Premium |
-| Limite de la mise à l’échelle |N/A |N/A |Jusqu’à 8 unités |Jusqu’à 8 unités |Jusqu’à 8 unités |
+| Limite de la mise à l’échelle |N/A |N/A |Unités de too8 |Unités de too8 |Unités de too8 |
 | Ponts IAE par unité |N/A |25 |25 |125 |500 |
 | Contrats EDI par unité. |N/A |10 |50 |250 |1 000 |
 | Connexions hybrides par unité |5 |5 |10 |50 |100 |

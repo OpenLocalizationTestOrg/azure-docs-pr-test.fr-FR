@@ -1,5 +1,5 @@
 ---
-title: "Présentation d’Azure Web App sur Linux | Microsoft Docs"
+title: aaaIntroduction tooAzure application Web sur Linux | Documents Microsoft
 description: En savoir plus sur Azure Web App sur Linux.
 keywords: azure app service, linux, oss
 services: app-service
@@ -15,21 +15,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/16/2017
 ms.author: naziml;wesmc
-ms.openlocfilehash: 0870f811845ec7c705da13f08abdfa762d25b209
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 43b9865ade251909a77429eb3e18fe0bcaac3bde
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-azure-web-app-on-linux"></a>Présentation d’Azure Web App sur Linux
+# <a name="introduction-tooazure-web-app-on-linux"></a>Introduction tooAzure application Web sur Linux
 
 [!INCLUDE [app-service-linux-preview](../../includes/app-service-linux-preview.md)]
 
 ## <a name="overview"></a>Vue d'ensemble
-Les clients peuvent utiliser Web App sur Linux pour héberger des applications web en mode natif sur Linux pour les piles d’applications prises en charge. La section suivante répertorie les piles d’applications qui sont actuellement prises en charge. 
+Clients peuvent utiliser une application Web sur les applications web Linux toohost en mode natif sur Linux pour les piles d’applications pris en charge. Hello section suivante répertorie les piles d’application hello actuellement prises en charge. 
 
 ## <a name="features"></a>Caractéristiques
-Web App sur Linux prend actuellement en charge les piles d’applications suivantes :
+Web application sur Linux prend actuellement en charge hello suivant des piles d’applications :
 
 * Node.js
     * 4.4
@@ -59,10 +59,10 @@ Les clients peuvent déployer leurs applications à l’aide de :
 
 Pour la mise à l’échelle des applications :
 
-* Les clients peuvent faire monter ou descendre en puissance les applications web en modifiant le niveau dans leur plan App Service
-* Les clients peuvent augmenter la taille des instances de leurs applications et en exécuter plusieurs instances, dans les limites de leur référence (SKU)
+* Les clients peuvent évoluer les applications web en modifiant le niveau de hello de leur plan de Service d’applications
+* Clients puissent monter en charge les applications et exécuter plusieurs instances de l’application dans les limites de hello de leur référence (SKU)
 
-Pour Kudu, certaines fonctionnalités de base sont :
+Pour Kudu, certaines des fonctionnalités de base hello :
 
 * Environnements
 * Déploiements
@@ -75,11 +75,11 @@ Pour DevOps :
 * ACR et DockerHub CI/CD
 
 ## <a name="limitations"></a>Limites
-Le portail Azure affiche uniquement les fonctionnalités actuellement compatibles avec Web App sur Linux, et masque les autres. Les fonctionnalités seront visibles sur le portail au fur et à mesure de leur activation.
+Hello portail Azure affiche uniquement pour les fonctions qui fonctionnent actuellement pour l’application Web sur Linux et masque les reste hello. Comme nous activer d’autres fonctionnalités, elles seront visibles sur le portail de hello.
 
-Certaines fonctionnalités, telles que l’intégration de réseau virtuel, l’authentification Azure Active Directory/tierce, ou les extensions de site Kudu, ne sont pas encore disponibles. Dès qu’elles le seront, nous mettrons à jour notre documentation et nous annoncerons les modifications sur notre blog.
+Certaines fonctionnalités, telles que l’intégration de réseau virtuel, l’authentification Azure Active Directory/tierce, ou les extensions de site Kudu, ne sont pas encore disponibles. Une fois que ces fonctionnalités sont disponibles, nous mettrons à jour notre documentation et le blog sur les modifications de hello.
 
-Cette version préliminaire publique est actuellement disponible uniquement dans les régions suivantes :
+Cette version préliminaire publique est actuellement disponible uniquement dans hello suivant régions :
 
 * Ouest des États-Unis
 * Est des États-Unis
@@ -94,26 +94,26 @@ Cette version préliminaire publique est actuellement disponible uniquement dans
 * Sud du Brésil
 * Inde du Sud
 
-Web Apps sur Linux est uniquement pris en charge dans les plans App Service dédiés et ne dispose pas d’un niveau Gratuit ou Partagé. En outre, les plans App Service pour les applications web standards et Linux s’excluent mutuellement : vous ne pouvez pas créer une application web Linux dans un plan App Service non Linux.
+Web Apps sur Linux est uniquement pris en charge dans des plans de service d’application dédiée hello et n’a pas d’un niveau gratuit ou partagé. En outre, les plans App Service pour les applications web standards et Linux s’excluent mutuellement : vous ne pouvez pas créer une application web Linux dans un plan App Service non Linux.
 
-Sous Linux, les applications web doivent être créées dans un groupe de ressources qui ne contient pas d’applications web non Linux dans la même région.
+Web Apps sur Linux doit être créée dans un groupe de ressources qui ne contient-elle pas les applications web non-Linux Bonjour même région.
 
 ## <a name="troubleshooting"></a>Résolution des problèmes ##
 
-Lorsque votre application ne démarre pas ou que vous souhaitez vérifier la journalisation à partir de votre application, consultez les journaux Docker dans le répertoire LogFiles. Vous pouvez accéder à ce répertoire par le biais de votre site SCM ou d’un FTP.
-Pour journaliser `stdout` et `stderr` à partir de votre conteneur, vous devez activer **Journalisation de conteneur Docker** sous **Journaux de diagnostic**.
+Lorsque votre application échoue toostart ou utiliser la journalisation hello toocheck à partir de votre application, vérifiez hello que docker enregistre dans le répertoire des fichiers journaux hello. Vous pouvez accéder à ce répertoire par le biais de votre site SCM ou d’un FTP.
+toolog hello `stdout` et `stderr` à partir de votre conteneur, vous devez tooenable **journalisation du conteneur Docker** sous **les journaux de diagnostic**.
 
 ![Activation de la journalisation][2]
 
-![Affichage des journaux Docker avec Kudu][1]
+![Utilisation des journaux de Kudu tooview Docker][1]
 
-Vous pouvez accéder au site SCM à partir d’**Outils avancés** dans le menu **Outils de développement**.
+Vous pouvez accéder à site SCM hello **outils avancés** Bonjour **outils de développement** menu.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Consultez les liens ci-dessous pour vous familiariser avec App Service sur Linux. Vous pouvez poser des questions et signaler vos préoccupations sur [notre forum](https://social.msdn.microsoft.com/forums/azure/home?forum=windowsazurewebsitespreview).
+Consultez hello suivant tooget liens démarré avec le Service d’application sur Linux. Vous pouvez poser des questions et signaler vos préoccupations sur [notre forum](https://social.msdn.microsoft.com/forums/azure/home?forum=windowsazurewebsitespreview).
 
-* [Comment utiliser une image Docker personnalisé pour Azure Web App sur Linux](app-service-linux-using-custom-docker-image.md)
-* [Utiliser la configuration PM2 pour Node.js dans Azure Web App sur Linux](app-service-linux-using-nodejs-pm2.md)
+* [Comment toouse une Docker personnalisée de l’image pour l’application Web de Azure sur Linux](app-service-linux-using-custom-docker-image.md)
+* [Utilisation de la configuration PM2 pour Node.js dans l’application web Azure sur Linux](app-service-linux-using-nodejs-pm2.md)
 * [Utiliser .NET Core dans Web App d’Azure App Service sur Linux](app-service-linux-using-dotnetcore.md)
 * [Utiliser Ruby dans Web Apps d’Azure App Service sur Linux](app-service-linux-ruby-get-started.md)
 * [FAQ de Web App d’Azure App Service sur Linux](app-service-linux-faq.md)

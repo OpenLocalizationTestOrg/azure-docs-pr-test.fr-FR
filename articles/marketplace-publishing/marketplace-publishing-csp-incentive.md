@@ -1,6 +1,6 @@
 ---
-title: "Affichage et modification de l’offre incitative revendeurs des fournisseurs de solutions Cloud | Microsoft Docs"
-description: "Affichage et modification de votre sélection concernant l'offre incitative revendeurs des fournisseurs de solutions Cloud"
+title: aaaHow tooview et modification hello Reseller Incentive du fournisseur de solutions Cloud | Documents Microsoft
+description: "Comment tooview modifier votre sélection de fournisseur de services cryptographiques revendeur"
 services: marketplace-publishing
 documentationcenter: na
 author: DavidBosland
@@ -14,30 +14,30 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/16/2017
 ms.author: DavidBosland
-ms.openlocfilehash: d6e6e13f352dea5c27939c39ecb8be97bf6990ca
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4702d0167c38d100755a872f9b23e49cc7a46ba2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="view-and-change-your-cloud-solution-provider-reseller-incentive-in-the-azure-marketplace"></a>Affichage et modification de « l'offre incitative revendeurs » des fournisseurs de solutions Cloud dans Azure Marketplace
-Le 15 mars 2016, nous allons rendre « l'offre incitative revendeurs » des fournisseurs de solutions Cloud accessible aux éditeurs Marketplace.  Le paramètre par défaut de la valeur de cette offre incitative est **Oui**.  En tant qu'éditeur, vous pouvez décider de désactiver le programme incitatif.  Cet article montre comment modifier le paramètre dans votre profil d'éditeur afin de le désactiver.
+# <a name="view-and-change-your-cloud-solution-provider-reseller-incentive-in-hello-azure-marketplace"></a>Afficher et modifier votre fournisseur de solutions de Cloud « Reseller Incentive « Bonjour Azure Marketplace
+Le 15 mars 2016, nous allons effectuer hello fournisseurs de solutions Cloud (CSP) « Reseller Incentive » serveurs de publication tooMarketplace disponibles.  Hello le paramètre par défaut pour cette valeur incentive est **Oui**.  En tant qu’éditeur, vous pouvez décider tooopt à la sortie du programme d’incitation hello.  Cet article explique comment de paramètre de hello toochange dans l’éditeur de votre profil afin que vous pouvez annuler.
 
-Pour afficher ou modifier votre statut « d'offre incitative revendeurs », procédez comme suit :
+tooview ou modifier votre statut de « Incentive Reseller », procédez comme suit :
 
-1. Connectez-vous à votre [compte de publication Microsoft Azure](https://publish.windowsazure.com/workspace)
+1. Connectez-vous à tooyour [compte de publication de Microsoft Azure](https://publish.windowsazure.com/workspace)
 
    ![Écran d'accueil de profil][1]
 2. Cliquez sur **Éditeurs**
 
    ![Écran d'accueil de profil - lien éditeurs][2]
-3. Consultez les informations de votre profil sur les fournisseurs de services cloud.  Le statut par défaut du **bouton oui ou non** à « l'offre incitative revendeurs » est « Oui ».
+3. Notez les informations de hello dans votre profil sur les fournisseurs de services cryptographiques.  Il existe un **toosay Oui ou non de commutateur** toohello « Reseller Incentive » - l’état hello par défaut est « Oui ».
 
    ![Profil - Éditeurs][3]
-4. Pour modifier votre statut « offre incitative revendeurs », accédez à votre profil de publication, puis sélectionnez et enregistrez votre choix :
+4. toochange votre état « Reseller Incentive » accéder à votre profil de serveur de publication, puis sélectionnez et enregistrer votre choix :
 
-   * Sélectionnez **Oui** pour choisir d'accorder la remise de 20 % aux fournisseurs de services Cloud qui revendent les applications et services que vous avez répertoriés dans Azure Marketplace.  Ou sélectionnez **Non** pour désactiver ce programme d'offre incitative.  Dans les deux cas, l'éditeur reçoit le même revenu.
-   * Une fois votre sélection effectuée, assurez-vous de cliquer sur **Enregistrer** dans le coin supérieur droit.
+   * Sélectionnez **Oui** toochoose tooprovide hello remise de 20 % toohello fournisseurs de services cryptographiques qui sont revente des applications de hello et les services que vous avez répertorié Bonjour Azure Marketplace.  Ou sélectionnez **non** tooopt sortir de ce programme incentive.  Dans les deux cas hello publisher reçoit hello même paiement.
+   * Une fois que vous effectuez une sélection pour vous assurer que vous cliquez sur **enregistrer** dans l’angle supérieur droit de hello.
 
    ![Profil - Éditeurs - modifier les zones][4]
 

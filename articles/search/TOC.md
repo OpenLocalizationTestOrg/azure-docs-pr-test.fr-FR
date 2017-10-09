@@ -29,8 +29,8 @@
 
 ## Développement
 ### [Versions d’API](search-api-versions.md)
-### [Mettre à niveau le kit de développement logiciel (SDK)](search-dotnet-sdk-migration.md)
-### [Mettre à niveau l’API REST](search-api-migration.md)
+### [Mise à niveau hello SDK](search-dotnet-sdk-migration.md)
+### [Mise à niveau hello API REST](search-api-migration.md)
 ### [Modéliser les types de données complexes](search-howto-complex-data-types.md)
 ### [Gérer des mises à jour simultanées](search-howto-concurrency.md)
 ### [Exemples de code](https://azure.microsoft.com/resources/samples/?service=search)
@@ -50,7 +50,7 @@
 ### [Indexeur Azure Cosmos DB](search-howto-index-documentdb.md)
 ### [Indexer des objets blob CSV](search-howto-index-csv-blobs.md)
 ### [Indexer des objets blob JSON](search-howto-index-json-blobs.md)
-### [Configurer des connexions d’indexeur à SQL Server sur une machine virtuelle Azure](search-howto-connecting-azure-sql-iaas-to-azure-search-using-indexers.md)
+### [Configurer un indexeur connexions tooSQL Server sur machine virtuelle Azure](search-howto-connecting-azure-sql-iaas-to-azure-search-using-indexers.md)
 ### [Mappages de champs dans les indexeurs](search-indexer-field-mappings.md)
 ##  Search
 ### [Fonctionnement de la recherche en texte intégral](search-lucene-query-architecture.md)

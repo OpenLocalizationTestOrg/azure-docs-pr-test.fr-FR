@@ -1,6 +1,6 @@
 ---
-title: "Tableau de bord, Surveiller, Mettre à l’échelle, Configurer et Connexions hybrides dans BizTalk Services | Microsoft Docs"
-description: "Découvrez les commandes et surveillez les performances sous les onglets du portail Azure Classic de BizTalk Services : Tableau de bord, Surveiller, Mettre à l’échelle, Configurer et Connexions hybrides. MABS, WABS"
+title: "aaaDashboard, analyse, l’échelle, configurer et connexions hybrides dans BizTalk Services | Documents Microsoft"
+description: "En savoir plus sur les contrôles hello et surveiller les performances sur les onglets de portail classique hello pour les Services BizTalk : tableau de bord, analyse, l’échelle, configurer et connexions hybrides. MABS, WABS"
 services: biztalk-services
 documentationcenter: 
 author: MandiOhlinger
@@ -14,329 +14,329 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/07/2016
 ms.author: mandia
-ms.openlocfilehash: 4ec88d9a681a5692b31f7e3990d1c153296b18ed
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c9fafdad20489571ee3849bbacd2c2b10933154f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="review-the-dashboard-monitor-scale-configure-and-hybrid-connection-tabs"></a>Passer en revue les onglets Tableau de bord, Surveiller, Mettre à l’échelle, Configurer et Connexion hybride
+# <a name="review-hello-dashboard-monitor-scale-configure-and-hybrid-connection-tabs"></a>Passez en revue les onglets de tableau de bord, analyse, l’échelle, configurer et la connexion hybride hello
 
 > [!INCLUDE [BizTalk Services is being retired, and replaced with Azure Logic Apps](../../includes/biztalk-services-retirement.md)]
 
-Après avoir créé votre service BizTalk et déployé votre application, vous pouvez modifier certains paramètres du service BizTalk et surveiller les performances de l'application. 
+Après avoir créé votre BizTalk Service et que vous déployez votre application, vous pouvez modifier certains des paramètres de Service BizTalk hello et surveiller les performances de l’application hello. 
 
-La première fois que vous ouvrez le portail Azure Classic, l’onglet **TOUS LES ÉLÉMENTS** s’affiche automatiquement. Pour afficher votre service BizTalk, sélectionnez-le sous l’onglet **Tous les éléments**. Vous pouvez aussi sélectionner l’onglet **BIZTALK SERVICES**, puis le nom de votre service BizTalk.
+Lorsque vous ouvrez hello portail Azure classic, vous accédez automatiquement à hello **tous les éléments** onglet tooview votre BizTalk Service, sélectionnez votre BizTalk Service Bonjour **tous les éléments** onglet ou sélectionnez hello **BIZTALK SERVICES** onglet ; puis sélectionnez le nom de votre BizTalk Service.
 
-Une nouvelle fenêtre apparaît avec les onglets suivants : Cette rubrique décrit ces onglets.
+Une nouvelle fenêtre s’ouvre avec hello suivant des onglets. Cette rubrique décrit ces onglets.
 
 ## <a name="quickstart-quickstartquickstart"></a>Démarrage rapide (![Démarrage rapide][Quickstart])
-Selon l'édition de BizTalk Services, toutes les options énumérées peuvent ne pas être disponibles. 
+En fonction de hello BizTalk Services Édition, toutes les options répertoriées n’est peut-être pas disponibles. 
 
 <table border="1">
     <tr>
-        <td><strong>Obtention des outils</strong></td>
-        <td>Téléchargez le Kit SDK de BizTalk Services pour installer les modèles de projet Visual Studio sur votre ordinateur de développement local. Ces modèles créent les projets Visual Studio <strong>BizTalk Services</strong> (pont) et <strong>Artefacts de service BizTalk</strong> (Transformation) qui sont déployés sur votre service BizTalk.
-        <br/><br/>Les rubriques 
-        <a HREF="http://go.microsoft.com/fwlink/p/?LinkID=302335">Utilisation du Kit de développement logiciel (SDK) Azure BizTalk Services</a> et <a HREF="http://go.microsoft.com/fwlink/p/?LinkID=241589">Installation du Kit de développement logiciel (SDK) Azure BizTalk Services</a> présentent les procédures de prise en main.
+        <td><strong>Obtenir les outils de hello</strong></td>
+        <td>Télécharger les modèles projet hello SDK des Services BizTalk tooinstall hello Visual Studio sur votre ordinateur de développement local. Ces modèles créent des hello <strong>BizTalk Services</strong> (pont) et hello <strong>artefacts BizTalk Service</strong> projets (transformer) de Visual Studio qui sont déployé tooyour BizTalk Service.
+        <br/><br/>
+        <a HREF="http://go.microsoft.com/fwlink/p/?LinkID=302335">Comment puis-je démarrer à l’aide de hello Azure BizTalk Services SDK </a> et <a HREF="http://go.microsoft.com/fwlink/p/?LinkID=241589">installation Bonjour Azure BizTalk Services SDK</a> listes hello tooget étapes a démarré.
         </td>
     </tr>
     <tr>
         <td><strong>Créer des accords partenaires</strong></td>
-        <td>Ouvre le portail Azure BizTalk Services hébergé sur Azure, qui vous permet d'ajouter des partenaires et de créer des contrats EDI X12, AS2 et EDIFACT.
-        <br/><br/>La rubrique 
-        <a HREF="http://go.microsoft.com/fwlink/p/?LinkID=303653">Configuration d'EDI, d'AS2 et d'EDIFACT sur le portail BizTalk Services</a> décrit la procédure de prise en main.
+        <td>Ouvre hello hébergé sur Azure où vous ajoutez des partenaires et créez X12, AS2, le portail Azure BizTalk Services et des accords EDIFACT EDI.
+        <br/><br/>
+        <a HREF="http://go.microsoft.com/fwlink/p/?LinkID=303653">Configuration des composants de messagerie EDI sur le portail BizTalk Services</a> listes hello tooget étapes a démarré.
         </td>
     </tr>
 
 <tr>
         <td><strong>En savoir plus sur les services BizTalk</strong></td>
-        <td>Pour en savoir plus sur les services BizTalk d’Azure, accédez à l’<a HREF="http://azure.microsoft.com/documentation/services/biztalk-services/">Espace formations</a>.</td>
+        <td>Accédez toohello <a HREF="http://azure.microsoft.com/documentation/services/biztalk-services/">centre de formation</a> toolearn plus d’informations sur les Services BizTalk Azure.</td>
 </tr>
 </table>
 
 
-Dans la barre des tâches située en bas, vous pouvez :
+Dans la barre des tâches hello bas hello, vous pouvez :
 
 <table border="1">
 
 <tr>
 <td><strong>Gérer</strong> le déploiement de votre application</td>
-<td>Ouvre le portail Azure BizTalk Services Celui-ci représente l'accès à la configuration de l'échange de données informatisé (EDI, Electronic Data Interchange), y compris en ce qui concerne l'ajout de partenaires et la création de contrats X12, AS2 et EDIFACT.
+<td>Ouvre le portail Azure BizTalk Services hello. Hello portail BizTalk Services hello entrée tooEDI configuration soit, y compris l’ajout de partenaires et la création de X12, AS2 et les accords EDIFACT.
 <br/><br/>
-Cela revient à utiliser <strong>Créer des accords partenaires</strong> sous l’onglet <strong>Démarrage rapide</strong>.
-<br/><br/>La rubrique 
-<a HREF="http://go.microsoft.com/fwlink/p/?LinkID=303653">Configuration de composants pour la messagerie EDI sur le portail BizTalk Services</a> fournit des informations supplémentaires sur le portail BizTalk Services.</td>
+Cela est hello identique <strong>créer des accords de partenariat</strong> sur hello <strong>Quick Start</strong> onglet.
+<br/><br/>
+<a HREF="http://go.microsoft.com/fwlink/p/?LinkID=303653">Configuration des composants de messagerie EDI sur le portail BizTalk Services</a> fournit des informations sur hello portail BizTalk Services.</td>
 </tr>
 
 <tr>
-<td><strong>Informations de connexion</strong> de l’espace de noms Access Control</td>
-<td>Lorsque vous sélectionnez Informations de connexion, l'espace de noms Access Control, l'émetteur par défaut et la clé par défaut s'affichent. Vous pouvez copier ces valeurs.
+<td><strong>Informations de connexion</strong> de hello Namespace de contrôle d’accès</td>
+<td>Lorsque vous sélectionnez des informations de connexion, puis hello Namespace de contrôle d’accès, émetteur par défaut, et la clé par défaut sont affichés. Vous pouvez copier ces valeurs.
 <br/><br/>
-Vous pouvez également ouvrir le portail Access Control. La rubrique <a HREF="http://go.microsoft.com/fwlink/p/?LinkID=285670">Créer un espace de noms Access Control</a> fournit des informations supplémentaires sur le portail Access Control.</td>
+Vous pouvez également ouvrir hello portail de contrôle d’accès. <a HREF="http://go.microsoft.com/fwlink/p/?LinkID=285670">Créer un contrôle d’accès Namespace</a> fournit des informations sur le portail de contrôle d’accès de hello.</td>
 </tr>
 
 <tr>
-<td><strong>Synchroniser les clés</strong> dans le compte de stockage</td>
-<td>Lorsque vous créez un compte de stockage, une clé primaire et une clé secondaire sont automatiquement créées. Ces clés de chiffrement contrôlent l'accès à votre compte de stockage. Votre service BizTalk utilise automatiquement la clé primaire. Les <strong>Clés de synchronisation</strong> permettent aux utilisateurs de basculer entre la clé primaire et la clé secondaire sans interrompre le service BizTalk.
+<td><strong>Synchroniser les clés</strong> Bonjour compte de stockage</td>
+<td>Lorsque vous créez un compte de stockage, une clé primaire et une clé secondaire sont automatiquement créées. Ces clés de chiffrement de contrôlent l’accès tooyour compte de stockage. Votre BizTalk Service utilise automatiquement hello clé primaire. <strong>Synchroniser les clés</strong> activer tooswitch utilisateurs entre hello Primary Key et hello clé secondaire sans interrompre hello BizTalk Service.
 <br/><br/>
-Supposons que vous vouliez que le service BizTalk utilise une nouvelle clé primaire pour le compte de stockage. Pour ce faire :
+Par exemple, vous souhaitez hello BizTalk Service toouse une nouvelle clé primaire pour hello compte de stockage. toodo cela :
 <br/><br/>
 <ol>
-<li>Sélectionnez votre service BizTalk, puis <strong>Clés de synchronisation</strong>. Sélectionnez la clé secondaire. Une fois que c'est fait, le service BizTalk commence à utiliser la clé secondaire.</li>
-<li>Dans le portail Azure Classic, sélectionnez votre compte de stockage et régénérez la clé primaire. Rappelez-vous que votre service BizTalk utilise la clé secondaire.</li>
-<li>Sélectionnez votre service BizTalk, puis <strong>Clés de synchronisation</strong>. À présent, sélectionnez la clé primaire. Il s'agit de la nouvelle clé primaire que vous avez régénérée.</li>
-<li>Dans le portail Azure Classic, sélectionnez votre compte de stockage et régénérez la clé secondaire.</li>
+<li>Sélectionnez votre service BizTalk, puis <strong>Clés de synchronisation</strong>. Sélectionnez hello clé secondaire. Lorsque vous effectuez cette opération, hello BizTalk Service démarre à l’aide de la clé secondaire de hello.</li>
+<li>Bonjour portail Azure classic, sélectionnez votre compte de stockage et régénérer hello clé primaire. N’oubliez pas, votre BizTalk Service est hello clé secondaire.</li>
+<li>Sélectionnez votre service BizTalk, puis <strong>Clés de synchronisation</strong>. À présent, sélectionnez hello clé primaire. Cela est hello nouvelle clé primaire vous régénéré.</li>
+<li>Bonjour portail Azure classic, sélectionnez votre compte de stockage et régénérer hello clé secondaire.</li>
 </ol>
 <br/>
-On parle de « clés de substitution » pour décrire ce processus. L'objectif est de permettre aux utilisateurs de basculer entre la clé primaire et la clé secondaire sans interrompre le service BizTalk.</td>
+On parle de « clés de substitution » pour décrire ce processus. objectif de Hello est tooswitch d’utilisateurs tooenable entre hello Primary Key et hello clé secondaire sans interrompre hello BizTalk Service.</td>
 </tr>
 
 <tr>
 <td><strong>Supprimer</strong> votre application</td>
-<td>Lorsque vous sélectionnez Supprimer, votre service BizTalk et tous les éléments qui y ont été déployés sont supprimés.</td>
+<td>Lorsque vous sélectionnez Supprimer, votre BizTalk Service et tous les éléments déployés tooit sont supprimés.</td>
 </tr>
 </table>
 
 
-## <a name="dashboard"></a>Tableau de bord
-Selon l'édition de BizTalk Services, toutes les options énumérées peuvent ne pas être disponibles. 
+## <a name="dashboard"></a>tableau de bord
+En fonction de hello BizTalk Services Édition, toutes les options répertoriées n’est peut-être pas disponibles. 
 
-Lorsque vous sélectionnez le nom de votre service BizTalk, l'onglet Tableau de bord apparaît. Dans le tableau de bord, vous pouvez :
+Lorsque vous sélectionnez le nom de votre BizTalk Service, onglet de tableau de bord hello s’affiche. Dans le tableau de bord, vous pouvez :
 
-##### <a name="usage-overview-shows-the-number-of-used-hybrid-connections"></a>Vue d’ensemble de l’utilisation : montre le nombre de connexions hybrides utilisées.
-Affiche également l'utilisation des données en Go. 
+##### <a name="usage-overview-shows-hello-number-of-used-hybrid-connections"></a>Présentation de l’utilisation : Montre le nombre de hello de connexions hybrides utilisées
+Affiche également l’utilisation des données hello en Go. 
 
 ##### <a name="metric-graph-shows-a-fixed-list-of-performance-metrics"></a>Graphique métrique : illustre une liste fixe de mesures de performances.
-Ces mesures fournissent des valeurs en temps réel concernant l'intégrité du service BizTalk. Vous pouvez également spécifier les valeurs **Relatives** et **Absolues**, ainsi que l’**Intervalle** de temps des mesures affichées sur le graphique. 
+Ces métriques fournissent des valeurs en temps réel concernant l’intégrité hello hello BizTalk Service. Vous pouvez également choisir hello **relatif** ou **absolu** intervalle de temps de valeurs et hello **intervalle** des métriques hello sont affichées dans le graphique de hello. 
 
-Pour obtenir une description de ces mesures de performances, accédez à la section [Mesures disponibles](#Metrics) de cette rubrique.
+Pour obtenir une description de ces métriques de performances, consultez trop[métriques disponibles](#Metrics) dans cette rubrique.
 
 ##### <a name="quick-glance-lists-your-biztalk-service-properties"></a>Aperçu rapide : dresse la liste des propriétés de votre service BizTalk.
 <table border="1">
 
 <tr>
 <td><strong>Mettre à jour les informations d’identification de la base de données de suivi</strong></td>
-<td>Modifie le nom d'utilisateur et le mot de passe utilisés pour se connecter à la base de données de suivi.</td>
+<td>Modifications hello nom d’utilisateur et mot de passe utilisé toolog dans hello de base de données de suivi.</td>
 </tr>
 <tr>
 <td><strong>Mettre à jour le certificat SSL</strong></td>
-<td>Permet de mettre à jour le service BizTalk pour utiliser un autre certificat SSL. Un certificat SSL auto-signé est automatiquement créé lorsque vous <a HREF="http://go.microsoft.com/fwlink/p/?LinkID=302280">créez le service BizTalk</a>.</td>
+<td>Peut mettre à jour hello BizTalk Service toouse un autre certificat SSL. Un certificat SSL auto-signé est créé automatiquement lorsque vous <a HREF="http://go.microsoft.com/fwlink/p/?LinkID=302280">créer hello BizTalk Service</a>.</td>
 </tr>
 <tr>
 <td><strong>Télécharger le certificat</strong></td>
-<td>Vous pouvez télécharger le certificat SSL utilisé par votre service BizTalk sur une machine locale.</td>
+<td>Vous pouvez télécharger le certificat SSL de hello utilisé par votre ordinateur local tooa de BizTalk Service.</td>
 </tr>
 <tr>
 <td><strong>État</strong></td>
-<td>Affiche le statut actuel de votre service BizTalk. Voir <a HREF="http://go.microsoft.com/fwlink/p/?LinkID=329870">Tableau comparatif des états de BizTalk Services</a>. </td>
+<td>Affiche l’état actuel de hello de votre BizTalk Service. Voir <a HREF="http://go.microsoft.com/fwlink/p/?LinkID=329870">Tableau comparatif des états de BizTalk Services</a>. </td>
 </tr>
 <tr>
 <td><strong>URL du service</strong></td>
-<td>URL de votre service BizTalk. Il s’agit de l’<strong>URL de domaine</strong> entrée lors de la création de votre service BizTalk.</td>
+<td>URL de Hello pour votre BizTalk Service. Cela est hello même comme hello <strong>URL de domaine</strong> entré lors de la création de votre BizTalk Service.</td>
 </tr>
 <tr>
 <td><strong>Adresse IP virtuelle (VIP) publique</strong></td>
-<td>Adresse IP attribuée à votre service BizTalk. Elle est utilisée pour tous les points de terminaison d’entrée et représente l'adresse source pour le trafic sortant. L'adresse IP appartient à votre service BizTalk si il est créé. Si vous supprimez le service BizTalk, l'adresse IP est attribuée à un autre service BizTalk.</td>
+<td>adresse IP de Hello affecté tooyour BizTalk Service. Il est utilisé pour tous les points de terminaison d’entrée et est l’adresse de la source hello pour le trafic sortant. Cette adresse IP appartient tooyour BizTalk Service tant qu’il est créé. Si vous supprimez hello BizTalk Service, adresse IP de hello est affecté tooanother BizTalk Service.</td>
 </tr>
 <tr>
 <td><strong>Espace de noms ACS</strong></td>
-<td>Permet de s'authentifier auprès du service BizTalk.</td>
+<td>Authentifie avec hello BizTalk Service.</td>
 </tr>
 <tr>
 <td><strong>Édition</strong></td>
-<td>Répertorie l'édition entrée lorsque le service BizTalk est créé.</td>
+<td>Répertorie les hello que Édition entrée lors de la création de hello BizTalk Service.</td>
 </tr>
 <tr>
 <td><strong>Emplacement</strong></td>
-<td>Affiche la région géographique hébergeant votre service BizTalk.</td>
+<td>Affiche hello région géographique qui héberge votre BizTalk Service.</td>
 </tr>
 <tr>
 <td><strong>Créé</strong></td>
-<td>Affiche la date et l'heure de la création du service BizTalk.</td>
+<td>Hello de date et heure de hello affiche le BizTalk Service a été créé.</td>
 </tr>
 <tr>
 <td><strong>Base de données des suivis</strong></td>
-<td>Nom de la base de données SQL Azure stockant les tables de suivi utilisées par votre service BizTalk. 
-<br/><br/>La rubrique 
-<a HREF="http://go.microsoft.com/fwlink/p/?LinkID=302280">Explication des exigences</a> fournit des détails sur la base de données de suivi.</td>
+<td>nom de base de données SQL Azure Hello qui stocke hello suivi des tables utilisées par votre BizTalk Service. 
+<br/><br/>
+<a HREF="http://go.microsoft.com/fwlink/p/?LinkID=302280">Configuration requise expliqué</a> fournit des détails sur hello de base de données de suivi.</td>
 </tr>
 <tr>
 <td><strong>Stockage de surveillance/archivage</strong></td>
-<td>Nom du compte de stockage Azure stockant la sortie de la surveillance de votre service BizTalk.
-<br/><br/>La rubrique 
-<a HREF="http://go.microsoft.com/fwlink/p/?LinkID=302280">Explication des exigences</a> fournit des détails sur le compte de stockage.</td>
+<td>nom de compte du stockage Azure Hello qui stocke hello surveillent la sortie de votre BizTalk Service.
+<br/><br/>
+<a HREF="http://go.microsoft.com/fwlink/p/?LinkID=302280">Configuration requise expliqué</a> fournit des détails sur hello compte de stockage.</td>
 </tr>
 <tr>
 <td><strong>Nom d’abonnement</strong></td>
-<td>Répertorie l’abonnement qui héberge votre service BizTalk. L’abonnement régit l’accès au portail Azure Classic.</td>
+<td>Répertorie les abonnement hello qui héberge votre BizTalk Service. abonnement de Hello régit l’accès toohello portail Azure classic.</td>
 </tr>
 <tr>
 <td><strong>Identifiant d’abonnement</strong></td>
-<td>Lorsqu’un abonnement est créé, un ID d’abonnement est automatiquement généré. Lors de l’utilisation d’API REST, il vous faudra peut-être entrer l’ID d’abonnement.</td>
+<td>Lorsqu’un abonnement est créé, un ID d’abonnement est automatiquement généré. Lorsque vous utilisez l’API REST, vous devrez peut-être hello tooenter ID d’abonnement.</td>
 </tr>
 </table>
 
-[BizTalk Services : approvisionnement à l’aide du portail Azure Classic](http://go.microsoft.com/fwlink/p/?LinkID=302280) indique la procédure de création d’un service BizTalk Services.
+[BizTalk Services : Mise en service portail classique d’à l’aide de Azure](http://go.microsoft.com/fwlink/p/?LinkID=302280) listes hello étapes toocreate un BizTalk Service.
 
-##### <a name="manage-connection-information-sync-keys-and-delete-in-the-task-bar"></a>Gérer, Informations de connexion, Clés de synchronisation et Supprimer dans la barre des tâches :
+##### <a name="manage-connection-information-sync-keys-and-delete-in-hello-task-bar"></a>Gérer les informations de connexion, synchroniser les clés et les supprimer dans la barre des tâches hello :
 <table border="1">
 
 <tr>
 <td><strong>Gérer</strong> le déploiement de votre application</td>
-<td>Ouvre le portail Azure BizTalk Services. Celui-ci représente l'accès à la configuration de l'échange de données informatisé (EDI, Electronic Data Interchange), y compris en ce qui concerne l'ajout de partenaires et la création de contrats X12, AS2 et EDIFACT.
+<td>Hello ouvre le portail Azure BizTalk Services. Hello portail BizTalk Services hello entrée tooEDI configuration soit, y compris l’ajout de partenaires et la création de X12, AS2 et les accords EDIFACT.
 <br/><br/>
-Cela revient à utiliser <strong>Créer des accords partenaires</strong> sous l’onglet <strong>Démarrage rapide</strong>.
-<br/><br/>La rubrique 
-<a HREF="http://go.microsoft.com/fwlink/p/?LinkID=303653">Configuration de composants pour la messagerie EDI sur le portail BizTalk Services</a> fournit des informations supplémentaires sur le portail BizTalk Services.</td>
+Cela est hello identique <strong>créer des accords de partenariat</strong> sur hello <strong>Quick Start</strong> onglet.
+<br/><br/>
+<a HREF="http://go.microsoft.com/fwlink/p/?LinkID=303653">Configuration des composants de messagerie EDI sur le portail BizTalk Services</a> fournit des informations sur hello portail BizTalk Services.</td>
 </tr>
 <tr>
-<td><strong>Informations de connexion</strong> de l’espace de noms Access Control</td>
-<td>Affiche l'espace de noms Access Control, l'émetteur par défaut et les valeurs de clé par défaut qui peuvent être copiés.
+<td><strong>Informations de connexion</strong> de hello Namespace de contrôle d’accès</td>
+<td>Affiche hello Namespace de contrôle d’accès, émetteur par défaut et les valeurs de clé par défaut ; qui peut être copié.
 <br/><br/>
-Vous pouvez également ouvrir le portail Access Control. Utiliser ce portail équivaut à utiliser l’option Active Directory dans le volet de navigation de gauche.
-<br/><br/>La rubrique 
-<a HREF="http://go.microsoft.com/fwlink/p/?LinkID=285670">Créer un espace de noms Access Control</a> fournit des informations supplémentaires sur le portail Access Control.</td>
+Vous pouvez également ouvrir hello portail de contrôle d’accès. Ce portail de contrôle d’accès est hello même fonction que l’option d’Active Directory hello dans le volet de navigation gauche hello.
+<br/><br/>
+<a HREF="http://go.microsoft.com/fwlink/p/?LinkID=285670">La gestion de votre ACS Namespace</a> fournit des informations sur le portail de contrôle d’accès de hello.</td>
 </tr>
 <tr>
-<td><strong>Synchroniser les clés</strong> dans le compte de stockage</td>
-<td>Lorsque vous créez un compte de stockage, une clé primaire et une clé secondaire sont automatiquement créées. Ces clés de chiffrement contrôlent l'accès à votre compte de stockage. Votre service BizTalk utilise automatiquement la clé primaire. Les <strong>Clés de synchronisation</strong> permettent aux utilisateurs de basculer entre la clé primaire et la clé secondaire sans interrompre le service BizTalk.
+<td><strong>Synchroniser les clés</strong> Bonjour compte de stockage</td>
+<td>Lorsque vous créez un compte de stockage, une clé primaire et une clé secondaire sont automatiquement créées. Ces clés de chiffrement de contrôlent l’accès tooyour compte de stockage. Votre BizTalk Service utilise automatiquement hello clé primaire. <strong>Synchroniser les clés</strong> activer tooswitch utilisateurs entre hello Primary Key et hello clé secondaire sans interrompre hello BizTalk Service.
 <br/><br/>
-Supposons que vous vouliez que le service BizTalk utilise une nouvelle clé primaire pour le compte de stockage. Pour ce faire :
+Par exemple, vous souhaitez hello BizTalk Service toouse une nouvelle clé primaire pour hello compte de stockage. toodo cela :
 <br/><br/>
 <ol>
-<li>Sélectionnez votre service BizTalk, puis <strong>Clés de synchronisation</strong>. Sélectionnez la clé secondaire. Une fois que c'est fait, le service BizTalk commence à utiliser la clé secondaire.</li>
-<li>Dans le portail Azure Classic, sélectionnez votre compte de stockage et régénérez la clé primaire. Rappelez-vous que votre service BizTalk utilise la clé secondaire.</li>
-<li>Sélectionnez votre service BizTalk, puis <strong>Clés de synchronisation</strong>. À présent, sélectionnez la clé primaire. Il s'agit de la nouvelle clé primaire que vous avez régénérée.</li>
-<li>Dans le portail Azure Classic, sélectionnez votre compte de stockage et régénérez la clé secondaire.</li>
+<li>Sélectionnez votre service BizTalk, puis <strong>Clés de synchronisation</strong>. Sélectionnez hello clé secondaire. Lorsque vous effectuez cette opération, hello BizTalk Service démarre à l’aide de la clé secondaire de hello.</li>
+<li>Bonjour portail Azure classic, sélectionnez votre compte de stockage et régénérer hello clé primaire. N’oubliez pas, votre BizTalk Service est hello clé secondaire.</li>
+<li>Sélectionnez votre service BizTalk, puis <strong>Clés de synchronisation</strong>. À présent, sélectionnez hello clé primaire. Cela est hello nouvelle clé primaire vous régénéré.</li>
+<li>Bonjour portail Azure classic, sélectionnez votre compte de stockage et régénérer hello clé secondaire.</li>
 </ol>
 <br/>
-On parle de « clés de substitution » pour décrire ce processus. L'objectif est de permettre aux utilisateurs de basculer entre la clé primaire et la clé secondaire sans interrompre le service BizTalk.</td>
+On parle de « clés de substitution » pour décrire ce processus. objectif de Hello est tooswitch d’utilisateurs tooenable entre hello Primary Key et hello clé secondaire sans interrompre hello BizTalk Service.</td>
 </tr>
 
 <tr>
 <td><strong>Supprimer</strong> votre application</td>
-<td>Votre service BizTalk et tous les éléments qui y ont été déployés sont supprimés.</td>
+<td>Votre BizTalk Service et tous les éléments déployés tooit sont supprimés.</td>
 </tr>
 </table>
 
 
 ## <a name="monitor"></a>Surveiller
-Ne s'applique pas à l'édition gratuite.
+Ne s’applique pas toohello édition gratuite.
 
-Lorsque vous sélectionnez le nom de votre service BizTalk, l'onglet Surveiller est disponible et affiche les éléments suivants :
+Lorsque vous sélectionnez le nom de votre BizTalk Service, onglet de surveillance hello est disponible et hello les informations suivantes :
 
-##### <a name="metric-graph-displays-the-selected-performance-metrics"></a>Graphique métrique : affiche les mesures de performances sélectionnées.
-Ces mesures fournissent des valeurs en temps réel concernant l'intégrité du service BizTalk. Vous choisissez les mesures de performances devant s'afficher (jusqu'à six mesures de performances simultanément). 
+##### <a name="metric-graph-displays-hello-selected-performance-metrics"></a>Graphique de métrique : Hello d’affiche sélectionné des métriques de performances
+Ces métriques fournissent des valeurs en temps réel concernant l’intégrité hello hello BizTalk Service. Vous choisissez les mesures de performances devant s'afficher (jusqu'à six mesures de performances simultanément). 
 
-Vous pouvez également spécifier les valeurs **Relatives** et **Absolues**, ainsi que l’**Intervalle** de temps des mesures affichées. 
+Vous pouvez également choisir hello **relatif** ou **absolu** intervalle de temps de valeurs et hello **intervalle** des métriques hello sont affichées. 
 
-##### <a name="to-remove-or-display-metrics-in-the-graph"></a>Pour supprimer ou afficher des mesures dans le graphique :
-1. Sélectionnez l'onglet **Surveiller** .
-2. Sélectionnez **Ajouter des métriques** dans la barre des tâches :  
+##### <a name="tooremove-or-display-metrics-in-hello-graph"></a>tooremove ou l’affichage des métriques dans le graphique de hello :
+1. Sélectionnez hello **moniteur** onglet.
+2. Sélectionnez **ajouter des métriques** dans la barre des tâches hello :  
    ![Sélectionnez Ajouter des métriques.][AddMetrics]
-3. Vérifiez les mesures de performances que vous souhaitez afficher.
-4. Sélectionnez la coche pour revenir à l'onglet **Surveiller** .
-5. Sélectionnez le cercle en regard de la mesure pour afficher la valeur associée dans le graphique.  
+3. Vérifiez les mesures de performances hello souhaité toodisplay.
+4. Sélectionnez hello coche tooreturn toohello **moniteur** onglet.
+5. Sélectionnez hello cercle suivant toohello métrique toodisplay les valeur de cette mesure dans le graphique de hello.  
    
-    Par exemple, la mesure **Utilisation du processeur** apparaît en grisé et son résultat n’apparaît pas dans le graphique :  
+    Par exemple, hello **l’utilisation du processeur** métrique est grisée ; sa sortie n’est pas affichée dans le graphique de hello :  
    ![La mesure Utilisation du processeur apparaît en grisé][GrayedMetric]  
    
-    Sélectionnez le cercle grisé pour activer la mesure **Utilisation du processeur** et afficher son résultat dans le graphique :  
+    Sélectionnez hello grisée hello tooenable de cercle **l’utilisation du processeur** toodisplay métrique sa sortie dans le graphique de hello :  
    ![La mesure Utilisation du processeur est activée][EnabledMetric]
-6. Pour supprimer une mesure du graphique affiché et de la liste, sélectionnez **Supprimer une métrique** dans la barre des tâches. Pour réintégrer la mesure dans la liste, sélectionnez **Ajouter des métriques** dans la barre des tâches, vérifiez la mesure, puis cochez la case pour revenir à l’onglet **Surveiller**. Sélectionnez le cercle en grisé pour activer la mesure.
+6. tooremove une métrique de graphique d’affichage hello et de la liste de hello, sélectionnez **supprimer une métrique** dans la barre des tâches hello. tooadd hello métrique toohello précédent la liste, sélectionnez **ajouter des métriques** dans la barre des tâches hello, vérifiez la métrique de hello et sélectionnez hello coche tooreturn toohello **moniteur** onglet. Sélectionnez hello grisée métrique de cercle tooenable hello.
 
 ## <a name="Metrics"></a>Mesures disponibles
-Les mesures/compteurs de performances suivants sont disponibles :
+Hello suivant des compteurs de performances est disponible :
 
 <table border="1">
 
 <tr>
 <td><strong>Latence aller-retour</strong></td>
-<td>Affiche le temps moyen en millisecondes (ms) nécessaire au traitement d'un message depuis sa réception jusqu'à son traitement complet par le service BizTalk sur tous les ponts. Seuls les messages correctement traités sont comptabilisés.<br/><br/>
-Lorsque les événements suivants se produisent, un horodatage est créé :
+<td>Affiche le temps moyen de hello nécessaire en millisecondes (ms) les tooprocess que réception d’un message à partir du message de type hello hello temps jusqu'à ce que le message de type hello est entièrement traité par hello BizTalk Service sur tous les ponts. Seuls les messages correctement traités sont comptabilisés.<br/><br/>
+En cas de hello suivant des événements, un horodatage est créé :
 <ul>
-<li>Le message accède à la passerelle</li>
-<li>Le message est acheminé vers la destination</li>
+<li>Message entre dans la passerelle de hello</li>
+<li>Message est routé toohello destination</li>
 <li>Une réponse de la destination est reçue</li>
-<li>Un accusé de réception est envoyé à la passerelle par la destination</li>
+<li>Destination accusé de réception réponse envoyée toohello passerelle</li>
 </ul>
 <br/>
-Cette mesure affiche le résultat du calcul suivant :
+Cette mesure indique le résultat hello Hello après le calcul :
 <br/><br/>
-[Accusé de réception envoyé à la passerelle par la destination] - [Le message accède à la passerelle]</td>
+[Destination accusé de réception réponse envoyée toohello passerelle] - [Message entre dans la passerelle de hello]</td>
 </tr>
 <tr>
 <td><strong>Défaillances à la source</strong></td>
-<td>Affiche le nombre total de messages n'ayant pas pu être traités par le service BizTalk lors de l'extraction de messages à partir des points de terminaison sources.</td>
+<td>Affiche le nombre total de hello de messages qui ont échoué par hello BizTalk Service lors de l’extraction des messages à partir de points de terminaison source hello.</td>
 </tr>
 <tr>
 <td><strong>Utilisation du processeur</strong></td>
-<td>Indique le pourcentage de temps processeur de toutes les instances de rôle.</td>
+<td>Répertorie les hello % temps processeur moyen de toutes les instances de rôle.</td>
 </tr>
 <tr>
 <td><strong>Latence de traitement</strong></td>
-<td>Affiche le délai moyen en millisecondes (ms) requis pour le traitement d'un message par le service BizTalk sur tous les ponts, à l'exclusion du temps passé au niveau des destinations. Seuls les messages correctement traités sont comptabilisés.<br/><br/>
-Lorsque l'un des événements suivants se produit, un horodatage est créé :
+<td>Affiche la durée moyenne hello dans tooprocess millisecondes (ms) un message par hello BizTalk Service sur tous les ponts, à l’exclusion hello temps passé dans les destinations. Seuls les messages correctement traités sont comptabilisés.<br/><br/>
+Lorsque chaque hello suivant des événements se produisent, un horodatage est créé :
 
 <ul>
-<li>Le message accède à la passerelle</li>
-<li>Le message est acheminé vers la destination</li>
+<li>Message entre dans la passerelle de hello</li>
+<li>Message est routé toohello destination</li>
 <li>Une réponse de la destination est reçue</li>
-<li>Un accusé de réception est envoyé à la passerelle par la destination</li>
+<li>Destination accusé de réception réponse envoyée toohello passerelle</li>
 </ul>
-<br/>Cette mesure affiche le résultat du calcul suivant :<br/><br/>
-[Un accusé de réception est envoyé à la passerelle par la destination] - [Le message accède à la passerelle] - [Une réponse de la destination est reçue] + [Le message est acheminé vers la destination]</td>
+<br/>Cette mesure indique le résultat hello Hello après le calcul :<br/><br/>
+[Destination accusé de réception réponse envoyée toohello passerelle] - [Message entre dans la passerelle de hello] - [Destination réponse] + [Message est routé toohello destination]</td>
 </tr>
 <tr>
 <td><strong>Défaillances dans le processus</strong></td>
-<td>Affiche le nombre total de messages ayant échoué pendant le traitement par le service BizTalk sur tous les ponts pendant un intervalle de temps.</td>
+<td>Affiche le nombre total de hello de messages ayant échoué au cours du traitement par hello BizTalk Service sur tous les ponts hello dans un intervalle de temps.</td>
 </tr>
 <tr>
 <td><strong>Messages envoyés</strong></td>
-<td>Affiche le nombre total de messages envoyés par le service BizTalk sur tous les ponts pendant un intervalle de temps. Cette mesure est incrémentée lorsqu'un message envoyé à partir d'un pipeline atteint la destination d'itinéraire. Cette mesure n'indique pas qu'un message a été traité correctement.<br/><br/>
-Dans un scénario de réponse à la demande, la mesure est incrémentée lorsque la destination d'itinéraire renvoie un accusé de réception au pipeline.</td>
+<td>Affiche hello le nombre total de messages envoyés par hello BizTalk Service sur tous les ponts dans un intervalle de temps. Cette mesure est incrémentée lorsqu’un message envoyé à partir d’un pipeline atteint la destination de routage hello. Cette mesure n'indique pas qu'un message a été traité correctement.<br/><br/>
+Dans un scénario de demande-réponse, la métrique de hello est incrémenté lorsque la destination de routage hello envoie un pipeline toohello arrière d’accusé de réception accusé de réception.</td>
 </tr>
 <tr>
 <td><strong>Messages reçus</strong></td>
-<td>Affiche le nombre total de messages reçus par le service BizTalk sur tous les ponts pendant un intervalle de temps. Cette mesure est incrémentée lorsqu'un nouveau message est reçu par le pipeline.</td>
+<td>Affiche hello le nombre total de messages reçus par hello BizTalk Service sur tous les ponts dans un intervalle de temps. Cette mesure est incrémentée lorsqu’un nouveau message est reçu par le pipeline de hello.</td>
 </tr>
 <tr>
 <td><strong>Messages en cours de traitement</strong></td>
-<td>Affiche le nombre total de messages en cours de traitement par le service BizTalk pendant un intervalle de temps.</td>
+<td>Affiche hello nombre total de messages actuellement traités par hello BizTalk Service dans un intervalle de temps.</td>
 </tr>
 <tr>
 <td><strong>Messages traités</strong></td>
-<td>Affiche le nombre total de messages correctement traités par le service BizTalk sur tous les ponts pendant un intervalle de temps. Cette mesure est incrémentée lorsqu'un message est correctement reçu par le pipeline et acheminé vers la destination.</td>
+<td>Affiche hello nombre total de messages traités correctement par hello BizTalk Service sur tous les ponts dans un intervalle de temps. Cette mesure est incrémentée lorsqu’un message est reçu avec succès par le pipeline de hello et de destination de toohello routé avec succès.</td>
 </tr>
 </table>
 
 
 ## <a name="scale"></a>Mettre à l'échelle
-Dans l'onglet Mettre à l'échelle, vous pouvez ajouter ou soustraire le nombre d'unités utilisées par votre service BizTalk. Par défaut, une seule unité est configurée. Vous pouvez ajouter des unités supplémentaires afin de mettre à l'échelle votre service BizTalk. Lorsque vous augmentez la mise à l'échelle, vous augmentez le débit. La quantité de ressources augmente également, y compris les ponts déployés, les contrats, les connexions métier et la puissance de traitement. Par exemple, vous augmentez la mise à l'échelle de 1 à 2 unités. Dans ce cas, vous pouvez doubler le nombre de ponts, les contrats, les connexions métier et la puissance de traitement.
+Dans l’onglet échelle hello, vous pouvez ajouter ou soustraire nombre hello d’unités utilisées par votre BizTalk Service. Par défaut, une seule unité est configurée. Unités supplémentaires peuvent être ajoutées tooscale votre BizTalk Service. Lorsque vous augmentez la montée en puissance hello, vous augmentez le débit. quantité Hello de ressources augmente également, y compris les ponts déployés, les contrats, les connexions métier et la puissance de traitement. Par exemple, vous augmentez échelle hello de 1 unité too2 unités. Dans ce cas, vous pouvez déployer hello double nombre de ponts, double accords de hello, double hello LOB connexions et une puissance de traitement hello double.
 
-Certaines éditions BizTalk n'offrent pas de possibilité de mise à l'échelle. Dans ce cas, une seule unité est autorisée. Pour déterminer le nombre d'unités auquel votre édition peut être mise à l'échelle, consultez le [Tableau comparatif des éditions de BizTalk Services](biztalk-editions-feature-chart.md).
+Certaines éditions BizTalk n'offrent pas de possibilité de mise à l'échelle. Dans ce cas, une seule unité est autorisée. toodetermine le nombre d’unités peut être monté en votre édition, consultez trop[Services BizTalk : tableau comparatif des éditions](biztalk-editions-feature-chart.md).
 
-L'augmentation du nombre d'unités peut avoir un impact sur les tarifs. Si vous augmentez les unités, sélectionnez **Enregistrer** pour afficher un message indiquant s'il y a un impact sur la facturation. Vous choisissez ensuite de continuer. Lorsque vous augmentez le nombre d'unités, le statut du service BizTalk passe d'Actif à Mis à jour. En état de mise à jour, votre service BizTalk continue de s'exécuter.
+Augmentation du nombre hello d’unités peut affecter la tarification. Si vous augmentez les unités hello, en sélectionnant **enregistrer** affiche un message qui vous indique si la facturation est affectée. Vous choisissez ensuite toocontinue. Lorsque vous augmentez le nombre de hello d’unités, hello état du BizTalk Service remplace tooUpdating Active. Dans l’état de mise à jour de hello, votre BizTalk Service se poursuit toorun.
 
 [Tableau comparatif des éditions de BizTalk Services](biztalk-editions-feature-chart.md) définit une « unité ».
 
 ## <a name="configure"></a>Configuration
-Ne s'applique pas aux connexions hybrides.
+Ne s’applique pas les connexions tooHybrid.
 
-Définit l'état de la sauvegarde sur Aucun ou Automatique. Lorsqu'il est défini sur Aucun, aucune sauvegarde n'est automatiquement créée. Lorsqu'il est défini sur Automatique, vous configurez l'emplacement de la sauvegarde, la fréquence de la sauvegarde et la durée de conservation des fichiers de sauvegarde. 
+Définit tooNone d’état de la sauvegarde hello ou automatique. Lorsque la valeur tooNone, aucune sauvegarde n’est créés automatiquement. Lorsque la valeur tooAutomatic, vous configurez l’emplacement de sauvegarde hello, fréquence de sauvegarde de hello, combien de temps tookeep hello sauvegarder des fichiers et de hello. 
 
-[Sauvegarde et restauration de BizTalk Services](biztalk-backup-restore.md) fournit les détails. 
+[Les Services BizTalk : Sauvegarde et restauration](biztalk-backup-restore.md) fournit des détails de hello. 
 
 ## <a name="HybridConnections"></a>Connexions hybrides
-Les connexions hybrides connectent une application Azure, telle que Web Apps ou Mobile Services dans Azure App Service, à une ressource locale utilisant un port TCP statique, tel que SQL Server, MySQL, les API web HTTP et la plupart des services web personnalisés. Les connexions hybrides sont gérées dans BizTalk Services au sein du portail Azure Classic.
+Connexions hybrides connectent à une application Windows Azure, telles que les applications Web ou des applications mobiles dans Azure App Service, la ressource locale tooan qui utilise un port TCP statique, tels que SQL Server, MySQL, API Web de HTTP et plus les Services Web personnalisés. Connexions hybrides sont gérées dans les Services BizTalk Bonjour portail Azure classic.
 
-Pour créer des connexions hybrides dans Azure App Service, voir [Accéder à des ressources locales à l’aide de connexions hybrides dans Azure App Service](../app-service-web/web-sites-hybrid-connection-get-started.md).
+toocreate connexions hybrides dans Azure App Service, consultez [accès aux ressources locales à l’aide de connexions hybrides dans Azure App Service](../app-service-web/web-sites-hybrid-connection-get-started.md).
 
-Pour créer ou gérer des connexions hybrides dans Azure BizTalk Services, consultez [Connexions hybrides](integration-hybrid-connection-overview.md).
+toocreate ou gérer des connexions hybrides dans Azure BizTalk Services, consultez [connexions hybrides](integration-hybrid-connection-overview.md).
 
 ## <a name="next"></a>Suivant
-À présent que vous connaissez bien les différents onglets, vous pouvez accéder à davantage d'informations sur les fonctionnalités Azure BizTalk Services :
+Maintenant que vous êtes familiarisé avec les différents onglets de hello, vous pouvez en savoir plus sur les fonctionnalités des Services BizTalk Azure hello :
 
 * [Limitation dans BizTalk Services](biztalk-throttling-thresholds.md)  
 * [Nom et clé de l'émetteur dans BizTalk Services](biztalk-issuer-name-issuer-key.md)  
@@ -347,7 +347,7 @@ Pour créer ou gérer des connexions hybrides dans Azure BizTalk Services, consu
 * [Tableau comparatif des éditions Développeur, De base, Standard et Premium de BizTalk Services](biztalk-editions-feature-chart.md)  
 * [BizTalk Services : approvisionnement à l’aide du portail Azure Classic](biztalk-provision-services.md)  
 * [BizTalk Services : tableau comparatif des états du service BizTalk](biztalk-service-state-chart.md)  
-* [Utilisation du Kit de développement logiciel (SDK) Azure BizTalk Services](http://go.microsoft.com/fwlink/p/?LinkID=302335)
+* [Comment puis-je démarrer à l’aide de hello SDK des Services BizTalk Azure](http://go.microsoft.com/fwlink/p/?LinkID=302335)
 
 [Quickstart]: ./media/biztalk-dashboard-monitor-scale-tabs/QuickStartIcon.png
 [AddMetrics]: ./media/biztalk-dashboard-monitor-scale-tabs/WABS_AddMetrics.png

@@ -1,6 +1,6 @@
 ---
 title: "Appareil SensorTag et passerelle Azure IoT - Leçon 4 : Stockage de table | Microsoft Docs"
-description: "Enregistrez des messages à partir d’Intel NUC dans votre hub IoT, écrivez-les dans le stockage Table Azure, puis lisez-les à partir du cloud."
+description: "Enregistrer des messages à partir de hub IoT de tooyour Intel NUC, notez-les tooAzure le stockage de Table et puis de les lire à partir du cloud de hello."
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -17,36 +17,36 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: 72659ef3a7fd2f6011590d37176fd05503269aff
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 29525b084eb4d6e6dfcb16d9b34f78f075d30b7d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="read-messages-persisted-in-azure-table-storage"></a>Lire des messages conservés dans le stockage Table Azure
 
 ## <a name="what-you-will-do"></a>Procédure à suivre
 
-- Exécutez l’exemple d’application de votre passerelle qui envoie des messages à votre IoT Hub.
-- Exécutez ensuite l’exemple de code sur votre ordinateur hôte pour lire les messages dans votre stockage Table Azure. 
+- Exécutez hello passerelle exemple d’application sur votre passerelle qui envoie l’IoT hub tooyour de messages.
+- Exécuter un exemple de code sur votre hôte ordinateur tooread hello des messages dans votre stockage de Table Azure. 
 
-Si vous rencontrez des problèmes, recherchez des solutions dans la [page de résolution des problèmes](iot-hub-gateway-kit-c-troubleshooting.md).
+Si vous rencontrez des problèmes, recherchez des solutions sur hello [page Résolution des problèmes](iot-hub-gateway-kit-c-troubleshooting.md).
 
 ## <a name="what-you-will-learn"></a>Contenu
 
-Utilisation de l’outil gulp pour exécuter l’exemple de code permettant de lire les messages dans votre stockage Table Azure.
+Comment toouse hello gulp outil toorun hello exemples code tooread de messages dans votre stockage de Table Azure.
 
 ## <a name="what-you-need"></a>Ce dont vous avez besoin
 
-Vous avez effectué les tâches suivantes :
+Vous avez correctement hello tâche suivantes :
 
-- [créer l’application de fonction Azure et le compte de stockage Azure](iot-hub-gateway-kit-c-lesson4-deploy-resource-manager-template.md) ;
-- [exécuter l’exemple d’application de la passerelle](iot-hub-gateway-kit-c-lesson3-configure-ble-app.md) ;
+- [Créé une application de fonction Azure hello et compte de stockage Azure hello](iot-hub-gateway-kit-c-lesson4-deploy-resource-manager-template.md).
+- [Exécuter l’application d’exemple hello passerelle](iot-hub-gateway-kit-c-lesson3-configure-ble-app.md).
 - [lire des messages à partir de votre IoT Hub](iot-hub-gateway-kit-c-lesson3-read-messages-from-hub.md).
 
 ## <a name="get-your-azure-storage-connection-strings"></a>Obtenir vos chaînes de connexion de stockage Azure
 
-Au début de cette leçon, vous avez créé un compte de stockage Azure. Pour obtenir la chaîne de connexion du compte de stockage Azure, exécutez les commandes suivantes :
+Au début de cette leçon, vous avez créé un compte de stockage Azure. chaîne de connexion tooget hello hello Azure du compte de stockage, exécutez hello suivant de commandes :
 
 * Répertoriez tous vos comptes de stockage.
 
@@ -60,13 +60,13 @@ az storage account list -g iot-gateway --query [].name
 az storage account show-connection-string -g iot-gateway -n {storage name}
 ```
 
-Si vous n’avez pas modifié la valeur à la leçon 2, utilisez iot-gateway en tant que valeur de `{resource group name}`.
+Utilisez iot-passerelle en tant que valeur hello `{resource group name}` si vous n’avez pas modifier la valeur hello dans la leçon 2.
 
-## <a name="configure-the-device-connection"></a>Configuration de la connexion de l’appareil
+## <a name="configure-hello-device-connection"></a>Configurer la connexion du périphérique hello
 
-Mettez à jour le fichier `config-azure.json` afin que l’exemple de code qui s’exécute sur l’ordinateur hôte puisse lire le message dans votre stockage Table Azure. Procédez comme suit pour configurer la connexion de l’appareil :
+Hello de mise à jour `config-azure.json` fichiers afin que les exemples de code hello qui s’exécute sur l’ordinateur hôte hello peut lire le message dans votre stockage de Table Azure. tooconfigure hello connexion du périphérique, procédez comme suit :
 
-1. Ouvrez le fichier de configuration d’appareil `config-azure.json` en exécutant les commandes suivantes :
+1. Fichier de configuration de périphérique ouvert hello `config-azure.json` par hello suivant les commandes en cours d’exécution :
 
    ```bash
    # For Windows command prompt
@@ -77,26 +77,26 @@ Mettez à jour le fichier `config-azure.json` afin que l’exemple de code qui s
 
    ![configuration](media/iot-hub-gateway-kit-lessons/lesson4/config_azure.png)
 
-2. Remplacez `[Azure storage connection string]` par la chaîne de connexion de stockage Azure que vous avez obtenue.
+2. Remplacez `[Azure storage connection string]` par hello chaîne de connexion de stockage Azure que vous avez obtenu.
 
    `[IoT hub connection string]` doit déjà être remplacé dans la section [Lire des messages à partir d’Azure IoT Hub](iot-hub-gateway-kit-c-lesson3-read-messages-from-hub.md) de la leçon 3.
 
 ## <a name="read-messages-in-your-azure-table-storage"></a>Lire des messages dans votre stockage Table Azure
 
-Exécutez l’exemple d’application de la passerelle et lisez les messages de stockage Table Azure avec la commande suivante :
+Exécuter l’application d’exemple hello passerelle et lire les messages de stockage Azure Table par hello de commande suivante :
 
 ```bash
 gulp run --table-storage
 ```
 
-Votre IoT Hub déclenche votre application Azure Function pour enregistrer un nouveau message arrivant dans votre stockage Table Azure.
-La commande `gulp run` exécute l’exemple d’application de la passerelle qui envoie des messages à votre IoT Hub. Avec le paramètre `table-storage`, elle génère également un processus enfant pour recevoir le message enregistré dans votre stockage Table Azure.
+Votre hub IoT déclenche votre message toosave d’application Azure fonction dans votre stockage de Table Azure quand le nouveau message arrive.
+Hello `gulp run` commande exécute l’exemple d’application passerelle envoie IoT hub tooyour de messages. Avec `table-storage` paramètre, il génère également un Bonjour tooreceive de processus enfant enregistré des messages dans votre stockage de Table Azure.
 
-Les messages envoyés et reçus sont tous affichés instantanément sur la même fenêtre de console sur l’ordinateur hôte. L’exemple d’instance d’application se ferme automatiquement au bout de 40 secondes.
+messages de type Hello qui sont envoyés et reçus sont tous les hello afficher instantanément à même de fenêtre dans la console hello machine hôte. instance de l’application exemple Hello se termine automatiquement au bout de 40 secondes.
 
    ![lecture de gulp](media/iot-hub-gateway-kit-lessons/lesson4/gulp_run_read_table.png)
 
 
 ## <a name="summary"></a>Résumé
 
-Vous avez exécuté l’exemple de code pour lire les messages de votre stockage Table Azure enregistrés par votre application Azure Function.
+Vous avez exécuté des messages hello tooread de code d’exemple hello dans votre stockage de Table Azure enregistré par votre application Azure (fonction).

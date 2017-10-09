@@ -1,7 +1,7 @@
 ---
-title: "Présentation d’Apache Hive et HiveQL - Azure HDInsight | Microsoft Docs"
-description: "Apache Hive est un système d’entrepôt de données pour Hadoop. Vous pouvez interroger les données stockées dans Hive à l’aide de HiveQL, qui est similaire à Transact-SQL. Dans ce document, découvrez comment utiliser Hive et HiveQL avec Azure HDInsight."
-keywords: "hiveql,présentation de hive,hadoop hiveql,utilisation de hive,découvrir hive,présentation de hive"
+title: aaaWhat est Apache Hive et HiveQL - Azure HDInsight | Documents Microsoft
+description: "Apache Hive est un système d’entrepôt de données pour Hadoop. Vous pouvez interroger les données stockées dans la ruche à l’aide de HiveQL, tooTransact-SQL similaire. Dans ce document, vous devez savoir comment la ruche toouse et HiveQL avec Azure HDInsight."
+keywords: "hiveql, quelle est la ruche, hadoop hiveql, comment toouse hive, découvrez hive, quelle est la ruche"
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -17,31 +17,31 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 08/03/2017
 ms.author: larryfr
-ms.openlocfilehash: 6b3ee17141f773bec07cf40e0b6d63363e9b5164
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: a2772312263895ff99b499898264c2e6d5e816e9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="what-is-apache-hive-and-hiveql-on-azure-hdinsight"></a>Présentation d’Apache Hive et HiveQL sur Azure HDInsight
 
-[Apache Hive](http://hive.apache.org/) est un système d’entrepôt de données pour Hadoop. Hive permet la synthèse, l’interrogation et l’analyse des données. Les requêtes Hive sont écrites dans le langage HiveQL, qui est un langage de requête semblable à SQL.
+[Apache Hive](http://hive.apache.org/) est un système d’entrepôt de données pour Hadoop. Hive permet la synthèse, l’interrogation et l’analyse des données. Requêtes Hive sont écrites dans HiveQL, qui est un tooSQL similaire de langage de requête.
 
-Hive vous permet de concevoir une structure sur des données largement non structurées. Une fois que vous avez défini la structure, vous pouvez utiliser HiveQL pour interroger les données sans connaître Java ou MapReduce.
+Ruche vous permet de tooproject structure sur des données en grande partie non structurées. Après avoir défini la structure de hello, vous pouvez utiliser les données de salutation HiveQL tooquery sans avoir connaissance de Java ou MapReduce.
 
-HDInsight fournit plusieurs types de cluster adaptés à des charges de travail spécifiques. Voici les types de cluster les plus souvent utilisés pour les requêtes Hive :
+HDInsight fournit plusieurs types de cluster adaptés à des charges de travail spécifiques. Hello cluster types suivants est souvent utilisée pour les requêtes Hive :
 
-* __Hive interactif__ : cluster Hadoop qui offre une fonctionnalité LLAP [(Low Latency Analytical Processing)](https://cwiki.apache.org/confluence/display/Hive/LLAP) afin d’améliorer les temps de réponse des requêtes interactives. Pour plus d’informations, consultez le document [Démarrer avec Hive interactif dans HDInsight](hdinsight-hadoop-use-interactive-hive.md).
+* __Ruche interactif__: cluster Hadoop de A qui fournit [faible latence analytiques de traitement (LLAP)](https://cwiki.apache.org/confluence/display/Hive/LLAP) temps de réponse de tooimprove de fonctionnalités des requêtes interactives. Pour plus d’informations, consultez hello [démarrer avec la ruche Interactive dans HDInsight](hdinsight-hadoop-use-interactive-hive.md) document.
 
-* __Hadoop__ : cluster Hadoop adapté aux charges de travail de traitement par lots. Pour plus d’informations, consultez le document [Démarrer avec Hadoop dans HDInsight](hdinsight-hadoop-linux-tutorial-get-started.md).
+* __Hadoop__ : cluster Hadoop adapté aux charges de travail de traitement par lots. Pour plus d’informations, consultez hello [démarrer avec Hadoop dans HDInsight](hdinsight-hadoop-linux-tutorial-get-started.md) document.
 
-* __Spark__ : Apache Spark intègre une fonctionnalité permettant de travailler avec Hive. Pour plus d’informations, consultez le document [Démarrer avec Spark dans HDInsight](hdinsight-apache-spark-jupyter-spark-sql.md).
+* __Spark__ : Apache Spark intègre une fonctionnalité permettant de travailler avec Hive. Pour plus d’informations, consultez hello [démarrer avec Spark sur HDInsight](hdinsight-apache-spark-jupyter-spark-sql.md) document.
 
-* __HBase__ : HiveQL peut être utilisé pour interroger les données stockées dans HBase. Pour plus d’informations, consultez le document [Démarrer avec HBase dans HDInsight](hdinsight-hbase-tutorial-get-started-linux.md).
+* __HBase__: HiveQL peut être tooquery utilisé les données stockées dans HBase. Pour plus d’informations, consultez hello [démarrer avec HBase sur HDInsight](hdinsight-hbase-tutorial-get-started-linux.md) document.
 
-## <a name="how-to-use-hive"></a>Utilisation de Hive
+## <a name="how-toouse-hive"></a>Comment la ruche toouse
 
-Utilisez le tableau suivant pour découvrir comment utiliser Hive avec HDInsight :
+Utilisez hello suivant toodiscover table comment toouse Hive hdinsight :
 
 | **Utilisez cette méthode** si vous souhaitez... | ... un interpréteur de commandes **interactif** | ... un traitement par **lots** | ...avec ce **système d’exploitation cluster** | ...depuis ce **système d’exploitation cluster** |
 |:--- |:---:|:---:|:--- |:--- |
@@ -52,17 +52,17 @@ Utilisez le tableau suivant pour découvrir comment utiliser Hive avec HDInsight
 | [Windows PowerShell](hdinsight-hadoop-use-hive-powershell.md) |&nbsp; |✔ |Linux ou Windows* |Windows |
 
 > [!IMPORTANT]
-> \* Linux est le seul système d’exploitation utilisé sur HDInsight version 3.4 ou supérieure. Pour plus d’informations, consultez [Suppression de HDInsight sous Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+> \*Linux est hello seul système d’exploitation utilisé sur HDInsight version 3.4 ou supérieure. Pour plus d’informations, consultez [Suppression de HDInsight sous Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 >
-> Si vous utilisez un cluster HDInsight basé sur Windows, vous pouvez utiliser la [console de requête](hdinsight-hadoop-use-hive-query-console.md) depuis votre navigateur ou [Bureau à distance](hdinsight-hadoop-use-hive-remote-desktop.md) pour exécuter des requêtes Hive.
+> Si vous utilisez un cluster HDInsight de basés sur Windows, vous pouvez utiliser hello [console de requête](hdinsight-hadoop-use-hive-query-console.md) depuis votre navigateur ou [Bureau à distance](hdinsight-hadoop-use-hive-remote-desktop.md) toorun des requêtes Hive.
 
 ## <a name="hiveql-language-reference"></a>Référence du langage HiveQL
 
-La référence du langage HiveQL est disponible dans le [manuel (https://cwiki.apache.org/confluence/display/Hive/LanguageManual)](https://cwiki.apache.org/confluence/display/Hive/LanguageManual).
+Référence du langage HiveQL est disponible dans hello [manuel de langage (https://cwiki.apache.org/confluence/display/Hive/LanguageManual)](https://cwiki.apache.org/confluence/display/Hive/LanguageManual).
 
 ## <a name="hive-and-data-structure"></a>Hive et structure des données
 
-Hive est capable de travailler avec des données structurées et semi-structurées. Par exemple, les fichiers texte dans lesquels les champs sont délimités par des caractères spécifiques. L’instruction HiveQL suivante crée une table à partir de données délimitées par des espaces :
+Ruche comprend des données semi-structurées et structuration de toowork avec. Par exemple, fichiers texte dans lequel les champs de hello sont délimités par des caractères spécifiques. Hello HiveQL instruction qui suit crée une table sur délimitées par un espace de données :
 
 ```hiveql
 CREATE EXTERNAL TABLE log4jLogs (t1 string, t2 string, t3 string, t4 string, t5 string, t6 string, t7 string)
@@ -70,35 +70,35 @@ ROW FORMAT DELIMITED FIELDS TERMINATED BY ' '
 STORED AS TEXTFILE LOCATION '/example/data/';
 ```
 
-Hive prend également en charge un **sérialiseur/ désérialiseur (SerDe)** personnalisé pour des données structurées de manière irrégulière ou complexes. Pour plus d’informations, consultez le document [Utilisation d’un SerDe JSON personnalisé avec HDInsight](http://blogs.msdn.com/b/bigdatasupport/archive/2014/06/18/how-to-use-a-custom-json-serde-with-microsoft-azure-hdinsight.aspx).
+Hive prend également en charge un **sérialiseur/ désérialiseur (SerDe)** personnalisé pour des données structurées de manière irrégulière ou complexes. Pour plus d’informations, consultez hello [comment toouse un SerDe JSON personnalisée avec HDInsight](http://blogs.msdn.com/b/bigdatasupport/archive/2014/06/18/how-to-use-a-custom-json-serde-with-microsoft-azure-hdinsight.aspx) document.
 
-Pour plus d’informations sur les formats de fichiers pris en charge par Hive, consultez le [manuel (https://cwiki.apache.org/confluence/display/Hive/LanguageManual)](https://cwiki.apache.org/confluence/display/Hive/LanguageManual)
+Pour plus d’informations sur les formats de fichier pris en charge par la ruche, consultez hello [manuel de langage (https://cwiki.apache.org/confluence/display/Hive/LanguageManual)](https://cwiki.apache.org/confluence/display/Hive/LanguageManual)
 
 ## <a name="hive-internal-tables-vs-external-tables"></a>Tables internes et externes Hive
 
 Hive vous permet de créer deux types de tables :
 
-* __Interne__ : les données sont stockées dans l’entrepôt de données Hive. L’entrepôt de données se trouve dans `/hive/warehouse/` sur le stockage par défaut du cluster.
+* __Interne__: données sont stockées dans l’entrepôt de données Hive hello. Hello l’entrepôt de données se trouve dans `/hive/warehouse/` sur le stockage par défaut hello pour le cluster de hello.
 
     Utilisez des tables internes quand :
 
     * les données sont temporaires.
-    * Vous voulez que Hive gère le cycle de vie de la table et des données.
+    * Vous souhaitez ruche toomanage hello du cycle de vie de la table de hello et données.
 
-* __Externe__ : les données sont stockées en dehors de l’entrepôt de données. Les données peuvent être stockées sur tout stockage accessible par le cluster.
+* __Externe__: les données sont stockées en dehors de l’entrepôt de données hello. les données de salutation pouvant figurer sur n’importe quel stockage accessible par cluster de hello.
 
     Utilisez des tables externes quand :
 
-    * Les données sont également utilisées en dehors de Hive. Par exemple, les fichiers de données sont mis à jour par un autre processus (qui ne verrouille pas les fichiers.)
-    * Les données doivent rester dans l’emplacement sous-jacent, même après suppression de la table.
+    * les données de salutation sont également utilisées en dehors de la ruche. Par exemple, les fichiers de données hello sont mis à jour par un autre processus (qui ne verrouille pas les fichiers hello.)
+    * Les données doivent tooremain Bonjour sous-jacent emplacement, même après la suppression de table de hello.
     * Vous avez besoin d’un emplacement personnalisé, par exemple un compte de stockage non sélectionné par défaut.
-    * Un programme autre que Hive gère le format de données, l’emplacement, etc.
+    * Un programme autre que ruche gère le format de données hello, l’emplacement, etc..
 
-Pour plus d’informations, consultez le billet de blog [Introduction aux tables interne et externe Hive][cindygross-hive-tables].
+Pour plus d’informations, consultez hello [Hive interne et externe Tables Intro] [ cindygross-hive-tables] billet de blog.
 
 ## <a name="user-defined-functions-udf"></a>Fonctions définies par l’utilisateur (UDF)
 
-Hive peut également être étendu via des **fonctions définies par l'utilisateur (UDF)**. Une fonction UDF vous permet d'implémenter une fonctionnalité ou une logique qui n'est pas facilement modelée en HiveQL. Pour obtenir un exemple d’utilisation des fonctions définies par l’utilisateur (UDF) avec Hive, consultez les documents suivants :
+Hive peut également être étendu via des **fonctions définies par l'utilisateur (UDF)**. Un fichier UDF vous permet de tooimplement de fonctionnalité ou logique qui n’est pas facilement être modelée dans HiveQL. Pour obtenir un exemple d’utilisation des UDF avec Hive, consultez hello suivant des documents :
 
 * [Utiliser une fonction Java définie par l’utilisateur avec Hive](hdinsight-hadoop-hive-java-udf.md)
 
@@ -106,17 +106,17 @@ Hive peut également être étendu via des **fonctions définies par l'utilisate
 
 * [Utiliser une fonction C# définie par l’utilisateur avec Hive et Pig](hdinsight-hadoop-hive-pig-udf-dotnet-csharp.md)
 
-* [Guide pratique pour ajouter une fonction Hive définie par l’utilisateur à HDInsight](http://blogs.msdn.com/b/bigdatasupport/archive/2014/01/14/how-to-add-custom-hive-udfs-to-hdinsight.aspx)
+* [Fonctionnement des tooHDInsight tooadd une ruche personnalisée défini par l’utilisateur](http://blogs.msdn.com/b/bigdatasupport/archive/2014/01/14/how-to-add-custom-hive-udfs-to-hdinsight.aspx)
 
-* [Exemple de fonction Hive définie par l’utilisateur pour convertir les formats date/heure en horodatage Hive](https://github.com/Azure-Samples/hdinsight-java-hive-udf)
+* [Une date/heure exemple ruche fonction définie par l’utilisateur tooconvert met en forme tooHive timestamp](https://github.com/Azure-Samples/hdinsight-java-hive-udf)
 
 ## <a id="data"></a>Exemple de données
 
-Hive sur HDInsight est préchargé avec une table interne nommée `hivesampletable`. HDInsight fournit également des exemples de jeux de données pouvant être utilisés avec Hive. Ces jeux de données sont stockés dans les répertoires `/example/data` et `/HdiSamples`. Ces répertoires sont disponibles dans le stockage par défaut de votre cluster.
+Hive sur HDInsight est préchargé avec une table interne nommée `hivesampletable`. HDInsight fournit également des exemples de jeux de données pouvant être utilisés avec Hive. Ces jeux de données sont stockées dans hello `/example/data` et `/HdiSamples` répertoires. Ils existent dans le stockage par défaut hello pour votre cluster.
 
 ## <a id="job"></a>Exemple de requête Hive
 
-Les instructions HiveQL suivantes projettent des colonnes sur le fichier `/example/data/sample.log` :
+Hello suivant des colonnes de projet instructions HiveQL sur hello `/example/data/sample.log` fichier :
 
     set hive.execution.engine=tez;
     DROP TABLE log4jLogs;
@@ -125,31 +125,31 @@ Les instructions HiveQL suivantes projettent des colonnes sur le fichier `/examp
     STORED AS TEXTFILE LOCATION '/example/data/';
     SELECT t4 AS sev, COUNT(*) AS count FROM log4jLogs WHERE t4 = '[ERROR]' AND INPUT__FILE__NAME LIKE '%.log' GROUP BY t4;
 
-Dans l’exemple précédent, les instructions HiveQL effectuent les opérations suivantes :
+Dans l’exemple précédent de hello, les instructions HiveQL hello effectuent hello suivant des actions :
 
-* `set hive.execution.engine=tez;`: définit le moteur d’exécution pour utiliser Tez. L’utilisation de Tez au lieu de MapReduce peut augmenter les performances de requête. Pour plus d’informations sur Tez, consultez la section [Utilisation d’Apache Tez pour des performances améliorées](#usetez) .
+* `set hive.execution.engine=tez;`: Jeux hello toouse du moteur d’exécution Tez. L’utilisation de Tez au lieu de MapReduce peut augmenter les performances de requête. Pour plus d’informations sur Tez, consultez hello [Tez d’Apache utilisation pour améliorer les performances](#usetez) section.
 
     > [!NOTE]
-    > Cette instruction est uniquement requise lorsque vous utilisez un cluster HDInsight sous Windows. Tez est le moteur d’exécution par défaut pour HDInsight sous Linux.
+    > Cette instruction est uniquement requise lorsque vous utilisez un cluster HDInsight sous Windows. Tez est le moteur d’exécution par défaut hello pour HDInsight de basés sur Linux.
 
-* `DROP TABLE` : si la table existe déjà, supprimez-la.
+* `DROP TABLE`: Si la table de hello existe déjà, supprimez-le.
 
-* `CREATE EXTERNAL TABLE` : crée une table **externe** dans Hive. Les tables externes stockent uniquement la définition de table dans Hive. Les données restent à l’emplacement d’origine, dans le format d’origine.
+* `CREATE EXTERNAL TABLE` : crée une table **externe** dans Hive. Les tables externes ne stockent la définition de table hello Hive. les données de salutation reste dans l’emplacement d’origine de hello et au format d’origine de hello.
 
-* `ROW FORMAT` : indique à Hive le mode de formatage des données. Dans ce cas, les champs de chaque journal sont séparés par un espace.
+* `ROW FORMAT`: Indique la ruche de mise en forme les données de salutation. Dans ce cas, les champs de hello dans chaque journal sont séparés par un espace.
 
-* `STORED AS TEXTFILE LOCATION` : indique à Hive où sont stockées les données (répertoire `example/data`) et qu'elles sont stockées sous forme de texte. Les données peuvent être dans un seul fichier ou réparties sur plusieurs fichiers dans le répertoire.
+* `STORED AS TEXTFILE LOCATION`: Indique ruche où hello les données sont stockées (hello `example/data` active) et qu’il est stocké sous forme de texte. les données de salutation peuvent être dans un fichier ou réparties sur plusieurs fichiers dans le répertoire de hello.
 
-* `SELECT` : sélectionne toutes les lignes où la colonne **t4** contient la valeur **[ERROR]**. Cette instruction renvoie la valeur **3**, car trois lignes contiennent cette valeur.
+* `SELECT`: Sélectionne un nombre de toutes les lignes où hello colonne **t4** contient la valeur de hello **[erreur]**. Cette instruction renvoie la valeur **3**, car trois lignes contiennent cette valeur.
 
-* `INPUT__FILE__NAME LIKE '%.log'`- Hive tente d’appliquer le schéma à tous les fichiers dans le répertoire. Dans ce cas, le répertoire contient des fichiers qui ne correspondent pas au schéma. Pour éviter que des données incorrectes n’apparaissent dans les résultats, cette instruction indique à Hive de retourner uniquement des données provenant de fichiers se terminant par .log.
+* `INPUT__FILE__NAME LIKE '%.log'`-Ruche tente de fichiers de tooall tooapply hello schéma dans le répertoire de hello. Dans ce cas, le répertoire de hello contient des fichiers qui ne correspondent pas hello schéma. données de garbage tooprevent dans les résultats de hello, cette instruction indique ruche que nous devons retourner uniquement les données à partir de fichiers se terminant par. journal.
 
 > [!NOTE]
-> Les tables externes doivent être utilisées lorsque vous vous attendez à ce que les données sous-jacentes soient mises à jour par une source externe, Par exemple, un processus de chargement de données automatisé ou une opération MapReduce.
+> Tables externes doivent être utilisées lorsque vous attendez hello toobe de données sous-jacent mis à jour par une source externe. Par exemple, un processus de chargement de données automatisé ou une opération MapReduce.
 >
-> La suppression d'une table externe ne supprime **pas** les données, mais seulement la définition de la table.
+> Suppression d’une table externe est **pas** supprimer les données de salutation, elle supprime uniquement la définition de la table hello.
 
-Pour créer une table **interne** plutôt qu’externe, utilisez le code HiveQL suivant :
+toocreate un **interne** table externe à la place, utilisez hello suivant HiveQL :
 
     set hive.execution.engine=tez;
     CREATE TABLE IF NOT EXISTS errorLogs (t1 string, t2 string, t3 string, t4 string, t5 string, t6 string, t7 string)
@@ -157,59 +157,59 @@ Pour créer une table **interne** plutôt qu’externe, utilisez le code HiveQL 
     INSERT OVERWRITE TABLE errorLogs
     SELECT t1, t2, t3, t4, t5, t6, t7 FROM log4jLogs WHERE t4 = '[ERROR]';
 
-Ces instructions effectuent les opérations suivantes :
+Ces instructions effectuent hello suivant des actions :
 
-* `CREATE TABLE IF NOT EXISTS` : si la table n’existe pas, créez-la. Étant donné que le mot-clé **EXTERNAL** n’est pas utilisé, cette instruction crée une table interne. La table est stockée dans l’entrepôt de données Hive et gérée intégralement par Hive.
+* `CREATE TABLE IF NOT EXISTS`: Si la table de hello n’existe pas, créez-le. Étant donné que hello **externe** mot clé n’est pas utilisé, cette instruction crée une table interne. tableau de Hello est stocké dans l’entrepôt de données Hive hello et entièrement géré par ruche.
 
-* `STORED AS ORC` : stocke les données dans un format ORC (Optimized Row Columnar). ORC est un format particulièrement efficace et optimisé pour le stockage de données Hive.
+* `STORED AS ORC`: Stocke les données de hello dans format optimisé lignes en colonnes (ORC). ORC est un format particulièrement efficace et optimisé pour le stockage de données Hive.
 
-* `INSERT OVERWRITE ... SELECT` : sélectionne des lignes de la table **log4jLogs** qui contient **[ERROR]**, puis insère les données dans la table **errorLogs**.
+* `INSERT OVERWRITE ... SELECT`: Sélectionne des lignes à partir de hello **log4jLogs** table qui contient **[erreur]**, et puis insertions hello des données dans hello **journaux d’erreurs de** table.
 
 > [!NOTE]
-> Contrairement aux tables externes, la suppression d’une table interne entraîne également la suppression des données sous-jacentes.
+> Contrairement aux tables externes, la suppression d’une table interne supprime également les données sous-jacentes hello.
 
 ## <a name="improve-hive-query-performance"></a>Améliorer les performances des requêtes Hive
 
 ### <a id="usetez"></a>Apache Tez
 
-[Apache Tez](http://tez.apache.org) est une infrastructure qui permet une exécution à l'échelle beaucoup plus efficace pour les applications, telles que Hive, qui manipulent de grandes quantités de données. Tez est activé par défaut pour les clusters HDInsight basés sur Linux.
+[Apache Tez](http://tez.apache.org) est une infrastructure qui permet à des applications utilisant beaucoup de données, tels que Hive, toorun beaucoup plus efficacement à l’échelle. Tez est activé par défaut pour les clusters HDInsight basés sur Linux.
 
 > [!NOTE]
-> Tez est actuellement désactivé par défaut pour les clusters HDInsight basés sur Windows, et il doit être activé. Pour pouvoir tirer parti de Tez, vous devez définir la valeur suivante pour une requête Hive :
+> Tez est actuellement désactivé par défaut pour les clusters HDInsight basés sur Windows, et il doit être activé. avantage tootake de Tez, hello valeur suivante doit être définie pour une requête Hive :
 >
 > `set hive.execution.engine=tez;`
 >
-> Tez est le moteur par défaut pour les clusters HDInsight sous Linux.
+> Tez est moteur par défaut de hello pour les clusters HDInsight de basés sur Linux.
 
-Les [documents de conception Hive sur Tez](https://cwiki.apache.org/confluence/display/Hive/Hive+on+Tez) contiennent des informations détaillées sur les options d’implémentation et les configurations du réglage.
+Hello [Hive sur les documents de conception Tez](https://cwiki.apache.org/confluence/display/Hive/Hive+on+Tez) contient des détails sur le choix d’implémentation hello et les configurations de paramétrage.
 
-Pour faciliter le débogage des tâches exécutées en utilisant Tez, HDInsight fournit les interfaces utilisateur web suivantes qui vous permettent d'afficher les détails des tâches Tez :
+tooaid dans les tâches de débogage exécuté à l’aide de Tez, HDInsight fournit hello suivant des interfaces utilisateur web qui vous permettre de tooview les détails des travaux de Tez :
 
-* [Utilisez la vue Tez Ambari sur HDInsight Linux](hdinsight-debug-ambari-tez-view.md)
+* [Utilisez hello vue Ambari Tez sur HDInsight de basés sur Linux](hdinsight-debug-ambari-tez-view.md)
 
-* [Utiliser l'interface utilisateur Tez sur HDInsight Windows](hdinsight-debug-tez-ui.md)
+* [Utilisez hello Tez UI sur HDInsight de basés sur Windows](hdinsight-debug-tez-ui.md)
 
 ### <a name="low-latency-analytical-processing-llap"></a>Low Latency Analytical Processing (LLAP)
 
-[LLAP](https://cwiki.apache.org/confluence/display/Hive/LLAP) (parfois appelé Live Long and Process) est une nouvelle fonctionnalité de Hive 2.0 qui permet la mise en cache en mémoire des requêtes. LLAP accélère considérablement les requêtes Hive, avec dans certains cas des vitesses jusqu’à [26 fois plus rapides qu’avec Hive 1.x](https://hortonworks.com/blog/announcing-apache-hive-2-1-25x-faster-queries-much/).
+[LLAP](https://cwiki.apache.org/confluence/display/Hive/LLAP) (parfois appelé Live Long and Process) est une nouvelle fonctionnalité de Hive 2.0 qui permet la mise en cache en mémoire des requêtes. LLAP effectue des requêtes Hive beaucoup plus rapides des trop[26 x plus rapide que la ruche 1.x dans certains cas](https://hortonworks.com/blog/announcing-apache-hive-2-1-25x-faster-queries-much/).
 
-HDInsight propose la fonctionnalité LLAP dans le cluster de type Hive interactif. Pour plus d’informations, consultez le document [Démarrer avec Hive interactif](hdinsight-hadoop-use-interactive-hive.md).
+HDInsight fournit LLAP Bonjour Hive interactif de type de cluster. Pour plus d’informations, consultez hello [démarrer avec la ruche interactif](hdinsight-hadoop-use-interactive-hive.md) document.
 
 ## <a name="hive-jobs-and-sql-server-integration-services"></a>Tâches Hive et SQL Server Integration Services
 
-Vous pouvez utiliser les services SQL Server Integration Services (SSIS) pour exécuter un travail Hive. Le pack de fonctionnalités Azure pour SSIS fournit les composants suivants, compatibles avec les tâches Hive sur HDInsight.
+Vous pouvez utiliser SQL Server Integration Services (SSIS) toorun un travail Hive. Bonjour Azure Feature Pack pour SSIS fournit hello suivant des composants qui fonctionnent avec les tâches Hive dans HDInsight.
 
 * [Tâche Hive d’Azure HDInsight][hivetask]
 
 * [Gestionnaire de connexions d’abonnement Azure][connectionmanager]
 
-Pour en savoir plus sur le pack de fonctionnalités Azure pour SSIS, cliquez [ici][ssispack].
+En savoir plus sur hello Azure Feature Pack pour SSIS [ici][ssispack].
 
 ## <a id="nextsteps"></a>Étapes suivantes
 
-Maintenant que vous connaissez Hive et que vous avez vu comment l’utiliser avec Hadoop dans HDInsight, utilisez les liens suivants pour découvrir d'autres façons d'utiliser Azure HDInsight.
+Maintenant que vous savez quelle est la ruche et comment toouse avec Hadoop dans HDInsight, hello utilisation suivant lie tooexplore autres toowork manières avec Azure HDInsight.
 
-* [Téléchargement de données vers HDInsight][hdinsight-upload-data]
+* [Télécharger des données tooHDInsight][hdinsight-upload-data]
 * [Utilisation de Pig avec HDInsight][hdinsight-use-pig]
 * [Utilisation des tâches MapReduce avec HDInsight][hdinsight-use-mapreduce]
 

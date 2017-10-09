@@ -1,6 +1,6 @@
 ---
-title: "Poser une question à laquelle les données peuvent répondre - Problèmes de science des données - Azure Machine Learning | Microsoft Docs"
-description: "Découvrez comment formuler une question de science des données précise dans la vidéo 3 Science des données pour les débutants. Inclut une comparaison des questions de classification et de régression."
+title: "aaaAsk une question d’une question - problèmes de science des données - Azure Machine Learning | Documents Microsoft"
+description: "Découvrez comment tooformulate une science des données aigu question dans la Science des données pour les débutants 3 vidéo. Inclut une comparaison des questions de classification et de régression."
 keywords: "problèmes de science des données,questions de science des données, formuler des questions,questions de régression,questions de classification,question précise"
 services: machine-learning
 documentationcenter: na
@@ -15,17 +15,17 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/13/2017
 ms.author: cgronlun
-ms.openlocfilehash: 0495dbab72024e504ae33d35f16a212a2084bc10
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 00c328f51e6d9ff6654b5966eb97d6762582f7e5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="ask-a-question-you-can-answer-with-data"></a>Poser une question à laquelle les données permettent de répondre
 ## <a name="video-3-data-science-for-beginners-series"></a>Vidéo 3 : série Science des données pour les débutants
-Découvrez comment formuler un problème de science des données en une question dans la vidéo 3 Science des données pour les débutants. Cette vidéo inclut une comparaison des questions faisant appel aux algorithmes de classification et de régression.
+Découvrez comment tooformulate un problème de science des données dans une question dans la Science des données pour les débutants 3 vidéo. Cette vidéo inclut une comparaison des questions faisant appel aux algorithmes de classification et de régression.
 
-Pour tirer le meilleur parti de la série, regardez l’ensemble des vidéos. [Accéder à la liste des vidéos](#other-videos-in-this-series)
+hello tooget meilleur parti de série de hello, regardez les. [Atteindre liste toohello de vidéos](#other-videos-in-this-series)
 <br>
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/Data-science-for-beginners-Ask-a-question-you-can-answer-with-data/player]
@@ -33,68 +33,68 @@ Pour tirer le meilleur parti de la série, regardez l’ensemble des vidéos. [A
 >
 
 ## <a name="other-videos-in-this-series"></a>Autres vidéos de cette série
-*Science des données pour les débutants* offre une introduction rapide à la science des données en cinq petites vidéos.
+*Pour la science des données pour les débutants* est une science de toodata d’introduction rapide à cinq courtes vidéos.
 
-* Vidéo 1 : [Les 5 questions auxquelles la science des données répond](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md) *(5 min 14 sec)*
+* Vidéo 1 : [hello 5 questions réponses de science des données](machine-learning-data-science-for-beginners-the-5-questions-data-science-answers.md) *(5 min 14 s)*
 * Vidéo 2 : [Vos données sont-elles prêtes pour la science des données ?](machine-learning-data-science-for-beginners-is-your-data-ready-for-data-science.md) *(4 min 56 sec)*
 * Vidéo 3 : Poser une question à laquelle les données permettent de répondre
 * Vidéo 4 : [Prédire une réponse à l’aide d’un modèle simple](machine-learning-data-science-for-beginners-predict-an-answer-with-a-simple-model.md) *(7 min 42 sec)*
-* Vidéo 5 : [Copier le travail d’autres personnes pour des projets de science des données](machine-learning-data-science-for-beginners-copy-other-peoples-work-to-do-data-science.md) *(3 min 18 sec)*
+* Vidéo 5 : [copier la recherche de données d’autres personnes travail toodo](machine-learning-data-science-for-beginners-copy-other-peoples-work-to-do-data-science.md) *(3 s 18 min)*
 
 ## <a name="transcript-ask-a-question-you-can-answer-with-data"></a>Transcription : Poser une question à laquelle les données permettent de répondre
-Bienvenue dans la troisième vidéo de la série « Science des données pour les débutants ».  
+Bienvenue dans le toohello vidéo troisième série de hello « Science des données pour les débutants. »  
 
 Dans celle-ci, nous allons vous donner des conseils pour formuler une question à laquelle les données permettent de répondre.
 
-Pour tirer pleinement parti de cette vidéo, nous vous recommandons de regarder les deux premières vidéos de cette série, « Les 5 questions auxquelles la science des données peut répondre » et « Vos données sont-elles prêtes pour la science des données ? ».
+Vous pouvez obtenir plus d’informations hors de cette vidéo, si vous regardez tout d’abord deux vidéos précédentes hello dans cette série : « la science des données de hello 5 questions peuvent répondre » et « Is vos données sont prêtes pour la science des données ? »
 
 ## <a name="ask-a-sharp-question"></a>Poser une question précise
-Comme nous l’avons vu, la science des données est le processus consistant à utiliser des noms (également appelés catégories ou étiquettes) et des nombres pour prédire la réponse à une question. Toutefois, la question ne peut pas avoir n’importe quelle forme. Il doit s’agir d’une *question précise.*
+Nous avons expliqué comment la science des données consiste à hello à l’aide de noms (également appelés catégories ou étiquettes) et numéros toopredict un tooa répondre à la question. Mais il ne peut pas être n’importe quelle question ; Il a toobe un *AIGUE question.*
 
-Une question vague n’appelle pas une réponse par un nom ou un nombre. Une question précise si.
+Une vague question n’a pas toobe ayant obtenu une réponse avec un nom ou un nombre. Une question précise si.
 
-Imaginons que vous avez trouvé une lampe magique renfermant un génie qui répond correctement à toutes les questions que vous lui posez. Mais ce génie est espiègle, et il fait en sorte de rendre sa réponse la plus vague et confuse possible. Vous devez le coincer avec une question si bien formulée qu’il sera obligé de vous dire ce que vous voulez savoir.
+Imaginons que vous avez trouvé une lampe magique renfermant un génie qui répond correctement à toutes les questions que vous lui posez. Mais il s’agit d’un genie partir, et il essaierons toomake sa réponse comme vague et prête à confusion car il en sortir. Vous souhaiteriez toopin lui vers le bas à poser une question donc étanche qu’il ne peut pas aider à mais indique l’action souhaitée tooknow.
 
-Si vous lui posez une question vague comme « Que va-t-il arriver à mon action ? », le génie pourra très bien répondre « Son cours va changer ». C’est une réponse correcte, mais pas vraiment utile.
+Si vous étiez tooask une question imprécie, tels que « Que se passe-t-il toohappen avec mon stock ? », genie de hello peut répondre, « hello prix change ». C’est une réponse correcte, mais pas vraiment utile.
 
-Mais si vous lui posez une question précise comme « Quel sera le cours de mon action la semaine prochaine ? », le génie n’aura pas d’autre choix que de vous donner une réponse spécifique et de prédire un cours.
+Mais si vous avez une question AIGUE, comme « Les prix de vente de mon stock seront semaine prochaine ? », hello genie ne peut pas aider mais vous donner un spécifique de tooask répondre et prédire un prix de vente.
 
 ## <a name="examples-of-your-answer-target-data"></a>Exemples de votre réponse : données cibles
-Une fois que vous avez formulé votre question, vérifiez si vous avez des exemples de la réponse dans vos données.
+Une fois que vous pouvez formuler votre question, vérifiez toosee si vous avez des exemples des réponses hello dans vos données.
 
-Si votre question est « Quel sera le cours de mon action la semaine prochaine ? », vous devez vous assurer que vos données incluent l’historique du cours de l’action.
+Si votre question est « Quel sera le cours de mon action la semaine prochaine ? Ensuite, nous avons toomake que nos données incluent l’historique de cotation hello.
 
-Si votre question est « Quelle voiture de mon parc va tomber en panne en premier ? », vous devez vous assurer que vos données incluent des informations concernant les pannes précédentes.
+Si votre question est « quels voiture dans mon flotte est continu toofail tout d’abord ? » Ensuite, nous avons toomake que nos données incluent des informations sur les échecs précédents.
 
 ![Données cibles : exemples de votre réponse. Formulez une question de science des données.](./media/machine-learning-data-science-for-beginners-ask-a-question-you-can-answer-with-data/target-data.png)
 
-Ces exemples de réponses sont appelés des cibles. Une cible correspond à ce que nous essayons de prédire sur les points de données futurs, qu’il s’agisse d’une catégorie ou d’un nombre.
+Ces exemples de réponses sont appelés des cibles. Une cible est ce que nous sommes essayez toopredict sur les points de données ultérieure, s’il s’agit d’une catégorie ou un chiffre.
 
-Si vous n’avez pas de données cibles, vous devez en collecter. Sans cela, vous ne pourrez pas obtenir de réponse à votre question.
+Si vous n’avez pas toutes les données de la cible, vous devez tooget certains. Vous ne sera pas en mesure de tooanswer votre question sans lui.
 
 ## <a name="reformulate-your-question"></a>Reformulez votre question
-Il est parfois possible de reformuler la question pour obtenir une réponse plus utile.
+Parfois, vous pouvez reformuler votre tooget question une réponse plus utile.
 
-La question « Ce point de données est-il le point A ou B ? » prédit la catégorie (ou nom ou étiquette) d’un élément. Pour y répondre, nous utilisons un *algorithme de classification*.
+question de Hello » est ce point de données A ou B ? » prévoit la catégorie de hello (ou nom ou l’étiquette) d’un objet. tooanswer, nous utilisons un *algorithme de classification*.
 
-La question « Combien ? » ou « Combien ? » prévoit une quantité. Pour y répondre, nous utilisons un *algorithme de régression*.
+Hello question « Quelle mesure ? » ou « Combien ? » prévoit une quantité. tooanswer il nous utilisons un *algorithme de régression*.
 
-Pour voir comment nous pouvons transformer ces questions, examinons la question suivante : « Quel article est le plus intéressant pour ce lecteur ? ». Cette question appelle une prédiction d’un seul choix parmi de nombreuses possibilités, en d’autres termes, « S’agit-il de A, B, C ou D ? ». - avec un algorithme de classification.
+toosee comment nous pouvons transformer, examinons question hello, « quel article est lecteur toothis plus intéressant de hello ? » Cette question appelle une prédiction d’un seul choix parmi de nombreuses possibilités, en d’autres termes, « S’agit-il de A, B, C ou D ? ». - avec un algorithme de classification.
 
-Mais il serait peut-être plus facile de répondre à cette question si elle était reformulée ainsi : « Quel intérêt présente chacun des articles de cette liste pour ce lecteur ? ». Vous pouvez maintenant attribuer un score à chaque article, et il sera ensuite facile d’identifier l’article dont le score est le plus élevé. Il s’agit là d’une reformulation d’une question de classification en question de régression (ou « Combien ? »).
+Mais, cette question peut être tooanswer plus facile si vous reformuler en tant que « le niveau d’intérêt est chaque récit sur ce lecteur de toothis liste ? » Maintenant vous pouvez donner à chaque article un score numérique, il s’agit de l’article tooidentify facile hello score le plus élevé Il s’agit d’un reformuler de question de classification hello dans une question de régression ou combien ?
 
 ![Reformulez votre question. Question de classification et question de régression.](./media/machine-learning-data-science-for-beginners-ask-a-question-you-can-answer-with-data/classification-question-vs-regression-question.png)
 
-La manière dont vous posez une question est une indication de l’algorithme qui peut vous donner une réponse.
+Comment vous poser qu'une question est un algorithme de toowhich indice peut vous donner une réponse.
 
-Vous constaterez que certaines familles d’algorithmes, telles que celles de notre exemple sur les articles, sont étroitement liées. Vous pouvez reformuler votre question de manière à utiliser l’algorithme qui vous donnera la réponse la plus utile.
+Vous constaterez que certaines familles d’algorithmes - comme hello ceux qui sont dans notre exemple de scénario de news - sont étroitement liés. Vous pouvez reformulez votre question toouse hello algorithme vous hello réponse plus utiles.
 
-Mais surtout, vous devez poser une question précise, à laquelle les données permettent de répondre. Sans oublier de vous assurer que vous disposez des données appropriées pour obtenir une réponse.
+Toutefois, comme la plus importante, poser cette question AIGUE - question hello que vous pouvez répondre à des données. Et vérifiez que vous avez hello bonnes données tooanswer il.
 
 Vous connaissez maintenant certains principes de base à observer pour poser une question à laquelle les données permettent de répondre.
 
-Nous vous invitons à consulter les autres vidéos de la série « Science des données pour les débutants » de Microsoft Azure Machine Learning.
+Être vraiment toocheck out hello autres vidéos de « Données scientifiques pour les débutants » à partir de Microsoft Azure Machine Learning.
 
 ## <a name="next-steps"></a>Étapes suivantes
 * [Menez une première expérience de science des données avec Machine Learning Studio](machine-learning-create-experiment.md)
-* [Consultez la présentation de Machine Learning sur Microsoft Azure](machine-learning-what-is-machine-learning.md)
+* [Obtenir une présentation tooMachine de formation sur Microsoft Azure](machine-learning-what-is-machine-learning.md)

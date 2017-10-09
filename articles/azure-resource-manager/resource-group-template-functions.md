@@ -1,6 +1,6 @@
 ---
-title: "Fonctions des modèles Resource Manager | Microsoft Docs"
-description: "Décrit les fonctions à utiliser dans un modèle Azure Resource Manager pour récupérer des valeurs, utiliser des chaînes et des valeurs numériques, et récupérer des informations sur le déploiement."
+title: "aaaResource fonctions de modèle Manager | Documents Microsoft"
+description: "Décrit les hello fonctions toouse une valeurs tooretrieve du modèle Azure Resource Manager, travailler avec des chaînes et des valeurs numériques et récupérer des informations de déploiement."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,20 +14,20 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/01/2017
 ms.author: tomfitz
-ms.openlocfilehash: 1324bed07e991e9d84cb6832afe78bdb2d3348fa
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: d1b2e68a33d75058f83d6972dadb33a6390d49b2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-resource-manager-template-functions"></a>Fonctions des modèles Azure Resource Manager
-Cette rubrique décrit toutes les fonctions que vous pouvez utiliser dans un modèle Azure Resource Manager.
+Cette rubrique décrit toutes les fonctions hello que vous pouvez utiliser dans un modèle Azure Resource Manager.
 
-Vous ajoutez des fonctions dans vos modèles en les plaçant entre crochets : `[` et `]`, respectivement. L’expression est évaluée lors du déploiement. Bien qu’écrit sous la forme d’un littéral de chaîne, le résultat de l’évaluation de l’expression peut être d’un type JSON différent, tel qu’un tableau, objet ou entier. Comme en JavaScript, les appels de fonction sont formatés comme suit : `functionName(arg1,arg2,arg3)`. Pour référencer des propriétés, vous utilisez les opérateurs point et [index].
+Vous ajoutez des fonctions dans vos modèles en les plaçant entre crochets : `[` et `]`, respectivement. expression de Hello est évaluée lors du déploiement. Écrite sous la forme d’un littéral de chaîne, résultat hello de l’évaluation d’expression de hello sont d’un autre type JSON, tel qu’un tableau, un objet ou un entier. Comme en JavaScript, les appels de fonction sont formatés comme suit : `functionName(arg1,arg2,arg3)`. Référencer des propriétés en utilisant des opérateurs de point et [index] hello.
 
 Une expression de modèle ne peut pas dépasser 24 576 caractères.
 
-Les fonctions des modèles et leurs paramètres ne respectent pas la casse. Par exemple, Resource Manager résout **variables('var1')** et **VARIABLES('VAR1')** de la même manière. Lors de l’évaluation, la fonction préserve la casse sauf si elle la modifie expressément (toUpper ou toLower, par exemple). Certains types de ressources peuvent avoir des exigences de casse, quelle que soit la manière dont les fonctions sont évaluées.
+Les fonctions des modèles et leurs paramètres ne respectent pas la casse. Par exemple, le Gestionnaire de ressources résout **variables('var1')** et **VARIABLES('VAR1')** comme hello identiques. Lors de l’évaluation, à moins que la fonction hello modifie expressément cas (par exemple, toUpper ou toLower), fonction hello préserve la casse de hello. Certains types de ressources peuvent avoir des exigences de casse, quelle que soit la manière dont les fonctions sont évaluées.
 
 <a id="array" />
 <a id="coalesce" />
@@ -87,7 +87,7 @@ Resource Manager fournit plusieurs fonctions pour effectuer des comparaisons dan
 <a id="variables" />
 
 ## <a name="deployment-value-functions"></a>Fonctions de valeur de déploiement
-Resource Manager offre les fonctions ci-après pour l’obtention de valeurs à partir des sections du modèle et de valeurs associées au déploiement :
+Gestionnaire de ressources fournit suivant de hello fonctionne pour l’obtention des valeurs à partir des sections du modèle de hello et valeurs connexes toohello déploiement :
 
 * [deployment](resource-group-template-functions-deployment.md#deployment)
 * [parameters](resource-group-template-functions-deployment.md#parameters)
@@ -105,7 +105,7 @@ Resource Manager offre les fonctions ci-après pour l’obtention de valeurs à 
 <a id="sub" />
 
 ## <a name="logical-functions"></a>Fonctions logiques
-Resource Manager fournit les fonctions suivantes pour vous permettre de travailler avec des conditions logiques :
+Gestionnaire de ressources fournit hello suivant des fonctions pour l’utilisation des conditions logiques :
 
 * [et](resource-group-template-functions-logical.md#and)
 * [bool](resource-group-template-functions-logical.md#bool)
@@ -114,7 +114,7 @@ Resource Manager fournit les fonctions suivantes pour vous permettre de travaill
 * [ou](resource-group-template-functions-logical.md#or)
 
 ## <a name="numeric-functions"></a>Fonctions numériques
-Resource Manager fournit les expressions ci-après pour travailler avec des entiers :
+Gestionnaire de ressources fournit hello suivant des fonctions permettant de travailler avec des entiers :
 
 * [ajouter](resource-group-template-functions-numeric.md#add)
 * [copyIndex](resource-group-template-functions-numeric.md#copyindex)
@@ -136,7 +136,7 @@ Resource Manager fournit les expressions ci-après pour travailler avec des enti
 <a id="subscription" />
 
 ## <a name="resource-functions"></a>Fonctions de ressource
-Resource Manager offre les fonctions ci-après pour obtenir des valeurs de ressource :
+Gestionnaire de ressources fournit hello suivant des fonctions pour obtenir des valeurs de ressource :
 
 * [listKeys and list{Value}](resource-group-template-functions-resource.md#listkeys)
 * [fournisseurs](resource-group-template-functions-resource.md#providers)
@@ -176,7 +176,7 @@ Resource Manager offre les fonctions ci-après pour obtenir des valeurs de resso
 <a id="uricomponenttostring" />
 
 ## <a name="string-functions"></a>Fonctions de chaîne
-Resource Manager fournit les fonctions ci-après pour travailler avec des chaînes de caractères :
+Gestionnaire de ressources fournit hello suivant des fonctions pour manipuler des chaînes :
 
 * [base64](resource-group-template-functions-string.md#base64)
 * [base64ToJson](resource-group-template-functions-string.md#base64tojson)
@@ -210,8 +210,8 @@ Resource Manager fournit les fonctions ci-après pour travailler avec des chaîn
 
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Pour obtenir une description des sections d’un modèle Azure Resource Manager, voir [Création de modèles Azure Resource Manager](resource-group-authoring-templates.md)
-* Pour fusionner plusieurs modèles, consultez [Utilisation de modèles liés avec Azure Resource Manager](resource-group-linked-templates.md)
-* Pour effectuer une itération un nombre de fois spécifié pendant la création d'un type de ressource, consultez [Création de plusieurs instances de ressources dans Azure Resource Manager](resource-group-create-multiple.md)
-* Pour savoir comment déployer le modèle que vous avez créé, consultez [Déploiement d’une application avec un modèle Azure Resource Manager](resource-group-template-deploy.md)
+* Pour obtenir une description des sections de hello dans un modèle Azure Resource Manager, consultez [les modèles de programmation Azure Resource Manager](resource-group-authoring-templates.md)
+* consultez de plusieurs modèles toomerge [à l’aide de modèles liés avec Azure Resource Manager](resource-group-linked-templates.md)
+* tooiterate un nombre spécifié de fois lors de la création d’un type de ressource, consultez [créer plusieurs instances de ressources dans le Gestionnaire de ressources Azure](resource-group-create-multiple.md)
+* toosee modèle de hello toodeploy que vous avez créé, voir [déployer une application avec le modèle Azure Resource Manager](resource-group-template-deploy.md)
 

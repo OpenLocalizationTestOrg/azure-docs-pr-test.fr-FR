@@ -1,6 +1,6 @@
 ---
-title: "Bien démarrer avec Azure Cordova | Microsoft Docs"
-description: "Création d’une application Cordova qui s’intègre avec Azure AD pour la connexion et appelle les API protégées par Azure AD en utilisant OAuth."
+title: aaaAzure AD Cordova prise en main | Documents Microsoft
+description: "Comment toobuild une application Cordova s’intègre à Azure AD pour la connexion et appelle les API de protégé par AD Azure à l’aide d’OAuth."
 services: active-directory
 documentationcenter: 
 author: vibronet
@@ -15,133 +15,133 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: vittorib
 ms.custom: aaddev
-ms.openlocfilehash: d9f53148787729d29a0a89cce1b8b2b83ba228f8
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 573ed638c2180c5231648bcb8c49ceb6f53296f1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="integrate-azure-ad-with-an-apache-cordova-app"></a>Intégration d’Azure AD avec une application Apache Cordova
 [!INCLUDE [active-directory-devquickstarts-switcher](../../../includes/active-directory-devquickstarts-switcher.md)]
 
 [!INCLUDE [active-directory-devguide](../../../includes/active-directory-devguide.md)]
 
-Apache Cordova permet de développer des applications HTML5/JavaScript exécutables sur des appareils mobiles en tant qu’applications natives à part entière. Avec Azure Active Directory (Azure AD), vous pouvez ajouter des fonctionnalités d’authentification d’entreprise à vos applications Cordova.
+Vous pouvez utiliser les applications Apache Cordova toodevelop HTML5/JavaScript pouvant s’exécuter sur des appareils mobiles en tant qu’applications natives à part entière. Avec Azure Active Directory (Azure AD), vous pouvez ajouter les applications Cordova tooyour Professionnel authentification fonctionnalités.
 
-Un plug-in Cordova encapsule des kits de développement logiciels (SDK) natifs Azure AD sur iOS, Android, Windows Store et Windows Phone. En utilisant ce plug-in, vous pouvez améliorer votre application pour qu’elle prenne en charge la connexion avec les comptes Windows Server Active Directory de vos utilisateurs, qu’elle puisse accéder aux API Office 365 et Azure, et même qu’elle contribue à protéger les appels à votre API web personnalisée.
+Un plug-in Cordova encapsule des kits de développement logiciels (SDK) natifs Azure AD sur iOS, Android, Windows Store et Windows Phone. À l’aide de plug-in, vous pouvez améliorer votre application toosupport connectez-vous avec les comptes de vos utilisateurs Active Directory Windows Server, obtenir accès tooOffice 365 ainsi que des API Azure et même aider à protéger les appels tooyour propre personnalisé API web.
 
-Dans ce didacticiel, nous allons utiliser le plug-in Apache Cordova pour la bibliothèque d’authentification Active Directory (ADAL) afin d’améliorer une application simple en ajoutant les fonctionnalités suivantes :
+Dans ce didacticiel, nous allons utiliser hello Apache Cordova plug-in pour Active Directory Authentication Library (ADAL) tooimprove une application simple en ajoutant hello suivant de fonctionnalités :
 
 * Avec quelques lignes de code seulement, authentifier un utilisateur et obtenir un jeton.
-* Utiliser ce jeton pour appeler l’API Graph afin d’interroger ce répertoire et d’afficher les résultats.  
-* Utiliser le cache de jetons ADAL pour limiter les invites d’authentification de l’utilisateur.
+* Utilisez ce tooquery de l’API Graph hello jeton tooinvoke ce répertoire et afficher les résultats de hello.  
+* Utiliser l’authentification toominimize cache de jeton ADAL hello demande utilisateur de hello.
 
-Pour apporter ces améliorations, vous devez :
+toomake ces améliorations, vous devez :
 
 1. inscrivez une application auprès d’Azure AD ;
-2. ajouter du code pour que votre application demande des jetons ;
-3. ajouter du code pour utiliser le jeton pour l’interrogation de l’API Graph et afficher les résultats ;
-4. créer le projet de déploiement Cordova avec toutes les plateformes à cibler, ajouter le plug-in Cordova ADAL, puis tester la solution dans des émulateurs.
+2. Ajoutez des jetons de code tooyour application toorequest.
+3. Ajouter un jeton hello toouse du code pour l’interrogation hello API Graph et afficher les résultats.
+4. Créer un projet de déploiement Cordova hello avec toutes les plateformes hello vous souhaitez tootarget, ajouter hello plug-in Cordova ADAL et tester des solutions de hello dans les émulateurs.
 
 ## <a name="prerequisites"></a>Composants requis
-Pour suivre ce didacticiel, vous avez besoin des éléments suivants :
+toocomplete ce didacticiel, vous devez :
 
 * Un client Azure AD où vous avez un compte disposant de droits de développement d’application.
-* Un environnement de développement configuré pour exécuter Apache Cordova.  
+* Un environnement de développement qui a configuré toouse Apache Cordova.  
 
-Si vous disposez déjà de ces éléments, passez directement à l’étape 1.
+Si vous les avez déjà configuré, passez directement toostep 1.
 
-Si vous n’avez pas de client Azure AD, suivez la [procédure permettant d’en obtenir un](active-directory-howto-tenant.md).
+Si vous n’avez pas un locataire Azure AD, utilisez hello [obtenir des instructions sur la façon de tooget un](active-directory-howto-tenant.md).
 
-Si Apache Cordova n’est pas configuré sur votre ordinateur, installez les éléments suivants :
+Si vous n’avez pas Apache Cordova sur votre ordinateur, installez des éléments suivants de hello :
 
 * [Git](http://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 * [Node.JS](https://nodejs.org/download/)
 * [Cordova CLI](https://cordova.apache.org/) (peut être installé facilement via le Gestionnaire de package NPM : `npm install -g cordova`)
 
-Les installations précédentes doivent en principe fonctionner aussi bien sur PC que sur Mac.
+Hello précédentes installations doit fonctionner sur hello PC et sur hello Mac.
 
 Chaque plateforme cible présente une configuration requise différente :
 
-* Pour générer et exécuter une application pour une tablette/un PC Windows ou Windows Phone :
+* toobuild et exécuter une application pour Tablet PC/PC Windows ou Windows Phone :
   * Installez [Visual Studio 2013 pour Windows Update 2 ou version ultérieure](http://www.visualstudio.com/downloads/download-visual-studio-vs#d-express-windows-8) (Express ou autre version) ou [Visual Studio 2015](https://www.visualstudio.com/downloads/download-visual-studio-vs#d-community).
 
-* Pour générer et exécuter une application pour iOS :
+* toobuild et exécuter une application pour iOS :
 
-  * Installez Xcode 6.x ou version ultérieure. Téléchargez-le à partir du [site Apple Developer](http://developer.apple.com/downloads) ou du [Mac App Store](http://itunes.apple.com/us/app/xcode/id497799835?mt=12).
-  * Installez [ios-sim](https://www.npmjs.org/package/ios-sim). Vous pouvez l’utiliser pour démarrer des applications iOS dans iOS Simulator à partir de la ligne de commande. (Vous pouvez l’installer facilement via le terminal : `npm install -g ios-sim`.)
-* Pour générer et exécuter une application pour Android :
+  * Installez Xcode 6.x ou version ultérieure. Téléchargez-le à partir de hello [site Apple Developer](http://developer.apple.com/downloads) ou hello [Mac App Store](http://itunes.apple.com/us/app/xcode/id497799835?mt=12).
+  * Installez [ios-sim](https://www.npmjs.org/package/ios-sim). Vous pouvez l’utiliser des applications iOS toostart dans iOS Simulator depuis la ligne de commande hello. (Vous pouvez l’installer facilement via hello Terminal Server : `npm install -g ios-sim`.)
+* toobuild et exécuter une application pour Android :
 
-  * Installez le [Kit de développement Java (JDK) 7](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html) ou ultérieur. Assurez-vous que la variable d’environnement `JAVA_HOME` est correctement définie en fonction du chemin d’installation du JDK (par exemple, C:\Program Files\Java\jdk1.7.0_75).
-  * Installez le [Kit de développement logiciel (SDK) Android](http://developer.android.com/sdk/installing/index.html?pkg=tools) et ajoutez l’emplacement `<android-sdk-location>\tools` (par exemple, C:\tools\Android\android-sdk\tools) pour votre variable d’environnement `PATH`.
-  * Ouvrez Android SDK Manager (par exemple, via le terminal : `android`) et installez :
-    * *Android 5.0.1 (API 21)* 
+  * Installez le [Kit de développement Java (JDK) 7](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html) ou ultérieur. Assurez-vous que `JAVA_HOME` (variable d’environnement) est correctement définie selon le chemin d’installation de JDK toohello (par exemple, C:\Program Files\Java\jdk1.7.0_75).
+  * Installer [du SDK Android](http://developer.android.com/sdk/installing/index.html?pkg=tools) et ajoutez hello `<android-sdk-location>\tools` emplacement (par exemple, C:\tools\Android\android-sdk\tools) tooyour `PATH` variable d’environnement.
+  * Ouvrez le Gestionnaire de SDK Android (via hello Terminal Server, par exemple : `android`) et l’installer :
+    * *Android 5.0.1 (API 21)*
     * *Android SDK Build Tools* version 19.1.0 ou ultérieure
     * *Android Support Repository* (modules complémentaires)
 
-  Le Kit de développement logiciel (SDK) Android ne fournit pas d’instance d’émulateur par défaut. Si vous souhaitez exécuter l’application Android sur un émulateur, créez une instance en exécutant `android avd` à partir du terminal, puis en sélectionnant **Create** (Créer). Nous recommandons un niveau d’API de 19 ou plus. Pour plus d’informations sur les options de création et l’émulateur Android, consultez [AVD Manager](http://developer.android.com/tools/help/avd-manager.html) sur le site Android.
+  Hello du SDK Android ne fournit pas une instance d’émulateur par défaut. En exécutant `android avd` de hello Terminal Server, puis en sélectionnant **créer**, si vous souhaitez toorun hello des applications Android sur un émulateur. Nous recommandons un niveau d’API de 19 ou plus. Pour plus d’informations sur les options de création et d’émulateur Android hello, consultez [Gestionnaire AVD](http://developer.android.com/tools/help/avd-manager.html) sur le site de Android hello.
 
-## <a name="step-1-register-an-application-with-azure-ad"></a>Étape 1 : Inscrire une application auprès d’Azure AD
-Cette étape est facultative. Ce didacticiel fournit des valeurs préconfigurées que vous pouvez utiliser pour voir l’exemple à l’œuvre sans effectuer d’approvisionnement dans votre propre client. Toutefois, nous vous recommandons d’effectuer cette étape et de vous familiariser avec le processus, car vous devrez y faire appel lorsque vous créerez vos propres applications.
+## <a name="step-1-register-an-application-with-azure-ad"></a>Étape 1 : Inscrire une application auprès d’Azure AD
+Cette étape est facultative. Ce didacticiel fournit des valeurs préconfigurés, que vous pouvez utiliser toosee hello exemple en action sans effectuer toute mise en service dans votre propre locataire. Toutefois, nous vous recommandons de réaliser cette étape et vous familiariser avec les processus hello, car elle sera nécessaire lorsque vous créez vos propres applications.
 
-Azure AD émet uniquement des jetons pour les applications connues. Avant de pouvoir utiliser Azure AD à partir de votre application, vous devez créer une entrée pour elle dans votre client. Pour inscrire une nouvelle application dans votre client :
+Azure AD émet tooonly jetons connu des applications. Avant de pouvoir utiliser Azure AD à partir de votre application, vous devez toocreate une entrée pour celle-ci dans votre client. tooregister une nouvelle application dans votre client :
 
-1. Connectez-vous au [portail Azure](https://portal.azure.com).
-2. Dans la barre supérieure, cliquez sur votre compte. Dans la liste **Répertoire**, choisissez le locataire Azure AD auprès duquel vous voulez inscrire votre application.
-3. Dans le volet gauche, cliquez sur **Plus de services**, puis sélectionnez **Azure Active Directory**.
+1. Connectez-vous à toohello [portail Azure](https://portal.azure.com).
+2. Sur la barre supérieure de hello, cliquez sur votre compte. Bonjour **répertoire** , choisissez locataire hello AD Azure où vous souhaitez tooregister votre application.
+3. Cliquez sur **plus Services** dans hello du volet gauche, puis sélectionnez **Azure Active Directory**.
 4. Cliquez sur **Inscriptions des applications**, puis sélectionnez **Ajouter**.
-5. Suivez les invites à l’écran et créez une **application cliente native**. (Bien que les applications Cordova soient basées sur le langage HTML, nous créons ici une application cliente native. L’option **Application cliente native** doit être sélectionnée, sinon l’application ne fonctionnera pas.)
-  * **Nom** décrit votre application pour les utilisateurs.
-  * **URI de redirection** correspond à l’URI utilisé pour renvoyer les jetons à votre application. Entrez **http://MyDirectorySearcherApp**.
+5. Suivez les invites hello et créer un **Application cliente Native**. (Bien que les applications Cordova soient basées sur le langage HTML, nous créons ici une application cliente native. Hello **Application cliente Native** doit être activée ou l’application hello ne fonctionne pas.)
+  * **Nom** décrit toousers de votre application.
+  * **URI de redirection** est hello URI qui a utilisé tooreturn jetons tooyour application. Entrez **http://MyDirectorySearcherApp**.
 
-Une fois l’inscription terminée, Azure AD affecte un ID d’application unique à votre application. Vous aurez besoin de cette valeur dans les sections suivantes. Vous le trouverez dans l’onglet Application de la nouvelle application.
+Une fois que vous avez terminé l’inscription, Azure AD assigne une application de tooyour ID unique d’application. Vous aurez besoin de cette valeur dans les sections suivantes hello. Vous pouvez le trouver sur l’onglet de l’application hello Hello l’application nouvellement créée.
 
-Pour exécuter `DirSearchClient Sample`, autorisez la nouvelle application à interroger l’API Azure AD Graph :
+toorun `DirSearchClient Sample`, accorder hello nouvellement créé application autorisation tooquery hello Azure AD Graph API :
 
-1. Dans la page **Paramètres**, sélectionnez **Autorisations requises**, puis **Ajouter**.  
-2. Pour l’application Azure Active Directory, sélectionnez l’API **Microsoft Graph**, puis ajoutez l’autorisation **Access the directory as the signed-in user** (Accéder au répertoire en tant qu’utilisateur connecté) sous **Autorisations déléguées**.  Cela permet à votre application d’interroger l’API Graph concernant les utilisateurs.
+1. À partir de hello **paramètres** page, sélectionnez **autorisations requises**, puis sélectionnez **ajouter**.  
+2. Pour hello application Azure Active Directory, sélectionnez **Microsoft Graph** comme hello API et ajouter hello **répertoire de hello Access en tant qu’utilisateur connecté hello** autorisation sous **délégués Autorisations**.  Cela permet à votre hello de tooquery d’application API Graph pour les utilisateurs.
 
-## <a name="step-2-clone-the-sample-app-repository"></a>Étape 2 : Cloner l’exemple de référentiel d’application
-À partir de votre environnement ou de la ligne de commande, tapez la commande suivante :
+## <a name="step-2-clone-hello-sample-app-repository"></a>Étape 2 : Cloner le référentiel d’application exemple hello
+À partir de votre environnement ou de la ligne de commande, tapez hello de commande suivante :
 
     git clone -b skeleton https://github.com/AzureADQuickStarts/NativeClient-MultiTarget-Cordova.git
 
-## <a name="step-3-create-the-cordova-app"></a>Étape 3 : Créer l’application Cordova
-Il existe plusieurs moyens de créer des applications Cordova. Dans ce didacticiel, nous allons utiliser l’interface de ligne de commande (CLI) Cordova.
+## <a name="step-3-create-hello-cordova-app"></a>Étape 3 : Créer l’application de Cordova hello
+Il existe plusieurs façons toocreate Cordova applications. Dans ce didacticiel, nous allons utiliser l’interface de ligne de commande de Cordova hello (CLI).
 
-1. À partir de votre environnement ou de la ligne de commande, tapez la commande suivante :
+1. À partir de votre environnement ou de la ligne de commande, tapez hello de commande suivante :
 
         cordova create DirSearchClient
 
-   Cette commande permet de créer la structure de dossiers et la structure du projet Cordova.
+   Cette commande crée la structure de dossiers hello et génération de modèles automatique pour le projet de Cordova hello.
 
-2. Accédez au nouveau dossier DirSearchClient :
+2. Déplacer le dossier DirSearchClient toohello :
 
         cd .\DirSearchClient
 
-3. Copiez le contenu du projet de démarrage dans le sous-dossier www en utilisant un gestionnaire de fichiers ou la commande suivante dans votre interpréteur de commandes :
+3. Copier le contenu de hello du projet de démarrage hello dans le sous-dossier de www hello à l’aide d’un gestionnaire de fichiers ou le hello commande dans votre interpréteur de commandes suivante :
 
   * Windows : `xcopy ..\NativeClient-MultiTarget-Cordova\DirSearchClient www /E /Y`
   * Mac : `cp -r  ../NativeClient-MultiTarget-Cordova/DirSearchClient/* www`
 
-4. Ajoutez le plug-in d’autorisation (whitelist). Celui-ci est nécessaire pour appeler l’API Graph.
+4. Ajouter un plug-in de la liste d’autorisation hello. Cela est nécessaire pour l’appel d’API Graph de hello.
 
         cordova plugin add cordova-plugin-whitelist
 
-5. Ajoutez toutes les plateformes que vous souhaitez prendre en charge. Pour avoir un exemple fonctionnel, vous devez exécuter au moins une des commandes ci-dessous. Notez que vous ne pouvez pas émuler iOS sur Windows ou Windows sur un Mac.
+5. Ajoutez toutes les plateformes hello que vous souhaitez toosupport. toohave un exemple fonctionnel, vous devez tooexecute au moins l’un de hello suivant les commandes. Notez que vous ne seront pas être iOS en mesure de tooemulate sur Windows ou émuler Windows sur un Mac.
 
         cordova platform add android
         cordova platform add ios
         cordova platform add windows
 
-6. Ajoutez la bibliothèque ADAL pour le plug-in Cordova dans votre projet :
+6. Ajoutez hello ADAL pour le projet de tooyour plug-in Cordova :
 
         cordova plugin add cordova-plugin-ms-adal
 
-## <a name="step-4-add-code-to-authenticate-users-and-obtain-tokens-from-azure-ad"></a>Étape 4 : Ajouter le code pour authentifier les utilisateurs et obtenir des jetons d’Azure AD
-L’application que vous développez dans ce didacticiel fournira une fonctionnalité simple de recherche dans l’annuaire. L’utilisateur pourra taper l’alias de n’importe quel utilisateur de l’annuaire pour visualiser certains attributs de base. Le projet de démarrage contient la définition de l’interface utilisateur de base de l’application (dans www/index.html) et la génération de modèles automatique qui associe les cycles d’événements des applications, les liaisons d’interface utilisateur et la logique d’affichage des résultats (dans www/js/index.js). Vous n’avez plus qu’à ajouter la logique d’implémentation des tâches d’identité.
+## <a name="step-4-add-code-tooauthenticate-users-and-obtain-tokens-from-azure-ad"></a>Étape 4 : Ajouter des utilisateurs tooauthenticate de code et obtenir des jetons d’Azure AD
+application Hello que vous développez dans ce didacticiel fournit une fonctionnalité de recherche de répertoire simple. Hello utilisateur peut taper alias hello de n’importe quel utilisateur dans le répertoire de hello et visualiser certains attributs de base. projet de démarrage Hello contient la définition hello d’interface utilisateur de base de hello de l’application hello (dans www/index.html) et la structure hello qui relie des événements d’application de base, les liaisons d’interface utilisateur, cycles et les résultats de logique d’affichage (dans www/js/index.js). Hello seule tâche pour vous est tooadd hello logique qui implémente les tâches d’identité.
 
-La première chose à faire dans votre code est d’introduire les valeurs de protocole utilisées par Azure AD pour identifier votre application et les ressources que vous ciblez. Ces valeurs sont ensuite utilisées pour créer les demandes de jeton. Insérez l’extrait de code suivant en haut du fichier index.js :
+Hello première chose toodo dans votre code est de présenter les valeurs de protocole hello Azure AD utilise pour identifier votre application et hello ressources que vous ciblez. Ces valeurs seront ultérieurement sur les demandes de jeton de hello tooconstruct utilisé. Insérez hello suivant extrait haut hello du fichier de index.js hello :
 
 ```javascript
 var authority = "https://login.microsoftonline.com/common",
@@ -151,15 +151,15 @@ var authority = "https://login.microsoftonline.com/common",
     graphApiVersion = "2013-11-08";
 ```
 
-Les valeurs `redirectUri` et `clientId` doivent correspondre à celles décrivant votre application dans Azure AD. Vous pouvez les trouver dans l’onglet **Configurer** du portail Azure, comme décrit à l’étape 1 plus haut dans ce didacticiel.
+Hello `redirectUri` et `clientId` valeurs doivent correspondre les valeurs hello qui décrivent votre application dans Azure AD. Vous pouvez trouver ceux de hello **configurer** onglet hello portail Azure, comme décrit à l’étape 1, plus haut dans ce didacticiel.
 
 > [!NOTE]
-> Si vous avez choisi de ne pas inscrire une nouvelle application dans votre propre client, vous pouvez simplement coller les valeurs préconfigurées sans les modifier. Vous pourrez alors voir l’exemple exécuté. Cependant, notez que vous devez toujours créer votre propre entrée pour vos applications de production.
+> Si vous avez choisi pour ne pas l’inscription d’une nouvelle application dans votre propre client, vous pouvez coller simplement les valeurs hello préconfiguré en l’état. Vous pouvez ensuite voir en cours d’exécution exemple hello, bien que vous devez toujours créer votre propre entrée pour vos applications sont destinées à la production.
 
-Ensuite, ajoutez le code de demande de jeton. Insérez l’extrait de code suivant entre les définitions `search` et `renderData` :
+Ensuite, ajoutez le code de demande de jeton hello. Insérer hello suivant extrait entre hello `search` et `renderData` définitions :
 
 ```javascript
-    // Shows the user authentication dialog box if required
+    // Shows hello user authentication dialog box if required
     authenticate: function (authCompletedCallback) {
 
         app.context = new Microsoft.ADAL.AuthenticationContext(authority);
@@ -168,13 +168,13 @@ Ensuite, ajoutez le code de demande de jeton. Insérez l’extrait de code suiva
                 authority = items[0].authority;
                 app.context = new Microsoft.ADAL.AuthenticationContext(authority);
             }
-            // Attempt to authorize the user silently
+            // Attempt tooauthorize hello user silently
             app.context.acquireTokenSilentAsync(resourceUri, clientId)
             .then(authCompletedCallback, function () {
-                // We require user credentials, so this triggers the authentication dialog box
+                // We require user credentials, so this triggers hello authentication dialog box
                 app.context.acquireTokenAsync(resourceUri, clientId, redirectUri)
                 .then(authCompletedCallback, function (err) {
-                    app.error("Failed to authenticate: " + err);
+                    app.error("Failed tooauthenticate: " + err);
                 });
             });
         });
@@ -182,9 +182,9 @@ Ensuite, ajoutez le code de demande de jeton. Insérez l’extrait de code suiva
     },
 ```
 Examinons cette fonction en la décomposant en deux parties principales.
-Cet exemple est conçu pour fonctionner avec n’importe quel client. Il utilise le point de terminaison « /common », ce qui permet à l’utilisateur d’entrer n’importe quel compte au moment de l’authentification et de rediriger la demande au client auquel elle appartient.
+Cet exemple est conçu toowork avec n’importe quel client, comme toobeing opposé liée tooa d'entre eux. Il utilise hello « / common » point de terminaison, qui permet de n’importe quel compte hello utilisateur tooenter au moment de l’authentification et dirige les client de toohello hello demande à laquelle il appartient.
 
-La première partie de la méthode inspecte le cache de la bibliothèque ADAL pour voir si un jeton y est déjà stocké. Si c’est le cas, elle utilise les clients d’où le jeton provient pour réinitialiser la bibliothèque ADAL. Cela est nécessaire pour éviter les invites supplémentaires, car l’utilisation de « /common » génère toujours une invite demandant à l’utilisateur d’entrer un nouveau compte.
+La première partie de la méthode hello inspecte hello cache ADAL toosee si un jeton est déjà stocké. Dans ce cas, méthode hello utilise les locataires hello d'où provenance le jeton de hello pour la réinitialisation de la bibliothèque ADAL. Cela est nécessaire tooavoid invites supplémentaires, car hello utilisation de « / courantes » toujours demandant hello utilisateur tooenter un nouveau compte.
 
 ```javascript
         app.context = new Microsoft.ADAL.AuthenticationContext(authority);
@@ -194,23 +194,23 @@ La première partie de la méthode inspecte le cache de la bibliothèque ADAL po
                 app.context = new Microsoft.ADAL.AuthenticationContext(authority);
             }
 ```
-La deuxième partie de la méthode effectue la demande de jeton appropriée. La méthode `acquireTokenSilentAsync` demande à la bibliothèque ADAL de renvoyer un jeton pour la ressource spécifiée sans afficher d’expérience utilisateur. Cela peut se produire si le cache a déjà un jeton d’accès stocké approprié ou si un jeton d’actualisation peut être utilisé pour obtenir un nouveau jeton d’accès sans afficher d’invite. Si cette tentative échoue, nous revenons à `acquireTokenAsync`, qui affichera une invite pour demander à l’utilisateur de s’authentifier.
+Hello deuxième partie de méthode hello effectue la demande de jeton correcte hello. Hello `acquireTokenSilentAsync` méthode demande tooreturn ADAL un jeton hello spécifié ressource sans affichage de n’importe quel UX. Cela peut se produire si le cache de hello a déjà un jeton d’accès stocké, ou si un jeton d’actualisation peut être utilisé tooget un nouveau jeton d’accès sans affichage d’une invite. Si cette tentative échoue, nous revenir `acquireTokenAsync`--ce qui invite visiblement hello utilisateur tooauthenticate.
 
 ```javascript
-            // Attempt to authorize the user silently
+            // Attempt tooauthorize hello user silently
             app.context.acquireTokenSilentAsync(resourceUri, clientId)
             .then(authCompletedCallback, function () {
-                // We require user credentials, so this triggers the authentication dialog box
+                // We require user credentials, so this triggers hello authentication dialog box
                 app.context.acquireTokenAsync(resourceUri, clientId, redirectUri)
                 .then(authCompletedCallback, function (err) {
-                    app.error("Failed to authenticate: " + err);
+                    app.error("Failed tooauthenticate: " + err);
                 });
             });
 ```
-Maintenant que nous avons le jeton, nous pouvons enfin appeler l’API Graph et effectuer la requête de recherche souhaitée. Insérez l’extrait de code suivant en dessous de la définition `authenticate` :
+Maintenant que nous avons le jeton de hello, nous pouvons enfin appeler hello API Graph et d’effectuer la requête de recherche hello que nous voulons. Insérer hello suivant extrait de code ci-dessous hello `authenticate` définition :
 
 ```javascript
-// Makes an API call to receive the user list
+// Makes an API call tooreceive hello user list
     requestData: function (authResult, searchText) {
         var req = new XMLHttpRequest();
         var url = resourceUri + "/" + authResult.tenantId + "/users?api-version=" + graphApiVersion;
@@ -234,60 +234,60 @@ Maintenant que nous avons le jeton, nous pouvons enfin appeler l’API Graph et 
     },
 
 ```
-Les fichiers de départ fournissaient une expérience utilisateur simple pour la saisie de l’alias d’un utilisateur dans une zone de texte. Cette méthode utilise cette valeur pour construire une requête, l’associer au jeton d’accès, l’envoyer à Microsoft Graph et analyser les résultats. La méthode `renderData`, déjà présente dans le fichier de départ, s’occupe de visualiser les résultats.
+fichiers de point de départ Hello fourni une expérience utilisateur simple pour l’entrée d’un alias de l’utilisateur dans une zone de texte. Cette méthode utilise la valeur tooconstruct une requête, combiner avec le jeton d’accès hello, envoyer tooMicrosoft graphique et analyser les résultats hello. Hello `renderData` (méthode), déjà présente dans le fichier de point de départ de hello, prend en charge de visualisation des résultats de hello.
 
-## <a name="step-5-run-the-app"></a>Étape 5 : Exécuter l’application
-Votre application est maintenant prête à être exécutée. Son fonctionnement est simple : lorsque l’application démarre, entrez l’alias de l’utilisateur que vous souhaitez rechercher, puis cliquez sur le bouton. Vous êtes invité à vous authentifier. Une fois l’authentification et la recherche réussies, les attributs de l’utilisateur recherché s’affichent.
+## <a name="step-5-run-hello-app"></a>Étape 5 : Exécuter l’application hello
+Votre application est maintenant prête toorun. Il fonctionne est simple : au démarrage de l’application hello, entrez l’alias hello de hello utilisateur toolook des, puis cliquez sur le bouton de hello. Vous êtes invité à vous authentifier. Lors de l’authentification réussie et la recherche réussit, les attributs hello de hello recherché utilisateur sont affichés.
 
-Les exécutions suivantes effectuent la recherche sans afficher d’invite, grâce à la présence dans le cache du jeton obtenu précédemment.
+Les exécutions suivantes effectuera hello recherche sans affichage d’une invite, grâce présence toohello Hello précédemment acquis jeton dans le cache.
 
-Les étapes concrètes pour l’exécution de l’application varient selon la plateforme.
+étapes de concrète Hello pour exécuter l’application hello varient selon la plateforme.
 
 ### <a name="windows-10"></a>Windows 10
    Tablette/PC : `cordova run windows --archs=x64 -- --appx=uap`
 
-   Mobile (nécessite un appareil Windows 10 Mobile connecté à un PC) : `cordova run windows --archs=arm -- --appx=uap --phone`
+   Mobile (nécessite un tooa de périphérique connecté PC Windows 10 Mobile) :`cordova run windows --archs=arm -- --appx=uap --phone`
 
    > [!NOTE]
-   > Lors de la première exécution, vous pouvez être invité à vous connecter pour obtenir une licence de développeur. Pour plus d’informations, consultez [Obtenir une licence de développeur](https://msdn.microsoft.com/library/windows/apps/hh974578.aspx).
+   > Au cours de hello exécutez d’abord, vous pouvez être invité toosign dans une licence de développeur. Pour plus d’informations, consultez [Obtenir une licence de développeur](https://msdn.microsoft.com/library/windows/apps/hh974578.aspx).
 
 ### <a name="windows-81-tabletpc"></a>Tablette/PC Windows 8.1
    `cordova run windows`
 
    > [!NOTE]
-   > Lors de la première exécution, vous pouvez être invité à vous connecter pour obtenir une licence de développeur. Pour plus d’informations, consultez [Obtenir une licence de développeur](https://msdn.microsoft.com/library/windows/apps/hh974578.aspx).
+   > Au cours de hello exécutez d’abord, vous pouvez être invité toosign dans une licence de développeur. Pour plus d’informations, consultez [Obtenir une licence de développeur](https://msdn.microsoft.com/library/windows/apps/hh974578.aspx).
 
 ### <a name="windows-phone-81"></a>Windows Phone 8.1
-   Pour une exécution sur un appareil connecté : `cordova run windows --device -- --phone`
+   toorun sur un appareil connecté :`cordova run windows --device -- --phone`
 
-   Pour une exécution sur l’émulateur par défaut : `cordova emulate windows -- --phone`
+   toorun sur l’émulateur par défaut de hello :`cordova emulate windows -- --phone`
 
-   Utilisez `cordova run windows --list -- --phone` pour voir toutes les cibles disponibles et `cordova run windows --target=<target_name> -- --phone` pour exécuter l’application sur un appareil ou un émulateur spécifique (par exemple, `cordova run windows --target="Emulator 8.1 720P 4.7 inch" -- --phone`).
+   Utilisez `cordova run windows --list -- --phone` toosee toutes les cibles disponibles et `cordova run windows --target=<target_name> -- --phone` application hello de toorun sur un émulateur ou un périphérique spécifique (par exemple, `cordova run windows --target="Emulator 8.1 720P 4.7 inch" -- --phone`).
 
 ### <a name="android"></a>Android
-   Pour une exécution sur un appareil connecté : `cordova run android --device`
+   toorun sur un appareil connecté :`cordova run android --device`
 
-   Pour une exécution sur l’émulateur par défaut : `cordova emulate android`
+   toorun sur l’émulateur par défaut de hello :`cordova emulate android`
 
-   Assurez-vous que vous avez créé une instance d’émulateur à l’aide d’AVD Manager, comme expliqué plus haut dans la section Composants requis.
+   Assurez-vous que vous avez créé une instance de l’émulateur à l’aide du gestionnaire AVD, comme décrit précédemment dans la section « Conditions préalables » de hello.
 
-   Utilisez `cordova run android --list` pour voir toutes les cibles disponibles et `cordova run android --target=<target_name>` pour exécuter l’application sur un appareil ou un émulateur spécifique (par exemple, `cordova run android --target="Nexus4_emulator"`).
+   Utilisez `cordova run android --list` toosee toutes les cibles disponibles et `cordova run android --target=<target_name>` application hello de toorun sur un émulateur ou un périphérique spécifique (par exemple, `cordova run android --target="Nexus4_emulator"`).
 
 ### <a name="ios"></a>iOS
-   Pour une exécution sur un appareil connecté : `cordova run ios --device`
+   toorun sur un appareil connecté :`cordova run ios --device`
 
-   Pour une exécution sur l’émulateur par défaut : `cordova emulate ios`
+   toorun sur l’émulateur par défaut de hello :`cordova emulate ios`
 
    > [!NOTE]
-   > Pour une exécution sur l’émulateur, assurez-vous que vous avez installé le package `ios-sim`. Pour plus d’informations, consultez la section Composants requis.
+   > Assurez-vous que vous avez hello `ios-sim` toorun package installé sur l’émulateur de hello. Pour plus d’informations, consultez hello « conditions préalables » section.
 
-    Use `cordova run ios --list` to see all available targets and `cordova run ios --target=<target_name>` to run the application on specific device or emulator (for example, `cordova run android --target="iPhone-6"`).
+    Use `cordova run ios --list` toosee all available targets and `cordova run ios --target=<target_name>` toorun hello application on specific device or emulator (for example, `cordova run android --target="iPhone-6"`).
 
-    Use `cordova run --help` to see additional build and run options.
+    Use `cordova run --help` toosee additional build and run options.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Pour référence, l’exemple terminé (sans vos valeurs de configuration) est disponible dans [GitHub](https://github.com/AzureADQuickStarts/NativeClient-MultiTarget-Cordova/tree/complete/DirSearchClient).
+Pour référence, l’exemple hello terminée (sans les valeurs de configuration) est disponible dans [GitHub](https://github.com/AzureADQuickStarts/NativeClient-MultiTarget-Cordova/tree/complete/DirSearchClient).
 
-Vous pouvez maintenant passer à des scénarios plus avancés (et plus intéressants). Par exemple : [Sécurisation d’une API web Node.js avec Azure AD](active-directory-devquickstarts-webapi-nodejs.md).
+Vous pouvez maintenant les scénarios de transfert sur toomore avancé (et plus intéressantes). Vous souhaiterez peut-être tootry : [sécuriser une API Web de Node.js avec Azure AD](active-directory-devquickstarts-webapi-nodejs.md).
 
 [!INCLUDE [active-directory-devquickstarts-additional-resources](../../../includes/active-directory-devquickstarts-additional-resources.md)]

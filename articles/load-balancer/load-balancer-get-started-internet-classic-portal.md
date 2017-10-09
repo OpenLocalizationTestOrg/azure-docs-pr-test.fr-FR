@@ -1,6 +1,6 @@
 ---
-title: "Créer un équilibrage de charge accessible sur Internet à l’aide du Portail Azure Classic | Microsoft Docs"
-description: "Découvrez comment créer un équilibreur de charge accessible sur Internet dans un modèle de déploiement classique à l’aide du portail Azure Classic."
+title: "équilibrage de charge aaaCreate une côté Internet - portail Azure classic | Documents Microsoft"
+description: "Découvrez comment toocreate un équilibrage de charge exposés à Internet à l’aide de modèle de déploiement classique hello portail Azure classic"
 services: load-balancer
 documentationcenter: na
 author: kumudd
@@ -15,50 +15,50 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: kumud
-ms.openlocfilehash: a022154f5eca6de2d2dbfc1b9aa30d2ea0a7d650
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 27b0d5af6e7b493fa94a9dfbfa260483ae95a2fb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-creating-an-internet-facing-load-balancer-classic-in-the-azure-classic-portal"></a>Création d’un équilibreur de charge accessible sur Internet (classique) dans le portail Azure Classic
+# <a name="get-started-creating-an-internet-facing-load-balancer-classic-in-hello-azure-classic-portal"></a>Commencer à créer un Internet faisant face à l’équilibrage de charge (classiques) Bonjour portail Azure classic
 
 > [!div class="op_single_selector"]
-> * [Portail Azure Classic](../load-balancer/load-balancer-get-started-internet-classic-portal.md)
+> * [portail Azure Classic](../load-balancer/load-balancer-get-started-internet-classic-portal.md)
 > * [PowerShell](../load-balancer/load-balancer-get-started-internet-classic-ps.md)
 > * [Interface de ligne de commande Azure](../load-balancer/load-balancer-get-started-internet-classic-cli.md)
-> * [Services cloud Azure](../load-balancer/load-balancer-get-started-internet-classic-cloud.md)
+> * [Azure Cloud Services](../load-balancer/load-balancer-get-started-internet-classic-cloud.md)
 
 [!INCLUDE [load-balancer-get-started-internet-intro-include.md](../../includes/load-balancer-get-started-internet-intro-include.md)]
 
 > [!IMPORTANT]
-> Avant d’utiliser des ressources Azure, il est important de comprendre qu’Azure dispose actuellement de deux modèles de déploiement : Azure Resource Manager et classique. Veillez à bien comprendre les [modèles et outils de déploiement](../azure-classic-rm.md) avant d’utiliser une ressource Azure. Pour consulter la documentation relative aux différents outils, cliquez sur les onglets situés en haut de cet article. Cet article traite du modèle de déploiement classique. Vous pouvez également [découvrir comment créer un équilibreur de charge accessible sur Internet à l’aide d’Azure Resource Manager](load-balancer-get-started-internet-arm-ps.md).
+> Avant d’utiliser des ressources Azure, il est important toounderstand que Azure dispose actuellement de deux modèles de déploiement : le Gestionnaire de ressources Azure et classique. Veillez à bien comprendre les [modèles et outils de déploiement](../azure-classic-rm.md) avant d’utiliser une ressource Azure. Vous pouvez afficher la documentation hello pour différents outils en cliquant sur les onglets hello haut hello de cet article. Cet article décrit le modèle de déploiement classique hello. Vous pouvez également [apprendre comment toocreate une connecté à Internet l’équilibrage de charge à l’aide du Gestionnaire de ressources Azure](load-balancer-get-started-internet-arm-ps.md).
 
 [!INCLUDE [load-balancer-get-started-internet-scenario-include.md](../../includes/load-balancer-get-started-internet-scenario-include.md)]
 
 ## <a name="set-up-an-internet-facing-load-balancer-for-virtual-machines"></a>Configurer un équilibrage de charge accessible sur Internet pour les machines virtuelles
 
-Afin d'équilibrer le trafic réseau à partir d'Internet sur les machines virtuelles d'un service cloud, vous devez créer un jeu d'équilibrage de la charge. Cette procédure suppose que vous avez déjà créé les machines virtuelles et qu’elles sont toutes dans le même service cloud.
+Dans l’ordre tooload équilibrer le trafic réseau à partir de hello Internet entre les machines virtuelles de hello d’un service cloud, vous devez créer un jeu d’équilibrage de charge. Cette procédure suppose que vous avez déjà créé des machines virtuelles de hello et qu’ils sont tous dans hello même service cloud.
 
-**Pour configurer un ensemble d'équilibrage de charge interne pour les machines virtuelles**
+**tooconfigure un jeu d’équilibrage de la charge pour les machines virtuelles**
 
-1. Dans le portail Azure Classic, cliquez sur **Machines virtuelles**, puis sur le nom d’une machine virtuelle du jeu d’équilibrage de la charge.
+1. Bonjour portail Azure classic, cliquez sur **virtuels**, puis cliquez sur nom hello d’un ordinateur virtuel dans le jeu d’équilibrage de charge hello.
 2. Cliquez sur **Points de terminaison**, puis sur **Ajouter**.
-3. Sur la page **Ajouter un point de terminaison à une machine virtuelle** , cliquez sur la flèche droite.
-4. Dans la page **Spécifier les détails du point de terminaison** :
+3. Sur hello **ajouter un ordinateur virtuel de tooa point de terminaison** , cliquez sur la flèche vers la droite hello.
+4. Sur hello **spécifier les détails de hello du point de terminaison hello** page :
 
-   * Dans **Nom**, saisissez le nom du point de terminaison ou sélectionnez-en un dans la liste des points de terminaison prédéfinis pour les protocoles communs.
-   * Dans **Protocole**, sélectionnez le protocole requis, TCP ou UDP, pour ce type de point de terminaison.
-   * Dans **Port public et Port privé**, entrez les numéros de port dont se servira la machine virtuelle. Vous pouvez utiliser le port privé et des règles de pare-feu sur la machine virtuelle pour rediriger le trafic de façon pertinente pour votre application. Le port privé et le port public peuvent être identiques. Par exemple, pour un point de terminaison pour le trafic Web (HTTP), vous pouvez attribuer le port 80 comme port public ou privé.
+   * Dans **nom**, tapez un nom pour le point de terminaison hello ou sélectionnez nom de hello dans la liste hello des points de terminaison prédéfinis pour les protocoles communs.
+   * Dans **protocole**, sélectionnez le protocole hello requis par type hello du point de terminaison, TCP ou UDP, en fonction des besoins.
+   * Dans **les ports Public et privé**, tapez les numéros de port hello souhaité hello toouse de machine virtuelle, en fonction des besoins. Vous pouvez utiliser un port privé hello et les règles de pare-feu sur le trafic tooredirect de machine virtuelle hello d’une manière qui convient à votre application. un port privé Hello peut être hello identique au port public de hello. Par exemple, pour un point de terminaison pour le trafic web (HTTP), vous pouvez affecter 80 tooboth hello publiques et privées voies.
 
-5. Sélectionnez **Créer un jeu d'équilibrage de la charge**, puis cliquez sur la flèche vers la droite.
-6. Sur la page **Configurer le jeu d'équilibrage de la charge** , indiquez le nom du jeu d'équilibrage de charge et attribuez les valeurs correspondant au comportement de sonde de l'équilibrage de charge Azure. L'équilibrage de la charge utilise des sondes pour déterminer si les machines virtuelles du jeu d'équilibrage de la charge sont en mesure de recevoir le trafic entrant.
-7. Cliquez sur la coche pour créer le point de terminaison à charge équilibrée. **Oui** s’affiche dans la colonne **Nom du jeu d’équilibrage de la charge** de la page **Points de terminaison** de la machine virtuelle.
-8. Dans le portail, cliquez sur **Machines virtuelles**, sur le nom d’une machine virtuelle supplémentaire du jeu d’équilibrage de la charge, sur **Points de terminaison**, puis sur **Ajouter**.
-9. Sur la page **Ajouter un point de terminaison à la machine virtuelle**, cliquez sur **Ajouter un point de terminaison à un jeu d’équilibrage de la charge existant**, sélectionnez le nom du jeu d’équilibrage de la charge, puis cliquez sur la flèche vers la droite.
-10. Sur la page **Spécifier les détails du point de terminaison** , tapez le nom du point de terminaison, puis cliquez sur la coche.
+5. Sélectionnez **créer un jeu d’équilibrage de la charge**, puis cliquez sur la flèche vers la droite hello.
+6. Sur hello **configurer le jeu d’équilibrage de charge hello** page, tapez un nom pour le jeu d’équilibrage de charge hello, puis assigner des valeurs hello pour le comportement de sonde de hello équilibrage de charge Azure. Hello équilibreur de charge utilise des sondes toodetermine si virtuels hello dans le jeu d’équilibrage de charge hello sont tooreceive disponibles du trafic entrant.
+7. Cliquez sur hello coche toocreate hello équilibrée point de terminaison. Vous verrez **Oui** Bonjour **nom de jeu d’équilibrage de charge** colonne Hello **points de terminaison** page pour la machine virtuelle de hello.
+8. Dans le portail de hello, cliquez sur **virtuels**, cliquez sur le nom hello d’un ordinateur virtuel supplémentaire dans le jeu d’équilibrage de charge hello **points de terminaison**, puis cliquez sur **ajouter**.
+9. Sur hello **ajouter un ordinateur virtuel de tooa point de terminaison** , cliquez sur **ajouter le jeu d’équilibrage de charge existant point de terminaison tooan**, sélectionnez nom hello du jeu d’équilibrage de charge hello, puis cliquez sur la flèche vers la droite hello.
+10. Sur hello **spécifier les détails de hello du point de terminaison hello** page, tapez un nom pour le point de terminaison hello, puis cliquez sur la case à cocher hello.
 
-Pour les machines virtuelles supplémentaires dans le jeu d’équilibrage de la charge, répétez les étapes 8 à 10.
+Pour hello autres machines virtuelles dans le jeu d’équilibrage de charge hello, répétez les étapes 8 à 10.
 
 ## <a name="next-steps"></a>Étapes suivantes
 

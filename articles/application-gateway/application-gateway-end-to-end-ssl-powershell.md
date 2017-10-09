@@ -1,6 +1,6 @@
 ---
-title: "Configuration du chiffrement SSL de bout en bout avec Azure Application Gateway | Microsoft Docs"
-description: "Cet article explique comment configurer le chiffrement SSL de bout en bout avec la passerelle Application Gateway à l’aide d’Azure Resource Manager PowerShell"
+title: "aaaConfigure fin tooend SSL avec la passerelle d’Application Azure | Documents Microsoft"
+description: "Cet article décrit comment tooconfigure fin tooend SSL avec la passerelle d’Application à l’aide de PowerShell du Gestionnaire de ressources Azure"
 services: application-gateway
 documentationcenter: na
 author: georgewallace
@@ -14,65 +14,65 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/19/2017
 ms.author: gwallace
-ms.openlocfilehash: 6d969d6a0c649c263e1d5bb99bdbceec484cb9a3
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 7c280478e143d309e7665219441cbee8c81d9a80
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="configure-end-to-end-ssl-with-application-gateway-using-powershell"></a>Configuration du chiffrement SSL de bout en bout avec Application Gateway à l’aide de PowerShell
+# <a name="configure-end-tooend-ssl-with-application-gateway-using-powershell"></a>Configurer fin tooend SSL avec la passerelle d’Application à l’aide de PowerShell
 
 ## <a name="overview"></a>Vue d'ensemble
 
-La passerelle Application Gateway prend en charge le chiffrement de bout en bout du trafic. Pour cela, la passerelle Application Gateway arrête la connexion SSL au niveau de la passerelle d’application. La passerelle applique ensuite les règles de routage au trafic, chiffre à nouveau le paquet puis transfère le paquet au serveur principal approprié selon les règles de routage définies. Toute réponse du serveur web passe par le même processus vers l’utilisateur final.
+Prend en charge l’application passerelle fin tooend le chiffrement du trafic. Pour cela, passerelle d’application termine la connexion SSL de hello au niveau de la passerelle d’application hello. passerelle de Hello applique ensuite des règles de routage hello toohello trafic, rechiffre les paquets hello et transfère hello principal paquet toohello approprié en fonction des règles de routage hello définis. Une réponse de serveur web de hello traverse hello même processus utilisateur toohello précédent.
 
-La passerelle Application Gateway prend également en charge la définition d’options SSL personnalisées. Application Gateway prend en charge la désactivation des versions suivantes du protocole : **TLSv1.0**, **TLSv1.1** et **TLSv1.2** ; elle permet aussi de définir les suites de chiffrement à utiliser et l’ordre de préférence.  Pour en savoir plus sur les options SSL configurables, consultez cette [vue d’ensemble de la stratégie SSL](application-gateway-SSL-policy-overview.md).
+La passerelle Application Gateway prend également en charge la définition d’options SSL personnalisées. Passerelle d’application prend en charge la désactivation hello suivant la version de protocole ; **TLSv1.0**, **TLSv1.1**, et **TLSv1.2** ainsi définir hello suites toouse et hello l’ordre de préférence de chiffrement.  toolearn savoir plus sur les options SSL configurables, visitez [vue d’ensemble de la stratégie SSL](application-gateway-SSL-policy-overview.md).
 
 > [!NOTE]
-> SSL 2.0 et SSL 3.0 sont désactivés par défaut et ne peuvent pas être activés. Considérés comme non sécurisés, ils ne peuvent pas être utilisés avec Application Gateway.
+> SSL 2.0 et SSL 3.0 sont désactivés par défaut et ne peuvent pas être activés. Ils sont considérés comme non sécurisées et ne sont pas en mesure de toobe utilisé avec la passerelle d’Application.
 
 ![image du scénario][scenario]
 
 ## <a name="scenario"></a>Scénario
 
-Dans ce scénario, vous allez apprendre à créer une passerelle d’application en utilisant un chiffrement SSL de bout en bout avec PowerShell.
+Dans ce scénario, vous apprendrez comment toocreate une passerelle d’application à l’aide de fin tooend SSL à l’aide de PowerShell.
 
 Ce scénario va :
 
 * créer un groupe de ressources nommé **appgw-rg** ;
 * créer un réseau virtuel nommé **appgwvnet** avec un espace d’adresse de 10.0.0.0/16 ;
 * créer deux sous-réseaux appelés **appgwsubnet** et **appsubnet** ;
-* créer une petite passerelle d’application prenant en charge le chiffrement SSL de bout en bout qui limite les versions de protocoles SSL et les suites de chiffrement.
+* Créer un petite application passerelle prise en charge fin tooend le chiffrement SSL qui limite les versions de protocoles SSL et des suites de chiffrement.
 
 ## <a name="before-you-begin"></a>Avant de commencer
 
-Pour configurer un chiffrement SSL de bout en bout avec une passerelle d’application, un certificat est requis pour la passerelle et des certificats sont requis pour les serveurs principaux. Le certificat de la passerelle sert à chiffrer et à déchiffrer le trafic envoyé à l’aide de SSL. Le certificat de passerelle doit être partagé au format Personal Information Exchange (.pfx). Ce format de fichier permet d’exporter la clé privée requise par la passerelle d’application pour effectuer le chiffrement et le déchiffrement du trafic.
+tooconfigure fin tooend SSL avec une passerelle d’application, un certificat est requis pour la passerelle de hello et les certificats sont requis pour les serveurs principaux de hello. certificat de passerelle Hello est utilisé tooencrypt et decrypt hello le trafic envoyé tooit à l’aide de SSL. certificat de passerelle Hello doit toobe au format d’échange d’informations personnelles (pfx). Ce format de fichier permet hello privé toobe clé exporté requis par hello application passerelle tooperform hello chiffrement et de déchiffrement du trafic.
 
-Pour le chiffrement SSL de bout en bout, le serveur principal doit figurer sur la liste approuvée par la passerelle d’application. Pour cela, vous devez charger le certificat public des serveurs principaux sur la passerelle d’application. Ainsi, la passerelle d’application communique uniquement avec des instances de serveur principal connues, ce qui sécurise la communication de bout en bout.
+Pour l’end tooend SSL chiffrement hello principal doit être dans la liste approuvée avec la passerelle d’application. Pour cela, vous devez téléchargement hello le certificat public de la passerelle d’application toohello hello les serveurs principaux. Cela garantit que cette passerelle d’application hello communique uniquement avec des instances de principal connu. Cela permet de sécuriser davantage hello fin tooend de communication.
 
-Ce processus est décrit dans les étapes suivantes :
+Ce processus est décrit dans hello comme suit :
 
-## <a name="create-the-resource-group"></a>Créer le groupe de ressources
+## <a name="create-hello-resource-group"></a>Créer hello groupe de ressources
 
-Cette section vous guide lors de la création d’un groupe de ressources contenant la passerelle d’application.
+Cette section vous guide tout au long de la création d’un groupe de ressources, qui contient la passerelle d’application hello.
 
-### <a name="step-1"></a>Étape 1 :
+### <a name="step-1"></a>Étape 1
 
-Connectez-vous à votre compte Azure.
+Ouvrez une session dans tooyour compte Azure.
 
 ```powershell
 Login-AzureRmAccount
 ```
 
-### <a name="step-2"></a>Étape 2 :
+### <a name="step-2"></a>Étape 2
 
-Sélectionnez l’abonnement à utiliser pour ce scénario.
+Sélectionnez toouse d’abonnement hello pour ce scénario.
 
 ```powershell
 Select-AzureRmsubscription -SubscriptionName "<Subscription name>"
 ```
 
-### <a name="step-3"></a>Étape 3
+### <a name="step-3"></a>Étape 3 :
 
 Créez un groupe de ressources (ignorez cette étape si vous utilisez un groupe de ressources existant).
 
@@ -80,26 +80,26 @@ Créez un groupe de ressources (ignorez cette étape si vous utilisez un groupe 
 New-AzureRmResourceGroup -Name appgw-rg -Location "West US"
 ```
 
-## <a name="create-a-virtual-network-and-a-subnet-for-the-application-gateway"></a>Créer un réseau virtuel et un sous-réseau pour la passerelle Application Gateway
+## <a name="create-a-virtual-network-and-a-subnet-for-hello-application-gateway"></a>Créer un réseau virtuel et un sous-réseau pour la passerelle d’application hello
 
-L’exemple suivant crée un réseau virtuel et deux sous-réseaux. Un sous-réseau sert à héberger la passerelle d’application. Le second sous-réseau est utilisé pour les serveurs principaux hébergeant l’application web.
+Hello exemple suivant crée un réseau virtuel et deux sous-réseaux. Un sous-réseau est la passerelle d’application hello toohold utilisé. Hello autre sous-réseau est utilisé pour hello les serveurs principaux hello web l’application d’hébergement.
 
 ### <a name="step-1"></a>Étape 1
 
-Affectez une plage d’adresses au sous-réseau utilisé pour la passerelle Application Gateway elle-même.
+Affecter une plage d’adresses pour les sous-réseaux hello être utilisé pour hello passerelle d’Application lui-même.
 
 ```powershell
 $gwSubnet = New-AzureRmVirtualNetworkSubnetConfig -Name 'appgwsubnet' -AddressPrefix 10.0.0.0/24
 ```
 
 > [!NOTE]
-> Les sous-réseaux configurés pour la passerelle d’application doivent être correctement dimensionnés. Une passerelle d’application peut être configurée pour 10 instances maximum. Chaque instance prend une adresse IP du sous-réseau. Un sous-réseau trop petit peut nuire à la montée en charge d’une passerelle d’application.
+> Les sous-réseaux configurés pour la passerelle d’application doivent être correctement dimensionnés. Une passerelle d’application peut être configurée pour des instances de too10. Chaque instance est une adresse IP du sous-réseau de hello. Un sous-réseau trop petit peut nuire à la montée en charge d’une passerelle d’application.
 > 
 > 
 
 ### <a name="step-2"></a>Étape 2
 
-Affectez une plage d’adresses au pool d’adresses principales.
+Affecter un toobe de plage d’adresse utilisé pour hello pool d’adresses principales.
 
 ```powershell
 $nicSubnet = New-AzureRmVirtualNetworkSubnetConfig  -Name 'appsubnet' -AddressPrefix 10.0.2.0/24
@@ -107,7 +107,7 @@ $nicSubnet = New-AzureRmVirtualNetworkSubnetConfig  -Name 'appsubnet' -AddressPr
 
 ### <a name="step-3"></a>Étape 3 :
 
-Créez un réseau virtuel avec les sous-réseaux définis dans les étapes précédentes.
+Créez un réseau virtuel avec les sous-réseaux hello définis dans les étapes précédentes de hello.
 
 ```powershell
 $vnet = New-AzureRmvirtualNetwork -Name 'appgwvnet' -ResourceGroupName appgw-rg -Location "West US" -AddressPrefix 10.0.0.0/16 -Subnet $gwSubnet, $nicSubnet
@@ -115,7 +115,7 @@ $vnet = New-AzureRmvirtualNetwork -Name 'appgwvnet' -ResourceGroupName appgw-rg 
 
 ### <a name="step-4"></a>Étape 4
 
-Récupérez les ressources de réseau virtuel et les ressources de sous-réseau à utiliser dans les étapes suivantes :
+Récupérer hello réseau virtuel ressource et le sous-réseau ressources toobe utilisé Bonjour comme suit :
 
 ```powershell
 $vnet = Get-AzureRmvirtualNetwork -Name 'appgwvnet' -ResourceGroupName appgw-rg
@@ -123,24 +123,24 @@ $gwSubnet = Get-AzureRmVirtualNetworkSubnetConfig -Name 'appgwsubnet' -VirtualNe
 $nicSubnet = Get-AzureRmVirtualNetworkSubnetConfig -Name 'appsubnet' -VirtualNetwork $vnet
 ```
 
-## <a name="create-a-public-ip-address-for-the-front-end-configuration"></a>Création d'une adresse IP publique pour la configuration frontale
+## <a name="create-a-public-ip-address-for-hello-front-end-configuration"></a>Créer une adresse IP publique pour la configuration frontale de hello
 
-Créez une ressource IP publique à utiliser pour la passerelle d’application. Cette adresse IP publique est utilisée dans une prochaine étape.
+Créer un toobe de ressource IP publique utilisée pour la passerelle d’application hello. Cette adresse IP publique est utilisée dans une prochaine étape.
 
 ```powershell
 $publicip = New-AzureRmPublicIpAddress -ResourceGroupName appgw-rg -Name 'publicIP01' -Location "West US" -AllocationMethod Dynamic
 ```
 
 > [!IMPORTANT]
-> La passerelle Application Gateway ne prend pas en charge l’utilisation d’une adresse IP publique créée avec un nom de domaine défini. Seule une adresse IP publique avec un nom de domaine créé dynamiquement est prise en charge. Si vous avez besoin d’un nom DNS convivial pour la passerelle Application Gateway, il est recommandé d’utiliser un enregistrement CNAME comme alias.
+> Passerelle d’application ne prend pas en charge hello une adresse IP publique créée avec un nom de domaine défini. Seule une adresse IP publique avec un nom de domaine créé dynamiquement est prise en charge. Si vous avez besoin d’un nom convivial dns pour la passerelle d’application hello, il est recommandé de toouse un enregistrement CNAME enregistrer en tant qu’alias.
 
 ## <a name="create-an-application-gateway-configuration-object"></a>Créer un objet de configuration de passerelle Application Gateway
 
-Tous les éléments de configuration sont définis avant la création de la passerelle Application Gateway. Les étapes suivantes permettent de créer les éléments de configuration nécessaires à une ressource Application Gateway.
+Tous les éléments de configuration sont définies avant de créer la passerelle d’application hello. Hello étapes suivantes créent hello des éléments de configuration qui sont nécessaires pour une ressource de passerelle d’application.
 
-### <a name="step-1"></a>Étape 1 :
+### <a name="step-1"></a>Étape 1
 
-Créez une configuration IP de passerelle application : ce paramètre détermine quel sous-réseau utilise la passerelle d’application. Au démarrage, la passerelle Application Gateway sélectionne une adresse IP du sous-réseau configuré et achemine le trafic réseau vers les adresses IP du pool IP principal. Gardez à l’esprit que chaque instance utilise une adresse IP unique.
+Créer une configuration IP de passerelle l’application, ce paramètre détermine quel sous-réseau hello application passerelle utilise. Au démarrage de la passerelle d’application, il récupère une adresse IP du sous-réseau hello configuré et achemine les adresses IP de réseau du trafic toohello dans le pool d’adresses IP hello back-end. Gardez à l’esprit que chaque instance utilise une adresse IP unique.
 
 ```powershell
 $gipconfig = New-AzureRmApplicationGatewayIPConfiguration -Name 'gwconfig' -Subnet $gwSubnet
@@ -148,26 +148,26 @@ $gipconfig = New-AzureRmApplicationGatewayIPConfiguration -Name 'gwconfig' -Subn
 
 ### <a name="step-2"></a>Étape 2
 
-Créez une configuration IP frontale : ce paramètre mappe une adresse IP privée ou publique au composant frontal de la passerelle d’application. L’étape suivante associe l’adresse IP publique à l’étape précédente à la configuration IP frontale.
+Créer une configuration IP frontale, ce paramètre est mappé à un ip privé ou public adresse toohello frontal de la passerelle d’application hello. Hello suivant l’étape associe l’adresse IP publique de hello Bonjour précédant l’étape de configuration IP frontale de hello.
 
 ```powershell
 $fipconfig = New-AzureRmApplicationGatewayFrontendIPConfig -Name 'fip01' -PublicIPAddress $publicip
 ```
 
-### <a name="step-3"></a>Étape 3
+### <a name="step-3"></a>Étape 3 :
 
-Configurez le pool d’adresses IP principales avec les adresses IP des serveurs web principaux. Il s’agit des adresses IP qui recevront le trafic réseau provenant du point de terminaison IP frontal. Remplacez les adresses IP suivantes pour ajouter vos propres points de terminaison d’adresse IP d’application.
+Configurer un pool d’adresses IP hello principal avec des adresses IP hello des serveurs web de principaux hello. Ces adresses IP sont des adresses IP hello qui reçoivent le trafic réseau hello qui provient d’un point de terminaison IP frontale hello. Vous remplacez hello suivant tooadd d’adresses IP de vos propres points de terminaison application IP adresse.
 
 ```powershell
 $pool = New-AzureRmApplicationGatewayBackendAddressPool -Name 'pool01' -BackendIPAddresses 1.1.1.1, 2.2.2.2, 3.3.3.3
 ```
 
 > [!NOTE]
-> Un nom de domaine complet (FQDN) est également une valeur valide pour remplacer une adresse IP dans les serveurs principaux à l’aide du commutateur -BackendFqdns. 
+> Un nom de domaine complet (FQDN) est également une valeur valide à la place d’une adresse ip pour les serveurs principaux de hello à l’aide du commutateur - BackendFqdns de hello. 
 
 ### <a name="step-4"></a>Étape 4
 
-Configurez le port IP frontal pour le point de terminaison IP public. Ce port est le port auquel les utilisateurs finaux se connectent.
+Configurer les ports IP front-end hello pour le point de terminaison IP public hello. Ce port est le port hello qui les utilisateurs finaux se connectent à.
 
 ```powershell
 $fp = New-AzureRmApplicationGatewayFrontendPort -Name 'port01'  -Port 443
@@ -175,18 +175,18 @@ $fp = New-AzureRmApplicationGatewayFrontendPort -Name 'port01'  -Port 443
 
 ### <a name="step-5"></a>Étape 5
 
-Configurez le certificat pour la passerelle d’application. Ce certificat sert à chiffrer et à chiffrer à nouveau le trafic sur la passerelle d’application.
+Configurer le certificat hello pour la passerelle d’application hello. Ce certificat est utilisé toodecrypt et rechiffrez le trafic sur la passerelle d’application hello hello.
 
 ```powershell
-$cert = New-AzureRmApplicationGatewaySSLCertificate -Name cert01 -CertificateFile <full path to .pfx file> -Password <password for certificate file>
+$cert = New-AzureRmApplicationGatewaySSLCertificate -Name cert01 -CertificateFile <full path too.pfx file> -Password <password for certificate file>
 ```
 
 > [!NOTE]
-> Cet exemple configure le certificat utilisé pour la connexion SSL. Le certificat doit être au format .pfx et le mot de passe contenir entre 4 et 12 caractères.
+> Cet exemple configure un certificat hello utilisée pour la connexion SSL. certificat de Hello doit toobe au format .pfx et hello le mot de passe doit être comprise entre 4 too12 caractères.
 
 ### <a name="step-6"></a>Étape 6
 
-Créez l’écouteur HTTP pour la passerelle d’application. Affectez la configuration IP frontale, le port et le certificat SSL à utiliser.
+Créer l’écouteur HTTP pour la passerelle d’application hello hello. Affecter la configuration ip frontale de hello, le port et toouse du certificat SSL.
 
 ```powershell
 $listener = New-AzureRmApplicationGatewayHttpListener -Name listener01 -Protocol Https -FrontendIPConfiguration $fipconfig -FrontendPort $fp -SSLCertificate $cert
@@ -194,21 +194,21 @@ $listener = New-AzureRmApplicationGatewayHttpListener -Name listener01 -Protocol
 
 ### <a name="step-7"></a>Étape 7
 
-Chargez le certificat à utiliser sur les ressources du pool principal pour lequel le chiffrement SSL est activé.
+Téléchargez le certificat hello toobe utilisé sur hello SSL activé principal des ressources.
 
 > [!NOTE]
-> La sonde par défaut obtient la clé publique de la liaison SSL **par défaut** sur l’adresse IP du serveur principal et compare la valeur de clé publique reçue à celle que vous fournissez ici. La clé publique récupérée n’est pas nécessairement le site vers lequel vous souhaitez que le trafic soit dirigé **si** vous utilisez des en-têtes d’hôte et SNI sur le serveur principal. En cas de doute, visitez https://127.0.0.1/ sur les serveurs principaux pour confirmer le certificat utilisé pour la liaison SSL **par défaut**. Utilisez la clé publique de cette demande dans cette section. Si vous utilisez des en-têtes d’hôte et SNI sur les liaisons HTTPS et que vous ne recevez pas une réponse et un certificat à partir d’une demande de navigateur manuelle vers https://127.0.0.1/ sur les serveurs principaux, vous devez configurer une liaison SSL par défaut sur les serveurs principaux. Si vous ne le faites pas, les sondes échouent et le serveur principal ne figure pas dans la liste approuvée.
+> Sonde Hello Obtient la clé publique de hello de hello **par défaut** liaison SSL sur hello d’adresse IP de fin-back et compare hello valeur de clé publique qu’il reçoit la valeur de clé publique de toohello vous fournissez ici. Hello récupérées de clé publique peut ne pas être flux de trafic hello destiné site toowhich **si** vous utilisez SNI et les en-têtes d’hôtes sur hello back-end. En cas de doute, visitez https://127.0.0.1/ sur tooconfirm de back end hello quel certificat est utilisé pour hello **par défaut** liaison SSL. Utilisez la clé publique de hello à partir de cette demande dans cette section. Si vous utilisez des en-têtes d’hôte et SNI sur les liaisons HTTPS et vous ne recevez pas une réponse et un certificat à partir d’un navigateur manuel demande toohttps://127.0.0.1/ sur hello principaux, vous devez configurer une liaison SSL de valeur par défaut sur les systèmes principaux hello. Si vous ne le faites pas, l’échec de sondes et hello principal n’est pas dans la liste approuvée.
 
 ```powershell
 $authcert = New-AzureRmApplicationGatewayAuthenticationCertificate -Name 'whitelistcert1' -CertificateFile C:\users\gwallace\Desktop\cert.cer
 ```
 
 > [!NOTE]
-> Le certificat fourni dans cette étape doit être la clé publique du certificat pfx présent sur le serveur principal. Exportez le certificat (pas le certificat racine) installé sur le serveur principal au format .CER et utilisez-le dans cette étape. Cette étape permet d’ajouter le serveur principal à la liste approuvée par la passerelle d’application.
+> certificat de Hello fourni dans cette étape doit être hello de clé publique cert de pfx hello présent sur hello principal. Exporter hello certificat (pas hello racine) installé sur le serveur principal de hello dans. CER mettre en forme et l’utiliser dans cette étape. Cette étape de blocage hello principal avec la passerelle d’application hello.
 
 ### <a name="step-8"></a>Étape 8
 
-Configurez les paramètres http principaux de la passerelle d’application. Affectez le certificat téléchargé à l’étape précédente aux paramètres http.
+Configurer les paramètres de hello application passerelle http du serveur principal. Attribuer certificat hello téléchargé Bonjour précédant les paramètres d’étape toohello http.
 
 ```powershell
 $poolSetting = New-AzureRmApplicationGatewayBackendHttpSettings -Name 'setting01' -Port 443 -Protocol Https -CookieBasedAffinity Enabled -AuthenticationCertificates $authcert
@@ -216,7 +216,7 @@ $poolSetting = New-AzureRmApplicationGatewayBackendHttpSettings -Name 'setting01
 
 ### <a name="step-9"></a>Étape 9
 
-Créez une règle d'acheminement d'équilibrage de charge nommée qui configure le comportement d'équilibrage de charge. Dans cet exemple, une simple règle de type tourniquet (round robin) est créée.
+Créer une règle de routage de l’équilibreur de charge qui configure le comportement de programme d’équilibrage de charge hello. Dans cet exemple, une simple règle de type tourniquet (round robin) est créée.
 
 ```powershell
 $rule = New-AzureRmApplicationGatewayRequestRoutingRule -Name 'rule01' -RuleType basic -BackendHttpSettings $poolSetting -HttpListener $listener -BackendAddressPool $pool
@@ -224,34 +224,34 @@ $rule = New-AzureRmApplicationGatewayRequestRoutingRule -Name 'rule01' -RuleType
 
 ### <a name="step-10"></a>Étape 10
 
-Configurez la taille d'instance de la passerelle Application Gateway.  Les tailles disponibles sont **Standard\_Small**, **Standard\_Medium** et **Standard\_Large**.  Pour la capacité, les valeurs disponibles sont 1 à 10.
+Configurer la taille de l’instance de la passerelle d’application hello hello.  les tailles disponibles Hello sont **Standard\_petit**, **Standard\_support**, et **Standard\_grande**.  De la capacité, les valeurs disponibles hello vont de 1 à 10.
 
 ```powershell
 $sku = New-AzureRmApplicationGatewaySku -Name Standard_Small -Tier Standard -Capacity 2
 ```
 
 > [!NOTE]
-> Vous pouvez choisir un nombre d’instances de 1 à des fins de test. Il est important de savoir que n’importe quel nombre d’instances inférieur à 2 n’est pas couvert par le contrat SLA et n’est donc pas recommandé. Les petites passerelles doivent être utilisées pour les tests de développement et non à des fins de production.
+> Vous pouvez choisir un nombre d’instances de 1 à des fins de test. Il est important que n’importe quelle instance compte dans les deux instances de tooknow n’est pas couverte par un contrat SLA de hello et ne sont donc pas recommandée. Les passerelles Small sont toobe utilisé pour le développement de test et non à des fins de production.
 
 ### <a name="step-11"></a>Étape 11
 
-Configurez la stratégie SSL à utiliser sur la passerelle Application Gateway. La passerelle Application Gateway prend en charge la possibilité de définir une version minimale pour les versions du protocole SSL.
+Configurer toobe de stratégie SSL hello utilisé sur hello passerelle d’Application. Passerelle d’application prend en charge hello capacité tooset une version minimale pour les versions du protocole SSL.
 
-Les valeurs suivantes représentent une liste des versions de protocole pouvant être définies.
+Hello les valeurs suivantes sont une liste des versions de protocole qui peuvent être définis.
 
 * **TLSv1_0**
 * **TLSv1_1**
 * **TLSv1_2**
 
-Définit la version minimale de protocole sur **TLSv1_2** et active **TLS\_ECDHE\_ECDSA\_WITH\_AES\_128\_GCM\_SHA256**, **TLS\_ECDHE\_ECDSA\_WITH\_AES\_256\_GCM\_SHA384** et **TLS\_RSA\_WITH\_AES\_128\_GCM\_SHA256** uniquement.
+Jeux hello version du protocole minimale trop**TLSv1_2** et **TLS\_ECDHE\_ECDSA\_WITH\_AES\_128\_GCM\_ SHA256**, **TLS\_ECDHE\_ECDSA\_WITH\_AES\_256\_GCM\_SHA384**et **TLS\_RSA\_WITH\_AES\_128\_GCM\_SHA256** uniquement.
 
 ```powershell
 $SSLPolicy = New-AzureRmApplicationGatewaySSLPolicy -MinProtocolVersion TLSv1_2 -CipherSuite "TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256", "TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384", "TLS_RSA_WITH_AES_128_GCM_SHA256"
 ```
 
-## <a name="create-the-application-gateway"></a>Créer la passerelle Application Gateway
+## <a name="create-hello-application-gateway"></a>Créer hello Application Gateway
 
-À l’aide des étapes précédentes, créez la passerelle Application Gateway. La création de la passerelle est un processus à long terme.
+Hello toutes les étapes précédentes, créez hello passerelle d’Application. Création de Hello de passerelle de hello est un processus à long terme.
 
 ```powershell
 $appgw = New-AzureRmApplicationGateway -Name appgateway -SSLCertificates $cert -ResourceGroupName "appgw-rg" -Location "West US" -BackendAddressPools $pool -BackendHttpSettingsCollection $poolSetting -FrontendIpConfigurations $fipconfig -GatewayIpConfigurations $gipconfig -FrontendPorts $fp -HttpListeners $listener -RequestRoutingRules $rule -Sku $sku -SSLPolicy $SSLPolicy -AuthenticationCertificates $authcert -Verbose
@@ -259,19 +259,19 @@ $appgw = New-AzureRmApplicationGateway -Name appgateway -SSLCertificates $cert -
 
 ## <a name="limit-ssl-protocol-versions-on-an-existing-application-gateway"></a>Limiter les versions du protocole SSL sur une passerelle Application Gateway existante
 
-Les étapes précédentes vous guident dans la création d’une application en utilisant un chiffrement SSL de bout en bout et en désactivant certaines versions du protocole SSL. L’exemple suivant désactive certaines stratégies SSL sur une passerelle d’application existante.
+Hello précédentes étapes vous guide dans la création d’applications à la fin tooend SSL et la désactivation de certaines versions du protocole SSL. Hello exemple suivant désactive certaines stratégies SSL sur une passerelle d’application existant.
 
-### <a name="step-1"></a>Étape 1 :
+### <a name="step-1"></a>Étape 1
 
-Récupérez la passerelle d’application à mettre à jour.
+Récupérer tooupdate de passerelle d’application hello.
 
 ```powershell
 $gw = Get-AzureRmApplicationGateway -Name AdatumAppGateway -ResourceGroupName AdatumAppGatewayRG
 ```
 
-### <a name="step-2"></a>Étape 2 :
+### <a name="step-2"></a>Étape 2
 
-Définissez une stratégie SSL. Dans l’exemple suivant, TLSv1.0 et TLSv1.1 sont désactivées et les suites de chiffrement **TLS\_ECDHE\_ECDSA\_WITH\_AES\_128\_GCM\_SHA256**, **TLS\_ECDHE\_ECDSA\_WITH\_AES\_256\_GCM\_SHA384** et **TLS\_RSA\_WITH\_AES\_128\_GCM\_SHA256** sont les seules autorisées.
+Définissez une stratégie SSL. Dans l’exemple suivant de hello, TLSv1.0 et TLSv1.1 sont désactivées et hello suites de chiffrement **TLS\_ECDHE\_ECDSA\_WITH\_AES\_128\_GCM\_SHA256** , **TLS\_ECDHE\_ECDSA\_WITH\_AES\_256\_GCM\_SHA384**, et  **TLS\_RSA\_WITH\_AES\_128\_GCM\_SHA256** est hello seules autorisées.
 
 ```powershell
 Set-AzureRmApplicationGatewaySSLPolicy -MinProtocolVersion -PolicyType Custom -CipherSuite "TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256", "TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384", "TLS_RSA_WITH_AES_128_GCM_SHA256" -ApplicationGateway $gw
@@ -280,7 +280,7 @@ Set-AzureRmApplicationGatewaySSLPolicy -MinProtocolVersion -PolicyType Custom -C
 
 ### <a name="step-3"></a>Étape 3 :
 
-Pour finir, mettez à jour la passerelle. Il est important de noter que cette dernière étape représente une tâche à long terme. Une fois l’opération terminée, le chiffrement SSL de bout en bout est configuré sur la passerelle d’application.
+Enfin, mettre à jour de passerelle de hello. Il est important toonote que cette dernière étape est une tâche de longue durée. Lorsqu’il est terminé, fin tooend SSL est configuré sur la passerelle d’application hello.
 
 ```powershell
 $gw | Set-AzureRmApplicationGateway
@@ -288,7 +288,7 @@ $gw | Set-AzureRmApplicationGateway
 
 ## <a name="get-application-gateway-dns-name"></a>Obtenir le nom DNS d’une passerelle Application Gateway
 
-Une fois la passerelle créée, l’étape suivante consiste à configurer le serveur frontal pour la communication. Lorsque vous utilisez une adresse IP publique, la passerelle Application Gateway requiert un nom DNS attribué dynamiquement, ce qui n’est pas convivial. Pour s’assurer que les utilisateurs finaux peuvent atteindre la passerelle d’application, un enregistrement CNAME peut être utilisé pour pointer vers le point de terminaison public de la passerelle d’application. [Configuration d’un nom de domaine personnalisé pour Azure](../cloud-services/cloud-services-custom-domain-name-portal.md). Pour ce faire, récupérez les détails de la passerelle Application Gateway et de son nom IP/DNS associé à l’aide de l’élément PublicIPAddress attaché à la passerelle Application Gateway. Le nom DNS de la passerelle Application Gateway doit être utilisé pour créer un enregistrement CNAME qui pointe les deux applications web sur ce nom DNS. L’utilisation de A-records n’est pas recommandée étant donné que l’adresse IP virtuelle peut changer lors du redémarrage de la passerelle Application Gateway.
+Après la création de la passerelle de hello, hello prochaine étape consiste tooconfigure hello frontal pour la communication. Lorsque vous utilisez une adresse IP publique, la passerelle Application Gateway requiert un nom DNS attribué dynamiquement, ce qui n’est pas convivial. les utilisateurs finaux de tooensure pouvez atteindre la passerelle d’application hello, un enregistrement CNAME peut être le point de terminaison utilisé toopoint toohello public de la passerelle d’application hello. [Configuration d’un nom de domaine personnalisé pour Azure](../cloud-services/cloud-services-custom-domain-name-portal.md). toodo, détails de récupération de la passerelle d’application hello et son nom IP/DNS associé à l’aide de la passerelle d’application hello PublicIPAddress élément attaché toohello. nom DNS de la passerelle d’application Hello doit être utilisé toocreate un enregistrement CNAME, le nom DNS de points hello deux web applications toothis. les utilisation de Hello d’enregistrements d’un n’est pas recommandée étant donné que l’adresse IP virtuelle hello peut changer lors du redémarrage de la passerelle d’application.
 
 ```powershell
 Get-AzureRmPublicIpAddress -ResourceGroupName appgw-RG -Name publicIP01
@@ -318,6 +318,6 @@ DnsSettings              : {
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Pour en savoir plus sur le renforcement de la sécurité de vos applications web avec un pare-feu d’applications Web via la passerelle Application Gateway, consultez la rubrique [Vue d’ensemble du pare-feu d'applications web](application-gateway-webapplicationfirewall-overview.md)
+En savoir plus sur la sécurisation renforcée de sécurité hello de vos applications web avec des pare-feu d’applications Web via la passerelle d’Application en vous rendant sur [vue d’ensemble du pare-feu d’Application Web](application-gateway-webapplicationfirewall-overview.md)
 
 [scenario]: ./media/application-gateway-end-to-end-SSL-powershell/scenario.png

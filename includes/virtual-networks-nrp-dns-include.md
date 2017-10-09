@@ -3,7 +3,7 @@ Azure DNS est un service d'hébergement pour les domaines DNS et qui offre une 
 
 | Propriété | Description | Exemple de valeur |
 | --- | --- | --- |
-| **DNSzones** |Informations relatives à la zone du domaine pour l'hébergement des enregistrements DNS d'un domaine particulier |/subscriptions/{guid}/.../providers/Microsoft.Network/dnszones/contoso.com" |
+| **DNSzones** |Enregistrements DNS toohost des informations de zone de domaine d’un domaine particulier |/subscriptions/{guid}/.../providers/Microsoft.Network/dnszones/contoso.com" |
 
 ### <a name="dns-record-sets"></a>Jeux d'enregistrements DNS
 Les zones DNS ont un objet enfant appelé jeu d'enregistrements. Les jeux d'enregistrements sont un ensemble d'enregistrements hôtes par type pour une zone DNS. Les types d'enregistrements sont A, AAAA, CNAME, MX, NS, SOA,SRV et TXT.
@@ -31,14 +31,14 @@ Exemple de zone DNS au format Json :
         "newZoneName": {
           "type": "String",
           "metadata": {
-              "description": "The name of the DNS zone to be created."
+              "description": "hello name of hello DNS zone toobe created."
           }
         },
         "newRecordName": {
           "type": "String",
           "defaultValue": "www",
           "metadata": {
-              "description": "The name of the DNS record to be created.  The name is relative to the zone, not the FQDN."
+              "description": "hello name of hello DNS record toobe created.  hello name is relative toohello zone, not hello FQDN."
           }
         }
       },
@@ -78,7 +78,7 @@ Exemple de zone DNS au format Json :
     }
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
-Lisez la [documentation API REST pour les zones DNS ](https://msdn.microsoft.com/library/azure/mt130626.aspx) pour plus d'informations.
+Hello de lecture [documentation API REST pour les zones DNS ](https://msdn.microsoft.com/library/azure/mt130626.aspx) pour plus d’informations.
 
-Lisez la [documentation API REST pour les jeux d'enregistrements DNS](https://msdn.microsoft.com/library/azure/mt130627.aspx) pour plus d'informations.
+Hello de lecture [documentation API REST pour les jeux d’enregistrements DNS](https://msdn.microsoft.com/library/azure/mt130627.aspx) pour plus d’informations.
 

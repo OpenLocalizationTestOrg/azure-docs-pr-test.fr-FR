@@ -1,6 +1,6 @@
 ---
-title: "Créer une identité pour une application Azure dans le portail | Microsoft Docs"
-description: "Décrit comment créer une application et un principal du service Azure Active Directory qui peuvent être utilisés avec le contrôle d'accès basé sur les rôles dans Azure Resource Manager pour gérer l'accès aux ressources."
+title: "identité aaaCreate pour une application Azure dans le portail | Documents Microsoft"
+description: "Décrit le mode d’accès des toocreate une application Azure Active Directory et le service principal qui peut être utilisé avec le contrôle d’accès basé sur rôle hello dans Azure Resource Manager toomanage tooresources."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,37 +14,37 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/15/2017
 ms.author: tomfitz
-ms.openlocfilehash: 5d24fb99e1095d53e5ea547e53b80178d9cb77c0
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 9624715ac612f42df6f9e9e67b8233bd4b914174
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-portal-to-create-an-azure-active-directory-application-and-service-principal-that-can-access-resources"></a>Utiliser le portail pour créer une application et un principal du service Azure Active Directory pouvant accéder aux ressources
+# <a name="use-portal-toocreate-an-azure-active-directory-application-and-service-principal-that-can-access-resources"></a>Utilisez le portail toocreate une application Azure Active Directory et le principal du service qui peut accéder aux ressources
 
-Si une application doit accéder à des ressources ou les modifier, vous devez configurer une application Azure Active Directory (AD) et lui accorder les autorisations nécessaires. Cette approche est préférable à l’exécution de l’application avec vos propres informations d’identification, car :
+Lorsque vous avez une application qui doit tooaccess ou modifier des ressources, vous devez configurer une application Azure Active Directory (AD) et affecter tooit d’autorisations hello requis. Cette approche est préférable toorunning hello application vos propres informations d’identification, car :
 
-* Vous pouvez affecter à l’identité de l’application des autorisations différentes de vos propres autorisations. En règle générale, ces autorisations sont strictement limitées à ce que l’application doit faire.
-* Il est inutile de modifier les informations d’identification de l’application si vos responsabilités évoluent. 
-* Vous pouvez utiliser un certificat pour automatiser l’authentification lors de l’exécution d’un script sans assistance.
+* Vous pouvez affecter des autorisations identité d’application toohello différents de vos propres autorisations. En règle générale, ces autorisations sont limitée tooexactly quelle application hello doit toodo.
+* Vous n’avez pas les informations d’identification de l’application toochange hello si vos responsabilités changent. 
+* Vous pouvez utiliser une authentification de tooautomate certificat lors de l’exécution d’un script sans assistance.
 
-Cette rubrique explique comment effectuer ces étapes via le portail. Elle se concentre sur une application à locataire unique conçue pour s’exécuter au sein d’une seule organisation. Les applications à locataire unique sont généralement utilisées pour les applications métier exécutées au sein de votre organisation.
+Cette rubrique vous montre comment tooperform ces étapes via le portail de hello. Il se concentre sur une application à locataire unique où application hello est prévue toorun au sein d’une seule organisation. Les applications à locataire unique sont généralement utilisées pour les applications métier exécutées au sein de votre organisation.
  
 ## <a name="required-permissions"></a>Autorisations requises
-Pour cette rubrique, vous devez disposer des autorisations suffisantes pour enregistrer une application auprès de votre client Azure AD et affecter l’application à un rôle dans votre abonnement Azure. Vérifions que vous disposez des droits suffisants pour effectuer ces étapes.
+toocomplete cette rubrique, vous devez disposer d’une application tooregister d’autorisations suffisantes à votre client Azure AD et affecter le rôle de tooa d’application hello dans votre abonnement Azure. Assurons-nous que vous avez hello autorisations appropriées tooperform ces étapes.
 
 ### <a name="check-azure-active-directory-permissions"></a>Vérifier les autorisations Azure Active Directory
-1. Connectez-vous à votre compte Azure via le [portail Azure](https://portal.azure.com).
+1. Connectez-vous à tooyour compte Azure via hello [portail Azure](https://portal.azure.com).
 2. Sélectionnez **Azure Active Directory**.
 
      ![sélectionner azure active directory](./media/resource-group-create-service-principal-portal/select-active-directory.png)
 3. Dans Azure Active Directory, sélectionnez **Paramètres utilisateur**.
 
      ![sélectionner les paramètres utilisateur](./media/resource-group-create-service-principal-portal/select-user-settings.png)
-4. Vérifiez le paramètre **Inscriptions d’applications**. S’il est défini sur **Oui**, les utilisateurs non administrateurs peuvent inscrire des applications AD. Ce paramètre signifie que n’importe quel utilisateur dans Azure AD peut inscrire une application. Vous pouvez passer à [Vérifier les autorisations d’abonnement Azure](#check-azure-subscription-permissions).
+4. Vérifiez hello **inscriptions d’application** paramètre. Si défini trop**Oui**, les utilisateurs non administrateurs peuvent inscrire des applications AD. Ce paramètre signifie que n’importe quel utilisateur dans le locataire Azure AD de hello peut inscrire une application. Vous pouvez passer trop[autorisations d’abonnement Azure de vérifier](#check-azure-subscription-permissions).
 
      ![afficher les inscriptions d’applications](./media/resource-group-create-service-principal-portal/view-app-registrations.png)
-5. Si le paramètre d’inscriptions d’applications est défini sur **Non**, seuls les utilisateurs administrateurs peuvent inscrire des applications. Vous devez vérifier si votre compte est un administrateur du client Azure AD. Sélectionnez **Vue d’ensemble** et **Rechercher un utilisateur** dans Tâches rapides.
+5. Si les inscriptions d’application hello paramètre est défini trop**non**, seuls les utilisateurs administrateurs peuvent inscrire des applications. Vous devez toocheck si votre compte est un administrateur de locataire Azure AD de hello. Sélectionnez **Vue d’ensemble** et **Rechercher un utilisateur** dans Tâches rapides.
 
      ![rechercher un utilisateur](./media/resource-group-create-service-principal-portal/find-user.png)
 6. Recherchez votre compte et sélectionnez-le lorsque vous l’avez trouvé.
@@ -53,16 +53,16 @@ Pour cette rubrique, vous devez disposer des autorisations suffisantes pour enre
 7. Pour votre compte, sélectionnez **Rôle Directory**. 
 
      ![rôle directory](./media/resource-group-create-service-principal-portal/select-directory-role.png)
-8. Affichez le rôle de répertoire qui vous a été affecté dans Azure AD. Si le rôle Utilisateur est affecté à votre compte mais que le paramètre d’inscription d’application (de la procédure précédente) est limité aux utilisateurs administrateurs, demandez à votre administrateur de vous affecter rôle administrateur ou d’autoriser les utilisateurs à inscrire des applications.
+8. Affichez le rôle de répertoire qui vous a été affecté dans Azure AD. Si toohello rôle d’utilisateur est affecté à votre compte, mais hello paramètres d’inscription d’application (à partir des étapes précédentes de hello) est limitée tooadmin utilisateurs, demandez à votre tooeither administrateur affecter le rôle administrateur tooan ou tooenable utilisateurs tooregister applications.
 
      ![afficher le rôle](./media/resource-group-create-service-principal-portal/view-role.png)
 
 ### <a name="check-azure-subscription-permissions"></a>Vérifier les autorisations d’abonnement Azure
-Dans votre abonnement Azure, votre compte doit disposer d’un accès `Microsoft.Authorization/*/Write` pour affecter un rôle à une application AD. Cette action est accordée par le biais du rôle [Propriétaire](../active-directory/role-based-access-built-in-roles.md#owner) ou [Administrateur de l’accès utilisateur](../active-directory/role-based-access-built-in-roles.md#user-access-administrator). Si le rôle **Collaborateur** est affecté à votre compte, vous ne disposez pas de l’autorisation appropriée. Vous recevez un message d’erreur lorsque vous tentez d’affecter un rôle au principal du service. 
+Dans votre abonnement Azure, votre compte doit avoir `Microsoft.Authorization/*/Write` tooassign un rôle tooa d’application AD d’accès. Cette action est accordée via hello [propriétaire](../active-directory/role-based-access-built-in-roles.md#owner) rôle ou [administrateur de l’accès utilisateur](../active-directory/role-based-access-built-in-roles.md#user-access-administrator) rôle. Si votre compte est affecté toohello **collaborateur** rôle, vous n’avez pas les autorisations adéquates. Vous recevrez une erreur lors de la tentative de rôle de principal tooa tooassign hello service. 
 
-Pour vérifier vos autorisations d’abonnement :
+toocheck vos autorisations d’abonnement :
 
-1. Si vous n’avez pas déjà recherché votre compte Azure AD dans le cadre de la procédure précédente, sélectionnez **Azure Active Directory** dans le volet gauche.
+1. Si vous ne sont pas déjà dans votre compte Azure AD à partir des étapes précédentes de hello, sélectionnez **Azure Active Directory** hello volet de gauche.
 
 2. Recherchez votre compte Azure AD. Sélectionnez **Vue d’ensemble** et **Rechercher un utilisateur** dans Tâches rapides.
 
@@ -74,12 +74,12 @@ Pour vérifier vos autorisations d’abonnement :
 3. Sélectionnez **Ressources Azure**.
 
      ![sélectionner des ressources](./media/resource-group-create-service-principal-portal/select-azure-resources.png) 
-3. Affichez les rôles qui vous sont affectés et déterminez si vous disposez des autorisations appropriées pour affecter un rôle à une application AD. Si ce n’est pas le cas, demandez à votre administrateur d’abonnement de vous ajouter un rôle Administrateur de l’accès utilisateur. Dans l’image suivante, le rôle Propriétaire est affecté à l’utilisateur pour deux abonnements, ce qui signifie que l’utilisateur dispose des autorisations appropriées. 
+3. Afficher vos rôles sont affectés et déterminer si vous disposez des autorisations adéquates tooassign un rôle tooa d’application AD. Dans le cas contraire, demandez à votre tooadd d’administrateur abonnement rôle administrateur de l’accès tooUser. Utilisateur de hello hello suivant l’image, est rôle de propriétaire toohello attribué pour les deux abonnements, ce qui signifie que l’utilisateur dispose des autorisations adéquates. 
 
      ![afficher les autorisations](./media/resource-group-create-service-principal-portal/view-assigned-roles.png)
 
 ## <a name="create-an-azure-active-directory-application"></a>Créer une application Azure Active Directory
-1. Connectez-vous à votre compte Azure via le [portail Azure](https://portal.azure.com).
+1. Connectez-vous à tooyour compte Azure via hello [portail Azure](https://portal.azure.com).
 2. Sélectionnez **Azure Active Directory**.
 
      ![sélectionner azure active directory](./media/resource-group-create-service-principal-portal/select-active-directory.png)
@@ -91,53 +91,53 @@ Pour vérifier vos autorisations d’abonnement :
 
      ![ajouter une application](./media/resource-group-create-service-principal-portal/select-add-app.png)
 
-6. Fournissez un nom et une URL pour l’application. Sélectionnez **Application Web / API** ou **Native** pour le type d’application que vous souhaitez créer. Après avoir défini les valeurs, sélectionnez **Créer**.
+6. Fournissez un nom et une URL pour l’application hello. Sélectionnez **application Web / API** ou **natif** de type hello d’application, vous souhaitez toocreate. Après avoir défini les valeurs hello, sélectionnez **créer**.
 
      ![nommer l’application](./media/resource-group-create-service-principal-portal/create-app.png)
 
 Vous avez créé votre application.
 
 ## <a name="get-application-id-and-authentication-key"></a>Obtenir un ID d’application et une clé d’authentification
-Lors d’une connexion par programmation, vous aurez besoin de l’ID de votre application et d’une clé d’authentification. Pour obtenir ces valeurs, procédez comme suit :
+Lors de la connexion par programme, vous devez hello ID pour votre application et une clé d’authentification. tooget ces valeurs, hello utilisation comme suit :
 
 1. Dans **Inscriptions d’applications** dans Azure Active Directory, sélectionnez votre application.
 
      ![sélectionner une application](./media/resource-group-create-service-principal-portal/select-app.png)
-2. Copiez l’**ID d’application** et stockez-le dans votre code d’application. Les applications de la section [Exemples d’applications](#sample-applications) font référence à cette valeur en tant qu’ID de locataire.
+2. Hello de copie **ID d’Application** et stockez-le dans votre code d’application. Hello applications Bonjour [exemples d’applications](#sample-applications) section font référence à valeur toothis en tant qu’id de client hello.
 
      ![ID CLIENT](./media/resource-group-create-service-principal-portal/copy-app-id.png)
-3. Pour générer une clé d’authentification, sélectionnez **Clés**.
+3. toogenerate une clé d’authentification, sélectionnez **clés**.
 
      ![sélectionner des clés](./media/resource-group-create-service-principal-portal/select-keys.png)
-4. Fournissez une description de la clé et la durée de la clé. Lorsque vous avez terminé, sélectionnez **Enregistrer**.
+4. Fournir une description de la clé de hello et une durée de clé de hello. Lorsque vous avez terminé, sélectionnez **Enregistrer**.
 
      ![enregistrer une clé](./media/resource-group-create-service-principal-portal/save-key.png)
 
-     Après avoir enregistré la clé, la valeur de la clé s’affiche. Copiez cette valeur car vous ne pourrez pas récupérer la clé ultérieurement. Vous fournissez la valeur de la clé avec l’ID d’application pour vous connecter en tant qu’application. Stockez la valeur de la clé à un emplacement où votre application peut la récupérer.
+     Après avoir enregistré la clé de hello, hello clé de hello est affichée. Copiez cette valeur, car vous sont pas en mesure de tooretrieve hello clé plus tard. Vous fournissez les valeur de clé hello hello application ID toolog dans en tant qu’application hello. Stockez la valeur de clé hello où votre application peut les récupérer.
 
      ![clé enregistrée](./media/resource-group-create-service-principal-portal/copy-key.png)
 
 ## <a name="get-tenant-id"></a>Obtenir l’ID de locataire
-Lors d’une connexion par programmation, vous devez transmettre l’ID de locataire avec votre demande d’authentification. 
+Lors de la connexion par programme, vous avez besoin d’ID de client hello toopass avec votre demande d’authentification. 
 
-1. Pour obtenir l’ID de locataire, sélectionnez **Propriétés** pour votre client Azure AD. 
+1. ID de client tooget hello, sélectionnez **propriétés** pour votre locataire Azure AD. 
 
      ![Sélectionnez les propriétés Azure AD](./media/resource-group-create-service-principal-portal/select-ad-properties.png)
 
-2. Copiez l’**ID Directory**. Cette valeur est votre ID de locataire.
+2. Hello de copie **ID de répertoire**. Cette valeur est votre ID de locataire.
 
      ![ID client](./media/resource-group-create-service-principal-portal/copy-directory-id.png)
 
-## <a name="assign-application-to-role"></a>Affecter l’application à un rôle
-Pour accéder aux ressources de votre abonnement, vous devez affecter un rôle à l’application. Vous devez décider du rôle qui doit représenter les autorisations appropriées pour l’application. Pour en savoir plus sur les rôles disponibles, consultez [RBAC : rôles intégrés](../active-directory/role-based-access-built-in-roles.md).
+## <a name="assign-application-toorole"></a>Affecter l’application toorole
+tooaccess des ressources dans votre abonnement, vous devez attribuer le rôle de tooa application hello. Décider quel rôle représente les autorisations de droite hello pour une application hello. toolearn sur les rôles disponibles de hello, consultez [RBAC : générées dans les rôles](../active-directory/role-based-access-built-in-roles.md).
 
-Vous pouvez définir l’étendue au niveau de l’abonnement, du groupe de ressources ou de la ressource. Les autorisations sont héritées des niveaux inférieurs de l’étendue (par exemple, l’ajout d’une application au rôle Lecteur pour un groupe de ressources signifie qu’elle peut lire le groupe de ressources et toutes les ressources qu’il contient).
+Vous pouvez définir l’étendue de hello au niveau hello d’abonnement de hello, groupe de ressources ou ressource. Les autorisations sont héritées toolower des niveaux de portée. Par exemple, ajout d’un rôle de lecteur application toohello pour un groupe de ressources signifie qu’il peut lire toutes les ressources qu’il contient et groupe de ressources hello.
 
-1. Accédez au niveau d’étendue que vous souhaitez affecter à l’application. Par exemple, pour affecter un rôle sur l’étendue de l’abonnement, sélectionnez **Abonnements**. Vous pouvez également sélectionner un groupe de ressources ou une ressource.
+1. Accédez au niveau du toohello de portée qu'application hello tooassign vous le souhaitez. Par exemple, tooassign un rôle au niveau de l’étendue de l’abonnement hello, sélectionnez **abonnements**. Vous pouvez également sélectionner un groupe de ressources ou une ressource.
 
      ![sélectionner l'abonnement](./media/resource-group-create-service-principal-portal/select-subscription.png)
 
-2. Sélectionnez l’abonnement (groupe de ressources ou ressource) auquel l’application doit être affectée.
+2. Sélectionnez un abonnement spécifique (groupe de ressources ou ressource) tooassign hello application hello pour.
 
      ![sélectionner l’abonnement pour l’affectation](./media/resource-group-create-service-principal-portal/select-one-subscription.png)
 
@@ -148,18 +148,18 @@ Vous pouvez définir l’étendue au niveau de l’abonnement, du groupe de ress
 4. Sélectionnez **Ajouter**.
 
      ![sélectionner ajouter](./media/resource-group-create-service-principal-portal/select-add.png)
-6. Sélectionnez le rôle que vous souhaitez affecter à l’application. L’image suivante montre le code **Lecteur**.
+6. Sélectionnez le rôle hello vous souhaitez tooassign toohello application. Hello image suivante montre hello **lecteur** rôle.
 
      ![sélectionner un rôle](./media/resource-group-create-service-principal-portal/select-role.png)
 
 8. Recherchez votre application et sélectionnez-la.
 
      ![rechercher une application](./media/resource-group-create-service-principal-portal/search-app.png)
-9. Sélectionnez **OK** pour finaliser l’affectation du rôle. Votre application apparaît dans la liste des utilisateurs affectés à un rôle pour cette étendue.
+9. Sélectionnez **OK** toofinish affectation hello rôle. Vous consultez votre application dans la liste de hello des utilisateurs affectés du rôle tooa pour cette étendue.
 
-## <a name="log-in-as-the-application"></a>Se connecter en tant qu’application
+## <a name="log-in-as-hello-application"></a>Connectez-vous en tant qu’application hello
 
-Votre application est maintenant configurée dans Azure Active Directory. Vous disposez d’un ID et d’une clé à utiliser pour la connexion en tant qu’application. L’application se voit affecter un rôle qui lui permet d’effectuer certaines actions. Pour plus d’informations sur la connexion en tant qu’application via différentes plateformes, voir :
+Votre application est maintenant configurée dans Azure Active Directory. Vous avez un ID et la clé toouse pour vous connecter en tant qu’application hello. application Hello rôle tooa qui lui donne certaines actions, qu'il peut effectuer. Pour plus d’informations sur la connexion en tant qu’application hello via différentes plateformes, consultez :
 
 * [PowerShell](resource-group-authenticate-service-principal.md#provide-credentials-through-powershell)
 * [Interface de ligne de commande Azure](resource-group-authenticate-service-principal-cli.md#provide-credentials-through-azure-cli)
@@ -172,6 +172,6 @@ Votre application est maintenant configurée dans Azure Active Directory. Vous d
 
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Pour configurer une application mutualisée, consultez le [Guide du développeur pour l’authentification avec l’API Azure Resource Manager](resource-manager-api-authentication.md).
-* Pour en savoir plus sur la spécification de stratégies de sécurité, consultez la rubrique [Contrôle d’accès en fonction du rôle](../active-directory/role-based-access-control-configure.md).  
-* Pour une liste des actions disponibles qui peuvent être autorisées ou refusées aux utilisateurs, consultez [Opérations du fournisseur de ressources Azure Resource Manager](../active-directory/role-based-access-control-resource-provider-operations.md).
+* tooset d’une application mutualisée, consultez [tooauthorization du guide du développeur avec hello API Azure Resource Manager](resource-manager-api-authentication.md).
+* toolearn sur la spécification des stratégies de sécurité, consultez [Azure Role-based Access Control](../active-directory/role-based-access-control-configure.md).  
+* Pour obtenir la liste des actions disponibles qui peuvent être accordées ou refusées toousers, consultez [opérations du fournisseur de ressources Azure Resource Manager](../active-directory/role-based-access-control-resource-provider-operations.md).

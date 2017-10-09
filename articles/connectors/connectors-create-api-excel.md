@@ -1,6 +1,6 @@
 ---
-title: Ajouter le connecteur Excel | Microsoft Docs
-description: "Vue d’ensemble du connecteur Excel avec les paramètres d’API REST"
+title: connecteur de Excel hello aaaAdd | Documents Microsoft
+description: "Vue d’ensemble du connecteur d’Excel hello avec des paramètres de l’API REST"
 services: 
 documentationcenter: 
 author: MandiOhlinger
@@ -15,21 +15,21 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/23/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: 4d62bee573aba4c8b0445b1f4c44190496fb3a18
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 00dae29ca4f852dff9553d785c159486156f3410
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-excel-connector"></a>Prise en main du connecteur Excel
+# <a name="get-started-with-hello-excel-connector"></a>Prise en main connecteur d’Excel hello
 Il n’y a pas de connecteur Excel dans Logic Apps. 
 
-## <a name="to-use-excel-data"></a>Pour utiliser des données Excel
-Vous pouvez stocker des données Excel dans un fichier de valeurs séparées par des virgules (CSV) dans un dossier de stockage, tel que [OneDrive](connectors-create-api-onedrive.md). Vous pouvez également utiliser ce fichier CSV avec le [connecteur de fichier plat](../logic-apps/logic-apps-enterprise-integration-flatfile.md).
+## <a name="toouse-excel-data"></a>toouse des données Excel
+Vous pouvez stocker des données Excel dans un fichier de valeurs séparées par des virgules (CSV) dans un dossier de stockage, tel que [OneDrive](connectors-create-api-onedrive.md). Vous pouvez également utiliser ce fichier CSV avec hello [connecteur de fichier plat](../logic-apps/logic-apps-enterprise-integration-flatfile.md).
 
-## <a name="connector-specific-details"></a>Détails spécifiques aux connecteurs
+## <a name="connector-specific-details"></a>Détails spécifiques du connecteur
 
-Consultez tous les déclencheurs et les actions définies dans le swagger, ainsi que les éventuelles limites dans les [détails des connecteurs](/connectors/excel/).
+Afficher les déclencheurs et les actions définies dans les swagger hello et également voir les limites Bonjour [détails du connecteur](/connectors/excel/).
 
 ## <a name="more-connectors"></a>Autres connecteurs
-Revenir à la [liste des API](apis-list.md).
+Revenir en arrière toohello [liste des API](apis-list.md).

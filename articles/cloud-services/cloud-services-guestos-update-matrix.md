@@ -1,6 +1,6 @@
 ---
-title: "En savoir plus sur les dernières publications du SE invité de Microsoft Azure | Microsoft Docs"
-description: "Dernières informations de publication et de compatibilité du Kit de développement logiciel (SDK) pour le SE invité de Microsoft Azure Cloud Services."
+title: "aaaLearn sur hello dernières versions de système d’exploitation invité Azure | Documents Microsoft"
+description: "Bonjour les dernières informations de version et de compatibilité du Kit de développement logiciel pour le système d’exploitation invité de Azure Cloud Services."
 services: cloud-services
 documentationcenter: na
 author: raiye
@@ -14,27 +14,27 @@ ms.tgt_pltfrm: na
 ms.workload: tbd
 ms.date: 8/24/2017
 ms.author: raiye
-ms.openlocfilehash: a4439346817df9223c032abc1405a7cf9cbe780b
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 7274f5a68a32ce91bdede77e1443cdb8053c07ea
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-guest-os-releases-and-sdk-compatibility-matrix"></a>Versions du SE invité et matrice de compatibilité du Kit de développement logiciel (SDK) Azure
-Fournit des informations récentes sur les dernières publications du SE (système d’exploitation) invité de Microsoft Azure pour Cloud Services. Ces informations vous permettent de planifier votre mise à niveau avant la désactivation d’un SE invité. Si vous configurez vos rôles pour utiliser les mises à jour *automatiques* d’un SE invité comme cela est décrit dans [Paramètres de mise à jour du SE invité Azure][Azure Guest OS Update Settings], il n’est pas indispensable que vous lisiez cette page.
+Vous fournit des informations récentes sur hello que libère le dernier système d’exploitation invité de Azure pour Services de cloud computing. Ces informations vous permettent de planifier votre mise à niveau avant la désactivation d’un SE invité. Si vous configurez votre toouse rôles *automatique* mises à jour de système d’exploitation invité comme décrit dans [paramètres de mise à jour du système d’exploitation Azure invité][Azure Guest OS Update Settings], il n’est pas indispensable que vous lisez cette page.
 
 > [!IMPORTANT]
-> Le contenu de cette page s’applique aux rôles web et de travail Cloud Services, qui s’exécutent sur un SE invité. Il **ne s’applique pas** aux machines virtuelles IaaS.
+> Cette page s’applique tooCloud Services rôles web et de travail, qui s’exécutent sur un système d’exploitation invité. Il effectue **s’appliquent pas** tooIaaS Machines virtuelles.
 >
 >
 
 
 > [!NOTE]
-> Le flux RSS a récemment été déconseillé. Surveillez les mises à jour sur un nouveau flux bientôt disponible !
+> Flux RSS de Hello a été récemment déconseillée. Surveillez les mises à jour sur un nouveau flux bientôt disponible !
 >
 >
 
-Vous ne savez pas exactement ce qu’est un SE invité ou en quoi consistent les publications du SE invité ? Lisez [cette](#how-it-works) section.
+Savez pas quel hello est de système d’exploitation invité ou hello comment le système d’exploitation invité libère travail ? Lisez [cette](#how-it-works) section.
 
 ## <a name="news-updates"></a>Nouvelles mises à jour
 
@@ -57,7 +57,7 @@ Début du déploiement du SE invité de juin le 16 juin et publication projeté
 Publication du SE invité mai.
 
 ###### <a name="may-17-2017"></a>**17 mai 2017**
-En raison d’un bogue de sécurité, nous désactivons les versions suivantes du système d’exploitation de décembre 2016 et janvier 2017, qui n’ont pas le [correctif] du portail : WA-GUEST-OS-5.4_201612-01,WA-GUEST-OS-4.39_201612-01, WA-GUEST-OS-3.46_201612-01, WA-GUEST-OS-2.59_201701-01
+En raison du bogue de sécurité tooa, nous allons désactiver hello suivant 2016 de décembre et janvier 2017 versions du système d’exploitation qui n’ont pas hello [corriger] à partir du portail de hello : WA-invité-OS-5.4_201612-01, WA-invité-OS-4.39_201612-01, WA-invité-système d’exploitation-3.46_ 201612-01, WA-GUEST-OS-2.59_201701-01
 
 ###### <a name="may-12-2017"></a>**12 mai 2017**
 Début du déploiement du SE invité de mai le 12 mai et publication projetée le 13 juin.
@@ -69,7 +69,7 @@ Début du déploiement du SE invité d’avril le 18 avril et publication proje
 Le déploiement du SE invité de mars a commencé le 14 mars 2017 et s’est achevé le 10 avril 2017.
 
 ###### <a name="january-10-2017"></a>**10 janvier 2017**
-Le SE invité de janvier contient des correctifs qui affectent uniquement la famille de SE 2 (Windows Server 2008 R2). Nous n’avons donc publié que l’image de la famille de SE 2 (WA-GUEST-OS-2.59_201701-01) pour ce mois. Pour toutes les autres familles de SE, le SE de décembre (201612-01) reste la version la plus à jour.
+Hello du système d’exploitation invité de janvier contient des correctifs qui affectent uniquement la famille de systèmes d’exploitation 2 (Windows Server 2008 R2). Nous avons publié par conséquent uniquement l’image hello 2 de famille du système d’exploitation (WA-GUEST-OS-2.59_201701-01) pour ce mois. Pour toutes les familles du système d’exploitation, hello décembre du système d’exploitation (201612 - 01) reste hello plus récentes.
 
 
 ## <a name="releases"></a>Publications
@@ -79,9 +79,9 @@ Le SE invité de janvier contient des correctifs qui affectent uniquement la fam
 .NET Framework est installé : 4.0, 4.5, 4.5.1, 4.5.2, 4.6, 4.6.1, 4.6.2
 
 > [!NOTE]
-> Les dates précédées de * sont susceptibles de changer.
+> Les dates avec un * sont toochange de sujet.
 >
-> Le mot de passe RDP pour la famille 5 de SE doit comporter au moins 10 caractères.
+> Hello mot de passe RDP 5 de famille du système d’exploitation doit être d’au moins 10 caractères.
 >
 
 | Chaîne de configuration | Date de lancement | Date de désactivation | Date d’expiration |
@@ -102,7 +102,7 @@ Le SE invité de janvier contient des correctifs qui affectent uniquement la fam
 Prend en charge .NET 4.0, 4.5, 4.5.1, 4.5.2
 
 > [!NOTE]
-> Les dates précédées de * sont susceptibles de changer.
+> Les dates avec un * sont toochange d’objet
 >
 >
 
@@ -128,7 +128,7 @@ Prend en charge .NET 4.0, 4.5, 4.5.1, 4.5.2
 Prend en charge .NET 4.0, 4.5, 4.5.1, 4.5.2
 
 > [!NOTE]
-> Les dates précédées de * sont susceptibles de changer.
+> Les dates avec un * sont toochange d’objet
 >
 >
 
@@ -154,7 +154,7 @@ Prend en charge .NET 4.0, 4.5, 4.5.1, 4.5.2
 Prend en charge .NET 3.5, 4.0, 4.5, 4.5.1, 4.5.2
 
 > [!NOTE]
-> Les dates précédées de * sont susceptibles de changer.
+> Les dates avec un * sont toochange d’objet
 >
 >
 
@@ -177,10 +177,10 @@ Prend en charge .NET 3.5, 4.0, 4.5, 4.5.1, 4.5.2
 
 
 ## <a name="msrc-patch-updates"></a>Mises à jour correctives MSRC
-La liste des correctifs inclus dans chaque publication mensuelle du SE invité est disponible [ici][patches].
+Hello liste des correctifs qui sont inclus dans chaque version de système d’exploitation invité mensuelle est disponible [ici][patches].
 
 ## <a name="sdk-support"></a>Prise en charge des Kits de développement logiciel (SDK)
-La [stratégie de déclassement pour le Kit de développement logiciel (SDK) Azure][retire policy sdk] indique que seules les versions postérieures à la version 2.2 sont prises en charge. Cependant, certaines familles de SE invités permettent l’utilisation de versions antérieures. Vous devez toujours utiliser le Kit de développement logiciel (SDK) pris en charge le plus récent.
+Bien que hello [stratégie de retrait pour hello Azure SDK] [ retire policy sdk] indique que seules les versions ci-dessus 2.2 sont pris en charge, spécifique des familles de système d’exploitation invité vous autorisent toouse les versions antérieures. Vous devez toujours utiliser hello plus tard pris en charge le Kit de développement logiciel.
 
 | Famille de SE invité | Versions du Kit de développement logiciel (SDK) compatibles |
 | --- | --- |
@@ -191,45 +191,45 @@ La [stratégie de déclassement pour le Kit de développement logiciel (SDK) Azu
 | 1 |Versions 1.0 et ultérieures |
 
 ## <a name="guest-os-release-information"></a>Informations de publication du SE invité
-Trois dates sont importantes à propos des publications du SE invité : la date de **publication**, la date de **désactivation** et la date **d’expiration**. Un SE invité est considéré comme disponible quand il est proposé dans le portail et qu’il peut être sélectionné comme SE invité cible. Quand un SE invité atteint sa date de **désactivation**, il est supprimé d’Azure. Toutefois, tous les services cloud qui ciblent ce SE invité continuent de fonctionner normalement.
+Il existe trois dates importantes tooGuest du système d’exploitation libère : **release** date, **désactivé** date, et **expiration** date. Un système d’exploitation invité est considéré comme étant disponible lorsqu’il est dans le portail de hello et peut être sélectionné comme cible de hello du système d’exploitation invité. Lorsqu’un système d’exploitation invité atteint hello **désactivé** date, il est supprimé de Azure. Toutefois, tous les services cloud qui ciblent ce SE invité continuent de fonctionner normalement.
 
-Durant la période entre la date de **désactivation** et la date **d’expiration**, vous pouvez facilement passer de votre SE invité actuel à une version plus récente. Si vous utilisez la mise à jour *automatique* pour votre SE invité, vous disposez toujours de la version la plus récente. Vous n’avez donc pas à vous soucier de la date d’expiration.
+fenêtre Hello entre hello **désactivé** date et hello **expiration** date vous fournit une transition tooeasily de mémoire tampon à partir d’un tooone de système d’exploitation invité plus récente. Si vous utilisez *automatique* en tant que votre système d’exploitation invité, vous serez toujours sur la version la plus récente hello et vous n’avez pas tooworry à son expiration.
 
-Après la date **d’expiration** du SE invité, tous les services cloud qui utilisent encore ce SE invité sont arrêtés, supprimés ou mis à niveau de manière forcée. Des informations supplémentaires sur la stratégie de déclassement sont fournies [ici][retirepolicy].
+Hello lorsque **expiration** passe, n’importe quel Service Cloud toujours à l’aide de ce système d’exploitation invité est arrêté, supprimé ou forcé tooupgrade de date. Vous pouvez en savoir plus sur la stratégie de retrait hello [ici][retirepolicy].
 
 ## <a name="guest-os-family-version-explanation"></a>Informations sur les versions des familles de SE invité
-Les familles de SE invité sont basées sur les versions publiées de Microsoft Windows Server. Le SE invité est le système d’exploitation sous-jacent sur lequel s’exécute Azure Cloud Services. Chaque SE invité possède un numéro de famille, de version et de publication.
+familles de système d’exploitation invité Hello sont basées sur les versions publiées de Microsoft Windows Server. Hello du système d’exploitation invité est système d’exploitation sous-jacent hello qui exécute Azure Cloud Services. Chaque SE invité possède un numéro de famille, de version et de publication.
 
 * **Guest OS family**  
   Version du système d’exploitation Windows Server sur laquelle est basé un SE invité. Par exemple, la *famille 3* est basée sur Windows Server 2012.
 * **Version de SE invité**  
-  Correspond à l’image de la famille de SE invité et aux correctifs [Microsoft Security Response Center (MSRC)][msrc] appropriés qui sont disponibles à la date de production de la nouvelle version du SE invité. Il est possible que les correctifs ne soient pas tous inclus.
+  Tooa spécifique famille de système d’exploitation invité de l’image plus pertinentes [MSRC Microsoft Security Response Center ()] [ msrc] correctifs qui sont disponibles dans la version de système d’exploitation invité nouveau hello date hello est généré. Il est possible que les correctifs ne soient pas tous inclus.
 
     Les numéros commencent à 0 et augmentent de 1 chaque fois qu’un nouvel ensemble de mises à jour est ajouté. Les zéros à droite sont uniquement affichés s’ils sont importants. Autrement dit, la version 2.10 est une version différente, bien plus récente, que la version 2.1.
 * **Publication de SE invité**  
-  Nouvelle publication d’une version de SE invité. Une nouvelle publication est produite si Microsoft détecte des problèmes pendant les tests nécessitant des modifications. La publication la plus récente remplace toujours les publications précédentes, publiques ou non. Le portail Azure permet uniquement aux utilisateurs de choisir la publication la plus récente pour une version donnée. Les déploiements s’exécutant sur une publication antérieure ne sont généralement pas mis à niveau de force en fonction de la gravité du bogue.
+  Nouvelle publication d’une version de SE invité. Une nouvelle publication est produite si Microsoft détecte des problèmes pendant les tests nécessitant des modifications. Hello dernière build publiée remplace toujours précédent libère, public ou non. Hello portail Azure autorise uniquement les utilisateurs toopick hello dernière version pour une version donnée. Les déploiements en cours d’exécution sur une version précédente ne sont généralement pas automatiquement mis à niveau en fonction de la gravité hello de bogue de hello.
 
-Dans l’exemple ci-dessous, 2 est la famille, 12 est la version et « rel2 » est la publication.
+Dans l’exemple hello ci-dessous, 2 est la famille de hello, 12 est la version de hello et « rel2 » est mise en production hello.
 
 **Publication du SE invité** - 2.12 rel2
 
 **Chaîne de configuration pour cette publication** - WA-GUEST-OS-2.12_201208-02
 
-Ces informations sont intégrées dans la chaîne de configuration d’un SE invité, ainsi qu’une date indiquant les correctifs MSRC envisagés pour cette publication. Dans cet exemple, les correctifs MSRC produits pour Windows Server 2008 R2 jusqu’à août 2012 inclus ont été envisagés pour l’inclusion. Seuls les correctifs s’appliquant spécifiquement à cette version de Windows Server sont inclus. Par exemple, si un correctif logiciel de MSRC s’applique à Microsoft Office, il ne sera pas inclus, car ce produit ne fait pas partie de l’image de base de Windows Server.
+chaîne de configuration Hello pour un système d’exploitation invité possède ces mêmes informations intégrées, ainsi qu’une date indiquant les correctifs MSRC ont été analysés pour cette version. Dans cet exemple, les correctifs MSRC produits pour Windows Server 2008 R2 des tooand jusqu’en août 2012 ont été analysés pour l’inclure. Seuls les correctifs logiciels qui s’appliquent spécifiquement version toothat de Windows Server sont inclus. Par exemple, si un correctif MSRC s’applique tooMicrosoft Office, il sera pas inclus, car ce produit n’est pas partie de l’image de base Windows Server hello.
 
 ## <a name="guest-os-system-update-process"></a>Processus de mise à jour du SE invité
-Cette page contient des informations sur les prochaines publications de SE invités. Les clients ont indiqué qu’ils souhaitent être informés lors d’une publication, car leurs rôles de service cloud redémarreront s’ils sont définis pour la mise à jour « Automatique ». Les publications de SE invités se produisent généralement au moins 5 jours après la publication de mise à jour MSRC survenant le deuxième mardi de chaque mois. Les nouvelles publications incluent tous les correctifs MSRC adéquats pour chaque famille de SE invité.
+Cette page contient des informations sur les prochaines publications de SE invités. Les clients ont communiqué qu’ils veulent tooknow lorsqu’une version se produit parce que leurs rôles de service cloud redémarrent si elles sont définies à une mise à jour trop « automatique ». Les versions de système d’exploitation invité se produisent généralement au moins cinq (5) jours après la mise à jour se produit sur hello deuxième mardi de chaque mois jour hello MSRC. Les nouvelles versions incluent tous les hello correctifs appropriés de MSRC pour chaque famille de système d’exploitation invité.
 
-Microsoft Azure publie constamment des mises à jour. Le SE invité n’est qu’une mise à jour parmi d’autres. Une version peut être affectée par de nombreux facteurs trop nombreux pour être répertoriés ici. En outre, Azure s’exécute sur des centaines de milliers d’ordinateurs. Cela signifie qu’il est impossible de donner une date et une heure précises pour le redémarrage de vos rôles. Nous travaillons sur un plan visant à limiter ou minuter les redémarrages.
+Microsoft Azure publie constamment des mises à jour. Hello du système d’exploitation invité n'est qu’une telle mise à jour dans le pipeline de hello. Une version peut être affectée par de nombreux facteurs trop nombreuses toolist ici. En outre, Azure s’exécute sur des centaines de milliers d’ordinateurs. Cela signifie qu’il est impossible toogive une date exacte et une heure lorsque redémarrage de vos rôles. Nous avons travaillez sur un plan toolimit ou moment où ils interviennent.
 
-La propagation complète sur Azure d’une nouvelle publication de SE invité peut prendre du temps. Lorsque les services sont mis à jour pour le nouveau SE invité, ils sont redémarrés en respectant les domaines de mise à jour. Les services définis pour utiliser des mises à jour « Automatiques » obtiennent une publication en premier. Après la mise à jour, la nouvelle version du SE invité est répertoriée pour votre service dans le portail Azure. De nouvelles publications peuvent se produire pendant cette période. Il est possible que certaines versions soient déployées sur de longues périodes et donc que des redémarrages de mise à niveau automatiques ne se produisent pas pendant plusieurs semaines après la date officielle de la publication. Une fois qu’un SE invité est disponible, vous pouvez choisir explicitement cette version à partir du portail ou dans votre fichier de configuration.
+Lorsqu’une nouvelle version de système d’exploitation invité est publiée de hello, il peut prendre un temps toofully se propage sur Azure. Comme les services sont mis à jour toohello nouveau système d’exploitation invité, ils sont redémarré en respectant des domaines de mise à jour. Mises à jour « Automatique » services ensemble toouse seront obtiennent une build en premier. Après la mise à jour de hello, vous verrez nouvelle version de système d’exploitation invité hello répertoriée pour votre service Bonjour portail Azure. De nouvelles publications peuvent se produire pendant cette période. Certaines versions peuvent être déployées sur de longues périodes et les redémarrages de mise à niveau automatique peut ne pas survenir pour plusieurs semaines après la date de sortie officielle hello. Une fois qu’un système d’exploitation invité est disponible, vous pouvez choisir explicitement cette version à partir du portail de hello ou dans votre fichier de configuration.
 
-Pour consulter un grand nombre d’informations utiles sur les redémarrages et des orientations vers d’autres informations techniques sur les mises à jour de SE invités et hôtes, consultez le blog de MSDN intitulé [Redémarrage d’instance de rôle en raison d’une mise à niveau du SE][restarts].
+Pour une grande partie des informations précieuses sur les redémarrages et les pointeurs toomore informations techniques de mises à jour du système d’exploitation hôte et de l’invité, consultez hello du blog MSDN intitulé post [rôle Instance redémarre en raison des mises à niveau de tooOS] [ restarts].
 
-Si vous procédez à une mise à jour manuelle de votre SE invité, consultez la page [Stratégie de suppression du SE invité][retirepolicy] pour plus d’informations.
+Si vous mettre à jour manuellement votre système d’exploitation invité, consultez hello [stratégie de retrait de système d’exploitation invité] [ retirepolicy] pour plus d’informations.
 
 ## <a name="guest-os-supportability-and-retirement-policy"></a>Prise en charge et stratégie de suppression du SE invité
-La prise en charge et la stratégie de suppression du SE invité sont détaillées [ici][retirepolicy].
+stratégie de prise en charge et de retrait du système d’exploitation invité de Hello est expliquée [ici][retirepolicy].
 
 [Install .NET on a Cloud Service Role]: https://azure.microsoft.com/en-us/documentation/articles/cloud-services-dotnet-install-dotnet/?WT.mc_id=azurebg_email_Trans_963_RevisedNET_Update
 [Azure Guest OS Update Settings]: cloud-services-how-to-configure.md
@@ -249,4 +249,4 @@ La prise en charge et la stratégie de suppression du SE invité sont détaillé
 [patches]: cloud-services-guestos-msrc-releases.md
 [retirepolicy]: cloud-services-guestos-retirement-policy.md
 [fam1retire]: cloud-services-guestos-family1-retirement.md
-[correctif]: https://technet.microsoft.com/en-us/library/security/ms17-010.aspx
+[corriger]: https://technet.microsoft.com/en-us/library/security/ms17-010.aspx

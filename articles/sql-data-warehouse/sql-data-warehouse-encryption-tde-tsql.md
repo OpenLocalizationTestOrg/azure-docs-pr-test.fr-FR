@@ -1,5 +1,5 @@
 ---
-title: Transparent Data Encryption dans SQL Data Warehouse (T-SQL)| Microsoft Docs
+title: "aaaTransparent chiffrement des données dans l’entrepôt de données SQL (T-SQL) | Documents Microsoft"
 description: "Chiffrement transparent des données (TDE) dans SQL Data Warehouse (T-SQL)"
 services: sql-data-warehouse
 documentationcenter: 
@@ -15,11 +15,11 @@ ms.topic: article
 ms.custom: security
 ms.date: 10/31/2016
 ms.author: rortloff;barbkess
-ms.openlocfilehash: 74c9032aababdce91ed617cd7a4c628915b42504
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3894431c76f14b217f3a6b9a42dbf2f4d216bad6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-transparent-data-encryption-tde"></a>Prise en main du chiffrement transparent des données (TDE)
 > [!div class="op_single_selector"]
@@ -31,38 +31,38 @@ ms.lasthandoff: 07/11/2017
 > 
 
 ## <a name="required-permssions"></a>Autorisations requises
-Pour activer le chiffrement transparent des données (TDE), vous devez être un administrateur ou un membre du rôle dbmanager.
+tooenable Transparent Data Encryption (TDE), vous devez être un administrateur ou un membre du rôle dbmanager de hello.
 
 ## <a name="enabling-encryption"></a>Activation du chiffrement
-Pour activer le chiffrement transparent des données pour une instance SQL Data Warehouse, procédez comme suit :
+Suivez ces étapes de tooenable chiffrement transparent des données d’un entrepôt de données SQL :
 
-1. Connectez-vous à la base de données *master* sur le serveur hébergeant la base de données à l'aide d'identifiants de connexion administrateurs ou membres du rôle **dbmanager** dans la base de données master
-2. Exécutez l'instruction suivante pour chiffrer la base de données.
+1. Se connecter toohello *master* base de données serveur hello hébergeant hello de base de données à l’aide d’une connexion qui est un administrateur ou un membre de hello **dbmanager** rôle dans la base de données master hello
+2. Exécutez hello suivant de base de données instruction tooencrypt hello.
 
 ```sql
 ALTER DATABASE [AdventureWorks] SET ENCRYPTION ON;
 ```
 
 ## <a name="disabling-encryption"></a>Désactivation du chiffrement
-Pour désactiver le chiffrement transparent des données pour une instance SQL Data Warehouse, procédez comme suit :
+Suivez ces étapes de toodisable chiffrement transparent des données d’un entrepôt de données SQL :
 
-1. Connectez-vous à la base de données *master* à l'aide d'identifiants de connexion administrateurs ou membres du rôle **dbmanager** dans la base de données master
-2. Exécutez l'instruction suivante pour chiffrer la base de données.
+1. Se connecter toohello *master* de la base de données à l’aide d’une connexion qui est un administrateur ou un membre de hello **dbmanager** rôle dans la base de données master hello
+2. Exécutez hello suivant de base de données instruction tooencrypt hello.
 
 ```sql
 ALTER DATABASE [AdventureWorks] SET ENCRYPTION OFF;
 ```
 
 > [!NOTE]
-> Une instance SQL Data Warehouse suspendue doit reprendre avant que des modifications ne puissent être apportées aux paramètres de chiffrement transparent des données.
+> Un entrepôt de données SQL en pause doit être repris avant d’apporter des modifications des paramètres de TDE toohello.
 > 
 > 
 
 ## <a name="verifying-encryption"></a>Vérification de chiffrement
-Pour vérifier l’état du chiffrement pour SQL Data Warehouse, procédez comme suit :
+état du chiffrement tooverify pour un entrepôt de données SQL, suivez les étapes de hello ci-dessous :
 
-1. Connectez-vous à la base de données *master* ou d’instance à l'aide d'identifiants de connexion administrateurs ou membres du rôle **dbmanager** dans la base de données master
-2. Exécutez l'instruction suivante pour chiffrer la base de données.
+1. Se connecter toohello *master* ou instance de base de données à l’aide d’une connexion qui est un administrateur ou un membre de hello **dbmanager** rôle dans la base de données master hello
+2. Exécutez hello suivant de base de données instruction tooencrypt hello.
 
 ```sql
 SELECT

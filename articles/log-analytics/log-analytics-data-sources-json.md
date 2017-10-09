@@ -1,6 +1,6 @@
 ---
-title: "Collecte des données JSON personnalisées dans OMS Log Analytics | Documents Microsoft"
-description: "Les sources de données JSON personnalisées peuvent être collectées dans Log Analytics à l’aide de l’agent OMS pour Linux.  Ces sources de données personnalisées peuvent être de simples scripts qui renvoient JSON en tant que cURL ou l’un des 300 plug-ins de FluentD. Cet article décrit la configuration requise pour cette collecte de données."
+title: "les données JSON personnalisées aaaCollecting dans Analytique des journaux OMS | Documents Microsoft"
+description: "Les sources de données JSON personnalisées peuvent être regroupées dans Analytique de journal à l’aide de hello Agent OMS pour Linux.  Ces sources de données personnalisées peuvent être de simples scripts qui renvoient JSON en tant que cURL ou l’un des 300 plug-ins de FluentD. Cet article décrit la configuration de hello requise pour cette collection de données."
 services: log-analytics
 documentationcenter: 
 author: mgoedtel
@@ -14,14 +14,14 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/04/2017
 ms.author: magoedte
-ms.openlocfilehash: 800ee1269556e7c2d56fbbf2b497c10509b5c78c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 97d401408a8c206d4a9ef2ec9b13ba1ca6b5e92b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="collecting-custom-json-data-sources-with-the-oms-agent-for-linux-in-log-analytics"></a>Collecte des sources de données JSON personnalisées à l’aide de l’agent OMS pour Linux dans Log Analytics
-Les sources de données JSON personnalisées peuvent être collectées dans Log Analytics à l’aide de l’agent OMS pour Linux.  Ces sources de données personnalisées peuvent être des scripts simples qui renvoient JSON en tant que [cURL](https://curl.haxx.se/) ou l’un des [300 plug-ins de FluentD](http://www.fluentd.org/plugins/all). Cet article décrit la configuration requise pour cette collecte de données.
+# <a name="collecting-custom-json-data-sources-with-hello-oms-agent-for-linux-in-log-analytics"></a>Collecte des sources de données JSON personnalisées avec hello Agent OMS pour Linux dans le journal Analytique
+Les sources de données JSON personnalisées peuvent être regroupées dans Analytique de journal à l’aide de hello Agent OMS pour Linux.  Ces sources de données personnalisées peuvent être des scripts simples qui renvoient JSON en tant que [cURL](https://curl.haxx.se/) ou l’un des [300 plug-ins de FluentD](http://www.fluentd.org/plugins/all). Cet article décrit la configuration de hello requise pour cette collection de données.
 
 > [!NOTE]
 > L’agent OMS pour Linux v1.1.0-217 et versions ultérieures est requis pour les données JSON personnalisées
@@ -30,9 +30,9 @@ Les sources de données JSON personnalisées peuvent être collectées dans Log 
 
 ### <a name="configure-input-plugin"></a>Configuration du plug-in d’entrée
 
-Pour collecter des données JSON dans Log Analytics, ajoutez `oms.api.` au début d’une balise FluentD dans un plug-in d’entrée.
+ajouter des données JSON toocollect Analytique de journal, `oms.api.` début toohello d’une balise FluentD dans un plug-in d’entrée.
 
-Par exemple, ceci est un fichier de configuration distinct `exec-json.conf` dans `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.d/`.  Cet exemple utilise le plug-in FluentD `exec` pour exécuter une commande cURL toutes les 30 secondes.  La sortie de cette commande est collectée par le plug-in de sortie JSON.
+Par exemple, ceci est un fichier de configuration distinct `exec-json.conf` dans `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.d/`.  Cette méthode utilise le plug-in de hello FluentD `exec` toorun une commande curl toutes les 30 secondes.  sortie Hello de cette commande est collectée par le plug-in sortie hello JSON.
 
 ```
 <source>
@@ -56,12 +56,12 @@ Par exemple, ceci est un fichier de configuration distinct `exec-json.conf` dans
   retry_wait 30s
 </match>
 ```
-La propriété du fichier de configuration ajouté sous `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.d/` devra être modifiée à l’aide de la commande suivante.
+fichier de configuration Hello ajoutée sous `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.d/` nécessitera toohave la propriété modifiée par hello commande suivante.
 
 `sudo chown omsagent:omiusers /etc/opt/microsoft/omsagent/conf/omsagent.d/exec-json.conf`
 
 ### <a name="configure-output-plugin"></a>Configuration du plug-in de sortie 
-Ajouter la configuration de plug-in de sortie suivante à la configuration principale dans `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.conf` ou en tant que fichier de configuration distinct placé dans `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.d/`
+Ajouter hello suivant sortie plug-in configuration toohello configuration principales dans `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.conf` ou comme un fichier de configuration distinct placé dans`/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.d/`
 
 ```
 <match oms.api.**>
@@ -79,18 +79,18 @@ Ajouter la configuration de plug-in de sortie suivante à la configuration princ
 ```
 
 ### <a name="restart-oms-agent-for-linux"></a>Redémarrage de l’agent OMS pour Linux
-Redémarrez l’agent OMS pour le service Linux à l’aide de la commande suivante.
+Redémarrez hello Agent OMS pour Linux service avec hello commande suivante.
 
     sudo /opt/microsoft/omsagent/bin/service_control restart 
 
 ## <a name="output"></a>Sortie
-Les données seront collectées dans Log Analytics avec un enregistrement de type `<FLUENTD_TAG>_CL`.
+Hello sera collectée dans le journal Analytique avec un type d’enregistrement de `<FLUENTD_TAG>_CL`.
 
-Par exemple, la balise personnalisée `tag oms.api.tomcat` dans Log Analytics avec un enregistrement de type `tomcat_CL`.  Vous pouvez extraire tous les enregistrements de ce type à l’aide de la recherche de journal suivante.
+Par exemple, hello balise personnalisée `tag oms.api.tomcat` dans Analytique de journal avec un type d’enregistrement de `tomcat_CL`.  Impossible de récupérer tous les enregistrements de ce type avec hello suivant recherche de journal.
 
     Type=tomcat_CL
 
-Les sources de données JSON imbriquées sont prises en charge, mais sont indexées en fonction du champ parent. Par exemple, les données JSON suivantes sont renvoyées à partir d’une recherche Log Analytics en tant que `tag_s : "[{ "a":"1", "b":"2" }]`.
+Les sources de données JSON imbriquées sont prises en charge, mais sont indexées en fonction du champ parent. Par exemple, hello suivant des données JSON est retourné à partir d’une recherche Analytique de journal en tant que `tag_s : "[{ "a":"1", "b":"2" }]`.
 
 ```
 {
@@ -103,5 +103,5 @@ Les sources de données JSON imbriquées sont prises en charge, mais sont index�
 
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Découvrez les [recherches de journal](log-analytics-log-searches.md) pour analyser les données collectées dans des sources de données et des solutions. 
+* En savoir plus sur [recherche de journal](log-analytics-log-searches.md) tooanalyze les données de salutation collectées à partir de sources de données et les solutions possibles. 
  

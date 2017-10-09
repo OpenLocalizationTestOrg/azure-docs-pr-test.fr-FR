@@ -1,5 +1,5 @@
 ---
-title: Configurer les rapports pour la Sauvegarde Azure
+title: Rapports aaaConfigure pour la sauvegarde Azure
 description: "Cet article traite de la configuration des rapports Power BI pour la Sauvegarde Azure à l’aide d’un coffre Recovery Services."
 services: backup
 documentationcenter: 
@@ -15,73 +15,73 @@ ms.workload: storage-backup-recovery
 ms.date: 07/24/2017
 ms.author: pajosh
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 4629665e6fbe26c26eb45af7509de338367c4e18
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 503a240b36ea999e0fea434b6a50d26ddf7677bd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-azure-backup-reports"></a>Configurer les rapports de la Sauvegarde Azure
-Cet article détaille la procédure permettant de configurer les rapports pour la Sauvegarde Azure à l’aide d’un coffre Recovery Services et d’accéder à ces rapports avec Power BI. Une fois que vous aurez suivi ces étapes, vous pourrez accéder directement à Power BI pour afficher tous les rapports, en personnaliser et en créer. 
+Cet article traite à propos des rapports de tooconfigure étapes pour la sauvegarde Azure à l’aide du coffre Recovery Services et tooaccess ces rapports à l’aide de Power BI. Après avoir effectué ces étapes, vous pouvez directement accéder tooPower BI tooview tous les rapports de hello, personnaliser et créer des rapports. 
 
 ## <a name="supported-scenarios"></a>Scénarios pris en charge
-1. Les rapports de la Sauvegarde Azure sont pris en charge pour la sauvegarde de machines virtuelles Azure et de fichiers/dossiers dans le cloud à l’aide de l’agent Azure Recovery Services.
+1. Les rapports de sauvegarde Azure sont pris en charge pour la machine virtuelle Azure sauvegarde et fichier/dossier sauvegarde toocloud à l’aide d’Azure Recovery Services Agent.
 2. Pour l’instant, les rapports ne sont pas pris en charge pour SQL Azure, DPM et le serveur de sauvegarde Azure.
-3. Vous pouvez afficher des rapports sur différents coffres et différents abonnements, à condition que le même compte de stockage soit configuré pour chacun des coffres. Le compte de stockage sélectionné doit se trouver dans la même région que le coffre Recovery Services.
-4. La fréquence d’actualisation planifiée des rapports est de 24 heures dans Power BI. Vous pouvez également effectuer une actualisation ad hoc des rapports dans Power BI, auquel cas les données les plus récentes du compte de stockage client sont utilisées pour le rendu des rapports. 
+3. Vous pouvez afficher des rapports sur les coffres et les abonnements, si le même compte de stockage est configuré pour chacun des coffres de hello. Compte de stockage sélectionné doit être Bonjour même région que la récupération des services coffre.
+4. fréquence de Hello d’actualisation planifiée pour les rapports de hello est de 24 heures dans Power BI. Vous pouvez également effectuer une actualisation ad hoc de hello rapports dans Power BI, dans lequel les données les plus récentes cas dans le compte de stockage sont utilisées pour le rendu des rapports. 
 
 ## <a name="prerequisites"></a>Composants requis
-1. Créez un [compte de stockage Azure](../storage/common/storage-create-storage-account.md#create-a-storage-account) afin de le configurer pour les rapports. Il est utilisé pour stocker les données associées aux rapports.
-2. [Créez un compte Power BI](https://powerbi.microsoft.com/landing/signin/) pour afficher, personnaliser et créer vos propres rapports à l’aide du portail Power BI.
-3. Si ce n’est pas déjà fait, inscrivez le fournisseur de ressources **Microsoft.insights** avec l’abonnement du compte de stockage ainsi que celui du coffre Recovery Services pour permettre aux données de rapports de circuler vers le compte de stockage. Pour cela, accédez au Portail Azure > Abonnement > Fournisseurs de ressources et cochez ce fournisseur pour l’inscrire. 
+1. Créer un [compte de stockage Azure](../storage/common/storage-create-storage-account.md#create-a-storage-account) tooconfigure pour des rapports. Il est utilisé pour stocker les données associées aux rapports.
+2. [Créer un compte Power BI](https://powerbi.microsoft.com/landing/signin/) tooview, personnaliser et créer vos propres rapports à l’aide du portail Power BI.
+3. Inscrire le fournisseur de ressources hello **Microsoft.insights** si ne pas déjà inscrit, avec un abonnement hello de compte de stockage et également avec un abonnement hello de Services de récupération de coffre de tooenable toohello tooflow de données de création de rapports compte de stockage. toodo hello même, vous devez tooAzure portal > abonnement > fournisseurs de ressources et vérifiez cette tooregister fournisseur il. 
 
 ## <a name="configure-storage-account-for-reports"></a>Configurer le compte de stockage pour les rapports
-Suivez les étapes ci-dessous afin de configurer le compte de stockage pour le coffre Recovery Services à l’aide du Portail Azure. Il s’agit d’une configuration ponctuelle : une fois le compte de stockage configuré, vous pourrez accéder directement à Power BI pour afficher le pack de contenu et exploiter les rapports.
-1. Si l’un de vos coffres Recovery Services est déjà ouvert, passez à l’étape suivante. Si vous n’avez aucun coffre Recovery Services ouvert, mais que vous vous trouvez dans le portail Azure, cliquez sur **Parcourir**dans le menu Hub.
+Utilisez hello suivant du compte de stockage suit tooconfigure hello pour le coffre recovery services à l’aide du portail Azure. Il s’agit d’une configuration unique et une fois que le compte de stockage est configuré, vous pouvez accéder tooPower BI directement tooview pack de contenu et de tirer parti des rapports.
+1. Si vous avez déjà ouvert un coffre Recovery Services, passez toonext étape. Si vous n’avez pas d’un coffre Recovery Services est ouvert, mais sont Bonjour portail Azure, dans le menu du Hub hello, cliquez sur **Parcourir**.
 
-   * Dans la liste des ressources, tapez **Recovery Services**.
-   * Au fur et à mesure de la saisie, la liste est filtrée. Lorsque vous voyez **Coffres Recovery Services**, cliquez dessus.
+   * Dans la liste de hello des ressources, tapez **Recovery Services**.
+   * Comme vous commencez à taper, hello filtres de la liste en fonction de votre entrée. Lorsque vous voyez **Coffres Recovery Services**, cliquez dessus.
 
       ![Créer un archivage de Recovery Services - Étape 1](./media/backup-azure-vms-encryption/browse-to-rs-vaults.png) <br/>
 
-     La liste des archivages de Recovery Services s’affiche. Dans la liste des archivages de Recovery Services, sélectionnez un archivage.
+     liste Hello des archivages de Recovery Services s’affiche. À partir de la liste de hello des archivages de Recovery Services, sélectionnez un coffre.
 
-     Le tableau de bord de l’archivage sélectionné s'ouvre.
-2. Dans la liste des éléments qui s’affiche sous le coffre, cliquez sur **Rapports de sauvegarde** sous la section Analyse et rapports afin de configurer le compte de stockage pour les rapports.
+     tableau de bord Hello coffre-fort sélectionné s’ouvre.
+2. À partir de la liste hello des éléments qui s’affiche sous le coffre, cliquez sur **sauvegarde rapports** sous surveillance et rapports section tooconfigure hello compte de stockage pour les rapports.
 
       ![Sélectionner l’élément de menu Rapports de sauvegarde - Étape 2](./media/backup-azure-configure-reports/backup-reports-settings.PNG)
-3. Dans le panneau Rapports de sauvegarde, cliquez sur le bouton **Configurer**. Le panneau Azure Application Insights, utilisé pour effectuer une transmission de données de type push vers le compte de stockage client, s’ouvre.
+3. Panneau des rapports de sauvegarde hello, cliquez sur **configurer** bouton. Cela ouvre le panneau des Application Azure Insights hello qui est utilisée pour pousser le compte de stockage de données toocustomer.
 
       ![Configurer le compte de stockage - Étape 3](./media/backup-azure-configure-reports/configure-storage-account.PNG)
-4. Réglez le bouton bascule Statut sur **Activé** et cochez la case **Archiver vers un compte de stockage** pour que les données de rapports puissent commencer à arriver dans le compte de stockage.
+4. Définir le bouton bascule du statut hello trop**sur** et sélectionnez **archiver tooa compte de stockage** case à cocher pour que les rapports de données peuvent démarrer circulent dans le compte de stockage toohello.
 
       ![Activer les diagnostics - Étape 4](./media/backup-azure-configure-reports/set-status-on.png)
-5. Cliquez sur le sélecteur de compte de stockage et sélectionnez le compte de stockage dans la liste pour stocker les données de rapports, puis cliquez sur **OK**.
+5. Cliquez sur le sélecteur de compte de stockage et le compte de stockage hello select à partir de la liste de hello pour stocker les rapports des données et cliquez sur **OK**.
 
       ![Sélectionner le compte de stockage - Étape 5](./media/backup-azure-configure-reports/select-storage-account.png)
-6. Cochez la case **AzureBackupReport** et déplacez également le curseur pour sélectionner la période de rétention de ces données de rapports. Les données de rapports du compte de stockage sont conservées pendant la période sélectionnée avec ce curseur.
+6. Sélectionnez **AzureBackupReport** case à cocher et également déplacer période de rétention hello curseur tooselect pour cela les données de rapport. Les données dans le compte de stockage hello de rapport sont conservée pendant période hello sélectionnée à l’aide de ce curseur.
 
       ![Sélectionner le compte de stockage - Étape 6](./media/backup-azure-configure-reports/save-configuration.png)
-7. Vérifiez toutes les modifications et cliquez sur le bouton **Enregistrer** en haut, comme le montre la figure ci-dessus. Cette action garantit que toutes vos modifications sont enregistrées et que le compte de stockage est maintenant configuré de façon à stocker les données de rapports.
+7. Passez en revue toutes les modifications de hello et cliquez sur **enregistrer** bouton en haut, comme indiqué dans la figure hello ci-dessus. Cette action garantit que toutes vos modifications sont enregistrées et que le compte de stockage est maintenant configuré de façon à stocker les données de rapports.
 
 > [!NOTE]
-> Une fois que vous configurez des rapports en enregistrant un compte de stockage, vous devez **attendre 24 heures** pour que le push de données initial soit complété. Vous devez importer le pack de contenu Azure Backup dans Power BI uniquement après cette heure. Consultez [la section FAQ](#frequently-asked-questions) pour plus de détails. 
+> Une fois que vous configurez des rapports à l’enregistrement de compte de stockage, vous devez **attendre 24 heures** pour toocomplete de push de données initiale. Vous devez importer le pack de contenu Azure Backup dans Power BI uniquement après cette heure. Consultez [la section FAQ](#frequently-asked-questions) pour plus de détails. 
 >
 >
 
 ## <a name="view-reports-in-power-bi"></a>Afficher les rapports dans Power BI 
-Une fois le compte de stockage configuré pour les rapports à l’aide du coffre Recovery Services, il faut environ 24 heures pour que les données de rapports commencent à arriver. Après 24 heures de configuration du compte de stockage, suivez les étapes ci-dessous pour afficher les rapports dans Power BI :
-1. [Connectez-vous](https://powerbi.microsoft.com/landing/signin/) à Power BI.
-2. Cliquez sur **Obtenir les données** et cliquez sur Obtenir sous **Services** dans la bibliothèque de packs de contenu. Suivez les étapes de la [documentation Power BI pour accéder au pack de contenu](https://powerbi.microsoft.com/en-us/documentation/powerbi-content-packs-services/).
+Une fois la configuration du compte de stockage pour des rapports à l’aide du coffre recovery services, il prend environ 24 heures pour les rapports toostart données circulent dans. Après 24 heures de la configuration d’un compte de stockage, suivi de hello utilisez les étapes tooview des rapports dans Power BI :
+1. [Connectez-vous](https://powerbi.microsoft.com/landing/signin/) tooPower BI.
+2. Cliquez sur **Obtenir les données** et cliquez sur Obtenir sous **Services** dans la bibliothèque de packs de contenu. Utilisez les étapes indiquées dans [pack de contenu Power BI documentation tooaccess](https://powerbi.microsoft.com/en-us/documentation/powerbi-content-packs-services/).
 
      ![Importer un pack de contenu](./media/backup-azure-configure-reports/content-pack-import.png)
 3. Tapez **Sauvegarde Azure** dans la barre de recherche et cliquez sur **Obtenir maintenant**.
 
       ![Obtenir un pack de contenu](./media/backup-azure-configure-reports/content-pack-get.png)
-4. Entrez le nom du compte de stockage configuré à l’étape 5 ci-dessus, puis cliquez sur le bouton **Suivant**.
+4. Entrez le nom de compte de stockage hello configuré à l’étape 5 ci-dessus, cliquez sur **suivant** bouton.
 
     ![Entrer le nom du compte de stockage](./media/backup-azure-configure-reports/content-pack-storage-account-name.png)    
-5. Entrez la clé de ce compte de stockage. Vous pouvez [afficher et copier les clés d’accès de stockage](../storage/common/storage-create-storage-account.md#manage-your-storage-account) en accédant à votre compte de stockage sur le Portail Azure. 
+5. Entrez la clé de compte de stockage hello pour ce compte de stockage. Vous pouvez [afficher et copier les clés d’accès de stockage](../storage/common/storage-create-storage-account.md#manage-your-storage-account) en naviguant tooyour compte de stockage dans le portail Azure. 
 
      ![Entrer le compte de stockage](./media/backup-azure-configure-reports/content-pack-storage-account-key.png) <br/>
      
@@ -89,58 +89,58 @@ Une fois le compte de stockage configuré pour les rapports à l’aide du coffr
 
     ![Importer un pack de contenu](./media/backup-azure-configure-reports/content-pack-importing-data.png) <br/>
     
-    Au bout d’un certain temps, vous obtenez une notification **Réussite** à la fin de l’importation. L’importation du pack de contenu peut prendre un peu plus longtemps si le compte de stockage contient un grand volume de données.
+    Après un certain temps, vous obtenez **réussite** notification une fois l’importation hello est terminée. S’il existe une grande quantité de données dans le compte de stockage hello peut prendre un peu plus de temps tooimport hello pack de contenu.
     
     ![Importer le pack de contenu - Réussite](./media/backup-azure-configure-reports/content-pack-import-success.png) <br/>
     
-7. Une fois les données importées, le pack de contenu **Sauvegarde Azure** apparaît dans **Applications**, dans le volet de navigation. La liste affiche maintenant le tableau de bord, les rapports et le jeu de données de la Sauvegarde Azure avec une étoile jaune, qui indique les rapports nouvellement importés. 
+7. Une fois que les données sont importées avec succès, **Azure Backup** pack de contenu est visible dans **applications** dans le volet de navigation hello. liste de Hello affiche maintenant Azure Backup de tableau de bord, rapports et jeu de données avec une étoile jaune, indiquant les rapports nouvellement importés. 
 
      ![Pack de contenu de la Sauvegarde Azure](./media/backup-azure-configure-reports/content-pack-azure-backup.png) <br/>
      
 8. Cliquez sur **Sauvegarde Azure** sous Tableaux de bord ; un ensemble de rapports clés épinglés s’affiche.
 
       ![Tableau de bord de la Sauvegarde Azure](./media/backup-azure-configure-reports/azure-backup-dashboard.png) <br/>
-9. Pour afficher l’ensemble des rapports, cliquez sur l’un des rapports du tableau de bord.
+9. ensemble complet de hello tooview de rapports, cliquez sur n’importe quel rapport dans le tableau de bord hello.
 
       ![Intégrité des travaux de la Sauvegarde Azure](./media/backup-azure-configure-reports/azure-backup-job-health.png) <br/>
-10. Cliquez sur chaque onglet des rapports pour afficher les rapports du domaine associé.
+10. Cliquez sur chaque onglet tooview rapports hello dans cette zone.
 
       ![Onglets des rapports de la Sauvegarde Azure](./media/backup-azure-configure-reports/reports-tab-view.png)
 
 
 ## <a name="frequently-asked-questions"></a>Forum Aux Questions
-1. **Comment vérifier si les données de rapports ont commencé à arriver dans le compte de stockage ?**
+1. **Comment vérifier si les données de création de rapports a démarré circulent dans toostorage compte ?**
     
-    Vous pouvez accéder au compte de stockage configuré et sélectionner les conteneurs. Si le conteneur a une entrée insights-logs-azurebackupreport, cela signifie que les données de rapports ont commencé à arriver.
+    Vous pouvez accéder toohello stockage configurés et sélectionnez les conteneurs du compte. Si le conteneur de hello comporte une entrée pour insights-journaux-azurebackupreport, il indique que les données de rapport a démarré circulent.
 
-2. **Quelle est la fréquence des Push de données vers le compte de stockage et le pack de contenu de la Sauvegarde Azure dans Power BI ?**
+2. **Quelle est la fréquence de hello du compte de toostorage de push de données et le pack de contenu Azure Backup dans Power BI ?**
 
-   Pour les nouveaux utilisateurs, il faut environ 24 heures pour effectuer une transmission des données de type push vers le compte de stockage. Une fois cette transmission initiale effectuée, les données sont actualisées selon la fréquence suivante, comme le montre la figure ci-dessous. 
-      * Les données relatives aux **Travaux, alertes, éléments de sauvegarde, coffres, serveurs protégés et stratégies** sont transmises au compte de stockage client au fur et à mesure qu’elles sont consignées.
-      * Les données relatives au **Stockage** sont transmises au compte de stockage client toutes les 24 heures.
+   Pour les utilisateurs de jour 0, il faudrait compte de toostorage des données toopush environ 24 heures. Une fois cette opération push initiale aboutit, les données sont actualisées avec hello suivant fréquence illustré hello ci-dessous. 
+      * Les données relatives trop**travaux, alertes, des éléments de sauvegarde, coffres, serveurs protégés et des stratégies** est transmise compte de stockage toocustomer et lorsqu’il est connecté.
+      * Les données relatives trop**stockage** est transmise compte de stockage toocustomer toutes les 24 heures.
    
     ![Fréquence des Push de données des rapports de la Sauvegarde Azure](./media/backup-azure-configure-reports/reports-data-refresh-cycle.png)
 
-  Power BI effectue une [actualisation planifiée une fois par jour](https://powerbi.microsoft.com/documentation/powerbi-refresh-data/#what-can-be-refreshed). Vous pouvez effectuer une actualisation manuelle des données dans Power BI pour le pack de contenu.
+  Power BI effectue une [actualisation planifiée une fois par jour](https://powerbi.microsoft.com/documentation/powerbi-refresh-data/#what-can-be-refreshed). Vous pouvez effectuer une actualisation manuelle des données de salutation dans Power BI hello pack de contenu.
 
-3. **Combien de temps puis-je conserver les rapports ?** 
+3. **Combien puis-je conserver hello rapports ?** 
 
-   Lors de la configuration du compte de stockage, vous pouvez sélectionner la période de rétention de données de rapports dans le compte de stockage (suivant l’étape 6 de la section Configurer le compte de stockage pour les rapports ci-dessus). En outre, vous pouvez [Analyser les rapports sous Excel](https://powerbi.microsoft.com/documentation/powerbi-service-analyze-in-excel/) et les enregistrer pour allonger la période de rétention en fonction de vos besoins. 
+   Lorsque vous configurez le compte de stockage, vous pouvez sélectionner la période de rétention de données de rapports hello compte de stockage (à l’aide de l’étape 6 de configurer le compte de stockage pour la section rapports ci-dessus). En outre, vous pouvez [Analyser les rapports sous Excel](https://powerbi.microsoft.com/documentation/powerbi-service-analyze-in-excel/) et les enregistrer pour allonger la période de rétention en fonction de vos besoins. 
 
-4. **Verrai-je toutes mes données dans des rapports après avoir configuré le compte de stockage ?**
+4. **Je vois toutes mes données dans les rapports après avoir configuré le compte de stockage hello ?**
 
-   Toutes les données générées après la **Configuration du compte de stockage** seront transmises au compte de stockage et seront disponibles dans les rapports. Toutefois, **les travaux En cours ne sont pas transmis** pour la création de rapports. Le travail est envoyé aux rapports une fois terminé (avec succès ou non).
+   Tous les hello données générées après **« compte de stockage de configuration »** sera poussée de compte de stockage toohello et sera disponible dans les rapports. Toutefois, **les travaux En cours ne sont pas transmis** pour la création de rapports. Une fois le travail de hello se termine ou échoue, il est envoyé tooreports.
 
-5. **Si j’ai déjà configuré le compte de stockage pour afficher les rapports, puis-je modifier la configuration afin d’utiliser un autre compte de stockage ?** 
+5. **Si j’ai déjà configuré des rapports de tooview de compte de stockage hello, puis-je modifier hello configuration toouse un autre compte de stockage ?** 
 
-   Oui, vous pouvez modifier la configuration de façon à pointer vers un autre compte de stockage. Il est conseillé d’utiliser le compte de stockage qui vient d’être configuré pour se connecter au pack de contenu de la Sauvegarde Azure. En outre, une fois qu’un autre compte de stockage est configuré, les nouvelles données arrivent dans ce compte de stockage. Mais les données plus anciennes (datant d’avant la modification de la configuration) restent dans le compte de stockage précédent.
+   Oui, vous pouvez modifier hello configuration toopoint tooa autre compte de stockage. Vous devez utiliser le compte de stockage hello qui vient d’être configuré lors de la connexion tooAzure pack de contenu de sauvegarde. En outre, une fois qu’un autre compte de stockage est configuré, les nouvelles données arrivent dans ce compte de stockage. Mais les données plus anciennes (avant la modification de configuration de hello) devrait rester dans le compte de stockage hello plus anciens.
 
 6. **Puis-je afficher des rapports sur différents coffres et différents abonnements ?** 
 
-   Oui, vous pouvez configurer le même compte de stockage sur différents coffres pour afficher des rapports multicoffres. Vous pouvez également configurer le même compte de stockage pour des coffres de différents abonnements. Vous pourrez ensuite utiliser ce compte de stockage pour vous connecter au pack de contenu de la Sauvegarde Azure dans Power BI afin d’afficher les rapports. Cependant, le compte de stockage sélectionné doit se trouver dans la même région que le coffre Recovery Services.
+   Oui, vous pouvez configurer hello même compte de stockage entre les différents rapports d’entre-coffre tooview les coffres. En outre, vous pouvez configurer hello du même compte de stockage pour les coffres entre abonnements. Vous pouvez ensuite utiliser ce compte de stockage lors de la connexion du pack de contenu de sauvegarde tooAzure dans les rapports de hello tooview Power BI. Toutefois, le compte de stockage hello sélectionné doit être Bonjour même région que la récupération des services coffre.
    
 ## <a name="next-steps"></a>Étapes suivantes
-Maintenant que vous avez configuré le compte de stockage et importé le pack de contenu de la Sauvegarde Azure, la prochaine étape consiste à personnaliser ces rapports et à utiliser le modèle de données de rapports pour créer des rapports. Pour plus d’informations, consultez les articles suivants.
+Maintenant que vous avez configuré le compte de stockage hello et importé pack de contenu de sauvegarde Azure, dans l’étape suivante de hello est toocustomize ces rapports et l’utilisation de rapports de toocreate de modèle de données. Voir la rubrique hello suivant des articles pour plus d’informations.
 
 * [Utiliser le modèle de données de rapports de la Sauvegarde Azure](backup-azure-reports-data-model.md)
 * [Filtrer les rapports dans Power BI](https://powerbi.microsoft.com/documentation/powerbi-service-about-filters-and-highlighting-in-reports/)

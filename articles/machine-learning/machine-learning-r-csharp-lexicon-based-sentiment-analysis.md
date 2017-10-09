@@ -1,5 +1,5 @@
 ---
-title: "(obsolète) Analyse des sentiments basée sur un lexique - Azure | Microsoft Docs"
+title: "AAA(deprecated) analyse des sentiments basée lexique - Azure | Documents Microsoft"
 description: "(obsolète) Analyse des sentiments basée sur un lexique"
 services: machine-learning
 documentationcenter: 
@@ -16,40 +16,40 @@ ms.date: 01/06/2017
 ms.author: pengxia
 ROBOTS: NOINDEX
 redirect_url: https://gallery.cortanaintelligence.com/
-redirect_document_id: TRUE
-ms.openlocfilehash: 7bc80a1e1067296528eca1a843ea30b0c27af616
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+redirect_document_id: True
+ms.openlocfilehash: 1ed7e19441c6a8ad270a0c0f567b4aea588a583e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deprecated-lexicon-based-sentiment-analysis"></a>(obsolète) Analyse des sentiments basée sur un lexique
 
 > [!NOTE]
-> Microsoft DataMarket va être supprimé et cette API est désormais obsolète. 
+> Hello Microsoft DataMarket a été supprimée et que cette API est déconseillée. 
 > 
-> Vous trouverez de nombreux exemples d’expériences et d’API dans la [galerie Cortana Intelligence](http://gallery.cortanaintelligence.com). Pour plus d’informations sur la galerie, consultez [Partager et découvrir des solutions dans la galerie Cortana Intelligence](machine-learning-gallery-how-to-use-contribute-publish.md).
+> Vous trouverez plusieurs API et les expériences d’exemple utile Bonjour [Cortana Intelligence galerie](http://gallery.cortanaintelligence.com). Pour plus d’informations sur la galerie de hello, consultez [partager et découvrir des ressources Bonjour Cortana Intelligence galerie](machine-learning-gallery-how-to-use-contribute-publish.md).
 
 Comment pouvez-vous évaluer les avis et les attitudes des utilisateurs envers des marques ou des rubriques sur les réseaux sociaux en ligne, tels que des publications Facebook, des Tweets, des critiques, etc. ? L’analyse de sentiments fournit une méthode d’analyse de ces questions.
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-Il existe en général deux méthodes pour l’analyse de sentiments. L’une utilise un algorithme d’apprentissage supervisé et l’autre peut être traitée comme un apprentissage non supervisé. Un algorithme d’apprentissage supervisé crée généralement un modèle de classification pour les corpus volumineux annotés. Sa précision est principalement basée sur la qualité de l’annotation et la phase d’apprentissage prend généralement beaucoup de temps. En outre, lorsque nous appliquons l'algorithme à un autre domaine, le résultat n'est généralement pas bon. Par rapport à l’apprentissage supervisé, l’apprentissage non supervisé basé sur un lexique utilise un dictionnaire de sentiments, qui ne nécessite pas le stockage d’un corpus de données volumineux et de formation, ce qui permet d’accélérer considérablement l’ensemble du processus. 
+Il existe en général deux méthodes pour l’analyse de sentiments. Une utilise un algorithme d’apprentissage supervisé et hello autres peut être traitée comme apprentissage non supervisé. Un algorithme d’apprentissage supervisé crée généralement un modèle de classification pour les corpus volumineux annotés. Sa précision est principalement basée sur la qualité de l’annotation hello hello, et généralement le processus d’apprentissage hello prendra un certain temps. En outre, lorsque nous appliquons domaine tooanother algorithme hello hello résultat n’est généralement pas correct. Comparées toosupervised l’apprentissage, lexique-apprentissage non supervisé utilise un sentiments du dictionnaire, qui ne nécessite pas le stockage d’un corpus de données de grande taille et de formation - ce qui rend hello ensemble du processus beaucoup plus rapidement. 
 
-Notre [service](https://datamarket.azure.com/dataset/aml_labs/lexicon_based_sentiment_analysis) repose sur le lexique MPQA (http://mpqa.cs.pitt.edu/lexicons/subj_lexicon/), qui est l’un des lexiques de subjectivité les plus fréquemment utilisés. Il existe 5 097 mots négatifs et 2 533 mots positifs dans le MPQA. Par ailleurs, tous ces mots sont annotés avec une polarité forte ou faible. Le corpus entier fait l'objet d'une licence GPL GNU. Le service web peut être utilisé pour toutes les phrases courtes telles que les Tweets et les publications Facebook. 
+Notre [service](https://datamarket.azure.com/dataset/aml_labs/lexicon_based_sentiment_analysis) repose sur hello MPQA subjectivité lexique (http://mpqa.cs.pitt.edu/lexicons/subj_lexicon/), qui est un des lexiques de subjectivité hello couramment utilisé. Il existe 5 097 mots négatifs et 2 533 mots positifs dans le MPQA. Par ailleurs, tous ces mots sont annotés avec une polarité forte ou faible. corpus de toute Hello est sous licence publique générale GNU. service web de Hello peut être appliqué tooany phrases, tels que des tweets et les billets de Facebook. 
 
-> Les utilisateurs peuvent potentiellement accéder à ce service web par le biais d’une application mobile, d’un site web ou même d’un ordinateur local, par exemple. Mais l’objectif du service web est également de servir d’exemple d’utilisation d’Azure Machine Learning pour créer des services web avec le code R. Avec seulement quelques lignes de code R et quelques clics dans Azure Machine Learning Studio, vous pouvez créer une expérience avec le code R et la publier en tant que service web. Le service web peut ensuite être publié sur Azure Marketplace afin que les utilisateurs et les appareils du monde entier l’utilisent sans que l’auteur du service web n’ait à configurer l’infrastructure.
+> Les utilisateurs peuvent potentiellement accéder à ce service web par le biais d’une application mobile, d’un site web ou même d’un ordinateur local, par exemple. Mais hello objectif du service web de hello est également tooserve comme exemple illustrant comment Azure Machine Learning peuvent être des services web toocreate utilisé sur le code R. Avec seulement quelques lignes de code R et quelques clics dans Azure Machine Learning Studio, vous pouvez créer une expérience avec le code R et la publier en tant que service web. service web de Hello peut ensuite être publié toohello Azure Marketplace et consommé par les utilisateurs et périphériques sur Bonjour sans configuration d’infrastructure par l’auteur de hello du service web de hello.
 > 
 > 
 
 ## <a name="consumption-of-web-service"></a>Utilisation du service web
-Les données en entrée peuvent correspondre à n'importe quel texte, mais le service web fonctionne mieux avec des phrases courtes. Le résultat est une valeur numérique comprise entre -1 et 1. Toute valeur inférieure à 0 indique que le sentiment à l’égard du texte est négatif, il est positif si la valeur est supérieure à 0. La valeur absolue du résultat indique la puissance du sentiment associé. 
+les données d’entrée Hello peuvent être n’importe quel texte, mais hello service web fonctionne mieux avec des phrases. sortie de Hello est une valeur numérique comprise entre -1 et 1. Toute valeur inférieure à 0 indique que sentiment hello du texte hello est négative ; Si elle est positive supérieure 0. valeur absolue de Hello du résultat de hello indique la force de hello de sentiment de hello associé. 
 
-> Étant hébergé sur Azure Marketplace, ce service est un service OData. Il peut être appelé à l’aide des méthodes POST ou GET. 
+> Ce service, comme hébergé sur hello Azure Marketplace, est un service OData ; Il peuvent être appelées par le biais des méthodes POST ou GET. 
 > 
 > 
 
-Il existe plusieurs façons d’utiliser le service de manière automatique (un exemple d’application est disponible [ici](http://microsoftazuremachinelearning.azurewebsites.net/)).
+Il existe plusieurs manières de consommation de service hello de manière automatique (un exemple d’application est [ici](http://microsoftazuremachinelearning.azurewebsites.net/)).
 
 ### <a name="starting-c-code-for-web-service-consumption"></a>Début du code C# pour l'utilisation du service web :
     public class ScoreResult
@@ -81,20 +81,20 @@ Il existe plusieurs façons d’utiliser le service de manière automatique (un 
 
 
 
-L’entrée est la suivante : « Aujourd’hui est une belle journée. ». Le résultat est « 1 », ce qui indique un sentiment positif associé à la phrase en entrée. 
+entrée de Hello est « Aujourd'hui est une bonne journée ». sortie de Hello est « 1 », ce qui indique un sentiments positif associé phrase d’entrée de hello. 
 
 ## <a name="creation-of-web-service"></a>Création du service web
-> Ce service web a été créé à l’aide d’Azure Machine Learning. Pour un essai gratuit, ainsi que des vidéos de présentation relatives à la création d’expériences et à la [publication de services web](machine-learning-publish-a-machine-learning-web-service.md), consultez [azure.com/ml](http://azure.com/ml). Voici une capture d'écran de l'expérience qui a créé le service web et l'exemple de code pour chacun des modules dans l'expérience.
+> Ce service web a été créé à l’aide d’Azure Machine Learning. Pour un essai gratuit, ainsi que des vidéos de présentation relatives à la création d’expériences et à la [publication de services web](machine-learning-publish-a-machine-learning-web-service.md), consultez [azure.com/ml](http://azure.com/ml). Voici une capture d’écran d’expérience hello qui a créé un code de service et un exemple hello web pour chacun des modules hello au sein de l’expérience de hello.
 > 
 > 
 
-Dans Azure Machine Learning, une nouvelle expérience vide a été créée. La figure ci-dessous illustre le flux d’expérience pour l’analyse de sentiments basée sur un lexique. Le fichier « sent_dict.csv » correspond au lexique de subjectivité MPQA ; il est défini en tant que l’une des entrées du module [Exécuter le script R][execute-r-script]. Une autre entrée correspond à une critique partielle provenant du jeu de données des critiques Amazon à des fins de test, dans laquelle nous avons effectué des opérations de sélection, de modification des noms de colonne et de fractionnement. Nous utilisons un package de hachage pour stocker le lexique de subjectivité en mémoire et accélérer le processus de calcul du score. L'ensemble du texte sera converti en jetons par le package « tm » et comparé au mot dans le dictionnaire de sentiments. Enfin, un score sera calculé en ajoutant le poids de chaque mot subjectif dans le texte. 
+Dans Azure Machine Learning, une nouvelle expérience vide a été créée. Hello figure ci-dessous flux d’expérience hello d’analyse de sentiments basée sur le lexique. fichier de « sent_dict.csv » Hello est lexique de hello MPQA subjectivité et est défini comme une des entrées hello de [Execute R Script][execute-r-script]. Une autre entrée est une revue échantillonnée hello Amazon révision DataSet pour le test, où nous effectué la sélection, la modification du nom de colonne et opérations de fractionnement. Nous utilisent un lexique subjectivité de hachage package toostore hello dans la mémoire de hello et accélérer le processus de calcul de score hello. intégralité du texte Hello est créée par le package de « tm » et comparé au mot hello dans le dictionnaire de sentiment hello. Enfin, un score est calculé en ajoutant des poids hello de chaque mot subjective dans le texte hello. 
 
 ### <a name="experiment-flow"></a>Flux de l’expérience :
 ![Flux de l’expérience][2]
 
 #### <a name="module-1"></a>Module 1 :
-    # Map 1-based optional input ports to variables
+    # Map 1-based optional input ports toovariables
     sent_dict_data<- maml.mapInputPort(1) # class: data.frame
     dataset2 <- maml.mapInputPort(2) # class: data.frame
 
@@ -145,16 +145,16 @@ Dans Azure Machine Learning, une nouvelle expérience vide a été créée. La f
     # Sample operation
     data.set <- data.frame(result)
 
-    # Select data.frame to be sent to the output Dataset port
+    # Select data.frame toobe sent toohello output Dataset port
     maml.mapOutputPort("data.set")
 
 
 
-## <a name="limitations"></a>Limitations
-Du point de vue d’un algorithme, l’analyse de sentiments basée sur un lexique est un outil général d’analyse de sentiments qui peut ne pas être plus performant que la méthode de classification pour des champs spécifiques. Le problème de la négation n'est pas correctement pris en charge. Nous codons en dur plusieurs négations dans notre programme, mais une meilleure méthode consiste à utiliser un dictionnaire de négations et à créer certaines règles. Le service web fonctionne mieux avec des phrases courtes et simples, telles que les Tweets et les publications Facebook, qu’avec les phrases longues et complexes, telles que les critiques Amazon. 
+## <a name="limitations"></a>Limites
+Du point de vue de l’algorithme, analyse de sentiments basée sur un lexique est un outil d’analyse de sentiments générales, qui peuvent ne pas offrir de meilleures performances que la méthode de classification hello pour les champs spécifiques. problème de négation Hello n’est pas correctement traité. Nous codons en dur plusieurs négations dans notre programme, mais une meilleure méthode consiste à utiliser un dictionnaire de négations et à créer certaines règles. service web de Hello fonctionne mieux sur les phrases à courts et simples, telles que tweets et les billets de Facebook, que sur des phrases longs et complexes telles que les avis Amazon. 
 
 ## <a name="faq"></a>Forum Aux Questions
-Pour les questions fréquemment posées relatives à l’utilisation du service web ou à la publication sur Azure Marketplace, consultez [ce lien](machine-learning-marketplace-faq.md).
+Pour les questions fréquemment posées sur la consommation de service web de hello ou publication toohello Azure Marketplace, consultez [ici](machine-learning-marketplace-faq.md).
 
 [1]: ./media/machine-learning-r-csharp-lexicon-based-sentiment-analysis/sentiment_analysis_1.png
 [2]: ./media/machine-learning-r-csharp-lexicon-based-sentiment-analysis/sentiment_analysis_2.png

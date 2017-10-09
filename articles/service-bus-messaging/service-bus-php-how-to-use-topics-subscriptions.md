@@ -1,6 +1,6 @@
 ---
-title: Utilisation des rubriques Service Bus avec PHP | Microsoft Docs
-description: "Découvrez comment utiliser les rubriques Service Bus avec PHP dans Azure."
+title: rubriques de Service Bus aaaHow toouse avec PHP | Documents Microsoft
+description: "Découvrez comment toouse les rubriques de Service Bus avec PHP dans Azure."
 services: service-bus-messaging
 documentationcenter: php
 author: sethmanheim
@@ -14,43 +14,43 @@ ms.devlang: PHP
 ms.topic: article
 ms.date: 04/27/2017
 ms.author: sethm
-ms.openlocfilehash: afa9efcb6335786198021ec81dd087287c39bda9
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 0ca8625fa3edc5854c0d6c1c2f6adab6a2d42f91
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-service-bus-topics-and-subscriptions-with-php"></a>Utilisation des rubriques et abonnements Service Bus avec PHP
+# <a name="how-toouse-service-bus-topics-and-subscriptions-with-php"></a>Comment toouse Service Bus rubriques et les abonnements avec PHP
 
 [!INCLUDE [service-bus-selector-topics](../../includes/service-bus-selector-topics.md)]
 
-Cet article vous montre comment utiliser les rubriques et les abonnements Service Bus. Les exemples sont écrits en PHP et utilisent le [Kit de développement logiciel (SDK) Azure pour PHP](../php-download-sdk.md). Les scénarios couverts incluent la **création de rubriques et d’abonnements**, la **création de filtres d’abonnement**, **l’envoi de messages à une rubrique**, la **réception de messages en provenance d’un abonnement** et enfin la **suppression de rubriques et d’abonnements**.
+Cet article vous montre comment toouse Service Bus rubriques et abonnements. exemples de Hello sont écrits en PHP et utiliser hello [Azure SDK pour PHP](../php-download-sdk.md). Hello scénarios abordés incluent **création de rubriques et abonnements**, **création de filtres d’abonnement**, **envoi rubrique tooa de messages**, **réception les messages à partir d’un abonnement**, et **suppression des rubriques et abonnements**.
 
 [!INCLUDE [howto-service-bus-topics](../../includes/howto-service-bus-topics.md)]
 
 ## <a name="create-a-php-application"></a>Création d'une application PHP
-Le référencement de classes issues du [Kit de développement logiciel (SDK) Azure pour PHP](../php-download-sdk.md) dans votre code constitue la seule exigence pour créer une application PHP qui accède au service blob Azure. Vous pouvez utiliser tous les outils de développement pour créer votre application, ou Bloc-notes.
+Hello seule exigence pour la création d’une application PHP qui accède au service d’objets Blob Azure hello est classes tooreference Bonjour [Azure SDK pour PHP](../php-download-sdk.md) à partir de votre code. Vous pouvez utiliser n’importe quel toocreate d’outils de développement de votre application, ou le bloc-notes.
 
 > [!NOTE]
-> [L’extension OpenSSL](http://php.net/openssl) doit également être installée et activée dans votre installation PHP.
+> Votre installation PHP doit également avoir hello [OpenSSL extension](http://php.net/openssl) installé et activé.
 > 
 > 
 
-Cet article décrit comment utiliser des fonctionnalités de service qui peuvent être appelées dans une application PHP localement ou dans le code d’un rôle web, d’un rôle de travail ou d’un site web Azure.
+Cet article décrit comment les fonctions qui peuvent être appelées dans une application PHP localement ou dans le code en cours d’exécution au sein d’un rôle web Azure, le rôle de travail ou le site Web de service de toouse.
 
-## <a name="get-the-azure-client-libraries"></a>Obtention des bibliothèques clientes Azure
+## <a name="get-hello-azure-client-libraries"></a>Obtenir les bibliothèques clientes Azure hello
 [!INCLUDE [get-client-libraries](../../includes/get-client-libraries.md)]
 
-## <a name="configure-your-application-to-use-service-bus"></a>Configuration de votre application pour l’utilisation de Service Bus
-Utilisation des API Service Bus :
+## <a name="configure-your-application-toouse-service-bus"></a>Configurer votre toouse application Service Bus
+hello toouse API Service Bus :
 
-1. Référencez le fichier de chargeur automatique à l’aide de l’instruction [require_once][require-once].
+1. Fichier de chargeur automatique de hello référence à l’aide de hello [require_once] [ require-once] instruction.
 2. référencer toute classe que vous êtes susceptible d'utiliser.
 
-L’exemple suivant montre comment inclure le fichier du chargeur automatique et référencer la classe **ServiceBusService**.
+Hello suivant montre comment tooinclude hello hello de référence et le fichier de chargeur automatique **ServiceBusService** classe.
 
 > [!NOTE]
-> Cet exemple et d'autres exemples de cet article partent du principe que vous avez installé les bibliothèques clientes PHP pour Azure via Composer. Si vous avez installé les bibliothèques manuellement ou en tant que package PEAR, vous devez référencer le fichier de chargeur automatique **WindowsAzure.php**.
+> Cet exemple (et autres exemples de cet article) suppose que vous avez installé les bibliothèques clientes hello PHP pour Azure via le compositeur. Si vous avez installé les bibliothèques hello manuellement ou en tant que package poire, vous devez référencer hello **WindowsAzure.php** fichier de chargeur automatique.
 > 
 > 
 
@@ -59,25 +59,25 @@ require_once 'vendor\autoload.php';
 use WindowsAzure\Common\ServicesBuilder;
 ```
 
-Dans les exemples suivants, l'instruction `require_once` s'affichera toujours, mais seules les classes nécessaires aux besoins de l'exemple à exécuter sont référencées.
+Bonjour exemple suivant, hello `require_once` instruction est toujours affichée, mais uniquement les classes de hello nécessaires pour hello exemple tooexecute sont référencés.
 
 ## <a name="set-up-a-service-bus-connection"></a>Configuration d’une connexion Service Bus
-Pour instancier un client Service Bus, vous devez disposer au préalable d'une chaîne de connexion valide au format suivant :
+tooinstantiate un client de Service Bus que vous devez d’abord avoir une chaîne de connexion valide au format suivant :
 
 ```
 Endpoint=[yourEndpoint];SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=[Primary Key]
 ```
 
-où `Endpoint` est généralement au format `https://[yourNamespace].servicebus.windows.net`.
+Où `Endpoint` est généralement hello format `https://[yourNamespace].servicebus.windows.net`.
 
-Pour créer un client de service Azure, vous devez utiliser la classe `ServicesBuilder`. Vous pouvez :
+toocreate n’importe quel client de service Azure que vous devez utiliser hello `ServicesBuilder` classe. Vous pouvez :
 
-* Lui passer directement la chaîne de connexion.
-* utiliser **CloudConfigurationManager (CCM)** pour vérifier plusieurs sources externes pour la chaîne de connexion :
+* Passer hello connexion chaîne directement tooit.
+* Utilisez hello **CloudConfigurationManager (CCM)** toocheck externe de plusieurs sources pour la chaîne de connexion hello :
   * par défaut une source externe est prise en charge : variables d'environnement.
-  * Vous pouvez ajouter de nouvelles sources en étendant la classe `ConnectionStringSource`.
+  * Vous pouvez ajouter de nouvelles sources en étendant hello `ConnectionStringSource` classe.
 
-Dans les exemples ci-dessous, la chaîne de connexion est passée directement.
+Pour obtenir des exemples hello décrites ici, la chaîne de connexion hello est passé directement.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -90,9 +90,9 @@ $serviceBusRestProxy = ServicesBuilder::getInstance()->createServiceBusService($
 ```
 
 ## <a name="create-a-topic"></a>Création d'une rubrique
-Vous pouvez effectuer des opérations de gestion pour les rubriques Service Bus avec la classe `ServiceBusRestProxy`. Un objet `ServiceBusRestProxy` est construit par la méthode d’usine `ServicesBuilder::createServiceBusService` avec une chaîne de connexion appropriée qui encapsule les autorisations de jeton pour le gérer.
+Vous pouvez effectuer les opérations de gestion pour les rubriques Service Bus via hello `ServiceBusRestProxy` classe. A `ServiceBusRestProxy` objet est construit via hello `ServicesBuilder::createServiceBusService` méthode de fabrique avec une chaîne de connexion appropriée qui encapsule hello autorisations jeton toomanage il.
 
-L’exemple suivant montre comment instancier un `ServiceBusRestProxy` et appeler `ServiceBusRestProxy->createTopic` pour créer une rubrique nommée `mytopic` dans un espace de noms `MySBNamespace` :
+Hello suivant montre l’exemple de comment tooinstantiate un `ServiceBusRestProxy` et appelez `ServiceBusRestProxy->createTopic` toocreate une rubrique nommée `mytopic` dans un `MySBNamespace` espace de noms :
 
 ```php
 require_once 'vendor/autoload.php';
@@ -120,15 +120,15 @@ catch(ServiceException $e){
 ```
 
 > [!NOTE]
-> vous pouvez utiliser la méthode `listTopics` sur les objets `ServiceBusRestProxy` pour vérifier s’il existe déjà une rubrique d’un nom déterminé dans un espace de noms de service.
+> Vous pouvez utiliser hello `listTopics` méthode sur `ServiceBusRestProxy` objets toocheck si une rubrique portant le nom spécifié existe déjà dans un espace de noms de service.
 > 
 > 
 
-## <a name="create-a-subscription"></a>Création d'un abonnement
-La méthode `ServiceBusRestProxy->createSubscription` permet également de créer des abonnements à une rubrique. Les abonnements sont nommés et peuvent être assortis d'un filtre facultatif qui limite l'ensemble des messages transmis à la file d'attente virtuelle de l'abonnement.
+## <a name="create-a-subscription"></a>Création d’un abonnement
+Abonnements aux rubriques sont également créés par hello `ServiceBusRestProxy->createSubscription` (méthode). Les abonnements sont nommés et peuvent avoir un filtre facultatif qui limite l’ensemble de hello de messages transmis de file d’attente virtuelle de l’abonnement toohello.
 
-### <a name="create-a-subscription-with-the-default-matchall-filter"></a>Création d’un abonnement avec le filtre par défaut (MatchAll)
-Le filtre **MatchAll** est le filtre utilisé par défaut si aucun filtre n’est spécifié lors de la création d’un abonnement. Lorsque le filtre **MatchAll** est utilisé, tous les messages publiés dans la rubrique sont placés dans la file d’attente virtuelle de l’abonnement. Dans l’exemple suivant, l’abonnement « mysubscription » qui est créé utilise le filtre par défaut **MatchAll**.
+### <a name="create-a-subscription-with-hello-default-matchall-filter"></a>Créer un abonnement avec le filtre par défaut (MatchAll) hello
+Hello **MatchAll** filtre est hello par défaut qui est utilisé si aucun filtre n’est spécifiée lors de la création d’un abonnement. Hello lorsque **MatchAll** filtre est utilisé, la rubrique de toohello publié tous les messages sont placés dans la file d’attente virtuelle de l’abonnement hello. Hello exemple suivant crée un abonnement nommé « mysubscription » et utilise hello par défaut **MatchAll** filtre.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -156,14 +156,14 @@ catch(ServiceException $e){
 ```
 
 ### <a name="create-subscriptions-with-filters"></a>Création d’abonnements avec des filtres
-Vous pouvez également configurer des filtres pour spécifier quels sont les messages, parmi ceux envoyés à une rubrique, qui doivent apparaître dans un abonnement de rubrique spécifique. Parmi les types de filtre pris en charge par les abonnements, [SqlFilter](/dotnet/api/microsoft.servicebus.messaging.sqlfilter#microsoft_servicebus_messaging_sqlfilter) est le plus flexible. Il implémente un sous-ensemble de SQL92. Les filtres SQL opèrent au niveau des propriétés des messages publiés dans la rubrique. Pour plus d'informations sur les filtres SQL, consultez la page [Propriété SqlFilter.SqlExpression][sqlfilter].
+Vous pouvez également définir des filtres qui vous permettent de toospecify lesquelles messages envoyés tooa rubrique doit apparaître dans un abonnement à une rubrique spécifique. type de filtre pris en charge par les abonnements plus souple Hello est hello [SqlFilter](/dotnet/api/microsoft.servicebus.messaging.sqlfilter#microsoft_servicebus_messaging_sqlfilter), qui implémente un sous-ensemble de SQL92. Filtres SQL fonctionnent sur les propriétés hello de messages hello qui sont publiées toohello rubrique. Pour plus d'informations sur les filtres SQL, consultez la page [Propriété SqlFilter.SqlExpression][sqlfilter].
 
 > [!NOTE]
-> Chaque règle d’un abonnement traite les messages entrants de façon indépendante, ajoutant leurs messages de résultat à l’abonnement. En outre, chaque nouvel abonnement dispose d’un objet **Rule** par défaut avec un filtre qui ajoute tous les messages de la rubrique à l’abonnement. Pour recevoir uniquement les messages correspondant à votre filtre, vous devez supprimer la règle par défaut. Vous pouvez supprimer la règle par défaut à l'aide de la méthode `ServiceBusRestProxy->deleteRule`.
+> Chaque règle sur un abonnement traite les messages entrants indépendamment, ajout de son abonnement toohello de messages de résultats. En outre, chaque nouvel abonnement a une valeur par défaut **règle** objet avec un filtre qui ajoute tous les messages hello rubrique toohello abonnement. tooreceive uniquement les messages correspondant à votre filtre, vous devez supprimer les règles par défaut de hello. Vous pouvez supprimer la règle par défaut de hello à l’aide de hello `ServiceBusRestProxy->deleteRule` (méthode).
 > 
 > 
 
-L’exemple suivant crée l’abonnement `HighMessages` avec un objet **SqlFilter** qui ne sélectionne que les messages dont la propriété personnalisée `MessageNumber` a une valeur supérieure à 3. Pour plus d’informations sur l’ajout de propriétés personnalisées à des messages, consultez [Envoyer des messages à une rubrique](#send-messages-to-a-topic).
+Hello exemple suivant crée un abonnement nommé `HighMessages` avec un **SqlFilter** qui sélectionne uniquement les messages qui ont personnalisé `MessageNumber` propriété supérieure à 3. Consultez [rubrique tooa de messages d’envoi](#send-messages-to-a-topic) pour plus d’informations sur l’ajout de propriétés personnalisées toomessages.
 
 ```php
 $subscriptionInfo = new SubscriptionInfo("HighMessages");
@@ -176,9 +176,9 @@ $ruleInfo->withSqlFilter("MessageNumber > 3");
 $ruleResult = $serviceBusRestProxy->createRule("mytopic", "HighMessages", $ruleInfo);
 ```
 
-Notez que ce code requiert l'utilisation d'un espace de noms supplémentaire : `WindowsAzure\ServiceBus\Models\SubscriptionInfo`.
+Notez que ce code nécessite utiliser hello un espace de noms supplémentaire : `WindowsAzure\ServiceBus\Models\SubscriptionInfo`.
 
-De même, l’exemple suivant crée l’abonnement `LowMessages` avec un objet `SqlFilter` qui ne sélectionne que les messages dont la propriété `MessageNumber` a une valeur inférieure ou égale à 3.
+De même, hello exemple suivant crée un abonnement nommé `LowMessages` avec un `SqlFilter` qui sélectionne uniquement les messages qui ont un `MessageNumber` propriété inférieur ou égal too3.
 
 ```php
 $subscriptionInfo = new SubscriptionInfo("LowMessages");
@@ -191,10 +191,10 @@ $ruleInfo->withSqlFilter("MessageNumber <= 3");
 $ruleResult = $serviceBusRestProxy->createRule("mytopic", "LowMessages", $ruleInfo);
 ```
 
-À présent, dès lors qu’un message est envoyé vers la rubrique `mytopic`, il est toujours remis aux destinataires abonnés à l’abonnement `mysubscription` et est remis de manière sélective aux destinataires abonnés aux abonnements `HighMessages` et `LowMessages` (en fonction du contenu du message).
+Désormais, lorsqu’un message est envoyé à toohello `mytopic` rubrique, il est toujours remis tooreceivers abonné toohello `mysubscription` abonnement et remis de manière sélective tooreceivers abonné toohello `HighMessages` et `LowMessages` (des abonnements en fonction de contenu du message hello).
 
-## <a name="send-messages-to-a-topic"></a>Envoi de messages à une rubrique
-Pour envoyer un message à une rubrique Service Bus, votre application appelle la méthode `ServiceBusRestProxy->sendTopicMessage`. Le code suivant montre comment envoyer un message à la rubrique `mytopic` créée plus haut dans l’espace de noms de service `MySBNamespace`.
+## <a name="send-messages-tooa-topic"></a>Rubrique tooa de messages d’envoi
+toosend une rubrique de Service Bus message tooa, votre application appelle hello `ServiceBusRestProxy->sendTopicMessage` (méthode). Hello suivant de code montre comment toosend un toohello message `mytopic` rubrique créée précédemment dans le `MySBNamespace` espace de noms de service.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -224,7 +224,7 @@ catch(ServiceException $e){
 }
 ```
 
-Les messages envoyés aux rubriques Service Bus sont des instances de la classe [BrokeredMessage][BrokeredMessage]. Les objets [BrokeredMessage][BrokeredMessage] possèdent un ensemble de propriétés et de méthodes standard, ainsi que des propriétés permettant de conserver les propriétés personnalisées propres à une application. L’exemple suivant montre comment envoyer 5 messages test à la rubrique `mytopic` créée précédemment. La méthode `setProperty` sert à ajouter une propriété personnalisée (`MessageNumber`) à chaque message. Notez que la valeur de la propriété `MessageNumber` varie pour chaque message (cela peut être utilisé pour déterminer les abonnements qui le reçoivent, comme indiqué dans la section [Création d’un abonnement](#create-a-subscription)) :
+Les messages envoyés rubriques du Bus tooService sont des instances de hello [BrokeredMessage] [ BrokeredMessage] classe. [BrokeredMessage] [ BrokeredMessage] objets comportent un ensemble de propriétés standard et les méthodes, ainsi que les propriétés qui peuvent être utilisés toohold des propriétés personnalisées spécifiques à l’application. Hello suivant montre comment les messages de test de toosend 5 toohello `mytopic` rubrique créée précédemment. Hello `setProperty` méthode est utilisée tooadd une propriété personnalisée (`MessageNumber`) tooeach message. Notez que hello `MessageNumber` valeur de propriété varie selon chaque message (vous pouvez utiliser cette toodetermine valeur les abonnements de réception, comme indiqué dans hello [créer un abonnement](#create-a-subscription) section) :
 
 ```php
 for($i = 0; $i < 5; $i++){
@@ -240,16 +240,16 @@ for($i = 0; $i < 5; $i++){
 }
 ```
 
-Les rubriques Service Bus prennent en charge une taille de message maximale de 256 Ko dans le [niveau Standard](service-bus-premium-messaging.md) et de 1 Mo dans le [niveau Premium](service-bus-premium-messaging.md). L’en-tête, qui comprend les propriétés d’application standard et personnalisées, peut avoir une taille maximale de 64 Ko. Si une rubrique n'est pas limitée par le nombre de messages qu'elle peut contenir, elle l'est en revanche par la taille totale des messages qu'elle contient. La taille maximale de la rubrique est de 5 Go. Pour plus d’informations sur les quotas, consultez [Quotas Service Bus][Service Bus quotas].
+Rubriques Service Bus prend en charge une taille maximale de 256 Ko Bonjour [niveau Standard](service-bus-premium-messaging.md) et 1 Mo Bonjour [niveau Premium](service-bus-premium-messaging.md). en-tête Hello, qui inclut les standard hello et les propriétés de l’application personnalisée, peut avoir une taille maximale de 64 Ko. Il n’existe aucune limite sur le nombre de hello de messages conservés dans une rubrique mais hello de taille totale des messages hello détenus par une rubrique est une extrémité de fin. La taille maximale de la rubrique est de 5 Go. Pour plus d’informations sur les quotas, consultez [Quotas Service Bus][Service Bus quotas].
 
 ## <a name="receive-messages-from-a-subscription"></a>Réception des messages d’un abonnement
-Le meilleur moyen pour recevoir les messages d’un abonnement est d’utiliser une méthode `ServiceBusRestProxy->receiveSubscriptionMessage`. Les messages peuvent être reçus dans deux modes : [*ReceiveAndDelete* et *PeekLock*](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.receivemode). Le mode par défaut est **PeekLock**.
+messages Hello meilleure manière tooreceive à partir d’un abonnement est toouse un `ServiceBusRestProxy->receiveSubscriptionMessage` (méthode). Les messages peuvent être reçus dans deux modes : [*ReceiveAndDelete* et *PeekLock*](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.receivemode). **PeekLock** est la valeur par défaut hello.
 
-Lorsque le mode [ReceiveAndDelete](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.receivemode) est utilisé, la réception est une opération unique : lorsque Service Bus reçoit une demande de lecture pour un message figurant dans un abonnement, il marque le message comme étant consommé et le renvoie à l’application. Le mode [ReceiveAndDelete](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.receivemode) est le modèle le plus simple et le mieux adapté aux scénarios dans lesquels une application peut tolérer le non-traitement d’un message en cas d’échec. Pour mieux comprendre, imaginez un scénario dans lequel le consommateur émet la demande de réception et subit un incident avant de la traiter. Comme Service Bus a marqué le message comme étant consommé, lorsque l’application redémarre et recommence à consommer des messages, elle manque le message consommé avant l’incident.
+Lors de l’utilisation de hello [ReceiveAndDelete](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.receivemode) , le mode de réception est une opération de prise de vue unique ; autrement dit, lorsque le Service Bus reçoit une demande de lecture d’un message dans un abonnement, il marque le message de type hello comme ayant été consommé et le retourne toohello application. [ReceiveAndDelete](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.receivemode) * mode est le modèle le plus simple hello et convient le mieux pour les scénarios dans lesquels une application peut tolérer ne pas traiter un message dans l’événement hello d’un échec. toounderstand, envisagez un scénario dans les problèmes liés aux consommateurs de hello hello reçoit la demande et puis se bloque avant de le traiter. Comme Service Bus sera ont marqué hello message comme consommé, puis lors de l’application hello redémarre et commence à consommer des messages, elle aura manqué message de type hello qui a été consommée toohello préalable incident.
 
-En mode [PeekLock](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.receivemode) par défaut, la réception d’un message s’effectue en deux temps, ce qui permet de prendre en charge les applications qui ne tolèrent pas les messages manquants. Lorsque Service Bus reçoit une demande, il recherche le prochain message à consommer, le verrouille pour empêcher d'autres consommateurs de le recevoir, puis le renvoie à l'application. Dès que l’application a terminé de traiter le message (ou qu’elle l’a stocké de manière sûre en vue d’un traitement ultérieur), elle effectue la deuxième étape du processus de réception en transmettant le message reçu à `ServiceBusRestProxy->deleteMessage`. Lorsque Service Bus voit l’appel `deleteMessage`, il marque le message comme consommé et le supprime de la file d’attente.
+Dans la valeur par défaut hello [PeekLock](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.receivemode) mode, la réception d’un message devient une opération en deux étapes, ce qui rend possible toosupport les applications qui ne peut pas tolérer des messages manquants. Lorsque le Service Bus reçoit une demande, il recherche hello suivant message toobe consommé, il verrouille tooprevent autres consommateurs le reçoivent et le retourne toohello application. Une fois l’application hello termine le traitement de message de type hello (ou stocke de manière fiable pour un traitement ultérieur), il termine hello deuxième étape du hello processus de réception en passant le message de salutation reçu trop`ServiceBusRestProxy->deleteMessage`. Lorsque le Service Bus voit hello `deleteMessage` appel, il marque le message de type hello comme ayant été consommé et supprimez-le de la file d’attente hello.
 
-L’exemple ci-dessous montre comment recevoir et traiter un message avec le mode [PeekLock](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.receivemode) (mode par défaut). 
+Hello suivant montre l’exemple de comment tooreceive et traiter un message à l’aide de [PeekLock](https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.receivemode) mode (mode par défaut de hello). 
 
 ```php
 require_once 'vendor/autoload.php';
@@ -262,7 +262,7 @@ use WindowsAzure\ServiceBus\Models\ReceiveMessageOptions;
 $serviceBusRestProxy = ServicesBuilder::getInstance()->createServiceBusService($connectionString);
 
 try    {
-    // Set receive mode to PeekLock (default is ReceiveAndDelete)
+    // Set receive mode tooPeekLock (default is ReceiveAndDelete)
     $options = new ReceiveMessageOptions();
     $options->setPeekLock();
 
@@ -291,16 +291,16 @@ catch(ServiceException $e){
 ```
 
 ## <a name="how-to-handle-application-crashes-and-unreadable-messages"></a>Gestion des blocages d’application et des messages illisibles
-Service Bus intègre des fonctionnalités destinées à faciliter la récupération à la suite d’erreurs survenues dans votre application ou de difficultés à traiter un message. Si une application de réception ne parvient pas à traiter le message pour une raison quelconque, elle peut appeler la méthode `unlockMessage` sur le message reçu (au lieu de la méthode `deleteMessage`). Service Bus déverrouille alors le message dans la file d’attente et le rend à nouveau disponible en réception, pour la même application consommatrice ou pour une autre.
+Service Bus fournit toohelp fonctionnalité que surmonter les erreurs dans votre application ou les difficultés du traitement d’un message. Si une application du récepteur ne peut pas tooprocess hello message pour une raison quelconque, elle peut appeler hello `unlockMessage` méthode sur le message de salutation reçu (au lieu de hello `deleteMessage` méthode). Cette opération provoquent le message de type hello toounlock Service Bus au sein de la file d’attente hello et rendre disponible toobe de nouveau reçu, soit hello par même consommation d’application ou par une autre application consommatrice.
 
-De même, il faut savoir qu'un message verrouillé dans une file d'attente est assorti d'un délai d'expiration et que si l'application ne parvient pas à traiter le message dans le temps imparti (par exemple, si l'application subit un incident), Service Bus déverrouille le message automatiquement et le rend à nouveau disponible en réception.
+Il existe également un délai d’attente d’un message verrouillé dans la file d’attente hello et en cas d’un message de type hello tooprocess avant application hello hello expiration délai de verrouillage (par exemple, si de l’application hello se bloque), puis le Service Bus déverrouille un message de type hello automatiquement et le rendre disponible toobe de nouveau reçu.
 
-Si l’application se bloque après le traitement du message mais avant l’émission de la demande `deleteMessage`, le message est à nouveau transmis à l’application lorsqu’elle redémarre. Cette opération est souvent appelée *Au moins une fois*. Chaque message est traité au moins une fois. Toutefois, dans certaines circonstances, un même message peut être remis une nouvelle fois. Si le scénario ne peut pas tolérer le traitement en double, les développeurs d'application doivent ajouter une logique supplémentaire aux applications pour traiter la remise de messages en double, Ceci, grâce à la méthode `getMessageId` du message, qui reste constante entre les tentatives de transmission.
+Bonjour événement hello application se bloque après le traitement de message de type hello mais avant hello `deleteMessage` demande est émise, puis le message de type hello sera redistribué toohello application lors de son redémarrage. Cela est souvent appelé *au moins une fois* traitement ; autrement dit, chaque message est traité au moins une fois, mais dans certain hello situations le même message peut être redistribué. Si le scénario de hello ne peut pas tolérer le traitement dupliqué, les développeurs d’applications doivent ajouter remise de messages en double de toohandle de tooapplications logique supplémentaire. Cela est souvent obtenue à l’aide de hello `getMessageId` méthode de message de type hello, qui reste constante entre les tentatives de remise.
 
 ## <a name="delete-topics-and-subscriptions"></a>Suppression de rubriques et d'abonnements
-Pour supprimer une rubrique ou un abonnement, utilisez les méthodes `ServiceBusRestProxy->deleteTopic` ou `ServiceBusRestProxy->deleteSubscripton` respectivement. Notez que la suppression d’une rubrique a également pour effet de supprimer les abonnements inscrits au niveau de la rubrique.
+toodelete une rubrique ou un abonnement, utilisez hello `ServiceBusRestProxy->deleteTopic` ou hello `ServiceBusRestProxy->deleteSubscripton` méthodes, respectivement. Notez que la suppression d’une rubrique supprime également tous les abonnements qui sont inscrits auprès de rubrique de hello.
 
-L’exemple suivant montre comment supprimer une rubrique nommée `mytopic` et ses abonnements inscrits.
+Hello suivant montre comment toodelete une rubrique nommée `mytopic` et ses abonnements enregistrés.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -326,14 +326,14 @@ catch(ServiceException $e){
 }
 ```
 
-La méthode `deleteSubscription` permet de supprimer un abonnement de façon indépendante :
+À l’aide de hello `deleteSubscription` (méthode), vous pouvez supprimer un abonnement de façon indépendante :
 
 ```php
 $serviceBusRestProxy->deleteSubscription("mytopic", "mysubscription");
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-Maintenant que vous connaissez les principes de base des files d’attente Service Bus, consultez [Files d’attente, rubriques et abonnements][Queues, topics, and subscriptions] pour plus d’informations.
+Maintenant que vous avez appris les notions de base de hello de files d’attente Service Bus, consultez [les files d’attente, rubriques et abonnements] [ Queues, topics, and subscriptions] pour plus d’informations.
 
 [BrokeredMessage]: https://docs.microsoft.com/dotnet/api/microsoft.servicebus.messaging.brokeredmessage
 [Queues, topics, and subscriptions]: service-bus-queues-topics-subscriptions.md

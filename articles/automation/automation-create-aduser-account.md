@@ -1,6 +1,6 @@
 ---
-title: "Créer un compte d’utilisateur Azure AD | Microsoft Docs"
-description: "Cet article décrit comment créer les informations d’identification d’un compte d’utilisateur Azure AD pour les Runbooks dans Azure Automation pour l’authentification dans Azure et Azure Classic."
+title: "aaaCreate compte d’utilisateur Active Directory de Azure | Documents Microsoft"
+description: "Cet article décrit comment toocreate un compte Azure AD des informations d’identification pour les runbooks dans tooauthenticate Azure Automation dans Azure et Azure classic."
 services: automation
 documentationcenter: 
 author: MGoedtel
@@ -15,79 +15,79 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/13/2017
 ms.author: magoedte
-ms.openlocfilehash: 4eaa3e36ededddeb5268ec4f49b9daee2f824cee
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 7c6ed4182dbab074d0bc5da7057f74ad321d8884
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="authenticate-runbooks-with-azure-classic-deployment-and-resource-manager"></a>Authentification des Runbooks avec le déploiement Azure Classic et Resource Manager
-Cet article décrit les étapes à effectuer pour configurer un compte d’utilisateur Azure AD pour les runbooks Azure Automation en cours d’exécution sur des ressources du modèle de déploiement Azure Classic ou Azure Resource Manager.  Même si cette procédure est toujours prise en charge comme identité d’authentification pour vos Runbooks Azure Resource Manager, il est recommandé d’utiliser un compte d’identification Azure.       
+Cet article décrit la procédure à hello qu'effectuer tooconfigure un compte d’utilisateur Active Directory de Azure pour les runbooks Azure Automation en cours d’exécution sur le modèle de déploiement classique Azure ou les ressources Azure Resource Manager.  Pendant ce processus poursuit toobe une identité d’authentification pris en charge pour votre gestionnaire de ressources Azure en fonction des procédures opérationnelles, hello recommandé que vous pouvez utiliser un compte d’identification Azure.       
 
 ## <a name="create-a-new-azure-active-directory-user"></a>Création d’un nouvel utilisateur Azure Active Directory
-1. Connectez-vous au portail Azure Classic en tant qu’administrateur de service pour l’abonnement Azure que vous souhaitez gérer.
-2. Sélectionnez **Active Directory**, puis sélectionnez le nom du répertoire de votre organisation.
-3. Sélectionnez l’onglet **Utilisateurs**, puis, dans la zone de commande, sélectionnez **Ajouter un utilisateur**.
-4. Sur la page **Dites-nous en plus sur cet utilisateur**, sous **Type d’utilisateur**, sélectionnez **Nouvel utilisateur dans votre organisation**.
+1. Ouvrez une session dans le portail Azure Classic de toohello en tant qu’administrateur du service pour hello abonnement Azure que vous souhaitez toomanage.
+2. Sélectionnez **Active Directory**, puis sélectionnez le nom hello du répertoire de votre organisation.
+3. Sélectionnez hello **utilisateurs** et puis, dans la zone de commande hello, sélectionnez **ajouter un utilisateur**.
+4. Sur hello **faites-nous part de cet utilisateur** sous **Type d’utilisateur**, sélectionnez **nouvel utilisateur dans votre organisation**.
 5. Entrez un nom d’utilisateur.  
-6. Sélectionnez le nom du répertoire associé à votre abonnement Azure sur la page Active Directory.
-7. Sur la page **Profil de l’utilisateur**, entrez les nom et prénom de l’utilisateur, un nom convivial et sélectionnez Utilisateur dans la liste **Rôles**.  Ne sélectionnez pas la case à cocher **Activer l’authentification multifacteur**.
-8. Notez le nom complet de l’utilisateur et le mot de passe temporaire.
+6. Sélectionnez le nom du répertoire hello est associé à votre abonnement Azure sur la page d’Active Directory hello.
+7. Sur hello **profil utilisateur** , fournissez les premier et dernier nom, un nom convivial et utilisateur à partir de hello **rôles** liste.  Ne sélectionnez pas la case à cocher **Activer l’authentification multifacteur**.
+8. Notez le nom complet et mot de passe temporaire de l’utilisateur hello.
 9. Sélectionnez **Paramètres > Administrateurs > Ajouter**.
-10. Tapez le nom d’utilisateur complet de l’utilisateur que vous avez créé.
-11. Sélectionnez l’abonnement que vous souhaitez gérer.
-12. Déconnectez-vous d’Azure et puis reconnectez-vous avec le compte que vous venez de créer. Vous serez invité à modifier le mot de passe de l’utilisateur.
+10. Type hello nom d’utilisateur complet de l’utilisateur hello que vous avez créé.
+11. Sélectionnez hello abonnement hello toomanage de l’utilisateur.
+12. Déconnectez-vous d’Azure et connectez-vous avec un compte hello que vous venez de créer. Vous serez invité à toochange hello mot de passe utilisateur.
 
 ## <a name="create-an-automation-account-in-azure-classic-portal"></a>Création d’un compte Automation dans le portail Azure Classic
-Dans cette section, vous effectuez les étapes suivantes pour créer un compte Azure Automation dans le portail Azure qui sera utilisé avec vos ressources de gestion des Runbooks dans le mode de déploiement Azure Classic.  
+Dans cette section, vous effectuer hello suivant les étapes toocreate un compte Azure Automation Bonjour portail Azure pour une utilisation avec les procédures opérationnelles la gestion des ressources dans un déploiement classique Azure.  
 
 > [!NOTE]
-> Les comptes Automation créés avec le portail Azure Classic peuvent être gérés par le portail Azure Classic et le portail Azure, et par le jeu d’applets de commande correspondant. Une fois que le compte est créé, la façon de créer et de gérer des ressources au sein du compte n'importe pas. Si vous envisagez de continuer à utiliser le portail Azure Classic, vous devez alors l’utiliser au lieu d’utiliser le portail Azure pour créer des comptes Automation.
+> Comptes Automation créés avec le portail Azure Classic de hello peuvent être gérés par hello Azure Classic et portail Azure et l’ensemble d’applets de commande. Une fois que le compte de hello est créé, il ne fait aucune différence comment créer et gérer des ressources au sein du compte de hello. Si vous envisagez de portail Azure Classic toocontinue toouse hello, vous devez utiliser à la place de hello Azure toocreate portail des comptes Automation.
 > 
 > 
 
-1. Connectez-vous au portail Azure Classic en tant qu’administrateur de service pour l’abonnement Azure que vous souhaitez gérer.
+1. Ouvrez une session dans le portail Azure Classic de toohello en tant qu’administrateur du service pour hello abonnement Azure que vous souhaitez toomanage.
 2. Sélectionnez **Automation**.
-3. Sur la page **Automation**, sélectionnez **Créer un compte Automation**.
-4. Dans la boîte de dialogue **Créer un compte Automation**, entrez un nom pour votre nouveau compte Automation et sélectionnez une **région** dans la liste déroulante.  
-5. Cliquez sur **OK** pour accepter les paramètres et créer le compte.
-6. Une fois le compte créé, il est répertorié sur la page **Automation** .
-7. Cliquez sur le compte pour accéder à la page Tableau de bord.  
-8. Sur la page Tableau de bord Automation, sélectionnez **Actifs**.
-9. Sur la page **Actifs**, sélectionnez l’option **Ajouter des paramètres** située en bas de la page.
-10. Sur la page **Ajouter des paramètres**, sélectionnez **Ajouter des informations d’identification**.
-11. Sur la page **Définir les informations d’identification**, sélectionnez **Informations d’identification de Windows PowerShell** dans la liste déroulante **Type d’informations d’identification** et entrez un nom pour les informations d’identification.
-12. Sur la page **Définir les informations d’identification** suivante, entrez le nom d’utilisateur du compte utilisateur Active Directory créé précédemment dans le champ **Nom d’utilisateur** et le mot de passe dans les champs **Mot de passe** et **Confirmer le mot de passe**. Cliquez sur **OK** pour enregistrer vos modifications.
+3. Sur hello **Automation** page, sélectionnez **créer un compte Automation**.
+4. Bonjour **créer un compte Automation** , tapez un nom pour votre nouveau compte Automation et sélectionnez un **région** à partir de la liste déroulante de hello.  
+5. Cliquez sur **OK** tooaccept vos paramètres et créer le compte de hello.
+6. Après sa création, il sera répertorié sur hello **Automation** page.
+7. Cliquez sur le compte de hello et il affiche la page tableau de bord toohello.  
+8. Sur la page du tableau de bord Automation hello, sélectionnez **actifs**.
+9. Sur hello **actifs** page, sélectionnez **ajouter des paramètres** situé en bas de hello de page de hello.
+10. Sur hello **ajouter des paramètres** page, sélectionnez **ajouter les informations d’identification**.
+11. Sur hello **définir les informations d’identification** page, sélectionnez **informations d’identification de Windows PowerShell** de hello **Type d’informations d’identification** déroulante liste et fournir un nom pour les informations d’identification hello.
+12. Suivant le hello **définir les informations d’identification** page type de nom d’utilisateur hello hello AD du compte d’utilisateur créé précédemment dans hello **nom d’utilisateur** hello et champ de mot de passe dans hello **mot de passe**et **confirmer le mot de passe** champs. Cliquez sur **OK** toosave vos modifications.
 
-## <a name="create-an-automation-account-in-the-azure-portal"></a>Création d’un compte Automation dans le portail Azure
-Dans cette section, vous effectuez les étapes suivantes pour créer un compte Azure Automation dans le portail Azure qui sera utilisé avec vos ressources de gestion des Runbooks en mode Azure Resource Manager.  
+## <a name="create-an-automation-account-in-hello-azure-portal"></a>Créer un compte Automation Bonjour portail Azure
+Dans cette section, effectuer hello suivant les étapes toocreate un compte Azure Automation Bonjour portail Azure pour une utilisation avec les procédures opérationnelles la gestion des ressources en mode Azure Resource Manager.  
 
-1. Connectez-vous au portail Azure en tant qu’administrateur de service pour l’abonnement Azure que vous souhaitez gérer.
+1. Ouvrez une session dans toohello portail Azure en tant qu’administrateur du service pour hello abonnement Azure que vous souhaitez toomanage.
 2. Sélectionnez **Comptes Automation**.
-3. Dans le panneau Comptes Automation, cliquez sur **Ajouter**.<br><br>![Ajouter un compte Automation](media/automation-create-aduser-account/add-automation-acct-properties.png)
-4. Dans le panneau **Ajouter un compte Automation**, entrez le nom de votre nouveau compte Automation dans la zone **Nom**.
-5. Si vous disposez de plusieurs abonnements, spécifiez celui du nouveau compte, ainsi qu’un **groupe de ressources** nouveau ou existant et un **emplacement** de centre de données Azure.
-6. Sélectionnez la valeur **Yes** dans l’option **Créer un compte d’authentification Azure**, puis cliquez sur le bouton **Créer**.  
+3. Dans le panneau de comptes Automation hello, cliquez sur **ajouter**.<br><br>![Ajouter un compte Automation](media/automation-create-aduser-account/add-automation-acct-properties.png)
+4. Bonjour **ajouter un compte Automation** panneau, Bonjour **nom** tapez un nom pour votre nouveau compte Automation.
+5. Si vous avez plusieurs abonnements, spécifiez un hello pour le nouveau compte de hello, mais aussi un nouveau ou existant **groupe de ressources** et un centre de données Azure **emplacement**.
+6. Sélectionnez la valeur de hello **Oui** pour hello **créer Azure exécuter en tant que compte** , puis cliquez sur hello **créer** bouton.  
    
     > [!NOTE]
-    > Si vous choisissez de ne pas créer de compte d’identification en sélectionnant l’option **Non**, un message d’avertissement s’affiche dans le panneau **Ajouter un compte Automation**.  Bien que le compte soit créé avec le rôle de **contributeur** dans l’abonnement, il n’aura pas d’identité d’authentification correspondante au sein de votre service de répertoire d’abonnements et, par conséquent, il n’aura pas accès aux ressources de votre abonnement.  Cela empêchera tous les Runbooks faisant référence à ce compte de pouvoir authentifier et effectuer des tâches sur les ressources Azure Resource Manager.
+    > Si vous choisissez toonot créer le compte d’identification hello en sélectionnant l’option de hello **non**, vous verrez un message d’avertissement Bonjour **ajouter un compte Automation** panneau.  Alors que hello compte est créé et affecté toohello **collaborateur** rôle dans l’abonnement de hello, il n’a pas une identité d’authentification correspondant au sein de votre service d’annuaire abonnements et par conséquent, aucun accès ressources de votre abonnement.  Cela empêchera les runbooks faisant référence à ce compte ne soient pas en mesure de tooauthenticate et effectuer des tâches sur des ressources d’Azure Resource Manager.
     > 
     >
 
     <br>![Avertissement Ajouter un compte Automation](media/automation-create-aduser-account/add-automation-acct-properties-error.png)<br>  
-7. Pour suivre la progression de la création du compte Automation, accédez à l’onglet **Notifications** du menu.
+7. Alors que Azure crée le compte d’automatisation hello, vous pouvez suivre la progression de hello sous **Notifications** à partir du menu de hello.
 
-Lorsque la création des informations d’identification est terminée, vous devez créer un actif d’informations d’identification pour associer le compte Automation au compte d’utilisateur Active Directory créé précédemment.  N’oubliez pas que nous avons uniquement créé le compte Automation et qu’il n’est pas associé à une identité d’authentification.  Suivez les étapes présentées dans l’article [Ressources d’informations d’identification dans Azure Automation](automation-credentials.md#creating-a-new-credential-asset) et entrez la valeur du **nom d’utilisateur** au format **domaine\utilisateur**.
+Lors de la création des informations d’identification hello hello est terminée, vous devez toocreate un hello de tooassociate Asset des informations d’identification du compte Automation avec hello compte d’utilisateur Active Directory créé précédemment.  N’oubliez pas, nous avons créé uniquement compte Automation de hello et il n’est pas associé à une identité de l’authentification.  Effectuez les étapes de hello présentées dans hello [actifs dans l’article d’Azure Automation des informations d’identification](automation-credentials.md#creating-a-new-credential-asset) et entrez la valeur hello pour **nom d’utilisateur** au format de hello **domaine\utilisateur**.
 
-## <a name="use-the-credential-in-a-runbook"></a>Utilisation des informations d’identification dans un Runbook
-Vous pouvez récupérer les informations d’identification dans un Runbook à l’aide de l’activité [Get-AutomationPSCredential](http://msdn.microsoft.com/library/dn940015.aspx) et les utiliser avec [Add-AzureAccount](http://msdn.microsoft.com/library/azure/dn722528.aspx) pour vous connecter à votre abonnement Azure. Si les informations d’identification correspondent à un administrateur de plusieurs abonnements Azure, vous devez également utiliser [Select-AzureSubscription](http://msdn.microsoft.com/library/dn495203.aspx) pour spécifier celle qui convient. Cela est illustré dans l’exemple Windows PowerShell ci-dessous qui apparaît en haut de la plupart des Runbooks Azure Automation.
+## <a name="use-hello-credential-in-a-runbook"></a>Utiliser les informations d’identification hello dans un runbook
+Vous pouvez récupérer les informations d’identification de hello dans un runbook à l’aide de hello [Get-AutomationPSCredential](http://msdn.microsoft.com/library/dn940015.aspx) activité et l’utiliser avec [Add-AzureAccount](http://msdn.microsoft.com/library/azure/dn722528.aspx) tooconnect tooyour abonnement Azure. Si les informations d’identification de hello sont un administrateur de plusieurs abonnements Azure, vous devez également utiliser [Select-AzureSubscription](http://msdn.microsoft.com/library/dn495203.aspx) toospecify hello correct. Cela est illustré dans l’exemple hello Windows PowerShell ci-dessous qui apparaît généralement en haut de hello de la plupart des runbooks Azure Automation.
 
     $cred = Get-AutomationPSCredential –Name "myuseraccount.onmicrosoft.com"
     Add-AzureAccount –Credential $cred
     Select-AzureSubscription –SubscriptionName "My Subscription"
 
-Vous devez répéter ces lignes après tout [point de contrôle](http://technet.microsoft.com/library/dn469257.aspx#bk_Checkpoints) dans votre Runbook. Si le Runbook est interrompu, puis reprend avec un autre collaborateur, ce dernier doit s’authentifier à nouveau.
+Vous devez répéter ces lignes après tout [point de contrôle](http://technet.microsoft.com/library/dn469257.aspx#bk_Checkpoints) dans votre Runbook. Si hello runbook est interrompu, puis reprend sur un autre travail, il doit à nouveau l’authentification tooperform hello.
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Passez en revue les différents types de Runbooks et les étapes pour créer vos propres Runbooks dans l’article [Types de Runbooks Azure Automation](automation-runbook-types.md)
+* Révision hello runbook différents types et les étapes de création de vos propres runbooks à partir de hello article suivant [types de runbook Azure Automation](automation-runbook-types.md)
 

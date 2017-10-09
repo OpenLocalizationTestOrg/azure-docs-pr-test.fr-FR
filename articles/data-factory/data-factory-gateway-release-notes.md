@@ -1,5 +1,5 @@
 ---
-title: "Notes de version pour la passerelle de gestion des données | Microsoft Docs"
+title: "notes d’aaaRelease pour la passerelle de gestion des données | Documents Microsoft"
 description: "Notes de version pour la passerelle de gestion des données"
 services: data-factory
 author: nabhishek
@@ -14,16 +14,16 @@ ms.topic: article
 ms.date: 06/19/2017
 ms.author: abnarain
 published: True
-ms.openlocfilehash: c052d7e9f757164429ce867201b96305e405dce9
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 3165d7537410a0531e0bb7f7fe584767f9155574
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="release-notes-for-data-management-gateway"></a>Notes de version pour la passerelle de gestion des données
-Un des défis de l’intégration de données modernes consiste à déplacer des données vers et depuis un site local et le cloud. Azure Data Factory effectue cette intégration avec la passerelle de gestion des données Microsoft, qui est un agent pouvant être installé en local pour activer le déplacement de données hybrides.
+Un des défis hello pour l’intégration de données moderne est tooand de données toomove de local toocloud. Fabrique de données permet l’intégration avec la passerelle de gestion des données, qui est un agent que vous pouvez installer le déplacement des données sur site tooenable hybride.
 
-Consultez les articles suivants pour des informations détaillées sur la passerelle de gestion des données et son utilisation :
+Consultez hello suivant des articles pour plus d’informations sur la passerelle de gestion des données et comment toouse il :
 
 *  [Passerelle de gestion de données](data-factory-data-management-gateway.md)
 *  [Déplacement de données entre des emplacements locaux et le cloud à l'aide d’Azure Data Factory](data-factory-move-data-between-onprem-and-cloud.md)
@@ -32,9 +32,9 @@ Consultez les articles suivants pour des informations détaillées sur la passer
 ## <a name="current-version-21063477"></a>VERSION ACTUELLE (2.10.6347.7)
 
 ### <a name="enhancements-"></a>Améliorations
-- Vous pouvez ajouter des entrées DNS à la liste blanche Service Bus au lieu d’autoriser toutes les adresses IP Azure dans votre pare-feu (si nécessaire). Vous pouvez trouver l’entrée DNS concernée sur le portail Azure (Data Factory -> Créer et déployer > Passerelles > ServiceUrls (dans JSON))
+- Vous pouvez ajouter le bus des services DNS entrées toowhitelist plutôt que de création de listes autorisées toutes les adresses IP Azure à partir de votre pare-feu (le cas échéant). Vous pouvez trouver l’entrée DNS concernée sur le portail Azure (Data Factory -> Créer et déployer > Passerelles > ServiceUrls (dans JSON))
 - Le connecteur HDFS prend désormais en charge le certificat public auto-signé en vous permettant d’ignorer la validation SSL.
-- Résolu : problème lié à la passerelle en mode hors connexion pendant la mise à jour (en raison d’une différence d’heure)
+- Résolu : Problème avec la passerelle en mode hors connexion pendant la mise à jour (en raison d’inclinaison de tooclock)
 
 
 
@@ -42,12 +42,12 @@ Consultez les articles suivants pour des informations détaillées sur la passer
 
 ## <a name="2963132"></a>2.9.6313.2
 ### <a name="enhancements-"></a>Améliorations
--   Vous pouvez ajouter des entrées DNS à la liste blanche Service Bus au lieu d’autoriser toutes les adresses IP Azure dans votre pare-feu (si nécessaire). Plus de détails ici.
--   Vous pouvez maintenant copier les données vers ou à partir d’un seul objet blob de blocs jusqu’à 4,75 To. Il s’agit de la taille maximale prise en charge pour ces objets (la limite antérieure était de 195 Go).
+-   Vous pouvez ajouter toowhitelist des entrées DNS Service Bus au lieu des liste approuvées toutes les adresses IP Azure à partir de votre pare-feu (le cas échéant). Plus de détails ici.
+-   Vous pouvez maintenant copier les données vers/à partir d’un objet blob de bloc unique des too4.75 To, ce qui est la taille de hello maximale prise en charge de l’objet blob de blocs. (la limite antérieure était de 195 Go).
 -   Résolu : problème de mémoire insuffisante lors de la décompression de plusieurs petits fichiers pendant l’activité de copie.
--   Résolu : problème d’index hors plage lors de la copie depuis Document DB vers le système SQL Server local avec la fonctionnalité d’idempotence.
+-   Problème résolu : Index hors problème plage lors de la copie à partir de la base de données de Document tooan local SQL Server avec la fonctionnalité d’idempotence.
 -   Résolu : le script de nettoyage SQL ne fonctionne pas avec la version locale de SQL Server à partir de l’Assistant de copie.
--   Résolu : le nom de colonne avec un espace à la fin ne fonctionne pas dans l’activité de copie.
+-   Problème résolu : Nom de la colonne avec l’espace à la fin de hello ne fonctionne pas dans l’activité de copie.
 
 ## <a name="28662833"></a>2.8.66283.3
 ### <a name="enhancements-"></a>Améliorations
@@ -71,58 +71,58 @@ Consultez les articles suivants pour des informations détaillées sur la passer
 
 ## <a name="2561641"></a>2.5.6164.1
 ### <a name="enhancements"></a>Améliorations
-- Expérience d’inscription de la passerelle améliorée et plus robuste. Vous pouvez maintenant suivre l’état d’avancement lors du processus d’inscription de la passerelle, ce qui rend l’expérience d’inscription plus réactive.
-- Amélioration du processus de restauration de la passerelle. Vous pouvez toujours récupérer la passerelle même si vous n’avez pas le fichier de sauvegarde de passerelle avec cette mise à jour. Cela vous oblige à réinitialiser les informations d’identification du Service lié dans le portail.
+- Améliorée et plus robuste passerelle inscription expérience-maintenant vous pouvez suivre l’état de la progression pendant le processus de l’inscription hello passerelle, ce qui rend l’inscription de hello expérience plus réactive.
+- Amélioration de la passerelle restaurer processus - vous pouvez toujours récupérer passerelle même si vous n’avez pas de fichier de sauvegarde de passerelle hello avec cette mise à jour. Cette situation exigerait informations d’identification du Service lié tooreset dans le portail.
 - Résolution de bogue.
 
 ## <a name="2461511"></a>2.4.6151.1
 
 ### <a name="whats-new"></a>Nouveautés
 
-- Vous pouvez désormais stocker localement les informations d’identification de la source de données. Les informations d’identification sont chiffrées. Les informations d’identification de la source de données peuvent être récupérées et restaurées à l’aide du fichier de sauvegarde qui peut être exporté à partir de la passerelle existante, le tout localement.
+- Vous pouvez désormais stocker localement les informations d’identification de la source de données. informations d’identification de Hello sont chiffrées. informations d’identification de source de données Hello peuvent être récupérées et restaurées à l’aide du fichier de sauvegarde hello qui peut être exportée à partir de hello existant de passerelle, locaux.
 
 ### <a name="enhancements-"></a>Améliorations
 
 - Expérience d’inscription de la passerelle améliorée et plus robuste.
-- Prise en charge la détection automatique de la configuration de la propriété QuoteChar pour le format Texte dans l’Assistant de copie et amélioration la précision globale de la détection de format.
+- Prend en charge la détection automatique de la configuration de l’élément QuoteChar pour le format de texte dans l’Assistant copie d’et améliorer hello format global de précision de la détection.
 
 ## <a name="2361002"></a>2.3.6100.2
 
 - Prise en charge de la détection automatique firstRowAsHeader et SkipLineCount dans l’Assistant de copie pour les fichiers texte dans le système de fichiers local et HDFS.
-- Amélioration de la stabilité de la connexion réseau entre la passerelle et Service Bus
+- Améliorer la stabilité hello de connexion réseau entre la passerelle et le Service Bus
 - Résolution de quelques bogues
 
 
 ## <a name="2260721"></a>2.2.6072.1
 
-*  Permet de paramétrer le proxy HTTP pour la passerelle à l’aide du Gestionnaire de configuration de passerelle. Si configurés, Azure Blob, Azure Table, Azure Data Lake et Document DB sont accessibles via le proxy HTTP.
-*  Prend en charge la gestion des en-têtes pour TextFormat lors de la copie des données depuis/vers un objet Blob Azure, Azure Data Lake Store, le système de fichiers local ou un système de fichiers HDFS local.
-*  Prend en charge la copie des données d’objets blob d’ajouts et de pages, ainsi que des objets blob de blocs déjà pris en charge.
-*  Introduit le nouvel état de passerelle **En ligne (limité)**, qui indique que la fonctionnalité principale de la passerelle fonctionne, à l’exception de la prise en charge de l’opération interactive pour l’assistant de copie.
-*  Améliore la robustesse de l’inscription de la passerelle avec la clé d’inscription.
+*  Prend en charge la définition du proxy HTTP pour l’utilisation de passerelle hello hello Gestionnaire de Configuration de passerelle. Si configurés, Azure Blob, Azure Table, Azure Data Lake et Document DB sont accessibles via le proxy HTTP.
+*  En-tête prend en charge la gestion de TextFormat lors de la copie des données à partir de / tooAzure Blob, Azure Data Lake Store, système de fichiers local et HDFS local.
+*  Prend en charge la copie de données d’ajouter un objet Blob et l’objet Blob de pages, ainsi que de hello déjà pris en charge l’objet Blob de blocs.
+*  Introduit un nouvel état de la passerelle **en ligne (limité)**, ce qui signifie que hello principale fonctionnalité de passerelle de hello fonctionne à l’exception de prise en charge de hello opération interactive de l’Assistant copie de.
+*  Améliore la robustesse de hello d’enregistrement de la passerelle à l’aide de la clé d’inscription.
 
 ## <a name="216040"></a>2.1.6040.
 
-*  Le pilote DB2 est désormais inclus dans le package d’installation de la passerelle. Il est inutile de l’installer séparément.
-*  Le pilote DB2 prend désormais en charge z/OS et DB2 pour i (AS/400), ainsi que les plateformes déjà prises en charge (Windows, Unix et Linux).
+*  Pilote DB2 est inclus dans le package d’installation hello passerelle maintenant. Vous n’avez pas besoin de tooinstall il séparément.
+*  Pilote DB2 prend désormais en charge z/OS et DB2 pour i (AS / 400), ainsi que les plateformes hello déjà pris en charge (Windows, Unix et Linux).
 *  Prend en charge l’utilisation d’Azure Cosmos DB comme source ou destination des banques de données locales
-*  Prend en charge la copie de données depuis/vers un stockage d’objet blob à chaud ou à froid, ainsi que le compte de stockage à usage général déjà pris en charge.
-*  Permet de vous connecter l’instance SQL Server locale via la passerelle avec des droits de connexion à distance.  
+*  Prend en charge la copie de stockage des données à partir de/toocold/attentivement les objets blob, ainsi que de hello déjà pris en charge le compte de stockage à usage général.
+*  Vous permet de tooconnect tooon local SQL Server via une passerelle avec des droits de connexion à distance.  
 
 ## <a name="2060131"></a>2.0.6013.1
 
-*  Vous pouvez sélectionner la langue/culture utilisée par une passerelle lors de l’installation manuelle.
+*  Vous pouvez sélectionner hello toobe de langue/culture utilisée par une passerelle de pendant l’installation manuelle.
 
-*  Lorsqu’une passerelle ne fonctionne pas comme prévu, vous pouvez choisir d’envoyer les journaux des sept derniers jours de la passerelle à Microsoft pour faciliter la résolution du problème. Si la passerelle n’est pas connectée au service cloud, vous pouvez choisir d’enregistrer et d’archiver les journaux de la passerelle.  
+*  Lors de la passerelle ne fonctionne pas comme prévu, vous pouvez choisir les journaux de la passerelle toosend dernière sept jours tooMicrosoft toofacilitate résolution des problèmes d’émission de hello. Si la passerelle n’est pas connecté toohello service de cloud, vous pouvez choisir toosave et archivez les journaux de la passerelle.  
 
 *  Améliorations de l’interface utilisateur du gestionnaire de configuration de la passerelle :
 
-    *  État de la passerelle plus visible dans l’onglet Accueil.
+    *  Afficher l’état de la passerelle plus hello accueil onglet.
 
     *  Commandes réorganisées et simplifiées.
 
-    *  Vous pouvez copier des données à partir d’un stockage à l’aide de [l’outil de prévisualisation de copie sans code](data-factory-copy-data-wizard-tutorial.md). Pour plus d’informations sur cette fonctionnalité, consultez [Copie intermédiaire](data-factory-copy-activity-performance.md#staged-copy) .
-*  Vous pouvez utiliser la passerelle de gestion des données pour entrer des données directement à partir d’une base de données SQL Server locale dans Azure Machine Learning.
+    *  Vous pouvez copier des données à partir d’un stockage à l’aide de hello [outil Aperçu de la copie sans code](data-factory-copy-data-wizard-tutorial.md). Pour plus d’informations sur cette fonctionnalité, consultez [Copie intermédiaire](data-factory-copy-activity-performance.md#staged-copy) .
+*  Vous pouvez utiliser les données de tooingress de passerelle de gestion des données directement à partir d’une base de données SQL Server locale dans Azure Machine Learning.
 
 *  Amélioration des performances
 
@@ -134,9 +134,9 @@ Consultez les articles suivants pour des informations détaillées sur la passer
 
 ## <a name="11159181"></a>1.11.5918.1
 
-*  La taille maximale du journal des événements de la passerelle a été augmentée de 1 Mo à 40 Mo.
+*  Taille maximale du journal des événements hello passerelle a été augmentée à partir de 1 Mo too40 Mo.
 
-*  Une boîte de dialogue d’avertissement s’affiche si un redémarrage est nécessaire pendant la mise à jour automatique de la passerelle. Vous pouvez choisir de redémarrer immédiatement ou plus tard.
+*  Une boîte de dialogue d’avertissement s’affiche si un redémarrage est nécessaire pendant la mise à jour automatique de la passerelle. Vous pouvez choisir toorestart droite puis ou version ultérieure.
 
 *  En cas d’échec de la mise à jour automatique, le programme d’installation de la passerelle retente la mise à jour automatique trois fois au maximum.
 
@@ -156,8 +156,8 @@ Consultez les articles suivants pour des informations détaillées sur la passer
 
 *  Capacité de mise à jour automatique Zero Touch
 *  Nouvelle icône de barre d’état système avec des indicateurs d’état de la passerelle
-*  Possibilité de mise à jour immédiate depuis le client
-*  Possibilité de définir l’heure de planification de la mise à jour
+*  Possibilité de trop « mettre à jour maintenant » à partir du client de hello
+*  Heure de planification de capacité tooset mise à jour
 *  Script PowerShell disponible pour activer/désactiver la mise à jour automatique
 *  Prise en charge du format JSON  
 *  Amélioration des performances
@@ -237,12 +237,12 @@ Consultez les articles suivants pour des informations détaillées sur la passer
 ### <a name="1454921"></a>1.4.5492.1
 
 *  Binaire unifié qui prend en charge à la fois des services Microsoft Azure Data Factory et Office 365 Power BI
-*  Affinage du processus d’inscription et de l’interface utilisateur de configuration
+*  Affiner le processus d’inscription et de l’interface utilisateur de Configuration de hello
 *  Microsoft Azure Data Factory : prise en charge des entrées et sorties Azure pour la source de données SQL Server
 
 ### <a name="1253031"></a>1.2.5303.1
 
-*  Correction du problème de délai d’expiration pour la prise en charge de connexions de source de données chronophages supplémentaires.
+*  Corrigez toosupport de problème de délai d’attente plus long connexions source de données.
 
 ### <a name="1155268"></a>1.1.5526.8
 

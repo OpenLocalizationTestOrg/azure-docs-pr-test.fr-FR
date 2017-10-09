@@ -1,5 +1,5 @@
 ---
-title: "Vue d’ensemble des API Azure Event Hubs .NET Standard | Microsoft Docs"
+title: "aaaOverview Hello API Standard du .NET concentrateurs d’événements Azure | Documents Microsoft"
 description: "Vue d’ensemble de l’API .NET Standard"
 services: event-hubs
 documentationcenter: na
@@ -14,30 +14,30 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/15/2017
 ms.author: sethm
-ms.openlocfilehash: eea682c40cd415b383a8b2f0004a5f3648e2f01f
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: c97acecb35b69039e06ded7203c75fca41ce98f2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="event-hubs-net-standard-api-overview"></a>Vue d’ensemble de l’API .NET Standard des hubs d’événements
-Cet article passe en revue certaines des principales API clientes .NET Standard des hubs d’événements. Il existe actuellement deux bibliothèques clientes .NET Standard :
+Cet article récapitule certaines des clé de hello des API clientes événement concentrateurs .NET Standard. Il existe actuellement deux bibliothèques clientes .NET Standard :
 * [Microsoft.Azure.EventHubs](/dotnet/api/microsoft.azure.eventhubs)
   *  Cette bibliothèque fournit toutes les opérations de runtime de base.
 * [Microsoft.Azure.EventHubs.Processor](/dotnet/api/microsoft.azure.eventhubs.processor)
-  * Cette bibliothèque ajoute des fonctionnalités supplémentaires pour suivre les événements traités. Elle offre le moyen le plus simple pour lire à partir d’un concentrateur d’événements.
+  * Cette bibliothèque ajoute une fonctionnalité supplémentaire qui permet le suivi des événements traités et est hello tooread de façon plus simple à partir d’un concentrateur d’événements.
 
 ## <a name="event-hubs-client"></a>Client de concentrateur d’événements
-[EventHubClient](/dotnet/api/microsoft.azure.eventhubs.eventhubclient) est l’objet principal utilisé pour envoyer des événements, créer des destinataires et obtenir des informations de runtime. Ce client est lié à un hub d’événements particulier et crée une connexion au point de terminaison des concentrateurs d’événements.
+[EventHubClient](/dotnet/api/microsoft.azure.eventhubs.eventhubclient) est hello objet principal, vous utilisez les événements toosend, créer des récepteurs et des informations sur l’exécution tooget. Ce client est lié tooa événement particulier hub et crée un point de terminaison de connexion toohello concentrateurs d’événements.
 
 ### <a name="create-an-event-hubs-client"></a>Création d’un client de concentrateurs d’événements
-Un objet [EventHubClient](/dotnet/api/microsoft.azure.eventhubs.eventhubclient) est créé à partir d’une chaîne de connexion. L’exemple suivant présente la méthode la plus simple pour instancier un nouveau client :
+Un objet [EventHubClient](/dotnet/api/microsoft.azure.eventhubs.eventhubclient) est créé à partir d’une chaîne de connexion. tooinstantiate de façon la plus simple Hello un nouveau client est présenté dans hello l’exemple suivant :
 
 ```csharp
 var eventHubClient = EventHubClient.CreateFromConnectionString("{Event Hubs connection string}");
 ```
 
-Pour modifier la chaîne de connexion par programmation, vous pouvez utiliser la classe [EventHubsConnectionStringBuilder](/dotnet/api/microsoft.azure.eventhubs.eventhubsconnectionstringbuilder) et transmettre la chaîne de connexion en tant que paramètre à [EventHubClient.CreateFromConnectionString](/dotnet/api/microsoft.azure.eventhubs.eventhubclient#Microsoft_Azure_EventHubs_EventHubClient_CreateFromConnectionString_System_String_).
+tooprogrammatically modifier la chaîne de connexion hello, vous pouvez utiliser hello [EventHubsConnectionStringBuilder](/dotnet/api/microsoft.azure.eventhubs.eventhubsconnectionstringbuilder) classe et de passer de chaîne de connexion hello en tant que paramètre trop[EventHubClient.CreateFromConnectionString ](/dotnet/api/microsoft.azure.eventhubs.eventhubclient#Microsoft_Azure_EventHubs_EventHubClient_CreateFromConnectionString_System_String_).
 
 ```csharp
 var connectionStringBuilder = new EventHubsConnectionStringBuilder("{Event Hubs connection string}")
@@ -49,7 +49,7 @@ var eventHubClient = EventHubClient.CreateFromConnectionString(connectionStringB
 ```
 
 ### <a name="send-events"></a>Envoyer des événements
-Pour envoyer des événements vers un concentrateur d’événements, utilisez la classe [EventData](/dotnet/api/microsoft.azure.eventhubs.eventdata). Le corps doit être un tableau `byte` ou un segment de tableau `byte`.
+concentrateur d’événements tooan toosend événements, utilisez hello [EventData](/dotnet/api/microsoft.azure.eventhubs.eventdata) classe. Hello corps doit être un `byte` tableau, ou un `byte` segment de tableau.
 
 ```csharp
 // Create a new EventData object by encoding a string as a byte array
@@ -61,32 +61,32 @@ await eventHubClient.SendAsync(data);
 ```
 
 ### <a name="receive-events"></a>Recevoir des événements
-Pour recevoir des événements des concentrateurs d’événements, nous vous recommandons d’utiliser [l’hôte du processeur d’événements](#event-processor-host-apis), qui fournit une fonctionnalité de suivi automatique du décalage et des informations de partition. Toutefois, il peut arriver que vous souhaitiez vous reposer sur la flexibilité de la bibliothèque principale des hubs d’événements pour recevoir des événements.
+Hello recommandé tooreceive façon dont les événements de concentrateurs d’événements à l’aide de hello [processeur d’événements hôte](#event-processor-host-apis), qui fournit des fonctionnalités tooautomatically effectuer le suivi de décalage et des informations de partition. Toutefois, il existe certaines situations dans lesquelles vous voudrez offrir de hello de toouse d’événements de tooreceive bibliothèque hello core concentrateurs d’événements.
 
 #### <a name="create-a-receiver"></a>Créer un destinataire
-Les destinataires sont liés à des partitions spécifiques. Par conséquent, pour recevoir tous les événements dans un concentrateur d’événements, vous devez créer plusieurs instances. En règle générale, il est recommandé d’obtenir les informations de partition par programmation, au lieu de coder en dur les ID de partition. Pour ce faire, vous pouvez utiliser la méthode [GetRuntimeInformationAsync](/dotnet/api/microsoft.azure.eventhubs.eventhubclient#Microsoft_Azure_EventHubs_EventHubClient_GetRuntimeInformationAsync).
+Récepteurs sont des partitions toospecific liée, par conséquent, dans commande tooreceive tous les événements dans un concentrateur d’événements, vous devez toocreate plusieurs instances. En règle générale, il est une bonne pratique tooget hello partition d’informations de par programmation, plutôt que de coder en dur des ID de partition hello. Dans commande toodo, vous pouvez utiliser hello [GetRuntimeInformationAsync](/dotnet/api/microsoft.azure.eventhubs.eventhubclient#Microsoft_Azure_EventHubs_EventHubClient_GetRuntimeInformationAsync) (méthode).
 
 ```csharp
-// Create a list to keep track of the receivers
+// Create a list tookeep track of hello receivers
 var receivers = new List<PartitionReceiver>();
-// Use the eventHubClient created above to get the runtime information
+// Use hello eventHubClient created above tooget hello runtime information
 var runTimeInformation = await eventHubClient.GetRuntimeInformationAsync();
-// Loop over the resulting partition ids
+// Loop over hello resulting partition ids
 foreach (var partitionId in runTimeInformation.PartitionIds)
 {
-    // Create the receiver
+    // Create hello receiver
     var receiver = eventHubClient.CreateReceiver(PartitionReceiver.DefaultConsumerGroupName, partitionId, PartitionReceiver.EndOfStream);
-    // Add the receiver to the list
+    // Add hello receiver toohello list
     receivers.Add(receiver);
 }
 ```
 
-Dans la mesure où les événements ne sont jamais supprimés d’un concentrateur d’événements (ils arrivent seulement à expiration), vous devez spécifier le point de départ approprié. L’exemple suivant montre les combinaisons possibles.
+Étant donné que les événements ne sont jamais supprimés à partir d’un concentrateur d’événements (et uniquement expirent), vous avez besoin de point de départ appropriée toospecify hello. Hello suivant montre les combinaisons possibles.
 
 ```csharp
-// partitionId is assumed to come from GetRuntimeInformationAsync()
+// partitionId is assumed toocome from GetRuntimeInformationAsync()
 
-// Using the constant PartitionReceiver.EndOfStream only receives all messages from this point forward.
+// Using hello constant PartitionReceiver.EndOfStream only receives all messages from this point forward.
 var receiver = eventHubClient.CreateReceiver(PartitionReceiver.DefaultConsumerGroupName, partitionId, PartitionReceiver.EndOfStream);
 
 // All messages available
@@ -98,17 +98,17 @@ var receiver = eventHubClient.CreateReceiver(PartitionReceiver.DefaultConsumerGr
 
 #### <a name="consume-an-event"></a>Consommer un événement
 ```csharp
-// Receive a maximum of 100 messages in this call to ReceiveAsync
+// Receive a maximum of 100 messages in this call tooReceiveAsync
 var ehEvents = await receiver.ReceiveAsync(100);
 // ReceiveAsync can return null if there are no messages
 if (ehEvents != null)
 {
-    // Since ReceiveAsync can return more than a single event you will need a loop to process
+    // Since ReceiveAsync can return more than a single event you will need a loop tooprocess
     foreach (var ehEvent in ehEvents)
     {
-        // Decode the byte array segment
+        // Decode hello byte array segment
         var message = UnicodeEncoding.UTF8.GetString(ehEvent.Body.Array);
-        // Load the custom property that we set in the send example
+        // Load hello custom property that we set in hello send example
         var customType = ehEvent.Properties["Type"];
         // Implement processing logic here
     }
@@ -116,10 +116,10 @@ if (ehEvents != null)
 ```
 
 ## <a name="event-processor-host-apis"></a>API de l’hôte du processeur d’événements
-Ces API offrent une résilience aux processus de travail qui peuvent devenir indisponibles, en distribuant les partitions sur les workers disponibles.
+Ces API fournissent des processus tooworker résilience qui peuvent devenir indisponibles, en répartissant les partitions sur la disposition des employés.
 
 ```csharp
-// Checkpointing is done within the SimpleEventProcessor and on a per-consumerGroup per-partition basis, workers resume from where they last left off.
+// Checkpointing is done within hello SimpleEventProcessor and on a per-consumerGroup per-partition basis, workers resume from where they last left off.
 
 // Read these connection strings from a secure location
 var ehConnectionString = "{Event Hubs connection string}";
@@ -137,11 +137,11 @@ var eventProcessorHost = new EventProcessorHost(
 // Start/register an EventProcessorHost
 await eventProcessorHost.RegisterEventProcessorAsync<SimpleEventProcessor>();
 
-// Disposes of the Event Processor Host
+// Disposes of hello Event Processor Host
 await eventProcessorHost.UnregisterEventProcessorAsync();
 ```
 
-Voici un exemple d’implémentation de [IEventProcessor](/dotnet/api/microsoft.azure.eventhubs.processor.ieventprocessor).
+Hello Voici un exemple d’implémentation de hello [IEventProcessor](/dotnet/api/microsoft.azure.eventhubs.processor.ieventprocessor).
 
 ```csharp
 public class SimpleEventProcessor : IEventProcessor
@@ -178,12 +178,12 @@ public class SimpleEventProcessor : IEventProcessor
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-Pour en savoir plus sur les scénarios des concentrateurs d’événements, consultez ces liens :
+toolearn en savoir plus sur les scénarios de concentrateurs d’événements, consultez ces liens :
 
 * [Nouveautés des concentrateurs d'événements Azure ?](event-hubs-what-is-event-hubs.md)
 * [API des hubs d’événements disponibles](event-hubs-api-overview.md)
 
-Les informations de référence de l'API .NET se trouvent ici :
+références de l’API .NET Hello sont ici :
 
 * [Microsoft.Azure.EventHubs](/dotnet/api/microsoft.azure.eventhubs)
 * [Microsoft.Azure.EventHubs.Processor](/dotnet/api/microsoft.azure.eventhubs.processor)

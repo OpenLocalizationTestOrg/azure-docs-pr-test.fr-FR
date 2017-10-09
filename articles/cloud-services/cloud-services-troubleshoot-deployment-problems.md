@@ -1,6 +1,6 @@
 ---
-title: "Résoudre les problèmes de déploiement de service cloud | Microsoft Docs"
-description: "Vous pouvez rencontrer quelques problèmes courants lors du déploiement d’un service cloud sur Azure. Cet article fournit des solutions pour certains d’entre eux."
+title: "problèmes de déploiement de service de cloud aaaTroubleshoot | Documents Microsoft"
+description: "Il existe quelques problèmes courants que vous risquez de rencontrer lors du déploiement d’un tooAzure de service cloud. Cet article fournit toosome solutions d'entre eux."
 services: cloud-services
 documentationcenter: 
 author: simonxjx
@@ -15,42 +15,42 @@ ms.tgt_pltfrm: na
 ms.workload: tbd
 ms.date: 7/26/2017
 ms.author: v-six
-ms.openlocfilehash: 60e06ba292ff1e43d00cd69c1a422f9237d5e5a4
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 15aea4f2b2913d95f3378b2e9762b232531f3c25
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshoot-cloud-service-deployment-problems"></a>Résoudre les problèmes de déploiement de service cloud
-Lorsque vous déployez un package d’application de service cloud sur Azure, vous pouvez obtenir des informations concernant le déploiement dans le volet **Propriétés** du portail Azure. Vous pouvez utiliser les détails figurant dans ce volet pour faciliter la résolution des problèmes du service cloud, et vous pouvez fournir ces informations au support Azure lors de l’ouverture d’une nouvelle demande de support.
+Lorsque vous déployez un tooAzure de package de cloud service application, vous pouvez obtenir des informations sur le déploiement de hello de hello **propriétés** volet Bonjour portail Azure. Vous pouvez utiliser les détails hello dans cette toohelp volet vous résoudre les problèmes de service de cloud computing hello, et vous pouvez fournir cette prise en charge de tooAzure informations lors de l’ouverture d’une nouvelle demande de prise en charge.
 
-Vous trouverez le volet **Propriétés** comme suit :
+Vous pouvez trouver hello **propriétés** volet comme suit :
 
-* Dans le portail Azure, cliquez successivement sur le déploiement de votre service cloud, sur **Tous les paramètres** et sur **Propriétés**.
-* Dans le portail Azure Classic, cliquez sur le déploiement de votre service cloud, puis sur **TABLEAU DE BORD** dans le coin inférieur droit de la page (sous **aperçu rapide**). Notez que ce volet ne contient aucun étiquette Propriétés.
+* Dans hello portail Azure, cliquez sur le déploiement de votre service cloud hello, cliquez sur **tous les paramètres**, puis cliquez sur **propriétés**.
+* Dans hello portail Azure classic, cliquez sur le déploiement de votre service cloud hello, cliquez sur **tableau de bord**, situé dans le coin inférieur droit de hello de page de hello (sous **coup de œil rapide**). Notez que ce volet ne contient aucun étiquette Propriétés.
 
 > [!NOTE]
-> Vous pouvez copier le contenu du volet **Propriétés** dans le Presse-papiers en cliquant sur l’icône dans le coin supérieur droit du volet.
+> Vous pouvez copier le contenu de hello Hello **propriétés** Presse-papiers toohello de volet en cliquant sur l’icône hello dans hello haut à droite du volet de hello.
 >
 >
 
 [!INCLUDE [support-disclaimer](../../includes/support-disclaimer.md)]
 
 ## <a name="problem-i-cannot-access-my-website-but-my-deployment-is-started-and-all-role-instances-are-ready"></a>Problème : Je ne peux pas accéder à mon site web bien que mon déploiement soit démarré et que toutes les instances de rôle soient prêtes
-Le lien URL du site web affiché dans le portail n’inclut pas le port. Le port par défaut pour les sites web est 80. Si votre application est configurée pour s’exécuter dans un autre port, vous devez ajouter le numéro de port approprié à l’URL lorsque vous accédez au site web.
+lien d’URL du site Web Hello indiqué dans le portail hello n’inclut pas de port de hello. port par défaut de Hello pour les sites Web est 80. Si votre application est configurée toorun dans un autre port, vous devez ajouter les URL toohello de numéro de port correct hello lors de l’accès du site Web hello.
 
-1. Dans le portail Azure, cliquez sur le déploiement de votre service cloud.
-2. Dans le volet **Propriétés** du portail Azure, vérifiez les ports des instances de rôle (sous **Points de terminaison d’entrée**).
-3. Si le port n’est pas le port 80, ajoutez la valeur de port correcte à l’URL lorsque vous accédez à l’application. Pour spécifier un port non défini par défaut, tapez l’URL, suivie de deux-points (:) et du numéro de port sans espaces.
+1. Bonjour portail Azure, cliquez sur déploiement hello de votre service cloud.
+2. Bonjour **propriétés** volet Hello portail Azure, vérifiez les ports hello pour les instances de rôle hello (sous **les points de terminaison d’entrée**).
+3. Si le port de hello n’est pas 80, ajoutez hello port correct valeur toohello URL lorsque vous accédez à application hello. toospecify un port non défini par défaut, tapez l’URL de hello, suivie du signe deux-points ( :), suivi d’un numéro de port hello, sans espaces.
 
 ## <a name="problem-my-role-instances-recycled-without-me-doing-anything"></a>Problème : Mes instances de rôle sont recyclées sans action de ma part
-Une réparation de service se produit automatiquement lorsque Azure détecte des nœuds problématiques et déplace donc les instances de rôle vers de nouveaux nœuds. Le cas échéant, il est possible que vos instances de rôle se recyclent automatiquement. Pour savoir si une réparation de service a eu lieu :
+Réparation de service se produit automatiquement lorsque Azure détecte des nœuds du problème et par conséquent déplace les nœuds de toonew instances de rôle. Le cas échéant, il est possible que vos instances de rôle se recyclent automatiquement. toofind dès s’est produite lors de la réparation de service :
 
-1. Dans le portail Azure, cliquez sur le déploiement de votre service cloud.
-2. Dans le volet **Propriétés** du portail Azure, passez en revue les informations et déterminez si une réparation de service a eu lieu au moment où vous observiez le recyclage des rôles.
+1. Bonjour portail Azure, cliquez sur déploiement hello de votre service cloud.
+2. Bonjour **propriétés** volet Hello portail Azure, passez en revue les informations hello et déterminer si le service de réparation se produit au moment de hello observé de rôles hello recyclage.
 
 Les rôles sont recyclés également environ une fois par mois pendant les mises à jour du système d’exploitation hôte et du système d’exploitation invité.  
-Pour plus d’informations, consultez le billet de blog [Redémarrages d’instances de rôles pour cause de mises à niveau du système d’exploitation](http://blogs.msdn.com/b/kwill/archive/2012/09/19/role-instance-restarts-due-to-os-upgrades.aspx)
+Pour plus d’informations, voir blog de hello [rôle Instance redémarre en raison des mises à niveau de tooOS](http://blogs.msdn.com/b/kwill/archive/2012/09/19/role-instance-restarts-due-to-os-upgrades.aspx)
 
 ## <a name="problem-i-cannot-do-a-vip-swap-and-receive-an-error"></a>Problème : Impossible d’effectuer un échange d’adresses IP virtuelles, une erreur s’affiche
 Un échange d’adresses IP virtuelles n’est pas autorisé si une mise à jour de déploiement est en cours. Les mises à jour de déploiement peuvent se produire automatiquement dans les situations suivantes :
@@ -58,31 +58,31 @@ Un échange d’adresses IP virtuelles n’est pas autorisé si une mise à jou
 * Un nouveau système d’exploitation invité est disponible et votre installation est configurée pour les mises à jour automatiques.
 * Une réparation de service se produit.
 
-Pour savoir si une mise à jour automatique vous empêche d’effectuer un échange d’adresses IP virtuelles :
+toofind out si la mise à jour automatique vous empêche d’effectuer un échange d’adresses IP virtuelles :
 
-1. Dans le portail Azure, cliquez sur le déploiement de votre service cloud.
-2. Dans le volet **Propriétés** du portail Azure, examinez la valeur de l’**État**. Si elle affiche **Prêt**, vérifiez la **Dernière opération** pour voir si une opération récente empêche l’échange d’adresses IP virtuelles.
-3. Répétez les étapes 1 et 2 pour le déploiement en production.
-4. Si une mise à jour automatique est en cours, attendez qu’elle se termine avant d’essayer d’effectuer l’échange d’adresses IP virtuelles.
+1. Bonjour portail Azure, cliquez sur déploiement hello de votre service cloud.
+2. Bonjour **propriétés** volet Hello portail Azure, examinez la valeur hello **état**. S’il s’agit **prêt**, puis vérifiez **de la dernière opération** toosee si une récente a peut empêcher l’échange de hello VIP.
+3. Répétez les étapes 1 et 2 pour le déploiement de production hello.
+4. Si une mise à jour automatique est en cours, attendez qu’elle toofinish avant la permutation de hello VIP toodo lors de la tentative.
 
 ## <a name="problem-a-role-instance-is-looping-between-started-initializing-busy-and-stopped"></a>Problème : Une instance de rôle est exécutée en boucle entre Démarrée, Initialisation, Occupée et Arrêtée
-Cette condition peut indiquer un problème lié à votre code d’application, package ou fichier de configuration. Dans ce cas, vous devez être en mesure de voir l’état changer à des intervalles de quelques minutes, et le portail Azure peut indiquer des états tels que **Recyclage**, **Occupé** ou **Initialisation**. Cela indique qu’il existe un problème au niveau de l’application qui empêche l’exécution de l’instance de rôle.
+Cette condition peut indiquer un problème lié à votre code d’application, package ou fichier de configuration. Dans ce cas, vous devez être état de hello toosee peut changer en quelques minutes et hello portail Azure peut indiquer un nom tel que **recyclage**, **occupé**, ou **Initializing**. Cela indique qu’il existe un problème au niveau de hello application empêche l’instance de rôle hello de s’exécuter.
 
-Pour plus d’informations sur la résolution de ce problème, consultez les billets de blog [Données de diagnostic de calcul PaaS Azure](http://blogs.msdn.com/b/kwill/archive/2013/08/09/windows-azure-paas-compute-diagnostics-data.aspx) et [Problèmes courants provoquant le recyclage des rôles](cloud-services-troubleshoot-common-issues-which-cause-roles-recycle.md).
+Pour plus d’informations sur la façon de tootroubleshoot pour ce problème, voir hello blog [données de diagnostic de calcul PaaS Azure](http://blogs.msdn.com/b/kwill/archive/2013/08/09/windows-azure-paas-compute-diagnostics-data.aspx) et [commun émet ce toorecycle de rôles cause](cloud-services-troubleshoot-common-issues-which-cause-roles-recycle.md).
 
 ## <a name="problem-my-application-stopped-working"></a>Problème : Mon application a cessé de fonctionner
-1. Dans le portail Azure, cliquez sur l’instance de rôle.
-2. Dans le volet **Propriétés** du portail Azure, tenez compte des conditions suivantes pour résoudre votre problème :
-   * Si l’instance de rôle a été récemment arrêtée (vous pouvez vérifier la valeur **Nombre d’abandons**), il est possible que le déploiement soit en cours de mise à jour. Attendez de voir si l’instance de rôle recommence à fonctionner par elle-même.
-   * Si l’instance de rôle est **Occupée**, vérifiez votre code d’application pour voir si l’événement [StatusCheck](https://msdn.microsoft.com/library/microsoft.windowsazure.serviceruntime.roleenvironment.statuscheck) est géré. Vous devrez peut-être ajouter ou corriger le code qui gère cet événement.
-   * Passez en revue les données de diagnostic et les scénarios de résolution des problèmes dans le billet de blog [Données de diagnostic de calcul PaaS Azure](http://blogs.msdn.com/b/kwill/archive/2013/08/09/windows-azure-paas-compute-diagnostics-data.aspx).
+1. Bonjour portail Azure, cliquez sur l’instance de rôle hello.
+2. Bonjour **propriétés** volet Hello portail Azure, prenez hello suivant conditions tooresolve votre problème :
+   * Si l’instance de rôle hello s’est arrêtée récemment (vous pouvez vérifier la valeur hello **nombre d’abandons**), déploiement de hello peut être mise à jour. Attente toosee si l’instance de rôle hello recommence à fonctionner sur son propre.
+   * Si l’instance de rôle hello est **occupé**, vérifiez votre toosee de code d’application si hello [StatusCheck](https://msdn.microsoft.com/library/microsoft.windowsazure.serviceruntime.roleenvironment.statuscheck) événement est géré. Que vous deviez tooadd ou corriger le code qui gère cet événement.
+   * Passez en revue les données de diagnostic hello et scénarios de dépannage dans le billet de blog hello [données de diagnostic de calcul PaaS Azure](http://blogs.msdn.com/b/kwill/archive/2013/08/09/windows-azure-paas-compute-diagnostics-data.aspx).
 
 > [!WARNING]
-> Si vous recyclez votre service cloud, vous réinitialisez les propriétés de déploiement, et effacez ainsi efficacement les informations du problème d’origine.
+> Si vous recyclez votre service cloud, vous réinitialisez propriétés hello pour le déploiement de hello, effacement efficacement les informations hello pour le problème d’origine de hello.
 >
 >
 
 ## <a name="next-steps"></a>Étapes suivantes
 Affichez plus d’ [articles de résolution des problèmes](https://azure.microsoft.com/documentation/articles/?tag=top-support-issue&product=cloud-services) liés aux services cloud.
 
-Pour découvrir comment résoudre les problèmes liés aux rôles de service cloud à l’aide des données de diagnostic de calcul PaaS Azure, consultez la [série de blogs de Kevin Williamson](http://blogs.msdn.com/b/kwill/archive/2013/08/09/windows-azure-paas-compute-diagnostics-data.aspx).
+toolearn comment le rôle du service cloud tootroubleshoot problèmes à l’aide de données de diagnostic d’ordinateur PaaS Azure, consultez [série du blog de Kevin Williamson](http://blogs.msdn.com/b/kwill/archive/2013/08/09/windows-azure-paas-compute-diagnostics-data.aspx).

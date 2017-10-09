@@ -1,6 +1,6 @@
 ---
-title: "La taille par défaut du dossier TEMP est trop petite pour un rôle | Microsoft Docs"
-description: "Un rôle de service cloud offre un espace limité pour le dossier TEMP. Cet article fournit quelques suggestions pour éviter de manquer d'espace."
+title: "taille du dossier TEMP aaaDefault est trop petite pour un rôle | Documents Microsoft"
+description: "Un rôle de service cloud a une quantité limitée d’espace pour le dossier temporaire hello. Cet article fournit des suggestions sur la façon de tooavoid manque d’espace."
 services: cloud-services
 documentationcenter: 
 author: simonxjx
@@ -15,27 +15,27 @@ ms.tgt_pltfrm: na
 ms.workload: tbd
 ms.date: 7/26/2017
 ms.author: v-six
-ms.openlocfilehash: 577d090a009eb2331b401273257c7cc7c1eea772
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 307dc20f3264e29d122a6616be0028d2ec1282c2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="default-temp-folder-size-is-too-small-on-a-cloud-service-webworker-role"></a>La taille par défaut du dossier TEMP est trop petite pour un rôle web/de travail de service cloud
-Le répertoire temporaire par défaut d'un rôle web ou de travail de service cloud a une taille maximale de 100 Mo, et risque d’être saturé à un moment donné. Cet article décrit comment éviter de manquer d'espace sur le répertoire temporaire.
+la valeur par défaut Hello répertoire temporaire d’un rôle web ou de travail du service cloud a une taille maximale de 100 Mo, ce qui peut devenir complète à un moment donné. Cet article décrit comment tooavoid manque d’espace pour le répertoire temporaire de hello.
 
 [!INCLUDE [support-disclaimer](../../includes/support-disclaimer.md)]
 
 ## <a name="why-do-i-run-out-of-space"></a>Pourquoi l’espace devient-il insuffisant ?
-Les variables d’environnement Windows standard TEMP et TMP sont accessibles au code exécuté dans votre application. TEMP et TMP pointent toutes les deux vers un répertoire unique d’une taille maximale de 100 Mo. Les données stockées dans ce répertoire ne sont pas conservées tout au long du cycle de vie du service cloud ; si les instances de rôle d’un service cloud sont recyclées, le répertoire est nettoyé.
+Hello standard Windows variables d’environnement TEMP et TMP sont toocode disponible qui est en cours d’exécution dans votre application. TEMP et TMP point tooa répertoire unique qui a une taille maximale de 100 Mo. Toutes les données stockées dans ce répertoire ne sont pas conservées lors du cycle de vie hello du service de cloud hello ; Si les instances de rôle hello dans un service cloud sont recyclées, répertoire de hello est nettoyé.
 
-## <a name="suggestion-to-fix-the-problem"></a>Suggestion pour corriger le problème
-Implémentez l'une des alternatives suivantes :
+## <a name="suggestion-toofix-hello-problem"></a>Problème de suggestion toofix hello
+Implémentez l’une des hello suivant alternatives :
 
-* Configurez une ressource de stockage local et accédez-y directement au lieu d’utiliser TEMP ou TMP. Pour accéder à une ressource de stockage local à partir du code exécuté dans votre application, appelez la méthode [RoleEnvironment.GetLocalResource](https://msdn.microsoft.com/library/microsoft.windowsazure.serviceruntime.roleenvironment.getlocalresource.aspx) .
-* Configurez une ressource de stockage local et pointez les répertoires TEMP et TMP vers le chemin d'accès de la ressource de stockage local. Cette modification doit être effectuée dans la méthode [RoleEntryPoint.OnStart](https://msdn.microsoft.com/library/microsoft.windowsazure.serviceruntime.roleentrypoint.onstart.aspx) .
+* Configurez une ressource de stockage local et accédez-y directement au lieu d’utiliser TEMP ou TMP. tooaccess une ressource de stockage local à partir de code qui s’exécute au sein de votre application, l’appel hello [RoleEnvironment.GetLocalResource](https://msdn.microsoft.com/library/microsoft.windowsazure.serviceruntime.roleenvironment.getlocalresource.aspx) (méthode).
+* Configurez une ressource de stockage local et pointez hello TEMP et TMP répertoires toopoint toohello chemin d’accès de ressource de stockage local hello. Cette modification doit être effectuée dans hello [RoleEntryPoint.OnStart](https://msdn.microsoft.com/library/microsoft.windowsazure.serviceruntime.roleentrypoint.onstart.aspx) (méthode).
 
-L'exemple de code suivant montre comment modifier les répertoires cible TEMP et TMP dans la méthode OnStart :
+Hello exemple de code suivant montre comment toomodify hello répertoires cibles pour TEMP et TMP à partir de la méthode OnStart de hello :
 
 ```csharp
 using System;
@@ -47,8 +47,8 @@ namespace WorkerRole1
     {
         public override bool OnStart()
         {
-            // The local resource declaration must have been added to the
-            // service definition file for the role named WorkerRole1:
+            // hello local resource declaration must have been added toothe
+            // service definition file for hello role named WorkerRole1:
             //
             // <LocalResources>
             //    <LocalStorage name="CustomTempLocalStore"
@@ -61,7 +61,7 @@ namespace WorkerRole1
             Environment.SetEnvironmentVariable("TMP", customTempLocalResourcePath);
             Environment.SetEnvironmentVariable("TEMP", customTempLocalResourcePath);
 
-            // The rest of your startup code goes here…
+            // hello rest of your startup code goes here…
 
             return base.OnStart();
         }
@@ -70,8 +70,8 @@ namespace WorkerRole1
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-Lisez un blog expliquant [comment augmenter la taille du dossier temporaire ASP.NET du rôle web Azure](http://blogs.msdn.com/b/kwill/archive/2011/07/18/how-to-increase-the-size-of-the-windows-azure-web-role-asp-net-temporary-folder.aspx).
+Lire un blog décrivant [comment tooincrease hello taille du dossier temporaire de ASP.NET rôle Web Azure de hello](http://blogs.msdn.com/b/kwill/archive/2011/07/18/how-to-increase-the-size-of-the-windows-azure-web-role-asp-net-temporary-folder.aspx).
 
 Affichez plus d’ [articles de résolution des problèmes](/?tag=top-support-issue&product=cloud-services) liés aux services cloud.
 
-Pour découvrir comment résoudre les problèmes liés aux rôles de service cloud à l’aide des données de diagnostic informatiques PaaS Azure, consultez la [série de blogs de Kevin Williamson](http://blogs.msdn.com/b/kwill/archive/2013/08/09/windows-azure-paas-compute-diagnostics-data.aspx).
+toolearn comment les problèmes de rôle du service cloud tootroubleshoot à l’aide de données de diagnostic d’ordinateur PaaS Azure, afficher [série du blog de Kevin Williamson](http://blogs.msdn.com/b/kwill/archive/2013/08/09/windows-azure-paas-compute-diagnostics-data.aspx).

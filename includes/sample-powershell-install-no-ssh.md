@@ -1,3 +1,3 @@
-Cet exemple requiert le module Azure PowerShell version 4.0 ou ultérieure. Exécutez ` Get-Module -ListAvailable AzureRM` pour trouver la version. Si vous devez installer ou mettre à niveau, consultez [Installer le module Azure PowerShell](/powershell/azure/install-azurerm-ps). 
+Cet exemple requiert hello Azure PowerShell version 4.0 ou version ultérieur du module. Exécutez ` Get-Module -ListAvailable AzureRM` version de hello toofind. Si vous avez besoin de tooinstall ou mise à niveau, consultez [installez Azure PowerShell module](/powershell/azure/install-azurerm-ps). 
 
-Exécutez `Login-AzureRmAccount` pour créer une connexion avec Azure. 
+Exécutez `Login-AzureRmAccount` toocreate une connexion avec Azure. 

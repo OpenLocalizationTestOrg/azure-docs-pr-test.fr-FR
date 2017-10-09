@@ -1,6 +1,6 @@
 ---
-title: "Expressions régulières pour les recherches dans les journaux Log Analytics d’OMS | Microsoft Docs"
-description: "Vous pouvez utiliser le mot clé RegEx pour les recherches dans les journaux Log Analytics afin de filtrer les résultats en fonction d’une expression régulière.  Cet article décrit la syntaxe de ces expressions et en fournit plusieurs exemples."
+title: expressions aaaRegular Analytique des journaux OMS journal recherche | Documents Microsoft
+description: "Vous pouvez utiliser le mot clé de RegEx hello dans Analytique de journal journal recherches toohello hello résultats du filtrage en fonction de tooa des expressions régulières.  Cet article fournit la syntaxe de hello pour ces expressions avec plusieurs exemples."
 services: log-analytics
 documentationcenter: 
 author: bwren
@@ -13,17 +13,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/08/2017
 ms.author: bwren
-ms.openlocfilehash: 9746170f157ed5065adc953a31687ff18bd73708
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 3033593dac2c50e911fc69054947d40d4a74369b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="using-regular-expressions-to-filter-log-searches-in-log-analytics"></a>Utilisation d’expressions régulières pour filtrer les recherches dans les journaux Log Analytics
+# <a name="using-regular-expressions-toofilter-log-searches-in-log-analytics"></a>À l’aide d’expressions régulières toofilter journal recherche Analytique de journal
 
-Les [recherches dans les journaux](log-analytics-log-searches.md) vous permettent d’extraire des informations du référentiel Log Analytics.  Les [expressions de filtre](log-analytics-search-reference.md#filter-expressions) vous donnent la possibilité de filtrer les résultats de la recherche en fonction de critères spécifiques.  Le mot clé **RegEx** vous permet de spécifier une expression régulière pour ce filtre.  
+[Recherche de journal](log-analytics-log-searches.md) vous permettent d’informations de tooextract du référentiel d’Analytique de journal hello.  [Expressions de filtre](log-analytics-search-reference.md#filter-expressions) permettent de résultats de hello toofilter de recherche hello en fonction de critères de toospecific.  Hello **RegEx** mot clé vous permet de toospecify une expression régulière pour ce filtre.  
 
-Cet article décrit en détail la syntaxe des expressions régulières utilisée par Log Analytics.
+Cet article fournit des détails sur la syntaxe d’expression régulière hello utilisée par le journal Analytique.
 
 > [!NOTE]
 > Vous pouvez uniquement utiliser RegEx avec des champs pouvant faire l’objet d’une recherche.  Pour plus d’informations sur les champs pouvant faire l’objet d’une recherche, consultez **Types de champs** dans [Trouver des données avec les recherches dans les journaux dans Log Analytics](log-analytics-log-searches.md#use-additional-filters).
@@ -31,21 +31,21 @@ Cet article décrit en détail la syntaxe des expressions régulières utilisée
 
 ## <a name="regex-keyword"></a>Mot clé RegEx
 
-Pour utiliser le mot clé **RegEx** au sein d’une recherche dans les journaux, appliquez la syntaxe ci-après.  Pour déterminer la syntaxe de l’expression régulière proprement dite, utilisez les autres sections de cet article.
+Hello utilisation suivant hello toouse de syntaxe **RegEx** mot clé dans une recherche de journal.  Vous pouvez utiliser hello autres sections de cette syntaxe de hello article toodetermine d’expression régulière de hello lui-même.
 
     field:Regex("Regular Expression")
     field=Regex("Regular Expression")
 
-Par exemple, si vous souhaitez utiliser une expression régulière destinée à renvoyer les enregistrements d’alerte du type *Warning* (Avertissement) ou *Error* (Erreur), vous devez créer la recherche dans les journaux ci-dessous.
+Par exemple, des enregistrements toouse une alerte tooreturn d’expression régulière avec un type de *avertissement* ou *erreur*, vous utiliseriez hello suivant recherche de journal.
 
     Type=Alert AlertSeverity=RegEx("Warning|Error")
 
 ## <a name="partial-matches"></a>Correspondances partielles
-Notez que l’expression régulière doit correspondre à l’intégralité du texte de la propriété.  Les correspondances partielles ne renvoient aucun enregistrement.  Par exemple, si vous tentez de récupérer les enregistrements d’un ordinateur nommé srv01.contoso.com, la recherche dans les journaux ci-dessous ne renverra **aucun** enregistrement.
+Notez que les expressions régulières hello doivent correspondre à hello tout texte de propriété de hello.  Les correspondances partielles ne renvoient aucun enregistrement.  Par exemple, si vous essayez de tooreturn des enregistrements à partir d’un ordinateur nommé srv01.contoso.com, hello suivant recherche de journal sera **pas** retourner tous les enregistrements.
 
     Computer=RegEx("srv..")
 
-En effet, seule la première partie du nom correspond à l’expression régulière.  En revanche, les deux recherches dans les journaux ci-après renverront des enregistrements de cet ordinateur, car les expressions régulières correspondent à l’intégralité du nom.
+Il s’agit, car seuls hello première partie du nom de hello correspond à l’expression régulière de hello.  Hello suivant recherche dans les deux journaux retourne les enregistrements à partir de cet ordinateur, car ils correspondent à la totalité du nom hello.
 
     Computer=RegEx("srv..@")
     Computer=RegEx("srv...contoso.com")
@@ -55,15 +55,15 @@ Cette section décrit les méthodes vous permettant de spécifier différents ca
 
 | Caractère | Description | Exemple | Exemples de correspondances |
 |:--|:--|:--|:--|
-| a | Une seule occurrence du caractère. | Computer=RegEx("srv01.contoso.com") | srv01.contoso.com |
+| a | Une occurrence du caractère de hello. | Computer=RegEx("srv01.contoso.com") | srv01.contoso.com |
 | . | N’importe quel caractère unique. | Computer=RegEx("srv...contoso.com") | srv01.contoso.com<br>srv02.contoso.com<br>srv03.contoso.com |
-| a? | Zéro ou une seule occurrence du caractère. | Computer=RegEx("srv01?.contoso.com") | srv0.contoso.com<br>srv01.contoso.com |
-| a* | Zéro, une ou plusieurs occurrences du caractère. | Computer=RegEx("srv01*.contoso.com") | srv0.contoso.com<br>srv01.contoso.com<br>srv011.contoso.com<br>srv0111.contoso.com |
-| a+ | Une ou plusieurs occurrences du caractère. | Computer=RegEx("srv01+.contoso.com") | srv01.contoso.com<br>srv011.contoso.com<br>srv0111.contoso.com |
-| [*abc*] | Correspondance avec l’un des caractères indiqués entre crochets. | Computer=RegEx("srv0[123].contoso.com") | srv01.contoso.com<br>srv02.contoso.com<br>srv03.contoso.com |
-| [*a*-*z*] | Correspondance avec un seul caractère de la plage.  Peut inclure plusieurs plages. | Computer=RegEx("srv0[1-3].contoso.com") | srv01.contoso.com<br>srv02.contoso.com<br>srv03.contoso.com |
-| [^*abc*] | Aucun des caractères indiqués entre crochets. | Computer=RegEx("srv0[^123].contoso.com") | srv05.contoso.com<br>srv06.contoso.com<br>srv07.contoso.com |
-| [^*a*-*z*] | Aucun des caractères de la plage. | Computer=RegEx("srv0[^1-3].contoso.com") | srv05.contoso.com<br>srv06.contoso.com<br>srv07.contoso.com |
+| a? | Zéro ou une occurrence du caractère de hello. | Computer=RegEx("srv01?.contoso.com") | srv0.contoso.com<br>srv01.contoso.com |
+| a* | Zéro ou plusieurs occurrences d’un caractère hello. | Computer=RegEx("srv01*.contoso.com") | srv0.contoso.com<br>srv01.contoso.com<br>srv011.contoso.com<br>srv0111.contoso.com |
+| a+ | Une ou plusieurs occurrences d’un caractère hello. | Computer=RegEx("srv01+.contoso.com") | srv01.contoso.com<br>srv011.contoso.com<br>srv0111.contoso.com |
+| [*abc*] | Correspond à n’importe quel caractère unique entre les crochets hello | Computer=RegEx("srv0[123].contoso.com") | srv01.contoso.com<br>srv02.contoso.com<br>srv03.contoso.com |
+| [*a*-*z*] | Correspond à un caractère unique dans la plage de hello.  Peut inclure plusieurs plages. | Computer=RegEx("srv0[1-3].contoso.com") | srv01.contoso.com<br>srv02.contoso.com<br>srv03.contoso.com |
+| [^*abc*] | Aucun des caractères de hello de crochets de hello | Computer=RegEx("srv0[^123].contoso.com") | srv05.contoso.com<br>srv06.contoso.com<br>srv07.contoso.com |
+| [^*a*-*z*] | Aucun des caractères hello dans la plage de hello. | Computer=RegEx("srv0[^1-3].contoso.com") | srv05.contoso.com<br>srv06.contoso.com<br>srv07.contoso.com |
 | [*n*-*m*] | Correspondance avec une plage de caractères numériques. | Computer=RegEx("srv[01-03].contoso.com") | srv01.contoso.com<br>srv02.contoso.com<br>srv03.contoso.com |
 | @ | N’importe quelle chaîne de caractères. | Computer=RegEx("srv@.contoso.com") | srv01.contoso.com<br>srv02.contoso.com<br>srv03.contoso.com |
 
@@ -73,9 +73,9 @@ Cette section décrit les méthodes vous permettant de spécifier plusieurs occu
 
 | Caractère | Description | Exemple | Exemples de correspondances |
 |:--|:--|:--|:--|
-| a{n} |  *n* occurrences du caractère. | Computer=RegEx("bw-win-sc01{3}.bwren.lab") | bw-win-sc0111.bwren.lab |
-| a{n,} |  Au moins *n* occurrences du caractère. | Computer=RegEx("bw-win-sc01{3,}.bwren.lab") | bw-win-sc0111.bwren.lab<br>bw-win-sc01111.bwren.lab<br>bw-win-sc011111.bwren.lab<br>bw-win-sc0111111.bwren.lab |
-| a{n,m} |  *n* à *m* occurrences du caractère. | Computer=RegEx("bw-win-sc01{3,5}.bwren.lab") | bw-win-sc0111.bwren.lab<br>bw-win-sc01111.bwren.lab<br>bw-win-sc011111.bwren.lab |
+| a{n} |  *n*occurrences d’un caractère hello. | Computer=RegEx("bw-win-sc01{3}.bwren.lab") | bw-win-sc0111.bwren.lab |
+| a{n,} |  *n*ou plusieurs occurrences d’un caractère hello. | Computer=RegEx("bw-win-sc01{3,}.bwren.lab") | bw-win-sc0111.bwren.lab<br>bw-win-sc01111.bwren.lab<br>bw-win-sc011111.bwren.lab<br>bw-win-sc0111111.bwren.lab |
+| a{n,m} |  *n*trop*m* occurrences d’un caractère hello. | Computer=RegEx("bw-win-sc01{3,5}.bwren.lab") | bw-win-sc0111.bwren.lab<br>bw-win-sc01111.bwren.lab<br>bw-win-sc011111.bwren.lab |
 
 
 ## <a name="logical-expressions"></a>Expressions logiques
@@ -88,13 +88,13 @@ Cette section décrit les méthodes vous permettant de spécifier une sélection
 
 
 ## <a name="literals"></a>Littéraux
-Cette section décrit la méthode vous permettant de convertir des caractères spéciaux en caractères littéraux.  Ceci inclut les caractères qui fournissent des fonctionnalités aux expressions régulières telles que ?-\*^\[\]{}\(\)+\|.&.
+Convertit les caractères spéciaux tooliteral caractères.  Cela inclut des caractères qui fournissent des fonctionnalités tooregular expressions comme ?-\*^\[\]{}\(\)+\|. &.
 
 | Caractère | Description | Exemple | Exemples de correspondances |
 |:--|:--|:--|:--|
-| \\ | Convertit un caractère spécial en littéral. | Status_CF=\\[Erreur\\]@<br>Status_CF=Erreur\\-@ | [Erreur]Fichier introuvable.<br>Erreur-Fichier introuvable. |
+| \\ | Convertit un littéral de tooa de caractère spécial. | Status_CF=\\[Erreur\\]@<br>Status_CF=Erreur\\-@ | [Erreur]Fichier introuvable.<br>Erreur-Fichier introuvable. |
 
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* Familiarisez-vous avec les [recherches dans les journaux](log-analytics-log-searches.md) pour visualiser et analyser les données dans le référentiel Log Analytics.
+* Se familiariser avec [recherche de journal](log-analytics-log-searches.md) tooview et analyser les données dans le référentiel d’Analytique de journal hello.

@@ -1,6 +1,6 @@
 ---
-title: "Communication à distance des services dans Service Fabric | Microsoft Docs"
-description: "La communication à distance dans Service Fabric permet aux clients et aux services de communiquer avec les services en utilisant un appel de procédure distante."
+title: "la communication à distance d’aaaService dans l’infrastructure de Service | Documents Microsoft"
+description: "La communication à distance de l’infrastructure de service permet aux clients et services toocommunicate avec les services à l’aide d’un appel de procédure distante."
 services: service-fabric
 documentationcenter: .net
 author: vturecek
@@ -14,24 +14,24 @@ ms.tgt_pltfrm: na
 ms.workload: required
 ms.date: 04/20/2017
 ms.author: vturecek
-ms.openlocfilehash: 92a8894f24c234fbf38eda086531b524cceccfc1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 14682cf8671a85e04144eccf97803ab67c258875
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="service-remoting-with-reliable-services"></a>Communication à distance des services avec Reliable Services
-Pour les services qui ne sont pas liés à une pile ou un protocole de communication particulier, comme WebAPI, Windows Communication Foundation (WCF) ou autres, l’infrastructure Reliable Services fournit un mécanisme de communication à distance pour configurer rapidement et facilement un appel de procédure distante pour les services.
+Pour les services qui ne sont pas liés tooa le protocole de communication particulier ou de la pile, par exemple WebAPI, Windows Communication Foundation (WCF) ou d’autres, le framework de Services fiables hello fournit un tooquickly de mécanisme de communication à distance et facilement configurer l’appel de procédure distante pour les services.
 
 ## <a name="set-up-remoting-on-a-service"></a>Configuration de la communication à distance sur un service
 La configuration de communication à distance pour un service s'effectue en deux étapes simples :
 
-1. Créez une interface pour implémenter votre service. Cette interface définit les méthodes disponibles pour l'appel de procédure distante sur votre service. Ces méthodes doivent être des méthodes asynchrones retournant des tâches. L'interface doit implémenter `Microsoft.ServiceFabric.Services.Remoting.IService` pour signaler que le service dispose d'une interface de communication à distance.
-2. Utilisez un écouteur de communication à distance dans votre service. Il s'agit d'une implémentation `ICommunicationListener` qui fournit des fonctionnalités de communication à distance. L’espace de noms `Microsoft.ServiceFabric.Services.Remoting.Runtime` contient une méthode d’extension `CreateServiceRemotingListener` pour les services avec et sans état qui peuvent être utilisés pour créer un écouteur de communication à distance à l’aide du protocole de transport de communication à distance par défaut.
+1. Créez une interface pour votre tooimplement de service. Cette interface définit les méthodes hello qui seront disponibles pour un appel de procédure distante sur votre service. les méthodes Hello doivent être retournant des tâches méthodes asynchrones. Hello interface doit implémenter `Microsoft.ServiceFabric.Services.Remoting.IService` toosignal qui hello service dispose d’une interface de communication à distance.
+2. Utilisez un écouteur de communication à distance dans votre service. Il s'agit d'une implémentation `ICommunicationListener` qui fournit des fonctionnalités de communication à distance. Hello `Microsoft.ServiceFabric.Services.Remoting.Runtime` espace de noms contient une méthode d’extension,`CreateServiceRemotingListener` pour avec et sans état des services qui permettre être utilisé toocreate un écouteur de la communication à distance à l’aide de protocole de transport de la communication à distance par défaut hello.
 
-Remarque : L’espace de noms `Remoting` est disponible sous la forme d’un package NuGet distinct appelé `Microsoft.ServiceFabric.Services.Remoting` 
+Remarque : hello `Remoting` espace de noms est disponible comme package nuget distinct appelé`Microsoft.ServiceFabric.Services.Remoting` 
 
-Par exemple, le service sans état suivant expose une méthode unique pour obtenir « Hello World » sur un appel de procédure distante :
+Par exemple, hello service sans état suivant expose une méthode unique de tooget « Hello World » via un appel de procédure distante.
 
 ```csharp
 using Microsoft.ServiceFabric.Services.Communication.Runtime;
@@ -63,12 +63,12 @@ class MyService : StatelessService, IMyService
 }
 ```
 > [!NOTE]
-> Les arguments et les types de retour dans l’interface de service peuvent être de type simple, complexe ou personnalisé, mais ils doivent être sérialisables par l’élément [DataContractSerializer](https://msdn.microsoft.com/library/ms731923.aspx).NET.
+> Hello arguments et hello retournent types dans l’interface de service hello peuvent être des types simples, complexes ou personnalisées, mais ils doivent être sérialisables par hello .NET [DataContractSerializer](https://msdn.microsoft.com/library/ms731923.aspx).
 >
 >
 
 ## <a name="call-remote-service-methods"></a>Méthodes d’appel de service distant
-L’appel de méthodes sur un service à l’aide de la pile de communication à distance est effectué avec un proxy local pour le service via la classe `Microsoft.ServiceFabric.Services.Remoting.Client.ServiceProxy` . La méthode `ServiceProxy` crée un proxy local à l’aide de l’interface implémentée par le service. Avec ce proxy, vous pouvez appeler simplement et à distance des méthodes sur l'interface.
+Appel de méthodes sur un service à l’aide de pile de communication à distance hello est effectuée à l’aide d’un service de toohello proxy local via hello `Microsoft.ServiceFabric.Services.Remoting.Client.ServiceProxy` classe. Hello `ServiceProxy` méthode crée un proxy local à l’aide de hello même interface que hello service implémente. Avec ce serveur proxy, vous pouvez simplement appeler des méthodes sur les interface hello à distance.
 
 ```csharp
 
@@ -78,24 +78,24 @@ string message = await helloWorldClient.HelloWorldAsync();
 
 ```
 
-L'infrastructure de communication à distance propage les exceptions levées au niveau du service au client. Par conséquent, la logique de gestion des exceptions au niveau du client à l’aide de `ServiceProxy` peut directement traiter les exceptions levées par le service.
+infrastructure de communication à distance Hello propage les exceptions levées au client du service de toohello hello. Logique, gestion des exceptions au client hello à l’aide de `ServiceProxy` peut gérer directement les exceptions hello service lève une exception.
 
 ## <a name="service-proxy-lifetime"></a>Durée de vie du proxy du service
-Comme la création de proxy de service est une opération légère, l’utilisateur peut en créer autant de fois que nécessaire. Le proxy de service peut être réutilisé tant que l’utilisateur en a besoin. L’utilisateur peut réutiliser le même proxy en cas d’exception. Chaque proxy de service contient un client de communication qui permet d’envoyer des messages sur le réseau. Lors de l’appel de l’API, un contrôle interne vérifie si le client de communication utilisé est valide. En fonction de ce résultat, nous recréons le client de communication. Par conséquent, l’utilisateur n’a pas besoin de recréer le proxy de service en cas d’exception.
+Comme la création de proxy de service est une opération légère, l’utilisateur peut en créer autant de fois que nécessaire. Le proxy de service peut être réutilisé tant que l’utilisateur en a besoin. Utilisateur peut réutiliser hello proxy même en cas d’Exception. Chaque ServiceProxy contient intersites client utilisé toosend messages acheminement hello. Lors de l’appel d’API, nous avons toosee de contrôle interne si le client de communication utilisé est valide. En fonction de ce résultat, nous recréer client de communication hello. Par conséquent, les utilisateurs n’avez pas besoin serviceproxy toorecreate en cas d’Exception.
 
 ### <a name="serviceproxyfactory-lifetime"></a>Durée de vie de la fabrique ServiceProxyFactory
-[ServiceProxyFactory](https://docs.microsoft.com/en-us/dotnet/api/microsoft.servicefabric.services.remoting.client.serviceproxyfactory) est une fabrique qui crée le proxy pour différentes interfaces de communication à distance. Si vous utilisez l’API ServiceProxy.Create pour la création de proxy, l’infrastructure crée le ServiceProxyFactory singleton.
-Il est utile d’en créer un manuellement lorsque vous devez remplacer les propriétés [IServiceRemotingClientFactory](https://docs.microsoft.com/en-us/dotnet/api/microsoft.servicefabric.services.remoting.client.iserviceremotingclientfactory).
+[ServiceProxyFactory](https://docs.microsoft.com/en-us/dotnet/api/microsoft.servicefabric.services.remoting.client.serviceproxyfactory) est une fabrique qui crée le proxy pour différentes interfaces de communication à distance. Si vous utilisez l’API ServiceProxy.Create pour la création du proxy, l’infrastructure crée hello singelton ServiceProxyFactory.
+Il est utile toocreate une manuellement lorsque vous avez besoin de toooverride [IServiceRemotingClientFactory](https://docs.microsoft.com/en-us/dotnet/api/microsoft.servicefabric.services.remoting.client.iserviceremotingclientfactory) propriétés.
 La fabrique est une opération coûteuse. ServiceProxyFactory conserve le cache du client de communication.
-Il est recommandé de mettre en cache ServiceProxyFactory aussi longtemps que possible.
+Il est recommandé toocache ServiceProxyFactory aussi longtemps que possible.
 
 ## <a name="remoting-exception-handling"></a>Gestion des exceptions à distance
-Toutes les exceptions à distance levées par l’API de service sont envoyées au client en tant que AggregateException. Les exceptions à distance doivent être des contrats de données sérialisables. Sinon, une exception [ServiceException](https://docs.microsoft.com/en-us/dotnet/api/microsoft.servicefabric.services.communication.serviceexception) est envoyée à l’API de proxy en indiquant l’erreur de sérialisation.
+Tous les hello à distance d’exception levée par l’API de service, sont envoyées toohello précédent client comme AggregateException. RemoteExceptions doivent être sérialisables DataContract sinon [ServiceException](https://docs.microsoft.com/en-us/dotnet/api/microsoft.servicefabric.services.communication.serviceexception) est levée toohello proxy API avec l’erreur de sérialisation hello qu’elle contient.
 
-Le proxy de service gère toutes les exceptions de basculement pour la partition de service pour laquelle il a été créé. Il résout à nouveau les points de terminaison s’il existe des exceptions de basculement (non temporaires) et retente l’appel avec le point de terminaison correct. Le nombre de tentatives pour l’exception de basculement est illimité.
-En cas d’exceptions temporaires, il retente uniquement l’appel.
+ServiceProxy gère toutes les exceptions de basculement pour la partition de service hello il est créé pour. Nouveau, il résout les points de terminaison hello si Failover Exceptions(Non-Transient Exceptions) et nouvelles tentatives appel hello avec le point de terminaison correct hello est. Le nombre de tentatives pour l’exception de basculement est illimité.
+En cas de TransientExceptions, il réessaie uniquement appel de hello.
 
-Les paramètres de nouvelle tentative par défaut sont fournis par [OperationRetrySettings]. (https://docs.microsoft.com/en-us/dotnet/api/microsoft.servicefabric.services.communication.client.operationretrysettings) L’utilisateur peut configurer ces valeurs en transmettant l’objet OperationRetrySettings au constructeur ServiceProxyFactory.
+Les paramètres de nouvelle tentative par défaut sont fournis par [OperationRetrySettings]. (https://docs.microsoft.com/en-us/dotnet/api/microsoft.servicefabric.services.communication.client.operationretrysettings) Utilisateur peut configurer ces valeurs en passant le constructeur de tooServiceProxyFactory OperationRetrySettings objet.
 
 ## <a name="next-steps"></a>Étapes suivantes
 * [API Web avec OWIN dans Reliable Services](service-fabric-reliable-services-communication-webapi.md)

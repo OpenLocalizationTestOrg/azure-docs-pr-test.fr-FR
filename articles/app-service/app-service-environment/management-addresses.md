@@ -1,6 +1,6 @@
 ---
-title: Adresses de gestion Azure App Service Environment
-description: "Répertorie les adresses de gestion utilisées pour la commande d’un environnement App Service"
+title: adresses de gestion aaaAzure environnement App Service
+description: "Listes des adresses de gestion hello utilisé toocommand un environnement App Service"
 services: app-service
 documentationcenter: na
 author: ccompy
@@ -13,22 +13,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: ccompy
-ms.openlocfilehash: e97a084772fd16252d925b62498d2e696629a25d
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: b34b6266dc3a35915421b14bf34eddc07c2825c0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="app-service-environment-management-addresses"></a>Adresses de gestion App Service Environment
 
-L’environnement App Service Environment (ASE) est un déploiement du service Azure App Service dans un sous-réseau de votre réseau virtuel Azure.  L’ASE doit être accessible à partir du service Azure App Service pour pouvoir être géré.  Ce trafic de gestion ASE parcourt le réseau géré par l’utilisateur.  Il provient des serveurs d’administration Azure App Service et arrive à l’adresse IP virtuelle publique associée à l’ASE.  Pour plus d’informations sur les dépendances de mise en réseau d’un ASE, consultez la page [Considérations relatives à la mise en réseau pour un environnement App Service Environment][networking].  Pour des informations générales sur l’ASE, vous pouvez commencer par consulter la page [Présentation de l’environnement App Service Environment][intro].
+Hello Environment(ASE) de Service d’application est un déploiement de hello du Service d’applications Azure dans un sous-réseau dans votre réseau virtuel de Azure (VNet).  Hello ASE doit être accessible à partir de hello Azure App Service afin qu’il puisse être géré.  Ce trafic de gestion ASE parcourt le réseau géré par l’utilisateur de hello.  Il provient du Service d’applications Azure Gestion serveurs toohello adresse VIP publique qui est associé à hello ASE.  Pour plus d’informations sur hello ASE mise en réseau de dépendances lire [hello environnement App Service et les considérations relatives à la mise en réseau][networking].  Pour des informations générales sur hello ASE, vous pouvez démarrer avec [Introduction toohello environnement App Service][intro].
 
-Ce document répertorie les adresses IP sources pour le trafic de gestion vers l’ASE. Vous pouvez utiliser ces adresses afin de créer des groupes de sécurité réseau pour verrouiller le trafic entrant ou les utiliser dans les tables de routage en fonction des besoins.  Voici ce dont vous aurez besoin pour utiliser ces informations :
+Ce document répertorie les adresses IP de source de hello pour le trafic de gestion toohello ASE. Vous pouvez utiliser ces toolock de groupes de sécurité réseau toocreate adresses vers le bas le trafic entrant ou les utiliser dans les Tables d’itinéraires en fonction des besoins.  toouse ces informations, vous devez toouse :
 
-* les adresses IP répertoriées pour toutes les régions ;
-* les adresses IP qui correspondent à la région dans laquelle votre ASE est déployé.
+* adresses IP Hello répertoriés pour toutes les régions
+* cette région toohello de correspondance que votre ASE est déployé dans des adresses IP de Hello.
 
-Le trafic de gestion entrant arrive de ces adresses IP sur les ports 454 et 455.
+le trafic de gestion entrants Hello proviennent ces adresses IP tooports 454 et 455.
 
 | Région | Adresses |
 |--------|-----------|

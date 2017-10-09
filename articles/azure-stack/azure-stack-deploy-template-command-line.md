@@ -1,6 +1,6 @@
 ---
-title: "Déployer des modèles en ligne de commande dans Azure Stack | Microsoft Docs"
-description: "Découvrez comment utiliser l’interface de ligne de commande (CLI) multiplateforme pour déployer des modèles sur Azure Stack."
+title: "modèles d’aaaDeploy avec ligne de commande hello dans la pile de Azure | Documents Microsoft"
+description: "Découvrez comment toouse hello inter-plateformes interface de ligne de commande (CLI) toodeploy modèles tooAzure pile."
 services: azure-stack
 documentationcenter: 
 author: heathl17
@@ -14,28 +14,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/10/2017
 ms.author: helaw
-ms.openlocfilehash: cd1b61899ead7b4e86a81125841c1b37d019280b
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 6fa6b19ac94d3f020008d04ff07f1ce489aa3418
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-templates-in-azure-stack-using-the-command-line"></a>Déployer des modèles dans Azure Stack à l’aide de la ligne de commande
-Utilisez la ligne de commande pour déployer des modèles Azure Resource Manager dans le kit de développement Azure Stack. Les modèles Azure Resource Manager déploient et approvisionnent toutes les ressources de l’application en une seule opération coordonnée.
+# <a name="deploy-templates-in-azure-stack-using-hello-command-line"></a>Déployer des modèles dans la pile d’Azure à l’aide de la ligne de commande hello
+Utilisez Azure Resource Manager modèles toohello Kit de développement de pile Azure hello ligne de commande toodeploy. Les modèles de gestionnaire de ressources Azure déploiement et approvisionnement des toutes les ressources hello pour votre application dans une opération unique et coordonnée.
 
 ## <a name="before-you-begin"></a>Avant de commencer
- - [Procédez à l’installation et à la connexion](azure-stack-connect-cli.md) à Azure Stack avec Azure CLI.
- - Télécharger les fichiers *azuredeploy.json* et *azuredeploy.parameters.json* à partir du [modèle Créer un exemple de compte de stockage](https://github.com/Azure/AzureStack-QuickStart-Templates/tree/master/101-create-storage-account).
+ - [Installer et connecter](azure-stack-connect-cli.md) tooAzure pile avec CLI d’Azure
+ - Télécharger les fichiers de hello *azuredeploy.json* et *azuredeploy.parameters.json* de hello [créer l’exemple de modèle compte de stockage](https://github.com/Azure/AzureStack-QuickStart-Templates/tree/master/101-create-storage-account).
  
 ## <a name="deploy-template"></a>Déployer un modèle
-Accédez au dossier dans lequel ces fichiers ont été téléchargés et exécutez la commande suivante pour déployer le modèle :
+Accédez dossier toohello où ces fichiers ont été téléchargés et exécutez hello suivant le modèle de commande toodeploy hello :
 
     azure group create "cliRG" "local" –f azuredeploy.json –d "testDeploy" –e azuredeploy.parameters.json
 
-Cette commande déploie le modèle dans le groupe de ressources **cliRG** à l’emplacement par défaut d’Azure Stack POC.
+Cette commande déploie le groupe de ressources hello modèle toohello **cliRG** dans l’emplacement par défaut de hello Azure pile preuve de concept.
 
 ## <a name="validate-template-deployment"></a>Valider le déploiement du modèle
-Pour voir ce groupe de ressources et le compte de stockage associé, utilisez les commandes suivantes :
+commandes de ce compte de stockage et le groupe de ressources, hello utilisation suivant toosee :
 
     azure group list
 

@@ -1,23 +1,23 @@
-## <a name="prepare-to-authenticate-azure-resource-manager-requests"></a>Préparation de l’authentification des demandes d’Azure Resource Manager
-Vous devez authentifier toutes les opérations que vous effectuez sur des ressources à l’aide d’[Azure Resource Manager][lnk-authenticate-arm] avec Azure Active Directory (AD). La manière la plus simple de configurer cela consiste à utiliser PowerShell ou l’interface de ligne de commande Azure.
+## <a name="prepare-tooauthenticate-azure-resource-manager-requests"></a>Préparer tooauthenticate demande du Gestionnaire de ressources Azure
+Vous devez vous authentifier toutes les opérations de hello que vous effectuez sur les ressources à l’aide de hello [Azure Resource Manager] [ lnk-authenticate-arm] avec Azure Active Directory (AD). Hello tooconfigure de façon plus simple Voici toouse PowerShell ou CLI d’Azure.
 
-Avant toute chose, installez les [applets de commande Azure PowerShell][lnk-powershell-install].
+Installer hello [applets de commande Azure PowerShell] [ lnk-powershell-install] avant de continuer.
 
-Les étapes suivantes montrent comment configurer l’authentification par mot de passe pour une application Active Directory à l’aide de PowerShell. Vous pouvez exécuter ces commandes dans le cadre d’une session PowerShell standard.
+Hello suivant les étapes indiquent comment tooset l’authentification du mot de passe pour une application AD à l’aide de PowerShell. Vous pouvez exécuter ces commandes dans le cadre d’une session PowerShell standard.
 
-1. Pour vous connecter à votre abonnement Azure, exécutez la commande suivante :
+1. Ouvrez une session dans tooyour abonnement Azure à l’aide de hello de commande suivante :
 
     ```powershell
     Login-AzureRmAccount
     ```
 
-1. Si vous possédez plusieurs abonnements Azure, la connexion à Azure vous donne accès à tous les abonnements Azure associés à vos informations d’identification. Utilisez la commande suivante pour répertorier les abonnements Azure que vous pouvez utiliser :
+1. Si vous avez plusieurs abonnements Azure, l’ouverture de session tooAzure accorde vous accédez tooall hello Azure abonnements associés à vos informations d’identification. Utilisez hello toolist hello abonnements Azure disponibles pour vous toouse de commande suivante :
 
     ```powershell
     Get-AzureRMSubscription
     ```
 
-    Utilisez la commande suivante pour sélectionner l’abonnement que vous souhaitez utiliser afin d'exécuter les commandes pour gérer votre IoT Hub. Vous pouvez utiliser le nom de l’abonnement ou l’ID de la sortie de la commande précédente :
+    Utilisez hello suivant abonnement tooselect de commande que vous souhaitez toouse toorun hello commandes toomanage votre hub IoT. Vous pouvez utiliser le nom de l’abonnement hello ou ID de sortie hello de la commande précédente hello :
 
     ```powershell
     Select-AzureRMSubscription `
@@ -25,29 +25,29 @@ Les étapes suivantes montrent comment configurer l’authentification par mot d
     ```
 
 2. Prenez note des valeurs **TenantId** et **SubscriptionId**. Vous en aurez besoin ultérieurement.
-3. Créez une application Azure Active Directory à l’aide de la commande suivante, en remplaçant les espaces réservés :
+3. Créer une nouvelle application Azure Active Directory à l’aide de hello commande suivante, en remplaçant les espaces réservés hello :
    
    * **{Nom d’affichage} :** nom d’affichage pour votre application, par exemple, **MySampleApp**
-   * **{URL de la page d’accueil} :** URL de la page d’accueil de votre application, par exemple, **http://mysampleapp/home**. Cette URL n’a pas besoin de pointer vers une application réelle.
-   * **{Identificateur d’application} :** identificateur unique, par exemple, **http://mysampleapp**. Cette URL n’a pas besoin de pointer vers une application réelle.
-   * **{Mot de passe} :** mot de passe que vous utiliserez pour vous authentifier dans votre application.
+   * **{URL de la page d’accueil} :** hello telles que les URL de page d’accueil hello de votre application **http://mysampleapp/home**. Cette URL ne doit pas toopoint tooa véritable application.
+   * **{Identificateur d’application} :** identificateur unique, par exemple, **http://mysampleapp**. Cette URL ne doit pas toopoint tooa véritable application.
+   * **{Password} :** un mot de passe que vous utilisez tooauthenticate avec votre application.
      
      ```powershell
      New-AzureRmADApplication -DisplayName {Display name} -HomePage {Home page URL} -IdentifierUris {Application identifier} -Password {Password}
      ```
-4. Prenez note de l’ **ApplicationId** de l’application que vous avez créée. Vous en aurez besoin ultérieurement.
-5. Créez un principal de service à l’aide de la commande suivante, en remplaçant **{MyApplicationId}** par **l’ApplicationId** de l’étape précédente :
+4. Prenez note de hello **ApplicationId** de l’application hello que vous avez créé. Vous en aurez besoin ultérieurement.
+5. Créer une nouvelle entité de service à l’aide de hello commande suivante, en remplaçant **{MyApplicationId}** avec hello **ApplicationId** à partir de l’étape précédente de hello :
    
     ```powershell
     New-AzureRmADServicePrincipal -ApplicationId {MyApplicationId}
     ```
-6. Configurez une attribution de rôle à l’aide de la commande suivante, en remplaçant **{MyApplicationId}** par votre **ApplicationId**.
+6. Configurer une attribution de rôle à l’aide de hello commande suivante, en remplaçant **{MyApplicationId}** avec votre **ApplicationId**.
    
     ```powershell
     New-AzureRmRoleAssignment -RoleDefinitionName Owner -ServicePrincipalName {MyApplicationId}
     ```
 
-Vous avez maintenant créé l’application Azure AD qui vous permet de vous authentifier à partir de votre application C#. Vous aurez besoin des valeurs suivantes plus loin dans ce didacticiel :
+Vous avez terminé de création d’application Azure AD hello qui vous permet de tooauthenticate à partir de votre application c# personnalisée. Vous devez hello valeurs suivantes plus loin dans ce didacticiel :
 
 * TenantId
 * SubscriptionId

@@ -1,6 +1,6 @@
 ---
-title: Utilisation du stockage de files d'attente (C++) | Microsoft Docs
-description: "Découvrez comment utiliser le service de stockage de files d’attente dans Azure. Les exemples sont écrits en C++."
+title: "stockage de file d’attente toouse aaaHow (C++) | Documents Microsoft"
+description: "Découvrez comment toouse hello service de stockage de file d’attente dans Azure. Les exemples sont écrits en C++."
 services: storage
 documentationcenter: .net
 author: cbrooksmsft
@@ -14,22 +14,22 @@ ms.devlang: cpp
 ms.topic: article
 ms.date: 05/11/2017
 ms.author: cbrooksmsft
-ms.openlocfilehash: 5e81d5e0af9871099b7f921f355cf94249e4d30c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: b0cddf017878e9fab87f47d24b2906e40c9f4ad5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-queue-storage-from-c"></a>Utilisation du stockage de files d'attente à partir de C++
+# <a name="how-toouse-queue-storage-from-c"></a>Comment toouse stockage de file d’attente à partir de C++
 [!INCLUDE [storage-selector-queue-include](../../../includes/storage-selector-queue-include.md)]
 
 [!INCLUDE [storage-try-azure-tools-queues](../../../includes/storage-try-azure-tools-queues.md)]
 
 ## <a name="overview"></a>Vue d'ensemble
-Ce guide décrit le déroulement de scénarios courants dans le cadre de l'utilisation du service de stockage des files d'attente Azure. Les exemples ont été écrits en C++ et utilisent la [bibliothèque cliente Azure Storage pour C++](http://github.com/Azure/azure-storage-cpp/blob/master/README.md). Les scénarios traités incluent **l’insertion**, la **lecture furtive**, la **récupération** et la **suppression** des messages de file d’attente, ainsi que la **création et suppression des files d’attente**.
+Ce guide vous explique comment tooperform des scénarios courants utilisant hello service de stockage de file d’attente Azure. exemples de Hello sont écrits en C++ et utiliser hello [bibliothèque cliente de stockage Azure pour C++](http://github.com/Azure/azure-storage-cpp/blob/master/README.md). Hello scénarios abordés incluent **insertion**, **lecture**, **mise en route**, et **suppression** file d’attente de messages, ainsi que  **Création et suppression de files d’attente**.
 
 > [!NOTE]
-> Ce guide cible la bibliothèque cliente Azure Storage pour C++ version 1.0.0 et les versions ultérieures. La version recommandée est la bibliothèque cliente de stockage version 2.2.0, disponible par le biais de [NuGet](http://www.nuget.org/packages/wastorage) ou [GitHub](http://github.com/Azure/azure-storage-cpp/).
+> Les cibles de ce guide hello bibliothèque cliente Azure Storage pour C++ version 1.0.0 et versions ultérieures. Hello recommandé de version est la bibliothèque cliente de stockage 2.2.0, qui est disponible via [NuGet](http://www.nuget.org/packages/wastorage) ou [GitHub](http://github.com/Azure/azure-storage-cpp/).
 > 
 > 
 
@@ -40,19 +40,19 @@ Ce guide décrit le déroulement de scénarios courants dans le cadre de l'utili
 ## <a name="create-a-c-application"></a>Création d’une application C++
 Dans ce guide, vous allez utiliser des fonctionnalités de stockage qui peuvent être exécutées dans une application C++.
 
-Pour ce faire, vous devez installer la bibliothèque cliente Azure Storage pour C++ et créer un compte Azure Storage dans votre abonnement Azure.
+toodo par conséquent, vous devez tooinstall hello bibliothèque cliente Azure Storage pour C++ et créer un compte de stockage Azure dans votre abonnement Azure.
 
-Pour installer la bibliothèque cliente Azure Storage pour C++, vous pouvez procéder comme suit :
+tooinstall hello bibliothèque cliente Azure Storage pour C++, vous pouvez utiliser hello méthodes suivantes :
 
-* **Linux :** suivez les instructions disponibles sur la page [Bibliothèque cliente Azure Storage pour C++](https://github.com/Azure/azure-storage-cpp/blob/master/README.md) .
-* **Windows :** dans Visual Studio, cliquez sur **Outils > Gestionnaire de package NuGet > Console du gestionnaire de package**. Entrez la commande suivante dans la [console du gestionnaire du package NuGet](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) et appuyez sur **ENTRÉE**.
+* **Linux :** suivez instructions hello de hello [bibliothèque cliente de stockage Azure pour C++ Lisez-moi](https://github.com/Azure/azure-storage-cpp/blob/master/README.md) page.
+* **Windows :** dans Visual Studio, cliquez sur **Outils &gt; Gestionnaire de package NuGet &gt; Console du gestionnaire de package**. Tapez ce qui suit hello commande dans hello [console du Gestionnaire de Package NuGet](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) et appuyez sur **entrée**.
 
 ```  
 Install-Package wastorage
 ```
 
-## <a name="configure-your-application-to-access-queue-storage"></a>Configuration de votre application pour accéder au stockage de files d'attente
-Ajoutez les instructions import suivantes au début du fichier Java dans lequel vous voulez utiliser des API de stockage Azure pour accéder aux files d'attente :  
+## <a name="configure-your-application-tooaccess-queue-storage"></a>Configurer votre stockage de file d’attente de tooaccess application
+Ajouter suivant de hello inclure haut de toohello instructions du fichier de C++ hello où vous souhaitez les files d’attente de stockage Azure API tooaccess toouse hello :  
 
 ```cpp
 #include <was/storage_account.h>
@@ -60,26 +60,26 @@ Ajoutez les instructions import suivantes au début du fichier Java dans lequel 
 ```
 
 ## <a name="set-up-an-azure-storage-connection-string"></a>Configuration d’une chaîne de connexion au stockage Azure
-Un client de stockage Azure utilise une chaîne de connexion de stockage pour stocker des points de terminaison et des informations d’identification permettant d’accéder aux services de gestion des données. Lors de l’exécution d’une application cliente, vous devez spécifier la chaîne de connexion au stockage au format suivant, en indiquant le nom de votre compte de stockage et sa clé d’accès de stockage, correspondant aux valeurs *AccountName* et *AccountKey*, sur le [portail Azure](https://portal.azure.com). Pour plus d'informations sur les comptes et les clés d'accès de stockage, consultez la page [À propos des comptes Azure Storage](../common/storage-create-storage-account.md?toc=%2fazure%2fstorage%2fqueues%2ftoc.json). Cet exemple vous montre comment déclarer un champ statique pour qu’il contienne une chaîne de connexion :  
+Un client de stockage Azure utilise une terminaison de stockage connexion chaîne toostore et informations d’identification pour accéder aux services de gestion de données. Lors de l’exécution dans une application cliente, vous devez fournir la chaîne de connexion de stockage hello Bonjour suivant le format, à l’aide du nom hello de votre compte et hello stockage clé d’accès de compte de stockage hello Bonjour [Azure Portal](https://portal.azure.com)pour hello *AccountName* et *AccountKey* valeurs. Pour plus d'informations sur les comptes et les clés d'accès de stockage, consultez la page [À propos des comptes Azure Storage](../common/storage-create-storage-account.md?toc=%2fazure%2fstorage%2fqueues%2ftoc.json). Cet exemple montre comment vous pouvez déclarer une chaîne de connexion de champ statique toohold hello :  
 
 ```cpp
-// Define the connection-string with your values.
+// Define hello connection-string with your values.
 const utility::string_t storage_connection_string(U("DefaultEndpointsProtocol=https;AccountName=your_storage_account;AccountKey=your_storage_account_key"));
 ```
 
-Pour tester votre application sur votre ordinateur Windows local, vous pouvez utiliser [l’émulateur de stockage Microsoft Azure](../common/storage-use-emulator.md?toc=%2fazure%2fstorage%2fqueues%2ftoc.json) installé avec le [Kit de développement logiciel (SDK) Azure](https://azure.microsoft.com/downloads/). L'émulateur de stockage est un utilitaire qui simule sur votre ordinateur de développement local les objets blob, les files d'attente et les services de Table disponibles dans Azure. L’exemple suivant vous montre comment déclarer un champ statique pour qu’il contienne une chaîne de connexion vers votre émulateur de stockage local :  
+tootest votre application sur votre ordinateur local de Windows, vous pouvez utiliser hello Microsoft Azure [l’émulateur de stockage](../common/storage-use-emulator.md?toc=%2fazure%2fstorage%2fqueues%2ftoc.json) qui est installé avec hello [Azure SDK](https://azure.microsoft.com/downloads/). l’émulateur de stockage Hello est un utilitaire qui simule hello Blob, file d’attente et Table services disponibles dans Azure sur votre ordinateur de développement local. Hello suivant montre comment vous pouvez déclarer un champ statique toohold hello connexion chaîne tooyour local l’émulateur de stockage :  
 
 ```cpp
-// Define the connection-string with Azure Storage Emulator.
+// Define hello connection-string with Azure Storage Emulator.
 const utility::string_t storage_connection_string(U("UseDevelopmentStorage=true;"));  
 ```
 
-Pour démarrer l’émulateur de stockage Azure, sélectionnez le bouton **Démarrer** ou appuyez sur la touche **Windows**. Commencez à taper **Émulateur de stockage Azure**, puis sélectionnez **Émulateur de stockage Microsoft Azure** dans la liste des applications.
+l’émulateur de stockage Azure hello toostart, sélectionnez hello **Démarrer** hello bouton ou appuyez sur **Windows** clé. Commencez à taper **émulateur de stockage Azure**, puis sélectionnez **émulateur de stockage Microsoft Azure** à partir de la liste des applications hello.
 
-Les exemples ci-dessous partent du principe que vous avez utilisé l’une de ces deux méthodes pour obtenir la chaîne de connexion de stockage.
+Hello exemples suivants supposent que vous avez utilisé une de ces chaînes de connexion de stockage de deux méthodes tooget hello.
 
 ## <a name="retrieve-your-connection-string"></a>Récupération de votre chaîne de connexion
-Vous pouvez utiliser la classe **cloud_storage_account** pour représenter les informations de votre compte de stockage. Pour extraire les informations de votre compte de stockage de la chaîne de connexion de stockage, vous pouvez utiliser la méthode **parse** .
+Vous pouvez utiliser hello **cloud_storage_account** classe toorepresent vos informations de compte de stockage. tooretrieve plus d’informations à partir de la chaîne de connexion de stockage hello du compte de votre stockage, vous pouvez utiliser hello **analyser** (méthode).
 
 ```cpp
 // Retrieve storage account from connection string.
@@ -87,7 +87,7 @@ azure::storage::cloud_storage_account storage_account = azure::storage::cloud_st
 ```
 
 ## <a name="how-to-create-a-queue"></a>Création d'une file d'attente
-Un objet **cloud_queue_client** vous permet d’obtenir les objets de référence pour les files d’attente. Le code suivant crée un objet **cloud_queue_client**.
+Un objet **cloud_queue_client** vous permet d’obtenir les objets de référence pour les files d’attente. Hello de code suivant crée un **cloud_queue_client** objet.
 
 ```cpp
 // Retrieve storage account from connection string.
@@ -97,115 +97,115 @@ azure::storage::cloud_storage_account storage_account = azure::storage::cloud_st
 azure::storage::cloud_queue_client queue_client = storage_account.create_cloud_queue_client();
 ```
 
-Utilisez l’objet **cloud_queue_client** pour obtenir une référence pointant vers la file d’attente à utiliser. Si la file d'attente n'existe pas, vous pouvez la créer :
+Hello d’utilisation **cloud_queue_client** tooget une référence toohello file d’attente toouse de l’objet. Vous pouvez créer la file d’attente hello si elle n’existe pas.
 
 ```cpp
-// Retrieve a reference to a queue.
+// Retrieve a reference tooa queue.
 azure::storage::cloud_queue queue = queue_client.get_queue_reference(U("my-sample-queue"));
 
-// Create the queue if it doesn't already exist.
+// Create hello queue if it doesn't already exist.
  queue.create_if_not_exists();  
 ```
 
 ## <a name="how-to-insert-a-message-into-a-queue"></a>Insertion d'un message dans une file d'attente
-Pour insérer un message dans une file d’attente existante, commencez par créer un **cloud_queue_message**. Appelez ensuite la méthode **add_message**. Un **cloud_queue_message** peut être créé à partir d’une chaîne ou d’un tableau **d’octets**. Voici le code qui crée une file d'attente (si elle n'existe pas) et insère le message « Hello, World » :
+tooinsert un message dans une file d’attente existante, commencez par créer un **cloud_queue_message**. Ensuite, appelez hello **add_message** (méthode). Un **cloud_queue_message** peut être créé à partir d’une chaîne ou d’un tableau **d’octets**. Voici le code qui crée une file d’attente (s’il n’existe pas) et le message de type hello insertions « Hello, World » :
 
 ```cpp
 // Retrieve storage account from connection-string.
 azure::storage::cloud_storage_account storage_account = azure::storage::cloud_storage_account::parse(storage_connection_string);
 
-// Create the queue client.
+// Create hello queue client.
 azure::storage::cloud_queue_client queue_client = storage_account.create_cloud_queue_client();
 
-// Retrieve a reference to a queue.
+// Retrieve a reference tooa queue.
 azure::storage::cloud_queue queue = queue_client.get_queue_reference(U("my-sample-queue"));
 
-// Create the queue if it doesn't already exist.
+// Create hello queue if it doesn't already exist.
 queue.create_if_not_exists();
 
-// Create a message and add it to the queue.
+// Create a message and add it toohello queue.
 azure::storage::cloud_queue_message message1(U("Hello, World"));
 queue.add_message(message1);  
 ```
 
-## <a name="how-to-peek-at-the-next-message"></a>Lecture furtive du message suivant
-Vous pouvez lire furtivement le message au début de la file d’attente sans le supprimer de la file d’attente en appelant la méthode **peek_message**.
+## <a name="how-to-peek-at-hello-next-message"></a>Comment : lire des message de type hello suivant
+Vous pouvez lire de message hello devant hello une file d’attente sans le supprimer de la file d’attente hello en appelant hello **peek_message** (méthode).
 
 ```cpp
 // Retrieve storage account from connection-string.
 azure::storage::cloud_storage_account storage_account = azure::storage::cloud_storage_account::parse(storage_connection_string);
 
-// Create the queue client.
+// Create hello queue client.
 azure::storage::cloud_queue_client queue_client = storage_account.create_cloud_queue_client();
 
-// Retrieve a reference to a queue.
+// Retrieve a reference tooa queue.
 azure::storage::cloud_queue queue = queue_client.get_queue_reference(U("my-sample-queue"));
 
-// Peek at the next message.
+// Peek at hello next message.
 azure::storage::cloud_queue_message peeked_message = queue.peek_message();
 
-// Output the message content.
+// Output hello message content.
 std::wcout << U("Peeked message content: ") << peeked_message.content_as_string() << std::endl;
 ```
 
-## <a name="how-to-change-the-contents-of-a-queued-message"></a>Modification du contenu d'un message en file d'attente
-Vous pouvez modifier le contenu d'un message placé dans la file d'attente. Si le message représente une tâche, vous pouvez utiliser cette fonctionnalité pour mettre à jour l'état de la tâche. Le code suivant met à jour le message de la file d'attente avec un nouveau contenu et ajoute 60 secondes au délai d'expiration de la visibilité. Cette opération enregistre l'état de la tâche associée au message et accorde une minute supplémentaire au client pour traiter le message. Vous pouvez utiliser cette technique pour suivre des flux de travail à plusieurs étapes sur les messages de file d'attente, sans devoir reprendre du début si une étape du traitement échoue à cause d'une défaillance matérielle ou logicielle. Normalement, vous conservez aussi un nombre de nouvelles tentatives et si le message est retenté plus de n fois, vous le supprimez. Cela protège du déclenchement d'une erreur d'application par un message chaque fois qu'il est traité.
+## <a name="how-to-change-hello-contents-of-a-queued-message"></a>Comment : modifier le contenu de hello d’un message en file d’attente
+Vous pouvez modifier le contenu de hello d’un message en place dans la file d’attente hello. Si le message de type hello représente une tâche de travail, vous pouvez utiliser cet état de hello tooupdate la fonctionnalité de tâche hello. Hello suivant code met à jour le message de file d’attente hello avec le nouveau contenu et jeux hello tooextend de délai d’attente de visibilité un autre 60 secondes. Cela enregistre l’état hello du travail associé au message de type hello, ainsi que les clients hello un autre toocontinue minute travaillant sur un message de type hello. Vous pouvez utiliser ce flux de travail à plusieurs étapes de tootrack technique sur les messages de la file d’attente, sans avoir toostart sur du début de hello si une étape de traitement échoue en raison de l’erreur toohardware ou logicielle. En règle générale, vous conservez ainsi un nombre de tentatives, et si le message de type hello est retentée n plusieurs fois, vous le supprimez. Cela protège du déclenchement d'une erreur d'application par un message chaque fois qu'il est traité.
 
 ```cpp
 // Retrieve storage account from connection-string.
 azure::storage::cloud_storage_account storage_account = azure::storage::cloud_storage_account::parse(storage_conection_string);
 
-// Create the queue client.
+// Create hello queue client.
 azure::storage::cloud_queue_client queue_client = storage_account.create_cloud_queue_client();
 
-// Retrieve a reference to a queue.
+// Retrieve a reference tooa queue.
 azure::storage::cloud_queue queue = queue_client.get_queue_reference(U("my-sample-queue"));
 
-// Get the message from the queue and update the message contents.
-// The visibility timeout "0" means make it visible immediately.
-// The visibility timeout "60" means the client can get another minute to continue
-// working on the message.
+// Get hello message from hello queue and update hello message contents.
+// hello visibility timeout "0" means make it visible immediately.
+// hello visibility timeout "60" means hello client can get another minute toocontinue
+// working on hello message.
 azure::storage::cloud_queue_message changed_message = queue.get_message();
 
 changed_message.set_content(U("Changed message"));
 queue.update_message(changed_message, std::chrono::seconds(60), true);
 
-// Output the message content.
+// Output hello message content.
 std::wcout << U("Changed message content: ") << changed_message.content_as_string() << std::endl;  
 ```
 
-## <a name="how-to-de-queue-the-next-message"></a>Suppression du message suivant dans la file d'attente
-Votre code enlève un message d'une file d'attente en deux étapes. Lorsque vous appelez **get_message**, vous obtenez le message suivant dans une file d’attente. Un message renvoyé par **get_message** devient invisible de tout autre code lisant les messages de cette file d’attente. Pour finaliser la suppression du message de la file d’attente, vous devez aussi appeler **delete_message**. Ce processus de suppression d'un message en deux étapes garantit que, si votre code ne parvient pas à traiter un message à cause d'une défaillance matérielle ou logicielle, une autre instance de votre code peut obtenir le même message et réessayer. Votre code appelle **delete_message** juste après le traitement du message.
+## <a name="how-to-de-queue-hello-next-message"></a>Comment : annuler file d’attente de message de type hello suivant
+Votre code enlève un message d'une file d'attente en deux étapes. Lorsque vous appelez **get_message**, vous obtenez un message de type hello suivante dans une file d’attente. Un message retourné à partir de **get_message** devient invisible tooany tout autre code de la lecture de messages à partir de cette file d’attente. toofinish lors de la suppression du message de salutation à partir de la file d’attente hello, vous devez également appeler **delete_message**. Ce processus en deux étapes de la suppression d’un message garantit que si votre code échoue tooprocess qu'un message en raison de la défaillance toohardware ou logiciel, une autre instance de votre code peut obtenir hello même message puis réessayez. Votre code appelle **delete_message** avec le bouton droit une fois le message de salutation a été traité.
 
 ```cpp
 // Retrieve storage account from connection-string.
 azure::storage::cloud_storage_account storage_account = azure::storage::cloud_storage_account::parse(storage_connection_string);
 
-// Create the queue client.
+// Create hello queue client.
 azure::storage::cloud_queue_client queue_client = storage_account.create_cloud_queue_client();
 
-// Retrieve a reference to a queue.
+// Retrieve a reference tooa queue.
 azure::storage::cloud_queue queue = queue_client.get_queue_reference(U("my-sample-queue"));
 
-// Get the next message.
+// Get hello next message.
 azure::storage::cloud_queue_message dequeued_message = queue.get_message();
 std::wcout << U("Dequeued message: ") << dequeued_message.content_as_string() << std::endl;
 
-// Delete the message.
+// Delete hello message.
 queue.delete_message(dequeued_message);
 ```
 
 ## <a name="how-to-leverage-additional-options-for-de-queuing-messages"></a>Utilisation d'options supplémentaires pour l'enlèvement des messages
-Il existe deux façons de personnaliser l'extraction des messages à partir d'une file d'attente. Premièrement, vous pouvez obtenir un lot de messages (jusqu'à 32). Deuxièmement, vous pouvez définir un délai d'expiration de l'invisibilité plus long ou plus court afin d'accorder à votre code plus ou moins de temps pour traiter complètement chaque message. L’exemple de code suivant utilise la méthode **get_messages** pour obtenir 20 messages en un appel. Ensuite, il traite chaque message à l'aide d'une boucle **for** . Il définit également le délai d'expiration de l'invisibilité sur cinq minutes pour chaque message. Notez que le délai de 5 minutes démarre en même temps pour tous les messages, donc une fois les 5 minutes écoulées après l’appel de **get_messages**, tous les messages n’ayant pas été supprimés redeviennent visibles.
+Il existe deux façons de personnaliser l'extraction des messages à partir d'une file d'attente. Tout d’abord, vous pouvez obtenir un lot de messages (haut too32). Ensuite, vous pouvez définir un délai d’attente de l’invisibilité plus ou moins longtemps, ce qui permet de votre code plus ou moins toofully temps traitent chaque message. exemple de code suivant Hello utilise hello **get_messages** messages tooget 20 de méthode dans un seul appel. Ensuite, il traite chaque message à l'aide d'une boucle **for** . Il définit également hello invisibilité délai d’expiration toofive minutes pour chaque message. Notez que hello 5 minutes démarre pour tous les messages à hello même moment, après que les 5 minutes se sont écoulées depuis l’appel de hello trop**get_messages**, tous les messages qui n’ont pas été supprimés devient visibles à nouveau.
 
 ```cpp
 // Retrieve storage account from connection-string.
 azure::storage::cloud_storage_account storage_account = azure::storage::cloud_storage_account::parse(storage_connection_string);
 
-// Create the queue client.
+// Create hello queue client.
 azure::storage::cloud_queue_client queue_client = storage_account.create_cloud_queue_client();
 
-// Retrieve a reference to a queue.
+// Retrieve a reference tooa queue.
 azure::storage::cloud_queue queue = queue_client.get_queue_reference(U("my-sample-queue"));
 
 // Dequeue some queue messages (maximum 32 at a time) and set their visibility timeout to
@@ -213,33 +213,33 @@ azure::storage::cloud_queue queue = queue_client.get_queue_reference(U("my-sampl
 azure::storage::queue_request_options options;
 azure::storage::operation_context context;
 
-// Retrieve 20 messages from the queue with a visibility timeout of 300 seconds.
+// Retrieve 20 messages from hello queue with a visibility timeout of 300 seconds.
 std::vector<azure::storage::cloud_queue_message> messages = queue.get_messages(20, std::chrono::seconds(300), options, context);
 
 for (auto it = messages.cbegin(); it != messages.cend(); ++it)
 {
-    // Display the contents of the message.
+    // Display hello contents of hello message.
     std::wcout << U("Get: ") << it->content_as_string() << std::endl;
 }
 ```
 
-## <a name="how-to-get-the-queue-length"></a>Obtention de la longueur de la file d'attente
-Vous pouvez obtenir une estimation du nombre de messages dans une file d'attente. La méthode **download_attributes** demande au service de files d’attente d’extraire les attributs de la file d’attente, y compris le nombre de messages. La méthode **approximate_message_count** obtient le nombre approximatif de messages dans la file d’attente.
+## <a name="how-to-get-hello-queue-length"></a>Comment : obtenir la longueur de file d’attente hello
+Vous pouvez obtenir une estimation du nombre de hello de messages dans une file d’attente. Hello **download_attributes** méthode demande tooretrieve de service de file d’attente hello attributs de file d’attente hello, y compris le nombre de messages hello. Hello **approximate_message_count** méthode obtient le nombre approximatif de hello de messages dans la file d’attente hello.
 
 ```cpp
 // Retrieve storage account from connection-string.
 azure::storage::cloud_storage_account storage_account = azure::storage::cloud_storage_account::parse(storage_connection_string);
 
-// Create the queue client.
+// Create hello queue client.
 azure::storage::cloud_queue_client queue_client = storage_account.create_cloud_queue_client();
 
-// Retrieve a reference to a queue.
+// Retrieve a reference tooa queue.
 azure::storage::cloud_queue queue = queue_client.get_queue_reference(U("my-sample-queue"));
 
-// Fetch the queue attributes.
+// Fetch hello queue attributes.
 queue.download_attributes();
 
-// Retrieve the cached approximate message count.
+// Retrieve hello cached approximate message count.
 int cachedMessageCount = queue.approximate_message_count();
 
 // Display number of messages.
@@ -247,27 +247,27 @@ std::wcout << U("Number of messages in queue: ") << cachedMessageCount << std::e
 ```
 
 ## <a name="how-to-delete-a-queue"></a>Suppression d'une file d'attente
-Pour supprimer une file d’attente et tous les messages qu’elle contient, appelez la méthode **delete_queue_if_exists** sur l’objet file d’attente.
+toodelete une file d’attente et tous les messages hello qu’il contient, appel hello **delete_queue_if_exists** méthode sur un objet de file d’attente hello.
 
 ```cpp
 // Retrieve storage account from connection-string.
 azure::storage::cloud_storage_account storage_account = azure::storage::cloud_storage_account::parse(storage_connection_string);
 
-// Create the queue client.
+// Create hello queue client.
 azure::storage::cloud_queue_client queue_client = storage_account.create_cloud_queue_client();
 
-// Retrieve a reference to a queue.
+// Retrieve a reference tooa queue.
 azure::storage::cloud_queue queue = queue_client.get_queue_reference(U("my-sample-queue"));
 
-// If the queue exists and delete it.
+// If hello queue exists and delete it.
 queue.delete_queue_if_exists();  
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-Maintenant que vous connaissez les bases du stockage de files d'attente, consultez les liens suivants pour en savoir plus sur Azure Storage.
+Maintenant que vous avez appris les notions de base de hello de stockage de la file d’attente, suivez ces liens de toolearn plus d’informations sur le stockage Azure.
 
-* [Utilisation du stockage d'objets blob à partir de C++](../blobs/storage-c-plus-plus-how-to-use-blobs.md)
-* [Utilisation du stockage de tables à partir de C++](../../cosmos-db/table-storage-how-to-use-c-plus.md)
+* [Comment toouse stockage d’objets Blob à partir de C++](../blobs/storage-c-plus-plus-how-to-use-blobs.md)
+* [Comment toouse le stockage de Table à partir de C++](../../cosmos-db/table-storage-how-to-use-c-plus.md)
 * [Listage des ressources Azure Storage en C++](../common/storage-c-plus-plus-enumeration.md?toc=%2fazure%2fstorage%2fqueues%2ftoc.json)
 * [Référence de la bibliothèque cliente de stockage pour C++](http://azure.github.io/azure-storage-cpp)
 * [Documentation d'Azure Storage](https://azure.microsoft.com/documentation/services/storage/)

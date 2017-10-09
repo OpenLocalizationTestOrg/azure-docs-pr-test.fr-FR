@@ -1,6 +1,6 @@
 ---
-title: "Authentification sur Azure SQL Data Warehouse | Microsoft Docs"
-description: Authentification Azure Active Directory (AAD) et SQL Server sur Azure SQL Data Warehouse.
+title: aaaAuthentication tooAzure SQL Data Warehouse | Documents Microsoft
+description: Azure Active Directory (AAD) et SQL Server authentication tooAzure SQL Data Warehouse.
 services: sql-data-warehouse
 documentationcenter: 
 author: ronortloff
@@ -16,13 +16,13 @@ ms.workload: data-management
 ms.custom: security
 ms.date: 03/21/2017
 ms.author: rortloff;barbkess
-ms.openlocfilehash: 92f48027051bc4aff4d6b8d66fdd6de81bba3657
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 66673ce1d4761243755254c8f64de1078a0ea82e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="authentication-to-azure-sql-data-warehouse"></a>Authentification sur Azure SQL Data Warehouse
+# <a name="authentication-tooazure-sql-data-warehouse"></a>Authentification tooAzure SQL Data Warehouse
 > [!div class="op_single_selector"]
 > * [Présentation de la sécurité](sql-data-warehouse-overview-manage-security.md)
 > * [Authentification](sql-data-warehouse-authentication.md)
@@ -31,12 +31,12 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-Pour vous connecter à SQL Data Warehouse, vous devez transmettre des informations d’identification de sécurité à des fins d’authentification. Lors de l’établissement d’une connexion, certains paramètres de connexion sont configurés dans le cadre de l’établissement de votre session de requête.  
+tooconnect tooSQL l’entrepôt de données, vous devez passer les informations d’identification de sécurité à des fins d’authentification. Lors de l’établissement d’une connexion, certains paramètres de connexion sont configurés dans le cadre de l’établissement de votre session de requête.  
 
-Vous pouvez consulter l’article [Sécuriser une base de données dans SQL Data Warehouse][Secure a database in SQL Data Warehouse] pour plus d’informations sur la sécurité et la manière d’activer des connexions à votre entrepôt de données.
+Pour plus d’informations sur la sécurité et la manière dont entrepôt de données tooyour tooenable connexions, consultez [sécuriser une base de données SQL Data Warehouse][Secure a database in SQL Data Warehouse].
 
 ## <a name="sql-authentication"></a>Authentification SQL
-Pour vous connecter à SQL Data Warehouse, vous devez fournir les informations suivantes :
+tooconnect tooSQL l’entrepôt de données, vous devez fournir hello informations suivantes :
 
 * Nom complet du serveur
 * Authentification SQL
@@ -44,54 +44,54 @@ Pour vous connecter à SQL Data Warehouse, vous devez fournir les informations s
 * Mot de passe
 * Base de données par défaut (facultatif)
 
-Par défaut, votre connexion se connecte à la base de données *MASTER* et non à votre base de données utilisateur. Pour vous connecter à votre base de données utilisateur, vous pouvez choisir d’effectuer l’une des deux opérations suivantes :
+Par défaut, la connexion connecte toohello *master* pas votre base de données utilisateur et de base de données. base de données tooconnect tooyour utilisateur, vous pouvez choisir toodo deux choses :
 
-* Spécifiez la base de données par défaut lors de l’inscription de votre serveur auprès de l’Explorateur d’objets SQL Server dans SQL Server Data Tools (SSDT), SSMS, ou dans votre chaîne de connexion d’application. Par exemple, insérez le paramètre InitialCatalog pour une connexion ODBC.
-* Sélectionnez la base de données utilisateur avant de créer une session dans SSDT.
+* Spécifiez la base de données par défaut hello lors de l’inscription de votre serveur avec l’Explorateur d’objets SQL Server dans SSDT, SSMS, ou dans votre chaîne de connexion d’application de hello. Par exemple, inclure le paramètre de InitialCatalog hello pour une connexion ODBC.
+* Mettez en surbrillance la base de données utilisateur hello avant de créer une session dans SSDT.
 
 > [!NOTE]
-> L’instruction Transact-SQL **USE MyDatabase;** n’est pas prise en charge pour la modification de la base de données pour une connexion. Pour obtenir des conseils en matière de connexion à SQL Data Warehouse avec SSDT, consultez l’article [Envoyer des requêtes avec Visual Studio][Query with Visual Studio].
+> instruction Transact-SQL de Hello **utilisez MyDatabase ;** n’est pas prise en charge pour la modification de la base de données hello pour une connexion. Pour obtenir des conseils connexion tooSQL l’entrepôt de données avec SSDT, consultez toohello [requête avec Visual Studio] [ Query with Visual Studio] l’article.
 > 
 > 
 
 ## <a name="azure-active-directory-aad-authentication"></a>Authentification Azure Active Directory (AAD)
-L’[authentification Azure Active Directory][What is Azure Active Directory] est un mécanisme servant à se connecter à Microsoft Azure SQL Data Warehouse à l’aide d’identités dans Azure Active Directory (Azure AD). Avec l’authentification Azure Active Directory, vous pouvez gérer de manière centralisée les identités des utilisateurs de base de données et d’autres services Microsoft dans un emplacement centralisé. La gestion centralisée des ID fournit un emplacement unique pour gérer les utilisateurs SQL Data Warehouse et elle simplifie la gestion des autorisations. 
+[Azure Active Directory] [ What is Azure Active Directory] l’authentification est un mécanisme de connexion tooMicrosoft Azure SQL Data Warehouse à l’aide des identités dans Azure Active Directory (Azure AD). Avec l’authentification Azure Active Directory, vous pouvez gérer de manière centralisée les identités hello d’utilisateurs de base de données et d’autres services de Microsoft dans un emplacement central. Gestion des ID fournit un emplacement unique aux utilisateurs de SQL Data Warehouse toomanage et simplifie la gestion de l’autorisation. 
 
 ### <a name="benefits"></a>Avantages
 Les avantages d’Azure Active Directory incluent :
 
-* Fournit une alternative à l’authentification SQL Server.
-* Permet de bloquer la prolifération des identités utilisateur sur plusieurs serveurs de base de données.
+* Fournit une authentification de serveur alternatif tooSQL.
+* Vous aide à arrêter la prolifération hello des identités des utilisateurs sur les serveurs de base de données.
 * Permet la rotation de mot de passe à un emplacement unique
 * Gérer les autorisations de base de données à l’aide de groupes (AAD) externes.
 * Élimine le stockage des mots de passe en activant l’authentification intégrée Windows et les autres formes d’authentification prises en charge par Azure Active Directory.
-* Utilise les utilisateurs de base de données à relation contenant-contenu pour authentifier les identités au niveau de la base de données.
-* Prend en charge l’authentification basée sur les jetons pour les applications se connectant à SQL Data Warehouse.
+* Base de données utilise contenus utilisateurs tooauthenticate des identités au niveau de base de données hello.
+* Prend en charge l’authentification basée sur le jeton pour les applications qui se connectent tooSQL l’entrepôt de données.
 * Prend en charge Multi-Factor Authentication avec l’authentification universelle Active Directory pour SQL Server Management Studio. Pour obtenir une description de Multi-Factor Authentication, consultez [Prise en charge SSMS de Azure AD MFA avec la base de données SQL et SQL Data Warehouse](../sql-database/sql-database-ssms-mfa-authentication.md).
 
 > [!NOTE]
-> Azure Active Directory est encore relativement nouveau et présente certaines limitations. Pour vérifier qu’Azure Active Directory est adapté à votre environnement, consultez [Limitations et fonctionnalités Azure AD][Azure AD features and limitations], en particulier la section Considérations supplémentaires.
+> Azure Active Directory est encore relativement nouveau et présente certaines limitations. tooensure qu’Azure Active Directory est adapté à votre environnement, consultez [les fonctionnalités Azure AD et limitations][Azure AD features and limitations], plus précisément hello considérations supplémentaires.
 > 
 > 
 
 ### <a name="configuration-steps"></a>Configuration
-Suivez ces étapes pour configurer l’authentification Azure Active Directory.
+Suivez ces étapes tooconfigure Active d’authentification Azure Directory.
 
 1. Créer et renseigner un répertoire Azure Active Directory
-2. Facultatif : associer ou modifier le répertoire actif actuellement associé à votre abonnement Azure
+2. Associer facultatif : Ou modifier hello active directory qui est associé à votre abonnement Azure
 3. Créer un administrateur Azure Active Directory pour Azure SQL Data Warehouse
 4. Configurer vos ordinateurs clients
-5. Créer des utilisateurs de base de données à relation contenant-contenu dans votre base de données mappés sur les identités Azure AD
-6. Se connecter à l’entrepôt de données à l’aide des identités Azure AD
+5. Créer des utilisateurs de base de données dans votre base de données mappée de tooAzure identités AD
+6. Se connecter tooyour l’entrepôt de données à l’aide d’identités Azure AD
 
-Actuellement, les utilisateurs Azure Active Directory ne sont pas affichés dans l’Explorateur d’objets SSDT. Comme solution de contournement, vous pouvez afficher les utilisateurs dans [sys.database_principals](https://msdn.microsoft.com/library/ms187328.aspx).
+Actuellement, les utilisateurs Azure Active Directory ne sont pas affichés dans l’Explorateur d’objets SSDT. Pour résoudre ce problème, afficher les utilisateurs de hello dans [sys.database_principals](https://msdn.microsoft.com/library/ms187328.aspx).
 
-### <a name="find-the-details"></a>Rechercher des informations détaillées
-* Les étapes de configuration et d’utilisation de l’authentification Azure Active Directory sont presque identiques pour Azure SQL Database et Azure SQL Data Warehouse. Suivez les étapes détaillées dans la rubrique [Connexion à SQL Database ou SQL Data Warehouse avec l’authentification Azure Active Directory](../sql-database/sql-database-aad-authentication.md).
-* Créez des rôles de base de données personnalisés et ajoutez des utilisateurs aux rôles. Accordez ensuite des autorisations granulaires aux rôles. Pour plus d’informations, consultez [Prise en main des autorisations du moteur de base de données](https://msdn.microsoft.com/library/mt667986.aspx).
+### <a name="find-hello-details"></a>Rechercher des détails de hello
+* authentification Azure Active Directory Hello étapes tooconfigure et d’utilisation sont presque identiques pour la base de données SQL Azure et Azure SQL Data Warehouse. Suivez hello détaillées des étapes décrites dans la rubrique de hello [tooSQL de connexion de base de données ou SQL données entrepôt par à l’aide d’authentification Azure Active Directory](../sql-database/sql-database-aad-authentication.md).
+* Créer des rôles de base de données personnalisée et ajouter des rôles d’utilisateurs toohello. Accordez ensuite des autorisations granulaires toohello rôles. Pour plus d’informations, consultez [Prise en main des autorisations du moteur de base de données](https://msdn.microsoft.com/library/mt667986.aspx).
 
 ## <a name="next-steps"></a>Étapes suivantes
-Pour commencer à interroger votre entrepôt de données avec Visual Studio et d’autres applications, consultez [Soumettre des requêtes avec Visual Studio][Query with Visual Studio].
+toostart interrogation votre entrepôt de données avec Visual Studio et d’autres applications, consultez [requête avec Visual Studio][Query with Visual Studio].
 
 <!-- Article references -->
 [Secure a database in SQL Data Warehouse]: ./sql-data-warehouse-overview-manage-security.md

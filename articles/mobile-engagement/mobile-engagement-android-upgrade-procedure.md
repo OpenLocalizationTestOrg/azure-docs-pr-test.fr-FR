@@ -1,5 +1,5 @@
 ---
-title: "Intégration du SDK Android d'Azure Mobile Engagement"
+title: "aaaAzure intégration du Kit de développement logiciel Android Mobile Engagement"
 description: "Dernières mises à jour et procédures du SDK Android pour Azure Mobile Engagement"
 services: mobile-engagement
 documentationcenter: mobile
@@ -14,23 +14,23 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 1f047f93fa8bc852b28c86e91d0c007a94fb4299
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: df5c82812fe0a242eaa5df8c906030237215b7eb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="upgrade-procedures"></a>Procédures de mise à niveau
-Si vous avez déjà intégré une ancienne version de notre SDK à votre application, tenez compte des points suivants avant de procéder à la mise à niveau du SDK.
+Si vous avez déjà intégré une ancienne version de notre kit de développement logiciel dans votre application, vous avez hello tooconsider hello Kit de développement logiciel de la mise à niveau les points suivants.
 
-Vous devrez peut-être suivre quelques procédures si vous avez manqué plusieurs versions du kit SDK. Par exemple, si vous migrez de la version 1.4.0 vers 1.6.0, vous devez tout d'abord suivre la procédure « Migration de 1.4.0 vers 1.5.0 », puis la procédure « Migration de 1.5.0 vers 1.6.0 ».
+Vous avez peut-être toofollow plusieurs procédures issue de plusieurs versions du Kit de développement logiciel de hello. Par exemple, si vous migrez à partir de 1.4.0 too1.6.0 que vous avez toofirst suivez hello » à partir de 1.4.0 too1.5.0 « procédure puis hello » à partir de 1.5.0 too1.6.0 » procédure.
 
-Quelle que soit la version que vous mettez à niveau, vous devez remplacer `mobile-engagement-VERSION.jar` .
+Version hello vous mettez à niveau, vous avez tooreplace hello `mobile-engagement-VERSION.jar` avec hello nouveau.
 
-## <a name="from-420-to-421"></a>Migration de 4.2.0 vers 4.2.1
-Vous pouvez effectuer cette étape sur n’importe quelle version du SDK. Il s’agit d’une amélioration de sécurité quand vous intégrez des activités Reach.
+## <a name="from-420-too421"></a>À partir de 4.2.0 too4.2.1
+Cette étape peut effectivement être effectuée sur n’importe quelle version du Kit de développement logiciel de hello, il s’agit d’une amélioration de la sécurité lorsque vous intégrez les activités de portée.
 
-Vous devez maintenant ajouter `exported="false"` à toutes les activités Reach.
+Vous devez maintenant ajouter `exported="false"` tooall portée activités.
 
 Les activités Reach doivent maintenant ressembler à ceci sur votre `AndroidManifest.xml`:
 
@@ -61,13 +61,13 @@ Les activités Reach doivent maintenant ressembler à ceci sur votre `AndroidMan
               </intent-filter>
             </activity>
 
-## <a name="from-400-to-410"></a>Migration de 4.0.0 vers 4.1.0
-Le SDK gère maintenant un nouveau modèle d’autorisation à partir d’Android M.
+## <a name="from-400-too410"></a>À partir de 4.0.0 too4.1.0
+Hello SDK maintenant handle nouveau modèle d’autorisation à partir d’Android M.
 
 Si vous utilisez des fonctionnalités de localisation ou des notifications BigPicture, veuillez lire [cette section](mobile-engagement-android-integrate-engagement.md#android-m-permissions).
 
-Outre le nouveau modèle d’autorisation, nous prenons désormais en charge les fonctionnalités de localisation lors de l’exécution.
-Nous sommes toujours compatibles avec les paramètres du manifeste pour la localisation, mais ils sont à présent obsolètes. Pour utiliser la configuration lors de l’exécution, supprimez les sections suivantes à partir de votre ``AndroidManifest.xml``:
+En outre toohello nouveau modèle d’autorisation, nous prennent désormais en charge la configuration des fonctionnalités de l’emplacement lors de l’exécution.
+Nous sommes toujours compatibles avec les paramètres de manifeste hello pour l’emplacement, mais il est désormais déconseillée. sections de suivantes de hello de suppression toouse configuration d’exécution, à partir de votre ``AndroidManifest.xml``:
 
     <meta-data
       android:name="engagement:locationReport:lazyArea"
@@ -82,11 +82,11 @@ Nous sommes toujours compatibles avec les paramètres du manifeste pour la local
       android:name="engagement:locationReport:realTime:fine"
       android:value="true"/>
 
-et lisez [cette procédure mise à jour](mobile-engagement-android-integrate-engagement.md#location-reporting) pour utiliser à la place une configuration lors de l’exécution.
+et lecture [cette procédure de mise à jour](mobile-engagement-android-integrate-engagement.md#location-reporting) toouse configuration d’exécution à la place.
 
-## <a name="from-300-to-400"></a>Migration de 3.0.0 vers 4.0.0
+## <a name="from-300-too400"></a>À partir de 3.0.0 too4.0.0
 ### <a name="native-push"></a>Native Push
-Native Push (GCM/ADM) est désormais également utilisé pour les notifications dans l’application. Vous devez donc configurer les informations d’identification Native Push pour tout type de campagne push.
+Push natif (GCM/ADM) est désormais également utilisé pour des notifications de l’application vous devez configurer les informations d’identification de push natif hello pour n’importe quel type de campagne push.
 
 Si ce n’est déjà fait, suivez [cette procédure](mobile-engagement-android-integrate-engagement-reach.md#native-push).
 
@@ -130,7 +130,7 @@ par
     </receiver>
 
 Il se peut désormais qu’un écran de chargement s’affiche lorsque vous cliquez sur une annonce (avec texte/contenu web) ou sur une interrogation.
-Vous devez ajouter ceci pour que les campagnes fonctionnent dans la version 4.0.0 :
+Vous avez tooadd cela pour ces toowork campagnes dans 4.0.0 :
 
     <activity
       android:name="com.microsoft.azure.engagement.reach.activity.EngagementLoadingActivity"
@@ -142,13 +142,13 @@ Vous devez ajouter ceci pour que les campagnes fonctionnent dans la version 4.0.
     </activity>
 
 ### <a name="resources"></a>Ressources
-Intégrez le nouveau fichier `res/layout/engagement_loading.xml` dans votre projet.
+Incorporer hello nouvelle `res/layout/engagement_loading.xml` fichier dans votre projet.
 
-## <a name="from-240-to-300"></a>Migration de 2.4.0 vers 3.0.0
-La section qui suit décrit comment migrer une intégration du SDK à partir du service Capptain offert par Capptain SAS dans une application reposant sur Azure Mobile Engagement. Si vous migrez à partir d'une version antérieure, consultez le site web de Capptain pour migrer tout d'abord vers 2.4.0, puis appliquez la procédure suivante.
+## <a name="from-240-too300"></a>À partir de 2.4.0 too3.0.0
+Hello suivante décrit comment toomigrate une intégration du Kit de développement logiciel de hello Capptain service offert par Capptain SAS dans une application grâce à Azure Mobile Engagement. Si vous effectuez une migration à partir d’une version antérieure, consultez hello Capptain site web toomigrate too2.4.0 tout d’abord, puis appliquez hello suivant la procédure.
 
 > [!IMPORTANT]
-> Capptain et Mobile Engagement ne sont pas les mêmes services et la procédure décrite ci-dessous explique uniquement comment migrer l'application cliente. La migration du SDK dans l'application ne migre PAS vos données des serveurs Capptain vers les serveurs Mobile Engagement .
+> Capptain Mobile Engagement sont des services mêmes pas hello et hello la procédure décrite ci-dessous met en évidence uniquement comment toomigrate hello application cliente. Migration hello SDK dans l’application hello ne sera pas migré vos données à partir de serveurs de hello Capptain serveurs toohello Mobile Engagement.
 > 
 > 
 
@@ -156,42 +156,42 @@ La section qui suit décrit comment migrer une intégration du SDK à partir du 
 Remplacez `capptain.jar` par `mobile-engagement-VERSION.jar` dans votre dossier `libs`.
 
 ### <a name="resource-files"></a>Fichiers de ressources
-Chaque fichier de ressources fourni (précédé de `capptain_`) doit être remplacé par un nouveau (précédé de `engagement_`).
+Chaque fichier de ressources que nous avons fournis (précédé `capptain_`) a toobe remplacé par hello nouveaux (avec le préfixe `engagement_`).
 
-Si vous avez personnalisé ces fichiers, vous devez réappliquer vos modifications aux nouveaux fichiers, **tous les identificateurs dans les fichiers de ressources ont également été renommés**.
+Si vous avez personnalisé ces fichiers, vous avez toore-appliquer votre personnalisation sur les nouveaux fichiers de hello, **tous les identificateurs hello dans les fichiers de ressources hello ont également été renommés**.
 
 ### <a name="application-id"></a>ID de l'application
-Engagement utilise désormais une chaîne de connexion pour configurer les identificateurs du SDK tels que l'identificateur d'application.
+Engagement utilise désormais une connexion chaîne tooconfigure hello Kit de développement logiciel des identificateurs comme identificateur de l’application hello.
 
-Vous devez utiliser la méthode `EngagementAgent.init` dans l'activité de votre programme de lancement comme suit :
+Vous avez toouse `EngagementAgent.init` méthode dans votre activité Lanceur comme suit :
 
             EngagementConfiguration engagementConfiguration = new EngagementConfiguration();
             engagementConfiguration.setConnectionString("Endpoint={appCollection}.{domain};AppId={appId};SdkKey={sdkKey}");
             EngagementAgent.getInstance(this).init(engagementConfiguration);
 
-La chaîne de connexion de votre application est affichée sur le portail Azure.
+chaîne de connexion Hello pour votre application s’affiche sur le portail Azure.
 
-Supprimez tous les appels vers `CapptainAgent.configure`, car `EngagementAgent.init` remplace cette méthode.
+Veuillez supprimer n’importe quel appel trop`CapptainAgent.configure` comme `EngagementAgent.init` remplace cette méthode.
 
-`appId` ne peut plus être configuré avec `AndroidManifest.xml`.
+Hello `appId` ne peuvent plus être configurées à l’aide de `AndroidManifest.xml`.
 
 Supprimez cette section de votre `AndroidManifest.xml` si elle existe :
 
             <meta-data android:name="capptain:appId" android:value="<YOUR_APPID>"/>
 
 ### <a name="java-api"></a>API Java
-Chaque appel vers n'importe quelle classe Java de notre SDK doit être renommé, par exemple, `CapptainAgent.getInstance(this)` doit être renommé en `EngagementAgent.getInstance(this)`, `extends CapptainActivity` doit être renommé en `extends EngagementActivity`, etc.
+Chaque classe Java de notre kit de développement logiciel de tooany appel a toobe renommé ; par exemple, `CapptainAgent.getInstance(this)` doit être renommé `EngagementAgent.getInstance(this)`, `extends CapptainActivity` doit être renommé `extends EngagementActivity` etc....
 
-Si vous avez effectué l'intégration avec les fichiers de préférences de l'agent par défaut, le nom du fichier par défaut est désormais `engagement.agent`, et la clé est `engagement:agent`.
+Si vous ont été intégrées dans les fichiers de préférence de l’agent par défaut, le nom de fichier par défaut hello est désormais `engagement.agent` et clé de hello est `engagement:agent`.
 
-Quand vous créez des annonces web, le binder Javascript est maintenant `engagementReachContent`.
+Lorsque vous créez des annonces de web, hello Javascript binder est désormais `engagementReachContent`.
 
 ### <a name="androidmanifestxml"></a>AndroidManifest.xml
-De nombreuses modifications ont été apportées, le service n'est plus partagé et vous ne pouvez plus exporter un grand nombre de destinataires.
+De nombreuses modifications s’est-il passé et service de hello n’est pas partagé plus un grand nombre de récepteurs ne sont plus exportable.
 
-La déclaration du service est plus simple, vous supprimez le filtre intent et toutes les métadonnées qu'il contient, et ajoutez `exportable=false`.
+déclaration du service Hello est désormais plus simple. Supprimez le filtre intention de hello et toutes les métadonnées qu’il contient et ajoutez `exportable=false`.
 
-En outre, tous les éléments sont renommés pour utiliser Engagement.
+De plus, tous les éléments sont renommé toouse engagement.
 
 Vous devez obtenir quelque chose similaire à ce qui suit :
 
@@ -201,7 +201,7 @@ Vous devez obtenir quelque chose similaire à ce qui suit :
               android:label="<Your application name>Service"
               android:process=":Engagement"/>
 
-Pour l'activation des journaux de tests, les métadonnées ont été déplacées dans la balise application et renommées :
+Lorsque vous souhaitez que les journaux des tests tooenable, hello métadonnées ont été déplacés de balise de l’application toohello et a été renommé :
 
             <application>
 
@@ -211,7 +211,7 @@ Pour l'activation des journaux de tests, les métadonnées ont été déplacées
 
             </application>
 
-Toutes les autres métadonnées ont simplement été renommées, en voici la liste complète (renommez uniquement celles que vous utilisez) :
+Toutes les autres métadonnées ont simplement été renommées, voici la liste complète de hello (bien entendu renommer uniquement hello celles que vous utilisez) :
 
             <meta-data
               android:name="engagement:reportCrash"
@@ -259,7 +259,7 @@ Toutes les autres métadonnées ont simplement été renommées, en voici la lis
                 android:value="false"/>
             </activity>
 
-Le suivi de Google Play et SmartAd a été supprimé du SDK, il vous suffit le supprimer sans le remplacer :
+Suivi de Google Play et SmartAd a été supprimé à partir du Kit de développement logiciel vous devez tooremove cela sans remplacement :
 
             <meta-data 
                 android:name="capptain:track:installReferrerForwardList"
@@ -268,7 +268,7 @@ Le suivi de Google Play et SmartAd a été supprimé du SDK, il vous suffit le s
                 android:name="capptain:track:adservers"
                 android:value="smartad" />
 
-Les activités Reach sont maintenant déclarées comme suit :
+activités de portée Hello sont désormais déclarées comme suit :
 
             <activity
               android:name="com.microsoft.azure.engagement.reach.activity.EngagementTextAnnouncementActivity"
@@ -297,9 +297,9 @@ Les activités Reach sont maintenant déclarées comme suit :
               </intent-filter>
             </activity>
 
-Si vous avez personnalisé des activités Reach, vous devez simplement remplacer les actions intent par `com.microsoft.azure.engagement.reach.intent.action.ANNOUNCEMENT` ou `com.microsoft.azure.engagement.reach.intent.action.POLL`.
+Si vous avez des activités personnalisées de portée, vous devez soit uniquement toochange hello actions intention toomatch `com.microsoft.azure.engagement.reach.intent.action.ANNOUNCEMENT` ou `com.microsoft.azure.engagement.reach.intent.action.POLL`.
 
-Les récepteurs de diffusion ont été renommés, et nous ajoutons maintenant `exported=false`. Voici la liste complète des récepteurs avec la nouvelle spécification, (renommez uniquement ceux que vous utilisez) :
+Hello récepteurs de diffusion ont été renommés, ainsi que nous ajoutons maintenant `exported=false`. Voici la liste complète de hello de récepteurs hello avec nouvelle spécification hello, (bien entendu renommer uniquement hello celles que vous utilisez) :
 
             <receiver android:name="com.microsoft.azure.engagement.reach.EngagementReachReceiver"
               android:exported="false">
@@ -378,7 +378,7 @@ Les récepteurs de diffusion ont été renommés, et nous ajoutons maintenant `e
               </intent-filter>
             </receiver>
 
-Le récepteur de suivi a été supprimé, par conséquent, vous devez supprimer cette section :
+Récepteur de suivi a été supprimé, afin que vous ayez tooremove de cette section :
 
           <receiver android:name="com.ubikod.capptain.android.sdk.track.CapptainTrackReceiver">
             <intent-filter>
@@ -387,7 +387,7 @@ Le récepteur de suivi a été supprimé, par conséquent, vous devez supprimer 
             </intent-filter>
           </receiver>
 
-Notez que la déclaration de votre implémentation du récepteur de diffusion **EngagementMessageReceiver** a changé dans `AndroidManifest.xml`. En effet, l'API permettant d'envoyer et de supprimer des messages XMPP arbitraires d'entités XMPP arbitraires, et l'API permettant d'envoyer et de recevoir des messages entre appareils ont été supprimées. Par conséquent, vous devez également supprimer les rappels suivants de votre implémentation de **EngagementMessageReceiver** :
+Notez que le récepteur de diffusion déclaration hello de votre implémentation de hello **EngagementMessageReceiver** a été modifié dans hello `AndroidManifest.xml`. En effet, messages hello API toosend et remove XMPP arbitraire à partir des entités XMPP arbitraires et hello API toosend et recevoir des messages entre les appareils ont été supprimées. Par conséquent, vous avez également hello toodelete suivant des rappels à partir de votre **EngagementMessageReceiver** implémentation :
 
             protected void onDeviceMessageReceived(android.content.Context context, java.lang.String deviceId, java.lang.String payload)
 
@@ -404,7 +404,7 @@ and
             sendXMPPMessage(android.os.Bundle msg)
 
 ### <a name="proguard"></a>Proguard
-La configuration de Proguard peut être affectée par le changement de nom, les règles ressemblent maintenant à ce qui suit :
+Configuration proguard peut être touchée par repositionnement, hello règles sont désormais similaire à :
 
             -dontwarn android.**
             -keep class android.support.v4.** { *; }

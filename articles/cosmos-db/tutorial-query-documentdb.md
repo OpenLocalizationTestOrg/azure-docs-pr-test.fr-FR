@@ -1,6 +1,6 @@
 ---
-title: "Comment effectuer des interrogation avec le langage SQL dans Azure Cosmos DB ? | Microsoft Docs"
-description: "Apprendre à interroger à l’aide de données DocumentDB avec le langage SQL dans Azure Cosmos DB"
+title: "tooquery aaaHow avec SQL dans la base de données Azure Cosmos ? | Microsoft Docs"
+description: "En savoir plus tooquery avec des données avec SQL dans la base de données Azure Cosmos DocumentDB"
 services: cosmos-db
 documentationcenter: 
 author: mimig1
@@ -16,24 +16,24 @@ ms.tgt_pltfrm: na
 ms.workload: 
 ms.date: 05/10/2017
 ms.author: mimig
-ms.openlocfilehash: a2a562c06c6302b9548e758b4c6754ec13b6001d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d3dc51acf92cb78d4f4d9dbac7ec54b1382431cc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-cosmos-db-how-to-query-using-sql"></a>Azure Cosmos DB : Comment effectuer des interrogations avec le langage .SQL ?
+# <a name="azure-cosmos-db-how-tooquery-using-sql"></a>Azure Cosmos DB : Comment tooquery à l’aide de SQL ?
 
-L’[API DocumentDB](documentdb-introduction.md) Azure Cosmos DB prend en charge l’interrogation de documents à l’aide de SQL. Cet article fournit un exemple de document et deux exemples de requêtes SQL et de résultats.
+Bonjour Azure Cosmos DB [API DocumentDB](documentdb-introduction.md) prend en charge l’interrogation de documents à l’aide de SQL. Cet article fournit un exemple de document et deux exemples de requêtes SQL et de résultats.
 
-Cet article décrit les tâches suivantes : 
+Cet article traite des hello tâches suivantes : 
 
 > [!div class="checklist"]
 > * Interrogation des données avec SQL
 
 ## <a name="sample-document"></a>Exemple de document
 
-L’exemple de document suivant est utilisé pour les interrogations SQL de cet article.
+les requêtes SQL Hello dans cet article utilisent hello suivant l’exemple de document.
 
 ```json
 {
@@ -65,18 +65,18 @@ L’exemple de document suivant est utilisé pour les interrogations SQL de cet 
 ```
 ## <a name="where-can-i-run-sql-queries"></a>Où puis-je exécuter des requêtes SQL ?
 
-Vous pouvez exécuter des requêtes à l’aide de l’Explorateur de données dans le portail Azure, via l’[API REST et Kits de développement logiciel (SDK) ](documentdb-sdk-dotnet.md)et même l’[interface de requête](https://www.documentdb.com/sql/demo), qui exécute des requêtes sur un ensemble d’exemples de données existant.
+Vous pouvez exécuter des requêtes à l’aide de hello Explorateur de données Bonjour portail Azure, via hello [API REST et les kits de développement logiciel](documentdb-sdk-dotnet.md)et même hello [Query playground](https://www.documentdb.com/sql/demo), qui exécute des requêtes sur un jeu existant d’exemples de données.
 
 Pour plus d’informations sur les requêtes SQL, consultez :
 * [Requête SQL et syntaxe SQL](documentdb-sql-query.md)
 
 ## <a name="prerequisites"></a>Composants requis
 
-Ce didacticiel suppose que vous ayez un compte et une collection Azure Cosmos DB. Cela n’est pas le cas ? Lancez le [démarrage rapide de 5 minutes](create-mongodb-nodejs.md) ou le [didacticiel destiné aux développeurs](tutorial-develop-mongodb.md) pour créer un compte et une collection.
+Ce didacticiel suppose que vous ayez un compte et une collection Azure Cosmos DB. Cela n’est pas le cas ? Hello complète [démarrage rapide de 5 minutes](create-mongodb-nodejs.md) ou hello [didacticiel pour développeur](tutorial-develop-mongodb.md) toocreate un compte et la collection.
 
 ## <a name="example-query-1"></a>Exemple de requête 1
 
-Étant donné l’exemple de document de famille ci-dessus, la requête SQL suivante renvoie les documents où le champ id correspond à `WakefieldFamily`. Comme il s’agit d’une instruction `SELECT *`, le résultat de la requête est le document JSON complet :
+Hello famille document d’exemple ci-dessus, suivant la requête SQL renvoie des documents hello où correspond au champ de code hello `WakefieldFamily`. Dans la mesure où il s’agit d’un `SELECT *` instruction, sortie hello de requête de hello est le document JSON complet hello :
 
 **Requête**
 
@@ -117,7 +117,7 @@ Ce didacticiel suppose que vous ayez un compte et une collection Azure Cosmos DB
 
 ## <a name="example-query-2"></a>Exemple de requête 2
 
-La requête suivante renvoie tous les noms donnés des enfants de la famille dont l’ID correspond à `WakefieldFamily` classés par classe.
+les requêtes suivant Hello retourne tous les noms de donné de hello d’enfants dans la famille hello dont l’id correspond à `WakefieldFamily` classés par leur qualité.
 
 **Requête**
 
@@ -137,12 +137,12 @@ La requête suivante renvoie tous les noms donnés des enfants de la famille don
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Dans ce didacticiel, vous avez appris à :
+Dans ce didacticiel, vous avez effectué les éléments suivants de hello :
 
 > [!div class="checklist"]
-> * Effectuer des interrogations à l’aide de SQL  
+> * Appris comment tooquery à l’aide de SQL  
 
-Vous pouvez maintenant poursuivre avec le didacticiel suivant montrant comment distribuer vos données globalement.
+Vous pouvez maintenant toolearn de didacticiel suivant toohello comment toodistribute vos données globalement.
 
 > [!div class="nextstepaction"]
 > [Distribuer vos données globalement](tutorial-global-distribution-documentdb.md)

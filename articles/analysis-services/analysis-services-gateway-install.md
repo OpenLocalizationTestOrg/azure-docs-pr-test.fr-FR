@@ -1,6 +1,6 @@
 ---
-title: "Installer une passerelle de données locale | Microsoft Docs"
-description: "Découvrez comment installer et configurer une passerelle de données locale."
+title: "passerelle de données locale aaaInstall | Documents Microsoft"
+description: "Découvrez comment tooinstall et configurez une passerelle de données local."
 services: analysis-services
 documentationcenter: 
 author: minewiskan
@@ -15,14 +15,14 @@ ms.tgt_pltfrm: NA
 ms.workload: na
 ms.date: 08/22/2017
 ms.author: owend
-ms.openlocfilehash: 6ef296fb98478be9240f0231c8ad39cd2a0af995
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: e2878bf765c82910d452ae2cdd9264a343ec1990
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="install-and-configure-an-on-premises-data-gateway"></a>Installer et configurer une passerelle de données locale
-Une passerelle de données locale est requise lorsqu’un ou plusieurs serveurs Azure Analysis Services de la même région se connectent aux sources de données locales. Pour en savoir plus sur la passerelle, consultez la page [Passerelle de données locale](analysis-services-gateway.md).
+Une passerelle de données local est requise lorsqu’un ou plusieurs serveurs Azure Analysis Services dans hello même région de se connecter à des sources de données tooon local. toolearn en savoir plus sur la passerelle de hello, consultez [passerelle de données locale](analysis-services-gateway.md).
 
 ## <a name="prerequisites"></a>Composants requis
 **Configuration minimale requise :**
@@ -38,21 +38,21 @@ Une passerelle de données locale est requise lorsqu’un ou plusieurs serveurs 
 
 **Points importants à prendre en compte :**
 
-* Pendant la configuration, lors de l’inscription de votre passerelle auprès d’Azure, la région par défaut de votre abonnement est sélectionnée. Vous pouvez choisir une autre région. Si vous avez des serveurs dans plusieurs régions, vous devez installer une passerelle pour chaque région. 
-* La passerelle ne peut pas être installée sur un contrôleur de domaine.
+* Pendant l’installation, lors de l’inscription de votre passerelle avec Azure, la région par défaut hello pour votre abonnement est sélectionnée. Vous pouvez choisir une autre région. Si vous avez des serveurs dans plusieurs régions, vous devez installer une passerelle pour chaque région. 
+* passerelle de Hello ne peut pas être installé sur un contrôleur de domaine.
 * Une seule passerelle peut être installée sur un ordinateur.
-* Installez la passerelle sur un ordinateur qui reste activé et qui ne se met pas en veille.
-* N’installez pas la passerelle sur un ordinateur sans fil connecté à votre réseau. Les performances peuvent être réduites.
+* Installez la passerelle de hello sur un ordinateur qui reste sur et ne passe pas toosleep.
+* N’installez pas de passerelle de hello sur un réseau d’ordinateurs connectés sans fil tooyour. Les performances peuvent être réduites.
 
 
 ## <a name="download"></a>Télécharger
- [Télécharger la passerelle](https://aka.ms/azureasgateway)
+ [Télécharger hello passerelle](https://aka.ms/azureasgateway)
 
 ## <a name="install"></a>Installer
 
 1. Exécutez le programme d’installation.
 
-2. Sélectionnez un emplacement, acceptez les termes du contrat, puis cliquez sur **Installer**.
+2. Sélectionnez un emplacement, acceptez les termes du contrat de hello, puis cliquez sur **installer**.
 
    ![Emplacement d’installation et termes du contrat de licence](media/analysis-services-gateway-install/aas-gateway-installer-accept.png)
 
@@ -60,27 +60,27 @@ Une passerelle de données locale est requise lorsqu’un ou plusieurs serveurs 
 
    ![Choisir le type de passerelle](media/analysis-services-gateway-install/aas-gateway-installer-shared.png)
 
-4. Entrez un compte pour vous connecter à Azure. Le compte doit se trouver dans l’Azure Active Directory de votre locataire. Ce compte est utilisé pour l’administrateur de passerelle. 
+4. Entrez un compte toosign dans tooAzure. compte de Hello doit être dans Azure Active Directory votre locataire. Ce compte est utilisé pour l’administrateur de la passerelle hello. 
 
-   ![Entrer un compte pour vous connecter à Azure](media/analysis-services-gateway-install/aas-gateway-installer-account.png)
+   ![Entrez un compte toosign dans tooAzure](media/analysis-services-gateway-install/aas-gateway-installer-account.png)
 
    > [!NOTE]
-   > Si vous vous connectez avec un compte de domaine, il sera mappé à votre compte professionnel dans Azure AD. Votre compte professionnel sert de compte d’administrateur de passerelle.
+   > Si vous vous connectez avec un compte de domaine, il sera mappé tooyour compte de société dans Azure AD. Votre compte professionnel sera utilisé en tant qu’administrateur de passerelle hello hello.
 
 ## <a name="register"></a>S’inscrire
-Pour créer une ressource de passerelle dans Azure, vous devez inscrire l’instance locale que vous avez installée auprès du service cloud de passerelle. 
+Dans l’ordre toocreate une ressource de passerelle dans Azure, vous devez inscrire l’instance locale de hello que vous installé avec hello Service Cloud de passerelle. 
 
 1.  Sélectionnez **Inscrivez une nouvelle passerelle sur cet ordinateur**.
 
     ![S’inscrire](media/analysis-services-gateway-install/aas-gateway-register-new.png)
 
-2. Saisissez un nom et une clé de récupération pour votre passerelle. Par défaut, la passerelle utilise la région par défaut de votre abonnement. Si vous souhaitez choisir une autre région, sélectionnez **Changer la région**.
+2. Saisissez un nom et une clé de récupération pour votre passerelle. Par défaut, la passerelle de hello utilise la région par défaut de votre abonnement. Si vous avez besoin de tooselect une autre région, sélectionnez **modification région**.
 
    ![S’inscrire](media/analysis-services-gateway-install/aas-gateway-register-name.png)
 
 
 ## <a name="create-resource"></a>Créer une ressource de passerelle Azure
-Une fois que vous avez installé et inscrit votre passerelle, vous devez créer une ressource de passerelle dans votre abonnement Azure. Connectez-vous à Azure avec le même compte que celui utilisé lors de l’inscription de la passerelle.
+Une fois que vous avez installé et inscrit votre passerelle, vous devez toocreate une ressource de passerelle dans votre abonnement Azure. Se connecter tooAzure avec hello même compte que celui utilisé lors de l’inscription de passerelle de hello.
 
 1. Dans le portail Azure, cliquez sur **Création d’un nouveau service** > **Enterprise Integration** > **Passerelle de données locale** > **Créer**.
 
@@ -90,33 +90,33 @@ Une fois que vous avez installé et inscrit votre passerelle, vous devez créer 
 
     * **Nom** : entrez un nom pour votre ressource de passerelle. 
 
-    * **Abonnement** : sélectionnez l’abonnement Azure à associer à votre ressource de passerelle. 
-    Cet abonnement doit être le même que celui de vos serveurs.
+    * **Abonnement**: sélectionnez hello tooassociate abonnement Azure avec votre ressource de la passerelle. 
+    Cet abonnement doit être hello même abonnement que vos serveurs sont dans.
    
-      L’abonnement par défaut est basé sur le compte Azure que vous avez utilisé pour vous connecter.
+      abonnement de Hello par défaut est basée sur hello compte Azure que vous avez utilisé toosign dans.
 
     * **Groupe de ressources** : créez un groupe de ressources ou sélectionnez-en un.
 
-    * **Emplacement** : sélectionnez la région dans laquelle vous avez inscrit votre passerelle.
+    * **Emplacement**: vous avez inscrit votre passerelle dans la région sélectionnez hello.
 
-    * **Nom de l’installation** : si votre installation de passerelle n’est pas encore sélectionnée, sélectionnez la passerelle que vous avez inscrite. 
+    * **Nom de l’installation**: Si votre installation de la passerelle n’est pas déjà sélectionnée, sélectionnez hello enregistrée. 
 
     Une fois ces opérations effectuées, cliquez sur **Créer**.
 
-## <a name="connect-servers"></a>Connecter les serveurs à la ressource de passerelle
+## <a name="connect-servers"></a>Connecter des ressources de serveurs toohello passerelle
 
 1. Dans la vue d’ensemble du serveur Azure Analysis Services, cliquez sur **Passerelle de données locale**.
 
-   ![Connecter le serveur à la passerelle](media/analysis-services-gateway-install/aas-gateway-connect-server.png)
+   ![Se connecter toogateway de serveur](media/analysis-services-gateway-install/aas-gateway-connect-server.png)
 
-2. Dans la zone **Pick an On-Premises Data Gateway to connect** (Choisir une passerelle de données locale à connecter), sélectionnez votre ressource de passerelle, puis cliquez sur **Connect selected gateway** (Connecter la passerelle sélectionnée).
+2. Dans **choisir une passerelle de données locale de tooconnect**, sélectionnez votre ressource de passerelle, puis cliquez sur **passerelle sélectionné de connexion**.
 
-   ![Connecter le serveur à la ressource de passerelle](media/analysis-services-gateway-install/aas-gateway-connect-resource.png)
+   ![Se connecter toogateway ressource du serveur](media/analysis-services-gateway-install/aas-gateway-connect-resource.png)
 
     > [!NOTE]
-    > Si votre passerelle n’apparaît pas dans la liste, votre serveur se trouve probablement dans une autre région que celle spécifiée lors de l’inscription de la passerelle. 
+    > Si votre passerelle n’apparaît pas dans la liste de hello, votre serveur est probablement pas dans hello même région que vous avez spécifié lors de l’inscription de passerelle de hello de région de hello. 
 
-Vous avez terminé. Si vous devez ouvrir des ports ou effectuer des opérations de dépannage, veillez à consulter la page [Passerelle de données locale](analysis-services-gateway.md).
+Vous avez terminé. Si vous avez besoin de tooopen ports ou que vous effectuez un dépannage, être vraiment toocheck out [passerelle de données locale](analysis-services-gateway.md).
 
 ## <a name="next-steps"></a>Étapes suivantes
 * [Gérer Analysis Services](analysis-services-manage.md)   

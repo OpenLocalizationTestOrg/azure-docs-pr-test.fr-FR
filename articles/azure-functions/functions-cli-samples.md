@@ -1,5 +1,5 @@
 ---
-title: Exemples Azure CLI - Azure Functions | Microsoft Docs
+title: aaaAzure CLI exemples - fonctions de Azure | Documents Microsoft
 description: Exemples Azure CLI - Azure Functions
 services: functions
 documentationcenter: functions
@@ -16,15 +16,15 @@ ms.workload: functions
 ms.date: 04/11/2017
 ms.author: glenga
 ms.custom: mvc
-ms.openlocfilehash: 6830ab9ada50da99871592e2c0911ac9cb8f5797
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 2041e710560a41f230a0ffc20dc89756c6b5c854
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-cli-samples"></a>Exemples d’interface de ligne de commande Azure
 
-Le tableau suivant contient des liens vers des scripts Bash pour Azure Functions qui utilisent Azure CLI.
+Hello tableau suivant inclut des liens toobash des scripts pour les fonctions Azure qui utilisent hello CLI d’Azure.
 
 | | |
 |-|-|
@@ -33,15 +33,15 @@ Le tableau suivant contient des liens vers des scripts Bash pour Azure Functions
 | [Créer une Function App dans un plan App Service](scripts/functions-cli-create-app-service-plan.md) | Crée une Function App dans un plan App Service dédié. |
 | | |
 |**Intégrer**||
-| [Créer une Function App et la connecter à un compte de stockage](scripts/functions-cli-create-function-app-connect-to-storage-account.md) | Crée une Function App et la connecte à un compte de stockage. |
-| [Créer une Function App et la connecter à une base de données Azure Cosmos DB](scripts/functions-cli-create-function-app-connect-to-cosmos-db.md) | Crée une Function App et la connecte à une base de données Azure Cosmos DB. |
+| [Créer une application de la fonction et le compte de stockage tooa de connexion](scripts/functions-cli-create-function-app-connect-to-storage-account.md) | Créer une application de la fonction et connectez-la compte de stockage tooa. |
+| [Créer une application de la fonction et de se connecter tooan base de données Azure Cosmos](scripts/functions-cli-create-function-app-connect-to-cosmos-db.md) | Créer une application de la fonction et connectez-la tooan base de données Azure Cosmos |
 | | |
 |**Configurer l’application**||
-| [Mapper un domaine personnalisé à une Function App](scripts/functions-cli-configure-custom-domain.md) | Définit un domaine personnalisé pour vos fonctions.  |
-| [Lier un certificat SSL personnalisé à une Function App](scripts/functions-cli-configure-ssl-certificate.md)  |  Charge des certificats SSL pour les fonctions dans un domaine personnalisé. |
+| [Mapper une application de fonction tooa domaine personnalisé](scripts/functions-cli-configure-custom-domain.md) | Définit un domaine personnalisé pour vos fonctions.  |
+| [Lier une application de fonction de tooa de certificat SSL](scripts/functions-cli-configure-ssl-certificate.md)  |  Charge des certificats SSL pour les fonctions dans un domaine personnalisé. |
 <!--
 
 |**Scale app**||
 
-|**Connect app to resources**||
+|**Connect app tooresources**||
 -->

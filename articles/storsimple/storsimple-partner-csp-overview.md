@@ -1,6 +1,6 @@
 ---
-title: "Vue d’ensemble du programme des fournisseurs de solutions cloud et de Microsoft Azure StorSimple | Microsoft Docs"
-description: "Vue d’ensemble de StorSimple et du programme des fournisseurs de solutions cloud pour les partenaires StorSimple."
+title: "aaaMicrosoft Azure StorSimple et vue d’ensemble du programme de Solutions Cloud | Documents Microsoft"
+description: "Vue d’ensemble sur hello StorSimple et le fournisseur de services cryptographiques pour les partenaires de StorSimple."
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,32 +14,32 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 02/08/2017
 ms.author: alkohli
-ms.openlocfilehash: 3722fc1198549102bd4fd215b9ede04a3ca1fbf5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ba82b4011934505284c37b0788250c9b5c89a758
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="what-is-storsimple-for-cloud-solutions-providers-program"></a>Qu’est-ce que StorSimple pour le programme des fournisseurs de solutions cloud ?
 
 
-## <a name="overview"></a>Vue d’ensemble
+## <a name="overview"></a>Vue d'ensemble
 
-Microsoft Azure StorSimple est une approche unique pour le stockage d’entreprise avec des capacités de stockage cloud hybride réelles. Il permet aux clients de tirer parti du stockage cloud économique pour les données inactives, tout en conservant leurs données critiques en local pour obtenir des niveaux de performances plus élevés. 
+Microsoft Azure StorSimple est un stockage de tooenterprise approche unique avec des capacités de stockage cloud hybride true. Elle permet aux parti de tootake hello clients de stockage en cloud économique pour les données inactives hello, tout en conservant leurs données critiques localement pour hello plus hauts niveaux de performances. 
 
-La baie virtuelle StorSimple pour le programme des fournisseurs de solutions cloud permet aux partenaires de tirer profit de cette opportunité. Les partenaires maîtrisent le cycle de vie des clients de bout en bout à l’aide de méthodes directes d’approvisionnement, de facturation et de support des services cloud Microsoft. En bref, les partenaires peuvent désormais traiter avec StorSimple, ainsi qu’avec leurs services avec les clients.
+StorSimple Virtual Array pour le fournisseur de Solutions de Cloud (CSP) permet de toocapitalize partenaires sur cette opportunité. Hello partenaires hello propre client de bout en bout lifecycle avec directe de configuration, la facturation et la prise en charge des services de cloud de Microsoft. En bref, les partenaires hello peuvent transact maintenant hello StorSimple, ainsi que leurs toocustomers de services.
 
-Pour plus d’informations sur StorSimple pour le programme des fournisseurs de solutions cloud, accédez à [l’espace partenaires](http://partnercenter.microsoft.com/).
+Pour plus d’informations sur StorSimple pour le fournisseur de services cryptographiques, visitez hello [partenaires](http://partnercenter.microsoft.com/).
 
-Pour plus d’informations sur la facturation, la tarification, les offres incitatives et obtenir l’assistance relative aux fournisseurs de solutions cloud, accédez à [StorSimple for Cloud Solutions Provider Program: Frequently asked questions](storsimple-partner-csp-faq.md) (StorSimple pour le programme des fournisseurs de solutions cloud : Forum Aux Questions). 
+Pour plus d’informations sur la facturation, la tarification, incitation et l’obtention de prise en charge dans le fournisseur de services cryptographiques, accédez trop[StorSimple dans le fournisseur de services cryptographiques : Forum aux questions sur](storsimple-partner-csp-faq.md). 
 
 ## <a name="deploy-and-manage-storsimple-for-csp"></a>Déployer et gérer StorSimple pour le programme des fournisseurs de solutions cloud
 
-StorSimple pour le programme des fournisseurs de solutions cloud est disponible sous forme de service basé sur l’utilisation dans tous les marchés dans lesquels StorSimple est disponible à ce jour. StorSimple pour le programme des fournisseurs de solutions cloud utilise le portail Azure et le service StorSimple Device Manager. Un partenaire du programme des fournisseurs de solutions cloud peut créer un StorSimple Device Manager pour gérer les baies virtuelles StorSimple, les partages, les volumes et les sauvegardes. Vous pouvez administrer toutes les baies virtuelles enregistrées auprès de votre service StorSimple Device Manager via le portail Azure.
+StorSimple pour le fournisseur de services cryptographiques est disponible comme un service basée sur l’utilisation dans tous les marchés hello où hello StorSimple est disponible dès aujourd'hui. StorSimple pour le CSP utilise hello service de gestionnaire de périphériques StorSimple Azure portal et hello. Un partenaire CSP peut créer un toomanage le Gestionnaire de périphériques StorSimple StorSimple des réseaux virtuels, les partages, les volumes et les sauvegardes. Vous pouvez administrer tous les hello tableaux virtuels tooyour inscrit le Gestionnaire de périphériques StorSimple service via hello portail Azure.
 
-Pour plus d’informations, consultez [Deploy StorSimple Virtual Array for Cloud Solution Provider Program](storsimple-partner-csp-deploy.md) (Déployer la baie virtuelle StorSimple pour le programme des fournisseurs de solutions cloud).
+Pour plus d’informations, consultez trop[déployer et gérer votre tableau virtuel StorSimple pour le fournisseur de services cryptographiques](storsimple-partner-csp-deploy.md).
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-- Si vous avez des questions supplémentaires concernant StorSimple dans le programme des fournisseurs de solutions cloud, accédez à [StorSimple for Cloud Solutions Provider Program: Frequently asked questions](storsimple-partner-csp-faq.md) (StorSimple pour le programme des fournisseurs de solutions cloud : Forum Aux Questions).
-- Si vous êtes prêt à déployer votre solution StorSimple, accédez à [Deploy StorSimple Virtual Array for Cloud Solution Provider Program](storsimple-partner-csp-deploy.md) (Déployer la baie virtuelle StorSimple pour le programme des fournisseurs de solutions cloud).
+- Si vous avez d’autres questions concernant hello StorSimple dans le fournisseur de services cryptographiques, passez trop[StorSimple pour le fournisseur de services cryptographiques : Forum aux questions](storsimple-partner-csp-faq.md).
+- Si vous êtes prêt toodeploy votre StorSimple, accédez trop[déployer votre appareil StorSimple pour le fournisseur de services cryptographiques](storsimple-partner-csp-deploy.md).

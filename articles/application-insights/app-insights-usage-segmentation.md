@@ -1,5 +1,5 @@
 ---
-title: "Analyse des utilisateurs, des sessions et des événements dans Azure Application Insights | Microsoft Docs"
+title: "analyse aaaUser, de session et d’événement dans une Application Azure Insights | Documents Microsoft"
 description: "Analyse démographique des utilisateurs de votre application web."
 services: application-insights
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 05/03/2017
 ms.author: bwren
-ms.openlocfilehash: b154a01d1690bff4950ebc1ff5a5b89894d4d111
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 152ab90e9a25c03087d3ebbde1263ec72acb227e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="users-sessions-and-events-analysis-in-application-insights"></a>Analyse des utilisateurs, des sessions et des événements dans Application Insights
 
@@ -24,49 +24,49 @@ Découvrez quand des personnes utilisent votre application web, les pages qui le
 
 ## <a name="get-started"></a>Prise en main
 
-Si aucune donnée n’apparaît dans les panneaux des utilisateurs, des sessions ou des événements du portail Application Insights, [découvrez comment prendre en main les outils d’utilisation](app-insights-usage-overview.md).
+Si vous ne voyez encore des données d’utilisateurs de hello, sessions ou panneaux d’événements dans le portail Application Insights hello, [apprendre comment tooget démarrer avec les outils de l’utilisation de hello](app-insights-usage-overview.md).
 
-## <a name="the-users-sessions-and-events-segmentation-tool"></a>L’outil de segmentation Utilisateurs, Sessions et Événements
+## <a name="hello-users-sessions-and-events-segmentation-tool"></a>outil de segmentation des utilisateurs, les Sessions et les événements Hello
 
-Trois des panneaux d’utilisation exploitent le même outil pour segmenter et traiter les données de télémétrie fournies par votre application web selon trois perspectives. En filtrant et en segmentant les données, vous pouvez découvrir des informations sur l’utilisation relative des différentes fonctionnalités et pages.
+Trois des utilisation hello panneaux utiliser hello même outil tooslice dés données de télémétrie et à partir de votre application web à partir de trois perspectives. En filtrant et en fractionnant les données de salutation, vous pouvez découvrir des informations sur l’utilisation de relative hello des pages différentes et des fonctionnalités.
 
 * **Outil Utilisateurs** : nombre de personnes ayant utilisé votre application et ses fonctionnalités.  Les utilisateurs sont comptabilisés à l’aide des ID anonymes stockés dans les cookies du navigateur. Une seule personne utilisant plusieurs navigateurs ou ordinateurs est comptabilisée comme plusieurs utilisateurs.
 * **Outil Sessions** : nombre de sessions d’activité utilisateur ayant inclus certaines pages et fonctionnalités de votre application. Une session est comptabilisée après une demi-heure d’inactivité de l’utilisateur ou après 24 heures d’utilisation continue.
 * **Outil Événements** : fréquence à laquelle certaines pages et fonctionnalités de votre application sont utilisées. L’affichage d’une page est comptabilisé lorsqu’un navigateur charge la page à partir de votre application, à condition que vous l’ayez [instrumentée](app-insights-javascript.md). 
 
-    Un événement personnalisé représente une occurrence de quelque chose qui se produit dans votre application, souvent une interaction utilisateur, comme un clic sur un bouton ou l’achèvement d’une tâche. Vous insérez le code dans votre application pour [générer des événements personnalisés](app-insights-api-custom-events-metrics.md#trackevent).
+    Un événement personnalisé représente une occurrence de quelque chose se passe dans votre application, souvent une intervention de l’utilisateur comme un bouton, cliquez sur ou hello d’achèvement d’une tâche. Vous insérez le code de votre application trop[générer des événements personnalisés](app-insights-api-custom-events-metrics.md#trackevent).
 
 ![Outil d’utilisation](./media/app-insights-usage-segmentation/users.png)
 
 ## <a name="querying-for-certain-users"></a>Interrogation de certains utilisateurs 
 
-Explorez les différents groupes d’utilisateurs en ajustant les options d’interrogation en haut de l’outil Utilisateurs : 
+Explorer les différents groupes d’utilisateurs à l’aide des options de requête hello haut hello d’outil d’utilisateurs hello : 
 
 * Qui a utilisé : choisissez les événements personnalisés et les affichages de pages. 
 * Pendant : choisissez un intervalle de temps. 
-* Par : choisissez comment compartimenter les données, soit par période temporelle, soit par une autre propriété telle que le navigateur ou la ville. 
-* Fractionner par : choisissez une propriété selon laquelle fractionner ou segmenter les données. 
-* Ajouter des filtres : limitez la requête à certains utilisateurs, certaines sessions ou certains événements en fonction de leurs propriétés, telles que le navigateur ou la ville. 
+* Par : Choisissez comment toobucket hello des données, d’une période de temps ou par une autre propriété tels que navigateur ou de la ville. 
+* Fractionner par : Pour choisir une propriété par les données hello toosplit ou le segment. 
+* Ajouter des filtres : Limitez hello interroger toocertain utilisateurs, les sessions ou les événements en fonction de leurs propriétés, telles que le navigateur ou de la ville. 
  
 ## <a name="saving-and-sharing-reports"></a>Enregistrement et partage de rapports 
-Vous pouvez enregistrer des rapports d’utilisateurs, privés (uniquement pour vous) dans la section Mes rapports, ou partagés avec tout le monde, avec un accès à cette ressource Application Insights dans la section Rapports partagés.  
+Vous pouvez enregistrer des rapports d’utilisateurs, soit privé tooyou simplement dans la section de Mes rapports hello, ou partagé avec tous les autres avec accès toothis ressource Application Insights Bonjour section rapports partagés.  
  
-Lors de l’enregistrement d’un rapport ou de la modification de ses propriétés, choisissez « Current Relative Time Range » (Intervalle de temps relatif actuel) pour enregistrer un rapport avec des données actualisées en permanence, jusqu’à un instant donné.  
+Lors de l’enregistrement d’un rapport ou modifier ses propriétés, choisissez toosave « Relatif intervalle de temps actuel » un rapport est en permanence actualisé les données, si vous revenez en une durée fixe.  
  
-Choisissez « Current Absolute Time Range » (Intervalle de temps absolu actuel) pour enregistrer un rapport avec un ensemble fixe de données. N’oubliez pas que les données d’Application Insights sont uniquement stockées pendant 90 jours. Si plus de 90 jours se sont écoulés depuis l’enregistrement d’un rapport avec un intervalle de temps absolu, le rapport apparaîtra vide. 
+Choisissez « Absolu intervalle de temps actuel » toosave un rapport avec un ensemble fixe de données. N’oubliez pas que les données d’Application Insights uniquement stockées pendant 90 jours, donc si plus de 90 jours se sont écoulés depuis un rapport avec une plage de temps absolu a été enregistré, le rapport de hello apparaîtra vide. 
  
 ## <a name="example-instances"></a>Exemples d’instances
 
-La section Exemples d’instances affiche des informations sur un certain nombre d’utilisateurs, de sessions ou d’événements individuels qui correspondent à la requête actuelle. La prise en compte et l’analyse des comportements des personnes, en plus des agrégats, fournissent des informations sur la façon dont les personnes utilisent réellement votre application. 
+Hello section instances d’exemple affiche des informations sur un ensemble d’utilisateurs individuels, les sessions ou les événements qui correspondent à la requête en cours hello. Prise en compte et d’Explorer les comportements hello de personnes, de tooaggregates d’addition, peuvent fournir des informations sur la manière dont les personnes utilisent réellement votre application. 
  
 ## <a name="insights"></a>Insights 
 
-La barre latérale Insights regroupe des clusters volumineux d’utilisateurs qui partagent des propriétés communes. Ces clusters peuvent révéler des tendances surprenantes sur la manière dont les personnes utilisent votre application. Par exemple, 40 % de l’utilisation globale de votre application provient de personnes utilisant une fonctionnalité unique.  
+barre latérale de Hello Insights montre les grands groupes d’utilisateurs qui partagent des propriétés communes. Ces clusters peuvent révéler des tendances surprenantes sur la manière dont les personnes utilisent votre application. Par exemple, si 40 % de toutes les utilisation hello de votre application provient des personnes à l’aide d’une fonctionnalité unique.  
 
 
 ## <a name="next-steps"></a>Étapes suivantes
-- Pour activer les expériences d’utilisation, commencez à envoyer des [événements personnalisés](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-api-custom-events-metrics#trackevent) ou des [affichages de page](https://docs.microsoft.com/azure/application-insights/app-insights-api-custom-events-metrics#page-views).
-- Si vous envoyez déjà des événements personnalisés ou des affichages de page, explorez les outils d’utilisation pour savoir comment les utilisateurs emploient votre service.
+- l’utilisation de tooenable rencontre, démarrer l’envoi de [événements personnalisés](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-api-custom-events-metrics#trackevent) ou [des consultations de page](https://docs.microsoft.com/azure/application-insights/app-insights-api-custom-events-metrics#page-views).
+- Si vous envoyez déjà hello l’utilisation des outils toolearn Explorer les événements personnalisés ou des vues de la page, comment les utilisateurs utiliser votre service.
     - [Entonnoirs](usage-funnels.md)
     - [Rétention](app-insights-usage-retention.md)
     - [Flux d’utilisateurs](app-insights-usage-flows.md)

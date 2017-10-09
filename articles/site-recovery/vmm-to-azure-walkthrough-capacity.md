@@ -1,6 +1,6 @@
 ---
-title: "Planification de la capacité et de la mise à l’échelle pour la réplication des machines virtuelles Hyper-V (avec VMM) vers Azure avec Azure Site Recovery | Microsoft Docs"
-description: "Utilisez cet article pour planifier la capacité et la mise à l’échelle lors de la réplication des machines virtuelles Hyper-V dans les clouds VMM vers Azure, avec Azure Site Recovery"
+title: "aaaPlan la capacité et de mise à l’échelle pour tooAzure de réplication (avec VMM) d’un ordinateur virtuel Hyper-V avec Azure Site Recovery | Documents Microsoft"
+description: "Utiliser cette capacité tooplan de l’article et la mise à l’échelle lors de la réplication des ordinateurs virtuels Hyper-V dans VMM nuages tooAzure, avec Azure Site Recovery"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,59 +14,59 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 07/23/2017
 ms.author: raynew
-ms.openlocfilehash: ab1dc21a829140f8cd2e57837d83a05b0d71bcdf
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: 9818ada9bb21f60ac00b3894696201b06630cb2b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="step-3-plan-capacity-and-scaling-for-hyper-v-with-vmm-to-azure-replication"></a>Étape 3 : Planifier la capacité et la mise à l’échelle pour la réplication d’Hyper-V (avec VMM) vers Azure
+# <a name="step-3-plan-capacity-and-scaling-for-hyper-v-with-vmm-tooazure-replication"></a>Étape 3 : Planifier la capacité et de mise à l’échelle pour la réplication Hyper-V (avec VMM) tooAzure
 
-Après avoir vérifié les [prérequis pour le déploiement](site-recovery-overview.md), utilisez cet article pour déterminer la planification de la capacité et de la mise à l’échelle pendant la réplication vers Azure de machines virtuelles Hyper-V locales dans les clouds System Center Virtual Machine Manager (VMM) avec [Azure Site Recovery](vmm-to-azure-walkthrough-prerequisites.md).
+Une fois que vous avez consulté hello [conditions préalables au déploiement](vmm-to-azure-walkthrough-prerequisites.md), utiliser ce toofigure article hors de la planification de la capacité et la mise à l’échelle lors de la réplication locale des ordinateurs virtuels Hyper-V dans System Center Virtual Machine Manager (VMM) clouds tooAzure, avec [Azure Site Recovery](site-recovery-overview.md).
 
-Après avoir lu cet article, envoyez vos commentaires en bas ou posez vos questions techniques sur le [Forum Azure Recovery Services](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
+Après avoir lu cet article, validez les commentaires en bas de hello ou poser des questions techniques sur hello [Forum sur Azure Recovery Services](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr).
 
 
 ## <a name="how-do-i-start-capacity-planning"></a>Comment dois-je commencer la planification de la capacité ?
 
 
-Collectez des informations sur l’environnement de réplication, puis planifiez la capacité en tenant compte de ces données et des considérations présentes dans l’article.
+Vous rassemblez des informations sur votre environnement de réplication et la capacité de plan à l’aide de données hello, ainsi que des considérations hello mis en surbrillance dans cet article.
 
 
 ## <a name="gather-information"></a>Collecter des informations
 
 1. collecter les informations relatives à votre environnement de réplication, notamment les machines virtuelles, le nombre de disques par machine virtuelle et le stockage par disque ;
-2. Déterminer le taux de modification (l’évolution) quotidienne des données répliquées. Téléchargez l’[outil de planification de la capacité Hyper-V](https://www.microsoft.com/download/details.aspx?id=39057) pour obtenir le taux de modifications. Nous vous recommandons d’exécuter cet outil sur une semaine pour enregistrer les moyennes.
+2. Déterminer le taux de modification (l’évolution) quotidienne des données répliquées. Télécharger hello [outil de planification des capacités de Hyper-V](https://www.microsoft.com/download/details.aspx?id=39057) taux de modification tooget hello. Nous vous recommandons de qu'exécuter cet outil sur un toocapture semaine moyennes.
  
 
 ## <a name="figure-out-capacity"></a>Déterminer la capacité
 
-En fonction des informations que vous avez collectées, exécutez l’outil [Site Recovery Capacity Planner](http://aka.ms/asr-capacity-planner-excel) pour analyser votre environnement source et vos charges de travail, déterminer vos besoins en bande passante et en ressources serveur à l’emplacement source, ainsi que les ressources (machines virtuelles et stockage, etc.) dont vous avez besoin à l’emplacement cible. Vous pouvez exécuter l’outil de deux manières :
+Selon que vous avez collecte d’informations hello, vous exécutez hello [Site Recovery outil Capacity Planner](http://aka.ms/asr-capacity-planner-excel) tooanalyze votre environnement source et les charges de travail, estimer les besoins en bande passante et ressources du serveur pour l’emplacement de source de hello et hello ressources (machines virtuelles et stockage, etc.) dont vous avez besoin dans l’emplacement cible de hello. Vous pouvez exécuter l’outil de hello dans deux modes :
 
-- Planification rapide : exécutez l’outil dans ce mode pour obtenir des projections réseau et serveur sur la base de la quantité moyenne de machines virtuelles, de disques et de stockage, et sur le taux de modifications moyen.
-- Planification détaillée : exécutez l’outil dans ce mode et fournissez les détails de chaque charge de travail au niveau de la machine virtuelle. Analysez la compatibilité de machine virtuelle et obtenez des projections réseau et serveur.
+- Planification rapide : exécuter les outil hello dans ce mode tooget réseau et serveur les projections basées sur un nombre moyen de machines virtuelles, de disques, de stockage et de taux de modification.
+- Planification détaillée : exécutez l’outil de hello dans ce mode et fournissent des détails de chaque charge de travail au niveau de la machine virtuelle. Analysez la compatibilité de machine virtuelle et obtenez des projections réseau et serveur.
 
-Exécuter l’outil :
+Maintenant, exécutez les outil hello :
 
-1. Téléchargez l’[outil](http://aka.ms/asr-capacity-planner-excel)
-2. Pour exécuter la planification rapide, suivez [ces instructions](site-recovery-capacity-planner.md#run-the-quick-planner) et sélectionnez le scénario **Hyper-V vers Azure**.
-3. Pour exécuter la planification détaillée, suivez [ces instructions](site-recovery-capacity-planner.md#run-the-detailed-planner) et sélectionnez le scénario **Hyper-V vers Azure**.
+1. Télécharger hello [outil](http://aka.ms/asr-capacity-planner-excel)
+2. module rapide de toorun hello, procédez comme [ces instructions](site-recovery-capacity-planner.md#run-the-quick-planner)et sélectionnez hello scénario **Hyper-V tooAzure**.
+3. toorun hello de planification détaillée, suivez [ces instructions](site-recovery-capacity-planner.md#run-the-detailed-planner)et sélectionnez hello scénario **Hyper-V tooAzure**.
 
 ## <a name="control-network-bandwidth"></a>Contrôler la bande passante réseau
 
-Une fois que vous avez calculé la bande passante dont vous avez besoin, vous avez deux options pour contrôler la quantité de bande passante utilisée pour la réplication :
+Une fois que vous êtes la bande passante calculée hello que vous avez besoin, vous avez deux options pour la quantité de hello contrôle de bande passante utilisée pour la réplication :
 
-* **Limite de bande passante**: le trafic Hyper-V qui est répliqué vers Azure passe par un hôte Hyper-V spécifique. Vous pouvez limiter la bande passante sur le serveur hôte.
-* **Influer sur la bande passante** : vous pouvez influer sur la bande passante utilisée pour la réplication à l’aide de quelques clés de Registre.
+* **Limiter la bande passante**: le trafic de Hyper-V qui réplique tooAzure passe par un hôte Hyper-V spécifique. Vous pouvez limiter la bande passante sur le serveur hôte de hello.
+* **Influencer la bande passante**: vous pouvez influer sur la bande passante hello utilisée pour la réplication à l’aide de deux clés de Registre.
 
 ### <a name="throttle-bandwidth"></a>Limiter la bande passante
-1. Ouvrez le composant logiciel enfichable MMC de Microsoft Azure Backup sur le serveur hôte Hyper-V. Par défaut, un raccourci vers Microsoft Azure Backup est créé sur le Bureau. Vous pouvez également le trouver ici : C:\Program Files\Microsoft Azure Recovery Services Agent\bin\wabadmin.
-2. Dans le composant logiciel enfichable, cliquez sur **Modifier les propriétés**.
-3. Dans l’onglet **Limitation**, sélectionnez **Activer la limitation de la bande passante sur Internet pour les opérations de sauvegarde** et définissez les limites relatives aux heures de travail et aux heures non travaillées. Les plages valides vont de 512 Kbits/s à 102 Mbits/s par seconde.
+1. Ouvrez le composant logiciel enfichable MMC Microsoft Azure Backup hello sur le serveur hôte de Hyper-V hello. Par défaut, un raccourci pour Microsoft Azure Backup est disponible sur le bureau de hello ou dans C:\Program Files\Microsoft Azure Recovery Services Agent\bin\wabadmin.
+2. Dans le composant logiciel enfichable hello, cliquez sur **modifier les propriétés**.
+3. Sur hello **limitation** onglet sélectionnez **activer l’utilisation de la bande passante internet pour les opérations de sauvegarde de limitation**et définir des limites de hello pour le travail et non liés au travail heures. Les plages valides sont de Mbits/s des too102 de 512 Kbits/s par seconde.
 
     ![Limiter la bande passante](./media/vmm-to-azure-walkthrough-capacity/throttle2.png)
 
-Vous pouvez également utiliser l’applet de commande [Set-OBMachineSetting](https://technet.microsoft.com/library/hh770409.aspx) pour définir la limitation. Voici un exemple :
+Vous pouvez également utiliser hello [Set-OBMachineSetting](https://technet.microsoft.com/library/hh770409.aspx) de limitation tooset applet de commande. Voici un exemple :
 
     $mon = [System.DayOfWeek]::Monday
     $tue = [System.DayOfWeek]::Tuesday
@@ -75,11 +75,11 @@ Vous pouvez également utiliser l’applet de commande [Set-OBMachineSetting](ht
 **Set-OBMachineSetting -NoThrottle** indique qu’aucune limitation n’est requise.
 
 ### <a name="influence-network-bandwidth"></a>Influer sur la bande passante réseau
-1. Dans le registre, accédez à **HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Azure Backup\Replication**.
-   * Pour influer sur le trafic de la bande passante sur un disque de réplication, modifiez la valeur du paramètre **UploadThreadsPerVM**, ou créez la clé si elle n’existe pas.
-   * Pour influer sur la bande passante utilisée pour le trafic lié à la restauration automatique à partir d’Azure, modifiez la valeur du paramètre **DownloadThreadsPerVM**.
-2. La valeur par défaut est 4. Dans un réseau « surutilisé », ces clés de Registre doivent être modifiées par rapport aux valeurs par défaut. La valeur maximale est de 32. Surveillez le trafic pour optimiser la valeur.
+1. Dans le Registre de hello accédez trop**HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Azure Backup\Replication**.
+   * le trafic de la bande passante de hello tooinfluence sur un disque de réplication, modifiez hello de valeur hello **UploadThreadsPerVM**, ou créez la clé de hello si elle n’existe pas.
+   * la bande passante de hello tooinfluence pour le trafic de la restauration automatique d’Azure, modifier la valeur de hello **DownloadThreadsPerVM**.
+2. Hello par défaut est 4. Dans un réseau « surapprovisionnée », ces clés de Registre doivent être modifiées à partir des valeurs par défaut de hello. Hello maximal est 32. Surveiller le trafic toooptimize hello valeur.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Aller à l’[Étape 4 : Planifier la mise en réseau](vmm-to-azure-walkthrough-network.md).
+Accédez trop[étape 4 : planifier la mise en réseau](vmm-to-azure-walkthrough-network.md).

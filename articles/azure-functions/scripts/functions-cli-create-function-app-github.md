@@ -1,5 +1,5 @@
 ---
-title: "Créer une Function App et déployer le code de fonction à partir de GitHub | Microsoft Docs"
+title: "aaaCreate une application de la fonction et déployer le code de fonction à partir de GitHub | Documents Microsoft"
 description: "Exemple de script Azure CLI - Créer une Function App et déployer le code de fonction à partir de GitHub"
 services: functions
 keywords: 
@@ -9,33 +9,33 @@ ms.date: 04/27/2017
 ms.topic: sample
 ms.service: functions
 ms.custom: mvc
-ms.openlocfilehash: d67e85f91c80efe464fceb1105243bedfba83a0f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 026886f11909149db695d9a52d0aa37f109f64e4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-function-app-and-deploy-function-code-from-github"></a>Créer une Function App et déployer le code de fonction à partir de GitHub
 
-Cet exemple de script crée une Function App à l’aide du [plan de consommation](../functions-scale.md#consumption-plan) avec les ressources associées et déploie votre code de fonction à partir d’un référentiel GitHub public (sans déploiement continu). En ce qui concerne la livraison continue du code de fonction à partir de GitHub, consultez la page [Créer une Function App et déployer en continu à partir de GitHub](functions-cli-create-function-app-github-continuous.md)
+Cet exemple de script crée une application de la fonction à l’aide de hello [le plan de la consommation](../functions-scale.md#consumption-plan) avec ses ressources connexes et déploie votre code de fonction à partir d’un référentiel GitHub public (sans déploiement continu). En ce qui concerne la livraison continue du code de fonction à partir de GitHub, consultez la page [Créer une Function App et déployer en continu à partir de GitHub](functions-cli-create-function-app-github-continuous.md)
 
 [!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-Si vous choisissez d’installer et d’utiliser l’interface de ligne de commande localement, vous devez exécuter Azure CLI version 2.0 ou une version ultérieure pour poursuivre la procédure décrite dans cet article. Exécutez `az --version` pour trouver la version. Si vous devez installer ou mettre à niveau, consultez [Installation d’Azure CLI 2.0]( /cli/azure/install-azure-cli). 
+Si vous choisissez tooinstall et que vous utilisez hello CLI localement, cette rubrique requiert que vous exécutez hello CLI d’Azure version 2.0 ou ultérieure. Exécutez `az --version` version de hello toofind. Si vous avez besoin de tooinstall ou mise à niveau, consultez [installer Azure CLI 2.0]( /cli/azure/install-azure-cli). 
 
 ## <a name="sample-script"></a>Exemple de script
 
 Cet exemple crée une Function App Azure et déploie le code de fonction à partir de GitHub.
 
-[!code-azurecli-interactive[main](../../../cli_scripts/azure-functions/deploy-function-app-with-function-github/deploy-function-app-with-function-github.sh?highlight=3 "Créer une Function App avec un déploiement à partir de GitHub")]
+[!code-azurecli-interactive[main](../../../cli_scripts/azure-functions/deploy-function-app-with-function-github/deploy-function-app-with-function-github.sh?highlight=3 "Create a function app with deployment from GitHub")]
 
 [!INCLUDE [cli-script-clean-up](../../../includes/cli-script-clean-up.md)]
 
 ## <a name="script-explanation"></a>Explication du script
 
-Chaque commande du tableau renvoie à une documentation spécifique. Ce script utilise les commandes suivantes :
+Chaque commande figurant dans la documentation spécifique du toocommand liens table hello. Ce script utilise hello suivant de commandes :
 
 | Commande | Remarques |
 |---|---|
@@ -46,6 +46,6 @@ Chaque commande du tableau renvoie à une documentation spécifique. Ce script u
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Pour plus d’informations sur l’interface Azure CLI, consultez la [documentation relative à l’interface Azure CLI](https://docs.microsoft.com/cli/azure/overview).
+Pour plus d’informations sur hello CLI d’Azure, consultez [documentation relative à Azure CLI](https://docs.microsoft.com/cli/azure/overview).
 
-Vous trouverez des exemples supplémentaires de scripts CLI Azure Functions dans la [documentation d’Azure Functions](../functions-cli-samples.md).
+Vous trouverez des exemples supplémentaires de script CLI de fonctions Azure Bonjour [documentation Azure fonctions](../functions-cli-samples.md).

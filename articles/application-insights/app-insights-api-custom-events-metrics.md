@@ -1,6 +1,6 @@
 ---
-title: "API Application Insights pour les événements et les métriques personnalisés | Microsoft Docs"
-description: "Insérez quelques lignes de code dans votre application de périphérique ou de bureau, votre page web ou votre service pour suivre l'utilisation et diagnostiquer les problèmes."
+title: "aaaApplication API d’aperçu pour les événements personnalisés et les métriques | Documents Microsoft"
+description: "Insérer quelques lignes de code dans votre utilisation tootrack périphérique ou application de bureau, page Web ou service et diagnostiquer les problèmes."
 services: application-insights
 documentationcenter: 
 author: CFreemanwa
@@ -13,46 +13,46 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 05/17/2017
 ms.author: bwren
-ms.openlocfilehash: e94c50de51612243386d89c5e0b3178a4f9cbd38
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: f3d207a47bb4825efda806a19dd0c26540db7bdd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="application-insights-api-for-custom-events-and-metrics"></a>API Application Insights pour les événements et les mesures personnalisés
 
-Insérez quelques lignes de code dans votre application pour découvrir ce qu’en font les utilisateurs ou pour faciliter le diagnostic des problèmes. Vous pouvez envoyer la télémétrie depuis des applications de périphérique et de bureau, des clients web et des serveurs web. Utilisez l’API des données de télémétrie principales [Azure Application Insights](app-insights-overview.md) pour envoyer des événements et métriques personnalisés, ainsi que vos propres versions de la télémétrie standard. Cette API est la même que celle utilisée par les collecteurs de données standard d’Application Insights.
+Insérer quelques lignes de code dans votre toofind d’application à ce que les utilisateurs sont en servent, ou toohelp diagnostiquer les problèmes. Vous pouvez envoyer la télémétrie depuis des applications de périphérique et de bureau, des clients web et des serveurs web. Hello d’utilisation [Azure Application Insights](app-insights-overview.md) vos propres versions de télémétrie standard et des métriques et des événements personnalisés de toosend API de télémétrie de base. Cette API est hello même API standard hello utilisent des collecteurs de données d’Application Insights.
 
-## <a name="api-summary"></a>API summary
-L’API est uniforme sur toutes les plateformes, à l’exception de quelques petites variations.
+## <a name="api-summary"></a>Résumé des API
+Hello API est uniforme sur toutes les plateformes, indépendamment des quelques légères variantes.
 
 | Méthode | Utilisé pour |
 | --- | --- |
 | [`TrackPageView`](#page-views) |Pages, écrans, panneaux ou formes. |
-| [`TrackEvent`](#trackevent) |Actions de l’utilisateur et autres événements. Utilisé pour suivre le comportement de l’utilisateur ou pour analyser les performances. |
-| [`TrackMetric`](#trackmetric) |Mesures de performances telles que la longueur des files d’attente non liées à des événements spécifiques. |
-| [`TrackException`](#trackexception) |Exceptions de journal pour des diagnostics. Effectuez un suivi lorsqu’ils se produisent par rapport à d’autres événements et examinez les arborescences des appels de procédure. |
-| [`TrackRequest`](#trackrequest) |Notez la fréquence et la durée des requêtes du serveur pour l’analyse des performances. |
+| [`TrackEvent`](#trackevent) |Actions de l’utilisateur et autres événements. Tootrack utilisé toomonitor comportement ou les performances de l’utilisateur. |
+| [`TrackMetric`](#trackmetric) |Les mesures de performances telles que les files d’attente les événements de toospecific pas associés. |
+| [`TrackException`](#trackexception) |Exceptions de journal pour des diagnostics. Suivi lorsqu’ils se produisent dans les événements de relation tooother et examinez les traces de pile. |
+| [`TrackRequest`](#trackrequest) |Fréquence de hello et la durée des demandes de serveur pour l’analyse des performances de la journalisation. |
 | [`TrackTrace`](#tracktrace) |Messages du journal de diagnostic Vous pouvez également capturer des journaux tiers. |
-| [`TrackDependency`](#trackdependency) |La journalisation de la durée et de la fréquence des appels vers les composants externes dont dépend votre application. |
+| [`TrackDependency`](#trackdependency) |Durée hello de journalisation et la fréquence des composants de tooexternal d’appels qui dépend de votre application. |
 
-Vous pouvez [associer des propriétés et des mesures](#properties) à la plupart de ces appels de télémétrie.
+Vous pouvez [attacher des propriétés et des mesures](#properties) toomost de ces appels de télémétrie.
 
 ## <a name="prep"></a>Avant de commencer
 Si vous n’avez pas encore de référence sur le kit SDK Application Insights :
 
-* Ajoutez le Kit de développement logiciel (SDK) Application Insights à votre projet :
+* Ajouter hello Application Insights SDK tooyour projet :
 
   * [Projet ASP.NET](app-insights-asp-net.md)
   * [Projet Java](app-insights-java-get-started.md)
   * [JavaScript dans chaque page web](app-insights-javascript.md) 
 * Ajoutez au code de votre périphérique ou de votre serveur web :
 
-    *C# :* `using Microsoft.ApplicationInsights;`
+    *C# :*`using Microsoft.ApplicationInsights;`
 
-    *Visual Basic :* `Imports Microsoft.ApplicationInsights`
+    *Visual Basic :*`Imports Microsoft.ApplicationInsights`
 
-    *Java:* `import com.microsoft.applicationinsights.TelemetryClient;`
+    *Java:*`import com.microsoft.applicationinsights.TelemetryClient;`
 
 ## <a name="constructing-a-telemetryclient-instance"></a>Construction d’une instance de TelemetryClient
 Construisez une instance de `TelemetryClient` (sauf en JavaScript dans les pages web) :
@@ -71,14 +71,14 @@ Construisez une instance de `TelemetryClient` (sauf en JavaScript dans les pages
 
 TelemetryClient est thread-safe.
 
-Nous vous recommandons d’utiliser une instance de TelemetryClient pour chaque module de votre application. Par exemple, vous pouvez avoir une instance de TelemetryClient dans votre service web pour signaler les requêtes HTTP entrantes et une autre instance dans une classe d’intergiciels pour signaler les événements de logique métier. Vous pouvez définir des propriétés telles que `TelemetryClient.Context.User.Id` pour assurer le suivi des utilisateurs et des sessions ou `TelemetryClient.Context.Device.Id` pour identifier l’ordinateur. Cette information est associée à tous les événements envoyés par l'instance.
+Nous vous recommandons d’utiliser une instance de TelemetryClient pour chaque module de votre application. Par exemple, vous avez peut-être une seule instance TelemetryClient dans vos requêtes HTTP entrantes tooreport web service et l’autre dans un intergiciel (middleware) classe tooreport business les événements de logique. Vous pouvez définir des propriétés telles que `TelemetryClient.Context.User.Id` tootrack utilisateurs et des sessions, ou `TelemetryClient.Context.Device.Id` machine de hello tooidentify. Ces informations sont les événements attachés tooall hello envoie d’instance.
 
 ## <a name="trackevent"></a>TrackEvent
-Dans Application Insights, un *événement personnalisé* est un point de données que vous pouvez afficher dans [Metrics Explorer](app-insights-metrics-explorer.md) en tant que nombre agrégé et dans [Recherche de diagnostic](app-insights-diagnostic-search.md) en tant qu’occurrences individuelles. (Il n’est pas lié à des « événements » de type MVC ou autres.)
+Dans Application Insights, un *événement personnalisé* est un point de données que vous pouvez afficher dans [Metrics Explorer](app-insights-metrics-explorer.md) en tant que nombre agrégé et dans [Recherche de diagnostic](app-insights-diagnostic-search.md) en tant qu’occurrences individuelles. (Il n’est pas tooMVC connexe ou autres framework « événements ».)
 
-Insérez des appels `TrackEvent` dans votre code pour compter les différents événements. Par exemple, la fréquence à laquelle les utilisateurs choisissent une fonctionnalité particulière, la fréquence à laquelle ils atteignent des objectifs particuliers ou à laquelle ils commettent éventuellement des types d’erreurs particuliers.
+Insérer `TrackEvent` appelle dans votre code toocount différents événements. Par exemple, la fréquence à laquelle les utilisateurs choisissent une fonctionnalité particulière, la fréquence à laquelle ils atteignent des objectifs particuliers ou à laquelle ils commettent éventuellement des types d’erreurs particuliers.
 
-Par exemple, dans une application de jeu, envoyez un événement chaque fois qu'un utilisateur gagne le jeu :
+Par exemple, dans une application de jeu, vous devez envoyer un événement chaque fois qu’un utilisateur wins jeu de hello :
 
 *JavaScript*
 
@@ -96,45 +96,45 @@ Par exemple, dans une application de jeu, envoyez un événement chaque fois qu'
 
     telemetry.trackEvent("WinGame");
 
-### <a name="view-your-events-in-the-microsoft-azure-portal"></a>Afficher vos événements sur le portail Microsoft Azure
-Pour voir un nombre de vos événements, ouvrez un panneau [Metrics Explorer](app-insights-metrics-explorer.md) , ajoutez un nouveau graphique, puis sélectionnez **Événements**.  
+### <a name="view-your-events-in-hello-microsoft-azure-portal"></a>Afficher les événements dans le portail de Microsoft Azure hello
+toosee un nombre de vos événements, ouvrez un [Metrics Explorer](app-insights-metrics-explorer.md) panneau, ajouter un nouveau graphique, puis sélectionnez **événements**.  
 
 ![Afficher un nombre d’événements personnalisés](./media/app-insights-api-custom-events-metrics/01-custom.png)
 
-Pour comparer le nombre d'événements différents, définissez le type de graphique sur **Grille** et groupez par nom d'événement :
+nombres de hello toocompare d’événements, définir le type de graphique hello trop**grille**et de groupe par le nom de l’événement :
 
-![Définition du type de graphique et du regroupement](./media/app-insights-api-custom-events-metrics/07-grid.png)
+![Définir le type de graphique de hello et regroupement](./media/app-insights-api-custom-events-metrics/07-grid.png)
 
-Dans la grille, cliquez sur un nom d'événement pour voir les occurrences individuelles de cet événement. Pour afficher plus de détails, cliquez sur n’importe quelle occurrence de la liste.
+Sur la grille de hello, cliquez sur un événement nom toosee des occurrences individuelles de cet événement. toosee plus de détails - cliquez sur n’importe quelle occurrence dans la liste de hello.
 
-![Extrayez les événements](./media/app-insights-api-custom-events-metrics/03-instances.png)
+![Extraire les événements hello](./media/app-insights-api-custom-events-metrics/03-instances.png)
 
-Pour vous concentrer sur des événements spécifiques dans la recherche ou Metrics Explorer, définissez le filtre du panneau sur les noms d'événements qui vous intéressent :
+toofocus sur des événements spécifiques dans la recherche ou Metrics Explorer, toohello événement les noms des filtres du panneau ensemble hello qui vous intéresse :
 
 ![Ouvrez Filtres, développez Nom de l'événement et sélectionnez une ou plusieurs valeurs](./media/app-insights-api-custom-events-metrics/06-filter.png)
 
 ### <a name="custom-events-in-analytics"></a>Événements personnalisés dans l’analytique
 
-La télémétrie est disponible dans la table `customEvents` dans [Application Insights - Analytique](app-insights-analytics.md). Chaque ligne représente un appel à `trackEvent(..)` dans votre application. 
+les données de télémétrie Hello est disponible dans hello `customEvents` table [Application Insights Analytique](app-insights-analytics.md). Chaque ligne représente un appel trop`trackEvent(..)` dans votre application. 
 
-Si un [échantillonnage](app-insights-sampling.md) est en cours, la propriété itemCount affiche une valeur supérieure à 1. Par exemple, itemCount==10 signifie que sur 10 appels à trackEvent(), le processus d’échantillonnage n’en a transmis qu’un seul. Pour obtenir un nombre correct d’événements personnalisés, vous devez utiliser un code similaire à `customEvent | summarize sum(itemCount)`.
+Si [échantillonnage](app-insights-sampling.md) est en opération, la propriété itemCount hello affiche une valeur supérieure à 1. Pour exemple itemCount == 10 signifie que de 10 appels tootrackEvent(), processus d’échantillonnage hello transmises uniquement un d’eux. tooget un nombre correct d’événements personnalisés, vous devez utiliser par conséquent utiliser du code comme `customEvent | summarize sum(itemCount)`.
 
 
 ## <a name="trackmetric"></a>TrackMetric
 
-Application Insight peut représenter des mesures qui ne sont pas associées à des événements particuliers. Par exemple, vous pouvez analyser la longueur d’une file d'attente à des intervalles réguliers. Avec les mesures, les mesures individuelles sont moins intéressantes que les variations et tendances, ainsi les graphiques statistiques sont utiles.
+Application Insights peuvent graphique des métriques qui ne sont pas attachés tooparticular événements. Par exemple, vous pouvez analyser la longueur d’une file d'attente à des intervalles réguliers. Avec des mesures, des mesures individuelles hello sont moins importantes que les variations hello et les tendances et graphiques par conséquent, les statistiques sont utiles.
 
-Pour pouvoir envoyer des métriques à Application Insights, vous pouvez utiliser l’API `TrackMetric(..)`. Il existe deux façons d’envoyer une métrique : 
+Dans commande toosend métriques tooApplication Insights, vous pouvez utiliser hello `TrackMetric(..)` API. Il existe deux façons toosend une mesure de : 
 
-* Valeur unique. Chaque fois que vous effectuez une mesure dans votre application, vous envoyez la valeur correspondante à Application Insights. Par exemple, supposons que vous avez une mesure décrivant le nombre d’éléments dans un conteneur. Pendant une période donnée, vous placez d’abord trois éléments dans le conteneur puis vous en supprimez deux. En conséquence, vous appelez `TrackMetric` à deux reprises : d’abord en passant la valeur `3` puis la valeur `-2`. Application Insights stocke les deux valeurs pour votre compte. 
+* Valeur unique. Chaque fois que vous effectuez une mesure dans votre application, vous envoyez valeur hello tooApplication Insights. Par exemple, supposons que vous disposez d’une mesure de nombre hello d’éléments dans un conteneur. Pendant une période donnée, vous commencez par mettre trois éléments dans le conteneur de hello, puis vous supprimez deux éléments. En conséquence, vous appelez `TrackMetric` à deux reprises : tout d’abord en passant la valeur de hello `3` et puis hello valeur `-2`. Application Insights stocke les deux valeurs pour votre compte. 
 
-* Agrégation. Quand vous travaillez avec des métriques, chaque mesure individuelle est rarement intéressante. Au lieu de cela, un récapitulatif de ce qui s’est passé au cours d’une période donnée est important. Un tel récapitulatif est appelé _agrégation_. Dans l’exemple ci-dessus, la somme totale des métriques pour cette période est `1` et le nombre de valeurs des métriques est `2`. Quand vous utilisez l’approche par agrégation, vous appelez `TrackMetric` une seule fois par période et vous envoyez les valeurs agrégées. C’est l’approche recommandée, car elle peut réduire considérablement le coût et les problèmes de performances en envoyant moins de points de données à Application Insights, tout en collectant néanmoins toutes les informations pertinentes.
+* Agrégation. Quand vous travaillez avec des métriques, chaque mesure individuelle est rarement intéressante. Au lieu de cela, un récapitulatif de ce qui s’est passé au cours d’une période donnée est important. Un tel récapitulatif est appelé _agrégation_. Bonjour exemple ci-dessus, hello métrique somme pour cette période est `1` et hello de valeurs de mesure hello est `2`. Lorsque vous utilisez l’approche d’agrégation hello, vous appelez uniquement `TrackMetric` une fois toutes les valeurs d’agrégation hello envoi et de période de temps. Il s’agit de hello approche recommandée étant donné qu’elle peut réduire considérablement le coût de hello et performances surcharge par envoi de données moins tooApplication Insights, lors de la collecte de toujours toutes les informations pertinentes.
 
 ### <a name="examples"></a>Exemples :
 
 #### <a name="single-values"></a>Valeurs uniques
 
-Pour envoyer une seule valeur métrique :
+toosend une valeur métrique unique :
 
 *JavaScript*
 
@@ -153,7 +153,7 @@ Pour envoyer une seule valeur métrique :
 
 #### <a name="aggregating-metrics"></a>Agrégation des métriques
 
-Il est recommandé d’agréger les mesures avant de les envoyer à partir de votre application, de façon à réduire la bande passante et le coût, et à améliorer les performances.
+Il est recommandé de métriques de tooaggregate avant de les envoyer à partir de votre application, de la bande passante tooreduce, de coût et tooimprove les performances.
 Voici un exemple de code d’agrégation :
 
 *C#*
@@ -216,7 +216,7 @@ namespace MetricAggregationExample
     }   // internal class MetricAggregator
 
     /// <summary>
-    /// Accepts metric values and sends the aggregated values at 1-minute intervals.
+    /// Accepts metric values and sends hello aggregated values at 1-minute intervals.
     /// </summary>
     public sealed class Metric : IDisposable
     {
@@ -252,24 +252,24 @@ namespace MetricAggregationExample
             {
                 try
                 {
-                    // Wait for end end of the aggregation period:
+                    // Wait for end end of hello aggregation period:
                     await Task.Delay(AggregationPeriod).ConfigureAwait(continueOnCapturedContext: false);
 
-                    // Atomically snap the current aggregation:
+                    // Atomically snap hello current aggregation:
                     MetricAggregator nextAggregator = new MetricAggregator(DateTimeOffset.UtcNow);
                     MetricAggregator prevAggregator = Interlocked.Exchange(ref _aggregator, nextAggregator);
 
                     // Only send anything is at least one value was measured:
                     if (prevAggregator != null && prevAggregator.Count > 0)
                     {
-                        // Compute the actual aggregation period length:
+                        // Compute hello actual aggregation period length:
                         TimeSpan aggPeriod = nextAggregator.StartTimestamp - prevAggregator.StartTimestamp;
                         if (aggPeriod.TotalMilliseconds < 1)
                         {
                             aggPeriod = TimeSpan.FromMilliseconds(1);
                         }
 
-                        // Construct the metric telemetry item and send:
+                        // Construct hello metric telemetry item and send:
                         var aggregatedMetricTelemetry = new MetricTelemetry(
                                 Name,
                                 prevAggregator.Count,
@@ -300,26 +300,26 @@ namespace MetricAggregationExample
 
 ### <a name="custom-metrics-in-metrics-explorer"></a>Métriques personnalisées dans Metrics Explorer
 
-Pour afficher les résultats, ouvrez Metrics Explorer et ajoutez un nouveau graphique. Modifiez le graphique pour afficher votre mesure.
+résultats de hello toosee, ouvrez l’Explorateur de métriques et ajouter un nouveau graphique. Modifier hello graphique tooshow votre mesure.
 
 > [!NOTE]
-> L’affichage de votre mesure personnalisée dans la liste des mesures disponibles peut prendre plusieurs minutes.
+> Votre métrique personnalisée peut prendre plusieurs minutes tooappear liste hello de métriques disponibles.
 >
 
 ![Ajouter un nouveau graphique ou sélectionnez un graphique et sélectionnez votre métrique sous Personnalisé](./media/app-insights-api-custom-events-metrics/03-track-custom.png)
 
 ### <a name="custom-metrics-in-analytics"></a>Métriques personnalisées dans Analytics
 
-La télémétrie est disponible dans la table `customMetrics` dans [Application Insights - Analytique](app-insights-analytics.md). Chaque ligne représente un appel à `trackMetric(..)` dans votre application.
-* `valueSum` - Il s’agit de la somme des mesures. Pour obtenir la valeur moyenne, divisez par `valueCount`.
-* `valueCount` : le nombre de mesures qui ont été agrégées dans cet appel de `trackMetric(..)`.
+les données de télémétrie Hello est disponible dans hello `customMetrics` table [Application Insights Analytique](app-insights-analytics.md). Chaque ligne représente un appel trop`trackMetric(..)` dans votre application.
+* `valueSum`-C’est la somme de hello des mesures de hello. valeur moyenne tooget hello, de division par `valueCount`.
+* `valueCount`-hello du nombre de mesures qui ont été regroupés dans ce `trackMetric(..)` appeler.
 
 ## <a name="page-views"></a>Affichages de page
-Dans un périphérique ou une application de page web, la télémétrie d'affichage de page est envoyée par défaut lorsque chaque écran ou page est chargé. Mais vous pouvez modifier cela pour suivre les affichages de page à différents moments. Par exemple, dans une application qui affiche les onglets ou les panneaux, vous pouvez effectuer le suivi d'une « page » chaque fois que l'utilisateur ouvre un nouveau panneau.
+Dans un périphérique ou une application de page web, la télémétrie d'affichage de page est envoyée par défaut lorsque chaque écran ou page est chargé. Mais vous pouvez modifier les vues de cette page tootrack à des moments supplémentaires ou différents. Par exemple, dans une application qui affiche les onglets ou les panneaux, vous pourriez tootrack une page chaque fois que l’utilisateur de hello ouvre un nouveau panneau.
 
 ![Filtre d'utilisation dans le panneau Vue d'ensemble](./media/app-insights-api-custom-events-metrics/appinsights-47usage-2.png)
 
-Les données d’utilisateur et de session sont envoyées en tant que propriétés avec les affichages de page, de façon à ce que les graphiques d’utilisateur et de session soient actifs s’il existe une télémétrie de l’affichage de page.
+Les données utilisateur et la session sont envoyées comme propriétés ainsi que les vues de page, hello donc graphiques utilisateur et session vivantes lors de la télémétrie des consultations de page.
 
 ### <a name="custom-page-views"></a>Affichages de pages personnalisées
 *JavaScript*
@@ -335,68 +335,68 @@ Les données d’utilisateur et de session sont envoyées en tant que propriét�
     telemetry.TrackPageView("GameReviewPage")
 
 
-Si vous avez plusieurs onglets dans différentes pages HTML, vous pouvez aussi spécifier l'URL :
+Si vous avez plusieurs onglets dans différentes pages HTML, vous pouvez spécifier des URL de hello trop :
 
     appInsights.trackPageView("tab1", "http://fabrikam.com/page1.htm");
 
 ### <a name="timing-page-views"></a>Affichages de la page de durée
-Par défaut, les heures déclarées **Temps de chargement de l’affichage de la page** sont mesurées à partir du moment où le navigateur envoie la demande, jusqu’à ce que l’événement de chargement de la page du navigateur soit appelé.
+Par défaut, les temps de hello déclarés en tant que **temps de chargement de Page vue** sont mesurées à partir de lorsque le navigateur de hello envoie la demande de hello, jusqu'à ce que l’événement de chargement de page du navigateur hello est appelée.
 
 Au lieu de cela, vous pouvez :
 
-* Définir une durée explicite dans l’appel [trackPageView](https://github.com/Microsoft/ApplicationInsights-JS/blob/master/API-reference.md#trackpageview) : `appInsights.trackPageView("tab1", null, null, null, durationInMilliseconds);`.
-* Utiliser les appels de minutage d’affichage de la page `startTrackPage` et `stopTrackPage`.
+* Définir une durée explicite dans hello [trackPageView](https://github.com/Microsoft/ApplicationInsights-JS/blob/master/API-reference.md#trackpageview) appeler : `appInsights.trackPageView("tab1", null, null, null, durationInMilliseconds);`.
+* Utiliser les appels de minutage hello page vue `startTrackPage` et `stopTrackPage`.
 
 *JavaScript*
 
-    // To start timing a page:
+    // toostart timing a page:
     appInsights.startTrackPage("Page1");
 
 ...
 
-    // To stop timing and log the page:
+    // toostop timing and log hello page:
     appInsights.stopTrackPage("Page1", url, properties, measurements);
 
-Le nom que vous utilisez comme premier paramètre associe les appels de démarrage et d’arrêt. Le nom de la page actuelle est utilisé par défaut.
+Hello nom que vous utilisez comme premier paramètre de hello associe le début de hello et arrêter des appels. Nom de la page actuelle toohello la valeur par défaut.
 
-Les durées de chargement de la page résultantes affichées dans Metrics Explorer sont dérivées de l’intervalle entre les appels de démarrage et d’arrêt. C’est à vous de décider quel intervalle de temps vous voulez mesurer.
+intervalle hello entre hello proviennent des durées affichées dans Metrics Explorer le chargement des pages qui en résulte Hello démarrer et arrêter des appels. C’est tooyou quel intervalle de temps réellement.
 
 ### <a name="page-telemetry-in-analytics"></a>Télémétrie des pages dans Analytique
 
 Dans [Analytique](app-insights-analytics.md), deux tables affichent les données des opérations du navigateur :
 
-* La table `pageViews` contient des données sur l’URL et le titre de la page.
-* La table `browserTimings` contient des données sur les performances du client, comme le temps nécessaire pour traiter les données entrantes.
+* Hello `pageViews` table contient des données sur le titre de page et les URL de hello
+* Hello `browserTimings` table contient des données sur les performances du client, telles que hello durée tooprocess hello les données entrantes
 
-Pour trouver le temps mis par le navigateur pour traiter différentes pages :
+toofind combien de navigateur de hello prend tooprocess différentes pages :
 
 ```
 browserTimings | summarize avg(networkDuration), avg(processingDuration), avg(totalDuration) by name 
 ```
 
-Pour découvrir la popularité de différents navigateurs :
+toodiscover popularities de hello de différents navigateurs :
 
 ```
 pageViews | summarize count() by client_Browser
 ```
 
-Pour associer des vues de pages à des appels AJAX, joindre à des dépendances :
+appels de tooAJAX tooassociate page vues, joindre avec des dépendances :
 
 ```
 pageViews | join (dependencies) on operation_Id 
 ```
 
 ## <a name="trackrequest"></a>TrackRequest
-Le kit de développement logiciel de serveur utilise TrackRequest pour consigner les requêtes HTTP.
+le serveur de Hello SDK utilise les requêtes HTTP TrackRequest toolog.
 
-Vous pouvez également l'appeler vous-même si vous souhaitez simuler des requêtes dans le cas où le module du service web n’est pas en cours d'exécution.
+Vous pouvez également l’appeler vous-même si vous souhaitez que les demandes de toosimulate dans un contexte où vous n’avez pas hello web service module en cours.
 
-Toutefois, le moyen recommandé d’envoyer la télémétrie de la demande est là où la demande agit comme un <a href="#operation-context">contexte d’opération</a>.
+Toutefois, hello recommandé est de télémétrie des requêtes de façon toosend où la demande de hello agit comme un <a href="#operation-context">contexte d’opération</a>.
 
 ## <a name="operation-context"></a>Contexte de l’opération
-Vous pouvez associer les éléments de télémétrie en leur joignant un ID d’opération commun. Le module de suivi de requête standard effectue cette opération pour les exceptions et les autres événements envoyés lors du traitement d’une requête HTTP. Dans [Recherche](app-insights-diagnostic-search.md) et [Analytique](app-insights-analytics.md), vous pouvez utiliser l’ID pour trouver facilement tous les événements associés à la requête.
+Vous pouvez associer des éléments de télémétrie ensemble en attachant toothem un ID d’opération courantes. module de suivi des demandes standard Hello effectue cette opération pour les exceptions et les autres événements qui sont envoyées pendant le traitement d’une requête HTTP. Dans [recherche](app-insights-diagnostic-search.md) et [Analytique](app-insights-analytics.md), vous pouvez utiliser hello ID tooeasily rechercher tous les événements associés à la demande de hello.
 
-Pour définir l’ID, le plus simple consiste à définir un contexte d’opération à l’aide de ce modèle :
+ID de Hello plus simple façon tooset hello est tooset un contexte d’opération à l’aide de ce modèle :
 
 *C#*
 
@@ -404,7 +404,7 @@ Pour définir l’ID, le plus simple consiste à définir un contexte d’opéra
 // Establish an operation context and associated telemetry item:
 using (var operation = telemetry.StartOperation<RequestTelemetry>("operationName"))
 {
-    // Telemetry sent in here will use the same operation ID.
+    // Telemetry sent in here will use hello same operation ID.
     ...
     telemetry.TrackTrace(...); // or other Track* calls
     ...
@@ -417,11 +417,11 @@ using (var operation = telemetry.StartOperation<RequestTelemetry>("operationName
 } // When operation is disposed, telemetry item is sent.
 ```
 
-Outre la définition d’un contexte d’opération, `StartOperation` crée un élément de télémétrie du type que vous spécifiez. Il envoie l’élément de télémétrie lorsque vous libérez l’opération, ou si vous appelez explicitement `StopOperation`. Si vous utilisez `RequestTelemetry` comme type de télémétrie, alors sa durée est définie sur l’intervalle compris entre le début et la fin.
+Outre la définition d’un contexte d’opération, `StartOperation` crée un élément de données de télémétrie de type hello que vous spécifiez. Il envoie des données de télémétrie hello élément lorsque vous supprimez l’opération de hello, ou si vous appelez explicitement `StopOperation`. Si vous utilisez `RequestTelemetry` comme type de données de télémétrie hello, sa durée est définie à intervalle toohello a dépassé le délai entre le début et de fin.
 
-Les contextes de l’opération ne peuvent pas être imbriqués. S’il existe déjà un contexte d’opération, son ID est associé à tous les éléments de contenu, y compris l’élément créé avec `StartOperation`.
+Les contextes de l’opération ne peuvent pas être imbriqués. Si un contexte d’opération existe déjà, son ID est associé à tous les éléments hello contenu, y compris les élément hello créé avec `StartOperation`.
 
-Dans Recherche, le contexte d’opération est utilisé pour créer la liste **Éléments connexes** :
+Dans la recherche, contexte d’opération hello est utilisé toocreate hello **éléments connexes** liste :
 
 ![Éléments connexes](./media/app-insights-api-custom-events-metrics/21.png)
 
@@ -429,9 +429,9 @@ Pour plus d’informations sur le suivi des opérations personnalisées, consult
 
 ### <a name="requests-in-analytics"></a>Requêtes dans Analytique 
 
-Dans [Application Insights - Analytique](app-insights-analytics.md), les demandes s’affichent dans la table `requests`.
+Dans [Application Insights Analytique](app-insights-analytics.md), afficher les demandes des Bonjour `requests` table.
 
-Si [l’échantillonnage](app-insights-sampling.md) est en cours, la propriété itemCount affiche une valeur supérieure à 1. Par exemple, itemCount==10 signifie que sur 10 appels à trackRequest(), le processus d’échantillonnage n’en a transmis qu’un seul. Pour obtenir un nombre correct de demandes et une durée moyenne segmentée par nom des demandes, utilisez un code similaire à celui-ci :
+Si [échantillonnage](app-insights-sampling.md) est en opération, la propriété itemCount hello affichera une valeur supérieure à 1. Pour exemple itemCount == 10 signifie que de 10 appels tootrackRequest(), processus d’échantillonnage hello transmises uniquement un d’eux. tooget un nombre correct de demandes et la durée moyenne segmentés par des noms de la demande, utilisez un code tel que :
 
 ```AIQL
 requests | summarize count = sum(itemCount), avgduration = avg(duration) by name
@@ -439,12 +439,12 @@ requests | summarize count = sum(itemCount), avgduration = avg(duration) by name
 
 
 ## <a name="trackexception"></a>TrackException
-Envoi d’exceptions à Application Insights :
+Envoyer les exceptions tooApplication Insights :
 
-* Pour [les compter](app-insights-metrics-explorer.md), comme une indication de la fréquence d’un problème.
-* Pour [inspecter les occurrences individuelles](app-insights-diagnostic-search.md).
+* trop[les compter](app-insights-metrics-explorer.md), comme une indication de la fréquence de hello d’un problème.
+* trop[examiner des occurrences individuelles](app-insights-diagnostic-search.md).
 
-Les rapports incluent des arborescences des appels de procédure.
+les rapports de Hello incluent les traces de pile hello.
 
 *C#*
 
@@ -468,11 +468,11 @@ Les rapports incluent des arborescences des appels de procédure.
        appInsights.trackException(ex);
     }
 
-Les Kits de développement logiciel (SDK) interceptent de nombreuses exceptions automatiquement, ce qui vous évite ainsi d’avoir toujours à appeler TrackException explicitement.
+Kits de développement logiciel Hello interceptent de nombreuses exceptions automatiquement, donc vous n’avez toujours pas toocall TrackException explicitement.
 
-* ASP.NET : [écriture d'un code pour intercepter les exceptions](app-insights-asp-net-exceptions.md).
+* ASP.NET : [écrire du code toocatch exceptions](app-insights-asp-net-exceptions.md).
 * J2EE : [les exceptions sont interceptées automatiquement](app-insights-java-get-started.md#exceptions-and-request-failures).
-* JavaScript : les exceptions sont interceptées automatiquement. Si vous souhaitez désactiver la collecte automatique, ajoutez une ligne dans l'extrait de code que vous insérez dans vos pages web :
+* JavaScript : les exceptions sont interceptées automatiquement. Si vous souhaitez collecte automatique des toodisable, ajoutez un extrait de code toohello ligne que vous insérez dans vos pages Web :
 
     ```
     ({
@@ -483,22 +483,22 @@ Les Kits de développement logiciel (SDK) interceptent de nombreuses exceptions 
 
 ### <a name="exceptions-in-analytics"></a>Exceptions dans Analytique
 
-Dans [Application Insights - Analytique](app-insights-analytics.md), les exceptions s’affichent dans la table `exceptions`.
+Dans [Application Insights Analytique](app-insights-analytics.md), exceptions s’afficheront dans hello `exceptions` table.
 
-Si un [échantillonnage](app-insights-sampling.md) est en cours, la propriété `itemCount` affiche une valeur supérieure à 1. Par exemple, itemCount==10 signifie que sur 10 appels à trackException(), le processus d’échantillonnage n’en a transmis qu’un seul. Pour obtenir un nombre correct d’exceptions segmentées par type d’exception, utilisez un code similaire à celui-ci :
+Si [échantillonnage](app-insights-sampling.md) est en opération, hello `itemCount` propriété indique une valeur supérieure à 1. Pour exemple itemCount == 10 signifie que de 10 appels tootrackException(), processus d’échantillonnage hello transmises uniquement un d’eux. tooget un nombre correct d’exceptions segmentées par type d’exception, utilisez un code tel que :
 
 ```
 exceptions | summarize sum(itemCount) by type
 ```
 
-La plupart des informations importantes sur la pile sont déjà extraites dans des variables distinctes, mais vous pouvez extraire séparément la structure `details` pour en savoir plus. Comme cette structure est dynamique, vous devez effectuer une conversion de type (transtypage) du résultat vers le type attendu. Par exemple :
+La plupart des hello en important les informations de pile sont déjà extrait dans des variables distinctes, mais vous pouvez extraire hello éloigné `details` tooget structure plus. Étant donné que cette structure est dynamique, vous devez effectuer un cast de type de toohello hello résultat escompté. Par exemple :
 
 ```AIQL
 exceptions
 | extend method2 = tostring(details[0].parsedStack[1].method)
 ```
 
-Pour associer des exceptions aux demandes qui s’y rapportent, utilisez une jointure :
+exceptions tooassociate avec leurs demandes associées, utilisez une jointure :
 
 ```
 exceptions
@@ -506,9 +506,9 @@ exceptions
 ```
 
 ## <a name="tracktrace"></a>TrackTrace
-Utilisez TrackTrace pour diagnostiquer des problèmes en envoyant une « piste de navigation » à Application Insights. Vous pouvez envoyer des blocs de données de diagnostic et les examiner dans la [Recherche de diagnostic](app-insights-diagnostic-search.md).
+Utilisez TrackTrace toohelp diagnostiquer les problèmes en envoyant une tooApplication « cheminement de navigation » Insights. Vous pouvez envoyer des blocs de données de diagnostic et les examiner dans la [Recherche de diagnostic](app-insights-diagnostic-search.md).
 
-Les [adaptateurs de journaux](app-insights-asp-net-trace-logs.md) utilisent cette API pour envoyer des journaux tiers au portail.
+[Connecter des adaptateurs](app-insights-asp-net-trace-logs.md) utiliser ce portail de toohello API toosend les journaux tierce.
 
 *C#*
 
@@ -517,27 +517,27 @@ Les [adaptateurs de journaux](app-insights-asp-net-trace-logs.md) utilisent cett
 
 Vous pouvez effectuer une recherche dans le contenu du message, mais (contrairement aux valeurs de propriété), vous ne pouvez pas les filtrer.
 
-La limite de taille sur `message` est plus importante que la limite des propriétés.
-l’un des avantages de TrackTrace est que vous pouvez insérer des données relativement longues dans le message. Par exemple, vous pourriez y encoder des données POST.  
+limite de taille Hello sur `message` est plus importante que la limite de hello sur les propriétés.
+L’avantage de TrackTrace est que vous pouvez placer des données relativement longues dans le message de type hello. Par exemple, vous pourriez y encoder des données POST.  
 
-Par ailleurs, vous pouvez ajouter un niveau de gravité à votre message. Comme pour les autres données de télémétrie, vous pouvez également ajouter des valeurs de propriété qui permettent de filtrer ou rechercher différents jeux de traces. Par exemple :
+En outre, vous pouvez ajouter un message tooyour au niveau de gravité. Et, comme les autres données de télémétrie, vous pouvez ajouter toohelp de valeurs de propriété que vous filtrez ou de recherche pour différents ensembles de traces. Par exemple :
 
     var telemetry = new Microsoft.ApplicationInsights.TelemetryClient();
     telemetry.TrackTrace("Slow database response",
                    SeverityLevel.Warning,
                    new Dictionary<string,string> { {"database", db.ID} });
 
-Dans [Recherche](app-insights-diagnostic-search.md), vous pouvez filtrer facilement tous les messages d’un niveau de gravité particulier portant sur une certaine base de données.
+Dans [recherche](app-insights-diagnostic-search.md), vous pouvez ensuite facilement filtrer tous les messages hello d’un niveau de gravité spécifique qui se rapportent tooa la base de données particulière.
 
 
 ### <a name="traces-in-analytics"></a>Traces dans Analytique
 
-Dans [Application Insights - Analytique](app-insights-analytics.md), les appels à TrackTrace s’affichent dans la table `traces`.
+Dans [Application Insights Analytique](app-insights-analytics.md), appelle tooTrackTrace afficher Bonjour `traces` table.
 
-Si un [échantillonnage](app-insights-sampling.md) est en cours, la propriété itemCount affiche une valeur supérieure à 1. Par exemple, itemCount==10 signifie que sur 10 appels à `trackTrace()`, le processus d’échantillonnage n’en a transmis qu’un seul. Pour obtenir un nombre correct d’appels de trace, vous devez utiliser un code similaire à `traces | summarize sum(itemCount)`.
+Si [échantillonnage](app-insights-sampling.md) est en opération, la propriété itemCount hello affiche une valeur supérieure à 1. Pour exemple itemCount == 10 signifie que 10 appelle trop`trackTrace()`, processus d’échantillonnage hello transmis uniquement un d’eux. tooget un nombre approprié de suivi des appels, vous devez utiliser par conséquent code tel que `traces | summarize sum(itemCount)`.
 
 ## <a name="trackdependency"></a>TrackDependency
-Utilisez l’appel à TrackDependency pour suivre les temps de réponse et les taux de réussite des appels vers un bloc de code externe. Les résultats s'affichent dans les graphiques de dépendance sur le portail.
+Hello d’utilisation TrackDependency appeler le temps de réponse tootrack hello et taux de réussite de la partie externe de tooan appelle du code. résultats de Hello s’affichent dans les graphiques de dépendance hello dans le portail de hello.
 
 ```C#
 var success = false;
@@ -554,21 +554,21 @@ finally
 }
 ```
 
-N’oubliez pas que les kits SDK de serveur incluent un [module de dépendance](app-insights-asp-net-dependencies.md) qui détecte certains appels de dépendance et en effectue le suivi automatiquement. C’est notamment le cas des bases de données et des API REST. Vous devez installer un agent sur votre serveur pour que le module fonctionne. Vous utiliserez cet appel si vous souhaitez effectuer le suivi des appels qui ne sont pas interceptés par le système de suivi automatisé, ou si vous ne souhaitez pas installer l'agent.
+N’oubliez pas de ce serveur hello kits de développement incluent un [module de dépendance](app-insights-asp-net-dependencies.md) qui détecte et effectue le suivi de certains appels de dépendance automatiquement--par exemple, toodatabases et API REST. Vous avez tooinstall un agent sur le module de hello toomake serveur fonctionne. Vous utilisez cet appel si vous voulez n’intercepte pas les appels tootrack hello suivi automatique, ou si vous ne souhaitez pas l’agent de tooinstall hello.
 
-Pour désactiver le module de suivi des dépendances standard, modifiez le fichier [ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md) et supprimez la référence à `DependencyCollector.DependencyTrackingTelemetryModule`.
+tooturn off hello standard dépendance-module de suivi, modifier [ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md) et supprimer la référence de hello trop`DependencyCollector.DependencyTrackingTelemetryModule`.
 
 ### <a name="dependencies-in-analytics"></a>Dépendances dans Analytique
 
-Dans [Application Insights - Analytique](app-insights-analytics.md), les appels de trackDependency s’affichent dans la table `dependencies`.
+Dans [Application Insights Analytique](app-insights-analytics.md), trackDependency appels apparaissent dans hello `dependencies` table.
 
-Si un [échantillonnage](app-insights-sampling.md) est en cours, la propriété itemCount affiche une valeur supérieure à 1. Par exemple, itemCount==10 signifie que sur 10 appels à trackDependency(), le processus d’échantillonnage n’en a transmis qu’un seul. Pour obtenir un nombre correct de dépendances segmentées par composant cible, utilisez un code similaire à celui-ci :
+Si [échantillonnage](app-insights-sampling.md) est en opération, la propriété itemCount hello affiche une valeur supérieure à 1. Pour exemple itemCount == 10 signifie que de 10 appels tootrackDependency(), processus d’échantillonnage hello transmises uniquement un d’eux. tooget un nombre correct de dépendances segmentées par le composant cible, utilisez un code tel que :
 
 ```
 dependencies | summarize sum(itemCount) by target
 ```
 
-Pour associer des dépendances aux demandes qui s’y rapportent, utilisez une jointure :
+dépendances de tooassociate avec leurs requêtes connexes, utilisez une jointure :
 
 ```
 dependencies
@@ -576,7 +576,7 @@ dependencies
 ```
 
 ## <a name="flushing-data"></a>Vidage des données
-Normalement, le kit SDK envoie des données à des moments choisis pour minimiser l'impact sur l'utilisateur. Toutefois, dans certains cas vous pouvez vider la mémoire tampon - par exemple, si vous utilisez le kit SDK dans une application qui s'arrête.
+Normalement, hello Kit de développement logiciel envoie des données à des moments choisies un impact hello toominimize sur utilisateur de hello. Toutefois, dans certains cas, vous pourriez tooflush mémoire tampon de hello--par exemple, si vous utilisez hello SDK dans une application s’arrête.
 
 *C#*
 
@@ -585,17 +585,17 @@ Normalement, le kit SDK envoie des données à des moments choisis pour minimise
     // Allow some time for flushing before shutdown.
     System.Threading.Thread.Sleep(1000);
 
-Notez que la fonction est asynchrone pour le [canal de télémétrie du serveur](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel/).
+Notez que la fonction hello est asynchrone pour hello [canal de télémétrie serveur](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel/).
 
 ## <a name="authenticated-users"></a>Utilisateurs authentifiés
 Dans une application web, les utilisateurs sont identifiés par des cookies par défaut. Un utilisateur peut être compté plusieurs fois s’il accède à votre application à partir d’un autre ordinateur ou navigateur, ou s’il supprime des cookies.
 
-Mais si les utilisateurs se connectent à votre application, vous pouvez obtenir un nombre plus précis en définissant l’ID de l’utilisateur authentifié dans le code du navigateur :
+Si les utilisateurs se connectent tooyour application, vous pouvez obtenir un nombre plus précis en définissant des ID d’utilisateur hello authentifié dans le code hello navigateur :
 
 *JavaScript*
 
 ```JS
-// Called when my app has identified the user.
+// Called when my app has identified hello user.
 function Authenticated(signInId) {
     var validatedId = signInId.replace(/[,;=| ]+/g, "_");
     appInsights.setAuthenticatedUserContext(validatedId);
@@ -616,11 +616,11 @@ Dans une application MVC Web ASP.NET, par exemple :
             </script>
         }
 
-Il n’est pas nécessaire d’utiliser le nom de connexion réel de l’utilisateur. Il doit uniquement s’agir d’un ID unique pour cet utilisateur. Il ne doit pas inclure d'espaces ni l'un des caractères suivants : `,;=|`.
+Il n’est pas le nom de connexion réel de l’utilisateur nécessaire toouse hello. Il ne possède que toobe un ID unique toothat utilisateur. Il ne doit pas inclure des espaces ou les caractères de hello `,;=|`.
 
-L’ID d’utilisateur est également défini dans un cookie de session et envoyé au serveur. Si le kit SDK de serveur est installé, l’ID d’utilisateur authentifié est envoyé dans le cadre des propriétés de contexte de télémétrie client et serveur. Vous pouvez ensuite filtrer et rechercher dessus.
+ID d’utilisateur Hello est également défini dans un cookie de session et envoyé toohello serveur. Si le serveur hello SDK est installé, hello les ID est envoyé en tant que partie des propriétés de contexte hello de télémétrie de client et le serveur de l’utilisateur authentifié. Vous pouvez ensuite filtrer et rechercher dessus.
 
-Si votre application regroupe les utilisateurs par comptes, vous pouvez également fournir un identificateur pour ce compte (avec les mêmes restrictions de caractères).
+Si votre application regroupe les utilisateurs dans des comptes, vous pouvez également passer un identificateur pour le compte de hello (hello avec les mêmes restrictions de caractères).
 
       appInsights.setAuthenticatedUserContext(validatedId, accountId);
 
@@ -629,17 +629,17 @@ Dans [Metrics Explorer](app-insights-metrics-explorer.md), vous pouvez créer un
 Vous pouvez également [rechercher](app-insights-diagnostic-search.md) les points de données client avec des comptes et des noms d'utilisateur spécifiques.
 
 ## <a name="properties"></a>Filtrage, recherche et segmentation de vos données à l’aide des propriétés
-Vous pouvez associer des propriétés et des mesures à vos événements (et également à des mesures, des affichages de page, des exceptions et d'autres données de télémétrie).
+Vous pouvez joindre des propriétés et des mesures tooyour événements (et également toometrics, vues de page, des exceptions et autres données de télémétrie).
 
-*propriétés* sont des valeurs de chaîne que vous pouvez utiliser pour filtrer votre télémétrie dans les rapports d'utilisation. Par exemple, si votre application fournit plusieurs jeux, vous pouvez attacher le nom du jeu à chaque événement pour vous permettre de savoir quels sont les jeux les plus populaires.
+*Propriétés* sont des valeurs de chaîne que vous pouvez utiliser toofilter votre télémétrie dans les rapports d’utilisation hello. Par exemple, si votre application fournit plusieurs jeux, vous pouvez attacher nom hello d’événement de jeu tooeach hello afin que vous pouvez voir les jeux sont plus populaires.
 
-Il existe une limite de 8192 sur la longueur de chaîne. (Si vous souhaitez envoyer d’importants blocs de données, utilisez le paramètre de message de [TrackTrace](#track-trace).)
+Il existe une limite de 8 192 sur la longueur de la chaîne hello. (Si vous souhaitez toosend de grandes quantités de données, utilisez le paramètre de message hello de [TrackTrace](#track-trace).)
 
-*mesures* sont des valeurs numériques qui peuvent être représentées sous forme graphique. Par exemple, observez s'il existe une augmentation progressive des scores atteints par vos joueurs. Les graphes peuvent être segmentés par les propriétés envoyées avec l'événement pour vous permettre d’obtenir des graphes distincts ou empilés pour différents jeux.
+*mesures* sont des valeurs numériques qui peuvent être représentées sous forme graphique. Par exemple, vous pourriez toosee s’il existe une augmentation progressive de scores de hello votre joueurs atteindre. graphiques de Hello peuvent être segmentées par hello séparer les propriétés qui sont envoyées avec les événements de hello, qui vous pouvez d’obtenir ou empilées graphiques pour jeux différents.
 
-Pour que les valeurs de mesure s’affichent correctement, elles doivent être supérieures ou égales à 0.
+Pour toobe de valeurs de mesure affiché correctement, ils doivent être too0 égal ou supérieur.
 
-Il existe certaines [limites au nombre de propriétés, de valeurs de propriété et de mesures](#limits) que vous pouvez utiliser.
+Il existe quelques [limites nombre hello de propriétés, les valeurs de propriété et les métriques](#limits) que vous pouvez utiliser.
 
 *JavaScript*
 
@@ -668,7 +668,7 @@ Il existe certaines [limites au nombre de propriétés, de valeurs de propriét�
     var metrics = new Dictionary <string, double>
        {{"Score", currentGame.Score}, {"Opponents", currentGame.OpponentCount}};
 
-    // Send the event:
+    // Send hello event:
     telemetry.TrackEvent("WinGame", properties, metrics);
 
 
@@ -683,7 +683,7 @@ Il existe certaines [limites au nombre de propriétés, de valeurs de propriét�
     metrics.Add("Score", currentGame.Score)
     metrics.Add("Opponents", currentGame.OpponentCount)
 
-    ' Send the event:
+    ' Send hello event:
     telemetry.TrackEvent("WinGame", properties, metrics)
 
 
@@ -701,33 +701,33 @@ Il existe certaines [limites au nombre de propriétés, de valeurs de propriét�
 
 
 > [!NOTE]
-> Veillez à ne pas journaliser des informations personnelles dans les propriétés.
+> Prenez soin toolog pas les informations personnelles dans les propriétés.
 >
 >
 
-*Si vous avez utilisé des mesures*, ouvrez Metrics Explorer et sélectionnez la mesure à partir du groupe **personnalisé** :
+*Si vous avez utilisé des métriques*, ouvrez Metrics Explorer et sélectionnez des mesures de hello de hello **personnalisé** groupe :
 
-![Ouvrez Metrics Explorer, sélectionnez le graphique puis sélectionnez la mesure](./media/app-insights-api-custom-events-metrics/03-track-custom.png)
+![Ouvrez l’Explorateur de métriques, graphique de hello select et sélectionnez hello métrique](./media/app-insights-api-custom-events-metrics/03-track-custom.png)
 
 > [!NOTE]
-> Si votre mesure n'apparaît pas, ou si l'en-tête **personnalisé** n'y figure pas, fermez le panneau de sélection et réessayez ultérieurement. L’agrégation des mesures via le pipeline peut parfois prendre une heure.
+> Si votre métrique n’apparaît pas, ou si hello **personnalisé** en-tête n’est pas présent, panneau de sélection de fermer hello et réessayez ultérieurement. Métriques peuvent parfois prendre une heure toobe agrégées via le pipeline de hello.
 
-*Si vous avez utilisé des propriétés et des mesures*, segmentez la mesure par la propriété :
+*Si vous avez utilisé des propriétés et des mesures*, segment métrique de hello par la propriété de hello :
 
-![Définissez le groupe, puis sélectionnez la propriété sous Grouper par](./media/app-insights-api-custom-events-metrics/04-segment-metric-event.png)
+![Définir le regroupement, puis sélectionnez la propriété hello sous Group by](./media/app-insights-api-custom-events-metrics/04-segment-metric-event.png)
 
-Dans *Recherche de diagnostic*, vous pouvez afficher les propriétés et les mesures des occurrences individuelles d’un événement.
+*Dans la recherche de Diagnostic*, vous pouvez afficher les propriétés de hello et les métriques des occurrences individuelles d’un événement.
 
 ![Sélectionnez une instance, puis sélectionnez « ... »](./media/app-insights-api-custom-events-metrics/appinsights-23-customevents-4.png)
 
-Utilisez le champ **Rechercher** pour voir les occurrences de l'événement présentant une valeur de propriété particulière.
+Hello d’utilisation **recherche** champ toosee des occurrences d’événements qui ont une valeur de propriété particulière.
 
 ![Tapez un terme dans Rechercher](./media/app-insights-api-custom-events-metrics/appinsights-23-customevents-5.png)
 
 [En savoir plus sur les expressions de recherche](app-insights-diagnostic-search.md).
 
-### <a name="alternative-way-to-set-properties-and-metrics"></a>Autre façon de définir des propriétés et des mesures
-Si cela est plus pratique, vous pouvez collecter les paramètres d'un événement dans un objet séparé :
+### <a name="alternative-way-tooset-properties-and-metrics"></a>Mesures et les propriétés de tooset autre moyen
+S’il est plus pratique, vous pouvez collecter les paramètres d’un événement dans un objet séparé hello :
 
     var event = new EventTelemetry();
 
@@ -741,15 +741,15 @@ Si cela est plus pratique, vous pouvez collecter les paramètres d'un événemen
     telemetry.TrackEvent(event);
 
 > [!WARNING]
-> Ne réutilisez pas la même instance d’élément de télémétrie (`event` dans cet exemple) pour appeler Track*() plusieurs fois. Cela peut provoquer un envoi de données de télémétrie configurées de façon incorrecte.
+> Ne réutilisez pas hello même instance d’élément de données de télémétrie (`event` dans cet exemple) toocall Track*() plusieurs fois. Cela peut entraîner des toobe de télémétrie envoyé avec une configuration incorrecte.
 >
 >
 
 ### <a name="custom-measurements-and-properties-in-analytics"></a>Mesures et propriétés personnalisées dans Analytique
 
-Dans [Analytique](app-insights-analytics.md), les mesures et les propriétés personnalisées s’affichent dans les attributs `customMeasurements` et `customDimensions` de chaque enregistrement de télémétrie.
+Dans [Analytique](app-insights-analytics.md), affichent les mesures personnalisées et les propriétés Bonjour `customMeasurements` et `customDimensions` les attributs de chaque enregistrement de données de télémétrie.
 
-Par exemple, si vous avez ajouté une propriété nommée « game » à votre télémétrie des demandes, cette requête compte les occurrences des différentes valeurs de « game » et affiche la moyenne de la métrique personnalisée « score » :
+Par exemple, si vous avez ajouté une propriété nommée « jeu » tooyour télémétrie des requêtes, cette requête compte les occurrences de hello de différentes valeurs de « jeu » et afficher moyenne hello Hello métrique personnalisé « score » :
 
 ```
 requests
@@ -758,19 +758,19 @@ requests
 
 Notez que :
 
-* Quand vous extrayez une valeur du JSON la customDimensions ou customMeasurements, elle est de type dynamique et par conséquent, vous devez la transtyper en `tostring` ou `todouble`.
-* Pour tenir compte de la possibilité [d’échantillonnage](app-insights-sampling.md), vous devez utiliser `sum(itemCount)`, et non pas `count()`.
+* Lorsque vous extrayez une valeur de hello customDimensions ou customMeasurements JSON, il a le type dynamique, et par conséquent, vous devez effectuer un cast `tostring` ou `todouble`.
+* compte tootake de possibilité de hello de [échantillonnage](app-insights-sampling.md), vous devez utiliser `sum(itemCount)`, et non `count()`.
 
 
 
 ## <a name="timed"></a> Événements de durée
-Vous avez parfois besoin d’obtenir une représentation graphique de la durée nécessaire à la réalisation d’une action. Par exemple, vous souhaitez savoir de combien de temps les utilisateurs ont besoin pour évaluer leurs choix dans un jeu. Vous pouvez utiliser le paramètre de mesure pour cela.
+Vous pouvez souhaiter que toochart la durée pendant laquelle il effectue tooperform une action. Par exemple, vous pourriez tooknow la durée pendant laquelle les utilisateurs prennent tooconsider choix dans un jeu. Vous pouvez utiliser le paramètre de mesure hello pour cela.
 
 *C#*
 
     var stopwatch = System.Diagnostics.Stopwatch.StartNew();
 
-    // ... perform the timed action ...
+    // ... perform hello timed action ...
 
     stopwatch.Stop();
 
@@ -781,13 +781,13 @@ Vous avez parfois besoin d’obtenir une représentation graphique de la durée 
     var properties = new Dictionary <string, string>
        {{"signalSource", currentSignalSource.Name}};
 
-    // Send the event:
+    // Send hello event:
     telemetry.TrackEvent("SignalProcessed", properties, metrics);
 
 
 
 ## <a name="defaults"></a>Propriétés par défaut pour la télémétrie personnalisée
-Si vous souhaitez définir des valeurs de propriété par défaut pour certains des événements personnalisés que vous écrivez, vous pouvez les définir dans une instance de TelemetryClient. Ils sont associés à chaque élément de télémétrie envoyée à partir de ce client.
+Si vous souhaitez que les valeurs de propriété par défaut tooset pour certaines des événements personnalisés hello que vous écrivez, vous pouvez les définir dans une instance de TelemetryClient. Ils sont des éléments de télémétrie tooevery jointe qui sont envoyé à partir de ce client.
 
 *C#*
 
@@ -795,14 +795,14 @@ Si vous souhaitez définir des valeurs de propriété par défaut pour certains 
 
     var gameTelemetry = new TelemetryClient();
     gameTelemetry.Context.Properties["Game"] = currentGame.Name;
-    // Now all telemetry will automatically be sent with the context property:
+    // Now all telemetry will automatically be sent with hello context property:
     gameTelemetry.TrackEvent("WinGame");
 
 *Visual Basic*
 
     Dim gameTelemetry = New TelemetryClient()
     gameTelemetry.Context.Properties("Game") = currentGame.Name
-    ' Now all telemetry will automatically be sent with the context property:
+    ' Now all telemetry will automatically be sent with hello context property:
     gameTelemetry.TrackEvent("WinGame")
 
 *Java*
@@ -820,25 +820,25 @@ Si vous souhaitez définir des valeurs de propriété par défaut pour certains 
 
 
 
-Les appels de télémétrie individuels peuvent remplacer les valeurs par défaut dans leurs dictionnaires de propriété.
+Appels de télémétrie individuels peuvent remplacer des valeurs de par défaut de hello dans les dictionnaires de leurs propriétés.
 
 *Pour les clients Web JavaScript*, [utilisez des initialiseurs de télémétrie JavaScript](#js-initializer).
 
-*Pour ajouter des propriétés à toutes les données de télémétrie*, notamment les données des modules de collecte standard, [implémentez `ITelemetryInitializer`](app-insights-api-filtering-sampling.md#add-properties).
+*données de télémétrie tooadd propriétés tooall*, y compris les données hello à partir des modules de collection standard, [implémenter `ITelemetryInitializer` ](app-insights-api-filtering-sampling.md#add-properties).
 
 ## <a name="sampling-filtering-and-processing-telemetry"></a>Échantillonnage, filtrage et traitement de la télémétrie
-Vous pouvez écrire du code pour traiter votre télémétrie avant de l’envoyer à partir du Kit de développement logiciel (SDK). Le traitement inclut les données envoyées par les modules de télémétrie standard, telles que la collection de requêtes HTTP et la collection de dépendances.
+Vous pouvez écrire tooprocess de code de votre télémétrie avant d’être envoyée à partir de hello SDK. le traitement de Hello comprend des données envoyées à partir de modules de télémétrie standard hello, telles que la collection de requêtes HTTP et de la collection de dépendances.
 
-[Ajoutez des propriétés](app-insights-api-filtering-sampling.md#add-properties) à la télémétrie en implémentant `ITelemetryInitializer`. Par exemple, vous pouvez ajouter des numéros de version ou des valeurs calculées à partir d'autres propriétés.
+[Ajouter des propriétés](app-insights-api-filtering-sampling.md#add-properties) tootelemetry en implémentant `ITelemetryInitializer`. Par exemple, vous pouvez ajouter des numéros de version ou des valeurs calculées à partir d'autres propriétés.
 
-[Le filtrage](app-insights-api-filtering-sampling.md#filtering) peut modifier ou abandonner des données de télémétrie avant leur envoi depuis le SDK en implémentant `ITelemetryProcesor`. Vous contrôlez ce qui est envoyé ou rejeté, mais vous devez prendre en compte l’impact sur vos mesures. Suivant la façon dont vous ignorez les éléments, vous risquez de ne plus pouvoir naviguer entre des éléments connexes.
+[Le filtrage](app-insights-api-filtering-sampling.md#filtering) peut modifier ou ignorer les données de télémétrie avant d’être envoyée à partir de hello SDK en implémentant `ITelemetryProcesor`. Vous contrôlez ce qui est envoyé ou rejeté, mais vous avez tooaccount pour effet de hello sur vos mesures. En fonction de la façon dont vous ignorez les éléments, vous risquez de perdre toonavigate de capacité hello entre des éléments connexes.
 
-[L’échantillonnage](app-insights-api-filtering-sampling.md) est une solution intégrée pour réduire le volume des données envoyées à partir de votre application vers le portail. Cela n’affecte pas les mesures affichées. Et il n’affecte pas votre capacité à diagnostiquer les problèmes en navigant entre des éléments connexes, tels que les exceptions, les requêtes et les affichages de page.
+[Échantillonnage](app-insights-api-filtering-sampling.md) est un volume de hello tooreduce offre groupée de données qui sont envoyés à partir de votre portail toohello d’application. Il le fait sans affecter les métriques hello affiché. Et il le fait sans affecter vos problèmes de toodiagnose de capacité en naviguant entre les éléments connexes tels que les exceptions, les demandes et les vues de page.
 
-[Plus d’informations](app-insights-api-filtering-sampling.md)
+[En savoir plus](app-insights-api-filtering-sampling.md).
 
 ## <a name="disabling-telemetry"></a>Désactivation de la télémétrie
-Pour *arrêter et démarrer dynamiquement* la collecte et la transmission de la télémétrie :
+trop*dynamiquement arrêter et démarrer* hello collecte et transmission des données de télémétrie :
 
 *C#*
 
@@ -849,10 +849,10 @@ Pour *arrêter et démarrer dynamiquement* la collecte et la transmission de la 
     TelemetryConfiguration.Active.DisableTelemetry = true;
 ```
 
-Pour *désactiver les collecteurs standard sélectionnés* (par exemple, les compteurs de performances, les requêtes HTTP ou les dépendances), supprimez ou commentez les lignes correspondantes dans [ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md). Par exemple, vous pouvez faire cela si vous souhaitez envoyer vos propres données TrackRequest.
+trop*désactiver les collecteurs standards sélectionnés*--par exemple, les compteurs de performance, les requêtes HTTP ou dépendances--supprimer ou commenter les lignes concernées hello [ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md). Vous pouvez cela, par exemple, si vous souhaitez toosend vos propres données TrackRequest.
 
 ## <a name="debug"></a>Mode Développeur :
-Pendant le débogage, il est utile d'avoir votre télémétrie envoyée par le pipeline afin que vous puissiez voir immédiatement les résultats. Vous obtenez également des messages supplémentaires qui vous permettent de suivre tout problème relatif à la télémétrie. Désactivez-les lors de la production, car ils peuvent ralentir votre application.
+Pendant le débogage, il est utile toohave votre télémétrie expédié via le pipeline de hello afin que vous pouvez voir immédiatement les résultats. Vous get également des messages supplémentaires qui vous permettent de suivi des problèmes avec les données de télémétrie hello. Désactivez-les lors de la production, car ils peuvent ralentir votre application.
 
 *C#*
 
@@ -863,7 +863,7 @@ Pendant le débogage, il est utile d'avoir votre télémétrie envoyée par le p
     TelemetryConfiguration.Active.TelemetryChannel.DeveloperMode = True
 
 
-## <a name="ikey"></a> Définition de la touche d’instrumentation pour la télémétrie personnalisée sélectionnée
+## <a name="ikey"></a>Définition de clé d’instrumentation de hello pour une télémétrie personnalisée sélectionnée
 *C#*
 
     var telemetry = new TelemetryClient();
@@ -872,9 +872,9 @@ Pendant le débogage, il est utile d'avoir votre télémétrie envoyée par le p
 
 
 ## <a name="dynamic-ikey"></a> Clé d'instrumentation dynamique
-Pour éviter de mélanger la télémétrie fournie par les environnements de développement, de test et de production, vous pouvez [créer des ressources Application Insights distinctes](app-insights-create-new-resource.md) et modifier leurs clés en fonction de l’environnement.
+tooavoid mélange de télémétrie de développement, de test et environnements de production, vous pouvez [créer des ressources Application Insights distinctes](app-insights-create-new-resource.md) et modifier leurs clés, en fonction de l’environnement de hello.
 
-Au lieu de récupérer la clé d'instrumentation à partir du fichier de configuration, vous pouvez la définir dans votre code. Définissez la clé dans une méthode d'initialisation, par exemple global.aspx.cs dans un service ASP.NET :
+Au lieu d’obtenir la clé d’instrumentation hello hello fichier de configuration, vous pouvez la définir dans votre code. Clé d’ensemble hello dans une méthode d’initialisation, par exemple global.aspx.cs dans un service ASP.NET :
 
 *C#*
 
@@ -892,7 +892,7 @@ Au lieu de récupérer la clé d'instrumentation à partir du fichier de configu
 
 
 
-Dans les pages web, vous pouvez la définir depuis l'état du serveur web au lieu de la coder littéralement dans le script. Par exemple, dans une page web générée dans une application ASP.NET :
+Dans les pages Web, vous pourriez tooset à partir du serveur hello web état, plutôt que par codage il littéralement dans le script de hello. Par exemple, dans une page web générée dans une application ASP.NET :
 
 *JavaScript dans Razor*
 
@@ -908,30 +908,30 @@ Dans les pages web, vous pouvez la définir depuis l'état du serveur web au lie
 
 
 ## <a name="telemetrycontext"></a>TelemetryContext
-TelemetryClient a une propriété de contexte contenant les valeurs qui sont envoyées avec toutes les données de télémétrie. Elles sont normalement définies par les modules de télémétrie standard, mais vous pouvez également les définir vous-même. Par exemple :
+TelemetryClient a une propriété de contexte contenant les valeurs qui sont envoyées avec toutes les données de télémétrie. Ils sont normalement définies par les modules de télémétrie standard hello, mais vous pouvez également les définir vous-même. Par exemple :
 
     telemetry.Context.Operation.Name = "MyOperationName";
 
-Si vous définissez une de ces valeurs vous-même, supprimez la ligne appropriée dans [ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md), pour ne pas mélanger vos valeurs et les valeurs standard.
+Si vous définissez une de ces valeurs vous-même, envisagez de supprimer la ligne hello pertinentes [ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md), de sorte que vos valeurs et hello standard ne pas dérouter.
 
-* **Composant** : l'application et sa version.
-* **Appareil** : données concernant l’appareil sur lequel l’application s’exécute. (dans les applications web, il s’agit du serveur ou de l’appareil client depuis lequel la télémétrie est envoyée.)
-* **InstrumentationKey** : la ressource Application Insights dans Azure dans laquelle la télémétrie s’affiche. Elle est généralement récupérée dans ApplicationInsights.config.
-* **Emplacement** : emplacement géographique de l’appareil.
-* **Opération** : dans les applications web, il s’agit de la requête HTTP actuelle. Dans d'autres types d'application, vous pouvez définir celle-ci sur les événements regroupés.
+* **Composant**: hello application et sa version.
+* **APPAREIL**: les données sur l’appareil hello où l’application hello est en cours d’exécution. (Dans les applications web, voici hello serveur ou dispositif envoyées par les données de télémétrie hello.)
+* **InstrumentationKey**: hello ressource Application Insights dans Azure où apparaissent les données de télémétrie hello. Elle est généralement récupérée dans ApplicationInsights.config.
+* **Emplacement**: hello emplacement géographique de hello appareil.
+* **Opération**: dans les applications web, hello la requête HTTP actuelle. Dans d’autres types d’application, vous pouvez définir cette événements toogroup ensemble.
   * **ID**: une valeur générée qui met en relation différents événements de manière à ce que vous trouviez les « Éléments associés » lorsque vous inspectez un événement dans la Recherche de diagnostic.
-  * **Nom**: un identificateur, généralement l'URL de la requête HTTP.
-  * **SyntheticSource**: si elle est non nulle ou vide, cette chaîne indique que la source de la requête a été identifiée en tant que robot ou test web. Par défaut, elle est exclue des calculs dans Metrics Explorer.
+  * **Nom**: un identificateur, généralement hello URL de demande de hello HTTP.
+  * **SyntheticSource**: si non null ou vide, une chaîne indiquant que cette source de hello de demande de hello a été identifiée comme un test web ou le robot. Par défaut, elle est exclue des calculs dans Metrics Explorer.
 * **Propriétés** : ce sont les propriétés qui sont envoyées avec toutes les données de télémétrie. Elles peuvent être remplacées dans les appels Track* individuels.
-* **Session** : la session utilisateur. L'ID est définie sur une valeur générée qui est modifiée lorsque l'utilisateur n'a pas été actif pendant un certain temps.
+* **Session**: hello session utilisateur. Hello ID a la valeur tooa généré, ce qui est modifiée lorsque l’utilisateur de hello n’a pas été active pendant un certain temps.
 * **Utilisateur** : Informations utilisateur.
 
 ## <a name="limits"></a>limites
 [!INCLUDE [application-insights-limits](../../includes/application-insights-limits.md)]
 
-Pour éviter d'atteindre la limite de débit de données, utilisez [l’échantillonnage](app-insights-sampling.md).
+tooavoid atteint la limite de débit hello, utilisez [échantillonnage](app-insights-sampling.md).
 
-Pour déterminer la durée de conservation des données, consultez [Rétention des données et confidentialité](app-insights-data-retention-privacy.md).
+toodetermine comment les données de type long sont conservées, consultez [rétention des données et confidentialité](app-insights-data-retention-privacy.md).
 
 ## <a name="reference-docs"></a>Documents de référence
 * [Référence ASP.NET](https://msdn.microsoft.com/library/dn817570.aspx)
@@ -951,10 +951,10 @@ Pour déterminer la durée de conservation des données, consultez [Rétention d
 ## <a name="questions"></a>Questions
 * *Quelles exceptions peuvent être lancées par les appels Track_() ?*
 
-    Aucune. Vous n’avez pas besoin de les inclure dans des clauses try-catch. Si le Kit de développement logiciel (SDK) rencontre des problèmes, il enregistrera des messages dans la sortie de la console de débogage et, si les messages aboutissent, dans la recherche de diagnostic.
-* *Existe-t-il une API REST pour obtenir des données à partir du portail ?*
+    Aucune. Vous n’avez pas besoin de toowrap dans les clauses try-catch. Si le Kit de développement logiciel de hello rencontre des problèmes, il enregistrera les messages dans la sortie de console de débogage hello et--si hello messages obtenir via--dans la recherche de Diagnostic.
+* *Existe-t-il un tooget de données API REST à partir du portail de hello ?*
 
-    Oui, [l’API d’accès aux données](https://dev.applicationinsights.io/). Les autres méthodes d’extraction des données sont [l’exportation d’Analytics vers Power BI](app-insights-export-power-bi.md) et [l’exportation continue](app-insights-export-telemetry.md).
+    Oui, hello [API d’accès aux données](https://dev.applicationinsights.io/). Incluent d’autres données tooextract [exporter à partir de l’Analytique tooPower BI](app-insights-export-power-bi.md) et [exportation continue](app-insights-export-telemetry.md).
 
 ## <a name="next"></a>Étapes suivantes
 * [Recherche d’événements et de journaux](app-insights-diagnostic-search.md)

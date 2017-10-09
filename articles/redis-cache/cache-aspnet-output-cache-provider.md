@@ -1,6 +1,6 @@
 ---
-title: Mise en cache du fournisseur de caches de sortie ASP.NET
-description: "Découvrez comment mettre en cache les sortie de pages ASP.NET à l’aide du Cache Redis Azure"
+title: aaaCache fournisseur de Cache de sortie ASP.NET
+description: "Découvrez comment faire à l’aide d’Azure Redis Cache de sortie de Page ASP.NET toocache"
 services: redis-cache
 documentationcenter: na
 author: steved0x
@@ -14,34 +14,34 @@ ms.tgt_pltfrm: cache-redis
 ms.workload: tbd
 ms.date: 02/14/2017
 ms.author: sdanie
-ms.openlocfilehash: 845f25637a0e48460fc76c1ee36060274b3cec38
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: fc38cc657604b351f55ad8febac383783ac29700
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="aspnet-output-cache-provider-for-azure-redis-cache"></a>Fournisseur de caches de sortie ASP.NET pour le Cache Redis Azure
-Le fournisseur de caches de sortie Redis est un mécanisme de stockage hors processus pour les données de cache de sortie. Ces données concernent spécialement les réponses HTTP complètes (mise en cache de la sortie de pages). Le fournisseur se connecte au nouveau point d'extension du fournisseur de caches de sortie introduit dans ASP.NET 4.
+Hello fournisseur est un mécanisme de stockage d’out-of-process pour les données du cache de sortie. Ces données concernent spécialement les réponses HTTP complètes (mise en cache de la sortie de pages). fournisseur de Hello se connecte au hello nouvelle sortie cache fournisseur point d’extensibilité qui a été introduit dans ASP.NET 4.
 
-Pour utiliser le fournisseur de caches de sortie Redis, configurez d’abord votre cache, puis configurez votre application ASP.NET en utilisant le package NuGet du fournisseur de caches de sortie Redis. Cette rubrique fournit des conseils sur la configuration de votre application pour utiliser le fournisseur de caches de sortie Redis. Pour plus d’informations sur la création et la configuration d’une instance de Cache Redis Azure, consultez la section [Création d’un cache](cache-dotnet-how-to-use-azure-redis-cache.md#create-a-cache).
+toouse hello Redis d’un fournisseur de Cache de sortie, tout d’abord configurer votre cache, puis configurez votre application ASP.NET à l’aide du package NuGet du fournisseur du Cache de sortie Redis de hello. Cette rubrique fournit des conseils sur la configuration de votre hello de toouse application fournisseur. Pour plus d’informations sur la création et la configuration d’une instance de Cache Redis Azure, consultez la section [Création d’un cache](cache-dotnet-how-to-use-azure-redis-cache.md#create-a-cache).
 
-## <a name="store-aspnet-page-output-in-the-cache"></a>Stockage de la sortie de pages ASP.NET dans le cache
-Pour configurer une application cliente dans Visual Studio avec le package NuGet de l’état de session Cache Redis, cliquez sur **Gestionnaire de package NuGet**, **Console du Gestionnaire de package** dans le menu **Outils**.
+## <a name="store-aspnet-page-output-in-hello-cache"></a>Stocker la sortie de la page ASP.NET dans le cache de hello
+tooconfigure une application cliente dans Visual Studio à l’aide du package NuGet d’état de Session du Cache Redis de hello, cliquez sur **Gestionnaire de Package NuGet**, **Package Manager Console** de hello **outils** menu.
 
-Exécutez la commande suivante depuis la fenêtre `Package Manager Console`.
+Exécution hello après une commande à partir de hello `Package Manager Console` fenêtre.
     
 ```
 Install-Package Microsoft.Web.RedisOutputCacheProvider
 ```
 
-Le package NuGet du fournisseur de caches de sortie Redis a une dépendance sur le package StackExchange.Redis.StrongName. Le package StackExchange.Redis.StrongName est automatiquement installé s’il ne figure pas déjà dans votre projet. Pour plus d’informations sur le package NuGet du fournisseur de caches de sortie Redis, consultez la page NuGet [RedisOutputCacheProvider](https://www.nuget.org/packages/Microsoft.Web.RedisOutputCacheProvider/).
+package NuGet du fournisseur du Cache de sortie Redis de Hello a une dépendance sur le package StackExchange.Redis.StrongName de hello. Si le package StackExchange.Redis.StrongName de hello n’est pas présent dans votre projet, il est installé. Pour plus d’informations sur le package NuGet du fournisseur du Cache de sortie Redis de hello, consultez hello [RedisOutputCacheProvider](https://www.nuget.org/packages/Microsoft.Web.RedisOutputCacheProvider/) page de NuGet.
 
 >[!NOTE]
->Il existe, en plus du package StackExchange.Redis.StrongName avec nom fort, une version de StackExchange.Redis sans nom fort. Si votre projet utilise la version StackExchange.Redis sans nom fort, vous devez la désinstaller, sans quoi vous aurez des conflits de noms dans votre projet. Pour plus d’informations sur ces packages, consultez la section [Configuration des clients de cache .NET](cache-dotnet-how-to-use-azure-redis-cache.md#configure-the-cache-clients).
+>Dans Ajout toohello fort package StackExchange.Redis.StrongName, également hello StackExchange.Redis sans nom fort version existe. Si votre projet utilise la version de StackExchange.Redis sans nom fort hello que vous devez le désinstaller, sinon vous des conflits de noms dans votre projet. Pour plus d’informations sur ces packages, consultez la section [Configuration des clients de cache .NET](cache-dotnet-how-to-use-azure-redis-cache.md#configure-the-cache-clients).
 >
 >
 
-Le package NuGet télécharge et ajoute les références d’assembly nécessaires et ajoute la section suivante dans votre fichier web.config. Cette section contient la configuration requise pour que votre application ASP.NET utilise le fournisseur de cache de sortie Redis.
+Hello NuGet package télécharge et ajoute hello requis assembly référence et ajoute des hello suivant la section dans votre fichier web.config. Cette section contient la configuration requise de hello pour votre hello de toouse ASP.NET application fournisseur.
 
 ```xml
 <caching>
@@ -65,30 +65,30 @@ Le package NuGet télécharge et ajoute les références d’assembly nécessair
 </caching>
 ```
 
-La section commentée fournit un exemple d’attributs et de paramétrage pour chacun de ces attributs.
+Hello commenté section fournit un exemple des attributs de hello et des exemples de paramètres pour chaque attribut.
 
-Configurez les attributs avec les valeurs du panneau de votre cache sur le portail Microsoft Azure et configurez les autres valeurs selon votre choix. Pour obtenir des instructions sur l’accès aux propriétés de votre cache, consultez la section [Configuration des paramètres de cache Redis](cache-configure.md#configure-redis-cache-settings).
+Configurer les attributs de hello avec des valeurs hello du Panneau de cache dans le portail de Microsoft Azure hello et configurer hello autres valeurs selon vos besoins. Pour obtenir des instructions sur l’accès aux propriétés de votre cache, consultez la section [Configuration des paramètres de cache Redis](cache-configure.md#configure-redis-cache-settings).
 
 * **host** : spécifiez le point de terminaison de votre cache.
-* **port** : utilisez votre port non SSL ou votre port SSL, selon les paramètres ssl.
-* **accessKey** : utilisez la clé primaire ou secondaire pour votre cache.
-* **ssl** : choisissez « true » si vous souhaitez sécuriser les communications cache/client avec ssl ; sinon, choisissez « false ». Veillez à spécifier le port approprié.
-  * Le port non SSL est désactivé par défaut pour les nouveaux caches. Spécifiez true pour utiliser le port SSL pour ce paramètre. Pour plus d’informations sur l’activation du port non SSL, consultez la section relative aux [ports d’accès](cache-configure.md#access-ports) dans la rubrique [Configuration d’un cache](cache-configure.md).
-* **databaseId** : spécifiez la base de données à utiliser pour les données de sortie du cache. Si ce champ n’est pas spécifié, la valeur 0 sera utilisée par défaut.
-* **applicationName** : les clés sont stockées dans redis sous `<AppName>_<SessionId>_Data`. Ce schéma d’affectation permet à plusieurs applications de partager la même clé. Ce paramètre est facultatif. Si vous n’indiquez aucune valeur, une valeur par défaut sera utilisée.
-* **connectionTimeoutInMilliseconds** : ce paramètre vous permet de remplacer le paramètre connectTimeout dans le client StackExchange.Redis. S’il n’est pas spécifié, le paramètre par défaut connectTimeout 5000 est utilisé. Pour plus d’informations, consultez le [modèle de configuration StackExchange.Redis](http://go.microsoft.com/fwlink/?LinkId=398705).
-* **operationTimeoutInMilliseconds** : ce paramètre vous permet de remplacer le paramètre syncTimeout dans le client StackExchange.Redis. S’il n’est pas spécifié, le paramètre par défaut syncTimeout 1000 est utilisé. Pour plus d’informations, consultez le [modèle de configuration StackExchange.Redis](http://go.microsoft.com/fwlink/?LinkId=398705).
+* **port** – utilisez votre port non-SSL ou votre port SSL, en fonction des paramètres ssl de hello.
+* **accessKey** – utilisez clé hello principal ou secondaire de votre cache.
+* **SSL** : true si vous voulez toosecure les communications de cache/client avec ssl ; sinon, false. Être vraiment toospecify hello correct.
+  * port non-SSL de Hello est désactivé par défaut pour les nouveaux caches. Spécifiez true pour cette hello toouse de paramètre port SSL. Pour plus d’informations sur l’activation du port de hello non-SSL, consultez hello [Ports d’accès](cache-configure.md#access-ports) section Bonjour [configurer un cache](cache-configure.md) rubrique.
+* **databaseId** – spécifié le toouse de la base de données pour le cache des données de sortie. Si non spécifié, la valeur par défaut 0 hello est utilisé.
+* **applicationName** : les clés sont stockées dans redis sous `<AppName>_<SessionId>_Data`. Ce schéma d’affectation de noms permet hello de tooshare plusieurs applications même clé. Ce paramètre est facultatif. Si vous n’indiquez aucune valeur, une valeur par défaut sera utilisée.
+* **connectionTimeoutInMilliseconds** : ce paramètre vous permet de connectTimeout de hello toooverride définition dans le client StackExchange.Redis de hello. Si non spécifié, le paramètre connectTimeout 5000 hello par défaut est utilisé. Pour plus d’informations, consultez le [modèle de configuration StackExchange.Redis](http://go.microsoft.com/fwlink/?LinkId=398705).
+* **operationTimeoutInMilliseconds** : ce paramètre vous permet de syncTimeout de hello toooverride définition dans le client StackExchange.Redis de hello. Si non spécifié, la valeur syncTimeout 1000 hello par défaut est utilisée. Pour plus d’informations, consultez le [modèle de configuration StackExchange.Redis](http://go.microsoft.com/fwlink/?LinkId=398705).
 
-Ajoutez une directive OutputCache à chaque page pour laquelle vous voulez mettre en cache la sortie.
+Ajouter une page de tooeach directive OutputCache pour laquelle vous souhaitez la sortie de hello toocache.
 
 ```
 <%@ OutputCache Duration="60" VaryByParam="*" %>
 ```
 
-Dans l’exemple précédent, les données de page mises en cache resteront dans le cache pendant 60 secondes et une version différente de la page est mise en cache pour chaque combinaison de paramètres. Pour plus d’informations sur la directive OutputCache, consultez [@OutputCache](http://go.microsoft.com/fwlink/?linkid=320837).
+Dans l’exemple précédent de hello, hello mises en cache les données de page reste dans le cache de hello pendant 60 secondes, et une version différente de la page de hello est mis en cache pour chaque combinaison de paramètres. Pour plus d’informations sur la directive OutputCache de hello, consultez [ @OutputCache ](http://go.microsoft.com/fwlink/?linkid=320837).
 
-Une fois ces étapes effectuées, votre application est configurée pour utiliser le fournisseur de caches de sortie Redis.
+Une fois ces étapes effectuées, votre application est configurée toouse hello fournisseur.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Consultez la page [ASP.NET Session State Provider for Azure Redis Cache](cache-aspnet-session-state-provider.md)(en anglais).
+Extraire hello [fournisseur d’état de Session ASP.NET pour le Cache Redis Azure](cache-aspnet-session-state-provider.md).
 

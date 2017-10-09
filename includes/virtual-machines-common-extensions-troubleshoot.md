@@ -1,9 +1,9 @@
 
 
 ## <a name="overview-of-azure-resource-manager-templates"></a>Vue d’ensemble des modèles Azure Resource Manager
-Les modèles Azure Resource Manager vous permettent de spécifier de manière déclarative l’infrastructure IaaS Azure en langage JSON en définissant les dépendances entre ressources.
+Les modèles de gestionnaire de ressources Azure vous permet de toodeclaratively spécifier infrastructure IaaS Azure de hello en langage JSON en définissant des dépendances hello entre les ressources.
 
-Pour plus d’informations sur la création de modèles permettant l’utilisation d’extensions, consultez l’article concernant la [création de modèles avec des extensions](../articles/virtual-machines/windows/template-description.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) .
+Consultez [création de modèles d’extension](../articles/virtual-machines/windows/template-description.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) toolearn plus d’informations sur la création de modèles pour l’utilisation des extensions.
 
-Dans cet article, nous apprendrons à dépanner certains des échecs d’extension de machine virtuelle les plus courants.
+Dans cet article nous allons en savoir plus sur le dépannage des échecs de hello communs VM extension.
 

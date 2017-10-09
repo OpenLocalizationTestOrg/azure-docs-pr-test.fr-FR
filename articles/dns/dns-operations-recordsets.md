@@ -1,5 +1,5 @@
 ---
-title: "Gérer les enregistrements DNS dans Azure DNS avec Azure PowerShell | Microsoft Docs"
+title: "aaaManage DNS des enregistrements dans DNS Azure à l’aide d’Azure PowerShell | Documents Microsoft"
 description: "Gestion des jeux d'enregistrements DNS et des enregistrements dans Azure DNS lorsque votre domaine est hébergé dans Azure DNS. Toutes les commandes PowerShell pour les opérations sur les jeux d'enregistrements et les enregistrements."
 services: dns
 documentationcenter: na
@@ -14,11 +14,11 @@ ms.custom: H1Hack27Feb2017
 ms.workload: infrastructure-services
 ms.date: 12/21/2016
 ms.author: gwallace
-ms.openlocfilehash: 2962e30e5d9c60b8e786e2ba79647cabfc5925cd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bfdf116e174d06db0514abdc0ec3f4fc4ee0a079
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-dns-records-and-recordsets-in-azure-dns-using-azure-powershell"></a>Gérer les enregistrements et jeux d’enregistrements DNS dans Azure DNS à l’aide d’Azure PowerShell
 
@@ -28,13 +28,13 @@ ms.lasthandoff: 07/11/2017
 > * [Azure CLI 2.0](dns-operations-recordsets-cli.md)
 > * [PowerShell](dns-operations-recordsets.md)
 
-Cet article explique comment gérer les enregistrements DNS pour votre zone DNS avec Azure PowerShell. Vous pouvez également gérer les enregistrements DNS à l’aide de l’[interface de ligne de commande Azure (Azure CLI)](dns-operations-recordsets-cli.md) multiplateforme ou via le [portail Azure](dns-operations-recordsets-portal.md).
+Cet article explique la modification des enregistrements par toomanage DNS pour votre zone DNS à l’aide d’Azure PowerShell. Enregistrements DNS peuvent également être gérés à l’aide de hello inter-plateformes [CLI d’Azure](dns-operations-recordsets-cli.md) ou hello [portail Azure](dns-operations-recordsets-portal.md).
 
-Les exemples de cet article supposent que vous avez déjà [installé Azure PowerShell, ouvert une session et créé une zone DNS](dns-operations-dnszones.md).
+exemples Hello dans cet article supposent que vous avez déjà [installé Azure PowerShell, signé et la création d’une zone DNS](dns-operations-dnszones.md).
 
 ## <a name="introduction"></a>Introduction
 
-Avant de créer des enregistrements DNS dans Azure DNS, vous devez comprendre comment Azure DNS organise les enregistrements DNS en jeux d’enregistrements DNS.
+Avant de créer des enregistrements DNS dans le système DNS d’Azure, vous devez d’abord toounderstand comment Azure DNS organise les enregistrements DNS dans les jeux d’enregistrements DNS.
 
 [!INCLUDE [dns-about-records-include](../../includes/dns-about-records-include.md)]
 
@@ -43,27 +43,27 @@ Pour plus d’informations sur les enregistrements DNS dans Azure DNS, voir [Enr
 
 ## <a name="create-a-new-dns-record"></a>Créer un enregistrement DNS
 
-Si votre nouvel enregistrement porte le même nom et est du même type qu’un enregistrement existant, vous devez l’[ajouter au jeu d’enregistrements existant](#add-a-record-to-an-existing-record-set). En revanche, si le nom et le type de votre nouvel enregistrement diffèrent de ceux de tous les enregistrements existants, vous devez créer un jeu d’enregistrements. 
+Si votre nouvel enregistrement hello même nom et le type en tant qu’un enregistrement existant, vous devez trop[ajouter le jeu d’enregistrements existant toohello](#add-a-record-to-an-existing-record-set). Si votre nouvel enregistrement a un tooall de nom et type de différents enregistrements existants, vous devez toocreate un nouveau jeu d’enregistrements. 
 
 ### <a name="create-a-records-in-a-new-record-set"></a>Créer des enregistrements « A » dans un nouveau jeu d’enregistrements
 
-Vous pouvez utiliser l’applet de commande `New-AzureRmDnsRecordSet` pour créer des jeux d’enregistrements. Lors de la création d’un jeu d’enregistrements, vous devez en spécifier le nom, la zone et la durée de vie (TTL), ainsi que les enregistrements à créer et leur type.
+Vous créez des jeux d’enregistrements à l’aide de hello `New-AzureRmDnsRecordSet` applet de commande. Lorsque vous créez un jeu d’enregistrements, vous avez besoin de nom de jeu d’enregistrements toospecify hello, zone de hello, hello création toolive (TTL), type d’enregistrement hello et hello enregistrements toobe.
 
-Les paramètres pour ajouter des enregistrements à un jeu d'enregistrements varient selon le type de jeu d'enregistrements. Par exemple, si vous utilisez un jeu d’enregistrements de type « A », vous devez spécifier l’adresse IP à l’aide du paramètre `-IPv4Address`. D’autres paramètres sont utilisés pour d’autres types d’enregistrements. Pour plus d’informations, voir les [autres exemples de types d’enregistrements](#additional-record-type-examples).
+paramètres de Hello pour ajouter le jeu d’enregistrements enregistrements tooa varient en fonction de type hello du jeu d’enregistrements hello. Par exemple, lorsque vous utilisez un jeu d’enregistrements de type « A », vous avez besoin d’adresse IP de toospecify hello à l’aide du paramètre hello `-IPv4Address`. D’autres paramètres sont utilisés pour d’autres types d’enregistrements. Pour plus d’informations, voir les [autres exemples de types d’enregistrements](#additional-record-type-examples).
 
-L’exemple suivant crée un jeu d’enregistrements avec le nom relatif « www » dans la zone DNS « contoso.com ». Le nom complet du jeu d’enregistrements est « www.contoso.com ». Le type d’enregistrement est « A » et la durée de vie est de 3 600 secondes. Le jeu d’enregistrements ne contient qu’un seul enregistrement, dont l’adresse IP est « 1.2.3.4 ».
+Hello exemple suivant crée un enregistrement avec le nom relatif de hello « www » Bonjour Zone du DNS « contoso.com ». nom qualifié complet de Hello du jeu d’enregistrements hello est « www.contoso.com ». type d’enregistrement Hello est « A » et hello durée de vie est 3 600 secondes. jeu d’enregistrements Hello contient un enregistrement unique, avec l’adresse IP « 1.2.3.4 ».
 
 ```powershell
 New-AzureRmDnsRecordSet -Name "www" -RecordType A -ZoneName "contoso.com" -ResourceGroupName "MyResourceGroup" -Ttl 3600 -DnsRecords (New-AzureRmDnsRecordConfig -IPv4Address "1.2.3.4") 
 ```
 
-Pour créer un jeu d’enregistrements à l’apex (au sommet) d’une zone (en l’occurrence, « contoso.com »), utilisez le nom de jeu d’enregistrements « @ » (guillemets non compris) :
+toocreate un jeu d’enregistrements à hello 'apex » d’une zone (dans ce cas, « contoso.com »), utilisez le nom de jeu d’enregistrements hello ' @' (sans guillemets) :
 
 ```powershell
 New-AzureRmDnsRecordSet -Name "@" -RecordType A -ZoneName "contoso.com" -ResourceGroupName "MyResourceGroup" -Ttl 3600 -DnsRecords (New-AzureRmDnsRecordConfig -IPv4Address "1.2.3.4") 
 ```
 
-Si vous devez créer un jeu d’enregistrements contenant plusieurs enregistrements, commencez par créer un groupe local, ajoutez les enregistrements, puis transmettez le groupe à `New-AzureRmDnsRecordSet` comme suit :
+Si vous avez besoin d’un jeu d’enregistrements contenant plusieurs enregistrements de toocreate, tout d’abord créer un tableau local et ajouter des enregistrements de hello, puis passer le tableau de hello trop`New-AzureRmDnsRecordSet` comme suit :
 
 ```powershell
 $aRecords = @()
@@ -72,13 +72,13 @@ $aRecords += New-AzureRmDnsRecordConfig -IPv4Address "2.3.4.5"
 New-AzureRmDnsRecordSet -Name www –ZoneName "contoso.com" -ResourceGroupName MyResourceGroup -Ttl 3600 -RecordType A -DnsRecords $aRecords
 ```
 
-Vous pouvez utiliser des [métadonnées de jeu d’enregistrements](dns-zones-records.md#tags-and-metadata) pour associer les données spécifiques de l’application à chaque jeu d’enregistrements, comme paires clé-valeur. L’exemple suivant montre comment créer un jeu d’enregistrements avec deux entrées de métadonnées, « dept=finance » et « environment=production ».
+[Métadonnées du jeu d’enregistrements](dns-zones-records.md#tags-and-metadata) peuvent être des données spécifiques à l’application tooassociate utilisées avec chaque jeu d’enregistrements, en tant que paires clé-valeur. Hello suivant montre comment toocreate un jeu d’enregistrements avec deux entrées de métadonnées, « dept = finance' et ' environnement = production ».
 
 ```powershell
 New-AzureRmDnsRecordSet -Name "www" -RecordType A -ZoneName "contoso.com" -ResourceGroupName "MyResourceGroup" -Ttl 3600 -DnsRecords (New-AzureRmDnsRecordConfig -IPv4Address "1.2.3.4") -Metadata @{ dept="finance"; environment="production" } 
 ```
 
-Azure DNS prend également en charge les jeux d’enregistrements « vides », qui peuvent servir d’espaces réservés pour réserver un nom DNS avant de créer des enregistrements DNS. Les jeux d’enregistrements vides sont visibles dans le volet de contrôle d’Azure DNS, mais n’apparaissent pas sur les serveurs de noms Azure DNS. L’exemple suivant crée un jeu d’enregistrements vide :
+DNS Azure prend également en charge les jeux d’enregistrements 'empty', qui peut agir comme un espace réservé tooreserve un nom DNS avant de créer des enregistrements DNS. Jeux d’enregistrements vides est visibles dans le plan de contrôle hello Azure DNS, mais s’affichent sur les serveurs DNS de Azure hello. Bonjour à l’exemple suivant crée un jeu d’enregistrements vide :
 
 ```powershell
 New-AzureRmDnsRecordSet -Name "www" -RecordType A -ZoneName "contoso.com" -ResourceGroupName "MyResourceGroup" -Ttl 3600 -DnsRecords @()
@@ -86,11 +86,11 @@ New-AzureRmDnsRecordSet -Name "www" -RecordType A -ZoneName "contoso.com" -Resou
 
 ## <a name="create-records-of-other-types"></a>Créer des enregistrements d’autres types
 
-À présent que nous avons vu en détail comment créer des enregistrements de type « A », les exemples suivants montrent comment créer des enregistrements d’autres types pris en charge par Azure DNS.
+Après avoir vu en détail comment toocreate 'A' enregistre, hello suivant exemples montrent comment toocreate les enregistrements d’autres types pris en charge par le système DNS Azure d’enregistrements.
 
-Dans chaque cas, nous montrons comment créer un jeu d’enregistrements contenant un seul enregistrement. Vous pouvez adapter les exemples précédents pour les enregistrements de type « A » afin de créer des jeux d’enregistrements d’autres types contenant plusieurs enregistrements avec des métadonnées, ou des jeux d’enregistrements vides.
+Dans chaque cas, nous montrons comment toocreate un enregistrement défini contenant un seul enregistrement. Hello les exemples précédents pour les enregistrements 'A' peuvent être adapté toocreate jeux d’enregistrements d’autres types contenant plusieurs enregistrements avec des métadonnées, ou des jeux d’enregistrements de vide toocreate.
 
-Nous ne donnons pas d’exemple de création de jeu d’enregistrements SOA (Architecture orientée services), car les enregistrements de ce type sont créés et supprimés avec chaque zone DNS, et ne peuvent pas l’être séparément. En revanche, vous pouvez [modifier les enregistrements SOA en procédant de la manière décrite dans un exemple plus loin](#to-modify-an-SOA-record).
+Nous ne donnent pas une toocreate exemple un jeu d’enregistrements SOA, étant donné que SOA est créées et supprimées avec chaque zone DNS et ne peut pas être créée ou supprimée séparément. Toutefois, [hello SOA peut être modifiée, comme indiqué dans un exemple plus loin](#to-modify-an-SOA-record).
 
 ### <a name="create-an-aaaa-record-set-with-a-single-record"></a>Créer un jeu d’enregistrements AAAA avec un seul enregistrement
 
@@ -101,7 +101,7 @@ New-AzureRmDnsRecordSet -Name "test-aaaa" -RecordType AAAA -ZoneName "contoso.co
 ### <a name="create-a-cname-record-set-with-a-single-record"></a>Créer un jeu d’enregistrements CNAME avec un seul enregistrement
 
 > [!NOTE]
-> Les normes DNS n’autorisent pas la présence d’enregistrements CNAME ou de jeux d’enregistrements contenant plusieurs enregistrements à l’apex (sommet) d’une zone (`-Name '@'`).
+> les normes DNS Hello n’autorisent pas les enregistrements CNAME au sommet de hello d’une zone (`-Name '@'`), ni font qu’ils autorisent les jeux d’enregistrements contenant plusieurs enregistrements.
 > 
 > Pour plus d’informations, voir [Enregistrements CNAME](dns-zones-records.md#cname-records).
 
@@ -112,7 +112,7 @@ New-AzureRmDnsRecordSet -Name "test-cname" -RecordType CNAME -ZoneName "contoso.
 
 ### <a name="create-an-mx-record-set-with-a-single-record"></a>Créer un jeu d’enregistrements MX avec un seul enregistrement
 
-Dans cet exemple, nous utilisons le nom de jeu d’enregistrements « @ » pour créer un enregistrement MX à l’apex de la zone (dans ce cas, « contoso.com »).
+Dans cet exemple, nous utilisons le nom du jeu d’enregistrements hello ' @' enregistrement toocreate un MX au sommet de zone hello (dans ce cas, « contoso.com »).
 
 
 ```powershell
@@ -127,7 +127,7 @@ New-AzureRmDnsRecordSet -Name "test-ns" -RecordType NS -ZoneName "contoso.com" -
 
 ### <a name="create-a-ptr-record-set-with-a-single-record"></a>Créer un jeu d’enregistrements PTR avec un seul enregistrement
 
-Dans ce cas, « my-arpa-zone.com » indique la zone ARPA de recherche inversée représentant votre plage d’adresses IP. Chaque enregistrement PTR défini dans cette zone correspond à une adresse IP figurant dans cette plage d’adresses IP. Le nom d’enregistrement « 10 » est le dernier octet de l’adresse IP dans cette plage d’IP représentée par cet enregistrement.
+Dans ce cas, « my-arpa-zone.com' représente hello zone de recherche inversée ARPA représentant votre plage IP. Chaque enregistrement PTR dans cette zone correspond à adresse IP de tooan au sein de cette plage d’adresses IP. nom de l’enregistrement Hello « 10 » est le dernier octet de hello d’adresse IP de hello dans cette plage IP représentée par cet enregistrement.
 
 ```powershell
 New-AzureRmDnsRecordSet -Name 10 -RecordType PTR -ZoneName "my-arpa-zone.com" -ResourceGroupName "MyResourceGroup" -Ttl 3600 -DnsRecords (New-AzureRmDnsRecordConfig -Ptrdname "myservice.contoso.com") 
@@ -135,7 +135,7 @@ New-AzureRmDnsRecordSet -Name 10 -RecordType PTR -ZoneName "my-arpa-zone.com" -R
 
 ### <a name="create-an-srv-record-set-with-a-single-record"></a>Créer un jeu d’enregistrements SRV avec un seul enregistrement
 
-Lorsque vous créez un [jeu d’enregistrements SRV](dns-zones-records.md#srv-records), spécifiez le  *\_service* et le  *\_protocole* dans le nom du jeu d’enregistrements. Il est inutile d’inclure « @ » dans le nom du jeu d’enregistrements lors de la création d’un jeu d’enregistrements SRV à l’apex de la zone.
+Lorsque vous créez un [jeu d’enregistrements SRV](dns-zones-records.md#srv-records), spécifiez hello  *\_service* et  *\_protocole* Bonjour nom du jeu d’enregistrements. Il n’existe aucun besoin tooinclude ' @' Bonjour jeu d’enregistrements nom lors de la création d’un enregistrement SRV définie au sommet de zone hello.
 
 ```powershell
 New-AzureRmDnsRecordSet -Name "_sip._tls" -RecordType SRV -ZoneName "contoso.com" -ResourceGroupName "MyResourceGroup" -Ttl 3600 -DnsRecords (New-AzureRmDnsRecordConfig -Priority 0 -Weight 5 -Port 8080 -Target "sip.contoso.com") 
@@ -144,7 +144,7 @@ New-AzureRmDnsRecordSet -Name "_sip._tls" -RecordType SRV -ZoneName "contoso.com
 
 ### <a name="create-a-txt-record-set-with-a-single-record"></a>Créer un jeu d’enregistrements TXT avec un seul enregistrement
 
-L’exemple suivant montre comment créer un enregistrement TXT. Pour plus d’informations sur la longueur maximale de chaîne prise en charge dans les enregistrements TXT, voir [Enregistrements TXT](dns-zones-records.md#txt-records).
+Hello suivant montre comment enregistrer des toocreate un TXT. Pour plus d’informations sur la longueur maximale de la chaîne hello pris en charge dans les enregistrements TXT, consultez [enregistrements TXT](dns-zones-records.md#txt-records).
 
 ```powershell
 New-AzureRmDnsRecordSet -Name "test-txt" -RecordType TXT -ZoneName "contoso.com" -ResourceGroupName "MyResourceGroup" -Ttl 3600 -DnsRecords (New-AzureRmDnsRecordConfig -Value "This is a TXT record") 
@@ -153,17 +153,17 @@ New-AzureRmDnsRecordSet -Name "test-txt" -RecordType TXT -ZoneName "contoso.com"
 
 ## <a name="get-a-record-set"></a>Obtention d’un jeu d'enregistrements
 
-Pour récupérer un jeu d’enregistrements existant, utilisez `Get-AzureRmDnsRecordSet`. Cette applet de commande renvoie un objet local représentant le jeu d’enregistrements dans Azure DNS.
+tooretrieve un jeu d’enregistrements existant, utilisez `Get-AzureRmDnsRecordSet`. Cette applet de commande retourne un objet local représentant hello jeu d’enregistrements dans DNS Azure.
 
-Comme avec l’applet de commande `New-AzureRmDnsRecordSet`, le nom du jeu d’enregistrements doit être un nom *relatif*, c’est-à-dire qu’il ne doit pas contenir le nom de la zone. Vous devez également spécifier le type d’enregistrement et la zone contenant le jeu d’enregistrements.
+Comme avec `New-AzureRmDnsRecordSet`, nom du jeu d’enregistrements hello donné doit être un *relatif* nom, qui signifie qu’il doit exclure le nom de la zone hello. Vous devez également le type d’enregistrement toospecify hello et zone hello contenant le jeu d’enregistrements hello.
 
-L’exemple suivant montre comment récupérer un jeu d’enregistrements. Dans cet exemple, la zone est spécifiée à l’aide des paramètres `-ZoneName` et `-ResourceGroupName`.
+Hello suivant montre comment tooretrieve un jeu d’enregistrements. Dans cet exemple, les zones de hello est spécifié à l’aide de hello `-ZoneName` et `-ResourceGroupName` paramètres.
 
 ```powershell
 $rs = Get-AzureRmDnsRecordSet -Name "www" -RecordType A -ZoneName "contoso.com" -ResourceGroupName "MyResourceGroup"
 ```
 
-Vous pouvez également spécifier la zone à l’aide d’un objet zone, transmis en utilisant le `-Zone` paramètre.
+Vous pouvez également spécifier également zone hello à l’aide d’un objet de fuseau, passé à l’aide de hello `-Zone` paramètre.
 
 ```powershell
 $zone = Get-AzureRmDnsZone -Name "contoso.com" -ResourceGroupName "MyResourceGroup"
@@ -172,116 +172,116 @@ $rs = Get-AzureRmDnsRecordSet -Name "www" -RecordType A -Zone $zone
 
 ## <a name="list-record-sets"></a>Liste des jeux d'enregistrements
 
-Vous pouvez également utiliser l’applet de commande `Get-AzureRmDnsZone` pour répertorier les jeux d’enregistrements présents dans une zone, en omettant les paramètres `-Name` et/ou `-RecordType`.
+Vous pouvez également utiliser `Get-AzureRmDnsZone` des jeux d’enregistrements de toolist dans une zone, en omettant hello `-Name` et/ou `-RecordType` paramètres.
 
-L’exemple suivant retourne tous les jeux d’enregistrements présents dans la zone :
+Hello exemple suivant retourne tous les enregistrements définit dans la zone de hello :
 
 ```powershell
 $recordsets = Get-AzureRmDnsRecordSet -ZoneName "contoso.com" -ResourceGroupName "MyResourceGroup"
 ```
 
-L’exemple suivant montre comment récupérer tous les jeux d’enregistrements d’un type donné en spécifiant le type d’enregistrement, mais en omettant le nom du jeu d’enregistrements :
+Hello suivant montre comment tous les jeux d’un type donné d’enregistrements peuvent être récupérées en spécifiant le type d’enregistrement hello pendant enregistrement de hello l'omission de définie le nom :
 
 ```powershell
 $recordsets = Get-AzureRmDnsRecordSet -RecordType A -ZoneName "contoso.com" -ResourceGroupName "MyResourceGroup"
 ```
 
-Pour récupérer parmi les types d’enregistrements tous les jeux d’enregistrements portant un nom spécifique, vous devez récupérer tous les jeux d’enregistrements, puis filtrer les résultats :
+tooretrieve définit de tous les enregistrements avec un nom donné, entre les types d’enregistrement, vous devez tooretrieve tous les jeux d’enregistrements, puis filtre hello résultats :
 
 ```powershell
 $recordsets = Get-AzureRmDnsRecordSet -ZoneName "contoso.com" -ResourceGroupName "MyResourceGroup" | where {$_.Name.Equals("www")}
 ```
 
-Dans tous les exemples ci-dessus, vous pouvez spécifier la zone à l’aide des paramètres `-ZoneName` et `-ResourceGroupName` (comme indiqué), ou en spécifiant un objet zone :
+Bonjour tous les exemples ci-dessus, zone de hello peut être spécifié à l’aide de hello `-ZoneName` et `-ResourceGroupName`paramètres (comme indiqué), ou en spécifiant un objet de la zone :
 
 ```powershell
 $zone = Get-AzureRmDnsZone -Name "contoso.com" -ResourceGroupName "MyResourceGroup"
 $recordsets = Get-AzureRmDnsRecordSet -Zone $zone
 ```
 
-## <a name="add-a-record-to-an-existing-record-set"></a>Ajouter un enregistrement à un jeu d’enregistrements existant
+## <a name="add-a-record-tooan-existing-record-set"></a>Ajouter un enregistrement tooan existante du jeu d’enregistrements
 
-Pour ajouter un enregistrement à un jeu d’enregistrements existant, suivez les trois étapes suivantes :
+tooadd un enregistrement existant tooan enregistrement défini, procédez comme hello trois comme suit :
 
-1. Obtenez le jeu d’enregistrements existant
+1. Obtenir le jeu d’enregistrements existant hello
 
     ```powershell
     $rs = Get-AzureRmDnsRecordSet -Name www –ZoneName "contoso.com" -ResourceGroupName "MyResourceGroup" -RecordType A
     ```
 
-2. Ajoutez le nouvel enregistrement au jeu d’enregistrements local. Cette opération se fait hors connexion.
+2. Ajoutez hello nouvel enregistrement toohello local ensemble d’enregistrements. Cette opération se fait hors connexion.
 
     ```powershell
     Add-AzureRmDnsRecordConfig -RecordSet $rs -Ipv4Address "5.6.7.8"
     ```
 
-3. Validez la modification sur le service Azure DNS. 
+3. Valider hello modification toohello arrière service DNS Azure. 
 
     ```powershell
     Set-AzureRmDnsRecordSet -RecordSet $rs
     ```
 
-L’applet de commande `Set-AzureRmDnsRecordSet` *remplace* le jeu d’enregistrements existant dans Azure DNS (et tous les enregistrements qu’il contient) par le jeu d’enregistrements spécifié. Des [vérifications ETag](dns-zones-records.md#etags) permettent d’éviter les conflits de modifications simultanées. Le commutateur facultatif `-Overwrite` permet de supprimer ces vérifications.
+À l’aide de `Set-AzureRmDnsRecordSet` *remplace* hello enregistrement existant, défini dans le système DNS Azure (et tous les enregistrements qu’il contient) avec le jeu d’enregistrements hello spécifié. [Vérification ETag](dns-zones-records.md#etags) servent tooensure des modifications simultanées ne sont pas remplacées. Vous pouvez utiliser hello facultatif `-Overwrite` commutateur toosuppress ces vérifications.
 
-Vous pouvez également *canaliser* cette séquence d’opérations, c’est-à-dire transmettre l’objet jeu d’enregistrements en utilisant le canal plutôt qu’en le transmettant en tant que paramètre :
+Séquence d’opérations peut également être *dirigés*, ce qui signifie que vous passez un objet de jeu d’enregistrements hello par une barre verticale hello plutôt que d’en lui passant comme paramètre :
 
 ```powershell
 Get-AzureRmDnsRecordSet -Name "www" –ZoneName "contoso.com" -ResourceGroupName "MyResourceGroup" -RecordType A | Add-AzureRmDnsRecordConfig -Ipv4Address "5.6.7.8" | Set-AzureRmDnsRecordSet
 ```
 
-Les exemples ci-dessus montrent comment ajouter un enregistrement « A » à un jeu existant d’enregistrements de type « A ». Une séquence similaire d’opérations est utilisée pour ajouter des enregistrements à des jeux d’enregistrements d’autres types, en remplaçant le paramètre `-Ipv4Address` de l’applet de commande `Add-AzureRmDnsRecordConfig` par d’autres paramètres spécifiques de chaque type d’enregistrement. Les paramètres pour chaque type d’enregistrement sont identiques à ceux de l’applet de commande `New-AzureRmDnsRecordConfig`, comme indiqué dans les [autres exemples de types d’enregistrements](#additional-record-type-examples) ci-dessus.
+exemples de Hello ci-dessus montrent comment définie des tooadd un 'A' enregistrement existant tooan enregistrements de type « A ». Une séquence d’opérations similaire est utilisé tooadd enregistrements toorecord définit d’autres types, en remplaçant hello `-Ipv4Address` paramètre de `Add-AzureRmDnsRecordConfig` avec un autre type d’enregistrement Paramètres tooeach spécifique. Hello paramètres pour chaque type d’enregistrement sont hello même que pour hello `New-AzureRmDnsRecordConfig` applet de commande, comme indiqué dans [exemples du type d’enregistrement supplémentaires](#additional-record-type-examples) ci-dessus.
 
-Les jeux d’enregistrements de type « CNAME » ou « SOA » ne peuvent pas contenir plusieurs enregistrements. Cette contrainte résulte des normes DNS. Il ne s’agit pas d’une limitation d’Azure DNS.
+Les jeux d’enregistrements de type « CNAME » ou « SOA » ne peuvent pas contenir plusieurs enregistrements. Cette contrainte se produit à partir des normes DNS hello. Il ne s’agit pas d’une limitation d’Azure DNS.
 
 ## <a name="remove-a-record-from-an-existing-record-set"></a>Suppression d’un enregistrement d’un jeu d'enregistrements existant
 
-Le processus de suppression d’un enregistrement d’un jeu d’enregistrements est similaire au processus d’ajout d’un enregistrement à un jeu d’enregistrements existant :
+Bonjour processus tooremove un enregistrement à partir d’un jeu d’enregistrements est similaire tooadd de processus toohello un enregistrement tooan existant enregistrer ensemble :
 
-1. Obtenez le jeu d’enregistrements existant
+1. Obtenir le jeu d’enregistrements existant hello
 
     ```powershell
     $rs = Get-AzureRmDnsRecordSet -Name www –ZoneName "contoso.com" -ResourceGroupName "MyResourceGroup" -RecordType A
     ```
 
-2. Supprimez l’enregistrement de l’objet jeu d’enregistrements local. Cette opération se fait hors connexion. L’enregistrement à supprimer doit correspondre exactement à un enregistrement existant relativement à tous les paramètres.
+2. Supprimer l’enregistrement de hello à partir de l’objet de jeu d’enregistrements local hello. Cette opération se fait hors connexion. enregistrement Hello est en cours de suppression doit être une correspondance exacte avec un enregistrement existant entre tous les paramètres.
 
     ```powershell
     Remove-AzureRmDnsRecordConfig -RecordSet $rs -Ipv4Address "5.6.7.8"
     ```
 
-3. Validez la modification sur le service Azure DNS. Utilisez le commutateur facultatif `-Overwrite` pour désactiver les [vérifications ETag](dns-zones-records.md#etags) des modifications simultanées.
+3. Valider hello modification toohello arrière service DNS Azure. Hello utilisation facultative `-Overwrite` commutateur toosuppress [Etag vérifie](dns-zones-records.md#etags) de modifications simultanées.
 
     ```powershell
     Set-AzureRmDnsRecordSet -RecordSet $Rs
     ```
 
-La séquence utilisée ci-dessus pour supprimer le dernier enregistrement d’un jeu d’enregistrements n’a pas pour effet de supprimer celui-ci, mais de le laisser vide. Pour supprimer entièrement un jeu d’enregistrements, voir [Supprimer un jeu d’enregistrements](#delete-a-record-set).
+À l’aide de hello ci-dessus séquence tooremove hello dernier à partir d’un jeu d’enregistrements ne supprime pas le jeu d’enregistrements hello, au lieu de cela, elle laisse un jeu d’enregistrements vide. tooremove un jeu d’enregistrements, consultez [supprimer un jeu d’enregistrements](#delete-a-record-set).
 
-Comme pour l’ajout d’enregistrements à un jeu d’enregistrements, vous pouvez canaliser la séquence des opérations de suppression d’un jeu d’enregistrements comme suit :
+De même tooadding enregistrements tooa jeu d’enregistrements, séquence hello de tooremove opérations un jeu d’enregistrements peut également être transmis :
 
 ```powershell
 Get-AzureRmDnsRecordSet -Name www –ZoneName "contoso.com" -ResourceGroupName "MyResourceGroup" -RecordType A | Remove-AzureRmDnsRecordConfig -Ipv4Address "5.6.7.8" | Set-AzureRmDnsRecordSet
 ```
 
-Différents types d’enregistrements sont pris en charge en transmettant les paramètres spécifiques du type approprié à `Remove-AzureRmDnsRecordSet`. Les paramètres pour chaque type d’enregistrement sont identiques à ceux de l’applet de commande `New-AzureRmDnsRecordConfig`, comme indiqué dans les [autres exemples de types d’enregistrements](#additional-record-type-examples) ci-dessus.
+Différents types d’enregistrements sont pris en charge en passant les paramètres spécifiques au type approprié hello trop`Remove-AzureRmDnsRecordSet`. Hello paramètres pour chaque type d’enregistrement sont hello même que pour hello `New-AzureRmDnsRecordConfig` applet de commande, comme indiqué dans [exemples du type d’enregistrement supplémentaires](#additional-record-type-examples) ci-dessus.
 
 
 ## <a name="modify-an-existing-record-set"></a>Modifier un jeu d’enregistrements
 
-Pour modifier un jeu d’enregistrements, procédez de la même manière que pour y ajouter ou en supprimer des enregistrements :
+Hello étapes permettant de modifier un jeu d’enregistrements existant sont similaires toohello que vous prenez lors de l’ajout ou la suppression des enregistrements à partir d’un jeu d’enregistrements :
 
-1. Récupérez le jeu d’enregistrements existant en utilisant `Get-AzureRmDnsRecordSet`.
-2. Modifiez l’objet jeu d’enregistrements local à l’aide des opérations suivantes :
+1. Récupérer hello existant jeu d’enregistrements à l’aide de `Get-AzureRmDnsRecordSet`.
+2. Modifier un objet de jeu d’enregistrements local hello par :
     * ajout ou suppression d’enregistrements ;
-    * modification des paramètres d’enregistrements existants ;
-    * modification des métadonnées et de la durée de vie (TTL) du jeu d’enregistrements.
-3. Validez vos modifications en utilisant l’applet de commande `Set-AzureRmDnsRecordSet` . Celle-ci *remplace* le jeu d’enregistrement existant dans Azure DNS par le jeu d’enregistrements spécifié.
+    * Modification des paramètres de hello des enregistrements existants
+    * La modification d’enregistrement de hello définie toolive TTL (time) et les métadonnées
+3. Valider les modifications apportées à l’aide de hello `Set-AzureRmDnsRecordSet` applet de commande. Cela *remplace* hello enregistrement existant défini dans Azure DNS avec le jeu d’enregistrements hello spécifié.
 
-Lorsque vous utilisez l’applet de commande `Set-AzureRmDnsRecordSet`, des [vérifications ETag](dns-zones-records.md#etags) permettent d’éviter les conflits de modifications simultanées. Le commutateur facultatif `-Overwrite` permet de supprimer ces vérifications.
+Lorsque vous utilisez `Set-AzureRmDnsRecordSet`, [Etag vérifie](dns-zones-records.md#etags) servent tooensure des modifications simultanées ne sont pas remplacées. Vous pouvez utiliser hello facultatif `-Overwrite` commutateur toosuppress ces vérifications.
 
-### <a name="to-update-a-record-in-an-existing-record-set"></a>Pour mettre à jour un enregistrement dans un jeu d’enregistrements existant
+### <a name="tooupdate-a-record-in-an-existing-record-set"></a>définie des tooupdate un enregistrement d’un enregistrement existant
 
-Dans cet exemple, nous modifions l’adresse IP d’un enregistrement « A » existant :
+Dans cet exemple, nous changeons hello adresseIP de 'A' enregistrement existant :
 
 ```powershell
 $rs = Get-AzureRmDnsRecordSet -name "www" -RecordType A -ZoneName "contoso.com" -ResourceGroupName "MyResourceGroup"
@@ -289,11 +289,11 @@ $rs.Records[0].Ipv4Address = "9.8.7.6"
 Set-AzureRmDnsRecordSet -RecordSet $rs
 ```
 
-### <a name="to-modify-an-soa-record"></a>Pour modifier un enregistrement SOA
+### <a name="toomodify-an-soa-record"></a>toomodify un enregistrement SOA
 
-Vous ne pouvez pas ajouter ou supprimer d’enregistrements dans le jeu d’enregistrements SOA créé automatiquement à l’apex de la zone (`-Name "@"`, guillemets compris). Vous pouvez cependant modifier les paramètres dans l’enregistrement SOA (à l’exception de « l’hôte ») et pendant la durée de vie du jeu d’enregistrements.
+Impossible d’ajouter ou supprimer des enregistrements de hello créé automatiquement SOA jeu d’enregistrements au sommet de zone hello (`-Name "@"`, y compris les guillemets). Toutefois, vous pouvez modifier les paramètres de hello dans hello enregistrement SOA (à l’exception de « hôte ») et enregistrement de hello définie la durée de vie.
 
-L’exemple suivant montre comment modifier la propriété *Email* de l’enregistrement SOA :
+Hello suivant montre l’exemple de comment toochange hello *messagerie* propriété Hello enregistrement SOA :
 
 ```powershell
 $rs = Get-AzureRmDnsRecordSet -Name "@" -RecordType SOA -ZoneName "contoso.com" -ResourceGroupName "MyResourceGroup"
@@ -301,15 +301,15 @@ $rs.Records[0].Email = "admin.contoso.com"
 Set-AzureRmDnsRecordSet -RecordSet $rs
 ```
 
-### <a name="to-modify-ns-records-at-the-zone-apex"></a>Pour modifier des enregistrements NS à l’apex de la zone
+### <a name="toomodify-ns-records-at-hello-zone-apex"></a>enregistrements toomodify NS au sommet de zone hello
 
-Le jeu d’enregistrements NS à l’apex de la zone est créé automatiquement avec chaque zone DNS. Il contient les noms des serveurs de noms Azure DNS attribués à la zone.
+jeu au sommet de zone hello d’enregistrements NS Hello sont automatiquement créé avec chaque zone DNS. Il contient les noms de hello de zone de hello Azure DNS nom serveurs toohello attribué.
 
-Vous pouvez ajouter des serveurs de noms supplémentaires à ce jeu d’enregistrements NS, pour prendre en charge le co-hébergement de domaines avec plusieurs fournisseurs DNS. Vous pouvez également modifier la durée de vie et les métadonnées pour ce jeu d’enregistrements. Toutefois, vous ne pouvez pas supprimer ni modifier les serveurs de noms Azure DNS préremplis.
+Vous pouvez ajouter des noms supplémentaires serveurs toothis NS jeu d’enregistrements, toosupport domaines l’hébergement avec le fournisseur DNS. Vous pouvez également modifier la durée de vie de hello et les métadonnées pour ce jeu d’enregistrements. Toutefois, vous ne peut pas supprimer ou modifier les serveurs de noms DNS Azure hello préremplies.
 
-Notez que cela s’applique uniquement au jeu d’enregistrements NS défini à l’apex de la zone. Les autres jeux d’enregistrements NS dans votre zone (tels que ceux utilisés pour déléguer des zones enfants) peuvent être modifiés sans contrainte.
+Notez que cela s’applique uniquement toohello NS jeu d’enregistrements au sommet de zone hello. Autres jeux d’enregistrements NS dans votre zone (comme les zones enfant toodelegate utilisé) peut être modifié sans contrainte.
 
-L’exemple suivant montre comment ajouter un serveur de noms supplémentaire au jeu d’enregistrements NS défini à l’apex de la zone :
+Bonjour à l’exemple suivant montre comment tooadd un enregistrement de noms supplémentaires server toohello NS définie les au sommet de zone hello :
 
 ```powershell
 $rs = Get-AzureRmDnsRecordSet -Name "@" -RecordType NS -ZoneName "contoso.com" -ResourceGroupName "MyResourceGroup"
@@ -317,14 +317,14 @@ Add-AzureRmDnsRecordConfig -RecordSet $rs -Nsdname ns1.myotherdnsprovider.com
 Set-AzureRmDnsRecordSet -RecordSet $rs
 ```
 
-### <a name="to-modify-record-set-metadata"></a>Pour modifier les métadonnées du jeu d’enregistrements
+### <a name="toomodify-record-set-metadata"></a>métadonnées du jeu d’enregistrement de toomodify
 
-Vous pouvez utiliser des [métadonnées de jeu d’enregistrements](dns-zones-records.md#tags-and-metadata) pour associer les données spécifiques de l’application à chaque jeu d’enregistrements, comme paires clé-valeur.
+[Métadonnées du jeu d’enregistrements](dns-zones-records.md#tags-and-metadata) peuvent être des données spécifiques à l’application tooassociate utilisées avec chaque jeu d’enregistrements, en tant que paires clé-valeur.
 
-L’exemple suivant montre comment modifier les métadonnées d’un jeu d’enregistrements :
+Hello suivant montre comment définir les métadonnées de hello toomodify d’un enregistrement existant :
 
 ```powershell
-# Get the record set
+# Get hello record set
 $rs = Get-AzureRmDnsRecordSet -Name www -RecordType A -ZoneName "contoso.com" -ResourceGroupName "MyResourceGroup"
 
 # Add 'dept=finance' name-value pair
@@ -340,34 +340,34 @@ Set-AzureRmDnsRecordSet -RecordSet $rs
 
 ## <a name="delete-a-record-set"></a>Supprimer un jeu d’enregistrements
 
-Les jeux d’enregistrements peuvent être supprimés à l’aide de l’applet de commande `Remove-AzureRmDnsRecordSet` . La suppression d’un jeu d’enregistrements a pour effet de supprimer également tous les enregistrements qu’il contient.
+Jeux d’enregistrements peut être supprimés à l’aide de hello `Remove-AzureRmDnsRecordSet` applet de commande. Suppression d’un jeu d’enregistrements supprime également tous les enregistrements dans le jeu d’enregistrements hello.
 
 > [!NOTE]
-> Vous ne pouvez pas supprimer de jeux d’enregistrements SOA et NS au niveau de l’apex de la zone (`-Name '@'`).  Azure DNS les crée automatiquement lors de la création de la zone, et les supprime automatiquement lors de la suppression de celle-ci.
+> Vous ne pouvez pas supprimer hello SOA et NS jeux d’enregistrements au sommet de zone hello (`-Name '@'`).  DNS Azure ces créés automatiquement lors de la zone de hello a été créé et supprime automatiquement lors de la zone de hello est supprimée.
 
-L’exemple suivant montre comment supprimer un jeu d’enregistrements. Dans cet exemple, le nom, le type, la zone et le groupe de ressources du jeu d’enregistrements sont spécifiés explicitement.
+Hello suivant montre comment toodelete un jeu d’enregistrements. Dans cet exemple, nom du jeu d’enregistrements hello, type de jeu d’enregistrements, nom de la zone et groupe de ressources sont chacun spécifiés explicitement.
 
 ```powershell
 Remove-AzureRmDnsRecordSet -Name "www" -RecordType A -ZoneName "contoso.com" -ResourceGroupName "MyResourceGroup"
 ```
 
-Vous pouvez également spécifier le jeu d’enregistrements par un nom et un type, et la zone à l’aide d’un objet :
+Sinon, jeu d’enregistrements hello peut être spécifié par le nom et le type et hello spécifié à l’aide d’un objet de la zone :
 
 ```powershell
 $zone = Get-AzureRmDnsZone -Name "contoso.com" -ResourceGroupName "MyResourceGroup"
 Remove-AzureRmDnsRecordSet -Name "www" -RecordType A -Zone $zone
 ```
 
-Une troisième option consiste à spécifier le jeu d’enregistrements en utilisant un objet jeu d’enregistrements :
+Comme une troisième option, hello jeu d’enregistrements lui-même peuvent être spécifié à l’aide d’un objet de jeu d’enregistrements :
 
 ```powershell
 $rs = Get-AzureRmDnsRecordSet -Name www -RecordType A -ZoneName "contoso.com" -ResourceGroupName "MyResourceGroup"
 Remove-AzureRmDnsRecordSet -RecordSet $rs
 ```
 
-Lorsque vous spécifiez le jeu d’enregistrements à supprimer à l’aide d’un objet jeu d’enregistrements, des [vérifications ETag](dns-zones-records.md#etags) veillent à ce que des modifications simultanées ne soient pas supprimées. Le commutateur facultatif `-Overwrite` permet de supprimer ces vérifications.
+Lorsque vous spécifiez l’enregistrement de hello défini toobe supprimée à l’aide d’un objet de jeu d’enregistrements, [Etag vérifie](dns-zones-records.md#etags) servent tooensure des modifications simultanées ne sont pas supprimées. Vous pouvez utiliser hello facultatif `-Overwrite` commutateur toosuppress ces vérifications.
 
-L'objet du jeu d'enregistrements peut également être envoyé au lieu d’être transmis en tant que paramètre :
+objet de jeu d’enregistrements Hello peut également être transmis au lieu de passé en tant que paramètre :
 
 ```powershell
 Get-AzureRmDnsRecordSet -Name www -RecordType A -ZoneName "contoso.com" -ResourceGroupName "MyResourceGroup" | Remove-AzureRmDnsRecordSet
@@ -375,11 +375,11 @@ Get-AzureRmDnsRecordSet -Name www -RecordType A -ZoneName "contoso.com" -Resourc
 
 ## <a name="confirmation-prompts"></a>Invites de confirmation
 
-Les applets de commande `New-AzureRmDnsRecordSet`, `Set-AzureRmDnsRecordSet` et `Remove-AzureRmDnsRecordSet` prennent en charge les invites de confirmation.
+Hello `New-AzureRmDnsRecordSet`, `Set-AzureRmDnsRecordSet`, et `Remove-AzureRmDnsRecordSet` prend en charge les applets de commande toutes les invites de confirmation.
 
-Chaque applet de commande demande une confirmation si la variable de préférence PowerShell `$ConfirmPreference` a la valeur `Medium` ou une valeur inférieure. La valeur par défaut de la variable `$ConfirmPreference` étant `High`, ces invites ne s’affichent pas en cas d’utilisation des paramètres PowerShell par défaut.
+Chaque applet de commande vous demande de confirmer si hello `$ConfirmPreference` a la valeur de variable de préférence PowerShell `Medium` ou inférieure. Depuis la valeur par défaut de hello `$ConfirmPreference` est `High`, ces messages ne sont pas affectés lors de l’utilisation de paramètres de PowerShell hello par défaut.
 
-Vous pouvez remplacer le paramétrage actuel de `$ConfirmPreference` par le paramètre `-Confirm`. Si vous spécifiez les paramètres `-Confirm` ou `-Confirm:$True`, les applets de commande vous invitent à confirmer l’exécution. Si vous spécifiez le paramètre `-Confirm:$False`, l’applet de commande ne demande pas de confirmation. 
+Vous pouvez remplacer hello actuel `$ConfirmPreference` paramètre à l’aide de hello `-Confirm` paramètre. Si vous spécifiez `-Confirm` ou `-Confirm:$True` , hello applet de commande vous demande confirmation avant qu’il s’exécute. Si vous spécifiez `-Confirm:$False` , applet de commande hello ne vous demande pas de confirmation. 
 
 Pour plus d’informations sur les paramètres `-Confirm` et `$ConfirmPreference`, voir [À propos des variables de préférence](https://msdn.microsoft.com/powershell/reference/5.1/Microsoft.PowerShell.Core/about/about_Preference_Variables).
 
@@ -387,6 +387,6 @@ Pour plus d’informations sur les paramètres `-Confirm` et `$ConfirmPreference
 
 Apprenez-en davantage sur les [zones et enregistrements dans Azure DNS](dns-zones-records.md).
 <br>
-Découvrez comment [protéger vos zones et enregistrements](dns-protect-zones-recordsets.md) lors de l’utilisation d’Azure DNS.
+Découvrez comment trop[protéger les zones et les enregistrements](dns-protect-zones-recordsets.md) lors de l’utilisation d’Azure DNS.
 <br>
-Examinez la [documentation de référence d’Azure DNS PowerShell](/powershell/module/azurerm.dns).
+Hello de révision [documentation de référence PowerShell pour Azure DNS](/powershell/module/azurerm.dns).

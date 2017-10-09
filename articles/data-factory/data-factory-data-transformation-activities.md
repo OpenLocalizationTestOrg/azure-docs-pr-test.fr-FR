@@ -1,6 +1,6 @@
 ---
 title: "Transformation des données : traiter et transformer des données | Microsoft Docs"
-description: "Découvrez comment transformer des données ou traiter les données dans Azure Data Factory à l’aide de Hadoop, Machine Learning ou Azure Data Lake Analytics."
+description: "Découvrez comment tootransform données ou traiter des données dans Azure Data Factory à l’aide de Hadoop ou Analytique de LAC de données Azure Machine Learning."
 keywords: "transformation des données, traiter les données, transformer les données, activité de transformation"
 services: data-factory
 documentationcenter: 
@@ -15,11 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/16/2017
 ms.author: shlo
-ms.openlocfilehash: 7fc30f32b5038467b3474d89311dc51e182c6e8a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 917d617259699b0e71de3a0e0c17463d00f2e0a0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="transform-data-in-azure-data-factory"></a>Transformer des données dans Azure Data Factory
 > [!div class="op_single_selector"]
@@ -33,9 +33,9 @@ ms.lasthandoff: 07/11/2017
 > * [.NET personnalisé](data-factory-use-custom-activities.md)
 
 ## <a name="overview"></a>Vue d'ensemble
-Cet article explique les activités de transformation des données dans Azure Data Factory, que vous pouvez utiliser pour transformer et traiter vos données brutes pour en tirer des prévisions et des informations. Une activité de transformation s’exécute dans un environnement de calcul comme un cluster Azure HDInsight ou un Azure Batch. Elle fournit des liens vers des articles contenant des informations détaillées sur chaque activité de transformation.
+Cet article explique les activités de transformation des données dans Azure Data Factory que vous pouvez utiliser tootransform et traite les données brutes dans des prédictions et des informations. Une activité de transformation s’exécute dans un environnement de calcul comme un cluster Azure HDInsight ou un Azure Batch. Il fournit des liens tooarticles avec des informations détaillées sur chaque activité de transformation.
 
-Data Factory prend en charge les activités de transformation des données suivantes, qui peuvent être ajoutées à des [pipelines](data-factory-create-pipelines.md) , soit individuellement soit de façon chaînée avec une autre activité.
+Fabrique de données prend en charge hello suivant des activités de transformation des données qui peuvent être ajoutées trop[pipelines](data-factory-create-pipelines.md) soit individuellement ou chaînés avec une autre activité.
 
 > [!NOTE]
 > Pour des instructions détaillées, consultez l’article [Créer un pipeline avec la transformation Hive](data-factory-build-your-first-pipeline.md) .  
@@ -43,48 +43,48 @@ Data Factory prend en charge les activités de transformation des données suiva
 > 
 
 ## <a name="hdinsight-hive-activity"></a>Activité Hive HDInsight
-L’activité Hive HDInsight d’un pipeline Data Factory exécute des requêtes Hive sur votre propre cluster ou cluster à la demande HDInsight sous Windows ou Linux. Consultez l’article [Activité Hive](data-factory-hive-activity.md) pour plus de détails sur cette activité. 
+Hello activité HDInsight Hive dans un pipeline de fabrique de données exécute des requêtes Hive vous-même ou un cluster de basés sur Windows/Linux de HDInsight à la demande. Consultez l’article [Activité Hive](data-factory-hive-activity.md) pour plus de détails sur cette activité. 
 
 ## <a name="hdinsight-pig-activity"></a>Activité Pig HDInsight
-L’activité Pig HDInsight d’un pipeline Data Factory exécute des requêtes Pig sur votre propre cluster ou cluster à la demande HDInsight sous Windows ou Linux. Consultez l’article [Activité Pig](data-factory-pig-activity.md) pour plus de détails sur cette activité. 
+Hello activité HDInsight Pig dans un pipeline de fabrique de données exécute des requêtes Pig vous-même ou un cluster de basés sur Windows/Linux de HDInsight à la demande. Consultez l’article [Activité Pig](data-factory-pig-activity.md) pour plus de détails sur cette activité. 
 
 ## <a name="hdinsight-mapreduce-activity"></a>Activité MapReduce HDInsight
-L’activité MapReduce de HDInsight dans un pipeline Data Factory exécute des programmes MapReduce sur votre cluster HDInsight propre ou à la demande sous Windows ou Linux. Consultez l’article [Activité MapReduce](data-factory-map-reduce.md) pour plus de détails sur cette activité.
+Hello activité HDInsight MapReduce dans un pipeline Azure Data Factory exécute les programmes MapReduce vous-même ou un cluster de basés sur Windows/Linux de HDInsight à la demande. Consultez l’article [Activité MapReduce](data-factory-map-reduce.md) pour plus de détails sur cette activité.
 
 ## <a name="hdinsight-streaming-activity"></a>Activité de diffusion en continu HDInsight
-L’activité de diffusion en continu HDInsight dans un pipeline Data Factory exécute des programmes de diffusion en continu Hadoop sur votre cluster HDInsight propre ou à la demande sous Windows ou Linux. Consultez [l’activité de diffusion en continu HDInsight](data-factory-hadoop-streaming-activity.md) pour plus d’informations sur cette activité.
+Hello activité de diffusion en continu HDInsight dans un pipeline Azure Data Factory exécute les programmes de diffusion en continu Hadoop sur votre propre ou un cluster de Windows/Linux-based de HDInsight à la demande. Consultez [l’activité de diffusion en continu HDInsight](data-factory-hadoop-streaming-activity.md) pour plus d’informations sur cette activité.
 
 ## <a name="hdinsight-spark-activity"></a>Activité Spark HDInsight
-L’activité Spark HDInsight d’un pipeline Data Factory exécute des programmes Spark sur votre propre cluster HDInsight. Pour plus d’informations, consultez la page [Appeler des programmes Spark à partir de Data Factory](data-factory-spark.md). 
+Hello activité HDInsight Spark dans un pipeline Azure Data Factory exécute les programmes Spark sur votre propre cluster HDInsight. Pour plus d’informations, consultez la page [Appeler des programmes Spark à partir de Data Factory](data-factory-spark.md). 
 
 ## <a name="machine-learning-activities"></a>Activités Machine Learning
-Azure Data Factory vous permet de créer facilement des pipelines qui utilisent un service web Azure Machine Learning publié pour l’analyse prédictive. À l’aide de l’ [activité d’exécution par lots](data-factory-azure-ml-batch-execution-activity.md#invoking-a-web-service-using-batch-execution-activity) dans un pipeline Azure Data Factory, vous pouvez appeler un service web Machine Learning pour effectuer des prédictions sur les données par lots.
+Azure Data Factory permet tooeasily vous créer des pipelines qui utilisent un publiée Azure Machine Learning web de service pour l’analytique prédictive. À l’aide de hello [l’activité d’exécution par lots](data-factory-azure-ml-batch-execution-activity.md#invoking-a-web-service-using-batch-execution-activity) dans un pipeline Azure Data Factory, vous pouvez appeler une prédictions de toomake du service web Machine Learning sur des données hello dans le lot.
 
-Au fil du temps, les modèles prédictifs dans les expériences de notation Machine Learning doivent être reformés à l’aide de nouveaux jeux de données d’entrée. Une fois que vous avez fini la reformation, vous souhaitez mettre à jour le service web de notation avec le modèle Machine Learning reformé. Vous pouvez utiliser [l’activité des ressources de mise à jour](data-factory-azure-ml-batch-execution-activity.md#updating-models-using-update-resource-activity) pour mettre à jour le service web avec le modèle qui vient d’être formé.  
+Au fil du temps, d’entrée de modèles prédictifs de hello Bonjour apprentissage expériences score doivent toobe reformé à l’aide de nouveaux jeux de données. Une fois que vous avez terminé avec le réapprentissage, vous souhaitez hello tooupdate calcul du score du service web avec hello reformés modèle d’apprentissage. Vous pouvez utiliser hello [mise à jour de ressource activité](data-factory-azure-ml-batch-execution-activity.md#updating-models-using-update-resource-activity) service web qui vient d’être formé hello tooupdate hello.  
 
 Consultez la page [Utiliser les activités Machine Learning](data-factory-azure-ml-batch-execution-activity.md) pour plus d’informations sur ces activités Machine Learning. 
 
 ## <a name="stored-procedure-activity"></a>Activité de procédure stockée
-Vous pouvez utiliser l’activité de procédure stockée SQL Server dans un pipeline Data Factory pour appeler une procédure stockée dans l’une des banques de données suivantes : Azure SQL Database, Azure SQL Data Warehouse, base de données SQL Server dans votre entreprise ou une machine virtuelle Azure. Consultez l’article [Activité de procédure stockée](data-factory-stored-proc-activity.md) pour plus de détails.  
+Vous pouvez utiliser l’activité de procédure stockée SQL Server hello dans un tooinvoke de pipeline de fabrique de données dans une procédure stockée dans un des hello suivant des magasins de données : Azure SQL Database, Azure SQL Data Warehouse, base de données SQL Server dans votre entreprise ou d’une machine virtuelle Azure. Consultez l’article [Activité de procédure stockée](data-factory-stored-proc-activity.md) pour plus de détails.  
 
 ## <a name="data-lake-analytics-u-sql-activity"></a>Activité U-SQL Data Lake Analytics
 L’activité U-SQL Data Lake Analytics exécute un script U-SQL sur un cluster Azure Data Lake Analytics. Consultez l’article [Activité U-SQL Data Analytics](data-factory-usql-activity.md) pour plus de détails. 
 
 ## <a name="net-custom-activity"></a>Activité personnalisée .NET
-Si vous devez transformer les données d’une manière qui n’est pas prise en charge par Data Factory, créez une activité personnalisée avec votre propre logique de traitement des données et utilisez cette activité dans le pipeline. Vous pouvez configurer l’activité .NET personnalisée pour l’exécuter en utilisant un service Azure Batch ou un cluster Azure HDInsight. Consultez l’article [Utilisation des activités personnalisées](data-factory-use-custom-activities.md) pour plus de détails. 
+Si vous avez besoin de données tootransform d’une manière qui n’est pas pris en charge par la fabrique de données, vous pouvez créer une activité personnalisée avec votre propre logique de traitement des données et utiliser l’activité hello dans le pipeline de hello. Vous pouvez configurer hello personnalisées .NET activité toorun à l’aide d’un service de traitement par lots Azure ou un cluster Azure HDInsight. Consultez l’article [Utilisation des activités personnalisées](data-factory-use-custom-activities.md) pour plus de détails. 
 
-Vous pouvez créer une activité personnalisée pour exécuter des scripts R sur votre cluster HDInsight si R est installé. Consultez la page [Exécuter des scripts R avec Azure Data Factory](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/RunRScriptUsingADFSample). 
+Vous pouvez créer une activité personnalisée toorun R scripts sur votre cluster HDInsight avec R installé. Consultez la page [Exécuter des scripts R avec Azure Data Factory](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/RunRScriptUsingADFSample). 
 
 ## <a name="compute-environments"></a>Environnements de calcul
-Vous créez un service lié à l’environnement de calcul puis l’utilisez lorsque vous définissez une activité de transformation. Il existe deux types d'environnements de calcul pris en charge par Data Factory. 
+Vous créez un service lié pour un environnement de calcul hello et ensuite utilisez hello lié service lors de la définition d’une activité de transformation. Il existe deux types d'environnements de calcul pris en charge par Data Factory. 
 
-1. **À la demande** : dans ce cas, l’environnement de calcul est entièrement géré par Data Factory. Il est automatiquement créé par le service Azure Data Factory avant qu'une tâche de traitement des données ne soit soumise et il est supprimé lorsque la tâche est terminée. Vous pouvez configurer et contrôler les paramètres granulaires de l’environnement de calcul à la demande pour l'exécution de la tâche, la gestion du cluster et les actions d’amorçage. 
-2. **Apport de votre propre environnement**: dans ce cas, vous pouvez inscrire votre propre environnement de calcul (par exemple un cluster HDInsight) en tant que service lié dans Data Factory. C’est vous qui gérez l'environnement de calcul et le service Data Factory l'utilise pour exécuter les activités. 
+1. **À la demande**: dans ce cas, environnement hello est entièrement gérée par la fabrique de données. Il est automatiquement créé par hello service Data Factory avant un travail est soumis tooprocess données et supprimé lorsque hello tâche est terminée. Vous pouvez configurer et contrôler les paramètres granulaires de l’environnement de calcul de la demande de hello pour l’exécution du travail, gestion du cluster et actions d’amorçage. 
+2. **Apport de votre propre environnement**: dans ce cas, vous pouvez inscrire votre propre environnement de calcul (par exemple un cluster HDInsight) en tant que service lié dans Data Factory. environnement Hello est gérée par vous et hello service Data Factory utilise les activités tooexecute hello. 
 
-Consultez l’article [Services liés de calcul](data-factory-compute-linked-services.md) pour en savoir plus sur les services de calcul pris en charge par Data Factory. 
+Consultez [de calcul des Services liés](data-factory-compute-linked-services.md) toolearn l’article sur les services pris en charge par la fabrique de données de calcul. 
 
 ## <a name="summary"></a>Résumé
-Azure Data Factory prend en charge les activités suivantes de transformation des données et les environnements de calcul pour les activités. Les activités de transformation peuvent être ajoutées à des pipelines, soit individuellement soit de façon chaînée avec une autre activité.
+Azure prend en charge de Data Factory hello suivant des activités de transformation des données et hello des environnements de calcul pour les activités de hello. activitésent de transformation Hello peut être ajouté toopipelines soit individuellement ou chaîné avec une autre activité.
 
 | Activités de transformation des données | Environnement de calcul |
 |:--- |:--- |

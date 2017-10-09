@@ -1,6 +1,6 @@
 ---
-title: Utiliser une diffusion en continu Apache Spark avec Event Hubs dans Azure HDInsight | Documents Microsoft
-description: "Créez un Exemple de diffusion en continu Apache Spark montrant comment envoyer un flux de données à Azure Event Hub, puis recevoir ces événements dans un cluster Spark HDInsight à l’aide d’une application Scala."
+title: "diffusion en continu d’aaaUse Apache Spark avec des concentrateurs d’événements dans Azure HDInsight | Documents Microsoft"
+description: "Générer un exemple de diffusion en continu d’Apache Spark sur toosend données tooAzure concentrateur d’événements de flux et recevoir les événements dans le cluster HDInsight Spark à l’aide d’une application scala."
 keywords: diffusion en continu apache spark,diffusion en continu spark, exemple spark,exemple de diffusion en continu apache spark,exemple azure event hubs
 services: hdinsight
 documentationcenter: 
@@ -17,21 +17,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/25/2017
 ms.author: nitinme
-ms.openlocfilehash: 175a2ad70b1f554d05846eb62fb685d4f259af7e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 10cc5884047b3b8249fe8a8822a16a19780a4af3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="apache-spark-streaming-process-data-from-azure-event-hubs-with-spark-cluster-on-hdinsight"></a>Diffusion en continu Apache Spark : traitement de données d’Azure Event Hubs avec un cluster Spark sur HDInsight
 
-Dans le cadre de cet article, vous allez créer un exemple de diffusion en continu Apache Spark qui implique les étapes suivantes :
+Dans cet article, vous créez un Apache Spark de diffusion en continu d’exemple qui implique hello comme suit :
 
-1. Vous utilisez une application autonome pour ingérer les messages dans Azure Event Hub.
+1. Vous utilisez un message tooingest d’application autonome dans un concentrateur d’événements Azure.
 
-2. Avec deux approches différentes, vous récupérez les messages d’Event Hub en temps réel à l’aide d’une application s’exécutant dans le cluster Spark sur Azure HDInsight.
+2. Avec deux approches différentes, vous extrayez des messages hello de concentrateur d’événements en temps réel à l’aide d’une application en cours d’exécution dans le cluster Spark sur Azure HDInsight.
 
-3. Vous générez des pipelines analytiques de diffusion en continu pour conserver les données dans différents systèmes de stockage ou obtenir en un clin d’œil des insights à partir des données.
+3. Génération de diffusion en continu des pipelines analytiques toopersist toodifferent systèmes de stockage ou obtenir des informations à partir des données volée hello.
 
 ## <a name="prerequisites"></a>Composants requis
 
@@ -41,80 +41,80 @@ Dans le cadre de cet article, vous allez créer un exemple de diffusion en conti
 
 ## <a name="spark-streaming-concepts"></a>Concepts de la diffusion en continu de Spark
 
-Pour obtenir une explication détaillée de la diffusion en continu Spark, voir la [présentation de la diffusion en continu Apache Spark](http://spark.apache.org/docs/latest/streaming-programming-guide.html#overview). HDInsight apporte les mêmes fonctionnalités de diffusion en continu à un cluster Spark sur Azure.  
+Pour obtenir une explication détaillée de la diffusion en continu Spark, voir la [présentation de la diffusion en continu Apache Spark](http://spark.apache.org/docs/latest/streaming-programming-guide.html#overview). HDInsight met hello de cluster même tooa fonctionnalités diffusion en continu Spark sur Azure.  
 
 ## <a name="what-does-this-solution-do"></a>Que fait cette solution ?
 
-Dans cet article, pour créer un exemple de diffusion en continu Spark, procédez comme suit :
+Dans cet article, toocreate un exemple de diffusion en continu Spark, effectuez hello comme suit :
 
 1. Créez un Event Hub Azure qui doit recevoir un flux d’événements.
 
-2. Exécutez une application autonome locale qui génère des événements et les envoie à Azure Event Hub. L’exemple d’application qui effectue cette opération est publié à l’adresse [https://github.com/hdinsight/spark-streaming-data-persistence-examples](https://github.com/hdinsight/spark-streaming-data-persistence-examples).
+2. Exécuter une application autonome local qui génère des événements et le place toohello concentrateur d’événements Azure. exemple d’application Hello qui effectue l’opération est publiée à [https://github.com/hdinsight/spark-streaming-data-persistence-examples](https://github.com/hdinsight/spark-streaming-data-persistence-examples).
 
 3. Exécutez une application de diffusion en continu à distance sur un cluster Spark qui lit les événements de diffusion en continu à partir d’Azure Event Hub et effectuez diverses tâches de traitement/d’analyse des données.
 
 ## <a name="create-an-azure-event-hub"></a>Création d'un hub d'événements Azure
 
-1. Connectez-vous au [portail Azure](https://ms.portal.azure.com), puis cliquez sur **Nouveau** en haut à gauche de l’écran.
+1. Session toohello [Azure Portal](https://ms.portal.azure.com), puis cliquez sur **nouveau** à hello haut à gauche de l’écran hello.
 
 2. Cliquez sur **Internet des Objets**, puis sur **Hubs d’événements**.
 
     ![Créer un Event Hub pour un exemple de diffusion en continu Spark](./media/hdinsight-apache-spark-eventhub-streaming/hdinsight-create-event-hub-for-spark-streaming.png "Créer un Event Hub pour un exemple de diffusion en continu Spark")
 
-3. Dans le panneau **Créer un espace de noms** , entrez un nom d’espace de noms. Choisissez le niveau tarifaire (De base ou Standard). Choisissez également un abonnement Azure, un groupe de ressources et l’emplacement où créer la ressource. Cliquez sur **Créer** pour créer l’espace de noms.
+3. Bonjour **créer l’espace de noms** panneau, entrez un nom d’espace de noms. Choisissez hello tarification (base ou Standard). En outre, choisissez un abonnement Azure, le groupe de ressources et l’emplacement de ressources toocreate hello. Cliquez sur **créer** toocreate hello espace de noms.
 
       ![Fournir un nom d’Event Hub pour un exemple de diffusion en continu Spark](./media/hdinsight-apache-spark-eventhub-streaming/hdinsight-provide-event-hub-name-for-spark-streaming.png "Fournir un nom d’Event Hub pour un exemple de diffusion en continu Spark")
 
     > [!NOTE]
-    > Vous devez sélectionner le même **emplacement** que celui de votre cluster Apache Spark dans HDInsight pour réduire la latence et les coûts.
+    > Vous devez sélectionnez hello même **emplacement** que votre cluster Apache Spark dans HDInsight tooreduce latence et les coûts.
     >
     >
 
-4. Dans la liste d’espaces de noms Event Hubs, cliquez sur l’espace de noms créé.      
+4. Dans hello concentrateurs d’événements espace de noms, cliquez sur espace de noms nouvellement créé hello.      
 
 
-5. Dans le panneau d’espace de noms, cliquez sur **Event Hubs**, puis sur **+ Event Hub** pour créer un concentrateur Event Hub.
+5. Dans le panneau espace de noms de hello, cliquez sur **concentrateurs d’événements**, puis cliquez sur **+ concentrateur d’événements** toocreate un concentrateur d’événements.
    
     ![Créer un Event Hub pour un exemple de diffusion en continu Spark](./media/hdinsight-apache-spark-eventhub-streaming/hdinsight-open-event-hubs-blade-for-spark-streaming-example.png "Créer un Event Hub pour un exemple de diffusion en continu Spark")
 
-6. Tapez un nom pour votre concentrateur Event Hub, puis définissez le nombre de partitions sur 10 et la rétention des messages sur 1. Étant donné que nous n’archivons pas les messages dans cette solution, vous pouvez laisser la suite telle qu’elle est définie par défaut, puis cliquer sur **Créer**.
+6. Tapez un nom pour votre concentrateur d’événements, jeu hello partition count too10 et too1 de rétention de message. Nous ne sommes pas archivage des messages hello dans cette solution afin de vous pouvez laisser le reste hello comme valeur par défaut, puis cliquez sur **créer**.
    
     ![Fournir des détails d’Event Hub pour un exemple de diffusion en continu Spark](./media/hdinsight-apache-spark-eventhub-streaming/hdinsight-provide-event-hub-details-for-spark-streaming-example.png "Fournir des détails d’Event Hub pour un exemple de diffusion en continu Spark")
 
-7. Le concentrateur Event Hub que vous venez de créer est répertorié dans le panneau Event Hub.
+7. Hello nouvellement créé Hub d’événements est répertorié dans le panneau de concentrateur d’événements hello.
     
-     ![Afficher un Event Hub pour l’exemple de diffusion en continu Spark](./media/hdinsight-apache-spark-eventhub-streaming/hdinsight-view-event-hub-for-spark-streaming-example.png "Afficher un Event Hub pour l’exemple de diffusion en continu Spark")
+     ![Afficher le concentrateur d’événements pour l’exemple de diffusion en continu de Spark hello](./media/hdinsight-apache-spark-eventhub-streaming/hdinsight-view-event-hub-for-spark-streaming-example.png "mode concentrateur d’événements pour hello au service de diffusion en continu d’exemple")
 
-8. Revenez au panneau de l’espace de noms (pas le panneau de l’Event Hub spécifique), cliquez sur **Stratégies d’accès partagé**, puis sur **RootManageSharedAccessKey**.
+8. Dans le panneau d’espace de noms hello (pas hello spécifique concentrateur d’événements blade), cliquez sur **les stratégies d’accès partagé**, puis cliquez sur **RootManageSharedAccessKey**.
     
-     ![Définir des stratégies d’Event Hub pour l’exemple de diffusion en continu Spark](./media/hdinsight-apache-spark-eventhub-streaming/hdinsight-set-event-hub-policies-for-spark-streaming-example.png "Définir des stratégies d’Event Hub pour l’exemple de diffusion en continu Spark")
+     ![Définir des stratégies de concentrateur d’événements pour l’exemple de diffusion en continu de Spark hello](./media/hdinsight-apache-spark-eventhub-streaming/hdinsight-set-event-hub-policies-for-spark-streaming-example.png "des stratégies de concentrateur d’événements défini pour hello au service de diffusion en continu d’exemple")
 
-9. Cliquez sur le bouton Copier pour copier la chaîne de connexion et la clé primaire **RootManageSharedAccessKey** dans le Presse-papiers. Enregistrez-les pour les utiliser ultérieurement dans ce didacticiel.
+9. Cliquez sur Bonjour copie bouton toocopy Bonjour **RootManageSharedAccessKey** principal Presse-papiers toohello chaîne clé et de la connexion. Enregistrez ces toouse plus loin dans le didacticiel de hello.
     
-     ![Afficher des clés de stratégie d’Event Hub pour l’exemple de diffusion en continu Spark](./media/hdinsight-apache-spark-eventhub-streaming/hdinsight-view-event-hub-policy-keys.png "Afficher des clés de stratégie d’Event Hub pour l’exemple de diffusion en continu Spark")
+     ![Afficher les clés de stratégie de concentrateur d’événements pour l’exemple de diffusion en continu de Spark hello](./media/hdinsight-apache-spark-eventhub-streaming/hdinsight-view-event-hub-policy-keys.png "clés de stratégie de mode concentrateur d’événements pour hello au service de diffusion en continu d’exemple")
 
-## <a name="send-messages-to-azure-event-hub-using-a-sample-scala-application"></a>Envoyer des messages à un Azure Event Hub à l’aide d’un exemple d’application Scala
+## <a name="send-messages-tooazure-event-hub-using-a-sample-scala-application"></a>Envoyer des messages tooAzure concentrateur d’événements à l’aide d’un exemple d’application Scala
 
-Dans cette section, vous allez utiliser une application Scala locale autonome qui génère un flux d’événements et envoie celui-ci à l’Azure Event Hub que vous avez créé à l’étape précédente. Cette application est disponible sur GitHub à l’adresse [https://github.com/hdinsight/eventhubs-sample-event-producer](https://github.com/hdinsight/eventhubs-sample-event-producer). Les étapes décrites ici supposent que vous avez déjà dupliqué ce dépôt GitHub.
+Dans cette section vous utilisez une application Scala autonome locale qui génère un flux d’événements et l’envoie tooAzure concentrateur d’événements que vous avez créé précédemment. Cette application est disponible sur GitHub à l’adresse [https://github.com/hdinsight/eventhubs-sample-event-producer](https://github.com/hdinsight/eventhubs-sample-event-producer). Hello étapes supposent que vous avez déjà dupliquée ce référentiel GitHub.
 
-1. Veillez à installer les éléments suivants sur l’ordinateur sur lequel vous exécutez cette application.
+1. Assurez-vous que vous avez suivant hello installé sur l’ordinateur hello sur lequel vous exécutez cette application.
 
     * Kit de développement logiciel (SDK) Oracle Java. Vous pouvez l’installer à partir d’ [ici](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html).
-    * Apache Maven. Vous pouvez le télécharger [ici](https://maven.apache.org/download.cgi). Les instructions d’installation de Maven sont disponibles [ici](https://maven.apache.org/install.html).
+    * Apache Maven. Vous pouvez le télécharger [ici](https://maven.apache.org/download.cgi). Instructions tooinstall Maven sont disponibles [ici](https://maven.apache.org/install.html).
 
-2. Ouvrez une invite de commandes et accédez à l’emplacement où vous avez cloné le référentiel GitHub pour l’exemple d’application Scala et exécutez la commande suivante pour générer l’application.
+2. Ouvrez une invite de commandes et accédez emplacement toohello vous avez cloné du référentiel GitHub hello pour exemple d’application de Scala hello et exécutez hello après application de commande toobuild hello.
 
         mvn package
 
-3. Le fichier jar de sortie de l’application, **com-microsoft-azure-eventhubs-client-example-0.2.0.jar**, est créé dans le répertoire **/target**. Ce fichier JAR sera utilisé plus loin dans cet article pour tester la solution.
+3. jar de sortie Hello pour l’application hello, **com-microsoft-azure-eventhubs-client-example-0.2.0.jar**, est créé sous **/target** active. Vous utilisez ce fichier JAR plus loin dans cette solution complète de l’article tootest hello.
 
-## <a name="create-application-to-receive-messages-from-event-hub-into-a-spark-cluster"></a>Créer une application pour recevoir des messages d’Event Hub dans un cluster Spark 
+## <a name="create-application-tooreceive-messages-from-event-hub-into-a-spark-cluster"></a>Créer des messages tooreceive d’application à partir du concentrateur d’événements dans un cluster Spark 
 
-Nous disposons de deux approches pour connecter Spark Streaming et Azure Event Hubs : la connexion basée sur récepteur et la connexion basée sur Direct-DStream. La connexion basée sur Direct-DStream a été introduite dans la version 2.0.3 en janvier 2017. Elle est supposée remplacer la connexion d’origine basée sur récepteur, car elle est plus performante et plus efficace en matière de ressources. Vous trouverez plus de détails à l’adresse [https://github.com/hdinsight/spark-eventhubs](https://github.com/hdinsight/spark-eventhubs). Direct DStream prend uniquement en charge Spark 2.0+.
+Nous avons deux approches tooconnect Spark de diffusion en continu Azure Event Hubs, connexion basée sur le récepteur et Direct DStream pas en charge les connexions. En fonction des DStream direct est introduit sur janvier 2017, dans la version de hello 2.0.3. Il est supposé tooreplace hello d’origine récepteur connexion car il n’est plus performante et efficace de ressources. Vous trouverez plus de détails à l’adresse [https://github.com/hdinsight/spark-eventhubs](https://github.com/hdinsight/spark-eventhubs). Direct DStream prend uniquement en charge Spark 2.0+.
 
-### <a name="build-applications-with-the-dependency-to-spark-eventhubs-connector"></a>Générer des applications avec une dépendance au connecteur spark-eventhubs
+### <a name="build-applications-with-hello-dependency-toospark-eventhubs-connector"></a>Créer des applications avec le connecteur de hello dépendance toospark-eventhubs
 
-Nous publierons également la version intermédiaire de Spark-EventHubs dans GitHub. Pour utiliser la version intermédiaire de Spark-EventHubs, la première étape consiste à indiquer GitHub en tant que référentiel source en ajoutant l’entrée suivante dans le fichier pom.xml :
+Nous publierons également hello mise en lots de la version de Spark-EventHubs dans GitHub. version de mise en lots hello toouse de Spark-EventHubs, hello première étape consiste tooindicate GitHub comme hello référentiel de code source en ajoutant hello suivant toopom.xml d’entrée :
 
 ```xml
 <repository>
@@ -127,7 +127,7 @@ Nous publierons également la version intermédiaire de Spark-EventHubs dans Git
 </repository>
 ```
 
-Vous pouvez ensuite ajouter les dépendances suivantes à votre projet pour prendre la préversion.
+Vous pouvez ensuite ajouter hello suivant dépendance tooyour projet tootake hello version précédente.
 
 Dépendance Maven
 
@@ -151,7 +151,7 @@ libraryDependencies += "com.microsoft.azure" % "spark-streaming-eventhubs_2.11" 
 
 Un fichier jar prégénéré contenant des exemples utilisant Direct DStream peut être téléchargé dans [http://central.maven.org/maven2/com/microsoft/azure/spark-streaming-eventhubs_2.11/2.0.4/spark-streaming-eventhubs_2.11-2.0.4.jar](http://central.maven.org/maven2/com/microsoft/azure/spark-streaming-eventhubs_2.11/2.0.4/spark-streaming-eventhubs_2.11-2.0.4.jar).
 
-Le fichier jar contient trois exemples dont le code source est disponible à l’adresse [https://github.com/hdinsight/spark-eventhubs/tree/master/examples/src/main/scala/com/microsoft/spark/streaming/examples/directdstream](https://github.com/hdinsight/spark-eventhubs/tree/master/examples/src/main/scala/com/microsoft/spark/streaming/examples/directdstream).
+le fichier jar Hello contient trois exemples dont le code source sont disponibles au [https://github.com/hdinsight/spark-eventhubs/tree/master/examples/src/main/scala/com/microsoft/spark/streaming/examples/directdstream](https://github.com/hdinsight/spark-eventhubs/tree/master/examples/src/main/scala/com/microsoft/spark/streaming/examples/directdstream).
 
 Utilisons [WindowingWordCount](https://github.com/hdinsight/spark-eventhubs/blob/master/examples/src/main/scala/com/microsoft/spark/streaming/examples/directdstream/WindowingWordCount.scala) comme exemple :
 
@@ -214,105 +214,105 @@ ssc.awaitTermination()
 }
 ```
 
-Dans l’exemple ci-dessus, `eventhubParameters` sont les paramètres spécifiques à une seule instance EventHubs et vous devez les transférer à l’API `createDirectStreams` qui construit un mappage d’objet Direct DStream à un espace de noms Event Hubs. Sur l’objet Direct DStream, vous pouvez appeler n’importe quelle API DStream fournie par le framework d’API Spark Streaming. Dans cet exemple, nous calculons la fréquence de chaque mot dans les 3 micro-intervalles de lot.
+Bonjour au-dessus de l’exemple, `eventhubParameters` sont hello paramètres spécifiques tooa EventHubs uniques et que vous avez toopass il toohello `createDirectStreams` API qui crée un espace de concentrateurs d’événements tooa DStream Direct objet mappage noms. Sur l’objet DStream directe de hello, vous pouvez appeler toute API DStream fournie par l’infrastructure de l’API de diffusion en continu de Spark. Dans cet exemple, nous calculons fréquence hello de chaque mot dans des intervalles de lot micro 3 dernière hello.
 
 ### <a name="receiver-based-connection"></a>Connexion basée sur récepteur
 
-Un exemple d’application de diffusion en continu Spark écrite en Scala, qui reçoit des événements et les achemine vers différentes destinations est disponible à l’adresse [https://github.com/hdinsight/spark-streaming-data-persistence-examples](https://github.com/hdinsight/spark-streaming-data-persistence-examples). Suivez les étapes ci-dessous pour mettre à jour l’application pour la configuration de votre Event Hub et créer le fichier jar de sortie.
+Un Spark écrite dans Scala, qui reçoit les événements et les destinations de routage hello toodifferent, exemple d’application de diffusion en continu est disponible à l’adresse [https://github.com/hdinsight/spark-streaming-data-persistence-examples](https://github.com/hdinsight/spark-streaming-data-persistence-examples). Suivez les étapes de hello sous l’application de hello tooupdate pour votre configuration de concentrateur d’événements et créez des hello sortie jar.
 
-1. Lancez IntelliJ IDEA, sélectionnez **Check out from Version Control** (Extraire du contrôle de version) dans l’écran de démarrage, puis cliquez sur **Git**.
+1. Lancez l’idée de IntelliJ et de hello lancer l’écran, sélectionnez **extraire du contrôle de Version** puis cliquez sur **Git**.
    
     ![Exemple de diffusion en continu Apache Spark - obtenir des sources de Git](./media/hdinsight-apache-spark-eventhub-streaming/spark-streaming-example-get-source-from-git.png "Exemple de diffusion en continu Apache Spark - obtenir des sources de Git")
 
-2. Dans la boîte de dialogue **Clone Repository** (Cloner le dépôt), entrez l’URL du dépôt Git à partir duquel opérer le clonage, spécifiez le répertoire vers lequel cloner, puis cliquez sur **Clone**. (Cloner).
+2. Bonjour **Clone référentiel** boîte de dialogue, fournissez hello URL toohello Git référentiel tooclone à partir de, spécifiez tooclone de répertoire hello pour, puis cliquez sur **Clone**.
    
     ![Exemple de diffusion en continu Apache Spark - cloner Git](./media/hdinsight-apache-spark-eventhub-streaming/spark-streaming-example-clone-from-git.png "Exemple de diffusion en continu Apache Spark - cloner Git")
-3. Suivez les invites jusqu’à ce que le projet soit entièrement cloné. Appuyez sur **Alt + 1** pour ouvrir la **Vue du projet**. Elle doit ressembler à ceci :
+3. Suivez les invites de hello jusqu'à ce que le projet de hello est entièrement cloné. Appuyez sur **Alt + 1** tooopen hello **vue projet**. Il doit ressembler à suivant de hello.
    
     ![Exemple de diffusion en continu Apache Spark - Affichage de projet](./media/hdinsight-apache-spark-eventhub-streaming/spark-streaming-example-project-view.png "Exemple de diffusion en continu Apache Spark - Affichage de projet")
-4. Assurez-vous que le code d’application est compilé avec Java8. Pour ce faire, cliquez sur **Fichier**, sur **Structure de projet**, puis sur l’onglet **Projet**, assurez-vous que le niveau de langue du projet est défini sur **8 - Lambdas, type annotations, etc.** (8- Expressions lambda, annotations de type, etc).
+4. Assurez-vous que le code de l’application hello est compilé avec Java8. tooensure, cliquez sur **fichier**, cliquez sur **Structure de projet**et sur hello **projet** onglet, vérifiez qu’au niveau du projet language est défini trop**8 - les expressions lambda, type annotations, etc.**.
    
     ![Exemple de diffusion en continu Apache Spark - Définir un compilateur](./media/hdinsight-apache-spark-eventhub-streaming/spark-streaming-example-java-8-compiler.png "Exemple de diffusion en continu Apache Spark - Définir un compilateur")
-5. Ouvrez le fichier **pom.xml** et assurez-vous que la version de Spark est correcte. Dans le nœud `<properties>`, recherchez l’extrait de code suivant et vérifiez la version de Spark.
+5. Ouvrez hello **pom.xml** et assurez-vous que la version de Spark hello est correcte. Sous `<properties>` nœud, recherchez hello suivant extrait et vérifier la version de Spark hello.
 
         <scala.version>2.11.8</scala.version>
         <scala.compat.version>2.11.8</scala.compat.version>
         <scala.binary.version>2.11</scala.binary.version>
         <spark.version>2.0.0</spark.version>
 
-6. L’application requiert un fichier jar de dépendance appelé **fichier jar du pilote JDBC**. Ce fichier est nécessaire pour écrire les messages reçus de l’Event Hub dans une base de données SQL Azure. Vous pouvez télécharger ce fichier jar (version 4.1 ou version ultérieure) à partir d’[ici](https://msdn.microsoft.com/sqlserver/aa937724.aspx). Ajoutez la référence à ce fichier jar dans la bibliothèque de projet. Procédez comme suit :
+6. application Hello nécessite un fichier jar de dépendance appelé **jar du pilote JDBC**. Il s’agit de messages de type hello toowrite requis provenant du concentrateur d’événements dans une base de données SQL Azure. Vous pouvez télécharger ce fichier jar (version 4.1 ou version ultérieure) à partir d’[ici](https://msdn.microsoft.com/sqlserver/aa937724.aspx). Ajoutez la référence toothis jar dans la bibliothèque de projet hello. Effectuez hello comme suit :
      
-     1. Dans la fenêtre IntelliJ IDEA où l’application est ouverte, cliquez sur **File** (Fichier), sur **Project Structure** (Structure de projet), puis sur **Libraries** (Bibliothèques). 
-     2. Cliquez sur l’icône Ajouter (![icône Ajouter](./media/hdinsight-apache-spark-eventhub-streaming/add-icon.png)), sur **Java**, puis accédez à l’emplacement où vous avez téléchargé le fichier jar du pilote JDBC. Suivez les invites pour ajouter le fichier jar à la bibliothèque de projet.
+     1. Dans la fenêtre IntelliJ idée où vous avez application hello ouvert, cliquez sur **fichier**, cliquez sur **Structure de projet**, puis cliquez sur **bibliothèques**. 
+     2. Cliquez sur hello icône d’ajout (![icône d’ajout de](./media/hdinsight-apache-spark-eventhub-streaming/add-icon.png)), cliquez sur **Java**, puis accédez emplacement toohello où vous avez téléchargé le jar de pilote JDBC hello. Suivez les bibliothèque de projet toohello hello jar fichier hello invites tooadd.
 
          ![ajouter les dépendances manquantes](./media/hdinsight-apache-spark-eventhub-streaming/add-missing-dependency-jars.png "Ajouter les fichiers jars de dépendance manquants")
      3. Cliquez sur **Apply**.
 
-7. Créez le fichier jar de sortie. Procédez comme suit.
+7. Créer le fichier jar de sortie hello. Effectuer hello comme suit.
 
-   1. Dans la boîte de dialogue **Project Structure** (Structure de projet) cliquez sur **Artifacts** (Artefacts), puis sur le signe plus. Dans la boîte de dialogue contextuelle, cliquez sur **JAR**, puis sur **À partir de modules ayant des dépendances**.      
+   1. Bonjour **Structure de projet** boîte de dialogue, cliquez sur **artefacts** puis hello plus de symbole. Dans la boîte de dialogue contextuelle hello, cliquez sur **JAR**, puis cliquez sur **à partir de modules avec des dépendances**.      
        
        ![Exemple de diffusion en continu Apache Spark - créer un fichier jar](./media/hdinsight-apache-spark-eventhub-streaming/spark-streaming-example-create-jar.png "Exemple de diffusion en continu Apache Spark - créer un fichier jar")
-   2. Dans la boîte de dialogue **Créer un fichier JAR à partir de modules**, cliquez sur le bouton de sélection (![ellipse](./media/hdinsight-apache-spark-eventhub-streaming/ellipsis.png)) en regard de **Classe principale**.
-   3. Dans la boîte de dialogue **Select Main Class** (Sélectionner une classe principale), sélectionnez l’une des classes disponibles, puis cliquez sur **OK** (OK).
+   2. Bonjour **créer JAR à partir de Modules** boîte de dialogue, cliquez sur les points de suspension hello (![points de suspension](./media/hdinsight-apache-spark-eventhub-streaming/ellipsis.png)) par rapport à hello **principale classe**.
+   3. Bonjour **sélection de la classe principale** boîte de dialogue zone, sélectionnez une des classes disponibles de hello, puis sur **OK**.
       
        ![Exemple de diffusion en continu Apache Spark - sélectionner une classe pour un fichier jar](./media/hdinsight-apache-spark-eventhub-streaming/spark-streaming-example-select-class-for-jar.png "Exemple de diffusion en continu Apache Spark - sélectionner une classe pour un fichier jar")
-   4. Dans la boîte de dialogue **Create JAR from Modules** (Créer un fichier JAR à partir de modules), assurez-vous que l’option **Extract to the target JAR** (Extraire vers le fichier JAR cible) est activée, puis cliquez sur **OK** (OK). Cela crée un fichier JAR contenant toutes les dépendances.
+   4. Bonjour **créer JAR à partir de Modules** boîte de dialogue zone, assurez-vous que cette option hello trop**extraire toohello cible JAR** est sélectionné, puis cliquez sur **OK**. Cela crée un fichier JAR contenant toutes les dépendances.
       
        ![Exemple de diffusion en continu Apache Spark - créer un fichier jar à partir de modules](./media/hdinsight-apache-spark-eventhub-streaming/spark-streaming-example-create-jar-from-modules.png "Exemple de diffusion en continu Apache Spark - créer un fichier jar à partir de modules")
-   5. L’onglet **Output Layout** (Disposition de la sortie) répertorie tous les fichiers jar inclus dans le cadre du projet Maven. Vous pouvez sélectionner et supprimer ceux sur lesquels l’application Scala n’a aucune dépendance directe. Pour l’application que nous créons ici, vous pouvez les supprimer tous sauf le dernier (**spark-streaming-data-persistence-examples compile output**). Sélectionnez les fichiers JAR à supprimer, puis cliquez sur l’icône **Delete** (Supprimer) (![icône de suppression](./media/hdinsight-apache-spark-eventhub-streaming/delete-icon.png)).
+   5. Hello **mise en page de sortie** onglet répertorie tous les fichiers JAR hello qui sont inclus dans le cadre du projet de Maven hello. Vous pouvez sélectionner et hello supprimer ceux sur lesquels hello Scala application ne possède pas de dépendance directe. Pour l’application hello, nous allons créer ici, vous pouvez supprimer tout sauf hello dernière (**spark-diffusion en continu--persistance-exemples de données de compilation sortie**). Sélectionnez hello JAR toodelete, puis cliquez sur hello **supprimer** icône (![icône Supprimer](./media/hdinsight-apache-spark-eventhub-streaming/delete-icon.png)).
       
        ![Exemple de diffusion en continu Apache Spark - supprimer un fichier jar extrait](./media/hdinsight-apache-spark-eventhub-streaming/spark-streaming-example-delete-output-jars.png "Exemple de diffusion en continu Apache Spark - supprimer un fichier jar extrait")
       
-       Assurez-vous que la case à cocher **Générer à la création** est activée, ce qui garantit la création du fichier JAR à chaque génération ou mise à jour du projet. Cliquez sur **Apply**.
-   6. Sous l’onglet **Output Layout** (Disposition de la sortie), en bas à droite de la zone **Available Elements (Éléments disponibles)**, vous pouvez voir le fichier jar SQL JDBC jar que vous avez ajouté précédemment à la bibliothèque de projet. Vous devez l’ajouter à l’onglet **Output Layout** (Disposition de la sortie). Cliquez avec le bouton droit sur le fichier jar, puis cliquez sur **Extract Into Output Root**(Extraire dans la racine de sortie).
+       Assurez-vous que **Build sur Vérifiez** à cocher est activée, ce qui garantit que ce fichier jar hello est créé chaque fois que projet de hello est généré ou mis à jour. Cliquez sur **Apply**.
+   6. Bonjour **mise en page de sortie** onglet, à droite en bas de hello de hello **éléments disponibles** zone, que vous avez jar SQL JDBC hello que vous avez ajouté de bibliothèque de projet toohello antérieur. Vous devez ajouter cette toohello **mise en page de sortie** onglet. Cliquez sur le fichier jar hello, puis cliquez sur **extraire dans la racine de sortie**.
       
        ![Exemple de diffusion en continu Apache Spark - extraire un fichier jar de dépendance](./media/hdinsight-apache-spark-eventhub-streaming/spark-streaming-example-extract-dependency-jar.png "Exemple de diffusion en continu Apache Spark - extraire un fichier jar de dépendance")  
       
-       L’onglet **Output Layout** (Disposition de la sortie) doit maintenant ressembler à ceci.
+       Hello **mise en page de sortie** onglet doit maintenant ressembler à ceci.
       
        ![Exemple de diffusion en continu Apache Spark - onglet de sortie finale](./media/hdinsight-apache-spark-eventhub-streaming/spark-streaming-example-final-output-tab.png "Exemple de diffusion en continu Apache Spark - onglet de sortie finale")        
       
-       Dans la boîte de dialogue **Project Structure** (Structure de projet), cliquez sur **Apply** (Appliquer), puis sur **OK** (OK).    
-   7. Dans la barre de menus, cliquez sur **Build** (Générer), puis sur **Make Project** (Créer le projet). Vous pouvez également cliquer sur **Générer les artefacts** pour créer le fichier JAR. Le fichier jar de sortie est créé sous **\classes\artifacts**.
+       Bonjour **Structure de projet** boîte de dialogue, cliquez sur **appliquer** puis cliquez sur **OK**.    
+   7. Dans la barre de menus de hello, cliquez sur **générer**, puis cliquez sur **créer le projet**. Vous pouvez également cliquer sur **des artefacts de Build** jar de hello toocreate. Hello jar de sortie est créé sous **\classes\artifacts**.
       
        ![Exemple de diffusion en continu Apache Spark - fichier jar de sortie](./media/hdinsight-apache-spark-eventhub-streaming/spark-streaming-example-output-jar.png "Exemple de diffusion en continu Apache Spark - fichier jar de sortie")
 
-## <a name="run-the-application-remotely-on-a-spark-cluster-using-livy"></a>Exécuter l’application à distance sur un cluster Spark à l’aide de Livy
+## <a name="run-hello-application-remotely-on-a-spark-cluster-using-livy"></a>Exécuter des application hello à distance sur un cluster Spark à l’aide de Livy
 
-Dans le cadre de cet article, vous allez utiliser Livy pour exécuter l’application de diffusion en continu Apache Spark à distance sur un cluster Spark. Pour une présentation détaillée de l’utilisation de Livy avec le cluster HDInsight Spark, voir [Soumettre des travaux à distance à un cluster Apache Spark sur Azure HDInsight](hdinsight-apache-spark-livy-rest-interface.md). Avant de commencer à exécuter l’application de diffusion en continu Spark, vous devez effectuer plusieurs opérations :
+Dans cet article vous utilisez Livy toorun hello Apache Spark diffusion en continu application à distance sur un cluster Spark. Pour obtenir une présentation détaillée sur comment toouse Livy avec HDInsight Spark de cluster, consultez [travaux d’envoi à distance tooan Apache Spark cluster sur Azure HDInsight](hdinsight-apache-spark-livy-rest-interface.md). Avant de démarrer l’application de diffusion en continu de Spark hello en cours d’exécution, il existe deux choses à faire :
 
-1. Démarrez l’application autonome locale pour générer des événements et les envoyer à l’Event Hub. Pour ce faire, utilisez la commande suivante :
+1. Début hello toogenerate les événements d’application local autonome et envoyé tooEvent Hub. Utilisez hello suivant commande toodo ainsi :
 
         java -cp com-microsoft-azure-eventhubs-client-example-0.2.0.jar com.microsoft.eventhubs.client.example.EventhubsClientDriver --eventhubs-namespace "mysbnamespace" --eventhubs-name "myeventhub" --policy-name "mysendpolicy" --policy-key "<policy key>" --message-length 32 --thread-count 32 --message-count -1
 
-2. Copiez le fichier jar de diffusion en continu (**spark-streaming-data-persistence-examples.jar**) vers le stockage Blob Azure associé au cluster. Le fichier jar est ainsi accessible à Livy. Pour ce faire, vous pouvez utiliser l’utilitaire de ligne de commande [**AzCopy**](../storage/common/storage-use-azcopy.md). De nombreux autres clients permettent également de télécharger des données. Pour en savoir plus à leur sujet, consultez [Téléchargement de données pour les travaux Hadoop dans HDInsight](hdinsight-upload-data.md).
-3. Installez CURL sur l’ordinateur à partir duquel vous exécutez ces applications. Nous utilisons CURL pour appeler les points de terminaison Livy afin d’exécuter les travaux à distance.
+2. Hello copie jar de diffusion en continu (**spark-diffusion en continu-données-persistance-Examples.jar**) toohello stockage d’objets Blob Azure associé hello cluster. Cela rend tooLivy accessible de hello jar. Vous pouvez utiliser [ **AzCopy**](../storage/common/storage-use-azcopy.md), par conséquent, utilitaire, toodo une commande de ligne. Il existe beaucoup d’autres clients, vous pouvez utiliser les données tooupload. Pour en savoir plus à leur sujet, consultez [Téléchargement de données pour les travaux Hadoop dans HDInsight](hdinsight-upload-data.md).
+3. Installez CURL sur hello ordinateur sur lequel vous exécutez ces applications à partir de. Nous utilisons hello de tooinvoke CURL hello de toorun de points de terminaison Livy des travaux à distance.
 
-### <a name="run-the-spark-streaming-application-to-receive-the-events-into-an-azure-storage-blob-as-text"></a>Exécuter l’application de diffusion en continu Spark pour recevoir les événements dans un Azure Storage Blob en tant que texte
+### <a name="run-hello-spark-streaming-application-tooreceive-hello-events-into-an-azure-storage-blob-as-text"></a>Exécutez hello Spark diffusion en continu tooreceive hello événements de l’application dans un objet Blob de stockage Azure sous forme de texte
 
-Ouvrez une invite de commandes, accédez au répertoire dans lequel vous avez installé CURL, puis exécutez la commande suivante (en remplaçant le nom/mot de passe d’utilisateur et le nom du cluster) :
+Ouvrez une invite de commandes, accédez répertoire toohello où vous avez installé CURL et exécutez hello (remplacer le nom d’utilisateur/mot de passe et du cluster) de commande suivante :
 
     curl -k --user "admin:mypassword1!" -v -H "Content-Type: application/json" -X POST --data @C:\Temp\inputBlob.txt "https://mysparkcluster.azurehdinsight.net/livy/batches"
 
-Les paramètres du fichier **inputBlob.txt** sont définis comme suit :
+Hello paramètres hello fichier **inputBlob.txt** sont définies comme suit :
 
     { "file":"wasb:///example/jars/spark-streaming-data-persistence-examples.jar", "className":"com.microsoft.spark.streaming.examples.workloads.EventhubsEventCount", "args":["--eventhubs-namespace", "mysbnamespace", "--eventhubs-name", "myeventhub", "--policy-name", "myreceivepolicy", "--policy-key", "<put-your-key-here>", "--consumer-group", "$default", "--partition-count", 10, "--batch-interval-in-seconds", 20, "--checkpoint-directory", "/EventCheckpoint", "--event-count-folder", "/EventCount/EventCount10"], "numExecutors":20, "executorMemory":"1G", "executorCores":1, "driverMemory":"2G" }
 
-Nous devons comprendre quels sont les paramètres dans le fichier d’entrée :
+Découvrons que sont les paramètres hello hello fichier d’entrée :
 
-* **file** est le chemin d’accès au fichier jar d’application sur le compte Azure Storage associé au cluster.
-* **className** est le nom de la classe dans le fichier jar.
-* **args** est la liste des arguments requis par la classe.
-* **numExecutors** est le nombre de cœurs que Spark utilise pour exécuter l’application de diffusion en continu. Il doit toujours y avoir au moins deux fois le nombre de partitions de l’Event Hub.
-* **executorMemory**, **executorCores** et **driverMemory** sont des paramètres utilisés pour affecter les ressources nécessaires à l’application de diffusion en continu.
+* **fichier** est fichier hello chemin d’accès toohello application jar sur le compte de stockage Azure hello associé hello cluster.
+* **className** est le nom hello de classe hello dans jar de hello.
+* **args** liste hello d’arguments requis par la classe hello
+* **numExecutors** est nombre hello de noyaux utilisés par hello de toorun Spark application de diffusion en continu. Il doit toujours être au moins deux fois hello différentes partitions du Hub d’événements.
+* **executorMemory**, **executorCores**, **driverMemory** sont des applications de diffusion en continu toohello ressources tooassign requis de paramètres utilisés.
 
 > [!NOTE]
-> Il est inutile de créer les dossiers de sortie (EventCheckpoint, EventCount/EventCount10) utilisés comme paramètres. L’application de diffusion en continu les crée pour vous.
+> Vous n’avez pas besoin de toocreate hello dossiers de sortie (EventCheckpoint, nombre d’événements/EventCount10) qui sont utilisées comme paramètres. application de diffusion en continu de Hello crée pour vous.
 >
 >
 
-Lorsque vous exécutez la commande, vous devez voir une sortie similaire à ce qui suit :
+Lorsque vous exécutez la commande hello, vous devez voir une sortie semblable à hello suivante :
 
     < HTTP/1.1 201 Created
     < Content-Type: application/json; charset=UTF-8
@@ -323,64 +323,64 @@ Lorsque vous exécutez la commande, vous devez voir une sortie similaire à ce q
     < Date: Tue, 01 Dec 2015 05:39:10 GMT
     < Content-Length: 37
     <
-    {"id":1,"state":"starting","log":[]}* Connection #0 to host mysparkcluster.azurehdinsight.net left intact
+    {"id":1,"state":"starting","log":[]}* Connection #0 toohost mysparkcluster.azurehdinsight.net left intact
 
-Prenez note de l’ID de lot dans la dernière ligne de la sortie (dans cet exemple, « 1 »). Pour vérifier que l’application s’exécute correctement, vous pouvez consulter votre compte de stockage Azure associé au cluster, et devriez y voir le dossier **/nombre d’événements/EventCount10** créé. Ce dossier doit contenir les objets blob qui capturent le nombre d’événements traités pendant la période spécifiée pour le paramètre **batch-interval-in-seconds**.
+Prenez note de l’ID de lot hello dans hello dernière ligne de sortie hello (dans cet exemple, il est « 1 »). tooverify qui hello application s’exécute correctement, vous pouvez consulter votre compte de stockage Azure associé hello cluster et vous devez voir hello **/nombre d’événements/EventCount10** dossier créé. Ce dossier doit contenir les objets BLOB qui capture le nombre de hello d’événements traités au sein de hello période de temps spécifiée pour le paramètre hello **lot intervalle en secondes**.
 
-L’application de diffusion en continu Spark continue à s’exécuter jusqu’à ce que vous l’arrêtiez. Pour ce faire, utilisez la commande suivante :
+application de diffusion en continu de Spark Hello continuera toorun jusqu'à ce que vous l’arrêter. toodo utilisez donc hello de commande suivante :
 
     curl -k --user "admin:mypassword1!" -v -X DELETE "https://mysparkcluster.azurehdinsight.net/livy/batches/1"
 
-### <a name="run-the-applications-to-receive-the-events-into-an-azure-storage-blob-as-json"></a>Exécuter les applications pour recevoir les événements dans un objet blob Azure Storage en tant que fichier JSON
-Ouvrez une invite de commandes, accédez au répertoire dans lequel vous avez installé CURL, puis exécutez la commande suivante (en remplaçant le nom/mot de passe d’utilisateur et le nom du cluster) :
+### <a name="run-hello-applications-tooreceive-hello-events-into-an-azure-storage-blob-as-json"></a>Exécuter des applications de hello les événements hello tooreceive dans un objet Blob de stockage Azure en tant que JSON
+Ouvrez une invite de commandes, accédez répertoire toohello où vous avez installé CURL et exécutez hello (remplacer le nom d’utilisateur/mot de passe et du cluster) de commande suivante :
 
     curl -k --user "admin:mypassword1!" -v -H "Content-Type: application/json" -X POST --data @C:\Temp\inputJSON.txt "https://mysparkcluster.azurehdinsight.net/livy/batches"
 
-Les paramètres du fichier **inputJSON.txt** sont définis comme suit :
+Hello paramètres hello fichier **inputJSON.txt** sont définies comme suit :
 
     { "file":"wasb:///example/jars/spark-streaming-data-persistence-examples.jar", "className":"com.microsoft.spark.streaming.examples.workloads.EventhubsToAzureBlobAsJSON", "args":["--eventhubs-namespace", "mysbnamespace", "--eventhubs-name", "myeventhub", "--policy-name", "myreceivepolicy", "--policy-key", "<put-your-key-here>", "--consumer-group", "$default", "--partition-count", 10, "--batch-interval-in-seconds", 20, "--checkpoint-directory", "/EventCheckpoint", "--event-count-folder", "/EventCount/EventCount10", "--event-store-folder", "/EventStore10"], "numExecutors":20, "executorMemory":"1G", "executorCores":1, "driverMemory":"2G" }
 
-Les paramètres sont similaires à ce que vous avez spécifié pour la sortie de texte à l’étape précédente. Une fois encore, il est inutile de créer les dossiers de sortie (EventCheckpoint, EventCount/EventCount10) utilisés comme paramètres. L’application de diffusion en continu les crée pour vous.
+les paramètres de Hello sont similaires toowhat que vous avez spécifié pour la sortie de texte hello, dans l’étape précédente de hello. Là encore, il est inutile toocreate hello dossiers de sortie (EventCheckpoint, nombre d’événements/EventCount10) qui sont utilisées comme paramètres. application de diffusion en continu de Hello crée pour vous.
 
- Après avoir exécuté la commande, vous pouvez consulter votre compte de stockage Azure associé au cluster, et devriez y voir le dossier **/EventStore10** créé. Ouvrez n’importe quel fichier ayant le préfixe **part-**. Vous devriez y voir les événements traités au format JSON.
+ Une fois que vous exécutez la commande hello, vous pouvez consulter votre compte de stockage Azure associé hello cluster et vous devez voir hello **/EventStore10** dossier créé. Ouvrez n’importe quel fichier préfixe **partie -** et vous devez voir les événements de hello traités dans un format JSON.
 
-### <a name="run-the-applications-to-receive-the-events-into-a-hive-table"></a>Exécuter les applications pour recevoir les événements dans une table Hive
-Pour exécuter l’application de diffusion en continu Spark qui diffuse des événements dans une table Hive, vous avez besoin de composants supplémentaires. Ces composants sont les suivants :
+### <a name="run-hello-applications-tooreceive-hello-events-into-a-hive-table"></a>Exécuter des applications de hello les événements hello tooreceive dans une table Hive
+toorun hello application de diffusion en continu de Spark que les événements de flux de données dans une ruche tables que vous avez besoin des composants supplémentaires. Ces composants sont les suivants :
 
 * datanucleus-api-jdo-3.2.6.jar
 * datanucleus-SGBDR-3.2.9.jar
 * datanucleus-core-3.2.10.jar
 * hive-site.xml
 
-Les fichiers **.jar** sont disponibles sur votre cluster HDInsight Spark à l’adresse `/usr/hdp/current/spark-client/lib`. Le fichier **hive-site.xml** est disponible à l’adresse `/usr/hdp/current/spark-client/conf`.
+Hello **.jar** fichiers sont disponibles sur votre cluster HDInsight Spark à `/usr/hdp/current/spark-client/lib`. Hello **hive-site.XML** est disponible à l’adresse `/usr/hdp/current/spark-client/conf`.
 
-Vous pouvez utiliser [WinScp](http://winscp.net/eng/download.php) pour copier ces fichiers à partir du cluster sur votre ordinateur local. Vous pouvez ensuite vous servir d’outils pour copier ces fichiers sur votre compte de stockage associé au cluster. Pour plus d’informations sur la façon de charger des fichiers sur le compte de stockage, voir [Téléchargement de données pour des tâches Hadoop dans HDInsight](hdinsight-upload-data.md).
+Vous pouvez utiliser [WinScp](http://winscp.net/eng/download.php) toocopy ces fichiers à partir de l’ordinateur local de hello cluster tooyour. Vous pouvez ensuite utiliser toocopy outils ces fichiers sur le compte de stockage tooyour associées au cluster de hello. Pour plus d’informations sur l’utilisation des fichiers de compte de stockage toohello tooupload, consultez [télécharger des données pour les travaux Hadoop dans HDInsight](hdinsight-upload-data.md).
 
-Après avoir copié les fichiers sur votre compte de stockage Azure, ouvrez une invite de commandes, accédez au répertoire dans lequel vous avez installé CURL, puis exécutez la commande suivante (en remplaçant le nom/mot de passe d’utilisateur et le nom du cluster) :
+Une fois que vous avez copié les fichiers de hello tooyour compte de stockage Azure, ouvrez une invite de commandes, accédez répertoire toohello où vous avez installé CURL et exécutez hello (remplacer le nom d’utilisateur/mot de passe et du cluster) de commande suivante :
 
     curl -k --user "admin:mypassword1!" -v -H "Content-Type: application/json" -X POST --data @C:\Temp\inputHive.txt "https://mysparkcluster.azurehdinsight.net/livy/batches"
 
-Les paramètres du fichier **inputHive.txt** sont définis comme suit :
+Hello paramètres hello fichier **inputHive.txt** sont définies comme suit :
 
     { "file":"wasb:///example/jars/spark-streaming-data-persistence-examples.jar", "className":"com.microsoft.spark.streaming.examples.workloads.EventhubsToHiveTable", "args":["--eventhubs-namespace", "mysbnamespace", "--eventhubs-name", "myeventhub", "--policy-name", "myreceivepolicy", "--policy-key", "<put-your-key-here>", "--consumer-group", "$default", "--partition-count", 10, "--batch-interval-in-seconds", 20, "--checkpoint-directory", "/EventCheckpoint", "--event-count-folder", "/EventCount/EventCount10", "--event-hive-table", "EventHiveTable10" ], "jars":["wasb:///example/jars/datanucleus-api-jdo-3.2.6.jar", "wasb:///example/jars/datanucleus-rdbms-3.2.9.jar", "wasb:///example/jars/datanucleus-core-3.2.10.jar"], "files":["wasb:///example/jars/hive-site.xml"], "numExecutors":20, "executorMemory":"1G", "executorCores":1, "driverMemory":"2G" }
 
-Les paramètres sont similaires à ce que vous avez spécifié pour la sortie de texte aux étapes précédentes. Une fois encore, il est inutile de créer les dossiers de sortie(EventCheckpoint, EventCount/EventCount10) ou la table Hive de sortie (EventHiveTable10) utilisés comme paramètres. L’application de diffusion en continu les crée pour vous. Notez que l’option **jars** et **files** inclut des chemins d’accès aux fichiers .jar et au fichier hive-site.xml que vous avez copiés vers le compte de stockage.
+les paramètres de Hello sont similaires toowhat que vous avez spécifié pour la sortie de texte hello, dans les étapes précédentes hello. Là encore, vous ne devez pas de sortie de hello toocreate table Hive (EventHiveTable10) qui sont utilisées comme paramètres de sortie de dossiers (EventCheckpoint, nombre d’événements/EventCount10) ou hello. application de diffusion en continu de Hello crée pour vous. Notez que hello **JAR** et **fichiers** option inclut les fichiers de chemins d’accès toohello .jar et hello hive-site.XML que vous avez copié sur le compte de stockage toohello.
 
-Pour vérifier que la table Hive a été correctement créée, vous pouvez exécuter SSH dans le cluster et exécuter des requêtes Hive. Pour obtenir des instructions, consultez [Utilisation de Hive avec Hadoop dans HDInsight avec SSH](hdinsight-hadoop-use-hive-ssh.md). Après vous être connecté à l’aide de SSH, vous pouvez exécuter la commande suivante pour vérifier que la table Hive, **EventHiveTable10**, est créée.
+tooverify qui hello table hive a été créé avec succès, vous pouvez SSH en cluster de hello et exécution des requêtes Hive. Pour obtenir des instructions, consultez [Utilisation de Hive avec Hadoop dans HDInsight avec SSH](hdinsight-hadoop-use-hive-ssh.md). Une fois que vous êtes connecté à l’aide de SSH, vous pouvez exécuter hello suivant commande tooverify cette table Hive hello, **EventHiveTable10**, est créé.
 
     show tables;
 
-Le résultat doit ressembler à ce qui suit :
+Vous devez voir s’afficher une sortie similaire toohello :
 
     OK
     eventhivetable10
     hivesampletable
 
-Vous pouvez également exécuter une requête SELECT pour afficher le contenu de la table.
+Vous pouvez également exécuter une requête SELECT contenu de hello tooview de la table de hello.
 
     SELECT * FROM eventhivetable10 LIMIT 10;
 
-Un résultat similaire à ce qui suit s’affiche normalement :
+Vous devez voir une sortie semblable à hello suivante :
 
     ZN90apUSQODDTx7n6Toh6jDbuPngqT4c
     sor2M7xsFwmaRW8W8NDwMneFNMrOVkW1
@@ -395,22 +395,22 @@ Un résultat similaire à ce qui suit s’affiche normalement :
     Time taken: 4.434 seconds, Fetched: 10 row(s)
 
 
-### <a name="run-the-applications-to-receive-the-events-into-an-azure-sql-database-table"></a>Exécuter les applications pour recevoir les événements dans une table de Base de données SQL Azure
-Avant d’exécuter cette étape, assurez-vous que vous disposez d’une base de données SQL Azure. Pour obtenir des instructions, consultez [Créer une base de données SQL en quelques minutes](../sql-database/sql-database-get-started.md). Pour terminer cette section, vous avez besoin des valeurs de nom de base de données, de nom de serveur de base de données, ainsi que des informations d’identification de l’administrateur de base de données en tant que paramètres. Il est cependant inutile de créer la table de base de données. L’application de diffusion en continu Spark la crée pour vous.
+### <a name="run-hello-applications-tooreceive-hello-events-into-an-azure-sql-database-table"></a>Exécuter des applications de hello les événements hello tooreceive dans une table de base de données SQL Azure
+Avant d’exécuter cette étape, assurez-vous que vous disposez d’une base de données SQL Azure. Pour obtenir des instructions, consultez [Créer une base de données SQL en quelques minutes](../sql-database/sql-database-get-started.md). toocomplete cette section, vous avez besoin de valeurs pour le nom de la base de données, nom du serveur de base de données et administrateur de base de données hello en tant que paramètres. Il est inutile table de base de données toocreate hello cependant. Hello application de diffusion en continu de Spark qui crée pour vous.
 
-Ouvrez une invite de commandes, accédez au répertoire dans lequel vous avez installé CURL, puis exécutez la commande suivante :
+Ouvrez une invite de commandes, accédez répertoire toohello où vous avez installé CURL et exécutez hello de commande suivante :
 
     curl -k --user "admin:mypassword1!" -v -H "Content-Type: application/json" -X POST --data @C:\Temp\inputSQL.txt "https://mysparkcluster.azurehdinsight.net/livy/batches"
 
-Les paramètres du fichier **inputSQL.txt** sont définis comme suit :
+Hello paramètres hello fichier **inputSQL.txt** sont définies comme suit :
 
     { "file":"wasb:///example/jars/spark-streaming-data-persistence-examples.jar", "className":"com.microsoft.spark.streaming.examples.workloads.EventhubsToAzureSQLTable", "args":["--eventhubs-namespace", "mysbnamespace", "--eventhubs-name", "myeventhub", "--policy-name", "myreceivepolicy", "--policy-key", "<put-your-key-here>", "--consumer-group", "$default", "--partition-count", 10, "--batch-interval-in-seconds", 20, "--checkpoint-directory", "/EventCheckpoint", "--event-count-folder", "/EventCount/EventCount10", "--sql-server-fqdn", "<database-server-name>.database.windows.net", "--sql-database-name", "mysparkdatabase", "--database-username", "sparkdbadmin", "--database-password", "<put-password-here>", "--event-sql-table", "EventContent" ], "numExecutors":20, "executorMemory":"1G", "executorCores":1, "driverMemory":"2G" }
 
-Pour vérifier que l’application s’exécute correctement, vous pouvez vous connecter à la base de données SQL Azure à l’aide de SQL Server Management Studio. Pour obtenir des instructions sur la procédure à suivre, voir [Se connecter à Base de données SQL avec SQL Server Management Studio](../sql-database/sql-database-connect-query-ssms.md). Une fois connecté à la base de données, vous pouvez accéder à la table **EventContent** créée par l’application de diffusion en continu. Vous pouvez exécuter une requête rapide pour obtenir les données de la table. Exécutez la requête suivante :
+tooverify qui hello application s’exécute correctement, vous pouvez vous connecter à base de données SQL Azure toohello à l’aide de SQL Server Management Studio. Pour obtenir des instructions sur la façon de toodo qui, consultez [connecter tooSQL de base de données avec SQL Server Management Studio](../sql-database/sql-database-connect-query-ssms.md). Une fois que vous êtes connecté toohello de base de données, vous pouvez naviguer toohello **EventContent** table qui a été créé par l’application de diffusion en continu de hello. Vous pouvez exécuter un requête rapide tooget hello de données à partir de la table de hello. Exécutez hello suivant la requête :
 
     SELECT * FROM EventCount
 
-Le résultat ressemble à ce qui suit :
+Vous devez voir s’afficher sortie similaire toohello :
 
     00046b0f-2552-4980-9c3f-8bba5647c8ee
     000b7530-12f9-4081-8e19-90acd26f9c0c
@@ -432,8 +432,8 @@ Le résultat ressemble à ce qui suit :
 
 ### <a name="scenarios"></a>Scénarios
 * [Spark avec BI : effectuez une analyse interactive des données à l’aide de Spark dans HDInsight avec des outils BI](hdinsight-apache-spark-use-bi-tools.md)
-* [Spark avec Machine Learning : Utiliser Spark dans HDInsight pour l’analyse de la température de bâtiments à l’aide de données HVAC](hdinsight-apache-spark-ipython-notebook-machine-learning.md)
-* [Spark avec Machine Learning : Utiliser Spark dans HDInsight pour prédire les résultats de l’inspection des aliments](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
+* [Spark avec Machine Learning : utilisez Spark dans HDInsight pour l’analyse de la température des bâtiments à l’aide des données des systèmes HVAC](hdinsight-apache-spark-ipython-notebook-machine-learning.md)
+* [Spark avec Machine Learning : Spark utilisation dans résultats de l’inspection alimentaires toopredict HDInsight](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
 * [Analyse des journaux de site web à l’aide de Spark dans HDInsight](hdinsight-apache-spark-custom-library-website-log-analysis.md)
 
 ### <a name="create-and-run-applications"></a>Créer et exécuter des applications
@@ -441,16 +441,16 @@ Le résultat ressemble à ce qui suit :
 * [Exécuter des tâches à distance avec Livy sur un cluster Spark](hdinsight-apache-spark-livy-rest-interface.md)
 
 ### <a name="tools-and-extensions"></a>Outils et extensions
-* [Utilisez le plugin d’outils HDInsight pour IntelliJ IDEA pour créer et soumettre des applications Spark Scala](hdinsight-apache-spark-intellij-tool-plugin.md)
-* [Use HDInsight Tools Plugin for IntelliJ IDEA to debug Spark applications remotely) (Utiliser le plug-in Outils HDInsight pour IntelliJ IDEA pour déboguer des applications Spark à distance)](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
+* [Utiliser le plug-in des outils HDInsight pour IntelliJ idée toocreate et soumettre des applications les plus importantes Spark Scala](hdinsight-apache-spark-intellij-tool-plugin.md)
+* [Utiliser des plug-in des outils HDInsight pour les applications de Spark toodebug IntelliJ idée à distance](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
 * [Utiliser des bloc-notes Zeppelin avec un cluster Spark sur HDInsight](hdinsight-apache-spark-zeppelin-notebook.md)
 * [Noyaux disponibles pour le bloc-notes Jupyter dans un cluster Spark pour HDInsight](hdinsight-apache-spark-jupyter-notebook-kernels.md)
 * [Utiliser des packages externes avec les blocs-notes Jupyter](hdinsight-apache-spark-jupyter-notebook-use-external-packages.md)
-* [Install Jupyter on your computer and connect to an HDInsight Spark cluster (Installer Jupyter sur un ordinateur et se connecter au cluster Spark sur HDInsight)](hdinsight-apache-spark-jupyter-notebook-install-locally.md)
+* [Installer Notebook sur votre ordinateur et vous connecter tooan cluster HDInsight Spark](hdinsight-apache-spark-jupyter-notebook-install-locally.md)
 
 ### <a name="manage-resources"></a>Gestion des ressources
-* [Gérer les ressources du cluster Apache Spark dans Azure HDInsight](hdinsight-apache-spark-resource-manager.md)
-* [Suivi et débogage des tâches en cours d’exécution sur un cluster Apache Spark dans HDInsight](hdinsight-apache-spark-job-debugging.md)
+* [Gérer les ressources de cluster d’Apache Spark hello dans Azure HDInsight](hdinsight-apache-spark-resource-manager.md)
+* [Track and debug jobs running on an Apache Spark cluster in HDInsight (Suivi et débogage des tâches en cours d’exécution sur un cluster Apache Spark dans HDInsight)](hdinsight-apache-spark-job-debugging.md)
 
 [hdinsight-versions]: hdinsight-component-versioning.md
 [hdinsight-upload-data]: hdinsight-upload-data.md

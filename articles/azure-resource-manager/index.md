@@ -1,6 +1,6 @@
 ---
-title: "Documentation Azure Resource Manager - Didacticiels, informations de référence sur les API | Microsoft Docs"
-description: "Découvrez comment utiliser Resource Manager pour déployer et gérer des ressources de solution en tant que groupe et créer des modèles de déploiement de ressources cohérents et reproductibles."
+title: "aaaAzure Documentation du Gestionnaire de ressources - didacticiels, référence de l’API | Documents Microsoft"
+description: "Découvrez comment toouse toodeploy du Gestionnaire de ressources et de gérer les ressources de la solution comme un modèle de groupe et toocreate pour le déploiement de ressources cohérents et reproductibles."
 services: azure-resource-manager
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: e74ec7e061c7b00acbf1cba7fdcc1864a81fff3b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: dc920b14e84bbad1a178fc91a61a1d2642d644b1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 #<a name="azure-resource-manager-documentation"></a>Documentation Azure Resource Manager
 
-Apprenez à utiliser Resource Manager pour déployer, surveiller et gérer des ressources de solution en tant que groupe. Des didacticiels, des références d’API et d’autres documents vous montrent comment configurer des groupes de ressources et créer des modèles de déploiement cohérents et reproductibles.
+Découvrez comment toouse toodeploy du Gestionnaire de ressources, surveiller et gérer les ressources de la solution en tant que groupe. Didacticiels, des références de l’API et toute autre documentation vous montrent comment tooset ressource regroupe et créer des modèles pour le déploiement cohérent et reproductible.
 
 <ul class="panelContent cardsFTitle">
     <li>

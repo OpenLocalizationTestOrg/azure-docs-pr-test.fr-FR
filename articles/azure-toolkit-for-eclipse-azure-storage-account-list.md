@@ -1,6 +1,6 @@
 ---
-title: Liste des comptes Azure Storage
-description: "Gérez les paramètres de votre compte de stockage à l'aide du kit de ressources Azure pour Eclipse"
+title: aaaAzure liste des comptes de stockage
+description: "Gérer les paramètres de votre compte de stockage à l’aide de hello boîte à outils Azure pour Eclipse"
 services: 
 documentationcenter: java
 author: rmcmurray
@@ -14,90 +14,90 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 04/14/2017
 ms.author: robmcm
-ms.openlocfilehash: f859efa389d3fe0b4b7b16255d57f1aa13123319
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 35e25881ca95ae4050a26283e4726d9549b37f46
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-storage-account-list"></a>Liste des comptes Azure Storage
-Les comptes de stockage Azure permettent l'utilisation d'emplacements de téléchargement pour votre JDK, serveur d'applications et composants arbitraires, ainsi que pour stocker l'état lors de l'utilisation de la mise en cache. Eclipse conserve une liste des comptes de stockage connus qui sont disponibles pour vos projets dans votre espace de travail Eclipse. Pour ouvrir la boîte de dialogue **Comptes de stockage**, qui permet de gérer cette liste, dans Eclipse, cliquez sur **Fenêtre**, sur **Préférences**, développez **Azure**, puis cliquez sur **Comptes de stockage**.
+Activer des comptes de stockage Azure télécharger toobe emplacements utilisé pour votre JDK, serveur d’applications et composants arbitraires, ainsi que pour stocker l’état lors de l’utilisation de la mise en cache. Eclipse conserve une liste des comptes de stockage connus qui sont des projets tooyour disponibles dans votre espace de travail Eclipse. tooopen hello **comptes de stockage** boîte de dialogue, qui est utilisé toomanage qui répertorient, dans Eclipse, cliquez sur **fenêtre**, cliquez sur **préférences**, développez **Azure** , puis cliquez sur **comptes de stockage**.
 
-La boîte de dialogue **Comptes de stockage** est illustrée ci-dessous.
+Hello Voici hello **comptes de stockage** boîte de dialogue.
 
 ![][ic719496]
 
-Vous pouvez également ouvrir cette boîte de dialogue à partir du lien **Comptes** dans les boîtes de dialogue qui utilisent des comptes de stockage, comme ci-dessous :
+Vous pouvez également ouvrir cette boîte de dialogue à partir d’un **comptes** lien dans les boîtes de dialogue qui utilisent des comptes de stockage, tels que les suivants hello :
 
-* Onglet **JDK** de la boîte de dialogue **Configuration du serveur**.
-* Onglet **Serveur** de la boîte de dialogue **Configuration du serveur**.
-* Boîte de dialogue **Ajouter un composant** .
-* Boîte de dialogue des propriétés de **mise en cache** .
+* Hello **JDK** onglet Hello **Configuration du serveur** boîte de dialogue.
+* Hello **Server** onglet Hello **Configuration du serveur** boîte de dialogue.
+* Hello **ajouter un composant** boîte de dialogue.
+* Hello **mise en cache** boîte de dialogue Propriétés.
 
-## <a name="to-import-your-storage-accounts-using-a-publish-settings-file"></a>Pour importer vos comptes de stockage à l'aide d'un fichier de paramètres de publication
-1. Dans la boîte de dialogue **Comptes de stockage**, cliquez sur **Importer à partir du fichier PUBLISH-SETTINGS**.
+## <a name="tooimport-your-storage-accounts-using-a-publish-settings-file"></a>tooimport des comptes de votre stockage en utilisant un fichier de paramètres de publication
+1. Au sein de hello **comptes de stockage** boîte de dialogue, cliquez sur **importer à partir du fichier de paramètres de publication**.
 
-2. (Ignorez cette étape si vous avez déjà enregistré un fichier de paramètres de publication sur votre ordinateur local). Dans la boîte de dialogue **Importer les informations d’abonnement**, cliquez sur **Télécharger le fichier PUBLISH-SETTINGS**. Si vous n’êtes pas encore connecté à votre compte Azure, vous y êtes maintenant invité. Vous serez ensuite invité à enregistrer un fichier de paramètres de publication Azure. (Vous pouvez ignorer les instructions affichées sur les pages d'ouverture de session ; elles sont fournies par le portail Azure et sont destinées aux utilisateurs de Visual Studio.) Enregistrez-le sur votre ordinateur local.
+2. (Ignorer cette étape si vous avez déjà enregistré un ordinateur local de publier les paramètres fichier tooyour). Bonjour **importation des informations d’abonnement** boîte de dialogue, cliquez sur **télécharger le fichier PUBLISH-SETTINGS**. Si vous n’êtes pas encore connecté à votre compte Azure, vous serez invité à toolog dans. Ensuite, vous êtes invité à entrer toosave Azure publier le fichier de paramètres. (Vous pouvez ignorer hello instructions sur les pages d’ouverture de session hello - ils sont fournis par hello portail Azure et sont destinées aux utilisateurs de Visual Studio) Enregistrez-le tooyour les ordinateur local.
 
-3. Toujours dans la boîte de dialogue **Importer les informations d’abonnement**, cliquez sur le bouton **Parcourir**, sélectionnez le fichier de paramètres que vous avez enregistré localement, puis cliquez sur **Ouvrir**.
+3. Toujours en hello **importation des informations d’abonnement** boîte de dialogue, cliquez sur hello **Parcourir** bouton, hello sélectionnez Publier le fichier de paramètres que vous avez précédemment enregistré localement, puis cliquez sur **ouvrir**.
 
-4. Cliquez sur **OK** pour fermer la boîte de dialogue **Importer les informations d’abonnement**.
+4. Cliquez sur **OK** tooclose hello **importation des informations d’abonnement** boîte de dialogue.
 
-## <a name="to-create-a-new-storage-account"></a>Pour créer un compte de stockage
-1. Dans la boîte de dialogue **Comptes de stockage**, cliquez sur **Ajouter**.
+## <a name="toocreate-a-new-storage-account"></a>toocreate un compte de stockage
+1. Au sein de hello **comptes de stockage** boîte de dialogue, cliquez sur **ajouter**.
 
-2. Dans la boîte de dialogue **Ajouter un compte de stockage**, cliquez sur **Nouveau**.
+2. Au sein de hello **ajouter un compte de stockage** boîte de dialogue, cliquez sur **nouveau**.
 
-3. Dans la boîte de dialogue **Nouveau compte de stockage** , entrez des valeurs pour les éléments suivants :
+3. Au sein de hello **nouveau compte de stockage** boîte de dialogue, spécifiez des valeurs pour les éléments suivants de hello :
 
    * Nom du compte de stockage.
 
-   * Emplacement du compte de stockage.
+   * Emplacement du compte de stockage hello.
 
-   * Description du compte de stockage.
+   * Description du compte de stockage hello.
 
-   * Abonnement auquel appartient le compte de stockage.
+   * compte de stockage Hello abonnement toowhich hello appartient.
 
-4. Cliquez sur **OK** pour fermer la boîte de dialogue **Nouveau compte de stockage**.
+4. Cliquez sur **OK** tooclose hello **nouveau compte de stockage** boîte de dialogue.
 
-La création de votre compte de stockage peut prendre plusieurs minutes. Après sa création, cliquez sur **OK** pour fermer la boîte de dialogue **Ajouter un compte de stockage** : votre compte de stockage sera ajouté à la liste des comptes de stockage disponibles.
+Il peut prendre plusieurs minutes avant que votre toobe de compte de stockage créé. Après sa création, cliquez sur **OK** tooclose hello **ajouter un compte de stockage** boîte de dialogue et votre compte de stockage seront ajouté toohello la liste des comptes de stockage disponibles.
 
-## <a name="to-add-an-existing-storage-account-to-the-list"></a>Pour ajouter un compte de stockage existant à la liste
-1. Si vous ne disposez pas déjà d'un compte de stockage Azure, créez-en un en suivant les étapes indiquées dans la section **Pour créer un compte de stockage** ci-dessus. (Vous pouvez aussi créer un compte de stockage dans le [portail de gestion Azure][Azure Management Portal].)
+## <a name="tooadd-an-existing-storage-account-toohello-list"></a>tooadd une liste de toohello de compte de stockage existant
+1. Si vous ne figure pas un stockage Azure compte, créez-le en suivant les étapes de hello répertoriés dans hello **toocreate une nouvelle section de compte de stockage** ci-dessus. (Vous pouvez également créer un compte de stockage à hello [portail de gestion Azure][Azure Management Portal].)
 
-2. Dans la boîte de dialogue **Comptes de stockage**, cliquez sur **Ajouter**.
+2. Au sein de hello **comptes de stockage** boîte de dialogue, cliquez sur **ajouter**.
 
-3. Dans la boîte de dialogue **Ajouter un compte de stockage**, entrez des valeurs pour le **nom** et la **clé d’accès**. La clé d'accès et le nom de compte doivent être ceux d'un compte de stockage Azure existant. Utilisez la section **Stockage** du [portail de gestion Azure][Azure Management Portal] pour afficher les noms et les clés de votre compte de stockage. La boîte de dialogue **Ajouter un compte de stockage** doit avoir l'aspect suivant.
+3. Au sein de hello **ajouter un compte de stockage** boîte de dialogue, entrez des valeurs pour **nom** et **clé d’accès**. clé d’accès et de nom de compte Hello doit être d’un compte de stockage Azure existant. Hello d’utilisation **stockage** section Hello [portail de gestion Azure] [ Azure Management Portal] tooview noms et des clés de votre compte de stockage. Votre **ajouter un compte de stockage** boîte de dialogue recherche similaire toohello suivant.
    
    ![][ic719497]
 
-4. Cliquez sur **OK** pour fermer la boîte de dialogue **Ajouter un compte de stockage**.
+4. Cliquez sur **OK** tooclose hello **ajouter un compte de stockage** boîte de dialogue.
 
-## <a name="to-modify-a-storage-account-to-use-a-new-access-key"></a>Pour modifier un compte de stockage pour utiliser une nouvelle clé d'accès
-1. Dans la boîte de dialogue **Comptes de stockage**, cliquez sur le compte de stockage que vous souhaitez modifier, puis cliquez sur **Modifier**.
+## <a name="toomodify-a-storage-account-toouse-a-new-access-key"></a>toomodify un toouse de compte de stockage une nouvelle clé d’accès
+1. Au sein de hello **comptes de stockage** boîte de dialogue, cliquez sur le compte de stockage hello que vous souhaitez tooedit, puis sur **modifier**.
 
-2. Dans la boîte de dialogue **Modifier la clé d’accès du compte de stockage**, modifiez la valeur **Clé d’accès**.
+2. Au sein de hello **modifier compte clé d’accès** boîte de dialogue Modifier hello **clé d’accès** valeur.
 
-3. Cliquez sur **OK** pour fermer la boîte de dialogue **Modifier la clé d’accès du compte de stockage**.
+3. Cliquez sur **OK** tooclose hello **clé de l’accès du compte de stockage modifier** boîte de dialogue.
 
-## <a name="to-remove-a-storage-account-from-the-list-maintained-in-eclipse"></a>Pour supprimer un compte de stockage dans la liste d'Eclipse
-1. Dans la boîte de dialogue **Comptes de stockage**, cliquez sur le compte de stockage que vous souhaitez modifier, puis cliquez sur **Supprimer**.
+## <a name="tooremove-a-storage-account-from-hello-list-maintained-in-eclipse"></a>tooremove un compte de stockage à partir de la liste d’Eclipse hello
+1. Au sein de hello **comptes de stockage** boîte de dialogue, cliquez sur le compte de stockage hello que vous souhaitez tooedit, puis sur **supprimer**.
 
-2. Cliquez sur **OK** lorsque vous êtes invité à supprimer le compte de stockage.
+2. Cliquez sur **OK** lorsque tooremove demandée hello compte de stockage.
 
 > [!NOTE]
-> La suppression du compte de stockage via la boîte de dialogue **Comptes de stockage** supprime uniquement celui-ci de la liste des comptes de stockage dans Eclipse. Elle ne supprime pas le compte de stockage de votre abonnement Azure. En outre, le compte de stockage peut réapparaître dans votre liste si Eclipse recharge les détails de votre abonnement.
+> Suppression de compte de stockage hello via hello **comptes de stockage** dialogue supprime uniquement à partir de la liste de hello des comptes de stockage visibles dans Eclipse. Elle ne supprime pas le compte de stockage hello à partir de votre abonnement Azure. En outre, compte de stockage hello peut réapparaître dans votre liste lorsqu’Eclipse recharge les détails hello de votre abonnement.
 > 
 > 
 
 ## <a name="see-also"></a>Voir aussi
 [Kit de ressources Azure pour Eclipse][Azure Toolkit for Eclipse]
 
-[Installation du kit de ressources Azure pour Eclipse][Installing the Azure Toolkit for Eclipse] 
+[Lors de l’installation hello boîte à outils Azure pour Eclipse][Installing hello Azure Toolkit for Eclipse] 
 
 [Création d’une application Hello World pour Azure dans Eclipse][Creating a Hello World Application for Azure in Eclipse]
 
-Pour plus d’informations sur l’utilisation d’Azure avec Java, consultez le [Centre de développement Java pour Azure][Azure Java Developer Center].
+Pour plus d’informations sur l’utilisation d’Azure avec Java, consultez hello [centre de développement Java Azure][Azure Java Developer Center].
 
 <!-- URL List -->
 
@@ -105,8 +105,8 @@ Pour plus d’informations sur l’utilisation d’Azure avec Java, consultez le
 [Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699529
 [Azure Management Portal]: http://go.microsoft.com/fwlink/?LinkID=512959
 [Creating a Hello World Application for Azure in Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699533
-[Installing the Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
-[What's New in the Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699552
+[Installing hello Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
+[What's New in hello Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699552
 
 <!-- IMG List -->
 

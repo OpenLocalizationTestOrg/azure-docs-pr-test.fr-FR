@@ -1,6 +1,6 @@
 ---
-title: "Mise à niveau d’Azure Log Analytics pour la nouvelle fonctionnalité de recherche dans les journaux | Microsoft Docs"
-description: "Le nouveau langage de requête Log Analytics sera bientôt disponible. En attendant, vous pouvez participer à la préversion publique.  Cet article décrit les avantages du nouveau langage et explique comment convertir votre espace de travail."
+title: recherche de journal toonew aaaUpgrading Analytique de journal Azure | Documents Microsoft
+description: "nouveau langage de requête Analytique de journal Hello est presque ici, et vous pouvez participer en version préliminaire publique de hello.  Cet article décrit les avantages de hello du nouveau langage de hello et comment tooconvert votre espace de travail."
 services: log-analytics
 documentationcenter: 
 author: bwren
@@ -13,72 +13,72 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/08/2017
 ms.author: magoedte;bwren
-ms.openlocfilehash: 4a3ee3c4d1fa9b626a51f24997603adceed8311f
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 7659c9d1467cab79d3a16e73b52b507ed281b002
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="upgrade-your-azure-log-analytics-workspace-to-new-log-search"></a>Mettre à niveau de votre espace de travail Azure Log Analytics pour la nouvelle fonctionnalité de recherche dans les journaux
+# <a name="upgrade-your-azure-log-analytics-workspace-toonew-log-search"></a>Mise à niveau de votre recherche de journal toonew espace de travail Analytique des journaux Azure
 
 > [!NOTE]
-> La mise à niveau vers le nouveau langage de requête Log Analytics est actuellement facultative, afin de vous laisser le temps de vous [familiariser avec le nouveau langage](https://go.microsoft.com/fwlink/?linkid=856078).  
+> Mise à niveau toohello nouveau langage de requête Analytique de journal est actuellement facultatif du temps trop[rampe sur le nouveau langage de hello](https://go.microsoft.com/fwlink/?linkid=856078).  
 
-Le nouveau langage de requête Log Analytics est désormais disponible et vous devez mettre à niveau votre espace de travail pour pouvoir l’utiliser.  Cet article décrit les avantages du nouveau langage et explique comment convertir votre espace de travail.  Si vous choisissez de ne pas procéder à la mise à niveau pour le moment, votre espace de travail continuera de fonctionner exactement comme avant. Toutefois, il sera automatiquement converti à une date ultérieure.  Vous serez averti bien à l’avance de cette conversion.
+nouveau langage de requête Analytique de journal Hello est ici, et vous devez tooupgrade votre espace de travail tootake tirer parti.  Cet article décrit les avantages de hello du nouveau langage de hello et comment tooconvert votre espace de travail.  Si vous ne choisissez pas tooupgrade maintenant, votre espace de travail continue toooperate comme il a toujours, mais il sera automatiquement converti à une date ultérieure.  Vous serez averti bien à l’avance de cette conversion.
 
-Cet article fournit des informations détaillées sur le nouveau langage et le processus de mise à niveau.
+Cet article fournit des détails sur le nouveau langage de hello et mise à niveau de hello.
 
-## <a name="why-the-new-language"></a>Pourquoi un nouveau langage ?
-Nous sommes conscients que toute transition implique des efforts. Sachez, toutefois, que cette modification était nécessaire.  Cette modification présente de nombreux avantages pour les utilisateurs Log Analytics.
+## <a name="why-hello-new-language"></a>Pourquoi hello nouvelle langue ?
+Nous sommes conscients qu’il existe des difficultés dans toute transition, et que nous ne changez simplement le langage de requête hello fun hello de celui-ci.  Il existe plusieurs raisons cette modification fournir une valeur ajoutée significative aux clients de tooour Analytique de journal.
 
-- **Simple, mais puissant.** Le nouveau langage est plus facile à comprendre et similaire au langage SQL, avec des constructions plus proches du langage naturel que l’ancien langage.
-- **Des fonctionnalités de redirection complètes.**  Le nouveau langage comprend des fonctionnalités de redirection plus complètes que celles de l’ancien langage.  Quasiment tous les résultats peuvent être redirigés vers une autre commande pour créer des requêtes plus complexes qu’avec l’ancien langage.
-- **Extraction des champs au moment de la recherche.**  Le nouveau langage prend en charge des champs calculés au moment du runtime plus avancés que ceux de l’ancien langage.  Vous pouvez utiliser des calculs complexes pour les champs étendus, puis utiliser les champs calculés dans des commandes supplémentaires telles que des jointures et des agrégations.
-- **Jointures avancées.**  Le nouveau langage fournit des jointures plus avancées que celles de l’ancien langage. Il permet notamment de joindre les tables de plusieurs champs, d’utiliser des jointures internes et externes, et de joindre des champs étendus.
-- **Fonctions de date et d’heure.**  Le nouveau langage comprend davantage de fonctions de date/heure que l’ancien langage.
-- **Analyses intelligentes.**  Le nouveau langage comprend des algorithmes avancés permettant d’évaluer les modèles de jeux de données et de comparer des jeux de données.
-- **Portail Analytique avancée.**  Le portail Analytique avancée comprend des fonctionnalités d’analyse qui ne sont pas disponibles dans le portail Log Analytics, notamment l’édition multiligne de requêtes, des visualisations supplémentaires et des diagnostics avancés.
-- **Cohérence avec les autres applications.**  Le nouveau langage et le portail Analytique avancée sont déjà utilisés pour les analyses dans Application Insights.  L’implémentation du nouveau langage pour Log Analytics permet une cohérence entre les services Azure.
-- **Meilleure intégration avec Power BI.** Les requêtes dans le nouveau langage peuvent être exportées vers Power BI Desktop : vous pouvez donc utiliser ses riches fonctionnalités de transformation des données.
-- **Et bien plus encore...** Pour obtenir des informations détaillées et des didacticiels sur le nouveau langage, consultez le site [Langage de requête Azure Log Analytics](https://docs.loganalytics.io).
+- **Simple, mais puissant.** nouveau langage de Hello est toounderstand plus facile et tooSQL similaire avec des constructions plus comme un langage naturel celle hello hérité.
+- **Des fonctionnalités de redirection complètes.**  nouveau langage de Hello a des fonctions tuyauterie plus étendues que le langage de hérité hello.  N’importe quel de sortie peut être dirigée tooanother commande toocreate des requêtes plus complexes qu’étaient précédemment disponibles.
+- **Extraction des champs au moment de la recherche.**  nouveau langage de Hello prend en charge des champs de runtime calculée plus avancées que le langage de hérité hello.  Vous pouvez utiliser des calculs complexes pour les champs étendus et utilisez les champs de hello calculée pour les commandes supplémentaires, y compris les jointures et agrégations.
+- **Jointures avancées.**  nouveau langage de Hello fournit des jointures plus avancées que le langage de hérité hello y compris les tables de toojoin possibilité hello sur plusieurs champs, utilisez des jointures internes et externes et joindre sur les champs étendus.
+- **Fonctions de date et d’heure.**  nouveau langage de Hello d’autres avancées des fonctions de date/heure que le langage de hérité hello.
+- **Analyses intelligentes.**  nouveau langage de Hello dispose de modèles de tooevaluate algorithmes dans les jeux de données et de comparer différents jeux de données avancés.
+- **Portail Analytique avancée.**  portail d’Analytique avancée Hello offre des fonctionnalités d’analyse non disponibles dans le portail d’Analytique de journal hello notamment multiligne modification des requêtes, des visualisations supplémentaires et des diagnostics avancés.
+- **Cohérence avec les autres applications.**  Bonjour nouveau langage et hello Portal d’Analytique avancée sont déjà utilisés pour analytique dans Application Insights.  L’implémentation du nouveau langage pour Log Analytics permet une cohérence entre les services Azure.
+- **Meilleure intégration avec Power BI.** Requêtes dans un nouveau langage de hello peuvent être exporté tooPower BI Desktop, vous pouvez utiliser ses fonctionnalités de transformation de données enrichies.
+- **Et bien plus encore...** Consultez toohello [langage de requête Analytique Azure journal](https://docs.loganalytics.io) site pour obtenir des informations détaillées et des didacticiels sur le nouveau langage de hello.
 
 
 ## <a name="when-can-i-upgrade"></a>À quel moment puis-je effectuer la mise à niveau ?
-La mise à niveau va être déployée dans toutes les régions Azure, et peut être disponible dans certaines régions avant d’autres.  Vous saurez que votre espace de travail est prêt pour la mise à niveau lorsque vous verrez une bannière violette en haut de votre espace de travail vous invitant à effectuer la mise à niveau.
+mise à niveau Hello est déployée dans toutes les régions Azure elle peut être disponible dans certaines régions avant les autres.  Vous savez quand votre espace de travail est disponible toobe mis à niveau lorsque vous consultez la bannière de hello violet haut hello de votre espace de travail vous invite tooupgrade.
 
 ![Mise à niveau 1](media/log-analytics-log-search-upgrade/upgrade-01a.png)
 
 ## <a name="what-happens-when-i-upgrade"></a>Que se passe-t-il quand j’effectue la mise à niveau ?
-Lorsque vous convertissez votre espace de travail, toutes les recherches enregistrées, les règles d’alerte et les vues que vous avez créées avec le Concepteur de vues sont automatiquement converties dans le nouveau langage.  Les recherches incluses dans les solutions de recherche ne sont pas automatiquement converties. Elles le sont, cependant, lorsque vous les ouvrez.  Cela se fait de manière totalement transparente.
+Lorsque vous convertissez votre espace de travail, toutes les recherches enregistrées, les règles d’alerte et les vues que vous avez créée avec hello Concepteur de vue sont automatiquement convertis toohello nouveau langage.  Inclus dans les solutions de recherche n’est pas convertis automatiquement, mais ils sont convertis au lieu de cela volée hello lorsque vous les ouvrez.  Il s’agit de tooyou totalement transparente.
 
 ## <a name="can-i-go-back-after-i-upgrade"></a>Puis-je annuler la mise à niveau ?
-Lorsque vous effectuez la mise à niveau, une sauvegarde complète de votre espace de travail est créée. La sauvegarde est constituée de la capture instantanée de toutes vos recherches enregistrées, de vos règles d’alerte et de vos vues.  Vous pouvez ainsi restaurer votre ancien espace de travail si vous le souhaitez.
+Lorsque vous effectuez la mise à niveau, une sauvegarde complète de votre espace de travail est créée. La sauvegarde est constituée de la capture instantanée de toutes vos recherches enregistrées, de vos règles d’alerte et de vos vues.  Cela vous permet de toorestore votre ancien espace de travail si vous le souhaitez devez ultérieurement.
 
-Pour restaurer votre ancien espace de travail, accédez à **Paramètres** dans votre espace de travail, puis à **Résumé de la mise à niveau**.  Vous pouvez ensuite sélectionner l’option **Restaurer l’espace de travail hérité**.  
+toorestore votre espace de travail hérité, accédez trop**paramètres** dans votre espace de travail, puis **résumé de mise à niveau**.  Vous pouvez ensuite sélectionner les option hello trop**restaurer l’espace de travail hérité**.  
 
 ![Restaurer l’espace de travail hérité](media/log-analytics-log-search-upgrade/restore-legacy-b.png)
 
-## <a name="how-do-i-perform-the-upgrade"></a>Comment effectuer la mise à niveau ?
-Lorsque vous voyez la bannière violette en haut du portail, vous êtes prêt à mettre à niveau votre espace de travail.  
+## <a name="how-do-i-perform-hello-upgrade"></a>Comment effectuer la mise à niveau hello ?
+Vous pouvez mettre à niveau votre espace de travail lorsque vous consultez bannière hello violet haut hello du portail de hello.  
 
-1.  Démarrer le processus de mise à niveau en cliquant sur la bannière violette intitulée **En savoir plus et mise à niveau**.<br>![Mise à niveau 2](media/log-analytics-log-search-upgrade/upgrade-01a.png)<br>
-2.  Pour plus d’informations sur la mise à niveau, consultez la page d’informations sur la mise à niveau.<br>![Mise à niveau 2](media/log-analytics-log-search-upgrade/upgrade-03.png)<br>
-3.  Pour démarrer la mise à niveau, cliquez sur **Mettre à niveau maintenant**.<br>![Mettre à niveau 4](media/log-analytics-log-search-upgrade/upgrade-04.png)<br>L’état est affiché dans la zone de notification située dans le coin supérieur droit.<br>![Mettre à niveau 5](media/log-analytics-log-search-upgrade/upgrade-05.png)
-4.  Et voilà !  Passez en revue la page Recherche dans les journaux pour voir à quoi ressemble votre nouvel espace de travail.<br>![Mise à jour 6](media/log-analytics-log-search-upgrade/upgrade-06.png)<br>
+1.  Démarrer le processus de mise à niveau de hello en cliquant sur la bannière hello violet indiquant **en savoir plus et mettre à niveau**.<br>![Mise à niveau 2](media/log-analytics-log-search-upgrade/upgrade-01a.png)<br>
+2.  Lisez hello plus d’informations sur la mise à niveau hello sur la page des informations de mise à niveau hello.<br>![Mise à niveau 2](media/log-analytics-log-search-upgrade/upgrade-03.png)<br>
+3.  Cliquez sur **mettre à niveau maintenant** mise à niveau de toostart hello.<br>![Mettre à niveau 4](media/log-analytics-log-search-upgrade/upgrade-04.png)<br>Une zone de notification dans le coin supérieur droit de hello affiche l’état de hello.<br>![Mettre à niveau 5](media/log-analytics-log-search-upgrade/upgrade-05.png)
+4.  Et voilà !  Passez en revue toohave de page de recherche de journal toohello examiner votre espace de travail mis à niveau.<br>![Mise à jour 6](media/log-analytics-log-search-upgrade/upgrade-06.png)<br>
 
-Si vous rencontrez un problème qui provoque l’échec de la mise à niveau, vous pouvez accéder au [Forum de discussion](https://social.msdn.microsoft.com/Forums/azure/home?forum=opinsights) et envoyer votre question. Vous pouvez également [créer une demande de support](../azure-supportability/how-to-create-azure-support-request.md) dans le portail Azure.
+Si vous rencontrez un problème qui provoque le toofail de mise à niveau de hello, vous pouvez accéder toohello [forum de discussion](https://social.msdn.microsoft.com/Forums/azure/home?forum=opinsights) et publiez votre question ou [créer une demande de support](../azure-supportability/how-to-create-azure-support-request.md) de hello portail Azure.
 
-## <a name="how-do-i-learn-the-new-language"></a>Comment en savoir plus sur le nouveau langage ?
-Dans la mesure où il est utilisé par plusieurs services, nous avons créé un [site externe pour héberger la documentation](https://docs.loganalytics.io/) relative au nouveau langage.  Cette documentation inclut des didacticiels, des exemples, ainsi qu’une référence complète sur le langage, afin de vous aider à améliorer vos connaissances. Pour lire un didacticiel sur le nouveau langage, consultez le [Guide pratique sur les requêtes](https://go.microsoft.com/fwlink/?linkid=856078). Pour accéder à la référence du langage, consultez [Langage de requête Log Analytics](https://go.microsoft.com/fwlink/?linkid=856079).  
+## <a name="how-do-i-learn-hello-new-language"></a>Comment savoir le nouveau langage de hello ?
+Dans la mesure où il est utilisé par plusieurs services, nous avons créé un [documentation du site externe toohost hello](https://docs.loganalytics.io/) pour le nouveau langage de hello.  Cela inclut des didacticiels, des exemples et un toohelp de référence complète que vous pensez toospeed. Vous pouvez parcourir un didacticiel de nouveau langage de hello à [mise en route avec les requêtes](https://go.microsoft.com/fwlink/?linkid=856078) et accéder à la référence du langage hello à [langue de requête Analytique de journal](https://go.microsoft.com/fwlink/?linkid=856079).  
 
-Si vous êtes déjà familiarisé avec l’ancien langage de requête Log Analytics, vous pouvez utiliser le convertisseur de langage qui est ajouté à votre espace de travail dans le cadre de la mise à niveau.
+Si vous êtes déjà familiarisé avec hello hérité Analytique de journal de langage de requête Cependant, vous pouvez ensuite utiliser convertisseur de langage hello qui est ajouté tooyour espace de travail dans le cadre de la mise à niveau hello.
 
-Il vous suffit de taper votre requête dans l’ancien langage, puis de cliquer sur **Convertir** pour afficher la version traduite en nouveau langage.  Vous pouvez ensuite cliquer sur le bouton de recherche pour exécuter la recherche, ou copier-coller la requête convertie pour l’utiliser ailleurs (par exemple, dans une règle d’alerte).
+Tapez simplement dans votre requête hérité, puis **convertir** toosee hello traduction.  Vous pouvez ensuite cliquez hello bouton toorun hello recherche ou copier et coller toouse de requête hello converti vers un autre emplacement comme une règle d’alerte.
 
 ![Convertisseur de langage](media/log-analytics-log-search-upgrade/language-converter.png)
 
 
 ## <a name="next-steps"></a>Étapes suivantes
-- Consultez le [didacticiel sur le nouveau langage](https://go.microsoft.com/fwlink/?linkid=856078).
-- Suivez le [didacticiel sur l’utilisation du portail Recherche dans les journaux](log-analytics-log-search-log-search-portal.md) avec le nouveau langage de requête.
-- Lisez la présentation du nouveau [portail Advanced Analytics](https://go.microsoft.com/fwlink/?linkid=856587).
+- Extraire un [didacticiel sur le nouveau langage de hello](https://go.microsoft.com/fwlink/?linkid=856078).
+- Parcourir un [didacticiel sur l’utilisation du portail de recherche de journal hello](log-analytics-log-search-log-search-portal.md) avec un nouveau langage de requête hello.
+- Obtenir une présentation toohello nouvelle [portal d’Analytique de Advanced](https://go.microsoft.com/fwlink/?linkid=856587).

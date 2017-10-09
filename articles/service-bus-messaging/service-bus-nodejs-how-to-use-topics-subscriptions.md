@@ -1,6 +1,6 @@
 ---
-title: Utilisation des rubriques et abonnements Azure Service Bus avec Node.js | Microsoft Docs
-description: "Découvrez comment utiliser les rubriques et abonnements Service Bus dans Azure à partir d’une application Node.js."
+title: aaaHow toouse Azure Service Bus rubriques et les abonnements avec Node.js | Documents Microsoft
+description: "Découvrez comment toouse Service Bus rubriques et abonnements dans Azure à partir d’une application Node.js."
 services: service-bus-messaging
 documentationcenter: nodejs
 author: sethmanheim
@@ -14,29 +14,29 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: sethm
-ms.openlocfilehash: 24ae9b80f75531c5e4a84c3b4a6666a6f8a83d2c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: e8f6e7ad6ed16d844c408337ac9e50f990e3fafd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-service-bus-topics-and-subscriptions-with-nodejs"></a>Utilisation des rubriques et abonnements Service Bus avec Node.js
+# <a name="how-toouse-service-bus-topics-and-subscriptions-with-nodejs"></a>Comment tooUse Service Bus rubriques et les abonnements avec Node.js
 
 [!INCLUDE [service-bus-selector-topics](../../includes/service-bus-selector-topics.md)]
 
-Ce guide décrit l’utilisation des rubriques et des abonnements Service Bus depuis les applications Node.js. Les scénarios couverts incluent la **création de rubriques et d’abonnements**, la **création de filtres d’abonnement**, **l’envoi de messages à une rubrique**, la **réception de messages en provenance d’un abonnement** et enfin la **suppression de rubriques et d’abonnements**. Pour plus d’informations sur les rubriques et les abonnements, consultez la section [Étapes suivantes](#next-steps).
+Ce guide décrit comment toouse Service Bus rubriques et abonnements à partir d’applications Node.js. Hello scénarios abordés incluent **création de rubriques et abonnements**, **création de filtres d’abonnement**, **envoi de messages** tooa rubrique, **réception les messages à partir d’un abonnement**, et **suppression des rubriques et abonnements**. Pour plus d’informations sur les rubriques et les abonnements, consultez hello [étapes](#next-steps) section.
 
 [!INCLUDE [howto-service-bus-topics](../../includes/howto-service-bus-topics.md)]
 
 ## <a name="create-a-nodejs-application"></a>Création d’une application Node.js
-Créez une application Node.js vide. Pour obtenir les instructions permettant de créer une application Node.js, consultez les pages [Création et déploiement d’une application Node.js dans un site web Azure], [Service cloud Node.js][Node.js Cloud Service] avec Windows PowerShell ou Site Web avec WebMatrix.
+Créez une application Node.js vide. Pour obtenir des instructions sur la création d’une application Node.js, consultez [créer et déployer un tooan d’application Node.js Site Web Azure], [Service de cloud computing Node.js] [ Node.js Cloud Service] à l’aide de Windows PowerShell, ou un Site Web avec WebMatrix.
 
-## <a name="configure-your-application-to-use-service-bus"></a>Configuration de votre application pour l’utilisation de Service Bus
-Pour utiliser Service Bus, téléchargez le package Azure Node.js. Ce dernier inclut des bibliothèques permettant de communiquer avec les services REST de Service Bus.
+## <a name="configure-your-application-toouse-service-bus"></a>Configurer votre toouse application Service Bus
+toouse Service Bus, téléchargez hello package Node.js Azure. Ce package comprend un ensemble de bibliothèques qui communiquent avec les services de Service Bus REST hello.
 
-### <a name="use-node-package-manager-npm-to-obtain-the-package"></a>Utilisation de Node Package Manager (NPM) pour obtenir le package
-1. Utilisez une interface de ligne de commande telle que **PowerShell** (Windows), **Terminal** (Mac) ou **Bash** (Unix) pour accéder au dossier dans lequel vous avez créé votre exemple d’application.
-2. Tapez **npm install azure** dans la fenêtre de commande, ce qui génère la sortie suivante :
+### <a name="use-node-package-manager-npm-tooobtain-hello-package"></a>Utiliser le Gestionnaire de Package de nœud (NPM) tooobtain hello package
+1. Utiliser une interface de ligne de commande comme **PowerShell** (Windows), **Terminal** (Mac), ou **Bash** (Unix), accédez dossier toohello où vous avez créé votre exemple d’application.
+2. Type **npm installer azure** dans la fenêtre de commande hello, qui doivent entraîner hello suivant de sortie :
 
    ```
        azure@0.7.5 node_modules\azure
@@ -51,30 +51,30 @@ Pour utiliser Service Bus, téléchargez le package Azure Node.js. Ce dernier in
    ├── xml2js@0.2.7 (sax@0.5.2)
    └── request@2.21.0 (json-stringify-safe@4.0.0, forever-agent@0.5.0, aws-sign@0.3.0, tunnel-agent@0.3.0, oauth-sign@0.3.0, qs@0.6.5, cookie-jar@0.3.0, node-uuid@1.4.0, http-signature@0.9.11, form-data@0.0.8, hawk@0.13.1)
    ```
-3. Vous pouvez exécuter manuellement la commande **ls** pour vérifier que le dossier **node\_modules** a été créé. Dans ce dossier, recherchez le package **azure**, qui contient les bibliothèques nécessaires pour accéder aux rubriques de Service Bus.
+3. Vous pouvez exécuter manuellement hello **ls** tooverify de commande qui un **nœud\_modules** dossier a été créé. Dans ce dossier de trouver la **azure** package qui contient les bibliothèques hello vous devez tooaccess rubriques Service Bus.
 
-### <a name="import-the-module"></a>Importation du module
-À l’aide d’un éditeur de texte, comme le Bloc-notes, ajoutez la commande suivante au début du fichier **server.js** de l’application :
+### <a name="import-hello-module"></a>Module d’importation hello
+Utilisez le bloc-notes ou un autre éditeur de texte, ajoutez hello suivant en haut de toohello de hello **server.js** fichier de l’application hello :
 
 ```javascript
 var azure = require('azure');
 ```
 
 ### <a name="set-up-a-service-bus-connection"></a>Configuration d’une connexion Service Bus
-Le module Azure lit les variables d’environnement `AZURE_SERVICEBUS_NAMESPACE` et `AZURE_SERVICEBUS_ACCESS_KEY` pour obtenir les informations nécessaires pour se connecter à Service Bus. Si ces variables d’environnement ne sont pas définies, vous devez spécifier les informations de compte lors de l’appel de `createServiceBusService`.
+Bonjour Azure module lit les variables d’environnement hello `AZURE_SERVICEBUS_NAMESPACE` et `AZURE_SERVICEBUS_ACCESS_KEY` pour plus d’informations obligatoires tooconnect tooService Bus. Si ces variables d’environnement ne sont pas définies, vous devez spécifier les informations de compte hello lors de l’appel `createServiceBusService`.
 
-Pour obtenir un exemple de paramétrage des variables d’environnement pour un service cloud Azure, consultez [Service cloud Node.js avec stockage][Node.js Cloud Service with Storage].
+Pour obtenir un exemple de la configuration des variables d’environnement hello pour un Service Cloud Azure, consultez [Service de Cloud Node.js avec stockage][Node.js Cloud Service with Storage].
 
-Pour obtenir un exemple de configuration des variables d’environnement pour un site web Azure, consultez [Application web Node.js avec stockage][Node.js Web Application with Storage].
+Pour obtenir un exemple de la définition de variables d’environnement hello pour un site Web Azure, consultez [Node.js d’Application Web avec stockage][Node.js Web Application with Storage].
 
 ## <a name="create-a-topic"></a>Création d'une rubrique
-L’objet **ServiceBusService** permet d’utiliser des rubriques. Le code suivant crée un objet **ServiceBusService**. Ajoutez-le vers le début du fichier **server.js** , après l'instruction relative à l'importation du module Azure :
+Hello **ServiceBusService** objet vous permet de toowork aux rubriques. Le code suivant crée un objet **ServiceBusService**. Ajouter au début de hello **server.js** fichier, après le module de hello instruction tooimport hello azure :
 
 ```javascript
 var serviceBusService = azure.createServiceBusService();
 ```
 
-En appelant `createTopicIfNotExists` dans l’objet **ServiceBusService**, la rubrique spécifiée est renvoyée (si elle existe) ou une nouvelle rubrique comportant le nom spécifié est créée. Le code suivant utilise `createTopicIfNotExists` pour créer la rubrique nommée `MyTopic` ou s’y connecter :
+En appelant `createTopicIfNotExists` sur hello **ServiceBusService** de l’objet, hello spécifié rubrique sera retournée (si elle existe), ou une rubrique avec le nom spécifié de hello sera créée. code Hello suivant utilise `createTopicIfNotExists` toocreate ou connectez-vous rubrique toohello nommée `MyTopic`:
 
 ```javascript
 serviceBusService.createTopicIfNotExists('MyTopic',function(error){
@@ -85,7 +85,7 @@ serviceBusService.createTopicIfNotExists('MyTopic',function(error){
 });
 ```
 
-La méthode `createServiceBusService` prend également en charge des options supplémentaires, qui vous permettent de remplacer les paramètres de rubrique par défaut, comme la durée de vie du message ou la taille maximale de la rubrique. L’exemple suivant définit la taille maximale de la rubrique sur 5 Go et la durée de vie de message sur 1 minute :
+Hello `createServiceBusService` méthode prend également en charge des options supplémentaires, qui vous permettent de paramètres de rubrique toooverride par défaut tels que la durée de vie du message ou de la taille maximale de rubrique. Hello exemple suivant définit too5GB de taille maximale de rubrique hello avec une heure toolive de 1 minute :
 
 ```javascript
 var topicOptions = {
@@ -101,21 +101,21 @@ serviceBusService.createTopicIfNotExists('MyTopic', topicOptions, function(error
 ```
 
 ### <a name="filters"></a>Filtres
-Des opérations facultatives de filtrage peuvent être appliquées aux opérations exécutées par le biais de **ServiceBusService**. Il peut s’agir d’opérations de journalisation, de relance automatique, etc. Les filtres sont des objets qui implémentent une méthode avec la signature :
+Les opérations de filtrage facultatif peuvent être appliquées toooperations effectuées à l’aide **ServiceBusService**. Il peut s’agir d’opérations de journalisation, de relance automatique, etc. Les filtres sont des objets qui implémentent une méthode avec la signature de hello :
 
 ```javascript
 function handle (requestOptions, next)
 ```
 
-Après le prétraitement des options de la requête, la méthode appelle `next` en passant un rappel avec la signature suivante :
+Après avoir effectué sur les options de demande hello de prétraitement, hello appels de méthode `next`, en passant un rappel avec hello après signature :
 
 ```javascript
 function (returnObject, finalCallback, next)
 ```
 
-Dans ce rappel, et après le traitement de `returnObject` (la réponse de la requête au serveur), le rappel doit appeler la fonction next, si elle existe, pour continuer à traiter d’autres filtres ou simplement appeler `finalCallback` pour terminer l’utilisation du service.
+Dans ce rappel et après traitement hello `returnObject` (hello réponse hello demande toohello serveur), rappel de hello doit tooeither appeler ensuite s’il existe des toocontinue du traitement des autres filtres ou appeler `finalCallback` dans le cas contraire, tooend hello appel de service.
 
-Deux filtres qui implémentent la logique de relance sont inclus dans le Kit de développement logiciel (SDK) Azure pour Node.js : **ExponentialRetryPolicyFilter** et **LinearRetryPolicyFilter**. Le code suivant crée un objet **ServiceBusService** qui utilise le filtre **ExponentialRetryPolicyFilter** :
+Deux filtres qui implémentent la logique de nouvelle tentative sont incluses avec hello Azure SDK pour Node.js, **ExponentialRetryPolicyFilter** et **LinearRetryPolicyFilter**. Hello suivante permet de créer un **ServiceBusService** objet qui utilise hello **ExponentialRetryPolicyFilter**:
 
 ```javascript
 var retryOperations = new azure.ExponentialRetryPolicyFilter();
@@ -123,15 +123,15 @@ var serviceBusService = azure.createServiceBusService().withFilter(retryOperatio
 ```
 
 ## <a name="create-subscriptions"></a>Création d’abonnements
-Les abonnements de rubrique sont également créés à l’aide de l’objet **ServiceBusService**. Les abonnements sont nommés et peuvent être assortis d'un filtre facultatif qui limite l'ensemble des messages transmis à la file d'attente virtuelle de l'abonnement.
+Abonnements aux rubriques sont également créés par hello **ServiceBusService** objet. Les abonnements sont nommés et peuvent avoir un filtre facultatif qui limite l’ensemble hello de messages remis de file d’attente virtuelle de l’abonnement toohello.
 
 > [!NOTE]
-> Les abonnements sont persistants et continuent à exister jusqu’à leur suppression ou celle de la rubrique à laquelle ils sont associés. Si votre application contient une logique pour la création d’un abonnement, elle doit d’abord vérifier si l’abonnement existe déjà en utilisant la méthode `getSubscription`.
+> Abonnements sont persistantes et continuent jusqu'à ce que soit leur tooexist ou hello rubrique associées, elles sont supprimées. Si votre application contient la logique toocreate un abonnement, il doit tout d’abord vérifier si hello abonnement existe déjà à l’aide de la `getSubscription` (méthode).
 >
 >
 
-### <a name="create-a-subscription-with-the-default-matchall-filter"></a>Création d’un abonnement avec le filtre par défaut (MatchAll)
-Le filtre **MatchAll** est le filtre utilisé par défaut si aucun filtre n’est spécifié lors de la création d’un abonnement. Lorsque le filtre **MatchAll** est utilisé, tous les messages publiés dans la rubrique sont placés dans la file d’attente virtuelle de l’abonnement. Dans l’exemple suivant, l’abonnement « AllMessages » qui est créé utilise le filtre par défaut **MatchAll**.
+### <a name="create-a-subscription-with-hello-default-matchall-filter"></a>Créer un abonnement avec le filtre par défaut (MatchAll) hello
+Hello **MatchAll** filtre est hello par défaut qui est utilisé si aucun filtre n’est spécifiée lors de la création d’un abonnement. Hello lorsque **MatchAll** filtre est utilisé, la rubrique de toohello publié tous les messages sont placés dans la file d’attente virtuelle de l’abonnement. Hello exemple suivant crée un abonnement nommé « AllMessages » et utilise hello par défaut **MatchAll** filtre.
 
 ```javascript
 serviceBusService.createSubscription('MyTopic','AllMessages',function(error){
@@ -142,18 +142,18 @@ serviceBusService.createSubscription('MyTopic','AllMessages',function(error){
 ```
 
 ### <a name="create-subscriptions-with-filters"></a>Création d’abonnements avec des filtres
-Vous pouvez également créer des filtres pour spécifier quels sont les messages, parmi ceux envoyés à une rubrique, qui doivent apparaître dans un abonnement de rubrique spécifique.
+Vous pouvez également créer des filtres qui vous permettent de tooscope lesquelles messages envoyés tooa rubrique doit apparaître dans un abonnement à une rubrique spécifique.
 
-Parmi les types de filtre pris en charge par les abonnements, **SqlFilter** est le plus flexible. Il implémente un sous-ensemble de SQL92. Les filtres SQL opèrent au niveau des propriétés des messages publiés dans la rubrique. Pour plus de détails sur les expressions utilisables avec un filtre SQL, examinez la syntaxe [SqlFilter.SqlExpression][SqlFilter.SqlExpression].
+Bonjour type de filtre pris en charge par les abonnements plus souple est la **SqlFilter**, qui implémente un sous-ensemble de SQL92. Filtres SQL fonctionnent sur les propriétés hello de messages hello qui sont publiées toohello rubrique. Pour plus d’informations sur les expressions hello qui peuvent être utilisées avec un filtre SQL, consultez hello [SqlFilter.SqlExpression] [ SqlFilter.SqlExpression] syntaxe.
 
-Il est possible d’ajouter des filtres à un abonnement en utilisant la méthode `createRule` de l’objet **ServiceBusService**. Cette méthode vous permet d’ajouter de nouveaux filtres à un abonnement existant.
+Filtres peuvent être ajoutés tooa abonnement à l’aide de hello `createRule` méthode Hello **ServiceBusService** objet. Cette méthode vous permet de vous permet d’ajouter de nouveaux filtres tooan abonnement.
 
 > [!NOTE]
-> Comme le filtre par défaut est appliqué automatiquement à tous les nouveaux abonnements, vous devez commencer par supprimer le filtre par défaut, sans quoi le filtre **MatchAll** remplace tous les autres filtres spécifiés. Vous pouvez supprimer la règle par défaut en utilisant la méthode `deleteRule` de l’objet **ServiceBusService**.
+> Étant donné que le filtre par défaut de hello est appliqué automatiquement tooall nouveaux abonnements, vous devez d’abord supprimer filtre par défaut de hello ou **MatchAll** remplace tous les autres filtres que vous pouvez spécifier. Vous pouvez supprimer la règle par défaut de hello à l’aide de hello `deleteRule` méthode de la **ServiceBusService** objet.
 >
 >
 
-L’exemple suivant crée l’abonnement `HighMessages` avec un objet **SqlFilter** qui ne sélectionne que les messages dont la propriété personnalisée `messagenumber` a une valeur supérieure à 3 :
+Hello exemple suivant crée un abonnement nommé `HighMessages` avec un **SqlFilter** qui sélectionne uniquement les messages qui ont personnalisé `messagenumber` propriété supérieure à 3 :
 
 ```javascript
 serviceBusService.createSubscription('MyTopic', 'HighMessages', function (error){
@@ -188,7 +188,7 @@ var rule={
 }
 ```
 
-De même, l’exemple suivant crée l’abonnement `LowMessages` avec un objet **SqlFilter** qui ne sélectionne que les messages dont la propriété `messagenumber` a une valeur inférieure ou égale à 3 :
+De même, hello exemple suivant crée un abonnement nommé `LowMessages` avec un **SqlFilter** qui sélectionne uniquement les messages qui ont un `messagenumber` propriété inférieur ou égal too3 :
 
 ```javascript
 serviceBusService.createSubscription('MyTopic', 'LowMessages', function (error){
@@ -223,14 +223,14 @@ var rule={
 }
 ```
 
-Désormais, quand un message est envoyé à `MyTopic`, il est toujours remis aux destinataires abonnés à l’abonnement de rubrique `AllMessages`, et est remis de manière sélective aux destinataires abonnés aux abonnements de rubrique `HighMessages` et `LowMessages` (en fonction du contenu du message).
+Lorsqu’un message est envoyé maintenant trop`MyTopic`, elle est envoyée à l’abonné de récepteurs toohello `AllMessages` abonnement à une rubrique et remis de manière sélective tooreceivers abonné toohello `HighMessages` et `LowMessages` abonnements à la rubrique (en fonction de contenu du message hello).
 
-## <a name="how-to-send-messages-to-a-topic"></a>Envoi de messages à une rubrique
-Pour envoyer un message à une rubrique Service Bus, votre application doit utiliser la méthode `sendTopicMessage` de l’objet **ServiceBusService**.
-Les messages envoyés aux rubriques Service Bus sont des objets **BrokeredMessage**.
-Les objets **BrokeredMessage** possèdent un ensemble de propriétés standard (telles que `Label` et `TimeToLive`), un dictionnaire servant à conserver les propriétés personnalisées propres à une application, ainsi qu’un corps de données de chaîne. Une application peut définir le corps du message en transmettant une valeur de chaîne à la méthode `sendTopicMessage` pour remplir toutes les propriétés standard requises avec les valeurs par défaut.
+## <a name="how-toosend-messages-tooa-topic"></a>Comment les messages toosend tooa rubrique
+toosend une rubrique de Service Bus message tooa, votre application doit utiliser le `sendTopicMessage` méthode Hello **ServiceBusService** objet.
+Les messages envoyés sont des rubriques du Bus tooService **BrokeredMessage** objets.
+**BrokeredMessage** objets comportent un ensemble de propriétés standard (tels que `Label` et `TimeToLive`), un dictionnaire qui est utilisé toohold des propriétés personnalisées spécifiques à l’application et un corps de données de chaîne. Une application peut définir le corps de hello du message de type hello en passant une valeur de chaîne Hello `sendTopicMessage` et toute requise propriétés standard seront remplies par les valeurs par défaut.
 
-L’exemple suivant montre comment envoyer cinq messages de test à `MyTopic`. Notez que la valeur de la propriété `messagenumber` de chaque message varie au niveau de l’itération de la boucle (détermine les abonnements qui le reçoivent) :
+Hello exemple suivant montre comment toosend cinq messages de test à `MyTopic`. Notez que hello `messagenumber` varie en fonction de valeur de la propriété de chaque message sur l’itération hello de boucle de hello (Cela permet de déterminer les abonnements reçoivent) :
 
 ```javascript
 var message = {
@@ -251,17 +251,17 @@ for (i = 0;i < 5;i++) {
 }
 ```
 
-Les rubriques Service Bus prennent en charge une taille de message maximale de 256 Ko dans le [niveau Standard](service-bus-premium-messaging.md) et de 1 Mo dans le [niveau Premium](service-bus-premium-messaging.md). L’en-tête, qui comprend les propriétés d’application standard et personnalisées, peut avoir une taille maximale de 64 Ko. Si une rubrique n'est pas limitée par le nombre de messages qu'elle peut contenir, elle l'est en revanche par la taille totale des messages qu'elle contient. Cette taille de rubrique est définie au moment de la création. La limite maximale est de 5 Go.
+Rubriques Service Bus prend en charge une taille maximale de 256 Ko Bonjour [niveau Standard](service-bus-premium-messaging.md) et 1 Mo Bonjour [niveau Premium](service-bus-premium-messaging.md). en-tête Hello, qui inclut les standard hello et les propriétés de l’application personnalisée, peut avoir une taille maximale de 64 Ko. Il n’existe aucune limite sur le nombre de hello de messages conservés dans une rubrique mais hello de taille totale des messages hello détenus par une rubrique est une extrémité de fin. Cette taille de rubrique est définie au moment de la création. La limite maximale est de 5 Go.
 
 ## <a name="receive-messages-from-a-subscription"></a>Réception des messages d’un abonnement
-La méthode `receiveSubscriptionMessage` de l’objet **ServiceBusService** permet de recevoir les messages d’un abonnement. Par défaut, les messages sont supprimés de l’abonnement au fur et à mesure de leur lecture. Cependant, vous pouvez lire et verrouiller le message sans le supprimer de l’abonnement en définissant le paramètre facultatif `isPeekLock` sur **true**.
+Les messages sont reçus à partir d’un abonnement à l’aide de la `receiveSubscriptionMessage` méthode sur hello **ServiceBusService** objet. Par défaut, les messages sont supprimés de l’abonnement de hello lorsqu’elles sont lues ; Toutefois, vous pouvez lire (aperçu) et verrouiller le message de type hello sans la supprimer de l’abonnement de hello en définissant le paramètre facultatif hello `isPeekLock` trop**true**.
 
-Le comportement par défaut de lecture et de suppression du message dans le cadre de l’opération de réception est le modèle le plus simple et le mieux adapté aux scénarios dans lesquels une application est capable de tolérer le non-traitement d’un message en cas d’échec. Pour mieux comprendre, imaginez un scénario dans lequel le consommateur émet la demande de réception et subit un incident avant de la traiter. Comme Service Bus a marqué le message comme étant consommé, lorsque l’application redémarre et recommence à consommer des messages, elle manque le message consommé avant l’incident.
+Hello par défaut de lecture et de suppression de message de type hello comme partie de l’opération de réception est le modèle le plus simple hello et fonctionne mieux pour les scénarios dans lesquels une application peut tolérer ne pas traiter un message dans l’événement hello d’un échec. toounderstand, envisagez un scénario dans lequel la hello problèmes consommateur reçoit la demande et puis se bloque avant de le traiter. Comme Service Bus sera ont marqué hello message comme consommé, puis lors de l’application hello redémarre et commence à consommer des messages, elle aura manqué message de type hello qui a été consommée toohello préalable incident.
 
-Si le paramètre `isPeekLock` est défini sur **true**, la réception devient une opération en deux étapes, qui autorise une prise en charge des applications qui ne peuvent pas tolérer les messages manquants. Lorsque Service Bus reçoit une demande, il recherche le prochain message à consommer, le verrouille pour empêcher d'autres consommateurs de le recevoir, puis le renvoie à l'application.
-Dès lors que l’application a terminé le traitement du message (ou qu’elle l’a stocké de manière fiable pour un traitement ultérieur), elle accomplit la deuxième étape du processus de réception en appelant la méthode **deleteMessage** et en fournissant le message à supprimer sous la forme d’un paramètre. La méthode **deleteMessage** marque le message comme étant consommé et le supprime de l’abonnement.
+Si hello `isPeekLock` paramètre est défini trop**true**, hello réception devient une opération en deux étapes, ce qui rend possible toosupport les applications qui ne peut pas tolérer des messages manquants. Lorsque le Service Bus reçoit une demande, il recherche hello suivant message toobe consommé, il verrouille tooprevent autres consommateurs le reçoivent et le retourne toohello application.
+Une fois l’application hello termine le traitement de message de type hello (ou stocke de manière fiable pour un traitement ultérieur), il exécute hello deuxième étape du processus de réception en appelant **deleteMessage** méthode et en fournissant le message toobe supprimé en tant que paramètre. Hello **deleteMessage** méthode marquer le message de type hello comme ayant été consommé et le supprimer de l’abonnement de hello.
 
-L’exemple suivant montre comment les messages peuvent être reçus et traités à l’aide de `receiveSubscriptionMessage`. Dans l’exemple, le message est d’abord réceptionné, puis supprimé de l’abonnement « LowMessages ». Un message envoyé par l’abonnement « HighMessages » est ensuite réceptionné en définissant `isPeekLock` sur true. La suppression du message s’effectue ensuite à l’aide de `deleteMessage` :
+Hello exemple suivant montre comment les messages peuvent être reçus et traités à l’aide de `receiveSubscriptionMessage`. Hello exemple reçoit d’abord et supprime un message de salutation 'LowMessages' abonnement, puis reçoit un message à l’aide de hello 'HighMessages' abonnement `isPeekLock` définir tootrue. Il supprime ensuite à l’aide du message hello `deleteMessage`:
 
 ```javascript
 serviceBusService.receiveSubscriptionMessage('MyTopic', 'LowMessages', function(error, receivedMessage){
@@ -284,16 +284,16 @@ serviceBusService.receiveSubscriptionMessage('MyTopic', 'HighMessages', { isPeek
 });
 ```
 
-## <a name="how-to-handle-application-crashes-and-unreadable-messages"></a>Gestion des blocages d’application et des messages illisibles
-Service Bus intègre des fonctionnalités destinées à faciliter la récupération à la suite d’erreurs survenues dans votre application ou de difficultés à traiter un message. Si une application réceptrice ne parvient pas à traiter le message pour une raison quelconque, elle appelle la méthode `unlockMessage` pour l’objet **ServiceBusService**. Cela amène Service Bus à déverrouiller le message dans l’abonnement et à le rendre à nouveau disponible en réception, pour la même application consommatrice ou pour une autre.
+## <a name="how-toohandle-application-crashes-and-unreadable-messages"></a>Comment toohandle application tombe en panne et messages illisibles
+Service Bus fournit toohelp fonctionnalité que surmonter les erreurs dans votre application ou les difficultés du traitement d’un message. Si une application du récepteur ne peut pas tooprocess hello message pour une raison quelconque, elle peut appeler hello `unlockMessage` méthode sur le **ServiceBusService** objet. Cette opération provoquent Service Bus toounlock du message au sein de l’abonnement de hello et rendre disponible toobe de nouveau reçu, soit hello par même consommation d’application ou par une autre application consommatrice.
 
-De même, il faut savoir qu’un message verrouillé dans un abonnement est assorti d’un délai d’expiration et que si l’application ne parvient pas à traiter le message dans le temps imparti (par exemple, si l’application subit un incident), Service Bus déverrouille le message automatiquement et le rend à nouveau disponible en réception.
+Il existe également un délai d’attente d’un message verrouillé dans l’abonnement, et en cas d’un message de type hello tooprocess avant application hello hello expiration délai de verrouillage (par exemple, si de l’application hello se bloque), puis le Service Bus déverrouille le message de type hello automatiquement et le rend disponible toobe de nouveau reçu.
 
-Si l’application subit un incident après le traitement du message, mais avant l’appel de la méthode `deleteMessage`, le message est à nouveau remis à l’application lorsqu’elle redémarre. Dans ce type de traitement, souvent appelé *Au moins une fois*, chaque message est traité au moins une fois. Toutefois, dans certaines circonstances, un même message peut être remis une nouvelle fois. Toutefois, dans certaines circonstances, un même message peut être remis une nouvelle fois. Pour ce faire, il suffit souvent d’utiliser la propriété **MessageId** du message, qui reste constante pendant les tentatives de remise.
+Bonjour événement hello application se bloque après le traitement de message de type hello mais avant hello `deleteMessage` méthode est appelée, puis le message de type hello sera redistribué toohello application lors de son redémarrage. Cela est souvent appelé *au moins une fois le traitement*, autrement dit, chaque message est traité au moins une fois, mais dans certain hello situations le même message peut être redistribué. Si le scénario de hello ne peut pas tolérer le traitement dupliqué, les développeurs d’applications doivent ajouter une logique supplémentaire tootheir application toohandle en double remise du message. Cela est souvent obtenue grâce à la **MessageId** propriété de message de type hello, qui reste constante entre les tentatives de remise.
 
 ## <a name="delete-topics-and-subscriptions"></a>Suppression de rubriques et d'abonnements
-Les rubriques et les abonnements sont persistants et doivent être supprimés de façon explicite par le biais du [portail Azure][Azure portal] ou par programme.
-L’exemple suivant montre comment supprimer la rubrique `MyTopic` :
+Rubriques et les abonnements sont persistants et doivent être explicitement supprimés via hello [portail Azure] [ Azure portal] ou par programme.
+Hello exemple suivant montre comment la rubrique de hello toodelete nommé `MyTopic`:
 
 ```javascript
 serviceBusService.deleteTopic('MyTopic', function (error) {
@@ -303,7 +303,7 @@ serviceBusService.deleteTopic('MyTopic', function (error) {
 });
 ```
 
-La suppression d’une rubrique a également pour effet de supprimer les abonnements inscrits au niveau de la rubrique. Les abonnements peuvent aussi être supprimés de manière indépendante. L’exemple suivant montre comment supprimer l’abonnement `HighMessages` de la rubrique `MyTopic` :
+Suppression d’une rubrique supprime également tous les abonnements qui sont inscrits auprès de rubrique de hello. Les abonnements peuvent aussi être supprimés de manière indépendante. L’exemple suivant montre comment toodelete un abonnement nommé `HighMessages` de hello `MyTopic` rubrique :
 
 ```javascript
 serviceBusService.deleteSubscription('MyTopic', 'HighMessages', function (error) {
@@ -314,11 +314,11 @@ serviceBusService.deleteSubscription('MyTopic', 'HighMessages', function (error)
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-Maintenant que vous avez appris les principes de base des rubriques Service Bus, consultez ces liens pour en savoir plus.
+Maintenant que vous avez appris les notions de base de hello des rubriques Service Bus, suivez ces liens de toolearn plus.
 
 * Consultez [Files d’attente, rubriques et abonnements][Queues, topics, and subscriptions].
 * Référence d’API pour [SqlFilter][SqlFilter].
-* Accédez au référentiel du [Kit de développement logiciel (SDK) Azure pour Node][Azure SDK for Node] sur GitHub.
+* Visitez hello [Azure SDK pour le nœud] [ Azure SDK for Node] référentiel sur GitHub.
 
 [Azure SDK for Node]: https://github.com/Azure/azure-sdk-for-node
 [Azure portal]: https://portal.azure.com
@@ -326,6 +326,6 @@ Maintenant que vous avez appris les principes de base des rubriques Service Bus,
 [Queues, topics, and subscriptions]: service-bus-queues-topics-subscriptions.md
 [SqlFilter]: /dotnet/api/microsoft.servicebus.messaging.sqlfilter
 [Node.js Cloud Service]: ../cloud-services/cloud-services-nodejs-develop-deploy-app.md
-[Création et déploiement d’une application Node.js dans un site web Azure]: ../app-service-web/app-service-web-get-started-nodejs.md
+[créer et déployer un tooan d’application Node.js Site Web Azure]: ../app-service-web/app-service-web-get-started-nodejs.md
 [Node.js Cloud Service with Storage]: ../cloud-services/cloud-services-nodejs-develop-deploy-app.md
 [Node.js Web Application with Storage]:../cosmos-db/table-storage-cloud-service-nodejs.md

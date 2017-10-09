@@ -1,14 +1,14 @@
 <!--author=jgerend last changed: 03/16/16-->
 
 ## <a name="preparing-for-updates"></a>Préparation des mises à jour
-Vous devez effectuer les étapes suivantes avant d’analyser et d’appliquer la mise à jour :
+Vous devez hello tooperform comme suit avant d’analyser et appliquer la mise à jour hello :
 
-1. Prenez un instantané cloud des données de l’appareil.
-2. Assurez-vous que les adresses IP fixes du contrôleur sont routables et peuvent se connecter à Internet. Ces adresses IP fixes seront utilisées pour mettre en service les mises à jour sur votre appareil. Vous pouvez tester cette fonctionnalité en exécutant l’applet de commande suivante sur chaque contrôleur à partir de l’interface Windows PowerShell de l’appareil :
+1. Prendre un instantané cloud de données de l’appareil hello.
+2. Assurez-vous que votre contrôleur adresses IP fixe soient routable et peuvent se connecter toohello Internet. Ces adresses IP fixes seront appareil de tooyour tooservice utilisé mises à jour. Vous pouvez le tester en exécutant hello suivant l’applet de commande sur chaque contrôleur à partir de l’interface Windows PowerShell de hello du périphérique de hello :
    
      `Test-Connection -Source <Fixed IP of your device controller> -Destination <Any IP or computer name outside of datacenter network> `
    
-    **Résultat de l’exemple pour Test-Connection lorsque des adresses IP fixes peuvent se connecter à Internet**
+    **Exemple de sortie de Test-Connection lorsque les adresses IP fixes peuvent se connecter toohello Internet**
 
         Controller0>Test-Connection -Source 10.126.173.91 -Destination bing.com
 
@@ -28,5 +28,5 @@ Vous devez effectuer les étapes suivantes avant d’analyser et d’appliquer l
         HCSNODE0  204.79.197.200  204.79.197.200
         HCSNODE0  204.79.197.200  204.79.197.200
 
-Une fois que vous avez terminé ces vérifications préalables manuelles, vous pouvez passer à l’analyse et à l’installation des mises à jour.
+Une fois que vous avez terminé ces vérifications préalables manuelles, vous pouvez continuer tooscan et installer des mises à jour hello.
 

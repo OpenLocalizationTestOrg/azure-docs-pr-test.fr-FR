@@ -1,6 +1,6 @@
 ---
-title: "Liaisons de Stockage Blob d’Azure Functions | Microsoft Docs"
-description: "Découvrez comment utiliser des déclencheurs et des liaisons Stockage Azure dans Azure Functions."
+title: "liaisons de stockage d’objets Blob fonctions aaaAzure | Documents Microsoft"
+description: "Comprendre comment toouse le stockage Azure déclenche et les liaisons dans les fonctions d’Azure."
 services: functions
 documentationcenter: na
 author: lindydonna
@@ -16,16 +16,16 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 05/25/2017
 ms.author: glenga
-ms.openlocfilehash: 8d8f510ec906c0e0420ec48d45d88b93c144658a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: cef44bd2154d0b97cca9220b6c5024a5b620c80d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-functions-blob-storage-bindings"></a>Liaisons de stockage Blob Azure Functions
 [!INCLUDE [functions-selector-bindings](../../includes/functions-selector-bindings.md)]
 
-Cet article explique comment configurer et utiliser des liaisons Azure Stockage Blob dans Azure Functions. Azure Functions prend en charge les liaisons de déclencheur, d’entrée et de sortie pour Azure Stockage Blob. Pour les fonctionnalités qui sont disponibles dans toutes les liaisons, consultez [Concepts des déclencheurs et liaisons Azure Functions](functions-triggers-bindings.md).
+Cet article explique comment tooconfigure et fonctionnent avec les liaisons de stockage d’objets Blob Azure dans les fonctions d’Azure. Azure Functions prend en charge les liaisons de déclencheur, d’entrée et de sortie pour Stockage Blob Azure. Pour les fonctionnalités qui sont disponibles dans toutes les liaisons, consultez [Concepts des déclencheurs et liaisons Azure Functions](functions-triggers-bindings.md).
 
 [!INCLUDE [intro](../../includes/functions-bindings-intro.md)]
 
@@ -37,25 +37,25 @@ Cet article explique comment configurer et utiliser des liaisons Azure Stockage 
 <a name="storage-blob-trigger"></a>
 ## <a name="blob-storage-triggers-and-bindings"></a>Déclencheurs et liaisons de stockage blob
 
-Avec le déclencheur Stockage Blob Azure, le code de votre fonction est appelé quand un objet blob nouveau ou mis à jour est détecté. Le contenu de l’objet blob est fourni comme entrée de la fonction.
+À l’aide de déclencheur de stockage d’objets Blob Azure hello, votre code de fonction est appelée lorsqu’un objet blob nouveau ou mis à jour est détecté. contenu d’objet blob Hello est fournies en tant que fonction de toohello d’entrée.
 
-Définissez un déclencheur de stockage blob en utilisant l’onglet **Intégrer** dans le portail Functions. Le portail crée la définition suivante dans la section **bindings** de *function.json* :
+Définir un déclencheur de stockage d’objets blob à l’aide de hello **intégrer** portail de fonctions hello. portail Hello crée hello définition Bonjour **liaisons** section de *function.json*:
 
 ```json
 {
-    "name": "<The name used to identify the trigger data in your code>",
+    "name": "<hello name used tooidentify hello trigger data in your code>",
     "type": "blobTrigger",
     "direction": "in",
-    "path": "<container to monitor, and optionally a blob name pattern - see below>",
+    "path": "<container toomonitor, and optionally a blob name pattern - see below>",
     "connection": "<Name of app setting - see below>"
 }
 ```
 
-Les liaisons d’entrée et de sortie d’objet blob sont définies en utilisant `blob` comme type de liaison :
+Objet BLOB d’entrée et les liaisons de sortie sont définies à l’aide de `blob` en tant que type de liaison hello :
 
 ```json
 {
-  "name": "<The name used to identify the blob input in your code>",
+  "name": "<hello name used tooidentify hello blob input in your code>",
   "type": "blob",
   "direction": "in", // other supported directions are "inout" and "out"
   "path": "<Path of input blob - see below>",
@@ -63,38 +63,38 @@ Les liaisons d’entrée et de sortie d’objet blob sont définies en utilisant
 },
 ```
 
-* La propriété `path` prend en charge les expressions de liaison et les paramètres de filtre. Consultez [Modèles de nom](#pattern).
-* La propriété `connection` doit contenir le nom d’un paramètre d’application comportant une chaîne de connexion de stockage. Dans le portail Azure, l’éditeur standard de l’onglet **Intégrer** configure ce paramètre d’application pour vous quand vous sélectionnez un compte de stockage.
+* Hello `path` propriété prend en charge la liaison d’expressions et des paramètres de filtre. Consultez [Modèles de nom](#pattern).
+* Hello `connection` propriété doit contenir le nom hello d’un paramètre d’application qui contient une chaîne de connexion de stockage. Bonjour portail Azure, hello éditeur standard Bonjour **intégrer** onglet configure ce paramètre d’application pour vous lorsque vous sélectionnez un compte de stockage.
 
 > [!NOTE]
-> Quand vous utilisez un déclencheur d’objet blob dans un plan Consommation, il peut y avoir jusqu’à 10 minutes de délai dans le traitement des nouveaux objets blob après qu’une application de fonction est devenue inactive. Une fois l’application de fonction en cours d’exécution, les objets blob sont traités immédiatement. Pour éviter ce délai initial, pensez à l’une des options suivantes :
+> Lorsque vous utilisez un déclencheur d’objets blob sur un plan de la consommation, il peut être délai de 10 minutes tooa dans le traitement de nouveaux objets BLOB après qu’une application de la fonction est devenu inactive. Après que application de fonction hello est en cours d’exécution, les objets BLOB est traitées immédiatement. tooavoid initiale de ce délai, envisagez l’une des options suivantes de hello :
 > - Utilisez un plan App Service avec le paramètre Toujours actif activé.
-> - Utilisez un autre mécanisme pour déclencher le traitement de l’objet blob, comme un message de file d’attente qui contient le nom de l’objet blob. Pour un exemple, consultez [Déclencheur de file d’attente avec liaison d’entrée d’objet blob](#input-sample).
+> - Utiliser un autre mécanisme tootrigger hello objet blob de traitement, par exemple un message de la file d’attente qui contient le nom d’objet blob hello. Pour un exemple, consultez [Déclencheur de file d’attente avec liaison d’entrée d’objet blob](#input-sample).
 
 <a name="pattern"></a>
 
 ### <a name="name-patterns"></a>Modèles de nom
-Vous pouvez spécifier un modèle de nom d’objet blob dans la propriété `path`, qui peut être une expression de filtre ou de liaison. Consultez [Expressions et modèles de liaison](functions-triggers-bindings.md#binding-expressions-and-patterns).
+Vous pouvez spécifier un modèle de nom d’objet blob dans hello `path` propriété, qui peut être une expression de filtre ou de la liaison. Consultez [Expressions et modèles de liaison](functions-triggers-bindings.md#binding-expressions-and-patterns).
 
-Par exemple, pour filtrer des objets blob qui commencent par la chaîne « original », utilisez la définition suivante. Ce chemin trouve un objet blob appelé *original-Blob1.txt* dans le conteneur *input*, et la valeur de la variable `name` dans le code de la fonction est `Blob1`.
+Par exemple, tooblobs toofilter qui commencent par la chaîne hello d’origine », » utiliser hello définition. Ce chemin de recherche d’un objet blob nommé *d’origine-Blob1.txt* Bonjour *d’entrée* conteneur et la valeur de hello de hello `name` la variable dans le code de fonction est `Blob1`.
 
 ```json
 "path": "input/original-{name}",
 ```
 
-Pour se lier séparément au nom de fichier et à l’extension de l’objet blob, utilisez deux modèles. Ce chemin trouve également un objet blob nommé *original-Blob1.txt*, et les variables `blobname` et `blobextension` du code de la fonction sont *original-Blob1* et *txt*.
+extension et nom de fichier blob toobind toohello séparément, utilisent deux modèles. Ce chemin de recherche également un objet blob nommé *d’origine-Blob1.txt*et la valeur hello Hello `blobname` et `blobextension` sont des variables dans le code de fonction *d’origine-Blob1* et *txt*.
 
 ```json
 "path": "input/{blobname}.{blobextension}",
 ```
 
-Vous pouvez restreindre le type de fichier d’objets blob à l’aide d’une valeur fixe pour l’extension de fichier. Par exemple, pour déclencher uniquement sur des fichiers .png, utilisez le modèle suivant :
+Vous pouvez limiter le type de fichier hello d’objets BLOB à l’aide d’une valeur fixe pour l’extension de fichier hello. Par exemple, tootrigger uniquement sur les fichiers .png, hello utilisez modèle :
 
 ```json
 "path": "samples/{name}.png",
 ```
 
-Les accolades sont des caractères spéciaux dans les modèles de nom. Pour spécifier des noms d’objet blob dont le nom contient des accolades, utilisez une séquence d’échappement sous la forme de deux accolades. L’exemple suivante trouve un objet blob nommé *{20140101}-soundfile.mp3* dans le conteneur *images*, et la valeur de la variable `name` dans le code de la fonction est *soundfile.mp3*. 
+Les accolades sont des caractères spéciaux dans les modèles de nom. toospecify les noms d’objet blob qui ont des accolades dans le nom de hello, d’échappement des accolades hello à l’aide de deux accolades. exemple Hello recherche un objet blob nommé *{20140101}-soundfile.mp3* Bonjour *images* conteneur et hello `name` est de valeur de la variable dans le code de la fonction hello  *soundfile.MP3*. 
 
 ```json
 "path": "images/{{20140101}}-{name}",
@@ -102,50 +102,50 @@ Les accolades sont des caractères spéciaux dans les modèles de nom. Pour spé
 
 ### <a name="trigger-metadata"></a>Métadonnées d’un déclencheur
 
-Le déclencheur d’objet blob fournit plusieurs propriétés de métadonnées. Ces propriétés peuvent être utilisées dans des expressions de liaison dans d’autres liaisons ou en tant que paramètres dans votre code. Ces valeurs ont la même sémantique que [CloudBlob](https://docs.microsoft.com/en-us/dotnet/api/microsoft.windowsazure.storage.blob.cloudblob?view=azure-dotnet).
+déclencheur de blob Hello fournit plusieurs propriétés de métadonnées. Ces propriétés peuvent être utilisées dans des expressions de liaison dans d’autres liaisons ou en tant que paramètres dans votre code. Ces valeurs ont hello même sémantique que [CloudBlob](https://docs.microsoft.com/en-us/dotnet/api/microsoft.windowsazure.storage.blob.cloudblob?view=azure-dotnet).
 
-- **BlobTrigger**. Saisissez `string`. Chemin de l’objet blob déclencheur
-- **Uri**. Saisissez `System.Uri`. URI de l’objet blob pour l’emplacement principal.
-- **Properties**. Saisissez `Microsoft.WindowsAzure.Storage.Blob.BlobProperties`. Propriétés système de l’objet blob.
-- **Metadata**. Saisissez `IDictionary<string,string>`. Métadonnées définies par l’utilisateur pour l’objet blob.
+- **BlobTrigger**. Saisissez `string`. chemin d’accès de blob déclenchement Hello
+- **Uri**. Saisissez `System.Uri`. URI de l’objet blob de Hello pour l’emplacement principal de hello.
+- **Properties**. Saisissez `Microsoft.WindowsAzure.Storage.Blob.BlobProperties`. Bonjour les propriétés de système de l’objet blob.
+- **Metadata**. Saisissez `IDictionary<string,string>`. métadonnées définies par l’utilisateur Hello pour l’objet blob de hello.
 
 <a name="receipts"></a>
 
 ### <a name="blob-receipts"></a>Reçus d’objets blob
-Le runtime Azure Functions vérifie qu’aucune fonction de déclencheur d’objet blob n’est appelée plusieurs fois pour un même objet blob, nouveau ou mis à jour. Pour déterminer si la version d’un objet blob donné a été traitée, il gère des *reçus d’objet blob*.
+Fonctions d’Azure Hello runtime garantit qu’aucune fonction de déclenchement d’objet blob n’est appelée plusieurs fois pour hello même objet blob de nouveau ou mis à jour. toodetermine si une version de l’objet blob donné a été traitée, il gère *accusés de réception d’objets blob*.
 
-Azure Functions stocke les reçus d’objet blob dans un conteneur appelé *azure-webjobs-hosts* dans le compte de stockage Azure de votre application de fonction (définie par le paramètre d’application `AzureWebJobsStorage`). Un reçu d’objet blob contient les informations suivantes :
+Magasins de fonctions Azure blob accusés de réception dans un conteneur nommé *hôtes de tâches Web azure* Bonjour compte de stockage Azure pour votre application (fonction) (défini par le paramètre d’application hello `AzureWebJobsStorage`). Un accusé de réception d’objet blob a hello informations suivantes :
 
-* Fonction déclenchée (« *&lt;nom de l’application de fonction>*.Functions.*&lt;nom de la fonction>* », par exemple : « MyFunctionApp.Functions.CopyBlob »)
-* Nom du conteneur
-* Type d’objet blob (« BlockBlob » ou « PageBlob »)
-* Nom de l’objet blob
-* ETag (identificateur de version de l’objet blob, par exemple : « 0x8D1DC6E70A277EF »)
+* Hello déclenchée (fonction) («*&lt;nom de l’application fonction >*. Fonctions.  *&lt;nom de la fonction >*», par exemple : « MyFunctionApp.Functions.CopyBlob »)
+* nom du conteneur Hello
+* type d’objet blob Hello (« BlockBlob » ou « Un PageBlob »)
+* nom d’objet blob Hello
+* Hello ETag (un identificateur de version des objets blob, par exemple : « 0x8D1DC6E70A277EF »)
 
-Pour forcer le retraitement d’un objet blob, supprimez manuellement le reçu de l’objet blob du conteneur *azure-webjobs-hosts*.
+tooforce retraitement d’un objet blob, supprimez réception de blob hello pour cet objet blob hello *hôtes de tâches Web azure* conteneur manuellement.
 
 <a name="poison"></a>
 
 ### <a name="handling-poison-blobs"></a>Gestion des objets blob incohérents
 En cas d’échec d’une fonction de déclencheur d’objet blob, Azure Functions réessaie cette fonction jusqu’à 5 fois par défaut. 
 
-Si les 5 tentatives échouent, Azure Functions ajoute un message à une file d’attente de stockage nommée *webjobs-blobtrigger-poison*. Le message en file d’attente associé aux objets blob incohérents correspond à un objet JSON, qui contient les propriétés suivantes :
+Si toutes les 5 tentatives échouent, les fonctions Azure ajoute un message tooa stockage file d’attente nommée *webjobs-blobtrigger-incohérents*. message de file d’attente Hello pour les objets BLOB incohérent est un objet JSON qui contient les propriétés suivantes de hello :
 
-* FunctionId (au format *&lt;nom de l’application de fonction>*.Functions.*&lt;nom de la fonction>*)
+* ID de fonction (au format de hello  *&lt;nom de l’application fonction >*. Fonctions.  *&lt;nom de la fonction >*)
 * BlobType (« BlockBlob » ou « PageBlob »)
 * ContainerName
 * BlobName
 * ETag (identificateur de version de l’objet blob, par exemple : « 0x8D1DC6E70A277EF »)
 
 ### <a name="blob-polling-for-large-containers"></a>Interrogation de blob pour les grands conteneurs
-Si le conteneur d’objets blob surveillé contient plus de 10 000 objets blob, le runtime Functions recherche les objets blob nouveaux ou modifiés dans les fichiers journaux. Ce processus ne se déroule pas en temps réel. Il se peut qu’une fonction ne se déclenche que quelques minutes ou plus après la création de l’objet blob. En outre, les [journaux de stockage sont créés selon le principe du meilleur effort](/rest/api/storageservices/About-Storage-Analytics-Logging). Il n’existe aucune garantie que tous les événements sont capturés. Dans certaines conditions, des journaux peuvent être omis. Si vous avez besoin de traitement d’objets blob plus rapide ou plus fiable, envisagez de créer un [message de file d’attente](../storage/queues/storage-dotnet-how-to-use-queues.md) quand vous créez l’objet blob. Ensuite, utilisez un [déclencheur de file d’attente](functions-bindings-storage-queue.md) au lieu d’un déclencheur d’objet blob pour traiter l’objet blob.
+Si le conteneur d’objets blob hello en cours d’analyse contient plus de 10 000 objets BLOB, les fonctions hello runtime analyse journal toowatch de fichiers pour les objets BLOB nouveau ou modifié. Ce processus ne se déroule pas en temps réel. Une fonction ne peut-être pas déclenchée jusqu'à ce que quelques minutes ou plus après que l’objet blob de hello est créé. En outre, les [journaux de stockage sont créés selon le principe du meilleur effort](/rest/api/storageservices/About-Storage-Analytics-Logging). Il n’existe aucune garantie que tous les événements sont capturés. Dans certaines conditions, des journaux peuvent être omis. Si vous avez besoin de traitement de l’objet blob plus rapide ou plus fiable, envisagez de créer un [message de la file d’attente](../storage/queues/storage-dotnet-how-to-use-queues.md) lorsque vous créez l’objet blob de hello. Ensuite, utilisez un [déclencheur de la file d’attente](functions-bindings-storage-queue.md) au lieu d’un objet blob déclencheur tooprocess hello objet blob.
 
 <a name="triggerusage"></a>
 
 ## <a name="using-a-blob-trigger-and-input-binding"></a>Utilisation d’un déclencheur d’objets blob et d’une liaison d’entrée
-Dans les fonctions .NET, accédez aux données des objets blob en utilisant un paramètre de méthode comme `Stream paramName`. Ici, `paramName` est la valeur que vous avez spécifiée dans la [configuration du déclencheur](#trigger). Dans les fonctions Node.js, accédez aux données de l’objet blob d’entrée en utilisant `context.bindings.<name>`.
+Dans des fonctions .NET, accéder aux données d’objet blob de hello à l’aide d’un paramètre de méthode comme `Stream paramName`. Ici, `paramName` est la valeur hello spécifiée Bonjour [configuration du déclencheur](#trigger). Dans les fonctions de Node.js, hello d’accès d’entrée à l’aide des données blob `context.bindings.<name>`.
 
-Dans .NET, vous pouvez lier aux types de la liste ci-dessous. S’ils sont utilisés comme liaison d’entrée, certains de ces types nécessitent une direction de liaison `inout` dans *function.json*. Cette direction n’est pas prise en charge par l’éditeur standard : vous devez donc utiliser l’éditeur avancé.
+Dans .NET, vous pouvez lier tooany des types de hello dans la liste hello ci-dessous. S’ils sont utilisés comme liaison d’entrée, certains de ces types nécessitent une direction de liaison `inout` dans *function.json*. Cette direction n’est pas pris en charge par l’éditeur standard hello, vous devez donc utiliser hello éditeur avancé.
 
 * `TextReader`
 * `Stream`
@@ -154,10 +154,10 @@ Dans .NET, vous pouvez lier aux types de la liste ci-dessous. S’ils sont utili
 * `CloudPageBlob` (nécessite la direction de liaison « inout »)
 * `CloudAppendBlob` (nécessite la direction de liaison « inout »)
 
-Si des objets blob de texte sont attendus, vous pouvez également lier à un type `string` .NET. Ceci est recommandé uniquement si la taille de l’objet blob est petite, car tout le contenu de l’objet blob est chargé en mémoire. En général, il est préférable d’utiliser un type `Stream` ou `CloudBlockBlob`.
+Si vous prévoyez des objets BLOB de texte, vous pouvez également lier tooa .NET `string` type. Ceci est recommandé uniquement si la taille des objets blob hello est petite, comme le contenu d’objet blob entier hello est chargés en mémoire. En règle générale, il est préférable de toouse un `Stream` ou `CloudBlockBlob` type.
 
 ## <a name="trigger-sample"></a>Exemple de déclencheur
-Supposons le code function.json suivant, qui définit un déclencheur de stockage d’objet blob :
+Supposons que vous avez hello suivant function.json qui définit un déclencheur de stockage d’objets blob :
 
 ```json
 {
@@ -174,7 +174,7 @@ Supposons le code function.json suivant, qui définit un déclencheur de stockag
 }
 ```
 
-Consultez l’exemple dans le langage de votre choix pour voir comment enregistrer le contenu de chaque objet blob ajouté au conteneur surveillé.
+Voir exemple hello spécifiques au langage qui enregistre le contenu de hello de chaque objet blob qui est ajouté conteneur analysé de toohello.
 
 * [C#](#triggercsharp)
 * [Node.JS](#triggernodejs)
@@ -192,7 +192,7 @@ public static void Run(Stream myBlob, TraceWriter log)
 ```
 
 ```cs
-// Blob trigger binding to a CloudBlockBlob
+// Blob trigger binding tooa CloudBlockBlob
 #r "Microsoft.WindowsAzure.Storage"
 
 using Microsoft.WindowsAzure.Storage.Blob;
@@ -218,9 +218,9 @@ module.exports = function(context) {
 
 ## <a name="using-a-blob-output-binding"></a>Utilisation d’une liaison de sortie d’objet blob
 
-Dans les fonctions .NET, vous devez utiliser un paramètre `out string` dans la signature de votre fonction ou un des types de la liste suivante. Dans les fonctions Node.js, vous accédez à l’objet blob de sortie en utilisant `context.bindings.<name>`.
+Dans les fonctions de .NET, vous devez utiliser un `out string` paramètre dans votre signature de fonction ou l’un des types hello Bonjour suivant liste. Dans les fonctions de Node.js, vous accédez à l’aide des objets blob de sortie hello `context.bindings.<name>`.
 
-Dans les fonctions .NET, vous pouvez définir une sortie vers les types suivants :
+Dans les fonctions de .NET, vous pouvez produire tooany Hello les types suivants :
 
 * `out string`
 * `TextWriter`
@@ -233,7 +233,7 @@ Dans les fonctions .NET, vous pouvez définir une sortie vers les types suivants
 <a name="input-sample"></a>
 
 ## <a name="queue-trigger-with-blob-input-and-output-sample"></a>Exemple de déclencheur de file d’attente avec une entrée et une sortie d’objet blob
-Supposons le code function.json suivant, qui définit un [déclencheur de stockage de file d’attente](functions-bindings-storage-queue.md), une entrée de stockage d’objet blob et une sortie de stockage d’objet blob. Notez l’utilisation de la propriété de métadonnées `queueTrigger`. dans les propriétés `path` de l’entrée et de la sortie d’objet blob :
+Supposons que vous avez hello suivant function.json, qui définit un [déclencheur de stockage de la file d’attente](functions-bindings-storage-queue.md), un stockage d’objets blob d’entrée et un stockage d’objets blob de sortie. Utilisation de hello avis de hello `queueTrigger` propriété de métadonnées. dans l’objet blob de hello d’entrée et sortie `path` propriétés :
 
 ```json
 {
@@ -264,7 +264,7 @@ Supposons le code function.json suivant, qui définit un [déclencheur de stocka
 }
 ``` 
 
-Consultez l’exemple dans le langage de votre choix pour voir comment copier l’objet blob d’entrée dans l’objet blob de sortie.
+Voir exemple hello spécifiques au langage qui copie hello blob d’entrée toohello sortie blob.
 
 * [C#](#incsharp)
 * [Node.JS](#innodejs)
@@ -274,7 +274,7 @@ Consultez l’exemple dans le langage de votre choix pour voir comment copier l�
 ### <a name="blob-binding-example-in-c"></a>Exemple de liaison d’objet blob en C# #
 
 ```cs
-// Copy blob from input to output, based on a queue trigger
+// Copy blob from input toooutput, based on a queue trigger
 public static void Run(string myQueueItem, Stream myInputBlob, out string myOutputBlob, TraceWriter log)
 {
     log.Info($"C# Queue trigger function processed: {myQueueItem}");
@@ -287,7 +287,7 @@ public static void Run(string myQueueItem, Stream myInputBlob, out string myOutp
 ### <a name="blob-binding-example-in-nodejs"></a>Exemple de liaison d’objet blob en Node.js
 
 ```javascript
-// Copy blob from input to output, based on a queue trigger
+// Copy blob from input toooutput, based on a queue trigger
 module.exports = function(context) {
     context.log('Node.js Queue trigger function processed', context.bindings.myQueueItem);
     context.bindings.myOutputBlob = context.bindings.myInputBlob;

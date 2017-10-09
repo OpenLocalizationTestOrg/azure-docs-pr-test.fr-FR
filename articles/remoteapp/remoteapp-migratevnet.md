@@ -1,6 +1,6 @@
 ---
-title: "Comment migrer un réseau virtuel RemoteApp vers un réseau virtuel Azure | Microsoft Docs"
-description: "Découvrir comment migrer un réseau virtuel RemoteApp vers un réseau virtuel Azure"
+title: "toomigrate aaaHow à partir d’un réseau virtuel Azure de tooan RemoteApp VNET | Documents Microsoft"
+description: "Découvrez comment toomigrate à partir d’un réseau virtuel Azure de tooan RemoteApp VNET"
 services: remoteapp
 documentationcenter: 
 author: msmbaldwin
@@ -13,40 +13,40 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/23/2016
 ms.author: mbaldwin
-ms.openlocfilehash: 10b5f4844a38fe97852dee8634e8cf54f1a23a1e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c0f8617556c6f1e33eca8322febf67ff33937ecd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-migrate-a-hybrid-collection-from-a-remoteapp-vnet-to-an-azure-vnet"></a>Comment migrer une collection hybride d’un réseau virtuel RemoteApp à un réseau virtuel Azure
+# <a name="how-toomigrate-a-hybrid-collection-from-a-remoteapp-vnet-tooan-azure-vnet"></a>Comment toomigrate une collection hybride à partir d’un réseau virtuel Azure de tooan RemoteApp VNET
 > [!IMPORTANT]
-> Azure RemoteApp ne sera plus disponible à partir du 31 août 2017. Pour plus d’informations, lisez [l’annonce](https://go.microsoft.com/fwlink/?linkid=821148) .
+> Azure RemoteApp ne sera plus disponible à partir du 31 août 2017. Hello de lecture [annonce](https://go.microsoft.com/fwlink/?linkid=821148) pour plus d’informations.
 > 
 > 
 
-Bonne nouvelle ! Vous avez désormais la possibilité de déployer des collections RemoteApp hybrides directement sur vos réseaux virtuels (VNET) Azure existants au lieu de devoir créer des réseaux virtuels RemoteApp spécifiques. Cela vous permet de tirer parti des dernières fonctionnalités de réseau virtuel (comme ExpressRoute) et offre à vos collections hybrides un accès réseau direct à d’autres services Azure et ordinateurs virtuels déployés sur ce réseau virtuel.  (Ceci améliore les performances et facilite l’installation par rapport aux configurations de réseau virtuel à réseau virtuel).
+Bonne nouvelle ! Nous avons activé collections de RemoteApp hybride toodeploy directement dans votre existant réseaux virtuels Azure (réseaux virtuels) au lieu de créer des réseaux virtuels RemoteApp spécifiques. Cela vous permet de tirer parti de hello dernières fonctionnalités de réseau virtuel (par exemple, ExpressRoute) et donnez à votre tooother de l’accès réseau direct hybride collections services Azure et les ordinateurs virtuels déployés toothat réseau virtuel.  (Ceci améliore les performances et facilite l’installation par rapport aux configurations de réseau virtuel à réseau virtuel).
 
-Supposons que vous avez déjà créé une collection RemoteApp hybride appelée *OriginalCollection* avec un réseau virtuel RemoteApp appelé *RemoteAppVNET*. Voici les étapes à suivre pour effectuer la migration vers un nouveau réseau virtuel Azure appelé *AzureVNET*.
+Supposons que vous avez déjà créé une collection RemoteApp hybride appelée *OriginalCollection* avec un réseau virtuel RemoteApp appelé *RemoteAppVNET*. Voici hello étapes toomigrate il tooa appelée de nouveau de réseau virtuel Azure *AzureVNET*.
 
-1. Dans l’onglet **Réseaux** du [Portail de gestion](http://manage.windowsazure.com/), créez un réseau virtuel appelé *AzureVNET* en utilisant un emplacement, une configuration DNS et un espace d’adressage identiques (pour au moins l’un des sous-réseaux *AzureVNET*) à ceux utilisés pour *RemoteAppVNET*.
-2. Configurez *AzureVNET* de manière à héberger le déploiement d’Active Directory avec lequel la collection *OriginalCollection* est jointe au domaine, ou à établir une connectivité réseau avec ce dernier.
-3. Dans l’onglet **RemoteApps** , créez une collection RemoteApp appelée *Nouvelle Collection*. (Utilisez l’option **Créer avec VNET** plutôt que l’option **Création rapide**.)
-4. Configurez *NewCollection* de manière à être déployée sur un sous-réseau dans *AzureVNET*.
-5. Configurez *NewCollection* de manière à utiliser la même image et les mêmes informations de jonction de domaine que celles utilisées pour *OriginalCollection*.
+1. Sur hello **réseaux** onglet Bonjour [portail de gestion](http://manage.windowsazure.com/), créez un réseau virtuel appelé *AzureVNET*, à l’aide hello même emplacement, la configuration de DNS et l’espace d’adressage (au moins pour Hello *AzureVNET* sous-réseaux) en tant que vous avez utilisé pour *RemoteAppVNET*.
+2. Configurer *AzureVNET* tooeither héberger ou avoir le déploiement d’Active Directory toohello une connexion réseau qui *OriginalCollection* est joint au.
+3. Sur hello **applications distantes** , onglet de créer une nouvelle collection RemoteApp appelée *nouvelle Collection*. (Hello d’utilisation **créer avec le réseau virtuel** n'option pas **création rapide**.)
+4. Configurer *NewCollection* toobe déployé sous-réseau tooa *AzureVNET*.
+5. Configurer *NewCollection* toouse hello même image et les informations de jonction de domaine en tant que vous avez utilisé pour *OriginalCollection*.
 6. Après quelques heures, *NewCollection* apparaît dans la liste de collections avec le statut Actif.
 
-Si vous n’avez PAS besoin de migrer des informations utilisateur depuis la collection d’origine vers la nouvelle collection, suivez les étapes ci-dessous :
+Maintenant, si vous n’avez pas besoin toomigrate toutes les informations utilisateur à partir de hello d’origine toohello nouveau regroupement, effectuez ces étapes suivant :
 
 1. Supprimez *OriginalCollection*.
 2. Supprimez *RemoteAppVNET*.
 
 Vous avez terminé !
 
-Si vous DEVEZ migrer des informations utilisateur depuis la collection d’origine vers la nouvelle collection, suivez les étapes ci-dessous :
+Ou bien, si vous n’avez pas besoin d’informations utilisateur toomigrate de hello d’origine toohello nouveau regroupement, effectuez ces étapes suivant :
 
-1. Envoyez un e-mail à [remoteappforum@microsoft.com](mailto:remoteappforum@microsoft.com?subject=Azure%20RemoteApp%20user%20information%20migration) avec votre ID d’abonnement Azure, le nom de votre collection d’origine et le nom de votre nouvelle collection, et demandez à migrer vos informations utilisateur.
-2. Dans les deux jours ouvrés, l’équipe RemoteApp déplace la liste d’accès utilisateur, ainsi que tous les documents et paramètres de l’utilisateur de la collection d’origine vers la nouvelle collection.
+1. Envoyer un courrier électronique trop[ remoteappforum@microsoft.com ](mailto:remoteappforum@microsoft.com?subject=Azure%20RemoteApp%20user%20information%20migration) avec votre ID d’abonnement Azure hello du nom de votre collection d’origine et le nom hello de votre nouvelle collection et demandez-lui de toomigrate vos informations utilisateur.
+2. Dans les 2 jours ouvrables équipe de RemoteApp hello passeront liste d’accès utilisateur hello et tous les documents de l’utilisateur et les paramètres utilisateur d’hello d’origine toohello nouveau regroupement.
 3. Supprimez *OriginalCollection*.
 4. Supprimez *RemoteAppVNET*.
 

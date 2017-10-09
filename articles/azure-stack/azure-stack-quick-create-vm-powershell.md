@@ -1,5 +1,5 @@
 ---
-title: "Créer une machine virtuelle Windows à l’aide de PowerShell dans Azure Stack | Microsoft Docs"
+title: "aaaCreate machine virtuelle Windows à l’aide de PowerShell dans la pile de Azure | Documents Microsoft"
 description: "Créer une machine virtuelle Windows à l’aide de PowerShell dans Azure Stack."
 services: azure-stack
 documentationcenter: 
@@ -14,30 +14,30 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/10/2017
 ms.author: sngun
-ms.openlocfilehash: 4b6706b289e323706009c40e9d1ad0149f8accc5
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: de063eae6f0782d8916da991f285a9de6b41def4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-windows-virtual-machine-by-using-powershell-in-azure-stack"></a>Créer une machine virtuelle Windows à l’aide de PowerShell dans Azure Stack
 
-Dans Azure Stack, les machines virtuelles vous donnent la flexibilité de la virtualisation sans devoir acheter le matériel physique qui l’exécute ni en assurer la maintenance. Quand vous utilisez des machines virtuelles, vous devez savoir qu’il existe des différences entre les fonctionnalités disponibles dans Azure et celles disponibles dans Azure Stack. Reportez-vous à la rubrique [Considérations relatives aux machines virtuelles dans Azure Stack](azure-stack-vm-considerations.md) pour en savoir plus sur ces différences. 
+Machines virtuelles dans donnent Azure pile hello flexibilité de la virtualisation sans avoir toobuy et de mettre à jour hello matériel physique qui l’exécute. Lorsque vous utilisez des Machines virtuelles, comprenez qu’il existe des différences entre les fonctionnalités de hello qui sont disponibles dans Azure et de la pile d’Azure, consultez le toohello [considérations relatives à des machines virtuelles dans Azure pile](azure-stack-vm-considerations.md) toolearn rubrique sur Ces différences. 
 
-Ce guide explique comment utiliser PowerShell pour créer une machine virtuelle Windows Server 2016 dans Azure Stack. Vous pouvez exécuter les étapes décrites dans cet article à partir du Kit de développement Azure Stack ou à partir d’un client externe Windows si vous êtes connecté par le biais d’un VPN. 
+Ce guide des détails à l’aide de PowerShell toocreate machine virtuelle Windows Server 2016 dans la pile de Azure. Vous pouvez exécuter des étapes de hello décrits dans cet article hello Kit de développement Azure pile ou d’un client externe basé sur Windows, si vous êtes connecté via VPN. 
 
 ## <a name="prerequisites"></a>Composants requis
 
-1. La Place de Marché Azure Stack ne contient pas par défaut l’image Windows Server 2016. Par conséquent, avant de pouvoir créer une machine virtuelle, vérifiez que l’opérateur Azure Stack [ajoute l’image Windows Server 2016 à la Place de Marché Azure Stack](azure-stack-add-default-image.md). 
-2. Azure Stack nécessite une version spécifique du module Azure PowerShell pour créer et gérer les ressources. Utilisez les étapes décrites dans la rubrique [Installer PowerShell pour Azure Stack](azure-stack-powershell-install.md) pour installer la version exigée.
-3. [Configurer l’environnement PowerShell de l’utilisateur Azure Stack](azure-stack-powershell-configure-user.md) 
+1. marketplace d’Azure pile Hello ne contient pas les images hello Windows Server 2016 par défaut. Par conséquent, avant de pouvoir créer un ordinateur virtuel, assurez-vous que cet opérateur de pile de Azure hello [ajoute marketplace d’Azure pile hello Windows Server 2016 image toohello](azure-stack-add-default-image.md). 
+2. Pile Azure nécessite une version spécifique du toocreate du module Azure PowerShell et gérer les ressources de hello. Utilisez les étapes hello décrites dans [installer PowerShell pour Azure pile](azure-stack-powershell-install.md) version requise de rubrique tooinstall hello.
+3. [Configurer l’environnement de l’utilisateur hello pile d’Azure PowerShell](azure-stack-powershell-configure-user.md) 
 
 ## <a name="create-a-resource-group"></a>Créer un groupe de ressources
 
-Un groupe de ressources est un conteneur logique dans lequel les ressources Azure Stack sont déployées et gérées. Utilisez le bloc de code suivant pour créer un groupe de ressources. Nous avons affecté des valeurs à toutes les variables de ce document. Vous pouvez les utiliser en l’état ou affecter une valeur différente.  
+Un groupe de ressources est un conteneur logique dans lequel les ressources Azure Stack sont déployées et gérées. Utilisez hello suivant le bloc de code toocreate un groupe de ressources. Nous avons affecté des valeurs à toutes les variables de ce document. Vous pouvez les utiliser en l’état ou affecter une valeur différente.  
 
 ```powershell
-# Create variables to store the location and resource group names.
+# Create variables toostore hello location and resource group names.
 $location = "local"
 $ResourceGroupName = "myResourceGroup"
 
@@ -48,10 +48,10 @@ New-AzureRmResourceGroup `
 
 ## <a name="create-storage-resources"></a>Créer des ressources de stockage 
 
-Créez un compte de stockage, ainsi qu’un conteneur de stockage pour stocker l’image Windows Server 2016.
+Créer un compte de stockage et une image de stockage conteneur toostore hello Windows Server 2016.
 
 ```powershell
-# Create variables to store the storage account name and the storage account SKU information
+# Create variables toostore hello storage account name and hello storage account SKU information
 $StorageAccountName = "mystorageaccount"
 $SkuName = "Standard_LRS"
 
@@ -66,7 +66,7 @@ Set-AzureRmCurrentStorageAccount `
   -StorageAccountName $storageAccountName `
   -ResourceGroupName $resourceGroupName
 
-# Create a storage container to store the virtual machine image
+# Create a storage container toostore hello virtual machine image
 $containerName = 'osdisks'
 $container = New-AzureStorageContainer `
   -Name $containerName `
@@ -75,7 +75,7 @@ $container = New-AzureStorageContainer `
 
 ## <a name="create-networking-resources"></a>Création de ressources de mise en réseau
 
-Créez un réseau virtuel, un sous-réseau et une adresse IP publique. Ces ressources sont utilisées pour fournir une connectivité réseau à la machine virtuelle.  
+Créez un réseau virtuel, un sous-réseau et une adresse IP publique. Ces ressources sont utilisées tooprovide réseau connectivité toohello virtual machine.  
 
 ```powershell
 # Create a subnet configuration
@@ -102,7 +102,7 @@ $pip = New-AzureRmPublicIpAddress `
 
 ### <a name="create-a-network-security-group-and-a-network-security-group-rule"></a>Créez un groupe de sécurité réseau et une règle de groupe de sécurité réseau
 
-Le groupe de sécurité réseau sécurise la machine virtuelle à l’aide de règles de trafic entrantes et sortantes. Créons une règle de trafic entrant pour le port 3389 pour autoriser les connexions Bureau à distance entrantes, et une règle de trafic entrant pour le port 80 pour autoriser le trafic web entrant.
+groupe de sécurité réseau Hello sécurise hello virtuels à l’aide de règles de trafic entrants et sortants. Permet de créer une règle de trafic entrant pour le port 3389 tooallow Bureau à distance les connexions entrantes et une règle de trafic entrant pour le trafic web entrant port 80 tooallow.
 
 ```powershell
 # Create an inbound network security group rule for port 3389
@@ -137,9 +137,9 @@ $nsg = New-AzureRmNetworkSecurityGroup `
   -SecurityRules $nsgRuleRDP,$nsgRuleWeb 
 ```
  
-### <a name="create-a-network-card-for-the-virtual-machine"></a>Créer une carte réseau pour la machine virtuelle
+### <a name="create-a-network-card-for-hello-virtual-machine"></a>Créer une carte réseau pour la machine virtuelle de hello
 
-La carte réseau connecte la machine virtuelle à un sous-réseau, un groupe de sécurité réseau et une adresse IP publique.
+carte réseau de Hello connecte le sous-réseau de tooa d’ordinateurs virtuels hello, groupe de sécurité réseau et adresse IP publique.
 
 ```powershell
 # Create a virtual network card and associate it with public IP address and NSG
@@ -154,15 +154,15 @@ $nic = New-AzureRmNetworkInterface `
 
 ## <a name="create-a-virtual-machine"></a>Création d'une machine virtuelle
 
-Créez une configuration de machine virtuelle. La configuration inclut les paramètres qui sont utilisés lors du déploiement de la machine virtuelle, comme une image, une taille et des informations d’identification de machine virtuelle.
+Créez une configuration de machine virtuelle. configuration de Hello inclut des paramètres hello sont utilisées lors du déploiement d’ordinateur virtuel de hello telles que les informations d’identification, de la taille, de l’image de machine virtuelle.
 
 ```powershell
-# Define a credential object to store the username and password for the virtual machine
+# Define a credential object toostore hello username and password for hello virtual machine
 $UserName='demouser'
 $Password='Password@123'| ConvertTo-SecureString -Force -AsPlainText
 $Credential=New-Object PSCredential($UserName,$Password)
 
-# Create the virtual machine configuration object
+# Create hello virtual machine configuration object
 $VmName = "VirtualMachinelatest"
 $VmSize = "Standard_A1"
 $VirtualMachine = New-AzureRmVMConfig `
@@ -188,7 +188,7 @@ $osDiskUri = '{0}vhds/{1}-{2}.vhd' -f `
   $vmName.ToLower(), `
   $osDiskName
 
-# Sets the operating system disk properties on a virtual machine. 
+# Sets hello operating system disk properties on a virtual machine. 
 $VirtualMachine = Set-AzureRmVMOSDisk `
   -VM $VirtualMachine `
   -Name $osDiskName `
@@ -196,30 +196,30 @@ $VirtualMachine = Set-AzureRmVMOSDisk `
   -CreateOption FromImage | `
   Add-AzureRmVMNetworkInterface -Id $nic.Id 
 
-#Create the virtual machine.
+#Create hello virtual machine.
 New-AzureRmVM `
   -ResourceGroupName $ResourceGroupName `
   -Location $location `
   -VM $VirtualMachine
 ```
 
-## <a name="connect-to-the-virtual-machine"></a>Connectez-vous à la machine virtuelle.
+## <a name="connect-toohello-virtual-machine"></a>Connecter l’ordinateur virtuel de toohello
 
-Une fois la machine virtuelle correctement créée, ouvrez une connexion Bureau à distance à la machine virtuelle à partir du kit de développement, ou à partir d’un client externe Windows si vous êtes connecté par le biais d’un VPN. Pour accéder à distance à la machine virtuelle créée à l’étape précédente, vous avez besoin de son adresse IP publique. Exécutez la commande suivante pour obtenir l’adresse IP publique de la machine virtuelle : 
+Une fois la machine virtuelle de hello est correctement créé, ouvrir une machine virtuelle de bureau à distance connexion toohello du kit de développement hello ou à partir d’un client externe Windows si vous êtes connecté via VPN. tooremote en machine virtuelle hello que vous avez créé à l’étape précédente de hello, vous avez besoin de son adresse IP publique. Exécutez hello suivant commande tooget hello adresse IP publique de l’ordinateur virtuel de hello : 
 
 ```powershell
 Get-AzureRmPublicIpAddress `
   -ResourceGroupName $ResourceGroupName | Select IpAddress
 ```
  
-Utilisez la commande suivante pour créer une session Bureau à distance avec la machine virtuelle. Remplacez l’adresse IP par l’adresse publicIPAddress de votre machine virtuelle. Quand vous y êtes invité, entrez le nom d’utilisateur et le mot de passe que vous avez utilisés lors de la création de la machine virtuelle.
+La commande suivante de hello utilisation toocreate une session Bureau à distance avec l’ordinateur virtuel de hello. Remplacez l’adresse IP de hello avec l’adresse IP publique hello de votre machine virtuelle. Lorsque vous y êtes invité, entrez le nom d’utilisateur hello et un mot de passe que vous avez utilisé lors de la création d’ordinateur virtuel de hello.
 
 ```powershell
 mstsc /v:<publicIpAddress>
 ```
-## <a name="delete-the-virtual-machine"></a>Supprimer la machine virtuelle
+## <a name="delete-hello-virtual-machine"></a>Supprimer la machine virtuelle de hello
 
-Quand vous n’en avez plus besoin, utilisez la commande suivante pour supprimer le groupe de ressources qui contient la machine virtuelle et les ressources qui lui sont associées :
+Lorsque vous n’est plus nécessaire, utilisez hello suivant commande tooremove hello groupe de ressources qui contient l’ordinateur virtuel de hello et ses ressources connexes :
 
 ```powershell
 Remove-AzureRmResourceGroup `
@@ -228,5 +228,5 @@ Remove-AzureRmResourceGroup `
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Pour en savoir plus sur le stockage dans Azure Stack, reportez-vous à la rubrique [Vue d’ensemble du stockage](azure-stack-storage-overview.md).
+toolearn sur le stockage dans la pile d’Azure, consultez toohello [vue d’ensemble du stockage](azure-stack-storage-overview.md) rubrique.
 

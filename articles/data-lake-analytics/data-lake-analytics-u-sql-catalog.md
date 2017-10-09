@@ -1,6 +1,6 @@
 ---
-title: Prise en main du catalogue U-SQL | Microsoft Docs
-description: "Découvrez comment utiliser le catalogue U-SQL pour partager du code et des données."
+title: Prise en main les catalogue hello U-SQL | Documents Microsoft
+description: "Découvrez comment toouse hello U-SQL catalogue tooshare code et des données."
 services: data-lake-analytics
 documentationcenter: 
 author: saveenr
@@ -14,19 +14,19 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/09/2017
 ms.author: edmaca
-ms.openlocfilehash: 08364c6c7bea53807844e3b1cc327dc3742e0487
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 559bb7a3879031eb290a3e82946d7bf42ac9f553
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-u-sql-catalog"></a>Prise en main du catalogue U-SQL
+# <a name="get-started-with-hello-u-sql-catalog"></a>Prise en main hello catalogue U-SQL
 
 ## <a name="create-a-tvf"></a>Création d'une TVF
 
-Dans le script U-SQL précédent, vous avez réutilisé EXTRACT pour lire depuis le même fichier source. Avec la fonction table U-SQL, vous pouvez encapsuler les données pour une réutilisation ultérieure.  
+Dans le script U-SQL de la précédente hello, vous répété utiliser hello tooread extrait à partir de hello même fichier source. Avec la fonction table hello U-SQL (TVF), vous pouvez encapsuler des données hello pour une réutilisation ultérieure.  
 
-Le script suivant crée une TVF appelée `Searchlog()` dans la base de données et le schéma par défaut :
+Hello script suivant crée une fonction table appelée `Searchlog()` dans la base de données par défaut hello et le schéma :
 
 ```
 DROP FUNCTION IF EXISTS Searchlog;
@@ -57,7 +57,7 @@ RETURN;
 END;
 ```
 
-Le script suivant montre comment utiliser la fonction table définie dans le script précédent :
+Hello script suivant vous montre comment toouse hello fonction table qui a été défini dans le script précédent de hello :
 
 ```
 @res =
@@ -69,16 +69,16 @@ GROUP BY Region
 HAVING SUM(Duration) > 200;
 
 OUTPUT @res
-    TO "/output/SerachLog-use-tvf.csv"
+    too"/output/SerachLog-use-tvf.csv"
     ORDER BY TotalDuration DESC
     USING Outputters.Csv();
 ```
 
 ## <a name="create-views"></a>Créer des vues
 
-Si vous avez une expression de requête unique, vous pouvez utiliser une vue U-SQL pour encapsuler cette expression, plutôt qu’une TVF.
+Si vous avez une expression de requête unique, au lieu d’une fonction table vous pouvez utiliser une vue U-SQL de tooencapsulate cette expression.
 
-Le script suivant crée une vue appelée `SearchlogView` dans la base de données et le schéma par défaut :
+Hello script suivant crée une vue appelée `SearchlogView` dans la base de données par défaut hello et le schéma :
 
 ```
 DROP VIEW IF EXISTS SearchlogView;
@@ -95,7 +95,7 @@ CREATE VIEW SearchlogView AS
 USING Extractors.Tsv();
 ```
 
-Le script suivant montre l'utilisation de la vue définie :
+Hello script suivant illustre l’utilisation de hello de vue de hello définis :
 
 ```
 @res =
@@ -107,15 +107,15 @@ GROUP BY Region
 HAVING SUM(Duration) > 200;
 
 OUTPUT @res
-    TO "/output/Searchlog-use-view.csv"
+    too"/output/Searchlog-use-view.csv"
     ORDER BY TotalDuration DESC
     USING Outputters.Csv();
 ```
 
 ## <a name="create-tables"></a>créez des tables
-De façon similaire aux tables de base de données relationnelle, U-SQL vous permet de créer une table avec un schéma prédéfini ou de créer une table et de déduire le schéma à partir de la requête de remplissage de la table (également appelée CREATE TABLE AS SELECT ou CTAS).
+Comme avec les tables de base de données relationnelle, avec U-SQL vous pouvez créer une table avec un schéma prédéfini ou créer une table qui déduit schéma hello requête hello qui remplit la table hello (également appelé CREATE TABLE AS SELECT ou SACT).
 
-Créez une base de données et deux tables avec le script suivant :
+Créer une base de données et deux tables à l’aide de hello script suivant :
 
 ```
 DROP DATABASE IF EXISTS SearchLogDb;
@@ -147,9 +147,9 @@ CREATE TABLE SearchLog2(
 ```
 
 ## <a name="query-tables"></a>Tables de requête
-Vous pouvez interroger des tables, par exemple celles que vous avez créées dans le script précédent, de la même manière que vous interrogez les fichiers de données. Au lieu de créer un ensemble de lignes avec EXTRACT, vous pouvez maintenant faire référence au nom de table.
+Vous pouvez interroger les tables, telles que celles créées dans le script précédent hello, Bonjour même façon que vous interrogez des fichiers de données hello. Au lieu de créer un ensemble de lignes à l’aide d’extraction, vous pouvez maintenant faire toohello nom de la table.
 
-Pour lire à partir des tables, modifiez le script de transformation que vous avez utilisé précédemment :
+tooread à partir des tables de hello, modifier le script de transformation hello que vous avez utilisé précédemment :
 
 ```
 @rs1 =
@@ -166,13 +166,13 @@ GROUP BY Region;
     FETCH 5 ROWS;
 
 OUTPUT @res
-    TO "/output/Searchlog-query-table.csv"
+    too"/output/Searchlog-query-table.csv"
     ORDER BY TotalDuration DESC
     USING Outputters.Csv();
 ```
 
  >[!NOTE]
- >Actuellement, vous ne pouvez pas exécuter une instruction SELECT sur une table dans le script dans lequel vous avez créé cette table.
+ >Actuellement, vous ne peut pas exécuter une instruction SELECT sur une table Bonjour même script comme un hello où vous avez créé la table de hello.
 
 ## <a name="next-steps"></a>Étapes suivantes
 * [Vue d'ensemble de Microsoft Azure Data Lake Analytics](data-lake-analytics-overview.md)

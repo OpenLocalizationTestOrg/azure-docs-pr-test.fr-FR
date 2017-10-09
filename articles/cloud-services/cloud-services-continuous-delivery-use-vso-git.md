@@ -1,6 +1,6 @@
 ---
-title: Livraison continue avec Git et Visual Studio Team Services dans Azure | Microsoft Docs
-description: "Découvrez comment configurer vos projets d'équipe Visual Studio Team Services afin d’utiliser Git pour les générer et les déployer automatiquement vers la fonctionnalité Web App d’Azure App Service ou des Cloud Services."
+title: "livraison d’aaaContinuous avec Git et Visual Studio Team Services dans Azure | Documents Microsoft"
+description: "Découvrez comment tooconfigure votre Visual Studio Team Services projets d’équipe toouse Git tooautomatically générer et déployer des fonctionnalités de l’application Web toohello dans Azure App Service ou cloud services."
 services: cloud-services
 documentationcenter: .net
 author: mlearned
@@ -14,178 +14,178 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 07/06/2016
 ms.author: mlearned
-ms.openlocfilehash: f4f5f231536bc381d17898ff2c592be821168a65
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 936c42194f45be55597a77f9a3a6deb4480ed94b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="continuous-delivery-to-azure-using-visual-studio-team-services-and-git"></a>Diffusion continue sur Azure au moyen de Visual Studio Team Services et Git
-Vous pouvez utiliser des projets d'équipe Visual Studio Team Services pour héberger un référentiel Git pour votre code source, et pour les créer et déployer automatiquement dans des applications Web ou des Cloud Services Azure lorsque vous placez une validation dans le référentiel.
+# <a name="continuous-delivery-tooazure-using-visual-studio-team-services-and-git"></a>TooAzure de livraison continue avec Visual Studio Team Services et Git
+Vous pouvez utiliser toohost de projets d’équipe Visual Studio Team Services un référentiel Git de votre code source et automatiquement générer et déployer des applications web tooAzure ou services de cloud computing, chaque fois que vous effectuez un push un référentiel de toohello de validation.
 
-Visual Studio 2013 et le Kit de développement logiciel (SDK) Azure doivent être installés sur votre système. Si Visual Studio 2013 n'est pas déjà installé, téléchargez-le en choisissant le lien **Test gratuit de Visual Studio** sur [www.visualstudio.com](http://www.visualstudio.com). Pour installer le Kit de développement logiciel (SDK) Azure, cliquez [ici](http://go.microsoft.com/fwlink/?LinkId=239540).
+Vous aurez besoin de Visual Studio 2013 et hello Azure SDK est installé. Si vous ne disposez pas de Visual Studio 2013, téléchargez-le en choisissant hello **commencez gratuitement** lien [www.visualstudio.com](http://www.visualstudio.com). Installation Bonjour Azure SDK depuis [ici](http://go.microsoft.com/fwlink/?LinkId=239540).
 
 > [!NOTE]
-> Vous avez besoin d’un compte Visual Studio Team Services pour suivre ce didacticiel : vous pouvez [ouvrir un compte Visual Studio Team Services gratuit](http://go.microsoft.com/fwlink/p/?LinkId=512979).
+> Vous avez besoin une toocomplete de compte Visual Studio Team Services pour ce didacticiel : vous pouvez [ouvrir un compte Visual Studio Team Services gratuit](http://go.microsoft.com/fwlink/p/?LinkId=512979).
 > 
 > 
 
-Pour configurer un service cloud permettant de générer et de déployer automatiquement sur Azure au moyen de Visual Studio Team Services, suivez ces étapes.
+tooset d’un tooautomatically de service cloud générer et déployer tooAzure à l’aide de Visual Studio Team Services, procédez comme suit.
 
 ## <a name="1-create-a-git-repository"></a>1 : Création d'un référentiel Git
-1. Si vous ne disposez pas de compte Visual Studio Team Services, vous pouvez en obtenir un [ici](http://go.microsoft.com/fwlink/?LinkId=397665). Lorsque vous créez un projet d'équipe, choisissez Git comme système de contrôle de code source. Suivez les instructions de connexion de Visual Studio à votre projet d'équipe.
-2. Dans **Team Explorer**, sélectionnez le lien **Cloner ce référentiel**.
+1. Si vous ne disposez pas de compte Visual Studio Team Services, vous pouvez en obtenir un [ici](http://go.microsoft.com/fwlink/?LinkId=397665). Lorsque vous créez un projet d'équipe, choisissez Git comme système de contrôle de code source. Suivez le projet d’équipe tooyour hello instructions tooconnect Visual Studio.
+2. Dans **Team Explorer**, choisissez hello **cloner ce référentiel** lien.
    
     ![][3]
-3. Indiquez l’emplacement de la copie locale, puis sélectionnez le bouton **Cloner** .
+3. Spécifier l’emplacement de hello de copie locale de hello, puis choisissez hello **Clone** bouton.
 
-## <a name="2-create-a-project-and-commit-it-to-the-repository"></a>2 : Création d'un projet et validation dans le référentiel
-1. Dans la section **Solutions** de **Team Explorer**, sélectionnez le lien **Nouveau** pour créer un projet dans le référentiel local.
+## <a name="2-create-a-project-and-commit-it-toohello-repository"></a>2 : créer un projet et validez-la toohello référentiel
+1. Dans **Team Explorer**, Bonjour **Solutions** , choisissez hello **nouveau** lien toocreate un nouveau projet dans le référentiel local de hello.
    
     ![][4]
-2. Vous pouvez déployer une application Web ou un service cloud (application Azure) en suivant les étapes de cette procédure. Créez un projet de service cloud Azure ou un projet MVC ASP.NET. Assurez-vous que le projet cible le .NET Framework 4 ou version ultérieure. Si vous créez un projet de service cloud, ajoutez un rôle web ASP.NET MVC et un rôle de travail.
-   Si vous voulez créer une application web, choisissez le modèle de projet **Application web ASP.NET**, puis sélectionnez **MVC**. Pour plus d’informations, consultez la rubrique [Création d’une application web ASP.NET dans Azure App Service](../app-service-web/app-service-web-get-started-dotnet.md) .
-3. Ouvrez le menu contextuel de la solution et choisissez **Valider**.
+2. Vous pouvez déployer une application web ou un service cloud (Application Azure) par hello suivant les étapes dans cette procédure pas à pas. Créez un projet de service cloud Azure ou un projet MVC ASP.NET. Assurez-vous que les cibles du projet hello hello .NET Framework 4 ou version ultérieure. Si vous créez un projet de service cloud, ajoutez un rôle web ASP.NET MVC et un rôle de travail.
+   Si vous souhaitez toocreate une application web, choisissez hello **Application Web ASP.NET** modèle de projet, puis choisissez **MVC**. Pour plus d’informations, consultez la rubrique [Création d’une application web ASP.NET dans Azure App Service](../app-service-web/app-service-web-get-started-dotnet.md) .
+3. Ouvrez le menu contextuel de hello pour la solution de hello, puis choisissez **valider**.
    
     ![][7]
-4. Si vous utilisez Git dans Visual Studio Team Services pour la première fois, vous devez fournir des informations pour vous identifier dans Git. Dans la zone **Modifications en attente** de **Team Explorer**, entrez votre nom d’utilisateur et votre adresse de messagerie. Entrez un commentaire pour la validation, puis sélectionnez le bouton **Valider** .
+4. S’il s’agit hello première fois que vous utilisez Git dans Visual Studio Team Services, vous devez tooprovide tooidentify de certaines informations vous-même dans Git. Bonjour **modifications en attente** zone de **Team Explorer**, entrez votre nom d’utilisateur et votre adresse de messagerie. Entrez un commentaire pour la validation de hello, puis choisissez hello **validation** bouton.
    
     ![][8]
-5. Notez les options à inclure ou exclure quand vous archivez des modifications spécifiques. Si les modifications voulues sont exclues, choisissez **Tout inclure**.
-6. Vous avez maintenant validé les modifications dans votre copie locale du référentiel. Synchronisez ensuite ces modifications avec le serveur en choisissant le lien **Synchronisation** .
+5. Notez hello options tooinclude ou exclure lorsque vous archivez des modifications spécifiques. Si hello modifications que vous souhaitez sont exclus, choisissez **tout inclure**.
+6. Vous avez maintenant hello validée change dans votre copie locale du référentiel de hello. Ensuite, de synchroniser ces modifications avec le serveur de hello en choisissant hello **synchronisation** lien.
 
-## <a name="3-connect-the-project-to-azure"></a>3 : Connexion du projet à Azure
-1. Vous avez maintenant un référentiel Git dans Visual Studio Team Services contenant du code source : vous êtes prêt à connecter votre référentiel Git à Azure.  Dans le [portail Azure Classic](http://go.microsoft.com/fwlink/?LinkID=213885), sélectionnez votre service cloud ou application web, ou créez-en un en sélectionnant l’icône + en bas à gauche et en choisissant **Service cloud** ou **Application web**, puis **Création rapide**.
+## <a name="3-connect-hello-project-tooazure"></a>3 : connecter hello projet tooAzure
+1. Maintenant que vous avez un référentiel Git dans Visual Studio Team Services avec du code source qu’il contient, vous êtes prêt tooconnect votre tooAzure de référentiel git.  Bonjour [portail Azure classic](http://go.microsoft.com/fwlink/?LinkID=213885), sélectionnez votre cloud service ou une application web ou créez-en un en choisissant Bonjour + l’icône située en bas à gauche hello et en choisissant **Service Cloud** ou **Web App**, puis **création rapide**.
    
     ![][9]
-2. Pour les Cloud Services, sélectionnez le lien **Configurer la publication avec Visual Studio Team Services** . Pour les applications web, cliquez sur le lien **Configurer le déploiement à partir du contrôle de code source** .
+2. Pour les services de cloud, choisissez hello **configurer la publication avec Visual Studio Team Services** lien. Pour les applications web, choisissez hello **configurer le déploiement à partir du contrôle de code source** lien.
    
     ![][10]
-3. Dans l'Assistant, tapez le nom de votre compte Visual Studio Team Services dans la zone de texte et choisissez le lien **Autoriser maintenant** . Vous serez peut-être invité à vous connecter.
+3. Dans l’Assistant de hello, tapez le nom hello de votre compte Visual Studio Team Services dans la zone de texte hello et choisissez hello **autoriser maintenant** lien. Vous pouvez être invité à toosign dans.
    
     ![][11]
-4. Dans la boîte de dialogue contextuelle **Demande de connexion**, sélectionnez **Accepter** pour autoriser Azure à configurer votre projet d’équipe dans Visual Studio Team Services.
+4. Bonjour **demande de connexion** boîte de dialogue contextuelle, choisissez **accepter** tooauthorize tooconfigure Azure votre projet d’équipe dans Visual Studio Team Services.
    
     ![][12]
-5. Si la procédure d’autorisation réussit, une zone déroulante affiche la liste de vos projets d’équipe Visual Studio Team Services.  Sélectionnez le nom du projet d'équipe que vous avez créé aux étapes précédentes et choisissez la coche de l'Assistant.
+5. Si la procédure d’autorisation réussit, une zone déroulante affiche la liste de vos projets d’équipe Visual Studio Team Services.  Sélectionnez Nom hello du projet d’équipe que vous avez créé dans les étapes précédentes hello et choisissez le bouton hello de l’Assistant.
    
     ![][13]
    
-    La prochaine fois que vous placerez une validation dans votre référentiel, Visual Studio Team Services génèrera et déploiera votre projet dans Azure.
+    Hello prochaine fois que vous effectuez un push un référentiel de tooyour de validation, Visual Studio Team Services générera et déploiera votre tooAzure du projet.
 
 ## <a name="4-trigger-a-rebuild-and-redeploy-your-project"></a>4 : Déclenchement d'une régénération et redéploiement de votre projet
-1. Dans Visual Studio, ouvrez un fichier et modifiez-le. Par exemple, modifiez le fichier `_Layout.cshtml` sous le dossier Views\\Shared dans un rôle Web MVC.
+1. Dans Visual Studio, ouvrez un fichier et modifiez-le. Par exemple, modifiez le fichier de hello `_Layout.cshtml` sous hello affichages\\dossier partagé dans un rôle de web MVC.
    
     ![][17]
-2. Modifiez le texte du pied de page du site et enregistrez le fichier.
+2. Modifier le texte de pied de page hello pour le site de hello et enregistrez le fichier de hello.
    
     ![][18]
-3. Dans l’**Explorateur de solutions**, ouvrez le menu contextuel du nœud de la solution, du nœud du projet ou du fichier que vous avez modifié, puis sélectionnez **Valider**.
+3. Dans **l’Explorateur de solutions**, ouvrez le menu contextuel de hello hello nœud de la solution, le nœud de projet, hello fichier ou vous avez modifié, puis choisissez **valider**.
 4. Tapez un commentaire et sélectionnez **Valider**.
    
     ![][20]
-5. Sélectionnez le lien **Synchronisation** .
+5. Choisissez hello **synchronisation** lien.
    
     ![][38]
-6. Sélectionnez le lien **Pousser** pour placer votre validation dans le référentiel dans Visual Studio Team Services. (Vous pouvez également utiliser le bouton **Synchronisation** pour copier vos validations dans le référentiel. La différence est que **Synchronisation** extrait également les dernières modifications du référentiel).
+6. Choisissez hello **Push** lien toopush votre référentiel toohello de validation dans Visual Studio Team Services. (Vous pouvez également utiliser hello **synchronisation** bouton toocopy votre référentiel toohello de validations. Hello différence est que **synchronisation** également extrait hello modifications les plus récentes à partir du référentiel de hello.)
    
     ![][39]
-7. Choisissez le bouton **Accueil** pour revenir à la page d’accueil de **Team Explorer**.
+7. Choisissez hello **domestique** bouton tooreturn toohello **Team Explorer** page d’accueil.
    
     ![][21]
-8. Choisissez **Builds** pour afficher les builds en cours.
+8. Choisissez **génère** tooview hello les builds en cours.
    
     ![][22]
    
     **Team Explorer** indique qu’une build est disponible pour archivage.
    
     ![][23]
-9. Double-cliquez sur le nom de la build en cours pour afficher un journal détaillé de la génération.
-10. Pendant la création de la build, examinez la définition de build créée lorsque vous avez utilisé l'Assistant pour la liaison à Azure.  Ouvrez le menu contextuel de la définition de build et choisissez **Modifier la définition de build**.
+9. tooview un journal détaillé que hello génération progresse, double-cliquez sur nom hello build hello en cours d’exécution.
+10. Lors de la génération de hello est en cours d’exécution, examiner une définition de build hello qui a été créée lorsque vous avez utilisé hello Assistant toolink tooAzure.  Ouvrez le menu contextuel de hello pour la définition de build hello et choisissez **modifier la définition de Build**.
     
     ![][25]
-11. Sous l’onglet **Déclencher** , vous allez voir que la définition de build prévoit par défaut un processus de génération pour chaque archivage. (Pour un service cloud, Visual Studio Team Services génère et déploie automatiquement la branche principale dans l'environnement intermédiaire. Vous devez quand même effectuer une opération manuelle pour le déploiement dans le site Web en activité. Pour une application web qui ne comporte pas d’environnement intermédiaire, elle déploie la branche principale directement dans le site en activité.
+11. Bonjour **déclencheur** onglet, vous verrez que définition de build hello a la valeur toobuild sur chaque archivage, par défaut. (Pour un service cloud, Visual Studio Team Services génère et déploie toohello de branche principale hello environnement intermédiaire automatiquement. Vous avez toujours toodo un site en direct toohello toodeploy étape manuelle. Pour une application web qui n’a pas environnement intermédiaire, il déploie branche principale de hello directement toohello live site.
     
     ![][26]
-12. Sous l’onglet **Processus** , vous pouvez voir que l’environnement de déploiement est défini sur le nom de votre service cloud ou application web.
+12. Bonjour **processus** onglet, vous pouvez voir d’un environnement de déploiement hello est défini nom toohello de votre application web ou de service de cloud.
     
      ![][27]
-13. Spécifiez des valeurs pour les propriétés si vous souhaitez d'autres valeurs que celles par défaut. Les propriétés de publication dans Azure se trouvent dans la section **Déploiement** ; vous devrez peut-être configurer également les paramètres MSBuild. Exemple : dans un projet de service cloud, pour spécifier la configuration d’un autre service que « Cloud », configurez les paramètres MSbuild avec `/p:TargetProfile=[YourProfile]` où *[YourProfile]* correspond à un fichier de configuration de service avec un nom tel que ServiceConfiguration.*YourProfile*.cscfg.
+13. Spécifier des valeurs pour les propriétés de hello si vous souhaitez que les valeurs différentes de celles des valeurs par défaut hello. Hello propriétés pour la publication de Azure sont Bonjour **déploiement** section et vous devrez peut-être également tooset MSBuild paramètres. Par exemple, dans un projet de service cloud, toospecify une configuration de service autre que « Cloud », définissez hello MSbuild paramètres trop`/p:TargetProfile=[YourProfile]` où *[YourProfile]* correspond à un fichier de configuration de service avec un nom tel que ServiceConfiguration. *YourProfile*.cscfg.
     
-     Le tableau suivant présente les propriétés disponibles dans la section **Déploiement** :
+     Hello tableau suivant répertorie les propriétés disponibles hello dans hello **déploiement** section :
     
     | Propriété | Valeur par défaut |
     | --- | --- |
     | Autoriser les certificats non approuvés |Si cette propriété a la valeur false, des certificats SSL doivent être signés par une autorité racine. |
-    | Autoriser la mise à niveau |Permet au déploiement de mettre à jour un déploiement existant au lieu d'en créer un. Conserve l'adresse IP. |
+    | Autoriser la mise à niveau |Permet à un déploiement existant au lieu de créer un nouveau hello déploiement tooupdate. Conserve l’adresse IP de hello. |
     | Ne pas supprimer |Si cette propriété a la valeur true, ne remplacez pas un déploiement sans rapport (la mise à niveau est autorisée). |
-    | Chemin d'accès des paramètres de déploiement |Chemin d’accès à votre fichier .pubxml pour un site Web, relatif au dossier racine du référentiel. Ignorée pour les services cloud. |
-    | Environnement de déploiement SharePoint |Identique au nom du service. |
-    | Environnement de déploiement Azure |Nom de l’application web ou du service cloud |
+    | Chemin d’accès tooDeployment paramètres |fichier de .pubxml tooyour Hello chemin d’accès pour une application web, dossier racine de toohello relatif de dépôt de hello. Ignorée pour les services cloud. |
+    | Environnement de déploiement SharePoint |Bonjour même en tant que nom de service hello. |
+    | Environnement de déploiement Azure |Hello cloud ou application nom du service web. |
 14. À ce stade, la création de la build doit être terminée.
     
      ![][28]
-15. Si vous double-cliquez sur le nom de la build, Visual Studio affiche un **Résumé de la build**, y compris tous les résultats de test provenant de projets de test unitaires associés.
+15. Si vous double-cliquez sur le nom de la build hello, Visual Studio affiche un **résumé de la Build**, y compris les résultats des tests à partir d’associées des projets de test unitaire.
     
      ![][29]
-16. Dans le [portail Azure Classic](http://go.microsoft.com/fwlink/?LinkID=213885), vous pouvez afficher le déploiement associé sous l’onglet **Déploiements** quand l’environnement intermédiaire est sélectionné.
+16. Bonjour [portail Azure classic](http://go.microsoft.com/fwlink/?LinkID=213885), vous pouvez afficher le déploiement de hello associé sur hello **déploiements** onglet lorsque hello environnement intermédiaire est sélectionnée.
     
      ![][30]
-17. Accédez à l'URL de votre site. Pour une application web, sélectionnez simplement le bouton **Parcourir** dans le portail. Dans le cas d’un service cloud, choisissez l’URL dans la section **Aperçu rapide** de la page **Tableau de bord** représentant l’environnement intermédiaire.
+17. Parcourir les URL du site tooyour. Pour une application web, choisissez simplement hello **Parcourir** bouton dans le portail de hello. Pour un service cloud, choisissez hello URL Bonjour **aperçu rapide** section Hello **tableau de bord** page qui affiche l’environnement intermédiaire de hello.
     
-    Les déploiements résultant de l'intégration continue de services cloud sont publiés dans l'environnement intermédiaire par défaut. Vous pouvez changer cela en définissant la propriété **Environnement du service cloud de substitution** sur **Production**. Cet écran indique où se trouve l’URL du site dans la page du tableau de bord du service cloud.
+    Les déploiements à partir de l’intégration continue pour les services cloud sont environnement intermédiaire de toohello publié par défaut. Vous pouvez le modifier en définissant les hello **autre environnement de Service Cloud** propriété trop**Production**. Voici où les URL du site hello est sur la page du tableau de bord du service de cloud hello.
     
     ![][31]
     
-    Un nouvel onglet de navigateur apparaît pour afficher votre site en cours d'exécution.
+    Un nouvel onglet de navigateur s’ouvre tooreveal votre site en cours d’exécution.
     
     ![][32]
-18. Si vous apportez d'autres modifications à votre projet, vous déclenchez d'autres builds et vous accumulez plusieurs déploiements. Le plus récent est marqué comme Actif.
+18. Si vous apportez des autres modifications tooyour projet vous déclencheur génère plus et vous vont s’accumuler plusieurs déploiements. Hello dernière une est marquée comme Active.
     
     ![][33]
 
 ## <a name="5-redeploy-an-earlier-build"></a>5 : Redéploiement d'une build antérieure
-Cette étape est facultative. Dans le portail Azure Classic, choisissez un déploiement antérieur et sélectionnez **Redéployer** pour revenir à un archivage antérieur de votre site. Notez que cela déclenche une nouvelle génération dans TFS et crée une entrée dans l’historique de votre déploiement.
+Cette étape est facultative. Hello portail Azure classic, choisissez un précédent déploiement et choisissez **redéployer** toorewind votre tooan site précédemment archivage. Notez que cela déclenche une nouvelle génération dans TFS et crée une entrée dans l’historique de votre déploiement.
 
 ![][34]
 
-## <a name="6-change-the-production-deployment"></a>6 : Modification du déploiement de production
-Une fois que vous êtes prêt, vous pouvez promouvoir l’environnement intermédiaire en environnement de production en sélectionnant **Basculer** dans le portail Azure Classic. L'environnement intermédiaire récemment déployé passe à l'état de production et l'environnement de production précédent, le cas échéant, devient un environnement intermédiaire. Le déploiement actif peut être différent pour les environnements de production et intermédiaire, mais l'historique de déploiement des builds récentes est identique quel que soit l'environnement.
+## <a name="6-change-hello-production-deployment"></a>6 : modifier le déploiement de Production hello
+Lorsque vous êtes prêt, vous pouvez promouvoir hello intermédiaire toohello environnement de Production en choisissant **échanger** Bonjour portail Azure classic. environnement d’intermédiaire Hello nouvellement déployé est promue tooProduction et environnement de Production précédent hello, le cas échéant, devient un environnement intermédiaire. Hello déploiement actif peut être différente pour hello Production et les environnements de préproduction, mais l’historique de déploiement hello des builds récentes est hello même indépendamment de l’environnement.
 
 ![][35]
 
 ## <a name="7-deploy-from-a-working-branch"></a>7 : Déploiement à partir d’une branche en cours d’utilisation
-Lorsque vous utilisez Git, vous apportez généralement des modifications à une branche en cours d'utilisation et les intégrez dans une branche principale lorsque votre déploiement est terminé. Pendant la phase de déploiement d'un projet, vous pouvez générer et déployer la branche en cours d'utilisation dans Azure.
+Lorsque vous utilisez Git, vous généralement apportez des modifications dans une branche de travail et s’intégrer dans la branche principale de hello lorsque votre développement atteint un état terminé. Pendant la phase de développement hello d’un projet, vous souhaitez toobuild et déployer tooAzure de branche de travail hello.
 
-1. Dans **Team Explorer**, sélectionnez le bouton **Accueil**, puis le bouton **Branches**.
+1. Dans **Team Explorer**, choisissez hello **accueil** bouton, puis choisissez hello **Branches** bouton.
    
     ![][40]
-2. Sélectionnez le lien **Nouvelle branche** .
+2. Choisissez hello **nouvelle branche** lien.
    
     ![][41]
-3. Entrez le nom d’une branche (ex. « Utilisation en cours ») et sélectionnez **Créer une branche**. pour créer une branche locale.
+3. Entrez le nom hello de branche hello, tels que « working », puis choisissez **créer une branche**. pour créer une branche locale.
    
     ![][42]
-4. Publiez la branche. Sélectionnez le nom de la branche dans **Branches non publiées**, puis **Publier**.
+4. Publier la branche de hello. Choisissez le nom de la branche hello dans **Unpublished branches**, puis choisissez **publier**.
    
     ![][44]
-5. Par défaut, seules les modifications apportées à la branche principale déclenchent une génération continue. Pour configurer une génération continue pour une branche en cours d’utilisation, sélectionnez la page **Builds** dans **Team Explorer** et sélectionnez **Modifier la définition de build**.
-6. Ouvrez l'onglet **Paramètres de la source** . Sous **Branches surveillées pour l’intégration et la génération continue**, sélectionnez **Cliquez ici pour ajouter une ligne**.
+5. Par défaut, modifie uniquement le déclencheur de branche principale toohello une build en continu. tooset de build en continu pour une branche de travail, choisissez hello **génère** page **Team Explorer**, puis choisissez **modifier la définition de Build**.
+6. Ouvrez hello **paramètres Source** onglet. Sous **analysé les branches pour l’intégration continue et build**, choisissez **cliquez ici tooadd une nouvelle ligne**.
    
     ![][47]
-7. Spécifiez la branche que vous avez créée (par ex. refs/heads/working).
+7. Spécifiez la branche hello créé, tels que refs/têtes/travail.
    
     ![][48]
-8. Modifiez le code, ouvrez le menu contextuel du fichier modifié et sélectionnez **Valider**.
+8. Apportez une modification dans le code hello, fichier hello modifié sur le menu contextuel hello ouvrir, puis choisissez **valider**.
    
     ![][43]
-9. Sélectionnez le lien **Validations non synchronisées**, puis le bouton **Synchronisation** ou le lien **Pousser** pour copier les modifications dans la copie de la branche en cours d’utilisation dans Visual Studio Team Services.
+9. Choisissez hello **validations non synchronisées** la liaison et choisissez hello **synchronisation** bouton ou hello **Push** hello toocopy de lien change copie toohello de branche de travail hello dans Visual Studio Team Services.
    
    ![][45]
-10. Accédez à la vue **Builds** et recherchez la build qui vient d'être déclenchée pour la branche en cours d'utilisation.
+10. Accédez toohello **génère** afficher et rechercher build hello déclenchant simplement obtenu pour la branche de travail hello.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Pour obtenir des conseils supplémentaires sur l’utilisation de Git avec Visual Studio Team Services, consultez la page [Développer et partager votre code dans Git à l’aide de Visual Studio](https://www.visualstudio.com/en-us/docs/git/share-your-code-in-git-vs-2017) ; pour en savoir plus sur l’utilisation d’un référentiel Git qui n’est pas géré par Visual Studio Team Services pour la publication dans Azure, consultez la page [Déploiement continu à l’aide de Git dans Azure App Service](../app-service-web/app-service-continuous-deployment.md). Pour en savoir plus sur Visual Studio Team Services, consultez [Visual Studio Team Services](http://go.microsoft.com/fwlink/?LinkId=253861).
+consultez d’autres conseils sur l’utilisation de Git avec Visual Studio Team Services, toolearn [développer et partager votre code dans Git, à l’aide de Visual Studio](https://www.visualstudio.com/en-us/docs/git/share-your-code-in-git-vs-2017) et pour plus d’informations sur l’utilisation d’un référentiel Git qui n’est pas géré par toopublish de Visual Studio Team Services tooAzure, consultez [tooAzure de déploiement continu du Service d’applications](../app-service-web/app-service-continuous-deployment.md). Pour en savoir plus sur Visual Studio Team Services, consultez [Visual Studio Team Services](http://go.microsoft.com/fwlink/?LinkId=253861).
 
 [0]: ./media/cloud-services-continuous-delivery-use-vso/tfs0.PNG
 [1]: ./media/cloud-services-continuous-delivery-use-vso-git/CreateTeamProjectInGit.PNG

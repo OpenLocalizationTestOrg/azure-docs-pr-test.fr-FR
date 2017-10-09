@@ -4,34 +4,34 @@
 > 
 > 
 
-Cet article fournit une description détaillée de [l’exemple de code Hello World][lnk-helloworld-sample] pour illustrer les composants fondamentaux de l’architecture [Azure IoT Edge][lnk-iot-edge]. L’exemple utilise Azure IoT Edge pour générer une passerelle simple qui enregistre un message « hello world » dans un fichier toutes les cinq secondes.
+Cet article fournit une description détaillée de hello [exemple de code Hello World] [ lnk-helloworld-sample] composants fondamentaux de hello tooillustrate Hello [Azure IoT bord] [ lnk-iot-edge] architecture. Hello utilise hello Azure IoT bord toobuild une passerelle simple qui se connecte à un fichier de tooa de message « hello world » toutes les cinq secondes.
 
 Cette procédure pas à pas inclut les étapes suivantes :
 
-* **Architecture de l’exemple Hello World** : décrit la façon dont les [concepts architecturaux d’Azure IoT Edge][lnk-edge-concepts] s’appliquent à l’exemple Hello World, ainsi que la façon dont les composants s’imbriquent.
-* **Comment créer l'exemple**: les étapes requises pour créer l'exemple.
-* **Comment exécuter l'exemple**: les étapes requises pour exécuter l'exemple. 
-* **Exemple de résultat**: un exemple du résultat attendu lorsque vous exécutez l'exemple.
-* **Extraits de code** : collection d’extraits de code montrant comment l’exemple Hello World implémente les composants clés de la passerelle IoT Edge.
+* **Hello exemple d’architecture World**: décrit comment [concepts d’architecture Azure IoT bord] [ lnk-edge-concepts] appliquer l’exemple Hello World de toohello et comment les composants de hello ensemble.
+* **Comment toobuild hello exemple**: hello, exemple hello étapes toobuild requis.
+* **Comment toorun hello exemple**: hello, exemple hello étapes toorun requis. 
+* **Exemple de résultat**: un exemple Hello tooexpect de sortie lorsque vous exécutez l’exemple hello.
+* **Extraits de code**: une collection de tooshow d’extraits de code comment hello Hello World (exemple) implémente les composants de passerelle de IoT bord clés.
 
 
 ## <a name="hello-world-sample-architecture"></a>Exemple d'architecture Hello World
-L'exemple Hello World illustre les concepts décrits dans la section précédente. L’exemple Hello World implémente une passerelle IoT Edge avec un pipeline composé de deux modules IoT Edge :
+exemple Hello Hello World illustre les concepts de hello décrites dans la section précédente de hello. exemple Hello Hello World implémente une passerelle IoT dispose d’un pipeline composé de deux modules de IoT bord :
 
-* Le module *Hello Wolrd* crée un message toutes les cinq secondes et le transmet au module enregistreur.
-* Le module *enregistreur* inscrit les messages qu’il reçoit dans un fichier.
+* Hello *Bonjour* module crée un message toutes les cinq secondes et le passe module du journal toohello.
+* Hello *journal* module écrit les messages hello réception tooa fichier.
 
 ![Architecture de l’exemple Hello World conçu avec Azure IoT Edge][4]
 
-Comme décrit dans la section précédente, le module Hello World ne transmet pas les messages directement vers le module enregistreur toutes les cinq secondes. Au lieu de cela, il publie un message sur le répartiteur toutes les cinq secondes.
+Comme décrit dans la section précédente de hello, hello World Hello module ne passe pas directement toohello journal module messages toutes les cinq secondes. Au lieu de cela, elle publie le message broker toohello toutes les cinq secondes.
 
-Le module enregistreur reçoit le message du répartiteur et intervient en écrivant le contenu du message dans un fichier.
+module d’enregistreur d’événements Hello reçoit un message de type hello à partir du service broker de hello et agit sur, écriture du contenu hello du fichier de tooa message hello.
 
-Le module enregistreur utilise uniquement les messages provenant du répartiteur et ne publie jamais de nouveaux messages sur le répartiteur.
+module d’enregistreur d’événements Hello utilise uniquement les messages de service broker de hello, il publie jamais service Broker pour les nouveaux messages toohello.
 
-![Comment le répartiteur achemine les messages entre les modules dans Azure IoT Edge][5]
+![Comment hello broker route les messages entre les modules dans Azure IoT Edge][5]
 
-La figure ci-dessus montre l’architecture de l’exemple Hello World et les chemins d’accès relatifs aux fichiers sources qui implémentent différentes parties de l’exemple dans le [référentiel][lnk-iot-edge]. Explorez vous-même le code, ou utilisez les extraits de code ci-dessous comme guide.
+Hello figure ci-dessus illustre hello architecture de hello Hello World (exemple) et les chemins d’accès relatifs hello fichiers toohello sources qui implémentent différentes parties de l’exemple hello Bonjour [référentiel][lnk-iot-edge]. Explorer le code de hello vous-même, ou utiliser des extraits de code hello ci-dessous comme guide.
 
 <!-- Images -->
 [4]: media/iot-hub-iot-edge-getstarted-selector/high_level_architecture.png

@@ -1,6 +1,6 @@
 ---
 title: " Supprimer un coffre Recovery Services dans Azure | Microsoft Docs "
-description: "Comment supprimer un coffre Azure Backup et Recovery Services. Un coffre de sauvegarde peut être appelé un coffre cloud Azure ou un coffre de récupération Azure. Résolution des problèmes lorsque vous ne pouvez pas supprimer un coffre de sauvegarde dans le portail Classic ou le portail Azure."
+description: "Comment toodelete une sauvegarde Azure et Services de récupération de coffre. Un coffre de sauvegarde peut être appelé un coffre cloud Azure ou un coffre de récupération Azure. Résolution des problèmes lorsque vous ne pouvez pas supprimer un coffre de sauvegarde dans le portail classique de hello ou le portail Azure."
 services: service-name
 documentationcenter: dev-center-name
 author: markgalioto
@@ -14,14 +14,14 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 08/11/2017
 ms.author: markgal;trinadhk
-ms.openlocfilehash: ae4a73d12898c62fe2c5cf3683bc7c1c8c845fdf
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 9047f50f4b2c991fbf2454ddcad08073ec7cd975
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="delete-a-recovery-services-vault"></a>Supprimer un coffre Recovery Services
-Le service Sauvegarde Azure comporte deux types de coffres : le coffre de sauvegarde et le coffre Recovery Services. Le coffre de sauvegarde a été créé en premier. Ensuite, le coffre Recovery Services est venu prendre en charge les déploiements Resource Manager étendus. Étant donné les capacités étendues et les dépendances des informations qui doivent être stockées dans le coffre, la suppression d’un coffre Backup ou Recovery Services peut prêter à confusion. Cet article explique comment supprimer le coffre dans le portail Classic et le portail Azure.  
+Hello service Azure Backup a deux types de coffres - coffre de sauvegarde hello et le coffre Recovery Services hello. coffre de sauvegarde Hello surviennent en premier. Puis hello de coffre Recovery Services arrivée de déploiements de gestionnaire de ressources toosupport hello développé. En raison de hello capacités étendues et les dépendances informations hello qui doivent être stockés dans le coffre hello, supprimer un coffre de sauvegarde ou de Services de récupération peuvent prêter à confus. Cet article explique comment les coffres de toodelete hello dans le portail classique de hello et hello portail Azure.  
 
 | **Type de déploiement** | **Portail** | **Nom du coffre** |
 | --- | --- | --- |
@@ -29,200 +29,200 @@ Le service Sauvegarde Azure comporte deux types de coffres : le coffre de sauveg
 | Gestionnaire de ressources |Microsoft Azure |Coffre Recovery Services |
 
 > [!NOTE]
-> Les coffres de sauvegarde ne peuvent pas protéger les solutions déployées par le biais de Resource Manager. Toutefois, vous pouvez utiliser un coffre Recovery Services pour protéger les serveurs et les machines virtuelles déployés de façon classique.  
+> Les coffres de sauvegarde ne peuvent pas protéger les solutions déployées par le biais de Resource Manager. Toutefois, vous pouvez utiliser un coffre Recovery Services tooprotect déployé généralement des serveurs et les machines virtuelles.  
 >
 
 > [!IMPORTANT]
-> Vous pouvez désormais mettre à niveau vos coffres de sauvegarde vers des coffres Recovery Services. Pour en savoir plus, consultez l’article [Mettre à niveau un coffre de sauvegarde vers un coffre Recovery Services](backup-azure-upgrade-backup-to-recovery-services.md). Microsoft vous recommande de mettre à niveau vos coffres de sauvegarde vers des coffres Recovery Services.<br/> À compter du **15 octobre 2017**, vous ne pourrez plus vous servir de PowerShell pour créer des coffres de sauvegarde. <br/> **À compter du 1er novembre 2017** :
->- Les coffres de sauvegarde restants seront automatiquement mis à niveau vers des coffres Recovery Services.
->- Vous ne pourrez plus accéder à vos données de sauvegarde depuis le portail Classic. Au lieu de cela, vous devrez utiliser le portail Azure pour accéder à ces données au sein de coffres Recovery Services.
+> Vous pouvez maintenant mettre à niveau vos archivages de sauvegarde coffres tooRecovery Services. Pour plus d’informations, voir l’article hello [mise à niveau d’un tooa de coffre de sauvegarde de coffre Recovery Services](backup-azure-upgrade-backup-to-recovery-services.md). Microsoft vous encourage tooupgrade coffres des Services tooRecovery les coffres de votre sauvegarde.<br/> **Le 15 octobre 2017**, vous ne pourra plus être coffres de sauvegarde toocreate toouse en mesure de PowerShell. <br/> **À compter du 1er novembre 2017** :
+>- Les coffres de sauvegarde restants seront les coffres des Services de tooRecovery automatiquement mis à niveau.
+>- Vous ne pourra plus être en mesure de tooaccess vos données de sauvegarde dans le portail classique de hello. Au lieu de cela, utilisez hello tooaccess portail Azure vos données de sauvegarde dans les coffres des Services de récupération.
 >
 
-Dans cet article, nous utilisons le terme de « coffre » pour faire référence de manière générique au coffre de sauvegarde ou au coffre Recovery Services. Nous utilisons les termes officiels, coffre de sauvegarde ou coffre Recovery Services lorsqu’il est nécessaire de distinguer les coffres.
+Dans cet article, nous utilisons le terme de hello, archivage, toorefer toohello de formulaire générique de coffre de sauvegarde hello ou un coffre de Services de récupération. Nous utilisons le nom formel de hello, coffre de sauvegarde ou coffre Recovery Services, lorsqu’il est nécessaire toodistinguish entre les coffres hello.
 
 ## <a name="deleting-a-recovery-services-vault"></a>Supprimer un coffre Recovery Services
-Supprimer un coffre Recovery Services est un processus en une seule étape, *à condition que le coffre ne contienne aucune ressource*. Avant de pouvoir supprimer un coffre Recovery Services, vous devez retirer ou supprimer toutes les ressources qu’il contient. Si vous essayez de supprimer un coffre qui contient des ressources, vous obtenez une erreur ressemblant à l’image suivante :
+Supprimer un coffre Recovery Services est un processus en une étape - *fourni le coffre hello ne contient pas toutes les ressources*. Avant de pouvoir supprimer un coffre Recovery Services, vous devez supprimer ou supprimer toutes les ressources dans le coffre hello. Si vous essayez de toodelete un coffre qui contient des ressources, vous obtenez une erreur comme hello suivant image :
 
 ![Erreur de suppression du coffre](./media/backup-azure-delete-vault/vault-deletion-error.png) <br/>
 
-Le fait de cliquer sur **Réessayer** génère la même erreur jusqu’à ce que vous effaciez les ressources du coffre. Si ce message d’erreur persiste, cliquez sur **Annuler** et procédez comme suit pour supprimer les ressources dans le coffre.
+Jusqu'à ce que vous avez effacé les ressources hello du coffre de hello, en cliquant sur **réessayer** produit hello même message d’erreur. Si vous êtes bloqué sur ce message d’erreur, cliquez sur **Annuler** et toodelete des ressources de hello dans le coffre hello les étapes suivantes de hello d’utilisation.
 
-### <a name="removing-the-items-from-a-vault-protecting-a-vm"></a>Suppression des éléments d’un coffre protégeant une machine virtuelle
-Si le coffre Recovery Services est déjà ouvert, passez à la deuxième étape.
+### <a name="removing-hello-items-from-a-vault-protecting-a-vm"></a>Suppression d’éléments hello dans un coffre de protéger un ordinateur virtuel
+Si vous avez déjà des Services de récupération hello coffre ouvrir, ignorer toohello deuxième étape.
 
-1. Ouvrez le Portail Azure et, depuis le tableau de bord, ouvrez le coffre à supprimer.
+1. Ouvrez hello portail Azure et à partir du tableau de bord de hello ouvrez coffre hello toodelete.
 
-   Si le coffre Recovery Services n’est pas épinglé au tableau de bord, dans le menu Hub, cliquez sur **Plus de services** et, dans la liste des ressources, tapez **Recovery Services**. Au fur et à mesure de la saisie, la liste est filtrée. Cliquez sur **Coffres Recovery Services**.
+   Si vous n’avez pas hello de coffre Recovery Services épinglées toohello tableau de bord, dans le menu du Hub hello, cliquez sur **plus Services** et, dans la liste hello des ressources, tapez **Recovery Services**. Comme vous commencez à taper, hello filtres de la liste en fonction de votre entrée. Cliquez sur **Coffres Recovery Services**.
 
    ![Créer un archivage de Recovery Services - Étape 1](./media/backup-azure-delete-vault/open-recovery-services-vault.png) <br/>
 
-   La liste des coffres Recovery Services est affichée. Dans la liste, sélectionnez le coffre à supprimer.
+   liste de Hello des coffres des Services de récupération s’affiche. Dans la liste hello, sélectionnez coffre hello toodelete.
 
    ![choisir le coffre à partir de la liste](./media/backup-azure-work-with-vaults/choose-vault-to-delete.png)
-2. Dans la vue du coffre, examinez le volet **Essentials** . Pour supprimer un coffre, il ne doit y avoir aucun élément protégé. Si vous voyez un nombre différent de zéro, sous **Éléments de sauvegarde** ou **Serveurs de gestion des sauvegardes**, vous devez supprimer ces éléments avant de pouvoir supprimer le coffre.
+2. Bonjour coffre vue, regardez à hello **Essentials** volet. toodelete un coffre, il ne peut pas être tous les éléments protégés. Si vous voyez un nombre différent de zéro, sous **des éléments de sauvegarde** ou **sauvegarde des serveurs d’administration**, vous devez supprimer ces éléments avant de pouvoir supprimer le coffre hello.
 
     ![Examiner le volet Essentials pour identifier les éléments protégés](./media/backup-azure-delete-vault/contoso-bkpvault-settings.png)
 
-    Les machines virtuelles et fichiers/dossiers sont considérés comme des éléments de sauvegarde et sont répertoriés dans la zone **Éléments de sauvegarde** du volet Essentials. Un serveur DPM est indiqué dans la zone **Serveurs de gestion des sauvegardes** du volet Essentials. **Éléments répliqués** appartiennent au service Azure Site Recovery.
-3. Pour commencer à supprimer les éléments protégés du coffre, recherchez les éléments dans le coffre. Dans le tableau de bord du coffre, cliquez sur **Paramètres**, puis sur **Éléments de sauvegarde** pour ouvrir ce panneau.
+    Machines virtuelles et les fichiers/dossiers sont considérés comme des éléments de sauvegarde et sont répertoriées dans hello **des éléments de sauvegarde** zone du volet d’Essentials hello. Un serveur DPM est répertorié dans hello **sauvegarde du serveur de gestion** zone du volet d’Essentials hello. **Éléments répliqués** se rapportent toohello service Azure Site Recovery.
+3. toobegin hello de suppression des éléments protégés à partir du coffre hello, rechercher des éléments dans le coffre hello hello. Dans le tableau de bord coffre hello cliquez sur **paramètres**, puis cliquez sur **des éléments de sauvegarde** tooopen ce panneau.
 
     ![choisir le coffre à partir de la liste](./media/backup-azure-delete-vault/open-settings-and-backup-items.png)
 
-    Le panneau **Éléments de sauvegarde** comporte des listes séparées selon le type d’élément : Machines virtuelles Azure ou Fichiers-Dossiers (voir l’image). La liste Type d’élément par défaut affichée est Machines virtuelles Azure. Pour afficher la liste des éléments Fichiers-Dossiers dans le coffre, sélectionnez **Fichiers-Dossiers** dans le menu déroulant.
-4. Avant de pouvoir supprimer un élément dans le coffre protégeant une machine virtuelle, vous devez arrêter la tâche de sauvegarde de l’élément et supprimer les données du point de récupération. Pour chaque élément dans le coffre, procédez comme suit :
+    Hello **des éléments de sauvegarde** panneau a des listes distinctes selon hello Type d’élément : Machines virtuelles Azure ou les fichiers-dossiers (voir l’image). liste du Type d’élément par défaut Hello indiqué est Machines virtuelles Azure. liste de hello tooview d’éléments de dossiers de fichiers dans le coffre hello, sélectionnez **dossiers de fichiers** à partir du menu déroulant de hello.
+4. Avant de pouvoir supprimer un élément à partir du coffre hello protéger un ordinateur virtuel, vous devez arrêter le travail de sauvegarde de l’élément hello et supprimer les données de point de récupération hello. Pour chaque élément dans le coffre de hello, procédez comme suit :
 
-    a. Dans le panneau **Éléments de sauvegarde**, cliquez avec le bouton droit sur l’élément et, à partir du menu contextuel, sélectionnez **Arrêter la sauvegarde**.
+    a. Sur hello **des éléments de sauvegarde** panneau, avec le bouton hello élément à partir du menu contextuel de hello, sélectionnez **arrêter la sauvegarde**.
 
-    ![arrêter la tâche de sauvegarde](./media/backup-azure-delete-vault/stop-the-backup-process.png)
+    ![arrêter le travail de sauvegarde hello](./media/backup-azure-delete-vault/stop-the-backup-process.png)
 
-    Le panneau Arrêter la sauvegarde s’ouvre.
+    panneau d’arrêter la sauvegarde Hello s’ouvre.
 
-    b. Sur le panneau **Arrêter la sauvegarde**, à partir du menu **Choisir une option**, sélectionnez **Supprimer les données de sauvegarde** > tapez le nom de l’élément > et cliquez sur **Arrêter la sauvegarde**.
+    b. Sur hello **arrêter la sauvegarde** panneau, à partir de hello **choisir une option** menu, sélectionnez **supprimer les données de sauvegarde** > nom hello du type d’élément de hello > et cliquez sur **arrêter sauvegarde**.
 
-    Tapez le nom de l’élément pour confirmer que vous souhaitez le supprimer. Le bouton **Arrêter la sauvegarde** s’active après avoir vérifié l’élément. Si vous ne voyez pas de boîte de dialogue permettant de taper le nom de l’élément de sauvegarde, vous avez choisi l’option **Conserver les données de sauvegarde** .
+    Nom hello du type d’élément de hello, tooverify vous souhaitez toodelete il. Hello **arrêter la sauvegarde** bouton est activé après avoir vérifié les élément hello. Si vous ne voyez pas le nom hello boîte de dialogue zone tootype hello de sauvegarder l’élément hello, vous avez choisi hello **conserver les données de sauvegarde** option.
 
     ![Supprimer les données de sauvegarde](./media/backup-azure-delete-vault/stop-backup-blade-delete-backup-data.png)
 
-    Si vous le souhaitez, vous pouvez indiquer une raison expliquant pourquoi vous supprimez les données, et ajouter des commentaires. Après avoir cliqué sur **Arrêter la sauvegarde**, laissez la tâche de suppression se terminer avant d’essayer de supprimer le coffre. Pour vérifier que la tâche est terminée, vérifiez les messages Azure ![delete backup data](./media/backup-azure-delete-vault/messages.png). <br/>
-    Une fois la tâche terminée, vous recevrez un message indiquant que le processus de sauvegarde a été arrêté et que les données de sauvegarde ont été supprimées pour cet élément.
+    Si vous le souhaitez, vous pouvez fournir une raison pourquoi vous supprimez des données de hello et ajoutez des commentaires. Après avoir cliqué sur **arrêter la sauvegarde**, autoriser hello delete travail toocomplete avant de tenter de coffre de hello toodelete. tooverify qui hello tâche est terminée, vérifiez les Messages d’Azure hello ![supprimer les données de sauvegarde](./media/backup-azure-delete-vault/messages.png). <br/>
+    Une fois le travail de hello est terminée, vous recevez un message indiquant que le processus de sauvegarde hello a été arrêtée et les données de sauvegarde hello, pour cet élément a été supprimées.
 
-    c. Après la suppression d’un élément de la liste, dans le menu **Éléments de sauvegarde**, cliquez sur **Actualiser** pour voir les éléments restants dans le coffre.
+    c. Après la suppression d’un élément de liste hello, sur hello **des éléments de sauvegarde** menu, cliquez sur **Actualiser** hello toosee autres articles dans le coffre hello.
 
       ![Supprimer les données de sauvegarde](./media/backup-azure-delete-vault/empty-items-list.png)
 
-      Lorsque la liste est vide, faites défiler jusqu’au volet **Essentials** dans le panneau du coffre de sauvegarde. Il ne doit pas contenir **d’Éléments de sauvegarde**, de **Serveurs de gestion des sauvegardes** ou **d’Éléments répliqués** répertoriés. Si des éléments apparaissent toujours dans le coffre, retournez à l’étape trois et choisissez une autre liste Type d’élément.  
-5. Une fois que la barre d’outils du coffre est vide, cliquez sur **Supprimer**.
+      Lorsqu’il n’y a aucun élément dans la liste de hello, faites défiler toohello **Essentials** volet dans le panneau de coffre de sauvegarde hello. Il ne doit pas contenir **d’Éléments de sauvegarde**, de **Serveurs de gestion des sauvegardes** ou **d’Éléments répliqués** répertoriés. Si les éléments apparaissent toujours dans le coffre de hello, retourner toostep trois et choisir une liste de type d’élément différent.  
+5. Lorsqu’il n’y a aucun élément dans la barre d’outils du coffre hello, cliquez sur **supprimer**.
 
     ![Supprimer les données de sauvegarde](./media/backup-azure-delete-vault/delete-vault.png)
-6. Pour confirmer la suppression du coffre, cliquez sur **Oui**.
+6. tooverify que vous souhaitez le coffre hello toodelete, cliquez sur **Oui**.
 
-    Le coffre est supprimé et le portail revient au menu de service **Nouveau** .
+    coffre de Hello est supprimé et le portail de hello retourne toohello **nouveau** menu de service.
 
-## <a name="what-if-i-stopped-the-backup-process-but-retained-the-data"></a>Que se passe-t-il si j’ai arrêté le processus de sauvegarde mais que j’ai conservé les données ?
-Si vous avez arrêté le processus de sauvegarde, mais que vous avez accidentellement *conservé* les données, vous devez supprimer les données de sauvegarde avant de pouvoir supprimer le coffre. Pour supprimer les données de sauvegarde :
+## <a name="what-if-i-stopped-hello-backup-process-but-retained-hello-data"></a>Que se passe-t-il si j’ai arrêté le processus de sauvegarde hello mais la conservation des données hello ?
+Si vous avez arrêté mais accidentellement des processus de sauvegarde hello *conservées* les données de salutation, vous devez supprimer les données de sauvegarde hello avant de pouvoir supprimer le coffre hello. données de sauvegarde hello toodelete :
 
-1. Dans le panneau **Éléments de sauvegarde**, cliquez avec le bouton droit sur l’élément et, à partir du menu contextuel, cliquez sur **Supprimer les données de sauvegarde**.
+1. Sur hello **des éléments de sauvegarde** avec le bouton hello panneau, élément et dans le menu contextuel de hello cliquez sur **supprimer les données de sauvegarde**.
 
     ![Supprimer les données de sauvegarde](./media/backup-azure-delete-vault/delete-backup-data-menu.png)
 
-    Le panneau **Supprimer les données de sauvegarde** s’ouvre.
-2. Dans le panneau **Supprimer les données de sauvegarde**, tapez le nom de l’élément, puis cliquez sur **Supprimer**.
+    Hello **supprimer les données de sauvegarde** panneau s’ouvre.
+2. Sur hello **supprimer les données de sauvegarde** panneau, nom hello du type d’élément de hello, puis cliquez sur **supprimer**.
 
     ![Supprimer les données de sauvegarde](./media/backup-azure-delete-vault/delete-retained-vault.png)
 
-    Une fois que vous avez supprimé les données, revenez à l’étape 4c et poursuivez le processus.
+    Une fois que vous avez supprimé des données de hello, retourner toostep 4c et poursuivre le processus de hello.
 
-## <a name="delete-a-vault-used-to-protect-a-dpm-server"></a>Supprimer un coffre utilisé pour protéger un serveur DPM
-Avant de pouvoir supprimer un coffre utilisé pour protéger un serveur DPM, vous devez effacer tous les points de récupération qui ont été créés, puis désinscrire le serveur du coffre.
+## <a name="delete-a-vault-used-tooprotect-a-dpm-server"></a>Supprimer un tooprotect coffre utilisé un serveur DPM
+Avant de pouvoir supprimer un tooprotect coffre utilisé un serveur DPM, vous devez effacer les points de récupération qui ont été créés et puis annuler l’inscription de serveur hello du coffre de hello.
 
-Pour supprimer les données associées à un groupe de protection :
+données de salutation toodelete associées à un groupe de protection :
 
-1. Dans la console Administrateur DPM, cliquez sur **Protection** > sélectionnez un groupe de protection > sélectionnez le membre du groupe de protection et > dans la barre d’outils, cliquez sur **Supprimer**.
+1. Bonjour la Console Administrateur DPM, cliquez sur **Protection** > sélectionnez un groupe de protection > sélectionnez hello membre du groupe de Protection > dans la barre d’outils hello, cliquez sur **supprimer**.
 
-  Sélectionnez le membre du groupe de protection pour activer le bouton **Supprimer** dans la barre d’outils. Dans l’exemple, le membre est **dummyvm9**. Pour sélectionner plusieurs membres du groupe de protection, maintenez la touche Ctrl enfoncée tout en cliquant sur les membres.
+  Hello de hello sélectionnez membre du groupe de Protection tooactivate **supprimer** bouton dans la barre d’outils hello. Dans l’exemple de hello, est membre de hello **dummyvm9**. tooselect plusieurs membres de groupe de protection hello, maintenez la touche Ctrl de hello tout en cliquant sur les membres hello.
 
     ![Supprimer les données de sauvegarde](./media/backup-azure-delete-vault/az-portal-delete-protection-group.png)
 
-    La boîte de dialogue **Arrêter la protection** s’ouvre.
-2. Dans la boîte de dialogue **Arrêter la protection**, sélectionnez **Supprimer les données protégées**, puis cliquez sur **Arrêter la protection**.
+    Hello **arrêter la Protection** boîte de dialogue s’ouvre.
+2. Bonjour **arrêter la Protection** boîte de dialogue, sélectionnez **supprimer les données protégées**, puis cliquez sur **arrêter la Protection**.
 
     ![Supprimer les données de sauvegarde](./media/backup-azure-delete-vault/delete-dpm-protection-group.png)
 
-    Pour supprimer un coffre, vous devez effacer ou supprimer le coffre de données protégées. Selon le nombre de points de récupération et la quantité de données figurant dans le groupe de protection, la suppression des données peut prendre quelques secondes à plusieurs minutes. La boîte de dialogue **Arrêter la protection** affiche l’état une fois la tâche terminée.
+    toodelete un coffre, vous devez effacer ou supprimer, archivage hello des données protégées. En fonction du nombre de hello de points de récupération et les données dans le groupe de protection hello, il peut prendre de quelques secondes tooseveral minutes toodelete les données de salutation. Hello **arrêter la Protection** boîte de dialogue affiche l’état de hello lorsque hello est terminée.
 
     ![Supprimer les données de sauvegarde](./media/backup-azure-delete-vault/success-deleting-protection-group.png)
 3. Continuez ce processus pour tous les membres de tous les groupes de protection.
 
     Supprimez toutes les données protégées et tous les groupes de protection.
-4. Après avoir supprimé tous les membres du groupe de protection, basculez vers le Portail Azure. Ouvrez le tableau de bord du coffre et assurez-vous qu’il ne contient pas **d’Éléments de sauvegarde**, de **Serveurs de gestion des sauvegardes** ou **d’Éléments répliqués**. Dans la barre d’outils du coffre, cliquez sur **Supprimer**.
+4. Après la suppression de tous les membres du groupe de protection hello, basculez toohello portail Azure. Ouvrir le tableau de bord coffre hello et assurez-vous qu’aucun **des éléments de sauvegarde**, **sauvegarde des serveurs d’administration**, ou **éléments répliqués**. Dans la barre d’outils du coffre hello, cliquez sur **supprimer**.
 
     ![Supprimer les données de sauvegarde](./media/backup-azure-delete-vault/delete-vault.png)
 
-    Si des serveurs de gestion des sauvegardes sont inscrits dans le coffre, vous ne pouvez pas supprimer le coffre, même si ce dernier ne contient aucune donnée. Si vous avez supprimé les serveurs de gestion des sauvegardes associés au coffre, mais qu’il y a des serveurs répertoriés dans le volet **Essentials**, voir [Rechercher les serveurs de gestion des sauvegardes inscrits dans le coffre](backup-azure-delete-vault.md#find-the-backup-management-servers-registered-to-the-vault).
-5. Pour confirmer la suppression du coffre, cliquez sur **Oui**.
+    S’il existe des serveurs inscrits de gestion de sauvegarde toohello vault, vous ne pouvez pas supprimer l’archivage de hello même s’il n’existe aucune donnée dans le coffre de hello. Si vous avez supprimé des serveurs d’administration de sauvegarde hello associés au coffre de hello, mais il existe des serveurs répertoriés dans hello **Essentials** volet, consultez [recherche hello sauvegarde gestion serveurs inscrits toohello vault](backup-azure-delete-vault.md#find-the-backup-management-servers-registered-to-the-vault) .
+5. tooverify que vous souhaitez le coffre hello toodelete, cliquez sur **Oui**.
 
-    Le coffre est supprimé et le portail revient au menu de service **Nouveau** .
+    coffre de Hello est supprimé et le portail de hello retourne toohello **nouveau** menu de service.
 
-## <a name="delete-a-vault-used-to-protect-a-production-server"></a>Supprimer un coffre utilisé pour protéger un serveur de production
-Avant de pouvoir supprimer un coffre utilisé pour protéger un serveur de production, vous devez supprimer ou désinscrire le serveur du coffre.
+## <a name="delete-a-vault-used-tooprotect-a-production-server"></a>Supprimer un tooprotect coffre utilisé un serveur de Production
+Avant de pouvoir supprimer un tooprotect coffre utilisé un serveur de Production, vous devez supprimer ou annuler l’inscription de serveur hello du coffre de hello.
 
-Pour supprimer le serveur de production associé au coffre :
+serveur de Production hello toodelete associée hello coffre :
 
-1. Dans le Portail Azure, ouvrez le tableau de bord du coffre et cliquez sur **Paramètres** > **Infrastructure de sauvegarde** > **Serveurs de production**.
+1. Bonjour portail Azure, ouvrez le tableau de bord coffre hello et cliquez sur **paramètres** > **sauvegarde Infrastructure** > **les serveurs de Production**.
 
     ![ouvrir le panneau serveurs de production](./media/backup-azure-delete-vault/delete-production-server.png)
 
-    Le panneau **Serveurs de production** s’ouvre et répertorie tous les serveurs de production figurant dans le coffre.
+    Hello **les serveurs de Production** panneau s’ouvre et répertorie tous les serveurs de Production dans le coffre hello.
 
     ![liste des serveurs de production](./media/backup-azure-delete-vault/list-of-production-servers.png)
-2. Sur le panneau **Serveurs de production**, cliquez avec le bouton droit sur le serveur, puis cliquez sur **Supprimer**.
+2. Sur hello **les serveurs de Production** panneau, avec le bouton droit sur le serveur de hello, puis cliquez sur **supprimer**.
 
     ![supprimer le serveur de production ](./media/backup-azure-delete-vault/delete-server-on-production-server-blade.png)
 
-    Le panneau **Supprimer** s’ouvre.
+    Hello **supprimer** panneau s’ouvre.
 
     ![supprimer le serveur de production ](./media/backup-azure-delete-vault/delete-blade.png)
-3. Sur le panneau **Supprimer**, confirmez le nom du serveur, puis cliquez sur **Supprimer**. Vous devez nommer le serveur correctement pour activer le bouton **Supprimer**.
+3. Sur hello **supprimer** panneau, vérifiez le nom du serveur hello, puis cliquez sur **supprimer**. Vous devez nommer correctement serveur hello, tooactivate hello **supprimer** bouton.
 
-    Une fois que le coffre est supprimé, vous recevez un message confirmant cette action. Après la suppression de tous les serveurs du coffre, revenez au volet Essentials du tableau de bord du coffre.
-4. Dans le tableau de bord du coffre, assurez-vous qu’il n’y a pas **d’Éléments de sauvegarde**, de **Serveurs de gestion des sauvegardes** ou **d’Éléments répliqués**. Dans la barre d’outils du coffre, cliquez sur **Supprimer**.
-5. Pour confirmer la suppression du coffre, cliquez sur **Oui**.
+    Une fois que le coffre hello est supprimé, vous recevez un message indiquant que le coffre hello a été supprimé. Après la suppression de tous les serveurs dans le coffre de hello, faites défiler le volet d’Essentials toohello précédent dans le tableau de bord coffre hello.
+4. Dans le tableau de bord du coffre hello, assurez-vous qu’aucun **des éléments de sauvegarde**, **sauvegarde des serveurs d’administration**, ou **éléments répliqués**. Dans la barre d’outils du coffre hello, cliquez sur **supprimer**.
+5. tooverify que vous souhaitez le coffre hello toodelete, cliquez sur **Oui**.
 
-    Le coffre est supprimé et le portail revient au menu de service **Nouveau** .
+    coffre de Hello est supprimé et le portail de hello retourne toohello **nouveau** menu de service.
 
 ## <a name="delete-a-backup-vault-in-classic-portal"></a>Supprimer un coffre de sauvegarde dans le portail Classic
-Les instructions suivantes permettent de supprimer un coffre de sauvegarde dans le portail Classic. Avant de pouvoir supprimer le coffre de sauvegarde, vous devez supprimer les points de récupération, ou les éléments sauvegardés, et supprimer les serveurs inscrits. Les serveurs inscrits sont les serveurs Windows Server, stations de travail ou machines virtuelles qui ont été inscrits dans le coffre.
+Hello instructions ci-après permettent de supprimer un coffre de sauvegarde dans le portail classique de hello. Avant de pouvoir supprimer le coffre de sauvegarde hello, vous devez supprimer les points de récupération hello, ou sauvegardé les éléments et supprimez des serveurs hello inscrit. Hello serveurs inscrits sont hello Windows Server, station de travail ou les ordinateurs virtuels qui ont été inscrits toohello coffre.
 
-1. Ouvrez le [portail Classic](https://manage.windowsazure.com).
+1. Ouvrez hello [portal de classique](https://manage.windowsazure.com).
 
-2. Dans la liste des coffres de sauvegarde, sélectionnez le coffre à supprimer.
+2. À partir de la liste de hello des coffres de sauvegarde, sélectionnez le coffre hello toodelete.
 
     ![Supprimer les données de sauvegarde](./media/backup-azure-delete-vault/classic-portal-delete-vault-open-vault.png)
 
-    Le tableau de bord du coffre s’ouvre. Observez le nombre de serveurs Windows et/ou de machines virtuelles Azure associés au coffre. Observez également le stockage total consommé dans Azure. Arrêtez tous les travaux de sauvegarde et supprimez toutes les données avant de supprimer le coffre.
+    tableau de bord coffre Hello s’ouvre. Regardez nombre hello de serveurs Windows et/ou Azure ordinateurs virtuels avec le coffre hello. Observez également le stockage total de hello consommé dans Azure. Arrêtez tous les travaux de sauvegarde et supprimer toutes les données avant de supprimer le coffre hello.
 
-3. Cliquez sur l’onglet **Éléments protégés**, puis sur **Arrêter la protection**.
+3. Cliquez sur hello **éléments protégés** onglet, puis cliquez sur **arrêter la Protection**
 
     ![Supprimer les données de sauvegarde](./media/backup-azure-delete-vault/classic-portal-delete-vault-stop-protect.png)
 
-    La boîte de dialogue **Arrêter la protection de « votre coffre »** s’affiche.
-4. Dans la boîte de dialogue **Arrêter la protection de « votre coffre »**, cochez **Supprimer les données de sauvegarde associées**, puis cliquez sur ![coche](./media/backup-azure-delete-vault/checkmark.png). <br/>
+    Hello **arrêter la protection de 'votre coffre'** boîte de dialogue s’affiche.
+4. Bonjour **arrêter la protection de 'votre coffre'** boîte de dialogue, vérifiez **supprimer les données de sauvegarde associées** et cliquez sur ![coche](./media/backup-azure-delete-vault/checkmark.png). <br/>
     Si vous le souhaitez, vous pouvez indiquer une raison pour l’arrêt de la protection et fournir des commentaires.
 
     ![Supprimer les données de sauvegarde](./media/backup-azure-delete-vault/classic-portal-delete-vault-verify-stop-protect.png)
 
-    Après avoir supprimé les éléments du coffre, celui-ci est vide.
+    Après la suppression des éléments dans le coffre hello hello, le coffre hello sera vide.
 
     ![Supprimer les données de sauvegarde](./media/backup-azure-delete-vault/classic-portal-delete-vault-post-delete-data.png)
-5. Dans la liste des onglets, cliquez sur **Éléments inscrits**. Le menu déroulant **Type** vous permet de choisir le type de serveur inscrit dans le coffre. Le type peut être Windows Server ou Machine virtuelle Azure. Dans l’exemple suivant, sélectionnez la machine virtuelle enregistrée dans le coffre, puis cliquez sur **Annuler l’inscription**.
+5. Dans la liste de hello des onglets, cliquez sur **éléments inscrits**. Hello **Type** menu déroulant, Active hello de toochoose vous tapez de l’archivage toohello de serveur inscrit. type de Hello peut être Windows Server ou la Machine virtuelle Azure. Dans l’exemple suivant de hello, sélectionnez hello ordinateur virtuel enregistré toohello coffre, puis cliquez sur **Unregister**.
 
     ![Supprimer les données de sauvegarde](./media/backup-azure-delete-vault/classic-portal-unregister.png)
 
-  Si vous souhaitez supprimer l’inscription d’un serveur Windows, à partir du menu déroulant **Type**, sélectionnez **Windows Server**, cliquez sur la ![coche](./media/backup-azure-delete-vault/checkmark.png) pour actualiser l’écran, puis cliquez sur **Supprimer**. <br/>
+  Si vous souhaitez l’inscription de toodelete hello pour un serveur Windows, à partir de hello **Type** menu déroulant, sélectionnez **Windows Server**, cliquez sur ![coche](./media/backup-azure-delete-vault/checkmark.png) écran hello toorefresh puis cliquez sur **supprimer**. <br/>
 
   ![Sélectionnez Windows Server](./media/backup-azure-delete-vault/select-windows-server.png)
 
-6. Dans la liste des onglets, cliquez sur **Tableau de bord** pour ouvrir cet onglet. Vérifiez qu’il n’y a pas de serveurs enregistrés ou de machines virtuelles Azure protégées dans le cloud. Vérifiez également qu’il n’y a aucune donnée dans le stockage. Cliquez sur **Supprimer** pour supprimer le coffre.
+6. Dans la liste de hello des onglets, cliquez sur **tableau de bord** tooopen onglet. Vérifier aucun des serveurs inscrits ou les machines virtuelles protégées dans le cloud de hello. Vérifiez également qu’il n’y a aucune donnée dans le stockage. Cliquez sur **supprimer** toodelete le coffre hello.
 
     ![Supprimer les données de sauvegarde](./media/backup-azure-delete-vault/classic-portal-list-of-tabs-dashboard.png)
 
-    L’écran de confirmation Supprimer un coffre de sauvegarde s’ouvre alors. Sélectionnez un motif de suppression du coffre, puis cliquez sur  ![coche](./media/backup-azure-delete-vault/checkmark.png). <br/>
+    écran de confirmation de coffre de sauvegarde de supprimer Hello s’ouvre. Sélectionnez une option pourquoi vous supprimez le coffre de hello, puis cliquez sur ![coche](./media/backup-azure-delete-vault/checkmark.png). <br/>
 
     ![Supprimer les données de sauvegarde](./media/backup-azure-delete-vault/classic-portal-delete-vault-confirmation-1.png)
 
-    Le coffre est supprimé, et vous revenez au tableau de bord du portail Classic.
+    coffre de Hello est supprimé, et que vous retournez toohello de tableau de bord portail classique.
 
-### <a name="find-the-backup-management-servers-registered-to-the-vault"></a>Rechercher les serveurs de gestion des sauvegardes inscrits dans le coffre
-Si vous avez inscrit plusieurs serveurs dans un coffre, il peut être difficile de se les rappeler. Pour voir les serveurs inscrits dans le coffre et les supprimer :
+### <a name="find-hello-backup-management-servers-registered-toohello-vault"></a>Rechercher le coffre de toohello inscrit de serveurs de gestion de sauvegarde hello
+Si vous avez plusieurs coffre tooa de serveurs inscrits, il peut être difficile tooremember les. serveurs de hello toosee inscrit toohello coffre et les supprimer :
 
-1. Ouvrez le tableau de bord du coffre.
-2. Dans le volet **Essentials**, cliquez sur **Paramètres** pour ouvrir ce panneau.
+1. Tableau de bord du coffre hello ouvert.
+2. Bonjour **Essentials** volet, cliquez sur **paramètres** tooopen ce panneau.
 
     ![ouvrir le panneau paramètres](./media/backup-azure-delete-vault/backup-vault-click-settings.png)
-3. Dans le **panneau Paramètres**, cliquez sur **Infrastructure de sauvegarde**.
-4. Dans le panneau **Infrastructure de sauvegarde**, cliquez sur **Serveurs de gestion des sauvegardes**. Le panneau Serveurs de gestion des sauvegardes s’ouvre.
+3. Sur hello **panneau paramètres**, cliquez sur **Infrastructure de sauvegarde**.
+4. Sur hello **sauvegarde Infrastructure** panneau, cliquez sur **serveurs d’administration de sauvegarde**. Panneau de serveurs d’administration de sauvegarde Hello s’ouvre.
 
     ![liste des serveurs de gestion des sauvegardes](./media/backup-azure-delete-vault/list-of-backup-management-servers.png)
-5. Pour supprimer un serveur de la liste, cliquez avec le bouton droit sur le nom du serveur, puis cliquez sur **Supprimer**.
-    Le panneau **Supprimer** s’ouvre.
-6. Sur le panneau **Supprimer** , indiquez le nom du serveur. S’il s’agit d’un nom long, vous pouvez le copier-coller à partir de la liste Serveurs de gestion des sauvegardes. Ensuite, cliquez sur **Supprimer**.  
+5. toodelete un serveur à partir de la liste de hello, cliquez sur le nom hello du serveur de hello, puis cliquez sur **supprimer**.
+    Hello **supprimer** panneau s’ouvre.
+6. Sur hello **supprimer** panneau, fournissez le nom hello du serveur de hello. S’il est un nom long, vous pouvez copier et coller à partir de la liste de hello sauvegarde des serveurs d’administration. Ensuite, cliquez sur **Supprimer**.  

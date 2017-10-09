@@ -1,6 +1,6 @@
 ---
-title: "Utiliser des déclencheurs et des liaisons dans Azure Functions | Microsoft Docs"
-description: "Découvrez comment utiliser des déclencheurs et des liaisons dans Azure Functions pour connecter l’exécution de votre code aux événements en ligne et aux services cloud."
+title: "aaaWork avec des déclencheurs et des liaisons dans les fonctions de Azure | Documents Microsoft"
+description: "Découvrez comment toouse déclenche et les liaisons dans les fonctions Azure tooconnect vos événements de tooonline de l’exécution de code et les services basés sur le cloud."
 services: functions
 documentationcenter: na
 author: lindydonna
@@ -16,56 +16,56 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 05/30/2017
 ms.author: donnam
-ms.openlocfilehash: cc41debb2523df77be4db05817a4c7ac55604439
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: eb2ebfca172fcc8c0f479adbcfec99e90fc33615
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-functions-triggers-and-bindings-concepts"></a>Concepts des déclencheurs et liaisons Azure Functions
-Azure Functions vous permet d’écrire du code en réponse aux événements dans Azure et d’autres services, via des *déclencheurs* et *liaisons*. Cet article est une vue d’ensemble conceptuelle des déclencheurs et pour tous les langages de programmation pris en charge. Les fonctionnalités communes à toutes les liaisons sont décrites ici.
+Les fonctions Azure vous permet au code de toowrite de tooevents de réponse dans Azure et d’autres services via *déclencheurs* et *liaisons*. Cet article est une vue d’ensemble conceptuelle des déclencheurs et pour tous les langages de programmation pris en charge. Fonctionnalités des liaisons tooall courantes sont décrites ici.
 
 ## <a name="overview"></a>Vue d'ensemble
 
-Les déclencheurs et les liaisons permettent de définir de manière déclarative la façon dont une fonction est appelée et les données avec lesquelles elle fonctionne. Un *déclencheur* définit la façon dont une fonction est appelée. Une fonction ne doit avoir qu’un seul déclencheur. Les déclencheurs sont associés à des données, généralement la charge utile qui a déclenché la fonction. 
+Les déclencheurs et les liaisons sont un toodefine de façon déclarative comment une fonction est appelée et les données qu’il fonctionne avec. Un *déclencheur* définit la façon dont une fonction est appelée. Une fonction ne doit avoir qu’un seul déclencheur. Les déclencheurs ont des données, qui est généralement hello charge utile qui a déclenché la fonction hello associées. 
 
-Les *liaisons* d’entrée et de sortie fournissent un moyen déclaratif de se connecter à des données à partir de votre code. Comme pour les déclencheurs, vous spécifiez des chaînes de connexion et d’autres propriétés dans votre configuration des fonctions. Les liaisons sont facultatives et une fonction peut avoir plusieurs liaisons d’entrée et de sortie. 
+Entrée et sortie *liaisons* fournissent un toodata tooconnect de façon déclarative à partir de votre code. Tootriggers similaires, vous spécifiez les chaînes de connexion et d’autres propriétés dans votre configuration de la fonction. Les liaisons sont facultatives et une fonction peut avoir plusieurs liaisons d’entrée et de sortie. 
 
-À l’aide de déclencheurs et de liaisons, vous pouvez écrire du code qui est plus générique et qui ne code pas en dur les détails des services avec lesquels il interagit. Les données provenant deq services deviennent simplement des valeurs d’entrée pour votre code de fonction. Pour exporter des données vers un autre service (comme la création d’une nouvelle ligne dans le stockage de table Azure), utilisez la valeur de retour de la méthode. Autrement, si vous avez besoin de plusieurs valeurs de sortie, utilisez un objet d’assistance. Les déclencheurs et les liaisons ont une propriété **Nom**, qui est un identificateur que vous utilisez dans votre code pour accéder à la liaison.
+À l’aide de déclencheurs et des liaisons, vous pouvez écrire du code qui est plus générique et ne pas coder en dur hello détails des services hello avec lequel elle interagit. Les données provenant deq services deviennent simplement des valeurs d’entrée pour votre code de fonction. service de tooanother toooutput données (par exemple, créez une nouvelle ligne dans le stockage Table Azure), utilisez la valeur de retour de hello de méthode hello. Ou, si vous devez toooutput plusieurs valeurs, utilisez un objet d’assistance. Les déclencheurs et les liaisons ont un **nom** propriété, qui est un identificateur que vous utilisez dans votre liaison de hello tooaccess code.
 
-Vous pouvez configurer des déclencheurs et liaisons dans l’onglet **Intégrer** du portail Azure Functions. En coulisses, l’interface utilisateur modifie un fichier appelé *function.json* dans le répertoire de la fonction. Vous pouvez modifier ce fichier en choisissant l’**Éditeur avancé**.
+Vous pouvez configurer des déclencheurs et des liaisons dans hello **intégrer** portail de fonctions d’Azure hello. Dans les coulisses hello, hello l’interface utilisateur modifie un fichier appelé *function.json* fichier dans le répertoire de fonction hello. Vous pouvez modifier ce fichier en modifiant toohello **éditeur avancé**.
 
-Le tableau suivant montre les déclencheurs et liaisons qui sont pris en charge avec Azure Functions. 
+Hello tableau suivant présente les déclencheurs hello et des liaisons qui sont pris en charge avec les fonctions d’Azure. 
 
 [!INCLUDE [Full bindings table](../../includes/functions-bindings.md)]
 
 ### <a name="example-queue-trigger-and-table-output-binding"></a>Exemple : déclencheur de file d’attente et liaison de sortie de table
 
-Imaginons que vous souhaitiez écrire une nouvelle ligne dans Stockage Table Azure à chaque fois qu’un nouveau message s’affiche dans Stockage File d’attente Azure. Ce scénario peut être implémenté à l’aide d’un déclencheur File d’attente Azure et d’une liaison de sortie Table. 
+Supposons que vous toowrite une nouvelle tooAzure de ligne le stockage de Table chaque fois qu’un nouveau message s’affiche dans le stockage de file d’attente Azure. Ce scénario peut être implémenté à l’aide d’un déclencheur File d’attente Azure et d’une liaison de sortie Table. 
 
-Un déclencheur de file d’attente nécessite les informations suivantes dans l’onglet **Intégrer** :
+Un déclencheur de la file d’attente nécessite hello informations Bonjour suivantes **intégrer** onglet :
 
-* Le nom du paramètre d’application qui contient la chaîne de connexion de compte de stockage pour la file d’attente
-* Le nom de la file d’attente
-* L’identificateur dans votre code pour lire le contenu du message de la file d’attente, tel que `order`.
+* nom de Hello du paramètre d’application hello qui contient la chaîne de connexion de compte de stockage hello pour la file d’attente hello
+* nom de file d’attente Hello
+* Hello identificateur dans votre code tooread hello du contenu d’hello file d’attente message, tel que `order`.
 
-Pour écrire dans Stockage Table Azure, utilisez une liaison de sortie avec les informations suivantes :
+toowrite tooAzure le stockage de Table, utilisez une liaison de sortie avec hello les détails suivants :
 
-* Le nom du paramètre d’application qui contient la chaîne de connexion de compte de stockage pour la table
-* Le nom de la table
-* L’identificateur dans votre code pour créer des éléments de sortie ou la valeur de retour de la fonction.
+* nom de Hello du paramètre d’application hello qui contient la chaîne de connexion de compte de stockage hello pour la table de hello
+* nom de la table Hello
+* Identificateur Hello dans votre toocreate de code de sortie des éléments, ou valeur de retour de hello à partir de la fonction hello.
 
-Les liaisons utilisent des paramètres d’application pour les chaînes de connexion afin d’appliquer la meilleure pratique qui consiste à ce que *function.json* ne contient aucun secret de service.
+Liaisons utilisent les paramètres de l’application pour hello tooenforce à des chaînes de connexion meilleures pratiques qui *function.json* ne contient pas de clés secrètes de service.
 
-Utilisez ensuite les identificateurs que vous avez fournis pour intégrer Stockage Azure dans votre code.
+Ensuite, utilisez les identificateurs hello vous avez fourni toointegrate avec le stockage Azure dans votre code.
 
 ```cs
 #r "Newtonsoft.Json"
 
 using Newtonsoft.Json.Linq;
 
-// From an incoming queue message that is a JSON object, add fields and write to Table Storage
-// The method return value creates a new row in Table Storage
+// From an incoming queue message that is a JSON object, add fields and write tooTable Storage
+// hello method return value creates a new row in Table Storage
 public static Person Run(JObject order, TraceWriter log)
 {
     return new Person() { 
@@ -85,8 +85,8 @@ public class Person
 ```
 
 ```javascript
-// From an incoming queue message that is a JSON object, add fields and write to Table Storage
-// The second parameter to context.done is used as the value for the new row
+// From an incoming queue message that is a JSON object, add fields and write tooTable Storage
+// hello second parameter toocontext.done is used as hello value for hello new row
 module.exports = function (context, order) {
     order.PartitionKey = "Orders";
     order.RowKey = generateRandomId(); 
@@ -100,7 +100,7 @@ function generateRandomId() {
 }
 ```
 
-Voici le *function.json* qui correspond au code précédent. Veuillez noter que la même configuration peut être utilisée, quelle que soit la langue de l’implémentation de la fonction.
+Voici hello *function.json* toohello précédant le code correspondant. Notez que hello même configuration peut être utilisée, quel que soit le langage hello d’implémentation de la fonction hello.
 
 ```json
 {
@@ -122,7 +122,7 @@ Voici le *function.json* qui correspond au code précédent. Veuillez noter que 
   ]
 }
 ```
-Pour afficher et modifier le contenu de *function.json* dans le portail Azure, cliquez sur l’option **Éditeur avancé** dans l’onglet **Intégrer** de votre fonction.
+contenu de hello tooview et modification de *function.json* Bonjour portail Azure, cliquez sur hello **éditeur avancé** option hello **intégrer** onglet de votre fonction.
 
 Pour plus d’exemples de code et de détails sur l’intégration avec Stockage Azure, consultez [Déclencheurs et liaisons Azure Functions pour Stockage Azure](functions-bindings-storage.md).
 
@@ -130,13 +130,13 @@ Pour plus d’exemples de code et de détails sur l’intégration avec Stockage
 
 Tous les déclencheurs et liaisons ont une propriété `direction` :
 
-- Pour les déclencheurs, le sens est toujours `in`
+- Pour les déclencheurs, direction de hello est toujours`in`
 - Les liaisons d’entrée et de sortie utilisent `in` et `out`
-- Certaines liaisons prennent en charge un sens spécial `inout`. Si vous utilisez `inout`, seule l’option **Éditeur avancé** est disponible dans l’onglet **Intégrer**.
+- Certaines liaisons prennent en charge un sens spécial `inout`. Si vous utilisez `inout`, hello uniquement **éditeur avancé** est disponible dans hello **intégrer** onglet.
 
-## <a name="using-the-function-return-type-to-return-a-single-output"></a>Utilisation du type de retour de fonction pour retourner une seule sortie
+## <a name="using-hello-function-return-type-tooreturn-a-single-output"></a>À l’aide de tooreturn de type de retour de fonction hello une sortie unique
 
-L’exemple précédent montre comment utiliser la valeur de retour de fonction pour fournir la sortie à une liaison, ce qui nécessite d’utiliser le paramètre de nom spécial `$return`. (Cela n’est pris en charge que dans les langages qui ont une valeur de retour, tels que C#, JavaScript et F#.) Si une fonction comporte plusieurs liaisons de sortie, utilisez `$return` pour une seule des liaisons de sortie. 
+Hello exemple précédent indique comment tooprovide de valeur de retour de fonction de hello toouse sortie tooa liaison, qui est obtenue à l’aide du paramètre de nom spécial hello `$return`. (Cela n’est pris en charge que dans les langages qui ont une valeur de retour, tels que C#, JavaScript et F#.) Si une fonction comporte plusieurs liaisons de sortie, utilisez `$return` pour un seul hello de liaisons de sortie. 
 
 ```json
 // excerpt of function.json
@@ -148,7 +148,7 @@ L’exemple précédent montre comment utiliser la valeur de retour de fonction 
 }
 ```
 
-Les exemples ci-dessous montrent comment les types de retour sont utilisés avec des liaisons de sortie dans C#, JavaScript et F#.
+exemples de Hello ci-dessous montrent comment retournent les types sont utilisés avec les liaisons de sortie en c#, JavaScript et F #.
 
 ```cs
 // C# example: use method return value for output binding
@@ -171,7 +171,7 @@ public static Task<string> Run(WorkItem input, TraceWriter log)
 ```
 
 ```javascript
-// JavaScript: return a value in the second parameter to context.done
+// JavaScript: return a value in hello second parameter toocontext.done
 module.exports = function (context, input) {
     var json = JSON.stringify(input);
     context.log('Node.js script processed queue message', json);
@@ -189,9 +189,9 @@ let Run(input: WorkItem, log: TraceWriter) =
 
 ## <a name="binding-datatype-property"></a>Liaison de propriété Datatype
 
-Dans .NET, utilisez les types pour définir le type des données d’entrée. Par exemple, utilisez `string` pour lier au texte d’un déclencheur de file d’attente et un tableau d’octets pour lire sous forme binaire.
+Dans .NET, utilisez le type de données hello types toodefine hello pour les données d’entrée. Par exemple, utilisez `string` toobind toohello texte un déclencheur de la file d’attente et un tooread de tableau d’octets binaire.
 
-Pour les langages dont le type est dynamique, tels que JavaScript, vous devez utiliser la propriété `dataType` dans la définition de la liaison. Par exemple, pour lire le contenu d’une requête HTTP dans un format binaire, utilisez le type `binary` :
+Pour les langues qui sont typées dynamiquement tels que JavaScript, utilisez hello `dataType` propriété dans la définition de la liaison hello. Par exemple, tooread hello contenu d’une requête HTTP au format binaire, utilisez le type de hello `binary`:
 
 ```json
 {
@@ -205,13 +205,13 @@ Pour les langages dont le type est dynamique, tels que JavaScript, vous devez ut
 Les autres options pour `dataType` sont `stream` et `string`.
 
 ## <a name="resolving-app-settings"></a>Résolution des paramètres de l’application
-En tant que meilleure pratique, les chaînes de connexion et les secrets doivent être gérés avec des paramètres de l’application, plutôt qu’avec des fichiers de configuration. Cela limite l’accès à ces secrets et permet de stocker *function.json* en toute sécurité dans un référentiel de contrôle de code source public.
+En tant que meilleure pratique, les chaînes de connexion et les secrets doivent être gérés avec des paramètres de l’application, plutôt qu’avec des fichiers de configuration. Cela limite l’accès toothese secrets et le rend safe toostore *function.json* dans un référentiel de contrôle source publique.
 
-Les paramètres de l’application sont également utiles lorsque vous souhaitez modifier la configuration en fonction de l’environnement. Par exemple, dans un environnement de test, vous pourriez vouloir surveiller une autre file d’attente ou un autre conteneur Stockage Blob.
+Paramètres de l’application sont également utiles quand vous le souhaitez configuration toochange basée sur l’environnement de hello. Par exemple, dans un environnement de test, vous souhaiterez toomonitor un conteneur de stockage différent de file d’attente ou un objet blob.
 
-Les paramètres de l’application sont résolus à chaque fois qu’une valeur est placée entre des signes de pourcentage, comme `%MyAppSetting%`. Veuillez noter que la propriété `connection` des déclencheurs et liaisons est un cas spécial et résout automatiquement les valeurs en tant que paramètres de l’application. 
+Les paramètres de l’application sont résolus à chaque fois qu’une valeur est placée entre des signes de pourcentage, comme `%MyAppSetting%`. Notez que hello `connection` est un cas spécial de propriété des déclencheurs et des liaisons et résout automatiquement les valeurs en tant que paramètres de l’application. 
 
-L’exemple suivant est un déclencheur de file d’attente qui utilise un paramètre d’application `%input-queue-name%` pour définir la file d’attente sur laquelle effectuer le déclenchement.
+exemple Hello est un déclencheur de file d’attente qui utilise un paramètre d’application `%input-queue-name%` tootrigger de file d’attente toodefine hello sur.
 
 ```json
 {
@@ -229,9 +229,9 @@ L’exemple suivant est un déclencheur de file d’attente qui utilise un param
 
 ## <a name="trigger-metadata-properties"></a>Propriétés de métadonnées de déclencheur
 
-En plus de la charge utile de données fournie par un déclencheur (par exemple, le message de file d’attente qui a déclenché une fonction), plusieurs déclencheurs fournissent des valeurs de métadonnées supplémentaires. Ces valeurs peuvent être utilisées comme paramètres d’entrée dans C# et F# ou comme propriétés sur l’objet `context.bindings` dans JavaScript. 
+Dans Ajout toohello charge utile de données fourni par un déclencheur (par exemple, la file d’attente message de salutation qui a déclenché une fonction), les déclencheurs de fournir des valeurs de métadonnées supplémentaires. Ces valeurs peuvent être utilisées comme paramètres d’entrée dans c# et F # ou propriétés hello `context.bindings` objet dans JavaScript. 
 
-Par exemple, un déclencheur de file d’attente prend en charge les propriétés suivantes :
+Par exemple, un déclencheur de la file d’attente prend en charge hello propriétés suivantes :
 
 * QueueTrigger - déclenchant le contenu du message si une chaîne valide
 * DequeueCount
@@ -241,9 +241,9 @@ Par exemple, un déclencheur de file d’attente prend en charge les propriété
 * NextVisibleTime
 * PopReceipt
 
-Les détails des propriétés de métadonnées pour chaque déclencheur sont décrits dans la rubrique de référence correspondante. La documentation est également disponible dans l’onglet **Intégrer** du portail, dans la section **Documentation** située sous la zone de configuration de liaison.  
+Détails des propriétés de métadonnées pour chaque déclencheur sont décrits dans la rubrique de référence correspondante hello. Documentation est également disponible dans hello **intégrer** onglet du portail hello, Bonjour **Documentation** section sous la zone de configuration de liaison hello.  
 
-Par exemple, étant donné que les déclencheurs d’objet blob connaissent des retards, vous pouvez utiliser un déclencheur de file d’attente pour exécuter votre fonction (voir [Déclencheur Stockage Blob](functions-bindings-storage-blob.md#storage-blob-trigger). Le message de file d’attente contiendra le nom de fichier du blob à déclencher. À l’aide de la propriété de métadonnées `queueTrigger`, vous pouvez spécifier ce comportement partout dans votre configuration, plutôt que dans votre code.
+Par exemple, étant donné que les déclencheurs de l’objet blob ont des retards, vous pouvez utiliser un toorun de déclencheur de file d’attente votre fonction (consultez [déclencheur du stockage Blob](functions-bindings-storage-blob.md#storage-blob-trigger). message de file d’attente Hello contiendrait tootrigger de nom de fichier blob hello sur. À l’aide de hello `queueTrigger` propriété de métadonnées, vous pouvez définir ce comportement dans votre configuration, plutôt que dans votre code.
 
 ```json
   "bindings": [
@@ -263,15 +263,15 @@ Par exemple, étant donné que les déclencheurs d’objet blob connaissent des 
   ]
 ```
 
-Les propriétés de métadonnées provenant d’un déclencheur peuvent également être utilisées dans une *expression de liaison* pour une autre liaison, comme décrit dans la section suivante.
+Les propriétés de métadonnées à partir d’un déclencheur peuvent également être utilisées dans un *expression de liaison* pour une autre liaison, comme décrit dans hello suivant la section.
 
 ## <a name="binding-expressions-and-patterns"></a>Modèles et expressions de liaison
 
-Les *expressions de liaison* sont l’une des fonctionnalités les plus puissantes des déclencheurs et liaisons. Au sein de votre liaison, vous pouvez définir des modèles d’expression qui peuvent ensuite être utilisés dans d’autres liaisons ou votre code. Des métadonnées de déclencheur peuvent également être utilisées dans les expressions de liaison, comme indiqué dans l’exemple présenté dans la section précédente.
+Une des fonctionnalités plus puissantes de hello des déclencheurs et des liaisons *liaison d’expressions*. Au sein de votre liaison, vous pouvez définir des modèles d’expression qui peuvent ensuite être utilisés dans d’autres liaisons ou votre code. Métadonnées de déclencheur peuvent également servir de liaison d’expressions, comme indiqué dans l’exemple hello Bonjour précédant la section.
 
-Par exemple, imaginons que vous vouliez redimensionner des images d’un conteneur Stockage Blob donné, et ce de manière similaire au modèle **Redimensionnement d’image** de la page **Nouvelle fonction**. Accédez à **Nouvelle fonction** -> Langage **C#** -> Scénario **Exemples** -> **ImageResizer-CSharp**. 
+Par exemple, supposons que vous souhaitiez tooresize des images dans le conteneur de stockage blob particulier, similaire toohello **taille de l’Image** modèle Bonjour **nouvelle fonction** page. Accédez trop**nouvelle fonction** -> langue **c#** -> scénario **exemples** -> **ImageResizer-CSharp**. 
 
-Voici la définition *function.json* :
+Voici hello *function.json* définition :
 
 ```json
 {
@@ -294,10 +294,10 @@ Voici la définition *function.json* :
 }
 ```
 
-Veuillez noter que le paramètre `filename` est utilisé aussi bien dans la définition du déclencheur d’objet blob que dans la liaison de sortie d’objet blob. Ce paramètre peut également être utilisé dans le code de fonction.
+Notez que hello `filename` paramètre est utilisé dans la définition du déclencheur hello blob ainsi que des objets blob de hello liaison de sortie. Ce paramètre peut également être utilisé dans le code de fonction.
 
 ```csharp
-// C# example of binding to {filename}
+// C# example of binding too{filename}
 public static void Run(Stream image, string filename, Stream imageSmall, TraceWriter log)  
 {
     log.Info($"Blob trigger processing: {filename}");
@@ -310,7 +310,7 @@ public static void Run(Stream image, string filename, Stream imageSmall, TraceWr
 
 
 ### <a name="random-guids"></a>GUID aléatoires
-Azure Functions fournit une syntaxe pratique pour générer des GUID dans vos liaisons, via l’expression de liaison `{rand-guid}`. L’exemple suivant l’utilise pour générer un nom d’objet blob unique : 
+Fonctions Azure fournit une syntaxe plus de commodité pour générer des GUID dans vos liaisons, par le biais hello `{rand-guid}` expression de liaison. Hello exemple suivant utilise cette toogenerate un nom d’objet blob unique : 
 
 ```json
 {
@@ -323,7 +323,7 @@ Azure Functions fournit une syntaxe pratique pour générer des GUID dans vos li
 
 ### <a name="current-time"></a>Heure actuelle
 
-Vous pouvez utiliser l’expression de liaison `DateTime`, est résolue en `DateTime.UtcNow`.
+Vous pouvez utiliser d’expression de liaison hello `DateTime`, ce qui donne trop`DateTime.UtcNow`.
 
 ```json
 {
@@ -334,11 +334,11 @@ Vous pouvez utiliser l’expression de liaison `DateTime`, est résolue en `Date
 }
 ```
 
-## <a name="bind-to-custom-input-properties-in-a-binding-expression"></a>Lier aux propriétés d’entrée personnalisées dans une expression de liaison
+## <a name="bind-toocustom-input-properties-in-a-binding-expression"></a>Lier les propriétés d’entrée de toocustom dans une expression de liaison
 
-Les expressions de liaison peuvent également référencer des propriétés définies dans la charge utile du déclencheur. Par exemple, vous souhaiterez peut-être effectuer une liaison dynamique vers un fichier Stockage Blob à partir d’un nom de fichier fourni dans un webhook.
+Expressions de liaison peuvent également référencer des propriétés qui sont définies dans la charge utile de déclencheur hello lui-même. Par exemple, vous voudrez fichier de stockage des objets blob toodynamically bind tooa à partir d’un nom de fichier fourni dans un webhook.
 
-Par exemple, le *function.json* suivant utilise une propriété appelée `BlobName` provenant de la charge utile du déclencheur :
+Par exemple, hello suivant *function.json* utilise une propriété appelée `BlobName` à partir de la charge utile de déclencheur hello :
 
 ```json
 {
@@ -365,7 +365,7 @@ Par exemple, le *function.json* suivant utilise une propriété appelée `BlobNa
 }
 ```
 
-Pour y parvenir dans C# et F #, vous devez définir un objet POCO qui définit les champs qui seront désérialisés dans la charge utile du déclencheur.
+tooaccomplish cette dans c# et F #, vous devez définir un POCO qui définit les champs hello qui seront désérialisés dans la charge utile de déclencheur hello.
 
 ```csharp
 using System.Net;
@@ -387,7 +387,7 @@ public static HttpResponseMessage Run(HttpRequestMessage req, BlobInfo info, str
 }
 ```
 
-Dans JavaScript, la désérialisation JSON est effectuée automatiquement et vous pouvez directement utiliser les propriétés.
+Dans JavaScript, la désérialisation JSON est effectuée automatiquement et vous pouvez utiliser directement les propriétés hello.
 
 ```javascript
 module.exports = function (context, info) {
@@ -407,10 +407,10 @@ module.exports = function (context, info) {
 
 ## <a name="configuring-binding-data-at-runtime"></a>Configuration de la liaison des données lors de l’exécution
 
-En C# et dans d’autres langages .NET, vous pouvez utiliser un schéma de liaison impératif, par opposition aux liaisons déclaratives *dans function.json*. La liaison impérative est utile lorsque les paramètres de liaison doivent être calculés au moment du runtime plutôt que lors de la conception. Pour plus d’informations, voir [Liaison lors de l’exécution via des liaisons impératives](functions-reference-csharp.md#imperative-bindings) dans la référence du développeur C#.
+En c# et d’autres langages .NET, vous pouvez utiliser un modèle de liaison impérative, que les liaisons de déclarative toohello exécutée dans *function.json*. Liaison impératif est utile lorsque les paramètres de liaison doivent toobe calculée au moment de l’exécution au lieu de conception. toolearn, voir [liaison lors de l’exécution via les liaisons impératifs](functions-reference-csharp.md#imperative-bindings) dans la référence du développeur hello c#.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Pour plus d’informations sur une liaison spécifique, consultez les articles suivants :
+Pour plus d’informations sur une liaison spécifique, consultez hello suivant des articles :
 
 - [HTTP et webhooks](functions-bindings-http-webhook.md)
 - [Minuteur](functions-bindings-timer.md)

@@ -1,6 +1,6 @@
 ---
-title: "Prise en main d’Azure IoT Hub (.NET) | Microsoft Docs"
-description: "Découvrez comment envoyer des messages appareil-vers-cloud à Azure IoT Hub à l’aide des kits SDK Azure IoT pour .NET. Créez un appareil simulé et des applications de service pour inscrire votre appareil, envoyer des messages et lire des messages d’IoT Hub."
+title: "aaaGet démarré avec Azure IoT Hub (.NET) | Documents Microsoft"
+description: "Découvrez comment toosend appareil-à-cloud messages tooAzure IoT Hub à l’aide de kits de développement logiciel IoT pour .NET. Créer appareil simulé et tooregister des applications de service de votre appareil, envoyer des messages et lire les messages de hub IoT."
 services: iot-hub
 documentationcenter: .net
 author: dominicbetts
@@ -15,66 +15,66 @@ ms.workload: na
 ms.date: 08/08/2017
 ms.author: dobett
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 69296eb9ac2a74a97b632d27733a6a06500b4abd
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 56cf14687411898ea0fa4ebb1782e18b3930809c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-your-device-to-your-iot-hub-using-net"></a>Connecter votre appareil à votre IoT Hub à l’aide de .NET
+# <a name="connect-your-device-tooyour-iot-hub-using-net"></a>Connectez votre concentrateur de IoT tooyour périphérique à l’aide de .NET
 
 [!INCLUDE [iot-hub-selector-get-started](../../includes/iot-hub-selector-get-started.md)]
 
-À la fin de ce didacticiel, vous disposerez de trois applications console .NET :
+À la fin de hello de ce didacticiel, vous avez trois applications de console .NET :
 
-* **CreateDeviceIdentity**, qui crée une identité d’appareil et une clé de sécurité associée pour connecter votre application d’appareil.
-* **ReadDeviceToCloudMessages**, qui affiche les données de télémétrie envoyées par votre application d’appareil.
-* **SimulatedDevice**, qui se connecte à votre IoT hub avec l’identité d’appareil créée précédemment et envoie un message de télémétrie chaque seconde en utilisant le protocole MQTT.
+* **CreateDeviceIdentity**, ce qui crée une identité d’appareil et clé de sécurité associés tooconnect votre application.
+* **ReadDeviceToCloudMessages**, qui affiche la télémétrie hello envoyée par votre application.
+* **SimulatedDevice**, qui se connecte tooyour IoT hub avec l’identité de l’appareil hello créée précédemment et envoie un message de télémétrie à chaque seconde à l’aide du protocole MQTT hello.
 
-Vous pouvez télécharger ou cloner la solution Visual Studio, qui contient les trois applications, à partir de GitHub.
+Vous pouvez télécharger ou cloner la solution Visual Studio hello, qui contient les trois applications de hello à partir de Github.
 
 ```bash
 git clone https://github.com/Azure-Samples/iot-hub-dotnet-simulated-device-client-app.git
 ```
 
 > [!NOTE]
-> Pour plus d’informations sur les kits de développement logiciel Azure IoT que vous pouvez utiliser pour générer les deux applications qui s’exécutent sur les appareils et sur le serveur de solution principal, voir l’article [Kits de développement logiciel (SDK) Azure IoT][lnk-hub-sdks].
+> Pour plus d’informations sur hello kits de développement logiciel Azure IoT que vous pouvez utiliser toobuild toorun d’applications sur les appareils et à votre solution back-end, consultez [kits de développement logiciel Azure IoT][lnk-hub-sdks].
 
-Pour réaliser ce didacticiel, vous avez besoin des éléments suivants :
+toocomplete ce didacticiel, vous devez hello suivant :
 
 * Visual Studio 2015 ou Visual Studio 2017.
 * Un compte Azure actif. (Si vous ne possédez pas de compte, vous pouvez créer un [compte gratuit][lnk-free-trial] en quelques minutes.)
 
 [!INCLUDE [iot-hub-get-started-create-hub](../../includes/iot-hub-get-started-create-hub.md)]
 
-Votre IoT Hub est maintenant créé et vous connaissez le nom d’hôte et la chaîne de connexion à IoT Hub dont vous avez besoin pour terminer ce qu’il reste du didacticiel.
+Vous avez créé votre hub IoT, et vous avez le nom d’hôte hello et chaîne de connexion de IoT Hub que vous devez le reste de hello toocomplete de ce didacticiel.
 
 <a id="DeviceIdentity_csharp"></a>
 [!INCLUDE [iot-hub-get-started-create-device-identity-csharp](../../includes/iot-hub-get-started-create-device-identity-csharp.md)]
 
 <a id="D2C_csharp"></a>
 ## <a name="receive-device-to-cloud-messages"></a>Recevoir des messages appareil-à-cloud
-Dans cette section, vous allez créer une application console .NET qui lit les messages des appareils vers le cloud dans l’IoT Hub. Un IoT Hub expose un point de terminaison compatible avec [Azure Event Hubs][lnk-event-hubs-overview] pour vous permettre de lire les messages appareil-à-cloud. Pour simplifier les choses, ce didacticiel crée un lecteur de base qui ne convient pas dans le cas d’un déploiement à débit élevé. Pour découvrir comment traiter les messages appareil-à-cloud à grande échelle, reportez-vous au didacticiel [Traitement des messages appareil-à-cloud][lnk-process-d2c-tutorial]. Pour plus d’informations sur la façon de traiter les messages à partir des concentrateurs d’événements, reportez-vous au didacticiel [Prise en main des concentrateurs d’événements][lnk-eventhubs-tutorial]. (Ce didacticiel s’applique aux points de terminaison compatibles Event Hub IoT Hub).
+Dans cette section, vous allez créer une application console .NET qui lit les messages des appareils vers le cloud dans l’IoT Hub. Un hub IoT expose un [Azure Event Hubs][lnk-event-hubs-overview]-point de terminaison compatible tooenable vous tooread les messages appareil-à-cloud. tookeep les choses simples, ce didacticiel crée un lecteur de base qui n’est pas approprié pour un déploiement d’un débit élevé. toolearn comment les messages tooprocess appareil-à-cloud à grande échelle, consultez hello [traiter les messages appareil-à-cloud] [ lnk-process-d2c-tutorial] didacticiel. Pour plus d’informations sur la tooprocess des messages à partir de concentrateurs d’événements, consultez hello [prise en main les concentrateurs d’événements] [ lnk-eventhubs-tutorial] didacticiel. (Ce didacticiel est applicable toohello Hub IoT Hub événement compatible avec points de terminaison).
 
 > [!NOTE]
-> Le point de terminaison compatible Event Hub pour lire des messages de l’appareil vers le cloud utilise toujours le protocole AMQP.
+> Hello point de terminaison de Hub d’événements compatibles pour la lecture des messages appareil-à-cloud toujours utilise le protocole AMQP hello.
 
-1. Dans Visual Studio, ajoutez un projet Visual C# Bureau classique Windows à la solution actuelle en utilisant le modèle de projet **Application console (.NET Framework)**. Assurez-vous que la version du .NET Framework est définie sur 4.5.1 ou supérieur. Nommez le projet **ReadDeviceToCloudMessages**.
+1. Dans Visual Studio, ajouter une solution d’actuel toohello de projet Visual c# bureau classique de Windows, à l’aide de hello **l’application Console (.NET Framework)** modèle de projet. Assurez-vous que la version du .NET Framework hello est 4.5.1 ou version ultérieure. Projet de hello nom **ReadDeviceToCloudMessages**.
 
     ![Nouveau projet Visual C# Bureau classique Windows][10a]
 
-2. Dans l’Explorateur de solutions, cliquez avec le bouton droit sur le projet **ReadDeviceToCloudMessages**, puis cliquez sur **Gérer les packages Nuget**.
+2. Dans l’Explorateur de solutions, cliquez sur hello **ReadDeviceToCloudMessages** de projet, puis cliquez sur **gérer les Packages NuGet**.
 
-3. Dans la fenêtre **Gestionnaire de package Nuget**, recherchez **WindowsAzure.ServiceBus**, cliquez sur **Installer** et acceptez les conditions d’utilisation. Cette procédure lance le téléchargement, l’installation et ajoute une référence à [Azure Service Bus][lnk-servicebus-nuget] avec toutes ses dépendances. Ce package permet à l'application de se connecter au point de terminaison compatible Event Hubs sur votre IoT hub.
+3. Bonjour **Gestionnaire de Package NuGet** fenêtre, recherchez **WindowsAzure.ServiceBus**, sélectionnez **installer**et acceptez les conditions d’utilisation de hello. Cette procédure télécharge, installe et ajoute une référence trop[Azure Service Bus][lnk-servicebus-nuget], avec toutes ses dépendances. Ce package permet hello application tooconnect toohello concentrateur d’événements compatibles point de terminaison sur votre hub IoT.
 
-4. Ajoutez les instructions `using` suivantes en haut du fichier **Program.cs** :
+4. Ajoutez hello suivant `using` instructions haut hello hello **Program.cs** fichier :
 
     ```csharp
     using Microsoft.ServiceBus.Messaging;
     using System.Threading;
     ```
 
-5. Ajoutez les champs suivants à la classe **Program** . Remplacez la valeur d’espace réservé par la chaîne de connexion IoT Hub pour le hub créé dans la section Créer un hub IoT.
+5. Ajouter hello suivant champs toohello **programme** classe. Remplacer la valeur d’espace réservé hello avec hello chaîne de connexion de IoT Hub hub hello que vous avez créé dans hello section « Créer un hub IoT » de.
 
     ```csharp
     static string connectionString = "{iothub connection string}";
@@ -82,7 +82,7 @@ Dans cette section, vous allez créer une application console .NET qui lit les m
     static EventHubClient eventHubClient;
     ```
 
-6. Ajoutez la méthode suivante à la classe **Program** :
+6. Ajouter hello suivant de méthode toohello **programme** classe :
 
     ```csharp
     private static async Task ReceiveMessagesFromDeviceAsync(string partition, CancellationToken ct)
@@ -100,12 +100,12 @@ Dans cette section, vous allez créer une application console .NET qui lit les m
     }
     ```
 
-    Cette méthode utilise une instance **EventHubReceiver** pour recevoir des messages à partir de toutes les partitions de réception Appareil vers cloud IoT Hub. Notez la manière dont vous transmettez un paramètre `DateTime.Now` lorsque vous créez l’objet **EventHubReceiver** pour qu’il reçoive uniquement les messages envoyés après son démarrage. Dans un environnement de test, ce filtre permet de voir l’ensemble des messages en cours. Dans un environnement de production, votre code doit faire en sorte de traiter tous les messages. Pour plus d’informations, voir le didacticiel [Traiter les messages appareil-à-cloud IoT Hub en utilisant les itinéraires (.NET)][lnk-process-d2c-tutorial].
+    Cette méthode utilise un **EventHubReceiver** tooreceive les messages d’instance à partir de tous les hello IoT hub appareil-à-cloud reçoivent des partitions. Notez la façon dont vous passez un `DateTime.Now` paramètre lorsque vous créez hello **EventHubReceiver** de l’objet, afin qu’elle reçoive uniquement les messages envoyés après son démarrage. Ce filtre est utile dans un environnement de test afin de voir l’ensemble actuel de hello de messages. Dans un environnement de production, votre code doit Assurez-vous qu’elle traite tous les messages de type hello. Pour plus d’informations, consultez le didacticiel de hello [comment tooprocess les messages appareil-à-cloud IoT Hub][lnk-process-d2c-tutorial].
 
-7. Enfin, ajoutez les lignes suivantes à la méthode **Main** :
+7. Enfin, ajoutez hello suivant lignes toohello **Main** méthode :
 
     ```csharp
-    Console.WriteLine("Receive messages. Ctrl-C to exit.\n");
+    Console.WriteLine("Receive messages. Ctrl-C tooexit.\n");
     eventHubClient = EventHubClient.CreateFromConnectionString(connectionString, iotHubD2cEndpoint);
 
     var d2cPartitions = eventHubClient.GetRuntimeInformation().PartitionIds;
@@ -129,24 +129,24 @@ Dans cette section, vous allez créer une application console .NET qui lit les m
 
 ## <a name="create-a-device-app"></a>Créer une application d’appareil
 
-Dans cette section, vous allez créer une application console .NET qui simule un appareil envoyant des messages des appareils vers le cloud à un IoT Hub.
+Dans cette section, vous créez une application console .NET qui simule un appareil qui envoie l’IoT hub tooan de messages appareil-à-cloud.
 
-1. Dans Visual Studio, ajoutez un projet Visual C# Bureau classique Windows à la solution actuelle en utilisant le modèle de projet **Application console (.NET Framework)**. Assurez-vous que la version du .NET Framework est définie sur 4.5.1 ou supérieur. Nommez le projet **SimulatedDevice**.
+1. Dans Visual Studio, ajouter une solution d’actuel toohello de projet Visual c# bureau classique de Windows, à l’aide de hello **l’application Console (.NET Framework)** modèle de projet. Assurez-vous que la version du .NET Framework hello est 4.5.1 ou version ultérieure. Projet de hello nom **SimulatedDevice**.
 
     ![Nouveau projet Visual C# Bureau classique Windows][10b]
 
-2. Dans l’Explorateur de solutions, cliquez avec le bouton droit sur le projet **SimulatedDevice**, puis cliquez sur **Gérer les packages NuGet**.
+2. Dans l’Explorateur de solutions, cliquez sur hello **SimulatedDevice** de projet, puis cliquez sur **gérer les Packages NuGet**.
 
-3. Dans la fenêtre **Gestionnaire de package NuGet**, cliquez sur **Parcourir**, puis recherchez **Microsoft.Azure.Devices.Client**. Cliquez ensuite sur **Installer** pour installer le package **Microsoft.Azure.Devices.Client**, puis acceptez les conditions d’utilisation. Cette procédure lance le téléchargement et l’installation et ajoute une référence au [package Azure IoT Device SDK NuGet][lnk-device-nuget] et ses dépendances.
+3. Bonjour **Gestionnaire de Package NuGet** fenêtre, sélectionnez **Parcourir**, recherchez **Microsoft.Azure.Devices.Client**, sélectionnez **installer** tooinstall hello **Microsoft.Azure.Devices.Client** empaqueter et accepter les conditions d’utilisation de hello. Cette procédure télécharge, installe et ajoute une référence toohello [package NuGet du Kit de développement logiciel de périphérique Azure IoT] [ lnk-device-nuget] et ses dépendances.
 
-4. Ajoutez l'instruction `using` suivante en haut du fichier **Program.cs** :
+4. Ajoutez hello suivant `using` instruction début hello Hello **Program.cs** fichier :
 
     ```csharp
     using Microsoft.Azure.Devices.Client;
     using Newtonsoft.Json;
     ```
 
-5. Ajoutez les champs suivants à la classe **Program** . Remplacez `{iot hub hostname}` par le nom d’hôte IoT Hub que vous avez récupéré dans le cadre de la section « Créer un hub IoT ». Remplacez `{device key}` par la clé d’appareil que vous avez récupérée au cours de la section « Création d’une identité d’appareil ».
+5. Ajouter hello suivant champs toohello **programme** classe. Substitution `{iot hub hostname}` avec le nom d’hôte hello IoT hub récupéré à la section « Créer un hub IoT » de hello. Substitution `{device key}` par clé hello d’appareil que vous avez récupéré dans la section « Créer une identité d’appareil » de hello.
 
     ```csharp
     static DeviceClient deviceClient;
@@ -154,7 +154,7 @@ Dans cette section, vous allez créer une application console .NET qui simule un
     static string deviceKey = "{device key}";
     ```
 
-6. Ajoutez la méthode suivante à la classe **Program** :
+6. Ajouter hello suivant de méthode toohello **programme** classe :
 
     ```csharp
     private static async void SendDeviceToCloudMessagesAsync()
@@ -188,9 +188,9 @@ Dans cette section, vous allez créer une application console .NET qui simule un
     }
     ```
 
-    Cette méthode envoie un nouveau message Appareil vers cloud toutes les secondes. Ce message contient un objet JSON sérialisé avec l’ID de l’appareil et des nombres générés de manière aléatoire pour simuler un thermomètre et un capteur d’humidité.
+    Cette méthode envoie un nouveau message Appareil vers cloud toutes les secondes. message de salutation contient un objet sérialisé en JSON, avec l’ID de périphérique hello et généré de façon aléatoire les numéros toosimulate un capteur de température et un capteur humidité.
 
-7. Enfin, ajoutez les lignes suivantes à la méthode **Main** :
+7. Enfin, ajoutez hello suivant lignes toohello **Main** méthode :
 
     ```csharp
     Console.WriteLine("Simulated device\n");
@@ -200,40 +200,40 @@ Dans cette section, vous allez créer une application console .NET qui simule un
     Console.ReadLine();
     ```
 
-    Par défaut, la méthode de création **Create** d’une application .NET Framework crée une instance **DeviceClient** qui utilise le protocole AMQP pour communiquer avec IoT Hub. Pour utiliser le protocole MQTT ou HTTP, remplacez la méthode **Create** afin de pouvoir spécifier le protocole. Les clients UWP et PCL utilisent le protocole HTTP par défaut. Si vous utilisez le protocole HTTP, vous devez également ajouter le package NuGet **Microsoft.AspNet.WebApi.Client** à votre projet de manière à inclure l’espace de noms **System.Net.Http.Formatting**.
+    Par défaut, hello **créer** méthode dans une application .NET Framework crée un **DeviceClient** instance qui utilise toocommunicate de protocole AMQP hello avec IoT Hub. toouse hello protocole MQTT ou HTTP, utilisez le remplacement hello Hello **créer** méthode qui vous permet de protocole de hello toospecify. Par défaut, les clients UWP et PCL utilisent le protocole HTTP hello. Si vous utilisez le protocole de hello HTTP, vous devez également ajouter hello **Microsoft.AspNet.WebApi.Client** hello de NuGet package tooyour projet tooinclude **System.Net.Http.Formatting** espace de noms.
 
-Ce didacticiel vous accompagne tout au long des étapes de création d’une application d’appareil IoT Hub. Vous pouvez également utiliser l’extension [Connected Service for Azure IoT Hub][lnk-connected-service] de Visual Studio pour ajouter le code nécessaire à votre application d’appareil.
+Ce didacticiel vous guide de hello étapes toocreate un IoT Hub application d’appareil. Vous pouvez également utiliser hello [Service connecté pour Azure IoT Hub] [ lnk-connected-service] Visual Studio extension tooadd hello code nécessaire tooyour application.
 
 > [!NOTE]
-> Pour simplifier les choses, ce didacticiel n’implémente aucune stratégie de nouvelle tentative. Dans le code de production, vous devez mettre en œuvre des stratégies de nouvelle tentative (par exemple, une interruption exponentielle), comme indiqué dans l’article MSDN [Gestion des erreurs temporaires][lnk-transient-faults].
+> tookeep les choses simples, ce didacticiel n’implémente pas de toute stratégie de nouvelle tentative. Dans le code de production, vous devez implémenter des stratégies de nouvelle tentative (par exemple, une interruption exponentielle), comme indiqué dans l’article hello [gestion des pannes temporaires][lnk-transient-faults].
 
-## <a name="run-the-apps"></a>Exécuter les applications
+## <a name="run-hello-apps"></a>Exécuter des applications de hello
 
-Vous êtes maintenant prêt à exécuter les applications.
+Vous êtes maintenant prêt toorun hello applications.
 
-1. Dans Visual Studio, dans l’explorateur de solutions, cliquez avec le bouton droit sur votre solution, puis sur **Définir les projets de démarrage**. Sélectionnez **Plusieurs projets de démarrage**, puis **Démarrer** en tant qu’action pour les projets **ReadDeviceToCloudMessages** et **SimulatedDevice**.
+1. Dans Visual Studio, dans l’explorateur de solutions, cliquez avec le bouton droit sur votre solution, puis sur **Définir les projets de démarrage**. Sélectionnez **plusieurs projets de démarrage**, puis sélectionnez **Démarrer** en tant qu’action hello pour les deux hello **ReadDeviceToCloudMessages** et **SimulatedDevice** projets.
 
     ![Propriétés de démarrage de projet][41]
 
-2. Appuyez sur **F5** pour démarrer les deux applications. La sortie de console à partir de l’application **SimulatedDevice** affiche les messages envoyés par votre application d’appareil à votre IoT Hub. La sortie de console à partir de l’application **ProcessDeviceToCloudMessages** affiche les messages reçus par votre IoT Hub.
+2. Appuyez sur **F5** toostart les deux applications en cours d’exécution. Hello de sortie de la console à partir de hello **SimulatedDevice** application d’afficher les messages hello votre application envoie tooyour IoT hub. Hello de sortie de la console à partir de hello **ReadDeviceToCloudMessages** application affiche des messages hello qui reçoit de votre hub IoT.
 
     ![Sortie de console à partir d’applications][42]
 
-3. La vignette **Utilisation** du [portail Azure][lnk-portal] indique le nombre de messages envoyés au IoT Hub :
+3. Hello **utilisation** vignette Bonjour [portail Azure] [ lnk-portal] affiche hello le nombre de messages envoyés toohello IoT hub :
 
     ![Vignette Utilisation du portail Azure][43]
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Dans ce didacticiel, vous avez configuré un IoT Hub dans le portail Azure, puis créé une identité d’appareil dans le registre d’identités de l’IoT Hub. Vous avez utilisé cette identité d’appareil pour permettre à l’application d’appareil d’envoyer des messages appareil-à-cloud à l’IoT Hub. Vous avez également créé une application qui affiche les messages reçus par l’IoT Hub.
+Dans ce didacticiel, vous configuré un hub IoT Bonjour portail Azure et ensuite créé une identité d’appareil dans le Registre des identités de hello IoT hub. Vous avez utilisé ce périphérique identité tooenable hello appareil application toosend messages appareil-à-cloud toohello hub IoT. Vous avez créé également une application qui affiche les messages hello reçus par IoT hub de hello.
 
-Pour continuer la prise en main de IoT Hub et explorer les autres scénarios IoT, consultez les articles suivants :
+toocontinue mise en route avec IoT Hub et tooexplore autres scénarios IoT, consultez :
 
 * [Connexion de votre appareil][lnk-connect-device]
 * [Prise en main de la gestion d’appareils][lnk-device-management]
 * [Bien démarrer avec IoT Edge][lnk-iot-edge]
 
-Pour découvrir comment étendre votre solution IoT et traiter les messages appareil-à-cloud à grande échelle, consultez le didacticiel [Traitement des messages appareil-à-cloud][lnk-process-d2c-tutorial].
+toolearn tooextend vos messages IoT solution et des processus de périphérique dans le cloud à grande échelle, voir hello [traiter les messages appareil-à-cloud] [ lnk-process-d2c-tutorial] didacticiel.
 
 [!INCLUDE [iot-hub-get-started-next-steps](../../includes/iot-hub-get-started-next-steps.md)]
 

@@ -1,6 +1,6 @@
 ---
-title: "Créer un environnement Azure App Service à l’aide d’un modèle Resource Manager"
-description: "Explique comment créer un environnement Azure App Service (ASE) externe ou avec équilibreur de charge interne (ILB) à l’aide d’un modèle Resource Manager"
+title: "aaaCreate un environnement de Service d’applications Azure à l’aide d’un modèle de gestionnaire de ressources"
+description: "Explique comment toocreate un environnement externe ou d’équilibrage de charge interne Azure App Service à l’aide d’un modèle de gestionnaire de ressources"
 services: app-service
 documentationcenter: na
 author: ccompy
@@ -13,74 +13,74 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/13/2017
 ms.author: ccompy
-ms.openlocfilehash: e6b21086488352c1da914b4656ad1d216fd6de85
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: c8aeedee675a6e931169b725ee916cc7fa8f762f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-ase-by-using-an-azure-resource-manager-template"></a>Créer un ASE à l’aide d’un modèle Azure Resource Manager
 
 ## <a name="overview"></a>Vue d'ensemble
-Les environnements Azure App Service (ASE, App Service Environment) peuvent être créés avec un point de terminaison accessible via Internet ou un point de terminaison sur une adresse interne d’un réseau virtuel Azure. S’il est créé avec un point de terminaison interne, ce point de terminaison est fourni par un composant Azure appelé équilibreur de charge interne (ILB, Internal Load Balancer). Un ASE sur une adresse IP interne est appelé ASE ILB. Un ASE avec un point de terminaison public est appelé ASE externe. 
+Les environnements Azure App Service (ASE, App Service Environment) peuvent être créés avec un point de terminaison accessible via Internet ou un point de terminaison sur une adresse interne d’un réseau virtuel Azure. S’il est créé avec un point de terminaison interne, ce point de terminaison est fourni par un composant Azure appelé équilibreur de charge interne (ILB, Internal Load Balancer). Hello ASE sur une adresse IP interne est appelé un environnement app service Équilibrage de charge interne. Hello ASE avec un point de terminaison public est appelé un environnement app service externe. 
 
-Un ASE peut être créé à l’aide du portail Azure ou d’un modèle Azure Resource Manager. Cet article décrit les étapes et la syntaxe nécessaires pour créer un ASE externe ou un ASE ILB à l’aide de modèles Resource Manager. Pour découvrir comment créer un ASE dans le portail Azure, voir [Créer un environnement App Service Environment externe][MakeExternalASE] ou [Créer et utiliser un équilibreur de charge interne avec un environnement Azure App Service Environment][MakeILBASE].
+Un environnement app service peut être créé à l’aide de hello portail Azure ou un modèle Azure Resource Manager. Cet article explique les étapes de hello et de syntaxe, vous devez toocreate une ASE externes ou les ASE d’équilibrage de charge avec les modèles de gestionnaire de ressources. toolearn toocreate ASE Bonjour portail Azure, voir [rendre ASE externe] [ MakeExternalASE] ou [rendre un environnement app service Équilibrage de charge interne][MakeILBASE].
 
-Lorsque vous créez un ASE dans le portail Azure, vous pouvez créer votre réseau virtuel en même temps, ou choisir un réseau virtuel préexistant pour le déploiement. Lorsque vous créez un ASE à partir d’un modèle, vous devez commencer avec : 
+Lorsque vous créez un environnement app service Bonjour portail Azure, vous pouvez créer votre réseau virtuel à hello en même temps ou choisissez un toodeploy de réseau virtuel préexistant dans. Lorsque vous créez un ASE à partir d’un modèle, vous devez commencer avec : 
 
 * Un réseau virtuel Resource Manager.
-* Un sous-réseau de ce réseau virtuel. Pour le sous-réseau ASE, nous recommandons une taille de  `/25` avec des 128 adresses pour s’adapter à la croissance future. Une fois l’ASE créé, vous ne pouvez plus en modifier la taille.
-* L’ID de ressource de votre réseau virtuel. Vous pouvez le trouver sur portail Azure sous les propriétés de votre réseau virtuel Azure.
-* L’abonnement vers lequel vous souhaitez procéder au déploiement.
-* L’emplacement dans lequel vous souhaitez procéder au déploiement.
+* Un sous-réseau de ce réseau virtuel. Nous vous recommandons d’une taille de sous-réseau ASE de `/25` avec une croissance future tooaccomodate 128 adresses. Après que hello ASE est créé, vous ne pouvez pas modifier la taille de hello.
+* ID de ressource Hello à partir de votre réseau virtuel. Vous pouvez obtenir ces informations à partir de hello portail Azure sous propriétés de votre réseau virtuel.
+* Hello abonnement toodeploy dans.
+* Hello emplacement toodeploy dans.
 
-Pour automatiser la création de votre environnement ASE :
+tooautomate votre création ASE :
 
-1. Créez l’environnement ASE à partir d’un modèle. Si vous créez un ASE externe, vous avez terminé après cette étape. Si vous créez un ASE ILB, il reste quelques étapes à accomplir.
+1. Créer hello ASE à partir d’un modèle. Si vous créez un ASE externe, vous avez terminé après cette étape. Si vous créez un environnement app service Équilibrage de charge interne, il existe quelques toodo plus de choses.
 
 2. Une fois votre ASE ILB créé, un certificat SSL correspondant à votre domaine ASE ILB est chargé.
 
-3. Le certificat SSL chargé est affecté à l’environnement ASE ILB en tant que certificat SSL « par défaut ».  Ce certificat est utilisé pour le trafic SSL vers les applications de l’ASE ILB quand celles-ci utilisent le domaine racine commun assigné à l’ASE (par exemple, https://someapp.mycustomrootcomain.com).
+3. Hello téléchargé certificat SSL est affecté toohello ASE d’équilibrage de charge interne en tant que son certificat SSL de « default ».  Ce certificat est utilisé pour tooapps de trafic SSL sur hello ASE d’équilibrage de charge interne lorsqu’ils utilisent le domaine racine commun hello qui est attribué toohello ASE (par exemple, https://someapp.mycustomrootcomain.com).
 
 
-## <a name="create-the-ase"></a>Créer l’ASE
+## <a name="create-hello-ase"></a>Créer hello ASE
 Un modèle Azure Resource Manager permettant de créer un ASE et son fichier de paramètres associé est disponible sous forme d’[exemple][quickstartasev2create] sur GitHub.
 
-Si vous souhaitez créer un ASE ILB, utilisez ces [exemples][quickstartilbasecreate] de modèle Resource Manager. Ils sont destinés à ce cas d’usage. La plupart des paramètres définis dans le fichier *azuredeploy.parameters.json* sont communs à la création des ASE ILB et des ASE externes. La liste suivante énonce les paramètres appelant un commentaire particulier ou qui sont uniques, en lien avec la création d’un ASE ILB :
+Si vous souhaitez toomake ASE équilibrage de charge interne, utilisez ces modèles de gestionnaire de ressources [exemples][quickstartilbasecreate]. Ils prenant en charge les cas d’usage toothat. La plupart des paramètres hello Bonjour *azuredeploy.parameters.json* fichier sont courantes toohello la création de ASEs d’équilibrage de charge interne et externe ASEs. Hello liste suivante appelle les paramètres out de la Remarque spéciale, ou qui sont uniques, lorsque vous créez un environnement app service Équilibrage de charge interne :
 
-* *interalLoadBalancingMode* : dans la plupart des cas, définissez ce paramètre sur 3, ce qui signifie que le trafic HTTP/HTTPS sur les ports 80/443 ainsi que les ports de canaux de contrôle/données écoutés par le service FTP sur l’ASE seront liés à une adresse interne du réseau virtuel allouée à l’ILB. Si ce paramètre est défini sur 2, seuls les ports associés au service FTP (canaux de contrôle et de données) sont liés à une adresse d’ILB. Le trafic HTTP/HTTPS reste sur l’adresse IP virtuelle publique.
-* *dnsSuffix*: ce paramètre définit le domaine racine par défaut affecté à l’ASE. Dans la version publique d’Azure App Service, le domaine racine par défaut pour toutes les applications web est *azurewebsites.net*. Étant donné qu’un ASE ILB est interne au réseau virtuel d’un client, il n’est pas pertinent d’utiliser le domaine racine par défaut du service public. Au lieu de cela, un ILB ASE doit avoir un domaine racine par défaut approprié pour une utilisation au sein du réseau virtuel interne d’une société. Par exemple, une société nommée Contoso Corporation peut utiliser le domaine racine par défaut *internal-contoso.com* pour les applications qui sont destinées à être résolues et accessibles uniquement au sein du réseau virtuel de Contoso. 
-* *ipSslAddressCount*: ce paramètre est automatiquement défini par défaut sur la valeur 0 dans le fichier *azuredeploy.json*, car les ASE ILB disposent d’une seule adresse d’ILB. Il n’existe pas d’adresse IP SSL explicite pour un ASE ILB. Par conséquent, le pool d’adresses IP SSL pour un ASE ILB doit être défini sur zéro. Autrement, une erreur d’approvisionnement se produit. 
+* *interalLoadBalancingMode*: dans la plupart des cas, définissez cette too3, ce qui signifie que le trafic HTTP/HTTPS sur les ports 80/443, et les ports de canal de contrôle et de données hello écoutés service hello FTP tooby hello ASE, sera lié tooan alloué par l’équilibrage de charge de réseau virtuel adresse interne. Si cette propriété a la valeur too2, uniquement hello FTP relatives au service de ports (canaux de contrôle et de données) sont adresse d’équilibrage de charge interne tooan liée. Hello le trafic HTTP/HTTPS reste sur l’adresse IP virtuelle publique de hello.
+* *un suffixe DNS*: ce paramètre définit le domaine racine par défaut hello est attribué toohello ASE. Variante de public de hello du Service d’applications Azure, domaine racine de la valeur par défaut hello pour toutes les applications web est *azurewebsites.net*. Comme un environnement app service Équilibrage de charge interne est le réseau virtuel du client de tooa interne, il n’a aucune domaine de racine par défaut du service public sens toouse hello. Au lieu de cela, un ILB ASE doit avoir un domaine racine par défaut approprié pour une utilisation au sein du réseau virtuel interne d’une société. Par exemple, Contoso Corporation peut utiliser un domaine de la racine par défaut de *contoso.com interne* pour les applications qui sont prévu toobe pouvant être résolu et accessible uniquement dans le réseau virtuel de Contoso. 
+* *ipSslAddressCount*: ce paramètre par défaut automatiquement tooa la valeur 0 dans hello *azuredeploy.json* fichier, car l’équilibrage de charge interne ASEs ont uniquement une seule adresse d’équilibrage de charge interne. Il n’existe pas d’adresse IP SSL explicite pour un ASE ILB. Par conséquent, toozero doit être définie à hello pool d’adresses IP SSL pour un environnement app service Équilibrage de charge interne. Autrement, une erreur d’approvisionnement se produit. 
 
-Une fois le fichier *azuredeploy.parameters.json* complété, créez l’ASE à l’aide de l’extrait de code PowerShell. Modifiez les chemins d’accès des fichiers de façon à ce qu’ils correspondent aux emplacements des fichiers du modèle Resource Manager sur votre ordinateur. Songez à indiquer vos propres valeurs pour les noms de déploiement Resource Manager et de groupe de ressources :
+Après avoir hello *azuredeploy.parameters.json* fichier est renseigné, créer hello ASE à l’aide d’extrait de code PowerShell hello. Modifier l’emplacement hello chemins toomatch hello Gestionnaire de ressources du fichier de modèle sur votre ordinateur. N’oubliez pas de toosupply vos propres valeurs pour le nom du Gestionnaire de ressources de déploiement hello et le nom de groupe de ressources hello :
 
     $templatePath="PATH\azuredeploy.json"
     $parameterPath="PATH\azuredeploy.parameters.json"
 
     New-AzureRmResourceGroupDeployment -Name "CHANGEME" -ResourceGroupName "YOUR-RG-NAME-HERE" -TemplateFile $templatePath -TemplateParameterFile $parameterPath
 
-La création de l’ASE prend environ une heure. Ensuite, l’ASE apparaît sur le portail dans la liste des ASE pour l’abonnement qui a déclenché le déploiement.
+Cela prend environ une heure pour hello ASE toobe est créé. Puis hello ASE s’affiche dans le portail hello dans liste hello de ASEs pour l’abonnement hello qui a déclenché le déploiement de hello.
 
-## <a name="upload-and-configure-the-default-ssl-certificate"></a>Charger et configurer le certificat SSL « par défaut »
-Un certificat SSL doit être associé à l’ASE en tant que certificat SSL « par défaut » utilisé pour établir les connexions SSL aux applications. Si le suffixe DNS par défaut de l’ASE est *internal-contoso.com*, une connexion à https://some-random-app.internal-contoso.com nécessite un certificat SSL valide pour **.internal-contoso.com*. 
+## <a name="upload-and-configure-hello-default-ssl-certificate"></a>Télécharger et configurer le certificat SSL de « default » hello
+Un certificat SSL doit être associé à hello ASE comme hello « default » certificat SSL utilisé tooestablish SSL connexions tooapps. Si le suffixe DNS hello de ASE valeur par défaut est *contoso.com interne*, un toohttps://some-random-app.internal-contoso.com connexion requiert un certificat SSL valide pour **-contoso.com .internal* . 
 
-Pour disposer d’un certificat SSL valide, vous pouvez recourir à des autorités de certification internes, acheter un certificat à un émetteur externe, ou utiliser un certificat auto-signé. Quelle que soit la source du certificat SSL, les attributs de certificat suivants doivent être configurés correctement :
+Pour disposer d’un certificat SSL valide, vous pouvez recourir à des autorités de certification internes, acheter un certificat à un émetteur externe, ou utiliser un certificat auto-signé. Quelle que soit la source de hello du certificat SSL de hello, hello suivant des attributs de certificat doit être configuré correctement :
 
-* **Objet** : cet attribut doit être défini sur **.votre-domaine-racine-ici.com*.
-* **Autre nom de l’objet** : cet attribut doit inclure à la fois **.votre-domaine-racine-ici.com* et **.scm.votre-domaine-racine-ici.com*. Les connexions SSL au site SCM/Kudu associé à chaque application utilisent une adresse sous la forme *nom-de-votre-application.scm.votre-domaine-racine-ici.com*.
+* **Objet**: cet attribut doit être défini trop **.votre-racine-domaine-here.com*.
+* **Autre nom de l’objet** : cet attribut doit inclure à la fois **.votre-domaine-racine-ici.com* et **.scm.votre-domaine-racine-ici.com*. Toohello de connexions SSL site SCM/Kudu associé à chaque application utiliser une adresse sous forme de hello *your-app-name.scm.your-root-domain-here.com*.
 
-Une fois le certificat SSL valide obtenu, deux étapes préparatoires supplémentaires sont nécessaires. Convertissez/enregistrez le certificat SSL en tant que fichier de format .pfx. N’oubliez pas que le fichier .pfx doit inclure tous les certificats racines et intermédiaires. Sécurisez-le avec un mot de passe.
+Une fois le certificat SSL valide obtenu, deux étapes préparatoires supplémentaires sont nécessaires. Certificat SSL de hello Convert/enregistrer comme fichier .pfx. N’oubliez pas de fichier .pfx hello doit inclure tous les intermédiaire et les certificats racine. Sécurisez-le avec un mot de passe.
 
-Le fichier .pfx doit être converti en une chaîne au format base64, car le certificat SSL est chargé à l’aide d’un modèle Azure Resource Manager. Étant donné que les modèles Resource Manager sont des fichiers texte, le fichier .pfx doit être converti en chaîne base64. Ainsi, il peut être inclus en tant que paramètre du modèle.
+fichier .pfx de Hello doit toobe converti en une chaîne encodée base64, car le certificat SSL de hello est téléchargé à l’aide d’un modèle de gestionnaire de ressources. Étant donné que les modèles de gestionnaire de ressources sont des fichiers texte, fichier .pfx de hello doit être converti en une chaîne en base 64. Ainsi, il peut être inclus en tant que paramètre de modèle de hello.
 
-Utilisez l’extrait de code PowerShell ci-dessous pour effectuer les opérations suivantes :
+Utilisez hello suivant extrait de code PowerShell :
 
 * générer un certificat auto-signé ;
-* exporter le certificat dans un fichier .pfx ;
-* convertir le fichier .pfx en une chaîne codée en base64 ;
-* enregistrer la chaîne codée en base64 dans un fichier distinct. 
+* Exporter le certificat de hello en tant que fichier .pfx.
+* Convertir le fichier .pfx de hello en une chaîne codée en base64.
+* Enregistrez-le hello chaîne codée en base64 tooa distinct. 
 
-Le code PowerShell pour l’encodage en base64 à été adapté à partir du [Blog relatif aux scripts PowerShell][examplebase64encoding]:
+Ce code PowerShell pour le codage base64 est une adaptation de hello [blog des scripts PowerShell][examplebase64encoding]:
 
         $certificate = New-SelfSignedCertificate -certstorelocation cert:\localmachine\my -dnsname "*.internal-contoso.com","*.scm.internal-contoso.com"
 
@@ -94,16 +94,16 @@ Le code PowerShell pour l’encodage en base64 à été adapté à partir du [Bl
         $fileContentEncoded = [System.Convert]::ToBase64String($fileContentBytes)
         $fileContentEncoded | set-content ($fileName + ".b64")
 
-Une fois le certificat SSL généré et converti en chaîne codée en base64, utilisez l’exemple de modèle Azure Resource Manager [Configurer le certificat SSL par défaut][quickstartconfiguressl] disponible sur GitHub. 
+Une fois que le certificat SSL de hello est généré avec succès et convertie la chaîne codée en base64 de tooa, utiliser modèle de gestionnaire de ressources exemple hello [configurer un certificat SSL par défaut hello] [ quickstartconfiguressl] sur GitHub. 
 
-Les paramètres figurant dans le fichier *azuredeploy.parameters.json* sont répertoriés ci-dessous :
+Hello paramètres Bonjour *azuredeploy.parameters.json* fichier sont répertoriées ici :
 
-* *appServiceEnvironmentName*: nom de l’ILB ASE configuré.
-* *existingAseLocation*: chaîne de texte contenant la région Azure où l’ILB ASE a été déployé.  Par exemple : « Centre-Sud des États-Unis ».
-* *pfxBlobString*: représentation sous forme de chaîne codée en base64 du fichier .pfx. Utilisez l’extrait de code présenté précédemment, et copiez la chaîne contenue dans « exportedcert.pfx.b64 ». Collez celle-ci en tant que valeur de l’attribut *pfxBlobString*.
-* *password*: mot de passe utilisé pour sécuriser le fichier .pfx.
-* *certificateThumbprint*: empreinte numérique du certificat. Si vous récupérez cette valeur à partir de Powershell (par exemple, *$certificate.Thumbprint* dans l’extrait de code précédent), vous pouvez utiliser la valeur telle quelle. Si vous copiez la valeur à partir de la boîte de dialogue du certificat Windows, n’oubliez pas de retirer les espaces superflus. La valeur *certificateThumbprint* doit se présenter sous la forme suivante : AF3143EB61D43F6727842115BB7F17BBCECAECAE.
-* *certificateName*: identificateur de chaîne convivial de votre choix permettant d’identifier le certificat. Ce nom fait partie de l’identificateur Resource Manager unique pour l’entité *Microsoft.Web/certificates* qui représente le certificat SSL. Le nom *doit* se terminer par le suffixe suivant : \_nomdevotreASE_ÉquilibrageChareInterneASE. Le portail Azure utilise ce suffixe en tant qu’indicateur signalant que le certificat est utilisé pour sécuriser ASE avec ILB.
+* *appServiceEnvironmentName*: nom hello Hello ASE d’équilibrage de charge en cours de configuration.
+* *existingAseLocation*: chaîne de texte contenant hello région Azure où hello ASE d’équilibrage de charge interne a été déployé.  Par exemple : « Centre-Sud des États-Unis ».
+* *pfxBlobString*: hello la représentation sous forme de chaîne encodée based64 du fichier .pfx de hello. Utilisez l’extrait de code hello présentée précédemment et copier la chaîne hello contenue dans « exportedcert.pfx.b64 ». Coller comme valeur hello Hello *pfxBlobString* attribut.
+* *mot de passe*: le fichier .pfx hello hello mot de passe utilisé toosecure.
+* *certificateThumbprint*: hello empreinte numérique du certificat. Si vous récupérez cette valeur à partir de PowerShell (par exemple, *$certificate. L’empreinte numérique* de hello extrait de code précédent), vous pouvez utiliser la valeur hello est. Si vous copiez la valeur de hello à partir de la boîte de dialogue de certificat Windows hello, n’oubliez pas toostrip les espaces superflus de hello. Hello *certificateThumbprint* doit ressembler à AF3143EB61D43F6727842115BB7F17BBCECAECAE.
+* *certificateName*: un identificateur de chaîne conviviale de votre choix utilisé certificat de hello tooidentity. nom de Hello est utilisé en tant que partie d’identificateur de gestionnaire de ressources unique hello pour hello *Microsoft.Web/certificates* entité qui représente le certificat SSL de hello. nom de Hello *doit* se terminer par hello suivant suffixe : \_yourASENameHere_InternalLoadBalancingASE. Hello portail Azure utilise ce suffixe, comme un indicateur de hello certificat est utilisé toosecure ASE activé d’équilibrage de charge interne.
 
 Un exemple abrégé du fichier *azuredeploy.parameters.json* est présenté ici :
 
@@ -132,27 +132,27 @@ Un exemple abrégé du fichier *azuredeploy.parameters.json* est présenté ici�
          }
     }
 
-Une fois le fichier *azuredeploy.parameters.json* complété, configurez le certificat SSL par défaut l’aide de l’extrait de code PowerShell. Modifiez les chemins d’accès aux fichiers pour qu’ils correspondent aux emplacements où se trouvent les fichiers du modèle Azure Resource Manager sur votre ordinateur. Songez à indiquer vos propres valeurs pour les noms de déploiement Resource Manager et de groupe de ressources :
+Après avoir hello *azuredeploy.parameters.json* fichier est renseigné, configurer un certificat SSL de hello par défaut à l’aide d’extrait de code PowerShell hello. Modifiez toomatch de chemins d’accès de fichier hello où se trouvent les fichiers de modèle de gestionnaire de ressources hello sur votre ordinateur. N’oubliez pas de toosupply vos propres valeurs pour le nom du Gestionnaire de ressources de déploiement hello et le nom de groupe de ressources hello :
 
      $templatePath="PATH\azuredeploy.json"
      $parameterPath="PATH\azuredeploy.parameters.json"
 
      New-AzureRmResourceGroupDeployment -Name "CHANGEME" -ResourceGroupName "YOUR-RG-NAME-HERE" -TemplateFile $templatePath -TemplateParameterFile $parameterPath
 
-L’application de la modification prend environ 40 minutes par serveur frontal ASE. Par exemple, pour un ASE dimensionné par défaut utilisant deux serveurs frontaux, l’application du modèle prend environ une heure et vingt minutes. Lorsque le modèle est en cours d’exécution, l’ASE ne peut pas mettre à l’échelle.  
+Il prend environ 40 minutes par modification de hello tooapply ASE front-end. Par exemple, pour ASE dimensionné par défaut qui utilise deux frontaux, le modèle de hello prend autour d’une heure et 20 minutes toocomplete. Pendant l’exécution de modèle de hello, hello ASE ne peut pas mettre à l’échelle.  
 
-Une fois l’exécution du modèle terminé, les applications sur l’ILB ASE est accessible via le protocole HTTPS. Les connexions sont sécurisées à l’aide du certificat SSL par défaut. Le certificat SSL par défaut est utilisé lorsque des applications sur l’ASE ILB sont adressée à l’aide d’une combinaison de leur nom et du nom d’hôte par défaut. Par exemple, *https://mycustomapp.internal-contoso.com* utilise le certificat SSL par défaut pour *.internal-contoso.com.
+Une fois le modèle de hello terminée, applications sur hello ASE d’équilibrage de charge interne est accessible via le protocole HTTPS. connexions de Hello sont sécurisées à l’aide du certificat SSL de hello par défaut. certificat SSL de Hello par défaut est utilisé lorsque les applications sur hello ASE d’équilibrage de charge interne sont adressées à l’aide d’une combinaison de nom de l’application hello plus le nom d’hôte par défaut hello. Par exemple, https://mycustomapp.internal-contoso.com utilise le certificat SSL par défaut hello pour **-contoso.com .internal*.
 
-Cependant, comme pour les applications qui s’exécutent sur le service mutualisé public, les développeurs peuvent configurer des noms d’hôtes personnalisés pour des applications individuelles. Ils peuvent également configurer des liaisons de certificat SNI SSL uniques pour différentes applications.
+Toutefois, tout comme les applications qui s’exécutent sur le service partagé de hello publique, les développeurs peuvent configurer des noms d’hôtes personnalisés pour les applications individuelles. Ils peuvent également configurer des liaisons de certificat SNI SSL uniques pour différentes applications.
 
 ## <a name="app-service-environment-v1"></a>Environnement App Service v1 ##
-L’environnement App Service est disponible en deux versions : ASEv1 et ASEv2. Les informations précédentes sont basées sur ASEv2. Cette section montre les différences entre ASEv1 et ASEv2.
+L’environnement App Service est disponible en deux versions : ASEv1 et ASEv2. Hello informations précédentes était basé sur ASEv2. Cette indique la section hello de différences entre ASEv1 et ASEv2.
 
-Dans ASEv1, vous gérez toutes les ressources manuellement. Celles-ci incluent les serveurs frontaux, les workers et les adresses IP utilisées pour le protocole SSL basé sur IP. Pour pouvoir augmenter la taille des instances de votre plan App Service, vous devez commencer par augmenter la taille des instances du pool de workers dans lequel vous voulez héberger le plan.
+Dans ASEv1, vous gérez toutes les ressources de hello manuellement. Qui inclut frontaux hello, aux employés et les adresses IP utilisées pour SSL basée sur IP. Avant que vous pouvez faire évoluer votre plan App Service, vous devez monter en charge pool de travail hello que vous souhaitez toohost il.
 
-Les versions ASEv1 et ASEv2 utilisent un modèle de tarification différent. Dans ASEv1, vous payez pour chaque cœur alloué. Cela inclut les cœurs utilisés pour les serveurs frontaux ou les workers qui n’hébergent pas de charge de travail. Dans la version ASEv1, la taille d’échelle maximale par défaut d’un environnement App Service correspond à un total de 55 hôtes, dont les workers et les frontends. L’un des avantages d’un ASEv1 est qu’il peut être déployé sur un réseau virtuel classique et sur un réseau virtuel Resource Manager. Pour plus d’informations sur ASEv1, voir [Présentation d’App Service Environment v1][ASEv1Intro].
+Les versions ASEv1 et ASEv2 utilisent un modèle de tarification différent. Dans ASEv1, vous payez pour chaque cœur alloué. Cela inclut les cœurs utilisés pour les serveurs frontaux ou les workers qui n’hébergent pas de charge de travail. Dans ASEv1, taille de l’échelle de la valeur maximale par défaut hello d’un environnement app service est 55 nombre total d’hôtes. dont les workers et les frontends. Un avantage tooASEv1 est qu’il peut être déployé dans un réseau virtuel classique et un réseau virtuel du Gestionnaire de ressources. toolearn en savoir plus sur ASEv1, consultez [introduction de v1 environnement App Service][ASEv1Intro].
 
-Pour créer un ASEv1 à l’aide d’un modèle Resource Manager, voir [Comment créer un ILB ASE à l’aide des modèles Azure Resource Manager][ILBASEv1Template].
+toocreate un ASEv1 à l’aide d’un modèle de gestionnaire de ressources, consultez [créer un v1 ASE d’équilibrage de charge interne avec un modèle de gestionnaire de ressources][ILBASEv1Template].
 
 
 <!--Links-->

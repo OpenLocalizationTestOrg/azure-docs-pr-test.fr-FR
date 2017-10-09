@@ -1,6 +1,6 @@
 ---
-title: "Automatiser l’audit NSG avec la vue Groupe de sécurité réseau Network Watcher | Microsoft Docs"
-description: "Cette page fournit des instructions sur configuration de l’audit d’un groupe de sécurité réseau"
+title: "l’audit de groupe de sécurité réseau aaaAutomate avec l’affichage de groupe de sécurité de l’Observateur réseau Azure | Documents Microsoft"
+description: "Cette page fournit des instructions sur la façon de tooconfigure l’audit d’un groupe de sécurité réseau"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,29 +14,29 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: a91da330e677c85f16f6f4e506613576b6507d7c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 24fc418c433fceaf55a74b7c3b0e354dc46c8729
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="automate-nsg-auditing-with-azure-network-watcher-security-group-view"></a>Automatiser l’audit NSG avec la vue de groupe de sécurité réseau Network Watcher
 
-Les clients sont souvent confrontés au défi de la vérification des mesures de sécurité de leur infrastructure. Ce défi n’est pas différent pour leurs machines virtuelles dans Azure. Il est important de disposer d’un profil de sécurité similaire en fonction des règles de groupe de sécurité réseau (NSG) appliquées. Grâce à la vue Groupe de sécurité, vous pouvez désormais obtenir la liste des règles appliquées à une machine virtuelle au sein d’un NSG. Vous pouvez définir un profil de sécurité NSG final, ouvrir la vue Groupe de sécurité selon une fréquence hebdomadaire, puis comparer la sortie au profil final et créer un rapport. Vous pouvez ainsi identifier facilement toutes les machines virtuelles qui ne sont pas conformes au profil de sécurité établi.
+Les clients sont souvent confrontés à hello défi de vérification posture de sécurité hello de leur infrastructure. Ce défi n’est pas différent pour leurs machines virtuelles dans Azure. Il est important toohave un profil de sécurité similaire selon les règles du groupe de sécurité réseau (NSG) hello appliquées. À l’aide de hello vue du groupe de sécurité, vous pouvez désormais obtenir la liste hello des règles appliquées tooa machine virtuelle au sein d’un groupe de sécurité réseau. Vous pouvez définir un profil de sécurité de groupe de sécurité réseau finale et lancer l’affichage du groupe de sécurité à un rythme hebdomadaire et comparer le profil de hello sortie toohello finale (Gold) et créer un rapport. Ainsi, vous pouvez identifier facilement toutes les machines virtuelles hello qui ne sont pas conforment toohello prescrit le profil de sécurité.
 
 Si vous n’êtes pas familiarisé avec les groupes de sécurité réseau, consultez la [vue d’ensemble de la sécurité réseau](../virtual-network/virtual-networks-nsg.md)
 
 ## <a name="before-you-begin"></a>Avant de commencer
 
-Dans ce scénario, vous comparez une base correcte connue avec les résultats de la vue de groupe de sécurité renvoyés pour une machine virtuelle.
+Dans ce scénario, vous comparez un groupe de sécurité connus bonne ligne de base toohello afficher les résultats retournés pour un ordinateur virtuel.
 
-Ce scénario suppose que vous ayez déjà suivi la procédure décrite dans [Create a Network Watcher (Créer une instance Network Watcher)](network-watcher-create.md) pour créer une instance Network Watcher. Ce scénario suppose également qu’un groupe de ressources avec une machine virtuelle valide existe et peut être utilisé.
+Ce scénario suppose que vous avez déjà suivi les étapes hello dans [créer un observateur réseau](network-watcher-create.md) toocreate un observateur réseau. scénario de Hello suppose également qu’un groupe de ressources avec un ordinateur virtuel valide existe toobe utilisé.
 
 ## <a name="scenario"></a>Scénario
 
-Le scénario décrit dans cet article obtient la vue de groupe de sécurité pour une machine virtuelle.
+scénario Hello abordée dans cet article Obtient l’affichage du groupe de sécurité pour un ordinateur virtuel hello.
 
-Dans ce scénario, vous allez :
+Dans ce scénario, vous allez :
 
 - Récupérer un ensemble de règles correct connu
 - Récupérer une machine virtuelle avec l’API REST
@@ -45,7 +45,7 @@ Dans ce scénario, vous allez :
 
 ## <a name="retrieve-rule-set"></a>Récupérer l’ensemble de règles
 
-La première étape dans cet exemple consiste à utiliser une base existante. L’exemple suivant est un json extrait d’un groupe de sécurité réseau existant à l’aide de l’applet de commande `Get-AzureRmNetworkSecurityGroup` qui est utilisée comme base pour cet exemple.
+première étape de Hello dans cet exemple est toowork avec une ligne de base existante. exemple Hello est certains json extraite à partir d’un groupe de sécurité réseau existant à l’aide de hello `Get-AzureRmNetworkSecurityGroup` applet de commande qui est utilisée comme ligne de base hello pour cet exemple.
 
 ```json
 [
@@ -112,9 +112,9 @@ La première étape dans cet exemple consiste à utiliser une base existante. L�
 ]
 ```
 
-## <a name="convert-rule-set-to-powershell-objects"></a>Convertir l’ensemble de règles en objets PowerShell
+## <a name="convert-rule-set-toopowershell-objects"></a>Convertir les objets tooPowerShell du jeu de règles
 
-Dans cette étape, nous lisons un fichier json qui a été créé précédemment avec les règles qui sont censées se trouver sur le groupe de sécurité réseau pour cet exemple.
+Dans cette étape, nous lisons un fichier json qui a été créé précédemment avec les règles hello toobe attendu sur hello groupe de sécurité réseau pour cet exemple.
 
 ```powershell
 $nsgbaserules = Get-Content -Path C:\temp\testvm1-nsg.json | ConvertFrom-Json
@@ -122,7 +122,7 @@ $nsgbaserules = Get-Content -Path C:\temp\testvm1-nsg.json | ConvertFrom-Json
 
 ## <a name="retrieve-network-watcher"></a>Récupérer Network Watcher
 
-L’étape suivante consiste à récupérer l’instance Network Watcher. La variable `$networkWatcher` est transmise à l’applet de commande `AzureRmNetworkWatcherSecurityGroupView`.
+étape suivante de Hello est instance de l’Observateur réseau tooretrieve hello. Hello `$networkWatcher` variable est passée toohello `AzureRmNetworkWatcherSecurityGroupView` applet de commande.
 
 ```powershell
 $nw = Get-AzurermResource | Where {$_.ResourceType -eq "Microsoft.Network/networkWatchers" -and $_.Location -eq "WestCentralUS" } 
@@ -131,7 +131,7 @@ $networkWatcher = Get-AzureRmNetworkWatcher -Name $nw.Name -ResourceGroupName $n
 
 ## <a name="get-a-vm"></a>Obtenir une machine virtuelle
 
-Une machine virtuelle est requise sur laquelle exécuter l’applet de commande `Get-AzureRmNetworkWatcherSecurityGroupView`. L’exemple suivant obtient un objet machine virtuelle.
+Un ordinateur virtuel est requis toorun hello `Get-AzureRmNetworkWatcherSecurityGroupView` applet de commande par rapport à. Bonjour à l’exemple suivant obtient un objet ordinateur virtuel.
 
 ```powershell
 $VM = Get-AzurermVM -ResourceGroupName "testrg" -Name "testvm1"
@@ -139,17 +139,17 @@ $VM = Get-AzurermVM -ResourceGroupName "testrg" -Name "testvm1"
 
 ## <a name="retrieve-security-group-view"></a>Récupérer la vue Groupe de sécurité
 
-L’étape suivante consiste à récupérer le résultat de la vue Groupe de sécurité. Ce résultat est comparé au json « de base » qui a été présenté précédemment.
+étape suivante de Hello est le résultat de vue du groupe de sécurité tooretrieve hello. Le résultat est comparé toohello « baseline » json qui a été indiqué précédemment.
 
 ```powershell
 $secgroup = Get-AzureRmNetworkWatcherSecurityGroupView -NetworkWatcher $networkWatcher -TargetVirtualMachineId $VM.Id
 ```
 
-## <a name="analyzing-the-results"></a>Analyser les résultats
+## <a name="analyzing-hello-results"></a>Analyse des résultats de hello
 
-La réponse est regroupée par interfaces réseau. Les différents types de règles renvoyées sont efficaces et constituent les règles de sécurité par défaut. Le résultat est subdivisé en fonction de l’application, sur un sous-réseau ou une carte réseau virtuelle.
+réponse de Hello est regroupé par les interfaces réseau. Hello différents types de règles retournées sont efficaces et règles de sécurité par défaut. résultat de Hello est davantage ventilé par comment elle est appliquée, sur un sous-réseau ou une carte réseau virtuelle.
 
-Le script PowerShell suivant compare les résultats de la vue Groupe de sécurité avec une sortie existante d’un NSG. L’exemple suivant est un exemple simple de la façon dont les résultats peuvent être comparés avec l’applet de commande `Compare-Object`.
+Hello script PowerShell suivant compare les résultats de hello de hello sortie existante de tooan vue de groupe de sécurité d’un groupe de sécurité réseau. Bonjour exemple suivant est un exemple simple de la façon dont les résultats de hello puissent être comparés avec `Compare-Object` applet de commande.
 
 ```powershell
 Compare-Object -ReferenceObject $nsgbaserules `
@@ -157,7 +157,7 @@ Compare-Object -ReferenceObject $nsgbaserules `
 -Property Name,Description,Protocol,SourcePortRange,DestinationPortRange,SourceAddressPrefix,DestinationAddressPrefix,Access,Priority,Direction
 ```
 
-L’exemple suivant est le résultat. Vous pouvez constater que deux règles qui se trouvaient dans le premier ensemble de règles n’étaient pas présentes dans la comparaison.
+Bonjour à l’exemple suivant résulte hello. Vous pouvez voir deux règles hello qui étaient dans le premier ensemble de règles hello n’étaient pas présentes dans la comparaison de hello.
 
 ```
 Name                     : My2ndRuleDoNotDelete
@@ -187,7 +187,7 @@ SideIndicator            : <=
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Si les paramètres ont été modifiés, consultez la page [Gérer les groupes de sécurité réseau](../virtual-network/virtual-network-manage-nsg-arm-portal.md) afin d’effectuer le suivi du groupe de sécurité réseau et des règles de sécurité concernés.
+Si les paramètres ont été modifiés, consultez [gérer les groupes de sécurité réseau](../virtual-network/virtual-network-manage-nsg-arm-portal.md) tootrack vers le bas hello sécurité et groupe de règles de sécurité réseau qui sont en question.
 
 
 

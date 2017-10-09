@@ -1,6 +1,6 @@
 ---
-title: "Présentation du cache local d’Azure App Service | Microsoft Docs"
-description: "Cet article décrit comment activer et redimensionner le cache local d’Azure App Service, puis comment interroger l’état de cette fonctionnalité."
+title: "vue d’ensemble de la mémoire Cache locale de Service d’application aaaAzure | Documents Microsoft"
+description: "Cet article décrit comment tooenable, redimensionner et requête hello état de la fonctionnalité de Cache Local du Service application Azure hello"
 services: app-service
 documentationcenter: app-service
 author: SyntaxC4
@@ -16,44 +16,44 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/04/2016
 ms.author: cfowler
-ms.openlocfilehash: e00d453e9ae34cafb5ce753f63c253e954d6b09a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 220331ac7e15352a434d63266701071024d868c9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-app-service-local-cache-overview"></a>Présentation du cache local d’Azure App Service
-Le contenu des applications web Azure est stocké sur Azure Storage et est exposé de manière durable en tant que partage de contenu. Destinée à fonctionner avec de nombreuses applications, cette conception présente les caractéristiques suivantes :  
+Le contenu des applications web Azure est stocké sur Azure Storage et est exposé de manière durable en tant que partage de contenu. Cette conception est prévue toowork avec un large éventail d’applications et a hello suivant d’attributs :  
 
-* Le contenu est partagé entre plusieurs instances de machine virtuelle de l’application web.
-* Le contenu est durable et peut être modifié en exécutant des applications web.
-* Les fichiers journaux et les fichiers de données de diagnostic sont disponibles sous le même dossier de contenu partagé.
-* La publication d’un nouveau contenu met directement à jour le dossier de contenu, que vous pouvez consulter tout de suite via le site web SCM et l’application web en cours d’exécution (pour obtenir le contenu le plus récent, certaines technologies, comme ASP.NET, lancent généralement un redémarrage de l’application web quand des modifications de fichier sont effectuées).
+* contenu de Hello est partagé entre plusieurs instances de machine virtuelle (VM) de l’application web hello.
+* contenu de Hello est durable et peut être modifié par les applications web en cours d’exécution.
+* Fichiers journaux et les fichiers de données de diagnostic sont disponibles sous hello partagée dossier de contenu.
+* Publication de nouveaux contenus directement des mises à jour hello dossier de contenu. Vous pouvez immédiatement hello d’affichage de contenu par le biais du site Web SCM hello et hello l’application web en cours d’exécution (généralement des technologies telles que ASP.NET lancer un redémarrage d’application web sur certains fichiers modifications tooget hello contenu le plus récent).
 
 Tandis que de nombreuses applications web utilisent une seule ou la totalité de ces fonctionnalités, certaines autres ont uniquement besoin d’un magasin de contenu en lecture seule très performant à partir duquel elles peuvent s’exécuter avec une haute disponibilité. Ces applications peuvent tirer profit d’une instance de machine virtuelle sur un cache local spécifique.
 
-La fonctionnalité de cache local d’Azure App Service fournit une vue de rôle web de votre contenu. Ce contenu est un cache d’écriture avec rejet de votre contenu de stockage qui est créé de façon asynchrone au démarrage du site. Quand le cache est prêt, le site est basculé pour s’exécuter sur le contenu mis en cache. Les applications web qui s’exécutent sur le cache local bénéficient des avantages suivants :
+fonctionnalité de Cache Local du Service application Azure Hello fournit une vue de rôle web de votre contenu. Ce contenu est un cache d’écriture avec rejet de votre contenu de stockage qui est créé de façon asynchrone au démarrage du site. Lorsque le cache de hello est prêt, site de hello est commuté toorun de contenu hello mis en cache. Les applications Web qui s’exécutent sur le Cache Local ont hello avantages suivants :
 
-* Elles sont protégées contre les latences qui se produisent quand elles accèdent au contenu sur Azure Storage.
-* Elles ne sont pas affectées par les mises à niveau planifiées ou les temps d’arrêt imprévus, ni par d’autres interruptions éventuelles d’Azure Storage sur les serveurs qui fournissent le partage de contenu.
-* Elles ne redémarrent pas systématiquement après des modifications du partage de stockage.
+* Ils sont abri toolatencies qui se produisent lorsqu’ils accèdent à des contenus sur le stockage Azure.
+* Elles sont mises à niveau abri toohello planifié ou à un temps mort planifié et toutes les autres problèmes avec le stockage Azure qui se produisent sur les serveurs qui font Office de partage de contenu hello.
+* Ils ont moins de redémarrages application en raison de modifications de partage toostorage.
 
-## <a name="how-local-cache-changes-the-behavior-of-app-service"></a>Impact du cache local sur le comportement d’App Service
-* Le cache local est une copie des dossiers /site et /siteextensions de l’application web. Il est créé sur l’instance de machine virtuelle locale au démarrage de l’application web. La taille du cache local par application web est limitée à 300 Mo par défaut, mais vous pouvez augmenter cette taille jusqu’à 2 Go.
-* Le cache local est en lecture-écriture. Toutefois, les modifications sont ignorées quand l’application web change de machines virtuelles ou est redémarrée. N’utilisez pas le cache local pour des applications qui stockent des données stratégiques dans le magasin de contenu.
-* Les applications web peuvent continuer à écrire des fichiers journaux et des données de diagnostic comme elles le font habituellement. Toutefois, les fichiers journaux et les données sont stockés localement sur la machine virtuelle. Ils sont ensuite régulièrement copiés dans le magasin de contenu partagé. Malgré la copie dans le magasin de contenu partagé, les écritures différées risquent d’être perdues en cas d’arrêt soudain d’une instance de machine virtuelle.
-* La structure des dossiers LogFiles et Data est modifiée pour les applications web qui utilisent le cache local. Ces dossiers de stockage contiennent désormais des sous-dossiers dont le nom est formé d’un identificateur unique et d’un horodatage. Chaque sous-dossier correspond à une instance de machine virtuelle sur laquelle l’application web est en cours d’exécution ou s’est exécutée.  
-* La publication des modifications apportées à l’application web s’effectue dans le magasin de contenu partagé, quel que soit le mécanisme de publication utilisé. Cette conception garantit la durabilité du contenu publié. Pour actualiser le cache local de l’application web, vous devez redémarrer l’application. Si cette étape vous semble de trop, vous pouvez rendre le cycle de vie transparent. vous pouvez rendre le cycle de vie transparent. Pour plus d’informations, consultez la suite de cet article.
-* D:\Home pointe vers le cache local. D:\Local continue de pointer sur le stockage spécifique de machine virtuelle temporaire.
-* L’affichage de contenu par défaut du site SCM continue à être celui du magasin de contenu partagé.
+## <a name="how-local-cache-changes-hello-behavior-of-app-service"></a>Comment le Cache Local modifie le comportement hello du Service d’application
+* le cache local Hello est une copie de hello /site /siteextensions dossiers et de l’application web hello. Il est créé sur une instance de machine virtuelle locale hello sur le démarrage de l’application web. Hello taille du cache local de hello par l’application web est limitée Mo too300 par défaut, mais vous pouvez l’augmenter les too2 go.
+* le cache local Hello est en lecture-écriture. Toutefois, toutes les modifications seront ignorées lors hello web application déplace les ordinateurs virtuels ou obtient redémarrée. Vous ne devez pas utiliser le Cache Local pour les applications qui stockent des données critiques dans le magasin de contenu hello.
+* Les applications Web peuvent continuer toowrite des fichiers journaux et les données de diagnostic, comme ils le font actuellement. Fichiers journaux et données, cependant, sont stockées localement sur hello machine virtuelle. Ils sont ensuite copiées régulièrement toohello magasin de contenu partagé. magasin de contenu partagé copie toohello Hello est un meilleur effort--permet de sauvegarder écriture pourrait être perdues en raison de pannes soudaines de tooa d’une instance de la machine virtuelle.
+* Il existe une modification de la structure de dossiers hello hello LogFiles et des dossiers de données pour les applications web qui utilisent le Cache Local. Il existe désormais des sous-dossiers dans les dossiers de fichiers journaux et de données de stockage hello qui suivent le modèle de désignation hello de « identificateur » + horodatage. Chacun des sous-dossiers de hello correspond tooa instance d’ordinateur virtuel où l’application hello web est en cours d’exécution ou exécuté.  
+* Publication modifications toohello l’application web par le biais de mécanismes de publication hello publiera toohello magasin de contenu partagé. Ceci est normal car nous souhaitons hello publié toobe contenu durable. toorefresh hello le cache local de l’application web de hello, il doit toobe redémarré. Cela sembler une étape excessive cycle de hello toomake transparente, consultez les informations de hello plus loin dans cet article.
+* D:\Home pointera toohello le cache local. D:\Local continue pointant toohello machine virtuelle spécifique temporaire.
+* affichage du contenu par défaut Hello du site SCM hello continue toobe qui Hello magasin de contenu partagé.
 
 ## <a name="enable-local-cache-in-app-service"></a>Activer le cache local dans App Service
-Configurez le cache local à l’aide d’une combinaison de paramètres d’application réservés. Pour configurer ces paramètres d’application, vous pouvez utiliser les méthodes suivantes :
+Configurez le cache local à l’aide d’une combinaison de paramètres d’application réservés. Vous pouvez configurer ces paramètres d’application à l’aide de hello méthodes suivantes :
 
 * [Portail Azure](#Configure-Local-Cache-Portal)
 * [Azure Resource Manager](#Configure-Local-Cache-ARM)
 
-### <a name="configure-local-cache-by-using-the-azure-portal"></a>Configurer le cache local à l’aide du portail Azure
+### <a name="configure-local-cache-by-using-hello-azure-portal"></a>Configurer le Cache Local à l’aide de hello portail Azure
 <a name="Configure-Local-Cache-Portal"></a>
 
 Activez le cache local pour chaque application web en utilisant ce paramètre d’application : `WEBSITE_LOCAL_CACHE_OPTION` = `Always`  
@@ -84,33 +84,33 @@ Activez le cache local pour chaque application web en utilisant ce paramètre d�
 ...
 ```
 
-## <a name="change-the-size-setting-in-local-cache"></a>Modifier le paramètre de taille dans le cache local
-Par défaut, la taille du cache local est de **300 Mo**. Elle inclut les dossiers /site et /siteextensions qui sont copiés à partir du magasin de contenu, ainsi que tous les dossiers de journaux et de données créés localement. Pour augmenter cette limite, utilisez le paramètre d’application `WEBSITE_LOCAL_CACHE_SIZEINMB`. Vous pouvez augmenter la taille jusqu’à **2 Go** (2 000 Mo) par application web.
+## <a name="change-hello-size-setting-in-local-cache"></a>Modifier le paramètre de taille hello dans le Cache Local
+Par défaut, taille de cache local hello est **300 Mo**. Cela inclut les /site hello et /siteextensions les dossiers qui sont copiés à partir de hello contenu magasin, ainsi que toute créées localement les dossiers des journaux et de données. tooincrease cette limite, utilisez le paramètre d’application hello `WEBSITE_LOCAL_CACHE_SIZEINMB`. Vous pouvez augmenter la taille de hello jusqu'à trop**2 Go** (2 000 Mo) par l’application web.
 
 ## <a name="best-practices-for-using-app-service-local-cache"></a>Bonnes pratiques pour utiliser le cache local d’App Service
-Nous vous recommandons d’utiliser le cache local conjointement avec la fonctionnalité [Environnements de préproduction](../app-service-web/web-sites-staged-publishing.md) .
+Nous vous recommandons d’utiliser le Cache Local en conjonction avec hello [environnements de préproduction](../app-service-web/web-sites-staged-publishing.md) fonctionnalité.
 
-* Ajoutez le paramètre d’application *associé* `WEBSITE_LOCAL_CACHE_OPTION` avec la valeur `Always` à votre emplacement de **production**. Si vous utilisez le paramètre d’application `WEBSITE_LOCAL_CACHE_SIZEINMB`, ajoutez-le également comme paramètre associé à votre emplacement de production.
-* Créez un emplacement de **préproduction** pour la publication. En règle générale, si vous utilisez le cache local pour l’emplacement de production, vous n’avez pas à définir l’emplacement de préproduction pour utiliser le cache local en vue d’implémenter un cycle de vie build-déploiement-test transparent.
+* Ajouter hello *rémanentes* paramètre d’application `WEBSITE_LOCAL_CACHE_OPTION` avec la valeur de hello `Always` tooyour **Production** emplacement. Si vous utilisez `WEBSITE_LOCAL_CACHE_SIZEINMB`, également l’ajouter en tant que paramètre rémanentes tooyour Production slot.
+* Créer un **intermédiaire** emplacement et l’emplacement intermédiaire de tooyour de publication. Vous ne définissez généralement pas hello emplacement toouse le Cache Local tooenable un cycle de vie de génération-déploiement-test transparente pour intermédiaires si vous bénéficiez des avantages de hello du Cache Local pour l’emplacement de production hello de mise en lots.
 * Testez votre site par rapport à votre emplacement de préproduction.  
 * Quand vous êtes prêt, lancez une [opération d’échange](../app-service-web/web-sites-staged-publishing.md#Swap) entre vos emplacements de préproduction et de production.  
-* Les paramètres associés incluent un nom et sont rattachés à un emplacement. Ainsi, quand l’emplacement de préproduction est échangé avec l’emplacement de production, il hérite les paramètres d’application du cache local. L’emplacement de production qui vient d’être échangé s’exécute sur le cache local après quelques minutes. Il est ensuite initialisé dans le cadre de l’initialisation des emplacements après l’échange. Une fois l’échange des emplacements terminé, votre emplacement de production s’exécute sur le cache local.
+* Paramètres rémanentes incluent les nom et emplacement de tooa répétitive. Par conséquent, lors de l’emplacement intermédiaire de hello obtient permuté en Production, elle hérite des paramètres de l’application hello le Cache Local. Hello échangés nouvellement Production emplacement sera exécuté sur le cache local hello après quelques minutes et s’être préparée dans le cadre de la préparation de l’emplacement après l’échange. Par conséquent, lors de l’échange d’emplacement hello est terminée, votre emplacement de Production s’exécute sur le cache local hello.
 
 ## <a name="frequently-asked-questions-faq"></a>Forum Aux Questions (FAQ)
-### <a name="how-can-i-tell-if-local-cache-applies-to-my-web-app"></a>Comment savoir si mon application web peut bénéficier de la fonctionnalité de cache local ?
-Utilisez la fonctionnalité de cache local si votre application web a besoin d’un magasin de contenu fiable et très performant, si elle n’utilise pas le magasin de contenu pour écrire des données stratégiques au moment de l’exécution et si elle a une taille totale inférieure à 2 Go. Vous pouvez obtenir la taille totale de vos dossiers /site et /siteextensions en utilisant l’extension de site Utilisation du disque d’Azure Web Apps.  
+### <a name="how-can-i-tell-if-local-cache-applies-toomy-web-app"></a>Comment puis-je savoir si le Cache Local s’applique à l’application web toomy ?
+Si votre application web a besoin d’un magasin de contenu hautes performances, fiable, n’utilise pas les données critiques de hello magasin de contenu toowrite lors de l’exécution et est inférieure à 2 Go de taille totale, les réponses hello sont « Oui » ! tooget hello taille totale de vos dossiers /site et /siteextensions, vous pouvez utiliser l’extension de site hello « Utilisation du disque Azure Web Apps ».  
 
-### <a name="how-can-i-tell-if-my-site-has-switched-to-using-local-cache"></a>Comment savoir si mon site a basculé pour utiliser le cache local ?
-Si vous utilisez la fonctionnalité de cache local avec des environnements de préproduction, l’opération d’échange prend fin seulement après l’initialisation du cache local. Pour vérifier si votre site s’exécute sur le cache local, examinez la variable d’environnement de processus de travail `WEBSITE_LOCALCACHE_READY`. Suivez les instructions fournies dans la page de la [variable d’environnement de processus de travail](https://github.com/projectkudu/kudu/wiki/Process-Threads-list-and-minidump-gcdump-diagsession#process-environment-variable) pour accéder à cette variable sur plusieurs instances.  
+### <a name="how-can-i-tell-if-my-site-has-switched-toousing-local-cache"></a>Comment puis-je savoir si mon site a basculé toousing le Cache Local ?
+Si vous utilisez la fonctionnalité de Cache locale hello avec les environnements de préproduction, opération de permutation hello s’achève pas tant que le Cache Local est préparée. toocheck si votre site est en cours d’exécution sur le Cache Local, vous pouvez vérifier variable d’environnement hello travail processus `WEBSITE_LOCALCACHE_READY`. Utilisez les instructions hello hello [variable d’environnement de processus de travail](https://github.com/projectkudu/kudu/wiki/Process-Threads-list-and-minidump-gcdump-diagsession#process-environment-variable) page tooaccess hello variable d’environnement de processus travail sur plusieurs instances.  
 
-### <a name="i-just-published-new-changes-but-my-web-app-does-not-seem-to-have-them-why"></a>Je viens de publier de nouvelles modifications, mais mon application web ne semble pas les avoir intégrées. Pourquoi ?
-Si votre application web utilise le cache local, vous devez redémarrer votre site pour voir les dernières modifications. Si vous ne voulez pas publier les modifications sur un site de production, consultez les options d’emplacement décrites dans la section sur les bonnes pratiques, plus haut dans cet article.
+### <a name="i-just-published-new-changes-but-my-web-app-does-not-seem-toohave-them-why"></a>Vous venez de publier nouvelles modifications, mais mon application web ne semble pas toohave les. Pourquoi ?
+Si votre application web utilise le Cache Local, vous devez toorestart votre site tooget hello dernières modifications. Ne souhaitez pas que site de production tooa toopublish modifications ? Consultez les options d’emplacement de hello dans la section des pratiques recommandées précédente hello.
 
 ### <a name="where-are-my-logs"></a>Où sont mes journaux ?
-Avec le cache local, vos dossiers de données et de journaux se présentent un peu différemment. Toutefois, la structure de vos sous-dossiers reste la même, excepté que les sous-dossiers se trouvent sous un sous-dossier dont le nom est formé d’un identificateur de machine virtuelle unique et d’un horodatage.
+Avec le cache local, vos dossiers de données et de journaux se présentent un peu différemment. Toutefois, hello structure de votre reste sous-dossiers hello identiques, sauf que les sous-dossiers hello sont imbriqués sous un sous-dossier avec hello format « identificateur de machine virtuelle unique » + horodatage.
 
 ### <a name="i-have-local-cache-enabled-but-my-web-app-still-gets-restarted-why-is-that-i-thought-local-cache-helped-with-frequent-app-restarts"></a>J’ai activé le cache local, mais mon application web redémarre systématiquement. Pourquoi ? Je pensais que le cache local évitait les redémarrages d’application fréquents.
-En effet, le cache local contribue à limiter les redémarrages d’application web liés au stockage. Toutefois, des redémarrages de votre application web peuvent toujours être nécessaires pendant les mises à niveau planifiées de l’infrastructure de la machine virtuelle. Quand le cache local est activé, les redémarrages d’application globaux sont normalement moins nombreux.
+En effet, le cache local contribue à limiter les redémarrages d’application web liés au stockage. Toutefois, votre application web peut toujours subir un redémarrage pendant les mises à niveau de l’infrastructure planifiée de hello machine virtuelle. Hello globale redémarrages d’application que vous rencontrez avec le Cache Local activé doivent être moins.
 
-### <a name="does-local-cache-exclude-any-directories-from-being-copied-to-the-faster-local-drive"></a>Le cache local exclut-il des répertoires de la copie vers le disque local plus rapide ?
-Durant l’étape de copie du contenu du stockage, tous les dossiers étant des dépôts nommés sont exclus. Cela est utile pour les scénarios où le contenu de votre site peut contenir un dépôt de contrôle de code source qui n’est pas nécessaire dans une utilisation quotidienne de l’application web. 
+### <a name="does-local-cache-exclude-any-directories-from-being-copied-toohello-faster-local-drive"></a>Ne le Cache Local exclure les répertoires d’être copiés toohello le disque local plus rapidement ?
+Dans le cadre de l’étape hello qui copie le contenu du stockage hello n’importe quel dossier nommé référentiel sera exclu. Cela permet des scénarios où le contenu du site peut contenir un référentiel de contrôle de code source ne peut pas être nécessaire dans l’opération de tooday jour de l’application web hello. 

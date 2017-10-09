@@ -1,5 +1,5 @@
 ---
-title: "Déploiement d’une application SaaS mutualisée avec Azure SQL Database | Microsoft Docs"
+title: "application de SaaS mutualisée aaaImplement avec la base de données SQL Azure | Documents Microsoft"
 description: "Déployez une application SaaS mutualisée avec Azure SQL Database."
 services: sql-database
 documentationcenter: 
@@ -16,23 +16,23 @@ ms.tgt_pltfrm: na
 ms.workload: 
 ms.date: 05/08/2017
 ms.author: AyoOlubek
-ms.openlocfilehash: 0aea69d86a51c38c99a72f46737de1eea27bef83
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b87b8f296e2c20a8f674b56375f43fdc92df76d3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="implement-a-multi-tenant-saas-application-using-azure-sql-database"></a>Déployer une application SaaS mutualisée à l’aide d’Azure SQL Database
 
-Une application mutualisée désigne une application hébergée dans un environnement cloud, qui fournit le même ensemble de services à des centaines ou milliers de locataires qui ne partagent pas ou ne voient pas les données d’autrui. Il peut par exemple s’agir d’une application SaaS qui fournit des services aux locataires dans un environnement hébergé dans le cloud. Ce modèle isole les données pour chaque locataire et optimise la répartition des ressources de coûts. 
+Une application mutualisée est une application hébergée dans un environnement cloud et hello même ensemble de services toohundreds plusieurs milliers de clients qui ne pas partager ou afficher les données de l’autre. Un exemple est une application SaaS qui fournit des tootenants de services dans un environnement hébergé dans le cloud. Ce modèle isole les données de salutation pour chaque client et optimise distribution hello de ressources pour un coût. 
 
-Ce didacticiel montre comment créer une application SaaS mutualisée à l’aide d’Azure SQL Database.
+Ce didacticiel montre comment toocreate une application de SaaS mutualisée à l’aide de la base de données SQL Azure.
 
 Ce didacticiel vous apprendra à effectuer les opérations suivantes :
 > [!div class="checklist"]
-> * Configuration d’un environnement de base de données pour la prise en charge d’une application SaaS mutualisée, à l’aide du modèle « base de données par locataire »
+> * Configurer un toosupport d’environnement de base de données d’une application SaaS mutualisée, à l’aide du modèle de base de données pour chaque locataire hello
 > * Création d’un catalogue de locataires
-> * Configuration d’une base de données de locataires et inscription de cette base de données dans le catalogue de locataires
+> * Configurer une base de données client et l’inscrire dans le catalogue du locataire hello
 > * Configuration d’un exemple d’application Java 
 > * Accès aux bases de données de locataires à l’aide d’une simple application console Java
 > * Suppression d’un locataire
@@ -41,23 +41,23 @@ Si vous ne disposez pas d’abonnement Azure, créez un [compte gratuit](https:/
 
 ## <a name="prerequisites"></a>Composants requis
 
-Pour suivre ce didacticiel, vérifiez que vous disposez des éléments suivants :
+toocomplete ce didacticiel, assurez-vous que vous avez :
 
-* La dernière version de PowerShell et le [dernier Kit de développement logiciel (SDK) Azure PowerShell](http://azure.microsoft.com/downloads/)
+* Version la plus récente installée hello de PowerShell et hello [dernier Kit de développement Azure PowerShell](http://azure.microsoft.com/downloads/)
 
-* La dernière version de [SQL Server Management Studio](http://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms). L’installation de SQL Server Management Studio installe également la version la plus récente de SQLPackage, un utilitaire de ligne de commande qui peut être utilisé pour automatiser de nombreuses tâches de développement de bases de données.
+* Version la plus récente installée hello de [SQL Server Management Studio](http://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms). L’installation de SQL Server Management Studio installe également la version la plus récente hello de SQLPackage, un utilitaire de ligne de commande qui peut être utilisé tooautomate un éventail de tâches de développement de base de données.
 
-* Un ordinateur disposant de [Java Runtime Environment (JRE) 8](http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html) et du [dernier kit de développement JAVA (JDK)](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html). 
+* Hello installé [Java Runtime Environment (JRE) 8](http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html) et hello [dernier Kit de développement JAVA (JDK)](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) installés sur votre ordinateur. 
 
-* [Apache Maven](https://maven.apache.org/download.cgi). Maven servira à gérer les dépendances et à générer, tester et exécuter l’exemple de projet Java.
+* [Apache Maven](https://maven.apache.org/download.cgi). Maven servira toohelp gérer les dépendances, créer, tester et exécuter l’exemple de projet Java de hello
 
 ## <a name="set-up-data-environment"></a>Configuration de l’environnement des données
 
-Vous allez approvisionner une base de données par locataire. Le modèle « base de données par locataire » constitue la meilleure manière d’isoler les locataires tout en réduisant les coûts DevOps. Pour optimiser le coût des ressources cloud, vous devrez également configurer les bases de données de locataires dans un pool élastique, de manière à optimiser le rapport prix/performances d’un groupe de bases de données. Pour en savoir plus sur les autres modèles d’approvisionnement de bases de données, [cliquez ici](sql-database-design-patterns-multi-tenancy-saas-applications.md#multi-tenant-data-models).
+Vous allez approvisionner une base de données par locataire. modèle de base de données pour chaque locataire Hello fournit hello plus haut degré d’isolation entre les clients, avec un faible coût de DevOps. coût de hello toooptimize des ressources de cloud computing, sera également approvisionner les bases de données clientes hello dans un pool élastique, qui vous permet de toooptimize hello prix/performances pour un groupe de bases de données. toolearn sur une autre base de données de configuration de modèles [ici](sql-database-design-patterns-multi-tenancy-saas-applications.md#multi-tenant-data-models).
 
-Suivez ces étapes pour créer un serveur SQL et un pool élastique qui hébergeront toutes vos bases de données de locataires. 
+Suivez ces étapes toocreate un serveur SQL server et un pool élastique qui va héberger toutes vos bases de données client. 
 
-1. Créez des variables pour stocker les valeurs qui seront utilisées dans la suite de ce didacticiel. Veillez à modifier la variable d’adresse IP pour inclure votre adresse IP 
+1. Créer des variables les valeurs toostore qui seront utilisés dans le reste de hello du didacticiel de hello. Assurez-vous que toomodify hello IP adresse variable tooinclude votre adresse IP 
    
    ```PowerShell 
    # Set an admin login and password for your database
@@ -69,15 +69,15 @@ Suivez ces étapes pour créer un serveur SQL et un pool élastique qui héberg
    $tenant1 = "geolamice"
    $tenant2 = "ranplex"
    
-   # Store current client IP address (modify to include your IP address)
+   # Store current client IP address (modify tooinclude your IP address)
    $startIpAddress = 0.0.0.0 
    $endIpAddress = 0.0.0.0
    ```
    
-2. Connectez-vous à Azure et créez un serveur SQL et un pool élastique 
+2. Connexion tooAzure et créer un pool élastique et le serveur SQL 
    
    ```PowerShell
-   # Login to Azure 
+   # Login tooAzure 
    Login-AzureRmAccount
    
    # Create resource group 
@@ -105,9 +105,9 @@ Suivez ces étapes pour créer un serveur SQL et un pool élastique qui héberg
    
 ## <a name="create-tenant-catalog"></a>Création du catalogue de locataires 
 
-Dans une application SaaS mutualisée, il est important de savoir où sont stockées les informations d’un locataire. Ces informations sont généralement stockées dans une base de données de catalogue. Cette base de données contient un mappage entre un locataire et une base de données dans laquelle sont stockées les données du locataire.  Le modèle de base s’applique aussi bien pour les bases de données mutualisées que pour les bases de données à un seul locataire.
+Dans une application SaaS mutualisée, il est important tooknow où sont stockées les informations pour un client. Ces informations sont généralement stockées dans une base de données de catalogue. base de données de catalogue Hello est toohold utilisé un mappage entre un client et une base de données dans lequel sont stockées les données du locataire.  modèle de base Hello s’applique si une architecture mutualisée ou une base de données locataire unique est utilisé.
 
-Suivez ces étapes pour créer une base de données de catalogue pour l’exemple d’application SaaS.
+Suivez ces étapes de toocreate une base de données de catalogue pour une application SaaS d’exemple hello.
 
 ```PowerShell
 # Create empty database in pool
@@ -116,7 +116,7 @@ New-AzureRmSqlDatabase  -ResourceGroupName "myResourceGroup" `
     -DatabaseName "tenantCatalog" `
     -ElasticPoolName "myElasticPool"
 
-# Create table to track mapping between tenants and their databases
+# Create table tootrack mapping between tenants and their databases
 $commandText = "
 CREATE TABLE Tenants
 (
@@ -138,7 +138,7 @@ Invoke-SqlCmd `
 ```
 
 ## <a name="provision-database-for-tenant1-and-register-in-tenant-catalog"></a>Approvisionnement de la base de données pour le « locataire 1 » et inscription de cette base dans le catalogue du locataire 
-Utilisez Powershell pour approvisionner une base de données pour un nouveau locataire appelé « locataire1 » et pour inscrire ce locataire dans le catalogue. 
+Utilisez Powershell tooprovision une base de données pour un nouveau client 'un locataire 1' et enregistrer ce client dans le catalogue de hello. 
 
 ```PowerShell
 # Create empty database in pool for 'tenant1'
@@ -147,7 +147,7 @@ New-AzureRmSqlDatabase  -ResourceGroupName "myResourceGroup" `
     -DatabaseName $tenant1 `
     -ElasticPoolName "myElasticPool"
 
-# Create table WhoAmI and insert tenant name into the table 
+# Create table WhoAmI and insert tenant name into hello table 
 $commandText = "
 CREATE TABLE WhoAmI (TenantName NVARCHAR(128) NOT NULL);
 INSERT INTO WhoAmI VALUES ('Tenant $tenant1');"
@@ -161,7 +161,7 @@ Invoke-SqlCmd `
     -Query $commandText `
     -EncryptConnection
 
-# Register 'tenant1' in the tenant catalog 
+# Register 'tenant1' in hello tenant catalog 
 $commandText = "
 INSERT INTO Tenants VALUES ('$tenant1', '$tenant1');"
 Invoke-SqlCmd `
@@ -175,7 +175,7 @@ Invoke-SqlCmd `
 ```
 
 ## <a name="provision-database-for-tenant2-and-register-in-tenant-catalog"></a>Approvisionnement de la base de données pour le « locataire 2 » et inscription de cette base dans le catalogue du locataire
-Utilisez Powershell pour approvisionner une base de données pour un nouveau locataire appelé « locataire2 » et pour inscrire ce locataire dans le catalogue. 
+Utilisez Powershell tooprovision une base de données pour un nouveau client 'tenant2' et enregistrer ce client dans le catalogue de hello. 
 
 ```PowerShell
 # Create empty database in pool for 'tenant2'
@@ -184,7 +184,7 @@ New-AzureRmSqlDatabase  -ResourceGroupName "myResourceGroup" `
     -DatabaseName $tenant2 `
     -ElasticPoolName "myElasticPool"
 
-# Create table WhoAmI and insert tenant name into the table 
+# Create table WhoAmI and insert tenant name into hello table 
 $commandText = "
 CREATE TABLE WhoAmI (TenantName NVARCHAR(128) NOT NULL);
 INSERT INTO WhoAmI VALUES ('Tenant $tenant2');"
@@ -198,7 +198,7 @@ Invoke-SqlCmd `
     -Query $commandText `
     -EncryptConnection
 
-# Register tenant 'tenant2' in the tenant catalog 
+# Register tenant 'tenant2' in hello tenant catalog 
 $commandText = "
 INSERT INTO Tenants VALUES ('$tenant2', '$tenant2');"
 Invoke-SqlCmd `
@@ -213,13 +213,13 @@ Invoke-SqlCmd `
 
 ## <a name="set-up-sample-java-application"></a>Configuration d’un exemple d’application Java 
 
-1. Créez un projet Maven. Dans une fenêtre d’invite de commandes, entrez la commande suivante :
+1. Créez un projet Maven. Tapez hello qui suit dans une fenêtre d’invite de commandes :
    
    ```
    mvn archetype:generate -DgroupId=com.microsoft.sqlserver -DartifactId=mssql-jdbc -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
    ```
    
-2. Ajoutez la dépendance, le niveau de langage et l’option de génération pour prendre en charge les fichiers manifeste JARS dans le fichier pom.xml :
+2. Ajouter cette dépendance, le niveau de langage et générer des fichiers manifeste dans le fichier de fichiers JAR toohello pom.xml option toosupport :
    
    ```XML
    <dependency>
@@ -251,7 +251,7 @@ Invoke-SqlCmd `
    </build>
    ```
 
-3. Ajoutez le code suivant dans le fichier App.java :
+3. Ajoutez dans le fichier de App.java hello hello qui suit :
 
    ```java 
    package com.sqldbsamples;
@@ -306,7 +306,7 @@ Invoke-SqlCmd `
    
    System.out.println(" " + CMD_QUERY + " <NAME> - connect and tenant query tenant <NAME>");
    
-   System.out.println(" " + CMD_QUIT + " - quit the application\n");
+   System.out.println(" " + CMD_QUIT + " - quit hello application\n");
    
    try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
    
@@ -352,7 +352,7 @@ Invoke-SqlCmd `
    
    private static void listTenants() {
    
-   // List all tenants that currently exist in the system
+   // List all tenants that currently exist in hello system
    
    String sql = "SELECT TenantName FROM Tenants";
    
@@ -380,7 +380,7 @@ Invoke-SqlCmd `
    
    private static void queryTenant(String name) {
    
-   // Query the data that was previously inserted into the primary database from the geo replicated database
+   // Query hello data that was previously inserted into hello primary database from hello geo replicated database
    
    String url = null;
    
@@ -445,21 +445,21 @@ Invoke-SqlCmd `
    }
    ```
 
-4. Enregistrez le fichier.
+4. Enregistrez le fichier de hello.
 
-5. Accédez à la console de commandes et exécutez la commande suivante :
+5. Toocommand console et exécutez
 
    ```bash
    mvn package
    ```
 
-6. Lorsque vous avez terminé, exécutez la commande suivante pour exécuter l’application : 
+6. Lorsque vous avez terminé, exécutez hello après application de hello toorun 
    
    ```
    mvn -q -e exec:java "-Dexec.mainClass=com.sqldbsamples.App"
    ```
    
-Si l’exécution réussit, la sortie se présentera ainsi :
+Si elle s’exécute avec succès, sortie de Hello ressemble à ceci :
 
 ```
 ############################
@@ -474,15 +474,15 @@ LIST - list tenants
 
 QUERY <NAME> - connect and tenant query tenant <NAME>
 
-QUIT - quit the application
+QUIT - quit hello application
 
-* List the tenants
+* List hello tenants
 
 * Query tenants you created
 ```
 
 ## <a name="delete-first-tenant"></a>Suppression du premier locataire 
-Utilisez PowerShell pour supprimer la base de données de locataires et l’entrée du catalogue correspondant au premier locataire.
+Utilisez PowerShell toodelete hello client de base de données et le catalogue d’entrée pour le client de première hello.
 
 ```PowerShell
 # Remove 'tenant1' from catalog 
@@ -502,15 +502,15 @@ Remove-AzureRmSqlDatabase -ResourceGroupName "myResourceGroup" `
     -DatabaseName $tenant1
 ```
 
-Essayez de vous connecter au « locataire1 » à l’aide de l’application Java. Vous obtiendrez une erreur indiquant que le client n’existe pas.
+Essayez de vous connecter à l’aide de 'un locataire 1' trop hello des application Java. Vous obtiendrez une erreur indiquant que ce client hello n’existe pas.
 
 ## <a name="next-steps"></a>Étapes suivantes 
 
 Dans ce didacticiel, vous avez appris à effectuer les opérations suivantes :
 > [!div class="checklist"]
-> * Configuration d’un environnement de base de données pour la prise en charge d’une application SaaS mutualisée, à l’aide du modèle « base de données par locataire »
+> * Configurer un toosupport d’environnement de base de données d’une application SaaS mutualisée, à l’aide du modèle de base de données pour chaque locataire hello
 > * Création d’un catalogue de locataires
-> * Configuration d’une base de données de locataires et inscription de cette base de données dans le catalogue de locataires
+> * Configurer une base de données client et l’inscrire dans le catalogue du locataire hello
 > * Configuration d’un exemple d’application Java 
 > * Accès aux bases de données de locataires à l’aide d’une simple application console Java
 > * Suppression d’un locataire

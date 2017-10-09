@@ -1,6 +1,6 @@
 ---
-title: Afficher la topologie Azure Network Watcher - API REST | Microsoft Docs
-description: "Cet article explique comment utiliser l’API REST pour interroger la topologie de votre réseau."
+title: "topologie de l’Observateur réseau Azure aaaView - API REST | Documents Microsoft"
+description: "Cet article décrit comment toouse REST API tooquery topologie de votre réseau."
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 568f3060da372f4a08cec342e04359172522cb69
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 39292025bcd561f007c9e31271b1389be48ea79f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="view-network-watcher-topology-with-rest-api"></a>Afficher la topologie Azure Network Watcher par le biais de l’API REST
 
@@ -28,37 +28,37 @@ ms.lasthandoff: 07/11/2017
 > - [CLI 2.0](network-watcher-topology-cli.md)
 > - [API REST](network-watcher-topology-rest.md)
 
-La fonctionnalité Topologie de Network Watcher fournit une représentation visuelle des ressources réseau dans un abonnement. Dans le portail, cette visualisation vous est présentée automatiquement. Les informations relatives à la vue Topologie du portail peuvent être récupérées par le biais de PowerShell.
-Cette fonctionnalité rend les informations de topologie plus polyvalentes, car les données peuvent être utilisées par d’autres outils pour générer la visualisation.
+fonctionnalité de topologie Hello de l’Observateur réseau fournit une représentation visuelle des ressources du réseau hello dans un abonnement. Dans le portail hello, cette visualisation est présentée tooyou automatiquement. informations Hello derrière l’affichage de la topologie hello dans le portail de hello peuvent être récupérées via PowerShell.
+Cette fonctionnalité rend les informations de topologie hello plus polyvalente que les données de salutation peuvent être utilisées par les autres toobuild outils out visualisation de hello.
 
-L’interconnexion est modélisée sous deux relations.
+interconnexion de Hello est modélisée sous deux relations.
 
 - **Relation d’imbrication** - exemple : le réseau virtuel contient un sous-réseau qui contient une carte réseau
 - **Associé** - exemple : une carte réseau est associée à une machine virtuelle
 
-La liste suivante répertorie les propriétés renvoyées lors de l’interrogation de l’API REST Topologie.
+Hello Voici les propriétés qui sont retournées lors de l’interrogation hello API REST de topologie.
 
-* **name** : nom du groupe de ressources
-* **id** : URI de la ressource.
-* **location** : emplacement de la ressource.
-* **associations** : liste des associations réalisées vis-à-vis de l’objet référencé.
-    * **name** : nom de la ressource référencée.
-    * **resourceId** : URI de la ressource référencée dans l’association.
-    * **associationType** : cette valeur fait référence à la relation entre l’objet enfant et le parent. Les valeurs valides sont **Contains** et **Associated**.
+* **nom** hello - nom de ressource de hello
+* **ID** -hello uri de ressource de hello.
+* **emplacement** -hello emplacement où se trouve hello ressource.
+* **associations** -liste des associations toohello référencé l’objet.
+    * **nom** -nom de hello de hello référencé des ressources.
+    * **ID de ressource** -hello resourceId est hello les uri de ressource hello référencé dans l’association de hello.
+    * **l’associationType** -relation hello entre l’objet de hello enfant et parent de hello fait référence à cette valeur. Les valeurs valides sont **Contains** et **Associated**.
 
 ## <a name="before-you-begin"></a>Avant de commencer
 
-Dans ce scénario, vous récupérez les informations de topologie. ARMclient permet d’appeler l’API REST à l’aide de PowerShell. ARMClient est accessible sur le site chocolatey à partir de la page [ARMClient sur Chocolatey](https://chocolatey.org/packages/ARMClient).
+Ce scénario, vous permet de récupérer les informations de topologie hello. ARMclient est utilisé toocall hello REST API à l’aide de PowerShell. ARMClient est accessible sur le site chocolatey à partir de la page [ARMClient sur Chocolatey](https://chocolatey.org/packages/ARMClient).
 
-Ce scénario suppose que vous ayez déjà suivi la procédure décrite dans [Créer une instance d’Azure Network Watcher](network-watcher-create.md) pour créer un Network Watcher.
+Ce scénario suppose que vous avez déjà suivi les étapes hello dans [créer un observateur réseau](network-watcher-create.md) toocreate un observateur réseau.
 
 ## <a name="scenario"></a>Scénario
 
-Le scénario décrit dans cet article récupère la réponse de la topologie pour un groupe de ressources donné.
+scénario Hello abordée dans cet article récupère hello topologie de réponse pour un groupe de ressources donné.
 
 ## <a name="log-in-with-armclient"></a>Se connecter à ARMClient
 
-Connectez-vous à armclient avec vos informations d’identification Azure.
+Ouvrez une session dans tooarmclient avec vos informations d’identification Azure.
 
 ```PowerShell
 armclient login
@@ -66,11 +66,11 @@ armclient login
 
 ## <a name="retrieve-topology"></a>Récupérer la topologie
 
-L’exemple suivant demande la topologie à partir de l’API REST.  L’exemple est paramétré pour permettre une certaine flexibilité dans la création d’un exemple.  Remplacez toutes les valeurs avec \< \> qui les entoure.
+Hello, l’exemple suivant demande la topologie de hello hello API REST.  exemple de Hello est paramétrable tooallow pour une grande souplesse pour la création d’un exemple.  Remplacez toutes les valeurs avec \< \> qui les entoure.
 
 ```powershell
 $subscriptionId = "<subscription id>"
-$resourceGroupName = "<resource group name>" # Resource group name to run topology on
+$resourceGroupName = "<resource group name>" # Resource group name toorun topology on
 $NWresourceGroupName = "<resource group name>" # Network Watcher resource group name
 $networkWatcherName = "<network watcher name>"
 $requestBody = @"
@@ -82,7 +82,7 @@ $requestBody = @"
 armclient POST "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${NWresourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/topology?api-version=2016-07-01" $requestBody
 ```
 
-La réponse suivante est un exemple de réponse abrégée qui est renvoyée lors de la récupération de la topologie pour un groupe de ressources :
+Hello suivant la réponse est un exemple d’une réponse raccourcie qui est retourné lorsque récupérer la topologie pour un groupe de ressources :
 
 ```json
 {
@@ -116,5 +116,5 @@ s65qcto",
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Découvrez comment visualiser vos journaux de flux NSG avec Power BI en consultant la page [Visualize NSG flows logs with Power BI](network-watcher-visualize-nsg-flow-logs-power-bi.md) (Visualiser les journaux de flux NSG avec Power BI)
+Découvrez comment toovisualize votre flux de groupe de sécurité réseau se connecte à Power BI en vous rendant sur [NSG de visualiser les flux de journaux avec Power BI](network-watcher-visualize-nsg-flow-logs-power-bi.md)
 

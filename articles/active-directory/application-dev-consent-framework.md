@@ -1,6 +1,6 @@
 ---
-title: "Fonctionnement du consentement d’application | Microsoft Docs"
-description: "En savoir plus sur le fonctionnement de l’infrastructure de consentement Azure AD pour voir comment vous pouvez l’utiliser lors du développement d’applications sur Azure AD"
+title: "fonctionnement de consentement d’application aaaHow | Documents Microsoft"
+description: "En savoir plus sur le fonctionne d’infrastructure de consentement hello Azure AD toosee comment vous pouvez l’utiliser lors du développement d’applications sur Azure AD"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,22 +13,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 5abddf3a8698e3eb39f118f54eeac62ce68fed39
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 1b090c0c8d49320a012d8a06b7e9d35134a3ab43
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="how-application-consent-works"></a>Fonctionnement du consentement d’application
 
-Cet article présente le fonctionnement de l’infrastructure de consentement Azure AD afin de développer des applications plus efficacement.
+Cet article est toohelp que vous en savoir plus sur le fonctionne d’infrastructure de consentement hello Azure AD pour pouvoir développer des applications plus efficacement.
 
 ## <a name="recommended-documents"></a>Documents recommandés
 
-- Consultez une présentation générale de [la façon dont le consentement permet au propriétaire de ressources de gérer l’accès aux ressources d’une application](https://docs.microsoft.com/azure/active-directory/develop/active-directory-dev-glossary#consent).
-- Obtenez une présentation détaillée de [la façon dont l’infrastructure de consentement Azure AD implémente le consentement](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications#overview-of-the-consent-framework).
-- Pour plus de détails, découvrez [la façon dont une application mutualisée peut utiliser l’infrastructure de consentement](https://docs.microsoft.com/azure/active-directory/develop/active-directory-devhowto-multi-tenant-overview#understanding-user-and-admin-consent) pour implémenter un consentement de type « utilisateur » et « admin », en prenant en charge des modèles d’applications mutualisées plus avancés.
-- Pour plus de détails, découvrez [la façon dont le consentement est pris en charge au niveau de la couche du protocole OAuth 2.0 pendant le flux d’octroi de code d’autorisation.](https://docs.microsoft.com/azure/active-directory/develop/active-directory-protocols-oauth-code#request-an-authorization-code)
+- Obtenir une idée générale des [comment consentement permet un toogovern du propriétaire de la ressource tooresources d’accès d’une application](https://docs.microsoft.com/azure/active-directory/develop/active-directory-dev-glossary#consent).
+- Obtenir une présentation détaillée de [comment infrastructure de consentement hello AD Azure implémente consentement](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications#overview-of-the-consent-framework).
+- Pour plus de détails, en savoir plus [comment une application mutualisée peut utiliser infrastructure de consentement hello](https://docs.microsoft.com/azure/active-directory/develop/active-directory-devhowto-multi-tenant-overview#understanding-user-and-admin-consent) consentement « utilisateur » et « admin » tooimplement, prenant en charge les modèles d’application à plusieurs niveaux plus avancées.
+- Pour plus de détails, en savoir [comment consentement est prise en charge au niveau de la couche de protocole hello OAuth 2.0 pendant le flux d’octroi code hello d’autorisation.](https://docs.microsoft.com/azure/active-directory/develop/active-directory-protocols-oauth-code#request-an-authorization-code)
 
 ## <a name="next-steps"></a>Étapes suivantes
 [AzureAD StackOverflow](http://stackoverflow.com/questions/tagged/azure-active-directory)

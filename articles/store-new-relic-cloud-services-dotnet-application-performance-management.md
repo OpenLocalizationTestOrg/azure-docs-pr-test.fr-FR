@@ -1,6 +1,6 @@
 ---
-title: Utilisation de New Relic avec Azure | Microsoft Docs
-description: "Apprenez à utiliser le service New Relic pour gérer et surveiller votre application Azure."
+title: aaaUsing New Relic avec Azure | Documents Microsoft
+description: "Découvrez comment toouse hello New Relic service toomanage et surveiller votre application Windows Azure."
 services: 
 documentationcenter: .net
 author: nickfloyd
@@ -14,41 +14,41 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/23/2016
 ms.author: nickfloyd@newrelic.com
-ms.openlocfilehash: f4f13c909a6ff640d403f5264004176c087925dd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 81e5f1b694264e3586ac75d40edd8afe185493d5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="new-relic-application-performance-management-on-azure"></a>Gestion des performances des applications New Relic sur Azure
-Vous pouvez ajouter la surveillance des performances New Relic de pointe à vos applications hébergées sur Azure. En plus des fonctionnalités complètes pour la surveillance, la résolution des problèmes et le réglage de vos applications Azure, vous pouvez également bénéficier de prix réduits pour les produits New Relic à l’aide d’Azure.
+Vous pouvez ajouter des performances de premier ordre de New Relic analyse tooyour Azure applications hébergées. En plus des fonctionnalités complètes pour la surveillance, la résolution des problèmes et le réglage de vos applications Azure, vous pouvez également bénéficier de prix réduits pour les produits New Relic à l’aide d’Azure.
 
 ## <a name="what-is-new-relic"></a>Présentation de New Relic
-Avec les [produits New Relic](https://newrelic.com/products), vous pouvez résoudre les erreurs d’application, anticiper les problèmes potentiels et comprendre les performances de votre environnement tout entier. Ce produit est conçu pour vous permettre de gagner du temps lors de l'identification et du diagnostic des problèmes de performances et il vous donne les informations requises pour résoudre ces problèmes en un instant.
+Avec [produits de New Relic](https://newrelic.com/products), vous pouvez résoudre les erreurs d’application, maîtriser les problèmes potentiels et comprendre les performances de hello de tout votre environnement. Il est conçu toosave lors de l’identification et de diagnostiquer les problèmes de performances du temps, et qu’il place hello informations toosolve ces problèmes à portée de main.
 
-New Relic effectue le suivi de la durée du chargement et du débit de vos transactions Web, à la fois à partir du serveur et des navigateurs des utilisateurs. Il indique le temps que vous passez dans la base de données, analyse les requêtes lentes et les requêtes Web, fournit une surveillance et des alertes en matière de temps d'activité, effectue le suivi des exceptions d'application et bien plus encore. 
+Nouvelle hello de pistes Relic charger le temps et le débit pour vos transactions web, à la fois de serveur de hello et les navigateurs de vos utilisateurs. Il montre comment votre temps dans la base de données hello, analyse les requêtes lentes et fournit des demandes web, analyse des temps de fonctionnement et d’alerte, les exceptions d’application assure le suivi et beaucoup plus. 
 
 ## <a name="special-pricing"></a>Tarification spéciale
-New Relic Standard est gratuit pour les utilisateurs d'Azure. New Relic Pro est fourni en fonction de la taille d’instance d’Azure Cloud Services. Pour plus d’informations de tarification, consultez la [page de New Relic](https://azure.microsoft.com/marketplace/partners/newrelic/newrelic/) dans le Azure Marketplace ou le contact New Relic (sales@newrelic.com) pour la tarification de niveau entreprise.
+Nouvelle Relic Standard est libre tooAzure utilisateurs. New Relic Pro est fourni en fonction de la taille d’instance d’Azure Cloud Services. Pour plus d’informations de tarification, consultez hello [page de New Relic](https://azure.microsoft.com/marketplace/partners/newrelic/newrelic/) dans hello Azure Marketplace ou contactez New Relic (sales@newrelic.com) pour la tarification de niveau entreprise.
 
-Les clients d’Azure reçoivent un abonnement de deux semaines gratuit à New Relic Pro lorsqu’ils déploient l’agent New Relic.
+Les clients Azure recevoir un abonnement d’évaluation de deux semaines de nouveau Relic Pro lorsqu’ils déploient l’agent de New Relic hello.
 
-## <a name="sign-up-for-new-relic-using-the-azure-store"></a>Inscription à New Relic à l'aide de l'Azure Store
-New Relic s'intègre en toute transparence aux rôles Web et de travail Azure. Vous pouvez vous inscrire rapidement et facilement à New Relic directement depuis l’Azure Store. Pour obtenir des instructions, consultez les [instructions d’inscription Azure Store](https://docs.newrelic.com/docs/agents/net-agent/azure-installation/azure-cloud-services#signup) de New Relic.
+## <a name="sign-up-for-new-relic-using-hello-azure-store"></a>S’inscrire à New Relic à l’aide de hello Azure Store
+New Relic s'intègre en toute transparence aux rôles Web et de travail Azure. Vous pouvez rapidement et facilement s’inscrire pour New Relic directement à partir de hello magasin Azure. Pour obtenir des instructions, consultez hello [Azure stocker les instructions d’inscription](https://docs.newrelic.com/docs/agents/net-agent/azure-installation/azure-cloud-services#signup) à partir de New Relic.
 
 ## <a name="view-your-data"></a>Affichage de vos données
-Une fois inscrit, vous pouvez tirer parti des incroyables fonctions de surveillance des applications et d’analyses pilotées par les données de New Relic. Pour vérifier les performances de votre application dans New Relic :
+Une fois inscrit, vous pouvez tirer parti des incroyables fonctions de surveillance des applications et d’analyses pilotées par les données de New Relic. toocheck les performances de votre application dans New Relic :
 
-1. Dans le portail Azure, sélectionnez Gérer.
+1. À partir de hello portail Azure, sélectionnez Gérer.
 2. Connectez-vous avec l'adresse électronique et le mot de passe de votre compte New Relic.
-3. Sélectionnez votre application à partir de l’index de l’application pour afficher toutes les données de votre application dans la [page de vue d’ensemble APM](https://docs.newrelic.com/docs/apm/applications-menu/monitoring/apm-overview-page).
+3. Sélectionnez votre application à partir de hello Application index tooview les données de tous les votre application Bonjour [page de vue d’ensemble APM](https://docs.newrelic.com/docs/apm/applications-menu/monitoring/apm-overview-page).
 
 ## <a name="using-new-relic-with-azure"></a>Utilisation de New Relic avec Azure
 Pour plus d’informations sur l’utilisation de New Relic et d’Azure, consultez le [site de documentation de New Relic](https://docs.newrelic.com/docs/agents/net-agent/azure-installation), notamment : 
 
 * [New Relic for .NET (New Relic pour .NET)](https://docs.newrelic.com/docs/agents/net-agent/getting-started/new-relic-net)
 * [Instrument a .NET Worker Role on Azure Cloud service (Instrumenter un rôle de travail .NET sur le service cloud Azure)](https://docs.newrelic.com/docs/agents/net-agent/azure-installation/instrument-net-worker-role-azure-cloud-service)
-* [New Relic for the Microsoft Azure Cloud platform (New Relic pour la plateforme cloud Microsoft Azure)](https://docs.newrelic.com/docs/agents/net-agent/azure-installation/azure-cloud-services)
-* [New Relic for the Microsoft Azure App Services (New Relic pour Microsoft Azure App Services)](https://docs.newrelic.com/docs/agents/net-agent/azure-installation/azure-portal)
+* [New Relic pour la plateforme de Cloud de Microsoft Azure hello](https://docs.newrelic.com/docs/agents/net-agent/azure-installation/azure-cloud-services)
+* [New Relic pour hello Services d’application Microsoft Azure](https://docs.newrelic.com/docs/agents/net-agent/azure-installation/azure-portal)
 * [New Relic/Azure troubleshooting (Résolution des problèmes New Relic/Azure)](https://docs.newrelic.com/docs/agents/net-agent/azure-troubleshooting)
 

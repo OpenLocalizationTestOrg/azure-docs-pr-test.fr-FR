@@ -1,6 +1,6 @@
 ---
-title: "Résoudre les problèmes de performances et optimiser votre base de données | Microsoft Docs"
-description: "Appliquer des recommandations en matière de performances à votre SQL Database et apprendre à obtenir des informations sur les performances des requêtes s’exécutant sur votre base de données"
+title: "aaaTroubleshoot performances problèmes et optimiser votre base de données | Documents Microsoft"
+description: "Appliquer tooyour de recommandations de performances de la base de données SQL ainsi effacer comment insights toogain sur hello les performances des requêtes hello sur votre base de données"
 metakeywords: azure sql database performance monitoring recommendation
 services: sql-database
 documentationcenter: 
@@ -15,11 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/07/2017
 ms.author: janeng
-ms.openlocfilehash: f9ae96cdc80c347593f229cb2fce3f2d4d8e7caf
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e948d30ac74eecf45420d5d77ef55e3c0b6f3f47
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshoot-performance-issues-and-optimize-your-database"></a>Résoudre les problèmes de performances et optimiser votre base de données
 
@@ -29,50 +29,50 @@ Des index manquants et des requêtes incorrectement optimisées sont souvent à 
 > * Rechercher les requêtes utilisant beaucoup de ressources
 > * Rechercher les requêtes à exécution longue
 
-> Vous avez besoin d’une charge de travail continue sur une base de données rencontrant des problèmes de performances (p. ex. index manquant) pour obtenir une recommandation.
+> Vous avez besoin d’une charge de travail continue sur une base de données avec les problèmes de performances – manque un index, par exemple tooreceive une recommandation.
 >
 
-## <a name="log-in-to-the-azure-portal"></a>Connectez-vous au portail Azure.
+## <a name="log-in-toohello-azure-portal"></a>Ouvrez une session dans toohello portail Azure
 
-Connectez-vous au [portail Azure](https://portal.azure.com/).
+Connectez-vous à toohello [portail Azure](https://portal.azure.com/).
 
 ## <a name="review-and-apply-a-recommendation"></a>Examiner et appliquer une recommandation
 
-Suivez les étapes ci-dessous pour appliquer une recommandation du système à votre base de données :
+Suivez ces étapes de tooapply une recommandation système hello pour votre base de données :
 
-1. Cliquez sur le menu **Recommandations sur les performances** dans le panneau de la base de données.
+1. Cliquez sur hello **recommandations relatives aux performances** menu dans le panneau de base de données hello.
 
     ![recommandation sur les performances](./media/sql-database-performance-tutorial/perf_recommendations.png)
 
-2. Sélectionnez une recommandation active dans la liste des recommandations. Dans cet exemple, Créer un index.
+2. Dans la liste hello des recommandations, sélectionnez une recommandation active. Dans cet exemple, Créer un index.
 
     ![sélectionner une recommandation](./media/sql-database-performance-tutorial/create_index.png)
 
-3. Appliquez la recommandation en cliquant sur le bouton **Appliquer**. Si vous le souhaitez, examinez les détails de la recommandation et consultez le script T-SQL à exécuter en cliquant sur le bouton **Afficher le script**.
+3. Appliquer la recommandation de hello en cliquant sur hello **appliquer** bouton. Si vous le souhaitez, passez en revue les détails de la recommandation hello et consultez les script T-SQL de hello trop d’être exécuté en cliquant sur **afficher le Script** bouton.
 
     ![appliquer une recommandation](./media/sql-database-performance-tutorial/apply.png)
 
-4. [Facultatif] Activez le réglage automatique pour appliquer automatiquement des recommandations.
+4. [Facultatif] Activer le réglage automatique pour toobe recommandations appliquée automatiquement.
 
     ![réglage automatique](./media/sql-database-performance-tutorial/auto_tuning.png)
 
 ## <a name="revert-a-recommendation"></a>Annuler une recommandation
 
-Database Advisor surveille chaque recommandation implémentée. Si une recommandation n’améliore pas la charge de travail, elle est automatiquement annulée. Vous avez la possibilité d’annuler manuellement une recommandation, mais cela n’est pas nécessaire la plupart du temps. Pour annuler une recommandation :
+Hello Database Advisor analyse chaque recommandation implémentée. Si une recommandation n’améliore pas la charge de travail hello que vont être annulée automatiquement. Vous avez la possibilité d’annuler manuellement une recommandation, mais cela n’est pas nécessaire la plupart du temps. toorevert une recommandation :
 
-1. Accédez au menu des recommandations sur les performances et sélectionnez l’une des recommandations appliquées.
+1. Toohello performances recommandations menu Aller et sélectionnez une des recommandations de hello appliqué.
 
     ![sélectionner une recommandation](./media/sql-database-performance-tutorial/select.png)
 
-2. Dans la vue Détails, cliquez sur **Revenir**.
+2. Dans la vue des détails hello, cliquez sur **Revert**.
 
     ![annuler une recommandation](./media/sql-database-performance-tutorial/revert.png)
 
-## <a name="find-the-query-that-consumes-the-most-resources"></a>Rechercher la requête qui consomme le plus de ressources
+## <a name="find-hello-query-that-consumes-hello-most-resources"></a>Rechercher les requête hello qui consomme hello plus de ressources
 
-Suivez les étapes ci-dessous pour rechercher la requête qui consomme le plus de ressources :
+Suivez ces requêtes de hello toofind étapes consommation hello plus de ressources :
 
-1. Cliquez sur le menu **Query Performance Insight** dans le panneau de la base de données.
+1. Cliquez sur hello **Query Performance Insight** menu dans le panneau de base de données hello.
 
     ![analyse des requêtes](./media/sql-database-performance-tutorial/query_perf_insights.png)
 
@@ -80,25 +80,25 @@ Suivez les étapes ci-dessous pour rechercher la requête qui consomme le plus d
 
     ![analyse des requêtes](./media/sql-database-performance-tutorial/select_resource_type.png)
 
-3. Sélectionnez la première requête dans la table.
+3. Sélectionnez la première requête de hello dans la table de hello.
 
     ![analyse des requêtes](./media/sql-database-performance-tutorial/select_query.png)
 
-4. Examinez les détails de la requête.
+4. Passez en revue les détails de la requête hello.
 
     ![analyse des requêtes](./media/sql-database-performance-tutorial/query_details.png)
 
-## <a name="find-the-longest-running-query"></a>Rechercher la requête dont l’exécution est la plus longue
+## <a name="find-hello-longest-running-query"></a>Trouver la requête en cours d’exécution plus longue de hello
 
-1. Accédez à Query Performance Insight et sélectionnez l’onglet **Requêtes longues**.
+1. TooQuery Performance Insight, sélectionnez hello **longues requêtes** onglet.
 
     ![analyse des requêtes](./media/sql-database-performance-tutorial/long_running.png)
 
-3. Sélectionnez la première requête dans la table.
+3. Sélectionnez la première requête de hello dans la table de hello.
 
     ![analyse des requêtes](./media/sql-database-performance-tutorial/select_first_query.png)
 
-4. Examinez les détails de la requête.
+4. Passez en revue les détails de la requête hello.
 
     ![analyse des requêtes](./media/sql-database-performance-tutorial/review_query_details.png)
 

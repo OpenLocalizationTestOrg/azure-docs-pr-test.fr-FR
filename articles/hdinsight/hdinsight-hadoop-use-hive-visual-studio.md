@@ -1,6 +1,6 @@
 ---
-title: "Hive avec les outils Data Lake (Hadoop) pour Visual Studio - Azure HDInsight | Documents Microsoft"
-description: "Découvrez comment utiliser les outils Data Lake pour Visual Studio pour exécuter des requêtes Apache Hive avec Apache Hadoop sur Azure HDInsight."
+title: aaaHive avec les outils Data Lake (Hadoop) pour Visual Studio - Azure HDInsight | Documents Microsoft
+description: "Découvrez comment toouse hello Data Lake tools pour Visual Studio les toorun Apache Hive requêtes avec Apache Hadoop sur Azure HDInsight."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,24 +16,24 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 07/07/2017
 ms.author: larryfr
-ms.openlocfilehash: 3411c59fee73aa2e26a05d70e1dae11cdfc865ff
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: dc76974c02cf68bcf701b2b155842c9e9c5cb988
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="run-hive-queries-using-the-data-lake-tools-for-visual-studio"></a>Exécution de requêtes Hive à l’aide des outils Data Lake pour Visual Studio
+# <a name="run-hive-queries-using-hello-data-lake-tools-for-visual-studio"></a>Exécuter des requêtes Hive à l’aide des outils de Data Lake hello pour Visual Studio
 
-Découvrez comment utiliser les outils Data Lake pour Visual Studio pour interroger Apache Hive. Les outils Data Lake vous permettent de facilement créer, soumettre et surveiller les requêtes Hive à Hadoop sur Azure HDInsight.
+Découvrez comment toouse hello Data Lake tools pour Visual Studio les tooquery Apache Hive. Hello Data Lake outils permettent de tooeasily créer, soumettre et surveiller tooHadoop des requêtes Hive sur Azure HDInsight.
 
 ## <a id="prereq"></a>Configuration requise
 
 * Un cluster Azure HDInsight sous Linux (Hadoop sur HDInsight)
 
   > [!IMPORTANT]
-  > Linux est le seul système d’exploitation utilisé sur HDInsight version 3.4 ou supérieure. Pour plus d’informations, consultez [Suppression de HDInsight sous Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+  > Linux est hello seul système d’exploitation utilisé sur HDInsight version 3.4 ou supérieure. Pour plus d’informations, consultez [Suppression de HDInsight sous Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
-* Visual Studio (l'une des versions suivantes) :
+* (L’une des versions suivantes de hello) de Visual Studio :
 
     * Visual Studio 2013 Community/Professional/Premium/Ultimate avec mise à jour 4
 
@@ -41,13 +41,13 @@ Découvrez comment utiliser les outils Data Lake pour Visual Studio pour interro
 
     * Visual Studio 2017 (toute édition)
 
-* Outils HDInsight pour Visual Studio ou Outils Azure Data Lake pour Visual Studio. Consultez la page [Prise en main des outils Hadoop de Visual Studio pour HDInsight](hdinsight-hadoop-visual-studio-tools-get-started.md) pour connaître les étapes d’installation et de configuration des outils.
+* Outils HDInsight pour Visual Studio ou Outils Azure Data Lake pour Visual Studio. Consultez [prise en main des outils de Visual Studio Hadoop pour HDInsight](hdinsight-hadoop-visual-studio-tools-get-started.md) pour plus d’informations sur l’installation et configuration des outils de hello.
 
-## <a id="run"></a> Exécution de requêtes Hive avec Visual Studio
+## <a id="run"></a>Exécuter des requêtes Hive à l’aide de hello Visual Studio
 
 1. Ouvrez **Visual Studio** et sélectionnez **Nouveau** > **Projet** > **Azure Data Lake** > **HIVE** > **Application Hive**. Fournissez un nom pour ce projet.
 
-2. Ouvrez le fichier **Script.hql** créé avec ce projet et collez les instructions HiveQL suivantes :
+2. Ouvrez hello **Script.hql** fichier est créé avec ce projet et le coller dans hello suivant les instructions HiveQL :
 
    ```hiveql
    set hive.execution.engine=tez;
@@ -58,38 +58,38 @@ Découvrez comment utiliser les outils Data Lake pour Visual Studio pour interro
    SELECT t4 AS sev, COUNT(*) AS count FROM log4jLogs WHERE t4 = '[ERROR]' AND  INPUT__FILE__NAME LIKE '%.log' GROUP BY t4;
    ```
 
-    Ces instructions effectuent les opérations suivantes :
+    Ces instructions effectuent hello suivant des actions :
 
-   * `DROP TABLE`: si la table existe, cette instruction la supprime.
+   * `DROP TABLE`: Si la table de hello existe, cette instruction supprime.
 
-   * `CREATE EXTERNAL TABLE` : crée une table externe dans Hive. Les tables externes stockent uniquement la définition de table dans Hive (les données restent à leur emplacement d’origine).
+   * `CREATE EXTERNAL TABLE` : crée une table externe dans Hive. Les tables externes ne stockent la définition de table hello Hive (hello données restent dans l’emplacement d’origine de hello).
 
      > [!NOTE]
-     > Les tables externes doivent être utilisées lorsque vous vous attendez à ce que les données sous-jacentes soient mises à jour par une source externe, Par exemple, un travail MapReduce ou service Azure.
+     > Tables externes doivent être utilisées lorsque vous attendez hello toobe de données sous-jacent mis à jour par une source externe. Par exemple, un travail MapReduce ou service Azure.
      >
-     > La suppression d'une table externe ne supprime **pas** les données, mais seulement la définition de la table.
+     > Suppression d’une table externe est **pas** supprimer les données de hello, uniquement la définition de table hello.
 
-   * `ROW FORMAT` : indique à Hive le mode de formatage des données. Dans ce cas, les champs de chaque journal sont séparés par un espace.
+   * `ROW FORMAT`: Indique la ruche de mise en forme les données de salutation. Dans ce cas, les champs de hello dans chaque journal sont séparés par un espace.
 
-   * `STORED AS TEXTFILE LOCATION` : indique à Hive où sont stockées les données (répertoire example/data) et qu'elles sont stockées sous forme de texte.
+   * `STORED AS TEXTFILE LOCATION`: Indique ruche où hello les données sont stockées (répertoire de données d’exemple hello) et qu’il est stocké sous forme de texte.
 
-   * `SELECT` : sélectionne toutes les lignes dont la colonne `t4` contient la valeur `[ERROR]`. Cette instruction renvoie la valeur `3`, car trois lignes contiennent cette valeur.
+   * `SELECT`: Permet de sélectionner un nombre de toutes les lignes où colonne `t4` contient la valeur de hello `[ERROR]`. Cette instruction renvoie la valeur `3`, car trois lignes contiennent cette valeur.
 
-   * `INPUT__FILE__NAME LIKE '%.log'` : indique à Hive de retourner uniquement des données provenant de fichiers se terminant par .log. Cette clause limite la recherche au fichier sample.log qui contient les données.
+   * `INPUT__FILE__NAME LIKE '%.log'` : indique à Hive de retourner uniquement des données provenant de fichiers se terminant par .log. Cette clause limite hello recherche toohello exemple.log fichier qui contient les données de salutation.
 
-3. Dans la barre d’outils, sélectionnez le **cluster HDInsight** que vous souhaitez utiliser pour cette requête. Sélectionnez **Envoyer** pour exécuter les instructions en tant que tâche Hive.
+3. Dans la barre d’outils de hello, sélectionnez hello **HDInsight Cluster** que vous souhaitez toouse pour cette requête. Sélectionnez **Submit** toorun les instructions de hello en tant qu’un travail Hive.
 
    ![Barre d’envoi](./media/hdinsight-hadoop-use-hive-visual-studio/toolbar.png)
 
-4. Le **résumé de tâche Hive** apparaît et affiche des informations sur la tâche en cours d’exécution. Utilisez le lien **Actualiser** pour actualiser les informations sur la tâche, jusqu’à ce que l’**état de la tâche** passe à **Terminé**.
+4. Hello **récapitulatif de la ruche** apparaît et affiche des informations sur hello travail en cours d’exécution. Hello d’utilisation **Actualiser** lien toorefresh hello informations sur les travaux, jusqu'à ce que hello **état du travail** change également**terminé**.
 
    ![résumé de tâche affichant un travail terminé](./media/hdinsight-hadoop-use-hive-visual-studio/jobsummary.png)
 
-5. Utilisez le lien **Sortie de la tâche** pour afficher la sortie de cette tâche. Il affiche `[ERROR] 3`, soit la valeur retournée par cette requête.
+5. Hello d’utilisation **sortie des tâches** lien de sortie de hello tooview de ce travail. Il affiche `[ERROR] 3`, qui est la valeur hello retourné par cette requête.
 
 6. Vous pouvez également exécuter des requêtes Hive sans créer de projet. À l’aide de l’**Explorateur de serveurs**, développez **Azure** > **HDInsight**, cliquez avec le bouton droit sur votre serveur HDInsight, puis sélectionnez **Écrire une requête Hive**.
 
-7. Dans le document **temp.hql** qui s’affiche, ajoutez les instructions HiveQL suivantes :
+7. Bonjour **temp.hql** document qui s’affiche, ajoutez hello suivant les instructions HiveQL :
 
    ```hiveql
    set hive.execution.engine=tez;
@@ -97,24 +97,24 @@ Découvrez comment utiliser les outils Data Lake pour Visual Studio pour interro
    INSERT OVERWRITE TABLE errorLogs SELECT t1, t2, t3, t4, t5, t6, t7 FROM log4jLogs WHERE t4 = '[ERROR]' AND INPUT__FILE__NAME LIKE '%.log';
    ```
 
-    Ces instructions effectuent les opérations suivantes :
+    Ces instructions effectuent hello suivant des actions :
 
-   * `CREATE TABLE IF NOT EXISTS` : crée une table, si elle n'existe pas déjà. Étant donné que le mot-clé `EXTERNAL` n’est pas utilisé, cette instruction crée une table interne. Les tables internes sont stockées dans l’entrepôt de données Hive et gérées par Hive.
+   * `CREATE TABLE IF NOT EXISTS` : crée une table, si elle n'existe pas déjà. Étant donné que hello `EXTERNAL` mot clé n’est pas utilisé, cette instruction crée une table interne. Tables internes sont stockées dans l’entrepôt de données Hive hello et sont gérés par la ruche.
 
      > [!NOTE]
-     > Contrairement aux tables `EXTERNAL`, la suppression d’une table interne entraîne également la suppression des données sous-jacentes.
+     > Contrairement aux `EXTERNAL` supprime les tables, suppression d’une table interne également hello les données sous-jacentes.
 
-   * `STORED AS ORC` : stocke les données dans un format ORC (Optimized Row Columnar). ORC est un format particulièrement efficace et optimisé pour le stockage de données Hive.
+   * `STORED AS ORC`: Stocke hello données ligne optimisé (ORC) sous forme de colonnes. ORC est un format particulièrement efficace et optimisé pour le stockage de données Hive.
 
-   * `INSERT OVERWRITE ... SELECT`: sélectionne des lignes de la table `log4jLogs` qui contiennent `[ERROR]`, puis insère les données dans la table `errorLogs`.
+   * `INSERT OVERWRITE ... SELECT`: Sélectionne des lignes à partir de hello `log4jLogs` table qui contiennent des `[ERROR]`, puis insère hello des données dans hello `errorLogs` table.
 
-8. Dans la barre d’outils, sélectionnez la liste déroulante pour **Envoyer** , afin d’exécuter la tâche. Utilisez l’ **état de la tâche** afin de déterminer si la tâche est terminée.
+8. Barre d’outils du hello **Submit** tâche hello de toorun. Hello d’utilisation **état du travail** toodetermine que hello est terminée avec succès.
 
-9. Pour vérifier que le travail a créé une table, utilisez **Explorateur de serveurs** et développez **Azure** > **HDInsight** > votre cluster HDInsight > **Bases de données Hive** > **par défaut**. La table **errorLogs** et la table **log4jLogs** sont répertoriées.
+9. tooverify qui hello travail créé la table hello, utilisez **l’Explorateur de serveurs** et développez **Azure** > **HDInsight** > votre cluster HDInsight > **Bases de données de la ruche** > **par défaut**. Hello **journaux d’erreurs** table et hello **log4jLogs** table sont répertoriés.
 
 ## <a id="nextsteps"></a>Étapes suivantes
 
-Comme vous pouvez le voir, les outils HDInsight pour Visual Studio fournissent un moyen simple de travailler avec des requêtes Hive sur HDInsight.
+Comme vous pouvez le voir, hello HDInsight pour Visual Studio garantissent une toowork facilement avec les requêtes Hive dans HDInsight.
 
 Pour obtenir des informations générales sur Hive dans HDInsight :
 
@@ -126,7 +126,7 @@ Pour plus d’informations sur d’autres méthodes de travail avec Hadoop sur H
 
 * [Utilisation de MapReduce avec Hadoop sur HDInsight](hdinsight-use-mapreduce.md)
 
-Pour plus d’informations sur les outils de HDInsight pour Visual Studio :
+Pour plus d’informations sur les outils HDInsight hello pour Visual Studio :
 
 * [Prise en main des outils HDInsight pour Visual Studio](hdinsight-hadoop-visual-studio-tools-get-started.md)
 

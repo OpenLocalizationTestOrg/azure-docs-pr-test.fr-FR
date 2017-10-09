@@ -1,6 +1,6 @@
 ---
-title: Utilisateurs sous licence dans Azure Active Directory | Microsoft Docs
-description: "Découvrez comment accorder une licence à vos utilisateurs et à vous-même dans Azure Active Directory."
+title: utilisateurs aaaLicense dans Azure Active Directory | Documents Microsoft
+description: "Découvrez comment toolicense vous-même et vos utilisateurs dans Azure Active Directory."
 services: active-directory
 documentationcenter: 
 author: jeffgilb
@@ -15,54 +15,54 @@ ms.topic: article
 ms.date: 08/22/2017
 ms.author: jeffgilb
 custom: it-pro
-ms.openlocfilehash: c4509cdb003687083d0456c1957b19cf35ee056a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ae0bc030fa02b79d1dd01ca961b4e96e6b9c470d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="quickstart-license-users-in-azure-active-directory"></a>Guide de démarrage rapide : Utilisateurs sous licence dans Azure Active Directory
-Les services Azure AD basés sur des licences reposent sur l’activation d’un abonnement Azure Active Directory (Azure AD) dans votre client Azure. Une fois l’abonnement actif, les fonctionnalités de service sont gérées par des administrateurs Azure AD et utilisées par des utilisateurs sous licence. Quand vous achetez Enterprise Mobility + Security, Azure AD Premium ou Azure AD Basic, votre locataire est mis à jour avec l’abonnement, notamment sa période de validité et les licences prépayées. Les informations de votre abonnement, notamment le nombre de licences attribuées ou disponibles, sont accessibles par l’intermédiaire du portail Azure sous **Azure Active Directory** en ouvrant la vignette **Licences**. Le panneau **Licences** constitue également l’emplacement idéal pour gérer vos attributions de licence.
+Les services Azure AD basés sur des licences reposent sur l’activation d’un abonnement Azure Active Directory (Azure AD) dans votre client Azure. Une fois l’abonnement de hello est actif, des fonctionnalités de service sont gérées par des administrateurs Azure AD et utilisées par les utilisateurs sous licence. Lorsque vous achetez Enterprise Mobility + Security, Azure AD Premium ou Azure AD Basic, votre client est mis à jour avec abonnement hello, y compris sa période de validité et prépayé des licences. Vos informations d’abonnement, y compris nombre hello de licences attribuées ou disponibles, soient disponibles via hello Azure portail sous **Azure Active Directory** en ouvrant le hello **licences** vignette. Hello **licences** lame est également hello meilleures place toomanage les affectations de licence.
 
-Bien qu’il suffise d’obtenir un abonnement pour configurer les fonctionnalités payantes, vous devez quand même attribuer des licences utilisateur pour les fonctionnalités Azure AD payantes. Une licence doit être attribuée à tout utilisateur ayant besoin d’accéder à une fonctionnalité Azure AD payante ou géré par le biais de ce type de fonctionnalité. L’attribution de licence est un mappage entre un utilisateur et un service acheté, comme Azure AD Premium, Azure AD Basic ou Enterprise Mobility + Security.
+Bien qu’obtention d’un abonnement est tous les tooconfigure payé des fonctionnalités, vous devez néanmoins être affectés à des licences utilisateur pour payant Azure AD fonctionnalités payée. Une licence doit être attribuée à tout utilisateur ayant besoin d’accéder à une fonctionnalité Azure AD payante ou géré par le biais de ce type de fonctionnalité. L’attribution de licence est un mappage entre un utilisateur et un service acheté, comme Azure AD Premium, Azure AD Basic ou Enterprise Mobility + Security.
 
-Vous pouvez utiliser l’[attribution de licence basée sur le groupe](active-directory-licensing-whatis-azure-portal.md) pour configurer des règles telles que les suivantes :
+Vous pouvez utiliser [attribution de licence basée sur le groupe](active-directory-licensing-whatis-azure-portal.md) tooset des règles telles que les éléments suivants de hello :
 * Tous les utilisateurs de votre annuaire obtiennent automatiquement une licence
-* Toute personne avec la fonction appropriée obtient une licence
-* Vous pouvez déléguer la décision à d’autres responsables au sein de l’organisation (à l’aide de [groupes en libre-service](active-directory-accessmanagement-self-service-group-management.md))
+* Toute personne avec le titre de travail approprié hello Obtient une licence
+* Vous pouvez déléguer des gestionnaires de tooother hello décision dans l’organisation de hello (à l’aide de [groupes en libre-service](active-directory-accessmanagement-self-service-group-management.md))
 
 > [!TIP]
-> Pour obtenir une discussion détaillée de l’attribution des licences à des groupes, avec notamment des scénarios avancés et des scénarios d’attribution de licences Office 365, consultez [Affecter des licences à un groupe d’utilisateurs dans Azure Active Directory](active-directory-licensing-group-assignment-azure-portal.md).
+> Pour obtenir une présentation détaillée de toogroups d’attribution de licence, y compris avancé des scénarios et Office 365, les scénarios de gestion de licences voir [attribuer des licences toousers par l’appartenance au groupe dans Azure Active Directory](active-directory-licensing-group-assignment-azure-portal.md).
 
-## <a name="assign-licenses-to-users-and-groups"></a>Attribuer des licences aux utilisateurs et groupes
-Avec un abonnement actif, vous devez d’abord vous attribuer une licence et actualiser votre navigateur afin de bien afficher toutes les fonctionnalités attendues incluses dans votre abonnement. L’étape suivante consiste à attribuer des licences aux utilisateurs qui doivent accéder aux fonctionnalités Azure AD payantes. Un moyen simple d’attribuer des licences consiste à les attribuer à des groupes d’utilisateurs plutôt qu’à des personnes. Quand vous attribuez des licences à un groupe, tous les membres de ce groupe disposent d’une licence. Si des utilisateurs sont ajoutés au groupe ou en sont supprimés, la licence appropriée leur est automatiquement attribuée ou retirée. 
+## <a name="assign-licenses-toousers-and-groups"></a>Assigner des groupes et des licences toousers
+À l’aide d’un abonnement actif, vous devez tout d’abord attribuer une licence tooyourself et actualiser votre tooensure navigateur que vous voyez toutes les fonctionnalités de hello attendu incluses avec votre abonnement. étape suivante de Hello est tooassign licences toohello utilisateurs qui doivent accéder aux fonctionnalités de Azure AD toopaid. Une licence de tooassign facilement est toogroups de licences tooassign d’utilisateurs, plutôt que tooindividuals. Lorsque vous affectez le groupe de licences tooa, tous les membres du groupe sont affectés à une licence. Si les utilisateurs sont ajoutés ou supprimés du groupe de hello, licence hello est automatiquement attribué ou supprimé. 
 
 > [!NOTE]
-> Certains services Microsoft ne sont pas disponibles dans tous les emplacements. Avant de pouvoir attribuer une licence à un utilisateur, l’administrateur doit spécifier la propriété **Emplacement d’utilisation** pour l’utilisateur. Vous pouvez définir cette propriété sous **Utilisateur** &gt; **Profil** &gt; **Paramètres** dans le portail Azure. Quand vous attribuez une licence à un groupe, tout utilisateur dont l’emplacement d’utilisation n’est pas spécifié hérite de l’emplacement de l’annuaire.
+> Certains services Microsoft ne sont pas disponibles dans tous les emplacements. Tooa utilisateur peut être affectée à une licence, administrateur de hello devez spécifier hello **l’emplacement d’utilisation** propriété pour l’utilisateur de hello. Vous pouvez définir cette propriété sous **utilisateur** &gt; **profil** &gt; **paramètres** Bonjour portail Azure. Lorsque vous utilisez l’affectation du groupe de licences, emplacement hello du répertoire de hello hérite de n’importe quel utilisateur dont l’emplacement d’utilisation n’est pas spécifié.
 
-Pour attribuer une licence, sous **Azure Active Directory** &gt; **Licences** &gt; **Tous les produits**, sélectionnez un ou plusieurs produits, puis sélectionnez **Affecter** dans la barre de commandes.
+tooassign une licence, sous **Azure Active Directory** &gt; **licences** &gt; **tous les produits**, sélectionnez un ou plusieurs produits, puis **Affecter** sur la barre de commandes hello.
 
-![Sélectionner une licence à attribuer](media/license-users-groups/select-license-to-assign.png)
+![Sélectionnez un tooassign de licence](media/license-users-groups/select-license-to-assign.png)
 
-Vous pouvez utiliser le panneau **Utilisateurs et groupes** pour sélectionner plusieurs utilisateurs ou groupes ou pour désactiver des plans de service dans le produit. Utilisez la zone de recherche en haut pour rechercher des noms d’utilisateurs et de groupes.
+Vous pouvez utiliser hello **utilisateurs et groupes** toochoose panneau plusieurs utilisateurs ou groupes ou toodisable service plans dans le produit de hello. Utiliser zone de recherche hello toosearch supérieur pour les noms d’utilisateur et de groupe.
 
 ![Sélectionner un utilisateur ou un groupe pour l’attribution de licences](media/license-users-groups/select-user-for-license-assignment.png)
 
-Quand vous attribuez une licence au groupe, un certain temps peut être nécessaire pour que tous les utilisateurs héritent de la licence, en fonction de la taille du groupe. Vous pouvez suivre l’avancement du traitement dans le panneau **Groupe**, sous la vignette **Licences**.
+Lorsque vous affectez le groupe de licences tooa, il peut prendre un certain temps avant que tous les utilisateurs héritent licence hello selon la taille de hello du groupe de hello. Vous pouvez vérifier le statut de traitement hello sur hello **groupe** panneau, sous hello **licences** vignette.
 
 ![Statut d’affectation de licence](media/license-users-groups/license-assignment-status.png)
 
 Des erreurs d’affectation peuvent se produire lors de l’affectation des licences Azure AD, mais elles restent relativement rares lors de la gestion des produits Azure AD et Enterprise Mobility + Security. Les erreurs d’attribution se limitent aux problèmes suivants :
-- Conflit d’attribution : lorsqu’un utilisateur a précédemment reçu une licence incompatible avec la licence actuelle. Dans ce cas, l’affectation de la nouvelle licence nécessite la suppression de la licence active.
-- Dépassement du nombre de licences disponibles : quand le nombre d’utilisateurs des groupes attribués dépasse le nombre de licences disponibles, le statut d’affectation d’un utilisateur reflète l’échec de l’affectation du fait de licences manquantes.
+- Conflits d’attribution : quand un utilisateur a été affecté précédemment une licence qui n’est pas compatible avec licence en cours de hello. Dans ce cas, l’attribution de licence de nouveau hello requiert hello en cours de suppression.
+- Dépassement de licences disponibles : lorsque nombre hello d’utilisateurs dans les groupes assignés dépasse les licences disponibles hello, état d’attribution d’un utilisateur reflète un tooassign échec en raison de toomissing licences.
 
 ### <a name="azure-ad-b2b-collaboration-licensing"></a>Affectation de licences Azure Active Directory B2B Collaboration
 
-La collaboration B2B vous permet d’inviter des utilisateurs invités dans votre locataire Azure AD pour fournir l’accès à des services Azure AD et à toutes ressources Azure que vous mettez à disposition.  
+B2B collaboration vous permet des utilisateurs invités de tooinvite à vos services de Azure AD client tooprovide accès tooAzure AD et les ressources Azure vous rendre disponible.  
 
-L’invitation d’utilisateurs B2B et leur attribution à une application dans Azure AD n’entraînent aucun frais. Jusqu’à 10 applications par utilisateur invité et trois rapports de base sont également gratuits pour les utilisateurs B2B Collaboration. Si des licences appropriées sont affectées à votre utilisateur dans le locataire Azure AD du partenaire, il disposera également d’une licence dans votre locataire.
+Il n’existe aucun frais pour inviter les utilisateurs B2B et de les affecter l’application tooan dans Azure AD. Les applications too10 par invité utilisateur et des rapports de base 3 sont également gratuits pour les utilisateurs de collaboration B2B. Si votre utilisateur invité a aucune licence appropriée dans le locataire d’Azure AD du partenaire hello, ils allez disposer d’une licence dans le vôtre également.
 
-Cela n’est pas obligatoire, mais si vous souhaitez fournir l’accès à des fonctionnalités Azure AD payantes, vous devez accorder à ces utilisateurs invités B2B des licences Azure AD appropriées. Un locataire invitant avec une licence Azure payée peut accorder des droits d’utilisateur B2B Collaboration à cinq utilisateurs invités supplémentaires. Pour plus d’informations et pour voir des scénarios, consultez le [Guide d’attribution de licences pour Azure Active Directory B2B Collaboration](active-directory-b2b-licensing.md).
+Il n’est pas obligatoire, mais si vous souhaitez que les fonctionnalités de tooprovide accès toopaid Azure AD, les utilisateurs invités de B2B doivent disposer d’une licence avec des licences de Azure AD d’appropriées. Un locataire invitant à une annonce Azure payé licence permettre affecter des droits d’utilisateur B2B collaboration les utilisateurs d’invité tooan cinq supplémentaires invités toohello client. Pour plus d’informations et pour voir des scénarios, consultez le [Guide d’attribution de licences pour Azure Active Directory B2B Collaboration](active-directory-b2b-licensing.md).
 
 ## <a name="view-assigned-licenses"></a>Visualiser les licences attribuées
 
@@ -70,25 +70,25 @@ Un récapitulatif des licences attribuées et disponibles est disponible sous **
 
 ![Afficher le récapitulatif des licences](media/license-users-groups/view-license-summary.png)
 
-Une liste détaillée des utilisateurs et groupes attribués est disponible quand vous sélectionnez un produit spécifique. La liste **Utilisateurs sous licence** affiche tous les utilisateurs consommant actuellement une licence et indique si la licence a été attribuée directement à l’utilisateur ou si elle est héritée d’un groupe.
+Une liste détaillée des utilisateurs et groupes attribués est disponible quand vous sélectionnez un produit spécifique. Hello **utilisateurs sous licence** liste affiche tous les utilisateurs actuellement consomme une licence et que la licence de hello a été assignée directement toohello utilisateur ou si elle est héritée d’un groupe.
 
 ![Afficher le détail des licences](media/license-users-groups/view-license-detail.png)
 
-De même, la liste **Groupes sous licence** montre tous les groupes auxquels des licences ont été attribuées. Sélectionnez un utilisateur ou un groupe pour ouvrir le panneau **Licences**, qui montre toutes les licences attribuées à cet objet.
+De même, hello **concédé sous licence de groupes** liste affiche tous les groupes de licences de toowhich ont été affectés. Sélectionnez un Bonjour tooopen utilisateur ou un groupe **licences** panneau, qui montre toutes les licences affectées toothat objet.
 
 ## <a name="remove-a-license"></a>Supprimer une licence
 
-Pour supprimer une licence, accédez à l’utilisateur ou au groupe et ouvrez la vignette **Licences**. Sélectionnez la licence, puis cliquez sur **Supprimer**.
+tooremove une licence, accédez toohello utilisateur ou un groupe et ouvrez hello **licences** vignette. Sélectionnez hello licence, puis cliquez sur **supprimer**.
 
 ![Supprimer une licence](media/license-users-groups/remove-license.png)
 
-Les licences héritées par l’utilisateur à partir d’un groupe ne peuvent pas être supprimées directement. Au lieu de cela, supprimez l’utilisateur du groupe à partir duquel il a hérité de la licence.
+Héritée par utilisateur hello à partir d’un groupe de licences ne peut pas être supprimées directement. Au lieu de cela, supprimez-le hello groupe hello à partir duquel ils héritent des licences de hello.
 
 
 ## <a name="next-steps"></a>Étapes suivantes
-Ce guide de démarrage rapide vous a expliqué comment attribuer des licences aux utilisateurs et aux groupes dans l’annuaire Azure AD. 
+Dans ce démarrage rapide, vous avez appris comment tooassign licences toousers et les groupes dans Windows Azure AD. 
 
-Vous pouvez utiliser le lien suivant pour configurer les attributions de licences d’abonnement dans Azure AD à travers le portail Azure.
+Vous pouvez utiliser hello suivant des affectations de licence de lien tooconfigure abonnement dans Azure AD dans hello portail Azure.
 
 > [!div class="nextstepaction"]
 > [Attribuer des licences Azure AD](https://aad.portal.azure.com/#blade/Microsoft_AAD_IAM/LicensesMenuBlade/Overview) 

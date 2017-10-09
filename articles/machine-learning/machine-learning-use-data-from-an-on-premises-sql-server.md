@@ -1,6 +1,6 @@
 ---
-title: Utiliser un serveur SQL Server local dans Azure Machine Learning | Microsoft Docs
-description: "Utilisez les données d’une base de données SQL Server locale pour effectuer des analyses avancées avec Azure Machine Learning."
+title: aaaUse un local SQL Server dans Azure Machine Learning | Documents Microsoft
+description: "Utiliser des données à partir d’un analytique de tooperform avancé de base de données SQL Server local avec Azure Machine Learning."
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -14,19 +14,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/13/2017
 ms.author: garye;krishnan
-ms.openlocfilehash: ec1620be2aaf4339ba9d22540ffb2239d0678b70
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c0e9908e296b97b31611ef0192744a59073acd80
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="perform-advanced-analytics-with-azure-machine-learning-using-data-from-an-on-premises-sql-server-database"></a>Effectuer des analyses avancées avec Azure Machine Learning en utilisant les données d’une base de données SQL Server locale
 
 [!INCLUDE [import-data-into-aml-studio-selector](../../includes/machine-learning-import-data-into-aml-studio.md)]
 
-Souvent, les entreprises qui travaillent avec des données locales souhaitent tirer parti de l’échelle et de l’agilité du cloud pour leurs charges de travail d’apprentissage automatique. Mais elles ne souhaitent pas perturber leurs processus métier et leurs flux de travail actuels en déplaçant leurs données locales vers le cloud. Azure Machine Learning prend désormais en charge la lecture de vos données à partir d’une base de données SQL Server locale, puis l’apprentissage et l’évaluation d’un modèle avec ces données. Vous n’avez plus à copier et à synchroniser manuellement les données entre le cloud et votre serveur local. Au lieu de cela, le module **Importer des données** dans Azure Machine Learning Studio peut maintenant lire directement dans votre base de données SQL Server locale pour vos travaux d’apprentissage et d’évaluation.
+Fréquence à laquelle les entreprises qui fonctionnent avec des données locales aimeriez parti tootake de montée en puissance hello et l’agilité de cloud hello pour leur charges de travail d’apprentissage. Mais ils ne souhaitent pas toodisrupt leurs processus d’entreprise en cours et le flux de travail en déplaçant leur cloud toohello de données local. Azure Machine Learning prend désormais en charge la lecture de vos données à partir d’une base de données SQL Server locale, puis l’apprentissage et l’évaluation d’un modèle avec ces données. Vous n’avez plus toomanually copier et synchronisation hello des données entre le cloud de hello et de votre serveur local. Au lieu de cela, hello **importer des données** module dans Azure Machine Learning Studio peut désormais lire directement à partir de votre base de données SQL Server locale pour votre apprentissage et le score des travaux.
 
-Cet article fournit une vue d’ensemble de l’intégration de données SQL Server locales dans Azure Machine Learning. Il part du principe que vous êtes familiarisé avec les concepts d’Azure Machine Learning, comme les espaces de travail, les modules, les jeux de données, les expériences, *etc*.
+Cet article fournit une vue d’ensemble du mode tooingress local de données SQL server dans Azure Machine Learning. Il part du principe que vous êtes familiarisé avec les concepts d’Azure Machine Learning, comme les espaces de travail, les modules, les jeux de données, les expériences, *etc*.
 
 > [!NOTE]
 > Cette fonctionnalité n’est pas disponible pour les espaces de travail gratuits. Pour plus d’informations sur la tarification et les niveaux de Machine Learning, consultez la [Tarification d’Azure Machine Learning](https://azure.microsoft.com/pricing/details/machine-learning/).
@@ -37,114 +37,114 @@ Cet article fournit une vue d’ensemble de l’intégration de données SQL Ser
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-## <a name="install-the-microsoft-data-management-gateway"></a>Installer la passerelle de gestion des données de Microsoft
-Pour accéder à une base de données SQL Server locale dans Azure Machine Learning, vous devez télécharger et installer la passerelle de gestion des données de Microsoft. Quand vous configurez la connexion de passerelle dans Machine Learning Studio, vous avez la possibilité de télécharger et d’installer la passerelle à l’aide de la boîte de dialogue **Télécharger et inscrire la passerelle de données** décrite ci-dessous.
+## <a name="install-hello-microsoft-data-management-gateway"></a>Installer hello passerelle de gestion des données Microsoft
+tooaccess une base de données SQL Server locale dans Azure Machine Learning, vous devez toodownload et installation hello passerelle de gestion des données de Microsoft. Lorsque vous configurez la connexion à la passerelle hello dans Machine Learning Studio, vous avez opportunité hello pour télécharger et installer la passerelle hello à l’aide de hello **téléchargement et la passerelle de données de Registre** boîte de dialogue décrite ci-dessous.
 
-Vous pouvez également installer la passerelle de gestion des données à l’avance en téléchargeant et en exécutant le package d’installation MSI dans le [Centre de téléchargement Microsoft](https://www.microsoft.com/download/details.aspx?id=39717).
-Choisissez la version la plus récente, en sélectionnant 32 bits ou 64 bits en fonction de votre ordinateur. Le fichier MSI peut également servir à mettre à niveau une passerelle de gestion des données existante vers la version la plus récente, en conservant tous les paramètres.
+Vous pouvez également installer hello passerelle de gestion des données avance en téléchargeant et en exécutant le package d’installation MSI hello de hello [Microsoft Download Center](https://www.microsoft.com/download/details.aspx?id=39717).
+Choisissez la version la plus récente hello, en sélectionnant 32 bits ou 64 bits en fonction de votre ordinateur. Hello MSI peut également être utilisé tooupgrade une passerelle de gestion des données toohello dernière version existante, avec tous les paramètres sont conservés.
 
-La passerelle nécessite les éléments suivants :
+passerelle de Hello a hello suivant des conditions préalables :
 
-* Les versions de système d’exploitation Windows prises en charge sont les suivantes : Windows 7, Windows 8/8.1, Windows 10, Windows Server 2008 R2, Windows Server 2012 et Windows Server 2012 R2.
-* La configuration recommandée pour l’ordinateur de passerelle est la suivante : au moins 2 GHz, 4 cœurs, 8 Go de RAM et 80 Go d’espace disque.
-* Si l’ordinateur hôte est en veille prolongée, la passerelle ne répond pas aux demandes de données. Vous devez donc configurer un plan de gestion de l'alimentation approprié sur l'ordinateur avant d'installer la passerelle. Si l’ordinateur est configuré pour se mettre en veille prolongée, l’installation de la passerelle affiche un message.
-* Étant donné que l’activité de copie se déroule selon une fréquence spécifique, l’utilisation des ressources (processeur, mémoire) sur l’ordinateur suit également le même modèle avec des périodes de pointe et d’inactivité. L'utilisation des ressources dépend également en grande partie de la quantité de données déplacées. Quand plusieurs travaux de copie sont en cours, vous constaterez une augmentation des ressources utilisées pendant les heures de pointe. Si la configuration minimale listée ci-dessus est techniquement suffisante, vous pouvez choisir d’avoir une configuration avec plus de ressources que la configuration minimale en fonction de votre charge spécifique pour le déplacement des données.
+* versions de système d’exploitation Windows Hello pris en charge sont Windows 7, Windows 8/8.1, Windows 10, Windows Server 2008 R2, Windows Server 2012 et Windows Server 2012 R2.
+* Hello recommandé de configuration pour l’ordinateur de passerelle hello est au moins 2 GHz, 4 cœurs, 8 Go de RAM et disque de 80 Go.
+* Si l’ordinateur hôte de hello en veille prolongée, passerelle de hello ne répondra toodata demandes. Par conséquent, configurez un plan d’alimentation sur l’ordinateur de hello avant d’installer la passerelle de hello. Si la machine de hello est toohibernate configuré, installation de la passerelle hello affiche un message.
+* Étant donné que l’activité de copie se produit à une fréquence spécifique, hello l’utilisation des ressources (processeur, mémoire) sur l’ordinateur de hello suit également hello même modèle avec des heures de pointe et les temps d’inactivité. L’utilisation des ressources également dépend fortement hello quantité de données en cours de déplacement. Quand plusieurs travaux de copie sont en cours, vous constaterez une augmentation des ressources utilisées pendant les heures de pointe. Alors que la configuration minimale hello répertoriée ci-dessus est techniquement suffisante, vous souhaiterez toohave une configuration avec plus de ressources que la configuration minimale hello en fonction de votre charge spécifique pour le déplacement des données.
 
-Prenez en compte ce qui suit lors de la configuration et de l’utilisation d’une passerelle de gestion des données :
+Considérez les éléments hello lors de la configuration et l’utilisation d’une passerelle de gestion des données suivants :
 
 * Vous ne pouvez installer qu’une seule instance de la passerelle de gestion des données sur un même ordinateur.
 * Vous pouvez utiliser une seule passerelle pour plusieurs sources de données locales.
-* Vous pouvez connecter plusieurs passerelles sur différents ordinateurs à la même source de données locale.
+* Vous pouvez vous connecter à plusieurs passerelles sur différents ordinateurs toohello même source de données locale.
 * Vous ne configurez une passerelle que pour un seul espace de travail à la fois. Pour le moment, les passerelles ne peuvent pas être partagées entre plusieurs espaces de travail.
-* Vous pouvez configurer plusieurs passerelles pour un espace de travail unique. Par exemple, vous pouvez choisir d’utiliser une passerelle connectée à vos sources de données de test lors du développement et une passerelle de production lorsque vous êtes prêt pour l’opérationnalisation.
-* La passerelle n’a pas besoin d’être sur le même ordinateur que la source de données. Toutefois, le fait d’avoir une passerelle plus proche de la source de données réduit le temps de connexion de la passerelle à la source de données. Nous vous recommandons d’installer la passerelle sur un ordinateur différent de celui qui héberge la source de données locale, afin que la passerelle et la source de données ne soient pas en concurrence pour l’attribution de ressources.
+* Vous pouvez configurer plusieurs passerelles pour un espace de travail unique. Par exemple, vous voudrez toouse une passerelle est connectée tooyour des sources de données de test pendant le développement et une passerelle de production quand vous êtes prêt toooperationalize.
+* passerelle de Hello n’a pas besoin toobe sur hello même ordinateur en tant que source de données hello. Mais rester proche toohello source de données réduit le temps de hello pour la source de données hello passerelle tooconnect toohello. Nous vous recommandons d’installer la passerelle de hello sur un ordinateur qui est différent de hello une source de données hôtes hello local afin que hello passerelle et source de données ne sont en concurrence pour les ressources.
 * Si une passerelle est déjà installée sur votre ordinateur desservant des scénarios Power BI ou Azure Data Factory, installez une passerelle distincte pour Azure Machine Learning sur un autre ordinateur.
 
   > [!NOTE]
-  > Vous ne pouvez pas exécuter la passerelle de gestion des données et la passerelle Power BI sur le même ordinateur.
+  > Vous ne pouvez pas exécuter passerelle de gestion des données et Power BI Gateway sur hello même ordinateur.
   >
   >
-* Vous devez utiliser la passerelle de gestion des données pour Azure Machine Learning, même si vous utilisez Azure ExpressRoute pour d’autres données. Traitez votre source de données comme une source de données locale (derrière un pare-feu), même quand vous utilisez ExpressRoute. Utilisez la passerelle de gestion des données pour établir la connectivité entre Machine Learning et la source de données.
+* Vous devez toouse hello passerelle de gestion des données pour Azure Machine Learning, même si vous utilisez Azure ExpressRoute pour d’autres données. Traitez votre source de données comme une source de données locale (derrière un pare-feu), même quand vous utilisez ExpressRoute. Utiliser une connexion de tooestablish hello passerelle de gestion des données entre l’apprentissage et de la source de données hello.
 
-Vous trouverez des informations détaillées sur les prérequis pour l’installation, des étapes d’installation et des conseils de dépannage dans l’article [Passerelle de gestion des données](../data-factory/data-factory-data-management-gateway.md).
+Vous trouverez des informations détaillées sur les conditions préalables d’installation, des étapes d’installation et des conseils de dépannage dans l’article de hello [passerelle de gestion des données](../data-factory/data-factory-data-management-gateway.md).
 
 ## <a name="span-idusing-the-data-gateway-step-by-step-walk-classanchorspan-idtoc450838866-classanchorspanspaningress-data-from-your-on-premises-sql-server-database-into-azure-machine-learning"></a><span id="using-the-data-gateway-step-by-step-walk" class="anchor"><span id="_Toc450838866" class="anchor"></span></span>Intégrer des données de votre base de données SQL Server locale dans Azure Machine Learning
 Dans cette procédure pas à pas, vous allez configurer une passerelle de gestion des données dans un espace de travail Azure Machine Learning, la configurer, puis lire les données à partir d’une base de données SQL Server locale.
 
 > [!TIP]
-> Avant de commencer, désactivez le bloqueur de fenêtres publicitaires de votre navigateur pour `studio.azureml.net`. Si vous utilisez le navigateur Google Chrome, téléchargez et installez l’un des modules disponibles sur le WebStore de Google Chrome [Extension de l’application Click Once](https://chrome.google.com/webstore/search/clickonce?_category=extensions).
+> Avant de commencer, désactivez le bloqueur de fenêtres publicitaires de votre navigateur pour `studio.azureml.net`. Si vous utilisez hello navigateur Google Chrome, télécharger et installer l’une de hello plusieurs plug-ins disponibles à Google Chrome WebStore [Extension d’application une fois cliquez sur](https://chrome.google.com/webstore/search/clickonce?_category=extensions).
 >
 >
 
 ### <a name="step-1-create-a-gateway"></a>Étape 1 : Créer une passerelle
-La première étape consiste à créer et à configurer la passerelle pour accéder à votre base de données SQL locale.
+première étape de Hello est toocreate et configurez hello passerelle tooaccess de votre base de données SQL locale.
 
-1. Connectez-vous à [Azure Machine Learning Studio](https://studio.azureml.net/Home/) et sélectionnez l’espace de travail dans lequel vous souhaitez travailler.
-2. Cliquez sur le panneau **PARAMÈTRES** sur la gauche, puis cliquez sur l’onglet **PASSERELLES DE DONNÉES** en haut.
-3. Cliquez sur **NOUVELLE PASSERELLE DE DONNÉES** en bas de l’écran.
+1. Connectez-vous trop[Azure Machine Learning Studio](https://studio.azureml.net/Home/) et sélectionnez hello espace de travail toowork dans.
+2. Cliquez sur hello **paramètres** panneau sur hello gauche, puis cliquez sur hello **passerelles de données** onglet en haut de hello.
+3. Cliquez sur **nouvelle passerelle de données** bas hello écran hello.
 
     ![Nouvelle passerelle de données](media/machine-learning-use-data-from-an-on-premises-sql-server/new-data-gateway-button.png)
-4. Dans la boîte de dialogue **Nouvelle passerelle de données**, entrez le **Nom de la passerelle** et ajoutez éventuellement une **Description**. Cliquez sur la flèche située dans l’angle inférieur droit pour accéder à l’étape suivante de la configuration.
+4. Bonjour **nouvelle passerelle de données** boîte de dialogue, entrez hello **nom de la passerelle** et ajoutez éventuellement un **Description**. Cliquez sur flèche hello sur hello en bas à droite toogo toohello étape suivante de la configuration de hello.
 
     ![Entrez la description et le nom de la passerelle](media/machine-learning-use-data-from-an-on-premises-sql-server/new-data-gateway-dialog-enter-name.png)
-5. Dans la boîte de dialogue Télécharger et inscrire une passerelle de données, copiez la CLÉ D’INSCRIPTION DE LA PASSERELLE dans le presse-papiers.
+5. Bonjour, télécharger et enregistrer la boîte de dialogue de la passerelle de données, copier le Presse-papiers toohello clé d’inscription de passerelle hello.
 
     ![Téléchargez et enregistrez la passerelle de données](media/machine-learning-use-data-from-an-on-premises-sql-server/download-and-register-data-gateway.png)
-6. <span id="note-1" class="anchor"></span>Si vous n’avez pas encore téléchargé et installé la passerelle de gestion des données de Microsoft, cliquez sur **Télécharger la passerelle de gestion des données**. Vous accéderez au Centre de téléchargement Microsoft, où vous pourrez sélectionner la version de la passerelle dont vous avez besoin, la télécharger et l’installer. Vous trouverez des informations détaillées sur les conditions préalables à l’installation, des étapes d’installation et des conseils de dépannage dans les sections du début de l’article [Déplacer des données entre des sources locales et le cloud à l’aide de la passerelle de gestion des données](../data-factory/data-factory-move-data-between-onprem-and-cloud.md).
-7. Une fois la passerelle installée, le Gestionnaire de configuration de la passerelle de gestion des données s’ouvre et la boîte de dialogue **Inscrire la passerelle** s’affiche. Collez la **Clé d’inscription de la passerelle** que vous avez copiée dans le presse-papiers et cliquez sur **Inscrire**.
-8. Si vous avez déjà installé une passerelle, exécutez le Gestionnaire de configuration de la passerelle de gestion des données. Cliquez sur **Modifier la clé**, collez la **Clé d’inscription de la passerelle** que vous avez copiée dans le Presse-papiers à l’étape précédente, puis cliquez sur **OK**.
-9. Une fois l’installation terminée, la boîte de dialogue **Inscrire la passerelle** du Gestionnaire de configuration de la passerelle de gestion des données de Microsoft s’affiche. Collez la CLÉ D’INSCRIPTION DE LA PASSERELLE que vous avez copiée dans le Presse-papiers lors d’une étape précédente et cliquez sur **Inscrire**.
+6. <span id="note-1" class="anchor"></span>Si vous n’avez pas encore téléchargé et installé hello passerelle de gestion des données de Microsoft, puis cliquez sur **passerelle de gestion des données téléchargement**. Cette prend toothe Microsoft Download Center où vous pouvez sélectionner la version de la passerelle hello vous avez besoin, téléchargez-le et installez-le. Vous trouverez des informations détaillées sur les conditions préalables d’installation, des étapes d’installation et des conseils de dépannage dans hello premières sections de l’article de hello [déplacement des données entre des sources locales et cloud avec la passerelle de gestion des données](../data-factory/data-factory-move-data-between-onprem-and-cloud.md).
+7. Après l’installation de la passerelle de hello, hello Gestionnaire de Configuration de passerelle de gestion de données s’ouvre et hello **Registre passerelle** boîte de dialogue s’affiche. Hello de coller **clé d’inscription de passerelle** que vous avez copié toohello Presse-papiers, puis cliquez sur **inscrire**.
+8. Si vous disposez déjà d’une passerelle installée, exécutez hello Gestionnaire de Configuration de passerelle de gestion de données. Cliquez sur **modifier la clé**, collez la **clé d’inscription de passerelle** que vous avez copié toohello Presse-papiers dans l’étape précédente de hello, puis cliquez sur **OK**.
+9. Lors de l’installation de hello est terminée, hello **Registre passerelle** boîte de dialogue pour le Gestionnaire de Configuration de passerelle Microsoft Data Management s’affiche. Collez hello clé d’inscription de passerelle que vous avez copié dans le Presse-papiers hello à l’étape précédente, puis cliquez sur **inscrire**.
 
     ![Inscrivez la passerelle](media/machine-learning-use-data-from-an-on-premises-sql-server/data-gateway-configuration-manager-register-gateway.png)
-10. La configuration de la passerelle est terminée lorsque les valeurs suivantes sont définies sur l’onglet **Accueil** dans le Gestionnaire de configuration de la passerelle de gestion des données de Microsoft :
+10. Hello configuration de la passerelle est terminée lorsque hello valeurs suivantes est définie sur hello **accueil** onglet dans le Gestionnaire de Configuration de passerelle Microsoft Data Management :
 
-    * **Nom de la passerelle** et **Nom de l’instance** sont définis sur le nom de la passerelle.
-    * **Inscription** est défini sur **Inscrit**.
-    * **État** est défini sur **Démarré**.
-    * La barre d’état située au bas de l’écran affiche le message **Connecté au service cloud de la passerelle de gestion des données** accompagné d’une coche verte.
+    * **Nom de la passerelle** et **nom de l’Instance** sont définies nom toohello de passerelle de hello.
+    * **L’enregistrement** est défini trop**inscrit**.
+    * **État** est défini trop**démarré**.
+    * barre d’état de Hello en hello bas affiche **connecté tooData Service de Cloud de passerelle de gestion** avec une coche verte.
 
       ![Gestionnaire de passerelle de gestion de données](media/machine-learning-use-data-from-an-on-premises-sql-server/data-gateway-configuration-manager-registered.png)
 
-      Azure Machine Learning Studio se met également à jour lorsque l’inscription réussit.
+      Azure Machine Learning Studio est actualisée lors de l’inscription de hello a réussi.
 
     ![Inscription de la passerelle réussie](media/machine-learning-use-data-from-an-on-premises-sql-server/gateway-registered.png)
-11. Dans la boîte de dialogue **Télécharger et inscrire la passerelle de données** , cliquez sur la coche pour terminer l’installation. La page **Paramètres** affiche l’état « En ligne » pour la passerelle. Dans le volet de droite, vous trouverez l’état et d’autres informations utiles.
+11. Bonjour **télécharger et inscrire la passerelle de données** boîte de dialogue, cliquez sur le programme d’installation de case à cocher toocomplete hello. Hello **paramètres** page affiche l’état de la passerelle comme étant « En ligne ». Vous trouverez dans le volet de droite hello, état et autres informations utiles.
 
     ![Paramètres de la passerelle](media/machine-learning-use-data-from-an-on-premises-sql-server/gateway-status.png)
-12. Dans le Gestionnaire de configuration de la passerelle de gestion des données de Microsoft, basculez vers l’onglet **Certificat** . Le certificat spécifié dans cet onglet sert à chiffrer/déchiffrer les informations d’identification pour le magasin de données local que vous spécifiez dans le portail. Il s’agit du certificat par défaut. Microsoft recommande de le modifier pour spécifier votre propre certificat, que vous sauvegardez dans votre système de gestion des certificats. Cliquez sur **Modifier** pour utiliser votre propre certificat à la place.
+12. Dans le Gestionnaire de Configuration de passerelle de gestion de données de Microsoft de hello basculer toohello **certificat** certificat de hello onglet spécifiée sous cet onglet est utilisé tooencrypt/déchiffrer les informations d’identification pour la banque de données locale hello que vous spécifiez dans le portail de hello. Ce certificat est un certificat par défaut de hello. Microsoft vous recommande de modification de ce certificat propre tooyour que vous sauvegardez dans votre système de gestion de certificat. Cliquez sur **modification** toouse votre propre certificat à la place.
 
     ![Changez le certificat de la passerelle](media/machine-learning-use-data-from-an-on-premises-sql-server/data-gateway-configuration-manager-certificate.png)
-13. (Facultatif) Si vous souhaitez activer la journalisation détaillée pour résoudre les problèmes de passerelle, dans le Gestionnaire de configuration de la passerelle de gestion des données de Microsoft, basculez sur l’onglet **Diagnostics** et cochez l’option **Activer la journalisation détaillée pour résoudre des problèmes**. Vous trouverez les informations de journalisation dans l’Observateur d’événements Windows sous le nœud **Journaux des applications et des services** -&gt; **Passerelle de gestion des données**. Vous pouvez également utiliser l’onglet **Diagnostics** pour tester la connexion à une source de données locale à l’aide de la passerelle.
+13. (facultatif) Si vous souhaitez que la journalisation documentée de tooenable afin de résoudre les problèmes avec la passerelle de hello, dans le Gestionnaire de Configuration de passerelle de gestion de données de Microsoft de hello basculer toothe **Diagnostics** et vérifiez hello **activer la journalisation à des fins de dépannage détaillée** option. Hello des informations de journalisation sont accessibles dans hello Observateur d’événements Windows sous hello **journaux des Applications et Services**  - &gt; **passerelle de gestion des données** nœud. Vous pouvez également utiliser hello **Diagnostics** onglet tootest hello connexion tooan local source de données à l’aide de la passerelle de hello.
 
     ![Activez la journalisation commentée](media/machine-learning-use-data-from-an-on-premises-sql-server/data-gateway-configuration-manager-verbose-logging.png)
 
-Le processus de configuration de la passerelle dans Azure Machine Learning est terminé.
-Vous êtes maintenant prêt à utiliser vos données locales.
+Cette étape termine le processus de configuration de passerelle hello dans Azure Machine Learning.
+Vous êtes maintenant prêt toouse vos données locales.
 
-Vous pouvez créer et configurer plusieurs passerelles dans Studio pour chaque espace de travail. Par exemple, vous pouvez avoir une passerelle que vous souhaitez connecter à vos sources de données de test pendant le développement et une passerelle distincte pour vos sources de données en production. Azure Machine Learning vous donne la possibilité de configurer plusieurs passerelles en fonction de votre environnement d’entreprise. Actuellement, vous ne pouvez pas partager une passerelle entre différents espaces de travail et une seule passerelle peut être installée sur un même ordinateur. Pour plus d’informations, consultez [Déplacement de données entre des sources locales et le cloud à l’aide de la passerelle de gestion des données](../data-factory/data-factory-move-data-between-onprem-and-cloud.md).
+Vous pouvez créer et configurer plusieurs passerelles dans Studio pour chaque espace de travail. Par exemple, peut avoir une passerelle que vous souhaitez les sources de données de test tooconnect tooyour pendant le développement et une autre passerelle pour vos sources de données de production. Azure Machine Learning vous donne la souplesse tooset des passerelles multiples en fonction de votre environnement d’entreprise. Actuellement, vous ne pouvez pas partager une passerelle entre différents espaces de travail et une seule passerelle peut être installée sur un même ordinateur. Pour plus d’informations, consultez [Déplacement de données entre des sources locales et le cloud à l’aide de la passerelle de gestion des données](../data-factory/data-factory-move-data-between-onprem-and-cloud.md).
 
-### <a name="step-2-use-the-gateway-to-read-data-from-an-on-premises-data-source"></a>Étape 2 : Utiliser la passerelle pour lire des données à partir d’une source de données locale
-Après avoir configuré la passerelle, vous pouvez ajouter un module **Importer des données** à une expérience qui prend en entrée les données de la base de données SQL Server locale.
+### <a name="step-2-use-hello-gateway-tooread-data-from-an-on-premises-data-source"></a>Étape 2 : Utiliser hello passerelle tooread les données à partir d’une source de données locale
+Après avoir configuré la passerelle de hello, vous pouvez ajouter un **importer des données** module pour une expérience qui entre des données hello à partir de la base de données SQL Server de hello locale.
 
-1. Dans Machine Learning Studio, sélectionnez l’onglet **EXPÉRIENCES** cliquez sur **+NOUVELLE** dans le coin inférieur gauche, puis sélectionnez **Expérience vide** (ou sélectionnez l’un des exemples d’expérimentations disponibles).
-2. Recherchez et faites glisser le module **Importer des données** jusqu’à la zone de dessin de l’expérience.
-3. Cliquez sur **Enregistrer sous** sous le canevas. Entrez « Didacticiel SQL Server local Azure Machine Learning » comme nom de l’expérience, sélectionnez l’espace de travail, puis cochez la case **OK** .
+1. Dans la Machine Learning Studio, sélectionnez hello **expériences** , cliquez sur **+ nouveau** dans hello coin inférieur gauche, puis sélectionnez **expérience vide** (ou sélectionnez un des exemples de plusieurs expériences disponibles).
+2. Rechercher et faites glisser hello **importer des données** module toohello expérimenter la zone de dessin.
+3. Cliquez sur **enregistrer en tant que** sous la zone de dessin hello. Entrez « Azure Machine Learning local SQL Server didacticiel » pour le nom d’expérience hello, sélectionnez l’espace de travail, cliquez sur hello **OK** case à cocher.
 
    ![Enregistrez l’expérience sous un nouveau nom](media/machine-learning-use-data-from-an-on-premises-sql-server/experiment-save-as.png)
-4. Cliquez sur le module **Importer des données** pour le sélectionner puis, dans le volet **Propriétés** à droite de la zone de dessin, sélectionnez « Base de données SQL locale » dans la liste déroulante **Source de données**.
-5. Sélectionnez la **Passerelle de données** que vous avez installée et inscrite. Vous pouvez configurer une autre passerelle en sélectionnant « (ajouter une nouvelle passerelle de données...) ».
+4. Cliquez sur hello **importer des données** tooselect de module, puis dans le **propriétés** toohello volet à droite de la zone de dessin hello, sélectionnez « Base de données locale SQL » Bonjour **source de données** liste déroulante.
+5. Sélectionnez hello **passerelle de données** vous avez installé et enregistré. Vous pouvez configurer une autre passerelle en sélectionnant « (ajouter une nouvelle passerelle de données...) ».
 
    ![Sélectionnez une passerelle de données pour le module d’importation de données](media/machine-learning-use-data-from-an-on-premises-sql-server/import-data-select-on-premises-data-source.png)
-6. Entrez le **Nom du serveur de base de données** et le **Nom de la base de données** SQL, ainsi que la **Requête de base de données** SQL que vous souhaitez exécuter.
+6. Entrez hello SQL **nom du serveur de base de données** et **nom de la base de données**, ainsi que de hello SQL **requête de base de données** vous souhaitez tooexecute.
 7. Cliquez sur **Entrer des valeurs** sous **Nom d’utilisateur et mot de passe** et entrez vos informations d’identification de base de données. Vous pouvez utiliser l’authentification intégrée Windows ou l’authentification SQL Server en fonction de la configuration de votre serveur local SQL Server.
 
    ![Entrez les informations d’identification de la base de données](media/machine-learning-use-data-from-an-on-premises-sql-server/database-credentials.png)
 
-   Le message « valeurs requises » devient « valeurs définies » avec une coche verte. Il vous suffit d’entrer les informations d’identification une seule fois, sauf si les informations de base de données ou de mot de passe changent. Azure Machine Learning utilise le certificat que vous avez fourni lors de l’installation de la passerelle pour chiffrer les informations d’identification dans le cloud. Azure ne stocke jamais d’informations d’identification locales sans chiffrement.
+   message de type Hello les modifications « valeurs requises » trop « valeur » avec une coche verte. Il vous suffit d’informations d’identification de tooenter hello qu’une seule fois, sauf si les informations de base de données hello ou le mot de passe change. Azure Machine Learning utilise un certificat hello que vous avez fourni lorsque vous avez installé des informations d’identification de hello passerelle tooencrypt hello dans le cloud de hello. Azure ne stocke jamais d’informations d’identification locales sans chiffrement.
 
    ![Importez les propriétés du module de données](media/machine-learning-use-data-from-an-on-premises-sql-server/import-data-properties-entered.png)
-8. Cliquez sur **EXÉCUTER** pour lancer l’expérience.
+8. Cliquez sur **exécuter** expérience de hello toorun.
 
-Une fois l’expérimentation terminée, vous pouvez visualiser les données que vous avez importées à partir de la base de données en cliquant sur le port de sortie du module **Importer des données** et en sélectionnant **Visualiser**.
+Une fois que l’expérience de hello a terminé son exécution, vous pouvez visualiser les données de hello vous avez importé à partir de la base de données hello en cliquant sur le port de sortie hello Hello **importer des données** module et en sélectionnant **visualiser**.
 
-Une fois que vous avez terminé le développement de votre expérience, vous pouvez déployer et opérationnaliser votre modèle. Grâce au service d’exécution de lots, les données de la base de données SQL Server locale configurées dans le module **Importer des données** seront lues et utilisées pour l’évaluation. Vous pouvez utiliser le service de réponse aux demandes pour l’évaluation des données locales, mais Microsoft recommande d’utiliser plutôt le [complément Excel](machine-learning-excel-add-in-for-web-services.md) . Actuellement, l’écriture dans une base de données SQL Server locale avec **Exporter des données** n’est pas prise en charge dans vos expériences ou dans les services web publiés.
+Une fois que vous avez terminé le développement de votre expérience, vous pouvez déployer et opérationnaliser votre modèle. À l’aide de hello Batch Execution Service, les données de base de SQL Server locale hello configuré Bonjour **importer des données** module est lus et utilisé pour calculer les scores. Vous pouvez utiliser hello demander un Service de réponse pour calculer les scores des données localement, Microsoft recommande d’utiliser le [complément Excel](machine-learning-excel-add-in-for-web-services.md) à la place. Actuellement, l’écriture tooan local de la base de données SQL Server via **exporter les données** n’est pas les services web en soit vos expériences ou publiées.

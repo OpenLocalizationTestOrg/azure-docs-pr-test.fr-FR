@@ -1,6 +1,6 @@
 ---
-title: "Gestion d’une application web Azure à l’aide d’Azure Automation | Microsoft Docs"
-description: "Découvrez comment utiliser le service Azure Automation pour gérer une application web Azure."
+title: "aaaManage Azure Web App à l’aide d’Azure Automation | Documents Microsoft"
+description: "Découvrez comment hello service Azure Automation peut être utilisé toomanage application Web Azure."
 services: app-service\web, automation
 documentationcenter: 
 author: mgoedtel
@@ -14,31 +14,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/29/2016
 ms.author: magoedte
-ms.openlocfilehash: a96332346747114620ee6ebd2a2d0c4417d4a213
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 6d80351a2927f26753cfbaead6e1c0c3c94e86e6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="managing-azure-web-app-using-azure-automation"></a>Gestion d’une application web Azure à l’aide d’Azure Automation
-Ce guide vous présente le service Azure Automation et décrit comment l’utiliser pour simplifier la gestion d’une application web Azure.
+Ce guide vous oblige à service d’Azure Automation toohello et comment il peut être gestion toosimplify utilisés de l’application Web Azure.
 
 ## <a name="what-is-azure-automation"></a>Qu'est-ce qu'Azure Automation ?
-[Azure Automation](../automation/automation-intro.md) est un service Azure destiné à simplifier la gestion du cloud via l'automatisation des processus. Il automatise les tâches manuelles, répétitives, fastidieuses et sources d’erreurs pour accroître la fiabilité, l’efficacité et le retour sur investissement de votre organisation.
+[Azure Automation](../automation/automation-intro.md) est un service Azure destiné à simplifier la gestion du cloud via l'automatisation des processus. Les tâches manuelles, répétées, longue et sujettes aux erreurs à l’aide d’Azure Automation, peuvent être automatisée tooincrease fiabilité, l’efficacité et toovalue de temps pour votre organisation.
 
-Azure Automation fournit un moteur d’exécution de workflow à haute fiabilité et à haute disponibilité, qui s’adapte à vos besoins. Dans Azure Automation, les processus peuvent être lancés manuellement, par des systèmes tiers ou à des intervalles planifiés, afin que les tâches interviennent exactement au moment opportun.
+Azure Automation fournit un moteur d’exécution de flux de travail hautement fiable et à haute disponibilité qui s’adapte toomeet à vos besoins. Dans Azure Automation, les processus peuvent être lancés manuellement, par des systèmes tiers ou à des intervalles planifiés, afin que les tâches interviennent exactement au moment opportun.
 
-Réduisez les coûts opérationnels et libérez du temps pour que votre équipe d’informaticiens et de développeurs puisse se concentrer sur des tâches qui génèrent une valeur ajoutée pour l’entreprise, en déléguant l’exécution automatique de vos tâches de gestion de Cloud à Azure Automation.
+Réduire la surcharge opérationnelle et de libérer de l’informatique et toofocus du personnel DevOps sur le travail qui ajoute la valeur de l’entreprise en déplaçant votre toobe de tâches de gestion de cloud exécuté automatiquement par Azure Automation.
 
 ## <a name="how-can-azure-automation-help-manage-azure-web-app"></a>Comment Azure Automation peut-il vous aider à gérer une application web Azure ?
-Dans Azure Automation, une application web est gérée à l’aide d’applets de commande PowerShell qui sont disponibles dans les [modules Azure PowerShell](/powershell/azureps-cmdlets-docs). Vous pouvez [installer ces applets de commande PowerShell dans Azure Automation](https://azure.microsoft.com/blog/announcing-azure-resource-manager-support-azure-automation-runbooks/)afin d’exécuter toutes vos tâches de gestion d’application Web dans ce service. Dans Azure Automation, vous pouvez également associer ces applets de commande à des applets de commande d'autres services Azure, afin d'automatiser des tâches complexes entre des services Azure et des systèmes tiers.
+Application Web peut être gérée dans Azure Automation à l’aide d’applets de commande hello PowerShell qui sont disponibles dans hello [modules Azure PowerShell](/powershell/azureps-cmdlets-docs). Vous pouvez [installer ces applets de commande PowerShell d’application Web dans Azure Automation](https://azure.microsoft.com/blog/announcing-azure-resource-manager-support-azure-automation-runbooks/), de sorte que vous pouvez effectuer toutes vos tâches de gestion de l’application Web au sein du service de hello. Vous pouvez également de paires de ces applets de commande dans Azure Automation avec les applets de commande hello pour d’autres tâches complexes de services Azure tooautomate entre des services Azure et les systèmes tiers 3e.
 
 Voici quelques exemples de gestion d’App Services avec Automation :
 
 * [Scripts de gestion d’applications Web](https://azure.microsoft.com/documentation/scripts/)
 
 ## <a name="next-steps"></a>Étapes suivantes
-Maintenant que vous connaissez les bases d’Azure Automation et que vous savez l’utiliser pour gérer une application web Azure, cliquez sur les liens ci-dessous pour en savoir plus.
+Maintenant que vous avez appris les notions de base de hello d’Azure Automation et comment il peut être utilisé toomanage application Web Azure, suivez ces liens de toolearn plus sur Azure Automation.
 
-* Consultez le [Didacticiel de prise en main](../automation/automation-first-runbook-graphical.md)
+* Consultez hello Azure Automation [didacticiel de mise en route](../automation/automation-first-runbook-graphical.md)
 

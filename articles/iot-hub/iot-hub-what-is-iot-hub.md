@@ -1,6 +1,6 @@
 ---
-title: "Présentation d’Azure IoT Hub | Microsoft Docs"
-description: "Présentation du service Azure IoT Hub : signification du IoT Hub, connectivité des appareils, modèles de communication Internet des Objets, passerelles et modèle de communication de service assistée"
+title: "aaaAzure vue d’ensemble de IoT Hub | Documents Microsoft"
+description: "Vue d’ensemble de hello Azure IoT Hub service : nouveautés IoT Hub, la connectivité d’appareils, internet de modèles de communication de choses, les passerelles et modèle de communication d’assistance de service hello"
 services: iot-hub
 documentationcenter: 
 author: dominicbetts
@@ -15,70 +15,70 @@ ms.workload: na
 ms.date: 06/16/2017
 ms.author: dobett
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: d290ee8a3cee1242f14726b5cf7ca531a3f5830a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d0b46868a1ec9e13c8f107b90269c5307f4ba27c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="overview-of-the-azure-iot-hub-service"></a>Présentation du service Azure IoT Hub
+# <a name="overview-of-hello-azure-iot-hub-service"></a>Vue d’ensemble de hello Azure IoT Hub service
 
-Bienvenue dans Azure IoT Hub. Cet article fournit une vue d’ensemble d’Azure IoT Hub et décrit la raison pour laquelle il est recommandé d’utiliser ce service afin de mettre en œuvre une solution IoT. Azure IoT Hub est un service entièrement géré qui permet des communications bidirectionnelles fiables et sécurisées entre des millions d’appareils IoT et un serveur principal de solution. Azure IoT Hub :
+Bienvenue dans tooAzure IoT Hub. Cet article fournit une vue d’ensemble de Azure IoT Hub et explique pourquoi vous devez utiliser cette tooimplement service une solution Internet of Things (IoT). Azure IoT Hub est un service entièrement géré qui permet des communications bidirectionnelles fiables et sécurisées entre des millions d’appareils IoT et un serveur principal de solution. Azure IoT Hub :
 
 * Fournit plusieurs options de communication appareil vers cloud et cloud vers appareil, y compris la messagerie unidirectionnelle, le transfert de fichiers et les méthodes de demande-réponse.
-* Intègre une fonctionnalité de routage des messages déclaratifs vers d’autres services Azure.
+* Fournit des services Azure tooother de routage de message déclarative intégré.
 * Fournit un stockage utilisable dans une requête pour les métadonnées d’appareil et les informations d’état synchronisées.
 * Assure la sécurité des communications et le contrôle d’accès grâce aux clés de sécurité par appareil ou aux certificats X.509.
 * Fournit une surveillance complète de la connectivité des appareils et des événements de gestion de l’identité des appareils.
-* Inclut des bibliothèques d’appareils pour les langages et les plateformes les plus courants.
+* Inclut des bibliothèques de périphérique pour les plateformes et les langues les plus populaires hello.
 
-L’article [Comparaison entre IoT Hub et Event Hubs][lnk-compare] décrit les différences principales entre ces deux services et présente les avantages liés à l’utilisation d’IoT Hub dans vos solutions IoT.
+article de Hello [comparaison de IoT Hub et les concentrateurs d’événements] [ lnk-compare] décrit hello les principales différences entre ces deux services et met en évidence les avantages de hello de l’utilisation de IoT Hub dans vos solutions IoT.
 
-Pour plus d’informations sur la façon dont Azure et IoT Hub permettent de sécuriser votre solution IoT, reportez-vous à [Sécurisation de l’Internet des objets de bout en bout][lnk-security-ground-up].
+Pour plus d’informations sur la façon dont Azure IoT Hub et sécuriser votre solution IoT, consultez [hello d’arrière-plan la sécurité Internet of Things][lnk-security-ground-up].
 
 ![Azure IoT Hub comme passerelle cloud dans une solution Internet des objets][img-architecture]
 
 > [!NOTE]
-> Pour une étude approfondie de l’architecture IoT, consultez le document [Microsoft Azure IoT Reference Architecture][lnk-refarch] (Microsoft Azure IoT : Architecture de référence).
+> Pour une discussion détaillée de l’architecture de IoT, consultez hello [Architecture de référence de Microsoft Azure IoT][lnk-refarch].
 
 ## <a name="iot-device-connectivity-challenges"></a>Défis liés à la connectivité des appareils IoT
 
-IoT Hub et les bibliothèques d’appareils vous aident à relever les défis en matière de fiabilité et de sécurisation de la connexion d’appareil au serveur principal de la solution. Les appareils IoT :
+Bibliothèques de périphérique IoT Hub et hello vous aider à défis de hello toomeet de façon tooreliably et connectez-vous en toute sécurité des appareils toohello solution back-end. Les appareils IoT :
 
 * sont souvent des systèmes intégrés, qui ne font appel à aucun opérateur humain ;
 * peuvent être situés sur des sites distants avec un accès physique coûteux ;
-* sont accessibles uniquement via le serveur principal de la solution ;
+* Peut être uniquement accessible via une hello solution back-end.
 * peuvent avoir des performances et/ou des ressources de traitement limitées ;
 * peuvent avoir une connectivité réseau intermittente, lente ou coûteuse ;
-* peuvent nécessiter l’utilisation des protocoles d’application personnalisés, propriétaires ou spécifiques à un secteur.
+* Protocoles d’application propriétaire, personnalisées ou spécifiques au secteur toouse peut-être.
 * peuvent être créés à l’aide d’un large éventail de plateformes matérielles et logicielles populaires.
 
-Outre les exigences ci-dessus, n’importe quelle solution IoT doit également offrir des possibilités d’évolution, la sécurité et la fiabilité. Il en résulte un ensemble d’exigences de connectivité complexe, long à mettre en place lorsque vous utilisez des technologies traditionnelles telles que des conteneurs web et des courtiers de messagerie.
+En outre toohello les spécifications ci-dessus, n’importe quelle solution IoT doit également fournir l’échelle, la sécurité et fiabilité. jeu Hello d’exigences de connectivité est difficile et long tooimplement lorsque vous utilisez des technologies traditionnelles, telles que les conteneurs de web et des répartiteurs de messagerie.
 
 ## <a name="why-use-azure-iot-hub"></a>Pourquoi utiliser Azure IoT Hub ?
 
-En plus d’un ensemble complet d’options de communication [appareil vers cloud][lnk-d2c-guidance] et [cloud vers appareil][lnk-c2d-guidance], comprenant la messagerie, le transfert de fichiers et les méthodes de demande-réponse, Azure IoT Hub relève les défis de connectivité des appareils comme suit :
+En outre tooa riche ensemble de [appareil-à-cloud] [ lnk-d2c-guidance] et [cloud-à-appareil] [ lnk-c2d-guidance] les options de communication, y compris la messagerie, de fichiers les transferts et méthodes de demande-réponse, Azure IoT Hub adresses hello connectivité des périphériques défis Bonjour suivant façons :
 
-* **Représentations d’appareil physique**. À l’aide de [représentations d’appareil physique][lnk-twins], vous pouvez stocker, synchroniser et interroger les informations de métadonnées et d’état de l’appareil. Les représentations d’appareil sont des documents JSON qui stockent des informations sur l’état des appareils (métadonnées, configurations et conditions). IoT Hub conserve une représentation d’appareil pour chaque appareil que vous y connectez.
+* **Représentations d’appareil physique**. À l’aide de [représentations d’appareil physique][lnk-twins], vous pouvez stocker, synchroniser et interroger les informations de métadonnées et d’état de l’appareil. Les représentations d’appareil sont des documents JSON qui stockent des informations sur l’état des appareils (métadonnées, configurations et conditions). IoT Hub conserve un double du périphérique pour chaque périphérique que vous vous connectez tooIoT Hub.
 
-* **Authentification par appareil et connectivité sécurisée**. Vous pouvez configurer chaque appareil avec sa propre [clé de sécurité][lnk-devguide-security] pour lui permettre de se connecter à IoT Hub. Le [Registre d’identité IoT Hub][lnk-devguide-identityregistry] stocke les clés et les identités des appareils dans une solution. Un serveur principal de la solution peut ajouter des appareils individuels à une liste d’autorisation ou de refus, permettant ainsi un contrôle complet de l’accès à l’appareil.
+* **Authentification par appareil et connectivité sécurisée**. Vous pouvez configurer chaque périphérique avec sa propre [clé de sécurité] [ lnk-devguide-security] tooenable il tooconnect tooIoT Hub. Hello [Registre des identités IoT Hub] [ lnk-devguide-identityregistry] stocke les identités des appareils et des clés dans une solution. Un principal de la solution peut ajouter des périphériques individuels tooallow ou refuser des listes tooenable un contrôle complet sur l’accès à l’appareil.
 
-* **Routage des messages appareil-à-cloud vers les services Azure en fonction de règles déclaratives**. IoT Hub vous permet de définir des itinéraires de messages reposant sur des règles de routage pour contrôler la destination à laquelle votre Hub envoie les messages appareil-à-cloud. Les règles de routage ne nécessitent aucune écriture de code et peuvent remplacer des répartiteurs de messages post-ingestion personnalisés.
+* **Itinéraire appareil-à-cloud services tooAzure basées sur des règles déclaratives des messages**. IoT Hub permet de message toodefine vous itinéraires en fonction de routage toocontrol règles où votre concentrateur envoie les messages appareil-à-cloud. Règles de routage ne nécessitent pas de vous toowrite n’importe quel code et peuvent avoir lieu hello de répartiteurs de message après réception personnalisé.
 
-* **Surveillance des opérations de connectivité des appareils**. Vous pouvez recevoir des journaux d’opérations détaillés sur les opérations de gestion de l’identité des appareils et sur les événements de connectivité des appareils. Cette fonctionnalité de surveillance permet à votre solution IoT d’identifier les problèmes de connectivité, tels que les appareils qui tentent de se connecter avec des informations d’identification incorrectes, envoient des messages trop fréquemment ou rejettent tous les messages cloud-à-appareil.
+* **Surveillance des opérations de connectivité des appareils**. Vous pouvez recevoir des journaux d’opérations détaillés sur les opérations de gestion de l’identité des appareils et sur les événements de connectivité des appareils. Cette fonctionnalité d’analyse permet à vos problèmes de connectivité IoT solution tooidentify, telles que les périphériques qui tentent de tooconnect avec les informations d’identification incorrectes, envoyer des messages trop fréquemment ou rejeter tous les messages cloud-à-appareil.
 
 * **Un ensemble complet de bibliothèques d’appareils**. Les [Kits de développement logiciel (SDK) d’appareils Azure IoT][lnk-device-sdks] sont disponibles et pris en charge pour différents langages et plateformes : C pour de nombreuses distributions Linux, Windows et les systèmes d’exploitation en temps réel. Les Kits de développement logiciel (SDK) d’appareil Azure IoT prennent également en charge les langages gérés tels que C#, Java et JavaScript.
 
-* **Protocoles et possibilités d’extension IoT**. Si votre solution ne peut pas utiliser les bibliothèques d’appareils, IoT Hub propose un protocole public qui permet aux appareils d’utiliser nativement les protocoles MQTT v3.1.1, HTTP 1.1 ou AMQP 1.0. Vous pouvez également étendre IoT Hub afin de prendre en charge des protocoles personnalisés en :
+* **Protocoles et possibilités d’extension IoT**. Si votre solution ne peut pas utiliser les bibliothèques d’appareil hello, IoT Hub expose un protocole publique qui permet des périphériques toonatively utilisation hello MQTT v3.1.1, HTTP 1.1 ou AMQP 1.0 protocoles. Vous pouvez également étendre toosupport IoT Hub pour les protocoles personnalisés par :
 
-  * Créant une passerelle de champ avec [Azure IoT Edge][lnk-iot-edge] qui convertit votre protocole personnalisé en l’un des trois protocoles pris en charge par IoT Hub.
-  * Personnalisant la [passerelle de protocole Azure IoT][protocol-gateway], composant open source qui s’exécute dans le cloud.
+  * Création d’une passerelle de champ avec [Azure IoT bord] [ lnk-iot-edge] qui convertit votre tooone de protocole personnalisé de hello trois protocoles compris par IoT Hub.
+  * Personnalisation hello [passerelle de protocole Azure IoT][protocol-gateway], un composant open source qui s’exécute dans le cloud de hello.
 
-* **Mettant à l’échelle**. Azure IoT Hub peut supporter des millions d’appareils connectés simultanément et des millions d’événements par seconde.
+* **Mettant à l’échelle**. IoT Hub Azure redimensionne toomillions des périphériques connectés simultanément des millions d’événements par seconde.
 
 ## <a name="gateways"></a>Passerelles
 
-Une passerelle dans une solution IoT est généralement une [passerelle de protocole][lnk-iotedge] déployée dans le cloud ou une [passerelle de champ][lnk-field-gateway] déployée localement avec vos appareils. Une passerelle de protocole effectue la traduction de protocole, par exemple MQTT à AMQP. Une passerelle de champ peut exécuter des analyses sur le périmètre, prendre des décisions urgentes pour réduire la latence, fournir des services de gestion des appareils, appliquer des contraintes de confidentialité et de sécurité, mais aussi effectuer la traduction de protocole. Les deux types de passerelle agissent comme intermédiaire entre vos appareils et votre IoT Hub.
+Une passerelle dans une solution IoT est généralement un [passerelle de protocole] [ lnk-iotedge] qui est déployé dans le cloud de hello ou un [passerelle de champ] [ lnk-field-gateway] qui est déployé localement avec vos appareils. Une passerelle de protocole effectue la traduction de protocole, par exemple MQTT tooAMQP. Une passerelle de champ peut exécuter l’analytique sur les bords de hello, des décisions temps tooreduce latence, fournir des services de gestion de périphérique, appliquer des contraintes de la confidentialité et de sécurité et également effectuer la traduction de protocole. Les deux types de passerelle agissent comme intermédiaire entre vos appareils et votre IoT Hub.
 
 Une passerelle de champ est différente d’un appareil de routage de trafic simple, par exemple un pare-feu ou un appareil de traduction d’adresses réseau, car elle a généralement un rôle actif dans la gestion de l’accès et du flux des informations dans votre solution.
 
@@ -86,35 +86,35 @@ Une solution peut inclure des passerelles de protocole et de champ.
 
 ## <a name="how-does-iot-hub-work"></a>Comment IoT Hub fonctionne-t-il ?
 
-Azure IoT Hub met en œuvre le modèle de [communications assistées par service][lnk-service-assisted-pattern] pour gérer les interactions entre vos appareils et votre serveur principal de service. L’objectif de la communication de service assistée consiste à établir des itinéraires de communication bidirectionnels fiables entre un système de contrôle (comme IoT Hub) et les appareils à usage spécifique déployés dans des espaces physiques non approuvés. Le modèle établit les principes suivants :
+IoT Hub Azure implémente hello [assistée par le service de communication] [ lnk-service-assisted-pattern] interactions de hello toomediate modèle entre vos appareils et votre solution back-end. Hello assistée par le service de communication vise tooestablish digne de confiance, chemins de communication bidirectionnelle entre un système de contrôle, tels que IoT Hub et les appareils à usage spécial qui sont déployés dans un espace physique non approuvé. modèle de Hello établit hello suivant principes :
 
 * La sécurité est prioritaire sur toutes les autres fonctionnalités.
 
-* Les appareils n’acceptent pas les informations réseau non sollicitées. Un appareil établit tous les itinéraires et connexions pour le trafic sortant uniquement. Pour qu’un appareil reçoive une commande de la part du serveur principal de la solution, il doit régulièrement établir une connexion pour vérifier toutes les commandes en attente de traitement.
+* Les appareils n’acceptent pas les informations réseau non sollicitées. Un appareil établit tous les itinéraires et connexions pour le trafic sortant uniquement. Pour un périphérique tooreceive une commande à partir de hello solution back-end, les appareil de hello doit lancer régulièrement un toocheck de connexion pour n’importe quel tooprocess de commandes en attente.
 
-* Les appareils doivent uniquement connecter ou établir des itinéraires vers des services bien connus auxquels ils sont couplés, par exemple un IoT Hub.
+* Les appareils doivent se connecter uniquement tooor établir des services de toowell connue d’itinéraires qu’ils sont appariés, telles que IoT Hub.
 
-* L’itinéraire de communication entre l’appareil et le service ou entre l’appareil et la passerelle est sécurisé au niveau du protocole d’application.
+* voie de communication Hello entre l’appareil et le service ou entre périphérique et de la passerelle est sécurisé au niveau de la couche de protocole d’application hello.
 
 * L’authentification et l’autorisation au niveau du système sont basées sur les identités par appareil. Les autorisations et informations d’identification sont ainsi révocables presque instantanément.
 
-* La communication bidirectionnelle des appareils connectés de façon sporadique en raison de problèmes d’alimentation ou de connectivité peut être facilitée par la mise en attente de commandes et de notifications aux appareils jusqu’à ce que qu’un appareil soit connecté pour les recevoir. IoT Hub gère des files d’attente spécifiques à un appareil pour les commandes qu’il envoie.
+* La communication bidirectionnelle pour les appareils qui se connectent toopower échéance sporadique ou des problèmes de connectivité est facilitée par contenant les commandes et les notifications de périphérique jusqu'à ce qu’un périphérique connecte tooreceive les. IoT Hub conserve les files d’attente spécifique à l’appareil pour qu’il envoie des commandes de hello.
 
-* Les données de charge utile d’application sont sécurisées séparément dans le cadre d’un transit protégé via des passerelles vers un service particulier.
+* Données de charge utile d’application sont sécurisées séparément pour le transit protégé via le service de passerelles tooa particulier.
 
-L’industrie mobile utilise le schéma de communication assistée par service à grande échelle afin de mettre en œuvre des services de notification Push tels que le [Service de notification Push Windows][lnk-wns], [Google Cloud Messaging][lnk-google-messaging] et [Apple Push Notification Service][lnk-apple-push].
+Hello secteur mobile a utilisé modèle de communication d’assistance de service hello au niveau des services de notification push de montée en puissance énorme tooimplement comme [Services de notifications Push Windows][lnk-wns], [Messagerie Cloud Google][lnk-google-messaging], et [Apple Push Notification Service][lnk-apple-push].
 
 IoT Hub est pris en charge sur le chemin d’accès d’homologation publique ExpressRoute.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Pour plus d’informations sur l’envoi de messages à partir d’un appareil et sur la réception de ces messages à partir d’IoT Hub, ainsi que sur la configuration des itinéraires de messages, consultez l’article [Envoyer et recevoir des messages avec IoT Hub][lnk-send-messages].
+toolearn comment toosend des messages à partir d’un appareil et les recevoir d’IoT Hub, ainsi que comment tooconfigure message route, consultez [envoyer et recevoir des messages avec IoT Hub][lnk-send-messages].
 
-Pour découvrir comment IoT Hub permet une gestion des appareils basée sur des normes pour que vous puissiez gérer, configurer et mettre à jour à distance vos appareils, consultez l’article [Vue d’ensemble de la gestion des appareils avec IoT Hub][lnk-device-management].
+toolearn IoT Hub permet la gestion de périphérique basé sur des normes pour vous tooremotely gérer, configurer et mettre à jour vos appareils, voir [vue d’ensemble de gestion des appareils avec IoT Hub][lnk-device-management].
 
-Pour implémenter des applications clientes sur un large éventail de plateformes matérielles et de systèmes d’exploitation d’appareils, vous pouvez utiliser les Kits de développement logiciel (SDK) d’appareils Azure IoT. Le kit de développement logiciel (SDK) contient des bibliothèques qui facilitent l’envoi de télémétrie à un IoT Hub et la réception de messages cloud-vers-appareil. Avec les Kits de développement logiciel (SDK) d’appareils, vous avez le choix parmi divers protocoles réseau pour communiquer avec IoT Hub. Pour plus d’informations, consultez la rubrique [plus d’informations sur les kits de développement logiciel (SDK) d’appareils][lnk-device-sdks].
+tooimplement les applications clientes sur un large éventail de plateformes d’appareils matériels et les systèmes d’exploitation, vous pouvez utiliser le dispositif de Azure IoT hello kits de développement logiciel. Appareil de Hello SDK inclut des bibliothèques qui facilitent l’envoi télémétrie tooan IoT hub et la réception messages cloud-à-appareil. Lorsque vous utilisez le périphérique hello kits de développement logiciel, vous pouvez choisir parmi différentes toocommunicate de protocoles de réseau avec IoT Hub. toolearn, voir hello [plus d’informations sur les kits de développement logiciel de périphérique][lnk-device-sdks].
 
-Pour commencer à écrire du code et à exécuter certains exemples, consultez le didacticiel [Prise en main d’IoT Hub][lnk-get-started].
+tooget route écrire du code et en cours d’exécution des exemples, consultez hello [prise en main IoT Hub] [ lnk-get-started] didacticiel.
 
 [img-architecture]: media/iot-hub-what-is-iot-hub/hubarchitecture.png
 

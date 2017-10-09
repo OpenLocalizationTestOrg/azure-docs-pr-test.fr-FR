@@ -1,6 +1,6 @@
 ---
-title: "Personnaliser l’usine connectée Azure IoT Suite | Documents Microsoft"
-description: "Découvrez comment personnaliser le comportement de la solution préconfigurée d’usine connectée."
+title: "aaaCustomize Azure IoT Suite connecté fabrique | Documents Microsoft"
+description: "Obtenir une description de l’interconnexion de comportement de hello toocustomize Hello fabrique de solution préconfigurée."
 services: 
 suite: iot-suite
 documentationcenter: 
@@ -15,72 +15,72 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/25/2017
 ms.author: dobett
-ms.openlocfilehash: 90a6172dbd887ecda5a9f5d9082a4e136092bc10
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 53f2fef7a76b5d8e6ad023945a7812dc7fabd12c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="customize-how-the-connected-factory-solution-displays-data-from-your-opc-ua-servers"></a>Personnaliser le mode d’affichage des données de vos serveurs OPC UA par la solution d’usine connectée
+# <a name="customize-how-hello-connected-factory-solution-displays-data-from-your-opc-ua-servers"></a>Personnaliser l’interconnexion hello fabrique solution affiche les données à partir de vos serveurs OPC UA
 
 ## <a name="introduction"></a>Introduction
 
-La solution d’usine connectée agrège et affiche les données des serveurs OPC UA qui y sont connectés. Vous pouvez parcourir les serveurs OPC UA et leur envoyer des commandes dans votre solution. Pour plus d’informations sur OPC UA, consultez les [questions fréquentes (FAQ) sur l’usine connectée](iot-suite-faq-cf.md).
+Hello fabrique connecté solution rassemble et affiche les données d’hello OPC UA serveurs connectés toohello solution. Vous pouvez parcourir et envoyer des commandes toohello OPC UA serveurs dans votre solution. Pour plus d’informations sur OPC UA, consultez hello [connecté fabrique FAQ](iot-suite-faq-cf.md).
 
-Des exemples de données agrégées dans la solution incluent l’efficacité globale des équipements (OEE) et les indicateurs de performance clés (KPI), que vous pouvez afficher dans le tableau de bord au niveau d’une usine, d’une ligne de production et d’un poste. La capture d’écran suivante illustre les valeurs d’OEE et de KPI pour le poste d’assemblage **Assembly** de la ligne de production **Production line 1** dans l’usine de **Munich** :
+Les exemples de données agrégées en une solution de hello de hello l’efficacité des équipements globale (OEE) et les indicateurs de Performance clés (KPI) que vous pouvez afficher dans le tableau de bord hello à la fabrique de hello, des lignes et des niveaux de la station. Hello capture d’écran suivante affiche hello les valeurs OEE et d’indicateur de performance clé pour hello **Assembly** station sur **Production ligne 1**, Bonjour **Munich** usine :
 
-![Exemple de valeurs d’OEE et de KPI dans la solution][img-oee-kpi]
+![Exemple de valeurs OEE et l’indicateur de performance clé dans la solution de hello][img-oee-kpi]
 
-La solution permet d’afficher des informations détaillées pour des éléments de données spécifiques des serveurs OPC UA appelés *postes*. La capture d’écran suivante illustre des graphiques du nombre d’articles fabriqués à partir d’un poste spécifique :
+permet de solution Hello vous tooview détaillée des informations à partir d’éléments de données spécifiques à partir de hello serveurs OPC UA, appelés *stations*. Hello capture d’écran suivante montre les tracés de nombre hello des articles fabriqués à partir d’une station de travail spécifique :
 
 ![Graphiques du nombre d’éléments fabriqués][img-manufactured-items]
 
-Si vous cliquez sur l’un des graphiques, vous pouvez explorer les données plus en détail à l’aide de Time Series Insights (TSI) :
+Si vous cliquez sur un des graphiques de hello, vous pouvez explorer les données de hello à l’aide des temps série Insights (STI) :
 
 ![Explorer les données à l’aide de Time Series Insights][img-tsi]
 
-Cet article aborde les points suivants :
+Cet article explique :
 
-- Comment rendre disponibles les données dans les différentes vues de la solution.
-- Comment personnaliser le mode d’affichage des données par la solution.
+- Comment les données de salutation sont établie à toohello disponible différentes vues dans la solution de hello.
+- Comment vous pouvez personnaliser la solution de hello moyen hello affiche les données de hello.
 
 ## <a name="data-sources"></a>Sources de données
 
-La solution d’usine connectée affiche les données des serveurs OPC UA qui y sont connectés. L’installation par défaut inclut plusieurs serveurs OPC UA exécutant une simulation d’usine. Vous pouvez ajouter vos propres serveurs OPC UA qui [se connectent via une passerelle][lnk-connect-cf] à votre solution.
+Bonjour fabrique connecté solution affiche les données à partir de hello OPC UA serveurs connectés toohello solution. installation par défaut de Hello comprend plusieurs serveurs de OPC UA une simulation de fabrication en cours d’exécution. Vous pouvez ajouter vos propres serveurs OPC UA qui [se connecter via une passerelle] [ lnk-connect-cf] tooyour solution.
 
-Vous pouvez parcourir les éléments de données qu’un serveur OPC UA peut envoyer à votre solution dans le tableau de bord :
+Vous pouvez parcourir les éléments de données hello qu’un serveur OPC UA connecté peut envoyer tooyour solution dans le tableau de bord hello :
 
-1. Accédez à la vue **Select an OPC UA server** (Sélectionner un serveur OPC UA) :
+1. Accédez toohello **, sélectionnez un serveur OPC UA** vue :
 
-    ![Accéder à la vue Select an OPC UA server (Sélectionner un serveur OPC UA)][img-select-server]
+    ![Accédez toohello sélectionner une vue du serveur OPC UA][img-select-server]
 
-1. Sélectionnez un serveur et cliquez sur **Connect** (Connexion). Lorsque l’avertissement de sécurité s’affiche, cliquez sur **Proceed** (Continuer).
+1. Sélectionnez un serveur et cliquez sur **Connect** (Connexion). Cliquez sur **continuer** lorsque l’avertissement de sécurité hello s’affiche.
 
     > [!NOTE]
-    > Cet avertissement s’affiche une seule fois pour chaque serveur et établit une relation d’approbation entre le tableau de bord de la solution et le serveur.
+    > Cet avertissement apparaît une fois pour chaque serveur uniquement et établit une relation d’approbation entre le tableau de bord de solution hello et serveur de hello.
 
-1. Vous pouvez maintenant parcourir les éléments de données que le serveur peut envoyer à la solution. Les éléments qui sont envoyés à la solution présentent une coche verte :
+1. Vous pouvez parcourir les éléments de données hello qui hello server peuvent envoyer toohello solution. Les éléments qui sont envoyés toohello solution ont une coche verte :
 
     ![Éléments publiés][img-published]
 
-1. Si vous êtes un *administrateur* dans la solution, vous pouvez choisir de publier un élément de données pour le rendre disponible dans la solution d’usine connectée. En tant qu’administrateur, vous pouvez également modifier la valeur des éléments de données et appeler des méthodes sur le serveur OPC UA.
+1. Si vous êtes un *administrateur* dans la solution de hello, vous pouvez choisir toopublish un toomake d’élément de données accessibles dans hello connecté solution de fabrique. En tant qu’administrateur, vous pouvez également modifier la valeur hello d’éléments de données et appeler les méthodes Bonjour server de OPC UA.
 
-## <a name="map-the-data"></a>Mapper les données
+## <a name="map-hello-data"></a>Mapper les données de salutation
 
-La solution d’usine connectée mappe et agrège les éléments de données publiés à partir du serveur OPC UA dans les différentes vues de la solution. La solution d’usine connectée se déploie sur votre compte Azure lorsque vous la configurez. Un fichier JSON de la solution Visual Studio d’usine connectée stocke ces informations de mappage. Vous pouvez afficher et modifier ce fichier de configuration JSON dans la solution Visual Studio d’usine connectée. Vous pouvez redéployer la solution une fois que vous apportez une modification.
+Hello connecté des mappages de solution de fabrique et hello d’agrégats publié des éléments de données à partir de hello OPC UA server toohello différentes vues dans la solution de hello. Hello fabrique connecté solution déploie tooyour compte Azure lorsque vous configurez la solution de hello. Un fichier JSON Bonjour Visual Studio connecté fabrique solution stocke ces informations de mappage. Vous pouvez afficher et modifier ce fichier de configuration JSON dans la fabrique de hello connecté solution Visual Studio. Vous pouvez redéployer la solution de hello après avoir apporté une modification.
 
-Vous pouvez utiliser le fichier de configuration pour :
+Vous pouvez utiliser le fichier de configuration hello pour :
 
-- Modifier les usines, les lignes de production existantes et les postes simulés existants.
-- Mapper les données des serveurs OPC UA réels que vous connectez à la solution.
+- Modifier les fabriques simulé existant de hello, les lignes de la production et les stations.
+- Mapper des données à partir des serveurs OPC UA réels que vous vous connectez toohello solution.
 
-Pour cloner une copie de la solution Visual Studio d’usine connectée, utilisez la commande git suivante :
+tooclone une copie de hello connecté solution Visual Studio de fabrique, hello utiliser git commande suivante :
 
 `git clone https://github.com/Azure/azure-iot-connected-factory.git`
 
-Le fichier **ContosoTopologyDescription.json** définit le mappage entre les éléments de données des serveurs OPC UA et les vues du tableau de bord de la solution d’usine connectée. Ce fichier de configuration se trouve dans le dossier **Contoso\Topology** du projet **WebApp** dans la solution Visual Studio.
+fichier de Hello **ContosoTopologyDescription.json** définit hello vues de mappage à partir de hello données du serveur OPC UA éléments toohello tableau de bord de solution hello fabrique connecté. Vous pouvez trouver ce fichier de configuration Bonjour **Contoso\Topology** dossier Bonjour **WebApp** projet Bonjour solution Visual Studio.
 
-Le contenu du fichier JSON est organisé sous forme de hiérarchie de nœuds d’usines, de lignes de production et de postes. Cette hiérarchie définit la hiérarchie de navigation du tableau de bord de l’usine connectée. Les valeurs de chaque nœud de la hiérarchie déterminent les informations affichées dans le tableau de bord. Par exemple, le fichier JSON contient les valeurs suivantes pour l’usine de Munich :
+le contenu du fichier JSON de hello Hello est organisé comme une hiérarchie de fabrique, ligne de production et les nœuds de station. Cette hiérarchie définit la hiérarchie de navigation hello dans tableau de bord hello fabrique connecté. Valeurs sur chaque nœud de hiérarchie de hello déterminent les informations hello affichées dans le tableau de bord hello. Par exemple, le fichier JSON de hello contient hello valeurs pour hello fabrique de Munich suivantes :
 
 ```json
 "Guid": "73B534AE-7C7E-4877-B826-F1C0EA339F65",
@@ -95,31 +95,31 @@ Le contenu du fichier JSON est organisé sous forme de hiérarchie de nœuds d�
 "Image": "munich.jpg"
 ```
 
-Le nom, la description et l’emplacement apparaissent dans cette vue du tableau de bord :
+emplacement, la description et nom de hello s’affichent dans cette vue dans le tableau de bord hello :
 
-![Données de l’usine de Munich dans le tableau de bord][img-munich]
+![Données Munich dans le tableau de bord hello][img-munich]
 
-Chaque usine, ligne de production et poste présente une propriété image. Ces fichiers JPEG se trouvent dans le dossier **Content\img** du projet **WebApp**. Ces fichiers image s’affichent dans le tableau de bord de l’usine connectée.
+Chaque usine, ligne de production et poste présente une propriété image. Vous pouvez trouver ces fichiers JPEG Bonjour **Content\img** dossier Bonjour **WebApp** projet. Ces fichiers image s’affichent dans tableau de bord hello fabrique connecté.
 
-Chaque poste inclut plusieurs propriétés détaillées qui définissent le mappage à partir des éléments de données OPC UA. Ces propriétés sont décrites dans les sections suivantes :
+Chaque station comprend plusieurs propriétés détaillées qui définissent le mappage des éléments de données de hello OPC UA de hello. Ces propriétés sont décrites dans les sections suivantes de hello :
 
 ### <a name="opcuri"></a>OpcUri
 
-La valeur **OpcUri** correspond à l’URI d’application OPC UA qui identifie de façon unique le serveur OPC UA. Par exemple, la valeur **OpcUri** pour le poste d’assemblage de la ligne de production 1 de Munich se présente comme suit : **urn:scada2194:ua:munich:productionline0:assemblystation**.
+Hello **OpcUri** valeur est hello OPC UA Application URI qui identifie de façon unique hello server de OPC UA. Par exemple, hello **OpcUri** valeur pour la station d’assembly hello sur la ligne de production 1 de Munich ressemble à hello suivantes : **urn : scada2194:ua:munich:productionline0:assemblystation**.
 
-Vous pouvez afficher l’URI des serveurs OPC UA connectés dans le tableau de bord de la solution :
+Vous pouvez afficher hello URI des serveurs OPC UA hello connecté dans le tableau de bord de solution hello :
 
 ![Afficher l’URI des serveurs OPC UA][img-server-uris]
 
 ### <a name="simulation"></a>Simulation
 
-Les informations que contient le nœud **Simulation** sont propres à la simulation OPC UA exécutée sur les serveurs OPC UA configurés par défaut. Elles ne sont pas utilisées pour un serveur OPC UA réel.
+Hello informations Bonjour **Simulation** nœud est toohello spécifique simulation OPC UA qui s’exécute dans hello serveurs OPC UA qui sont configurés par défaut. Elles ne sont pas utilisées pour un serveur OPC UA réel.
 
 ### <a name="kpi1-and-kpi2"></a>Kpi1 et Kpi2
 
-Ces nœuds décrivent la manière dont les données du poste contribuent aux deux valeurs de KPI dans le tableau de bord. Dans un déploiement par défaut, ces valeurs de KPI sont des unités par heure et des kWh. La solution calcule les valeurs de KPI au niveau d’un poste et les agrège au niveau de la ligne de production et de l’usine.
+Ces nœuds décrivent comment les données à partir de la station de hello contribuent toohello deux valeurs d’indicateur de performance clé dans le tableau de bord hello. Dans un déploiement par défaut, ces valeurs de KPI sont des unités par heure et des kWh. solution de Hello calcule les valeurs d’indicateur de performance clé au niveau d’une station de hello et agrège les niveaux de fabrique et de la ligne de production hello.
 
-Chaque KPI présente une valeur minimale, maximale et cible. Chaque valeur de KPI peut également définir des actions d’alerte à exécuter par la solution d’usine connectée. L’extrait de code suivant illustre les définitions de KPI pour le poste d’assemblage de la ligne de production 1 à Munich :
+Chaque KPI présente une valeur minimale, maximale et cible. Chaque valeur d’indicateur de performance clé peut également définir des actions d’alerte pour hello connecté fabrique solution tooperform. Hello extrait de code suivant montre les définitions d’indicateur de performance clé hello pour station d’assembly hello sur la ligne de production 1 de Munich :
 
 ```json
 "Kpi1": {
@@ -139,41 +139,41 @@ Chaque KPI présente une valeur minimale, maximale et cible. Chaque valeur de KP
 }
 ```
 
-La capture d’écran suivante illustre les données des KPI dans le tableau de bord.
+Hello capture d’écran suivante montre hello KPI données dans le tableau de bord hello.
 
-![Informations des KPI dans le tableau de bord][lnk-kpi]
+![Informations d’indicateur de performance clé dans le tableau de bord hello][lnk-kpi]
 
 ### <a name="opcnodes"></a>OpcNodes
 
-Les nœuds **OpcNodes** identifient les éléments de données publiés à partir du serveur OPC UA et spécifient le mode de traitement de ces données.
+Hello **OpcNodes** identifient les nœuds hello des éléments de données publiées à partir de hello server de OPC UA et spécifiez comment tooprocess ces données.
 
-La valeur **NodeId** correspond à l’identifiant de nœud OPC UA spécifique du serveur OPC UA. Le premier nœud du poste d’assemblage pour la ligne de production 1 à Munich présente la valeur **ns=2;i=385**. Une valeur **NodeId** spécifie l’élément de données à lire à partir du serveur OPC UA et la valeur **SymbolicName** fournit un nom convivial à utiliser dans le tableau de bord pour ces données.
+Hello **NodeId** valeur identifie hello NodeID de UA OPC spécifique à partir de hello server de OPC UA. Hello premier nœud station d’assembly hello pour la ligne de production 1 de Munich a la valeur **ns = 2 ; i = 385**. A **NodeId** valeur spécifie tooread d’élément de données hello hello server de OPC UA et hello **SymbolicName** fournit un nom convivial toouse dans le tableau de bord hello pour ces données.
 
-Les autres valeurs associées à chaque nœud sont résumées dans le tableau suivant :
+Autres valeurs associées à chaque nœud sont résumées dans hello tableau suivant :
 
 | Valeur | Description |
 | ----- | ----------- |
-| Pertinence  | Valeurs de KPI et d’OEE auxquelles ces données contribuent. |
-| OpCode     | Mode d’agrégation des données. |
-| Units      | Unités à utiliser dans le tableau de bord.  |
-| Visible    | Indique si cette valeur doit être affichée dans le tableau de bord. Certaines valeurs sont utilisées dans les calculs mais ne sont pas affichées.  |
-| Maximale    | Valeur maximale qui déclenche une alerte dans le tableau de bord. |
-| MaximumAlertActions | Action à effectuer en réponse à une alerte (par exemple, envoyer une commande à un poste). |
+| Pertinence  | valeurs d’indicateur de performance clé et OEE Hello ces données contribuent à. |
+| OpCode     | Comment les données de salutation sont agrégées. |
+| Units      | toouse d’unités Hello dans le tableau de bord hello.  |
+| Visible    | Si toodisplay cette valeur de tableau de bord hello. Certaines valeurs sont utilisées dans les calculs mais ne sont pas affichées.  |
+| Maximale    | valeur maximale Hello qui déclenche une alerte dans le tableau de bord hello. |
+| MaximumAlertActions | Un tootake action dans l’alerte tooan de réponse. Par exemple, envoyer une station tooa de commande. |
 | ConstValue | Valeur constante utilisée dans un calcul. |
 
-## <a name="deploy-the-changes"></a>Déployer les modifications
+## <a name="deploy-hello-changes"></a>Déployer les modifications de hello
 
-Une fois que vous avez apporté toutes les modifications requises au fichier **ContosoTopologyDescription.json**, vous devez redéployer la solution d’usine connectée dans votre compte Azure.
+Lorsque vous avez terminé d’apporter des modifications toohello **ContosoTopologyDescription.json** fichier, vous devez redéployer hello connecté fabrique solution tooyour compte Azure.
 
-Le référentiel **azure-iot-connected-factory** inclut un script PowerShell **build.ps1** que vous pouvez utiliser pour régénérer et déployer la solution.
+Hello **azure iot-connecté-usine** référentiel inclut un **build.ps1** script PowerShell vous pouvez utiliser toorebuild et déployer des solutions de hello.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Pour en savoir plus sur la solution préconfigurée d’usine connectée, consultez les articles suivants :
+En savoir plus sur hello connecté fabrique préconfiguré solution hello lors de la lecture suivante d’articles :
 
 * [Procédure pas à pas de la solution préconfigurée d’usine connectée][lnk-rm-walkthrough]
 * [Déployer une passerelle pour une usine connectée][lnk-connect-cf]
-* [Autorisations sur le site azureiotsuite.com][lnk-permissions]
+* [Autorisations sur le site de azureiotsuite.com hello][lnk-permissions]
 * [FAQ sur la fabrique connectée](iot-suite-faq-cf.md)
 * [FAQ][lnk-faq]
 

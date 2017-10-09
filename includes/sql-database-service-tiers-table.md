@@ -49,4 +49,4 @@ sql-database-service-tiers.md
 | Nombre maximal de sessions simultanées | 30000| 30000| 30000| 30000|
 |||||||
 
-\* La taille maximale de la base de données correspond à la taille maximale des données dans la base de données. 
+\*Taille de base de données MAX fait référence toohello la taille maximale de données hello dans la base de données hello. 

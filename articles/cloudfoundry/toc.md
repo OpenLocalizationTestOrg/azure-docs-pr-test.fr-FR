@@ -2,7 +2,7 @@
 # Démarrages rapides
 ## [Modèle Marketplace](https://azuremarketplace.microsoft.com/marketplace/apps/pivotal.pivotal-cloud-foundry)
 # Didacticiels
-## [Déployer une application CF dans Azure](/azure/virtual-machines/linux/cloudfoundry-deploy-your-first-app)
+## [Déployer CF application tooAzure](/azure/virtual-machines/linux/cloudfoundry-deploy-your-first-app)
 ## [CloudFoundry sur Azure](/azure/virtual-machines/linux/cloudfoundry-get-started)
 # Ressources
 ## [Feuille de route Azure](https://azure.microsoft.com/roadmap/)

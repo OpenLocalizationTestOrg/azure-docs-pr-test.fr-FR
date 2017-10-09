@@ -1,5 +1,5 @@
 ---
-title: "Basculement régional dans Azure Cosmos DB | Microsoft Docs"
+title: "basculement aaaRegional dans la base de données Azure Cosmos | Documents Microsoft"
 description: "Découvrez le fonctionnement du basculement manuel et automatique avec Azure Cosmos DB."
 services: cosmos-db
 documentationcenter: 
@@ -15,16 +15,16 @@ ms.workload: na
 ms.date: 05/24/2017
 ms.author: arramac
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 3d8ba08bc9f99cb77c9f03949fc5db299eb222c8
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: d2fdc7b0e8958d129ab027e4b11193b12961ddae
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="automatic-regional-failover-for-business-continuity-in-azure-cosmos-db"></a>Basculement régional automatique pour la continuité des activités dans Azure Cosmos DB
-Azure Cosmos DB simplifie la distribution globale de données en gérant complètement les [comptes de bases de données multirégions](distribute-data-globally.md) qui fournissent des compromis clairs entre cohérence, disponibilité et performance, le tout avec les garanties correspondantes. Les comptes Cosmos DB offrent des capacités de haute disponibilité, des latences inférieures à 10 millisecondes, des [niveaux de cohérence bien définis](consistency-levels.md), un basculement régional transparent avec des API multihébergement et la possibilité de mettre à l’échelle le débit et le stockage dans le monde entier de manière flexible. 
+Base de données Azure Cosmos simplifie la distribution globale de hello des données en offrant entièrement géré, [des comptes de base de données de plusieurs régions](distribute-data-globally.md) qui fournissent les effacer compromis entre les performances, toutes avec correspondant, la disponibilité et la cohérence garanties. Les comptes de COSMOS DB offrent une haute disponibilité, des latences de ms chiffre unique, [niveaux de cohérence bien définis](consistency-levels.md), le basculement transparent régional avec hébergement multiple d’API et de débit de l’échelle tooelastically hello capacité et de stockage monde de hello. 
 
-Cosmos DB prend en charge des basculements explicites et basés sur des stratégies qui vous permettent de contrôler le comportement du système de bout en bout en cas de défaillance. Dans cet article, nous allons répondre aux questions suivantes :
+COSMOS DB prend en charge explicite et reposant sur des stratégies de basculement permettent de comportement de système de bout en bout toocontrol hello dans l’événement hello d’échecs. Dans cet article, nous allons répondre aux questions suivantes :
 
 * Comment fonctionnent les basculements manuels dans Cosmos DB ?
 * Comment fonctionnent les basculements automatiques dans Cosmos DB et que se passe-t-il lorsqu’un centre de données tombe en panne ?
@@ -35,18 +35,18 @@ Vous pouvez également découvrir les basculements régionaux dans cette vidéo 
 >[!VIDEO https://channel9.msdn.com/Shows/Azure-Friday/Planet-Scale-NoSQL-with-DocumentDB/player]  
 
 ## <a id="ConfigureMultiRegionApplications"></a>Configuration d'applications multi-régions
-Avant de nous plonger dans les modes de basculement, nous allons examiner comment vous pouvez configurer une application pour tirer parti de plusieurs régions disponibles et être résilient face aux basculements régionaux.
+Avant d’étudier les modes de basculement, nous allons comment vous pouvez configurer un avantage de tootake d’application de la disponibilité de plusieurs région et qu’elles soient résistantes en face de hello basculements régional.
 
 * Tout d’abord, déployez votre application multi-régions
-* Pour garantir un accès à faible latence à partir de chaque région de votre application, configurez la [liste des régions préférées](https://msdn.microsoft.com/library/microsoft.azure.documents.client.connectionpolicy.preferredlocations.aspx#P:Microsoft.Azure.Documents.Client.ConnectionPolicy.PreferredLocations) pour chaque région par le biais de l'un des kits de développement logiciel (SDK) pris en charge.
+* l’accès à faible latence tooensure à partir de chaque région de votre application est déployée, configurer hello correspondant [liste régions préféré](https://msdn.microsoft.com/library/microsoft.azure.documents.client.connectionpolicy.preferredlocations.aspx#P:Microsoft.Azure.Documents.Client.ConnectionPolicy.PreferredLocations) pour chaque région via l’une des hello pris en charge les kits de développement logiciel.
 
-L’extrait de code suivant montre comment initialiser une application multi-régions. Ici, le compte Azure Cosmos DB `contoso.documents.azure.com` est configuré avec deux régions : États-Unis de l’Ouest et Europe du Nord. 
+Hello suivant extrait de code montre comment tooinitialize une application de plusieurs région. Ici, hello compte de base de données Azure Cosmos `contoso.documents.azure.com` est configuré avec deux régions - Ouest des États-Unis et Europe du Nord. 
 
-* L’application est déployée dans la région États-Unis de l'Ouest (par exemple, à l’aide d'Azure App Service) 
-* Configuré avec `West US` en tant que première région préférée pour des lectures à faible latence
-* Configuré avec `North Europe` comme deuxième région préférée (pour une haute disponibilité durant les défaillances régionales)
+* application Hello est déployée dans la région ouest des États-Unis hello (à l’aide de Services d’application Azure par exemple) 
+* Configuré avec `West US` en tant que première région préférée hello pour une latence faible lit
+* Configuré avec `North Europe` en tant que la région préférée deuxième hello (pour une haute disponibilité lors des défaillances régionales)
 
-Dans l’API DocumentDB, cette configuration ressemble à l’extrait de code suivant :
+Bonjour API DocumentDB, cette configuration ressemble hello suivant extrait de code :
 
 ```cs
 ConnectionPolicy usConnectionPolicy = new ConnectionPolicy 
@@ -64,62 +64,62 @@ DocumentClient usClient = new DocumentClient(
     usConnectionPolicy);
 ```
 
-L’application est également déployée dans la région Europe du Nord, dans l’ordre inversé des régions préférées. Autrement dit, la région Europe du Nord est spécifiée en premier pour les lectures à faible latence. La région États-Unis de l'Ouest est ensuite spécifiée comme deuxième région préférée pour une haute disponibilité durant les défaillances régionales.
+application Hello est également déployée dans la région Europe du Nord hello avec ordre hello préféré régions inversées. Autrement dit, la région Europe du Nord hello est spécifiée en premier pour les lectures de faible latence. Ensuite, la région ouest des États-Unis hello est spécifiée en tant que la région préférée deuxième hello pour la haute disponibilité lors des défaillances régionales.
 
-Le schéma d’architecture suivant montre un déploiement d’application multirégion où Cosmos DB et l’application sont configurés de manière à être disponibles dans quatre régions géographiques Azure.  
+Hello architecture diagramme suivant illustre un déploiement d’application de plusieurs régions où Cosmos DB et l’application hello sont toobe configurée disponible dans quatre régions géographiques de Azure.  
 
 ![Déploiement d’une application distribuée dans le monde entier avec Azure Cosmos DB](./media/regional-failover/app-deployment.png)
 
-À présent, nous allons voir comment le service Cosmos DB gère les défaillances régionales par le biais de basculements automatiques. 
+À présent, voyons comment hello Cosmos DB service gère les défaillances régionales via les basculements automatiques. 
 
 ## <a id="AutomaticFailovers"></a>Basculements automatiques
-Dans des cas rares de panne régionale Azure ou de panne de centre de données, Cosmos DB déclenche automatiquement le basculement de tous les comptes Cosmos DB présents dans la région affectée. 
+Dans hello rares cas d’une panne régionale Azure ou une panne du centre de données, Cosmos DB déclenche automatiquement des basculements de tous les comptes Cosmos DB avec sa présence dans la région de hello affectée. 
 
 **Que se passe-t-il si une région de lecture connaît une panne ?**
 
-Les comptes Cosmos DB avec une région de lecture dans l’une des régions affectées sont automatiquement déconnectés de leur région d’écriture et marqués comme hors connexion. Les kits de développement logiciel (SDK) Cosmos DB implémentent un protocole de découverte régionale qui leur permet de détecter automatiquement si une région est disponible et de rediriger les appels en lecture vers la prochaine région disponible dans la liste des régions préférées. Si aucune des régions dans la liste des régions préférées n'est disponible, les appels sont automatiquement acheminés vers la zone d’écriture en cours. Aucune modification n’est nécessaire dans votre code d’application pour gérer les basculements régionaux. Pendant tout le processus, des garanties de cohérence continuent à être respectées par Cosmos DB.
+Comptes COSMOS DB avec une zone de lecture de l’une des régions de hello affecté sont automatiquement déconnectés de la région de leur écriture et marqués hors connexion. Hello kits de développement logiciel Cosmos DB implémentent un protocole de découverte régionale qui leur permet de tooautomatically détecter une région n’est disponible et la redirection de lire des appels toohello suivante région disponibles dans la liste de la région préférée hello. Si aucune des régions hello Bonjour préféré liste région n’est disponible, les appels revient automatiquement zone d’écriture en cours toohello. Aucun changement est nécessaire dans votre code d’application toohandle des basculements de régional. Pendant ce processus, des garanties de cohérence continuent toobe honorée par base de données Cosmos.
 
 ![Défaillances de la région de lecture dans Azure Cosmos DB](./media/regional-failover/read-region-failures.png)
 
-Une fois que la région affectée récupère après une panne, tous les comptes Cosmos DB affectés dans la région sont récupérés automatiquement par le service. Les comptes Cosmos DB ayant une région de lecture dans la région affectée sont automatiquement synchronisés sur la région d’écriture en cours et mis en ligne. Les kits de développement logiciel (SDK) Cosmos DB détectent la disponibilité de la nouvelle région et évaluent si la région doit être sélectionnée en tant que région de lecture en cours sur la base de la liste des régions préférées configurée par l’application. Les lectures suivantes sont redirigées vers la région récupérée sans modification nécessaire de votre code d’application.
+Une fois la région de hello affectée récupère à partir de la panne de hello, tous les comptes de Cosmos DB hello affectée dans la région de hello sont récupérés automatiquement par le service de hello. Comptes COSMOS DB ayant une région de lecture dans la région de hello affectée ensuite automatiquement une synchronisation avec la zone d’écriture en cours et activer en ligne. Kits de développement logiciel Hello Cosmos DB découvrir disponibilité hello de nouvelle région de hello et évaluer si la région de hello doit être sélectionnée en tant que région actuelle lecture hello en fonction de liste de la région préférée hello configuré par l’application hello. Les lectures sont redirigés toohello de région récupérée sans requérir de modifications tooyour application code.
 
 **Que se passe-t-il si une région d'écriture connaît une panne ?**
 
-Si la région affectée est la zone d’écriture en cours d’un compte Cosmos DB donné, la région est automatiquement marquée comme hors connexion. Ensuite, une autre région est promue comme région d’écriture de chaque compte Cosmos DB affecté. Vous pouvez contrôler totalement l’ordre de sélection des régions pour vos comptes Cosmos DB par le biais du portail Azure ou [par programme](https://docs.microsoft.com/rest/api/documentdbresourceprovider/databaseaccounts#DatabaseAccounts_FailoverPriorityChange). 
+Si la région affectée de hello est hello région en cours écriture pour un compte de base de données Cosmos donné, puis la région de hello est automatiquement marquée comme étant hors connexion. Ensuite, une autre région est promue comme hello écrire région chaque compte Cosmos DB concerné. Vous pouvez contrôler entièrement l’ordre de sélection de région de hello pour vos comptes de base de données Cosmos via hello portail Azure ou [par programme](https://docs.microsoft.com/rest/api/documentdbresourceprovider/databaseaccounts#DatabaseAccounts_FailoverPriorityChange). 
 
 ![Priorités de basculement pour Azure Cosmos DB](./media/regional-failover/failover-priorities.png)
 
-Pendant les basculements automatiques, Cosmos DB choisit automatiquement la prochaine région d’écriture d’un compte Cosmos DB donné selon l’ordre de priorité spécifié. 
+Pendant les basculements automatiques, Cosmos DB choisit automatiquement la zone d’écriture suivante hello pour une base de données donnée Cosmos compte selon hello spécifié ordre de priorité. 
 
 ![Défaillances de la région d’écriture dans Azure Cosmos DB](./media/regional-failover/write-region-failures.png)
 
-Une fois que la région affectée récupère après une panne, tous les comptes Cosmos DB affectés dans la région sont récupérés automatiquement par le service. 
+Une fois la région de hello affectée récupère à partir de la panne de hello, tous les comptes de Cosmos DB hello affectée dans la région de hello sont récupérés automatiquement par le service de hello. 
 
-* Des comptes Cosmos DB avec leur région d’écriture précédente dans la région affectée restent en mode hors connexion avec une disponibilité de lecture même après la récupération de la région. 
-* Vous pouvez interroger cette région pour calculer toutes les opérations d'écriture non répliquées pendant une panne en les comparant avec les données disponibles dans la région d'écriture en cours. En fonction des besoins de votre application, vous pouvez effectuer une fusion et/ou une résolution de conflit et écrire l’ensemble final des modifications apportées à la zone d’écriture en cours. 
-* Une fois que vous avez effectué la fusion des modifications, vous pouvez remettre la région affectée en ligne en la supprimant et en l’ajoutant de nouveau à votre compte Cosmos DB. Une fois la région à nouveau ajoutée, vous pouvez la configurer de nouveau comme zone d’écriture en effectuant un basculement manuel par le biais du portail Azure ou [par programme](https://docs.microsoft.com/rest/api/documentdbresourceprovider/databaseaccounts#DatabaseAccounts_CreateOrUpdate).
+* Comptes COSMOS DB avec leur région d’écriture précédente dans la région de hello affectée resteront en mode hors connexion avec la disponibilité en lecture, même après la récupération hello de région de hello. 
+* Vous pouvez interroger cette toocompute région des écritures non répliquées panne hello en comparant avec des données hello disponibles dans la zone d’écriture en cours hello. Selon les besoins de hello de votre application, vous pouvez effectuer une résolution de fusion et de conflit et écrire le jeu final de hello de zone d’écriture en cours modifications toohello précédent. 
+* Une fois que vous avez terminé la fusion des modifications, vous pouvez remettre région de hello affecté en ligne en supprimant et en readding compte de base de données Cosmos tooyour hello région. Une fois la région de hello est à nouveau ajoutée, vous pouvez le configurer comme région d’écriture hello en effectuant un basculement manuel via hello portail Azure ou [par programme](https://docs.microsoft.com/rest/api/documentdbresourceprovider/databaseaccounts#DatabaseAccounts_CreateOrUpdate).
 
 ## <a id="ManualFailovers"></a>Basculements manuels
 
-Outre les basculements automatiques, la région d’écriture en cours d’un compte Cosmos DB donné peut être modifiée manuellement de manière dynamique en l’une des régions de lecture existantes. Les basculements manuels peuvent être lancés par le biais du portail Azure ou [par programme](https://docs.microsoft.com/rest/api/documentdbresourceprovider/databaseaccounts#DatabaseAccounts_CreateOrUpdate). 
+En outre d’écrire tooautomatic basculements, hello actuel région d’un compte de base de données Cosmos donné peut être modifiée manuellement dynamiquement tooone des régions de lecture existant hello. Les basculements manuels peuvent être lancées via hello portail Azure ou [par programme](https://docs.microsoft.com/rest/api/documentdbresourceprovider/databaseaccounts#DatabaseAccounts_CreateOrUpdate). 
 
-Les basculements manuels assurent **qu’aucune perte de données** ni **aucune diminution de la disponibilité** ne se produit et que l’état d’écriture est transféré correctement de l’ancienne région d’écriture vers la nouvelle pour le compte Cosmos DB spécifié. Comme dans les basculements automatiques, le kit de développement logiciel (SDK) Cosmos DB gère automatiquement les modifications de région d’écriture pendant les basculements manuels et garantit que les appels sont automatiquement redirigés vers la nouvelle zone d’écriture. Aucune modification de code ou de configuration n’est nécessaire dans votre application pour gérer les basculements. 
+Assurez-vous de basculements manuels **aucune perte de données** et **zéro disponibilité** perte et normalement l’état d’écriture de transfert des hello ancien écrivent toohello de région nouveau pour hello spécifié un compte de base de données Cosmos. Comme dans les basculements automatiques, hello Cosmos DB SDK automatiquement handles écrire région change pendant les basculements manuels et garantit que les appels sont automatiquement redirigé toohello nouvelle écriture zone. Aucune modification de code ou de configuration n’est requises dans votre application toomanage les basculements. 
 
 ![Basculements manuels dans Azure Cosmos DB](./media/regional-failover/manual-failovers.png)
 
-Voici certains des scénarios courants où le basculement manuel peut être utile :
+Certains des scénarios courants de hello où le basculement manuel peut être utile sont :
 
-**Suivre le modèle d’horloge** : si vos applications ont des schémas de trafic prévisible basés sur l’heure, vous pouvez modifier régulièrement l’état de l’écriture sur la région géographique plus active selon l’heure.
+**Suivre le modèle d’horloge hello**: si vos applications ont des modèles de trafic prévisible selon hello heure hello, vous pouvez changer régulièrement hello écriture état toohello plus actifs région géographique en fonction de l’heure du jour de hello.
 
-**Mise à jour du service** : certains déploiements d’applications distribués globalement peuvent impliquer la redirection du trafic vers une région différente par le biais du Traffic Manager lors de la mise à jour de service planifiée. De tels déploiements d’applications peuvent utiliser le basculement manuel pour conserver l’état d’écriture de la région où il y aura un trafic actif pendant la mise à jour du service.
+**Mise à jour de service**: Certain déploiement d’application distribuée globalement peut impliquer la redirection de la région toodifferent le trafic via le Gestionnaire de trafic pendant leur mise à jour de service planifiée. Ce déploiement de l’application maintenant pouvez utiliser le basculement manuel tookeep hello écriture état toohello région où il y aura le trafic active de toobe au cours de la fenêtre de mise à jour de service hello.
 
-**Simulations de continuité d’activité et de récupération d’urgence (Business Continuity and Disaster Recovery, BCDR) et Haute disponibilité et récupération d’urgence (High Availability and Disaster Recovery, HADR)** : la plupart des applications d’entreprise incluent des tests de continuité d’activité dans le cadre de leurs processus de développement et de mise sur le marché. Les tests BCDR et HADR sont souvent une étape importante de certification de conformité et de garantie de disponibilité en cas de pannes régionales. Vous pouvez tester la disponibilité de BCDR dans vos applications qui utilisent Cosmos DB pour le stockage en déclenchant un basculement manuel de votre compte Cosmos DB et/ou en ajoutant et en supprimant une région dynamiquement.
+**Simulations de continuité d’activité et de récupération d’urgence (Business Continuity and Disaster Recovery, BCDR) et Haute disponibilité et récupération d’urgence (High Availability and Disaster Recovery, HADR)** : la plupart des applications d’entreprise incluent des tests de continuité d’activité dans le cadre de leurs processus de développement et de mise sur le marché. BCDR et HADR test est souvent une étape importante dans les certifications de conformité et garantissant la disponibilité en cas de hello de pannes de courant régionales. Vous pouvez tester la disponibilité BCDR hello de vos applications qui utilisent des Cosmos DB pour le stockage en déclencher un basculement manuel de votre compte de base de données Cosmos et/ou en ajoutant et en supprimant une région dynamiquement.
 
-Dans cet article, nous avons examiné le fonctionnement des basculements manuels et automatiques dans Cosmos DB et comment vous pouvez configurer vos comptes Cosmos DB et les applications de manière qu’ils soient disponibles au niveau mondial. Avec la prise en charge de la réplication au niveau mondial de Cosmos DB, vous pouvez améliorer la latence de bout en bout et garantir une haute disponibilité même en cas de défaillance de la région. 
+Dans cet article, nous avons vu comment du travail de basculements manuel et automatique dans la base de données Cosmos et comment vous pouvez configurer votre toobe Cosmos DB comptes et les applications disponible. À l’aide de prise en charge de Cosmos DB global de réplication, vous pouvez améliorer la latence de bout en bout et vous assurer qu’ils sont hautement disponibles même en cas de hello d’échecs de la région. 
 
 ## <a id="NextSteps"></a>Étapes suivantes
 * Découvrez-en plus sur la manière dont Cosmos DB prend en charge la [distribution mondiale](distribute-data-globally.md)
 * Découvrez-en plus sur [la cohérence globale avec Azure Cosmos DB](consistency-levels.md)
 * Développez en mode multirégion à l’aide de l’[API DocumentDB](../cosmos-db/tutorial-global-distribution-documentdb.md) d’Azure Cosmos DB
-* Découvrez comment créer [des architectures d'écriture multi-régions](multi-region-writers.md) avec Azure DocumentDB
+* Découvrez comment toobuild [architectures d’enregistreur de plusieurs régions](multi-region-writers.md) avec Azure DocumentDB
 

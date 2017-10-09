@@ -1,14 +1,14 @@
 ## <a name="application-gateway"></a>Application Gateway
-Application Gateway fournit une solution d'équilibrage de la charge HTTP gérée par Azure et basée sur l'équilibrage de la charge de couche 7. L'équilibrage de la charge de l'application permet l'utilisation de règles de routage pour le trafic réseau basé sur HTTP. 
+Application Gateway fournit une solution d'équilibrage de la charge HTTP gérée par Azure et basée sur l'équilibrage de la charge de couche 7. Application de l’équilibrage de charge permet hello de règles de routage pour le trafic de réseau basée sur HTTP. 
 <BR>
 
 | Propriété | Description |
 | --- | --- |
-| **backendAddressPools** |Liste des adresses IP des serveurs principaux. Les adresses IP répertoriées doivent appartenir au sous-réseau de réseau virtuel, sinon elles doivent être une adresse IP/VIP publique ou une adresse IP privée. |
-| **backendHttpSettingsCollection** |Chaque pool a des paramètres comme le port, le protocole et une affinité basée sur les cookies. Ces paramètres sont liés à un pool et sont appliqués à tous les serveurs du pool. |
-| **frontendPorts** |Ce port est le port public ouvert sur la passerelle Application Gateway. Le trafic atteint ce port, puis il est redirigé vers l’un des serveurs principaux. |
-| **httpListeners** |L'écouteur a un port frontal, un protocole (Http ou Https, avec respect de la casse) et le nom du certificat SSL (en cas de configuration du déchargement SSL). |
-| **requestRoutingRules** |La règle lie l’écouteur et le pool de serveurs principaux et définit le pool de serveurs principaux vers lequel le trafic doit être dirigé. Travaille actuellement uniquement en tant que Round-robin |
+| **backendAddressPools** |liste de Hello des adresses IP des serveurs principaux de hello. adresses IP de Hello répertoriés doivent appartenir soit de sous-réseau de réseau virtuel toohello ou doivent être un IP public/adresse IP virtuelle ou une adresse IP privée |
+| **backendHttpSettingsCollection** |Chaque pool a des paramètres comme le port, le protocole et une affinité basée sur les cookies. Ces paramètres sont lié tooa pool et sont des serveurs tooall appliqué dans le pool de hello |
+| **frontendPorts** |Ce port est le port public de hello ouvert sur la passerelle d’application hello. Le trafic atteint ce port et obtient redirigés tooone de serveurs principaux de hello |
+| **httpListeners** |Écouteur possède un port de serveur frontal, un protocole (Http ou Https, ils respectent la casse) et le nom du certificat SSL hello (si le déchargement de la configuration de SSL) |
+| **requestRoutingRules** |règle de Hello lie hello écouteur et hello back-end server pool et définit le principal serveur pool hello trafic doit être dirigé. Travaille actuellement uniquement en tant que Round-robin |
 
 Exemple d'un modèle de passerelle Application Gateway Json :
 
@@ -19,14 +19,14 @@ Exemple d'un modèle de passerelle Application Gateway Json :
         "location": {
           "type": "string",
           "metadata": {
-            "description": "Location to deploy to"
+            "description": "Location toodeploy to"
           }
         },
         "addressPrefix": {
           "type": "string",
           "defaultValue": "10.0.0.0/16",
           "metadata": {
-            "description": "Address prefix for the Virtual Network"
+            "description": "Address prefix for hello Virtual Network"
           }
         },
         "subnetPrefix": {

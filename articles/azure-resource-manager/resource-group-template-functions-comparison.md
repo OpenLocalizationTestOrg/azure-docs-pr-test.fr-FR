@@ -1,6 +1,6 @@
 ---
-title: "Fonctions de modèle Azure Resource Manager - comparaison| Microsoft Docs"
-description: "Décrit les fonctions à utiliser dans un modèle Azure Resource Manager pour comparer des valeurs."
+title: "fonctions de modèle de gestionnaire de ressources aaaAzure - comparaison | Documents Microsoft"
+description: "Décrit toouse de fonctions hello dans des valeurs de toocompare modèles Azure Resource Manager."
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/01/2017
 ms.author: tomfitz
-ms.openlocfilehash: 521e5ed06c138bcd374913588f06a2e6c1e99963
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: ebcfc9ed6c93f8b540ec4c066e9457c621800b7b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="comparison-functions-for-azure-resource-manager-templates"></a>Fonctions de comparaison pour les modèles Azure Resource Manager
 
@@ -39,16 +39,16 @@ Vérifie si deux valeurs sont égales.
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| arg1 |Oui |entier, chaîne, tableau ou objet |Première valeur dont l’égalité est à vérifier. |
-| arg2 |Oui |entier, chaîne, tableau ou objet |Deuxième valeur dont l’égalité est à vérifier. |
+| arg1 |Oui |entier, chaîne, tableau ou objet |Hello première valeur toocheck pour l’égalité. |
+| arg2 |Oui |entier, chaîne, tableau ou objet |Bonjour deuxième toocheck de valeur pour l’égalité. |
 
 ### <a name="return-value"></a>Valeur de retour
 
-Retourne **True** si les valeurs sont égales ; sinon, renvoie **False**.
+Retourne **True** si les valeurs hello sont égaux ; sinon, **False**.
 
 ### <a name="remarks"></a>Remarques
 
-La fonction equals est souvent utilisée avec l’élément `condition` pour tester si une ressource est déployée.
+Hello fonction equals est souvent utilisée avec hello `condition` élément tootest indique si une ressource est déployée.
 
 ```json
 {
@@ -67,7 +67,7 @@ La fonction equals est souvent utilisée avec l’élément `condition` pour tes
 
 ### <a name="example"></a>Exemple
 
-L’exemple de modèle vérifie que les différents types de valeurs sont égaux. Toutes les valeurs par défaut retournent la valeur True.
+exemple de modèle de Hello vérifie les différents types de valeurs sont égales. Toutes les valeurs par défaut de hello renvoient True.
 
 ```json
 {
@@ -130,7 +130,7 @@ L’exemple de modèle vérifie que les différents types de valeurs sont égaux
 }
 ```
 
-La sortie de l’exemple précédent avec les valeurs par défaut se présente comme suit :
+Hello de sortie à partir de hello précédent exemple hello valeurs par défaut est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -140,7 +140,7 @@ La sortie de l’exemple précédent avec les valeurs par défaut se présente c
 | checkObjects | Bool | true |
 
 
-L’exemple suivant utilise [non](resource-group-template-functions-logical.md#not) avec**égal à**.
+Hello exemple suivant utilise [pas](resource-group-template-functions-logical.md#not) avec **est égal à**.
 
 ```json
 {
@@ -156,7 +156,7 @@ L’exemple suivant utilise [non](resource-group-template-functions-logical.md#n
     }
 ```
 
-La sortie de l’exemple précédent est :
+est résultat Hello hello précédant l’exemple suivant :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -166,22 +166,22 @@ La sortie de l’exemple précédent est :
 ## <a name="greater"></a>greater
 `greater(arg1, arg2)`
 
-Vérifie si la première valeur est supérieure à la deuxième valeur.
+Vérifie si la première valeur de hello est supérieure à la valeur de seconde hello.
 
 ### <a name="parameters"></a>Paramètres
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| arg1 |Oui |entier ou chaîne |Première valeur pour la comparaison « supérieur à ». |
-| arg2 |Oui |entier ou chaîne |Seconde valeur pour la comparaison « supérieur à ». |
+| arg1 |Oui |entier ou chaîne |Hello première valeur de comparaison supérieur de hello. |
+| arg2 |Oui |entier ou chaîne |Hello deuxième valeur de comparaison supérieur de hello. |
 
 ### <a name="return-value"></a>Valeur de retour
 
-Retourne **True** si la première valeur est supérieure à la seconde ; sinon, renvoie **False**.
+Retourne **True** si hello première valeur est supérieure à hello deuxième ; sinon, **False**.
 
 ### <a name="example"></a>Exemple
 
-L’exemple de modèle vérifie si une valeur est supérieure à l’autre.
+exemple de modèle de Hello vérifie si une valeur de hello est supérieure à hello autres.
 
 ```json
 {
@@ -220,7 +220,7 @@ L’exemple de modèle vérifie si une valeur est supérieure à l’autre.
 }
 ```
 
-La sortie de l’exemple précédent avec les valeurs par défaut se présente comme suit :
+Hello de sortie à partir de hello précédent exemple hello valeurs par défaut est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -231,22 +231,22 @@ La sortie de l’exemple précédent avec les valeurs par défaut se présente c
 ## <a name="greaterorequals"></a>greaterOrEquals
 `greaterOrEquals(arg1, arg2)`
 
-Vérifie si la première valeur est supérieure ou égale à la deuxième valeur.
+Vérifie si hello première valeur est supérieure ou égale toohello seconde valeur.
 
 ### <a name="parameters"></a>Paramètres
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| arg1 |Oui |entier ou chaîne |Première valeur pour la comparaison « supérieur ou égal à ». |
-| arg2 |Oui |entier ou chaîne |Seconde valeur pour la comparaison « supérieur ou égal à ». |
+| arg1 |Oui |entier ou chaîne |Hello première valeur de comparaison supérieure ou égal de hello. |
+| arg2 |Oui |entier ou chaîne |Hello deuxième valeur de comparaison supérieure ou égal de hello. |
 
 ### <a name="return-value"></a>Valeur de retour
 
-Retourne **True** si la première valeur est supérieure ou égale à la seconde ; sinon, renvoie **False**.
+Retourne **True** si hello première valeur est supérieure ou égale toohello deuxième ; sinon, **False**.
 
 ### <a name="example"></a>Exemple
 
-L’exemple de modèle vérifie si une valeur est supérieure ou égale à l’autre.
+exemple de modèle de Hello vérifie si une valeur de hello est supérieure ou égal toohello autres.
 
 ```json
 {
@@ -285,7 +285,7 @@ L’exemple de modèle vérifie si une valeur est supérieure ou égale à l’a
 }
 ```
 
-La sortie de l’exemple précédent avec les valeurs par défaut se présente comme suit :
+Hello de sortie à partir de hello précédent exemple hello valeurs par défaut est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -297,22 +297,22 @@ La sortie de l’exemple précédent avec les valeurs par défaut se présente c
 ## <a name="less"></a>less
 `less(arg1, arg2)`
 
-Vérifie si la première valeur est inférieure à la deuxième valeur.
+Vérifie si hello première valeur est inférieure hello deuxième valeur.
 
 ### <a name="parameters"></a>Paramètres
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| arg1 |Oui |entier ou chaîne |Première valeur pour la comparaison « inférieur à ». |
-| arg2 |Oui |entier ou chaîne |Deuxième valeur pour la comparaison « inférieur à ». |
+| arg1 |Oui |entier ou chaîne |Hello première valeur de hello moins de comparaison. |
+| arg2 |Oui |entier ou chaîne |Hello deuxième valeur de hello moins de comparaison. |
 
 ### <a name="return-value"></a>Valeur de retour
 
-Retourne **True** si la première valeur est inférieure à la seconde ; sinon, renvoie **False**.
+Retourne **True** si hello première valeur est inférieure à hello deuxième valeur ; sinon, **False**.
 
 ### <a name="example"></a>Exemple
 
-L’exemple de modèle vérifie si une valeur est inférieure à l’autre.
+exemple de modèle de Hello vérifie si une valeur de hello est inférieure à hello autres.
 
 ```json
 {
@@ -351,7 +351,7 @@ L’exemple de modèle vérifie si une valeur est inférieure à l’autre.
 }
 ```
 
-La sortie de l’exemple précédent avec les valeurs par défaut se présente comme suit :
+Hello de sortie à partir de hello précédent exemple hello valeurs par défaut est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -362,22 +362,22 @@ La sortie de l’exemple précédent avec les valeurs par défaut se présente c
 ## <a name="lessorequals"></a>lessOrEquals
 `lessOrEquals(arg1, arg2)`
 
-Vérifie si la première valeur est inférieure ou égale à la deuxième valeur.
+Vérifie si la première valeur de hello est inférieur ou égal toohello seconde valeur.
 
 ### <a name="parameters"></a>Paramètres
 
 | Paramètre | Requis | Type | Description |
 |:--- |:--- |:--- |:--- |
-| arg1 |Oui |entier ou chaîne |Première valeur pour la comparaison « inférieur à ». |
-| arg2 |Oui |entier ou chaîne |Première valeur pour la comparaison « inférieur ou égal à ». |
+| arg1 |Oui |entier ou chaîne |Hello première valeur de hello inférieur ou égal à la comparaison. |
+| arg2 |Oui |entier ou chaîne |Hello deuxième valeur de hello inférieur ou égal à la comparaison. |
 
 ### <a name="return-value"></a>Valeur de retour
 
-Retourne **True** si la première valeur est inférieure ou égale à la seconde ; sinon, renvoie **False**.
+Retourne **True** si hello première valeur est inférieure ou égale toohello deuxième valeur ; sinon, **False**.
 
 ### <a name="example"></a>Exemple
 
-L’exemple de modèle vérifie si une valeur est inférieure ou égale à l’autre.
+Hello exemple de modèle vérifie si une valeur de hello est inférieur ou égal toohello autres.
 
 ```json
 {
@@ -416,7 +416,7 @@ L’exemple de modèle vérifie si une valeur est inférieure ou égale à l’a
 }
 ```
 
-La sortie de l’exemple précédent avec les valeurs par défaut se présente comme suit :
+Hello de sortie à partir de hello précédent exemple hello valeurs par défaut est :
 
 | Nom | Type | Valeur |
 | ---- | ---- | ----- |
@@ -426,8 +426,8 @@ La sortie de l’exemple précédent avec les valeurs par défaut se présente c
 
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Pour obtenir une description des sections d’un modèle Azure Resource Manager, consultez [Création de modèles Azure Resource Manager](resource-group-authoring-templates.md).
-* Pour fusionner plusieurs modèles, consultez [Utilisation de modèles liés avec Azure Resource Manager](resource-group-linked-templates.md).
-* Pour itérer un nombre de fois spécifié lors de la création d'un type de ressource, consultez [Création de plusieurs instances de ressources dans Azure Resource Manager](resource-group-create-multiple.md).
-* Pour savoir comment déployer le modèle que vous avez créé, consultez [Déploiement d’une application avec un modèle Azure Resource Manager](resource-group-template-deploy.md).
+* Pour obtenir une description des sections de hello dans un modèle Azure Resource Manager, consultez [les modèles de programmation Azure Resource Manager](resource-group-authoring-templates.md).
+* consultez de plusieurs modèles toomerge [à l’aide de modèles liés avec Azure Resource Manager](resource-group-linked-templates.md).
+* tooiterate un nombre spécifié de fois lors de la création d’un type de ressource, consultez [créer plusieurs instances de ressources dans Azure Resource Manager](resource-group-create-multiple.md).
+* toosee modèle de hello toodeploy que vous avez créé, voir [déployer une application avec le modèle Azure Resource Manager](resource-group-template-deploy.md).
 

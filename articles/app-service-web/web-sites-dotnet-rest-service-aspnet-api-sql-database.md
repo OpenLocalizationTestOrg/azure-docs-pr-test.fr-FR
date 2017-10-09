@@ -1,6 +1,6 @@
 ---
-title: "Créer une API REST dans Azure avec ASP.NET et SQL DB | Microsoft Docs"
-description: "Didacticiel expliquant comment déployer une application qui utilise l’API Web ASP.NET dans une application web Azure à l’aide de Visual Studio."
+title: "aaaCreate une API REST dans Azure avec ASP.NET et la base de données SQL | Documents Microsoft"
+description: "Un didacticiel qui vous apprend de comment toodeploy une application qui utilise hello tooan de l’API Web ASP.NET application web Azure à l’aide de Visual Studio."
 services: app-service\web
 documentationcenter: .net
 author: Rick-Anderson
@@ -15,63 +15,63 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 02/29/2016
 ms.author: riande
-ms.openlocfilehash: 64c18f2cfabbb7af6ffd89b4c2a9095fca1cf799
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1ef45dd1582bfda367e53c39f863164422ad678b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-rest-service-using-aspnet-web-api-and-sql-database-in-azure-app-service"></a>Créer un service REST à l’aide de l’API Web ASP.NET et de Base de données SQL dans Azure App Service
-Ce didacticiel explique comment déployer une application Web ASP.NET dans [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) à l’aide de l’Assistant Publier le site Web de Visual Studio 2013 ou Visual Studio Community 2013. 
+Ce didacticiel montre comment toodeploy ASP.NET web application tooan [Azure App Service](http://go.microsoft.com/fwlink/?LinkId=529714) en utilisant l’Assistant de publication Web hello dans Visual Studio 2013 ou Visual Studio 2013 Community Edition. 
 
-Vous pouvez ouvrir gratuitement un compte Azure. Si vous n’avez pas déjà Visual Studio 2013, le Kit de développement logiciel (SDK) installe automatiquement Visual Studio Express 2013 pour le Web. Vous pouvez donc commencer vos développements Azure gratuitement.
+Vous pouvez ouvrir un compte Azure gratuit, et si vous ne disposez pas de Visual Studio 2013, hello SDK installe automatiquement Visual Studio 2013 pour Web Express. Vous pouvez donc commencer vos développements Azure gratuitement.
 
-Ce didacticiel part du principe que vous n'avez pas d'expérience en tant qu'utilisateur d'Azure. À la fin de ce didacticiel, vous disposerez d’une application web simple et fonctionnelle dans le cloud.
+Ce didacticiel part du principe que vous n'avez pas d'expérience en tant qu'utilisateur d'Azure. Une fois ce didacticiel, vous avez une application web simple haut et en cours d’exécution dans le cloud de hello.
 
 Vous apprendrez ce qui suit :
 
-* configurer votre ordinateur pour le développement Azure en installant le Kit de développement logiciel (SDK) Azure ;
-* créer un projet Visual Studio ASP.NET MVC 5 et le publier dans une application Azure ;
-* utiliser l'API Web ASP.NET pour activer les appels d'API Restful ;
-* utiliser une base de données SQL pour stocker des données dans Azure ;
-* publier des mises à jour d'application dans Azure.
+* Comment tooenable votre ordinateur pour le développement Azure en installant hello Azure SDK.
+* Comment toocreate un Visual Studio ASP.NET MVC 5 du projet et publiez-le tooan application Azure.
+* Appels d’API Restful comment toouse hello tooenable de l’API Web ASP.NET.
+* Toouse SQL base de données toostore dans Azure.
+* Comment toopublish application met à jour tooAzure.
 
-Vous développerez une application Web de liste de contacts simple basée sur ASP.NET MVC 5 et utilisant Entity Framework ADO.NET pour accéder à la base de données. L’illustration suivante présente l’application terminée :
+Vous allez générer une application web de liste de contacts simple qui repose sur ASP.NET MVC 5 et utilise hello ADO.NET Entity Framework pour l’accès de la base de données. Hello suivant illustration montre hello terminé l’application :
 
 ![capture d’écran du site Web][intro001]
 
 [!INCLUDE [create-account-and-websites-note](../../includes/create-account-and-websites-note.md)]
 
-### <a name="create-the-project"></a>Création du projet
+### <a name="create-hello-project"></a>Créer le projet de hello
 1. Démarrez Visual Studio 2013.
-2. Dans le menu **Fichier**, cliquez sur **Nouveau projet**.
-3. Dans la boîte de dialogue **Nouveau projet**, développez **Visual C#** et sélectionnez **Web**, puis **Application Web ASP.NET**. Nommez l'application **ContactManager** , puis cliquez sur **OK**.
+2. À partir de hello **fichier** menu, cliquez sur **nouveau projet**.
+3. Bonjour **nouveau projet** boîte de dialogue, développez **Visual C#** et sélectionnez **Web** , puis sélectionnez **Application Web ASP.NET**. Nommez l’application hello **ContactManager** et cliquez sur **OK**.
    
     ![Boîte de dialogue Nouveau projet](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/rr4.png)
-4. Dans la boîte de dialogue **Nouveau projet ASP.NET**, sélectionnez le modèle **MVC**, activez la case à cocher **API Web**, puis cliquez sur **Modifier l’authentification**.
-5. Dans la boîte de dialogue **Modifier l’authentification**, cliquez sur **Aucune authentification**, puis sur **OK**.
+4. Bonjour **nouveau projet ASP.NET** boîte de dialogue, sélectionnez hello **MVC** modèle, cocher **API Web** puis cliquez sur **modifier l’authentification**.
+5. Bonjour **modifier l’authentification** boîte de dialogue, cliquez sur **aucune authentification**, puis cliquez sur **OK**.
    
     ![Aucune authentification](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/GS13noauth.png)
    
-    L’exemple d’application que vous créez ne sera pas doté de fonctionnalités nécessitant la connexion de l’utilisateur. Pour plus d’informations sur l’implémentation de fonctionnalités d’authentification et d’autorisation, consultez la section [Étapes suivantes](#nextsteps) à la fin de ce didacticiel. 
-6. Dans la boîte de dialogue **Nouveau projet ASP.NET**, vérifiez que la case **Hôte dans le Cloud** est cochée, puis cliquez sur **OK**.
+    exemple d’application Hello que vous créez ne sont pas ont des fonctionnalités qui nécessitent des toolog d’utilisateurs dans. Pour plus d’informations sur la façon tooimplement des fonctionnalités d’authentification et d’autorisation, consultez hello [étapes](#nextsteps) section à fin hello de ce didacticiel. 
+6. Bonjour **nouveau projet ASP.NET** boîte de dialogue, vérifiez les hello que **hôte Bonjour Cloud** est activée et cliquez sur **OK**.
 
-Si vous n’êtes pas déjà connecté à Azure, vous serez invité à vous connecter.
+Si vous n’êtes pas déjà inscrit dans tooAzure, vous serez invité à toosign dans.
 
-1. L’Assistant Configuration suggère un nom unique basé sur *ContactManager* (voir l’image ci-dessous). Sélectionnez une région proche de chez vous. Vous pouvez utiliser [azurespeed.com](http://www.azurespeed.com/ "AzureSpeed.com") pour trouver le centre de données affichant la plus faible latence. 
+1. Assistant de configuration Hello suggère un nom unique basé sur *ContactManager* (voir l’image hello ci-dessous). Sélectionnez une région proche de chez vous. Vous pouvez utiliser [azurespeed.com](http://www.azurespeed.com/ "AzureSpeed.com") centre de données de latence la plus faible toofind hello. 
 2. Si vous n’avez pas créé de serveur de base de données, sélectionnez **Créer un serveur**, entrez un nom d’utilisateur et un mot de passe de base de données.
    
     ![Configuration du site Web Azure](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/configAz.PNG)
 
-Si vous avez un serveur de bases de données, utilisez-le pour créer une base de données. Les serveurs de base de données sont une ressource essentielle, et vous souhaitez généralement créer plusieurs bases de données sur le même serveur à des fins de test et développement au lieu de créer un serveur de base de données par base de données. Assurez-vous que votre site web et la base de données sont dans la même région.
+Si vous avez un serveur de base de données, utilisez ce toocreate une base de données. Les serveurs de base de données sont une ressource précieuse, et que vous souhaitez généralement toocreate plusieurs bases de données sur hello même serveur de test et développement au lieu de créer un serveur de base de données par base de données. Assurez-vous que votre site web et la base de données sont Bonjour même région.
 
 ![Configuration du site Web Azure](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/configWithDB.PNG)
 
-### <a name="set-the-page-header-and-footer"></a>Définition de l'en-tête et du pied de page de la page
-1. Dans l’**Explorateur de solutions**, développez le dossier *Views\Shared* et ouvrez le fichier *_Layout.cshtml*.
+### <a name="set-hello-page-header-and-footer"></a>Page hello en-tête et pied de page
+1. Dans **l’Explorateur de solutions**, développez hello *Views\Shared* dossier et ouvrez hello *_Layout.cshtml* fichier.
    
     ![_Layout.cshtml dans l'Explorateur de solutions][newapp004]
-2. Remplacez le contenu du fichier *Views\Shared_Layout.cshtml* par le code suivant :
+2. Remplacez le contenu hello Hello *Views\Shared_Layout.cshtml* fichier avec hello suivant de code :
 
         <!DOCTYPE html>
         <html lang="en">
@@ -109,46 +109,46 @@ Si vous avez un serveur de bases de données, utilisez-le pour créer une base d
         </body>
         </html>
 
-Le balisage ci-dessus remplace le nom de l’application « My ASP.NET App » par « Gestionnaire de contacts » et supprime les liens vers les pages **Accueil**, **À propos de** et **Contact**.
+balisage de Hello au-dessus de nom de l’application hello modifications à partir de « My ASP.NET App » trop « Contact Manager » et il supprime les liens hello trop**accueil**, **sur** et **Contact**.
 
-### <a name="run-the-application-locally"></a>Exécution locale de l'application
-1. Appuyez sur Ctrl+F5 pour exécuter l’application.
-   La page d’accueil de l’application apparaît dans le navigateur par défaut.
-    ![Page d’accueil Liste des tâches](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/rr5.png)
+### <a name="run-hello-application-locally"></a>Exécutez hello application localement
+1. Appuyez sur la touche application de hello toorun CTRL + F5.
+   page d’accueil application Hello s’affiche dans le navigateur par défaut de hello.
+    ![page d’accueil liste tooDo](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/rr5.png)
 
-Voilà, vous avez fait tout ce qu'il fallait pour créer l'application que vous allez déployer dans Azure. Après cela, vous allez ajouter les fonctionnalités de base de données.
+Cela est que nécessaire pour l’application de hello toocreate maintenant que vous allez déployer tooAzure toodo. Après cela, vous allez ajouter les fonctionnalités de base de données.
 
-## <a name="deploy-the-application-to-azure"></a>Déploiement de l'application dans Azure
-1. Dans **l’Explorateur de solutions** de Visual Studio, cliquez avec le bouton droit sur le projet, puis dans le menu contextuel, sélectionnez **Publier**.
+## <a name="deploy-hello-application-tooazure"></a>Déployer hello application tooAzure
+1. Dans Visual Studio, cliquez sur projet hello dans **l’Explorateur de solutions** et sélectionnez **publier** à partir du menu contextuel de hello.
    
     ![Publier dans le menu contextuel du projet][PublishVSSolution]
    
-    L'Assistant **Publier le site Web** s'ouvre.
+    Hello **publier le site Web** Assistant s’ouvre.
 2. Cliquez sur **Publier**.
 
 ![Onglet Paramètres](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/pw.png)
 
-Visual Studio démarre le processus de copie des fichiers vers le serveur Azure. La fenêtre **Output** indique les actions de déploiement entreprises et signale la réussite du déploiement.
+Visual Studio commence le processus hello hello fichiers toohello serveur Azure à copier. Hello **sortie** fenêtre affiche les actions de déploiement ont été effectuées et signale la réussite du déploiement de hello.
 
-1. Le navigateur par défaut ouvre automatiquement l'URL du site déployé.
+1. navigateur par défaut de Hello ouvre automatiquement toohello les URL du site de hello déployé.
    
-   L'application créée est maintenant exécutée dans le cloud.
+   application Hello que vous avez créé est en cours d’exécution dans le cloud de hello.
    
-   ![Page d'accueil Liste des tâches exécutée dans Azure][rxz2]
+   ![page d’accueil liste tooDo s’exécutant dans Azure][rxz2]
 
-## <a name="add-a-database-to-the-application"></a>Ajout d'une base de données à l'application
-À présent, vous allez mettre à jour l'application MVC pour y ajouter la capacité d'afficher et de mettre à jour les contacts, puis stocker les données dans une base de données. L'application va utiliser Entity Framework pour créer la base de données, ainsi que lire et mettre à jour les données associées.
+## <a name="add-a-database-toohello-application"></a>Ajouter une application toohello de base de données
+Ensuite, vous allez mettre à jour hello MVC application tooadd hello capacité toodisplay et mettre à jour contacts stocker les données de hello dans une base de données. application Hello utilise tooread et la base de données hello Entity Framework toocreate hello et mettre à jour des données dans la base de données hello.
 
-### <a name="add-data-model-classes-for-the-contacts"></a>Ajout de classes de modèle de données pour les contacts
+### <a name="add-data-model-classes-for-hello-contacts"></a>Ajouter des classes de modèle de données pour les contacts de hello
 Commencez par créer un modèle de données simple dans le code.
 
-1. Dans **l’Explorateur de solutions**, cliquez avec le bouton droit sur le dossier Modèles, cliquez sur **Ajouter**, puis sur **Classe**.
+1. Dans **l’Explorateur de solutions**, cliquez sur le dossier de modèles hello, cliquez sur **ajouter**, puis **classe**.
    
     ![Menu contextuel Ajouter une classe aux modèles][adddb001]
-2. Dans la boîte de dialogue **Ajouter un nouvel élément**, nommez le nouveau fichier de classe *Contact.cs*, puis cliquez sur **Ajouter**.
+2. Bonjour **ajouter un nouvel élément** boîte de dialogue, le fichier de classe nom hello *Contact.cs*, puis cliquez sur **ajouter**.
    
     ![Boîte de dialogue Ajouter un nouvel élément][adddb002]
-3. Remplacez le contenu du fichier Contacts.cs par le code suivant.
+3. Remplacez contenu hello du fichier de Contacts.cs hello hello suivant de code.
    
         using System.Globalization;
         namespace ContactManager.Models
@@ -172,49 +172,49 @@ Commencez par créer un modèle de données simple dans le code.
             }
         }
 
-La classe **Contact** définit les données que vous allez stocker pour chaque contact, ainsi que la clé primaire ContactID dont la base de données a besoin. Pour plus d'informations sur les modèles de données, consultez la section [Étapes suivantes](#nextsteps) à la fin de ce didacticiel.
+Hello **contactez** classe définit les données de hello que vous souhaitez stocker pour chaque contact, plus une clé primaire, ContactID, qui est requise par la base de données hello. Vous pouvez obtenir plus d’informations sur les modèles de données Bonjour [étapes](#nextsteps) section à fin hello de ce didacticiel.
 
-### <a name="create-web-pages-that-enable-app-users-to-work-with-the-contacts"></a>Création de pages Web permettant aux utilisateurs de l'application d'utiliser des contacts
-La fonctionnalité de génération de modèle automatique ASP.NET MVC peut générer automatiquement un code qui effectue les actions CRUD (Create, Read, Update et Delete, ou Créer, Lire, Mettre à jour et Supprimer).
+### <a name="create-web-pages-that-enable-app-users-toowork-with-hello-contacts"></a>Créer des pages web qui permettent de toowork d’utilisateurs d’application avec des contacts de hello
+Hello fonctionnalité de génération de modèles automatique ASP.NET MVC hello peut générer automatiquement le code qui effectue créer, lire, mettre à jour et supprimer des actions (CRUD).
 
-## <a name="add-a-controller-and-a-view-for-the-data"></a>Ajout d'un contrôleur et affichage des données
-1. Dans l' **Explorateur de solutions**, développez le dossier Contrôleurs.
-2. Développez le projet **(Ctrl+Maj+B)**. (vous devez développer le projet avant d'utiliser le mécanisme de génération de modèle automatique). 
-3. Cliquez avec le bouton droit sur le dossier Contrôleurs, cliquez sur **Ajouter**, puis sur **Contrôleur**.
+## <a name="add-a-controller-and-a-view-for-hello-data"></a>Ajouter un contrôleur et une vue de données de salutation
+1. Dans **l’Explorateur de solutions**, développez le dossier de contrôleurs hello.
+2. Générez le projet de hello **(Ctrl + Maj + B)**. (Vous devez générer le projet de hello avant d’utiliser le mécanisme de génération de modèles automatique.) 
+3. Cliquez sur le dossier de contrôleurs hello, sur **ajouter**, puis cliquez sur **contrôleur**.
    
     ![Ajouter un contrôleur dans le menu contextuel du dossier Contrôleurs][addcode001]
-4. Dans la boîte de dialogue **Ajouter une vue de structure**, sélectionnez **Contrôleur MVC avec vues, avec Entity Framework**, puis cliquez sur **Ajouter**.
+4. Bonjour **ajouter une vue de structure** boîte de dialogue, sélectionnez **contrôleur MVC avec vues, utilisant Entity Framework** et cliquez sur **ajouter**.
    
    ![Ajouter un contrôleur](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/rrAC.png)
-5. Définissez le nom du contrôleur sur **HomeController**. Sélectionnez **Contact** comme classe de modèle. Cliquez sur le bouton **Nouveau contexte de données** et acceptez la valeur par défaut ContactManager.Models.ContactManagerContext pour le champ **Type du nouveau contexte de données**. Cliquez sur **Ajouter**.
+5. Définir le nom du contrôleur hello trop**HomeController**. Sélectionnez **Contact** comme classe de modèle. Cliquez sur hello **nouveau contexte de données** bouton et acceptez la valeur par défaut de hello « ContactManager.Models.ContactManagerContext » pour hello **nouveau type de contexte de données**. Cliquez sur **Add**.
 
-    Une boîte de dialogue affiche le message suivant : « Un fichier ayant le nom HomeController existe déjà. Voulez-vous le remplacer ? ». Cliquez sur **Oui**. Nous allons remplacer le contrôleur d'accueil créé avec le nouveau projet. Nous allons utiliser le nouveau contrôleur d'accueil pour notre liste de contacts.
+    Une boîte de dialogue vous invite à vous : « un fichier portant le nom de hello HomeController existe déjà. Voulez-vous vraiment tooreplace il ? ». Cliquez sur **Oui**. Nous sommes remplacement hello contrôleur Home qui a été créé avec un nouveau projet de hello. Nous allons utiliser hello nouvelle accueil contrôleur pour notre liste de contacts.
 
     Visual Studio crée des méthodes de contrôleur et des vues pour les opérations de base de données CRUD des objets **Contact** .
 
-## <a name="enable-migrations-create-the-database-add-sample-data-and-a-data-initializer"></a>Activation des migrations, création de la base de données, ajout d'exemples de données et d'un initialiseur de données
-L'étape suivante consiste à activer la fonctionnalité [Migrations Code First](http://curah.microsoft.com/55220) pour créer la base de données en fonction du modèle de données que vous avez créé.
+## <a name="enable-migrations-create-hello-database-add-sample-data-and-a-data-initializer"></a>Activer les Migrations, créer la base de données hello, ajouter un initialiseur de données et des exemples de données
+la tâche suivante Hello est tooenable hello [Migrations Code First](http://curah.microsoft.com/55220) fonctionnalité dans la base de données de commandes toocreate hello en fonction de modèle de données hello vous avez créé.
 
-1. Dans le menu **Outils**, sélectionnez **Gestionnaire de package de bibliothèques**, puis **Console du Gestionnaire de package**.
+1. Bonjour **outils** menu, sélectionnez **Gestionnaire de Package de bibliothèque** , puis **Package Manager Console**.
    
     ![Console du Gestionnaire de package dans le menu Outils][addcode008]
-2. Dans la fenêtre **Console du Gestionnaire de package** , entrez la commande suivante :
+2. Bonjour **Package Manager Console** fenêtre, entrez hello de commande suivante :
    
         enable-migrations 
    
-    La commande **enable-migrations** crée un dossier *Migrations* dans lequel elle place un fichier *Configuration.cs* que vous pouvez modifier pour configurer les migrations. 
-3. Dans la fenêtre **Console du Gestionnaire de package** , entrez la commande suivante :
+    Hello **enable-migrations** commande crée un *Migrations* dossier et qu’il place dans ce dossier un *Configuration.cs* fichier que vous pouvez modifier les Migrations tooconfigure. 
+3. Bonjour **Package Manager Console** fenêtre, entrez hello de commande suivante :
    
         add-migration Initial
    
-    La commande **add-migration Initial** génère une classe nommée **&lt;date_stamp&gt;Initial** qui crée la base de données. Le premier paramètre ( *Initial* ) est arbitraire et permet de créer le nom du fichier. Les nouveaux fichiers de classe sont affichés dans l' **Explorateur de solutions**.
+    Hello **Initial de la migration ajouter** commande génère une classe nommée  **&lt;date_stamp&gt;initiale** qui crée la base de données hello. Hello du premier paramètre ( *initiale* ) nom de hello toocreate arbitraire et utilisé du fichier de hello. Vous pouvez voir les nouveaux fichiers de classe hello dans **l’Explorateur de solutions**.
    
-    Dans la classe **Initial**, la méthode **Up** crée la table des contacts et la méthode **Down** (utilisée lorsque vous voulez revenir à l’état précédent) annule cette table.
-4. Ouvrez le fichier *Migrations\Configuration.cs*. 
-5. Ajoutez les espaces de noms suivants. 
+    Bonjour **initiale** classe hello **des** méthode crée la table Contacts de hello et hello **vers le bas** dépose (méthode) (utilisé lorsque vous souhaitez que l’état précédent de tooreturn toohello).
+4. Ouvrez hello *Migrations\Configuration.cs* fichier. 
+5. Ajoutez hello suivant des espaces de noms. 
    
          using ContactManager.Models;
-6. Remplacez la méthode *Seed* par le code suivant :
+6. Remplacez hello *Seed* méthode avec hello suivant de code :
    
         protected override void Seed(ContactManager.Models.ContactManagerContext context)
         {
@@ -272,23 +272,23 @@ L'étape suivante consiste à activer la fonctionnalité [Migrations Code First]
                 );
         }
    
-    Le code ci-dessus initialise la base de données avec les informations de contact. Pour plus d'informations sur l'amorçage de la base de données, consultez la page [Débogage des bases de données Entity Framework (EF)](http://blogs.msdn.com/b/rickandy/archive/2013/02/12/seeding-and-debugging-entity-framework-ef-dbs.aspx).
-7. Dans la **Console du Gestionnaire de package** , entrez la commande suivante :
+    Ce code ci-dessus initialisera la base de données de hello avec les informations de contact hello. Pour plus d’informations sur la base de données hello l’amorçage, consultez [les bases de données Entity Framework (EF) débogage](http://blogs.msdn.com/b/rickandy/archive/2013/02/12/seeding-and-debugging-entity-framework-ef-dbs.aspx).
+7. Bonjour **Package Manager Console** Entrez la commande hello :
    
         update-database
    
     ![Commandes de la Console du Gestionnaire de package][addcode009]
    
-    La commande **update-database** exécute la première migration qui entraîne la création de la base de données. Par défaut, la base de données est créée en tant que base de données SQL Server Express LocalDB.
-8. Appuyez sur Ctrl+F5 pour exécuter l’application. 
+    Hello **mise à jour de la base de données** séries hello première migration qui crée la base de données hello. Par défaut, la base de données de hello est créée en tant qu’une base de données SQL Server Express LocalDB.
+8. Appuyez sur la touche application de hello toorun CTRL + F5. 
 
-L'application affiche les données amorcées, ainsi que des liens pour les modifier, les supprimer ou obtenir des informations supplémentaires.
+application Hello affiche les données de valeur initiale hello et fournit les modifier, détails et les liens de suppression.
 
 ![Affichage MVC des données][rxz3]
 
-## <a name="edit-the-view"></a>Modifier la vue
-1. Ouvrez le fichier *Views\Home\Index.cshtml*. Dans l’étape suivante, nous allons remplacer le balisage généré par un code utilisant [jQuery](http://jquery.com/) et [Knockout.js](http://knockoutjs.com/). Ce nouveau code récupère la liste des contacts à l’aide de l’API web et de JSON, puis relie les données de contact à l’interface utilisateur à l’aide de knockout.js. Pour plus d’informations, consultez la section [Étapes suivantes](#nextsteps) à la fin de ce didacticiel. 
-2. Remplacez le contenu du fichier par le code suivant.
+## <a name="edit-hello-view"></a>Modifier hello vue
+1. Ouvrez hello *Views\Home\Index.cshtml* fichier. Dans l’étape suivante de hello, nous remplaçons balisage de hello généré par le code qui utilise [jQuery](http://jquery.com/) et [Knockout.js](http://knockoutjs.com/). Ce nouveau code récupère la liste des contacts hello d’à l’aide des API web et JSON, puis lie hello contactez données toohello l’interface utilisateur à l’aide de knockout.js. Pour plus d’informations, consultez hello [étapes](#nextsteps) section à fin hello de ce didacticiel. 
+2. Remplacez contenu hello du fichier de hello hello suivant de code.
    
         @model IEnumerable<ContactManager.Models.Contact>
         @{
@@ -377,12 +377,12 @@ L'application affiche les données amorcées, ainsi que des liens pour les modif
                 <input type="submit" value="Add" />
             </fieldset>
         </form>
-3. Cliquez avec le bouton droit sur le dossier Contenu, puis cliquez sur **Ajouter** et sur **Nouvel élément...**.
+3. Cliquez sur le dossier de contenu hello, sur **ajouter**, puis cliquez sur **un nouvel élément...** .
    
     ![Ajouter une feuille de style dans le menu contextuel du dossier Contenu][addcode005]
-4. Dans la boîte de dialogue **Ajouter un nouvel élément**, entrez **Style** dans la zone de recherche située en haut à droite, puis sélectionnez **Feuille de style**.
+4. Bonjour **ajouter un nouvel élément** boîte de dialogue, entrez **Style** dans hello de zone de recherche du volet supérieur droit, puis sélectionnez **feuille de Style**.
     ![Boîte de dialogue Ajouter un nouvel élément][rxStyle]
-5. Nommez le fichier *Contacts.css* , puis cliquez sur **Ajouter**. Remplacez le contenu du fichier par le code suivant.
+5. Nom de fichier hello *Contacts.css* et cliquez sur **ajouter**. Remplacez contenu hello du fichier de hello hello suivant de code.
    
         .column {
             float: left;
@@ -438,14 +438,14 @@ L'application affiche les données amorcées, ainsi que des liens pour les modif
             text-decoration: none;
         }
    
-    Nous allons utiliser cette feuille de style pour la disposition, les couleurs et les styles de l'application Gestionnaire de contacts.
-6. Ouvrez le fichier *App_Start\BundleConfig.cs*.
-7. Ajoutez le code suivant pour inscrire le plug-in [Knockout](http://knockoutjs.com/index.html "KO") .
+    Nous allons utiliser cette feuille de style pour la mise en page hello, couleurs et styles utilisés dans l’application du Gestionnaire de contacts hello.
+6. Ouvrez hello *App_Start\BundleConfig.cs* fichier.
+7. Ajouter hello suivant hello tooregister de code [Knockout](http://knockoutjs.com/index.html "KO") plug-in.
    
         bundles.Add(new ScriptBundle("~/bundles/knockout").Include(
                     "~/Scripts/knockout-{version}.js"));
-    Cet exemple utilise Knockout pour simplifier le code JavaScript dynamique gérant les modèles d'écran.
-8. Modifiez l'entrée contents/css pour inscrire la feuille de style *contacts.css* . Remplacez la ligne suivante :
+    Cet exemple à l’aide de knockout toosimplify dynamique du code JavaScript qui gère les modèles d’écran hello.
+8. Modifier hello de hello contenu/css entrée tooregister *contacts.css* feuille de style. Modifier hello ligne suivante :
    
                  bundles.Add(new StyleBundle("~/Content/css").Include(
                    "~/Content/bootstrap.css",
@@ -456,52 +456,52 @@ L'application affiche les données amorcées, ainsi que des liens pour les modif
                    "~/Content/bootstrap.css",
                    "~/Content/contacts.css",
                    "~/Content/site.css"));
-9. Dans la console du Gestionnaire de package, exécutez la commande suivante pour installer Knockout.
+9. Dans la Console du Gestionnaire de Package de hello, exécutez hello suivant commande tooinstall Knockout.
    
         Install-Package knockoutjs
 
-## <a name="add-a-controller-for-the-web-api-restful-interface"></a>Ajouter un contrôleur pour l’interface d’API Web Restful
+## <a name="add-a-controller-for-hello-web-api-restful-interface"></a>Ajouter un contrôleur pour l’interface Web API Restful de hello
 1. Dans l’**Explorateur de solutions**, cliquez avec le bouton droit sur Contrôleurs, cliquez sur **Ajouter**, puis sur **Contrôleur...** 
-2. Dans la boîte de dialogue **Ajouter une vue de structure**, entrez **Contrôleur API web 2 avec actions, à l’aide d’Entity Framework**, puis cliquez sur **Ajouter**.
+2. Bonjour **ajouter une vue de structure** boîte de dialogue, entrez **Web API 2 contrôleur avec actions, utilisant Entity Framework** puis cliquez sur **ajouter**.
    
     ![Ajouter un contrôleur API](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/rt1.png)
-3. Dans la boîte de dialogue **Ajouter un contrôleur** , nommez votre contrôleur « ContactsController ». Sélectionnez « Contact (ContactManager.Models) » en tant que **Classe de modèle**.  Conservez la valeur par défaut pour la **classe du contexte des données**. 
-4. Cliquez sur **Ajouter**.
+3. Bonjour **ajouter un contrôleur** boîte de dialogue, entrez « ContactsController » comme nom de votre contrôleur. Sélectionnez « Contact (ContactManager.Models) » pour hello **classe de modèle**.  Conserver la valeur par défaut de hello pour hello **classe de contexte de données**. 
+4. Cliquez sur **Add**.
 
-### <a name="run-the-application-locally"></a>Exécution locale de l'application
-1. Appuyez sur Ctrl+F5 pour exécuter l’application.
+### <a name="run-hello-application-locally"></a>Exécutez hello application localement
+1. Appuyez sur la touche application de hello toorun CTRL + F5.
    
     ![Page d'index][intro001]
-2. Entrez un contact, puis cliquez sur **Ajouter**. L'application revient à la page d'accueil et affiche le contact que vous venez d'entrer.
+2. Entrez un contact, puis cliquez sur **Ajouter**. application Hello retourne la page d’accueil toohello et affiche le contact hello que vous avez entré.
    
     ![Page d'index avec éléments de liste des tâches][addwebapi004]
-3. Dans le navigateur, ajoutez **/api/contacts** à l'URL.
+3. Dans le navigateur de hello, ajoutez **/api/contacts** toohello URL.
    
-    L'URL ressemblera alors à http://localhost:1234/api/contacts. L'API Web RESTful ajoutée revient aux contacts stockés. Firefox et Chrome affichent les données au format XML.
+    les URL qui en résulte Hello ressemblera http://localhost:1234/api/contacts. web RESTful de Hello API que vous avez ajouté retourne les contacts stockée hello. Firefox et Chrome affiche les données de salutation au format XML.
    
     ![Page d'index avec éléments de liste des tâches][rxFFchrome]
 
-    IE vous invite à ouvrir ou enregistrer les contacts.
+    Internet Explorer est vous invite tooopen ou enregistrer les contacts de hello.
 
     ![Boîte de dialogue Enregistrer de l'API Web][addwebapi006]
 
 
-    Vous pouvez ouvrir les contacts renvoyés dans le Bloc-notes ou un navigateur.
+    Vous pouvez ouvrir hello retourné de contacts dans le bloc-notes ou un navigateur.
 
     Ce résultat peut être utilisé par une autre application, comme une page Web ou une application mobile.
 
     ![Boîte de dialogue Enregistrer de l'API Web][addwebapi007]
 
-    **Avertissement de sécurité**: pour l’instant, votre application n’est pas sécurisée et elle est vulnérable aux falsifications de requête intersites. Nous résoudrons ce problème plus tard dans ce didacticiel. Pour plus d’informations, consultez la page [Prévention des falsifications de requête intersites][prevent-csrf-attacks].
+    **Avertissement de sécurité**: À ce stade, votre application est non sécurisé et vulnérable tooCSRF attaque. Plus loin dans le didacticiel de hello, nous allons supprimer cette vulnérabilité. Pour plus d’informations, consultez la page [Prévention des falsifications de requête intersites][prevent-csrf-attacks].
 ## <a name="add-xsrf-protection"></a>Ajouter une protection XSRF
-Une falsification de requête intersites (également connue sous le nom de XSRF ou CSRF) est une attaque contre des applications hébergées sur le Web durant lesquelles un site Web malveillant peut influencer l'interaction entre un navigateur client et un site Web approuvé par ce navigateur. Ces attaques sont rendues possibles par le fait que les navigateurs Web envoient automatiquement des jetons d'authentification avec chaque requête vers un site Web. L'exemple classique est le cookie d'authentification, comme le ticket d'authentification d'ASP.NET. Cependant, les sites Web utilisant un mécanisme d'authentification persistant (comme l'authentification Windows, Basic, etc.) peuvent être visés par ces attaques.
+Falsification de requête (également appelé XSRF ou CSRF) est une attaque contre les applications hébergées par le web dans laquelle un site Web malveillant peut influencer interaction hello entre un navigateur client et un site Web approuvé par ce navigateur. Ces attaques sont possible parce que les navigateurs web envoie des jetons d’authentification automatiquement avec tous les sites Web tooa demande. exemple Hello est un cookie d’authentification, tels que ASP. Ticket d’authentification par formulaire de NET. Cependant, les sites Web utilisant un mécanisme d'authentification persistant (comme l'authentification Windows, Basic, etc.) peuvent être visés par ces attaques.
 
-Une attaque XSRF est différente d'une attaque par hameçonnage (ou « phishing »). Les attaques par hameçonnage requièrent une interaction avec la victime. Dans ce genre d'attaque, un site Web malveillant va imiter un site Web cible et la victime est dupée pour fournir des informations sensibles à l'attaquant. Dans une attaque XSRF, il n'y a généralement pas d'interaction avec la victime. L’attaquant se repose plutôt sur le fait que le navigateur envoie automatiquement tous les cookies utiles au site Web de destination.
+Une attaque XSRF est différente d'une attaque par hameçonnage (ou « phishing »). Des attaques d’hameçonnage requièrent une interaction à partir de la victime de hello. Dans une attaque par hameçonnage, un site Web malveillant reflétera le site Web cible de hello et victime de hello est croyez fournissant les intrus de toohello des informations sensibles. Dans une attaque XSRF, aucune interaction n’est souvent nécessaire de victime de hello. Au lieu de cela, les intrus hello repose sur navigateur hello envoyer automatiquement le site Web de destination toohello tous les cookies pertinentes.
 
-Pour plus d’informations, consultez la page [Projet de sécurité d’application web ouvert](https://www.owasp.org/index.php/Main_Page) (ou OWASP pour « Open Web Application Security Project ») (en anglais) [XSRF](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_\(CSRF\)).
+Pour plus d’informations, consultez hello [ouvrir un projet Web Application sécurité](https://www.owasp.org/index.php/Main_Page) (OWASP avoir) [XSRF](https://www.owasp.org/index.php/Cross-Site_Request_Forgery_\(CSRF\)).
 
 1. Dans l’**Explorateur de solutions**, cliquez avec le bouton droit sur le projet **ContactManager**, cliquez sur **Ajouter**, puis sur **Classe**.
-2. Nommez le fichier *ValidateHttpAntiForgeryTokenAttribute.cs* et ajoutez le code suivant :
+2. Nom de fichier hello *ValidateHttpAntiForgeryTokenAttribute.cs* et ajoutez hello suivant de code :
    
         using System;
         using System.Collections.Generic;
@@ -570,15 +570,15 @@ Pour plus d’informations, consultez la page [Projet de sécurité d’applicat
                 }
             }
         }
-3. Ajoutez l'instruction *using* suivante au contrôleur de contacts pour accéder à l'attribut **[ValidateHttpAntiForgeryToken]** .
+3. Ajoutez hello suivant *à l’aide de* toohello d’instruction contrats contrôleur afin que vous ayez accès toohello **[ValidateHttpAntiForgeryToken]** attribut.
    
         using ContactManager.Filters;
-4. Ajoutez l’attribut **[ValidateHttpAntiForgeryToken]** aux méthodes Post du **ContactsController** pour le protéger des menaces XSRF. Vous l’ajouterez aux méthodes d’action « PutContact », « PostContact » et **DeleteContact**.
+4. Ajouter hello **[ValidateHttpAntiForgeryToken]** toohello des méthodes de publication de hello d’attribut **ContactsController** tooprotect à partir de menaces XSRF. Vous allez l’ajouter toohello « PutContact », « PostContact » et **DeleteContact** méthodes d’action.
    
         [ValidateHttpAntiForgeryToken]
             public IHttpActionResult PutContact(int id, Contact contact)
             {
-5. Mettez à jour la section *Scripts* du fichier *Views\Home\Index.cshtml* pour inclure le code d’obtention des jetons XSRF.
+5. Hello de mise à jour *Scripts* section Hello *Views\Home\Index.cshtml* les jetons XSRF hello tooinclude code tooget de fichiers.
    
          @section Scripts {
             @Scripts.Render("~/bundles/knockout")
@@ -633,59 +633,59 @@ Pour plus d’informations, consultez la page [Projet de sécurité d’applicat
             </script>
          }
 
-## <a name="publish-the-application-update-to-azure-and-sql-database"></a>Publier la mise à jour de l’application dans Azure et Base de données SQL
-Pour publier l'application, répétez la procédure suivie précédemment.
+## <a name="publish-hello-application-update-tooazure-and-sql-database"></a>Publier tooAzure de mise à jour d’application hello et la base de données SQL
+application de hello toopublish, vous répétez procédure hello que vous avez suivi le plus haut.
 
-1. Dans l’**Explorateur de solutions**, cliquez avec le bouton droit sur le projet, puis sélectionnez **Publier**.
+1. Dans **l’Explorateur de solutions**, cliquez avec le bouton droit sur le projet hello et sélectionnez **publier**.
    
     ![Publier][rxP]
-2. Cliquez sur l'onglet **Paramètres** .
-3. Sous **ContactsManagerContext(ContactsManagerContext)**, cliquez sur l’icône **v** pour remplacer *Remote connection string* par la chaîne de connexion pour la base de données de contacts. Cliquez sur **ContactDB**.
+2. Cliquez sur hello **paramètres** onglet.
+3. Sous **ContactsManagerContext(ContactsManagerContext)**, cliquez sur hello **v** icône toochange *chaîne de connexion à distance* toohello chaîne de connexion pour le contact de hello base de données. Cliquez sur **ContactDB**.
    
     ![Paramètres](./media/web-sites-dotnet-rest-service-aspnet-api-sql-database/rt5.png)
-4. Activez la case à cocher pour **Execute Code First Migrations (runs on application start)**.
-5. Cliquez sur **Suivant**, puis sur **Aperçu**. Visual Studio affiche une liste des fichiers ajoutés ou mis à jour.
+4. Case de hello pour **exécuter fonctionnalité Migrations Code First (s’exécute sur le démarrage de l’application)**.
+5. Cliquez sur **Suivant**, puis sur **Aperçu**. Visual Studio affiche une liste de fichiers hello qui seront ajoutés ou mis à jour.
 6. Cliquez sur **Publier**.
-   Une fois le déploiement terminé, le navigateur ouvre la page d'accueil de l'application.
+   Après déploiement de hello, navigateur de hello ouvre toohello page d’accueil de l’application hello.
    
     ![Page d'index sans contacts][intro001]
    
-    Le processus de publication Visual Studio a configuré automatiquement la chaîne de connexion du fichier *Web.config* déployé pour qu'elle pointe vers la base de données SQL. Il a également configuré les migrations Code First pour mettre automatiquement à niveau la base de données vers la dernière version, dès le premier accès de l'application à la base de données après le déploiement.
+    Hello Visual Studio publier la chaîne de connexion de processus configuré automatiquement hello Bonjour déployé *Web.config* base de données de fichier toopoint toohello SQL. Elle également configurée Migrations Code First tooautomatically hello mise à niveau de base de données toohello version la plus récente hello première heure hello application accède à des base de données hello après le déploiement.
    
-    Ainsi, Code First a créé la base de données en exécutant le code de la classe **Initial** que vous avez créée précédemment. Cela s'est produit lors du premier accès de l'application à la base de données après le déploiement.
-7. Entrez un contact comme vous l'avez fait lorsque vous avez exécuté l'application en local, pour vérifier que le déploiement de la base de données est correct.
+    À la suite de cette configuration, Code First créé hello base de données en exécutant du code de hello Bonjour **initiale** classe que vous avez créé précédemment. Après le déploiement, il a cette hello première hello application a tenté de tooaccess hello de base de données.
+7. Entrez un contact comme vous l’avez fait lors de l’exécution d’application hello localement, tooverify le déploiement de la base de données a réussi.
 
-Lorsque vous constatez que l'élément que vous entrez est enregistré et s'affiche sur la page du Gestionnaire de contacts, vous savez qu'il a été stocké dans la base de données.
+Lorsque vous voyez cet élément hello que vous entrez est enregistré et s’affiche sur la page du Gestionnaire de contacts hello, vous savez qu’elle a été stockée dans la base de données hello.
 
 ![Page d'index avec contacts][addwebapi004]
 
-L'application est à présent exécutée dans le cloud et utilise la base de données SQL Database pour stocker ses données. Lorsque vous avez fini de tester l'application dans Azure, supprimez-la. L'application est publique et ne dispose pas de mécanismes permettant d'en limiter l'accès.
+application Hello est en cours d’exécution dans le cloud de hello, à l’aide de la base de données SQL toostore ses données. Une fois que vous avez terminé de tester l’application hello dans Azure, supprimez-le. application Hello est publique et n’a pas un mécanisme toolimit.
 
 > [!NOTE]
-> Si vous voulez vous familiariser avec Azure App Service avant d’ouvrir un compte Azure, accédez à la page [Essayer App Service](https://azure.microsoft.com/try/app-service/), où vous pourrez créer immédiatement une application web temporaire dans App Service. Aucune carte de crédit n’est requise ; vous ne prenez aucun engagement.
+> Si vous souhaitez tooget démarré avec le Service d’application Azure avant de s’inscrire pour un compte Azure, accédez trop[essayez du Service d’applications](https://azure.microsoft.com/try/app-service/), où vous pouvez créer une application web de courte durée de démarrage immédiatement dans le Service d’applications. Aucune carte de crédit n’est requise ; vous ne prenez aucun engagement.
 > 
 > 
 
 ## <a name="next-steps"></a>Étapes suivantes
-Une autre méthode pour stocker des données dans une application Azure consiste à utiliser le stockage Azure, qui permet de stocker des données non relationnelles sous la forme d'objets blob et de tables. Pour plus d'informations sur les API Web, ASP.NET MVC et Microsoft Azure, consultez les liens suivants.
+Une autre façon dont les données toostore dans une application Windows Azure sont toouse le stockage Azure, qui permettent de stocker des données non relationnelles sous forme de hello d’objets BLOB et tables. Hello suivant liens fournit plus d’informations sur les API Web, ASP.NET MVC et Windows Azure.
 
 * [Mise en route d’Entity Framework avec MVC (en anglais)][EFCodeFirstMVCTutorial]
-* [Introduction à ASP.NET MVC 5 (en anglais)](http://www.asp.net/mvc/tutorials/mvc-5/introduction/getting-started)
+* [Introduction tooASP.NET MVC 5](http://www.asp.net/mvc/tutorials/mvc-5/introduction/getting-started)
 * [Votre première API Web ASP.NET (en anglais)](http://www.asp.net/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api)
 * [Débogage de WAWS](web-sites-dotnet-troubleshoot-visual-studio.md)
 
-Ce didacticiel et son exemple d’application ont été écrits par [Rick Anderson](http://blogs.msdn.com/b/rickandy/) (Twitter [@RickAndMSFT](https://twitter.com/RickAndMSFT)) avec l’aide de Tom Dykstra et Barry Dorrans (Twitter [@blowdart](https://twitter.com/blowdart)). 
+Cet exemple d’application didacticiel et hello a été écrit par [Rick Anderson](http://blogs.msdn.com/b/rickandy/) (Twitter [ @RickAndMSFT ](https://twitter.com/RickAndMSFT)) avec l’assistance de Tom Dykstra et Barry Dorrans (Twitter [ @blowdart ](https://twitter.com/blowdart)). 
 
-N'hésitez pas à nous transmettre vos commentaires sur ce qui vous a plu et ce qui pourrait être amélioré... pas seulement à propos de ce didacticiel, mais aussi en ce qui concerne les produits présentés ici. Vos commentaires nous aideront à orienter nos améliorations. Nous aimerions particulièrement savoir si l'automatisation du processus de configuration et de déploiement de la base de données d'appartenance vous intéresse. 
+Veuillez laisser des commentaires sur ce que vous avez aimé ou ce que vous voulez toosee améliorée, non seulement sur didacticiel hello lui-même, mais également sur les produits de hello il montre. Vos commentaires nous aideront à orienter nos améliorations. Nous intéressent particulièrement savoir combien intérêt il est en plus d’automation pour les processus hello de configuration et de déploiement de base de données d’appartenance hello. 
 
 ## <a name="whats-changed"></a>Changements apportés
-* Pour obtenir un guide présentant les modifications apportées dans le cadre de la transition entre Sites Web et App Service, consultez la page [Azure App Service et les services Azure existants](http://go.microsoft.com/fwlink/?LinkId=529714)
+* Pour un toohello guide voir changer à partir de sites Web tooApp Service : [Azure App Service et son Impact sur les Services Azure existants](http://go.microsoft.com/fwlink/?LinkId=529714)
 
 <!-- bookmarks -->
 [Add an OAuth Provider]: #addOauth
-[Add Roles to the Membership Database]:#mbrDB
+[Add Roles toohello Membership Database]:#mbrDB
 [Create a Data Deployment Script]:#ppd
-[Update the Membership Database]:#ppd2
+[Update hello Membership Database]:#ppd2
 [setupdbenv]: #bkmk_setupdevenv
 [setupwindowsazureenv]: #bkmk_setupwindowsazure
 [createapplication]: #bkmk_createmvc4app

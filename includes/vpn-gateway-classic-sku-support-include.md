@@ -1,0 +1,2 @@
+> [!NOTE]
+> passerelle VPN Hello SKU (VpnGw1, VpnGw2 et VpnGw3) sont pris en charge pour le modèle de déploiement Resource Manager hello uniquement. Réseaux virtuels classiques doivent continuer toouse hello anciennes références (SKU). Pour plus d’informations sur la passerelle de hello anciennes références (SKU), consultez [utilisation de la passerelle de réseau virtuel SKU (ancien)](../articles/vpn-gateway/vpn-gateway-about-skus-legacy.md).

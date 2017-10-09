@@ -1,6 +1,6 @@
 ---
-title: "Utiliser la vue Tez d’Ambari avec HDInsight - Azure | Microsoft Docs"
-description: "Découvrez comment utiliser la vue Tez d’Ambari pour déboguer les travaux Tez dans HDInsight."
+title: aaaUse Ambari Tez vue HDInsight - Azure | Documents Microsoft
+description: "Découvrez comment toouse hello Ambari Tez afficher les travaux de Tez toodebug sur HDInsight."
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -15,18 +15,18 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 07/12/2017
 ms.author: larryfr
-ms.openlocfilehash: 65d89309b9eea8544b85d16687baa90d49688d77
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 5d61bd0403c98284c86982073af91468ae62ac60
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-ambari-views-to-debug-tez-jobs-on-hdinsight"></a>Utiliser les vues Ambari pour déboguer les travaux Tez dans HDInsight
+# <a name="use-ambari-views-toodebug-tez-jobs-on-hdinsight"></a>Utilisez les vues Ambari toodebug Tez travaux sur HDInsight
 
-L’interface utilisateur Web d’Ambari pour HDInsight contient une vue Tez qui peut servir à comprendre et à déboguer les tâches utilisant Tez. La vue Tez vous permet de visualiser le travail sous forme de graphique d’éléments connectés, d’explorer chacun d’entre eux, ainsi que d’extraire des statistiques et des informations de journalisation.
+Hello l’interface utilisateur Web de Ambari pour HDInsight contient une vue de Tez qui peut être utilisés des travaux de toounderstand et de débogage qui utilisent Tez. vue de Tez Hello vous permet de travail de hello toovisualize comme un graphique des éléments connectés, explorez chaque élément et extraire des statistiques et informations de journalisation.
 
 > [!IMPORTANT]
-> Les étapes décrites dans ce document nécessitent un cluster HDInsight utilisant Linux. Linux est le seul système d’exploitation utilisé sur HDInsight version 3.4 ou supérieure. Pour plus d’informations, consultez [Contrôle de version des composants HDInsight](hdinsight-component-versioning.md#hdinsight-windows-retirement).
+> étapes de Hello dans ce document nécessitent un cluster HDInsight qui utilise Linux. Linux est hello seul système d’exploitation utilisé sur HDInsight version 3.4 ou supérieure. Pour plus d’informations, consultez [Contrôle de version des composants HDInsight](hdinsight-component-versioning.md#hdinsight-windows-retirement).
 
 ## <a name="prerequisites"></a>Composants requis
 
@@ -35,79 +35,79 @@ L’interface utilisateur Web d’Ambari pour HDInsight contient une vue Tez qui
 
 ## <a name="understanding-tez"></a>Présentation de Tez
 
-Tez est une infrastructure extensible pour le traitement des données dans Hadoop plus rapide que le traitement MapReduce traditionnel. Pour les clusters HDInsight sous Linux, Tez est le moteur par défaut pour Hive.
+Tez est une infrastructure extensible pour le traitement des données dans Hadoop plus rapide que le traitement MapReduce traditionnel. Pour les clusters HDInsight de basés sur Linux, il est moteur par défaut de hello pour la ruche.
 
-Tez crée un graphe orienté acyclique qui décrit l’ordre des actions requises par les tâches. Les actions individuelles sont appelées des vertex et exécutent une partie du travail global. L’exécution réelle du travail décrit par un vertex est appelée une tâche, et peut être répartie sur plusieurs nœuds du cluster.
+Tez crée un dirigées acycliques graphique (DAG) qui décrit l’ordre de hello des actions requises par les travaux. Différentes actions sont appelées des sommets et exécuter une partie de hello travail global. l’exécution réelle de Hello de travail hello décrite par un sommet est appelée une tâche et peut être répartie sur plusieurs nœuds de cluster de hello.
 
-### <a name="understanding-the-tez-view"></a>Présentation de la vue Tez
+### <a name="understanding-hello-tez-view"></a>Hello de présentation Tez vue
 
-La vue Tez fournit des informations historiques et des informations sur les processus en cours d’exécution. Ces informations vous indiquent comment une tâche est répartie entre les clusters. Elle affiche également les compteurs utilisés par les tâches et les vertex et les informations des erreurs liées à la tâche. Elle peut fournir des informations utiles dans les scénarios suivants :
+Hello Tez vue fournit des informations d’historique et des informations sur les processus qui sont en cours d’exécution. Ces informations vous indiquent comment une tâche est répartie entre les clusters. Elle affiche également des compteurs utilisés par les tâches et les sommets, et des informations d’erreur liés toohello travail. Il offre des informations utiles dans hello les scénarios suivants :
 
-* Surveiller les processus à long terme, voir l'avancement des tâches de mappage et de réduction.
-* Analyser les données historiques des processus ayant réussi ou échoué, afin de savoir comment le traitement peut être amélioré ou pourquoi il a échoué.
+* Surveillance des processus longs, affichage hello la progression de la carte et réduire les tâches.
+* Analyse des données historiques pour les processus réussies ou échouées toolearn comment le traitement peut être amélioré ou en raison de l’échec.
 
 ## <a name="generate-a-dag"></a>Générer un DAG
 
-La vue Tez ne contient des données que si une tâche qui utilise le moteur Tez est en cours d’exécution ou a déjà été exécutée. Les requêtes Hive simples peuvent être résolues sans utiliser Tez. Les requêtes plus complexes qui effectuent des opérations de filtrage, de regroupement, de tri, de jointure, etc. utilisent le moteur Tez.
+Hello Tez vue contient uniquement les données si une tâche qui utilise hello Tez moteur est en cours d’exécution ou a été exécuté précédemment. Les requêtes Hive simples peuvent être résolues sans utiliser Tez. Les requêtes plus complexes qui effectuent des opérations de filtrage, de regroupement, de tri, de jointure, etc. Utilisez hello Tez moteur.
 
-Utilisez les étapes suivantes pour exécuter une requête Hive utilisant Tez :
+Utilisez hello suivant les étapes toorun une requête Hive qui utilise Tez :
 
-1. Dans un navigateur web, accédez à l’adresse https://CLUSTERNAME.azurehdinsight.net, où **CLUSTERNAME** est le nom de votre cluster HDInsight.
+1. Dans un navigateur web, accédez à toohttps://CLUSTERNAME.azurehdinsight.net, où **CLUSTERNAME** hello désigne votre cluster HDInsight.
 
-2. Dans le menu situé en haut de la page, sélectionnez l’icône **Vues** . Cette icône représente une série de carrés. Dans la liste déroulante qui s’affiche, sélectionnez **Vue Hive**.
+2. Dans le menu de hello en hello haut hello, sélectionnez hello **vues** icône. Cette icône représente une série de carrés. Dans la liste déroulante hello qui s’affiche, sélectionnez **Hive vue**.
 
     ![Sélectionner la vue Hive](./media/hdinsight-debug-ambari-tez-view/selecthive.png)
 
-3. Une fois la vue Hive chargée, collez la requête suivante dans l’éditeur de requête, puis cliquez sur **Exécuter**.
+3. Lorsque hello ruche vue charge, coller hello ci-dessous dans l’éditeur de requête de hello de requête, puis cliquez sur **exécuter**.
 
         select market, state, country from hivesampletable where deviceplatform='Android' group by market, country, state;
 
-    Une fois le travail terminé, le résultat devrait s’afficher dans la section **Résultats du processus de requête** . Les résultats doivent être similaires au texte suivant :
+    Une fois le travail de hello est terminé, vous devez voir sortie hello affiché dans hello **résultats du processus de requête** section. les résultats de Hello doivent être similaires toohello suivant du texte :
 
         market  state       country
         en-GB   Hessen      Germany
         en-GB   Kingston    Jamaica
 
-4. Sélectionnez l’onglet **Journal**. Des informations similaires au texte suivant s’affichent :
+4. Sélectionnez hello **journal** onglet. Vous consultez toohello similaire à informations suivant le texte :
 
         INFO : Session is already open
         INFO :
 
         INFO : Status: Running (Executing on YARN cluster with App id application_1454546500517_0063)
 
-    Enregistrez la valeur **ID d’application** , car elle est utilisée dans la section suivante.
+    Enregistrer hello **id d’application** valeur, comme cette valeur est utilisée dans la section suivante de hello.
 
-## <a name="use-the-tez-view"></a>Utiliser la vue Tez
+## <a name="use-hello-tez-view"></a>Utilisez hello Tez vue
 
-1. Dans le menu situé en haut de la page, sélectionnez l’icône **Vues** . Dans la liste déroulante qui s’affiche, sélectionnez **Vue Tez**.
+1. Dans le menu de hello en hello haut hello, sélectionnez hello **vues** icône. Dans la liste déroulante hello qui s’affiche, sélectionnez **Tez vue**.
 
     ![Sélectionner la vue Tez](./media/hdinsight-debug-ambari-tez-view/selecttez.png)
 
-2. Une fois la vue Tez chargée, la liste des requêtes Hive en cours d’exécution ou exécutées sur le cluster s’affiche.
+2. Lors du chargement de hello Tez vue, vous voyez une liste de requêtes hive qui sont en cours d’exécution, ou qui ont été exécutés sur le cluster de hello.
 
     ![Tous les DAG](./media/hdinsight-debug-ambari-tez-view/tez-view-home.png)
 
-3. Si vous ne voyez qu’une seule entrée, il s’agit de la requête que vous avez exécutée dans la section précédente. Si vous avez plusieurs entrées, vous pouvez les rechercher en haut de la page à l’aide des champs.
+3. Si vous avez une seule entrée, il est de requête hello que vous avez exécuté dans la section précédente de hello. Si vous avez plusieurs entrées, vous pouvez le rechercher à l’aide des champs de hello en hello haut hello.
 
-4. Sélectionnez **l’ID de requête** pour une requête Hive. De plus amples informations sur la requête s’affichent.
+4. Sélectionnez hello **ID de requête** pour une requête Hive. Informations sur la requête de hello s’affiche.
 
     ![Détails du DAG](./media/hdinsight-debug-ambari-tez-view/query-details.png)
 
-5. Les onglets de cette page vous permettent d’afficher les informations suivantes :
+5. onglets Hello sur cette page permettent de hello tooview informations suivantes :
 
-    * **Détails de la requête** : plus d’informations sur la requête Hive.
+    * **Détails de la requête**: plus d’informations sur la requête de Hive hello.
     * **Chronologie** : plus d’informations sur la durée de chaque étape du traitement.
-    * **Configurations** : la configuration utilisée pour cette requête.
+    * **Configurations**: configuration hello utilisée pour cette requête.
 
-    À partir de __Détails de la requête__, vous pouvez utiliser les liens pour rechercher des informations sur __Application__ ou __DAG__ pour cette requête.
+    À partir de __détails de la requête__ vous pouvez utiliser hello liens toofind informations hello __Application__ ou hello __DAG__ pour cette requête.
     
-    * Le lien __Application__ affiche des informations sur l’application YARN pour cette requête. À ce stade, vous pouvez accéder aux journaux des applications YARN.
-    * Le lien __DAG__ affiche des informations sur le graphique acyclique dirigé pour cette requête. Cette vue permet d’afficher une représentation graphique du DAG. Vous pouvez également rechercher des informations sur les vertex dans le DAG.
+    * Hello __Application__ lien affiche des informations sur hello application fils pour cette requête. À ce stade, vous pouvez accéder à journaux d’application hello fils.
+    * Hello __DAG__ lien affiche des informations sur le graphique acyclique dirigé de hello pour cette requête. À ce stade, vous pouvez afficher une représentation graphique de hello DAG. Vous trouverez également des informations sur les sommets hello dans hello DAG.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Maintenant que vous avez appris à utiliser la vue Tez, obtenez plus d’informations sur l’ [Utilisation de Hive dans HDInsight](hdinsight-use-hive.md).
+Maintenant que vous avez appris comment toouse hello Tez afficher, en savoir plus sur [à l’aide de la ruche sur HDInsight](hdinsight-use-hive.md).
 
-Pour plus d’informations techniques sur Tez, consultez la [page Tez sur Hortonworks](http://hortonworks.com/hadoop/tez/)(en anglais).
+Pour plus d’informations techniques sur Tez, consultez hello [page Tez sur Hortonworks](http://hortonworks.com/hadoop/tez/).
 
-Pour plus d’informations sur l’utilisation d’Ambari avec HDInsight, consultez la page [Gérer des clusters HDInsight à l’aide de l’interface utilisateur Web d’Ambari](hdinsight-hadoop-manage-ambari.md)
+Pour plus d’informations sur l’utilisation de Ambari avec HDInsight, consultez [gérer les clusters HDInsight à l’aide de hello Ambari Web UI](hdinsight-hadoop-manage-ambari.md)

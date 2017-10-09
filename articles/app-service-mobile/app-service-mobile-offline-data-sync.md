@@ -1,6 +1,6 @@
 ---
-title: "Synchronisation des données hors connexion dans Azure Mobile Apps | Microsoft Docs"
-description: "Référence conceptuelle et présentation de la fonctionnalité de synchronisation des données hors connexion pour Azure Mobile Apps"
+title: "aaaOffline de synchronisation des données dans les applications mobiles Azure | Documents Microsoft"
+description: "Référence conceptuel et vue d’ensemble de la fonctionnalité de synchronisation des données hors connexion hello pour les applications mobiles Azure"
 documentationcenter: windows
 author: ggailey777
 manager: syntaxc4
@@ -14,27 +14,27 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 10/30/2016
 ms.author: glenga
-ms.openlocfilehash: 8e2bd755d14319f8c66f7ae7ec64fbd10801b39d
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 58673240ba433651faf1f619ca5da33dd6459d2b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="offline-data-sync-in-azure-mobile-apps"></a>Synchronisation des données hors connexion dans Azure Mobile Apps
 ## <a name="what-is-offline-data-sync"></a>Qu’est-ce que la synchronisation des données hors connexion ?
-La synchronisation des données hors connexion est une fonctionnalité du Kit de développement logiciel (SDK) client et serveur d’Azure Mobile Apps qui permet aux développeurs de créer des applications fonctionnant sans connexion réseau.
+Synchronisation des données hors connexion est un client et serveur de fonctionnalité SDK des applications mobiles Azure qui permet de facilement pour les applications toocreate les développeurs qui fonctionne sans connexion réseau.
 
-Quand votre application est en mode hors connexion, vous pouvez toujours créer et modifier des données, qui sont enregistrées dans un magasin local. Quand l’application est de nouveau en ligne, elle peut synchroniser les modifications locales avec le backend d’application Azure Mobile App. La fonctionnalité prend également en charge la détection des conflits quand un même enregistrement est modifié sur le client et le backend. Les conflits peuvent ensuite être traités sur le serveur ou le client.
+Lorsque votre application est en mode hors connexion, vous pouvez toujours créer et modifier des données, qui sont enregistrées magasin local de tooa. Lors de l’application hello est remis en ligne, il peut synchroniser les modifications locales avec votre serveur principal de l’application Mobile Azure. fonctionnalité de Hello inclut également la prise en charge pour la détection des conflits lorsque hello même enregistrement est modifié sur les deux hello client et hello back-end. Conflits peuvent ensuite être traitées sur le serveur de hello ou client de hello.
 
 La synchronisation hors connexion présente plusieurs avantages :
 
-* Améliorer la réactivité de l’application en mettant en cache les données de serveur localement sur l’appareil
+* Améliorer la réactivité de l’application en mettant en cache les données du serveur local sur le périphérique de hello
 * Créer des applications robustes qui demeurent opérationnelles en cas de problèmes réseau
-* Permettre aux utilisateurs finaux de créer et de modifier des données même en l’absence d’accès au réseau, prenant ainsi en charge des scénarios avec une connectivité faible ou nulle
-* Synchroniser des données sur plusieurs appareils et détecter des conflits lorsque le même enregistrement est modifié par deux appareils
+* Autoriser toocreate des utilisateurs finaux et de modifier les données même s’il n’existe pas d’accès réseau, prise en charge des scénarios avec peu ou pas de connectivité
+* Synchroniser des données entre plusieurs appareils et de détecter les conflits hello même enregistrement est modifié par deux périphériques
 * Limiter l’utilisation du réseau sur les réseaux à forte latence ou limités
 
-Les didacticiels suivants montrent comment ajouter la synchronisation hors connexion à vos clients mobiles à l’aide d’Azure Mobile Apps :
+Hello suivant didacticiels montrent tooadd hors connexion de la synchronisation des clients mobiles tooyour à l’aide des applications mobiles Azure :
 
 * [Android : activer la synchronisation hors connexion]
 * [Apache Cordova : activer la synchronisation hors connexion](app-service-mobile-cordova-get-started-offline-data.md)
@@ -45,48 +45,48 @@ Les didacticiels suivants montrent comment ajouter la synchronisation hors conne
 * [Plateforme Windows universelle : activer la synchronisation hors connexion]
 
 ## <a name="what-is-a-sync-table"></a>Qu’est-ce qu’une table de synchronisation ?
-Pour accéder au point de terminaison « /tables », les Kits de développement logiciel (SDK) client Azure Mobile fournissent des interfaces comme `IMobileServiceTable` (SDK client .NET) ou `MSTable` (client iOS). Ces API se connectent directement à l’application principale Azure Mobile App et échouent si l’appareil client n’a pas de connexion réseau.
+tooaccess hello point de terminaison « / tables », hello Azure Mobile client SDK fournit des interfaces telles que `IMobileServiceTable` (Kit de développement logiciel du client .NET) ou `MSTable` (client d’iOS). Ces API vous connecter directement principal de l’application Mobile Azure toohello et échoue si l’appareil de hello client n’a pas d’une connexion réseau.
 
-Pour prendre en charge l’utilisation hors connexion, votre application doit plutôt utiliser les API de *table de synchronisation*, comme `IMobileServiceSyncTable` (SDK client .NET) ou `MSSyncTable` (client iOS). Les mêmes opérations CRUD (Create, Read, Update, Delete) fonctionnent avec les API de table de synchronisation, mais s’exécutent alors par rapport à un *magasin local*. Avant de pouvoir effectuer des opérations de table de synchronisation, le magasin local doit être initialisé.
+toosupport hors connexion, votre application doit plutôt utiliser hello *table de synchronisation* API, telles que `IMobileServiceSyncTable` (Kit de développement logiciel du client .NET) ou `MSSyncTable` (client d’iOS). Hello tous les mêmes opérations CRUD (création, lecture, mise à jour, suppression) fonctionnent avec la synchronisation des API de table, à la différence près qu’ils lisent ou d’écriture tooa *magasin local*. Avant de pouvoir effectuer toutes les opérations de table de synchronisation, le magasin local de hello doit être initialisé.
 
 ## <a name="what-is-a-local-store"></a>Qu’est-ce qu’un magasin local ?
-Un magasin local est la couche de persistance des données sur l’appareil client. Par défaut, les Kits de développement logiciel (SDK) clients Azure Mobile Apps prennent en charge l’implémentation des magasins locaux. Dans Windows, Xamarin et Android, cette implémentation est basée sur SQLite. Sur iOS, la solution fonctionne sur les données de base.
+Un magasin local est la couche de persistance des données hello sur hello client. client d’applications mobiles Azure Hello kits de développement logiciel fournissent une valeur par défaut local stocker l’implémentation. Dans Windows, Xamarin et Android, cette implémentation est basée sur SQLite. Sur iOS, la solution fonctionne sur les données de base.
 
-Pour utiliser l’implémentation basée sur SQLite dans Windows Phone ou Windows Store 8.1, vous devez installer une extension SQLite. Pour plus d’informations, voir [Plateforme Windows universelle : activer la synchronisation hors connexion]. Le système d’exploitation des appareils Android et iOS comportant une version de SQLite, vous n’avez pas besoin de référencer votre propre version de SQLite.
+toouse hello SQLite implémentation basée sur Windows Phone ou Windows Store 8.1, vous devez tooinstall une extension de SQLite. Pour plus d’informations, voir [Plateforme Windows universelle : activer la synchronisation hors connexion]. Android et iOS sont fournis avec une version de SQLite périphérique hello système d’exploitation lui-même, il n’est pas nécessaire tooreference votre propre version de SQLite.
 
-Les développeurs peuvent également implémenter leur propre magasin local. Par exemple, si vous souhaitez stocker des données dans un format chiffré sur le client mobile, vous pouvez définir un magasin local qui utilise SQLCipher pour le chiffrement.
+Les développeurs peuvent également implémenter leur propre magasin local. Par exemple, si vous le souhaitez toostore données dans un format chiffré sur les clients mobiles hello, vous pouvez définir un magasin local qui utilise SQLCipher pour le chiffrement.
 
 ## <a name="what-is-a-sync-context"></a>Qu’est-ce qu’un contexte de synchronisation ?
-Un *contexte de synchronisation* est associé à un objet client mobile (comme `IMobileServiceClient` ou `MSClient`) et effectue le suivi des modifications apportées avec les tables de synchronisation. Le contexte de synchronisation gère une *file d’attente d’opérations* qui conserve une liste ordonnée d’opérations CUD (Create, Update, Delete) destinées à être envoyées au serveur.
+Un *contexte de synchronisation* est associé à un objet client mobile (comme `IMobileServiceClient` ou `MSClient`) et effectue le suivi des modifications apportées avec les tables de synchronisation. contexte de synchronisation Hello conserve un *file d’attente de l’opération*, envoyer toohello serveur qui conserve une liste triée des opérations CUD (Create, Update, Delete) qui est plus récente.
 
-Un magasin local est associé au contexte de synchronisation à l’aide d’une méthode d’initialisation comme `IMobileServicesSyncContext.InitializeAsync(localstore)` dans le [Kit de développement logiciel (SDK) client .NET].
+Un magasin local est associé avec le contexte de synchronisation hello à l’aide d’une méthode d’initialisation comme `IMobileServicesSyncContext.InitializeAsync(localstore)` Bonjour [le client .NET SDK].
 
 ## <a name="how-sync-works"></a>Fonctionnement de la synchronisation hors connexion
-Quand vous utilisez des tables de synchronisation, votre code client détermine à quel moment les modifications locales sont synchronisées avec une application principale Azure Mobile App. Rien n’est envoyé au backend tant que n’a pas été émis un appel pour *envoyer* les modifications locales. De même, le magasin local n’est rempli avec de nouvelles données que si un appel pour *extraire* les données est émis.
+Quand vous utilisez des tables de synchronisation, votre code client détermine à quel moment les modifications locales sont synchronisées avec une application principale Azure Mobile App. Rien n’est envoyé toohello principal jusqu'à ce qu’un appel trop*push* modifications locales. De même, magasin local de hello est remplie avec les nouvelles données uniquement s’il existe un appel trop*extraction* données.
 
-* **Envoi**: l’envoi est une opération sur le contexte de synchronisation et consiste à envoyer toutes les modifications CUD qui se sont produites depuis le dernier envoi. Notez qu’il n’est pas possible d’envoyer uniquement les modifications d’une table spécifique, car sinon les opérations pourraient être envoyées dans le désordre. L’envoi exécute une série d’appels REST à destination de votre application principale Azure Mobile App qui, à son tour, modifie votre base de données serveur.
-* **Extraction**: l’extraction est effectuée sur une table spécifique et peut être personnalisée avec une requête pour récupérer uniquement un sous-ensemble des données du serveur. Les Kits de développement logiciel (SDK) clients Azure Mobile insèrent ensuite les données résultantes dans le magasin local.
-* **Envois implicites**: si une extraction est exécutée sur une table en attente de mises à jour locales, cette extraction commence par exécuter un `push()` sur le contexte de synchronisation. Cela opération Push permet de réduire au minimum les conflits entre les modifications qui sont déjà en attente et les nouvelles données du serveur.
-* **Synchronisation incrémentielle**: le premier paramètre de l’opération d’extraction est un *nom de requête* qui est utilisé uniquement sur le client. Si vous utilisez un nom de requête non null, le Kit de développement logiciel (SDK) Azure Mobile effectue une *synchronisation incrémentielle*. Chaque fois qu’une opération d’extraction retourne un jeu de résultats, le dernier horodatage `updatedAt` à partir de ce jeu de résultats est stocké dans les tables de système locales du Kit de développement logiciel (SDK). Les opérations d’extraction ultérieures n’extraient que les enregistrements postérieurs à cet horodatage.
+* **Push**: par émission de données est une opération sur le contexte de synchronisation hello et envoie toutes les modifications CUD depuis le push de dernière hello. Notez qu’il est toosend n’est pas possible que des modifications d’une table individuelle, car sinon opérations a pu être envoyées de manière désordonnées. Par émission de données exécute une série de REST appels tooyour Azure Mobile service principal d’application, qui à son tour modifie votre base de données du serveur.
+* **Extraire**: extraction est effectuée sur une base par table et peut être personnalisé avec un tooretrieve de requête uniquement un sous-ensemble de données du serveur hello. Hello client d’Azure Mobile kits de développement logiciel, puis insérez les données résultantes hello magasin local de hello.
+* **Push implicite**: si une extraction est exécutée sur une table qui est en attente de mises à jour locales, par extraction de données hello exécute d’abord un `push()` sur le contexte de synchronisation hello. Cette commande permet de réduire les conflits entre les modifications qui sont déjà en file d’attente et de nouvelles données à partir du serveur de hello.
+* **Synchronisation incrémentielle**: hello premier paramètre toohello par extraction de données n’est pas un *nom de la requête* qui est utilisé uniquement sur les clients hello. Si vous utilisez un nom de requête de non null, hello Kit de développement Azure Mobile effectue un *synchronisation incrémentielle*. Chaque fois qu’une opération d’extraction retourne un jeu de résultats, hello dernières `updatedAt` horodatage à partir de ce jeu de résultats est stocké dans les tables de hello Kit de développement logiciel système local. Les opérations d’extraction ultérieures n’extraient que les enregistrements postérieurs à cet horodatage.
 
-  Pour utiliser la synchronisation incrémentielle, votre serveur doit retourner des valeurs `updatedAt` explicites et prendre en charge le tri par ce champ. Toutefois, étant donné que le Kit de développement logiciel (SDK) ajoute son propre tri sur le champ updatedAt, vous ne pouvez pas utiliser une requête d’extraction qui a sa propre clause `orderBy` .
+  la synchronisation incrémentielle toouse votre serveur doit retourner explicite `updatedAt` les valeurs et doit également prendre en charge le tri par ce champ. Toutefois, étant donné que hello Kit de développement logiciel ajoute son propre tri sur le champ d’updatedAt hello, vous ne pouvez pas utiliser une requête de tirage possède son propre `orderBy` clause.
 
-  Le nom de la requête peut être toute chaîne de votre choix, mais il doit être unique pour chaque requête logique dans votre application.
-  Sinon, différentes opérations d’extraction pourraient écraser le même horodatage de synchronisation incrémentielle et vos requêtes pourraient renvoyer des résultats incorrects.
+  nom de la requête Hello peut être toute chaîne que vous choisissez, mais il doit être unique pour chaque requête logique dans votre application.
+  Sinon, les opérations d’extraction différents peuvent remplacer hello même horodatage de la synchronisation incrémentielle et de vos requêtes peuvent retourner des résultats incorrects.
 
-  Si la requête possède un paramètre, une façon de créer un nom de requête unique consiste à intégrer la valeur du paramètre.
+  Si la requête de hello possède un paramètre, une façon toocreate un nom de requête unique est la valeur du paramètre tooincorporate hello.
   Par exemple, si vous filtrez sur le nom d’utilisateur, le nom de votre requête peut être le suivant (en C#) :
 
         await todoTable.PullAsync("todoItems" + userid,
             syncTable.Where(u => u.UserId == userid));
 
-  Si vous souhaitez désactiver la synchronisation incrémentielle, transmettez `null` en tant qu'ID de requête. Dans ce cas, tous les enregistrements sont extraits à chaque appel à `PullAsync`, ce qui est potentiellement inefficace.
-* **Purge** : vous pouvez effacer le contenu du magasin local en utilisant `IMobileServiceSyncTable.PurgeAsync`.
-  Une purge peut s’avérer nécessaire si la base de données client contient des données obsolètes ou que vous souhaitez ignorer toutes les modifications en attente.
+  Si vous souhaitez tooopt hors synchronisation incrémentielle, passez `null` comme hello ID de requête. Dans ce cas, tous les enregistrements sont récupérées à chaque appel trop`PullAsync`, qui est potentiellement inefficace.
+* **Purge**: vous pouvez effacer le contenu de hello d’à l’aide du magasin local hello `IMobileServiceSyncTable.PurgeAsync`.
+  Purge peut être nécessaire si vous avez des données obsolètes dans la base de données client hello, ou si vous le souhaitez toodiscard toutes les modifications en attente.
 
-  Une purge efface une table du magasin local. Si des opérations sont en attente de synchronisation avec la base de données du serveur, la purge lève une exception, à moins que le paramètre *force purge* soit activé.
+  Une purge efface une table à partir du magasin local de hello. S’il n’y en attente d’une synchronisation avec la base de données de serveur hello, lève une exception de purge hello une exception, sauf si des opérations hello *Forcer purge* paramètre est défini.
 
-  Pour illustrer les données obsolètes sur le client, supposons que dans l’exemple de la liste de tâches, l’appareil 1 extrait uniquement les éléments qui ne sont pas terminés. Un élément de tâche « Acheter du lait » est marqué comme terminé sur le serveur par un autre appareil. Toutefois, l’appareil 1 a toujours l’élément de tâche « Acheter du lait » dans le magasin local, car il extrait uniquement les éléments qui ne sont pas marqués comme terminés. Une purge efface cet élément obsolète.
+  Un exemple de données obsolètes sur le client de hello, supposons que dans l’exemple de « liste de tâches » hello, appareil1 extrait uniquement les éléments qui ne sont pas terminées. Un objet todoitem « Acheter du lait » est marquée effectué sur le serveur de hello par un autre périphérique. Toutefois, appareil1 a toujours hello todoitem de « Acheter du lait » dans le magasin local, car il collecte uniquement les éléments qui ne sont pas marquée comme terminée. Une purge efface cet élément obsolète.
 
 ## <a name="next-steps"></a>Étapes suivantes
 * [iOS : activer la synchronisation hors connexion]
@@ -95,7 +95,7 @@ Quand vous utilisez des tables de synchronisation, votre code client détermine 
 * [Plateforme Windows universelle : activer la synchronisation hors connexion]
 
 <!-- Links -->
-[Kit de développement logiciel (SDK) client .NET]: app-service-mobile-dotnet-how-to-use-client-library.md
+[le client .NET SDK]: app-service-mobile-dotnet-how-to-use-client-library.md
 [Android : activer la synchronisation hors connexion]: app-service-mobile-android-get-started-offline-data.md
 [iOS : activer la synchronisation hors connexion]: app-service-mobile-ios-get-started-offline-data.md
 [Xamarin iOS : activer la synchronisation hors connexion]: app-service-mobile-xamarin-ios-get-started-offline-data.md

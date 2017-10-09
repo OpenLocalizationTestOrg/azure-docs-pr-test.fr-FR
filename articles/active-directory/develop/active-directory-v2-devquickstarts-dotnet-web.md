@@ -1,6 +1,6 @@
 ---
-title: Prise en main de la connexion aux applications web Azure AD v2.0 .NET | Microsoft Docs
-description: "Génération d’une application web .NET MVC qui connecte les utilisateurs à l’aide de leur compte Microsoft personnel et de leur compte professionnel ou scolaire."
+title: "aaaAzure AD v2.0 .NET web d’inscription de l’application prise en main | Documents Microsoft"
+description: Comment toobuild application Web MVC .NET qui connecte aux utilisateurs avec les deux Account personnel de Microsoft et comptes professionnels ou scolaires.
 services: active-directory
 documentationcenter: .net
 author: dstrockis
@@ -15,45 +15,45 @@ ms.topic: article
 ms.date: 01/23/2017
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: ba5bdf7daba6086b70aec54ebe25d4445fa708c3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 241e9c90bd752fbecc3696ce4f1bed3f9772189d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-sign-in-to-an-net-mvc-web-app"></a>Ajouter une connexion à une application Web MVC .NET
-Avec le point de terminaison v2.0, vous pouvez rapidement ajouter une authentification à vos applications web, avec prise en charge des comptes Microsoft personnels et des comptes professionnels ou scolaires.  Dans les applications web ASP.NET, vous pouvez y parvenir en utilisant l’intergiciel OWIN de Microsoft inclus dans .NET Framework 4.5.
+# <a name="add-sign-in-tooan-net-mvc-web-app"></a>Ajouter une connexion tooan .NET MVC web app
+Avec le point de terminaison v2.0 hello, vous pouvez ajouter rapidement des applications web de tooyour d’authentification avec prise en charge pour les deux comptes personnels de Microsoft et comptes professionnels ou scolaires.  Dans les applications web ASP.NET, vous pouvez y parvenir en utilisant l’intergiciel OWIN de Microsoft inclus dans .NET Framework 4.5.
 
 > [!NOTE]
-> Les scénarios et les fonctionnalités Azure Active Directory ne sont pas tous pris en charge par le point de terminaison v2.0.  Pour déterminer si vous devez utiliser le point de terminaison v2.0, consultez les [limites de v2.0](active-directory-v2-limitations.md).
+> Pas tous les scénarios Azure Active Directory et les fonctionnalités sont prises en charge par le point de terminaison hello v2.0.  toodetermine si vous devez utiliser le point de terminaison hello v2.0, en savoir plus sur [v2.0 limitations](active-directory-v2-limitations.md).
 >
 >
 
- Nous allons créer une application Web qui utilise OWIN pour connecter l’utilisateur, afficher des informations sur l’utilisateur et déconnecter l’utilisateur de l’application.
+ Ici nous allons construire une application web qui utilise l’utilisateur OWIN toosign hello dans Affichage des informations sur l’utilisateur de hello et signe hello utilisateur hors de l’application de hello.
 
 ## <a name="download"></a>Télécharger
-Le code associé à ce didacticiel est stocké [sur GitHub](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIdConnect-DotNet).  Pour suivre la procédure, vous pouvez [télécharger la structure de l’application au format .zip](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIdConnect-DotNet/archive/skeleton.zip) ou la cloner :
+code Hello pour ce didacticiel est maintenue [sur GitHub](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIdConnect-DotNet).  toofollow le long, vous pouvez [structure de l’application hello en tant qu’un fichier ZIP de téléchargement](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIdConnect-DotNet/archive/skeleton.zip) ou un clone hello squelette :
 
 ```git clone --branch skeleton https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIdConnect-DotNet.git```
 
-L'application terminée est également fournie à la fin de ce didacticiel.
+application Hello terminée est fournie à des fin de hello de ce didacticiel également.
 
 ## <a name="register-an-app"></a>Inscription d’une application
 Créez une application à l’adresse [apps.dev.microsoft.com](https://apps.dev.microsoft.com/?referrer=https://azure.microsoft.com/documentation/articles&deeplink=/appList), ou suivez cette [procédure détaillée](active-directory-v2-app-registration.md).  Veillez à respecter les points suivants :
 
-* copier l' **ID d'application** attribué à votre application, vous en aurez bientôt besoin ;
-* Ajoutez la plate-forme **Web** pour votre application.
-* entrer l’ **URI de redirection**approprié. L’URI de redirection indique à Azure AD où les réponses d’authentification doivent être dirigées. La valeur par défaut pour ce didacticiel est `https://localhost:44326/`.
+* Copie vers le bas hello **Id d’Application** affecté tooyour application, vous en aurez besoin plus rapidement.
+* Ajouter hello **Web** plate-forme pour votre application.
+* Entrez hello correct **URI de redirection**. uri de redirection Hello indique tooAzure AD dans lequel les réponses d’authentification doivent être dirigées - valeur par défaut de hello pour ce didacticiel est `https://localhost:44326/`.
 
 ## <a name="install--configure-owin-authentication"></a>Installer et configurer l’authentification OWIN
-Ici, nous allons configurer l’intergiciel OWIN pour utiliser le protocole d’authentification OpenID Connect.  OWIN sera utilisé pour émettre des demandes de connexion et de déconnexion, gérer la session utilisateur et obtenir des informations concernant l’utilisateur, entre autres.
+Ici, nous allons configurer hello OWIN intergiciel (middleware) toouse hello OpenID Connect protocole d’authentification.  OWIN est utilisé tooissue les demandes de connexion et déconnexion, gérer la session de l’utilisateur hello et obtenir des informations sur l’utilisateur hello, entre autres.
 
-1. Pour commencer, ouvrez le fichier `web.config` dans la racine du projet, puis entrez les valeurs de configuration de votre application dans la section `<appSettings>`.
+1. toobegin, ouvrez hello `web.config` fichier racine hello du projet de hello et entrez les valeurs de configuration de votre application Bonjour `<appSettings>` section.
 
-  * L’élément `ida:ClientId` est l’ **ID d’application** affecté à votre application dans le portail d’inscription.
-  * L’élément `ida:RedirectUri` est l’ **URI de redirection** que vous avez saisi dans le portail.
+  * Hello `ida:ClientId` est hello **Id d’Application** affecté application tooyour dans le portail de l’enregistrement hello.
+  * Hello `ida:RedirectUri` est hello **Uri de redirection** vous avez entré dans le portail de hello.
 
-2. Ajoutez ensuite les packages NuGet d'intergiciel (middleware) OWIN au projet à l'aide de la console du gestionnaire de package.
+2. Ensuite, ajoutez hello OWIN intergiciel (middleware) NuGet packages toohello projet à l’aide de la Console du Gestionnaire de Package de hello.
 
         ```
         PM> Install-Package Microsoft.Owin.Security.OpenIdConnect
@@ -61,8 +61,8 @@ Ici, nous allons configurer l’intergiciel OWIN pour utiliser le protocole d’
         PM> Install-Package Microsoft.Owin.Host.SystemWeb
         ```  
 
-3. Ajoutez une classe de démarrage OWIN au projet nommé `Startup.cs` Cliquez avec le bouton droit sur le projet --> **Ajouter** --> **Nouvel élément** --> Recherchez « OWIN ».  L’intergiciel OWIN appelle la méthode `Configuration(...)` lorsque votre application démarre.
-4. Modifiez la déclaration de classe en `public partial class Startup`. Nous avons déjà mis en œuvre une partie de cette classe pour vous, dans un autre fichier.  Dans la méthode `Configuration(...)`, appelez ConfigureAuth(...) pour configurer l’authentification de votre application web.  
+3. Ajouter un projet de toohello « Classe de démarrage OWIN » appelé `Startup.cs` droit, cliquez sur le projet de hello--> **ajouter** --> **un nouvel élément** --> Recherchez « OWIN ».  intergiciel (middleware) OWIN de Hello appellera hello `Configuration(...)` méthode au démarrage de votre application.
+4. Modifier trop de déclaration de classe hello`public partial class Startup` -nous avons déjà implémenté le cadre de cette classe pour vous dans un autre fichier.  Bonjour `Configuration(...)` (méthode), effectuer un tooset de tooConfigureAuth(...) d’appel de l’authentification pour votre application web  
 
         ```C#
         [assembly: OwinStartup(typeof(Startup))]
@@ -79,7 +79,7 @@ Ici, nous allons configurer l’intergiciel OWIN pour utiliser le protocole d’
         }
         ```
 
-5. Ouvrez le fichier `App_Start\Startup.Auth.cs` et implémentez la méthode `ConfigureAuth(...)`.  Les paramètres que vous fournissez dans `OpenIdConnectAuthenticationOptions` serviront de coordonnées pour que votre application puisse communiquer avec Azure AD.  Vous devrez également configurer l’authentification des cookies ; l’intergiciel OpenID Connect utilise des cookies en coulisses.
+5. Les fichiers ouverts hello `App_Start\Startup.Auth.cs` et implémenter hello `ConfigureAuth(...)` (méthode).  Hello les paramètres que vous fournissez dans `OpenIdConnectAuthenticationOptions` servira de coordonnées pour toocommunicate de votre application auprès d’Azure AD.  Vous devez également tooset l’authentification de Cookie : hello OpenID Connect intergiciel (middleware) utilise des cookies sous hello couvre.
 
         ```C#
         public void ConfigureAuth(IAppBuilder app)
@@ -91,9 +91,9 @@ Ici, nous allons configurer l’intergiciel OWIN pour utiliser le protocole d’
                              app.UseOpenIdConnectAuthentication(
                                      new OpenIdConnectAuthenticationOptions
                                      {
-                                             // The `Authority` represents the v2.0 endpoint - https://login.microsoftonline.com/common/v2.0
-                                             // The `Scope` describes the permissions that your app will need.  See https://azure.microsoft.com/documentation/articles/active-directory-v2-scopes/
-                                             // In a real application you could use issuer validation for additional checks, like making sure the user's organization has signed up for your app, for instance.
+                                             // hello `Authority` represents hello v2.0 endpoint - https://login.microsoftonline.com/common/v2.0
+                                             // hello `Scope` describes hello permissions that your app will need.  See https://azure.microsoft.com/documentation/articles/active-directory-v2-scopes/
+                                             // In a real application you could use issuer validation for additional checks, like making sure hello user's organization has signed up for your app, for instance.
         
                                              ClientId = clientId,
                                              Authority = String.Format(CultureInfo.InvariantCulture, aadInstance, "common", "/v2.0"),
@@ -114,9 +114,9 @@ Ici, nous allons configurer l’intergiciel OWIN pour utiliser le protocole d’
         ```
 
 ## <a name="send-authentication-requests"></a>Envoi de demandes d’authentification
-Votre application est maintenant correctement configurée pour communiquer avec le point de terminaison v2.0 en utilisant le protocole d’authentification OpenID Connect.  OWIN a pris en charge tous les détails déplaisants de la création de messages d’authentification, de la validation des jetons d’Azure AD et de la gestion des sessions utilisateur.  Il ne reste qu’à offrir aux utilisateurs un moyen de se connecter et de se déconnecter.
+Votre application est maintenant toocommunicate correctement configurée avec un point de terminaison v2.0 hello à l’aide du protocole d’authentification OpenID Connect hello.  OWIN a prise en charge tous les détails de laid hello d’élaborer des messages d’authentification, la validation des jetons d’Azure AD et la gestion de session utilisateur.  Tout ce qui reste est toogive vos utilisateurs un toosign moyen dans et la déconnexion.
 
-- Vous pouvez utiliser des balises autorisées dans vos contrôleurs pour exiger que l’utilisateur se connecte avant d’accéder à une page donnée.  Ouvrez `Controllers\HomeController.cs` et ajoutez la balise `[Authorize]` au contrôleur About.
+- Vous pouvez utiliser autoriser des balises dans votre toorequire contrôleurs connexion de l’utilisateur avant d’accéder à une page donnée.  Ouvrez `Controllers\HomeController.cs`et ajoutez hello `[Authorize]` toohello sur un contrôleur de balise.
         
         ```C#
         [Authorize]
@@ -125,7 +125,7 @@ Votre application est maintenant correctement configurée pour communiquer avec 
           ...
         ```
 
-- Vous pouvez également utiliser OWIN pour émettre des demandes d’authentification provenant directement de votre code.  Ouvrez `Controllers\AccountController.cs`.  Dans les actions SignIn() et SignOut(), émettez les demandes de test OpenID Connect et de déconnexion, respectivement.
+- Vous pouvez également utiliser des demandes d’authentification OWIN toodirectly problème dans votre code.  Ouvrez `Controllers\AccountController.cs`.  Hello SignIn() et les actions de SignOut(), émettre OpenID Connect de challenge et de demandes de déconnexion, respectivement.
 
         ```C#
         public void SignIn()
@@ -137,7 +137,7 @@ Votre application est maintenant correctement configurée pour communiquer avec 
             }
         }
         
-        // BUGBUG: Ending a session with the v2.0 endpoint is not yet supported.  Here, we just end the session with the web app.  
+        // BUGBUG: Ending a session with hello v2.0 endpoint is not yet supported.  Here, we just end hello session with hello web app.  
         public void SignOut()
         {
             // Send an OpenID Connect sign-out request.
@@ -146,7 +146,7 @@ Votre application est maintenant correctement configurée pour communiquer avec 
         }
         ```
 
-- À présent, ouvrez `Views\Shared\_LoginPartial.cshtml`.  Voici où vous allez afficher les liens de connexion et de déconnexion de votre application pour l’utilisateur et où vous allez afficher le nom de l’utilisateur.
+- À présent, ouvrez `Views\Shared\_LoginPartial.cshtml`.  Il s’agit où vous allez afficher les liens de connexion et la déconnexion de votre application utilisateur de hello et imprimer le nom de l’utilisateur hello dans une vue.
 
         ```HTML
         @if (Request.IsAuthenticated)
@@ -155,7 +155,7 @@ Votre application est maintenant correctement configurée pour communiquer avec 
                 <ul class="nav navbar-nav navbar-right">
                     <li class="navbar-text">
         
-                        @*The 'preferred_username' claim can be used for showing the user's primary way of identifying themselves.*@
+                        @*hello 'preferred_username' claim can be used for showing hello user's primary way of identifying themselves.*@
         
                         Hello, @(System.Security.Claims.ClaimsPrincipal.Current.FindFirst("preferred_username").Value)!
                     </li>
@@ -174,9 +174,9 @@ Votre application est maintenant correctement configurée pour communiquer avec 
         ```
 
 ## <a name="display-user-information"></a>Afficher les informations utilisateur
-Lors de l’authentification des utilisateurs avec OpenID Connect, le point de terminaison v2.0 retourne un jeton d’ID à l’application qui contient des revendications ou des assertions concernant l’utilisateur.  Vous pouvez utiliser ces revendications pour personnaliser votre application :
+Lors de l’authentification des utilisateurs avec OpenID Connect, point de terminaison hello v2.0 retourne une application toohello id_token qui contient les revendications, ou assertions sur l’utilisateur de hello.  Vous pouvez utiliser ces toopersonalize de revendications à votre application :
 
-- Ouvrez le fichier `Controllers\HomeController.cs` .  Vous pouvez accéder aux revendications de l’utilisateur dans vos contrôleurs via l’objet principal de sécurité `ClaimsPrincipal.Current` .
+- Ouvrez hello `Controllers\HomeController.cs` fichier.  Vous pouvez accéder à l’utilisateur hello dans vos contrôleurs via hello `ClaimsPrincipal.Current` objet principal de sécurité.
 
         ```C#
         [Authorize]
@@ -184,14 +184,14 @@ Lors de l’authentification des utilisateurs avec OpenID Connect, le point de 
         {
             ViewBag.Name = ClaimsPrincipal.Current.FindFirst("name").Value;
         
-            // The object ID claim will only be emitted for work or school accounts at this time.
+            // hello object ID claim will only be emitted for work or school accounts at this time.
             Claim oid = ClaimsPrincipal.Current.FindFirst("http://schemas.microsoft.com/identity/claims/objectidentifier");
             ViewBag.ObjectId = oid == null ? string.Empty : oid.Value;
         
-            // The 'preferred_username' claim can be used for showing the user's primary way of identifying themselves
+            // hello 'preferred_username' claim can be used for showing hello user's primary way of identifying themselves
             ViewBag.Username = ClaimsPrincipal.Current.FindFirst("preferred_username").Value;
         
-            // The subject or nameidentifier claim can be used to uniquely identify the user
+            // hello subject or nameidentifier claim can be used toouniquely identify hello user
             ViewBag.Subject = ClaimsPrincipal.Current.FindFirst("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier").Value;
         
             return View();
@@ -199,21 +199,21 @@ Lors de l’authentification des utilisateurs avec OpenID Connect, le point de 
         ```
 
 ## <a name="run"></a>Exécuter
-Enfin, générez et exécutez votre application.   Connectez-vous avec un compte Microsoft personnel ou un compte professionnel ou scolaire, et notez comment l’identité de l’utilisateur est indiquée dans la barre de navigation supérieure.  Vous disposez désormais d’une application web sécurisée à l’aide de protocoles standard et pouvant authentifier les utilisateurs avec leurs comptes personnels et professionnels/scolaires.
+Enfin, générez et exécutez votre application.   Connectez-vous avec un Account Microsoft personnel ou d’un compte professionnel ou scolaire et notez comment l’identité d’utilisateur hello est reflétée dans la barre de navigation supérieure hello.  Vous disposez désormais d’une application web sécurisée à l’aide de protocoles standard et pouvant authentifier les utilisateurs avec leurs comptes personnels et professionnels/scolaires.
 
-Pour référence, l’exemple terminé (sans vos valeurs de configuration) [est fourni ici au format .zip](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIdConnect-DotNet/archive/complete.zip). Vous pouvez également le cloner à partir de GitHub :
+Pour référence, hello effectuée exemple (sans les valeurs de configuration) [est fournie en tant qu’un fichier zip ici](https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIdConnect-DotNet/archive/complete.zip), ou vous pouvez le cloner à partir de GitHub :
 
 ```git clone --branch complete https://github.com/AzureADQuickStarts/AppModelv2-WebApp-OpenIdConnect-DotNet.git```
 
 ## <a name="next-steps"></a>Étapes suivantes
-Vous pouvez maintenant aborder des rubriques plus sophistiquées.  Par exemple :
+Vous pouvez maintenant aborder des rubriques plus sophistiquées.  Vous souhaiterez peut-être tootry :
 
-[Sécuriser une API Web avec le point de terminaison v2.0 >>](active-directory-devquickstarts-webapi-dotnet.md)
+[Sécuriser une API Web avec le point de terminaison hello hello v2.0 >>](active-directory-devquickstarts-webapi-dotnet.md)
 
 Pour obtenir des ressources supplémentaires, consultez :
 
-* [Guide du développeur 2.0 >>](active-directory-appmodel-v2-overview.md)
-* [Balise StackOverflow "azure-active-directory" >>](http://stackoverflow.com/questions/tagged/azure-active-directory)
+* [guide du développeur v2.0 Hello >>](active-directory-appmodel-v2-overview.md)
+* [Balise StackOverflow "azure-active-directory" &gt;&gt;](http://stackoverflow.com/questions/tagged/azure-active-directory)
 
 ## <a name="get-security-updates-for-our-products"></a>Obtenir les mises à jour de sécurité de nos produits
-Nous vous encourageons à activer les notifications d’incidents de sécurité en vous rendant sur [cette page](https://technet.microsoft.com/security/dd252948) et en vous abonnant aux alertes d’avis de sécurité.
+Nous vous conseillons de notifications tooget les incidents de sécurité se produire en vous rendant sur [cette page](https://technet.microsoft.com/security/dd252948) et l’abonnement d’alerte tooSecurity.

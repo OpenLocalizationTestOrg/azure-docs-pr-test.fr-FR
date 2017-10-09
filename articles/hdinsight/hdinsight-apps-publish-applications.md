@@ -1,6 +1,6 @@
 ---
-title: Publier des applications HDInsight - Azure | Microsoft Docs
-description: "Découvrez comment créer et publier des applications HDInsight."
+title: applications de HDInsight aaaPublish - Azure | Documents Microsoft
+description: "Découvrez comment toocreate et publier des applications de HDInsight."
 services: hdinsight
 documentationcenter: 
 author: mumian
@@ -16,31 +16,31 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/25/2017
 ms.author: jgao
-ms.openlocfilehash: 6aa66cac35bc317fc87003e6c3d824544c53de88
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7da0aa53828563e50ef372df901e1ba541fb40be
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="publish-hdinsight-applications-into-the-azure-marketplace"></a>Publier des applications HDInsight dans Azure Marketplace
-Une application HDInsight est une application que les utilisateurs peuvent installer sur un cluster HDInsight sous Linux. Ces applications peuvent être développées par Microsoft, par des éditeurs de logiciels indépendants (ISV) ou par vous-même. Cet article explique comment publier une application HDInsight sur la Place de marché Microsoft Azure.  Pour obtenir des informations générales sur la publication dans Azure Marketplace, consultez la page [Publier une offre dans Azure Marketplace](../marketplace-publishing/marketplace-publishing-getting-started.md).
+# <a name="publish-hdinsight-applications-into-hello-azure-marketplace"></a>Publier des applications HDInsight dans hello Azure Marketplace
+Une application HDInsight est une application que les utilisateurs peuvent installer sur un cluster HDInsight sous Linux. Ces applications peuvent être développées par Microsoft, par des éditeurs de logiciels indépendants (ISV) ou par vous-même. Dans cet article, vous apprendrez comment toopublish une application HDInsight dans hello Azure Marketplace.  Pour obtenir des informations générales sur la publication dans hello Azure Marketplace, consultez [publier un toohello offre Azure Marketplace](../marketplace-publishing/marketplace-publishing-getting-started.md).
 
-Les applications HDInsight utilisent le modèle *BYOL (apportez votre propre licence)*, où le fournisseur de l’application doit fournir aux utilisateurs finaux la licence de l’application. Azure facture uniquement les ressources que ces utilisateurs créent, telles que le cluster HDInsight et ses machines virtuelles/nœuds. À ce stade, la facturation de l’application n’est pas effectuée via Azure.
+Les applications HDInsight utilisent hello *mettre votre propre licence (BYOL)* modèle, le fournisseur de l’application est responsable de la licence tooend-utilisateurs de l’application hello, alors que les utilisateurs finaux sont uniquement facturé par Azure pour les ressources de hello ils Créez, telles que le cluster HDInsight de hello et ses machines virtuelles/nœuds. Actuellement, la facturation pour l’application hello elle-même n’est pas effectuée via Azure.
 
 Autre article concernant les applications HDInsight :
 
-* [Installer des applications HDInsight](hdinsight-apps-install-applications.md): découvrez comment installer une application HDInsight sur vos clusters.
-* [Install custom HDInsight applications](hdinsight-apps-install-custom-applications.md)(Installer des applications HDInsight personnalisées) : découvrez comment installer et tester des applications HDInsight personnalisées.
+* [Installer des applications de HDInsight](hdinsight-apps-install-applications.md): Découvrez comment tooinstall un tooyour d’application HDInsight clusters.
+* [Installer des applications personnalisées HDInsight](hdinsight-apps-install-custom-applications.md): Découvrez comment tooinstall et test des applications HDInsight personnalisées.
 
 ## <a name="prerequisites"></a>Composants requis
-Pour envoyer votre application personnalisée à la Place de marché, vous devez l’avoir créée et testée. Consultez les articles suivants :
+toosubmit votre marketplace toohello application personnalisée, vous devez avoir créé et testé votre application personnalisée. Consultez hello suivant des articles :
 
-* [Install custom HDInsight applications](hdinsight-apps-install-custom-applications.md)(Installer des applications HDInsight personnalisées) : découvrez comment installer et tester des applications HDInsight personnalisées.
+* [Installer des applications personnalisées HDInsight](hdinsight-apps-install-custom-applications.md): Découvrez comment tooinstall et test des applications HDInsight personnalisées.
 
-Vous devez également avoir inscrit votre compte de développeur. Consultez les pages [Publier une offre dans Azure Marketplace](../marketplace-publishing/marketplace-publishing-getting-started.md) et [Créer un compte de développeur Microsoft](../marketplace-publishing/marketplace-publishing-accounts-creation-registration.md).
+Vous devez également avoir inscrit votre compte de développeur. Consultez [publier un toohello offre Azure Marketplace](../marketplace-publishing/marketplace-publishing-getting-started.md) et [créer un compte Microsoft Developer](../marketplace-publishing/marketplace-publishing-accounts-creation-registration.md).
 
 ## <a name="define-application"></a>Définir l’application
-La publication d’applications dans Azure Marketplace se fait en deux étapes.  D’abord, vous définissez un fichier **createUiDef.json** pour indiquer les clusters compatibles avec votre application ; ensuite, vous publiez le modèle à partir du portail Azure. La section suivante présente un exemple de fichier createUiDef.json.
+Il existe deux étapes impliquées pour la publication d’applications toohello Azure Marketplace.  Vous définissez d’abord un **createUiDef.json** tooindicate fichier dont les clusters de votre application est compatible avec ; et que vous publiez modèle hello hello portail Azure. Hello suivant la section est un exemple de fichier createUiDef.json.
 
     {
         "handler": "Microsoft.HDInsight",
@@ -55,60 +55,60 @@ La publication d’applications dans Azure Marketplace se fait en deux étapes. 
 
 | Champ | Description | Valeurs possibles |
 | --- | --- | --- |
-| types |Les types de cluster compatibles avec l’application. |Hadoop, HBase, Storm, Spark (ou toute combinaison de ceux-ci) |
-| tiers |Les niveaux de cluster compatibles avec l’application. |Standard, Premium, (ou les deux) |
-| versions |Les types de cluster HDInsight compatibles avec l’application. |3.4 |
+| types |types de cluster de Hello application hello est compatible avec. |Hadoop, HBase, Storm, Spark (ou toute combinaison de ceux-ci) |
+| tiers |niveaux de cluster Hello application hello est compatible avec. |Standard, Premium, (ou les deux) |
+| versions |les types du cluster HDInsight Hello hello application est compatible avec. |3.4 |
 
 ## <a name="application-install-script"></a>Script d’installation d’application
-L’installation d’une application sur un cluster (un cluster existant ou un nouveau) crée un nœud de périmètre sur lequel s’exécute le script d’installation.
+Chaque fois qu’une application est installée sur un cluster (un existant ou un autre), un nœud est créé et le script d’installation hello application est exécutée sur celui-ci.
   > [!IMPORTANT]
-  > Les noms des scripts d’installation d’application doivent être uniques pour un cluster particulier, et leur format doit être le suivant.
+  > nom Hello des noms de script installation hello application doit être unique pour un cluster particulier avec hello suivant le format.
   > 
   > name": "[concat('hue-install-v0','-' ,uniquestring(‘applicationName’)]"
   > 
-  > Notez que le nom du script se compose de trois parties :
+  > Notez qu’il y nom du script toohello trois parties :
   > 
-  > 1. Un préfixe, devant inclure soit le nom de l’application soit un nom en lien avec cette dernière.
+  > 1. Préfixe de nom de script, qui comprend le nom de l’application hello ou d’une application toohello appropriées de nom.
   > 2. Un tiret, pour une meilleure lisibilité.
-  > 3. Une fonction de chaîne unique utilisant le nom de l’application comme paramètre.
+  > 3. Fonction de chaîne unique avec le nom de l’application hello comme paramètre de hello.
   > 
-  > Dans l’exemple ci-dessus, la liste d’actions de script persistantes contient le nom suivant : hue-install-v0-4wkahss55hlas. Pour obtenir un exemple de charge JSON, consultez [https://raw.githubusercontent.com/hdinsight/Iaas-Applications/master/Hue/azuredeploy.json](https://raw.githubusercontent.com/hdinsight/Iaas-Applications/master/Hue/azuredeploy.json).
+  > Est un exemple hello ci-dessus finit devenant : teinte-install-v0-4wkahss55hlas Bonjour persistante la liste des actions de script. Pour obtenir un exemple de charge JSON, consultez [https://raw.githubusercontent.com/hdinsight/Iaas-Applications/master/Hue/azuredeploy.json](https://raw.githubusercontent.com/hdinsight/Iaas-Applications/master/Hue/azuredeploy.json).
   > 
-Le script d’installation doit avoir les caractéristiques suivantes :
-1. Assurez-vous que le script est idempotent. Plusieurs appels au script doivent produire le même résultat.
-2. Le script doit être correctement versionné. Utilisez un autre emplacement pour le script lorsque vous effectuez une mise à niveau ou testez des modifications, afin d’éviter toute incidence sur les clients qui tentent d’installer l’application. 
-3. Ajoutez aux scripts une journalisation adéquate à chaque étape. Le journaux de script sont généralement la seule façon de déboguer les problème d’installation des applications.
-4. Assurez-vous que les appels passés à des services ou ressources externes peuvent faire l’objet de nouvelles tentatives afin que l’installation ne soit pas affectée par des problèmes réseau temporaires.
-5. Si votre script démarre des services sur les nœuds, assurez-vous que les services sont analysés et configurés pour démarrer automatiquement en cas de redémarrage du nœud.
+script d’installation Hello doit avoir hello suivant caractéristiques :
+1. Assurez-vous que le script de hello est idempotente. Plusieurs appels toohello script doit produire hello même résultat.
+2. script de Hello doit être gérée correctement. Utiliser un autre emplacement pour le script de hello lors de la mise à niveau ou de tester des modifications afin que les clients qui essaient d’application de hello tooinstall ne sont pas affectées. 
+3. Ajouter des scripts de journalisation adéquates toohello à chaque point. Hello généralement les journaux de script est hello seule façon toodebug installation des applications.
+4. Assurez-vous que les appels tooexternal services ou des ressources ont des tentatives adéquates afin que l’installation de hello n’est pas affectée par des problèmes réseau temporaires.
+5. Si votre script de démarrage des services sur les nœuds de hello, vérifiez que hello sont analysés et configurer les services toostart automatiquement en cas de redémarrage à un autre nœud.
 
 ## <a name="package-application"></a>Empaqueter une application
-Créez un fichier zip qui contient tous les fichiers requis pour l’installation de vos applications HDInsight. Vous aurez besoin du fichier zip à l’étape [Publier une application](#publish-application).
+Créez un fichier zip qui contient tous les fichiers requis pour l’installation de vos applications HDInsight. Vous devez hello fichier zip dans [publier l’application](#publish-application).
 
 * [createUiDefinition.json](#define-application).
 * mainTemplate.json. Voir un exemple dans l’article [Install custom HDInsight applications](hdinsight-apps-install-custom-applications.md)(Installer des applications HDInsight personnalisées).
 * Tous les scripts nécessaires.
 
 > [!NOTE]
-> Les fichiers d’application (y compris les fichiers d’application web, le cas échéant) peuvent se trouver sur n’importe quel point de terminaison accessible publiquement.
+> Hello des fichiers d’application (y compris les fichiers d’application web le cas échéant) peut se trouver sur n’importe quel point de terminaison accessible publiquement.
 > 
 
 ## <a name="publish-application"></a>Publication de l’application
-Suivez ces étapes pour publier une application HDInsight :
+Suivez hello suivant les étapes toopublish une application HDInsight :
 
-1. Connectez-vous au [portail de publication Azure](https://publish.windowsazure.com/).
-2. Cliquez sur **Modèles de solution** à gauche pour créer un modèle de solution.
+1. Ouverture de session toohello [portail de publication Azure](https://publish.windowsazure.com/).
+2. Cliquez sur **des modèles de Solution** de toocreate de gauche hello un nouveau modèle de solution.
 3. Entrez un titre, puis cliquez sur **Créer un modèle de solution**.
-4. Cliquez sur **Create Dev Center account and join the Azure program** (Créer un compte du Centre de développement et participer au programme Azure) pour enregistrer votre société, si ce n’est pas encore fait.  Consultez les pages [Créer un compte de développeur Microsoft](../marketplace-publishing/marketplace-publishing-accounts-creation-registration.md).
-5. Cliquez sur **Définir des Topologies pour démarrer**. Un modèle de solution est « parent » de toutes ses topologies. Vous pouvez définir plusieurs topologies dans une offre/un modèle de solution. Quand une offre est envoyée dans l’environnement intermédiaire, toutes ses topologies l’accompagnent. 
-6. Entrez un nom de topologie, puis cliquez sur le signe plus (+).
-7. Entrez une nouvelle version, puis cliquez sur le signe plus (+).
-8. Charger le fichier zip préparé à l’étape [Empaqueter une application](#package-application).  
-9. Cliquez sur **Request Certification**(Demander la certification). L’équipe de certification Microsoft examine les fichiers et certifie la topologie.
+4. Cliquez sur **compte Centre de développement de créer et jointure hello programme Azure** tooregister votre entreprise si vous n’avez pas encore fait.  Consultez les pages [Créer un compte de développeur Microsoft](../marketplace-publishing/marketplace-publishing-accounts-creation-registration.md).
+5. Cliquez sur **définir certains tooget Topologies démarré**. Un modèle de solution est un tooall « parent » ses topologies. Vous pouvez définir plusieurs topologies dans une offre/un modèle de solution. Lorsqu’une offre est envoyée toostaging, il est envoyé avec toutes les topologies de son. 
+6. Entrez un nom de la topologie, puis cliquez sur le signe plus hello.
+7. Entrez une nouvelle version, puis cliquez sur hello signe Plus.
+8. Fichier zip de téléchargement hello préparé à [Package d’application](#package-application).  
+9. Cliquez sur **Request Certification**(Demander la certification). équipe de certification Microsoft Hello sera passez en revue les fichiers hello et certifie la topologie de hello.
 
 ## <a name="next-steps"></a>Étapes suivantes
-* [Installer des applications HDInsight](hdinsight-apps-install-applications.md): découvrez comment installer une application HDInsight sur vos clusters.
-* [Installer des applications HDInsight personnalisées](hdinsight-apps-install-custom-applications.md): découvrez comment déployer des applications HDInsight inédites vers HDInsight.
-* [Personnalisation de clusters HDInsight basés sur Linux à l’aide d’une action de script](hdinsight-hadoop-customize-cluster-linux.md): apprenez à utiliser l’action de script pour installer des applications supplémentaires.
-* [Créer des clusters Hadoop sous Linux dans HDInsight à l’aide de modèles Azure Resource Manager](hdinsight-hadoop-create-linux-clusters-arm-templates.md): apprenez à appeler des modèles Resource Manager pour la création de clusters HDInsight.
-* [Utiliser des nœuds de périmètre vides dans HDInsight](hdinsight-apps-use-edge-node.md): apprenez à utiliser un nœud de périmètre vide pour accéder au cluster HDInsight, tester des applications HDInsight et héberger des applications HDInsight.
+* [Installer des applications de HDInsight](hdinsight-apps-install-applications.md): Découvrez comment tooinstall un tooyour d’application HDInsight clusters.
+* [Installer des applications personnalisées HDInsight](hdinsight-apps-install-custom-applications.md): Découvrez comment toodeploy un tooHDInsight d’application HDInsight non publiée.
+* [Personnaliser des clusters HDInsight de basés sur Linux à l’aide de Script Action](hdinsight-hadoop-customize-cluster-linux.md): Découvrez comment des applications supplémentaires toouse Action de Script tooinstall.
+* [Créer des clusters basés sur Linux de Hadoop dans HDInsight à l’aide de modèles Azure Resource Manager](hdinsight-hadoop-create-linux-clusters-arm-templates.md): Découvrez comment toocall le Gestionnaire de ressources modèles toocreate HDInsight clusters.
+* [Utiliser noeuds vide dans HDInsight](hdinsight-apps-use-edge-node.md): Découvrez comment toouse vide bord du nœud pour l’accès à cluster HDInsight, test des applications de HDInsight et l’hébergement des applications de HDInsight.
 

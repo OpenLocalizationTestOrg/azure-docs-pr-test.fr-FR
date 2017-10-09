@@ -1,6 +1,6 @@
 ---
-title: "Ajouter des propriétaires et des utilisateurs dans Azure DevTest Labs | Microsoft Docs"
-description: "Ajouter des propriétaires et des utilisateurs dans Azure DevTest Labs à l’aide du portail Azure ou de PowerShell"
+title: "aaaAdd propriétaires et les utilisateurs dans Azure DevTest Labs | Documents Microsoft"
+description: "Ajouter des propriétaires et les utilisateurs dans Azure DevTest Labs, à l’aide de hello portail Azure ou PowerShell"
 services: devtest-lab,virtual-machines
 documentationcenter: na
 author: tomarcher
@@ -14,18 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/11/2017
 ms.author: tarcher
-ms.openlocfilehash: d67fa257574d6cb4ad4b18521900374fb51da290
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2a98f5fe1efbd7c23e0d97f58f47c37462aed3b6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="add-owners-and-users-in-azure-devtest-labs"></a>Ajouter des propriétaires et des utilisateurs dans Azure DevTest Labs
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/How-to-set-security-in-your-DevTest-Lab/player]
 > 
 > 
 
-L’accès à Azure DevTest Labs est contrôlé par le [contrôle d’accès en fonction du rôle (RBAC) Azure](../active-directory/role-based-access-control-what-is.md). Avec le contrôle d’accès en fonction du rôle, vous pouvez séparer les tâches au sein de votre équipe en *rôles* dans lesquels vous accordez aux utilisateurs uniquement les accès nécessaires pour accomplir leur travail. Trois de ces rôles RBAC sont *Propriétaire*, *Utilisateur de DevTest Labs* et *Collaborateur*. Dans cet article, vous allez découvrir quelles actions peuvent être effectuées dans chacun des trois rôles RBAC principaux. À partir de là, vous allez apprendre à ajouter des utilisateurs à un laboratoire, à la fois via le portail et via un script PowerShell, et à ajouter des utilisateurs au niveau de l’abonnement.
+L’accès à Azure DevTest Labs est contrôlé par le [contrôle d’accès en fonction du rôle (RBAC) Azure](../active-directory/role-based-access-control-what-is.md). À l’aide de RBAC, vous pouvez séparer les droits au sein de votre équipe dans *rôles* où vous quantité d’allocation uniquement hello d’accès nécessaires toousers tooperform leur travail. Trois de ces rôles RBAC sont *Propriétaire*, *Utilisateur de DevTest Labs* et *Collaborateur*. Dans cet article, vous Découvrez quelles actions peuvent être effectuées dans chacun des trois rôles RBAC principales hello. À partir de là, vous apprendrez comment atelier de tooa tooadd utilisateurs : les deux via hello portail et via un script PowerShell et comment les utilisateurs tooadd à hello niveau d’abonnement.
 
 ## <a name="actions-that-can-be-performed-in-each-role"></a>Actions qui peuvent être effectuées dans chaque rôle
 Il existe trois rôles principaux que vous pouvez attribuer à un utilisateur :
@@ -34,12 +34,12 @@ Il existe trois rôles principaux que vous pouvez attribuer à un utilisateur :
 * Utilisateur de DevTest Labs
 * Collaborateur
 
-Le tableau suivant décrit les actions pouvant être effectuées par les utilisateurs dans chacun de ces rôles :
+Hello tableau suivant décrit les actions hello qui peuvent être effectuées par les utilisateurs dans chacun de ces rôles :
 
 | **Actions que les utilisateurs dans ce rôle peuvent effectuer** | **Utilisateur de DevTest Labs** | **Propriétaire** | **Collaborateur** |
 | --- | --- | --- | --- |
 | **Tâches de laboratoire** | | | |
-| Ajouter des utilisateurs à un laboratoire |Non |Oui |Non |
+| Ajouter le laboratoire de tooa utilisateurs |Non |Oui |Non |
 | Mettre à jour les paramètres de coût |Non |Oui |Oui |
 | **Tâches de base de machine virtuelle** | | | |
 | Ajouter et supprimer des images personnalisées |Non |Oui |Oui |
@@ -47,50 +47,50 @@ Le tableau suivant décrit les actions pouvant être effectuées par les utilisa
 | Images Place de marché Azure de liste blanche |Non |Oui |Oui |
 | **Tâches de machine virtuelle** | | | |
 | Créer des machines virtuelles |Oui |Oui |Oui |
-| Démarrer, arrêter et supprimer des machines virtuelles |Seules les machines virtuelles créées par l’utilisateur |Oui |Oui |
+| Démarrer, arrêter et supprimer des machines virtuelles |Seuls les ordinateurs virtuels créés par l’utilisateur de hello |Oui |Oui |
 | Mettre à jour les stratégies de machine virtuelle |Non |Oui |Oui |
-| Ajouter des disques de données à des machines virtuelles ou en supprimer de celles-ci |Seules les machines virtuelles créées par l’utilisateur |Oui |Oui |
+| Ajouter des disques de données à des machines virtuelles ou en supprimer de celles-ci |Seuls les ordinateurs virtuels créés par l’utilisateur de hello |Oui |Oui |
 | **Tâches d’artefact** | | | |
 | Ajouter et supprimer des référentiels d’artefact |Non |Oui |Oui |
 | Appliquer des artefacts |Oui |Oui |Oui |
 
 > [!NOTE]
-> Lorsqu’un utilisateur crée une machine virtuelle, le rôle **Propriétaire** de la machine virtuelle créée est automatiquement attribué à cet utilisateur.
+> Lorsqu’un utilisateur crée une machine virtuelle, cet utilisateur est affecté automatiquement toohello **propriétaire** rôle Hello créé la machine virtuelle.
 > 
 > 
 
-## <a name="add-an-owner-or-user-at-the-lab-level"></a>Ajouter un utilisateur ou un propriétaire au niveau du laboratoire
-Les propriétaires et les utilisateurs peuvent être ajoutés au niveau du laboratoire via le portail Azure. Cela comprend les utilisateurs externes qui disposent d’un [compte Microsoft (MSA)](devtest-lab-faq.md#what-is-a-microsoft-account)valide.
-Les étapes suivantes vous guident dans le processus d’ajout d’un propriétaire ou d’un utilisateur à un laboratoire dans Azure DevTest Labs :
+## <a name="add-an-owner-or-user-at-hello-lab-level"></a>Ajouter un propriétaire ou un utilisateur au niveau de lab hello
+Les propriétaires et les utilisateurs peuvent être ajoutés au niveau de lab hello via hello portail Azure. Cela comprend les utilisateurs externes qui disposent d’un [compte Microsoft (MSA)](devtest-lab-faq.md#what-is-a-microsoft-account)valide.
+Hello comme suit vous guide tout au long des processus hello d’ajout d’un laboratoire tooa propriétaire ou un utilisateur dans Azure DevTest Labs :
 
-1. Connectez-vous au [portail Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040).
-2. Sélectionnez **Plus de services**, puis **DevTest Labs** dans la liste.
-3. Sélectionnez le laboratoire souhaité dans la liste des laboratoires.
-4. Dans le panneau du laboratoire, sélectionnez **Configuration**. 
-5. Dans le panneau **Configuration**, sélectionnez **Utilisateurs**.
-6. Dans le panneau **Utilisateurs**, sélectionnez **+Ajouter**.
+1. Connectez-vous à toohello [portail Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040).
+2. Sélectionnez **davantage de services**, puis sélectionnez **DevTest Labs** à partir de la liste de hello.
+3. Dans liste hello labs, sélectionnez lab souhaité de hello.
+4. Dans le panneau de hello lab, sélectionnez **Configuration**. 
+5. Sur hello **Configuration** panneau, sélectionnez **utilisateurs**.
+6. Sur hello **utilisateurs** panneau, sélectionnez **+ ajouter**.
    
     ![Ajouter un utilisateur](./media/devtest-lab-add-devtest-user/devtest-users-blade.png)
-7. Dans le panneau **Sélectionner un rôle** , sélectionnez le rôle souhaité. La section [Actions qui peuvent être effectuées dans chaque rôle](#actions-that-can-be-performed-in-each-role) répertorie les différentes actions qui peuvent être effectuées par les utilisateurs dans les rôles Propriétaire, Utilisateur de DevTest Labs et Collaborateur.
-8. Dans le panneau **Ajouter des utilisateurs** , entrez l’adresse de messagerie ou le nom de l’utilisateur que vous souhaitez ajouter dans le rôle spécifié. Si l’utilisateur n’est pas trouvé, un message d’erreur expliquant le problème s’affiche. Si l’utilisateur est trouvé, il est répertorié et sélectionné. 
+7. Sur hello **sélectionner un rôle** panneau, rôle souhaité de hello select. Hello section [les Actions qui peuvent être effectuées dans chaque rôle](#actions-that-can-be-performed-in-each-role) listes hello différentes actions qui peuvent être effectuées par les utilisateurs dans des rôles propriétaire et collaborateur DevTest utilisateur hello.
+8. Sur hello **ajouter des utilisateurs** panneau, entrez l’adresse de messagerie hello ou nom d’utilisateur hello tooadd rôle hello spécifié. Si l’utilisateur de hello est introuvable, un message d’erreur explique problème de hello. Si hello utilisateur est trouvé, cet utilisateur est répertorié et sélectionné. 
 9. Sélectionnez **Sélectionner**.
-10. Cliquez sur **OK** pour fermer le panneau **Ajouter un accès**.
-11. Lorsque vous revenez sur le panneau **Utilisateurs** , l’utilisateur a été ajouté.  
+10. Sélectionnez **OK** tooclose hello **ajouter un accès** panneau.
+11. Lorsque vous retournez toohello **utilisateurs** panneau, hello utilisateur a été ajouté.  
 
-## <a name="add-an-external-user-to-a-lab-using-powershell"></a>Ajouter un utilisateur externe à un laboratoire à l’aide de PowerShell
-Outre l’ajout d’utilisateurs dans le portail Azure, vous pouvez ajouter un utilisateur externe à votre laboratoire à l’aide d’un script PowerShell. Dans l’exemple suivant, modifiez simplement les valeurs des paramètres sous le commentaire **Valeurs à modifier** .
-Vous pouvez récupérer les valeurs `subscriptionId`, `labResourceGroup` et `labName` à partir du panneau de laboratoire dans le portail Azure.
+## <a name="add-an-external-user-tooa-lab-using-powershell"></a>Ajouter un laboratoire de tooa utilisateur externe à l’aide de PowerShell
+En outre les utilisateurs tooadding hello portail Azure, vous pouvez ajouter un laboratoire de tooyour utilisateur externe à l’aide d’un script PowerShell. Bonjour, l’exemple suivant simplement modifier les valeurs de paramètre hello sous hello **toochange de valeurs** commentaire.
+Vous pouvez récupérer hello `subscriptionId`, `labResourceGroup`, et `labName` valeurs hello lab du Panneau de hello portail Azure.
 
 > [!NOTE]
-> L’exemple de script suppose que l’utilisateur spécifié a été ajouté en tant qu’invité à Active Directory et échoue si ce n’est pas le cas. Pour ajouter un utilisateur qui ne se trouve pas dans Active Directory à un laboratoire, utilisez le portail Azure pour attribuer un rôle à l’utilisateur, comme illustré dans la section [Ajouter un utilisateur ou un propriétaire au niveau du laboratoire](#add-an-owner-or-user-at-the-lab-level).   
+> exemple de script Hello suppose que hello spécifié utilisateur a été ajouté comme un toohello invité Active Directory et échoue si ce n’est pas le cas de hello. tooadd un utilisateur n’est pas dans hello lab tooa de Active Directory, utilisez le rôle tooa utilisateur hello tooassign portail Azure hello comme illustré dans la section de hello, [ajouter un propriétaire ou un utilisateur au niveau de lab hello](#add-an-owner-or-user-at-the-lab-level).   
 > 
 > 
 
-    # Add an external user in DevTest Labs user role to a lab
-    # Ensure that guest users can be added to the Azure Active directory:
+    # Add an external user in DevTest Labs user role tooa lab
+    # Ensure that guest users can be added toohello Azure Active directory:
     # https://azure.microsoft.com/en-us/documentation/articles/active-directory-create-users/#set-guest-user-access-policies
 
-    # Values to change
+    # Values toochange
     $subscriptionId = "<Enter Azure subscription ID here>"
     $labResourceGroup = "<Enter lab's resource name here>"
     $labName = "<Enter lab name here>"
@@ -99,39 +99,39 @@ Vous pouvez récupérer les valeurs `subscriptionId`, `labResourceGroup` et `lab
     # Log into your Azure account
     Login-AzureRmAccount
 
-    # Select the Azure subscription that contains the lab. 
+    # Select hello Azure subscription that contains hello lab. 
     # This step is optional if you have only one subscription.
     Select-AzureRmSubscription -SubscriptionId $subscriptionId
 
-    # Retrieve the user object
+    # Retrieve hello user object
     $adObject = Get-AzureRmADUser -SearchString $userDisplayName
 
-    # Create the role assignment. 
+    # Create hello role assignment. 
     $labId = ('subscriptions/' + $subscriptionId + '/resourceGroups/' + $labResourceGroup + '/providers/Microsoft.DevTestLab/labs/' + $labName)
     New-AzureRmRoleAssignment -ObjectId $adObject.Id -RoleDefinitionName 'DevTest Labs User' -Scope $labId
 
-## <a name="add-an-owner-or-user-at-the-subscription-level"></a>Ajouter un utilisateur ou un propriétaire au niveau du laboratoire
-Les autorisations Azure sont propagées à partir de l’étendue parent vers l’étendue enfant dans Azure. Par conséquent, les propriétaires d’un abonnement Azure qui contient des laboratoires sont automatiquement les propriétaires de ces laboratoires. Ils sont également propriétaires des machines virtuelles et des autres ressources créées par les utilisateurs du laboratoire et le service Azure DevTest Labs. 
+## <a name="add-an-owner-or-user-at-hello-subscription-level"></a>Ajouter un propriétaire ou un utilisateur au niveau d’abonnement hello
+Autorisations Azure sont propagées à partir de l’étendue de toochild étendue parente dans Azure. Par conséquent, les propriétaires d’un abonnement Azure qui contient des laboratoires sont automatiquement les propriétaires de ces laboratoires. Ils possèdent également des machines virtuelles de hello et autres ressources créées par les utilisateurs du laboratoire hello et hello service de Azure DevTest Labs. 
 
-Vous pouvez ajouter des propriétaires supplémentaires à un laboratoire via le panneau du laboratoire dans le [portail Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040). Toutefois, l’étendue d’administration du propriétaire ajouté est plus étroite que l’étendue du propriétaire de l’abonnement. Par exemple, les propriétaires ajoutés n’ont pas un accès complet à certaines ressources qui sont créées dans l’abonnement par le service DevTest Labs. 
+Vous pouvez ajouter lab de tooa propriétaire supplémentaire via le panneau de hello lab Bonjour [portail Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040). Toutefois, hello ajouté l’étendue du propriétaire de l’administration est plus étroite que la portée du propriétaire d’abonnement hello. Par exemple, hello ajoutée propriétaires n’ont pas toosome d’accès complet des ressources hello qui sont créés dans l’abonnement de hello en hello service de DevTest Labs. 
 
-Pour ajouter un propriétaire à un abonnement Azure, procédez comme suit :
+tooadd un tooan propriétaire abonnement Azure, procédez comme suit :
 
-1. Connectez-vous au [portail Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040).
-2. Sélectionnez **Plus de services**, puis **Abonnements** dans la liste.
-3. Sélectionnez l’abonnement souhaité.
+1. Connectez-vous à toohello [portail Azure](http://go.microsoft.com/fwlink/p/?LinkID=525040).
+2. Sélectionnez **plus Services**, puis sélectionnez **abonnements** à partir de la liste de hello.
+3. Sélectionnez l’abonnement de hello souhaité.
 4. Sélectionnez l’icône **Accès** . 
    
     ![Accéder aux utilisateurs](./media/devtest-lab-add-devtest-user/access-users.png)
-5. Dans le panneau **Utilisateurs**, sélectionnez **Ajouter**.
+5. Sur hello **utilisateurs** panneau, sélectionnez **ajouter**.
    
     ![Ajouter un utilisateur](./media/devtest-lab-add-devtest-user/devtest-users-blade.png)
-6. Dans le panneau **Sélectionner un rôle**, sélectionnez **Propriétaire**.
-7. Dans le panneau **Ajouter des utilisateurs** , entrez l’adresse de messagerie ou le nom de l’utilisateur que vous souhaitez ajouter en tant que propriétaire. Si l’utilisateur n’est pas trouvé, vous obtenez un message d’erreur expliquant le problème. Si l’utilisateur est trouvé, cet utilisateur est répertorié sous la zone de texte **Utilisateur** .
-8. Sélectionnez le nom d'utilisateur trouvé.
+6. Sur hello **sélectionner un rôle** panneau, sélectionnez **propriétaire**.
+7. Sur hello **ajouter des utilisateurs** panneau, entrez l’adresse de messagerie hello ou le nom d’utilisateur de hello souhaité tooadd en tant que propriétaire. Si l’utilisateur de hello est introuvable, vous obtenez un message d’erreur expliquant le problème de hello. Si l’utilisateur de hello est trouvée, cet utilisateur est répertorié sous hello **utilisateur** zone de texte.
+8. Sélectionnez le nom d’utilisateur situé hello.
 9. Sélectionnez **Sélectionner**.
-10. Cliquez sur **OK** pour fermer le panneau **Ajouter un accès**.
-11. Lorsque vous revenez sur le panneau **Utilisateurs** , l’utilisateur a été ajouté en tant que propriétaire. Cet utilisateur est désormais propriétaire de tous les laboratoires créés sous cet abonnement et peut par conséquent effectuer des tâches de propriétaire. 
+10. Sélectionnez **OK** tooclose hello **ajouter un accès** panneau.
+11. Lorsque vous retournez toohello **utilisateurs** panneau, utilisateur de hello a été ajouté en tant que propriétaire. Cet utilisateur est désormais un propriétaire de n’importe quel labs créées sous cet abonnement et donc en mesure de tooperform des tâches de propriétaire. 
 
 [!INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
 

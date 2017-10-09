@@ -1,6 +1,6 @@
 ---
-title: "Déterminer quelle méthode d’authentification unique utiliser | Microsoft Docs"
-description: "Découvrez les modes d’authentification unique pris en charge par Azure AD et comment choisir celui adapté à l’application qui vous intéresse."
+title: "aaaHow toodetermine les toouse de la méthode d’authentification unique | Documents Microsoft"
+description: "Comprendre hello unique authentification modes pris en charge par Azure AD et comment toopick l’un toochoose pour hello application vous intéressent."
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,41 +13,41 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 80f4a965920fec9cb578c1bee235c7857f37431e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 64f0bc1dc8281d1ab8222fd50eaceaf710704886
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-determine-what-single-sign-on-method-to-use"></a>Déterminer quelle méthode d’authentification unique utiliser
+# <a name="how-toodetermine-what-single-sign-on-method-toouse"></a>Comment toodetermine les toouse de la méthode d’authentification unique
 
-Cet article présente les modes d’authentification unique pris en charge par Azure AD et vous montre comment choisir celui adapté à l’application qui vous intéresse.
+Cet article vous a-t-il toounderstand hello unique authentification modes pris en charge par Azure AD et comment toopick l’un toochoose pour hello application vous intéressent.
 
 ## <a name="single-sign-on-and-provisioning-modes-supported-by-specific-application-types"></a>Modes d’authentification unique et d’approvisionnement pris en charge par des types d’applications spécifiques
 
-Le tableau ci-dessous décrit les différents modes d’authentification unique et d’approvisionnement pris en charge par chacun des types d’applications ci-dessus. Vous pouvez utiliser ce tableau pour mieux comprendre quelle application vous devez ajouter pour répondre à un objectif précis.
+tableau Hello ci-dessous décrit hello différent de l’authentification unique et la configuration des modes pris en charge par chacun des hello au-dessus de types d’applications. Vous pouvez utiliser cette toohelp table toounderstand quelle application, vous devez tooadd toosupport un objectif spécifique.
 
   ![Tableau des types d’applications](./media/application-tables/table1.png)
 
-## <a name="how-to-choose-a-single-sign-on-mode"></a>Comment choisir un mode d’authentification unique
+## <a name="how-toochoose-a-single-sign-on-mode"></a>Comment toochoose un mode d’authentification unique
 
-Les modes d’**authentification unique** pris en charge pour les applications Azure AD sont répertoriés ci-dessous.
+prise en charge de Hello **l’authentification unique** modes pour les applications Azure AD sont répertoriés ci-dessous.
 
--   **Authentification unique Azure AD désactivée** : choisissez le **mode d’authentification unique** Authentification unique Azure AD désactivée si vous n’êtes pas encore prêt à intégrer cette application à l’authentification unique avec Azure AD, ou si vous êtes uniquement en train de la tester.
+-   **Azure AD l’authentification unique sur désactivé** – choisissez Azure AD l’authentification unique sur désactivé **mode d’authentification unique** si vous n’est pas encore prêt toointegrate cette application avec l’authentification unique avec Azure AD, ou testez simplement son évolution horizontale
 
--   **Authentification liée** : choisissez le **mode d’authentification unique** [Authentification liée](https://docs.microsoft.com/azure/active-directory/active-directory-appssoaccess-whatis#how-does-single-sign-on-with-azure-active-directory-work) si vous disposez d’une application qui est déjà connectée à une solution d’authentification unique, ou si vous voulez publier un lien simple dans le [panneau d’accès aux applications](https://docs.microsoft.com/azure/active-directory/active-directory-saas-access-panel-introduction) de vos utilisateurs ou dans le [lanceur d’applications Office 365](https://login.microsoftonline.com/common/oauth2/authorize?response_mode=form_post&response_type=id_token&scope=openid&nonce=d508a995-f6d6-4b8a-81b8-825c71f1be46.636253878097046923&state=https%3a%2f%2fsupport.office.com%2farticle%2fMeet-the-Office-365-app-launcher-79f12104-6fed-442f-96a0-eb089a3f476a%3fui%3den-US%26rs%3den-US%26ad%3dUS&client_id=4b233688-031c-404b-9a80-a4f3f2351f90&redirect_uri=https%3a%2f%2fsupport.office.com%2fauth%2fsignin&login_hint=asteen%40microsoft.com&prompt=none).
+-   **Lié à l’ouverture de session** – choisissez hello [lié Sign-on](https://docs.microsoft.com/azure/active-directory/active-directory-appssoaccess-whatis#how-does-single-sign-on-with-azure-active-directory-work) **mode d’authentification unique** si vous avez une application qui est déjà connectée avec une seule session solution existante, ou si vous souhaitez simplement toopublish simple de liens pour vos utilisateurs dans leurs [volet d’accès Application](https://docs.microsoft.com/azure/active-directory/active-directory-saas-access-panel-introduction) ou [Lanceur d’applications Office 365](https://login.microsoftonline.com/common/oauth2/authorize?response_mode=form_post&response_type=id_token&scope=openid&nonce=d508a995-f6d6-4b8a-81b8-825c71f1be46.636253878097046923&state=https%3a%2f%2fsupport.office.com%2farticle%2fMeet-the-Office-365-app-launcher-79f12104-6fed-442f-96a0-eb089a3f476a%3fui%3den-US%26rs%3den-US%26ad%3dUS&client_id=4b233688-031c-404b-9a80-a4f3f2351f90&redirect_uri=https%3a%2f%2fsupport.office.com%2fauth%2fsignin&login_hint=asteen%40microsoft.com&prompt=none)
 
--   **Authentification par mot de passe** : choisissez le **mode d’authentification unique** [Authentification par mot de passe](https://docs.microsoft.com/azure/active-directory/active-directory-appssoaccess-whatis#how-does-single-sign-on-with-azure-active-directory-work) si votre application affiche un champ de nom d’utilisateur et de mot de passe HTML et que vous souhaitez stocker ce nom d’utilisateur et ce mot de passe en toute sécurité pour vous reconnecter ultérieurement à l’application.
+-   **Mot de passe de session** – choisissez hello [mot de passe de session](https://docs.microsoft.com/azure/active-directory/active-directory-appssoaccess-whatis#how-does-single-sign-on-with-azure-active-directory-work) **mode d’authentification unique** si votre application s’affiche un champ de nom d’utilisateur et mot de passe HTML et que vous souhaitez toostore qui nom d’utilisateur et mot de passe en toute sécurité toobe relus application toohello plus tard
 
--   **Authentification basée sur SAML** : choisissez le mode d’authentification unique [Authentification basée sur SAML](https://docs.microsoft.com/azure/active-directory/active-directory-appssoaccess-whatis#how-does-single-sign-on-with-azure-active-directory-work) si votre application prend en charge les protocoles SAML ou OpenID Connect, ou si vous souhaitez être en mesure de mapper les utilisateurs à des rôles d’application spécifiques en fonction de règles que vous définissez dans vos demandes SAML *.(**Remarque :** cette option n’est pas disponible quand le proxy d’application est configuré pour une application)*
+-   **SAML-authentification** – choisissez hello [SAML-authentification](https://docs.microsoft.com/azure/active-directory/active-directory-appssoaccess-whatis#how-does-single-sign-on-with-azure-active-directory-work) en fonction de rôles d’application toospecific d’authentification unique mode si votre application prend en charge les protocoles SAML ou OpenID Connect hello ou si vous souhaitez les utilisateurs en mesure de toomap de toobe dans les règles que vous définissez dans votre SAML revendications *(**Remarque :** cette option n’est pas disponible lorsque le proxy d’application hello est configuré pour une application) *
 
--   **Authentification basée sur l’en-tête** : choisissez le mode d’authentification unique [Authentification basée sur l’en-tête](https://docs.microsoft.com/azure/active-directory/application-proxy-ping-access#what-is-pingaccess-for-azure-ad) si vous disposez d’une application utilisant PingAccess qui prend en charge l’authentification basée sur l’en-tête HTTP et pour laquelle vous souhaitez utiliser l’authentification unique à *. (**Remarque :** cette option est disponible uniquement quand le proxy d’application et PingAccess sont configurés pour une application)*
+-   **En-tête-authentification** – choisissez cette option [basée sur l’en-tête de l’authentification](https://docs.microsoft.com/azure/active-directory/application-proxy-ping-access#what-is-pingaccess-for-azure-ad) seul mode d’authentification si vous avez une application à l’aide de PingAccess qui prend en charge d’en-tête HTTP en fonction d’authentification que vous souhaitez tooperform l’authentification unique sur trop *(**Remarque :** cette option est disponible uniquement lorsque le proxy d’application hello et PingAccess est configuré pour une application) *
 
--   **Authentification Windows intégrée** : choisissez le mode d’authentification unique [Authentification Windows intégrée](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-sso-using-kcd) lorsque vous exposez une application WIA locale pour laquelle vous souhaitez utiliser l’authentification unique à *.(**Remarque :** cette option est seulement disponible quand le proxy d’application est configuré pour une application)*
+-   **L’authentification intégrée Windows** – choisissez hello [l’authentification Windows intégrée](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-sso-using-kcd) l’authentification unique sur mode lors de l’exposition d’une application WIA local que vous souhaitez tooperform l’authentification unique sur trop*()*  *Remarque :** cette option est disponible uniquement lorsque le proxy d’application hello est configuré pour une application) *
 
 ## <a name="single-sign-on-modes-for-custom-developed-applications"></a>Modes d’authentification unique pour les applications personnalisées
 
-Les applications que vous avez développées de manière personnalisée par le biais de la fonction d’[application personnalisée](#_Custom-Developed_Applications) prennent également en charge des modes d’authentification unique supplémentaires non répertoriés ci-dessus. Vous avez notamment vu les points suivants :
+Applications que vous avez personnalisé développé par hello [application personnalisée](#_Custom-Developed_Applications) expérience prennent également en charge un seul authentification modes supplémentaires non répertoriées ci-dessus. Vous avez notamment vu les points suivants :
 
 -   Authentification basée sur [OAuth 2.0](https://docs.microsoft.com/azure/active-directory/develop/active-directory-protocols-oauth-code)
 
@@ -57,28 +57,28 @@ Les applications que vous avez développées de manière personnalisée par le b
 
 -   Authentification basée sur [SAML 2.0](https://docs.microsoft.com/azure/active-directory/develop/active-directory-saml-protocol-reference)
 
-Consultez le [guide du développeur Azure Active Directory](https://docs.microsoft.com/azure/active-directory/develop/active-directory-developers-guide) pour en savoir plus sur la création d’une application personnalisée qui prend en charge ces modes d’authentification unique.
+Hello de lecture [guide du développeur Azure Active Directory](https://docs.microsoft.com/azure/active-directory/develop/active-directory-developers-guide) toolearn plus en détail comment une seule application toocreate un personnalisées qui prend en charge ces modes d’authentification.
 
-## <a name="how-to-set-an-applications-single-sign-on-mode"></a>Comment définir le mode d’authentification unique d’une application
+## <a name="how-tooset-an-applications-single-sign-on-mode"></a>Comment tooset une application de mode d’authentification
 
-Pour définir le mode d’**authentification unique** d’une application, procédez comme suit :
+tooset une application **l’authentification unique** mode, suivez les instructions hello ci-dessous :
 
-1.  Ouvrez le [**portail Azure**](https://portal.azure.com/) et connectez-vous en tant qu’**administrateur général** ou **coadministrateur**.
+1.  Ouvrez hello [ **Azure Portal** ](https://portal.azure.com/) et connectez-vous en tant qu’un **administrateur Global** ou **Co-Admin.**
 
-2.  Ouvrez **l’extension Azure Active Directory** en cliquant sur **Autres services** en bas du menu de navigation principal de gauche.
+2.  Ouvrez hello **Extension Azure Active Directory** en cliquant sur **davantage de services** bas hello du menu de navigation de gauche principal hello.
 
-3.  Tapez « **Azure Active Directory** » dans la zone de recherche de filtre et sélectionnez l’élément **Azure Active Directory**.
+3.  Tapez dans **« Azure Active Directory**» dans la zone de recherche filtre hello et sélectionnez hello **Azure Active Directory** élément.
 
-4.  Cliquez sur **Applications d’entreprise** dans le menu de navigation de gauche d’Azure Active Directory.
+4.  Cliquez sur **des Applications d’entreprise** à partir du menu de navigation gauche hello Azure Active Directory.
 
-5.  Cliquez sur **Toutes les applications** pour afficher la liste complète de vos applications.
+5.  Cliquez sur **toutes les Applications** tooview une liste de toutes vos applications.
 
-   * Si l’application que vous recherchez ne figure pas dans la liste, utilisez la commande **Filtre** en haut de la **liste de toutes les applications** et définissez l’option **Afficher** sur **Toutes les applications**.
+   * Si vous ne voyez pas l’application hello que vous souhaitez afficher ici, utilisez hello **filtre** contrôle haut hello hello **liste de toutes les Applications** et ensemble hello **afficher** option trop **Toutes les Applications.**
 
-6.  Sélectionnez l’application pour laquelle vous souhaitez configurer l’authentification unique.
+6.  Sélectionnez application hello tooconfigure l’authentification unique
 
-7.  Une fois l’application chargée, cliquez sur **Authentification unique** dans le menu de navigation gauche de l’application.
+7.  Une fois le charge de l’application hello, cliquez sur **l’authentification unique** à partir du menu de navigation de gauche de l’application hello.
 
 ## <a name="next-steps"></a>Étapes suivantes
-[Fournir une authentification unique à vos applications avec le proxy d’application](active-directory-application-proxy-sso-using-kcd.md)
+[Fournissent des applications de tooyour de l’authentification unique avec le Proxy d’Application](active-directory-application-proxy-sso-using-kcd.md)
 

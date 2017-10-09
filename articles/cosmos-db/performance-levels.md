@@ -1,6 +1,6 @@
 ---
-title: "Niveaux de performances dans l’API DocumentDB | Microsoft Docs"
-description: "Découvrez comment les niveaux de performances dans l’API DocumentDB permettent de réserver le débit pour chaque conteneur."
+title: les niveaux de performance aaaDocumentDB API | Documents Microsoft
+description: "Découvrez comment les niveaux de performance API DocumentDB vous activer débit tooreserve par conteneur."
 services: cosmos-db
 author: mimig1
 manager: jhubbard
@@ -15,42 +15,42 @@ ms.topic: article
 ms.date: 05/24/2017
 ms.author: mimig
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: c8d4733e57eb760dbb8e8ca96f6ba55671d1742f
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 716bc11ae238dbb0feebf004ed8d5f8a7515ec6f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="retiring-the-s1-s2-and-s3-performance-levels"></a>Mise hors service des niveaux de performances S1, S2 et S3
+# <a name="retiring-hello-s1-s2-and-s3-performance-levels"></a>Retrait des niveaux de performance S1, S2 et S3 hello
 
 > [!IMPORTANT] 
-> Les niveaux de performances S1, S2 et S3 abordés dans cet article vont être mis hors service et ne sont plus disponibles pour les nouveaux comptes de l’API DocumentDB.
+> Hello S1, S2 et S3 niveaux de performance mentionnés dans cet article seront retirés et ne sont plus disponibles pour les nouveaux comptes d’API DocumentDB.
 >
 
-Cet article fournit une vue d’ensemble des niveaux de performances S1, S2 et S3 et explique comment les collections qui les utilisent seront migrées vers des collections à partition unique le 1er août 2017. Après avoir lu cet article, vous serez en mesure de répondre aux questions suivantes :
+Cet article fournit une vue d’ensemble des niveaux de performance S1, S2 et S3 et explique comment les collections de hello qui utilisent ces niveaux de performance seront migrés toosingle les collections de partitions sur le 1er août 2017. Après avoir lu cet article, vous serez hello en mesure de tooanswer suivant questions :
 
-- [Pourquoi les niveaux de performances S1, S2 et S3 vont-ils être mis hors service ?](#why-retired)
-- [En quoi les collections à partition unique et les collections partitionnées se différencient-elles des niveaux de performances S1, S2 et S3 ?](#compare)
-- [Comment assurer un accès ininterrompu à mes données ?](#uninterrupted-access)
-- [Qu’est-ce qui va changer au niveau de ma collection suite à la migration ?](#collection-change)
-- [Qu’est-ce qui va changer au niveau de ma facturation suite à la migration vers des collections à partition unique ?](#billing-change)
+- [Pourquoi les performances de S1, S2 et S3 hello niveaux sera mis hors service ?](#why-retired)
+- [Comment partitionnées et les collections de partition unique comparé toohello S1, S2, S3 des niveaux de performances ?](#compare)
+- [Que faire besoin d’accès ininterrompu à toodo tooensure toomy données ?](#uninterrupted-access)
+- [Comment ma collection changera après la migration de hello ?](#collection-change)
+- [Comment me facturation, modifié une fois que je suis toosingle migré les collections de partitions ?](#billing-change)
 - [Que se passe-t-il si j’ai besoin de plus de 10 Go de stockage ?](#more-storage-needed)
-- [Puis-je modifier les niveaux de performances entre S1, S2 et S3 avant le 1er août 2017 ?](#change-before)
+- [Puis-je changer entre les niveaux de performance hello S1, S2 et S3 avant le 1er août 2017 ?](#change-before)
 - [Comment serai-je informé de la migration de ma collection ?](#when-migrated)
-- [Comment procéder à la migration des niveaux de performances S1, S2 et S3 vers des collections à partition unique par moi-même ?](#migrate-diy)
+- [Comment migrer à partir de hello S1, S2, S3 performances niveaux toosingle les collections de partitions sur mon propre ?](#migrate-diy)
 - [Quelles sont les conséquences pour moi en tant que client Contrat Entreprise ?](#ea-customer)
 
 <a name="why-retired"></a>
 
-## <a name="why-are-the-s1-s2-and-s3-performance-levels-being-retired"></a>Pourquoi les niveaux de performances S1, S2 et S3 vont-ils être mis hors service ?
+## <a name="why-are-hello-s1-s2-and-s3-performance-levels-being-retired"></a>Pourquoi les performances de S1, S2 et S3 hello niveaux sera mis hors service ?
 
-Les niveaux de performances S1, S2 et S3 n’offrent pas la même flexibilité que les collections de l’API DocumentDB. Avec les niveaux de performances S1, S2 et S3, le débit et la capacité de stockage étaient prédéfinis et n’offraient aucune élasticité. Azure Cosmos DB offre désormais la possibilité de personnaliser votre débit et votre stockage, ce qui vous garantit une plus grande flexibilité vis-à-vis de l’évolution de vos besoins.
+les niveaux de performance S1, S2 et S3 Hello ne pas offre hello une souplesse qui offre des collections de l’API DocumentDB. Avec hello S1, S2, S3 les niveaux de performance, les deux hello débit et capacité de stockage ont été prédéfinis et n’offrait pas d’élasticité. Base de données Azure Cosmos propose désormais hello capacité toocustomize votre débit et stockage, vous offre davantage de flexibilité dans votre tooscale possibilité selon vos besoins.
 
 <a name="compare"></a>
 
-## <a name="how-do-single-partition-collections-and-partitioned-collections-compare-to-the-s1-s2-s3-performance-levels"></a>En quoi les collections à partition unique et les collections partitionnées se différencient-elles des niveaux de performances S1, S2 et S3 ?
+## <a name="how-do-single-partition-collections-and-partitioned-collections-compare-toohello-s1-s2-s3-performance-levels"></a>Comment partitionnées et les collections de partition unique comparé toohello S1, S2, S3 des niveaux de performances ?
 
-Le tableau suivant compare les options de débit et de stockage disponibles dans les collections à partition unique, les collections partitionnées et les niveaux de performances S1, S2 et S3. Voici un exemple pour la région Est des États-Unis 2 :
+Hello tableau suivant compare les disponibles dans les collections de partitions uniques, les collections partitionnées et S1, S2, S3 les niveaux de performance options hello débit et de stockage. Voici un exemple pour la région Est des États-Unis 2 :
 
 |   |Collection partitionnée|Collection à partition unique|S1|S2|S3|
 |---|---|---|---|---|---|
@@ -63,103 +63,103 @@ Vous êtes un client Contrat Entreprise ? Si oui, voir [Quelles sont les consé
 
 <a name="uninterrupted-access"></a>
 
-## <a name="what-do-i-need-to-do-to-ensure-uninterrupted-access-to-my-data"></a>Comment assurer un accès ininterrompu à mes données ?
+## <a name="what-do-i-need-toodo-tooensure-uninterrupted-access-toomy-data"></a>Que faire besoin d’accès ininterrompu à toodo tooensure toomy données ?
 
-Vous n’avez rien à faire : Cosmos DB se charge de la migration pour vous. Si vous avez une collection S1, S2 ou S3, votre collection actuelle sera migrée vers une collection à partition unique le 31 juillet 2017. 
+Nothing, Cosmos DB gère migration hello pour vous. Si vous avez une collection S1, S2 ou S3, votre collection actuelle sera collection de partition unique tooa migrés sur le 31 juillet 2017. 
 
 <a name="collection-change"></a>
 
-## <a name="how-will-my-collection-change-after-the-migration"></a>Qu’est-ce qui va changer au niveau de ma collection suite à la migration ?
+## <a name="how-will-my-collection-change-after-hello-migration"></a>Comment ma collection changera après la migration de hello ?
 
-Si vous avez une collection S1, elle sera migrée vers une collection à partition unique dotée d’un débit de 400 RU/s, ce qui correspond au débit le plus bas disponible pour les collections à partition unique. Toutefois, le coût d’un débit de 400 RU/s dans une collection à partition unique est approximativement identique à celui que vous payez pour votre collection S1 dotée d’un débit de 250 RU/s : vous ne payez pas pour les 150 RU/s disponibles supplémentaires.
+Si vous avez une collection S1, vous serez collection de partition unique tooa migré avec un débit de 400 ur/s. 400 ur/s est hello plus bas débit disponible avec les collections de partitions uniques. Toutefois, coût hello pour 400 ur/s dans une collection de partition unique est approximativement de hello identique vous ont été payant auprès de votre collection S1 de hello et 250 ur/s, donc vous ne payez pas pour hello très 150 tooyou d’ur/s disponibles.
 
-Si vous avez une collection S2, elle sera migrée vers une collection à partition unique dotée d’un débit de 1 000 RU/s. Vous n’observerez aucun changement de niveau de débit.
+Si vous avez une collection S2, vous serez collection de partition unique tooa migrés avec 1 K ur/s. Vous ne verrez pas modifier le niveau de débit tooyour.
 
-Si vous avez une collection S3, elle sera migrée vers une collection à partition unique dotée d’un débit de 2 500 RU/s. Vous n’observerez aucun changement de niveau de débit.
+Si vous avez une collection S3, vous serez collection de partition unique tooa migrés avec 2,5 K ur/s. Vous ne verrez pas modifier le niveau de débit tooyour.
 
-Dans chacun de ces cas, une fois la migration de votre collection effectuée, vous serez en mesure de personnaliser votre niveau de débit, ou de le mettre à l’échelle selon vos besoins afin de fournir un accès à faible latence à vos utilisateurs. Pour modifier le niveau de débit une fois votre collection migrée, il vous suffit d’ouvrir votre compte Cosmos DB dans le portail Azure, puis de cliquer sur Mettre à l’échelle, de choisir votre collection et enfin d’ajuster le niveau du débit, comme illustré dans la capture d’écran suivante :
+Dans chacun de ces cas, après la migration de votre collection, vous est en mesure de toocustomize votre niveau de débit, ou mettre à l’échelle haut et bas en tant qu’utilisateurs de tooyour d’accès de faible latence tooprovide nécessaires. toochange le niveau de débit hello une fois que votre collection a migré, ouvrez simplement votre compte de base de données Cosmos Bonjour portail Azure et cliquez sur l’échelle, choisissez votre collection de puis ajuster au niveau du débit hello, comme indiqué dans hello suivant capture d’écran :
 
-![Mise à l’échelle du débit dans le portail Azure](./media/performance-levels/portal-scale-throughput.png)
+![Comment le débit tooscale dans hello portail Azure](./media/performance-levels/portal-scale-throughput.png)
 
 <a name="billing-change"></a>
 
-## <a name="how-will-my-billing-change-after-im-migrated-to-the-single-partition-collections"></a>Qu’est-ce qui va changer au niveau de ma facturation suite à la migration vers des collections à partition unique ?
+## <a name="how-will-my-billing-change-after-im-migrated-toohello-single-partition-collections"></a>Comment me facturation, modifié une fois que je suis collections de partitions uniques toohello migré ?
 
-Supposons que vous avez 10 collections S1, d’une capacité de stockage de 1 Go chacune, dans la région Est des États-Unis et que vous migrez ces 10 collections S1 vers 10 collections à partition unique dotées d’un débit de 400 RU/s (niveau minimal). Votre facture se présentera comme suit si vous conservez les 10 collections à partition unique pendant un mois complet :
+En supposant que vous avez 10 collections de S1, 1 Go de stockage pour chacune d’elles, dans la région États-Unis hello, et que vous migrez ces 10 S1 collections too10 unique les collections de partitions à 400 ur/s (minimaux hello). Votre facture se présentera comme suit si vous laissez les collections de partition unique 10 hello pendant un mois complet :
 
-![Comparaison entre la tarification de 10 collections S1 et de 10 collections utilisant la tarification d’une collection à partition unique](./media/performance-levels/s1-vs-standard-pricing.png)
+![Compare S1 tarification pour les collections de 10 too10 collections à l’aide de la tarification pour un regroupement de partition unique](./media/performance-levels/s1-vs-standard-pricing.png)
 
 <a name="more-storage-needed"></a>
 
 ## <a name="what-if-i-need-more-than-10-gb-of-storage"></a>Que se passe-t-il si j’ai besoin de plus de 10 Go de stockage ?
 
-Que vous disposiez d’une collection avec un niveau de performances S1, S2 ou S3 ou d’une collection à partition unique disposant de 10 Go de stockage disponible, vous pouvez utiliser l’outil de migration de données Cosmos DB pour migrer vos données vers une collection partitionnée bénéficiant d’un stockage quasi illimité. Pour plus d’informations sur les avantages d’une collection partitionnée, voir [Partitionnement et mise à l’échelle dans Azure Cosmos DB](documentdb-partition-data.md). Pour plus d’informations sur la façon de migrer votre collection S1, S2, S3 ou à partition unique vers une collection partitionnée, voir [Migration de collections à partition unique vers des collections partitionnées](documentdb-partition-data.md#migrating-from-single-partition). 
+Si vous disposez d’une collection avec un niveau de performance S1, S2 ou S3 ou disposez d’une collection de partition unique, qui ont 10 Go de stockage disponible, vous pouvez utiliser hello Migration de données de base de données Cosmos outil toomigrate tooa de vos données partitionnées collection avec pratiquement stockage illimité. Pour plus d’informations sur les avantages de hello d’une collection partitionnée, consultez [de partitionnement et de mise à l’échelle dans la base de données Azure Cosmos](documentdb-partition-data.md). Pour plus d’informations sur la façon toomigrate vos S1, S2, S3 ou partition unique tooa partitionnée de collecte, consultez la section [migration à partir des collections de partition unique toopartitioned](documentdb-partition-data.md#migrating-from-single-partition). 
 
 <a name="change-before"></a>
 
-## <a name="can-i-change-between-the-s1-s2-and-s3-performance-levels-before-august-1-2017"></a>Puis-je modifier les niveaux de performances entre S1, S2 et S3 avant le 1er août 2017 ?
+## <a name="can-i-change-between-hello-s1-s2-and-s3-performance-levels-before-august-1-2017"></a>Puis-je changer entre les niveaux de performance hello S1, S2 et S3 avant le 1er août 2017 ?
 
-Seuls les comptes existants avec des niveaux de performances S1, S2 et S3 seront en mesure de modifier et d’ajuster la hiérarchie des niveaux de performances via le portail ou par programme. À compter du 1er août 2017, les niveaux de performances S1, S2 et S3 ne seront plus disponibles. Si vous remplacez une collection S1, S2 ou S3 par une collection à partition unique, vous ne pouvez plus revenir aux niveaux de performances S1, S2 ou S3.
+Seuls les comptes existants avec performances S1, S2 et S3 seront en mesure de toochange et modifier la hiérarchie des niveaux de performances via le portail de hello ou par programme. Par le 1er août 2017 hello S1, S2, et les niveaux de performance S3 ne sera plus disponibles. Si vous modifiez à partir de la collection de partition unique tooa S1, S3 ou S3, vous ne peut pas retourner toohello les niveaux de performance S1, S2 ou S3.
 
 <a name="when-migrated"></a>
 
 ## <a name="how-will-i-know-when-my-collection-has-migrated"></a>Comment serai-je informé de la migration de ma collection ?
 
-La migration aura lieu le 31 juillet 2017. Si vous avez une collection qui utilise les niveaux de performances S1, S2 ou S3, l’équipe Cosmos DB vous contactera par e-mail avant de lancer la migration. Une fois la migration terminée, le 1er août 2017, le portail Azure indiquera que votre collection utilise la tarification Standard.
+migration de Hello aura lieu le 31 juillet 2017. Si vous avez une collection qui utilise hello S1, S2 ou S3 les niveaux de performance, équipe de base de données Cosmos hello vous contactera par courrier électronique avant de la migration de hello. Une fois la migration de hello est terminée, sur le 1er août 2017 hello portail Azure affichera que votre collection utilise la tarification Standard.
 
-![Confirmation de la migration de votre collection vers le niveau tarifaire Standard](./media/performance-levels/portal-standard-pricing-applied.png)
+![Comment tooconfirm votre collection a migré de la tarification Standard toohello](./media/performance-levels/portal-standard-pricing-applied.png)
 
 <a name="migrate-diy"></a>
 
-## <a name="how-do-i-migrate-from-the-s1-s2-s3-performance-levels-to-single-partition-collections-on-my-own"></a>Comment procéder à la migration des niveaux de performances S1, S2 et S3 vers des collections à partition unique par moi-même ?
+## <a name="how-do-i-migrate-from-hello-s1-s2-s3-performance-levels-toosingle-partition-collections-on-my-own"></a>Comment migrer à partir de hello S1, S2, S3 performances niveaux toosingle les collections de partitions sur mon propre ?
 
-Vous pouvez effectuer la migration des niveaux de performance S1, S2 et S3 vers des collections à partition unique via le portail Azure ou par programme. Vous pouvez effectuer cette opération avant le 1er août pour tirer parti des options de débit flexibles disponibles pour les collections à partition unique. Sinon, nous nous chargerons de la migration de vos collections le 31 juillet 2017.
+Vous pouvez migrer à partir de hello S1, S2, et les collections de partitions toosingle à l’aide de hello portail Azure de niveaux de performance de S3 ou par programme. Cela à partir des options de débit flexible hello disponibles avec les collections de partition unique sur votre propre avant août 1 toobenefit ou nous ferons migrer vos collections pour vous sur le 31 juillet 2017.
 
-**Migration vers des collections à partition unique à l’aide du portail Azure**
+**collections de partitions toosingle toomigrate à l’aide de hello portail Azure**
 
-1. Dans le [**portail Azure**](https://portal.azure.com), cliquez sur **Azure Cosmos DB**, puis sélectionnez le compte Cosmos DB à modifier. 
+1. Bonjour [ **portail Azure**](https://portal.azure.com), cliquez sur **base de données Azure Cosmos**, puis sélectionnez hello Cosmos DB compte toomodify. 
  
-    Si **Azure Cosmos DB** ne figure pas dans la barre de lancement, cliquez sur >, accédez à **Bases de données**, sélectionnez **Azure Cosmos DB**, puis sélectionnez le compte DocumentDB.  
+    Si **base de données Azure Cosmos** n’est pas hello Jumpbar, cliquez sur >, faites défiler trop**bases de données**, sélectionnez **base de données Azure Cosmos**, puis sélectionnez le compte de DocumentDB hello.  
 
-2. Dans le menu de la ressource, sous **Conteneurs**, cliquez sur **Mettre à l’échelle**, sélectionnez la collection à modifier dans la liste déroulante, puis cliquez sur **Niveau tarifaire**. Les comptes utilisant un débit prédéfini ont un niveau tarifaire de S1, S2 ou S3.  Dans le panneau **Choisir votre niveau tarifaire**, cliquez sur **Standard** pour basculer vers le débit défini par l’utilisateur, puis cliquez sur **Sélectionner** pour enregistrer vos modifications.
+2. Menu de ressource hello, sous **conteneurs**, cliquez sur **échelle**, sélectionnez hello collection toomodify à partir de la liste déroulante de hello, puis cliquez sur **niveau tarifaire**. Les comptes utilisant un débit prédéfini ont un niveau tarifaire de S1, S2 ou S3.  Bonjour **choisir votre niveau tarifaire** panneau, cliquez sur **Standard** toochange définis par le toouser débit, puis cliquez sur **sélectionnez** toosave votre modification.
 
-    ![Capture d’écran du panneau Paramètres montrant où modifier la valeur de débit](./media/performance-levels/change-performance-set-thoughput.png)
+    ![Capture d’écran du Panneau de paramètres hello indiquant où toochange hello la valeur de débit](./media/performance-levels/change-performance-set-thoughput.png)
 
-3. De retour dans le panneau **Mettre à l’échelle**, le **Niveau tarifaire** est défini sur **Standard** et la zone **Débit (UR/s)** est affichée avec une valeur par défaut de 400. Définissez le débit entre 400 et 10 000 [unités de requête](request-units.md)/seconde (unités de requête/s). **L’Estimation de la facture mensuelle** au bas de la page se met à jour automatiquement pour donner une estimation du coût mensuel. 
+3. Dans hello **échelle** panneau, hello **niveau tarifaire** est modifié trop**Standard** et hello **(ur/s) de débit** s’affiche avec un valeur par défaut de 400. Débit de hello ensemble compris entre 400 et 10 000 [unités de requête ](request-units.md) /seconde (ur/s). Hello **estimée de facture mensuelle** bas hello hello page met automatiquement à jour tooprovide une estimation du coût mensuel de hello. 
 
     >[!IMPORTANT] 
-    > Une fois que vous enregistrez vos modifications et que vous passez au niveau tarifaire Standard, vous ne pouvez pas restaurer les niveaux de performances S1, S2 ou S3.
+    > Une fois que vous enregistrez vos modifications et que vous déplacez la tarification Standard toohello, vous ne pouvez pas restaurer toohello les niveaux de performance S1, S2 ou S3.
 
-4. Cliquez sur **Enregistrer** pour enregistrer vos modifications.
+4. Cliquez sur **enregistrer** toosave vos modifications.
 
-    Si vous déterminez que vous avez besoin d’un débit supérieur (plus de 10 000 unités de requête/s) ou d’une plus grande capacité de stockage (plus de 10 Go), vous pouvez créer une collection partitionnée. Pour migrer une collection à partition unique vers une collection partitionnée, voir [Migration de collections à partition unique vers des collections partitionnées](documentdb-partition-data.md#migrating-from-single-partition).
+    Si vous déterminez que vous avez besoin d’un débit supérieur (plus de 10 000 unités de requête/s) ou d’une plus grande capacité de stockage (plus de 10 Go), vous pouvez créer une collection partitionnée. toomigrate une collection de tooa partitionnée de collection de partition unique, consultez [migration à partir des collections de partition unique toopartitioned](documentdb-partition-data.md#migrating-from-single-partition).
 
     > [!NOTE]
-    > Le passage du niveau S1, S2 ou S3 au niveau Standard peut prendre jusqu’à 2 minutes.
+    > La modification de tooStandard S1, S2 ou S3 peut prendre jusqu'à too2 minutes.
     > 
     > 
 
-**Migration vers des collections à partition unique à l’aide du Kit SDK .NET**
+**collections de partitions toosingle toomigrate à l’aide de hello .NET SDK**
 
-Vous pouvez également modifier les niveaux de performances de vos collections via nos Kits SDK. Cette section couvre uniquement la modification du niveau de performances d’une collection à l’aide de notre [API .NET DocumentDB](documentdb-sdk-dotnet.md), mais le processus est similaire pour nos autres Kits SDK.
+Vous pouvez également modifier les niveaux de performances de vos collections via nos Kits SDK. Cette section couvre uniquement modifier les performances d’une collection de niveau à l’aide de notre [DocumentDB .NET API](documentdb-sdk-dotnet.md), mais le processus de hello est similaire à nos autres kits de développement logiciel.
 
-Voici un extrait de code permettant de remplacer le débit de la collection par 5 000 unités de requête par seconde :
+Voici un extrait de code pour la modification hello collection débit too5, 000 unités de demande par seconde :
     
 ```C#
-    //Fetch the resource to be updated
+    //Fetch hello resource toobe updated
     Offer offer = client.CreateOfferQuery()
                       .Where(r => r.ResourceLink == collection.SelfLink)    
                       .AsEnumerable()
                       .SingleOrDefault();
 
-    // Set the throughput to 5000 request units per second
+    // Set hello throughput too5000 request units per second
     offer = new OfferV2(offer, 5000);
 
-    //Now persist these changes to the database by replacing the original resource
+    //Now persist these changes toohello database by replacing hello original resource
     await client.ReplaceOfferAsync(offer);
 ```
 
-Visitez [MSDN](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.aspx) pour afficher des exemples supplémentaires et en savoir plus sur nos méthodes d’offre :
+Visitez [MSDN](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.aspx) tooview des exemples supplémentaires et en savoir plus sur nos méthodes offre :
 
 * [**ReadOfferAsync**](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.readofferasync.aspx)
 * [**ReadOffersFeedAsync**](https://msdn.microsoft.com/library/azure/microsoft.azure.documents.client.documentclient.readoffersfeedasync.aspx)
@@ -170,11 +170,11 @@ Visitez [MSDN](https://msdn.microsoft.com/library/azure/microsoft.azure.document
 
 ## <a name="how-am-i-impacted-if-im-an-ea-customer"></a>Quelles sont les conséquences pour moi en tant que client Contrat Entreprise ?
 
-Les clients Contrat Entreprise bénéficieront d’une protection en matière de tarification jusqu’à la fin de leur contrat actuel.
+Les clients EA seront est protégé jusqu'à la fin de hello de leur contrat actuel.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Pour en savoir plus sur la tarification et la gestion des données avec Azure Cosmos DB, explorez les ressources suivantes :
+toolearn en savoir plus sur la tarification et la gestion des données avec la base de données Azure Cosmos, Explorez ces ressources :
 
-1.  [Partitioning data in Cosmos DB (Partitionnement des données dans Cosmos DB)](documentdb-partition-data.md). Découvrez la différence entre les conteneurs à partition unique et les conteneurs partitionnés, et bénéficiez de conseils concernant l’implémentation d’une stratégie de partitionnement pour une mise à l’échelle en toute transparence.
-2.  [Tarification Cosmos DB](https://azure.microsoft.com/pricing/details/cosmos-db/). Apprenez-en davantage sur le coût de l’approvisionnement du débit et de la consommation du stockage.
-3.  [Unités de requête](request-units.md). Découvrez la consommation de débit pour les différents types d’opérations, telles que les opérations de lecture, d’écriture et de requête.
+1.  [Partitioning data in Cosmos DB (Partitionnement des données dans Cosmos DB)](documentdb-partition-data.md). Comprendre la différence de hello entre le conteneur de la partition unique et conteneurs partitionnées, ainsi que des conseils sur l’implémentation d’un tooscale de stratégie de partitionnement en toute transparence.
+2.  [Tarification Cosmos DB](https://azure.microsoft.com/pricing/details/cosmos-db/). En savoir plus sur coût hello d’approvisionnement de débit et de consommation de stockage.
+3.  [Unités de requête](request-units.md). Comprendre la consommation de débit pour les types d’opération différente, par exemple les requêtes de lecture, écriture, hello.

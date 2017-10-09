@@ -1,57 +1,57 @@
 
 # <a name="azure-and-internet-of-things"></a>Azure et IoT
 
-Bienvenue dans Microsoft Azure et l'Internet des objets (IoT) Cet article présente une architecture de solution IoT qui décrit les caractéristiques communes d’une solution IoT que vous pouvez déployer à l’aide de services Azure. Les solutions IoT nécessitent de sécuriser la communication bidirectionnelle entre les appareils, pouvant se chiffrer par millions, et un serveur principal de solution. Par exemple, un serveur principal de solution peut utiliser l’analyse prédictive automatisée pour découvrir des informations à partir de votre flux d’événements de l’appareil vers le cloud.
+Bienvenue dans tooMicrosoft Azure et hello Internet of Things (IoT). Cet article présente une architecture de solution IoT qui décrit des caractéristiques communes hello d’une solution IoT que vous pouvez déployer à l’aide des services Azure. IoT solutions nécessitent sécuriser, communication bidirectionnelle entre les appareils, éventuellement numérotation hello millions et un principal de la solution. Par exemple, un principal de la solution peut utiliser des analytique automatisés, prédictive toouncover insights de votre flux d’événements de l’appareil-à-cloud.
 
 Azure IoT Hub est la clé de voûte de l’implémentation de cette architecture de solution IoT au moyen de services Azure. IoT Suite assure des implémentations complètes de bout en bout de cette architecture pour des scénarios IoT spécifiques. Par exemple :
 
-* La solution de *surveillance à distance* vous permet de surveiller l’état des appareils tels que les distributeurs automatiques.
-* La solution de *maintenance prédictive* vous permet d’anticiper les besoins de maintenance des appareils tels que les pompes des stations de pompage à distance et d’éviter les temps d’arrêt non planifiés.
-* La solution d’*usine connectée* vous permet de vous connecter et de surveiller vos appareils industriels.
+* Hello *surveillance à distance* solution permet d’état de hello toomonitor des périphériques tels que des distributeurs automatiques.
+* Hello *maintenance prédictive* solution vous aide à tooanticipate les besoins de gestion des périphériques tels que des pompes de stations pompage à distance et les temps d’arrêt non planifié de tooavoid.
+* Hello *fabrique connecté* solution vous aide à tooconnect et surveillez vos appareils industriels.
 
 ## <a name="iot-solution-architecture"></a>Architecture de solution IoT
 
-Le diagramme suivant montre une architecture de solution IoT classique. Il n’inclut le nom d’aucun service Azure, mais il décrit les éléments clés dans une architecture de solution IoT générique. Dans cette architecture, les appareils IoT collectent des données qu’ils envoient à une passerelle cloud. La passerelle cloud met les données à la disposition d’autres services principaux, qui les traitent avant de les fournir à d’autres applications métier ou opérateurs humains par le biais d’un tableau de bord ou autre appareil de présentation.
+Hello suivant schéma montre une architecture de solution IoT standard. diagramme de Hello n’inclut pas les noms de hello des services Azure spécifiques, mais décrit hello des éléments clés dans une architecture de solution IoT générique. Dans cette architecture, appareils IoT collectant les données qu’ils envoient tooa la passerelle de cloud. passerelle de cloud Hello rend les données hello disponibles pour le traitement par d’autres services principaux à partir d’où les données sont fournies les applications métier-tooother ou opérateurs toohuman via un tableau de bord ou un autre périphérique de présentation.
 
 ![Architecture de solution IoT][img-solution-architecture]
 
 > [!NOTE]
-> Pour une étude approfondie de l’architecture IoT, consultez le document [Microsoft Azure IoT Reference Architecture][lnk-refarch] (Microsoft Azure IoT : Architecture de référence).
+> Pour une discussion détaillée de l’architecture de IoT, consultez hello [Architecture de référence de Microsoft Azure IoT][lnk-refarch].
 
 ### <a name="device-connectivity"></a>Connectivité des appareils
 
-Dans cette architecture de solution IoT, les appareils envoient les données de télémétrie, comme les lectures de capteur d’une station de pompage, vers un point de terminaison cloud pour qu’elles soient traitées et stockées. Dans un scénario de maintenance prédictive, le serveur principal de solution peut utiliser le flux des données de capteur pour déterminer si une pompe spécifique nécessite une maintenance. Les appareils peuvent également recevoir des messages « cloud-à-appareil », et y répondre, en lisant les messages issus d’un point de terminaison cloud. Par exemple, dans le scénario de maintenance prédictive, le serveur principal de solution peut envoyer des messages aux autres pompes de la station de pompage pour lancer le réacheminement des flux juste avant le début planifié de la maintenance. Cette procédure permet de s’assurer que l’ingénieur de maintenance peut commencer la maintenance lors de son arrivée sur le site.
+Dans cette architecture de solution IoT, appareils envoient la télémétrie, tels que les lectures des capteurs à partir d’une station pompage, le point de terminaison tooa cloud pour le stockage et le traitement. Dans un scénario de maintenance prédictive hello solution back-end peut-être utiliser des flux de hello de toodetermine de données de capteur lorsqu’une pompe spécifique requiert une maintenance. Appareils peuvent également recevoir et répondre messages toocloud-à-appareil par la lecture de messages à partir d’un point de terminaison du cloud. Par exemple, dans la solution de hello du scénario de maintenance prédictive hello back-end peut envoyer des messages tooother pompes Bonjour pompage toobegin station du réacheminement de flux juste avant l’échéance maintenance toostart. Cette procédure Assurez-vous ingénieur de maintenance hello pourrait commencer dès qu’elle arrive.
 
-L’une des plus grandes difficultés dans les projets IoT consiste à pouvoir connecter de manière fiable et sécurisée des appareils au serveur principal de la solution. Les appareils IoT ont des caractéristiques différentes de celles d’autres clients tels que des navigateurs et des applications mobiles. Les appareils IoT :
+Un des hello plus grands défis pour les projets IoT est comment tooreliably et connectez-vous en toute sécurité des appareils toohello solution back-end. Appareils IoT ont des caractéristiques différentes en tant que clients comparés tooother tels que des navigateurs et des applications mobiles. Les appareils IoT :
 
 * sont souvent des systèmes intégrés, qui ne font appel à aucun opérateur humain ;
 * peuvent être déployés sur des sites distants avec un accès physique coûteux ;
-* sont accessibles uniquement via le serveur principal de la solution ; Il n’existe aucun autre moyen d’interagir avec l’appareil.
+* Peut être uniquement accessible via une hello solution back-end. Il n’existe aucune autre toointeract façon avec les appareils hello.
 * peuvent avoir des performances et/ou des ressources de traitement limitées ;
 * peuvent avoir une connectivité réseau intermittente, lente ou coûteuse ;
-* peuvent nécessiter l’utilisation des protocoles d’application personnalisés, propriétaires ou spécifiques à un secteur.
+* Protocoles d’application propriétaire, personnalisées ou spécifiques au secteur toouse peut-être.
 * peuvent être créés à l’aide d’un large éventail de plateformes matérielles et logicielles populaires.
 
-Outre les exigences ci-dessus, n’importe quelle solution IoT doit également offrir des possibilités d’évolution, la sécurité et la fiabilité. Il en résulte un ensemble d’exigences de connectivité complexe, long à mettre en place avec des technologies traditionnelles telles que des conteneurs web et des courtiers de messagerie. Azure IoT Hub et les Kits Azure IoT device SDK facilitent l’implémentation de solutions qui répondent à ces exigences.
+En outre toohello les spécifications ci-dessus, n’importe quelle solution IoT doit également fournir l’échelle, la sécurité et fiabilité. Bonjour ensemble d’exigences de connectivité résultant est tooimplement et complexe à l’aide de technologies traditionnelles telles que les conteneurs de web et courtiers de messagerie. Azure IoT Hub et hello kits de développement logiciel Azure IoT périphérique rendent plus faciles solutions tooimplement qui répondent à ces exigences.
 
-Un appareil peut communiquer directement avec un point de terminaison de passerelle du cloud, ou, si l’appareil ne peut pas utiliser les protocoles de communication que la passerelle de cloud prend en charge, il peut se connecter via une passerelle intermédiaire. Par exemple, la [passerelle de protocole Azure IoT][lnk-protocol-gateway] peut traduire le protocole si les appareils ne peuvent pas utiliser les protocoles pris en charge par IoT Hub.
+Un périphérique peut communiquer directement avec un point de terminaison de passerelle de cloud, ou si l’appareil de hello ne peut pas utiliser un des protocoles de communication hello hello prend en charge de passerelle de cloud, il peut se connecter via une passerelle intermédiaire. Par exemple, hello [passerelle de protocole Azure IoT] [ lnk-protocol-gateway] peut effectuer traduction de protocole si les périphériques ne peut pas utiliser un des protocoles hello IoT Hub prend en charge.
 
 ### <a name="data-processing-and-analytics"></a>Traitement et analyse des données
 
-Dans le cloud, le serveur principal de solution IoT est l’endroit où se déroule la quasi-totalité du traitement des données, notamment le filtrage et l’agrégation des données de télémétrie et leur routage vers d’autres services. Le serveur principal de solution IoT :
+Dans le cloud de hello, un principal de solution IoT constitue la plupart hello du traitement des données, telles que le filtrage et l’agrégation de télémétrie et de leur routage tooother services. Hello principal IoT solution :
 
-* reçoit les données de télémétrie à l'échelle de vos appareils et détermine comment traiter et stocker ces données ; 
-* peut vous permettre d’envoyer des commandes à un appareil spécifique à partir du cloud ;
-* fournit des fonctionnalités d’inscription vous permettant d’approvisionner des appareils et de contrôler ceux qui sont autorisés à se connecter à votre infrastructure ;
-* vous permet de suivre l’état de vos appareils et de surveiller leurs activités.
+* Reçoit les données de télémétrie à grande échelle à partir de vos appareils et détermine comment tooprocess et stocker ces données. 
+* Peut vous permettre de commandes toosend hello cloud toospecific appareil.
+* Fournit des fonctionnalités de l’inscription des appareils qui vous tooprovision périphériques et toocontrol les appareils qui sont autorisés à tooconnect tooyour infrastructure.
+* Permet de vous tootrack hello l’état de vos appareils et contrôler leurs activités.
 
-Dans le scénario de maintenance prédictive, le serveur principal de solution stocke les données de télémétrie historiques. Le serveur principal de solution peut utiliser ces données pour identifier les modèles qui indiquent un besoin de maintenance sur une pompe spécifique.
+Dans le scénario de maintenance prédictive hello, hello solution back-end stocke les données de télémétrie historiques. Hello solution back-end permet cette données toouse tooidentify des modèles qui indiquent la maintenance est due à une pompe spécifique.
 
-Les solutions IoT peuvent inclure des boucles de rétroaction automatique. Par exemple, un module d’analyse dans le serveur principal de solution peut déterminer, à partir de données de télémétrie, que la température d’un appareil spécifique est supérieure aux niveaux de fonctionnement normaux. La solution peut alors envoyer une commande vers l’appareil, lui indiquant de prendre des mesures correctives.
+Les solutions IoT peuvent inclure des boucles de rétroaction automatique. Par exemple, un module d’analytique dans hello solution back-end peut identifier à partir de la télémétrie température hello d’un périphérique spécifique est supérieure à des niveaux de fonctionnement normales. solution de Hello peut alors envoyer un périphérique toohello de commande, lui indiquant une action corrective tootake.
 
 ### <a name="presentation-and-business-connectivity"></a>Présentation et connectivité d’entreprise
 
-Grâce à la couche de présentation et de connectivité d’entreprise, les utilisateurs finaux peuvent interagir avec la solution IoT et les appareils. Les utilisateurs peuvent ainsi afficher et analyser les données collectées à partir de leurs appareils. Ces vues peuvent prendre la forme de tableaux de bord ou de rapports BI qui affichent les données historiques ou les données quasiment en temps réel. Par exemple, un opérateur peut vérifier l’état d’une station de pompage spécifique et voir les alertes éventuellement déclenchées par le système. Cette couche permet également d’intégrer le serveur principal de solution IoT aux applications métier existantes pour une adaptation optimale aux flux de travail et processus d’entreprise. Par exemple, la solution de maintenance prédictive peut intégrer un système de planification qui prévoit la visite d’un ingénieur sur une station de pompage quand elle identifie un besoin de maintenance sur une pompe.
+couche de connectivité de présentation et entreprise Hello permet aux utilisateurs finaux toointeract avec hello solution IoT et les appareils hello. Il permet aux utilisateurs tooview et analyser les données hello collectées à partir de leurs appareils. Ces vues peuvent prendre la forme hello de tableaux de bord ou rapports BI qui peuvent afficher des données historiques ou à proximité des données en temps réel. Par exemple, un opérateur peut vérifier état hello de station de pompage particulier et voir les alertes déclenchées par le système de hello. Cette couche permet également une intégration de hello IoT solution principale avec des tootie line-of-business applications existantes dans le processus d’entreprise ou des flux de travail. Par exemple, hello maintenance prédictive solution peut s’intégrer avec un système de planification que la documentation un toovisit ingénieur une station pompage lors de la solution de hello identifie une pompe ayant besoin de maintenance.
 
 ![Tableau de bord de solution IoT][img-dashboard]
 

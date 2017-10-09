@@ -1,6 +1,6 @@
 ---
 title: "Présentation des unités de calcul dans Azure Database pour PostgreSQL | Microsoft Docs"
-description: "Azure Database pour PostgreSQL : Cet article explique les concepts des unités de calcul et ce qui se passe quand votre charge de travail atteint le maximum d’unités de calcul."
+description: "Base de données Azure pour PostgreSQL : cet article explique les concepts de hello d’unités de calcul et que se passe-t-il lorsque votre charge de travail atteint hello nombre maximum d’unités de calcul."
 services: postgresql
 author: kamathsun
 ms.author: sukamat
@@ -9,38 +9,38 @@ editor: jasonwhowell
 ms.service: postgresql
 ms.topic: article
 ms.date: 05/23/2017
-ms.openlocfilehash: 6077e52f60c7ef0afe7df9201ec05081ba81c179
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 42ec766ff6ce82ceee34d42e0f4a4ad86bc7b45d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="explaining-compute-units-in-azure-database-for-postgresql"></a>Présentation des unités de calcul dans Azure Database pour PostgreSQL
-Cet article explique les concepts des unités de calcul et ce qui se passe quand votre charge de travail atteint le maximum d’unités de calcul.
+Cet article explique le concept de hello d’unités de calcul et que se passe-t-il lorsque votre charge de travail atteint hello nombre maximum d’unités de calcul.
 
 ## <a name="what-are-compute-units"></a>Que sont les unités de calcul ?
-Les unités de calcul sont une mesure de débit de traitement processeur garanti disponible pour un serveur Azure Database pour PostgreSQL unique. Une unité de calcul est une mesure mélangée de ressources processeur et mémoire. Globalement, 50 unités de calcul sont équivalentes à la moitié d’un cœur. 100 unités de calcul sont équivalentes à un cœur. 2 000 unités de calcul sont équivalentes à vingt cœurs de débit de traitement garanti disponible pour votre serveur.
+Les unités sont une mesure de débit de traitement de l’UC est garantie tooa disponible de toobe de calcul en une seule base de données Azure pour PostgreSQL serveur. Une unité de calcul est une mesure mélangée de ressources processeur et mémoire. En règle générale, 50 unités de calcul sont équivalentes toohalf d’un cœur. 100 unités de calcul sont équivalentes tooone core. Unités de calcul 2000 sont équivalentes cœurs tootwenty du serveur de traitement garantie débit tooyour disponibles.
 
-La quantité de mémoire par unité de calcul est optimisée pour les niveaux tarifaires De base et Standard. Le fait de doubler les unités de calcul en augmentant le niveau de performances revient à doubler l’ensemble des ressources disponibles pour cette instance d’Azure Database pour PostgreSQL particulière.
+quantité de Hello de mémoire par unité de calcul est optimisée pour Basic de hello et niveaux de tarification Standard. Doubler les unités de calcul hello en augmentant le niveau de performance hello équivaut ensemble de hello toodoubling de toothat disponible des ressources en une seule base de données Azure pour PostgreSQL.
 
-Par exemple, 800 unités de calcul Standard fournissent 8 fois plus de débit d’UC et de mémoire qu’une configuration de 100 unités de calcul Standard. Cependant, là où 100 unités de calcul Standard fournissent le même débit d’UC que 100 unités de calcul De base, la quantité de mémoire qui est préconfigurée dans le niveau tarifaire Standard est le double de la quantité de mémoire configurée pour le niveau tarifaire De base. Par conséquent, le niveau tarifaire Standard offre de meilleures performances de charge de travail et une latence inférieure des transactions par rapport au niveau tarifaire De base avec le même nombre d’unités de calcul sélectionné.
+Par exemple, 800 unités de calcul Standard fournissent 8 fois plus de débit d’UC et de mémoire qu’une configuration de 100 unités de calcul Standard. Toutefois, alors que les unités de calcul Standard 100 fournissent hello même débit d’UC comparée unités de calcul tooBasic 100, hello mémoire qui est préconfigurée dans le niveau de tarification Standard est de double hello quantité de mémoire configurée pour le niveau tarifaire de base. Par conséquent, niveau de tarification Standard fournit les meilleures performances et une latence plus faible de transaction au niveau de tarification de base avec hello sélectionnée de la même unité de calcul.
 
-## <a name="how-can-i-determine-the-number-of-compute-units-needed-for-my-workload"></a>Comment puis-je déterminer le nombre d’unités de calcul requises pour ma charge de travail ?
-Si vous cherchez à migrer un serveur PostgreSQL existant s’exécutant localement ou sur une machine virtuelle, vous pouvez déterminer le nombre d’unités de calcul en estimant le nombre de cœurs de débit de traitement dont votre charge de travail a besoin. 
+## <a name="how-can-i-determine-hello-number-of-compute-units-needed-for-my-workload"></a>Comment puis-je déterminer le nombre hello d’unités de calcul nécessaires pour ma charge de travail ?
+Si vous cherchez toomigrate un serveur PostgreSQL existant exécuté localement ou sur un ordinateur virtuel, vous pouvez déterminer le nombre hello d’unités de calcul par l’estimation des besoins de votre charge de travail le nombre de cœurs du débit de traitement. 
 
 Si votre serveur actuel local ou sur machine virtuelle utilise actuellement 4 cœurs (sans compter l’hyperthread d’UC), commencez par configurer 400 unités de calcul pour votre serveur Azure Database pour PostgreSQL. Les unités de calcul peuvent être augmentées ou diminuées dynamiquement en fonction des besoins de votre charge de travail, pratiquement sans interruption des applications. 
 
-Surveillez le graphe des métriques dans le portail Azure ou lancez des commandes Azure CLI pour mesurer les unités de calcul. Les métriques pertinentes à surveiller sont Pourcentage d’unités de calcul et Limite d’unités de calcul.
+Graphique de mesures moniteur hello Bonjour Azure portal ou écriture CLI d’Azure commandes - toomeasure unités de calcul. Toomonitor de mesures sont le pourcentage d’unité de calcul hello et limite de l’unité de calcul.
 
 >[!IMPORTANT]
-> Si vous trouvez que les E/S par seconde du stockage ne sont pas entièrement utilisées jusqu’à leur valeur maximale, vous pouvez aussi surveiller l’utilisation des unités de calcul. L’augmentation des unités de calcul peut permettre un débit d’E/S plus élevé, en réduisant le goulot d’étranglement des performances dû à une quantité d’UC ou de mémoire limitée.
+> Si vous trouvez le stockage par seconde ne sont pas entièrement utilisé toohello maximum, envisagez de hello unités l’utilisation du calcul et de surveillance. Le déclenchement d’unités de calcul hello peut autoriser pour augmenter le débit d’e/s par en réduisant hello goulot d’étranglement en raison de l’UC de toolimited ou de la mémoire.
 
 ## <a name="what-happens-when-i-hit-my-maximum-compute-units"></a>Que se passe-t-il quand j’atteins le maximum d’unités de calculs ?
-Les niveaux de performances sont étalonnés et prévus pour fournir les ressources nécessaires pour exécuter la charge de travail de votre base de données jusqu’aux limites maximales pour le niveau de tarifaire et le niveau de performances sélectionnés. 
+Les niveaux de performance sont étalonnés et régie tooprovide ressources toorun votre charge de travail de base de données des limites de max toohello pour le niveau de tarification sélectionné hello et niveau de performance. 
 
-Si votre charge de travail atteint les limites maximales pour les unités de calcul ou pour les E/S par seconde approvisionnées, vous continuez à utiliser les ressources au niveau maximal autorisé, mais la latence de vos requêtes risque d’augmenter. Ces limites ne génèrent pas d’erreur mais plutôt un ralentissement de la charge de travail, sauf si le ralentissement s’accentue au point que les requêtes dépassent le délai d’expiration. 
+Si votre charge de travail atteint les limites maximales de hello en unités hello calcul soit ou les limites d’IOPS configurées, vous pouvez continuer de ressources de hello tooutilize niveau hello maximale autorisée, mais vos requêtes sont toosee susceptibles d’augmenter le temps de latence. Ces limites n’entraînent pas toutes les erreurs, mais plutôt un ralentissement de la charge de travail hello, sauf si le problème de ralentissement hello devient donc grave qui interroge le délai d’attente. 
 
-Si votre charge de travail atteint les limites maximales du nombre de connexions, des erreurs explicites sont déclenchées. Pour plus d’informations sur les limites des ressources, consultez [Limitations dans Azure Database pour PostgreSQL](concepts-limits.md).
+Si votre charge de travail atteint les limites maximales de hello sur le nombre de connexions, les erreurs explicites sont déclenchés. Pour plus d’informations sur les limites des ressources, consultez [Limitations dans Azure Database pour PostgreSQL](concepts-limits.md).
 
 ## <a name="next-steps"></a>Étapes suivantes
 Pour plus d’informations sur les niveaux tarifaires, consultez [Niveaux tarifaires d’Azure Database pour PostgreSQL](./concepts-service-tiers.md).

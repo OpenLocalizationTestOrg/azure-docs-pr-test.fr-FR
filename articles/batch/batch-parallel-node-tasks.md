@@ -1,5 +1,5 @@
 ---
-title: "Exécuter des tâches en parallèle pour utiliser les ressources de calcul de manière efficace - Azure Batch | Microsoft Docs"
+title: "tâches parallèle toouse aaaRun ressources de calcul Azure Batch efficacement - | Documents Microsoft"
 description: "Améliorer l’efficacité et réduire les coûts en utilisant moins de nœuds de calcul et en exécutant des tâches simultanées sur chaque nœud dans un pool Azure Batch"
 services: batch
 documentationcenter: .net
@@ -15,47 +15,47 @@ ms.workload: big-compute
 ms.date: 05/22/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 6903552d907a1ddb21d3b678e2d224b4b5e35b77
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 05df4b7d8e0bc595168a97faa231b7c90fe81980
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="run-tasks-concurrently-to-maximize-usage-of-batch-compute-nodes"></a>Exécuter des tâches simultanément pour optimiser l’utilisation des nœuds de calcul Batch 
+# <a name="run-tasks-concurrently-toomaximize-usage-of-batch-compute-nodes"></a>Exécuter des tâches simultanément l’utilisation de toomaximize lot de nœuds de calcul 
 
-En exécutant simultanément plusieurs tâches sur chaque nœud de calcul dans votre pool Azure Batch, vous pouvez optimiser l’utilisation des ressources sur un plus petit nombre de nœuds du pool. Pour certaines charges de travail, vous obtiendrez ainsi des durées de travail réduites et un coût inférieur.
+En exécutant plusieurs tâches simultanément sur chaque nœud de calcul dans le pool de traitement par lots Azure, vous pouvez optimiser l’utilisation des ressources sur un plus petit nombre de nœuds dans le pool de hello. Pour certaines charges de travail, vous obtiendrez ainsi des durées de travail réduites et un coût inférieur.
 
-Alors que certains scénarios tirent parti du fait de dédier toutes les ressources d’un nœud disponibles à une seule tâche, certaines situations profitent de l’autorisation accordée à plusieurs tâches de partager ces ressources :
+Alors que certains scénarios de tirer parti de dédier la totalité de la seule tâche d’un nœud ressources tooa, plusieurs situations bénéficient de ce qui permet à plusieurs tâches tooshare ces ressources :
 
-* **Réduction du transfert de données** lorsque les tâches sont en mesure de partager des données. Dans ce scénario, vous pouvez considérablement réduire les frais de transfert de données en copiant les données partagées vers un plus petit nombre de nœuds et en exécutant les tâches en parallèle sur chaque nœud. Cela s'applique surtout si les données à copier sur chaque nœud doivent être transférées entre des régions géographiques.
-* **Optimisation de l’utilisation de la mémoire** lorsque les tâches nécessitent une grande quantité de mémoire, mais seulement pendant de courtes périodes et à des moments variables au cours de l’exécution. Vous pouvez employer des nœuds de calcul moins nombreux mais de plus grande taille, avec plus de mémoire pour gérer efficacement ces pics. De cette façon, ces nœuds ont plusieurs tâches exécutées en parallèle sur chaque nœud, mais chaque tâche bénéficie de la mémoire abondante des nœuds à des moments différents.
-* **Atténuation des limites au nombre de nœuds** lorsque la communication entre les nœuds est requise au sein d’un pool. Actuellement, les pools configurés pour la communication entre les nœuds sont limités à 50 nœuds de calcul. Si chaque nœud dans un pool de ce type est capable d’exécuter des tâches en parallèle, un plus grand nombre de tâches peuvent être exécutées simultanément.
-* **Réplication d'un cluster de calcul local**, comme lorsque vous déplacez un environnement de calcul vers Azure pour la première fois. Si cette configuration exécute actuellement plusieurs tâches par nœud de calcul, vous pouvez augmenter le nombre maximal de tâches de nœud pour refléter plus précisément cette configuration.
+* **Réduire le transfert de données** lorsque les tâches sont en mesure de tooshare données. Dans ce scénario, vous pouvez réduire les frais de transfert de données en copiant les données partagées tooa plus petit nombre de nœuds et de l’exécution de tâches en parallèle sur chaque nœud. Cela s’applique en particulier si le nœud de hello données toobe tooeach copiées doit être transféré entre les régions géographiques.
+* **Optimisation de l’utilisation de la mémoire** lorsque les tâches nécessitent une grande quantité de mémoire, mais seulement pendant de courtes périodes et à des moments variables au cours de l’exécution. Vous pouvez employer moins, mais la plus grande, de calcul des nœuds avec tooefficiently de mémoire plus gérer ces pics. Ces nœuds devrait avoir plusieurs tâches en cours d’exécution en parallèle sur chaque nœud, mais chaque tâche bénéficie de mémoire abondante de nœuds hello à des moments différents.
+* **Atténuation des limites au nombre de nœuds** lorsque la communication entre les nœuds est requise au sein d’un pool. Actuellement, les pools configurés pour la communication entre les nœuds sont des nœuds de calcul too50 limité. Si chaque nœud dans un pool de ce type est en mesure de tooexecute les tâches en parallèle, un plus grand nombre de tâches pouvant être exécuté simultanément.
+* **Réplication d’un cluster de calcul local**, par exemple lorsque vous commencez par déplacer un tooAzure d’environnement de calcul. Si votre solution sur site en cours s’exécute plusieurs tâches par nœud de calcul, vous pouvez augmenter le nombre maximal de hello des tâches de nœuds toomore reflètent précisément que la configuration.
 
 ## <a name="example-scenario"></a>Exemple de scénario
-Comme exemple d’illustration des avantages de l’exécution de tâches parallèles, supposons que votre application de tâche soit dotée de critères de processeur et de mémoire tels que des nœuds [Standard\_D1](../cloud-services/cloud-services-sizes-specs.md) sont suffisants. Cependant, pour terminer le travail dans le délai imparti, 1 000 nœuds de ce type sont nécessaires.
+Comme un tooillustrate exemple hello les avantages de l’exécution de tâches parallèles, supposons que votre application de la tâche a processeur et de mémoire que [Standard\_D1](../cloud-services/cloud-services-sizes-specs.md) nœuds sont suffisantes. Toutefois, dans le travail de hello ordre toofinish dans le temps de hello requis, 1 000 de ces nœuds sont nécessaires.
 
-Au lieu d’utiliser les nœuds Standard\_D1 avec 1 cœur de processeur, vous pouvez utiliser des nœuds [Standard\_D14](../cloud-services/cloud-services-sizes-specs.md) avec 16 cœurs chacun, et activer l’exécution de tâches parallèles. Vous pouvez donc utiliser *16 fois moins de nœuds* : à la place des 1 000 nœuds, seuls 63 sont requis. En outre, si des fichiers d’application volumineux ou des données de référence sont requis pour chaque nœud, l’efficacité et la durée du travail sont encore améliorées, car les données ne sont copiées que sur 16 nœuds.
+Au lieu d’utiliser les nœuds Standard\_D1 avec 1 cœur de processeur, vous pouvez utiliser des nœuds [Standard\_D14](../cloud-services/cloud-services-sizes-specs.md) avec 16 cœurs chacun, et activer l’exécution de tâches parallèles. Vous pouvez donc utiliser *16 fois moins de nœuds* : à la place des 1 000 nœuds, seuls 63 sont requis. En outre, si les fichiers d’application de grande taille ou des données de référence sont requises pour chaque nœud, l’efficacité et la durée du travail sont à nouveau améliorées hello les données étant copiées tooonly 16 nœuds.
 
 ## <a name="enable-parallel-task-execution"></a>Activer l’exécution des tâches parallèles
-Vous configurez les nœuds de calcul pour l’exécution des tâches parallèles au niveau du pool. Avec la bibliothèque Batch .NET, définissez la propriété [CloudPool.MaxTasksPerComputeNode][maxtasks_net] lorsque vous créez un pool. Si vous utilisez l’API REST Batch, définissez l’élément [maxTasksPerNode][rest_addpool] dans le corps de la requête lors de la création du pool.
+Vous configurez les nœuds de calcul pour l’exécution de la tâche parallèle au niveau du pool hello. Avec la bibliothèque de lot .NET hello, définissez hello [CloudPool.MaxTasksPerComputeNode] [ maxtasks_net] propriété lorsque vous créez un pool. Si vous utilisez l’API REST de traitement par lots de hello, définissez hello [maxTasksPerNode] [ rest_addpool] élément dans le corps de la demande hello lors de la création du pool.
 
-Azure Batch vous permet de définir un nombre maximum de tâches par nœud allant jusqu'à quatre fois (4x) le nombre de cœurs de nœud. Par exemple, si le pool est configuré avec des nœuds de grande taille (quatre cœurs), alors la valeur `maxTasksPerNode` peut être définie sur 16. Pour plus d’informations sur le nombre de cœurs pour chacune des tailles de nœud, consultez [Tailles de services Cloud](../cloud-services/cloud-services-sizes-specs.md). Pour plus d’informations sur les limites du service, consultez [Quotas et les limites pour le service Azure Batch](batch-quota-limit.md).
+Traitement par lots Azure vous permet de tooset nombre maximum de tâches par nœud de toofour fois (x 4) hello nombre de cœurs de nœud. Par exemple, si hello pool est configuré avec les nœuds de taille « Grande » (quatre cœurs), puis `maxTasksPerNode` peut avoir la valeur too16. Pour plus d’informations sur le nombre hello de cœurs pour chacun des tailles de nœud hello, consultez [tailles pour les Services de Cloud](../cloud-services/cloud-services-sizes-specs.md). Pour plus d’informations sur les limites de service, consultez [Quotas et limites pour hello service Azure Batch](batch-quota-limit.md).
 
 > [!TIP]
-> Veillez à prendre en compte la valeur `maxTasksPerNode` lors de la construction d’une [formule de mise à l’échelle automatique][enable_autoscaling] pour votre pool. Par exemple, une formule qui évalue `$RunningTasks` pourrait être considérablement affectée par une augmentation des tâches par nœud. Consultez [Mettre automatiquement à l’échelle les nœuds de calcul dans un pool Azure Batch](batch-automatic-scaling.md) pour plus d’informations.
+> Être vraiment tootake dans hello du compte `maxTasksPerNode` valeur lorsque vous construisez une [formule de mise à l’échelle] [ enable_autoscaling] pour votre pool. Par exemple, une formule qui évalue `$RunningTasks` pourrait être considérablement affectée par une augmentation des tâches par nœud. Consultez [Mettre automatiquement à l’échelle les nœuds de calcul dans un pool Azure Batch](batch-automatic-scaling.md) pour plus d’informations.
 >
 >
 
 ## <a name="distribution-of-tasks"></a>Répartition des tâches
-Lorsque les nœuds de calcul d’un pool peuvent exécuter des tâches simultanément, il est important de spécifier comment vous souhaitez que les tâches soient réparties entre les nœuds du pool.
+Lorsque les nœuds de calcul hello dans un pool peuvent exécuter des tâches simultanément, il est important toospecify comment vous souhaitez que toobe de tâches hello répartis entre les nœuds hello dans le pool de hello.
 
-La propriété [CloudPool.TaskSchedulingPolicy][task_schedule] vous permet de spécifier que les tâches doivent être affectées uniformément entre tous les nœuds du pool (« propagation »). Vous pouvez également spécifier qu'autant de tâches que possible doivent être attribuées à chaque nœud avant que les tâches ne soient attribuées à un autre nœud du pool (« compression »).
+À l’aide de hello [CloudPool.TaskSchedulingPolicy] [ task_schedule] propriété, vous pouvez spécifier que les tâches doivent être assignées uniformément entre tous les nœuds dans le pool hello (« propagation »). Ou vous pouvez spécifier que les tâches autant que possible doivent être assignées tooeach nœud avant que les tâches sont assignées nœud tooanother pool hello (« compression »).
 
-Pour illustrer l’importance de cette fonctionnalité, examinons le pool de nœuds [Standard_Standard\_D14](../cloud-services/cloud-services-sizes-specs.md) (dans l’exemple ci-dessus) configuré avec une propriété [CloudPool.MaxTasksPerComputeNode][maxtasks_net] d’une valeur de 16. Si la propriété [CloudPool.TaskSchedulingPolicy][task_schedule] est configurée avec une propriété [ComputeNodeFillType][fill_type] de type *Pack*, l’utilisation des 16 cœurs de chaque nœud est optimisée et un [pool de mise à l’échelle automatique](batch-automatic-scaling.md) est autorisé pour nettoyer les nœuds inutilisés du pool (nœuds sans aucune tâche affectée). Ceci limite l'utilisation des ressources et permet d'économiser de l'argent.
+Prenons un exemple de comment cette fonctionnalité est utile, pool hello de [Standard\_D14](../cloud-services/cloud-services-sizes-specs.md) nœuds (dans l’exemple hello ci-dessus) qui est configuré avec un [CloudPool.MaxTasksPerComputeNode] [ maxtasks_net] valeur 16. Si hello [CloudPool.TaskSchedulingPolicy] [ task_schedule] est configuré avec un [ComputeNodeFillType] [ fill_type] de *Pack*, il optimiser l’utilisation de toutes les 16 noyaux de chaque nœud et autoriser une [échelle pool](batch-automatic-scaling.md) tooprune les nœuds inutilisés de pool de hello (nœuds sans toutes les tâches affectées). Ceci limite l'utilisation des ressources et permet d'économiser de l'argent.
 
 ## <a name="batch-net-example"></a>Exemple .NET Batch
-Cet extrait de code de l’API [Batch .NET][api_net] illustre une demande de création d’un pool contenant quatre grands nœuds avec un maximum de quatre tâches par nœud. Une stratégie de planification de tâche est également spécifiée ; elle remplira chaque nœud de tâches avant d'attribuer des tâches à un autre nœud du pool. Pour plus d’informations sur l’ajout de pools à l’aide de l’API Batch .NET, consultez [BatchClient.PoolOperations.CreatePool][poolcreate_net].
+Cela [Batch .NET] [ api_net] API de code montre une toocreate demande un pool qui contient les quatre nœuds de grande taille avec un maximum de quatre tâches par nœud. Elle spécifie une stratégie qui remplit chaque nœud tâches antérieures tooassigning tâches tooanother nœud du pool de hello de planification des tâches. Pour plus d’informations sur l’ajout de pools à l’aide de hello API .NET de traitement par lots, consultez [BatchClient.PoolOperations.CreatePool][poolcreate_net].
 
 ```csharp
 CloudPool pool =
@@ -71,7 +71,7 @@ pool.Commit();
 ```
 
 ## <a name="batch-rest-example"></a>Exemple REST Batch
-Cet extrait de code de l’API [REST Batch][api_rest] illustre une demande de création d’un pool contenant deux grands nœuds avec un maximum de quatre tâches par nœud. Pour plus d’informations sur l’ajout de pools à l’aide de l’API REST, consultez la page [Ajout d’un pool à un compte][rest_addpool].
+Cela [lot reste] [ api_rest] API montre un toocreate demande un pool qui contient deux nœuds de grande taille avec un maximum de quatre tâches par nœud. Pour plus d’informations sur l’ajout de pools à l’aide de hello API REST, consultez [ajouter un compte du pool de tooan][rest_addpool].
 
 ```json
 {
@@ -89,14 +89,14 @@ Cet extrait de code de l’API [REST Batch][api_rest] illustre une demande de cr
 ```
 
 > [!NOTE]
-> Vous ne pouvez définir l’élément `maxTasksPerNode` et la propriété [MaxTasksPerComputeNode][maxtasks_net] qu’au moment de la création du pool. Ils ne peuvent pas être modifiés après qu'un pool a déjà été créé.
+> Vous pouvez définir hello `maxTasksPerNode` élément et [MaxTasksPerComputeNode] [ maxtasks_net] propriété uniquement au moment de la création du pool. Ils ne peuvent pas être modifiés après qu'un pool a déjà été créé.
 >
 >
 
 ## <a name="code-sample"></a>Exemple de code
-Le projet [ParallelNodeTasks][parallel_tasks_sample] sur GitHub illustre l’utilisation de la propriété [CloudPool.MaxTasksPerComputeNode][maxtasks_net].
+Hello [ParallelNodeTasks] [ parallel_tasks_sample] projet sur GitHub illustre l’utilisation de hello de hello [CloudPool.MaxTasksPerComputeNode] [ maxtasks_net] propriété.
 
-Cette application de console en C# utilise la bibliothèque [Batch .NET][api_net] pour créer un pool avec un ou plusieurs nœuds de calcul. Elle exécute un nombre configurable de tâches sur ces nœuds pour simuler la charge variable. La sortie de l'application spécifie quels nœuds ont exécuté chaque tâche. L'application fournit également un résumé des paramètres du travail et sa durée. La partie Résumé de la sortie de deux exécutions différentes de l’exemple d’application apparaît ci-dessous.
+Cette application de console c# utilise hello [Batch .NET] [ api_net] toocreate de bibliothèque un pool avec un ou plusieurs nœuds de calcul. Il exécute un nombre configurable de tâches sur ces nœuds toosimulate la charge variable. Sortie de l’application hello spécifie les nœuds exécuté chaque tâche. application Hello fournit également un résumé des paramètres de la tâche hello et la durée. partie de résumé Hello de sortie hello de deux exécutions différentes de l’application d’exemple hello s’affiche ci-dessous.
 
 ```
 Nodes: 1
@@ -106,7 +106,7 @@ Tasks: 32
 Duration: 00:30:01.4638023
 ```
 
-La première exécution de l'exemple d'application montre qu'avec un nœud unique dans le pool et le paramètre par défaut d'une tâche par nœud, la durée du travail dépasse 30 minutes.
+première exécution de Hello de l’exemple d’application hello montre que, avec un nœud unique dans le pool de hello et paramètre hello par défaut est une tâche par nœud, la durée du travail hello est plus de 30 minutes.
 
 ```
 Nodes: 1
@@ -116,16 +116,16 @@ Tasks: 32
 Duration: 00:08:48.2423500
 ```
 
-La deuxième exécution de l'exemple montre une diminution significative de la durée du travail. Cela est dû au fait que le pool a été configuré avec quatre tâches par nœud, ce qui permet l'exécution de tâches parallèles pour terminer le travail en un quart du temps, environ.
+Hello deuxième exécution de l’exemple hello montre une diminution considérable de la durée du travail. Il s’agit, car le pool de hello a été configurée avec quatre tâches par nœud, ce qui permet de travail de tâche parallèle d’exécution toocomplete hello dans près d’un quart de temps de hello.
 
 > [!NOTE]
-> Les durées des tâches dans les résumés ci-dessus n’incluent pas le temps de création du pool. Chacune des tâches ci-dessus a été envoyée à des pools créés précédemment dont les nœuds de calcul étaient à l’état *Inactif* au moment de l’envoi.
+> durées de travail Hello dans des résumés d’hello ci-dessus n’incluent pas l’heure de création du pool. Chacune des tâches hello ci-dessus a été soumis toopreviously créé les pools dont les nœuds de calcul ont été Bonjour *inactif* état au moment de l’envoi.
 >
 >
 
 ## <a name="next-steps"></a>Étapes suivantes
 ### <a name="batch-explorer-heat-map"></a>Carte thermique Batch Explorer
-[Azure Batch Explorer][batch_explorer], l’un des [exemples d’applications][github_samples] Azure Batch, contient une fonctionnalité *Carte thermique* qui permet de visualiser l’exécution des tâches. Lorsque vous exécutez l’exemple d’application [ParallelTasks][parallel_tasks_sample], utilisez la fonctionnalité Carte thermique pour visualiser l’exécution de tâches parallèles sur chaque nœud.
+Hello [Azure Batch Explorer][batch_explorer], un des hello Azure Batch [exemples d’applications][github_samples], contient un *cartethermique* fonctionnalité qui fournit la visualisation de l’exécution de la tâche. Lorsque vous avez exécuté l’hello [ParallelTasks] [ parallel_tasks_sample] exemple d’application, vous pouvez utiliser hello thermique fonctionnalité tooeasily visualiser l’exécution de hello de tâches en parallèle sur chaque nœud.
 
 ![Carte thermique Batch Explorer][1]
 

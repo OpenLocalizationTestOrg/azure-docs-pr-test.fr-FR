@@ -1,5 +1,5 @@
 ---
-title: Obsolescence de Datamarket | Microsoft Docs
+title: "aaaDatamarket désapprobation | Documents Microsoft"
 description: "Obsolescence d’Azure Data Market."
 services: machine-learning
 documentationcenter: 
@@ -14,27 +14,27 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: LuisCa
-ms.openlocfilehash: e40b69f97878a6072a64912f017f8e5621ba6e71
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ee9fb0c6e4ffd87239220976ea2984afab9fffae
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="datamarket-is-now-deprecated"></a>DataMarket est à présent obsolète.
 
-[Microsoft DataMarket](https://datamarket.azure.com/datasets) est maintenant déconseillé, de même que les API Machine Learning qui y étaient hébergées.
+Hello [Microsoft DataMarket](https://datamarket.azure.com/datasets) est maintenant déconseillé et donc hello Machine Learning API qui étaient hébergés il sont maintenant également déconseillés.
 
-Vous pouvez maintenant trouver ces fonctionnalités (et bien plus encore) dans les [API Cognitive Services](https://www.microsoft.com/cognitive-services).
+Vous pouvez maintenant rechercher ces capacités (et plus) Bonjour [cognitifs API des Services](https://www.microsoft.com/cognitive-services).
 
 ## <a name="text-analytics-api"></a>API Analyse de texte
 
-Les anciens clients de l’API DataMarket Analyse de texte doivent commencer à utiliser l’[API Analyse de texte Cognitive Services](https://www.microsoft.com/cognitive-services/text-analytics-api).
-L’API Analyse de texte Cognitive Services prend en charge les mêmes scénarios que la version antérieure de DataMarket, ainsi que d’autres scénarios tels que la détection de la langue et la détection de thèmes.
+Les clients DataMarket texte Analytique API précédentes doivent démarrer à l’aide de hello [cognitifs Services texte Analytique API](https://www.microsoft.com/cognitive-services/text-analytics-api).
+Hello cognitifs Services texte Analytique API prend en charge tous les scénarios hello hello antérieur DataMarket version était le cas, ainsi que des scénarios supplémentaires tels que la détection de la langue et la détection de la rubrique.
 
 
 ## <a name="recommendations-api"></a>API Recommandations 
 
-Les anciens clients de l’API DataMarket Recommendations doivent commencer à utiliser l’[API Recommendations Cognitive Services](https://www.microsoft.com/cognitive-services/recommendations-api).
-L’API Recommendations Cognitive Services prend en charge les mêmes scénarios que la version antérieure de DataMarket, ainsi que d’autres scénarios tels que la prise en charge des lots et de meilleures métriques hors connexion afin d’évaluer la qualité des modèles. 
+Les clients DataMarket recommandations API précédentes doivent démarrer à l’aide de hello [cognitifs API des Services de recommandations](https://www.microsoft.com/cognitive-services/recommendations-api).
+Bonjour prend en charge l’API de recommandations cognitifs Services que tous hello scénarios hello antérieur DataMarket version a, ainsi que d’autres scénarios, notamment la prise en charge de traitement par lots et de mieux les métriques hors connexion tooevaluate hello de qualité de modèles. 
 
-Pour plus d’informations sur l’utilisation de l’API Recommandations Cognitive Services, consultez [Migrer vers l’API Recommendations Azure Cognitive Services](http://aka.ms/recomigrate).
+Pour plus d’informations sur comment l’à l’aide de toostart hello cognitifs API des Services de recommandations, consultez [tooAzure cognitifs API des Services de recommandations de migration](http://aka.ms/recomigrate).

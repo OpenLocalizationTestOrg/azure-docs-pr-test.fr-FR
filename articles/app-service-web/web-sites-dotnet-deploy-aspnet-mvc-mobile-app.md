@@ -1,6 +1,6 @@
 ---
-title: "Déployer une application web mobile ASP.NET MVC 5 dans Azure App Service"
-description: "Didacticiel expliquant comment déployer une application web dans Azure App Service à l’aide des fonctionnalités mobiles de l’application web ASP.NET MVC 5."
+title: "application web mobile d’aaaDeploy un ASP.NET MVC 5 dans Azure App Service"
+description: "Un didacticiel vous apprend comment toodeploy un tooAzure d’application web du Service d’applications à l’aide de mobile fonctionnalités dans ASP.NET MVC 5 application web."
 services: app-service
 documentationcenter: .net
 author: cephalin
@@ -14,56 +14,56 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 01/12/2016
 ms.author: cephalin
-ms.openlocfilehash: c98e9b485c52a82e5be5c0f6b0b67912d1e890b9
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 01119c07246c0252fd357562774a2e90b3ef77d0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-an-aspnet-mvc-5-mobile-web-app-in-azure-app-service"></a>Déployer une application web mobile ASP.NET MVC 5 dans Azure App Service
-Ce didacticiel aborde les bases de la conception d’une application web ASP.NET MVC 5 adaptée aux appareils mobiles et de son déploiement dans Azure App Service. Pour ce didacticiel, vous avez besoin de [Visual Studio Express 2013 pour le Web][Visual Studio Express 2013] ou de l’édition professionnelle de Visual Studio si vous l’avez déjà. Vous pouvez utiliser [Visual Studio 2015] , mais les captures d'écran seront différentes et vous devrez utiliser les modèles ASP.NET 4.x.
+Ce didacticiel vous hello notions de base de comment toobuild un ASP.NET MVC 5 web application adaptés aux appareils mobiles et le déployer tooAzure du Service d’applications. Pour ce didacticiel, vous devez [Visual Studio Express 2013 pour le Web] [ Visual Studio Express 2013] hello éditions ou professional de Visual Studio si vous l’avez déjà. Vous pouvez utiliser [Visual Studio 2015] mais captures d’écran hello sera différentes, et vous devez utiliser des modèles de hello ASP.NET 4.x.
 
 [!INCLUDE [create-account-and-websites-note](../../includes/create-account-and-websites-note.md)]
 
 ## <a name="what-youll-build"></a>Contenu
-Pour ce didacticiel, vous devrez ajouter des fonctionnalités mobiles à l’application simple de listes de conférence fournie dans le [projet de départ][StarterProject]. La capture d’écran suivante illustre les sessions ASP.NET dans l’application terminée, telles qu’elles s’affichent dans l’émulateur de navigateur des outils de développement F12 d’Internet Explorer 11.
+Pour ce didacticiel, vous allez ajouter des fonctionnalités mobiles toohello annonce de conférence application simple qui est fournie dans hello [projet de démarrage][StarterProject]. Hello capture d’écran suivante montre les sessions ASP.NET hello dans hello terminée application, comme indiqué dans l’émulateur de navigateur hello dans les outils de développement Internet Explorer 11 F12.
 
 ![][FixedSessionsByTag]
 
-Vous pouvez utiliser les outils destinés aux développeurs F12 d’Internet Explorer 11 et [l’outil Fiddler][Fiddler] pour vous aider à déboguer votre application. 
+Vous pouvez utiliser les outils de développement hello Internet Explorer 11 F12 et hello [outil Fiddler] [ Fiddler] toohelp déboguer votre application. 
 
 ## <a name="skills-youll-learn"></a>Compétences
 Vous apprendrez les compétences suivantes :
 
-* Utilisation de Visual Studio 2013 pour publier votre application web directement dans une application web d’Azure App Service.
-* Comment les modèles ASP.NET MVC 5 utilisent l'infrastructure Bootstrap CSS pour optimiser l'affichage sur les appareils mobiles.
-* Comment créer des vues adaptées aux appareils mobiles et personnalisées selon les navigateurs mobiles, comme ceux de l'iPhone ou des téléphones Android.
-* Comment créer des vues réactives (qui fonctionnent sous différents navigateurs et appareils).
+* Comment toouse Visual Studio 2013 toopublish votre application web directement tooa web application dans Azure App Service.
+* Utilisent des modèles de hello ASP.NET MVC 5 framework du programme d’amorçage CSS hello pour améliorer l’affichage sur les périphériques mobiles
+* Comment toocreate mobiles spécifiques vues tootarget certains navigateurs mobiles, tels que les iPhone hello et Android
+* Comment toocreate les vues réactive (vues qui répondent toodifferent navigateurs pour les appareils)
 
-## <a name="set-up-the-development-environment"></a>Configuration de l’environnement de développement
-Configurez l’environnement de développement en installant le Kit de développement logiciel (SDK) Azure pour .NET 2.5.1 ou version ultérieure. 
+## <a name="set-up-hello-development-environment"></a>Configuration d’environnement de développement hello
+Configurer votre environnement de développement en installant hello Azure SDK pour .NET 2.5.1 ou version ultérieure. 
 
-1. Pour installer le Kit de développement logiciel (SDK) Azure pour .NET, cliquez sur le lien ci-dessous. Si Visual Studio 2013 n'est pas encore installé, il le sera par l'intermédiaire de ce lien. Ce didacticiel requiert Visual Studio 2013. [Kit de développement logiciel (SDK) Azure pour Visual Studio 2013][AzureSDKVs2013]
-2. Dans la fenêtre Web Platform Installer, cliquez sur **Installer** , puis poursuivez l'installation.
+1. tooinstall hello Azure SDK pour .NET, cliquez sur lien hello ci-dessous. Si vous n’avez pas encore installé de Visual Studio 2013, il sera installé par un lien de hello. Ce didacticiel requiert Visual Studio 2013. [Kit de développement logiciel (SDK) Azure pour Visual Studio 2013][AzureSDKVs2013]
+2. Dans la fenêtre de Web Platform Installer hello, cliquez sur **installer** et poursuivre l’installation de hello.
 
-Vous aurez également besoin d'un émulateur de navigateur mobile. Vous pouvez utiliser l'un des émulateurs suivants :
+Vous aurez également besoin d'un émulateur de navigateur mobile. Hello suivantes ne fonctionnent pas :
 
 * Émulateur de navigateur dans les [outils de développement F12 d’Internet Explorer 11][EmulatorIE11] (utilisés dans toutes les captures d’écran de navigateurs mobiles). Il dispose de présélections de chaîne d'agent utilisateur pour Windows Phone 8, Windows Phone 7 et l'iPad d'Apple.
 * Émulateur de navigateur de [Google Chrome DevTools][EmulatorChrome]. Il inclut des présélections pour de nombreux périphériques Android, ainsi que pour l'iPhone d'Apple, l'iPad d'Apple et le Kindle Fire d'Amazon. Il émule également des événements tactiles.
 * [Émulateur mobile Opera][EmulatorOpera]
 
-Des projets Visual Studio avec code source C\# sont disponibles pour cette rubrique :
+Les projets Visual Studio avec C\# code source est disponible tooaccompany cette rubrique :
 
 * [Téléchargement du projet de départ][StarterProject]
 * [Téléchargement du projet terminé][CompletedProject]
 
-## <a name="bkmk_DeployStarterProject"></a>Déploiement du projet de départ dans une application Web Azure
-1. Téléchargez le [projet de départ][StarterProject] de l’application de listes de conférence.
-2. Dans l’Explorateur Windows, cliquez avec le bouton droit sur le fichier ZIP téléchargé, puis sélectionnez *Propriétés*.
-3. Dans la boîte de dialogue **Propriétés**, cliquez sur le bouton **Débloquer**. Le déblocage empêche l’apparition d’un avertissement de sécurité, qui s’affiche normalement lorsque vous essayez d’utiliser un fichier *.zip* téléchargé à partir d’Internet.
-4. Cliquez avec le bouton droit sur le fichier ZIP, puis sélectionnez **Extraire tout** pour décompresser le fichier. 
-5. Dans Visual Studio, ouvrez le fichier *C#\Mvc5Mobile.sln*.
-6. Dans l'Explorateur de solutions, cliquez avec le bouton droit sur le projet, puis cliquez sur **Publier**.
+## <a name="bkmk_DeployStarterProject"></a>Déployer le projet hello starter tooan l’application web Azure
+1. Télécharger l’application de liste de conférence hello [projet de démarrage][StarterProject].
+2. Dans l’Explorateur Windows, fichier ZIP de hello téléchargé avec le bouton droit, puis choisissez *propriétés*.
+3. Bonjour **propriétés** boîte de dialogue, choisissez hello **Unblock** bouton. (Le déblocage empêche un avertissement de sécurité qui se produit lorsque vous essayez de toouse un *.zip* fichier que vous avez téléchargé à partir du web de hello.)
+4. Cliquez sur le fichier ZIP de hello et sélectionnez **extraire tout** afin de décompresser le fichier de hello. 
+5. Dans Visual Studio, ouvrez hello *C#\Mvc5Mobile.sln* fichier.
+6. Dans l’Explorateur de solutions, cliquez sur projet de hello, sur **publier**.
    
    ![][DeployClickPublish]
 7. Dans Publier le site web, cliquez sur **Microsoft Azure App Service**.
@@ -72,44 +72,44 @@ Des projets Visual Studio avec code source C\# sont disponibles pour cette rub
 8. Si vous n’êtes pas déjà connecté à Azure, cliquez sur **Ajouter un compte**.
    
    ![][DeploySignIn]
-9. Suivez les instructions de l’invite pour vous connecter à votre compte Azure.
-10. La boîte de dialogue App Service doit maintenant indiquer que vous êtes connecté. Cliquez sur **Nouveau**.
+9. Suivez hello invites toolog à votre compte Azure.
+10. Hello, boîte de dialogue du Service d’applications doit maintenant afficher comme connecté. Cliquez sur **Nouveau**.
     
     ![][DeployNewWebsite]  
-11. Dans le champ **Nom de l’application web** , indiquez le préfixe d’un nom d’application unique. Le nom complet de votre application web est *&lt;prefix>*.azurewebsites.net. Par ailleurs, sélectionnez ou spécifiez un nouveau nom de groupe de ressources dans **Groupe de ressources**. Ensuite, cliquez sur **Nouveau** pour créer un plan App Service.
+11. Bonjour **nom de l’application Web** Indiquez un préfixe de nom d’application unique. Le nom complet de votre application web est *&lt;prefix>*.azurewebsites.net. Par ailleurs, sélectionnez ou spécifiez un nouveau nom de groupe de ressources dans **Groupe de ressources**. Ensuite, cliquez sur **nouveau** toocreate un nouveau plan de Service d’applications.
     
     ![][DeploySiteSettings]
-12. Configurez le nouveau plan App Service et cliquez sur **OK**. 
+12. Configurez le nouveau plan de Service de l’application hello, cliquez sur **OK**. 
     
     ![](./media/web-sites-dotnet-deploy-aspnet-mvc-mobile-app/deploy-to-azure-website-7a.png)
-13. Dans la boîte de dialogue Créer App Service, cliquez sur **Créer**.
+13. Dans la boîte de dialogue Créer un Service application hello, cliquez sur **créer**.
     
     ![](./media/web-sites-dotnet-deploy-aspnet-mvc-mobile-app/deploy-to-azure-website-7b.png) 
-14. Une fois les ressources Azure créées, la boîte de dialogue Publier le site web est renseignée avec les paramètres de votre nouvelle application. Cliquez sur **Publier**.
+14. Une fois hello ressources Azure sont créés, boîte de dialogue Publier le site Web hello est rempli avec des paramètres pour votre nouvelle application hello. Cliquez sur **Publier**.
     
     ![][DeployPublishSite]
     
-    Une fois que Visual Studio a terminé de publier le projet de démarrage dans l’application web Azure, le navigateur de bureau s’ouvre et affiche l’application web en ligne.
-15. Lancez l’émulateur de navigateur mobile, copiez l’URL de l’application de conférence (*<prefix>*.azurewebsites.net) dans l’émulateur, puis cliquez sur le bouton supérieur droit et sélectionnez **Parcourir par balise**. Si Internet Explorer 11 est votre navigateur par défaut, il vous suffit d’appuyer sur la touche `F12` puis sur les touches `Ctrl+8`, et de basculer le profil du navigateur sur **Windows Phone**. L’image suivante illustre la vue *AllTags* en mode portrait (une fois que l’option **Parcourir par balise**a été sélectionnée).
+    Une fois que Visual Studio a terminé l’application de publication toohello hello starter projet web Azure, navigateur de bureau hello ouvre toodisplay hello dynamique web app.
+15. Démarrer l’émulateur de votre navigateur mobile, de copier l’URL de hello pour l’application de conférence hello (*<prefix>*. azurewebsites.net) dans l’émulateur de hello, puis cliquez sur le bouton droit et sélectionnez **Parcourir par balise**. Si vous utilisez Internet Explorer 11 comme navigateur par défaut de hello, vous devez simplement tootype `F12`, puis `Ctrl+8`, puis modifiez profil de navigateur hello trop**Windows Phone**. L’image ci-dessous montre hello *AllTags* affichage en mode portrait (choisisse **Parcourir par balise**).
     
     ![][AllTags]
 
 > [!TIP]
-> De même que vous pouvez déboguer votre application MVC 5 dans Visual Studio, vous pouvez republier votre application web dans Azure pour la vérifier en ligne directement à partir de votre navigateur mobile ou d’un émulateur de navigateur.
+> Pendant que vous pouvez déboguer votre application MVC 5 à partir de Visual Studio, vous pouvez publier votre tooAzure d’application web à nouveau tooverify hello web dynamique application directement à partir de votre navigateur mobile ou un émulateur de navigateur.
 > 
 > 
 
-L'affichage est tout à fait lisible sur un appareil mobile. Vous pouvez également déjà voir certains effets visuels appliqués par l'infrastructure CSS Bootstrap.
-Cliquez sur le lien **ASP.NET** .
+affichage de Hello est très lisible sur un appareil mobile. Vous pouvez également déjà voir certains des effets visuels de hello appliqués par le framework d’amorçage CSS hello.
+Cliquez sur hello **ASP.NET** lien.
 
 ![][SessionsByTagASP.NET]
 
-La vue avec balises ASP.NET s’adapte à l’écran, ce que Bootstrap effectue pour vous automatiquement. Cependant, vous pouvez optimiser cette vue pour une meilleure adaptation au navigateur mobile. Par exemple, la colonne **Date** n’est pas très lisible. Plus loin dans ce didacticiel, vous modifierez la vue *AllTags* pour l’adapter aux appareils mobiles.
+Hello vue des balises ASP.NET est ajusté de zoom de toohello écran, ce programme d’amorçage fait automatiquement pour vous. Toutefois, vous pouvez améliorer ce navigateur mobile vue toobetter couleur hello. Par exemple, hello **Date** colonne est difficile à lire. Plus loin dans le didacticiel de hello, vous allez modifier hello *AllTags* afficher toomake il adaptés aux appareils mobiles.
 
 ## <a name="bkmk_bootstrap"></a> Infrastructure CSS Bootstrap
-La prise en charge de Bootstrap intégrée est une nouveauté du modèle MVC 5. Vous avez déjà vu comment cette prise en charge améliore les différentes vues dans votre application. Par exemple, la barre de navigation dans la partie supérieure se réduit automatiquement lorsque la largeur du navigateur est inférieure. Sur le navigateur de bureau, essayez de redimensionner la fenêtre du navigateur et observez le comportement de la barre de navigation. Il s'agit de la conception de sites web réactive intégrée à Bootstrap.
+Nouveauté de hello MVC 5 modèle est prise en charge d’amorçage intégrée. Vous avez déjà vu comment il améliore immédiatement hello différentes vues de votre application. Par exemple, barre de navigation hello haut hello est réductible automatiquement lors de la largeur du navigateur hello est plus petite. Sur le navigateur de bureau hello, essayez de redimensionner la fenêtre du navigateur hello et voir comment la barre de navigation hello modifie son apparence. Il s’agit de conception web réactive hello qui est intégrée à l’amorçage.
 
-Pour voir à quoi ressemblerait l’application web sans Bootstrap, ouvrez le fichier *App\_Start\\BundleConfig.cs* et placez les lignes qui contiennent *bootstrap.js* et *bootstrap.css* en commentaire. Le code ci-après indique les deux dernières instructions de la méthode `RegisterBundles` après la modification :
+toosee comment hello Web app ressemble sans amorçage, ouvrez *application\_Démarrer\\BundleConfig.cs* et commentez les lignes hello contenant *bootstrap.js* et *bootstrap.css*. Hello de code suivant montre hello deux dernières instructions Hello `RegisterBundles` méthode après modification de hello :
 
      bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
               //"~/Scripts/bootstrap.js",
@@ -119,29 +119,29 @@ Pour voir à quoi ressemblerait l’application web sans Bootstrap, ouvrez le fi
               //"~/Content/bootstrap.css",
               "~/Content/site.css"));
 
-Appuyez sur `Ctrl+F5` pour exécuter l’application.
+Appuyez sur `Ctrl+F5` application hello de toorun.
 
-La barre de navigation réductible a maintenant la forme d’une simple liste non triée classique. Cliquez sur **Parcourir par balise** une nouvelle fois, puis cliquez sur **ASP.NET**.
-Dans la vue de l’émulateur mobile, vous voyez maintenant qu’elle n’est plus adaptée à l’écran, et vous devez faire défiler la page horizontalement afin de voir le côté droit du tableau.
+Observez que la barre de navigation réductible hello est maintenant simplement une liste non triée ordinaire. Cliquez sur **Parcourir par balise** une nouvelle fois, puis cliquez sur **ASP.NET**.
+Dans la vue d’émulateur mobile hello, vous pouvez voir maintenant qu’il n’est plus monté de zoom de toohello écran, et vous devez faire défiler vers le côté en ordre toosee hello à droite de la table de hello.
 
 ![][SessionsByTagASP.NETNoBootstrap]
 
-Annulez vos modifications et actualisez le navigateur mobile pour vérifier que l'affichage adapté aux appareils mobiles a été rétabli.
+Annuler vos modifications et actualiser hello navigateur mobile tooverify qui hello adaptés aux appareils mobiles affichage a été restaurée.
 
-Bootstrap n’est pas propre à ASP.NET MVC 5 et vous pouvez tirer parti de ces fonctionnalités dans n’importe quelle application web. Désormais, Bootstrap est intégré au modèle de projet ASP.NET MVC 5. Votre application web MVC 5 peut donc tirer parti de Bootstrap par défaut.
+Programme d’amorçage n’est pas spécifique tooASP.NET MVC 5, et vous pouvez tirer parti de ces fonctionnalités dans les applications web. Désormais, Bootstrap est intégré au modèle de projet ASP.NET MVC 5. Votre application web MVC 5 peut donc tirer parti de Bootstrap par défaut.
 
-Pour plus d’informations sur Bootstrap, rendez-vous sur le site [Bootstrap][BootstrapSite].
+Pour plus d’informations sur les données d’amorçage, consultez toothe [Bootstrap] [ BootstrapSite] site.
 
-La section suivante vous indique comment proposer des vues spécialement adaptées aux navigateurs mobiles.
+Dans la section suivante de hello, vous verrez comment tooprovide des vues spécifiques du navigateur mobile.
 
-## <a name="bkmk_overrideviews"></a> Remplacement des vues, des dispositions et des vues partielles
-Vous pouvez remplacer toutes les vues (y compris les dispositions et les vues partielles) des navigateurs mobiles en général, mais aussi d’un navigateur mobile particulier ou encore d’un navigateur spécifique. Pour fournir un affichage mobile, vous pouvez copier un fichier de vue et ajouter *.Mobile* au nom du fichier. Par exemple, pour créer une vue mobile *Index*, vous pouvez copier *Views\\Home\\Index.cshtml* vers *Views\\Home\\Index.Mobile.cshtml*.
+## <a name="bkmk_overrideviews"></a>Remplacer les vues hello, dispositions et les vues partielles
+Vous pouvez remplacer toutes les vues (y compris les dispositions et les vues partielles) des navigateurs mobiles en général, mais aussi d’un navigateur mobile particulier ou encore d’un navigateur spécifique. afficher les tooprovide mobiles spécifiques, vous pouvez copier un fichier de vue et ajouter *. Mobile* toohello nom du fichier. Par exemple, toocreate un mobile *Index* vue, vous pouvez copier *vues\\accueil\\Index.cshtml* à *vues\\accueil\\ Index.Mobile.cshtml*.
 
 Dans cette section, vous allez créer un fichier de disposition mobile.
 
-Tout d’abord, copiez *Views\\Shared\\\_Layout.cshtml* vers *Views\\Shared\\\_Layout.Mobile.cshtml*. Ouvrez *\_Layout.Mobile.cshtml* et remplacez le titre **MVC5 Application** par **MVC5 Application (Mobile)**.
+toostart, copie *vues\\Shared\\\_Layout.cshtml* à *vues\\Shared\\\_Layout.Mobile.cshtml* . Ouvrez  *\_Layout.Mobile.cshtml* et remplacez titre hello de **MVC5 Application** trop**MVC5 Application (Mobile)**.
 
-Dans chaque appel `Html.ActionLink` pour la barre de navigation, supprimez « Parcourir par »de chaque lien *ActionLink*. Le code suivant affiche la balise `<ul class="nav navbar-nav">` terminée d’un fichier de disposition mobile.
+Dans chaque `Html.ActionLink` l’appel pour la barre de navigation hello, supprimez « Parcourir par » dans chaque lien *ActionLink*. Hello de code suivant montre hello terminée `<ul class="nav navbar-nav">` balise du fichier de mise en page mobile hello.
 
     <ul class="nav navbar-nav">
         <li>@Html.ActionLink("Home", "Index", "Home")</li>
@@ -150,22 +150,22 @@ Dans chaque appel `Html.ActionLink` pour la barre de navigation, supprimez « P
         <li>@Html.ActionLink("Tag", "AllTags", "Home")</li>
     </ul>
 
-Copiez le fichier *Views\\Home\\AllTags.cshtml* vers *Views\\Home\\AllTags.Mobile.cshtml*. Ouvrez le nouveau fichier et, pour l'élément `<h2>` , remplacez « Tags » par « Tags (M) » :
+Hello de copie *vues\\accueil\\AllTags.cshtml* le fichier *vues\\accueil\\AllTags.Mobile.cshtml*. Ouvrir le nouveau fichier de hello et modifier le `<h2>` élément à partir de « Balises » trop « balises (M) » :
 
     <h2>Tags (M)</h2>
 
-Accédez à la page des balises à l'aide d'un navigateur de Bureau et de l'émulateur de navigateur mobile. L’émulateur de navigateur mobile affiche les deux modifications que vous avez effectuées (le titre de *\_Layout.Mobile.cshtml* et le titre de *AllTags.Mobile.cshtml*).
+Parcourir la page de balises toohello à l’aide d’un navigateur de bureau et à l’aide d’émulateur de navigateur mobile. émulateur de navigateur mobile Hello affiche hello deux modifications (hello titre à partir de  *\_Layout.Mobile.cshtml* et titre hello à partir de *AllTags.Mobile.cshtml*).
 
 ![][AllTagsMobile_LayoutMobile]
 
-En revanche, l’affichage du Bureau n’a pas changé (avec des titres de *\_Layout.cshtml* et *AllTags.cshtml*).
+En revanche, affichage du bureau hello n’a pas changé (avec un titre de  *\_Layout.cshtml* et *AllTags.cshtml*).
 
 ![][AllTagsMobile_LayoutMobileDesktop]
 
 ## <a name="bkmk_browserviews"></a> Création de vues spécifiques du navigateur
-Outre les vues mobiles et de bureau, vous pouvez créer des vues pour un navigateur en particulier. Par exemple, il est possible de créer des vues spécialement adaptées aux navigateurs de l'iPhone et sous Android. Dans cette section, vous allez créer une disposition pour le navigateur de l’iPhone et une version pour iPhone de la vue *AllTags* .
+En outre toomobile-bureau spécifiques et des vues, vous pouvez créer des vues pour un navigateur individuel. Par exemple, vous pouvez créer des vues qui sont spécifiquement conçus pour hello iPhone ou un navigateur d’Android hello. Dans cette section, vous allez créer une disposition pour le navigateur iPhone qui hello et une version iPhone Hello *AllTags* vue.
 
-Ouvrez le fichier *Global.asax* et ajoutez le code suivant comme dernière ligne de la méthode `Application_Start`.
+Ouvrez hello *Global.asax* et ajoutez hello suivant en bas de toohello de code de la `Application_Start` (méthode).
 
     DisplayModeProvider.Instance.Modes.Insert(0, new DefaultDisplayMode("iPhone")
     {
@@ -173,51 +173,51 @@ Ouvrez le fichier *Global.asax* et ajoutez le code suivant comme dernière ligne
             ("iPhone", StringComparison.OrdinalIgnoreCase) >= 0)
     });
 
-Ce code définit un nouveau mode d’affichage appelé « iPhone », qui répondra à chaque demande entrante. Si la demande entrante correspond à la condition que vous avez définie (c'est-à-dire, si l'agent utilisateur contient la chaîne « iPhone »), ASP.NET MVC recherche des affichages dont le nom contient le suffixe « iPhone ».
+Ce code définit un nouveau mode d’affichage appelé « iPhone », qui répondra à chaque demande entrante. Si la demande entrante de hello correspond à la condition que vous avez défini (autrement dit, si l’agent utilisateur de hello contient la chaîne de hello « iPhone »), ASP.NET MVC recherche pour les vues dont le nom contient le suffixe « iPhone ».
 
 > [!NOTE]
-> Lors de l’ajout de modes d’affichage de navigateur mobile, pour iPhone et Android par exemple, assurez-vous de définir le premier argument sur `0` (insérez-le en haut de la liste) pour que le mode navigateur ait la priorité sur le modèle mobile (*.Mobile.cshtml). Si le modèle mobile est en haut de la liste, il est sélectionné à la place du mode d'affichage souhaité (le premier résultat est prioritaire et le modèle mobile correspond à tous les navigateurs mobiles). 
+> Lorsque Ajouter spécifiques au navigateur mobile modes d’affichage, telles que pour iPhone et Android, occuper que tooset hello du premier argument trop`0` toomake (insert haut hello de liste de hello) que ce mode de navigateur spécifiques hello est prioritaire sur modèle mobile de hello (*. Mobile.cshtml). Si le modèle mobile de hello est haut hello de liste de hello au lieu de cela, il sera sélectionné sur votre mode d’affichage souhaité (hello première correspondance wins et modèle de mobile hello correspond à tous les navigateurs mobiles). 
 > 
 > 
 
-Dans le code, cliquez avec le bouton droit sur `DefaultDisplayMode`, sélectionnez **Résoudre**, puis choisissez `using System.Web.WebPages;`. Cette action permet d’ajouter une référence à l’espace de noms `System.Web.WebPages`, qui se situe là où les types `DisplayModeProvider` et `DefaultDisplayMode` sont définis.
+Dans le code hello, avec le bouton droit `DefaultDisplayMode`, choisissez **résoudre**, puis choisissez `using System.Web.WebPages;`. Cette opération ajoute une référence toothe `System.Web.WebPages` espace de noms qui est l’emplacement où le `DisplayModeProvider` et `DefaultDisplayMode` les types sont définis.
 
 ![][ResolveDefaultDisplayMode]
 
-Vous pouvez aussi ajouter manuellement la ligne suivante à la section `using` du fichier.
+Vous pouvez également ajouter simplement manuellement hello suivant ligne toothe `using` section du fichier de hello.
 
     using System.Web.WebPages;
 
-Enregistrez les modifications. Copiez le fichier *Views\\Shared\\\_Layout.Mobile.cshtml* vers *Views\\Shared\\\_Layout.iPhone.cshtml*. Ouvrez le nouveau fichier, puis remplacez le titre `MVC5 Application (Mobile)` par `MVC5 Application (iPhone)`.
+Enregistrer les modifications de hello. Copiez le fichier *Views\\Shared\\\_Layout.Mobile.cshtml* vers *Views\\Shared\\\_Layout.iPhone.cshtml*. Ouvrez le nouveau fichier de hello et modifiez titre hello à partir de `MVC5 Application (Mobile)` à `MVC5 Application (iPhone)`.
 
-Copiez le fichier *Views\\Home\\AllTags.Mobile.cshtml* vers *Views\\Home\\AllTags.iPhone.cshtml*. Dans le nouveau fichier, pour l’élément `<h2>` , remplacez « Tags (M) » par « Tags (iPhone) ».
+Hello de copie *vues\\accueil\\AllTags.Mobile.cshtml* le fichier *vues\\accueil\\AllTags.iPhone.cshtml*. Dans le nouveau fichier de hello, modifiez hello `<h2>` élément à partir de « balises (M) » » des balises (iPhone) ».
 
-Exécutez l'application. Lancez un émulateur de navigateur mobile, vérifiez que son agent utilisateur est défini sur « iPhone » et parcourez la vue *AllTags* . Si vous utilisez l’émulateur dans les outils de développement F12 d’Internet Explorer 11,configurez l’émulation comme suit :
+Exécutez l’application hello. Exécuter un émulateur navigateur mobile, assurez-vous que l’agent utilisateur qui lui est défini trop « iPhone », puis accédez toohello *AllTags* vue. Si vous utilisez un émulateur de hello dans les outils de développement Internet Explorer 11 F12, configurez les éléments suivants de toohello de l’émulation :
 
 * Profil du navigateur = **Windows Phone**
 * Chaîne d’agent utilisateur = **Custom**
 * Chaîne personnalisée = **Apple-iPhone5C1/1001.525**
 
-La capture d’écran ci-après présente la vue *AllTags* affichée dans l’émulateur des outils destinés aux développeurs F12 d’Internet Explorer 11, avec la chaîne d’agent utilisateur personnalisée (il s’agit d’une chaîne d’agent utilisateur d’un iPhone 5C).
+capture d’écran suivante Hello affiche hello *AllTags* vue dans l’émulateur dans les outils de développement Internet Explorer 11 F12 avec la chaîne d’agent utilisateur hello (il s’agit d’une chaîne d’agent utilisateur iPhone 5 C).
 
 ![][AllTagsIPhone_LayoutIPhone]
 
-Dans le navigateur mobile, sélectionnez le lien **Intervenants** . En l’absence d’affichage mobile (*AllSpeakers.Mobile.cshtml*), la vue par défaut des intervenants (*AllSpeakers.cshtml*) est affichée à l’aide du mode de disposition mobile (*\_Layout.Mobile.cshtml*). Comme indiqué ci-dessous, le titre **MVC5 Application (Mobile)** est défini dans *\_Layout.Mobile.cshtml*.
+Dans le navigateur d’appareil mobile hello, sélectionnez hello **haut-parleurs** lien. Car il n’est pas un affichage mobile (*AllSpeakers.Mobile.cshtml*), afficher des haut-parleurs par défaut hello (*AllSpeakers.cshtml*) est restitué à l’aide du mode mobile hello ( *\_ Layout.Mobile.cshtml*). Comme indiqué ci-dessous, titre de hello **MVC5 Application (Mobile)** est défini dans  *\_Layout.Mobile.cshtml*.
 
 ![][AllSpeakers_LayoutMobile]
 
-Vous pouvez globalement désactiver l’affichage d’une vue par défaut (non mobile) au sein d’une disposition mobile en définissant `RequireConsistentDisplayMode` sur `true` dans le fichier *Views\\\_ViewStart.cshtml*, comme indiqué ci-dessous :
+Vous pouvez désactiver globalement d’une vue de (non mobile) par défaut à partir de rendu à l’intérieur d’une disposition mobile en définissant `RequireConsistentDisplayMode` à `true` Bonjour *vues\\\_ViewStart.cshtml* fichier, comme suit :
 
     @{
         Layout = "~/Views/Shared/_Layout.cshtml";
         DisplayModeProvider.Instance.RequireConsistentDisplayMode = true;
     }
 
-Lorsque `RequireConsistentDisplayMode` est défini sur `true`, la disposition mobile (*\_Layout.Mobile.cshtml*) est uniquement utilisée pour les vues mobiles (autrement dit, lorsque le fichier de vue se présente sous la forme ***ViewName**.Mobile.cshtml*). Vous pouvez définir `RequireConsistentDisplayMode` sur `true` si votre disposition mobile ne fonctionne pas correctement avec les vues non mobiles. La capture d’écran ci-après indique comment la page *Speakers* s’affiche lorsque `RequireConsistentDisplayMode` est défini sur `true` (sans la chaîne « (Mobile) » dans la barre de navigation supérieure).
+Lorsque `RequireConsistentDisplayMode` est défini trop`true`, disposition mobile de hello (*\_Layout.Mobile.cshtml*) est utilisé uniquement pour les périphériques mobiles (par exemple, lorsque le fichier est sous forme de hello  ***ViewName** . Mobile.cshtml*). Vous souhaiterez peut-être tooset `RequireConsistentDisplayMode` trop`true` si votre mise en page mobile ne fonctionne pas correctement avec les vues non mobiles. Hello capture d’écran ci-dessous montre comment hello *haut-parleurs* page restitue lorsque `RequireConsistentDisplayMode` est défini trop`true` (sans la chaîne hello « (Mobile) » Bonjour navigation barre haut hello).
 
 ![][AllSpeakers_LayoutMobileOverridden]
 
-Vous pouvez désactiver le mode d’affichage cohérent dans une vue spécifique en définissant `RequireConsistentDisplayMode` sur `false` dans le fichier de vue. Le balisage suivant du fichier *View\\Home\\AllSpeakers.cshtml* définit `RequireConsistentDisplayMode` sur `false` :
+Vous pouvez désactiver le mode d’affichage cohérent dans une vue spécifique en définissant `RequireConsistentDisplayMode` trop`false` dans le fichier de vue hello. Le balisage suivant Bonjour *vues\\accueil\\AllSpeakers.cshtml* fichier définit `RequireConsistentDisplayMode` trop`false`:
 
     @model IEnumerable<string>
 
@@ -226,13 +226,13 @@ Vous pouvez désactiver le mode d’affichage cohérent dans une vue spécifique
         DisplayModeProvider.Instance.RequireConsistentDisplayMode = false;
     }
 
-Dans cette section, nous avons vu comment créer des dispositions mobiles et des vues, ainsi que des dispositions et des vues pour des appareils spécifiques tels que l’iPhone.
-Toutefois, le principal avantage de l'infrastructure d'amorçage (Bootstrap) CSS est la disposition réactive, ce qui signifie qu'une seule feuille de style peut être appliquée sur les navigateurs de bureau, de téléphone et de tablette pour créer une apparence cohérente. La section suivante vous indique comment tirer parti de Bootstrap pour créer des vues adaptées aux appareils mobiles.
+Dans cette section, nous avons vu comment toocreate dispositions mobiles, des vues et comment toocreate dispositions et les vues pour des périphériques spécifiques tels que hello iPhone.
+Toutefois, hello principal avantage du framework du programme d’amorçage CSS hello est la présentation interactive, ce qui signifie qu’une seule feuille de style peut être appliqué sur le bureau, téléphone et tablette navigateurs toocreate une apparence et convivialité cohérentes. Dans la section suivante de hello, vous verrez comment tooleverage amorcer toocreate adaptés aux appareils mobiles des vues.
 
-## <a name="bkmk_Improvespeakerslist"></a> Amélioration de la liste Intervenants
-Comme vous venez de le voir, la vue *Speakers* est lisible, mais les liens sont petits et il est difficile de les sélectionner sur un appareil mobile. Dans cette section, vous allez adapter la vue *AllSpeakers* aux appareils mobiles. Les liens seront plus grands, faciles à sélectionner et contiendront une zone de recherche pour trouver des intervenants rapidement.
+## <a name="bkmk_Improvespeakerslist"></a>Améliorer hello haut-parleurs liste
+Comme vous venez de voir, hello *haut-parleurs* vue est accessible en lecture, mais les liens hello sont petits et sont difficile tootap sur un appareil mobile. Dans cette section, vous allez apporter hello *AllSpeakers* affichage adaptés aux appareils mobiles, qui affiche des liens volumineux, facile à tap et qui contient un tooquickly de zone de recherche trouvé haut-parleurs.
 
-Vous pouvez utiliser le style [linked list group][linked list group] pour améliorer la vue *Speakers*. Dans *Views\\Home\\AllSpeakers.cshtml*, remplacez le contenu du fichier Razor par le code ci-dessous.
+Vous pouvez utiliser hello Bootstrap [groupe de liste liée] [ linked list group] style afin d’améliorer hello *haut-parleurs* vue. Dans *vues\\accueil\\AllSpeakers.cshtml*, remplacez le contenu hello du fichier de Razor hello avec code hello ci-dessous.
 
      @model IEnumerable<string>
 
@@ -249,17 +249,17 @@ Vous pouvez utiliser le style [linked list group][linked list group] pour améli
         }
     </div>
 
-L’attribut `class="list-group"` de la balise `<div>` s’applique au style de liste Bootstrap, tandis que l’attribut `class="input-group-item"` s’applique au style de l’élément de liste Bootstrap pour chaque lien.
+Hello `class="list-group"` attribut Bonjour `<div>` balise s’applique le style de la liste d’amorçage et hello `class="input-group-item"` lien tooeach style d’élément de liste d’amorçage s’applique l’attribut.
 
-Actualisez le navigateur mobile. L'affichage actualisé ressemble à ceci :
+Actualiser le navigateur d’appareil mobile hello. Hello mis à jour la vue ressemble :
 
 ![][AllSpeakersFixed]
 
-Avec le style [linked list group][linked list group] Bootstrap, toute la zone de chaque lien est cliquable, ce qui confère un expérience utilisateur bien supérieure. Basculez vers l’affichage de bureau et observez l’homogénéité de l’apparence.
+Hello Bootstrap [groupe de liste liée] [ linked list group] style rend hello entier d’une zone pour chaque lien interactif, ce qui constitue une bien meilleure expérience utilisateur. Basculer l’affichage du bureau toothe et observer hello apparence et convivialité cohérentes.
 
 ![][AllSpeakersFixedDesktop]
 
-Certes, l’affichage du navigateur mobile a été amélioré, mais il est tout de même difficile de parcourir la longue liste d’intervenants. Bootstrap est dépourvu d'une fonction de filtre de recherche en natif. Il est possible d'en ajouter une à l'aide de quelques lignes de code. Tout d'abord, vous devez ajouter un champ de recherche à la vue, puis connecter du code JavaScript pour la fonction de filtre. Dans *Views\\Home\\AllSpeakers.cshtml*, ajoutez une balise \<form\> juste après la balise \<h2\>, comme indiqué ci-dessous :
+Bien que la vue du navigateur mobile hello a été améliorée, il est difficile de naviguer hello longue liste de haut-parleurs. Bootstrap est dépourvu d'une fonction de filtre de recherche en natif. Il est possible d'en ajouter une à l'aide de quelques lignes de code. Vous allez tout d’abord ajouter une vue de toohello de zone de recherche, puis raccorder avec hello du code JavaScript pour la fonction de filtre hello. Dans *vues\\accueil\\AllSpeakers.cshtml*, ajoutez un \<formulaire\> balise juste après hello \<h2\> de balise, comme indiqué ci-dessous :
 
     @model IEnumerable<string>
 
@@ -284,23 +284,23 @@ Certes, l’affichage du navigateur mobile a été amélioré, mais il est tout 
         }
     </div>
 
-Notez que les styles Bootstrap sont appliqués aux deux balises `<form>` et `<input>`. L’élément `<span>` ajoute un [glyphicon][glyphicon] Bootstrap à la zone de recherche.
+Notez que hello `<form>` et `<input>` à la fois les balises ont hello amorçage styles appliqués toothem. Hello `<span>` élément ajoute un démarrage [glyphicon] [ glyphicon] zone de recherche toothe.
 
-Dans le dossier *Scripts*, ajoutez un fichier JavaScript intitulé *filter.js*. Ouvrez le fichier et collez-y le code suivant :
+Bonjour *Scripts* dossier, ajoutez un fichier JavaScript nommé *filter.js*. Ouvrir le fichier de hello et collez hello après le code dans celui-ci :
 
     $(function () {
 
-        // reset the search form when the page loads
+        // reset hello search form when hello page loads
         $("form").each(function () {
             this.reset();
         });
 
-        // wire up the events to the <input> element for search/filter
+        // wire up hello events toohello <input> element for search/filter
         $("input").bind("keyup change", function () {
             var searchtxt = this.value.toLowerCase();
             var items = $(".list-group-item");
 
-            // show all speakers that begin with the typed text and hide others
+            // show all speakers that begin with hello typed text and hide others
             for (var i = 0; i < items.length; i++) {
                 var val = items[i].text.toLowerCase();
                 val = val.substring(0, searchtxt.length);
@@ -314,41 +314,41 @@ Dans le dossier *Scripts*, ajoutez un fichier JavaScript intitulé *filter.js*. 
         });
     });
 
-Vous devez également inclure le fichier filter.js à vos lots enregistrés. Ouvrez le fichier *App\_Start\\BundleConfig.cs* et modifiez les premiers lots. Modifiez la première instruction `bundles.Add` (pour le lot **jquery**) de manière à inclure le fichier *Scripts\\filter.js*, comme décrit ci-dessous :
+Vous devez également tooinclude filter.js dans vos regroupements inscrits. Ouvrez *application\_Démarrer\\BundleConfig.cs* et modifier des groupes de première hello. Modifier la première `bundles.Add` instruction (pour hello **jquery** offre groupée) tooinclude *Scripts\\filter.js*, comme suit :
 
      bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                 "~/Scripts/jquery-{version}.js",
                 "~/Scripts/filter.js"));
 
-Le lot **jquery** est déjà rendu par la vue *\_Layout* par défaut. Plus tard, vous pourrez utiliser le même code JavaScript pour appliquer la fonction de filtre aux autres vues de liste.
+Hello **jquery** offre groupée est déjà rendue par défaut de hello  *\_disposition* vue. Une version ultérieure, vous pouvez utiliser hello du code JavaScript même tooapply les affichages de liste de filtre fonctionnalité tooother.
 
-Actualisez le navigateur mobile et accédez à l'affichage *AllSpeakers* . Dans la zone de recherche, entrez « sc ». La liste des intervenants doit à présent être filtrée selon vos critères de recherche.
+Actualiser le navigateur d’appareil mobile hello et accédez toohello *AllSpeakers* vue. Dans la zone de recherche, entrez « sc ». liste de haut-parleurs Hello doit maintenant être filtrée en fonction de chaîne de recherche tooyour.
 
 ![][AllSpeakersFixedSearchBySC]
 
-## <a name="bkmk_improvetags"></a> Amélioration de la liste Balises
-À l’instar de la vue *Speakers*, la vue *Tags* est lisible, mais les liens sont petits et il est difficile de les sélectionner sur un appareil mobile. Vous pouvez optimiser la vue *Tags* de la même façon que vous l’avez fait avec la vue *Speakers*. Vous devez utiliser les modifications de code décrites plus haut mais en suivant la syntaxe de méthode `Html.ActionLink` dans *Views\\Home\\AllTags.cshtml* :
+## <a name="bkmk_improvetags"></a>Améliorer hello liste de balises
+Comme hello *haut-parleurs* afficher, hello *balises* vue est accessible en lecture, mais les liens de hello sont petite et difficile tootap sur un appareil mobile. Vous pouvez corriger hello *balises* vue hello même moyen vous corrigez hello *haut-parleurs* afficher, si vous utilisez des modifications de code hello décrites précédemment, mais avec les éléments suivants de hello `Html.ActionLink` syntaxe de méthode dans  *Vues\\accueil\\AllTags.cshtml*:
 
     @Html.ActionLink(tag, 
                      "SessionsByTag", 
                      new { tag }, 
                      new { @class = "list-group-item" })
 
-Le navigateur de bureau actualisé se présente désormais ainsi :
+Hello actualiser la recherche du navigateur de bureau comme suit :
 
 ![][AllTagsFixedDesktop]
 
-Quant au navigateur mobile actualisé, il se présente ainsi : 
+Et hello actualisé navigateur mobile présente comme suit : 
 
 ![][AllTagsFixed]
 
 > [!NOTE]
-> Si vous remarquez que le format de liste d’origine apparaît toujours dans le navigateur mobile, et que vous vous demandez ce que votre style Bootstrap est devenu, il s’agit d’un artefact de votre précédente action visant à créer des vues propres aux navigateurs mobiles. Toutefois, maintenant que vous utilisez l'infrastructure CSS Bootstrap pour créer une conception Web réactive, passez à l'étape suivante et supprimez les vues et les dispositions spécifiques aux navigateurs mobiles. Ensuite, le navigateur mobile actualisé affichera le style Bootstrap.
+> Si vous remarquez que cette mise en forme de liste d’origine hello est toujours présent dans hello navigateur mobile et vous demander quels styles d’amorçage nice tooyour s’est produit, il s’agit d’un artefact de votre antérieures action toocreate mobile des vues spécifiques. Toutefois, maintenant que vous utilisez hello Bootstrap CSS framework toocreate une conception réactive web, accédez de tête et supprimer ces affichages mobiles spécifiques et des vues de mise en page spécifiques à mobile hello. Une fois que vous l’avez fait, hello de navigateur mobile actualisées affichera les styles d’amorçage hello.
 > 
 > 
 
-## <a name="bkmk_improvedates"></a> Amélioration de la liste Dates
-Vous pouvez optimiser la vue *Dates* de la même façon que vous l’avez fait avec les vues *Speakers* et *Tags*. Vous devez utiliser les modifications de code décrites plus haut mais en suivant la syntaxe de méthode suivante `Html.ActionLink` dans *Views\\Home\\AllDates.cshtml* :
+## <a name="bkmk_improvedates"></a>Améliorer hello liste de Dates
+Vous pouvez améliorer hello *Dates* afficher comme amélioré de hello *haut-parleurs* et *balises* affiche si vous utilisez hello les modifications du code décrites précédemment, mais avec hello suivant `Html.ActionLink` syntaxe de méthode dans *vues\\accueil\\AllDates.cshtml*:
 
     @Html.ActionLink(date.ToString("ddd, MMM dd, h:mm tt"), 
                      "SessionsByDate", 
@@ -359,7 +359,7 @@ La vue du navigateur mobile actualisé se présente ainsi :
 
 ![][AllDatesFixed]
 
-Vous pouvez encore optimiser la vue *Dates* en classant les valeurs date-heure par date. Pour ce faire, vous pouvez utiliser le style [panels][panels] Bootstrap. Remplacez le contenu du fichier *Views\\Home\\AllDates.cshtml* par le code suivant :
+Vous pouvez encore améliorer hello *Dates* vue en organisant les valeurs de date-heure hello par date. Cela est possible avec hello Bootstrap [panneaux] [ panels] styles. Remplacez le contenu hello Hello *vues\\accueil\\AllDates.cshtml* fichier avec le code suivant :
 
     @model IEnumerable<DateTime>
 
@@ -387,26 +387,26 @@ Vous pouvez encore optimiser la vue *Dates* en classant les valeurs date-heure p
         </div>
     }
 
-Ce code crée une balise `<div class="panel panel-primary">` distincte pour chaque date de la liste et utilise le style [linked list group][linked list group] pour les liens respectifs, comme avant. Voici à quoi le navigateur mobile ressemble lorsque ce code est exécuté :
+Ce code crée un distinct `<div class="panel panel-primary">` balise pour chaque date distincte dans la liste de hello et utilise hello [groupe de liste liée] [ linked list group] pour différents liens comme avant. Voici un navigateur mobile hello il semble que lorsque ce code s’exécute :
 
 ![][AllDatesFixed2]
 
-Basculez vers le navigateur de bureau. Remarquez l'aspect cohérent.
+Navigateur de bureau toohello commutateur. Là encore, notez hello cohérent.
 
 ![][AllDatesFixed2Desktop]
 
-## <a name="bkmk_improvesessionstable"></a> Amélioration de la vue SessionsTable
-Dans cette section, vous allez faire en sorte que la vue *SessionsTable* soit mieux adaptée aux appareils mobiles. Cette modification est plus importante que les précédentes.
+## <a name="bkmk_improvesessionstable"></a>Améliorer hello SessionsTable vue
+Dans cette section, vous allez apporter hello *SessionsTable* afficher plus d’adaptés aux appareils mobiles. Cette modification n’est plus étendu hello dernières modifications apportées.
 
-Dans le navigateur mobile, appuyez sur le bouton **Balise**, puis entrez `asp` dans la zone de recherche.
+Dans le navigateur d’appareil mobile hello, appuyez sur hello **balise** bouton, puis entrez `asp` dans la zone de recherche.
 
 ![][AllTagsFixedSearchByASP]
 
-Appuyez sur le lien **ASP.NET** .
+Appuyez sur hello **ASP.NET** lien.
 
 ![][SessionsTableTagASP.NET]
 
-Comme vous pouvez le constater, l’affichage se fait sous forme de tableau, actuellement conçu pour être affiché sur le navigateur de bureau. Malheureusement, ce type d'affichage n'est pas adapté à un navigateur mobile. Pour remédier au problème, ouvrez le fichier *Views\\Home\\SessionsTable.cshtml* et remplacez son contenu par le code suivant :
+Comme vous pouvez le voir, affichage de hello est mise en forme en tant que table, qui est actuellement conçu toobe affichée dans le navigateur de bureau hello. Toutefois, il est un peu difficile tooread sur un navigateur mobile. toofix, ouvrez *vues\\accueil\\SessionsTable.cshtml* puis remplacez le contenu hello du fichier par hello suivant de code :
 
     @model IEnumerable<Mvc5Mobile.Models.Session>
 
@@ -439,40 +439,40 @@ Comme vous pouvez le constater, l’affichage se fait sous forme de tableau, act
         </div>
     </div>
 
-Le code se compose de trois étapes :
+code de Hello effectue les 3 tâches :
 
-* Il utilise le style [custom linked list group][custom linked list group] Bootstrap pour mettre en forme les informations de session de façon verticale. Ainsi, toutes ces informations sont lisibles sur un navigateur mobile (à l’aide de classes telles que list-group-item-text).
-* Il applique le [système de grille][grid system] à la disposition, afin que les éléments de session s’affichent à l’horizontale dans le navigateur de bureau et à la verticale dans le navigateur mobile (à l’aide de la classe col-md-4).
-* Il utilise les [utilitaires réactifs][responsive utilities] pour masquer les balises de session lorsqu’elles s’affichent dans le navigateur mobile (à l’aide de la classe hidden-xs).
+* utilise hello Bootstrap [groupe de liste liée personnalisé] [ custom linked list group] tooformat hello verticalement, les informations de session afin que toutes ces informations sont accessibles en lecture sur un navigateur mobile (à l’aide de classes telles que liste groupe-élément-texte)
+* s’applique hello [système de grille] [ grid system] toothe disposition, par conséquent, cette session hello les éléments de flux horizontalement dans le navigateur de bureau hello et verticalement dans un navigateur mobile de hello (à l’aide de la classe de hello col-md-4)
+* utilise hello [utilitaires réactives] [ responsive utilities] pour masquer les balises de session hello lorsqu’ils sont affichés dans un navigateur mobile de hello (à l’aide de la classe de xs masqué hello)
 
-Vous pouvez aussi appuyer sur le lien d'un titre pour accéder à la session associée. L'image qui suit reflète les changements réalisés à l'aide du code.
+Vous pouvez aussi appuyer sur une session titre lien toogo toohello respectifs. image Hello ci-dessous reflète les modifications de code hello.
 
 ![][FixedSessionsByTag]
 
-Le système de grille Bootstrap que vous avez automatiquement appliqué permet d’organiser les sessions à la verticale dans le navigateur mobile. En outre, vous remarquerez que les balises ne s'affichent pas. Basculez vers le navigateur de bureau.
+système de grille d’amorçage Hello que vous avez appliqués automatiquement organise les sessions verticalement dans le navigateur d’appareil mobile hello. Notez également que les balises de hello ne sont pas affichées. Navigateur de bureau toohello commutateur.
 
 ![][SessionsTableFixedTagASP.NETDesktop]
 
-Dans le navigateur de bureau, vous remarquez que les balises s'affichent désormais. De même, vous pouvez constater que le système de grille Bootstrap que vous avez appliqué classe les éléments de session en deux colonnes. Si vous agrandissez le navigateur, l’organisation s’étend sur trois colonnes.
+Dans le navigateur de bureau hello, notez que les balises hello sont maintenant affichées. En outre, vous pouvez voir que système de grille d’amorçage hello que vous appliqué organise les éléments de session de hello dans deux colonnes. Si vous agrandissez le navigateur, vous verrez que le dispositif de hello change toothree colonnes.
 
-## <a name="bkmk_improvesessionbycode"></a> Amélioration de la vue SessionByCode
-Dernière étape, vous allez optimiser la vue *SessionByCode* pour l'adapter aux périphériques mobiles.
+## <a name="bkmk_improvesessionbycode"></a>Améliorer hello SessionByCode vue
+Enfin, vous allez résoudre hello *SessionByCode* afficher toomake il adaptés aux appareils mobiles.
 
-Dans le navigateur mobile, appuyez sur le bouton **Balise**, puis entrez `asp` dans la zone de recherche.
+Dans le navigateur d’appareil mobile hello, appuyez sur hello **balise** bouton, puis entrez `asp` dans la zone de recherche.
 
 ![][AllTagsFixedSearchByASP]
 
-Appuyez sur le lien **ASP.NET** . Les sessions de balise ASP.NET s'affichent.
+Appuyez sur hello **ASP.NET** lien. Les sessions de balise ASP.NET hello sont affichées.
 
 ![][FixedSessionsByTag]
 
-Cliquez sur le lien **Conception d’une application à page unique avec ASP.NET et AngularJS** .
+Choisissez hello **création d’une Application à Page unique avec ASP.NET et AngularJS** lien.
 
 ![][SessionByCode3-644]
 
-Si la vue bureau par défaut convient tout à fait, vous pouvez facilement améliorer son aspect à l'aide des composants d'interface graphique Bootstrap.
+affichage du bureau Hello par défaut convient, mais vous pouvez améliorer hello aspect facilement à l’aide de certains composants de l’interface utilisateur graphique du programme d’amorçage.
 
-Ouvrez le fichier *Views\\Home\\SessionByCode.cshtml* et remplacez le contenu par le balisage suivant :
+Ouvrez *vues\\accueil\\SessionByCode.cshtml* et remplacez les contenu hello hello suivant de balisage :
 
     @model Mvc5Mobile.Models.Session
 
@@ -512,20 +512,20 @@ Ouvrez le fichier *Views\\Home\\SessionByCode.cshtml* et remplacez le contenu pa
         }
     </div>
 
-Le nouveau balisage utilise le style de volets Bootstrap pour optimiser la vue mobile. 
+balisage de nouveau Hello utilise des panneaux d’amorçage styles d’affichage mobile de tooimprove hello. 
 
-Actualisez le navigateur mobile. L'image suivante reflète les changements que vous venez de réaliser à l'aide du code :
+Actualiser le navigateur d’appareil mobile hello. Hello illustration suivante reflète les modifications de code hello que vous venez d’apporter :
 
 ![][SessionByCodeFixed3-644]
 
 ## <a name="wrap-up-and-review"></a>Conclusion
-Ce didacticiel vous a guidé dans l’utilisation d’ASP.NET MVC 5 pour développer des applications web adaptées aux appareils mobiles. Vous avez notamment vu les points suivants :
+Ce didacticiel vous a montré comment les applications Web toouse ASP.NET MVC 5 toodevelop adaptés aux appareils mobiles. Vous avez notamment vu les points suivants :
 
-* Déployer une application ASP.NET MVC 5 dans une application web d’App Service
-* Utiliser Bootstrap pour créer une disposition web réactive dans votre application MVC 5
+* Déployer un tooan d’application ASP.NET MVC 5 application web App Service
+* Utiliser la mise en page de démarrage toocreate web réactive dans votre application MVC 5
 * Remplacer la disposition, les vues, les vues partielles, de façon globale ou pour une vue spécifique
 * Contrôler la disposition et l’application de remplacement partiel à l’aide de la propriété `RequireConsistentDisplayMode`
-* Créer des vues ciblant des navigateurs spécifiques, comme celui de l’iPhone
+* Créer des vues qui ciblent des navigateurs spécifiques, tels que navigateur iPhone qui hello
 * Appliquer des styles Bootstrap dans le code Razor
 
 ## <a name="see-also"></a>Voir aussi
@@ -533,23 +533,23 @@ Ce didacticiel vous a guidé dans l’utilisation d’ASP.NET MVC 5 pour déve
 * [Bootstrap][BootstrapSite]
 * [Blog Bootstrap officiel (en anglais)][Official Bootstrap Blog]
 * [Tutoriel Bootstrap Twitter de Tutorial Republic (en anglais)][Twitter Bootstrap Tutorial from Tutorial Republic]
-* [The Bootstrap Playground (en anglais)][The Bootstrap Playground]
+* [Hello amorçage de laboratoire][hello Bootstrap Playground]
 * [Bonnes pratiques pour les applications web mobiles des recommandations W3C (en anglais)][W3C Recommendation Mobile Web Application Best Practices]
 * [Candidat à la recommandation du W3C concernant les requêtes de média (en anglais)][W3C Candidate Recommendation for media queries]
 
 ## <a name="whats-changed"></a>Changements apportés
-* Pour obtenir un guide présentant les modifications apportées dans le cadre de la transition entre Sites Web et App Service, consultez la page [Azure App Service et les services Azure existants](http://go.microsoft.com/fwlink/?LinkId=529714)
+* Pour un toohello guide voir changer à partir de sites Web tooApp Service : [Azure App Service et son Impact sur les Services Azure existants](http://go.microsoft.com/fwlink/?LinkId=529714)
 
 <!-- Internal Links -->
-[Deploy the starter project to an Azure web app]: #bkmk_DeployStarterProject
+[Deploy hello starter project tooan Azure web app]: #bkmk_DeployStarterProject
 [Bootstrap CSS Framework]: #bkmk_bootstrap
-[Override the Views, Layouts, and Partial Views]: #bkmk_overrideviews
+[Override hello Views, Layouts, and Partial Views]: #bkmk_overrideviews
 [Create Browser-Specific Views]:#bkmk_browserviews
-[Improve the Speakers List]: #bkmk_Improvespeakerslist
-[Improve the Tags List]: #bkmk_improvetags
-[Improve the Dates List]: #bkmk_improvedates
-[Improve the SessionsTable View]: #bkmk_improvesessionstable
-[Improve the SessionByCode View]: #bkmk_improvesessionbycode
+[Improve hello Speakers List]: #bkmk_Improvespeakerslist
+[Improve hello Tags List]: #bkmk_improvetags
+[Improve hello Dates List]: #bkmk_improvedates
+[Improve hello SessionsTable View]: #bkmk_improvesessionstable
+[Improve hello SessionByCode View]: #bkmk_improvesessionbycode
 
 <!-- External Links -->
 [Visual Studio Express 2013]: http://www.visualstudio.com/downloads/download-visual-studio-vs#d-express-web
@@ -571,7 +571,7 @@ Ce didacticiel vous a guidé dans l’utilisation d’ASP.NET MVC 5 pour déve
 [responsive utilities]: http://getbootstrap.com/css/#responsive-utilities
 [Official Bootstrap Blog]: http://blog.getbootstrap.com/
 [Twitter Bootstrap Tutorial from Tutorial Republic]: http://www.tutorialrepublic.com/twitter-bootstrap-tutorial/
-[The Bootstrap Playground]: http://www.bootply.com/
+[hello Bootstrap Playground]: http://www.bootply.com/
 [W3C Recommendation Mobile Web Application Best Practices]: http://www.w3.org/TR/mwabp/
 [W3C Candidate Recommendation for media queries]: http://www.w3.org/TR/css3-mediaqueries/
 

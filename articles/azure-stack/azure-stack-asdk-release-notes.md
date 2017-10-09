@@ -1,5 +1,5 @@
 ---
-title: "Notes de publication du kit de développement Microsoft Azure Stack | Microsoft Docs"
+title: "Notes de mise à jour du Kit de développement Azure pile aaaMicrosoft | Documents Microsoft"
 description: 
 services: azure-stack
 documentationcenter: 
@@ -14,75 +14,75 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/07/2017
 ms.author: helaw
-ms.openlocfilehash: 2cf11155dbd524260329f8b271ce4d9b19095b6a
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: c1644f224933a63e1f0265b6ef4113789900cf12
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-stack-development-kit-release-notes"></a>Notes de publication du kit de développement Azure Stack
 Ces notes de publication fournissent des informations sur les nouvelles fonctionnalités et les problèmes connus.
 
 ## <a name="release-build-201706271"></a>Version 20170627.1
-Depuis la version [20170627.1](azure-stack-updates.md#determine-the-current-version), Azure Stack Proof of Concept a été renommé kit de développement Azure Stack.  Tout comme Azure Stack POC, le kit de développement Azure Stack constitue un environnement de développement et d’évaluation permettant d’explorer les fonctionnalités d’Azure Stack et d’offrir une plateforme de développement pour Azure Stack.
+En commençant par hello [20170627.1](azure-stack-updates.md#determine-the-current-version) version, Azure pile preuve de Concept a été renommé tooAzure Kit de développement de pile.  Comme preuve de concept de pile Azure de hello, Kit de développement de pile Azure vise toobe un développement et environnement d’évaluation utilise des fonctionnalités d’Azure pile tooexplore et fournissent une plateforme de développement pour la pile de Azure.
 
 ### <a name="whats-new"></a>Nouveautés
-- Vous pouvez maintenant utiliser CLI 2.0 pour gérer les ressources Azure Stack en ligne de commande sur les principaux systèmes d’exploitation.
+- Vous pouvez maintenant utiliser des ressources de pile de Azure toomanage CLI 2.0 à partir d’une ligne de commande sur les systèmes d’exploitation courants.
 - Les tailles de machine virtuelle DSV2 assurent la portabilité des modèles entre Azure et Azure Stack.
-- Les opérateurs cloud peuvent avoir un aperçu de l’expérience de gestion de la capacité sur le panneau correspondant.
-- Il est maintenant possible d’utiliser l’extension Azure Diagnostics pour collecter des données de diagnostic à partir de machines virtuelles.  La capture de ces données est utile pour analyser les performances des charges de travail et examiner les problèmes.
-- Une nouvelle [expérience de déploiement](azure-stack-run-powershell-script.md) remplace les précédents scripts de déploiement par étapes.  Elle fournit une interface graphique commune à l’ensemble du cycle de vie de déploiement.
+- Les opérateurs cloud peuvent afficher un aperçu d’expérience de gestion de capacité hello dans le panneau de gestion de capacité hello.
+- Vous pouvez maintenant utiliser des données de diagnostic hello Azure Diagnostics extension toogather à vos machines virtuelles.  La capture de ces données est utile pour analyser les performances des charges de travail et examiner les problèmes.
+- Une nouvelle [expérience de déploiement](azure-stack-run-powershell-script.md) remplace les précédents scripts de déploiement par étapes.  nouvelle expérience de déploiement Hello fournit une interface graphique commune par cycle de vie de tout déploiement hello.
 - Les comptes Microsoft (MSA) sont désormais pris en charge lors du déploiement.
 - L’authentification multifacteur (MFA) est maintenant prise en charge lors du déploiement.  Auparavant, elle devait être désactivée pendant cette opération.
 
 ### <a name="known-issues"></a>Problèmes connus
 #### <a name="deployment"></a>Déploiement
 * Vous remarquerez peut-être que le déploiement prend plus de temps que dans les versions précédentes. 
-* Get-AzureStackLogs génère des journaux de diagnostic, mais ne consigne pas la progression sur la console.
-* Vous devez utiliser la nouvelle [expérience de déploiement](azure-stack-run-powershell-script.md) pour déployer Azure Stack, faute de quoi le déploiement pourrait échouer.
+* Get-AzureStackLogs génère des journaux de diagnostic, toutefois, n’enregistre pas de console toohello de progression.
+* Vous devez utiliser hello nouvelles [expérience de déploiement](azure-stack-run-powershell-script.md) toodeploy Azure pile, ou le déploiement risque d’échouer.
 
 #### <a name="portal"></a>Portail
-* Il se peut qu’un tableau de bord vide s’affiche sur le portail.  Vous pouvez le récupérer en sélectionnant l’engrenage dans le coin supérieur droit du portail, puis « Restaurer les paramètres par défaut ».
-* Les clients ont la possibilité de parcourir la totalité de la marketplace sans abonnement ; ils peuvent consulter certains éléments d’administration, comme les plans et les offres,  qui ne sont pas fonctionnels pour eux.
-* Lorsque l’on sélectionne une instance de rôle d’infrastructure, une erreur de référence s’affiche. Utilisez la fonctionnalité d’actualisation du navigateur pour actualiser le portail d’administration.
-* Le bouton « déplacer » est désactivé sur le panneau Groupe de ressources.  Il s’agit du comportement attendu, dans la mesure où le déplacement de groupes de ressources d’un abonnement à l’autre n’est pas pris en charge pour le moment.
+* Vous pouvez voir un tableau de bord vide dans le portail de hello.  Vous pouvez récupérer le tableau de bord hello en sélectionnant hello ENGRENAGE dans le coin supérieur droit de hello du portail de hello et en sélectionnant « Restaurer les paramètres par défaut ».
+* Les locataires sont marketplace complète de toobrowse en mesure de hello sans abonnement et seront affiche les éléments d’administration telles que les plans et des offres.  Ces éléments sont tootenants non fonctionnelle.
+* Lorsque l’on sélectionne une instance de rôle d’infrastructure, une erreur de référence s’affiche. Hello toorefresh de fonctionnalité d’actualisation du navigateur utilisez hello du portail d’administration.
+* bouton « déplacer » de Hello est désactivé sur le panneau de groupe de ressources hello.  Il s’agit du comportement attendu, dans la mesure où le déplacement de groupes de ressources d’un abonnement à l’autre n’est pas pris en charge pour le moment.
 * Vous recevrez plusieurs notifications à la fin du téléchargement d’articles de marketplace syndiqués.
-* Vous n’avez pas la possibilité d’afficher les autorisations de votre abonnement sur les portails Azure Stack.  Pour contourner ce problème, vous pouvez vérifier les autorisations avec PowerShell.
-* Vous devez ajouter `-TenantID` comme indicateur pour exporter un déploiement terminé comme script d’automatisation à partir du portail.
+* Vous n’êtes pas abonnement de tooyour autorisations tooview en mesure de l’utilisation des portails de pile de Azure hello.  Pour contourner ce problème, vous pouvez vérifier les autorisations avec PowerShell.
+* Vous devez ajouter `-TenantID` comme un indicateur lors de l’exportation d’un déploiement terminé comme un script d’automatisation à partir du portail de hello.
 
 #### <a name="services"></a>Services
-* Les services Key Vault doivent être créés à partir du portail locataire ou de l’API locataire.  Si vous êtes connecté en tant qu’administrateur, assurez-vous que le portail client permet de créer de nouveaux coffres Key Vault, de nouveaux secrets et de nouvelles clés.
+* Services de coffre de clés doivent être créées à partir du portail de locataires hello ou API client.  Si vous êtes connecté en tant qu’administrateur, vérifiez toocreate portail du locataire hello toouse que les coffres de nouveau le coffre de clés, clés secrètes et les clés.
 * Il n’existe aucune expérience de création de groupes de machines virtuelles identiques sur la marketplace, bien qu’il soit possible de le faire avec un modèle.
-* Il n’est pas possible d’associer un équilibreur de charge à un réseau principal avec le portail.  Cette tâche peut être effectuée avec PowerShell ou avec un modèle.
+* Vous ne pouvez pas associer un équilibreur de charge avec un réseau principal via le portail de hello.  Cette tâche peut être effectuée avec PowerShell ou avec un modèle.
 * Les groupes de machines virtuelles à haute disponibilité ne sont configurables qu’avec un domaine d’erreur et un domaine de mise à jour chacun de valeur égale à un.  
 * Un client doit déjà disposer d’un compte de stockage pour pouvoir créer une nouvelle fonction Azure.
-* La machine virtuelle peut échouer avec l’état « Cannot bind argument to parameter ’VM Network Adapter’ because it is null » (« Impossible de lier l’argument au paramètre « Carte réseau de la machine virtuelle », car il est Null »).  Le redéploiement de la machine virtuelle réussit.  
+* Machine virtuelle peut échouer et l’état « Impossible de lier argument tooparameter « Carte réseau de l’ordinateur virtuel », car elle est null. »  Réussite du redéploiement de la machine virtuelle de hello.  
 * La suppression d’abonnements clients aboutit à des ressources orphelines.  Pour contourner ce problème, supprimez tout d’abord les ressources clientes ou la totalité du groupe de ressources, puis supprimez les abonnements clients. 
-* Il est impératif de créer une règle NAT pour créer un équilibreur de charge réseau ; si vous essayez d’en ajouter une après avoir créé l’équilibreur de charge, une erreur s’affiche.
+* Vous devez créer une règle NAT lors de la création d’un équilibrage de charge réseau, ou vous recevrez une erreur lorsque vous essayez de tooadd une règle NAT après que l’équilibrage de charge hello est créé.
 * Les clients peuvent créer des machines virtuelles plus grandes que le quota ne l’autorise.  En effet, les quotas de calcul ne s’appliquent pas.
-* Les clients ont le choix de créer une machine virtuelle avec stockage géoredondant.  Cette configuration fait échouer la création.
-* Il faut parfois attendre une heure pour qu’ils puissent créer des bases de données avec une nouvelle référence SQL ou MySQL. 
-* La création d’éléments directement sur les serveurs d’hébergement MySQL et SQL, s’ils ne sont pas réalisés par le fournisseur de ressources, n’est pas prise en charge et peut aboutir à un état incompatible.
+* Les clients sont hello donné option toocreate un ordinateur virtuel avec stockage géo-redondant.  Cette configuration entraîne toofail de la création d’ordinateur virtuel.
+* Peut prendre jusqu'à une heure tooan avant que les clients peuvent créer des bases de données dans un nouveau SQL ou MySQL SKU. 
+* La création des éléments directement sur les serveurs qui ne sont pas effectuées par le fournisseur de ressources hello d’hébergement MySQL et SQL n’est pas prise en charge et peut entraîner l’état ne correspondent pas.
 * AzureRM PowerShell 1.2.10 requiert des étapes de configuration supplémentaires :
-    * Exécutez cette commande après avoir lancé Add-AzureRMEnvironment pour les déploiements Azure AD.  Indiquez les valeurs de Name et de GraphAudience en fonction de la sortie de `Add-AzureRMEnvironment`.
+    * Exécutez cette commande après avoir lancé Add-AzureRMEnvironment pour les déploiements Azure AD.  Fournir des valeurs nom et GraphAudience hello à l’aide de la sortie de hello de `Add-AzureRMEnvironment`.
       
       ```PowerShell
       Set-AzureRmEnvironment -Name <Environment Name> -GraphAudience <Graph Endpoint URL>
       ```
-    * Exécutez cette commande après avoir lancé Add-AzureRMEnvironment pour les déploiements AD FS.  Indiquez les valeurs de Name et de GraphAudience en fonction de la sortie de `Add-AzureRMEnvironment`.
+    * Exécutez cette commande après avoir lancé Add-AzureRMEnvironment pour les déploiements AD FS.  Fournir des valeurs nom et GraphAudience hello à l’aide de la sortie de hello de `Add-AzureRMEnvironment`.
       
       ```PowerShell
       Set-AzureRmEnvironment <Environment Name> -GraphAudience <Graph Endpoint URL> -EnableAdfsAuthentication:$true
       ```
     
-    Par exemple, la commande suivante est utilisée pour un environnement Azure AD :
+    Par exemple, suivant de hello est utilisé pour un environnement Azure AD :
 
     ```PowerShell
       Set-AzureRmEnvironment AzureStack -GraphAudience https://graph.local.azurestack.external/
     ```
 
 #### <a name="fabric"></a>Structure
-* Le fournisseur de ressources de calcul présente un état inconnu.
-* Le modèle et l’adresse IP BMC ne s’affichent pas dans les informations essentielles d’un nœud d’unité d’échelle.  Ce comportement est attendu dans le kit de développement Azure Stack.
-* L’action de redémarrage du rôle d’infrastructure du contrôleur de calcul (instance AzS-XRP01) ne doit pas être utilisée.
-* Le panneau de sauvegarde de l’infrastructure ne doit pas être utilisé.
+* fournisseur de ressources de calcul Hello affiche un état inconnu.
+* adresse IP BMC Bonjour modèle ne sont pas affichés dans des informations essentielles hello d’un nœud d’unité d’échelle.  Ce comportement est attendu dans le kit de développement Azure Stack.
+* action de redémarrage Hello sur le rôle d’infrastructure de contrôleur calcul (instance AzS-XRP01) ne doit pas être utilisée.
+* Hello Infrastructure panneau sauvegarde ne doit pas être utilisé.

@@ -1,6 +1,6 @@
 ---
-title: "Niveaux de cohérence dans Azure Cosmos DB | Microsoft Docs"
-description: "Azure Cosmos DB offre cinq niveaux de cohérence qui permettent de faire des compromis avisés entre cohérence éventuelle, disponibilité et latence."
+title: "niveaux d’aaaConsistency dans la base de données Azure Cosmos | Documents Microsoft"
+description: "Base de données Azure Cosmos a cinq cohérence niveaux toohelp solde éventuelle latence, la disponibilité et la cohérence des compromis."
 keywords: "cohérence éventuelle, azure cosmos db, azure, Microsoft Azure"
 services: cosmos-db
 author: mimig1
@@ -16,25 +16,25 @@ ms.topic: article
 ms.date: 06/16/2017
 ms.author: mimig
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: a1ebec2285982c70aa9dc49950769fe18e2e2d0d
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: ac399c229d0856cd811bc81568536e519af3300f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tunable-data-consistency-levels-in-azure-cosmos-db"></a>Niveaux de cohérence des données paramétrables dans Azure Cosmos DB
-Azure Cosmos DB a été conçu dès le départ pour être distribué à l’échelle mondiale. Il offre des garanties de latence faible prévisible, un SLA de disponibilité à 99,99 % et plusieurs modèles de cohérence souples bien définis. Pour le moment, Azure Cosmos DB prend en charge cinq niveaux de cohérence : Fort, Obsolescence limitée, Session, Préfixe cohérent et Éventuel. 
+Base de données Azure Cosmos est conçu de hello d’arrière-plan avec une distribution globale à l’esprit pour chaque modèle de données. Il est conçu toooffer prévisibles à faible latence garanties, un SLA de disponibilité de 99,99 %, et plusieurs bien définis ont assoupli des modèles de cohérence. Pour le moment, Azure Cosmos DB prend en charge cinq niveaux de cohérence : Fort, Obsolescence limitée, Session, Préfixe cohérent et Éventuel. 
 
-Outre les modèles de cohérence **fort** et **éventuel** souvent offerts par les bases de données distribuées, Azure Cosmos DB propose trois modèles de cohérence supplémentaires soigneusement codifiés et mis en œuvre, et dont l’utilité a été validée dans des conditions d’utilisation réelles. Ces niveaux de cohérence sont **obsolescence limitée**, **session** et **préfixe cohérent**. Ensemble, ces cinq niveaux de cohérence vous permettent de trouver un bon compromis entre cohérence, disponibilité et latence. 
+Outre les modèles de cohérence **fort** et **éventuel** souvent offerts par les bases de données distribuées, Azure Cosmos DB propose trois modèles de cohérence supplémentaires soigneusement codifiés et mis en œuvre, et dont l’utilité a été validée dans des conditions d’utilisation réelles. Il s’agit hello **délimitée péremption**, **session**, et **préfixe cohérent** niveaux de cohérence. Ces niveaux de cinq cohérence activer collectivement toomake bien motivée compromis entre la cohérence, la disponibilité et la latence. 
 
 ## <a name="distributed-databases-and-consistency"></a>Bases de données distribuées et cohérence
 Les bases de données distribuées commerciales se répartissent en deux catégories : les bases de données qui n’offrent pas de choix de cohérence bien définis et démontrables et celles qui offrent deux possibilités de programmabilité extrêmes (cohérence éventuelle et forte). 
 
-La première option embrouille les développeurs d’applications en raison des menus détails de leurs protocoles de réplication et les oblige à faire des compromis difficiles entre cohérence, disponibilité, latence et débit. La deuxième option demande de choisir l’un des deux extrêmes. En dépit de l’abondance des études et des propositions concernant plus de 50 modèles de cohérence, la communauté des bases de données distribuées n’a pas été en mesure de commercialiser des niveaux de cohérence allant au-delà de la cohérence forte ou éventuelle. Cosmos DB vous permet aux développeurs de choisir entre cinq modèles de cohérence bien définis couvrant tout l’éventail de cohérences : fort, obsolescence limitée, [session](http://dl.acm.org/citation.cfm?id=383631), préfixe cohérent et éventuel. 
+Hello les développeurs d’applications charges ancien avec minutia de protocoles de leur réplication et attend les compromis difficile de toomake entre la cohérence, la disponibilité, la latence et débit. Hello ce dernier met un toochoose pression un des deux extrêmes de hello. En dépit d’abondance hello de recherche et de propositions pour les modèles de cohérence plus de 50, hello Communauté de base de données distribuée n’a pas été en mesure de toocommercialize des niveaux de cohérence au-delà de la cohérence forte et éventuelle. Permet de COSMOS DB toochoose développeurs entre cinq modèles de cohérence bien définis dans spectre de cohérence hello – fort, délimitée péremption, [session](http://dl.acm.org/citation.cfm?id=383631), préfixe cohérent et finale. 
 
-![Azure Cosmos DB offre le choix entre plusieurs modèles de cohérence bien définis (souples)](./media/consistency-levels/five-consistency-levels.png)
+![Base de données Cosmos Azure offre plusieurs bien définie toochoose de modèles de cohérence (souple) à partir de](./media/consistency-levels/five-consistency-levels.png)
 
-Le tableau suivant illustre les garanties spécifiques que chaque niveau de cohérence fournit.
+Hello tableau suivant illustre les garanties particulières hello que fournit chaque niveau de cohérence.
  
 **Niveaux de cohérence et garanties**
 
@@ -43,68 +43,68 @@ Le tableau suivant illustre les garanties spécifiques que chaque niveau de coh�
 | Remarque | Linéarisabilité |
 | Obsolescence limitée | Préfixe cohérent. Retard des lectures par rapport aux écritures par k préfixes ou un intervalle t |
 | session   | Préfixe cohérent. Lectures unitones, écritures unitones, lecture de vos écritures, l’écriture suit les lectures |
-| Préfixe cohérent | Les mises à jour retournées sont un préfixe de toutes les mises à jour, sans interruption |
+| Préfixe cohérent | Mises à jour retournées sont un préfixe de toutes les mises à jour hello, sans interruption |
 | Eventual (Éventuel)  | Lectures en désordre |
 
-Vous pouvez configurer le niveau de cohérence par défaut de votre compte Cosmos DB (et remplacer ultérieurement la cohérence sur une demande de lecture spécifique). En interne, le niveau de cohérence par défaut s’applique aux données au sein des groupes de partitions qui peuvent chevaucher différentes régions. Environ 73 % de nos clients utilisent la cohérence de session et 20 % y préfèrent l’obsolescence limitée. Nous observons qu’environ 3 % de nos clients expérimentent initialement différents niveaux de cohérence avant de choisir une cohérence spécifique pour leur application. Nous observons également que seuls 2 % de nos clients modifient les niveaux de cohérence sur demande. 
+Configurer le niveau de cohérence hello par défaut sur votre compte de base de données Cosmos (et remplacer ultérieurement cohérence hello sur une requête de lecture spécifique). En interne, niveau de cohérence hello par défaut s’applique toodata dans les groupes de partition hello qui peuvent être réparties entre les régions. Environ 73 % de nos clients utilisent la cohérence de session et 20 % y préfèrent l’obsolescence limitée. Nous observons qu’environ 3 % de nos clients expérimentent initialement différents niveaux de cohérence avant de choisir une cohérence spécifique pour leur application. Nous observons également que seuls 2 % de nos clients modifient les niveaux de cohérence sur demande. 
 
-Dans DB Cosmos, les lectures au niveaux de cohérence session, préfixe cohérent et cohérence éventuelle sont deux fois meilleur marché que les lectures aux niveaux de cohérence fort ou obsolescence limitée. Cosmos DB offre des SLA à 99,99 % exhaustifs de pointe, incluant des garanties de cohérence en plus de la disponibilité, du débit et de la latence. Nous utilisons un [vérificateur de linéarisabilité](http://dl.acm.org/citation.cfm?id=1806634) qui opère en permanence sur nos résultats de télémétrie de service et vous signale ouvertement toutes les violations de cohérence. Pour le niveau de cohérence obsolescence limitée, nous surveillons et signalons toute violation des limites k et t. Pour les cinq niveaux de cohérence souple, nous vous signalons aussi directement la [métrique probabiliste d’obsolescence limitée](http://dl.acm.org/citation.cfm?id=2212359).  
+Dans DB Cosmos, les lectures au niveaux de cohérence session, préfixe cohérent et cohérence éventuelle sont deux fois meilleur marché que les lectures aux niveaux de cohérence fort ou obsolescence limitée. Cosmos DB offre des SLA à 99,99 % exhaustifs de pointe, incluant des garanties de cohérence en plus de la disponibilité, du débit et de la latence. Nous utilisons un [vérificateur de linearizability](http://dl.acm.org/citation.cfm?id=1806634), qui fonctionne en continu via la télémétrie de notre service et ouvertement signale toute tooyou de violations de la cohérence. Pour délimité péremption, nous analyse et rapports des violations a duré et les limites de t. Pour toutes les cinq niveaux de cohérence souple, nous avons également signaler hello [métrique de l’obsolescence limitée PROBABILISTE](http://dl.acm.org/citation.cfm?id=2212359) tooyou directement.  
 
 ## <a name="scope-of-consistency"></a>Portée de la cohérence
-La granularité de la cohérence est limitée à la demande d’un utilisateur unique. Une demande d’écriture peut correspondre à une transaction d’insertion, de remplacement, d’upsert ou de suppression. Comme dans le cas des écritures, une transaction de lecture/requête est également limitée à une demande d’utilisateur unique. L’utilisateur peut être amené à paginer un grand jeu de résultats, s’étendant sur plusieurs partitions, mais chaque transaction de lecture se limite à une seule page et est traitée à partir d’une seule partition.
+granularité de Hello de cohérence a une demande d’utilisateur unique tooa étendue. Une demande d’écriture peut correspondent tooan insert, replace, la fusionner ou supprimer la transaction. Comme les écritures, une transaction de lecture/la requête est également demande d’utilisateur unique tooa étendue. utilisateur de Hello peut-être toopaginate requis sur un grand jeu de résultats, le fractionnement des partitions multiples, mais chaque lecture transaction étendue tooa une seule page et pris en charge à partir d’une partition unique.
 
 ## <a name="consistency-levels"></a>Niveaux de cohérence
-Vous pouvez configurer un niveau de cohérence par défaut sur votre compte de base de données, qui s’applique à toutes les collections (et bases de données) sous votre compte Cosmos DB. Par défaut, toutes les lectures et requêtes émises vers les ressources définies par l’utilisateur utilisent le niveau de cohérence par défaut spécifié sur le compte de base de données. Vous pouvez assouplir le niveau de cohérence d’une demande spécifique de lecture/requête donnée dans chacune des API prises en charge. Cinq types de niveaux de cohérence sont pris en charge par le protocole de réplication de d’Azure Cosmos DB. Ils offrent un compromis clair entre les garanties de cohérence spécifiques et les performances, comme décrit dans cette section.
+Vous pouvez configurer un niveau de cohérence par défaut sur votre compte de base de données qui s’applique tooall collections (et les bases de données) sous votre compte de base de données Cosmos. Par défaut, toutes les lectures et les requêtes exécutées sur hello ressources définies par l’utilisateur utilisent le niveau de cohérence par défaut hello spécifié sur le compte de base de données hello. Vous pouvez assouplir le niveau de cohérence hello d’une requête de lecture/spécifique demande à l’aide de chacune des hello API prises en charge. Il existe cinq types de niveaux de cohérence pris en charge par le protocole de réplication de base de données Azure Cosmos hello offrant un compromis clair entre des garanties de cohérence spécifiques et les performances, comme décrit dans cette section.
 
 **Remarque**: 
 
-* Une cohérence forte offre une garantie de [linéarisabilité](https://aphyr.com/posts/313-strong-consistency-models) qui permet de s’assurer que les lectures renvoient la version la plus récente d’un élément. 
-* la cohérence forte garantit qu'une écriture est visible uniquement après sa validation durable par le quorum majoritaire de réplicas. Une écriture est soit validée durablement de manière synchrone par les quorums principal et secondaire, soit abandonnée. Une lecture est toujours reconnue par le quorum de lecture majoritaire : un client ne voit jamais une écriture partielle ou non validée. Il est assuré de lire la toute dernière écriture reconnue. 
-* Les comptes Azure Cosmos DB configurés pour utiliser une cohérence forte ne peuvent pas associer plus d’une région Azure à leur compte. 
-* Le coût d’une opération de lecture (en termes [d’unités de requête](request-units.md) consommées) avec une cohérence forte est supérieur à celui des niveaux Session et Éventuel, mais équivalent à celui du niveau Obsolescence limitée.
+* Cohérence forte offre un [linearizability](https://aphyr.com/posts/313-strong-consistency-models) garantie avec hello lit la version la plus récente hello tooreturn garantie d’un élément. 
+* Cohérence forte garantit qu’une écriture est visible uniquement après sa validation durable par le quorum majoritaire de hello de réplicas. Une écriture est validée soit synchrone durablement par hello principal et quorum hello de bases de données secondaires, ou elle est abandonnée. Une lecture est toujours acceptée par une majorité hello lire le quorum, un client ne peut jamais voir une écriture partielle ou non validée et est toujours garanti tooread hello dernier accusé de réception écriture. 
+* Comptes Cosmos DB Azure qui sont la cohérence forte toouse configuré ne peut pas associer plusieurs régions Azure avec leur compte de base de données Azure Cosmos. 
+* Hello le coût d’une opération de lecture (en termes de [unités de requête](request-units.md) consommée) à forte cohérence est supérieure à la session et éventuelle, mais même hello comme obsolescence limitée.
 
 **Obsolescence limitée**: 
 
-* Le niveau de cohérence obsolescence limitée garantit que les lectures sont retardées derrière les écritures par, au plus, des versions ou préfixes *K* d’un élément ou un intervalle de temps *t*. 
-* Par conséquent, lors du choix du niveau de cohérence obsolescence limitée, l’« obsolescence » peut être configurée de deux façons : par le nombre de versions *K* de l’élément par lequel les lectures sont retardées derrière les écritures, et l’intervalle de temps *t* 
-* La cohérence de type obsolescence limitée fournit l’ordre global total, en dehors de la « fenêtre d’obsolescence ». Notez que des garanties de lecture unitone existent dans une région à l’intérieur et en dehors de la « fenêtre d’obsolescence ». 
-* La cohérence Obsolescence limitée fournit une meilleure garantie de cohérence que le niveau Session ou Éventuel. Pour les applications distribuées à l’échelle mondiale, nous recommandons d’utiliser la cohérence Obsolescence limitée pour les scénarios dans lesquels vous voulez obtenir une cohérence forte en plus d’une disponibilité à 99,99 % et d’une latence faible. 
+* Cohérence de l’obsolescence limitée garantit que les lectures hello risque de souffrir écritures au maximum *K* versions ou des préfixes d’un élément ou *t* intervalle de temps. 
+* Par conséquent, lorsque choix délimitée péremption, hello « péremption » peut être configurée de deux manières : nombre de versions *K* d’élément hello par lequel hello lectures rester derrière les écritures hello et intervalle de temps hello *t* 
+* Délimitée péremption offres total global de la commande à l’exception de hello « fenêtre péremption. » Hello monotone lire garanties existe dans une région à l’intérieur et à l’extérieur de hello « fenêtre péremption. » 
+* La cohérence Obsolescence limitée fournit une meilleure garantie de cohérence que le niveau Session ou Éventuel. Pour les applications distribuées globalement, nous vous recommandons de qu'utiliser obsolescence limitée pour les scénarios où vous aimeriez toohave forte cohérence mais également la disponibilité de 99,99 % et une faible latence. 
 * Les comptes Azure Cosmos DB configurés avec une cohérence de type obsolescence limitée peuvent associer n’importe quel nombre de régions Azure avec leur compte. 
-* Le coût d’une opération de lecture (en termes d’unités de requête consommées) en fonction de l’obsolescence limitée est supérieur à celui des niveaux de cohérence Session et Éventuel, mais identique au niveau de cohérence forte.
+* Hello le coût d’une opération de lecture (en termes de RUs consommée) avec obsolescence limitée est supérieure à la session et la cohérence éventuelle, mais même hello en tant que la cohérence forte.
 
 **Session**: 
 
-* contrairement aux modèles de cohérence globaux offerts par les niveaux de cohérence Fort et Obsolescence limitée, le niveau Session s’étend à une session client spécifique. 
+* Contrairement aux modèles de la cohérence globale hello offertes par les niveaux de cohérence de péremption fort et limité, la cohérence de session est étendue tooa session du client. 
 * La cohérence Session est idéale pour tous les scénarios dans lesquels une session utilisateur ou d’appareil est impliquée, car elle garantit des lectures unitones, des écritures unitones et des garanties de lecture de vos propres écritures. 
-* Ce niveau fournit une cohérence prévisible pour une session, et un débit de lecture maximal en offrant la latence d’écriture et de lecture la plus basse. 
+* Fournit une cohérence prévisible pour une session et débit de lecture maximale tout en offrant des lectures et écritures de latence la plus faible hello. 
 * Les comptes Azure Cosmos DB configurés avec une cohérence de type session peuvent associer n’importe quel nombre de régions Azure avec leur compte. 
-* Le coût d’une opération de lecture (en termes d’unités de requête consommées) avec un niveau de cohérence Session est inférieur à celui des niveaux Fort et Obsolescence limitée, mais supérieur au niveau Éventuel.
+* Hello du coût d’une opération de lecture (en termes de RUs consommée) avec une session de niveau de cohérence est inférieur à péremption fort et limitée, mais la cohérence éventuelle de plus de
 
 <a id="consistent-prefix"></a>
 **Préfixe cohérent** : 
 
-* Le niveau de cohérence préfixe cohérent garantit qu’en l’absence d’autres écritures, les réplicas du groupe finissent par converger. 
-* Le niveau de cohérence préfixe cohérent garantit que les lectures ne voient jamais d’écritures dans le désordre. Si les écritures ont été effectuées dans l’ordre `A, B, C`, un client voit `A`, `A,B` ou `A,B,C`, mais jamais dans le désordre comme `A,C` ou `B,A,C`.
+* Préfixe cohérente garantit qu’en l’absence d’autres écritures, les réplicas hello au sein du groupe de hello convergent. 
+* Le niveau de cohérence préfixe cohérent garantit que les lectures ne voient jamais d’écritures dans le désordre. Si les écritures ont été effectuées dans l’ordre de hello `A, B, C`, puis un client voit soit `A`, `A,B`, ou `A,B,C`, mais jamais en désordre comme `A,C` ou `B,A,C`.
 * Les comptes Azure Cosmos DB configurés avec une cohérence de type préfixe cohérent peuvent associer n’importe quel nombre de régions Azure avec leur compte. 
 
 **Eventual (Éventuel)**: 
 
-* Le niveau de cohérence Éventuel garantit qu’en l’absence d’autres écritures, les réplicas du groupe finissent par converger. 
-* Il s’agit de la forme de cohérence la plus faible qui permet à un client d’obtenir des valeurs plus anciennes que celles qu’il a pu voir précédemment.
-* Le niveau Éventuel fournit la cohérence la plus faible en matière de lecture, tout en offrant la latence la moins élevée pour les lectures et les écritures.
+* Cohérence éventuelle garantit qu’en l’absence d’autres écritures, les réplicas hello au sein du groupe de hello convergent. 
+* Cohérence éventuelle est hello plus faible cohérence où un client peut obtenir les valeurs hello qui sont antérieurs au hello ceux qu’il avait auparavant.
+* Cohérence éventuelle fournit une cohérence de lecture hello plus faible, mais offre hello latence la plus faible pour les lectures et écritures.
 * Les comptes Azure Cosmos DB configurés avec une cohérence éventuelle peuvent associer n’importe quel nombre de régions Azure avec leur compte. 
-* Le coût d’une opération de lecture (en termes d’unités de requête consommées) avec un niveau de cohérence éventuelle est le plus bas de tous les niveaux de cohérence d’Azure Cosmos DB.
+* Hello le coût d’une opération de lecture (en termes de RUs consommée) au niveau de cohérence éventuelle de hello est hello plus petit de tous les niveaux de cohérence de base de données Azure Cosmos hello.
 
-## <a name="configuring-the-default-consistency-level"></a>Configuration du niveau de cohérence par défaut
-1. Dans la barre de lancement du [portail Azure](https://portal.azure.com/), cliquez sur **Azure Cosmos DB**.
-2. Dans le panneau **Azure Cosmos DB**, sélectionnez le compte de base de données à modifier.
-3. Dans le panneau du compte, cliquez sur **Cohérence par défaut**.
-4. Dans le panneau **Cohérence par défaut**, sélectionnez le nouveau niveau de cohérence et cliquez sur **Enregistrer**.
+## <a name="configuring-hello-default-consistency-level"></a>Configuration du niveau de cohérence hello par défaut
+1. Bonjour [portail Azure](https://portal.azure.com/)hello Jumpbar, cliquez sur dans **base de données Azure Cosmos**.
+2. Bonjour **base de données Azure Cosmos** panneau, sélectionnez hello de base de données compte toomodify.
+3. Dans le panneau de compte hello, cliquez sur **par défaut de la cohérence**.
+4. Bonjour **cohérence par défaut** panneau, niveau de cohérence hello sélectionnez Nouveau, cliquez sur **enregistrer**.
    
-    ![Capture d’écran montrant l’icône Paramètres et l’entrée Cohérence par défaut](./media/consistency-levels/database-consistency-level-1.png)
+    ![Capture d’écran en mettant en surbrillance icône des paramètres hello et l’entrée de cohérence par défaut](./media/consistency-levels/database-consistency-level-1.png)
 
 ## <a name="consistency-levels-for-queries"></a>Niveaux de cohérence des requêtes
-Par défaut, pour les ressources définies par l’utilisateur, le niveau de cohérence des requêtes est identique à celui des lectures. Par défaut, l’index est mis à jour de manière synchrone lors de chaque insertion, remplacement ou suppression d’un élément dans le conteneur Cosmos DB. Cela permet aux requêtes d’offrir le même niveau de cohérence que celui des lectures de point. Si Azure Cosmos DB est optimisé pour les écritures et prend en charge des volumes soutenus d’écritures, la maintenance d’index synchrone et les requêtes cohérentes, vous pouvez configurer certaines collections de manière à ce que la mise à jour de l’index soit effectuée en différé. Ce processus permet d'optimiser encore plus les performances des écritures. Il est idéal pour les scénarios d'ingestion en bloc lorsqu'une charge de travail implique principalement des lectures.  
+Par défaut, pour les ressources définies par l’utilisateur, au niveau de cohérence hello pour les requêtes est hello même niveau de cohérence hello pour des lectures. Par défaut, les index hello est mis à jour synchrone chaque insert, remplacer ou supprimer d’un conteneur de base de données Cosmos toohello élément. Cela permet les requêtes hello toohonor hello même niveau de cohérence que celui du point de lectures. Lors de la base de données Azure Cosmos est optimisé en écriture et prend en charge des volumes maintenus d’écritures, maintenance d’index synchrones et traiter les requêtes de cohérence, vous pouvez configurer certaine tooupdate collections leur index tardivement. Indexation différée davantage améliore les performances d’écriture hello et est idéale pour les scénarios d’ingestion en bloc lorsqu’une charge de travail est principalement lectures.  
 
 | Mode d'indexation | Lectures | Requêtes |
 | --- | --- | --- |
@@ -112,10 +112,10 @@ Par défaut, pour les ressources définies par l’utilisateur, le niveau de coh
 | Différé |Choisir parmi Fort, Obsolescence limitée, Session, Préfixe cohérent et Éventuel |Eventual (Éventuel) |
 | Aucun |Choisir parmi Fort, Obsolescence limitée, Session, Préfixe cohérent et Éventuel |Non applicable |
 
-Comme pour les demandes de lecture, vous pouvez réduire le niveau de cohérence d’une demande de requête spécifique dans chaque API.
+Comme avec les demandes de lecture, vous pouvez réduire le niveau de cohérence hello d’une demande de requête spécifique dans chaque API.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Si vous souhaitez en lire plus sur les niveaux de cohérence et les différents compromis, nous vous recommandons les ressources suivantes :
+Si vous souhaitez que toodo plus lors de la lecture sur les niveaux de cohérence et compromis, nous vous recommandons de hello suivant des ressources :
 
 * Doug Terry. La cohérence des données répliquées expliquée par le baseball (vidéo).   
   [https://www.youtube.com/watch?v=gluIh8zd26I](https://www.youtube.com/watch?v=gluIh8zd26I)
@@ -123,13 +123,13 @@ Si vous souhaitez en lire plus sur les niveaux de cohérence et les différents 
   [http://research.microsoft.com/pubs/157411/ConsistencyAndBaseballReport.pdf](http://research.microsoft.com/pubs/157411/ConsistencyAndBaseballReport.pdf)
 * Doug Terry. Le niveau Par session garantit des données répliquées peu cohérentes.   
   [http://dl.acm.org/citation.cfm?id=383631](http://dl.acm.org/citation.cfm?id=383631)
-* Daniel Abadi. Cohérence des compromis en termes de conception de systèmes de base de données distribuée moderne : CAP n’est qu’une partie de l’histoire.   
+* Daniel Abadi. La cohérence des compromis en termes de conception de systèmes de base de données distribué moderne : extrémité de fin n'est qu’une partie d’un récit hello ».   
   [http://computer.org/csdl/mags/co/2012/02/mco2012020037-abs.html](http://computer.org/csdl/mags/co/2012/02/mco2012020037-abs.html)
 * Peter Bailis, Shivaram Venkataraman, Michael J. Franklin, Joseph M. Hellerstein, Ion Stoica. Probabilités en fonction de l'obsolescence (PBS) pour les quorums partiels pratiques   
   [http://vldb.org/pvldb/vol5/p776_peterbailis_vldb2012.pdf](http://vldb.org/pvldb/vol5/p776_peterbailis_vldb2012.pdf)
 * Werner Vogels. Niveau de cohérence Éventuel repensé.    
   [http://allthingsdistributed.com/2008/12/eventually_consistent.html](http://allthingsdistributed.com/2008/12/eventually_consistent.html)
-* Moni Naor , Avishai Wool, The Load, Capacity, and Availability of Quorum Systems, SIAM Journal on Computing, v.27 n.2, p.423-447, avril 1998.
+* Moni Naor, Avishai laine, hello charge, la capacité et disponibilité de Quorum systèmes, Journal SIAM Computing, v.27 n.2, p.423-447, avril 1998.
   [http://epubs.siam.org/doi/abs/10.1137/S0097539795281232](http://epubs.siam.org/doi/abs/10.1137/S0097539795281232)
-* Sebastian Burckhardt, Chris Dern, Macanal Musuvathi, Roy Tan, Line-up : a complete and automatic linearizability checker, Proceedings of the 2010 ACM SIGPLAN conference on Programming language design and implementation, 05-10 juin 2010, Toronto, Ontario, Canada  [doi>10.1145/1806596.1806634] [http://dl.acm.org/citation.cfm?id=1806634](http://dl.acm.org/citation.cfm?id=1806634)
-* Peter Bailis, Shivaram Venkataraman, Michael J. Franklin, Joseph M. Hellerstein, Ion Stoica, Probabilistically bounded staleness for practical partial quorums, Proceedings of the VLDB Endowment, v.5 n.8, p.776-787, avril 2012 [http://dl.acm.org/citation.cfm?id=2212359](http://dl.acm.org/citation.cfm?id=2212359)
+* Sebastian Burckhardt, Chris Dern, Macanal Musuvathi, Roy Tan, gamme : un linearizability complet et automatique vérificateur, procédure de conférence de ACM SIGPLAN 2010 hello sur la programmation de langage conception et implémentation, 05-10 juin 2010, Toronto, Ontario, Canada [doi > 10.1145/1806596.1806634] [http://dl.acm.org/citation.cfm?id=1806634](http://dl.acm.org/citation.cfm?id=1806634)
+* Peter Bailis, Shivaram Venkataraman, Michael J. Franklin, Joseph M. Hellerstein, Ion Stoica, Probabilistically délimitée péremption pour pratiques quorums partielles, une procédure de hello VLDB dotation, v.5 n.8, p.776-787, avril 2012 [http:// DL.ACM.org/citation.cfm?ID=2212359](http://dl.acm.org/citation.cfm?id=2212359)

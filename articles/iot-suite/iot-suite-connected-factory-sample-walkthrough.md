@@ -1,6 +1,6 @@
 ---
-title: "Procédure pas à pas pour la solution d’usine connectée Azure IoT Suite | Microsoft Docs"
-description: "Description de la solution préconfigurée d’usine connectée Azure IoT et de son architecture."
+title: "procédure pas à pas d’aaaConnected fabrique Azure IoT Suite solution | Documents Microsoft"
+description: "Obtenir une description de hello Azure IoT préconfiguré solution connecté fabrique et son architecture."
 services: 
 suite: iot-suite
 documentationcenter: 
@@ -15,121 +15,121 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/27/2017
 ms.author: dobett
-ms.openlocfilehash: 517e908a744734139ed0aeee314a4f3b9eda86cc
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 7fd55c51351659401349cfde91a20fce1045b4f0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="connected-factory-preconfigured-solution-walkthrough"></a>Procédure pas à pas de la solution préconfigurée d’usine connectée
 
-La [solution préconfigurée][lnk-preconfigured-solutions] d’usine connectée IoT Suite est une implémentation d’une solution industrielle de bout en bout qui :
+Hello IoT Suite connecté fabrique [solution préconfigurée] [ lnk-preconfigured-solutions] est une implémentation d’une solution de bout en bout industrielle qui :
 
-* Se connecte à la fois aux appareils industriels simulés fonctionnant sur des serveurs OPC UA dans des lignes de production simulées et aux appareils fonctionnant sur des serveurs OPC UA réels. Pour plus d’informations sur OPC UA, consultez les [questions fréquentes (FAQ) sur l’usine connectée](iot-suite-faq-cf.md).
+* Se connecte les appareils industriels tooboth simulée exécutant des serveurs OPC UA des lignes de production simulé fabrique et des appareils de serveur réels OPC UA. Pour plus d’informations sur OPC UA, consultez hello [connecté fabrique FAQ](iot-suite-faq-cf.md).
 * Affiche les indicateurs de performance clé (KPI) opérationnels et les OEE de ces appareils et des lignes de production.
-* Montre comment une application basée sur le cloud peut être utilisée pour interagir avec les systèmes de serveur OPC UA.
-* Vous permet de connecter vos propres appareils de serveur OPC UA.
-* Vous permet de parcourir et de modifier les données de serveur OPC UA.
-* S’intègre avec le service Azure Time Series Insights (TSI) pour fournir des vues personnalisées des données à partir de vos serveurs OPC UA.
+* Montre comment une application basée sur le cloud peut être toointeract utilisé avec les systèmes de serveur OPC UA.
+* Permet de vous tooconnect les appareils de votre propre serveur OPC UA.
+* Vous permet de toobrowse et modifier hello données OPC UA du serveur.
+* S’intègre avec hello Azure temps série Insights (STI) service tooprovide des vues personnalisées de données hello à partir de vos serveurs OPC UA.
 
-Vous pouvez utiliser la solution comme point de départ pour votre propre implémentation et la [personnaliser][lnk-customize] pour répondre à vos propres exigences professionnelles.
+Vous pouvez utiliser la solution de hello comme point de départ pour votre propre implémentation et [personnaliser] [ lnk-customize] il toomeet vos propres besoins professionnels spécifiques.
 
-Cet article vous familiarise avec les éléments clés de la solution d’usine connectée pour vous permettre de comprendre son fonctionnement. Ces connaissances vous aident à :
+Cet article vous guide certains éléments clés hello hello connecté fabrique solution tooenable toounderstand son fonctionnement. Ces connaissances vous aident à :
 
-* Résoudre les problèmes dans la solution.
-* Adapter la solution à vos besoins professionnels.
+* Résoudre les problèmes dans les solutions hello.
+* Planifier comment toocustomize toohello solution toomeet vos besoins spécifiques.
 * Concevoir votre propre solution IoT utilisant des services Azure.
 
-Pour plus d’informations, consultez le [FAQ sur l’usine connectée](iot-suite-faq-cf.md).
+Pour plus d’informations, consultez hello [connecté fabrique FAQ](iot-suite-faq-cf.md).
 
 ## <a name="logical-architecture"></a>Architecture logique
 
-Le schéma suivant décrit les composants logiques de la solution préconfigurée :
+Hello suivant schéma présente des composants logiques de hello de solution de hello préconfiguré :
 
 ![Architecture logique d’usine connectée][connected-factory-logical]
 
 ## <a name="communication-patterns"></a>Modèles de communication
 
-La solution utilise la [spécification Pub/Sub OPC UA](https://opcfoundation.org/news/opc-foundation-news/opc-foundation-announces-support-of-publish-subscribe-for-opc-ua/) pour envoyer des données de télémétrie OPC UA à IoT Hub au format JSON. Pour ce faire, la solution utilise le module IoT Edge de [l’éditeur d’OPC](https://github.com/Azure/iot-edge-opc-publisher).
+solution de Hello utilise hello [les spécification OPC UA Pub/Sub](https://opcfoundation.org/news/opc-foundation-news/opc-foundation-announces-support-of-publish-subscribe-for-opc-ua/) toosend OPC UA télémétrie données tooIoT Hub au format JSON. solution de Hello utilise hello [OPC Publisher](https://github.com/Azure/iot-edge-opc-publisher) module IoT Edge à cet effet.
 
-La solution dispose également d’un client OPC UA intégré à une application web qui peut établir des connexions avec des serveurs locaux OPC UA. Le client utilise un [proxy inversé](https://wikipedia.org/wiki/Reverse_proxy) et reçoit de l’aide d’IoT Hub pour établir la connexion sans demander de ports ouverts dans le pare-feu local. Ce modèle de communication est appelé [communication assistée par le service](https://blogs.msdn.microsoft.com/clemensv/2014/02/09/service-assisted-communication-for-connected-devices/). Pour ce faire, la solution utilise le module IoT Edge de [proxy OPC](https://github.com/Azure/iot-edge-opc-proxy/).
+solution de Hello possède également un client OPC UA intégré dans une application web qui peut établir des connexions avec des serveurs locaux OPC UA. Hello client utilise un [proxy inversé](https://wikipedia.org/wiki/Reverse_proxy) et reçoit les aide à partir de la connexion de IoT Hub toomake hello sans devoir ouvrir les ports dans le pare-feu local hello. Ce modèle de communication est appelé [communication assistée par le service](https://blogs.msdn.microsoft.com/clemensv/2014/02/09/service-assisted-communication-for-connected-devices/). solution de Hello utilise hello [OPC Proxy](https://github.com/Azure/iot-edge-opc-proxy/) module IoT Edge à cet effet.
 
 
 ## <a name="simulation"></a>Simulation
 
-Les postes et les systèmes d'exécution de la fabrication (MES) simulés constituent une chaîne de fabrication d’usine. Les appareils simulés et le module Éditeur d’OPC sont basés sur le [Standard OPC UA .NET][lnk-OPC-UA-NET-Standard] publié par la Fondation OPC.
+Hello simulés stations et production hello simulée systèmes (MES) constituent une ligne en usine. Hello simulations de périphériques et hello OPC Publisher Module sont basés sur hello [OPC UA .NET Standard] [ lnk-OPC-UA-NET-Standard] publié par hello OPC Foundation.
 
-Le Proxy OPC et le module Éditeur d’OPC sont implémentés en tant que modules basés sur [Azure IoT Edge][lnk-Azure-IoT-Gateway]. Chaque ligne de production simulée dispose d’une passerelle désignée associée.
+Hello OPC Proxy et le serveur de publication OPC sont implémentés en tant que modules basés sur [Azure IoT bord][lnk-Azure-IoT-Gateway]. Chaque ligne de production simulée dispose d’une passerelle désignée associée.
 
-Tous les composants de simulation sont exécutés dans des conteneurs Docker hébergés dans une machine virtuelle Linux Azure. La simulation est configurée pour exécuter huit lignes de production simulées par défaut.
+Tous les composants de simulation sont exécutés dans des conteneurs Docker hébergés dans une machine virtuelle Linux Azure. simulation de Hello est configuré toorun huit lignes production simulé par défaut.
 
 ## <a name="simulated-production-line"></a>Ligne de production simulée
 
 Une ligne de production fabrique des parties. Elle est composée de différents postes : un poste d’assembly, un poste de test et un poste de packaging.
 
-La simulation s’exécute et met à jour les données exposées via les nœuds OPC UA. Toutes les stations de ligne de production simulées sont orchestrées par le MES via OPC UA.
+simulation de Hello s’exécute et met à jour les données hello qui sont exposées via des nœuds OPC UA hello. Toutes les stations line simulé de production sont orchestrées par hello MES via OPC UA.
 
 ## <a name="simulated-manufacturing-execution-system"></a>Simulation de système d’exécution de fabrication
 
-Le MES analyse chaque poste dans la ligne de production via OPC UA pour détecter les modifications d’état des postes. Il appelle des méthodes OPC UA pour contrôler les stations et transmet les produits d’un poste à l’autre jusqu'à la fin de l’opération.
+Hello MES analyse chaque station dans la ligne de production hello à travers les modifications d’état OPC UA toodetect station. Il appelle OPC UA stations de méthodes toocontrol hello et transmet ensuite un produit à partir d’une station toohello qu’elle soit terminée.
 
 ## <a name="gateway-opc-publisher-module"></a>Module Éditeur d’OPC de la passerelle
 
-Le module Éditeur d’OPC se connecte aux serveurs de poste OPC UA et s’abonne aux nœuds OPC à publier. Le module convertit les données de nœud au format JSON, les chiffre et les envoie au IoT Hub sous forme de messages OPC UA Pub/Sub.
+Module de serveur de publication OPC connecte toohello station OPC UA serveurs et s’abonne toohello OPC nœuds toobe publié. module de Hello convertit les données du nœud hello en format JSON, chiffre et envoie tooIoT Hub en tant que messages de OPC UA Pub/Sub.
 
-Le module Éditeur d’OPC nécessite un port sortant https (443) uniquement et fonctionne avec l’infrastructure d’entreprise existante.
+module de serveur de publication OPC Hello nécessite un port sortant https (443) uniquement et permettre travailler avec l’infrastructure d’entreprise existante.
 
 ## <a name="gateway-opc-proxy-module"></a>Module proxy OPC de la passerelle
 
-Le module proxy OPC UA de la passerelle « tunnele » les messages OPC UA binaires de commande et de contrôle et nécessite seulement un port sortant https (443). Il est compatible avec l’infrastructure d’entreprise existante, y compris les proxys Web.
+Hello passerelle OPC UA Proxy Module utilise des messages de contrôle et commande OPC UA binaires et seulement nécessite un port sortant https (443). Il est compatible avec l’infrastructure d’entreprise existante, y compris les proxys Web.
 
-Il utilise des méthodes d’appareil IoT Hub pour transférer des données TCP/IP en paquets à la couche d’application et garantit ainsi l’approbation du point de terminaison, le chiffrement des données et l’intégrité à l’aide de SSL/TLS.
+Il utilise un appareil de Hub IoT méthodes tootransfer en paquets TCP/IP données au niveau de la couche d’application hello et garantit ainsi la confiance de point de terminaison, le chiffrement des données et d’intégrité à l’aide de SSL/TLS.
 
-Le protocole binaire OPC UA relayé via le proxy utilise le chiffrement et l’authentification UA.
+Hello protocole binaire de OPC UA relayée via proxy hello lui-même utilise le chiffrement et authentification de l’agent utilisateur.
 
 ## <a name="azure-time-series-insights"></a>Azure Time Series Insights
 
-Le module Éditeur d’OPC de la passerelle s’abonne à des nœuds de serveur OPC UA pour détecter des modifications dans les valeurs de données. Si une modification de données est détectée dans un des nœuds, ce module envoie des messages à Azure IoT Hub.
+Hello passerelle OPC Publisher Module s’abonne modifications tooOPC UA server nœuds toodetect hello valeurs de données. Si une modification de données est détectée dans un des nœuds de hello, ce module envoie ensuite les messages tooAzure IoT Hub.
 
-IoT Hub fournit une source d’événements à Azure STI. STI stocke les données durant 30 jours en fonction des horodatages associés messages. Ces données incluent :
+IoT Hub fournit un tooAzure de source d’événement STI. STI stocke les données pendant 30 jours en fonction des horodatages attaché toohello messages. Ces données incluent :
 
 * OPC UA ApplicationUri
 * OPC UA NodeId
-* Valeur du nœud
+* Valeur du nœud de hello
 * Source timestamp
 * OPC UA DisplayName
 
-Actuellement, STI n’autorise pas les clients à personnaliser la durée pendant laquelle ils souhaitent conserver les données.
+Actuellement, STI n’autorise pas les clients toocustomize combien ils veulent tookeep données hello.
 
 Requêtes de STI sur les données de nœud à l’aide d’un SearchSpan (Time.From, Time.To) et des agrégats par OPC UA ApplicationUri ou OPC UA NodeId ou OPC UA DisplayName.
 
-Pour récupérer les données pour les jauges OEE et KPI et les graphiques de séries chronologiques, les données sont agrégées par nombre d’événements, Sum, Avg, Min et Max.
+tooretrieve les données de hello pour les jauges OEE et l’indicateur de performance clé hello et graphiques de série de temps hello, les données sont agrégées par nombre d’événements, Sum, Avg, Min et Max.
 
-Les séries chronologiques sont créées à l’aide d’un processus différent. Les OOE et les KPI sont calculées à partir des données de base des postes et propagées pour la topologie (lignes de production, usines, entreprise) dans l’application.
+MTS Hello sont créées à l’aide d’un autre processus. OEE et indicateurs de performance clés sont calculées à partir des données de base station et propagés pour topologie hello (lignes de production, fabriques, entreprise) dans une application hello.
 
-En outre, les séries chronologiques pour la topologie OEE et KPI sont calculées dans l’application, chaque fois qu’un intervalle de temps affiché est prêt. Par exemple, l’affichage quotidien est mis à jour chaque heure complète.
+En outre, série chronologique pour topologie OEE et l’indicateur de performance clé est calculée dans une application hello, chaque fois qu’un intervalle de temps affiché est prêt. Par exemple, affichage du jour hello est mise à jour chaque heure complète.
 
-L’affichage de séries chronologiques des données de nœud provient directement de STI à l’aide d’une agrégation pour l’intervalle de temps.
+la vue de données du nœud de série au moment Hello proviennent directement de STI à l’aide d’une agrégation pour l’intervalle de temps.
 
 ## <a name="iot-hub"></a>IoT Hub
-[IoT Hub][lnk-IoT Hub] reçoit les données envoyées par le module Éditeur d’OPC au cloud et les rend disponibles au service Azure TSI. 
+Hello [IoT hub] [ lnk-IoT Hub] reçoit les données envoyées de hello OPC Publisher Module dans le cloud de hello et rend le service de Azure STI toohello disponibles. 
 
-L’instance IoT Hub de la solution effectue également ce qui suit :
-- Gère un registre d’identité qui stocke les ID des modules Éditeur d’OPC et de tous les modules de Proxy OPC.
-- Est utilisé en tant que canal de transport pour la communication bidirectionnelle du module Proxy OPC.
+Hello IoT Hub dans les solutions hello également :
+- Gère un registre des identités qui stocke les identificateurs hello pour tout Module de serveur de publication OPC et tous les Modules de Proxy OPC.
+- Est utilisé en tant que canal de transport pour la communication bidirectionnelle de hello OPC Proxy Module.
 
 ## <a name="azure-storage"></a>Azure Storage
-La solution utilise le stockage d’objets blob Azure comme stockage sur disque pour la machine virtuelle et pour stocker les données de déploiement.
+solution de Hello utilise le stockage d’objets blob Azure en tant que stockage de disque pour les données de déploiement de machine virtuelle et toostore hello.
 
 ## <a name="web-app"></a>Application web
-L’application web déployée dans le cadre de la solution préconfigurée comprend un client OPC UA intégré, un système de traitement des alertes et de visualisation de télémétrie.
+application Hello web déployée comme partie de hello préconfiguré solution se compose d’un client OPC UA intégré, le traitement des alertes et visualisation des données de télémétrie.
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Vous pouvez poursuivre la prise en main d’IoT Suite en lisant les articles suivants :
+Vous pouvez continuer la mise en route avec IoT Suite en lisant hello suivant des articles :
 
-* [Autorisations sur le site azureiotsuite.com][lnk-permissions]
-* [Déployer une passerelle sur Windows ou Linux pour la solution préconfigurée d’usine connectée](iot-suite-connected-factory-gateway-deployment.md)
+* [Autorisations sur le site de azureiotsuite.com hello][lnk-permissions]
+* [Déployer une passerelle sur Windows ou Linux pour la solution de fabrique préconfiguré hello connecté](iot-suite-connected-factory-gateway-deployment.md)
 
 [connected-factory-logical]:media/iot-suite-connected-factory-walkthrough/cf-logical-architecture.png
 
