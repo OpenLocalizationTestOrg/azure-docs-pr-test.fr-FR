@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory à MaxxPoint | Microsoft Docs"
-description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et MaxxPoint."
+description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et MaxxPoint."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,204 +13,204 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/13/2017
 ms.author: jeedes
-ms.openlocfilehash: 8a7481b71df5ca407dbed5da3d3cc26991504c82
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 03b13908add8d8c62f1d1480ed2288658fce14d4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-maxxpoint"></a><span data-ttu-id="d6c17-103">Didacticiel : Intégration d’Azure Active Directory à MaxxPoint</span><span class="sxs-lookup"><span data-stu-id="d6c17-103">Tutorial: Azure Active Directory integration with MaxxPoint</span></span>
+# <a name="tutorial-azure-active-directory-integration-with-maxxpoint"></a><span data-ttu-id="505a8-103">Didacticiel : Intégration d’Azure Active Directory à MaxxPoint</span><span class="sxs-lookup"><span data-stu-id="505a8-103">Tutorial: Azure Active Directory integration with MaxxPoint</span></span>
 
-<span data-ttu-id="d6c17-104">Dans ce didacticiel, vous allez apprendre à intégrer MaxxPoint à Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="d6c17-104">In this tutorial, you learn how to integrate MaxxPoint with Azure Active Directory (Azure AD).</span></span>
+<span data-ttu-id="505a8-104">Dans ce didacticiel, vous apprendrez comment toointegrate MaxxPoint avec Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="505a8-104">In this tutorial, you learn how toointegrate MaxxPoint with Azure Active Directory (Azure AD).</span></span>
 
-<span data-ttu-id="d6c17-105">L’intégration de MaxxPoint à Azure AD vous offre les avantages suivants :</span><span class="sxs-lookup"><span data-stu-id="d6c17-105">Integrating MaxxPoint with Azure AD provides you with the following benefits:</span></span>
+<span data-ttu-id="505a8-105">Intégration MaxxPoint à Azure AD offre hello avantages suivants :</span><span class="sxs-lookup"><span data-stu-id="505a8-105">Integrating MaxxPoint with Azure AD provides you with hello following benefits:</span></span>
 
-- <span data-ttu-id="d6c17-106">Dans Azure AD, vous pouvez contrôler qui a accès à MaxxPoint.</span><span class="sxs-lookup"><span data-stu-id="d6c17-106">You can control in Azure AD who has access to MaxxPoint</span></span>
-- <span data-ttu-id="d6c17-107">Vous pouvez autoriser vos utilisateurs à se connecter automatiquement à MaxxPoint (par le biais de l’authentification unique) avec leur compte Azure AD.</span><span class="sxs-lookup"><span data-stu-id="d6c17-107">You can enable your users to automatically get signed-on to MaxxPoint (Single Sign-On) with their Azure AD accounts</span></span>
-- <span data-ttu-id="d6c17-108">Vous pouvez gérer vos comptes depuis un emplacement central : le portail Azure.</span><span class="sxs-lookup"><span data-stu-id="d6c17-108">You can manage your accounts in one central location - the Azure portal</span></span>
+- <span data-ttu-id="505a8-106">Vous pouvez contrôler dans Azure AD qui a accès tooMaxxPoint</span><span class="sxs-lookup"><span data-stu-id="505a8-106">You can control in Azure AD who has access tooMaxxPoint</span></span>
+- <span data-ttu-id="505a8-107">Vous pouvez activer vos utilisateurs tooautomatically get connecté tooMaxxPoint (Single Sign-On) avec leurs comptes Azure AD</span><span class="sxs-lookup"><span data-stu-id="505a8-107">You can enable your users tooautomatically get signed-on tooMaxxPoint (Single Sign-On) with their Azure AD accounts</span></span>
+- <span data-ttu-id="505a8-108">Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure</span><span class="sxs-lookup"><span data-stu-id="505a8-108">You can manage your accounts in one central location - hello Azure portal</span></span>
 
-<span data-ttu-id="d6c17-109">Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="d6c17-109">If you want to know more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="505a8-109">Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="505a8-109">If you want tooknow more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="d6c17-110">Composants requis</span><span class="sxs-lookup"><span data-stu-id="d6c17-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="505a8-110">Composants requis</span><span class="sxs-lookup"><span data-stu-id="505a8-110">Prerequisites</span></span>
 
-<span data-ttu-id="d6c17-111">Pour configurer l’intégration d’Azure AD à MaxxPoint, vous avez besoin des éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="d6c17-111">To configure Azure AD integration with MaxxPoint, you need the following items:</span></span>
+<span data-ttu-id="505a8-111">tooconfigure intégration d’Azure AD avec MaxxPoint, vous devez hello éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="505a8-111">tooconfigure Azure AD integration with MaxxPoint, you need hello following items:</span></span>
 
-- <span data-ttu-id="d6c17-112">Un abonnement Azure AD</span><span class="sxs-lookup"><span data-stu-id="d6c17-112">An Azure AD subscription</span></span>
-- <span data-ttu-id="d6c17-113">Un abonnement MaxxPoint pour lequel l’authentification unique est activée</span><span class="sxs-lookup"><span data-stu-id="d6c17-113">A MaxxPoint single-sign on enabled subscription</span></span>
+- <span data-ttu-id="505a8-112">Un abonnement Azure AD</span><span class="sxs-lookup"><span data-stu-id="505a8-112">An Azure AD subscription</span></span>
+- <span data-ttu-id="505a8-113">Un abonnement MaxxPoint pour lequel l’authentification unique est activée</span><span class="sxs-lookup"><span data-stu-id="505a8-113">A MaxxPoint single-sign on enabled subscription</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="d6c17-114">Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.</span><span class="sxs-lookup"><span data-stu-id="d6c17-114">To test the steps in this tutorial, we do not recommend using a production environment.</span></span>
+> <span data-ttu-id="505a8-114">tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.</span><span class="sxs-lookup"><span data-stu-id="505a8-114">tootest hello steps in this tutorial, we do not recommend using a production environment.</span></span>
 
-<span data-ttu-id="d6c17-115">Vous devez en outre suivre les recommandations ci-dessous :</span><span class="sxs-lookup"><span data-stu-id="d6c17-115">To test the steps in this tutorial, you should follow these recommendations:</span></span>
+<span data-ttu-id="505a8-115">tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :</span><span class="sxs-lookup"><span data-stu-id="505a8-115">tootest hello steps in this tutorial, you should follow these recommendations:</span></span>
 
-- <span data-ttu-id="d6c17-116">Vous ne devez pas utiliser votre environnement de production, sauf si cela est nécessaire.</span><span class="sxs-lookup"><span data-stu-id="d6c17-116">You should not use your production environment, unless this is necessary.</span></span>
-- <span data-ttu-id="d6c17-117">Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="d6c17-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+- <span data-ttu-id="505a8-116">Vous ne devez pas utiliser votre environnement de production, sauf si cela est nécessaire.</span><span class="sxs-lookup"><span data-stu-id="505a8-116">You should not use your production environment, unless this is necessary.</span></span>
+- <span data-ttu-id="505a8-117">Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="505a8-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
-## <a name="scenario-description"></a><span data-ttu-id="d6c17-118">Description du scénario</span><span class="sxs-lookup"><span data-stu-id="d6c17-118">Scenario description</span></span>
-<span data-ttu-id="d6c17-119">Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test.</span><span class="sxs-lookup"><span data-stu-id="d6c17-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="d6c17-120">Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :</span><span class="sxs-lookup"><span data-stu-id="d6c17-120">The scenario outlined in this tutorial consists of two main building blocks:</span></span>
+## <a name="scenario-description"></a><span data-ttu-id="505a8-118">Description du scénario</span><span class="sxs-lookup"><span data-stu-id="505a8-118">Scenario description</span></span>
+<span data-ttu-id="505a8-119">Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test.</span><span class="sxs-lookup"><span data-stu-id="505a8-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="505a8-120">scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :</span><span class="sxs-lookup"><span data-stu-id="505a8-120">hello scenario outlined in this tutorial consists of two main building blocks:</span></span>
 
-1. <span data-ttu-id="d6c17-121">Ajout de MaxxPoint à partir de la galerie</span><span class="sxs-lookup"><span data-stu-id="d6c17-121">Adding MaxxPoint from the gallery</span></span>
-2. <span data-ttu-id="d6c17-122">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="d6c17-122">Configuring and testing Azure AD single sign-on</span></span>
+1. <span data-ttu-id="505a8-121">Ajout de MaxxPoint à partir de la galerie de hello</span><span class="sxs-lookup"><span data-stu-id="505a8-121">Adding MaxxPoint from hello gallery</span></span>
+2. <span data-ttu-id="505a8-122">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="505a8-122">Configuring and testing Azure AD single sign-on</span></span>
 
 
-## <a name="adding-maxxpoint-from-the-gallery"></a><span data-ttu-id="d6c17-123">Ajout de MaxxPoint à partir de la galerie</span><span class="sxs-lookup"><span data-stu-id="d6c17-123">Adding MaxxPoint from the gallery</span></span>
-<span data-ttu-id="d6c17-124">Pour configurer l’intégration de MaxxPoint à Azure AD, vous devez ajouter MaxxPoint à partir de la galerie à votre liste d’applications SaaS gérées.</span><span class="sxs-lookup"><span data-stu-id="d6c17-124">To configure the integration of MaxxPoint into Azure AD, you need to add MaxxPoint from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="adding-maxxpoint-from-hello-gallery"></a><span data-ttu-id="505a8-123">Ajout de MaxxPoint à partir de la galerie de hello</span><span class="sxs-lookup"><span data-stu-id="505a8-123">Adding MaxxPoint from hello gallery</span></span>
+<span data-ttu-id="505a8-124">intégration de hello tooconfigure de MaxxPoint dans Azure AD, vous devez tooadd MaxxPoint à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.</span><span class="sxs-lookup"><span data-stu-id="505a8-124">tooconfigure hello integration of MaxxPoint into Azure AD, you need tooadd MaxxPoint from hello gallery tooyour list of managed SaaS apps.</span></span>
 
-<span data-ttu-id="d6c17-125">**Pour ajouter MaxxPoint à partir de la galerie, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="d6c17-125">**To add MaxxPoint from the gallery, perform the following steps:**</span></span>
+<span data-ttu-id="505a8-125">**tooadd MaxxPoint à partir de la galerie hello, procédez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="505a8-125">**tooadd MaxxPoint from hello gallery, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="d6c17-126">Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**.</span><span class="sxs-lookup"><span data-stu-id="d6c17-126">In the **[Azure portal](https://portal.azure.com)**, on the left navigation panel, click **Azure Active Directory** icon.</span></span> 
+1. <span data-ttu-id="505a8-126">Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.</span><span class="sxs-lookup"><span data-stu-id="505a8-126">In hello **[Azure portal](https://portal.azure.com)**, on hello left navigation panel, click **Azure Active Directory** icon.</span></span> 
 
     ![Active Directory][1]
 
-2. <span data-ttu-id="d6c17-128">Accédez à **Applications d’entreprise**.</span><span class="sxs-lookup"><span data-stu-id="d6c17-128">Navigate to **Enterprise applications**.</span></span> <span data-ttu-id="d6c17-129">Accédez ensuite à **Toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="d6c17-129">Then go to **All applications**.</span></span>
+2. <span data-ttu-id="505a8-128">Accédez trop**des applications d’entreprise**.</span><span class="sxs-lookup"><span data-stu-id="505a8-128">Navigate too**Enterprise applications**.</span></span> <span data-ttu-id="505a8-129">Passez trop**toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="505a8-129">Then go too**All applications**.</span></span>
 
     ![Applications][2]
     
-3. <span data-ttu-id="d6c17-131">Pour ajouter la nouvelle application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="d6c17-131">Click **New application** button on the top of dialog to add new application.</span></span>
+3. <span data-ttu-id="505a8-131">Cliquez sur **nouvelle application** bouton en haut de hello de nouvelle application de boîte de dialogue tooadd.</span><span class="sxs-lookup"><span data-stu-id="505a8-131">Click **New application** button on hello top of dialog tooadd new application.</span></span>
 
     ![Applications][3]
 
-4. <span data-ttu-id="d6c17-133">Dans la zone de recherche, tapez **MaxxPoint**.</span><span class="sxs-lookup"><span data-stu-id="d6c17-133">In the search box, type **MaxxPoint**.</span></span>
+4. <span data-ttu-id="505a8-133">Dans la zone de recherche de hello, tapez **MaxxPoint**.</span><span class="sxs-lookup"><span data-stu-id="505a8-133">In hello search box, type **MaxxPoint**.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-maxxpoint-tutorial/tutorial_maxxpoint_001.png)
 
-5. <span data-ttu-id="d6c17-135">Dans le volet des résultats, sélectionnez **MaxxPoint**, puis cliquez sur **Ajouter** pour ajouter l’application.</span><span class="sxs-lookup"><span data-stu-id="d6c17-135">In the results panel, select **MaxxPoint**, and then click **Add** button to add the application.</span></span>
+5. <span data-ttu-id="505a8-135">Dans le volet de résultats hello, sélectionnez **MaxxPoint**, puis cliquez sur **ajouter** bouton application hello de tooadd.</span><span class="sxs-lookup"><span data-stu-id="505a8-135">In hello results panel, select **MaxxPoint**, and then click **Add** button tooadd hello application.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-maxxpoint-tutorial/tutorial_maxxpoint_0001.png)
 
-##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="d6c17-137">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="d6c17-137">Configuring and testing Azure AD single sign-on</span></span>
-<span data-ttu-id="d6c17-138">Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec MaxxPoint avec un utilisateur de test appelé « Britta Simon ».</span><span class="sxs-lookup"><span data-stu-id="d6c17-138">In this section, you configure and test Azure AD single sign-on with MaxxPoint based on a test user called "Britta Simon".</span></span>
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="505a8-137">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="505a8-137">Configuring and testing Azure AD single sign-on</span></span>
+<span data-ttu-id="505a8-138">Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec MaxxPoint avec un utilisateur de test appelé « Britta Simon ».</span><span class="sxs-lookup"><span data-stu-id="505a8-138">In this section, you configure and test Azure AD single sign-on with MaxxPoint based on a test user called "Britta Simon".</span></span>
 
-<span data-ttu-id="d6c17-139">Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur MaxxPoint équivalent dans Azure AD.</span><span class="sxs-lookup"><span data-stu-id="d6c17-139">For single sign-on to work, Azure AD needs to know what the counterpart user in MaxxPoint is to a user in Azure AD.</span></span> <span data-ttu-id="d6c17-140">En d’autres termes, une relation entre l’utilisateur Azure AD et l’utilisateur MaxxPoint associé doit être établie.</span><span class="sxs-lookup"><span data-stu-id="d6c17-140">In other words, a link relationship between an Azure AD user and the related user in MaxxPoint needs to be established.</span></span>
+<span data-ttu-id="505a8-139">Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans MaxxPoint est tooa utilisateur dans Azure AD.</span><span class="sxs-lookup"><span data-stu-id="505a8-139">For single sign-on toowork, Azure AD needs tooknow what hello counterpart user in MaxxPoint is tooa user in Azure AD.</span></span> <span data-ttu-id="505a8-140">En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans MaxxPoint doit toobe établie.</span><span class="sxs-lookup"><span data-stu-id="505a8-140">In other words, a link relationship between an Azure AD user and hello related user in MaxxPoint needs toobe established.</span></span>
 
-<span data-ttu-id="d6c17-141">Pour cela, affectez la valeur du **nom d’utilisateur** dans Azure AD comme valeur du **nom d’utilisateur** dans MaxxPoint.</span><span class="sxs-lookup"><span data-stu-id="d6c17-141">This link relationship is established by assigning the value of the **user name** in Azure AD as the value of the **Username** in MaxxPoint.</span></span>
+<span data-ttu-id="505a8-141">Cette relation de lien est établie en assignant la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** dans MaxxPoint.</span><span class="sxs-lookup"><span data-stu-id="505a8-141">This link relationship is established by assigning hello value of hello **user name** in Azure AD as hello value of hello **Username** in MaxxPoint.</span></span>
 
-<span data-ttu-id="d6c17-142">Pour configurer et tester l’authentification unique Azure AD avec MaxxPoint, vous devez suivre les indications des sections suivantes :</span><span class="sxs-lookup"><span data-stu-id="d6c17-142">To configure and test Azure AD single sign-on with MaxxPoint, you need to complete the following building blocks:</span></span>
+<span data-ttu-id="505a8-142">tooconfigure et test Azure AD l’authentification unique avec MaxxPoint, vous devez hello toocomplete suivant des blocs de construction :</span><span class="sxs-lookup"><span data-stu-id="505a8-142">tooconfigure and test Azure AD single sign-on with MaxxPoint, you need toocomplete hello following building blocks:</span></span>
 
-1. <span data-ttu-id="d6c17-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.</span><span class="sxs-lookup"><span data-stu-id="d6c17-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - to enable your users to use this feature.</span></span>
-2. <span data-ttu-id="d6c17-144">**[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="d6c17-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.</span></span>
-3. <span data-ttu-id="d6c17-145">**[Création d’un utilisateur de test MaxxPoint](#creating-a-maxxpoint-test-user)** pour avoir un équivalent de Britta Simon dans MaxxPoint lié à la représentation Azure AD associée.</span><span class="sxs-lookup"><span data-stu-id="d6c17-145">**[Creating a MaxxPoint test user](#creating-a-maxxpoint-test-user)** - to have a counterpart of Britta Simon in MaxxPoint that is linked to the Azure AD representation of her.</span></span>
-4. <span data-ttu-id="d6c17-146">**[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.</span><span class="sxs-lookup"><span data-stu-id="d6c17-146">**[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.</span></span>
-5. <span data-ttu-id="d6c17-147">**[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.</span><span class="sxs-lookup"><span data-stu-id="d6c17-147">**[Testing Single Sign-On](#testing-single-sign-on)** - to verify whether the configuration works.</span></span>
+1. <span data-ttu-id="505a8-143">**[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.</span><span class="sxs-lookup"><span data-stu-id="505a8-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - tooenable your users toouse this feature.</span></span>
+2. <span data-ttu-id="505a8-144">**[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="505a8-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - tootest Azure AD single sign-on with Britta Simon.</span></span>
+3. <span data-ttu-id="505a8-145">**[Création d’un utilisateur de test MaxxPoint](#creating-a-maxxpoint-test-user)**  -toohave de Britta Simon dans MaxxPoint qui est la représentation sous forme de toohello lié Azure AD de sa contrepartie.</span><span class="sxs-lookup"><span data-stu-id="505a8-145">**[Creating a MaxxPoint test user](#creating-a-maxxpoint-test-user)** - toohave a counterpart of Britta Simon in MaxxPoint that is linked toohello Azure AD representation of her.</span></span>
+4. <span data-ttu-id="505a8-146">**[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="505a8-146">**[Assigning hello Azure AD test user](#assigning-the-azure-ad-test-user)** - tooenable Britta Simon toouse Azure AD single sign-on.</span></span>
+5. <span data-ttu-id="505a8-147">**[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.</span><span class="sxs-lookup"><span data-stu-id="505a8-147">**[Testing Single Sign-On](#testing-single-sign-on)** - tooverify whether hello configuration works.</span></span>
 
-### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="d6c17-148">Configuration de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="d6c17-148">Configuring Azure AD single sign-on</span></span>
+### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="505a8-148">Configuration de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="505a8-148">Configuring Azure AD single sign-on</span></span>
 
-<span data-ttu-id="d6c17-149">Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application MaxxPoint.</span><span class="sxs-lookup"><span data-stu-id="d6c17-149">In this section, you enable Azure AD single sign-on in the Azure portal and configure single sign-on in your MaxxPoint application.</span></span>
+<span data-ttu-id="505a8-149">Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application MaxxPoint.</span><span class="sxs-lookup"><span data-stu-id="505a8-149">In this section, you enable Azure AD single sign-on in hello Azure portal and configure single sign-on in your MaxxPoint application.</span></span>
 
-<span data-ttu-id="d6c17-150">**Pour configurer l’authentification unique Azure AD avec MaxxPoint, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="d6c17-150">**To configure Azure AD single sign-on with MaxxPoint, perform the following steps:**</span></span>
+<span data-ttu-id="505a8-150">**tooconfigure Azure AD single sign-on avec MaxxPoint, effectuez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="505a8-150">**tooconfigure Azure AD single sign-on with MaxxPoint, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="d6c17-151">Dans le portail Azure, sur la page d’intégration de l’application **MaxxPoint**, cliquez sur **Authentification unique**.</span><span class="sxs-lookup"><span data-stu-id="d6c17-151">In the Azure portal, on the **MaxxPoint** application integration page, click **Single sign-on**.</span></span>
+1. <span data-ttu-id="505a8-151">Bonjour portail Azure, sur hello **MaxxPoint** page d’intégration d’application, cliquez sur **l’authentification unique**.</span><span class="sxs-lookup"><span data-stu-id="505a8-151">In hello Azure portal, on hello **MaxxPoint** application integration page, click **Single sign-on**.</span></span>
 
     ![Configurer l’authentification unique][4]
 
-2. <span data-ttu-id="d6c17-153">Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="d6c17-153">On the **Single sign-on** dialog, select **Mode** as **SAML-based Sign-on** to enable single sign-on.</span></span>
+2. <span data-ttu-id="505a8-153">Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="505a8-153">On hello **Single sign-on** dialog, select **Mode** as   **SAML-based Sign-on** tooenable single sign-on.</span></span>
  
     ![Configurer l’authentification unique](./media/active-directory-saas-maxxpoint-tutorial/tutorial_general_300.png)
 
-3. <span data-ttu-id="d6c17-155">Dans la section **MaxxPoint Domain and URLs** (Domaines et URL MaxxPoint), si vous souhaitez configurer l’application en **IDP initiated mode** (Mode initié par IDP), vous n’avez aucune opération à effectuer.</span><span class="sxs-lookup"><span data-stu-id="d6c17-155">On the **MaxxPoint Domain and URLs** section, If you wish to configure the application in **IDP initiated mode**, no need to perform any steps.</span></span>
+3. <span data-ttu-id="505a8-155">Sur hello **MaxxPoint domaine et les URL** section, si vous le souhaitez application hello tooconfigure **mode initialisée par IDP**, aucun besoin tooperform toutes les étapes.</span><span class="sxs-lookup"><span data-stu-id="505a8-155">On hello **MaxxPoint Domain and URLs** section, If you wish tooconfigure hello application in **IDP initiated mode**, no need tooperform any steps.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-maxxpoint-tutorial/tutorial_maxxpoint_02.png)
     
-4. <span data-ttu-id="d6c17-157">Dans la section **MaxxPoint Domain and URLs** (Domaines et URL MaxxPoint), si vous souhaitez configurer l’application en **SP initiated mode** (Mode initié par SP), procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="d6c17-157">On the **MaxxPoint Domain and URLs** section, If you wish to configure the application in **SP initiated mode**, perform the following steps:</span></span>
+4. <span data-ttu-id="505a8-157">Sur hello **MaxxPoint domaine et les URL** section, si vous le souhaitez application hello tooconfigure **mode initiée par SP**, effectuer hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="505a8-157">On hello **MaxxPoint Domain and URLs** section, If you wish tooconfigure hello application in **SP initiated mode**, perform hello following steps:</span></span>
     
     ![Configurer l’authentification unique](./media/active-directory-saas-maxxpoint-tutorial/tutorial_maxxpoint_03.png)
 
-    <span data-ttu-id="d6c17-159">a.</span><span class="sxs-lookup"><span data-stu-id="d6c17-159">a.</span></span> <span data-ttu-id="d6c17-160">Cliquez sur l’option **Afficher les paramètres d’URL avancés**.</span><span class="sxs-lookup"><span data-stu-id="d6c17-160">Click **Show advanced URL settings** option</span></span>
+    <span data-ttu-id="505a8-159">a.</span><span class="sxs-lookup"><span data-stu-id="505a8-159">a.</span></span> <span data-ttu-id="505a8-160">Cliquez sur l’option **Afficher les paramètres d’URL avancés**.</span><span class="sxs-lookup"><span data-stu-id="505a8-160">Click **Show advanced URL settings** option</span></span>
 
-    <span data-ttu-id="d6c17-161">b.</span><span class="sxs-lookup"><span data-stu-id="d6c17-161">b.</span></span> <span data-ttu-id="d6c17-162">Dans la zone de texte **URL de connexion**, tapez une URL au format suivant : `https://maxxpoint.westipc.com/default/sso/login/entity/<customer-id>-azure`</span><span class="sxs-lookup"><span data-stu-id="d6c17-162">In the **Sign On URL** textbox, type a URL using the following pattern: `https://maxxpoint.westipc.com/default/sso/login/entity/<customer-id>-azure`</span></span>
+    <span data-ttu-id="505a8-161">b.</span><span class="sxs-lookup"><span data-stu-id="505a8-161">b.</span></span> <span data-ttu-id="505a8-162">Bonjour **URL de connexion** zone de texte, tapez une URL à l’aide de hello modèle :`https://maxxpoint.westipc.com/default/sso/login/entity/<customer-id>-azure`</span><span class="sxs-lookup"><span data-stu-id="505a8-162">In hello **Sign On URL** textbox, type a URL using hello following pattern: `https://maxxpoint.westipc.com/default/sso/login/entity/<customer-id>-azure`</span></span>
 
     > [!NOTE] 
-    > <span data-ttu-id="d6c17-163">Notez qu’il ne s’agit pas de la valeur réelle.</span><span class="sxs-lookup"><span data-stu-id="d6c17-163">Please note that this is not the real value.</span></span> <span data-ttu-id="d6c17-164">Vous devez mettre à jour la valeur avec l’URL de connexion réelle.</span><span class="sxs-lookup"><span data-stu-id="d6c17-164">You have to update this value with the actual Sign On URL.</span></span> <span data-ttu-id="d6c17-165">Appelez l’équipe MaxxPoint au **888-728-0950** pour obtenir cette valeur.</span><span class="sxs-lookup"><span data-stu-id="d6c17-165">Call MaxxPoint team on **888-728-0950** to get this value.</span></span>
+    > <span data-ttu-id="505a8-163">Notez qu’il ne s’agit pas de la valeur réelle hello.</span><span class="sxs-lookup"><span data-stu-id="505a8-163">Please note that this is not hello real value.</span></span> <span data-ttu-id="505a8-164">Vous avez tooupdate URL de connexion cette valeur avec hello réel.</span><span class="sxs-lookup"><span data-stu-id="505a8-164">You have tooupdate this value with hello actual Sign On URL.</span></span> <span data-ttu-id="505a8-165">Appeler l’équipe MaxxPoint **888-728-0950** tooget cette valeur.</span><span class="sxs-lookup"><span data-stu-id="505a8-165">Call MaxxPoint team on **888-728-0950** tooget this value.</span></span>
 
-5. <span data-ttu-id="d6c17-166">Dans la section **Certificat de signature SAML**, cliquez sur **Métadonnées XML** puis enregistrez le fichier de métadonnées sur votre ordinateur.</span><span class="sxs-lookup"><span data-stu-id="d6c17-166">On the **SAML Signing Certificate** section, click **Metadata XML** and then save the metadata file on your computer.</span></span>
+5. <span data-ttu-id="505a8-166">Sur hello **le certificat de signature SAML** , cliquez sur **Metadata XML** , puis enregistrez le fichier de métadonnées hello sur votre ordinateur.</span><span class="sxs-lookup"><span data-stu-id="505a8-166">On hello **SAML Signing Certificate** section, click **Metadata XML** and then save hello metadata file on your computer.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-maxxpoint-tutorial/tutorial_maxxpoint_06.png) 
 
-6. <span data-ttu-id="d6c17-168">Cliquez sur le bouton **Enregistrer** .</span><span class="sxs-lookup"><span data-stu-id="d6c17-168">Click **Save** button.</span></span>
+6. <span data-ttu-id="505a8-168">Cliquez sur le bouton **Enregistrer** .</span><span class="sxs-lookup"><span data-stu-id="505a8-168">Click **Save** button.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-maxxpoint-tutorial/tutorial_general_400.png)
 
-7. <span data-ttu-id="d6c17-170">Pour configurer SSO en fonction de votre application, appelez l’équipe d’assistance de MaxxPoint au **888-728-0950**. Elle vous expliquera comment procéder pour envoyer le fichier **Metadonnées XML** téléchargé.</span><span class="sxs-lookup"><span data-stu-id="d6c17-170">To get SSO configured for your application, call MaxxPoint support team on **888-728-0950** and they'll assist you further on how to provide them the downloaded **Metadata XML** file.</span></span> 
+7. <span data-ttu-id="505a8-170">tooget l’authentification unique configurée pour votre application, d’appeler l’équipe de support MaxxPoint sur **888-728-0950** et ils allez faciliter davantage sur le mode de téléchargement tooprovide les hello **Metadata XML** fichier.</span><span class="sxs-lookup"><span data-stu-id="505a8-170">tooget SSO configured for your application, call MaxxPoint support team on **888-728-0950** and they'll assist you further on how tooprovide them hello downloaded **Metadata XML** file.</span></span> 
 
 > [!TIP]
-> <span data-ttu-id="d6c17-171">Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.</span><span class="sxs-lookup"><span data-stu-id="d6c17-171">You can now read a concise version of these instructions inside the [Azure portal](https://portal.azure.com), while you are setting up the app!</span></span>  <span data-ttu-id="d6c17-172">Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée via la section **Configuration** en bas.</span><span class="sxs-lookup"><span data-stu-id="d6c17-172">After adding this app from the **Active Directory > Enterprise Applications** section, simply click **Single Sign-On** tab and access the embedded documentation through the **Configuration** section at the bottom.</span></span> <span data-ttu-id="d6c17-173">Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="d6c17-173">You can read more about the embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
+> <span data-ttu-id="505a8-171">Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !</span><span class="sxs-lookup"><span data-stu-id="505a8-171">You can now read a concise version of these instructions inside hello [Azure portal](https://portal.azure.com), while you are setting up hello app!</span></span>  <span data-ttu-id="505a8-172">Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** section, cliquez simplement sur **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello.</span><span class="sxs-lookup"><span data-stu-id="505a8-172">After adding this app from hello **Active Directory > Enterprise Applications** section, simply click **Single Sign-On** tab and access hello embedded documentation through hello **Configuration** section at hello bottom.</span></span> <span data-ttu-id="505a8-173">Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="505a8-173">You can read more about hello embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
 
-### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="d6c17-174">Création d’un utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="d6c17-174">Creating an Azure AD test user</span></span>
-<span data-ttu-id="d6c17-175">L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.</span><span class="sxs-lookup"><span data-stu-id="d6c17-175">The objective of this section is to create a test user in the Azure portal called Britta Simon.</span></span>
+### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="505a8-174">Création d’un utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="505a8-174">Creating an Azure AD test user</span></span>
+<span data-ttu-id="505a8-175">objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.</span><span class="sxs-lookup"><span data-stu-id="505a8-175">hello objective of this section is toocreate a test user in hello Azure portal called Britta Simon.</span></span>
 
 ![Créer un utilisateur Azure AD][100]
 
-<span data-ttu-id="d6c17-177">**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="d6c17-177">**To create a test user in Azure AD, perform the following steps:**</span></span>
+<span data-ttu-id="505a8-177">**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="505a8-177">**toocreate a test user in Azure AD, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="d6c17-178">Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.</span><span class="sxs-lookup"><span data-stu-id="d6c17-178">In the **Azure portal**, on the left navigation pane, click **Azure Active Directory** icon.</span></span>
+1. <span data-ttu-id="505a8-178">Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.</span><span class="sxs-lookup"><span data-stu-id="505a8-178">In hello **Azure portal**, on hello left navigation pane, click **Azure Active Directory** icon.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-maxxpoint-tutorial/create_aaduser_01.png) 
 
-2. <span data-ttu-id="d6c17-180">Accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs** pour afficher la liste des utilisateurs.</span><span class="sxs-lookup"><span data-stu-id="d6c17-180">Go to **Users and groups** and click **All users** to display the list of users.</span></span>
+2. <span data-ttu-id="505a8-180">Accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs** liste de hello toodisplay des utilisateurs.</span><span class="sxs-lookup"><span data-stu-id="505a8-180">Go too**Users and groups** and click **All users** toodisplay hello list of users.</span></span>
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-maxxpoint-tutorial/create_aaduser_02.png) 
 
-3. <span data-ttu-id="d6c17-182">En haut de la boîte de dialogue, cliquez sur **Ajouter** pour ouvrir la boîte de dialogue **Utilisateur**.</span><span class="sxs-lookup"><span data-stu-id="d6c17-182">At the top of the dialog click **Add** to open the **User** dialog.</span></span>
+3. <span data-ttu-id="505a8-182">En haut de hello de boîte de dialogue hello, cliquez sur **ajouter** tooopen hello **utilisateur** boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="505a8-182">At hello top of hello dialog click **Add** tooopen hello **User** dialog.</span></span>
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-maxxpoint-tutorial/create_aaduser_03.png) 
 
-4. <span data-ttu-id="d6c17-184">Dans la boîte de dialogue **Utilisateur**, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="d6c17-184">On the **User** dialog page, perform the following steps:</span></span>
+4. <span data-ttu-id="505a8-184">Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="505a8-184">On hello **User** dialog page, perform hello following steps:</span></span>
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-maxxpoint-tutorial/create_aaduser_04.png) 
 
-    <span data-ttu-id="d6c17-186">a.</span><span class="sxs-lookup"><span data-stu-id="d6c17-186">a.</span></span> <span data-ttu-id="d6c17-187">Dans la zone de texte **Nom**, entrez **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="d6c17-187">In the **Name** textbox, type **BrittaSimon**.</span></span>
+    <span data-ttu-id="505a8-186">a.</span><span class="sxs-lookup"><span data-stu-id="505a8-186">a.</span></span> <span data-ttu-id="505a8-187">Bonjour **nom** zone de texte, type **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="505a8-187">In hello **Name** textbox, type **BrittaSimon**.</span></span>
 
-    <span data-ttu-id="d6c17-188">b.</span><span class="sxs-lookup"><span data-stu-id="d6c17-188">b.</span></span> <span data-ttu-id="d6c17-189">Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="d6c17-189">In the **User name** textbox, type the **email address** of BrittaSimon.</span></span>
+    <span data-ttu-id="505a8-188">b.</span><span class="sxs-lookup"><span data-stu-id="505a8-188">b.</span></span> <span data-ttu-id="505a8-189">Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.</span><span class="sxs-lookup"><span data-stu-id="505a8-189">In hello **User name** textbox, type hello **email address** of BrittaSimon.</span></span>
 
-    <span data-ttu-id="d6c17-190">c.</span><span class="sxs-lookup"><span data-stu-id="d6c17-190">c.</span></span> <span data-ttu-id="d6c17-191">Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.</span><span class="sxs-lookup"><span data-stu-id="d6c17-191">Select **Show Password** and write down the value of the **Password**.</span></span>
+    <span data-ttu-id="505a8-190">c.</span><span class="sxs-lookup"><span data-stu-id="505a8-190">c.</span></span> <span data-ttu-id="505a8-191">Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.</span><span class="sxs-lookup"><span data-stu-id="505a8-191">Select **Show Password** and write down hello value of hello **Password**.</span></span>
 
-    <span data-ttu-id="d6c17-192">d.</span><span class="sxs-lookup"><span data-stu-id="d6c17-192">d.</span></span> <span data-ttu-id="d6c17-193">Cliquez sur **Create**.</span><span class="sxs-lookup"><span data-stu-id="d6c17-193">Click **Create**.</span></span> 
+    <span data-ttu-id="505a8-192">d.</span><span class="sxs-lookup"><span data-stu-id="505a8-192">d.</span></span> <span data-ttu-id="505a8-193">Cliquez sur **Create**.</span><span class="sxs-lookup"><span data-stu-id="505a8-193">Click **Create**.</span></span> 
 
-### <a name="creating-a-maxxpoint-test-user"></a><span data-ttu-id="d6c17-194">Création d’un utilisateur de test MaxxPoint</span><span class="sxs-lookup"><span data-stu-id="d6c17-194">Creating a MaxxPoint test user</span></span>
+### <a name="creating-a-maxxpoint-test-user"></a><span data-ttu-id="505a8-194">Création d’un utilisateur de test MaxxPoint</span><span class="sxs-lookup"><span data-stu-id="505a8-194">Creating a MaxxPoint test user</span></span>
 
-<span data-ttu-id="d6c17-195">Dans cette section, vous allez créer un utilisateur appelé Britta Simon dans MaxxPoint.</span><span class="sxs-lookup"><span data-stu-id="d6c17-195">In this section, you create a user called Britta Simon in MaxxPoint.</span></span> <span data-ttu-id="d6c17-196">Contactez l’équipe d’assistance au **888-728-0950** pour ajouter des utilisateurs dans l’application MaxxPoint.</span><span class="sxs-lookup"><span data-stu-id="d6c17-196">Please call MaxxPoint support team on **888-728-0950** to add the users in the MaxxPoint application.</span></span>
+<span data-ttu-id="505a8-195">Dans cette section, vous allez créer un utilisateur appelé Britta Simon dans MaxxPoint.</span><span class="sxs-lookup"><span data-stu-id="505a8-195">In this section, you create a user called Britta Simon in MaxxPoint.</span></span> <span data-ttu-id="505a8-196">Contactez l’équipe de support MaxxPoint sur **888-728-0950** tooadd les utilisateurs de hello Bonjour MaxxPoint application.</span><span class="sxs-lookup"><span data-stu-id="505a8-196">Please call MaxxPoint support team on **888-728-0950** tooadd hello users in hello MaxxPoint application.</span></span>
 
-### <a name="assigning-the-azure-ad-test-user"></a><span data-ttu-id="d6c17-197">Affectation de l’utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="d6c17-197">Assigning the Azure AD test user</span></span>
+### <a name="assigning-hello-azure-ad-test-user"></a><span data-ttu-id="505a8-197">Affectation d’utilisateur de test hello Azure AD</span><span class="sxs-lookup"><span data-stu-id="505a8-197">Assigning hello Azure AD test user</span></span>
 
-<span data-ttu-id="d6c17-198">Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à MaxxPoint.</span><span class="sxs-lookup"><span data-stu-id="d6c17-198">In this section, you enable Britta Simon to use Azure single sign-on by granting her access to MaxxPoint.</span></span>
+<span data-ttu-id="505a8-198">Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant tooMaxxPoint de son accès.</span><span class="sxs-lookup"><span data-stu-id="505a8-198">In this section, you enable Britta Simon toouse Azure single sign-on by granting her access tooMaxxPoint.</span></span>
 
 ![Affecter des utilisateurs][200] 
 
-<span data-ttu-id="d6c17-200">**Pour affecter Britta Simon à MaxxPoint, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="d6c17-200">**To assign Britta Simon to MaxxPoint, perform the following steps:**</span></span>
+<span data-ttu-id="505a8-200">**tooassign Britta Simon tooMaxxPoint, effectuez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="505a8-200">**tooassign Britta Simon tooMaxxPoint, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="d6c17-201">Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="d6c17-201">In the Azure portal, open the applications view, and then navigate to the directory view and go to **Enterprise applications** then click **All applications**.</span></span>
+1. <span data-ttu-id="505a8-201">Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="505a8-201">In hello Azure portal, open hello applications view, and then navigate toohello directory view and go too**Enterprise applications** then click **All applications**.</span></span>
 
     ![Affecter des utilisateurs][201] 
 
-2. <span data-ttu-id="d6c17-203">Dans la liste des applications, sélectionnez **MaxxPoint**.</span><span class="sxs-lookup"><span data-stu-id="d6c17-203">In the applications list, select **MaxxPoint**.</span></span>
+2. <span data-ttu-id="505a8-203">Dans la liste des applications hello, sélectionnez **MaxxPoint**.</span><span class="sxs-lookup"><span data-stu-id="505a8-203">In hello applications list, select **MaxxPoint**.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-maxxpoint-tutorial/tutorial_maxxpoint_50.png) 
 
-3. <span data-ttu-id="d6c17-205">Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="d6c17-205">In the menu on the left, click **Users and groups**.</span></span>
+3. <span data-ttu-id="505a8-205">Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="505a8-205">In hello menu on hello left, click **Users and groups**.</span></span>
 
     ![Affecter des utilisateurs][202] 
 
-4. <span data-ttu-id="d6c17-207">Cliquez sur le bouton **Ajouter**.</span><span class="sxs-lookup"><span data-stu-id="d6c17-207">Click **Add** button.</span></span> <span data-ttu-id="d6c17-208">Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="d6c17-208">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
+4. <span data-ttu-id="505a8-207">Cliquez sur le bouton **Ajouter**.</span><span class="sxs-lookup"><span data-stu-id="505a8-207">Click **Add** button.</span></span> <span data-ttu-id="505a8-208">Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="505a8-208">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
 
     ![Affecter des utilisateurs][203]
 
-5. <span data-ttu-id="d6c17-210">Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.</span><span class="sxs-lookup"><span data-stu-id="d6c17-210">On **Users and groups** dialog, select **Britta Simon** in the Users list.</span></span>
+5. <span data-ttu-id="505a8-210">Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.</span><span class="sxs-lookup"><span data-stu-id="505a8-210">On **Users and groups** dialog, select **Britta Simon** in hello Users list.</span></span>
 
-6. <span data-ttu-id="d6c17-211">Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="d6c17-211">Click **Select** button on **Users and groups** dialog.</span></span>
+6. <span data-ttu-id="505a8-211">Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="505a8-211">Click **Select** button on **Users and groups** dialog.</span></span>
 
-7. <span data-ttu-id="d6c17-212">Cliquez sur le bouton **Affecter** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="d6c17-212">Click **Assign** button on **Add Assignment** dialog.</span></span>
+7. <span data-ttu-id="505a8-212">Cliquez sur le bouton **Affecter** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="505a8-212">Click **Assign** button on **Add Assignment** dialog.</span></span>
     
-### <a name="testing-single-sign-on"></a><span data-ttu-id="d6c17-213">Test de l’authentification unique</span><span class="sxs-lookup"><span data-stu-id="d6c17-213">Testing single sign-on</span></span>
+### <a name="testing-single-sign-on"></a><span data-ttu-id="505a8-213">Test de l’authentification unique</span><span class="sxs-lookup"><span data-stu-id="505a8-213">Testing single sign-on</span></span>
 
-<span data-ttu-id="d6c17-214">Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.</span><span class="sxs-lookup"><span data-stu-id="d6c17-214">In this section, you test your Azure AD single sign-on configuration using the Access Panel.</span></span>
+<span data-ttu-id="505a8-214">Dans cette section, vous tester votre configuration Azure AD unique de session à l’aide de hello panneau d’accès.</span><span class="sxs-lookup"><span data-stu-id="505a8-214">In this section, you test your Azure AD single sign-on configuration using hello Access Panel.</span></span>
 
-<span data-ttu-id="d6c17-215">Lorsque vous cliquez sur la mosaïque MaxxPoint dans le volet d’accès, vous devez être connecté automatiquement à votre application MaxxPoint.</span><span class="sxs-lookup"><span data-stu-id="d6c17-215">When you click the MaxxPoint tile in the Access Panel, you should get automatically signed-on to your MaxxPoint application.</span></span>
+<span data-ttu-id="505a8-215">Lorsque vous cliquez sur mosaïque MaxxPoint hello hello volet d’accès, vous devez obtenir automatiquement signé sur tooyour MaxxPoint application.</span><span class="sxs-lookup"><span data-stu-id="505a8-215">When you click hello MaxxPoint tile in hello Access Panel, you should get automatically signed-on tooyour MaxxPoint application.</span></span>
 
 
-## <a name="additional-resources"></a><span data-ttu-id="d6c17-216">Ressources supplémentaires</span><span class="sxs-lookup"><span data-stu-id="d6c17-216">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="505a8-216">Ressources supplémentaires</span><span class="sxs-lookup"><span data-stu-id="505a8-216">Additional resources</span></span>
 
-* [<span data-ttu-id="d6c17-217">Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="d6c17-217">List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="d6c17-218">Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?</span><span class="sxs-lookup"><span data-stu-id="d6c17-218">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="505a8-217">Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="505a8-217">List of Tutorials on How tooIntegrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="505a8-218">Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?</span><span class="sxs-lookup"><span data-stu-id="505a8-218">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
 
 
 

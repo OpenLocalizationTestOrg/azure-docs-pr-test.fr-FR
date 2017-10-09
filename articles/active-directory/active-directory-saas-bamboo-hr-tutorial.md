@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory à BambooHR | Microsoft Docs"
-description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et BambooHR."
+description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et de BambooHR."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,242 +13,242 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/07/2017
 ms.author: jeedes
-ms.openlocfilehash: 06bf91b0e598fd3d8e644378efdb753611ee1ebc
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f9083f846beb3a4bf4cebbf18b42aba2dfef2472
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-bamboohr"></a><span data-ttu-id="a92f9-103">Didacticiel : Intégration d’Azure Active Directory à BambooHR</span><span class="sxs-lookup"><span data-stu-id="a92f9-103">Tutorial: Azure Active Directory integration with BambooHR</span></span>
+# <a name="tutorial-azure-active-directory-integration-with-bamboohr"></a><span data-ttu-id="688be-103">Didacticiel : Intégration d’Azure Active Directory à BambooHR</span><span class="sxs-lookup"><span data-stu-id="688be-103">Tutorial: Azure Active Directory integration with BambooHR</span></span>
 
-<span data-ttu-id="a92f9-104">Dans ce didacticiel, vous allez apprendre à intégrer BambooHR à Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="a92f9-104">In this tutorial, you learn how to integrate BambooHR with Azure Active Directory (Azure AD).</span></span>
+<span data-ttu-id="688be-104">Dans ce didacticiel, vous apprendrez comment toointegrate BambooHR avec Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="688be-104">In this tutorial, you learn how toointegrate BambooHR with Azure Active Directory (Azure AD).</span></span>
 
-<span data-ttu-id="a92f9-105">L’intégration de BambooHR à Azure AD vous offre les avantages suivants :</span><span class="sxs-lookup"><span data-stu-id="a92f9-105">Integrating BambooHR with Azure AD provides you with the following benefits:</span></span>
+<span data-ttu-id="688be-105">Intégration de BambooHR à Azure AD offre hello avantages suivants :</span><span class="sxs-lookup"><span data-stu-id="688be-105">Integrating BambooHR with Azure AD provides you with hello following benefits:</span></span>
 
-- <span data-ttu-id="a92f9-106">Dans Azure AD, vous pouvez contrôler qui a accès à BambooHR.</span><span class="sxs-lookup"><span data-stu-id="a92f9-106">You can control in Azure AD who has access to BambooHR</span></span>
-- <span data-ttu-id="a92f9-107">Vous pouvez autoriser vos utilisateurs à se connecter automatiquement à BambooHR (via l’authentification unique) avec leur compte Azure AD.</span><span class="sxs-lookup"><span data-stu-id="a92f9-107">You can enable your users to automatically get signed-on to BambooHR (Single Sign-On) with their Azure AD accounts</span></span>
-- <span data-ttu-id="a92f9-108">Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure</span><span class="sxs-lookup"><span data-stu-id="a92f9-108">You can manage your accounts in one central location - the Azure portal</span></span>
+- <span data-ttu-id="688be-106">Vous pouvez contrôler dans Azure AD qui a accès tooBambooHR</span><span class="sxs-lookup"><span data-stu-id="688be-106">You can control in Azure AD who has access tooBambooHR</span></span>
+- <span data-ttu-id="688be-107">Vous pouvez activer vos utilisateurs tooautomatically get connecté tooBambooHR (Single Sign-On) avec leurs comptes Azure AD</span><span class="sxs-lookup"><span data-stu-id="688be-107">You can enable your users tooautomatically get signed-on tooBambooHR (Single Sign-On) with their Azure AD accounts</span></span>
+- <span data-ttu-id="688be-108">Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure</span><span class="sxs-lookup"><span data-stu-id="688be-108">You can manage your accounts in one central location - hello Azure portal</span></span>
 
-<span data-ttu-id="a92f9-109">Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="a92f9-109">If you want to know more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="688be-109">Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="688be-109">If you want tooknow more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="a92f9-110">Composants requis</span><span class="sxs-lookup"><span data-stu-id="a92f9-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="688be-110">Composants requis</span><span class="sxs-lookup"><span data-stu-id="688be-110">Prerequisites</span></span>
 
-<span data-ttu-id="a92f9-111">Pour configurer l’intégration d’Azure AD à BambooHR, vous avez besoin des éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="a92f9-111">To configure Azure AD integration with BambooHR, you need the following items:</span></span>
+<span data-ttu-id="688be-111">tooconfigure intégration d’Azure AD avec BambooHR, vous devez hello éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="688be-111">tooconfigure Azure AD integration with BambooHR, you need hello following items:</span></span>
 
-- <span data-ttu-id="a92f9-112">Un abonnement Azure AD</span><span class="sxs-lookup"><span data-stu-id="a92f9-112">An Azure AD subscription</span></span>
-- <span data-ttu-id="a92f9-113">Un abonnement BambooHR pour lequel l’authentification unique est activée</span><span class="sxs-lookup"><span data-stu-id="a92f9-113">A BambooHR single-sign on enabled subscription</span></span>
+- <span data-ttu-id="688be-112">Un abonnement Azure AD</span><span class="sxs-lookup"><span data-stu-id="688be-112">An Azure AD subscription</span></span>
+- <span data-ttu-id="688be-113">Un abonnement BambooHR pour lequel l’authentification unique est activée</span><span class="sxs-lookup"><span data-stu-id="688be-113">A BambooHR single-sign on enabled subscription</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="a92f9-114">Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.</span><span class="sxs-lookup"><span data-stu-id="a92f9-114">To test the steps in this tutorial, we do not recommend using a production environment.</span></span>
+> <span data-ttu-id="688be-114">tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.</span><span class="sxs-lookup"><span data-stu-id="688be-114">tootest hello steps in this tutorial, we do not recommend using a production environment.</span></span>
 
-<span data-ttu-id="a92f9-115">Vous devez en outre suivre les recommandations ci-dessous :</span><span class="sxs-lookup"><span data-stu-id="a92f9-115">To test the steps in this tutorial, you should follow these recommendations:</span></span>
+<span data-ttu-id="688be-115">tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :</span><span class="sxs-lookup"><span data-stu-id="688be-115">tootest hello steps in this tutorial, you should follow these recommendations:</span></span>
 
-- <span data-ttu-id="a92f9-116">N’utilisez pas votre environnement de production, sauf si cela est nécessaire.</span><span class="sxs-lookup"><span data-stu-id="a92f9-116">Do not use your production environment, unless it is necessary.</span></span>
-- <span data-ttu-id="a92f9-117">Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="a92f9-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+- <span data-ttu-id="688be-116">N’utilisez pas votre environnement de production, sauf si cela est nécessaire.</span><span class="sxs-lookup"><span data-stu-id="688be-116">Do not use your production environment, unless it is necessary.</span></span>
+- <span data-ttu-id="688be-117">Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="688be-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
-## <a name="scenario-description"></a><span data-ttu-id="a92f9-118">Description du scénario</span><span class="sxs-lookup"><span data-stu-id="a92f9-118">Scenario description</span></span>
-<span data-ttu-id="a92f9-119">Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test.</span><span class="sxs-lookup"><span data-stu-id="a92f9-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="a92f9-120">Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :</span><span class="sxs-lookup"><span data-stu-id="a92f9-120">The scenario outlined in this tutorial consists of two main building blocks:</span></span>
+## <a name="scenario-description"></a><span data-ttu-id="688be-118">Description du scénario</span><span class="sxs-lookup"><span data-stu-id="688be-118">Scenario description</span></span>
+<span data-ttu-id="688be-119">Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test.</span><span class="sxs-lookup"><span data-stu-id="688be-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="688be-120">scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :</span><span class="sxs-lookup"><span data-stu-id="688be-120">hello scenario outlined in this tutorial consists of two main building blocks:</span></span>
 
-1. <span data-ttu-id="a92f9-121">Ajout de BambooHR à partir de la galerie</span><span class="sxs-lookup"><span data-stu-id="a92f9-121">Adding BambooHR from the gallery</span></span>
-2. <span data-ttu-id="a92f9-122">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="a92f9-122">Configuring and testing Azure AD single sign-on</span></span>
+1. <span data-ttu-id="688be-121">Ajout de BambooHR à partir de la galerie de hello</span><span class="sxs-lookup"><span data-stu-id="688be-121">Adding BambooHR from hello gallery</span></span>
+2. <span data-ttu-id="688be-122">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="688be-122">Configuring and testing Azure AD single sign-on</span></span>
 
-## <a name="adding-bamboohr-from-the-gallery"></a><span data-ttu-id="a92f9-123">Ajout de BambooHR à partir de la galerie</span><span class="sxs-lookup"><span data-stu-id="a92f9-123">Adding BambooHR from the gallery</span></span>
-<span data-ttu-id="a92f9-124">Pour configurer l’intégration de BambooHR à Azure AD, vous devez ajouter BambooHR, disponible dans la galerie, à votre liste d’applications SaaS gérées.</span><span class="sxs-lookup"><span data-stu-id="a92f9-124">To configure the integration of BambooHR into Azure AD, you need to add BambooHR from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="adding-bamboohr-from-hello-gallery"></a><span data-ttu-id="688be-123">Ajout de BambooHR à partir de la galerie de hello</span><span class="sxs-lookup"><span data-stu-id="688be-123">Adding BambooHR from hello gallery</span></span>
+<span data-ttu-id="688be-124">intégration de hello tooconfigure de BambooHR dans Azure AD, vous devez tooadd BambooHR à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.</span><span class="sxs-lookup"><span data-stu-id="688be-124">tooconfigure hello integration of BambooHR into Azure AD, you need tooadd BambooHR from hello gallery tooyour list of managed SaaS apps.</span></span>
 
-<span data-ttu-id="a92f9-125">**Pour ajouter BambooHR à partir de la galerie, effectuez les étapes suivantes :**</span><span class="sxs-lookup"><span data-stu-id="a92f9-125">**To add BambooHR from the gallery, perform the following steps:**</span></span>
+<span data-ttu-id="688be-125">**tooadd BambooHR à partir de la galerie hello, procédez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="688be-125">**tooadd BambooHR from hello gallery, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="a92f9-126">Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**.</span><span class="sxs-lookup"><span data-stu-id="a92f9-126">In the **[Azure portal](https://portal.azure.com)**, on the left navigation panel, click **Azure Active Directory** icon.</span></span> 
+1. <span data-ttu-id="688be-126">Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.</span><span class="sxs-lookup"><span data-stu-id="688be-126">In hello **[Azure portal](https://portal.azure.com)**, on hello left navigation panel, click **Azure Active Directory** icon.</span></span> 
 
     ![Active Directory][1]
 
-2. <span data-ttu-id="a92f9-128">Accédez à **Applications d’entreprise**.</span><span class="sxs-lookup"><span data-stu-id="a92f9-128">Navigate to **Enterprise applications**.</span></span> <span data-ttu-id="a92f9-129">Accédez ensuite à **Toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="a92f9-129">Then go to **All applications**.</span></span>
+2. <span data-ttu-id="688be-128">Accédez trop**des applications d’entreprise**.</span><span class="sxs-lookup"><span data-stu-id="688be-128">Navigate too**Enterprise applications**.</span></span> <span data-ttu-id="688be-129">Passez trop**toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="688be-129">Then go too**All applications**.</span></span>
 
     ![Applications][2]
     
-3. <span data-ttu-id="a92f9-131">Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="a92f9-131">To add new application, click **New application** button on the top of dialog.</span></span>
+3. <span data-ttu-id="688be-131">tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="688be-131">tooadd new application, click **New application** button on hello top of dialog.</span></span>
 
     ![Applications][3]
 
-4. <span data-ttu-id="a92f9-133">Dans la zone de recherche, tapez **BambooHR**.</span><span class="sxs-lookup"><span data-stu-id="a92f9-133">In the search box, type **BambooHR**.</span></span>
+4. <span data-ttu-id="688be-133">Dans la zone de recherche de hello, tapez **BambooHR**.</span><span class="sxs-lookup"><span data-stu-id="688be-133">In hello search box, type **BambooHR**.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-bamboo-hr-tutorial/tutorial_bamboohr_search.png)
 
-5. <span data-ttu-id="a92f9-135">Dans le volet de résultats, sélectionnez **BambooHR**, puis cliquez sur **Ajouter** pour ajouter l’application.</span><span class="sxs-lookup"><span data-stu-id="a92f9-135">In the results panel, select **BambooHR**, and then click **Add** button to add the application.</span></span>
+5. <span data-ttu-id="688be-135">Dans le volet de résultats hello, sélectionnez **BambooHR**, puis cliquez sur **ajouter** bouton application hello de tooadd.</span><span class="sxs-lookup"><span data-stu-id="688be-135">In hello results panel, select **BambooHR**, and then click **Add** button tooadd hello application.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-bamboo-hr-tutorial/tutorial_bamboohr_addfromgallery.png)
 
-##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="a92f9-137">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="a92f9-137">Configuring and testing Azure AD single sign-on</span></span>
-<span data-ttu-id="a92f9-138">Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec BambooHR, avec un utilisateur de test appelé « Britta Simon ».</span><span class="sxs-lookup"><span data-stu-id="a92f9-138">In this section, you configure and test Azure AD single sign-on with BambooHR based on a test user called "Britta Simon."</span></span>
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="688be-137">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="688be-137">Configuring and testing Azure AD single sign-on</span></span>
+<span data-ttu-id="688be-138">Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec BambooHR, avec un utilisateur de test appelé « Britta Simon ».</span><span class="sxs-lookup"><span data-stu-id="688be-138">In this section, you configure and test Azure AD single sign-on with BambooHR based on a test user called "Britta Simon."</span></span>
 
-<span data-ttu-id="a92f9-139">Pour que l’authentification unique fonctionne, Azure AD doit connaître l’utilisateur BambooHR correspondant à l’utilisateur Azure AD.</span><span class="sxs-lookup"><span data-stu-id="a92f9-139">For single sign-on to work, Azure AD needs to know what the counterpart user in BambooHR is to a user in Azure AD.</span></span> <span data-ttu-id="a92f9-140">En d’autres termes, une relation doit être établie entre l’utilisateur Azure AD et l’utilisateur BambooHR associé.</span><span class="sxs-lookup"><span data-stu-id="a92f9-140">In other words, a link relationship between an Azure AD user and the related user in BambooHR needs to be established.</span></span>
+<span data-ttu-id="688be-139">Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans BambooHR est tooa utilisateur dans Azure AD.</span><span class="sxs-lookup"><span data-stu-id="688be-139">For single sign-on toowork, Azure AD needs tooknow what hello counterpart user in BambooHR is tooa user in Azure AD.</span></span> <span data-ttu-id="688be-140">En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans BambooHR doit toobe établie.</span><span class="sxs-lookup"><span data-stu-id="688be-140">In other words, a link relationship between an Azure AD user and hello related user in BambooHR needs toobe established.</span></span>
 
-<span data-ttu-id="a92f9-141">Dans BambooHR, affectez la valeur de **nom d’utilisateur** dans Azure AD comme valeur de **nom d’utilisateur** pour établir la relation.</span><span class="sxs-lookup"><span data-stu-id="a92f9-141">In BambooHR, assign the value of the **user name** in Azure AD as the value of the **Username** to establish the link relationship.</span></span>
+<span data-ttu-id="688be-141">Dans BambooHR, affecter la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.</span><span class="sxs-lookup"><span data-stu-id="688be-141">In BambooHR, assign hello value of hello **user name** in Azure AD as hello value of hello **Username** tooestablish hello link relationship.</span></span>
 
-<span data-ttu-id="a92f9-142">Pour configurer et tester l’authentification unique Azure AD avec BambooHR, vous devez suivre les indications des sections suivantes :</span><span class="sxs-lookup"><span data-stu-id="a92f9-142">To configure and test Azure AD single sign-on with BambooHR, you need to complete the following building blocks:</span></span>
+<span data-ttu-id="688be-142">tooconfigure et test Azure AD l’authentification unique avec BambooHR, vous devez hello toocomplete suivant des blocs de construction :</span><span class="sxs-lookup"><span data-stu-id="688be-142">tooconfigure and test Azure AD single sign-on with BambooHR, you need toocomplete hello following building blocks:</span></span>
 
-1. <span data-ttu-id="a92f9-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.</span><span class="sxs-lookup"><span data-stu-id="a92f9-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - to enable your users to use this feature.</span></span>
-2. <span data-ttu-id="a92f9-144">**[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="a92f9-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.</span></span>
-3. <span data-ttu-id="a92f9-145">**[Création d’un utilisateur de test BambooHR](#creating-a-bamboohr-test-user)** pour avoir un équivalent de Britta Simon dans BambooHR lié à la représentation Azure AD de l’utilisateur.</span><span class="sxs-lookup"><span data-stu-id="a92f9-145">**[Creating a BambooHR test user](#creating-a-bamboohr-test-user)** - to have a counterpart of Britta Simon in BambooHR that is linked to the Azure AD representation of user.</span></span>
-4. <span data-ttu-id="a92f9-146">**[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.</span><span class="sxs-lookup"><span data-stu-id="a92f9-146">**[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.</span></span>
-5. <span data-ttu-id="a92f9-147">**[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.</span><span class="sxs-lookup"><span data-stu-id="a92f9-147">**[Testing Single Sign-On](#testing-single-sign-on)** - to verify whether the configuration works.</span></span>
+1. <span data-ttu-id="688be-143">**[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.</span><span class="sxs-lookup"><span data-stu-id="688be-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - tooenable your users toouse this feature.</span></span>
+2. <span data-ttu-id="688be-144">**[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="688be-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - tootest Azure AD single sign-on with Britta Simon.</span></span>
+3. <span data-ttu-id="688be-145">**[Création d’un utilisateur de test de BambooHR](#creating-a-bamboohr-test-user)**  -toohave un équivalent de Britta Simon dans BambooHR est la représentation sous forme de toohello lié Azure AD de l’utilisateur.</span><span class="sxs-lookup"><span data-stu-id="688be-145">**[Creating a BambooHR test user](#creating-a-bamboohr-test-user)** - toohave a counterpart of Britta Simon in BambooHR that is linked toohello Azure AD representation of user.</span></span>
+4. <span data-ttu-id="688be-146">**[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="688be-146">**[Assigning hello Azure AD test user](#assigning-the-azure-ad-test-user)** - tooenable Britta Simon toouse Azure AD single sign-on.</span></span>
+5. <span data-ttu-id="688be-147">**[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.</span><span class="sxs-lookup"><span data-stu-id="688be-147">**[Testing Single Sign-On](#testing-single-sign-on)** - tooverify whether hello configuration works.</span></span>
 
-### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="a92f9-148">Configuration de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="a92f9-148">Configuring Azure AD single sign-on</span></span>
+### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="688be-148">Configuration de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="688be-148">Configuring Azure AD single sign-on</span></span>
 
-<span data-ttu-id="a92f9-149">Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application BambooHR.</span><span class="sxs-lookup"><span data-stu-id="a92f9-149">In this section, you enable Azure AD single sign-on in the Azure portal and configure single sign-on in your BambooHR application.</span></span>
+<span data-ttu-id="688be-149">Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application BambooHR.</span><span class="sxs-lookup"><span data-stu-id="688be-149">In this section, you enable Azure AD single sign-on in hello Azure portal and configure single sign-on in your BambooHR application.</span></span>
 
-<span data-ttu-id="a92f9-150">**Pour configurer l’authentification unique Azure AD avec BambooHR, effectuez les étapes suivantes :**</span><span class="sxs-lookup"><span data-stu-id="a92f9-150">**To configure Azure AD single sign-on with BambooHR, perform the following steps:**</span></span>
+<span data-ttu-id="688be-150">**tooconfigure Azure AD single sign-on avec BambooHR, procédez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="688be-150">**tooconfigure Azure AD single sign-on with BambooHR, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="a92f9-151">Dans le portail Azure, dans la page d’intégration de l’application **BambooHR**, cliquez sur **Authentification unique**.</span><span class="sxs-lookup"><span data-stu-id="a92f9-151">In the Azure portal, on the **BambooHR** application integration page, click **Single sign-on**.</span></span>
+1. <span data-ttu-id="688be-151">Bonjour portail Azure, sur hello **BambooHR** page d’intégration d’application, cliquez sur **l’authentification unique**.</span><span class="sxs-lookup"><span data-stu-id="688be-151">In hello Azure portal, on hello **BambooHR** application integration page, click **Single sign-on**.</span></span>
 
     ![Configurer l’authentification unique][4]
 
-2. <span data-ttu-id="a92f9-153">Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="a92f9-153">On the **Single sign-on** dialog, select **Mode** as **SAML-based Sign-on** to enable single sign-on.</span></span>
+2. <span data-ttu-id="688be-153">Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="688be-153">On hello **Single sign-on** dialog, select **Mode** as   **SAML-based Sign-on** tooenable single sign-on.</span></span>
  
     ![Configurer l’authentification unique](./media/active-directory-saas-bamboo-hr-tutorial/tutorial_bamboohr_samlbase.png)
 
-3. <span data-ttu-id="a92f9-155">Dans la section **Domaine et URL BambooHR**, effectuez les étapes suivantes :</span><span class="sxs-lookup"><span data-stu-id="a92f9-155">On the **BambooHR Domain and URLs** section, perform the following steps:</span></span>
+3. <span data-ttu-id="688be-155">Sur hello **BambooHR domaine et les URL** section, effectuer hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="688be-155">On hello **BambooHR Domain and URLs** section, perform hello following steps:</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-bamboo-hr-tutorial/tutorial_bamboohr_url.png)
 
-    <span data-ttu-id="a92f9-157">Dans la zone de texte **URL de connexion**, tapez une URL au format suivant : `https://<company>.bamboohr.com`</span><span class="sxs-lookup"><span data-stu-id="a92f9-157">In the **Sign-on URL** textbox, type a URL using the following pattern: `https://<company>.bamboohr.com`</span></span>
+    <span data-ttu-id="688be-157">Bonjour **URL de connexion** zone de texte, tapez une URL à l’aide de hello modèle :`https://<company>.bamboohr.com`</span><span class="sxs-lookup"><span data-stu-id="688be-157">In hello **Sign-on URL** textbox, type a URL using hello following pattern: `https://<company>.bamboohr.com`</span></span>
     
     > [!NOTE] 
-    > <span data-ttu-id="a92f9-158">Cette valeur n’est pas la valeur réelle.</span><span class="sxs-lookup"><span data-stu-id="a92f9-158">This value is not real.</span></span> <span data-ttu-id="a92f9-159">Mettez à jour cette valeur avec l’URL de connexion réelle.</span><span class="sxs-lookup"><span data-stu-id="a92f9-159">Update this value with the actual Sign-On URL.</span></span> <span data-ttu-id="a92f9-160">Pour obtenir cette valeur, contactez [l’équipe du support BambooHR](https://www.bamboohr.com/contact.php).</span><span class="sxs-lookup"><span data-stu-id="a92f9-160">Contact [BambooHR Client support team](https://www.bamboohr.com/contact.php) to get this value.</span></span> 
+    > <span data-ttu-id="688be-158">Cette valeur n’est pas la valeur réelle.</span><span class="sxs-lookup"><span data-stu-id="688be-158">This value is not real.</span></span> <span data-ttu-id="688be-159">Mettre à jour de cette valeur avec hello URL de connexion réel.</span><span class="sxs-lookup"><span data-stu-id="688be-159">Update this value with hello actual Sign-On URL.</span></span> <span data-ttu-id="688be-160">Contact [équipe de support Client de BambooHR](https://www.bamboohr.com/contact.php) tooget cette valeur.</span><span class="sxs-lookup"><span data-stu-id="688be-160">Contact [BambooHR Client support team](https://www.bamboohr.com/contact.php) tooget this value.</span></span> 
  
-4. <span data-ttu-id="a92f9-161">Dans la section **Certificat de signature SAML**, cliquez sur **Téléchargez le certificat (Base64)** puis enregistrez le fichier du certificat sur votre ordinateur.</span><span class="sxs-lookup"><span data-stu-id="a92f9-161">On the **SAML Signing Certificate** section, click **Certificate (Base64)** and then save the certificate file on your computer.</span></span>
+4. <span data-ttu-id="688be-161">Sur hello **le certificat de signature SAML** , cliquez sur **certificat (Base64)** , puis enregistrez le fichier de certificat hello sur votre ordinateur.</span><span class="sxs-lookup"><span data-stu-id="688be-161">On hello **SAML Signing Certificate** section, click **Certificate (Base64)** and then save hello certificate file on your computer.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-bamboo-hr-tutorial/tutorial_bamboohr_certificate.png) 
 
-5. <span data-ttu-id="a92f9-163">Cliquez sur le bouton **Enregistrer** .</span><span class="sxs-lookup"><span data-stu-id="a92f9-163">Click **Save** button.</span></span>
+5. <span data-ttu-id="688be-163">Cliquez sur le bouton **Enregistrer** .</span><span class="sxs-lookup"><span data-stu-id="688be-163">Click **Save** button.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-bamboo-hr-tutorial/tutorial_general_400.png)
 
-6. <span data-ttu-id="a92f9-165">Dans la section **Configuration de BambooHR**, cliquez sur **Configurer BambooHR** pour ouvrir la fenêtre **Configurer l’authentification**.</span><span class="sxs-lookup"><span data-stu-id="a92f9-165">On the **BambooHR Configuration** section, click **Configure BambooHR** to open **Configure sign-on** window.</span></span> <span data-ttu-id="a92f9-166">Copiez l**’URL du service d’authentification unique SAML** à partir de la **section Référence rapide.**</span><span class="sxs-lookup"><span data-stu-id="a92f9-166">Copy the **SAML Single Sign-On Service URL** from the **Quick Reference section.**</span></span>
+6. <span data-ttu-id="688be-165">Sur hello **BambooHR Configuration** , cliquez sur **configurer de BambooHR** tooopen **configurer l’authentification** fenêtre.</span><span class="sxs-lookup"><span data-stu-id="688be-165">On hello **BambooHR Configuration** section, click **Configure BambooHR** tooopen **Configure sign-on** window.</span></span> <span data-ttu-id="688be-166">Hello de copie **SAML Sign-On URL du Service unique** de hello **section de référence rapide.**</span><span class="sxs-lookup"><span data-stu-id="688be-166">Copy hello **SAML Single Sign-On Service URL** from hello **Quick Reference section.**</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-bamboo-hr-tutorial/tutorial_bamboohr_configure.png) 
 
-6. <span data-ttu-id="a92f9-168">Dans une autre fenêtre de navigateur web, connectez-vous à votre site d’entreprise BambooHR en tant qu’administrateur.</span><span class="sxs-lookup"><span data-stu-id="a92f9-168">In a different web browser window, log into your BambooHR company site as an administrator.</span></span>
+6. <span data-ttu-id="688be-168">Dans une autre fenêtre de navigateur web, connectez-vous à votre site d’entreprise BambooHR en tant qu’administrateur.</span><span class="sxs-lookup"><span data-stu-id="688be-168">In a different web browser window, log into your BambooHR company site as an administrator.</span></span>
 
-7. <span data-ttu-id="a92f9-169">Dans la page d’accueil, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="a92f9-169">On the homepage, perform the following steps:</span></span>
+7. <span data-ttu-id="688be-169">Sur la page d’accueil de hello, procédez hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="688be-169">On hello homepage, perform hello following steps:</span></span>
    
-    <span data-ttu-id="a92f9-170">![Authentification unique](./media/active-directory-saas-bamboo-hr-tutorial/ic796691.png "Authentification unique")</span><span class="sxs-lookup"><span data-stu-id="a92f9-170">![Single Sign-On](./media/active-directory-saas-bamboo-hr-tutorial/ic796691.png "Single Sign-On")</span></span>   
+    <span data-ttu-id="688be-170">![Authentification unique](./media/active-directory-saas-bamboo-hr-tutorial/ic796691.png "Authentification unique")</span><span class="sxs-lookup"><span data-stu-id="688be-170">![Single Sign-On](./media/active-directory-saas-bamboo-hr-tutorial/ic796691.png "Single Sign-On")</span></span>   
 
-    <span data-ttu-id="a92f9-171">a.</span><span class="sxs-lookup"><span data-stu-id="a92f9-171">a.</span></span> <span data-ttu-id="a92f9-172">Cliquez sur **Applications**.</span><span class="sxs-lookup"><span data-stu-id="a92f9-172">Click **Apps**.</span></span>
+    <span data-ttu-id="688be-171">a.</span><span class="sxs-lookup"><span data-stu-id="688be-171">a.</span></span> <span data-ttu-id="688be-172">Cliquez sur **Applications**.</span><span class="sxs-lookup"><span data-stu-id="688be-172">Click **Apps**.</span></span>
    
-    <span data-ttu-id="a92f9-173">b.</span><span class="sxs-lookup"><span data-stu-id="a92f9-173">b.</span></span> <span data-ttu-id="a92f9-174">Dans le menu des applications sur la gauche, cliquez sur **Single Sign-On**.</span><span class="sxs-lookup"><span data-stu-id="a92f9-174">In the apps menu on the left, click **Single Sign-On**.</span></span>
+    <span data-ttu-id="688be-173">b.</span><span class="sxs-lookup"><span data-stu-id="688be-173">b.</span></span> <span data-ttu-id="688be-174">Dans le menu applications hello hello gauche, cliquez sur **Single Sign-On**.</span><span class="sxs-lookup"><span data-stu-id="688be-174">In hello apps menu on hello left, click **Single Sign-On**.</span></span>
    
-    <span data-ttu-id="a92f9-175">c.</span><span class="sxs-lookup"><span data-stu-id="a92f9-175">c.</span></span> <span data-ttu-id="a92f9-176">Cliquez sur **SAML Single Sign-On**.</span><span class="sxs-lookup"><span data-stu-id="a92f9-176">Click **SAML Single Sign-On**.</span></span>
+    <span data-ttu-id="688be-175">c.</span><span class="sxs-lookup"><span data-stu-id="688be-175">c.</span></span> <span data-ttu-id="688be-176">Cliquez sur **SAML Single Sign-On**.</span><span class="sxs-lookup"><span data-stu-id="688be-176">Click **SAML Single Sign-On**.</span></span>
 
-8. <span data-ttu-id="a92f9-177">Dans la section **SAML Single Sign-On** , procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="a92f9-177">In the **SAML Single Sign-On** section, perform the following steps:</span></span>
+8. <span data-ttu-id="688be-177">Bonjour **SAML Single Sign-On** section, effectuer hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="688be-177">In hello **SAML Single Sign-On** section, perform hello following steps:</span></span>
    
-    <span data-ttu-id="a92f9-178">![Authentification unique SAML](./media/active-directory-saas-bamboo-hr-tutorial/ic796692.png "Authentification unique SAML")</span><span class="sxs-lookup"><span data-stu-id="a92f9-178">![SAML Single Sign-On](./media/active-directory-saas-bamboo-hr-tutorial/ic796692.png "SAML Single Sign-On")</span></span>
+    <span data-ttu-id="688be-178">![Authentification unique SAML](./media/active-directory-saas-bamboo-hr-tutorial/ic796692.png "Authentification unique SAML")</span><span class="sxs-lookup"><span data-stu-id="688be-178">![SAML Single Sign-On](./media/active-directory-saas-bamboo-hr-tutorial/ic796692.png "SAML Single Sign-On")</span></span>
    
-    <span data-ttu-id="a92f9-179">a.</span><span class="sxs-lookup"><span data-stu-id="a92f9-179">a.</span></span> <span data-ttu-id="a92f9-180">Collez la valeur de **l’URL du service d’authentification unique SAML** dans la zone de texte **URL de la connexion avec authentification unique**.</span><span class="sxs-lookup"><span data-stu-id="a92f9-180">Paste the **SAML Single Sign-On Service URL** value into the **SSO Login Url** textbox.</span></span>
+    <span data-ttu-id="688be-179">a.</span><span class="sxs-lookup"><span data-stu-id="688be-179">a.</span></span> <span data-ttu-id="688be-180">Hello de coller **SAML Sign-On URL du Service unique** valeur hello **Url de connexion SSO** zone de texte.</span><span class="sxs-lookup"><span data-stu-id="688be-180">Paste hello **SAML Single Sign-On Service URL** value into hello **SSO Login Url** textbox.</span></span>
       
-    <span data-ttu-id="a92f9-181">b.</span><span class="sxs-lookup"><span data-stu-id="a92f9-181">b.</span></span> <span data-ttu-id="a92f9-182">Ouvrez dans le Bloc-notes votre certificat codé en base 64 téléchargé dans le portail Azure, copiez son contenu dans le Presse-papiers, puis collez-le dans la zone de texte **Certificat X.509**.</span><span class="sxs-lookup"><span data-stu-id="a92f9-182">Open base-64 encoded certificate downloaded from Azure portal in notepad, copy the content of it into your clipboard, and then paste it to the **X.509 Certificate** textbox</span></span>
+    <span data-ttu-id="688be-181">b.</span><span class="sxs-lookup"><span data-stu-id="688be-181">b.</span></span> <span data-ttu-id="688be-182">Ouvrez le certificat codé en base 64 est téléchargé à partir du portail Azure dans le bloc-notes, hello copie contenu de celui-ci dans le Presse-papiers et le coller ensuite toohello **certificat X.509** zone de texte</span><span class="sxs-lookup"><span data-stu-id="688be-182">Open base-64 encoded certificate downloaded from Azure portal in notepad, copy hello content of it into your clipboard, and then paste it toohello **X.509 Certificate** textbox</span></span>
    
-    <span data-ttu-id="a92f9-183">c.</span><span class="sxs-lookup"><span data-stu-id="a92f9-183">c.</span></span> <span data-ttu-id="a92f9-184">Cliquez sur **Enregistrer**.</span><span class="sxs-lookup"><span data-stu-id="a92f9-184">Click **Save**.</span></span>
+    <span data-ttu-id="688be-183">c.</span><span class="sxs-lookup"><span data-stu-id="688be-183">c.</span></span> <span data-ttu-id="688be-184">Cliquez sur **Enregistrer**.</span><span class="sxs-lookup"><span data-stu-id="688be-184">Click **Save**.</span></span>
 
 > [!TIP]
-> <span data-ttu-id="a92f9-185">Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.</span><span class="sxs-lookup"><span data-stu-id="a92f9-185">You can now read a concise version of these instructions inside the [Azure portal](https://portal.azure.com), while you are setting up the app!</span></span>  <span data-ttu-id="a92f9-186">Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas.</span><span class="sxs-lookup"><span data-stu-id="a92f9-186">After adding this app from the **Active Directory > Enterprise Applications** section, simply click the **Single Sign-On** tab and access the embedded documentation through the **Configuration** section at the bottom.</span></span> <span data-ttu-id="a92f9-187">Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="a92f9-187">You can read more about the embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
+> <span data-ttu-id="688be-185">Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !</span><span class="sxs-lookup"><span data-stu-id="688be-185">You can now read a concise version of these instructions inside hello [Azure portal](https://portal.azure.com), while you are setting up hello app!</span></span>  <span data-ttu-id="688be-186">Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello.</span><span class="sxs-lookup"><span data-stu-id="688be-186">After adding this app from hello **Active Directory > Enterprise Applications** section, simply click hello **Single Sign-On** tab and access hello embedded documentation through hello **Configuration** section at hello bottom.</span></span> <span data-ttu-id="688be-187">Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="688be-187">You can read more about hello embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
 
-### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="a92f9-188">Création d’un utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="a92f9-188">Creating an Azure AD test user</span></span>
-<span data-ttu-id="a92f9-189">L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.</span><span class="sxs-lookup"><span data-stu-id="a92f9-189">The objective of this section is to create a test user in the Azure portal called Britta Simon.</span></span>
+### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="688be-188">Création d’un utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="688be-188">Creating an Azure AD test user</span></span>
+<span data-ttu-id="688be-189">objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.</span><span class="sxs-lookup"><span data-stu-id="688be-189">hello objective of this section is toocreate a test user in hello Azure portal called Britta Simon.</span></span>
 
 ![Créer un utilisateur Azure AD][100]
 
-<span data-ttu-id="a92f9-191">**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="a92f9-191">**To create a test user in Azure AD, perform the following steps:**</span></span>
+<span data-ttu-id="688be-191">**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="688be-191">**toocreate a test user in Azure AD, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="a92f9-192">Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.</span><span class="sxs-lookup"><span data-stu-id="a92f9-192">In the **Azure portal**, on the left navigation pane, click **Azure Active Directory** icon.</span></span>
+1. <span data-ttu-id="688be-192">Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.</span><span class="sxs-lookup"><span data-stu-id="688be-192">In hello **Azure portal**, on hello left navigation pane, click **Azure Active Directory** icon.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-bamboo-hr-tutorial/create_aaduser_01.png) 
 
-2. <span data-ttu-id="a92f9-194">Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.</span><span class="sxs-lookup"><span data-stu-id="a92f9-194">To display the list of users, go to **Users and groups** and click **All users**.</span></span>
+2. <span data-ttu-id="688be-194">liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.</span><span class="sxs-lookup"><span data-stu-id="688be-194">toodisplay hello list of users, go too**Users and groups** and click **All users**.</span></span>
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-bamboo-hr-tutorial/create_aaduser_02.png) 
 
-3. <span data-ttu-id="a92f9-196">Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="a92f9-196">To open the **User** dialog, click **Add** on the top of the dialog.</span></span>
+3. <span data-ttu-id="688be-196">tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.</span><span class="sxs-lookup"><span data-stu-id="688be-196">tooopen hello **User** dialog, click **Add** on hello top of hello dialog.</span></span>
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-bamboo-hr-tutorial/create_aaduser_03.png) 
 
-4. <span data-ttu-id="a92f9-198">Dans la boîte de dialogue **Utilisateur**, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="a92f9-198">On the **User** dialog page, perform the following steps:</span></span>
+4. <span data-ttu-id="688be-198">Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="688be-198">On hello **User** dialog page, perform hello following steps:</span></span>
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-bamboo-hr-tutorial/create_aaduser_04.png) 
 
-    <span data-ttu-id="a92f9-200">a.</span><span class="sxs-lookup"><span data-stu-id="a92f9-200">a.</span></span> <span data-ttu-id="a92f9-201">Dans la zone de texte **Nom**, entrez **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="a92f9-201">In the **Name** textbox, type **BrittaSimon**.</span></span>
+    <span data-ttu-id="688be-200">a.</span><span class="sxs-lookup"><span data-stu-id="688be-200">a.</span></span> <span data-ttu-id="688be-201">Bonjour **nom** zone de texte, type **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="688be-201">In hello **Name** textbox, type **BrittaSimon**.</span></span>
 
-    <span data-ttu-id="a92f9-202">b.</span><span class="sxs-lookup"><span data-stu-id="a92f9-202">b.</span></span> <span data-ttu-id="a92f9-203">Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="a92f9-203">In the **User name** textbox, type the **email address** of BrittaSimon.</span></span>
+    <span data-ttu-id="688be-202">b.</span><span class="sxs-lookup"><span data-stu-id="688be-202">b.</span></span> <span data-ttu-id="688be-203">Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.</span><span class="sxs-lookup"><span data-stu-id="688be-203">In hello **User name** textbox, type hello **email address** of BrittaSimon.</span></span>
 
-    <span data-ttu-id="a92f9-204">c.</span><span class="sxs-lookup"><span data-stu-id="a92f9-204">c.</span></span> <span data-ttu-id="a92f9-205">Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.</span><span class="sxs-lookup"><span data-stu-id="a92f9-205">Select **Show Password** and write down the value of the **Password**.</span></span>
+    <span data-ttu-id="688be-204">c.</span><span class="sxs-lookup"><span data-stu-id="688be-204">c.</span></span> <span data-ttu-id="688be-205">Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.</span><span class="sxs-lookup"><span data-stu-id="688be-205">Select **Show Password** and write down hello value of hello **Password**.</span></span>
 
-    <span data-ttu-id="a92f9-206">d.</span><span class="sxs-lookup"><span data-stu-id="a92f9-206">d.</span></span> <span data-ttu-id="a92f9-207">Cliquez sur **Create**.</span><span class="sxs-lookup"><span data-stu-id="a92f9-207">Click **Create**.</span></span>
+    <span data-ttu-id="688be-206">d.</span><span class="sxs-lookup"><span data-stu-id="688be-206">d.</span></span> <span data-ttu-id="688be-207">Cliquez sur **Create**.</span><span class="sxs-lookup"><span data-stu-id="688be-207">Click **Create**.</span></span>
  
-### <a name="creating-a-bamboohr-test-user"></a><span data-ttu-id="a92f9-208">Création d’un utilisateur de test BambooHR</span><span class="sxs-lookup"><span data-stu-id="a92f9-208">Creating a BambooHR test user</span></span>
+### <a name="creating-a-bamboohr-test-user"></a><span data-ttu-id="688be-208">Création d’un utilisateur de test BambooHR</span><span class="sxs-lookup"><span data-stu-id="688be-208">Creating a BambooHR test user</span></span>
 
-<span data-ttu-id="a92f9-209">Pour permettre aux utilisateurs Azure AD de se connecter à BambooHR, vous devez les attribuer dans BambooHR.</span><span class="sxs-lookup"><span data-stu-id="a92f9-209">To enable Azure AD users to log in to BambooHR, they must be provisioned into BambooHR.</span></span>  
+<span data-ttu-id="688be-209">tooenable Azure AD les utilisateurs toolog dans tooBambooHR, vous devez les configurer dans BambooHR.</span><span class="sxs-lookup"><span data-stu-id="688be-209">tooenable Azure AD users toolog in tooBambooHR, they must be provisioned into BambooHR.</span></span>  
 
-<span data-ttu-id="a92f9-210">En l’occurrence, cet approvisionnement est une tâche manuelle.</span><span class="sxs-lookup"><span data-stu-id="a92f9-210">In the case of BambooHR, provisioning is a manual task.</span></span>
+<span data-ttu-id="688be-210">Dans les cas de hello de BambooHR, cette configuration est une tâche manuelle.</span><span class="sxs-lookup"><span data-stu-id="688be-210">In hello case of BambooHR, provisioning is a manual task.</span></span>
 
-<span data-ttu-id="a92f9-211">**Pour approvisionner un compte d’utilisateur, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="a92f9-211">**To provision a user account, perform the following steps:**</span></span>
+<span data-ttu-id="688be-211">**tooprovision un compte d’utilisateur, effectuez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="688be-211">**tooprovision a user account, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="a92f9-212">Connectez-vous à votre site **BambooHR** en tant qu’administrateur.</span><span class="sxs-lookup"><span data-stu-id="a92f9-212">Log in to your **BambooHR** site as administrator.</span></span>
+1. <span data-ttu-id="688be-212">Connectez-vous à tooyour **BambooHR** site en tant qu’administrateur.</span><span class="sxs-lookup"><span data-stu-id="688be-212">Log in tooyour **BambooHR** site as administrator.</span></span>
 
-2. <span data-ttu-id="a92f9-213">Dans la barre d’outils située en haut, cliquez sur **Settings**.</span><span class="sxs-lookup"><span data-stu-id="a92f9-213">In the toolbar on the top, click **Settings**.</span></span>
+2. <span data-ttu-id="688be-213">Dans la barre d’outils de hello en haut de hello, cliquez sur **paramètres**.</span><span class="sxs-lookup"><span data-stu-id="688be-213">In hello toolbar on hello top, click **Settings**.</span></span>
    
-    <span data-ttu-id="a92f9-214">![Paramètre](./media/active-directory-saas-bamboo-hr-tutorial/ic796694.png "Paramètre")</span><span class="sxs-lookup"><span data-stu-id="a92f9-214">![Setting](./media/active-directory-saas-bamboo-hr-tutorial/ic796694.png "Setting")</span></span>
+    <span data-ttu-id="688be-214">![Paramètre](./media/active-directory-saas-bamboo-hr-tutorial/ic796694.png "Paramètre")</span><span class="sxs-lookup"><span data-stu-id="688be-214">![Setting](./media/active-directory-saas-bamboo-hr-tutorial/ic796694.png "Setting")</span></span>
 
-3. <span data-ttu-id="a92f9-215">Cliquez sur **Overview**.</span><span class="sxs-lookup"><span data-stu-id="a92f9-215">Click **Overview**.</span></span>
+3. <span data-ttu-id="688be-215">Cliquez sur **Overview**.</span><span class="sxs-lookup"><span data-stu-id="688be-215">Click **Overview**.</span></span>
 
-4. <span data-ttu-id="a92f9-216">Dans le volet de navigation de gauche, accédez à **Security \> Users**.</span><span class="sxs-lookup"><span data-stu-id="a92f9-216">In the left navigation pane, go to **Security \> Users**.</span></span>
+4. <span data-ttu-id="688be-216">Dans le volet de navigation gauche hello accédez trop**sécurité \> utilisateurs**.</span><span class="sxs-lookup"><span data-stu-id="688be-216">In hello left navigation pane, go too**Security \> Users**.</span></span>
 
-5. <span data-ttu-id="a92f9-217">Tapez le nom d’utilisateur, le mot de passe et l’adresse e-mail d’un compte AAD valide que vous souhaitez attribuer dans les zones de texte correspondantes.</span><span class="sxs-lookup"><span data-stu-id="a92f9-217">Type the user name, password, and email address of a valid AAD account you want to provision into the related textboxes.</span></span>
+5. <span data-ttu-id="688be-217">Nom d’utilisateur de type hello, mot de passe et adresse de messagerie d’un compte AAD valide que vous voulez tooprovision dans hello liés aux zones de texte.</span><span class="sxs-lookup"><span data-stu-id="688be-217">Type hello user name, password, and email address of a valid AAD account you want tooprovision into hello related textboxes.</span></span>
 
-6. <span data-ttu-id="a92f9-218">Cliquez sur **Save**.</span><span class="sxs-lookup"><span data-stu-id="a92f9-218">Click **Save**.</span></span>
+6. <span data-ttu-id="688be-218">Cliquez sur **Enregistrer**.</span><span class="sxs-lookup"><span data-stu-id="688be-218">Click **Save**.</span></span>
         
 >[!NOTE]
-><span data-ttu-id="a92f9-219">Vous pouvez utiliser tout autre outil ou n’importe quelle API de création de compte d’utilisateur fournis par BambooHR pour approvisionner des comptes d’utilisateur Azure Active Directory.</span><span class="sxs-lookup"><span data-stu-id="a92f9-219">You can use any other BambooHR user account creation tools or APIs provided by BambooHR to provision AAD user accounts.</span></span>
+><span data-ttu-id="688be-219">Vous pouvez utiliser n’importe quel autre BambooHR utilisateur compte outil de création ou API fournie par BambooHR tooprovision des comptes d’utilisateur AAD.</span><span class="sxs-lookup"><span data-stu-id="688be-219">You can use any other BambooHR user account creation tools or APIs provided by BambooHR tooprovision AAD user accounts.</span></span>
 
-### <a name="assigning-the-azure-ad-test-user"></a><span data-ttu-id="a92f9-220">Affectation de l’utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="a92f9-220">Assigning the Azure AD test user</span></span>
+### <a name="assigning-hello-azure-ad-test-user"></a><span data-ttu-id="688be-220">Affectation d’utilisateur de test hello Azure AD</span><span class="sxs-lookup"><span data-stu-id="688be-220">Assigning hello Azure AD test user</span></span>
 
-<span data-ttu-id="a92f9-221">Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à BambooHR.</span><span class="sxs-lookup"><span data-stu-id="a92f9-221">In this section, you enable Britta Simon to use Azure single sign-on by granting access to BambooHR.</span></span>
+<span data-ttu-id="688be-221">Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooBambooHR.</span><span class="sxs-lookup"><span data-stu-id="688be-221">In this section, you enable Britta Simon toouse Azure single sign-on by granting access tooBambooHR.</span></span>
 
 ![Affecter des utilisateurs][200] 
 
-<span data-ttu-id="a92f9-223">**Pour attribuer Britta Simon à BambooHR, effectuez les étapes suivantes :**</span><span class="sxs-lookup"><span data-stu-id="a92f9-223">**To assign Britta Simon to BambooHR, perform the following steps:**</span></span>
+<span data-ttu-id="688be-223">**tooassign Britta Simon tooBambooHR, effectuez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="688be-223">**tooassign Britta Simon tooBambooHR, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="a92f9-224">Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="a92f9-224">In the Azure portal, open the applications view, and then navigate to the directory view and go to **Enterprise applications** then click **All applications**.</span></span>
+1. <span data-ttu-id="688be-224">Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="688be-224">In hello Azure portal, open hello applications view, and then navigate toohello directory view and go too**Enterprise applications** then click **All applications**.</span></span>
 
     ![Affecter des utilisateurs][201] 
 
-2. <span data-ttu-id="a92f9-226">Dans la liste des applications, sélectionnez **BambooHR**.</span><span class="sxs-lookup"><span data-stu-id="a92f9-226">In the applications list, select **BambooHR**.</span></span>
+2. <span data-ttu-id="688be-226">Dans la liste des applications hello, sélectionnez **BambooHR**.</span><span class="sxs-lookup"><span data-stu-id="688be-226">In hello applications list, select **BambooHR**.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-bamboo-hr-tutorial/tutorial_bamboohr_app.png) 
 
-3. <span data-ttu-id="a92f9-228">Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="a92f9-228">In the menu on the left, click **Users and groups**.</span></span>
+3. <span data-ttu-id="688be-228">Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="688be-228">In hello menu on hello left, click **Users and groups**.</span></span>
 
     ![Affecter des utilisateurs][202] 
 
-4. <span data-ttu-id="a92f9-230">Cliquez sur le bouton **Ajouter**.</span><span class="sxs-lookup"><span data-stu-id="a92f9-230">Click **Add** button.</span></span> <span data-ttu-id="a92f9-231">Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="a92f9-231">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
+4. <span data-ttu-id="688be-230">Cliquez sur le bouton **Ajouter**.</span><span class="sxs-lookup"><span data-stu-id="688be-230">Click **Add** button.</span></span> <span data-ttu-id="688be-231">Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="688be-231">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
 
     ![Affecter des utilisateurs][203]
 
-5. <span data-ttu-id="a92f9-233">Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.</span><span class="sxs-lookup"><span data-stu-id="a92f9-233">On **Users and groups** dialog, select **Britta Simon** in the Users list.</span></span>
+5. <span data-ttu-id="688be-233">Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.</span><span class="sxs-lookup"><span data-stu-id="688be-233">On **Users and groups** dialog, select **Britta Simon** in hello Users list.</span></span>
 
-6. <span data-ttu-id="a92f9-234">Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="a92f9-234">Click **Select** button on **Users and groups** dialog.</span></span>
+6. <span data-ttu-id="688be-234">Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="688be-234">Click **Select** button on **Users and groups** dialog.</span></span>
 
-7. <span data-ttu-id="a92f9-235">Cliquez sur le bouton **Affecter** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="a92f9-235">Click **Assign** button on **Add Assignment** dialog.</span></span>
+7. <span data-ttu-id="688be-235">Cliquez sur le bouton **Affecter** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="688be-235">Click **Assign** button on **Add Assignment** dialog.</span></span>
     
-### <a name="testing-single-sign-on"></a><span data-ttu-id="a92f9-236">Test de l’authentification unique</span><span class="sxs-lookup"><span data-stu-id="a92f9-236">Testing single sign-on</span></span>
+### <a name="testing-single-sign-on"></a><span data-ttu-id="688be-236">Test de l’authentification unique</span><span class="sxs-lookup"><span data-stu-id="688be-236">Testing single sign-on</span></span>
 
-<span data-ttu-id="a92f9-237">Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.</span><span class="sxs-lookup"><span data-stu-id="a92f9-237">In this section, you test your Azure AD single sign-on configuration using the Access Panel.</span></span>
+<span data-ttu-id="688be-237">Dans cette section, vous tester votre configuration Azure AD unique de session à l’aide de hello panneau d’accès.</span><span class="sxs-lookup"><span data-stu-id="688be-237">In this section, you test your Azure AD single sign-on configuration using hello Access Panel.</span></span>
 
-<span data-ttu-id="a92f9-238">Lorsque vous cliquez sur la vignette BambooHR dans le volet d’accès, vous devez être connecté automatiquement à votre application BambooHR.</span><span class="sxs-lookup"><span data-stu-id="a92f9-238">When you click the BambooHR tile in the Access Panel, you should get automatically signed-on to your BambooHR application.</span></span>
-<span data-ttu-id="a92f9-239">Pour plus d’informations sur le panneau d’accès, consultez [Présentation du panneau d’accès](active-directory-saas-access-panel-introduction.md).</span><span class="sxs-lookup"><span data-stu-id="a92f9-239">For more information about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md).</span></span> 
+<span data-ttu-id="688be-238">Lorsque vous cliquez sur mosaïque BambooHR hello hello volet d’accès, vous devez obtenir automatiquement signé sur tooyour BambooHR application.</span><span class="sxs-lookup"><span data-stu-id="688be-238">When you click hello BambooHR tile in hello Access Panel, you should get automatically signed-on tooyour BambooHR application.</span></span>
+<span data-ttu-id="688be-239">Pour plus d’informations sur hello volet d’accès, consultez [Introduction toohello volet d’accès](active-directory-saas-access-panel-introduction.md).</span><span class="sxs-lookup"><span data-stu-id="688be-239">For more information about hello Access Panel, see [Introduction toohello Access Panel](active-directory-saas-access-panel-introduction.md).</span></span> 
 
-## <a name="additional-resources"></a><span data-ttu-id="a92f9-240">Ressources supplémentaires</span><span class="sxs-lookup"><span data-stu-id="a92f9-240">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="688be-240">Ressources supplémentaires</span><span class="sxs-lookup"><span data-stu-id="688be-240">Additional resources</span></span>
 
-* [<span data-ttu-id="a92f9-241">Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="a92f9-241">List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="a92f9-242">Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?</span><span class="sxs-lookup"><span data-stu-id="a92f9-242">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="688be-241">Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="688be-241">List of Tutorials on How tooIntegrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="688be-242">Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?</span><span class="sxs-lookup"><span data-stu-id="688be-242">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
 
 
 

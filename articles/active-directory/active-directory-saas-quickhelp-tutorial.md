@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory à QuickHelp | Microsoft Docs"
-description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et QuickHelp."
+description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et aide rapide."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,231 +13,231 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/03/2017
 ms.author: jeedes
-ms.openlocfilehash: 1c72b0ddee636090129dab7a5c7ec6ffd452434a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bbde5eb9bdad89680923ccd36c321b6923f91789
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-quickhelp"></a><span data-ttu-id="fbb21-103">Didacticiel : intégration d’Azure Active Directory à QuickHelp</span><span class="sxs-lookup"><span data-stu-id="fbb21-103">Tutorial: Azure Active Directory integration with QuickHelp</span></span>
+# <a name="tutorial-azure-active-directory-integration-with-quickhelp"></a><span data-ttu-id="91773-103">Didacticiel : intégration d’Azure Active Directory à QuickHelp</span><span class="sxs-lookup"><span data-stu-id="91773-103">Tutorial: Azure Active Directory integration with QuickHelp</span></span>
 
-<span data-ttu-id="fbb21-104">Dans ce didacticiel, vous allez apprendre à intégrer QuickHelp avec Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="fbb21-104">In this tutorial, you learn how to integrate QuickHelp with Azure Active Directory (Azure AD).</span></span>
+<span data-ttu-id="91773-104">Dans ce didacticiel, vous apprendrez comment toointegrate aide rapide avec Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="91773-104">In this tutorial, you learn how toointegrate QuickHelp with Azure Active Directory (Azure AD).</span></span>
 
-<span data-ttu-id="fbb21-105">L’intégration de QuickHelp dans Azure AD vous offre les avantages suivants :</span><span class="sxs-lookup"><span data-stu-id="fbb21-105">Integrating QuickHelp with Azure AD provides you with the following benefits:</span></span>
+<span data-ttu-id="91773-105">Intégration d’aide rapide à Azure AD offre hello avantages suivants :</span><span class="sxs-lookup"><span data-stu-id="91773-105">Integrating QuickHelp with Azure AD provides you with hello following benefits:</span></span>
 
-- <span data-ttu-id="fbb21-106">Dans Azure AD, vous pouvez contrôler qui a accès à QuickHelp.</span><span class="sxs-lookup"><span data-stu-id="fbb21-106">You can control in Azure AD who has access to QuickHelp</span></span>
-- <span data-ttu-id="fbb21-107">Vous pouvez autoriser les utilisateurs à se connecter automatiquement à QuickHelp (par le biais de l’authentification unique) avec leur compte Azure AD.</span><span class="sxs-lookup"><span data-stu-id="fbb21-107">You can enable your users to automatically get signed-on to QuickHelp (Single Sign-On) with their Azure AD accounts</span></span>
-- <span data-ttu-id="fbb21-108">Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure</span><span class="sxs-lookup"><span data-stu-id="fbb21-108">You can manage your accounts in one central location - the Azure portal</span></span>
+- <span data-ttu-id="91773-106">Vous pouvez contrôler dans Azure AD qui a accès tooQuickHelp</span><span class="sxs-lookup"><span data-stu-id="91773-106">You can control in Azure AD who has access tooQuickHelp</span></span>
+- <span data-ttu-id="91773-107">Vous pouvez activer vos utilisateurs tooautomatically get connecté tooQuickHelp (Single Sign-On) avec leurs comptes Azure AD</span><span class="sxs-lookup"><span data-stu-id="91773-107">You can enable your users tooautomatically get signed-on tooQuickHelp (Single Sign-On) with their Azure AD accounts</span></span>
+- <span data-ttu-id="91773-108">Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure</span><span class="sxs-lookup"><span data-stu-id="91773-108">You can manage your accounts in one central location - hello Azure portal</span></span>
 
-<span data-ttu-id="fbb21-109">Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="fbb21-109">If you want to know more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="91773-109">Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="91773-109">If you want tooknow more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="fbb21-110">Conditions préalables</span><span class="sxs-lookup"><span data-stu-id="fbb21-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="91773-110">Composants requis</span><span class="sxs-lookup"><span data-stu-id="91773-110">Prerequisites</span></span>
 
-<span data-ttu-id="fbb21-111">Pour configurer l’intégration d’Azure AD à QuickHelp, vous avez besoin des éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="fbb21-111">To configure Azure AD integration with QuickHelp, you need the following items:</span></span>
+<span data-ttu-id="91773-111">tooconfigure intégration d’Azure AD avec aide rapide, vous devez hello éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="91773-111">tooconfigure Azure AD integration with QuickHelp, you need hello following items:</span></span>
 
-- <span data-ttu-id="fbb21-112">Un abonnement Azure AD</span><span class="sxs-lookup"><span data-stu-id="fbb21-112">An Azure AD subscription</span></span>
-- <span data-ttu-id="fbb21-113">Un abonnement QuickHelp pour lequel l’authentification unique est activée</span><span class="sxs-lookup"><span data-stu-id="fbb21-113">A QuickHelp single sign-on enabled subscription</span></span>
+- <span data-ttu-id="91773-112">Un abonnement Azure AD</span><span class="sxs-lookup"><span data-stu-id="91773-112">An Azure AD subscription</span></span>
+- <span data-ttu-id="91773-113">Un abonnement QuickHelp pour lequel l’authentification unique est activée</span><span class="sxs-lookup"><span data-stu-id="91773-113">A QuickHelp single sign-on enabled subscription</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="fbb21-114">Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.</span><span class="sxs-lookup"><span data-stu-id="fbb21-114">To test the steps in this tutorial, we do not recommend using a production environment.</span></span>
+> <span data-ttu-id="91773-114">tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.</span><span class="sxs-lookup"><span data-stu-id="91773-114">tootest hello steps in this tutorial, we do not recommend using a production environment.</span></span>
 
-<span data-ttu-id="fbb21-115">Vous devez en outre suivre les recommandations ci-dessous :</span><span class="sxs-lookup"><span data-stu-id="fbb21-115">To test the steps in this tutorial, you should follow these recommendations:</span></span>
+<span data-ttu-id="91773-115">tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :</span><span class="sxs-lookup"><span data-stu-id="91773-115">tootest hello steps in this tutorial, you should follow these recommendations:</span></span>
 
-- <span data-ttu-id="fbb21-116">N’utilisez pas votre environnement de production, sauf si cela est nécessaire.</span><span class="sxs-lookup"><span data-stu-id="fbb21-116">Do not use your production environment, unless it is necessary.</span></span>
-- <span data-ttu-id="fbb21-117">Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="fbb21-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+- <span data-ttu-id="91773-116">N’utilisez pas votre environnement de production, sauf si cela est nécessaire.</span><span class="sxs-lookup"><span data-stu-id="91773-116">Do not use your production environment, unless it is necessary.</span></span>
+- <span data-ttu-id="91773-117">Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="91773-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
-## <a name="scenario-description"></a><span data-ttu-id="fbb21-118">Description du scénario</span><span class="sxs-lookup"><span data-stu-id="fbb21-118">Scenario description</span></span>
-<span data-ttu-id="fbb21-119">Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test.</span><span class="sxs-lookup"><span data-stu-id="fbb21-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="fbb21-120">Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :</span><span class="sxs-lookup"><span data-stu-id="fbb21-120">The scenario outlined in this tutorial consists of two main building blocks:</span></span>
+## <a name="scenario-description"></a><span data-ttu-id="91773-118">Description du scénario</span><span class="sxs-lookup"><span data-stu-id="91773-118">Scenario description</span></span>
+<span data-ttu-id="91773-119">Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test.</span><span class="sxs-lookup"><span data-stu-id="91773-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="91773-120">scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :</span><span class="sxs-lookup"><span data-stu-id="91773-120">hello scenario outlined in this tutorial consists of two main building blocks:</span></span>
 
-1. <span data-ttu-id="fbb21-121">Ajout de QuickHelp à partir de la galerie</span><span class="sxs-lookup"><span data-stu-id="fbb21-121">Adding QuickHelp from the gallery</span></span>
-2. <span data-ttu-id="fbb21-122">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="fbb21-122">Configuring and testing Azure AD single sign-on</span></span>
+1. <span data-ttu-id="91773-121">Ajout d’aide rapide à partir de la galerie de hello</span><span class="sxs-lookup"><span data-stu-id="91773-121">Adding QuickHelp from hello gallery</span></span>
+2. <span data-ttu-id="91773-122">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="91773-122">Configuring and testing Azure AD single sign-on</span></span>
 
-## <a name="adding-quickhelp-from-the-gallery"></a><span data-ttu-id="fbb21-123">Ajout de QuickHelp à partir de la galerie</span><span class="sxs-lookup"><span data-stu-id="fbb21-123">Adding QuickHelp from the gallery</span></span>
-<span data-ttu-id="fbb21-124">Pour configurer l’intégration de QuickHelp à Azure AD, vous devez ajouter QuickHelp à partir de la galerie à votre liste d’applications SaaS gérées.</span><span class="sxs-lookup"><span data-stu-id="fbb21-124">To configure the integration of QuickHelp into Azure AD, you need to add QuickHelp from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="adding-quickhelp-from-hello-gallery"></a><span data-ttu-id="91773-123">Ajout d’aide rapide à partir de la galerie de hello</span><span class="sxs-lookup"><span data-stu-id="91773-123">Adding QuickHelp from hello gallery</span></span>
+<span data-ttu-id="91773-124">intégration de hello tooconfigure d’aide rapide dans Azure AD, vous devez tooadd aide rapide à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.</span><span class="sxs-lookup"><span data-stu-id="91773-124">tooconfigure hello integration of QuickHelp into Azure AD, you need tooadd QuickHelp from hello gallery tooyour list of managed SaaS apps.</span></span>
 
-<span data-ttu-id="fbb21-125">**Pour ajouter QuickHelp à partir de la galerie, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="fbb21-125">**To add QuickHelp from the gallery, perform the following steps:**</span></span>
+<span data-ttu-id="91773-125">**tooadd aide rapide à partir de la galerie hello, procédez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="91773-125">**tooadd QuickHelp from hello gallery, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="fbb21-126">Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**.</span><span class="sxs-lookup"><span data-stu-id="fbb21-126">In the **[Azure portal](https://portal.azure.com)**, on the left navigation panel, click **Azure Active Directory** icon.</span></span> 
+1. <span data-ttu-id="91773-126">Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.</span><span class="sxs-lookup"><span data-stu-id="91773-126">In hello **[Azure portal](https://portal.azure.com)**, on hello left navigation panel, click **Azure Active Directory** icon.</span></span> 
 
     ![Active Directory][1]
 
-2. <span data-ttu-id="fbb21-128">Accédez à **Applications d’entreprise**.</span><span class="sxs-lookup"><span data-stu-id="fbb21-128">Navigate to **Enterprise applications**.</span></span> <span data-ttu-id="fbb21-129">Accédez ensuite à **Toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="fbb21-129">Then go to **All applications**.</span></span>
+2. <span data-ttu-id="91773-128">Accédez trop**des applications d’entreprise**.</span><span class="sxs-lookup"><span data-stu-id="91773-128">Navigate too**Enterprise applications**.</span></span> <span data-ttu-id="91773-129">Passez trop**toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="91773-129">Then go too**All applications**.</span></span>
 
     ![Applications][2]
     
-3. <span data-ttu-id="fbb21-131">Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="fbb21-131">To add new application, click **New application** button on the top of dialog.</span></span>
+3. <span data-ttu-id="91773-131">tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="91773-131">tooadd new application, click **New application** button on hello top of dialog.</span></span>
 
     ![Applications][3]
 
-4. <span data-ttu-id="fbb21-133">Dans la zone de recherche, tapez **QuickHelp**.</span><span class="sxs-lookup"><span data-stu-id="fbb21-133">In the search box, type **QuickHelp**.</span></span>
+4. <span data-ttu-id="91773-133">Dans la zone de recherche de hello, tapez **aide rapide**.</span><span class="sxs-lookup"><span data-stu-id="91773-133">In hello search box, type **QuickHelp**.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-quickhelp-tutorial/tutorial_quickhelp_search.png)
 
-5. <span data-ttu-id="fbb21-135">Dans le volet de résultats, sélectionnez **QuickHelp**, puis cliquez sur **Ajouter** pour ajouter l’application.</span><span class="sxs-lookup"><span data-stu-id="fbb21-135">In the results panel, select **QuickHelp**, and then click **Add** button to add the application.</span></span>
+5. <span data-ttu-id="91773-135">Dans le volet de résultats hello, sélectionnez **aide rapide**, puis cliquez sur **ajouter** bouton application hello de tooadd.</span><span class="sxs-lookup"><span data-stu-id="91773-135">In hello results panel, select **QuickHelp**, and then click **Add** button tooadd hello application.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-quickhelp-tutorial/tutorial_quickhelp_addfromgallery.png)
 
-##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="fbb21-137">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="fbb21-137">Configuring and testing Azure AD single sign-on</span></span>
-<span data-ttu-id="fbb21-138">Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec QuickHelp sur un utilisateur de test nommé « Britta Simon ».</span><span class="sxs-lookup"><span data-stu-id="fbb21-138">In this section, you configure and test Azure AD single sign-on with QuickHelp based on a test user called "Britta Simon".</span></span>
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="91773-137">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="91773-137">Configuring and testing Azure AD single sign-on</span></span>
+<span data-ttu-id="91773-138">Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec QuickHelp sur un utilisateur de test nommé « Britta Simon ».</span><span class="sxs-lookup"><span data-stu-id="91773-138">In this section, you configure and test Azure AD single sign-on with QuickHelp based on a test user called "Britta Simon".</span></span>
 
-<span data-ttu-id="fbb21-139">Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur QuickHelp équivalent à l’utilisateur dans Azure AD.</span><span class="sxs-lookup"><span data-stu-id="fbb21-139">For single sign-on to work, Azure AD needs to know what the counterpart user in QuickHelp is to a user in Azure AD.</span></span> <span data-ttu-id="fbb21-140">En d’autres termes, une relation entre l’utilisateur Azure AD et l’utilisateur QuickHelp associé doit être établie.</span><span class="sxs-lookup"><span data-stu-id="fbb21-140">In other words, a link relationship between an Azure AD user and the related user in QuickHelp needs to be established.</span></span>
+<span data-ttu-id="91773-139">Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur équivalent hello aide rapide est tooa utilisateur dans Azure AD.</span><span class="sxs-lookup"><span data-stu-id="91773-139">For single sign-on toowork, Azure AD needs tooknow what hello counterpart user in QuickHelp is tooa user in Azure AD.</span></span> <span data-ttu-id="91773-140">En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur dans l’aide rapide hello doit toobe établie.</span><span class="sxs-lookup"><span data-stu-id="91773-140">In other words, a link relationship between an Azure AD user and hello related user in QuickHelp needs toobe established.</span></span>
 
-<span data-ttu-id="fbb21-141">Dans QuickHelp, assignez la valeur de **nom d’utilisateur** dans Azure AD comme valeur de **Username** pour établir la relation de lien.</span><span class="sxs-lookup"><span data-stu-id="fbb21-141">In QuickHelp, assign the value of the **user name** in Azure AD as the value of the **Username** to establish the link relationship.</span></span>
+<span data-ttu-id="91773-141">Dans l’aide rapide, affecter la valeur de hello de hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.</span><span class="sxs-lookup"><span data-stu-id="91773-141">In QuickHelp, assign hello value of hello **user name** in Azure AD as hello value of hello **Username** tooestablish hello link relationship.</span></span>
 
-<span data-ttu-id="fbb21-142">Pour configurer et tester l’authentification unique Azure AD avec QuickHelp, vous devez suivre les indications des sections suivantes :</span><span class="sxs-lookup"><span data-stu-id="fbb21-142">To configure and test Azure AD single sign-on with QuickHelp, you need to complete the following building blocks:</span></span>
+<span data-ttu-id="91773-142">tooconfigure et test Azure AD l’authentification unique avec une aide rapide, vous devez hello toocomplete suivant des blocs de construction :</span><span class="sxs-lookup"><span data-stu-id="91773-142">tooconfigure and test Azure AD single sign-on with QuickHelp, you need toocomplete hello following building blocks:</span></span>
 
-1. <span data-ttu-id="fbb21-143">**[Configuration de l’authentification unique Azure AD](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.</span><span class="sxs-lookup"><span data-stu-id="fbb21-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - to enable your users to use this feature.</span></span>
-2. <span data-ttu-id="fbb21-144">**[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="fbb21-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.</span></span>
-3. <span data-ttu-id="fbb21-145">**[Création d’un utilisateur de test QuickHelp](#creating-a-quickhelp-test-user)** pour avoir un équivalent de Britta Simon dans QuickHelp lié à la représentation Azure AD associée.</span><span class="sxs-lookup"><span data-stu-id="fbb21-145">**[Creating a QuickHelp test user](#creating-a-quickhelp-test-user)** - to have a counterpart of Britta Simon in QuickHelp that is linked to the Azure AD representation of user.</span></span>
-4. <span data-ttu-id="fbb21-146">**[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.</span><span class="sxs-lookup"><span data-stu-id="fbb21-146">**[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.</span></span>
-5. <span data-ttu-id="fbb21-147">**[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.</span><span class="sxs-lookup"><span data-stu-id="fbb21-147">**[Testing Single Sign-On](#testing-single-sign-on)** - to verify whether the configuration works.</span></span>
+1. <span data-ttu-id="91773-143">**[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.</span><span class="sxs-lookup"><span data-stu-id="91773-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - tooenable your users toouse this feature.</span></span>
+2. <span data-ttu-id="91773-144">**[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="91773-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - tootest Azure AD single sign-on with Britta Simon.</span></span>
+3. <span data-ttu-id="91773-145">**[Création d’un utilisateur de test d’aide rapide](#creating-a-quickhelp-test-user)**  -toohave un équivalent de Britta Simon dans aide rapide qui est la représentation sous forme de toohello lié Azure AD de l’utilisateur.</span><span class="sxs-lookup"><span data-stu-id="91773-145">**[Creating a QuickHelp test user](#creating-a-quickhelp-test-user)** - toohave a counterpart of Britta Simon in QuickHelp that is linked toohello Azure AD representation of user.</span></span>
+4. <span data-ttu-id="91773-146">**[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="91773-146">**[Assigning hello Azure AD test user](#assigning-the-azure-ad-test-user)** - tooenable Britta Simon toouse Azure AD single sign-on.</span></span>
+5. <span data-ttu-id="91773-147">**[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.</span><span class="sxs-lookup"><span data-stu-id="91773-147">**[Testing Single Sign-On](#testing-single-sign-on)** - tooverify whether hello configuration works.</span></span>
 
-### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="fbb21-148">Configuration de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="fbb21-148">Configuring Azure AD single sign-on</span></span>
+### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="91773-148">Configuration de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="91773-148">Configuring Azure AD single sign-on</span></span>
 
-<span data-ttu-id="fbb21-149">Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application QuickHelp.</span><span class="sxs-lookup"><span data-stu-id="fbb21-149">In this section, you enable Azure AD single sign-on in the Azure portal and configure single sign-on in your QuickHelp application.</span></span>
+<span data-ttu-id="91773-149">Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application aide rapide.</span><span class="sxs-lookup"><span data-stu-id="91773-149">In this section, you enable Azure AD single sign-on in hello Azure portal and configure single sign-on in your QuickHelp application.</span></span>
 
-<span data-ttu-id="fbb21-150">**Pour configurer l’authentification unique Azure AD avec QuickHelp, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="fbb21-150">**To configure Azure AD single sign-on with QuickHelp, perform the following steps:**</span></span>
+<span data-ttu-id="91773-150">**tooconfigure Azure AD single sign-on avec aide rapide, effectuer hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="91773-150">**tooconfigure Azure AD single sign-on with QuickHelp, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="fbb21-151">Dans le portail Azure, sur la page d’intégration de l’application **QuickHelp**, cliquez sur **Authentification unique**.</span><span class="sxs-lookup"><span data-stu-id="fbb21-151">In the Azure portal, on the **QuickHelp** application integration page, click **Single sign-on**.</span></span>
+1. <span data-ttu-id="91773-151">Bonjour portail Azure, sur hello **aide rapide** page d’intégration d’application, cliquez sur **l’authentification unique**.</span><span class="sxs-lookup"><span data-stu-id="91773-151">In hello Azure portal, on hello **QuickHelp** application integration page, click **Single sign-on**.</span></span>
 
     ![Configurer l’authentification unique][4]
 
-2. <span data-ttu-id="fbb21-153">Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="fbb21-153">On the **Single sign-on** dialog, select **Mode** as **SAML-based Sign-on** to enable single sign-on.</span></span>
+2. <span data-ttu-id="91773-153">Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="91773-153">On hello **Single sign-on** dialog, select **Mode** as   **SAML-based Sign-on** tooenable single sign-on.</span></span>
  
     ![Configurer l’authentification unique](./media/active-directory-saas-quickhelp-tutorial/tutorial_quickhelp_samlbase.png)
 
-3. <span data-ttu-id="fbb21-155">Dans la section **Domaine et URL QuickHelp**, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="fbb21-155">On the **QuickHelp Domain and URLs** section, perform the following steps:</span></span>
+3. <span data-ttu-id="91773-155">Sur hello **URL et le domaine de l’aide rapide** section, effectuer hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="91773-155">On hello **QuickHelp Domain and URLs** section, perform hello following steps:</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-quickhelp-tutorial/tutorial_quickhelp_url.png)
 
-    <span data-ttu-id="fbb21-157">a.</span><span class="sxs-lookup"><span data-stu-id="fbb21-157">a.</span></span> <span data-ttu-id="fbb21-158">Dans la zone de texte **URL de connexion**, tapez une URL au format suivant : `https://quickhelp.com/<instancename>/#/Login`</span><span class="sxs-lookup"><span data-stu-id="fbb21-158">In the **Sign-on URL** textbox, type a URL using the following pattern: `https://quickhelp.com/<instancename>/#/Login`</span></span>
+    <span data-ttu-id="91773-157">a.</span><span class="sxs-lookup"><span data-stu-id="91773-157">a.</span></span> <span data-ttu-id="91773-158">Bonjour **URL de connexion** zone de texte, tapez une URL à l’aide de hello modèle :`https://quickhelp.com/<instancename>/#/Login`</span><span class="sxs-lookup"><span data-stu-id="91773-158">In hello **Sign-on URL** textbox, type a URL using hello following pattern: `https://quickhelp.com/<instancename>/#/Login`</span></span>
 
-    <span data-ttu-id="fbb21-159">b.</span><span class="sxs-lookup"><span data-stu-id="fbb21-159">b.</span></span> <span data-ttu-id="fbb21-160">Dans la zone de texte **Identificateur**, tapez une URL au format suivant : `https://<subdomain>.quickhelp.com`</span><span class="sxs-lookup"><span data-stu-id="fbb21-160">In the **Identifier** textbox, type a URL using the following pattern: `https://<subdomain>.quickhelp.com`</span></span>
+    <span data-ttu-id="91773-159">b.</span><span class="sxs-lookup"><span data-stu-id="91773-159">b.</span></span> <span data-ttu-id="91773-160">Bonjour **identificateur** zone de texte, tapez une URL à l’aide de hello modèle :`https://<subdomain>.quickhelp.com`</span><span class="sxs-lookup"><span data-stu-id="91773-160">In hello **Identifier** textbox, type a URL using hello following pattern: `https://<subdomain>.quickhelp.com`</span></span>
 
     > [!NOTE] 
-    > <span data-ttu-id="fbb21-161">Il ne s’agit pas de valeurs réelles.</span><span class="sxs-lookup"><span data-stu-id="fbb21-161">These values are not real.</span></span> <span data-ttu-id="fbb21-162">Mettez à jour ces valeurs avec l’URL de connexion et l’identificateur réels.</span><span class="sxs-lookup"><span data-stu-id="fbb21-162">Update these values with the actual Sign-On URL and Identifier.</span></span> <span data-ttu-id="fbb21-163">Pour obtenir ces valeurs, contactez l’[équipe de support technique QuickHelp](https://support.quickhelp.com/).</span><span class="sxs-lookup"><span data-stu-id="fbb21-163">Contact [QuickHelp Client support team](https://support.quickhelp.com/) to get these values.</span></span> 
+    > <span data-ttu-id="91773-161">Il ne s’agit pas de valeurs réelles.</span><span class="sxs-lookup"><span data-stu-id="91773-161">These values are not real.</span></span> <span data-ttu-id="91773-162">Mettre à jour les valeurs de hello réel Sign-On URL et l’identificateur.</span><span class="sxs-lookup"><span data-stu-id="91773-162">Update these values with hello actual Sign-On URL and Identifier.</span></span> <span data-ttu-id="91773-163">Contact [équipe de support Client de l’aide rapide](https://support.quickhelp.com/) tooget ces valeurs.</span><span class="sxs-lookup"><span data-stu-id="91773-163">Contact [QuickHelp Client support team](https://support.quickhelp.com/) tooget these values.</span></span> 
  
-4. <span data-ttu-id="fbb21-164">Dans la section **Certificat de signature SAML**, cliquez sur **Métadonnées XML** puis enregistrez le fichier de métadonnées sur votre ordinateur.</span><span class="sxs-lookup"><span data-stu-id="fbb21-164">On the **SAML Signing Certificate** section, click **Metadata XML** and then save the metadata file on your computer.</span></span>
+4. <span data-ttu-id="91773-164">Sur hello **le certificat de signature SAML** , cliquez sur **Metadata XML** , puis enregistrez le fichier de métadonnées hello sur votre ordinateur.</span><span class="sxs-lookup"><span data-stu-id="91773-164">On hello **SAML Signing Certificate** section, click **Metadata XML** and then save hello metadata file on your computer.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-quickhelp-tutorial/tutorial_quickhelp_certificate.png) 
 
-5. <span data-ttu-id="fbb21-166">Cliquez sur le bouton **Enregistrer** .</span><span class="sxs-lookup"><span data-stu-id="fbb21-166">Click **Save** button.</span></span>
+5. <span data-ttu-id="91773-166">Cliquez sur le bouton **Enregistrer** .</span><span class="sxs-lookup"><span data-stu-id="91773-166">Click **Save** button.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-quickhelp-tutorial/tutorial_general_400.png) 
 
-6. <span data-ttu-id="fbb21-168">Connectez-vous à votre site d’entreprise QuickHelp en tant qu’administrateur.</span><span class="sxs-lookup"><span data-stu-id="fbb21-168">Sign-on to your QuickHelp company site as administrator.</span></span>
+6. <span data-ttu-id="91773-168">Site d’entreprise aide rapide tooyour ouverture de session en tant qu’administrateur.</span><span class="sxs-lookup"><span data-stu-id="91773-168">Sign-on tooyour QuickHelp company site as administrator.</span></span>
 
-7. <span data-ttu-id="fbb21-169">Dans le menu situé en haut, cliquez sur **Admin**.</span><span class="sxs-lookup"><span data-stu-id="fbb21-169">In the menu on the top, click **Admin**.</span></span>
+7. <span data-ttu-id="91773-169">Dans le menu hello haut de hello, cliquez sur **Admin**.</span><span class="sxs-lookup"><span data-stu-id="91773-169">In hello menu on hello top, click **Admin**.</span></span>
    
     ![Configurer l’authentification unique][21]
 
-8. <span data-ttu-id="fbb21-171">Dans le menu **QuickHelp Admin** (Administration de QuickHelp), cliquez sur **Settings** (Paramètres).</span><span class="sxs-lookup"><span data-stu-id="fbb21-171">In the **QuickHelp Admin** menu, click **Settings**.</span></span>
+8. <span data-ttu-id="91773-171">Bonjour **QuickHelp Admin** menu, cliquez sur **paramètres**.</span><span class="sxs-lookup"><span data-stu-id="91773-171">In hello **QuickHelp Admin** menu, click **Settings**.</span></span>
    
     ![Configurer l’authentification unique][22]
 
-9. <span data-ttu-id="fbb21-173">Cliquez sur **Authentication Settings**.</span><span class="sxs-lookup"><span data-stu-id="fbb21-173">Click **Authentication Settings**.</span></span>
+9. <span data-ttu-id="91773-173">Cliquez sur **Authentication Settings**.</span><span class="sxs-lookup"><span data-stu-id="91773-173">Click **Authentication Settings**.</span></span>
 
-10. <span data-ttu-id="fbb21-174">Dans la page **Authentication Settings** (Paramètres d’authentification), procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="fbb21-174">On the **Authentication Settings** page, perform the following steps</span></span>
+10. <span data-ttu-id="91773-174">Sur hello **les paramètres d’authentification** page, effectuer hello comme suit</span><span class="sxs-lookup"><span data-stu-id="91773-174">On hello **Authentication Settings** page, perform hello following steps</span></span>
    
     ![Configurer l’authentification unique][23]
    
-    <span data-ttu-id="fbb21-176">a.</span><span class="sxs-lookup"><span data-stu-id="fbb21-176">a.</span></span> <span data-ttu-id="fbb21-177">Pour **SSO Type**, sélectionnez **WSFederation**.</span><span class="sxs-lookup"><span data-stu-id="fbb21-177">As **SSO Type**, select **WSFederation**.</span></span>
+    <span data-ttu-id="91773-176">a.</span><span class="sxs-lookup"><span data-stu-id="91773-176">a.</span></span> <span data-ttu-id="91773-177">Pour **SSO Type**, sélectionnez **WSFederation**.</span><span class="sxs-lookup"><span data-stu-id="91773-177">As **SSO Type**, select **WSFederation**.</span></span>
    
-    <span data-ttu-id="fbb21-178">b.</span><span class="sxs-lookup"><span data-stu-id="fbb21-178">b.</span></span> <span data-ttu-id="fbb21-179">Pour charger votre fichier de métadonnées Azure téléchargé, cliquez sur **Browse**, accédez au fichier, puis cliquez sur **Upload Metadata**.</span><span class="sxs-lookup"><span data-stu-id="fbb21-179">To upload your downloaded Azure metadata file, click **Browse**, navigate to the file, end then click **Upload Metadata**.</span></span>
+    <span data-ttu-id="91773-178">b.</span><span class="sxs-lookup"><span data-stu-id="91773-178">b.</span></span> <span data-ttu-id="91773-179">tooupload votre fichier de métadonnées Azure, cliquez sur **Parcourir**, accédez toohello fichier, puis cliquez sur Mettre fin à **télécharger les métadonnées**.</span><span class="sxs-lookup"><span data-stu-id="91773-179">tooupload your downloaded Azure metadata file, click **Browse**, navigate toohello file, end then click **Upload Metadata**.</span></span>
    
-    <span data-ttu-id="fbb21-180">c.</span><span class="sxs-lookup"><span data-stu-id="fbb21-180">c.</span></span> <span data-ttu-id="fbb21-181">Dans la zone de texte **Email** (E-mail), tapez `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress`.</span><span class="sxs-lookup"><span data-stu-id="fbb21-181">In the **Email** textbox, type `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress`.</span></span>
+    <span data-ttu-id="91773-180">c.</span><span class="sxs-lookup"><span data-stu-id="91773-180">c.</span></span> <span data-ttu-id="91773-181">Bonjour **messagerie** zone de texte, type `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress`.</span><span class="sxs-lookup"><span data-stu-id="91773-181">In hello **Email** textbox, type `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress`.</span></span>
    
-    <span data-ttu-id="fbb21-182">d.</span><span class="sxs-lookup"><span data-stu-id="fbb21-182">d.</span></span> <span data-ttu-id="fbb21-183">Dans la zone de texte **First Name** (Prénom), tapez `type http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname`.</span><span class="sxs-lookup"><span data-stu-id="fbb21-183">In the **First Name** textbox, `type http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname`.</span></span>
+    <span data-ttu-id="91773-182">d.</span><span class="sxs-lookup"><span data-stu-id="91773-182">d.</span></span> <span data-ttu-id="91773-183">Bonjour **prénom** zone de texte, `type http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname`.</span><span class="sxs-lookup"><span data-stu-id="91773-183">In hello **First Name** textbox, `type http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname`.</span></span>
    
-    <span data-ttu-id="fbb21-184">e.</span><span class="sxs-lookup"><span data-stu-id="fbb21-184">e.</span></span> <span data-ttu-id="fbb21-185">Dans la zone de texte **Last Name** (Nom), tapez `type http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname`.</span><span class="sxs-lookup"><span data-stu-id="fbb21-185">In the **Last Name** textbox, `type http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname`.</span></span>
+    <span data-ttu-id="91773-184">e.</span><span class="sxs-lookup"><span data-stu-id="91773-184">e.</span></span> <span data-ttu-id="91773-185">Bonjour **nom** zone de texte, `type http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname`.</span><span class="sxs-lookup"><span data-stu-id="91773-185">In hello **Last Name** textbox, `type http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname`.</span></span>
    
-    <span data-ttu-id="fbb21-186">f.</span><span class="sxs-lookup"><span data-stu-id="fbb21-186">f.</span></span> <span data-ttu-id="fbb21-187">Dans la **barre d’actions**, cliquez sur **Enregistrer**.</span><span class="sxs-lookup"><span data-stu-id="fbb21-187">In the **Action Bar**, click **Save**.</span></span>
+    <span data-ttu-id="91773-186">f.</span><span class="sxs-lookup"><span data-stu-id="91773-186">f.</span></span> <span data-ttu-id="91773-187">Bonjour **barre d’Action**, cliquez sur **enregistrer**.</span><span class="sxs-lookup"><span data-stu-id="91773-187">In hello **Action Bar**, click **Save**.</span></span>
 
 > [!TIP]
-> <span data-ttu-id="fbb21-188">Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.</span><span class="sxs-lookup"><span data-stu-id="fbb21-188">You can now read a concise version of these instructions inside the [Azure portal](https://portal.azure.com), while you are setting up the app!</span></span>  <span data-ttu-id="fbb21-189">Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas.</span><span class="sxs-lookup"><span data-stu-id="fbb21-189">After adding this app from the **Active Directory > Enterprise Applications** section, simply click the **Single Sign-On** tab and access the embedded documentation through the **Configuration** section at the bottom.</span></span> <span data-ttu-id="fbb21-190">Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="fbb21-190">You can read more about the embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
+> <span data-ttu-id="91773-188">Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !</span><span class="sxs-lookup"><span data-stu-id="91773-188">You can now read a concise version of these instructions inside hello [Azure portal](https://portal.azure.com), while you are setting up hello app!</span></span>  <span data-ttu-id="91773-189">Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello.</span><span class="sxs-lookup"><span data-stu-id="91773-189">After adding this app from hello **Active Directory > Enterprise Applications** section, simply click hello **Single Sign-On** tab and access hello embedded documentation through hello **Configuration** section at hello bottom.</span></span> <span data-ttu-id="91773-190">Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="91773-190">You can read more about hello embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
 > 
 
-### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="fbb21-191">Création d’un utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="fbb21-191">Creating an Azure AD test user</span></span>
-<span data-ttu-id="fbb21-192">L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.</span><span class="sxs-lookup"><span data-stu-id="fbb21-192">The objective of this section is to create a test user in the Azure portal called Britta Simon.</span></span>
+### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="91773-191">Création d’un utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="91773-191">Creating an Azure AD test user</span></span>
+<span data-ttu-id="91773-192">objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.</span><span class="sxs-lookup"><span data-stu-id="91773-192">hello objective of this section is toocreate a test user in hello Azure portal called Britta Simon.</span></span>
 
 ![Créer un utilisateur Azure AD][100]
 
-<span data-ttu-id="fbb21-194">**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="fbb21-194">**To create a test user in Azure AD, perform the following steps:**</span></span>
+<span data-ttu-id="91773-194">**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="91773-194">**toocreate a test user in Azure AD, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="fbb21-195">Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.</span><span class="sxs-lookup"><span data-stu-id="fbb21-195">In the **Azure portal**, on the left navigation pane, click **Azure Active Directory** icon.</span></span>
+1. <span data-ttu-id="91773-195">Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.</span><span class="sxs-lookup"><span data-stu-id="91773-195">In hello **Azure portal**, on hello left navigation pane, click **Azure Active Directory** icon.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-quickhelp-tutorial/create_aaduser_01.png) 
 
-2. <span data-ttu-id="fbb21-197">Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.</span><span class="sxs-lookup"><span data-stu-id="fbb21-197">To display the list of users, go to **Users and groups** and click **All users**.</span></span>
+2. <span data-ttu-id="91773-197">liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.</span><span class="sxs-lookup"><span data-stu-id="91773-197">toodisplay hello list of users, go too**Users and groups** and click **All users**.</span></span>
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-quickhelp-tutorial/create_aaduser_02.png) 
 
-3. <span data-ttu-id="fbb21-199">Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="fbb21-199">To open the **User** dialog, click **Add** on the top of the dialog.</span></span>
+3. <span data-ttu-id="91773-199">tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.</span><span class="sxs-lookup"><span data-stu-id="91773-199">tooopen hello **User** dialog, click **Add** on hello top of hello dialog.</span></span>
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-quickhelp-tutorial/create_aaduser_03.png) 
 
-4. <span data-ttu-id="fbb21-201">Dans la boîte de dialogue **Utilisateur**, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="fbb21-201">On the **User** dialog page, perform the following steps:</span></span>
+4. <span data-ttu-id="91773-201">Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="91773-201">On hello **User** dialog page, perform hello following steps:</span></span>
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-quickhelp-tutorial/create_aaduser_04.png) 
 
-    <span data-ttu-id="fbb21-203">a.</span><span class="sxs-lookup"><span data-stu-id="fbb21-203">a.</span></span> <span data-ttu-id="fbb21-204">Dans la zone de texte **Nom**, entrez **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="fbb21-204">In the **Name** textbox, type **BrittaSimon**.</span></span>
+    <span data-ttu-id="91773-203">a.</span><span class="sxs-lookup"><span data-stu-id="91773-203">a.</span></span> <span data-ttu-id="91773-204">Bonjour **nom** zone de texte, type **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="91773-204">In hello **Name** textbox, type **BrittaSimon**.</span></span>
 
-    <span data-ttu-id="fbb21-205">b.</span><span class="sxs-lookup"><span data-stu-id="fbb21-205">b.</span></span> <span data-ttu-id="fbb21-206">Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="fbb21-206">In the **User name** textbox, type the **email address** of BrittaSimon.</span></span>
+    <span data-ttu-id="91773-205">b.</span><span class="sxs-lookup"><span data-stu-id="91773-205">b.</span></span> <span data-ttu-id="91773-206">Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.</span><span class="sxs-lookup"><span data-stu-id="91773-206">In hello **User name** textbox, type hello **email address** of BrittaSimon.</span></span>
 
-    <span data-ttu-id="fbb21-207">c.</span><span class="sxs-lookup"><span data-stu-id="fbb21-207">c.</span></span> <span data-ttu-id="fbb21-208">Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.</span><span class="sxs-lookup"><span data-stu-id="fbb21-208">Select **Show Password** and write down the value of the **Password**.</span></span>
+    <span data-ttu-id="91773-207">c.</span><span class="sxs-lookup"><span data-stu-id="91773-207">c.</span></span> <span data-ttu-id="91773-208">Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.</span><span class="sxs-lookup"><span data-stu-id="91773-208">Select **Show Password** and write down hello value of hello **Password**.</span></span>
 
-    <span data-ttu-id="fbb21-209">d.</span><span class="sxs-lookup"><span data-stu-id="fbb21-209">d.</span></span> <span data-ttu-id="fbb21-210">Cliquez sur **Create**.</span><span class="sxs-lookup"><span data-stu-id="fbb21-210">Click **Create**.</span></span>
+    <span data-ttu-id="91773-209">d.</span><span class="sxs-lookup"><span data-stu-id="91773-209">d.</span></span> <span data-ttu-id="91773-210">Cliquez sur **Create**.</span><span class="sxs-lookup"><span data-stu-id="91773-210">Click **Create**.</span></span>
  
-### <a name="creating-a-quickhelp-test-user"></a><span data-ttu-id="fbb21-211">Création d’un utilisateur de test QuickHelp</span><span class="sxs-lookup"><span data-stu-id="fbb21-211">Creating a QuickHelp test user</span></span>
+### <a name="creating-a-quickhelp-test-user"></a><span data-ttu-id="91773-211">Création d’un utilisateur de test QuickHelp</span><span class="sxs-lookup"><span data-stu-id="91773-211">Creating a QuickHelp test user</span></span>
 
-<span data-ttu-id="fbb21-212">L’objectif de cette section est de créer un utilisateur appelé Britta Simon dans QuickHelp.</span><span class="sxs-lookup"><span data-stu-id="fbb21-212">The objective of this section is to create a user called Britta Simon in QuickHelp.</span></span>
-<span data-ttu-id="fbb21-213">Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur QuickHelp équivalent à l’utilisateur dans Azure AD.</span><span class="sxs-lookup"><span data-stu-id="fbb21-213">For single sign-on to work, Azure AD needs to know what the counterpart user in QuickHelp to a user in Azure AD is.</span></span> <span data-ttu-id="fbb21-214">En d’autres termes, une relation entre l’utilisateur Azure AD et l’utilisateur QuickHelp associé doit être établie.</span><span class="sxs-lookup"><span data-stu-id="fbb21-214">In other words, a link relationship between an Azure AD user and the related user in QuickHelp needs to be established.</span></span>
+<span data-ttu-id="91773-212">objectif Hello de cette section est toocreate un utilisateur appelé Britta Simon dans aide rapide.</span><span class="sxs-lookup"><span data-stu-id="91773-212">hello objective of this section is toocreate a user called Britta Simon in QuickHelp.</span></span>
+<span data-ttu-id="91773-213">Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans aide rapide tooa l’utilisateur dans Azure AD est.</span><span class="sxs-lookup"><span data-stu-id="91773-213">For single sign-on toowork, Azure AD needs tooknow what hello counterpart user in QuickHelp tooa user in Azure AD is.</span></span> <span data-ttu-id="91773-214">En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur dans l’aide rapide hello doit toobe établie.</span><span class="sxs-lookup"><span data-stu-id="91773-214">In other words, a link relationship between an Azure AD user and hello related user in QuickHelp needs toobe established.</span></span>
 
-<span data-ttu-id="fbb21-215">QuickHelp prend en charge l’approvisionnement juste-à-temps.</span><span class="sxs-lookup"><span data-stu-id="fbb21-215">QuickHelp supports just-in-time provisioning.</span></span> <span data-ttu-id="fbb21-216">Cela signifie que, si nécessaire, un compte d’utilisateur est automatiquement créé dans QuickHelp et qu’il est lié au compte Azure AD.</span><span class="sxs-lookup"><span data-stu-id="fbb21-216">This means, if necessary, a user account is automatically created in QuickHelp and the account is linked to the Azure AD account.</span></span>
+<span data-ttu-id="91773-215">QuickHelp prend en charge l’approvisionnement juste-à-temps.</span><span class="sxs-lookup"><span data-stu-id="91773-215">QuickHelp supports just-in-time provisioning.</span></span> <span data-ttu-id="91773-216">Cela signifie que, si nécessaire, un compte d’utilisateur est automatiquement créé dans aide rapide et compte de hello lié toohello compte Azure AD.</span><span class="sxs-lookup"><span data-stu-id="91773-216">This means, if necessary, a user account is automatically created in QuickHelp and hello account is linked toohello Azure AD account.</span></span>
 
-<span data-ttu-id="fbb21-217">Vous n’avez aucune opération à effectuer dans cette section.</span><span class="sxs-lookup"><span data-stu-id="fbb21-217">There is no action item for you in this section.</span></span>
+<span data-ttu-id="91773-217">Vous n’avez aucune opération à effectuer dans cette section.</span><span class="sxs-lookup"><span data-stu-id="91773-217">There is no action item for you in this section.</span></span>
 
-### <a name="assigning-the-azure-ad-test-user"></a><span data-ttu-id="fbb21-218">Affectation de l’utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="fbb21-218">Assigning the Azure AD test user</span></span>
+### <a name="assigning-hello-azure-ad-test-user"></a><span data-ttu-id="91773-218">Affectation d’utilisateur de test hello Azure AD</span><span class="sxs-lookup"><span data-stu-id="91773-218">Assigning hello Azure AD test user</span></span>
 
-<span data-ttu-id="fbb21-219">Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à QuickHelp.</span><span class="sxs-lookup"><span data-stu-id="fbb21-219">In this section, you enable Britta Simon to use Azure single sign-on by granting access to QuickHelp.</span></span>
+<span data-ttu-id="91773-219">Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooQuickHelp.</span><span class="sxs-lookup"><span data-stu-id="91773-219">In this section, you enable Britta Simon toouse Azure single sign-on by granting access tooQuickHelp.</span></span>
 
 ![Affecter des utilisateurs][200] 
 
-<span data-ttu-id="fbb21-221">**Pour affecter Britta Simon à QuickHelp, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="fbb21-221">**To assign Britta Simon to QuickHelp, perform the following steps:**</span></span>
+<span data-ttu-id="91773-221">**tooassign Britta Simon tooQuickHelp, effectuez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="91773-221">**tooassign Britta Simon tooQuickHelp, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="fbb21-222">Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="fbb21-222">In the Azure portal, open the applications view, and then navigate to the directory view and go to **Enterprise applications** then click **All applications**.</span></span>
+1. <span data-ttu-id="91773-222">Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="91773-222">In hello Azure portal, open hello applications view, and then navigate toohello directory view and go too**Enterprise applications** then click **All applications**.</span></span>
 
     ![Affecter des utilisateurs][201] 
 
-2. <span data-ttu-id="fbb21-224">Dans la liste des applications, sélectionnez **QuickHelp**.</span><span class="sxs-lookup"><span data-stu-id="fbb21-224">In the applications list, select **QuickHelp**.</span></span>
+2. <span data-ttu-id="91773-224">Dans la liste des applications hello, sélectionnez **aide rapide**.</span><span class="sxs-lookup"><span data-stu-id="91773-224">In hello applications list, select **QuickHelp**.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-quickhelp-tutorial/tutorial_quickhelp_app.png) 
 
-3. <span data-ttu-id="fbb21-226">Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="fbb21-226">In the menu on the left, click **Users and groups**.</span></span>
+3. <span data-ttu-id="91773-226">Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="91773-226">In hello menu on hello left, click **Users and groups**.</span></span>
 
     ![Affecter des utilisateurs][202] 
 
-4. <span data-ttu-id="fbb21-228">Cliquez sur le bouton **Ajouter**.</span><span class="sxs-lookup"><span data-stu-id="fbb21-228">Click **Add** button.</span></span> <span data-ttu-id="fbb21-229">Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="fbb21-229">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
+4. <span data-ttu-id="91773-228">Cliquez sur le bouton **Ajouter**.</span><span class="sxs-lookup"><span data-stu-id="91773-228">Click **Add** button.</span></span> <span data-ttu-id="91773-229">Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="91773-229">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
 
     ![Affecter des utilisateurs][203]
 
-5. <span data-ttu-id="fbb21-231">Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.</span><span class="sxs-lookup"><span data-stu-id="fbb21-231">On **Users and groups** dialog, select **Britta Simon** in the Users list.</span></span>
+5. <span data-ttu-id="91773-231">Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.</span><span class="sxs-lookup"><span data-stu-id="91773-231">On **Users and groups** dialog, select **Britta Simon** in hello Users list.</span></span>
 
-6. <span data-ttu-id="fbb21-232">Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="fbb21-232">Click **Select** button on **Users and groups** dialog.</span></span>
+6. <span data-ttu-id="91773-232">Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="91773-232">Click **Select** button on **Users and groups** dialog.</span></span>
 
-7. <span data-ttu-id="fbb21-233">Cliquez sur le bouton **Affecter** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="fbb21-233">Click **Assign** button on **Add Assignment** dialog.</span></span>
+7. <span data-ttu-id="91773-233">Cliquez sur le bouton **Affecter** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="91773-233">Click **Assign** button on **Add Assignment** dialog.</span></span>
     
-### <a name="testing-single-sign-on"></a><span data-ttu-id="fbb21-234">Test de l’authentification unique</span><span class="sxs-lookup"><span data-stu-id="fbb21-234">Testing single sign-on</span></span>
+### <a name="testing-single-sign-on"></a><span data-ttu-id="91773-234">Test de l’authentification unique</span><span class="sxs-lookup"><span data-stu-id="91773-234">Testing single sign-on</span></span>
 
-<span data-ttu-id="fbb21-235">L’objectif de cette section est de tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.</span><span class="sxs-lookup"><span data-stu-id="fbb21-235">The objective of this section is to test your Azure AD single sign-on configuration using the Access Panel.</span></span>  
+<span data-ttu-id="91773-235">objectif Hello de cette section est tootest votre configuration de l’authentification unique Azure AD à l’aide de hello panneau d’accès.</span><span class="sxs-lookup"><span data-stu-id="91773-235">hello objective of this section is tootest your Azure AD single sign-on configuration using hello Access Panel.</span></span>  
 
-<span data-ttu-id="fbb21-236">Quand vous cliquez sur la vignette QuickHelp dans le volet d’accès, vous devez être connecté automatiquement à votre application QuickHelp.</span><span class="sxs-lookup"><span data-stu-id="fbb21-236">When you click the QuickHelp tile in the Access Panel, you should get automatically signed-on to your QuickHelp application.</span></span>
+<span data-ttu-id="91773-236">Lorsque vous cliquez sur mosaïque aide rapide hello hello volet d’accès, vous devez obtenir automatiquement signé sur tooyour aide rapide application.</span><span class="sxs-lookup"><span data-stu-id="91773-236">When you click hello QuickHelp tile in hello Access Panel, you should get automatically signed-on tooyour QuickHelp application.</span></span>
 
 
-## <a name="additional-resources"></a><span data-ttu-id="fbb21-237">Ressources supplémentaires</span><span class="sxs-lookup"><span data-stu-id="fbb21-237">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="91773-237">Ressources supplémentaires</span><span class="sxs-lookup"><span data-stu-id="91773-237">Additional resources</span></span>
 
-* [<span data-ttu-id="fbb21-238">Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="fbb21-238">List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="fbb21-239">Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?</span><span class="sxs-lookup"><span data-stu-id="fbb21-239">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="91773-238">Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="91773-238">List of Tutorials on How tooIntegrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="91773-239">Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?</span><span class="sxs-lookup"><span data-stu-id="91773-239">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
 
 
 

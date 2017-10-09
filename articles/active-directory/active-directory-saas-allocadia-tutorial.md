@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory à Allocadia | Microsoft Docs"
-description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et Allocadia."
+description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et Allocadia."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,235 +13,235 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/23/2017
 ms.author: jeedes
-ms.openlocfilehash: 8e97c365383ecdb72cc1cd449b522b75875fc1db
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9a01c232f9dc50e690dd348430899db9c13f1564
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-allocadia"></a><span data-ttu-id="c68b7-103">Didacticiel : Intégration d’Azure Active Directory à Allocadia</span><span class="sxs-lookup"><span data-stu-id="c68b7-103">Tutorial: Azure Active Directory integration with Allocadia</span></span>
+# <a name="tutorial-azure-active-directory-integration-with-allocadia"></a><span data-ttu-id="aa360-103">Didacticiel : Intégration d’Azure Active Directory à Allocadia</span><span class="sxs-lookup"><span data-stu-id="aa360-103">Tutorial: Azure Active Directory integration with Allocadia</span></span>
 
-<span data-ttu-id="c68b7-104">Dans ce didacticiel, vous allez apprendre à intégrer Allocadia à Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="c68b7-104">In this tutorial, you learn how to integrate Allocadia with Azure Active Directory (Azure AD).</span></span>
+<span data-ttu-id="aa360-104">Dans ce didacticiel, vous apprendrez comment toointegrate Allocadia avec Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="aa360-104">In this tutorial, you learn how toointegrate Allocadia with Azure Active Directory (Azure AD).</span></span>
 
-<span data-ttu-id="c68b7-105">L’intégration d’Allocadia dans Azure AD vous offre les avantages suivants :</span><span class="sxs-lookup"><span data-stu-id="c68b7-105">Integrating Allocadia with Azure AD provides you with the following benefits:</span></span>
+<span data-ttu-id="aa360-105">Intégration Allocadia à Azure AD offre hello avantages suivants :</span><span class="sxs-lookup"><span data-stu-id="aa360-105">Integrating Allocadia with Azure AD provides you with hello following benefits:</span></span>
 
-- <span data-ttu-id="c68b7-106">Dans Azure AD, vous pouvez contrôler qui a accès à Allocadia</span><span class="sxs-lookup"><span data-stu-id="c68b7-106">You can control in Azure AD who has access to Allocadia</span></span>
-- <span data-ttu-id="c68b7-107">Vous pouvez autoriser vos utilisateurs à se connecter automatiquement à Allocadia (via l’authentification unique) avec leur compte Azure AD</span><span class="sxs-lookup"><span data-stu-id="c68b7-107">You can enable your users to automatically get signed-on to Allocadia (Single Sign-On) with their Azure AD accounts</span></span>
-- <span data-ttu-id="c68b7-108">Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure</span><span class="sxs-lookup"><span data-stu-id="c68b7-108">You can manage your accounts in one central location - the Azure portal</span></span>
+- <span data-ttu-id="aa360-106">Vous pouvez contrôler dans Azure AD qui a accès tooAllocadia</span><span class="sxs-lookup"><span data-stu-id="aa360-106">You can control in Azure AD who has access tooAllocadia</span></span>
+- <span data-ttu-id="aa360-107">Vous pouvez activer vos utilisateurs tooautomatically get connecté tooAllocadia (Single Sign-On) avec leurs comptes Azure AD</span><span class="sxs-lookup"><span data-stu-id="aa360-107">You can enable your users tooautomatically get signed-on tooAllocadia (Single Sign-On) with their Azure AD accounts</span></span>
+- <span data-ttu-id="aa360-108">Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure</span><span class="sxs-lookup"><span data-stu-id="aa360-108">You can manage your accounts in one central location - hello Azure portal</span></span>
 
-<span data-ttu-id="c68b7-109">Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="c68b7-109">If you want to know more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="aa360-109">Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="aa360-109">If you want tooknow more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="c68b7-110">Composants requis</span><span class="sxs-lookup"><span data-stu-id="c68b7-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="aa360-110">Composants requis</span><span class="sxs-lookup"><span data-stu-id="aa360-110">Prerequisites</span></span>
 
-<span data-ttu-id="c68b7-111">Pour configurer l'intégration d'Azure AD avec Allocadia, vous avez besoin des éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="c68b7-111">To configure Azure AD integration with Allocadia, you need the following items:</span></span>
+<span data-ttu-id="aa360-111">tooconfigure intégration d’Azure AD avec Allocadia, vous devez hello éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="aa360-111">tooconfigure Azure AD integration with Allocadia, you need hello following items:</span></span>
 
-- <span data-ttu-id="c68b7-112">Un abonnement Azure AD</span><span class="sxs-lookup"><span data-stu-id="c68b7-112">An Azure AD subscription</span></span>
-- <span data-ttu-id="c68b7-113">Un abonnement Allocadia pour lequel l’authentification unique est activée</span><span class="sxs-lookup"><span data-stu-id="c68b7-113">An Allocadia single-sign on enabled subscription</span></span>
+- <span data-ttu-id="aa360-112">Un abonnement Azure AD</span><span class="sxs-lookup"><span data-stu-id="aa360-112">An Azure AD subscription</span></span>
+- <span data-ttu-id="aa360-113">Un abonnement Allocadia pour lequel l’authentification unique est activée</span><span class="sxs-lookup"><span data-stu-id="aa360-113">An Allocadia single-sign on enabled subscription</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="c68b7-114">Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.</span><span class="sxs-lookup"><span data-stu-id="c68b7-114">To test the steps in this tutorial, we do not recommend using a production environment.</span></span>
+> <span data-ttu-id="aa360-114">tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.</span><span class="sxs-lookup"><span data-stu-id="aa360-114">tootest hello steps in this tutorial, we do not recommend using a production environment.</span></span>
 
-<span data-ttu-id="c68b7-115">Vous devez en outre suivre les recommandations ci-dessous :</span><span class="sxs-lookup"><span data-stu-id="c68b7-115">To test the steps in this tutorial, you should follow these recommendations:</span></span>
+<span data-ttu-id="aa360-115">tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :</span><span class="sxs-lookup"><span data-stu-id="aa360-115">tootest hello steps in this tutorial, you should follow these recommendations:</span></span>
 
-- <span data-ttu-id="c68b7-116">N’utilisez pas votre environnement de production, sauf si cela est nécessaire.</span><span class="sxs-lookup"><span data-stu-id="c68b7-116">Do not use your production environment, unless it is necessary.</span></span>
-- <span data-ttu-id="c68b7-117">Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="c68b7-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+- <span data-ttu-id="aa360-116">N’utilisez pas votre environnement de production, sauf si cela est nécessaire.</span><span class="sxs-lookup"><span data-stu-id="aa360-116">Do not use your production environment, unless it is necessary.</span></span>
+- <span data-ttu-id="aa360-117">Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="aa360-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
-## <a name="scenario-description"></a><span data-ttu-id="c68b7-118">Description du scénario</span><span class="sxs-lookup"><span data-stu-id="c68b7-118">Scenario description</span></span>
-<span data-ttu-id="c68b7-119">Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test.</span><span class="sxs-lookup"><span data-stu-id="c68b7-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="c68b7-120">Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :</span><span class="sxs-lookup"><span data-stu-id="c68b7-120">The scenario outlined in this tutorial consists of two main building blocks:</span></span>
+## <a name="scenario-description"></a><span data-ttu-id="aa360-118">Description du scénario</span><span class="sxs-lookup"><span data-stu-id="aa360-118">Scenario description</span></span>
+<span data-ttu-id="aa360-119">Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test.</span><span class="sxs-lookup"><span data-stu-id="aa360-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="aa360-120">scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :</span><span class="sxs-lookup"><span data-stu-id="aa360-120">hello scenario outlined in this tutorial consists of two main building blocks:</span></span>
 
-1. <span data-ttu-id="c68b7-121">Ajout d’Allocadia à partir de la galerie</span><span class="sxs-lookup"><span data-stu-id="c68b7-121">Adding Allocadia from the gallery</span></span>
-2. <span data-ttu-id="c68b7-122">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="c68b7-122">Configuring and testing Azure AD single sign-on</span></span>
+1. <span data-ttu-id="aa360-121">Ajout de Allocadia à partir de la galerie de hello</span><span class="sxs-lookup"><span data-stu-id="aa360-121">Adding Allocadia from hello gallery</span></span>
+2. <span data-ttu-id="aa360-122">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="aa360-122">Configuring and testing Azure AD single sign-on</span></span>
 
-## <a name="adding-allocadia-from-the-gallery"></a><span data-ttu-id="c68b7-123">Ajout d’Allocadia à partir de la galerie</span><span class="sxs-lookup"><span data-stu-id="c68b7-123">Adding Allocadia from the gallery</span></span>
-<span data-ttu-id="c68b7-124">Pour configurer l’intégration d’Allocadia à Azure AD, vous devez ajouter Allocadia à partir de la galerie à votre liste d’applications SaaS gérées.</span><span class="sxs-lookup"><span data-stu-id="c68b7-124">To configure the integration of Allocadia into Azure AD, you need to add Allocadia from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="adding-allocadia-from-hello-gallery"></a><span data-ttu-id="aa360-123">Ajout de Allocadia à partir de la galerie de hello</span><span class="sxs-lookup"><span data-stu-id="aa360-123">Adding Allocadia from hello gallery</span></span>
+<span data-ttu-id="aa360-124">intégration de hello tooconfigure de Allocadia dans Azure AD, vous devez tooadd Allocadia à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.</span><span class="sxs-lookup"><span data-stu-id="aa360-124">tooconfigure hello integration of Allocadia into Azure AD, you need tooadd Allocadia from hello gallery tooyour list of managed SaaS apps.</span></span>
 
-<span data-ttu-id="c68b7-125">**Pour ajouter Allocadia à partir de la galerie, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="c68b7-125">**To add Allocadia from the gallery, perform the following steps:**</span></span>
+<span data-ttu-id="aa360-125">**tooadd Allocadia à partir de la galerie hello, procédez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="aa360-125">**tooadd Allocadia from hello gallery, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="c68b7-126">Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**.</span><span class="sxs-lookup"><span data-stu-id="c68b7-126">In the **[Azure portal](https://portal.azure.com)**, on the left navigation panel, click **Azure Active Directory** icon.</span></span> 
+1. <span data-ttu-id="aa360-126">Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.</span><span class="sxs-lookup"><span data-stu-id="aa360-126">In hello **[Azure portal](https://portal.azure.com)**, on hello left navigation panel, click **Azure Active Directory** icon.</span></span> 
 
     ![Active Directory][1]
 
-2. <span data-ttu-id="c68b7-128">Accédez à **Applications d’entreprise**.</span><span class="sxs-lookup"><span data-stu-id="c68b7-128">Navigate to **Enterprise applications**.</span></span> <span data-ttu-id="c68b7-129">Accédez ensuite à **Toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="c68b7-129">Then go to **All applications**.</span></span>
+2. <span data-ttu-id="aa360-128">Accédez trop**des applications d’entreprise**.</span><span class="sxs-lookup"><span data-stu-id="aa360-128">Navigate too**Enterprise applications**.</span></span> <span data-ttu-id="aa360-129">Passez trop**toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="aa360-129">Then go too**All applications**.</span></span>
 
     ![Applications][2]
     
-3. <span data-ttu-id="c68b7-131">Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="c68b7-131">To add new application, click **New application** button on the top of dialog.</span></span>
+3. <span data-ttu-id="aa360-131">tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="aa360-131">tooadd new application, click **New application** button on hello top of dialog.</span></span>
 
     ![Applications][3]
 
-4. <span data-ttu-id="c68b7-133">Dans la zone de recherche, tapez **Allocadia**.</span><span class="sxs-lookup"><span data-stu-id="c68b7-133">In the search box, type **Allocadia**.</span></span>
+4. <span data-ttu-id="aa360-133">Dans la zone de recherche de hello, tapez **Allocadia**.</span><span class="sxs-lookup"><span data-stu-id="aa360-133">In hello search box, type **Allocadia**.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-allocadia-tutorial/tutorial_allocadia_search.png)
 
-5. <span data-ttu-id="c68b7-135">Dans le panneau des résultats, sélectionnez **Allocadia**, puis cliquez sur le bouton **Ajouter** pour ajouter l’application.</span><span class="sxs-lookup"><span data-stu-id="c68b7-135">In the results panel, select **Allocadia**, and then click **Add** button to add the application.</span></span>
+5. <span data-ttu-id="aa360-135">Dans le volet de résultats hello, sélectionnez **Allocadia**, puis cliquez sur **ajouter** bouton application hello de tooadd.</span><span class="sxs-lookup"><span data-stu-id="aa360-135">In hello results panel, select **Allocadia**, and then click **Add** button tooadd hello application.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-allocadia-tutorial/tutorial_allocadia_addfromgallery.png)
 
-##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="c68b7-137">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="c68b7-137">Configuring and testing Azure AD single sign-on</span></span>
-<span data-ttu-id="c68b7-138">Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec Allocadia avec un utilisateur de test appelé « Britta Simon ».</span><span class="sxs-lookup"><span data-stu-id="c68b7-138">In this section, you configure and test Azure AD single sign-on with Allocadia based on a test user called "Britta Simon."</span></span>
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="aa360-137">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="aa360-137">Configuring and testing Azure AD single sign-on</span></span>
+<span data-ttu-id="aa360-138">Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec Allocadia avec un utilisateur de test appelé « Britta Simon ».</span><span class="sxs-lookup"><span data-stu-id="aa360-138">In this section, you configure and test Azure AD single sign-on with Allocadia based on a test user called "Britta Simon."</span></span>
 
-<span data-ttu-id="c68b7-139">Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur Allocadia équivalent dans Azure AD.</span><span class="sxs-lookup"><span data-stu-id="c68b7-139">For single sign-on to work, Azure AD needs to know what the counterpart user in Allocadia is to a user in Azure AD.</span></span> <span data-ttu-id="c68b7-140">En d’autres termes, une relation entre un utilisateur Azure AD et un utilisateur Allocadia associé doit être établie.</span><span class="sxs-lookup"><span data-stu-id="c68b7-140">In other words, a link relationship between an Azure AD user and the related user in Allocadia needs to be established.</span></span>
+<span data-ttu-id="aa360-139">Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans Allocadia est tooa utilisateur dans Azure AD.</span><span class="sxs-lookup"><span data-stu-id="aa360-139">For single sign-on toowork, Azure AD needs tooknow what hello counterpart user in Allocadia is tooa user in Azure AD.</span></span> <span data-ttu-id="aa360-140">En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans Allocadia doit toobe établie.</span><span class="sxs-lookup"><span data-stu-id="aa360-140">In other words, a link relationship between an Azure AD user and hello related user in Allocadia needs toobe established.</span></span>
 
-<span data-ttu-id="c68b7-141">Dans Allocadia, affectez la valeur de **nom d’utilisateur** dans Azure AD comme valeur de **nom d’utilisateur** pour établir la relation.</span><span class="sxs-lookup"><span data-stu-id="c68b7-141">In Allocadia, assign the value of the **user name** in Azure AD as the value of the **Username** to establish the link relationship.</span></span>
+<span data-ttu-id="aa360-141">Dans Allocadia, affecter la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.</span><span class="sxs-lookup"><span data-stu-id="aa360-141">In Allocadia, assign hello value of hello **user name** in Azure AD as hello value of hello **Username** tooestablish hello link relationship.</span></span>
 
-<span data-ttu-id="c68b7-142">Pour configurer et tester l’authentification unique Azure AD avec Allocadia, vous devez suivre les indications des sections suivantes :</span><span class="sxs-lookup"><span data-stu-id="c68b7-142">To configure and test Azure AD single sign-on with Allocadia, you need to complete the following building blocks:</span></span>
+<span data-ttu-id="aa360-142">tooconfigure et test Azure AD l’authentification unique avec Allocadia, vous devez hello toocomplete suivant des blocs de construction :</span><span class="sxs-lookup"><span data-stu-id="aa360-142">tooconfigure and test Azure AD single sign-on with Allocadia, you need toocomplete hello following building blocks:</span></span>
 
-1. <span data-ttu-id="c68b7-143">**[Configuration de l’authentification unique Azure AD](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.</span><span class="sxs-lookup"><span data-stu-id="c68b7-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - to enable your users to use this feature.</span></span>
-2. <span data-ttu-id="c68b7-144">**[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="c68b7-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.</span></span>
-3. <span data-ttu-id="c68b7-145">**[Création d’un utilisateur test Allocadia](#creating-an-allocadia-test-user)** pour avoir un équivalent de Britta Simon dans Allocadia lié à la représentation Azure AD associée.</span><span class="sxs-lookup"><span data-stu-id="c68b7-145">**[Creating an Allocadia test user](#creating-an-allocadia-test-user)** - to have a counterpart of Britta Simon in Allocadia that is linked to the Azure AD representation of user.</span></span>
-4. <span data-ttu-id="c68b7-146">**[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.</span><span class="sxs-lookup"><span data-stu-id="c68b7-146">**[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.</span></span>
-5. <span data-ttu-id="c68b7-147">**[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.</span><span class="sxs-lookup"><span data-stu-id="c68b7-147">**[Testing Single Sign-On](#testing-single-sign-on)** - to verify whether the configuration works.</span></span>
+1. <span data-ttu-id="aa360-143">**[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.</span><span class="sxs-lookup"><span data-stu-id="aa360-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - tooenable your users toouse this feature.</span></span>
+2. <span data-ttu-id="aa360-144">**[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="aa360-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - tootest Azure AD single sign-on with Britta Simon.</span></span>
+3. <span data-ttu-id="aa360-145">**[Création d’un utilisateur de test Allocadia](#creating-an-allocadia-test-user)**  -toohave un équivalent de Britta Simon dans Allocadia est la représentation sous forme de toohello lié Azure AD de l’utilisateur.</span><span class="sxs-lookup"><span data-stu-id="aa360-145">**[Creating an Allocadia test user](#creating-an-allocadia-test-user)** - toohave a counterpart of Britta Simon in Allocadia that is linked toohello Azure AD representation of user.</span></span>
+4. <span data-ttu-id="aa360-146">**[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="aa360-146">**[Assigning hello Azure AD test user](#assigning-the-azure-ad-test-user)** - tooenable Britta Simon toouse Azure AD single sign-on.</span></span>
+5. <span data-ttu-id="aa360-147">**[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.</span><span class="sxs-lookup"><span data-stu-id="aa360-147">**[Testing Single Sign-On](#testing-single-sign-on)** - tooverify whether hello configuration works.</span></span>
 
-### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="c68b7-148">Configuration de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="c68b7-148">Configuring Azure AD single sign-on</span></span>
+### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="aa360-148">Configuration de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="aa360-148">Configuring Azure AD single sign-on</span></span>
 
-<span data-ttu-id="c68b7-149">Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application Allocadia.</span><span class="sxs-lookup"><span data-stu-id="c68b7-149">In this section, you enable Azure AD single sign-on in the Azure portal and configure single sign-on in your Allocadia application.</span></span>
+<span data-ttu-id="aa360-149">Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application Allocadia.</span><span class="sxs-lookup"><span data-stu-id="aa360-149">In this section, you enable Azure AD single sign-on in hello Azure portal and configure single sign-on in your Allocadia application.</span></span>
 
-<span data-ttu-id="c68b7-150">**Pour configurer l’authentification unique Azure AD avec Allocadia, effectuez les étapes suivantes :**</span><span class="sxs-lookup"><span data-stu-id="c68b7-150">**To configure Azure AD single sign-on with Allocadia, perform the following steps:**</span></span>
+<span data-ttu-id="aa360-150">**tooconfigure Azure AD single sign-on avec Allocadia, effectuez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="aa360-150">**tooconfigure Azure AD single sign-on with Allocadia, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="c68b7-151">Dans le portail Azure, dans la page d’intégration de l’application **Allocadia**, cliquez sur **Authentification unique**.</span><span class="sxs-lookup"><span data-stu-id="c68b7-151">In the Azure portal, on the **Allocadia** application integration page, click **Single sign-on**.</span></span>
+1. <span data-ttu-id="aa360-151">Bonjour portail Azure, sur hello **Allocadia** page d’intégration d’application, cliquez sur **l’authentification unique**.</span><span class="sxs-lookup"><span data-stu-id="aa360-151">In hello Azure portal, on hello **Allocadia** application integration page, click **Single sign-on**.</span></span>
 
     ![Configurer l’authentification unique][4]
 
-2. <span data-ttu-id="c68b7-153">Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="c68b7-153">On the **Single sign-on** dialog, select **Mode** as **SAML-based Sign-on** to enable single sign-on.</span></span>
+2. <span data-ttu-id="aa360-153">Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="aa360-153">On hello **Single sign-on** dialog, select **Mode** as   **SAML-based Sign-on** tooenable single sign-on.</span></span>
  
     ![Configurer l’authentification unique](./media/active-directory-saas-allocadia-tutorial/tutorial_allocadia_samlbase.png)
 
-3. <span data-ttu-id="c68b7-155">Dans la section **Domaine et URL Allocadia**, effectuez les étapes suivantes :</span><span class="sxs-lookup"><span data-stu-id="c68b7-155">On the **Allocadia Domain and URLs** section, perform the following steps:</span></span>
+3. <span data-ttu-id="aa360-155">Sur hello **Allocadia domaine et les URL** section, effectuer hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="aa360-155">On hello **Allocadia Domain and URLs** section, perform hello following steps:</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-allocadia-tutorial/tutorial_allocadia_url.png)
 
-    <span data-ttu-id="c68b7-157">a.</span><span class="sxs-lookup"><span data-stu-id="c68b7-157">a.</span></span> <span data-ttu-id="c68b7-158">Dans la zone de texte **Identificateur**, tapez une URL au format suivant :</span><span class="sxs-lookup"><span data-stu-id="c68b7-158">In the **Identifier** textbox, type a URL using the following patterns:</span></span> 
+    <span data-ttu-id="aa360-157">a.</span><span class="sxs-lookup"><span data-stu-id="aa360-157">a.</span></span> <span data-ttu-id="aa360-158">Bonjour **identificateur** modèles de zone de texte, tapez une URL à l’aide de hello suivant :</span><span class="sxs-lookup"><span data-stu-id="aa360-158">In hello **Identifier** textbox, type a URL using hello following patterns:</span></span> 
        
-     <span data-ttu-id="c68b7-159">Pour l’environnement de test : `https://na2standby.allocadia.com`</span><span class="sxs-lookup"><span data-stu-id="c68b7-159">For test environment -  `https://na2standby.allocadia.com`</span></span>
+     <span data-ttu-id="aa360-159">Pour l’environnement de test : `https://na2standby.allocadia.com`</span><span class="sxs-lookup"><span data-stu-id="aa360-159">For test environment -  `https://na2standby.allocadia.com`</span></span>
     
-     <span data-ttu-id="c68b7-160">Pour l’environnement de production : `https://na2.allocadia.com`</span><span class="sxs-lookup"><span data-stu-id="c68b7-160">For production environment - `https://na2.allocadia.com`</span></span>
+     <span data-ttu-id="aa360-160">Pour l’environnement de production : `https://na2.allocadia.com`</span><span class="sxs-lookup"><span data-stu-id="aa360-160">For production environment - `https://na2.allocadia.com`</span></span>
 
-    <span data-ttu-id="c68b7-161">b.</span><span class="sxs-lookup"><span data-stu-id="c68b7-161">b.</span></span> <span data-ttu-id="c68b7-162">Dans la zone de texte **URL de réponse** , tapez une URL en respectant les formats suivants :</span><span class="sxs-lookup"><span data-stu-id="c68b7-162">In the **Reply URL** textbox, type a URL using the following patterns:</span></span> 
+    <span data-ttu-id="aa360-161">b.</span><span class="sxs-lookup"><span data-stu-id="aa360-161">b.</span></span> <span data-ttu-id="aa360-162">Bonjour **URL de réponse** modèles de zone de texte, tapez une URL à l’aide de hello suivant :</span><span class="sxs-lookup"><span data-stu-id="aa360-162">In hello **Reply URL** textbox, type a URL using hello following patterns:</span></span> 
     
-     <span data-ttu-id="c68b7-163">Pour l’environnement de test : `https://na2standby.allocadia.com/allocadia/saml/SSO`</span><span class="sxs-lookup"><span data-stu-id="c68b7-163">For test environment - `https://na2standby.allocadia.com/allocadia/saml/SSO`</span></span>
+     <span data-ttu-id="aa360-163">Pour l’environnement de test : `https://na2standby.allocadia.com/allocadia/saml/SSO`</span><span class="sxs-lookup"><span data-stu-id="aa360-163">For test environment - `https://na2standby.allocadia.com/allocadia/saml/SSO`</span></span>
     
-     <span data-ttu-id="c68b7-164">Pour l’environnement de production : `https://na2.allocadia.com/allocadia/saml/SSO`</span><span class="sxs-lookup"><span data-stu-id="c68b7-164">For production environment - `https://na2.allocadia.com/allocadia/saml/SSO`</span></span>
+     <span data-ttu-id="aa360-164">Pour l’environnement de production : `https://na2.allocadia.com/allocadia/saml/SSO`</span><span class="sxs-lookup"><span data-stu-id="aa360-164">For production environment - `https://na2.allocadia.com/allocadia/saml/SSO`</span></span>
 
     > [!NOTE] 
-    > <span data-ttu-id="c68b7-165">Il ne s’agit pas de valeurs réelles.</span><span class="sxs-lookup"><span data-stu-id="c68b7-165">These values are not real.</span></span> <span data-ttu-id="c68b7-166">Mettez à jour ces valeurs avec l’identificateur et l’URL de réponse réels.</span><span class="sxs-lookup"><span data-stu-id="c68b7-166">Update these values with the actual Identifier and Reply URL.</span></span> <span data-ttu-id="c68b7-167">Pour obtenir ces valeurs, contactez [l’équipe du support Allocadia](mailTo:support@allocadia.com).</span><span class="sxs-lookup"><span data-stu-id="c68b7-167">Contact [Allocadia support team](mailTo:support@allocadia.com) to get these values.</span></span>
+    > <span data-ttu-id="aa360-165">Il ne s’agit pas de valeurs réelles.</span><span class="sxs-lookup"><span data-stu-id="aa360-165">These values are not real.</span></span> <span data-ttu-id="aa360-166">Mettre à jour ces valeurs hello URL d’identificateur et de réponse réelle.</span><span class="sxs-lookup"><span data-stu-id="aa360-166">Update these values with hello actual Identifier and Reply URL.</span></span> <span data-ttu-id="aa360-167">Contact [équipe de support Allocadia](mailTo:support@allocadia.com) tooget ces valeurs.</span><span class="sxs-lookup"><span data-stu-id="aa360-167">Contact [Allocadia support team](mailTo:support@allocadia.com) tooget these values.</span></span>
 
-4. <span data-ttu-id="c68b7-168">L’application Allocadia attend les assertions SAML dans un format spécifique.</span><span class="sxs-lookup"><span data-stu-id="c68b7-168">Allocadia application expects the SAML assertions in a specific format.</span></span> <span data-ttu-id="c68b7-169">Configurez les revendications suivantes pour cette application.</span><span class="sxs-lookup"><span data-stu-id="c68b7-169">Configure the following claims for this application.</span></span> <span data-ttu-id="c68b7-170">Vous pouvez gérer les valeurs de ces attributs à partir de la section « **Attributs utilisateur** » sur la page d’intégration des applications.</span><span class="sxs-lookup"><span data-stu-id="c68b7-170">You can manage the values of these attributes from the "**User Attributes**" section on application integration page.</span></span> <span data-ttu-id="c68b7-171">La capture d’écran suivante montre un exemple de cette configuration.</span><span class="sxs-lookup"><span data-stu-id="c68b7-171">The following screenshot shows an example for this configuration.</span></span> 
+4. <span data-ttu-id="aa360-168">Allocadia application attend les assertions SAML hello dans un format spécifique.</span><span class="sxs-lookup"><span data-stu-id="aa360-168">Allocadia application expects hello SAML assertions in a specific format.</span></span> <span data-ttu-id="aa360-169">Configurer hello suivant des revendications pour cette application.</span><span class="sxs-lookup"><span data-stu-id="aa360-169">Configure hello following claims for this application.</span></span> <span data-ttu-id="aa360-170">Vous pouvez gérer les valeurs de ces attributs hello depuis hello »**attributs utilisateur**« section sur la page d’intégration d’application.</span><span class="sxs-lookup"><span data-stu-id="aa360-170">You can manage hello values of these attributes from hello "**User Attributes**" section on application integration page.</span></span> <span data-ttu-id="aa360-171">Hello suivant capture d’écran montre un exemple de cette configuration.</span><span class="sxs-lookup"><span data-stu-id="aa360-171">hello following screenshot shows an example for this configuration.</span></span> 
 
     ![Configurer l’authentification unique](./media/active-directory-saas-allocadia-tutorial/tutorial_allocadia_attributes.png)
     
-5. <span data-ttu-id="c68b7-173">Dans la section **Attributs utilisateur** de la boîte de dialogue **Authentification unique**, configurez l’attribut de jeton SAML comme sur l’image et procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="c68b7-173">In the **User Attributes** section on the **Single sign-on** dialog, configure SAML token attribute as shown in the image and perform the following steps:</span></span>
+5. <span data-ttu-id="aa360-173">Bonjour **attributs utilisateur** section hello **l’authentification unique** boîte de dialogue, configurer des attributs de jeton SAML comme indiqué dans l’image de hello et effectuer hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="aa360-173">In hello **User Attributes** section on hello **Single sign-on** dialog, configure SAML token attribute as shown in hello image and perform hello following steps:</span></span>
     
-    | <span data-ttu-id="c68b7-174">Nom de l'attribut</span><span class="sxs-lookup"><span data-stu-id="c68b7-174">Attribute Name</span></span> | <span data-ttu-id="c68b7-175">Valeur de l’attribut</span><span class="sxs-lookup"><span data-stu-id="c68b7-175">Attribute Value</span></span> |
+    | <span data-ttu-id="aa360-174">Nom de l'attribut</span><span class="sxs-lookup"><span data-stu-id="aa360-174">Attribute Name</span></span> | <span data-ttu-id="aa360-175">Valeur de l’attribut</span><span class="sxs-lookup"><span data-stu-id="aa360-175">Attribute Value</span></span> |
     | ------------------- | -------------------- |    
-    | <span data-ttu-id="c68b7-176">firstname</span><span class="sxs-lookup"><span data-stu-id="c68b7-176">firstname</span></span> | <span data-ttu-id="c68b7-177">user.givenname</span><span class="sxs-lookup"><span data-stu-id="c68b7-177">user.givenname</span></span> |
-    | <span data-ttu-id="c68b7-178">lastname</span><span class="sxs-lookup"><span data-stu-id="c68b7-178">lastname</span></span> | <span data-ttu-id="c68b7-179">user.surname</span><span class="sxs-lookup"><span data-stu-id="c68b7-179">user.surname</span></span> |
-    | <span data-ttu-id="c68b7-180">email</span><span class="sxs-lookup"><span data-stu-id="c68b7-180">email</span></span> | <span data-ttu-id="c68b7-181">user.mail</span><span class="sxs-lookup"><span data-stu-id="c68b7-181">user.mail</span></span> |
+    | <span data-ttu-id="aa360-176">firstname</span><span class="sxs-lookup"><span data-stu-id="aa360-176">firstname</span></span> | <span data-ttu-id="aa360-177">user.givenname</span><span class="sxs-lookup"><span data-stu-id="aa360-177">user.givenname</span></span> |
+    | <span data-ttu-id="aa360-178">lastname</span><span class="sxs-lookup"><span data-stu-id="aa360-178">lastname</span></span> | <span data-ttu-id="aa360-179">user.surname</span><span class="sxs-lookup"><span data-stu-id="aa360-179">user.surname</span></span> |
+    | <span data-ttu-id="aa360-180">email</span><span class="sxs-lookup"><span data-stu-id="aa360-180">email</span></span> | <span data-ttu-id="aa360-181">user.mail</span><span class="sxs-lookup"><span data-stu-id="aa360-181">user.mail</span></span> |
     
-    <span data-ttu-id="c68b7-182">a.</span><span class="sxs-lookup"><span data-stu-id="c68b7-182">a.</span></span> <span data-ttu-id="c68b7-183">Cliquez sur **Ajouter un attribut** pour ouvrir la boîte de dialogue **Ajouter un attribut**.</span><span class="sxs-lookup"><span data-stu-id="c68b7-183">Click **Add attribute** to open the **Add Attribute** dialog.</span></span>
+    <span data-ttu-id="aa360-182">a.</span><span class="sxs-lookup"><span data-stu-id="aa360-182">a.</span></span> <span data-ttu-id="aa360-183">Cliquez sur **ajouter un attribut** tooopen hello **ajouter un attribut** boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="aa360-183">Click **Add attribute** tooopen hello **Add Attribute** dialog.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-allocadia-tutorial/tutorial_attribute_04.png)
 
-    <span data-ttu-id="c68b7-185">b.</span><span class="sxs-lookup"><span data-stu-id="c68b7-185">b.</span></span> <span data-ttu-id="c68b7-186">Dans la zone de texte **Attribut**, indiquez le nom d’attribut pour cette ligne.</span><span class="sxs-lookup"><span data-stu-id="c68b7-186">In the **Name** textbox, type the attribute name shown for that row.</span></span>
+    <span data-ttu-id="aa360-185">b.</span><span class="sxs-lookup"><span data-stu-id="aa360-185">b.</span></span> <span data-ttu-id="aa360-186">Bonjour **nom** zone de texte, nom d’attribut type hello indiqué pour cette ligne.</span><span class="sxs-lookup"><span data-stu-id="aa360-186">In hello **Name** textbox, type hello attribute name shown for that row.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-allocadia-tutorial/tutorial_attribute_05.png)
 
-    <span data-ttu-id="c68b7-188">c.</span><span class="sxs-lookup"><span data-stu-id="c68b7-188">c.</span></span> <span data-ttu-id="c68b7-189">Dans la liste **Valeur** , saisissez la valeur d’attribut affichée pour cette ligne.</span><span class="sxs-lookup"><span data-stu-id="c68b7-189">From the **Value** list, type the attribute value shown for that row.</span></span>
+    <span data-ttu-id="aa360-188">c.</span><span class="sxs-lookup"><span data-stu-id="aa360-188">c.</span></span> <span data-ttu-id="aa360-189">À partir de hello **valeur** liste, la valeur d’attribut type hello indiqué pour cette ligne.</span><span class="sxs-lookup"><span data-stu-id="aa360-189">From hello **Value** list, type hello attribute value shown for that row.</span></span>
  
-    <span data-ttu-id="c68b7-190">d.</span><span class="sxs-lookup"><span data-stu-id="c68b7-190">d.</span></span> <span data-ttu-id="c68b7-191">Cliquez sur **OK**.</span><span class="sxs-lookup"><span data-stu-id="c68b7-191">Click **Ok**.</span></span>
+    <span data-ttu-id="aa360-190">d.</span><span class="sxs-lookup"><span data-stu-id="aa360-190">d.</span></span> <span data-ttu-id="aa360-191">Cliquez sur **OK**.</span><span class="sxs-lookup"><span data-stu-id="aa360-191">Click **Ok**.</span></span>
 
 
 
-6. <span data-ttu-id="c68b7-192">Dans la section **Certificat de signature SAML**, cliquez sur **Métadonnées XML** puis enregistrez le fichier de métadonnées sur votre ordinateur.</span><span class="sxs-lookup"><span data-stu-id="c68b7-192">On the **SAML Signing Certificate** section, click **Metadata XML** and then save the metadata file on your computer.</span></span>
+6. <span data-ttu-id="aa360-192">Sur hello **le certificat de signature SAML** , cliquez sur **Metadata XML** , puis enregistrez le fichier de métadonnées hello sur votre ordinateur.</span><span class="sxs-lookup"><span data-stu-id="aa360-192">On hello **SAML Signing Certificate** section, click **Metadata XML** and then save hello metadata file on your computer.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-allocadia-tutorial/tutorial_allocadia_certificate.png) 
 
 
-7. <span data-ttu-id="c68b7-194">Cliquez sur le bouton **Enregistrer** .</span><span class="sxs-lookup"><span data-stu-id="c68b7-194">Click **Save** button.</span></span>
+7. <span data-ttu-id="aa360-194">Cliquez sur le bouton **Enregistrer** .</span><span class="sxs-lookup"><span data-stu-id="aa360-194">Click **Save** button.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-allocadia-tutorial/tutorial_general_400.png)
 
-8. <span data-ttu-id="c68b7-196">Pour configurer l’authentification unique côté **Allocadia**, vous devez envoyer le fichier **XML des métadonnées** téléchargé à [l’équipe du support Allocadia](mailTo:support@allocadia.com).</span><span class="sxs-lookup"><span data-stu-id="c68b7-196">To configure single sign-on on **Allocadia** side, you need to send the downloaded **Metadata XML** to [Allocadia support team](mailTo:support@allocadia.com).</span></span> <span data-ttu-id="c68b7-197">Celle-ci configure ensuite ce paramètre pour que la connexion SSO SAML soit définie correctement des deux côtés.</span><span class="sxs-lookup"><span data-stu-id="c68b7-197">They set this setting to have the SAML SSO connection set properly on both sides.</span></span>
+8. <span data-ttu-id="aa360-196">tooconfigure l’authentification unique sur **Allocadia** côté, vous devez hello toosend téléchargé **Metadata XML** trop[équipe de support Allocadia](mailTo:support@allocadia.com).</span><span class="sxs-lookup"><span data-stu-id="aa360-196">tooconfigure single sign-on on **Allocadia** side, you need toosend hello downloaded **Metadata XML** too[Allocadia support team](mailTo:support@allocadia.com).</span></span> <span data-ttu-id="aa360-197">Ils définir ce hello toohave de paramètre connexion SSO SAML correctement des deux côtés.</span><span class="sxs-lookup"><span data-stu-id="aa360-197">They set this setting toohave hello SAML SSO connection set properly on both sides.</span></span>
 
 > [!TIP]
-> <span data-ttu-id="c68b7-198">Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.</span><span class="sxs-lookup"><span data-stu-id="c68b7-198">You can now read a concise version of these instructions inside the [Azure portal](https://portal.azure.com), while you are setting up the app!</span></span>  <span data-ttu-id="c68b7-199">Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas.</span><span class="sxs-lookup"><span data-stu-id="c68b7-199">After adding this app from the **Active Directory > Enterprise Applications** section, simply click the **Single Sign-On** tab and access the embedded documentation through the **Configuration** section at the bottom.</span></span> <span data-ttu-id="c68b7-200">Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="c68b7-200">You can read more about the embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
+> <span data-ttu-id="aa360-198">Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !</span><span class="sxs-lookup"><span data-stu-id="aa360-198">You can now read a concise version of these instructions inside hello [Azure portal](https://portal.azure.com), while you are setting up hello app!</span></span>  <span data-ttu-id="aa360-199">Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello.</span><span class="sxs-lookup"><span data-stu-id="aa360-199">After adding this app from hello **Active Directory > Enterprise Applications** section, simply click hello **Single Sign-On** tab and access hello embedded documentation through hello **Configuration** section at hello bottom.</span></span> <span data-ttu-id="aa360-200">Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="aa360-200">You can read more about hello embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
 > 
 
-### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="c68b7-201">Création d’un utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="c68b7-201">Creating an Azure AD test user</span></span>
-<span data-ttu-id="c68b7-202">L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.</span><span class="sxs-lookup"><span data-stu-id="c68b7-202">The objective of this section is to create a test user in the Azure portal called Britta Simon.</span></span>
+### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="aa360-201">Création d’un utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="aa360-201">Creating an Azure AD test user</span></span>
+<span data-ttu-id="aa360-202">objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.</span><span class="sxs-lookup"><span data-stu-id="aa360-202">hello objective of this section is toocreate a test user in hello Azure portal called Britta Simon.</span></span>
 
 ![Créer un utilisateur Azure AD][100]
 
-<span data-ttu-id="c68b7-204">**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="c68b7-204">**To create a test user in Azure AD, perform the following steps:**</span></span>
+<span data-ttu-id="aa360-204">**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="aa360-204">**toocreate a test user in Azure AD, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="c68b7-205">Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.</span><span class="sxs-lookup"><span data-stu-id="c68b7-205">In the **Azure portal**, on the left navigation pane, click **Azure Active Directory** icon.</span></span>
+1. <span data-ttu-id="aa360-205">Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.</span><span class="sxs-lookup"><span data-stu-id="aa360-205">In hello **Azure portal**, on hello left navigation pane, click **Azure Active Directory** icon.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-allocadia-tutorial/create_aaduser_01.png) 
 
-2. <span data-ttu-id="c68b7-207">Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.</span><span class="sxs-lookup"><span data-stu-id="c68b7-207">To display the list of users, go to **Users and groups** and click **All users**.</span></span>
+2. <span data-ttu-id="aa360-207">liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.</span><span class="sxs-lookup"><span data-stu-id="aa360-207">toodisplay hello list of users, go too**Users and groups** and click **All users**.</span></span>
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-allocadia-tutorial/create_aaduser_02.png) 
 
-3. <span data-ttu-id="c68b7-209">Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="c68b7-209">To open the **User** dialog, click **Add** on the top of the dialog.</span></span>
+3. <span data-ttu-id="aa360-209">tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.</span><span class="sxs-lookup"><span data-stu-id="aa360-209">tooopen hello **User** dialog, click **Add** on hello top of hello dialog.</span></span>
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-allocadia-tutorial/create_aaduser_03.png) 
 
-4. <span data-ttu-id="c68b7-211">Dans la boîte de dialogue **Utilisateur**, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="c68b7-211">On the **User** dialog page, perform the following steps:</span></span>
+4. <span data-ttu-id="aa360-211">Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="aa360-211">On hello **User** dialog page, perform hello following steps:</span></span>
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-allocadia-tutorial/create_aaduser_04.png) 
 
-    <span data-ttu-id="c68b7-213">a.</span><span class="sxs-lookup"><span data-stu-id="c68b7-213">a.</span></span> <span data-ttu-id="c68b7-214">Dans la zone de texte **Nom**, entrez **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="c68b7-214">In the **Name** textbox, type **BrittaSimon**.</span></span>
+    <span data-ttu-id="aa360-213">a.</span><span class="sxs-lookup"><span data-stu-id="aa360-213">a.</span></span> <span data-ttu-id="aa360-214">Bonjour **nom** zone de texte, type **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="aa360-214">In hello **Name** textbox, type **BrittaSimon**.</span></span>
 
-    <span data-ttu-id="c68b7-215">b.</span><span class="sxs-lookup"><span data-stu-id="c68b7-215">b.</span></span> <span data-ttu-id="c68b7-216">Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="c68b7-216">In the **User name** textbox, type the **email address** of BrittaSimon.</span></span>
+    <span data-ttu-id="aa360-215">b.</span><span class="sxs-lookup"><span data-stu-id="aa360-215">b.</span></span> <span data-ttu-id="aa360-216">Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.</span><span class="sxs-lookup"><span data-stu-id="aa360-216">In hello **User name** textbox, type hello **email address** of BrittaSimon.</span></span>
 
-    <span data-ttu-id="c68b7-217">c.</span><span class="sxs-lookup"><span data-stu-id="c68b7-217">c.</span></span> <span data-ttu-id="c68b7-218">Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.</span><span class="sxs-lookup"><span data-stu-id="c68b7-218">Select **Show Password** and write down the value of the **Password**.</span></span>
+    <span data-ttu-id="aa360-217">c.</span><span class="sxs-lookup"><span data-stu-id="aa360-217">c.</span></span> <span data-ttu-id="aa360-218">Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.</span><span class="sxs-lookup"><span data-stu-id="aa360-218">Select **Show Password** and write down hello value of hello **Password**.</span></span>
 
-    <span data-ttu-id="c68b7-219">d.</span><span class="sxs-lookup"><span data-stu-id="c68b7-219">d.</span></span> <span data-ttu-id="c68b7-220">Cliquez sur **Create**.</span><span class="sxs-lookup"><span data-stu-id="c68b7-220">Click **Create**.</span></span>
+    <span data-ttu-id="aa360-219">d.</span><span class="sxs-lookup"><span data-stu-id="aa360-219">d.</span></span> <span data-ttu-id="aa360-220">Cliquez sur **Create**.</span><span class="sxs-lookup"><span data-stu-id="aa360-220">Click **Create**.</span></span>
  
-### <a name="creating-an-allocadia-test-user"></a><span data-ttu-id="c68b7-221">Création d’un utilisateur test Allocadia</span><span class="sxs-lookup"><span data-stu-id="c68b7-221">Creating an Allocadia test user</span></span>
+### <a name="creating-an-allocadia-test-user"></a><span data-ttu-id="aa360-221">Création d’un utilisateur test Allocadia</span><span class="sxs-lookup"><span data-stu-id="aa360-221">Creating an Allocadia test user</span></span>
 
-<span data-ttu-id="c68b7-222">Cette application prend en charge l’approvisionnement d’utilisateurs de type « juste-à-temps ».</span><span class="sxs-lookup"><span data-stu-id="c68b7-222">Application supports Just in time user provisioning.</span></span> <span data-ttu-id="c68b7-223">Une fois identifiés, les utilisateurs sont créés automatiquement dans l’application.</span><span class="sxs-lookup"><span data-stu-id="c68b7-223">After authentication users are created in the application automatically.</span></span>
+<span data-ttu-id="aa360-222">Cette application prend en charge l’approvisionnement d’utilisateurs de type « juste-à-temps ».</span><span class="sxs-lookup"><span data-stu-id="aa360-222">Application supports Just in time user provisioning.</span></span> <span data-ttu-id="aa360-223">Une fois l’authentification utilisateurs sont créés automatiquement dans l’application hello.</span><span class="sxs-lookup"><span data-stu-id="aa360-223">After authentication users are created in hello application automatically.</span></span>
 
-### <a name="assigning-the-azure-ad-test-user"></a><span data-ttu-id="c68b7-224">Affectation de l’utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="c68b7-224">Assigning the Azure AD test user</span></span>
+### <a name="assigning-hello-azure-ad-test-user"></a><span data-ttu-id="aa360-224">Affectation d’utilisateur de test hello Azure AD</span><span class="sxs-lookup"><span data-stu-id="aa360-224">Assigning hello Azure AD test user</span></span>
 
-<span data-ttu-id="c68b7-225">Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à Allocadia.</span><span class="sxs-lookup"><span data-stu-id="c68b7-225">In this section, you enable Britta Simon to use Azure single sign-on by granting access to Allocadia.</span></span>
+<span data-ttu-id="aa360-225">Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooAllocadia.</span><span class="sxs-lookup"><span data-stu-id="aa360-225">In this section, you enable Britta Simon toouse Azure single sign-on by granting access tooAllocadia.</span></span>
 
 ![Affecter des utilisateurs][200] 
 
-<span data-ttu-id="c68b7-227">**Pour affecter Britta Simon à Allocadia, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="c68b7-227">**To assign Britta Simon to Allocadia, perform the following steps:**</span></span>
+<span data-ttu-id="aa360-227">**tooassign Britta Simon tooAllocadia, effectuez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="aa360-227">**tooassign Britta Simon tooAllocadia, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="c68b7-228">Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="c68b7-228">In the Azure portal, open the applications view, and then navigate to the directory view and go to **Enterprise applications** then click **All applications**.</span></span>
+1. <span data-ttu-id="aa360-228">Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="aa360-228">In hello Azure portal, open hello applications view, and then navigate toohello directory view and go too**Enterprise applications** then click **All applications**.</span></span>
 
     ![Affecter des utilisateurs][201] 
 
-2. <span data-ttu-id="c68b7-230">Dans la liste des applications, sélectionnez **Allocadia**.</span><span class="sxs-lookup"><span data-stu-id="c68b7-230">In the applications list, select **Allocadia**.</span></span>
+2. <span data-ttu-id="aa360-230">Dans la liste des applications hello, sélectionnez **Allocadia**.</span><span class="sxs-lookup"><span data-stu-id="aa360-230">In hello applications list, select **Allocadia**.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-allocadia-tutorial/tutorial_allocadia_app.png) 
 
-3. <span data-ttu-id="c68b7-232">Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="c68b7-232">In the menu on the left, click **Users and groups**.</span></span>
+3. <span data-ttu-id="aa360-232">Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="aa360-232">In hello menu on hello left, click **Users and groups**.</span></span>
 
     ![Affecter des utilisateurs][202] 
 
-4. <span data-ttu-id="c68b7-234">Cliquez sur le bouton **Ajouter**.</span><span class="sxs-lookup"><span data-stu-id="c68b7-234">Click **Add** button.</span></span> <span data-ttu-id="c68b7-235">Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="c68b7-235">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
+4. <span data-ttu-id="aa360-234">Cliquez sur le bouton **Ajouter**.</span><span class="sxs-lookup"><span data-stu-id="aa360-234">Click **Add** button.</span></span> <span data-ttu-id="aa360-235">Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="aa360-235">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
 
     ![Affecter des utilisateurs][203]
 
-5. <span data-ttu-id="c68b7-237">Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.</span><span class="sxs-lookup"><span data-stu-id="c68b7-237">On **Users and groups** dialog, select **Britta Simon** in the Users list.</span></span>
+5. <span data-ttu-id="aa360-237">Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.</span><span class="sxs-lookup"><span data-stu-id="aa360-237">On **Users and groups** dialog, select **Britta Simon** in hello Users list.</span></span>
 
-6. <span data-ttu-id="c68b7-238">Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="c68b7-238">Click **Select** button on **Users and groups** dialog.</span></span>
+6. <span data-ttu-id="aa360-238">Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="aa360-238">Click **Select** button on **Users and groups** dialog.</span></span>
 
-7. <span data-ttu-id="c68b7-239">Cliquez sur le bouton **Affecter** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="c68b7-239">Click **Assign** button on **Add Assignment** dialog.</span></span>
+7. <span data-ttu-id="aa360-239">Cliquez sur le bouton **Affecter** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="aa360-239">Click **Assign** button on **Add Assignment** dialog.</span></span>
     
-### <a name="testing-single-sign-on"></a><span data-ttu-id="c68b7-240">Test de l’authentification unique</span><span class="sxs-lookup"><span data-stu-id="c68b7-240">Testing single sign-on</span></span>
+### <a name="testing-single-sign-on"></a><span data-ttu-id="aa360-240">Test de l’authentification unique</span><span class="sxs-lookup"><span data-stu-id="aa360-240">Testing single sign-on</span></span>
 
-<span data-ttu-id="c68b7-241">Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.</span><span class="sxs-lookup"><span data-stu-id="c68b7-241">In this section, you test your Azure AD single sign-on configuration using the Access Panel.</span></span>
+<span data-ttu-id="aa360-241">Dans cette section, vous tester votre configuration Azure AD unique de session à l’aide de hello panneau d’accès.</span><span class="sxs-lookup"><span data-stu-id="aa360-241">In this section, you test your Azure AD single sign-on configuration using hello Access Panel.</span></span>
 
-<span data-ttu-id="c68b7-242">Lorsque vous cliquez sur la mosaïque Allocadia dans le volet d’accès, vous devez être connecté automatiquement à votre application Allocadia.</span><span class="sxs-lookup"><span data-stu-id="c68b7-242">When you click the Allocadia tile in the Access Panel, you should get automatically signed-on to your Allocadia application.</span></span>
-<span data-ttu-id="c68b7-243">Pour plus d’informations sur le panneau d’accès, consultez [Présentation du panneau d’accès](active-directory-saas-access-panel-introduction.md).</span><span class="sxs-lookup"><span data-stu-id="c68b7-243">For more information about the Access Panel, see [Introduction to the Access Panel](active-directory-saas-access-panel-introduction.md)</span></span>
+<span data-ttu-id="aa360-242">Lorsque vous cliquez sur mosaïque Allocadia hello hello volet d’accès, vous devez obtenir automatiquement signé sur tooyour Allocadia application.</span><span class="sxs-lookup"><span data-stu-id="aa360-242">When you click hello Allocadia tile in hello Access Panel, you should get automatically signed-on tooyour Allocadia application.</span></span>
+<span data-ttu-id="aa360-243">Pour plus d’informations sur le volet d’accès, consultez [Introduction toohello panneau d’accès](active-directory-saas-access-panel-introduction.md)</span><span class="sxs-lookup"><span data-stu-id="aa360-243">For more information about the Access Panel, see [Introduction toohello Access Panel](active-directory-saas-access-panel-introduction.md)</span></span>
 
-## <a name="additional-resources"></a><span data-ttu-id="c68b7-244">Ressources supplémentaires</span><span class="sxs-lookup"><span data-stu-id="c68b7-244">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="aa360-244">Ressources supplémentaires</span><span class="sxs-lookup"><span data-stu-id="aa360-244">Additional resources</span></span>
 
-* [<span data-ttu-id="c68b7-245">Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="c68b7-245">List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="c68b7-246">Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?</span><span class="sxs-lookup"><span data-stu-id="c68b7-246">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="aa360-245">Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="aa360-245">List of Tutorials on How tooIntegrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="aa360-246">Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?</span><span class="sxs-lookup"><span data-stu-id="aa360-246">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
 
 
 
