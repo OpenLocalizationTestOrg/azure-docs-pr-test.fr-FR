@@ -1,6 +1,6 @@
 ---
-title: "Proxy d’application Azure AD - bien démarrer avec l’installation du connecteur | Microsoft Docs"
-description: "Activez le proxy d’application dans le portail Azure et installez les connecteurs pour le proxy inverse."
+title: "Démarrer aaaAzure application Proxy AD - installer le connecteur | Documents Microsoft"
+description: "Activer le Proxy d’Application Bonjour portail Azure et installer des connecteurs de proxy inverse de hello hello."
 services: active-directory
 documentationcenter: 
 author: kgremban
@@ -15,94 +15,94 @@ ms.date: 08/02/2017
 ms.author: kgremban
 ms.reviewer: harshja
 ms.custom: it-pro
-ms.openlocfilehash: 77acb23f33fd656a12c27107cb159613a8b2aec4
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: ea79ffa92fa223584be04f49019fd31a0bfd8358
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-application-proxy-and-install-the-connector"></a>Bien démarrer avec le proxy d’application et l’installation du connecteur
-Cet article vous guide tout au long des étapes d’activation du proxy d’application Microsoft Azure AD pour votre répertoire de cloud dans Azure AD.
+# <a name="get-started-with-application-proxy-and-install-hello-connector"></a>Prise en main le Proxy d’Application et d’installer le connecteur de hello
+Cet article vous assiste hello étapes tooenable Proxy d’Application Microsoft Azure AD pour votre annuaire cloud dans Azure AD.
 
-Si vous n’êtes pas encore informés sur les avantages de sécurité et de productivité que l’utilisation du Proxy d’application procure à votre organisation, obtenez plus d’informations sur [ la fourniture d’un accès à distance sécurisé aux applications locales](active-directory-application-proxy-get-started.md).
+Si vous n’êtes pas encore prenant en charge des avantages de sécurité et de productivité hello tooyour organisation met de Proxy d’Application, en savoir plus sur [comment tooprovide sécuriser l’accès à distance, applications locales tooon](active-directory-application-proxy-get-started.md).
 
 ## <a name="application-proxy-prerequisites"></a>Conditions préalables pour le proxy d’application
-Pour pouvoir activer et utiliser les services Proxy d’application, vous devez disposer des éléments suivants :
+Avant que vous pouvez activer et utiliser les services de Proxy d’Application, vous devez toohave :
 
 * Un [abonnement Microsoft Azure AD de base ou Premium](active-directory-editions.md) et un annuaire Azure AD sur lequel vous êtes administrateur général.
-* Un serveur exécutant Windows Server 2012 R2 ou 2016, sur lequel vous pouvez installer le connecteur de proxy d’application. Le serveur doit pouvoir se connecter aux services Proxy d’application dans le cloud et aux applications locales que vous publiez.
-  * Pour permettre une authentification unique de vos applications publiées à l’aide de la délégation contrainte, cette machine doit être jointe au même domaine AD que les applications que vous publiez. Pour plus d’informations, consultez [KCD pour authentification unique avec le proxy d’application](active-directory-application-proxy-sso-using-kcd.md).
+* Un serveur exécutant Windows Server 2012 R2 ou 2016, sur lequel vous pouvez installer hello connecteur Proxy d’Application. Hello a besoin que les services de Proxy d’Application du toohello toobe tooconnect en mesure de dans le cloud de hello et hello des applications que vous publiez sur site.
+  * Tooyour de l’authentification unique pour les applications publiées à l’aide de la délégation contrainte Kerberos, cet ordinateur doit être appartenant au domaine dans le domaine de hello même AD en tant qu’applications hello que vous publiez. Pour plus d’informations, consultez [KCD pour authentification unique avec le proxy d’application](active-directory-application-proxy-sso-using-kcd.md).
 
-Si votre organisation utilise des serveurs proxy pour se connecter à Internet, consultez [Travailler avec des serveurs proxy locaux existants](application-proxy-working-with-proxy-servers.md) pour découvrir comment les configurer avant la prise en main du Proxy d’application.
+Si votre organisation utilise le proxy internet, de serveurs tooconnect toohello lecture [travail avec existant local serveurs proxy](application-proxy-working-with-proxy-servers.md) pour plus d’informations sur comment tooconfigure les avant d’obtiennent en main de Proxy d’Application.
 
 ## <a name="open-your-ports"></a>Ouvrir vos ports
 
-Pour préparer votre environnement pour le proxy d’application Azure AD, vous devez d’abord activer la communication avec les centres de données Azure. Si un pare-feu existe, assurez-vous qu’il autorise les requêtes HTTPS (TCP) du connecteur au proxy d’application.
+tooprepare votre environnement pour le Proxy d’Application Azure AD, vous devez d’abord tooenable communication tooAzure des centres de données. S’il existe un pare-feu dans le chemin d’accès de hello, assurez-vous qu’il est ouvert afin que hello que connecteur peut rendre HTTPS (TCP) demande toohello le Proxy d’Application.
 
-1. Ouvrez les ports suivants pour le trafic **sortant** :
+1. Ports de suivants de hello ouverte trop**sortant** le trafic :
 
    | Numéro de port | Utilisation |
    | --- | --- |
-   | 80 | Téléchargement de la liste de révocation de certificats lors de la validation du certificat SSL |
-   | 443 | Toutes les communications sortantes avec le service de proxy d’application |
+   | 80 | Téléchargement de la révocation de certificats de listes (CRL) lors de la validation du certificat SSL de hello |
+   | 443 | Toutes les communications sortantes par hello service Proxy d’Application |
 
-   Si votre pare-feu régule le trafic en fonction des utilisateurs d’origine, ouvrez ces ports au trafic provenant des services Windows exécutés en tant que service réseau.
+   Si votre pare-feu gère le trafic en fonction des utilisateurs de toooriginating, ouvrir ces ports pour le trafic à partir des services Windows qui s’exécutent comme un Service réseau.
 
    > [!IMPORTANT]
-   > Le tableau reflète la configuration des ports nécessaire pour les versions du connecteur 1.5.132.0 et ultérieures. Si vous avez encore une version plus ancienne du connecteur, vous devez également activer les ports suivants, en plus de 80 et 443 : 5671, 8080, 9090-9091, 9350, 9352, 10100–10120.
+   > table de Hello reflète les exigences du port hello pour les versions de connecteur 1.5.132.0 et les versions ultérieures. Si vous disposez toujours d’une ancienne version de connecteur, vous devez également hello tooenable suivant ports dans Ajout too80 et 443:5671, 8080, 9090-9091, 9350, 9352, 10100 – 10120.
    >
-   >Pour plus d’informations sur la mise à jour de vos connecteurs vers la version la plus récente, consultez [Présentation des connecteurs de proxy d’application Azure AD](application-proxy-understand-connectors.md#automatic-updates).
+   >Pour plus d’informations sur la mise à jour de votre version la plus récente toohello connecteurs, consultez [connecteurs de Proxy d’Application Azure de comprendre AD](application-proxy-understand-connectors.md#automatic-updates).
 
-2. Si votre pare-feu ou votre proxy autorise la mise en liste verte de DNS, vous pouvez y placer les connexions à msappproxy.net et à servicebus.windows.net. Dans le cas contraire, vous devez autoriser l’accès aux [plages d’adresses IP du centre de données Azure](https://www.microsoft.com/download/details.aspx?id=41653), qui sont mises à jour chaque semaine.
+2. Si votre pare-feu ou un proxy autorise liste approuvées DNS, vous pouvez servicebus.windows.net et toomsappproxy.net de connexions de liste blanche. Si non, vous devez tooallow accès toohello [plages d’adresses IP du centre de données Azure](https://www.microsoft.com/download/details.aspx?id=41653), qui sont mis à jour chaque semaine.
 
-3. Microsoft utilise quatre adresses pour vérifier les certificats. Autorisez l’accès aux URL suivantes si vous ne l’avez pas encore fait pour d’autres produits :
+3. Microsoft utilise des certificats de tooverify quatre adresses. Autoriser toohello accès aux URL suivantes si vous n’avez pas encore fait pour d’autres produits :
    * mscrl.microsoft.com:80
    * crl.microsoft.com:80
    * ocsp.msocsp.com:80
    * www.microsoft.com:80
 
-4. Votre connecteur doit accéder à login.windows.net et login.microsoftonline.net pour le processus d’inscription.
+4. Votre connecteur doit accès toologin.windows.net et login.microsoftonline.net pour le processus d’inscription de hello.
 
-5. Utilisez [l’outil de test des ports du connecteur de proxy d’application Azure AD](https://aadap-portcheck.connectorporttest.msappproxy.net/) pour vous assurer que votre connecteur peut joindre le service de proxy d’application. Au minimum, assurez-vous d’avoir coché les États-Unis du Centre et les régions les plus proches de vous. En outre, un nombre plus élevé de coches vertes signifie une résilience accrue.
+5. Hello d’utilisation [Azure AD Application Proxy Connector Ports Test outil](https://aadap-portcheck.connectorporttest.msappproxy.net/) tooverify que votre connecteur pouvez contacter le service de Proxy d’Application hello. Au minimum, assurez-vous que toutes les coches vertes la région du centre des États-Unis hello et tooyou le plus proche de la région de hello. En outre, un nombre plus élevé de coches vertes signifie une résilience accrue.
 
 ## <a name="install-and-register-a-connector"></a>Installer et inscrire un connecteur
-1. Connectez-vous au [portail Azure](https://portal.azure.com/) en tant qu’administrateur.
-2. Votre répertoire actuel apparaît sous votre nom d’utilisateur dans le coin supérieur droit. Si vous avez besoin de changer de répertoire, sélectionnez cette icône.
-3. Accédez à **Azure Active Directory** > **Proxy d’application**.
+1. Connectez-vous en tant qu’administrateur Bonjour [portail Azure](https://portal.azure.com/).
+2. Votre annuaire actuel s’affiche sous votre nom d’utilisateur dans le coin supérieur droit de hello. Si vous devez les répertoires toochange, sélectionnez cette icône.
+3. Accédez trop**Azure Active Directory** > **le Proxy d’Application**.
 
-   ![Accédez à Proxy d’application](./media/active-directory-application-proxy-enable/app_proxy_navigate.png)
+   ![Accédez tooApplication Proxy](./media/active-directory-application-proxy-enable/app_proxy_navigate.png)
 
 4. Sélectionnez **Télécharger le connecteur**.
 
    ![Télécharger le connecteur](./media/active-directory-application-proxy-enable/download_connector.png)
 
-5. Exécutez **AADApplicationProxyConnectorInstaller.exe** sur le serveur que vous avez préparé conformément aux conditions préalables.
-6. Suivez les instructions de l’Assistant pour effectuer l’installation. Au cours de l’installation, vous êtes invité à inscrire le connecteur auprès du service Proxy d’application de votre locataire Azure AD.
+5. Exécutez **AADApplicationProxyConnectorInstaller.exe** sur le serveur de hello vous préparé conséquente toohello prerequisites.
+6. Suivez les instructions de hello de hello Assistant tooinstall. Pendant l’installation, vous êtes tooregister demandées hello connecteur hello Proxy d’Application de votre client Azure AD.
 
    * Fournissez vos informations d’identification d’administrateur général d’Azure AD. Votre client d’administrateur global peut être différent de vos informations d’identification Microsoft Azure.
-   * Assurez-vous que l’administrateur qui inscrit le connecteur figure dans l’annuaire où vous avez activé le service Proxy d’application. Par exemple, si le domaine du client est contoso.com, l’administrateur doit être admin@contoso.com ou tout autre alias sur ce domaine.
-   * Si l’option **Configuration de sécurité renforcée d’Internet Explorer** présente la valeur **Activé** sur le serveur sur lequel vous installez le connecteur, il est possible que vous ne voyiez pas l’écran d’inscription. Suivez les instructions du message d’erreur pour obtenir l’accès. Vérifiez que la configuration de sécurité renforcée d’Internet Explore est désactivée.
+   * Assurez-vous que l’administrateur de hello hello connecteur se trouve dans des registres hello même répertoire où vous avez activé hello service Proxy d’Application. Par exemple, si le domaine du locataire hello est contoso.com, hello admin doit être admin@contoso.com ou tout autre alias sur ce domaine.
+   * Si **la Configuration de sécurité renforcée d’Internet Explorer** est défini trop**sur** sur serveur hello où vous installez le connecteur de hello, vous ne voyiez pas l’écran d’enregistrement hello. accès tooget, suivez les instructions dans le message d’erreur hello hello. Vérifiez que la configuration de sécurité renforcée d’Internet Explore est désactivée.
 
 Pour bénéficier d’une haute disponibilité, vous devez déployer au moins deux connecteurs. Chaque connecteur doit être inscrit séparément.
 
-## <a name="test-that-the-connector-installed-correctly"></a>Tester si le connecteur a été correctement installé
+## <a name="test-that-hello-connector-installed-correctly"></a>Tester ce connecteur hello installé correctement
 
-Vous pouvez vous assurer qu’un nouveau connecteur a été correctement installé en le vérifiant dans le portail Azure ou sur votre serveur. 
+Vous pouvez vérifier qu’un nouveau connecteur installé correctement en vérifiant qu’il soit Bonjour portail Azure ou sur votre serveur. 
 
-Dans le portail Azure, connectez-vous à votre locataire et accédez à **Azure Active Directory** > **Proxy d’Application**. Tous les connecteurs et les groupes de connecteurs apparaissent sur cette page. Sélectionnez un connecteur pour afficher ses détails ou déplacez-le dans un groupe de connecteurs différents. 
+Hello portail Azure, se connecter à tooyour locataire et accédez trop**Azure Active Directory** > **le Proxy d’Application**. Tous les connecteurs et les groupes de connecteurs apparaissent sur cette page. Sélectionnez un toosee connecteur ses détails ou déplacez-le dans un groupe de connecteurs différents. 
 
-Sur votre serveur, vérifiez la liste des services actifs pour le connecteur et sa mise à jour. Les deux services doivent démarrer immédiatement, mais dans le cas contraire, activez-les : 
+Sur votre serveur, vérifiez la liste hello des services actifs pour le connecteur de hello et mise à jour du connecteur hello. deux services de Hello doivent démarrer immédiatement, mais dans le cas contraire, les activer : 
 
    * **connecteur de proxy d’application Microsoft AAD** active la connectivité.
 
-   * **Le programme de mise à jour du connecteur de proxy d’application Microsoft AAD** est un service de mise à jour automatique. Régulièrement, ce service recherche de nouvelles versions du connecteur et le met à jour si besoin.
+   * **Le programme de mise à jour du connecteur de proxy d’application Microsoft AAD** est un service de mise à jour automatique. mise à jour Hello vérifie les nouvelles versions de connecteur de hello et mises à jour hello connecteur en fonction des besoins.
 
    ![Services de connecteur de proxy d’application - capture d’écran](./media/active-directory-application-proxy-enable/app_proxy_services.png)
 
-Pour plus d’informations sur les connecteurs et leur mise à jour, consultez [Présentation des connecteurs de proxy d’application Azure AD](application-proxy-understand-connectors.md).
+Pour plus d’informations sur les connecteurs et comment ils restent des toodate, consultez [connecteurs de Proxy d’Application Azure de comprendre AD](application-proxy-understand-connectors.md).
 
 
 ## <a name="next-steps"></a>Étapes suivantes
-Vous voici prêt à [publier des applications avec le proxy d’application](application-proxy-publish-azure-portal.md).
+Vous êtes maintenant prêt trop[publier des applications avec Proxy d’Application](application-proxy-publish-azure-portal.md).
 
-Si vous disposez d’applications figurant sur des réseaux distincts ou à différents emplacements, utilisez des groupes de connecteurs pour organiser les différents connecteurs en unités logiques. Apprenez-en davantage sur [l’utilisation de connecteurs de proxy d’application](active-directory-application-proxy-connectors-azure-portal.md).
+Si vous avez des applications qui se trouvent sur des réseaux distincts ou des emplacements différents, utilisez plusieurs connecteurs connecteur groupes tooorganize hello dans des unités logiques. Apprenez-en davantage sur [l’utilisation de connecteurs de proxy d’application](active-directory-application-proxy-connectors-azure-portal.md).

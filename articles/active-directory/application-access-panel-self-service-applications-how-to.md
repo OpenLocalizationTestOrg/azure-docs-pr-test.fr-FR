@@ -1,6 +1,6 @@
 ---
-title: "Guide pratique pour utiliser l’accès aux applications en libre-service | Microsoft Docs"
-description: "Activer l’accès aux applications en libre-service pour permettre aux utilisateurs de rechercher leurs propres applications"
+title: "accès à l’application automatique aaaHow toouse | Documents Microsoft"
+description: "Activer les applications en libre-service accès tooallow utilisateurs toofind leurs propres applications."
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -14,73 +14,73 @@ ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
 ms.reviewer: japere
-ms.openlocfilehash: 08a05a70d976104d4e0a37b0a0dd15042b0212d8
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 03a44c20d544a6232fa802bcffaf70e5030ad3ca
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-self-service-application-access"></a>Guide pratique pour utiliser l’accès aux applications en libre-service
+# <a name="how-toouse-self-service-application-access"></a>Comment accéder aux applications en libre-service toouse
 
-Pour permettre à vos utilisateurs de découvrir eux-mêmes des applications depuis leur panneau d’accès, vous devez activer l’option **Accès aux applications en libre-service** pour toutes les applications pour lesquelles vous souhaitez autoriser les utilisateurs à les découvrir eux-mêmes et en demander l’accès.
+Avant que vos utilisateurs découvrir automatiquement des applications à partir de leur volet d’accès, vous devez tooenable **accès à l’application automatique** tooany les applications que vous souhaitez tooallow utilisateurs tooself-découvrir et de demander l’accès à.
 
-Cette fonctionnalité est un excellent moyen pour un groupe informatique d’économiser du temps et de l’argent, et elle est recommandée dans le cadre d’un déploiement d’applications modernes avec Azure Active Directory.
+Cette fonctionnalité est un excellent moyen de vous toosave temps et l’argent en tant qu’un groupe informatique et il est vivement recommandée dans le cadre d’un déploiement d’applications modernes avec Azure Active Directory.
 
 À l’aide de cette fonctionnalité, vous pouvez :
 
--   Autoriser les utilisateurs à découvrir eux-mêmes des applications depuis le [panneau d’accès aux applications](https://myapps.microsoft.com/) sans déranger le groupe informatique.
+-   Permettre aux utilisateurs de découvrir automatiquement les applications à partir de hello [volet d’accès Application](https://myapps.microsoft.com/) sans déranger hello informatique de groupe.
 
--   Ajouter ces utilisateurs à un groupe préconfiguré pour vous permettre de voir qui a demandé l’accès, de retirer l’accès et de gérer les rôles qui leur ont été attribués.
+-   Ajoutez ces groupe préconfiguré tooa des utilisateurs afin de pouvoir voir qui a demandé l’accès, de supprimer l’accès et gérer des rôles hello toothem.
 
--   Éventuellement, autoriser un approbateur d’entreprise à approuver les demandes d’accès aux applications à la place du groupe informatique.
+-   Si vous le souhaitez autorisant un approbateur d’entreprise tooapprove les demandes d’accès application hello groupe informatique n’a pas besoin.
 
--   Éventuellement, configurer jusqu'à 10 personnes qui peuvent autoriser l’accès à cette application.
+-   Configurez éventuellement des personnes too10 peuvent autoriser l’accès toothis application.
 
--   Éventuellement, autoriser un approbateur d’entreprise à définir des mots de passe dont ces utilisateurs peuvent se servir pour se connecter à l’application, directement depuis le [panneau d’accès aux applications](https://myapps.microsoft.com/) de l’approbateur d’entreprise.
+-   Si vous le souhaitez autoriser un approbateur d’entreprise des mots de passe tooset hello ces utilisateurs peuvent utiliser toosign dans l’application toohello, directement à partir de l’approbateur d’entreprise hello [volet d’accès Application](https://myapps.microsoft.com/).
 
--   Éventuellement, attribuer automatiquement directement un rôle d’application à des utilisateurs affectés en libre-service.
+-   Éventuellement automatiquement attribuer le rôle d’application tooan libre-service des utilisateurs attribués directement.
 
-## <a name="enable-self-service-application-access-to-allow-users-to-find-their-own-applications"></a>Activer l’accès aux applications en libre-service pour permettre aux utilisateurs de rechercher leurs propres applications.
+## <a name="enable-self-service-application-access-tooallow-users-toofind-their-own-applications"></a>Activer les applications en libre-service accès tooallow utilisateurs toofind leurs propres applications.
 
-L’accès aux applications en libre-service est un excellent moyen pour permettre aux utilisateurs de découvrir eux-mêmes des applications, et éventuellement de permettre au groupe d’entreprise d’approuver l’accès à ces applications. Vous pouvez autoriser le groupe d’entreprise à gérer les informations d’identification affectées à ces utilisateurs dans le cadre d’une authentification unique par mot de passe, directement depuis leurs volets d’accès.
+Accès à l’application automatique est un tooself aux utilisateurs de tooallow excellent moyen-découvrir les applications, vous pouvez également autoriser hello entreprise groupe tooapprove toothose applications. Vous pouvez autoriser les informations d’identification de groupe toomanage hello hello entreprise affecté les utilisateurs de toothose de droite de l’authentification unique de mot de passe sur les Applications à partir de leurs panneaux d’accès.
 
-Pour activer l’accès en libre-service à une application, procédez comme suit :
+tooenable libre-service accès tooan une application, suivez les étapes hello ci-dessous :
 
-1.  Ouvrez le [**portail Azure**](https://portal.azure.com/) et connectez-vous en tant qu’**administrateur général**.
+1.  Ouvrez hello [ **Azure Portal** ](https://portal.azure.com/) et connectez-vous en tant qu’un **administrateur Global.**
 
-2.  Ouvrez **l’extension Azure Active Directory** en cliquant sur **Autres services** en bas du menu de navigation principal de gauche.
+2.  Ouvrez hello **Extension Azure Active Directory** en cliquant sur **davantage de services** bas hello du menu de navigation de gauche principal hello.
 
-3.  Tapez « **Azure Active Directory** » dans la zone de recherche de filtre et sélectionnez l’élément **Azure Active Directory**.
+3.  Tapez dans **« Azure Active Directory**» dans la zone de recherche filtre hello et sélectionnez hello **Azure Active Directory** élément.
 
-4.  Cliquez sur **Applications d’entreprise** dans le menu de navigation de gauche d’Azure Active Directory.
+4.  Cliquez sur **des Applications d’entreprise** à partir du menu de navigation gauche hello Azure Active Directory.
 
-5.  Cliquez sur **Toutes les applications** pour afficher la liste complète de vos applications.
+5.  Cliquez sur **toutes les Applications** tooview une liste de toutes vos applications.
 
-  * Si l’application que vous recherchez n’apparaît pas, utilisez la commande **Filtre** en haut de la **liste de toutes les applications** et définissez l’option **Afficher** sur **Toutes les applications**.
+  * Si vous ne voyez pas l’application hello que vous souhaitez afficher ici, utilisez hello **filtre** contrôle haut hello hello **liste de toutes les Applications** et ensemble hello **afficher** option trop **Toutes les Applications.**
 
-6.  Sélectionnez l’application pour laquelle vous souhaitez activer l’accès en libre-service à partir de la liste.
+6.  Sélectionnez l’application hello liste de hello toofrom tooenable accès en libre-service.
 
-7.  Une fois l’application chargée, cliquez sur **Libre-service** dans le menu de navigation gauche de l’application.
+7.  Une fois le charge de l’application hello, cliquez sur **libre-service** à partir du menu de navigation de gauche de l’application hello.
 
-8.  Pour activer l’accès en libre-service à cette application, définissez l’option **Autoriser les utilisateurs à demander l’accès à cette application ?** sur **Oui.**
+8.  tooenable accès des applications en libre-service pour cette application, activez hello **autoriser l’application de toothis accès toorequest ?** basculer trop**Oui.**
 
-9.  Ensuite, pour sélectionner le groupe auquel les utilisateurs qui demandent l’accès à cette application doivent être ajoutés, cliquez sur le sélecteur en regard de l’étiquette **À quel groupe les utilisateurs attribués doivent-ils être ajoutés ?** et sélectionnez un groupe.
+9.  Ensuite, tooselect hello groupe toowhich les utilisateurs qui demandent l’accès toothis application doit être ajoutée, cliquez sur le libellé de toohello suivant hello sélecteur **toowhich groupe doivent être assignées utilisateurs ajoutés ?** et sélectionnez un groupe.
 
-10. **Facultatif :** si vous souhaitez exiger une approbation d’entreprise avant d’accorder l’accès aux utilisateurs, définissez l’option **Demander une approbation avant d’accorder l’accès à cette application ?** sur **Oui**.
+10. **Facultatif :** si vous souhaitez toorequire une approbation de l’entreprise avant que les utilisateurs sont autorisés à accéder, affectez à hello **exiger l’approbation avant d’accorder l’accès toothis application ?** basculer trop**Oui**.
 
-11. **Facultatif : pour les applications qui nécessitent une authentification unique par mot de passe uniquement,** si vous souhaitez autoriser ces approbateurs d’entreprise à spécifier les mots de passe envoyés à cette application pour les utilisateurs approuvés, définissez l’option **Autoriser les approbateurs à définir les mots de passe de l’utilisateur pour cette application ?** sur **Oui**.
+11. **Facultatif : pour les applications à l’aide d’un mot de passe d’authentification unique sur uniquement,** si vous le souhaitez tooallow ces business approbateurs toospecify hello des mots de passe sont envoyés application toothis pour les utilisateurs approuvés, définissez hello **autoriser approbateurs tooset mots de passe de l’utilisateur pour cette application ?**  basculer trop**Oui**.
 
-12. **Facultatif :** pour spécifier les approbateurs d’entreprise autorisés à approuver l’accès à cette application, cliquez sur le sélecteur en regard de l’étiquette **Qui est autorisé à approuver l’accès à cette application ?** pour sélectionner jusqu’à 10 approbateurs d’entreprise.
+12. **Facultatif :** toospecify hello entreprise approbateurs sont autorisés à application de toothis tooapprove access, cliquez sur le libellé de toohello suivant hello sélecteur **qui est autorisé d’application de toothis accès tooapprove ?** tooselect des approbateurs d’entreprise too10.
 
    * Les groupes ne sont pas pris en charge.
 
-13. **Facultatif :** **pour les applications qui exposent des rôles**, si vous souhaitez attribuer un rôle à des utilisateurs approuvés en libre-service, cliquez sur le sélecteur en regard de l’option  **À quel rôle attribuer des utilisateurs dans cette application ?** pour sélectionner le rôle à affecter à ces utilisateurs.
+13. **Facultatif :** **pour les applications qui présentent les rôles**, si vous voulez que le rôle de tooa tooassign libre-service des utilisateurs approuvés, cliquez sur toohello suivant du sélecteur hello **toowhich rôle doivent être assigné aux utilisateurs dans ce application ?**  tooselect hello rôle toowhich ces utilisateurs doivent être affectés.
 
-14. Cliquez sur le bouton **Enregistrer** en haut du volet pour terminer.
+14. Cliquez sur hello **enregistrer** bouton haut hello hello panneau toofinish.
 
-Lorsque vous avez terminé la configuration d’applications en libre-service, les utilisateurs peuvent accéder à leur [volet d’accès aux applications](https://myapps.microsoft.com/) et cliquer sur le bouton **+Ajouter** pour choisir les applications pour lesquelles vous avez activé l’accès en libre-service. Les approbateurs d’entreprise reçoivent également une notification dans leur [volet d’accès aux applications](https://myapps.microsoft.com/). Vous pouvez leur envoyer une notification par e-mail les avertissant qu’un utilisateur a demandé l’accès à une application nécessitant leur approbation. 
+Après avoir terminé la configuration de l’application en libre service, les utilisateurs peuvent naviguer tootheir [volet d’accès Application](https://myapps.microsoft.com/) et cliquez sur hello **+ ajouter** bouton toofind hello applications toowhich que vous avez activé Accès en libre-service. Les approbateurs d’entreprise reçoivent également une notification dans leur [volet d’accès aux applications](https://myapps.microsoft.com/). Vous pouvez activer un courrier électronique pour les informer lorsqu’un utilisateur a demandé l’application accès tooan nécessitant leur approbation. 
 
-Ces approbations prennent en charge les flux de travail avec approbation unique uniquement, ce qui signifie que si vous spécifiez plusieurs approbateurs, chaque approbateur peut approuver l’accès à l’application.
+Ces approbations prend en charge les workflows approbation unique uniquement, ce qui signifie que si vous spécifiez plusieurs approbateurs, tout seul approbateur peut approuver accès toohello application.
 
 ## <a name="next-steps"></a>Étapes suivantes
 [Configuration d’Azure Active Directory pour la gestion de groupe en libre-service](active-directory-accessmanagement-self-service-group-management.md)

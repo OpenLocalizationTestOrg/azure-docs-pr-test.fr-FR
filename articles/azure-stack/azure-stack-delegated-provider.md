@@ -1,6 +1,6 @@
 ---
-title: "Délégation des offres dans Azure Stack | Microsoft Docs"
-description: "Découvrez comment placer d’autres personnes en charge de la création d’offres et de l’inscription des utilisateurs."
+title: aaaDelegating offre une pile de Azure | Documents Microsoft
+description: "Découvrez comment tooput autres personnes en charge de la création d’offres et la signature des utilisateurs pour vous."
 services: azure-stack
 documentationcenter: 
 author: AlfredoPizzirani
@@ -14,130 +14,130 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/25/2017
 ms.author: alfredop
-ms.openlocfilehash: c56c0669cbcd66fe1d7177846e02ba28838c0544
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: d539cac3ed56f342338c830d95fbec7e93175929
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="delegating-offers-in-azure-stack"></a>Délégation des offres dans Azure Stack
 
-En tant qu’opérateur cloud Azure Stack, vous souhaitez souvent placer d’autres personnes en charge de la création d’offres et de l’inscription des utilisateurs. Par exemple, si vous êtes un fournisseur de services et souhaitez que les revendeurs inscrivent les clients et les gèrent à votre place. Cela peut également être le cas dans une entreprise si vous faites partie d’un groupe informatique centralisé et souhaitez que des départements ou des filiales inscrivent les utilisateurs sans votre intervention.
+En tant qu’opérateur de cloud Azure pile hello, il est souvent nécessaire tooput autres personnes en charge de la création d’offres et la signature des utilisateurs pour vous. Par exemple, si vous êtes un fournisseur de services et que vous souhaitez toosign revendeurs des clients et les gérez à votre place. Il peut également se produire dans une entreprise si vous faites partie d’un groupe informatique centralisé et souhaitez que les divisions ou toosign filiales des utilisateurs sans votre intervention.
 
-La délégation vous aide dans ces tâches, ce qui vous permet d’atteindre et de gérer plus d’utilisateurs que vous ne pourriez le faire directement. L’illustration suivante montre un niveau de délégation, mais Azure Stack prend en charge plusieurs niveaux. Les fournisseurs délégués peuvent à leur tour déléguer à d’autres fournisseurs, et ce sur jusqu’à cinq niveaux.
+Délégation contrainte vous aident à effectuer ces tâches, vous aidant à tooreach et gérer plus d’utilisateurs que vous serez en mesure de toodo directement. Hello l’illustration suivante montre un niveau de délégation, mais la pile de Azure prend en charge plusieurs niveaux. Fournisseurs de délégués peuvent déléguer à son tour fournisseurs tooother, les niveaux de toofive.
 
 ![](media/azure-stack-delegated-provider/image1.png)
 
-Les opérateurs cloud Azure Stack peuvent déléguer la création d’offres et de locataires à d’autres utilisateurs à l’aide de la fonctionnalité de délégation.
+Les opérateurs cloud pile Azure peuvent déléguer la création de hello d’utilisateurs de tooother offres et des locataires en utilisant la fonctionnalité de délégation hello.
 
 ## <a name="roles-and-steps-in-delegation"></a>Rôles et étapes de la délégation
-Pour comprendre la délégation, gardez à l’esprit qu’elle comprend trois rôles :
+délégation de toounderstand, n’oubliez pas qu’il existe trois rôles impliqués :
 
-* **L’opérateur cloud** gère l’infrastructure Azure Stack, crée un modèle d’offre et délègue à d’autres la responsabilité de proposer l’offre à leurs utilisateurs.
-* Les administrateurs délégués cloud sont appelés **déléguée fournisseurs**. Ils peuvent appartenir à d’autres organisations (comme d’autres locataires Azure Active Directory).
-* Les **utilisateurs** s’inscrivent aux offres et les utilisent pour gérer leurs charges de travail, la création de machines virtuelles, le stockage des données, etc.
+* Hello **opérateur cloud** gère l’infrastructure de pile de Azure hello, crée un modèle d’offre et délègue à proposer aux utilisateurs de tootheir.
+* Hello cloud déléguée administrateurs sont appelés **déléguée fournisseurs**. Ils peuvent appartenir aux organisations de tooother (par exemple, d’autres clients Azure Active Directory).
+* **Les utilisateurs** s’inscrire pour les offres de hello et de les utiliser pour la gestion de leurs charges de travail, de création de machines virtuelles, le stockage des données, etc..
 
-Comme indiqué dans l’illustration suivante, la configuration de la délégation inclut deux étapes.
+Comme indiqué dans le graphique suivant de hello, il existe deux étapes de configuration de la délégation.
 
-1. **Identifier les fournisseurs délégués** en les abonnant à une offre basée sur un plan qui contient uniquement le service d’abonnements.
-   D’acquérir certaines des fonctionnalités de l’administrateur du cloud, y compris la possibilité d’étendre les offres et de déconnecter des utilisateurs pour les utilisateurs de s’abonner à cette offre.
-2. **Déléguer une offre au fournisseur délégué**, cette offre fonctionne comme un modèle concernant ce que le fournisseur délégué peut offrir. Le fournisseur délégué est désormais en mesure de prendre l’offre, de choisir un nom pour celle-ci (mais pas d’en modifier les services et les quotas) et de la proposer aux clients.
+1. **Identifier les fournisseurs de hello déléguée** par leur abonnement tooan offre basé sur un plan qui contient uniquement les abonnements de hello service.
+   D’acquérir certaines des fonctionnalités de l’administrateur de cloud hello, y compris les offres de tooextend possibilité hello et connecter les utilisateurs pour les utilisateurs de s’abonner toothis offre.
+2. **Délégué un toohello offre déléguée fournisseur**, cette offre fonctionne comme un modèle pour que hello fournisseur déléguée peut offrir. Hello fournisseur délégué est désormais en mesure de tootake hello offre, choisissez un nom (mais pas modifier ses services et les quotas) et elle offre toocustomers.
 
 ![](media/azure-stack-delegated-provider/image2.png)
 
-Pour agir en tant que fournisseurs délégués, les utilisateurs doivent établir une relation avec le fournisseur principal ; en d’autres termes, ils doivent créer un abonnement. Dans ce scénario, cet abonnement identifie les fournisseurs délégués comme ayant le droit de présenter des offres pour le compte du fournisseur principal.
+tooact en tant que fournisseurs de délégués, les utilisateurs doivent tooestablish une relation avec les fournisseur principal hello ; en d’autres termes, ils doivent toocreate un abonnement. Dans ce scénario, cet abonnement identifie les fournisseurs de délégués comme ayant hello droit toopresent offre pour le compte du fournisseur principal de hello.
 
-Une fois que cette relation est établie, l’opérateur cloud peut déléguer une offre au fournisseur délégué. Le fournisseur délégué est désormais en mesure de prendre l’offre, de la renommer (sans en modifier la substance) et de la proposer à ses clients.
+Une fois que cette relation est établie, opérateur de cloud hello peut déléguer à un fournisseur de délégué toohello offre. Hello fournisseur délégué est désormais en mesure de tootake hello offre, renommez-le (mais pas modifier sa substance) et elle offre tooits clients.
 
-Les sections suivantes expliquent comment établir un fournisseur délégué, déléguer une offre et vérifier que les utilisateurs peuvent s’y inscrire.
+Hello les sections suivantes décrire comment les tooestablish un fournisseur de délégués, déléguer une offre et vérifiez que les utilisateurs peuvent souscrire pour celle-ci.
 
 ## <a name="set-up-roles"></a>Configurer les rôles
 
-Pour voir un fournisseur délégué au travail, vous avez besoin de comptes Azure Active Directory supplémentaires en plus de votre compte d’opérateur cloud. Si vous n’en avez pas, créez les deux comptes. Les comptes peuvent appartenir à n’importe quel client AAD. Nous les appelons le fournisseur délégué (DP) et l’utilisateur.
+toosee un fournisseur de délégué au travail, vous avez besoin des comptes Azure Active Directory supplémentaires dans le compte d’opérateur addition tooyour cloud. Si vous ne les avez pas, vous pouvez créer hello deux comptes. les comptes Hello peuvent appartenir client AAD de tooany. Nous nous référons toothem hello délégués fournisseur (DP) et l’utilisateur de hello.
 
 | **Rôle** | **Droits d’organisation** |
 | --- | --- |
 | Fournisseur délégué |Utilisateur |
 | Utilisateur |Utilisateur |
 
-## <a name="identify-the-delegated-providers"></a>Identifier les fournisseurs délégués
+## <a name="identify-hello-delegated-providers"></a>Identifier les fournisseurs de hello déléguée
 1. Connectez-vous en tant qu’opérateur cloud.
-2. Créez l’offre qui permet aux utilisateurs de devenir des fournisseurs délégués. Pour ce faire, vous devez créer un plan et une offre basée sur celui-ci :
+2. Créer une offre de hello qui permet aux fournisseurs de toobecome déléguée aux utilisateurs. Pour ce faire, vous devez créer un plan et une offre basée sur celui-ci :
    
    a.  [Créer un plan](azure-stack-create-plan.md).
-       Ce plan doit inclure uniquement le service d’abonnements. Dans cet article, nous utilisons un plan appelé PlanForDelegation.
+       Ce plan doit inclure seulement le service d’abonnements hello. Dans cet article, nous utilisons un plan appelé PlanForDelegation.
    
    b.  [Créer une offre](azure-stack-create-offer.md) basée sur ce plan. Dans cet article, nous utilisons une offre appelée OfferToDP.
    
-   c.  Une fois la création de l’offre terminée, ajoutez le fournisseur délégué en tant qu’abonné à cette offre en cliquant sur **Abonnements** &gt; **Ajouter** &gt; **Nouvel abonnement client**.
+   c.  Une fois terminée, la création de l’offre de hello hello ajouter fournisseur de délégué hello en tant qu’une offre de toothis abonné en cliquant sur **abonnements** &gt; **ajouter** &gt; **nouveau Abonnement de locataire**.
    
    ![](media/azure-stack-delegated-provider/image3.png)
 
 > [!NOTE]
-> Comme avec toutes les offres Azure Stack, vous avez la possibilité de rendre l’offre publique et de laisser les utilisateurs y souscrire, ou de conserver l’offre comme privée et demander à l’opérateur cloud de gérer l’inscription. Les fournisseurs délégués appartiennent généralement à un petit groupe et vous souhaitez contrôler qui y est admis, donc le fait de conserver cette offre privée est logique dans la plupart des cas.
+> Comme avec toutes les offres Azure pile, vous pouvez hello de fabrication offre de hello public et permettre aux utilisateurs Inscrivez-vous à, ou protéger la confidentialité et ont opérateur cloud de hello gérer hello d’abonnement. Délégué fournisseurs sont généralement un petit groupe et que vous souhaitez toocontrol qui est admis tooit, afin de protéger la confidentialité de cette offre une signification dans la plupart des cas.
 > 
 > 
 
-## <a name="cloud-operator-creates-the-delegated-offer"></a>L’opérateur cloud crée l’offre déléguée
+## <a name="cloud-operator-creates-hello-delegated-offer"></a>Opérateur de cloud crée offre de délégué hello
 
-Vous avez désormais établi votre fournisseur délégué. L’étape suivante consiste à créer le plan et l’offre que vous allez déléguer et que vos clients utiliseront. Vous devez définir cette offre telle que vous souhaitez que les clients la voient, car le fournisseur délégué ne sera pas en mesure d’en modifier les plans et les quotas.
+Vous avez désormais établi votre fournisseur délégué. Hello suivant consiste à créer le plan de hello et offre que vous allez toodelegate, et qui seront utilisés par vos clients. Vous devez définir cette offre exactement comme vous souhaitez que le clients toosee, hello déléguées fournisseur ne sera pas en mesure de modifier les plans de hello et il inclut des quotas.
 
 1. En tant qu’opérateur cloud, [créez un plan](azure-stack-create-plan.md) et [une offre](azure-stack-create-offer.md) basée sur celui-ci. Dans cet article, nous utilisons une offre appelée DelegatedOffer.
    
    > [!NOTE]
-   > Cette offre ne doit pas nécessairement être publique. Elle peut être rendue publique si vous le souhaitez, mais, dans la plupart des cas, vous souhaitez que seuls les fournisseurs délégués y aient accès. Une fois que vous déléguez une offre privée comme décrit dans les étapes suivantes, le fournisseur délégué y a accès.
+   > Cette offre n’a pas de toobe public. Elle peut être rendue publique si vous choisissez, mais, dans la plupart des cas, vous souhaitez seulement déléguée fournisseurs toohave accès tooit. Une fois que vous déléguez une offre privée comme décrit dans hello comme suit, fournisseur de délégué hello a accès tooit.
    > 
    > 
-1. Déléguez l’offre. Accédez à DelegatedOffer et, dans le volet Paramètres, cliquez sur **Fournisseurs délégués** &gt; **Ajouter**.
-2. Sélectionnez l’abonnement du fournisseur délégué dans la zone de liste déroulante et cliquez sur **Déléguer**.
+1. Offre de hello de délégué. Accédez tooDelegatedOffer et dans le volet de paramètres hello, cliquez sur **fournisseurs de délégué** &gt; **ajouter**.
+2. Sélectionnez l’abonnement du fournisseur hello délégué à partir de la zone de liste déroulante hello et cliquez sur **délégué**.
 
 > ![](media/azure-stack-delegated-provider/image4.png)
 > 
 > 
 
-## <a name="delegated-provider-customizes-the-offer"></a>Le fournisseur délégué personnalise l’offre
+## <a name="delegated-provider-customizes-hello-offer"></a>Délégué de fournisseur personnalise offre de hello
 
-Connectez-vous au **portail du locataire** en tant que fournisseur délégué et créez une offre en utilisant l’offre déléguée comme modèle.
+Connectez-vous à toohello **portail locataire** comme hello déléguée au fournisseur et créer une offre à l’aide d’offre de délégué hello en tant que modèle.
 
 1. Cliquez sur **Nouveau** &gt; **Offres + Plans clients** &gt; **Offre**.
 
     ![](media/azure-stack-delegated-provider/image5.png)
 
 
-1. Attribuez un nom à l’offre. Ici, nous avons choisi le nom ResellerOffer. Sélectionnez l’offre déléguée sur laquelle baser cette offre, puis cliquez sur **Créer**.
+1. Affecter une offre de toohello de nom. Ici, nous avons choisi le nom ResellerOffer. Sélectionnez hello déléguée offre toobase sur, puis cliquez sur **créer**.
    
    ![](media/azure-stack-delegated-provider/image6.png)
 
     >[!NOTE] 
-    > Notez la différence par rapport à la création d’offre telle qu’elle est vécue par l’opérateur cloud. Le fournisseur délégué ne construit pas l’offre à partir de plans de base et de plans d’extension ; il ne peut choisir que parmi des offres qui lui ont été déléguées et ne peut pas apporter des modifications à ces offres.
+    > Remarque hello différence par rapport à la création de toooffer comme rencontrés par l’opérateur de cloud hello. fournisseur de délégué Hello n’en construit pas offre hello à partir de plans de base et les plans de module complémentaire ; ils peuvent uniquement choisir à partir des offres qui ont été déléguée toothem et ne peut pas apporter des modifications toothose offres.
 
-1. Rendez l’offre publique en cliquant sur **Parcourir** &gt; **Offres**, en sélectionnant l’offre et en cliquant sur **Modifier l’état**.
-2. Le fournisseur délégué expose ces offres via l’URL de son propre portail. Ces offres sont visibles uniquement via le portail délégué. Pour rechercher et modifier cette URL :
+1. Rendre hello offrent public en cliquant sur **Parcourir** &gt; **offre**, en sélectionnant l’offre de hello et en cliquant sur **changement d’état**.
+2. Hello déléguée fournisseur expose ces offres via le portail de leur propre URL. Ces offres sont visibles uniquement via le portail de hello déléguée. toofind et modifier cette URL :
    
-    a.  Cliquez sur **Parcourir**&gt; **Plus de services**&gt; **Abonnements**&gt; Sélectionnez l’abonnement du fournisseur délégué, dans notre cas il s’agit de *DPSubscription*&gt; **Propriétés**.
+    a.  Cliquez sur **Parcourir** &gt; **davantage de services** &gt; **abonnements** &gt; hello sélectionnez déléguée d’abonnement du fournisseur, dans le cas présent son *DPSubscription* &gt; **propriétés**.
    
-    b.  Copiez l’URL du portail vers un autre emplacement, comme le Bloc-notes.
+    b.  Copiez hello portail URL tooa emplacement distinct, tel que le bloc-notes.
    
     ![](media/azure-stack-delegated-provider/dpportaluri.png)  
    
-   Vous avez maintenant terminé la création d’une offre déléguée en tant que fournisseur délégué. Déconnectez-vous en tant que fournisseur délégué. Fermez l’onglet de navigateur que vous avez utilisé.
+   Vous avez maintenant terminé la création de hello d’une offre de délégué en tant que délégué fournisseur. Se déconnecter comme hello fournisseur déléguée. Fermer un onglet de navigateur hello que vous avez utilisé.
 
-## <a name="sign-up-for-the-offer"></a>S’inscrire à l’offre
-1. Dans une nouvelle fenêtre de navigateur, accédez à l’URL du portail délégué que vous avez enregistrée à l’étape précédente. Connectez-vous au portail en tant qu’utilisateur. Remarque : utilisez le portail délégué pour cette étape. Sinon, l’offre déléguée ne s’affiche pas.
-2. Dans le tableau de bord, cliquez sur **Prendre un abonnement**. Vous verrez que seules les offres déléguées créés par le fournisseur délégué sont présentées à l’utilisateur :
+## <a name="sign-up-for-hello-offer"></a>S’inscrire pour l’offre de hello
+1. Dans une nouvelle fenêtre de navigateur, accédez au portail de délégué toohello URL que vous avez enregistré à l’étape précédente de hello. Connectez-vous toohello portail en tant qu’utilisateur. Remarque : Hello d’utilisation déléguée portail pour cette étape. offre de délégué Hello ne sont pas visibles dans le cas contraire.
+2. Dans le tableau de bord hello, cliquez sur **obtenir un abonnement**. Vous verrez qu’offre hello déléguée uniquement créé par le fournisseur de hello délégué est présentées toohello utilisateur :
 
 > ![](media/azure-stack-delegated-provider/image8.png)
 > 
 > 
 
-Ceci conclut le processus de délégation de l’offre. L’utilisateur peut désormais s’inscrire à cette offre en prenant un abonnement à celle-ci.
+Ceci conclut le processus hello de délégation de l’offre. utilisateur de Hello peut désormais s’inscrire pour cette offre en obtenant un abonnement pour celle-ci.
 
 ## <a name="multiple-tier-delegation"></a>Délégation à plusieurs niveaux
 
-La délégation à plusieurs niveaux permet au fournisseur délégué de déléguer l’offre à d’autres entités. Cela permet, par exemple, la création de réseaux de revendeurs plus approfondis, dans lesquels le fournisseur qui gère Azure Stack délègue une offre à un distributeur, qui à son tour délègue au revendeur.
-Azure Stack prend en charge jusqu’à cinq niveaux de délégation.
+Délégation contrainte à plusieurs niveaux permet hello déléguée fournisseur toodelegate les entités de tooother offre. Ainsi, par exemple, la création de revendeurs plus approfondies, dans lequel hello fournisseur de gestion Azure pile délègue un distributeur de tooa offre, qui à son tour délègue tooreseller hello.
+Pile Azure prend en charge les niveaux de toofive de délégation.
 
-Pour créer plusieurs niveaux de délégation de l’offre, le fournisseur délégué délègue à son tour l’offre au fournisseur suivant. Le processus pour le fournisseur délégué est similaire à celui pour l’opérateur cloud (consultez [L’opérateur cloud crée l’offre déléguée](#cloud-operator-creates-the-delegated-offer)).
+toocreate plusieurs couches offrent la délégation, fournisseur de délégué hello délègue à son tour fournisseur suivant du toohello offre hello. processus de Hello est hello même pour le fournisseur de délégué hello telle qu’elle était pour l’opérateur de cloud hello (consultez [opérateur Cloud crée offre de délégué hello](#cloud-operator-creates-the-delegated-offer)).
 
 ## <a name="next-steps"></a>Étapes suivantes
 [Approvisionner une machine virtuelle](azure-stack-provision-vm.md)

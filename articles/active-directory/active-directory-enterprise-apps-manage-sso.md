@@ -1,6 +1,6 @@
 ---
-title: "Gestion de l’authentification unique pour les applications d’entreprise dans Azure Active Directory | Microsoft Docs"
-description: "Découvrez comment gérer l’authentification unique pour les applications d’entreprise à l’aide de la version préliminaire d’Azure Active Directory"
+title: "gestion de session aaaSingle pour les applications d’entreprise Bonjour Azure Active Directory | Documents Microsoft"
+description: "Découvrez comment toomanage l’authentification unique pour les applications d’entreprise à l’aide de hello Azure Active Directory"
 services: active-directory
 documentationcenter: 
 author: asmalser
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 07/26/2017
 ms.author: asmalser
-ms.openlocfilehash: c975428550690254ba989935fe5110c5903e7102
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: b0a8e622ab10517b7b69f786406b6e9b9f2e7eaa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="managing-single-sign-on-for-enterprise-apps"></a>Gestion de l’authentification unique pour les applications d’entreprise
 > [!div class="op_single_selector"]
@@ -26,72 +26,72 @@ ms.lasthandoff: 08/03/2017
 > * [portail Azure Classic](active-directory-sso-integrate-saas-apps.md)
 > 
 
-Cet article explique comment utiliser le [portail Azure](https://portal.azure.com) pour gérer les paramètres d’authentification uniques pour les applications d’entreprise. Les applications d’entreprise sont des applications qui sont déployées et utilisées au sein de votre organisation. Cet article s’applique particulièrement aux applications qui ont été ajoutées à partir de la [Galerie d’applications Azure Active Directory](active-directory-appssoaccess-whatis.md#get-started-with-the-azure-ad-application-gallery). 
+Cet article décrit comment toouse hello [portail Azure](https://portal.azure.com) toomanage unique paramètres d’authentification pour les applications d’entreprise. Les applications d’entreprise sont des applications qui sont déployées et utilisées au sein de votre organisation. Cet article s’applique en particulier les tooapps qui ont été ajoutés à partir de hello [Galerie d’applications Azure Active Directory](active-directory-appssoaccess-whatis.md#get-started-with-the-azure-ad-application-gallery). 
 
-## <a name="finding-your-apps-in-the-portal"></a>Recherche de vos applications dans le portail
-Vous pouvez afficher et gérer toutes les applications d’entreprise qui sont configurées pour l’authentification unique dans le portail Azure. Les applications se trouvent dans la section **Plus de services** &gt; **Applications d’entreprise** du portail. 
+## <a name="finding-your-apps-in-hello-portal"></a>Recherche de vos applications dans le portail de hello
+Toutes les applications d’entreprise qui sont configurées pour l’authentification unique peuvent être affichées et gérées dans hello portail Azure. Vous trouverez les applications Hello Bonjour **plus Services** &gt; **des Applications d’entreprise** section du portail de hello. 
 
 ![Panneau Applications d’entreprise][1]
 
-Sélectionnez **toutes les applications** pour afficher une liste de toutes les applications qui ont été configurées. La sélection d’une application charge le panneau de ressources de cette application, où vous pouvez consulter des rapports pour cette application et gérer un large éventail de paramètres.
+Sélectionnez **toutes les applications** tooview une liste de toutes les applications qui ont été configurés. La sélection d’une application charge panneau des ressources hello pour cette application, où les rapports peuvent être affichés pour cette application et divers paramètres peuvent être gérés.
 
-Pour gérer les paramètres d’authentification unique, sélectionnez **Authentification unique**.
+toomanage unique paramètres d’authentification, sélectionnez **l’authentification unique**.
 
 ![Panneau de ressources d’application][2]
 
 ## <a name="single-sign-on-modes"></a>Modes d’authentification unique
-Le panneau **Authentification unique** commence par un menu **Mode**, qui permet de configurer le mode d’authentification. Les options disponibles incluent :
+Hello **l’authentification unique** panneau commence par un **Mode** menu, ce qui permet de hello toobe de mode d’authentification unique configurée. les options disponibles Hello sont les suivantes :
 
-* **SAML-based sign on** (Authentification basée sur SAML) : cette option est disponible si l’application prend en charge l’authentification unique fédérée complète avec Azure Active Directory à l’aide du protocole SAML 2.0.
+* **L’authentification basée sur les SAML** -cette option est disponible si l’application hello prend en charge complète unique authentification fédérée avec Azure Active Directory à l’aide du protocole de hello SAML 2.0.
 * **Password-based sign on** (Authentification par mot de passe) : cette option est disponible si Azure AD prend en charge le remplissage de formulaire de mot de passe pour cette application.
-* **Linked sign on** (Authentification liée) : précédemment appelée Authentification unique existante, cette option permet aux administrateurs de placer un lien vers cette application dans le panneau d’accès Azure AD ou le lanceur d’applications Office 365 de leurs utilisateurs.
+* **Lié signe sur** -anciennement « Existant single sign-on », cette option permet aux administrateurs tooplace une application toothis de lien dans le Lanceur d’applications de leur utilisateur du panneau d’accès Azure AD ou Office 365.
 
 Pour plus d’informations sur ces modes, voir [Fonctionnement de l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md#how-does-single-sign-on-with-azure-active-directory-work).
 
 ## <a name="saml-based-sign-on"></a>Authentification basée sur SAML
-L’option **Authentification basée sur SAML** affiche un panneau divisé en quatre sections :
+Hello **basé sur SAML authentification** option affiche un panneau est divisé en quatre sections :
 
 ### <a name="domains-and-urls"></a>Domains and URLs (Domaines et URL)
-C’est là que toutes les informations concernant le domaine et les URL de l’application doivent être ajoutées à votre annuaire Azure AD. Toutes les entrées requises pour que l’authentification unique fonctionne sont affichées directement dans l’écran, tandis que toutes les entrées facultatives peuvent être affichées en sélectionnant la case à cocher **Show advanced URL settings** (Afficher les paramètres d’URL avancés). La liste complète des entrées prises en charge inclut :
+Il s’agit où tous les détails sur le domaine de l’application hello et URL sont ajoutées tooyour Windows Azure AD. Toutes les entrées requises toomake travail de l’authentification unique app s’affichent directement sur l’écran hello, tandis que toutes les entrées facultatives peuvent être affichées en sélectionnant hello **afficher les paramètres d’URL avancés** case à cocher. la liste complète des entrées prises en charge Hello inclut :
 
-* **URL d’authentification** : adresse où l’utilisateur se connecte à cette application. Si l’application est configurée pour effectuer une authentification unique initiée par le fournisseur de services, lorsque l’utilisateur accède à cette URL, le fournisseur de services effectue la redirection nécessaire vers Azure AD pour authentifier et connecter l’utilisateur. Si ce champ est renseigné, Azure AD utilise cette URL pour lancer l’application à partir d’Office 365 et du panneau d’accès Azure AD. Si ce champ est omis, Azure AD effectue une authentification initiée par le fournisseur d’identité lorsque l’application est lancée à partir d’Office 365, du panneau d’accès Azure AD ou à partir de l’URL de connexion unique d’Azure AD.
-* **Identificateur** : cet URI doit identifier de façon unique l’application pour laquelle l’authentification unique est configurée. Il s’agit de la valeur qu’Azure AD renvoie à l’application en tant que paramètre Audience du jeton SAML. L’application doit la valider. Cette valeur apparaît également en tant qu’ID d’entité dans les métadonnées SAML fournies par l’application.
-* **URL de réponse** : l’URL de réponse est là où l’application attend le jeton SAML. Elle est aussi appelée URL ACS (Assertion Consumer Service). Une fois ces entrées effectuées, cliquez sur Suivant pour passer à l’écran suivant. Cet écran fournit des informations sur ce qui doit être configuré dans l'application pour lui permettre d'accepter un jeton SAML à partir d'Azure AD.
-* **Relay State** (État du relais) : l’état du relais est un paramètre facultatif permettant d’indiquer à l’application où rediriger l’utilisateur une fois l’authentification terminée. En général, la valeur est une URL valide au niveau de l’application. Cependant, certaines applications utilisent ce champ différemment (voir la documentation relative à l’authentification unique de l’application pour plus d’informations). La possibilité de définir l’état du relais est une nouvelle fonctionnalité disponible uniquement dans le nouveau portail Azure.
+* **URL de connexion** – où l’utilisateur de hello accède dans toosign toothis application. Si application hello est service configuré tooperform unique initiée par le fournisseur de session, lorsqu’un utilisateur navigue toothis URL, le fournisseur de services hello hello nécessaire signe et la redirection tooAzure AD tooauthenticate hello utilisateur dans. Si ce champ est renseigné, Azure AD utilisera cette application de hello toolaunch URL à partir d’Office 365 et hello panneau d’accès Azure AD. Si ce champ est omis, Azure AD effectue à la place le fournisseur d’identité-authentification lorsque hello application est lancée à partir d’Office 365, hello panneau d’accès Azure AD, ou à partir de hello Azure AD unique initiée par l’authentification URL.
+* **Identificateur** -cet URI doit identifier de façon unique application hello pour le simple ouverture de session est configurée. Valeur hello que Azure AD envoie tooapplication arrière comme hello paramètre Audience du jeton SAML de hello et application hello est attendu toovalidate il. Cette valeur apparaît également comme hello ID d’entité dans les métadonnées SAML fournie par l’application hello.
+* **URL de réponse** -URL de réponse hello est alors application hello attend le jeton SAML de hello tooreceive. C’est également référencé tooas hello Service ACS (Assertion Consumer) URL. Une fois que ceux-ci ont été entrées, cliquez sur Suivant tooproceed toohello prochain écran. Cet écran fournit des informations sur le besoins de toobe configuré sur tooenable de côté application hello tooaccept un jeton SAML à partir d’Azure AD.
+* **État du relais** -état du relais hello est un paramètre optionnel qui peut aider à savoir application hello où tooredirect hello utilisateur une fois l’authentification est terminée. En général, la valeur de hello est une URL valide au niveau de l’application hello, toutefois, certaines applications utilisent ce champ différemment (voir l’authentification unique de l’application hello sur la documentation pour plus d’informations). état du relais Hello capacité tooset hello est une nouvelle fonctionnalité qui est unique toohello de nouveau portail Azure.
 
 ### <a name="user-attributes"></a>Attributs utilisateur
-C’est là que les administrateurs peuvent afficher et modifier les attributs envoyés dans le jeton SAML émis par Azure AD pour l’application chaque fois qu’un utilisateur se connecte.
+Il s’agit où administrateurs peuvent afficher et modifier les attributs de hello sont envoyés dans le jeton SAML de hello Azure AD émet toohello application chaque fois qu’ils se connecter.
 
-Le seul attribut modifiable pris en charge est l’attribut **Identificateur d’utilisateur**. La valeur de cet attribut correspond au champ d’Azure AD qui identifie de façon unique chaque utilisateur au sein de l’application. Par exemple, si l’application a été déployée en utilisant l’adresse de messagerie comme nom d’utilisateur et identificateur unique, la valeur est définie sur le champ « user.mail » d’Azure AD.
+Hello uniquement l’attribut modifiable pris en charge est hello **identificateur de l’utilisateur** attribut. valeur Hello de cet attribut est un champ de hello dans Azure AD, qui identifie de façon unique chaque utilisateur au sein de l’application hello. Par exemple, si l’application hello a été déployée à l’aide de hello « adresse de messagerie » comme nom d’utilisateur hello et un identificateur unique, puis hello serait être valeur toohello « user.mail » champ dans Azure AD.
 
 ### <a name="saml-signing-certificate"></a>Certificat de signature SAML
-Cette section affiche les détails du certificat utilisé par Azure AD pour signer les jetons SAML émis pour l’application chaque fois que l’utilisateur s’authentifie. Elle permet d’inspecter les propriétés du certificat actuel, notamment sa date d’expiration.
+Cette section affiche les détails de hello du certificat hello que Azure AD utilise les jetons SAML toosign hello émis application toohello que chaque utilisateur hello s’authentifie. Il permet de propriétés hello de hello actuel certificat toobe inspecté, y compris la date d’expiration de hello.
 
 ### <a name="application-configuration"></a>Configuration de l’application
-La dernière section fournit la documentation ou les contrôles requis pour configurer l’application de manière à utiliser Azure Active Directory comme fournisseur d’identité.
+Hello finale présente documentation de hello et/ou les contrôles requis tooconfigure hello application toouse Azure Active Directory comme fournisseur d’identité.
 
-Le menu volant **Configurer l’application** propose de nouvelles instructions incorporées concises pour la configuration de l’application. Il s’agit d’une autre nouvelle fonctionnalité disponible uniquement dans le nouveau portail Azure.
+Hello **configurer l’Application** menu volant fournit les nouvelles instructions concises, incorporées pour la configuration d’application hello. Il s’agit d’une autre nouvelle fonctionnalité unique toohello nouveau portail Azure.
 
 > [!NOTE]
-> Pour obtenir un exemple complet de documentation incorporée, voir l’application Salesforce.com. De la documentation est ajoutée en continu pour d’autres applications.
+> Pour obtenir un exemple complet de documentation incorporée, consultez application de Salesforce.com hello. De la documentation est ajoutée en continu pour d’autres applications.
 > 
 > 
 
 ![Documents incorporés][3]
 
 ## <a name="password-based-sign-on"></a>Password-based sign on
-Si l’application le prend en charge, la sélection du mode d’authentification unique par mot de passe et du bouton **Enregistrer** configure instantanément ce type d’authentification pour l’application. Pour plus d’informations sur le déploiement de l’authentification unique par mot de passe, voir [Fonctionnement de l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md#how-does-single-sign-on-with-azure-active-directory-work).
+Si l’application hello prises en charge, en sélectionnant hello basée sur mot de passe en mode d’authentification unique et en sélectionnant **enregistrer** instantanément configure toodo mot de passe de l’authentification unique. Pour plus d’informations sur le déploiement de l’authentification unique par mot de passe, voir [Fonctionnement de l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md#how-does-single-sign-on-with-azure-active-directory-work).
 
 ![Password-based sign on][4]
 
 ## <a name="linked-sign-on"></a>Linked sign on
-Si l’application le prend en charge, la sélection du mode d’authentification unique lié vous permet d’entrer l’URL de redirection à utiliser par le panneau d’accès Azure AD ou Office 365 lorsqu’un utilisateur clique sur cette application. Pour plus d’informations sur l’authentification unique liée (précédemment appelée Authentification unique existante), voir [Fonctionnement de l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md#how-does-single-sign-on-with-azure-active-directory-work).
+Si l’application hello prises en charge, en sélectionnant le mode d’authentification unique hello lié vous permet de tooenter hello URL hello panneau d’accès Azure AD ou Office 365 tooredirect toowhen utilisateurs cliquez sur cette application. Pour plus d’informations sur l’authentification unique liée (précédemment appelée Authentification unique existante), voir [Fonctionnement de l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md#how-does-single-sign-on-with-azure-active-directory-work).
 
 ![Authentification liée][5]
 
 ##<a name="feedback"></a>Commentaires
 
-Nous espérons que vous appréciez votre expérience d’Azure AD améliorée. Continuez à nous faire part de vos commentaires. Publiez vos commentaires et vos idées d’amélioration dans la section du **portail Admin** de notre [forum de commentaires](https://feedback.azure.com/forums/169401-azure-active-directory/category/162510-admin-portal).  Nous sommes très heureux de créer chaque jour des nouveautés et de pouvoir bénéficier de vos commentaires pour concevoir et définir de nouvelles créations.
+Nous espérons que vous le souhaitez à l’aide de hello amélioration de l’expérience d’Azure AD. Gardez les commentaires hello à venir ! Valider des idées pour améliorer et vos commentaires Bonjour **portail d’administration** section de notre [forum de commentaires](https://feedback.azure.com/forums/169401-azure-active-directory/category/162510-admin-portal).  Nous sommes très heureux sur la création de tous les jours, nouveautés et utiliser votre tooshape des conseils et définir ce que nous créons ensuite.
 
 [1]: ./media/active-directory-enterprise-apps-manage-sso/enterprise-apps-blade.PNG
 [2]: ./media/active-directory-enterprise-apps-manage-sso/enterprise-apps-sso-blade.PNG

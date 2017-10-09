@@ -1,5 +1,5 @@
 ---
-title: "Stratégies de rétention des rapports Azure Active Directory | Microsoft Docs"
+title: "stratégies de rétention de rapport Active Directory aaaAzure | Documents Microsoft"
 description: "Stratégies de rétention des données de rapport dans Azure Active Directory"
 services: active-directory
 documentationcenter: 
@@ -15,42 +15,42 @@ ms.workload: identity
 ms.date: 07/05/2017
 ms.author: dhanyahk;markvi
 ms.reviewer: dhanyahk
-ms.openlocfilehash: ffeba8a6c32a21c75af21f948bbd6ea88dd9278c
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: c46a68198cb34e9c92662b2f8461010745392c04
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-active-directory-report-retention-policies"></a>Stratégies de rétention des rapports Azure Active Directory
 
 
-Cette rubrique fournit des réponses aux questions plus courantes en rapport avec la conservation des données pour les différents rapports d’activité dans Azure Active Directory. 
+Cette rubrique fournit des réponses toohello des questions courantes conjointement avec conservation des données hello pour les rapports d’activité différente hello dans Azure Active Directory. 
 
-**Q : Comment obtenir la collecte des données des activités démarrée ?**
+**Q : comment obtenir collection hello de données d’activité a démarré ?**
 
 **R :**
 
 | Édition d’Azure AD | Début de la collection |
 | :--              | :--   |
 | Azure AD Premium P1 <br /> Azure AD Premium P2 | Lorsque vous vous inscrivez pour un abonnement |
-| Azure AD Gratuit | La première fois que vous ouvrez le [panneau Azure Active Directory](https://ms.portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/Overview) ou utilisez les [API de création de rapports](https://aka.ms/aadreports)  |
+| Azure AD Gratuit | Hello la première fois que vous ouvrez hello [panneau d’Azure Active Directory](https://ms.portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/Overview) ou utilisez hello [API de création de rapports](https://aka.ms/aadreports)  |
 
 ---
-**Q: Quand vos données d’activité sont-elles disponibles dans le portail Azure ?**
+**Q : quand vos données d’activité est disponible dans hello portail Azure ?**
 
 **R :**
 
-- **Immédiatement** : si vous avez déjà travaillé avec des rapports dans le portail Azure Classic
-- **Dans les 2 heures** : si vous n’avez pas encore activé la création de rapports dans le portail Azure Classic
+- **Immédiatement** : Si vous avez déjà travaillé avec des rapports Bonjour portail Azure classic
+- **Dans les 2 heures** : Si vous n’avez pas activé la création de rapports Bonjour portail Azure classic
 
 ---
-**Q : Comment obtenir la collecte des signaux de sécurité démarrée ?**  
+**Q : comment obtenir collection hello de signaux de sécurité a démarré ?**  
 
-**R :** Pour les signaux de sécurité, le processus de collecte démarre quand vous choisissez d’utiliser Identity Protection Center. 
+**R :** pour les signaux de sécurité, le processus de collecte hello démarre lorsque vous choisissez de participer toouse hello identité Protection Center. 
 
 
 ---
-**Q : Pendant combien de temps les données collectées sont-elles stockées ?**
+**Q : combien de temps est hello stockées les données collectées ?**
 
 **R :**
 

@@ -1,6 +1,6 @@
 ---
-title: "Propriétés du rôle Azure"
-description: "Découvrez comment utiliser la boîte à outils Azure pour Eclipse pour configurer les paramètres de rôle Azure."
+title: "Propriétés du rôle d’aaaAzure"
+description: "Découvrez comment toouse hello boîte à outils Azure pour les paramètres de rôle Azure tooconfigure Eclipse."
 services: 
 documentationcenter: java
 author: rmcmurray
@@ -14,23 +14,23 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 04/14/2017
 ms.author: robmcm
-ms.openlocfilehash: cd734c64ba6d1394cb261bace92dee9dd579dd08
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d111b4b9e4f12e49f38755bf6c9acc1a1de17a50
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-role-properties"></a>Propriétés du rôle Azure
-Vous avez la possibilité de définir différents paramètres de configuration pour votre rôle Azure dans la boîte à outils Azure pour Eclipse.
+Peuvent être définir divers paramètres de configuration pour votre rôle Azure hello boîte à outils Azure pour Eclipse.
 
 ## <a name="configuring-azure-role-properties"></a>Configuration des propriétés de rôle Azure
-La configuration des propriétés de votre rôle Azure s’effectue via les boîtes de dialogue de propriété du rôle de travail. Ouvrez le menu contextuel correspondant au rôle dans le volet de l’Explorateur de projets Eclipse, puis sélectionnez le sous-menu **Azure** . (Si le rôle n’apparaît pas dans l’Explorateur de projets Eclipse, développez votre projet dans l’Explorateur de projets Microsoft Azure).
+Configuration des propriétés de votre rôle Azure s’effectue via les boîtes de dialogue propriété hello pour votre rôle de travail. Menu contextuel Ouvrir hello rôle de hello dans le volet de l’Explorateur de projets d’Eclipse et les sélectionner hello **Azure** sous-menu. (Si vous ne voyez pas rôle hello Bonjour Explorateur de projets Eclipse, développez votre projet Azure dans l’Explorateur de projets.)
 
 ![][ic789599]
 
-Les différentes propriétés qui peuvent être définies à partir des boîtes de dialogue **Propriétés** sont décrites dans cette rubrique. Notez que de nombreuses propriétés sont renseignées automatiquement lorsque vous créez un projet de déploiement Azure.
+Hello diverses propriétés qui peuvent être définies à partir de hello **propriétés** les boîtes de dialogue sont décrites dans cette rubrique. Notez que de nombreuses propriétés sont renseignées automatiquement lorsque vous créez un projet de déploiement Azure.
 
-Les rôles Azure proposent les pages de propriétés qui suivent.
+Hello suivant des pages de propriétés est disponible pour les rôles Azure.
 
 * [Propriétés de machine virtuelle](#virtual_machine_properties)
 * [Propriétés de mise en cache](#caching_properties)
@@ -47,137 +47,137 @@ Les rôles Azure proposent les pages de propriétés qui suivent.
 <a name="virtual_machine_properties"></a>
 
 ### <a name="virtual-machine-properties"></a>Propriétés de machine virtuelle
-Ouvrez le menu contextuel correspondant au rôle dans le volet de l’Explorateur de projets Eclipse, cliquez sur **Azure**, puis sur **Propriétés**. Vous aurez alors la possibilité de modifier la taille de la machine virtuelle, mais également le nombre d’instances, comme illustré dans l’image suivante.
+Ouvrez le menu contextuel hello rôle de hello dans le volet Explorateur de projets d’Eclipse, cliquez sur **Azure**, puis cliquez sur **propriétés**, et vous avez taille de machine virtuelle hello capacité toochange hello et également modifier nombre de Hello d’instances, comme indiqué dans hello suivant l’image.
 
 ![][ic719499]
 
 > [!NOTE]
-> Windows uniquement : lorsque vous définissez le nombre d’instances sur une valeur supérieure à 1 et configurez également un serveur d’applications, la boîte à outils permet à une seule instance de rôle de s’exécuter dans l’émulateur, indépendamment de ce paramètre. Il s’agit d’éviter les conflits de liaisons de port entre les différentes instances de serveur (par exemple, que toutes essaient d’établir une liaison avec le port 8080) lorsqu’elles s’exécutent sur le même ordinateur. Le paramètre de nombre d’instances souhaité est conservé, mais ne prend effet qu’au moment du déploiement sur le cloud.
+> Windows uniquement : lorsque vous définissez hello nombre d’instances tooa valeur supérieure à 1 et que vous configurez également un serveur d’applications, hello toolkit permet uniquement 1 toorun d’instance de rôle dans l’émulateur hello, indépendamment de ce paramètre. Il s’agit des conflits de liaison de port tooavoid entre hello différentes instances de serveur (par exemple, tous les lors de la tentative toobind tooport 8080) lorsqu’ils s’exécutent sur hello même ordinateur. Définir le nombre d’instances de souhaitée est conservé, mais il prend effet uniquement lorsque vous déployez toohello cloud.
 > 
 > 
 
 <a name="caching_properties"></a> 
 
 ### <a name="caching-properties"></a>Propriétés de mise en cache
-Ouvrez le menu contextuel du rôle dans le volet Explorateur de projets Eclipse, cliquez sur **Azure**, puis sur **Mise en cache**. Dans cette boîte de dialogue, vous pouvez activer les mises en cache colocalisées nommées compatibles  memcache, ce qui vous permet d’accélérer l’exécution de vos applications web.
+Ouvrez le menu contextuel hello rôle de hello dans le volet Explorateur de projets d’Eclipse, cliquez sur **Azure**, puis cliquez sur **mise en cache**. Cette boîte de dialogue, vous pouvez activer des caches compatible avec memcache colocalisés nommés, ce qui permet de vitesse de toohelp vos applications web.
 
 ![][ic719483]
 
-Dans la page de propriété **Mise en cache** , vous pouvez spécifier des paramètres globaux des éléments suivants :
+Au sein de hello **mise en cache** page de propriétés, vous pouvez spécifier les paramètres globaux pour hello suivant :
 
 * indique si la mise en cache colocalisée est activée ou non.
-* taille du cache sous forme de pourcentage de mémoire.
-* nom du compte de stockage pour l’enregistrement de l’état de la mise en cache lorsque votre application s’exécute en tant que service cloud, ou aucun, si vous ne souhaitez pas enregistrer l’état de la mise en cache. (Le nom de compte de stockage n’est pas utilisé lorsque vous exécutez votre application dans l’émulateur de calcul.) Si vous attribuez au nom de compte de stockage la valeur **(auto)** (la valeur par défaut), votre configuration de mise en cache utilise automatiquement le compte de stockage que vous sélectionnez dans la boîte de dialogue **Publier sur Azure**.
+* taille du cache de Hello sous forme de pourcentage de mémoire.
+* nom du compte de stockage Hello pour enregistrer l’état du cache hello lorsque votre application s’exécute comme un service cloud, ou aucun si vous ne souhaitez pas l’état de cache toosave hello. (nom de compte de stockage hello n’est pas utilisé lorsque vous exécutez votre application dans l’émulateur de calcul hello.) Si vous définissez les nom de compte de stockage hello trop**(auto)** (qui est par défaut de hello), votre configuration de mise en cache utilise automatiquement hello même compte de stockage que celui que vous sélectionnez Bonjour hello **publier tooAzure**boîte de dialogue.
 
 > [!NOTE]
-> Le paramètre **(auto)** aura l’effet souhaité uniquement si vous publiez votre déploiement en utilisant la boîte à outils Eclipse de l’assistant Publication. Dans le cas contraire, si vous publiez le fichier .cspkg manuellement en utilisant un mécanisme externe tel que le [portail de gestion][Azure Management Portal], le déploiement ne fonctionne pas correctement.
+> Hello **(auto)** paramètre aura d’effet hello ne souhaité que si vous publiez votre déploiement à l’aide de hello boîte à outils Eclipse Assistant de publication. Si à la place vous publiez le fichier .cspkg de hello manuellement à l’aide d’un mécanisme externe, par exemple hello [portail de gestion Azure][Azure Management Portal], déploiement de hello ne fonctionnera pas correctement.
 > 
 > 
 
-La boîte de dialogue suivante présente les propriétés d’une mémoire cache.
+Hello suivant la boîte de dialogue affiche les propriétés de hello pour un cache.
 
 ![][ic719501]
 
-* **Nom :** nom de la mise en cache colocalisée.
-* **Numéro de port :** numéro de port à utiliser pour la mise en cache.
-* **Stratégie d’expiration :** une des valeurs qui suivent indique le moment où clé de mise en cache expire.
-  * **Absolu :** la clé expire lorsque le délai spécifié par **Minutes de validité** est atteint.
-  * **N’expire jamais :** la clé n’a pas de date d’expiration.
-  * **Fenêtre coulissante :** la clé expire si aucun accès n’a duré le temps spécifié dans **Minutes de validité** ; à chaque accès, l’heure d’expiration est réinitialisée.
-* **Minutes de validité :** nombre maximal de minutes de validité d’une clé, en fonction de la stratégie d’expiration.
-* **Haute disponibilité avec sauvegardes répliquées sur des instances de rôle différentes :** si cette option est activée, elle offre la haute disponibilité en utilisant des sauvegardes répliquées sur différentes instances de rôle. Notez qu’au moins deux instances de rôles doivent fonctionner pour que le déploiement de cette fonctionnalité fonctionne.
+* **Nom :** nom hello Hello colocalisés du cache.
+* **Numéro de port :** hello toouse numéro de port pour le cache de hello.
+* **Stratégie d’expiration :** d'entre hello valeurs suivantes qui spécifie quand une clé dans le cache de hello expire.
+  * **Absolue :** clé de hello expire lorsque hello délai spécifié par **Minutes toolive** est atteinte.
+  * **N’expire jamais :** clé de hello n’a pas de délai d’expiration.
+  * **Fenêtre défilante :** clé de hello expire si elle n’a pas été accédé pour la quantité de hello de temps spécifié par **Minutes toolive**; chaque fois qu’il est accessible, réinitialisation de l’horloge d’expiration hello.
+* **Minutes toolive :** nombre maximal de minutes de vie d’une clé toolive, toohello d’expiration de l’objet.
+* **Haute disponibilité avec sauvegardes répliquées sur des instances de rôle différentes :** si cette option est activée, elle offre la haute disponibilité en utilisant des sauvegardes répliquées sur différentes instances de rôle. Notez qu’au moins deux instances de rôle doit être en vigueur pour votre déploiement pour toowork de cette fonctionnalité.
 
-Pour ajouter un nouveau cache, cliquez sur le bouton **Ajouter** situé dans la page de propriété **Mise en cache**, et une boîte de dialogue **Configurer un cache nommé** s’ouvre. Attribuez des valeurs aux propriétés décrites ci-dessus.
+tooadd un nouveau cache, cliquez sur hello **ajouter** bouton Bonjour **mise en cache** page de propriétés et un **configurer un Cache nommé** boîte de dialogue s’ouvre. Fournir des valeurs pour les propriétés hello décrites ci-dessus.
 
-Pour modifier une mémoire cache nommée, sélectionnez-la, puis cliquez sur le bouton **Modifier** situé dans la page de propriété **Mise en cache**. Une boîte de dialogue vous permettant de modifier les propriétés de mise en cache s’ouvrira. Appuyez sur **OK** pour enregistrer les valeurs de mise en mémoire cache.
+toomodify un cache nommé, sélectionnez hello cache et cliquez sur hello **modifier** bouton Bonjour **mise en cache** page de propriétés. Une boîte de dialogue s’ouvre, permettant ainsi vous toomodify hello propriétés du cache. Appuyez sur **OK** valeurs de cache toosave hello.
 
-Pour supprimer un cache, sélectionnez-le, puis cliquez sur le bouton **Supprimer** dans la page de propriété **Mise en cache**, puis cliquez sur **Oui** pour confirmer la suppression.
+toodelete un cache, sélectionnez hello cache et cliquez sur hello **supprimer** bouton Bonjour **mise en cache** page de propriétés, puis cliquez sur **Oui** suppression de hello tooconfirm.
 
-Pour plus d’informations sur l’utilisation de la mise en cache, consultez [Utilisation de la mise en cache colocalisée][How to Use Co-located Caching].
+Pour plus d’informations sur la façon de toouse mise en cache, consultez [comment tooUse colocalisés mise en cache][How tooUse Co-located Caching].
 
 <a name="certificates_properties"></a> 
 
 ### <a name="certificates-properties"></a>Propriétés de certificats
-Ouvrez le menu contextuel du rôle dans le volet Explorateur de projets Eclipse, cliquez sur **Azure**, puis sur **Certificats**.
+Ouvrez le menu contextuel hello rôle de hello dans le volet Explorateur de projets d’Eclipse, cliquez sur **Azure**, puis cliquez sur **certificats**.
 
 ![][ic710964]
 
-Dans cette boîte de dialogue, vous pouvez ajouter ou supprimer des certificats référencés par votre projet Eclipse. Notez que les certificats répertoriés ici ne sont pas automatiquement stockés dans un fichier keystore Java et par conséquent, ne sont pas automatiquement disponibles à l’utilisation depuis une application Java. Ils sont simplement enregistrés auprès d’Azure ce qui permet de les précharger dans les fenêtres de stockage de certificat sur les machines virtuelles exécutant votre déploiement et de les utiliser avec d’autres logiciels Windows. Actuellement, la seule fonctionnalité de la boîte à outils qui utilise les certificats référencés dans la boîte de dialogue **Certificats** est [Déchargement SSL][SSL Offloading] en raison de sa dépendance vis-à-vis d’IIS (Internet Information Services) et d’Application Request Routing (ARR) qui exigent que le certificat correspondant soit mis à disposition.
+Dans cette boîte de dialogue, vous pouvez ajouter ou supprimer des certificats référencés par votre projet Eclipse. Notez que les certificats hello répertoriés ici ne sont pas automatiquement stockés dans un keystore Java et par conséquent, ne sont pas automatiquement disponibles pour une utilisation à partir d’une application Java. Ils sont uniquement inscrits avec Azure afin que leur préchargement dans hello Windows certificat stocker sur des machines virtuelles de hello votre déploiement en cours d’exécution et est ensuite utilisé par d’autres logiciels Windows. Actuellement, hello uniquement la fonctionnalité de boîte à outils hello qui utilise des certificats de hello référencés dans hello **certificats** boîte de dialogue est [déchargement SSL][SSL Offloading], en raison de tooits dépendance envers les Internet Information Services (IIS) et l’Application Request Routing (ARR), qui nécessitent hello toobe de certificat approprié mis à disposition de cette manière.
 
-Lorsque vous déployez votre projet sur Azure à l’aide de l’Assistant Publication, vous devez référencer les fichiers PFX (Personal Information Exchange) correspondant à ces certificats, ainsi que leurs mots de passe, afin de les télécharger automatiquement vers le service Azure, mais uniquement s’ils n’ont pas été téléchargés au préalable.
+Lorsque vous déployez votre tooAzure de projet à l’aide d’Assistant de publication hello, vous seront demandée toopoint à hello PFX Personal Information Exchange () fichiers certificats toothese, ainsi que leurs mots de passe correspondants dans l’ordre tooautomatically les télécharger toohello Service Azure, mais uniquement si elles n'ont pas été téléchargés précédemment.
 
 <a name="components_properties"></a> 
 
 ### <a name="components-properties"></a>Propriétés des composants
-Ouvrez le menu contextuel du rôle dans le volet Explorateur de projets Eclipse, cliquez sur **Azure**, puis sur **Composants**. Dans cette boîte de dialogue, vous avez la possibilité d’ajouter, de modifier ou de supprimer des composants de votre rôle, mais également de modifier l’ordre dans lequel ils sont traités.
+Ouvrez le menu contextuel hello rôle de hello dans le volet Explorateur de projets d’Eclipse, cliquez sur **Azure**, puis cliquez sur **composants**. Cette boîte de dialogue, vous avez hello capacité tooadd, modifiez, ou supprimez des composants de votre rôle hello, ainsi que de modifiez commande hello dans lequel ils sont traités.
 
 ![][ic719502]
 
-La fonctionnalité des composants vous permet d’ajouter des dépendances à votre projet de déploiement Azure, notamment des projets d’application Java, des fichiers spéciaux et les instructions de ligne de commande exécutables nécessaires à votre déploiement.
+fonctionnalité des composants Hello vous permet de projet déploiement Azure tooyour tooadd dépendances, telles que les projets d’application Java, les fichiers spéciaux et les instructions exécutables de ligne de commande qui sont requises par votre déploiement.
 
 Pour chaque composant, vous pouvez spécifier :
 
-* L’opération à effectuer lors de l’importation du composant dans votre projet de déploiement Azure lors sa création.
-* L’opération à exécuter lors du déploiement de ce composant dans le cloud Azure.
+* Hello étape toobe est effectuée lors de l’importation de composant de hello dans votre projet de déploiement Azure lorsqu’elle est générée.
+* Hello toobe d’étape effectuée lors du déploiement de ce composant Bonjour cloud Azure.
 
 > [!NOTE]
-> Lorsque vous spécifiez des fichiers de composants ou des lignes de commande, n’oubliez pas que votre déploiement est destiné à être publié sur une machine virtuelle Windows, de sorte que les étapes de personnalisation doivent être valides sur un système d’exploitation Windows. 
+> Lorsque vous spécifiez les fichiers de composant ou des lignes de commande, gardez à l’esprit que votre déploiement sera publié tooa machine virtuelle Windows vos étapes personnalisées doivent donc être valides pour un système d’exploitation Windows. 
 > 
 > 
 
-Les composants possèdent les propriétés suivantes :
+Composants ont hello propriétés suivantes :
 
-* **Importation :** méthode qui indique la façon dont le composant est importé dans le projet au moment où ce dernier est généré. Il peut s’agir de l’une des valeurs suivantes :
-  * **copie :** le composant est copié depuis le chemin d’accès local spécifié par la propriété **De** dans le répertoire **approot** du rôle.
-  * **EAR :** le composant est une archive d’entreprise Java (EAR) et est importé à partir d’un projet d’application d’entreprise dans le chemin d’accès local spécifié par la propriété **De**. (Il est détecté automatiquement par la boîte à outils en fonction de la nature du projet à cet emplacement.)
-  * **JAR :** le composant est une archive Java (JAR) et est importé à partir d’un projet Java dans le chemin d’accès local spécifié par la propriété **De**. (Il est détecté automatiquement par la boîte à outils en fonction de la nature du projet à cet emplacement.)
-  * **aucun :** aucune action n’est exécutée pour importer le composant. Ceci s’applique lorsque le composant est supposé être déjà présent dans le répertoire **approot** du rôle, ou lorsqu’il s’agit d’une simple instruction de ligne de commande exécutable, comme spécifié dans la propriété **En tant que** lorsque la méthode de **déploiement** est **exec**.
-  * **WAR :** le composant est une archive d’application web Java (WAR) et est importé à partir d’un projet web dynamique dans le chemin d’accès local spécifié par la propriété **De**. (Il est détecté automatiquement par la boîte à outils en fonction de la nature du projet à cet emplacement.)
-  * **zip :** le composant est un fichier compressé et est importé par la compression du répertoire ou du fichier spécifié par la propriété **De**.
-* **De :** chemin d’accès source sur votre ordinateur local vers le dossier ou le fichier qui représente le ou les éléments à importer dans votre déploiement. Les variables d’environnement Windows peuvent être utilisées dans cette propriété. Tous les composants importables seront importés dans le répertoire **approot** du rôle au moment de la génération du projet.
+* **Importation :** méthode qui indique comment le composant de hello est importé dans le projet de hello lors de la génération du projet hello. Cela peut être une des valeurs suivantes de hello :
+  * **copie :** composant de hello est copié à partir du chemin d’accès local hello spécifié par hello **de** propriété du rôle hello **approot** active.
+  * **EAR :** composant de hello est une archive d’entreprise (EAR) Java importée à partir d’un projet d’Application Enterprise au chemin d’accès local hello spécifié par hello **de** propriété. (Cela est détecté automatiquement par selon la nature hello du projet hello à cet emplacement de la boîte à outils hello).
+  * **JAR :** composant de hello est une archive Java (JAR) et est importée à partir d’un projet Java dans le chemin d’accès local hello spécifié par hello **de** propriété. (Cela est détecté automatiquement par selon la nature hello du projet hello à cet emplacement de la boîte à outils hello).
+  * **none :** aucune action n’est effectuée de composant de hello tooimport. Cela s’applique lorsque le composant de hello est supposé tooalready être présents dans le rôle hello **approot** active, ou lorsque le composant de hello est simplement une instruction exécutable de ligne de commande, comme spécifié dans hello **comme**propriété lorsque hello **déployer** méthode est **exec**.
+  * **WAR :** composant Windows hello est une archive d’application web Java (WAR) et qu’il est importé à partir d’un projet Web dynamique au niveau du chemin d’accès local hello spécifié par hello **de** propriété. (Cela est détecté automatiquement par selon la nature hello du projet hello à cet emplacement de la boîte à outils hello).
+  * **ZIP :** composant Windows hello est un fichier zip et qu’il est importé par le fichier ou répertoire de hello zip spécifié par hello **de** propriété.
+* **À partir de :** chemin d’accès Source sur votre dossier de toohello ordinateur local ou d’un fichier qui représente le déploiement de tooyour tooimport hello ou les éléments. Les variables d’environnement Windows peuvent être utilisées dans cette propriété. Tous les composants importables seront importées dans du rôle hello **approot** active lors de la génération du projet hello.
   
-    Notez que vous avez la possibilité de déployer un composant à partir d’un téléchargement lorsque vous procédez à un déploiement sur le cloud (et non dans l’émulateur de calcul). Consultez les informations connexes ci-dessous concernant l’ajout d’un composant.    
-* **En tant que :** nom de fichier sous lequel le composant sera importé dans le répertoire **approot** du rôle et enfin, déployé dans le cloud Azure. Laissez cette propriété vide pour garder le même nom sur l’ordinateur local. (Pour les composants exécutables, c’est-à-dire ceux dont la méthode de **déploiement** est définie sur **exec**, il peut s’agir d’une instruction de ligne de commande Windows arbitraire.)
+    Notez que vous avez hello capacité toodeploy un composant à partir d’un téléchargement lors du déploiement toohello cloud (pas un émulateur de calcul hello). Consultez les informations connexes ci-dessous concernant l’ajout d’un composant.    
+* **En tant que :** nom de fichier sous le hello composant sera importé dans du rôle hello **approot** répertoire, puis déployé dans hello cloud Azure. Laissez cette tookeep vide propriété hello hello nom tel qu’il est sur l’ordinateur local de hello. (Pour des composants exécutables, c'est-à-dire celles dont **déployer** méthode est définie trop**exec**, cela peut être une instruction de ligne de commande Windows arbitraire.)
   
   > [!IMPORTANT]
-  > Si vous utilisez des espaces dans cette valeur, ils sont gérés différemment selon la méthode de déploiement. Si la méthode de déploiement est **exec**, les espaces sont considérés comme des séparateurs d’arguments de ligne de commande et non comme faisant partie du nom de fichier. Pour toutes les autres méthodes de déploiement, les espaces sont interprétés comme des composants du nom de fichier.
+  > Si vous utilisez des caractères d’espace pour cette valeur, elles sont gérées différemment en fonction de hello méthode de déploiement. Si la méthode de déploiement hello est **exec**, espaces sont considérées comme des séparateurs d’arguments de ligne de commande et non comme faisant partie du nom de fichier hello. Déployer des méthodes pour tous les autres, les espaces sont considérées comme faisant partie du nom de fichier hello.
   > 
   > 
-* **Déployer :** méthode qui indique l’action appliquée au composant au démarrage du déploiement. Il peut s’agir de l’une des valeurs suivantes :
+* **Déployer :** méthode indiquant hello action appliquée toohello composant lorsque hello déploiement est démarré. Cela peut être une des valeurs suivantes de hello :
   
-  * **copie :** le composant de téléchargement est copié dans le chemin de destination spécifié par la propriété **À**.
-  * **exec :** le composant est une instruction de ligne de commande Windows exécutée dans le contexte du chemin d’accès spécifié par la propriété **À** au moment où le déploiement démarre.
-  * **aucune :** aucune action n’est appliquée au composant lorsque le déploiement démarre.
-  * **zip :** le composant de téléchargement est extrait dans le chemin de destination spécifié par la propriété **À**. Cette méthode est disponible uniquement lorsque la propriété **Importer** est définie sur **zip**.
-* **À :** chemin de destination de la machine virtuelle sur laquelle le composant va être déployé. Des variables d’environnement Windows peuvent être utilisées dans cette propriété, et les chemins d’accès sont relatifs à **approot**.
+  * **copie :** composant de hello est copié toohello chemin de destination spécifié par hello **à** propriété.
+  * **EXEC :** composant de hello est une instruction exécutable de ligne de commande Windows exécutée dans le contexte de hello du chemin d’accès hello spécifié par hello **à** propriété, au moment de hello hello déploiement démarre.
+  * **none :** aucune action n’est appliqué toohello composant lorsque le déploiement de hello commence.
+  * **ZIP :** composant de hello est décompressé toohello chemin de destination spécifié par hello **à** propriété. Cette méthode est disponible uniquement lorsque hello **importation** propriété **zip**.
+* **À :** chemin d’accès de Destination sur l’ordinateur virtuel de hello où hello composant ne sera déployé. Variables d’environnement Windows peuvent être utilisées dans cette propriété, et les chemins d’accès sont trop relatives**approot**.
 
-Pour ajouter un nouveau composant, cliquez sur le bouton **Ajouter** situé dans la page de propriété **Composants** et une boîte de dialogue **Composant de rôle Azure** s’ouvre. Attribuez des valeurs aux propriétés décrites ci-dessus. 
+tooadd un nouveau composant, cliquez sur hello **ajouter** bouton Bonjour **composants** page de propriétés et un **composant de rôle Azure** boîte de dialogue s’ouvre. Fournir des valeurs pour les propriétés hello décrites ci-dessus. 
 
-Ce qui suit est un exemple d’ajout d’un nouveau composant WAR.
+Hello Voici un exemple d’ajout d’un nouveau composant WAR.
 
 ![][ic719503]
 
-Lors d’un déploiement sur le cloud (et non sur l’émulateur de calcul), si vous souhaitez déployer le composant à partir d’un téléchargement, assurez-vous que l’option **Dans le cloud, ne pas inclure dans le package, mais déployer à partir de** est activée. Si vous souhaitez effectuer le téléchargement à partir de votre compte de stockage Azure, sélectionnez-le dans la liste déroulante **Compte de stockage** (vous pouvez cliquer sur le lien **Comptes** pour modifier le contenu de la liste). Le champ **URL** sera alors partiellement renseigné. Remplissez ensuite la partie de l’URL restante. Si vous ne souhaitez pas utiliser le stockage Azure, sélectionnez **(aucun)** dans la liste déroulante **Compte de stockage**, puis saisissez l’URL de votre composant dans le champ **URL**. Spécifiez l’une des méthodes suivantes :
+Lorsque la déploiement toohello cloud (pas émulateur de calcul hello), si vous souhaitez que le composant de hello toodeploy à partir d’un téléchargement, assurez-vous que **dans le cloud, au lieu d’inclure dans le package de hello, déployer à partir de** est activée. Si vous souhaitez toodownload à partir de votre compte de stockage Azure, sélectionnez le compte de stockage hello dans hello **compte de stockage** liste déroulante (vous pouvez cliquer sur hello **comptes** lien toomodify Nouveautés dans la liste de hello), action renseigne partiellement Bonjour **URL** champ, puis renseignez hello portion restante de l’URL de hello. Si vous ne souhaitez pas toouse le stockage Azure, sélectionnez **(aucun)** de hello **compte de stockage** déroulante liste, puis entrez les composants de tooyour URL hello Bonjour **URL** champ. Spécifiez l’une des méthodes suivantes de hello :
 
-* **copie :** le composant de téléchargement est copié dans le chemin d’accès de destination spécifié par le chemin d’accès **Vers le répertoire**.
-* **même :** la méthode utilisée pour le **déploiement à partir du téléchargement** est la même que pour le **déploiement à partir d’un package**.
-* **zip :** le composant de téléchargement est extrait dans le chemin d’accès de destination spécifié par le chemin d’accès **Vers le répertoire**.
+* **copie :** composant de téléchargement hello est copié toohello chemin de destination spécifié par hello **tooDirectory** chemin d’accès.
+* **même :** hello même méthode utilisée pour **déployer à partir de téléchargement** pour **déployer à partir du package**.
+* **ZIP :** composant de hello téléchargé est décompressé toohello chemin de destination spécifié par hello **tooDirectory** chemin d’accès.
 
-Pour modifier un composant, sélectionnez-le, puis cliquez sur le bouton **Modifier** situé dans la page de propriété **Composants**. Une boîte de dialogue vous permettant de modifier les propriétés du composant s’ouvre. Appuyez sur **OK** pour enregistrer les valeurs du composant.
+toomodify un hello du composant et cliquez sur composant, sélectionnez hello **modifier** bouton Bonjour **composants** page de propriétés. Une boîte de dialogue s’ouvre, permettant ainsi vous toomodify hello les propriétés du composant. Appuyez sur **OK** valeurs de composant toosave hello.
 
-Pour supprimer un composant, sélectionnez-le, cliquez sur le bouton **Supprimer** dans la page de propriété **Composants**, puis cliquez sur **Oui** pour confirmer la suppression.
+toodelete un hello du composant et cliquez sur composant, sélectionnez hello **supprimer** bouton Bonjour **composants** page de propriétés, puis cliquez sur **Oui** suppression de hello tooconfirm.
 
-Les règles sont traitées dans l’ordre répertorié. Utilisez les boutons **Monter** et **Descendre** pour organiser l’ordre.
+Les composants sont traités dans l’ordre de hello. Hello d’utilisation **monter** et **Descendre** boutons de commande de hello tooarrange.
 
 > [!NOTE]
-> La fonctionnalité de configuration du serveur s’appuie également sur des composants. Ces composants ne peuvent pas être supprimés ou modifiés si l’on ne supprime pas la configuration du serveur correspondant. Vous êtes interrogé à ce sujet lorsque vous tentez d’apporter des modifications à ces composants.
+> fonctionnalité de configuration de serveur Hello s’appuie également sur des composants. Ces composants ne peut pas être supprimés ou modifiés sans supprimer la configuration du serveur hello correspondant. Vous êtes invité à ce sujet lors de la tentative de toomake modifications toosuch composants.
 > 
 > 
 
 <!-- <a name="debugging_properties"></a> -->
 
 <!-- ### Debugging properties -->
-<!-- Open the context menu for the role in Eclipse's Project Explorer pane, click **Azure**, and then click **Debugging**. Within this dialog, you have the ability to enable or disable remote debugging, as well as create debug configurations, as shown in the following image. -->
+<!-- Open hello context menu for hello role in Eclipse's Project Explorer pane, click **Azure**, and then click **Debugging**. Within this dialog, you have hello ability tooenable or disable remote debugging, as well as create debug configurations, as shown in hello following image. -->
 
 <!-- ![][ic719504] -->
 
@@ -186,53 +186,53 @@ Les règles sont traitées dans l’ordre répertorié. Utilisez les boutons **M
 <a name="endpoints_properties"></a> 
 
 ### <a name="endpoints-properties"></a>Propriétés des points de terminaison
-Ouvrez le menu contextuel du rôle dans le volet Explorateur de projets Eclipse, cliquez sur **Azure**, puis sur **Points de terminaison**. Dans cette boîte de dialogue, vous avez la possibilité de créer un point de terminaison, ainsi que de le modifier ou de le supprimer, comme illustré dans l’image suivante.
+Ouvrez le menu contextuel hello rôle de hello dans le volet Explorateur de projets d’Eclipse, cliquez sur **Azure**, puis cliquez sur **points de terminaison**. Cette boîte de dialogue ont hello capacité toocreate un point de terminaison, ainsi que modifier ou supprimer un point de terminaison, comme indiqué dans hello suivant l’image.
 
 ![][ic719505]
 
-Pour ajouter un point de terminaison, cliquez sur le bouton **Ajouter** dans la page de propriété **Points de terminaison**. La boîte de dialogue **Ajouter le point de terminaison** s’ouvre.
+tooadd un point de terminaison, cliquez sur hello **ajouter** bouton Bonjour **points de terminaison** page de propriétés et un **ajouter le point de terminaison** boîte de dialogue s’ouvre.
 
 ![][ic710897]
 
-Saisissez un nom pour le point de terminaison, sélectionnez le type (**Entrée**, **Interne**, ou **Entrée d’instance**), puis spécifiez le port public et privé. Appuyez sur **OK** pour enregistrer les nouvelles valeurs de point de terminaison.
+Entrez un nom pour le point de terminaison hello, sélectionnez le type de hello (soit **entrée**, **interne**, ou **InstanceInput**), puis spécifiez le port public et privé de hello. Appuyez sur **OK** toosave hello nouvelles valeurs de point de terminaison.
 
-Selon le type de point de terminaison, vous pouvez utiliser des plages de ports comme suit :
+En fonction de type hello du point de terminaison, vous pouvez utiliser des plages de ports comme suit :
 
-* Pour un point de terminaison d’instance d’entrée, le port public peut être une plage de ports (par exemple **2000-2010**) et le port privé une valeur fixe.
-* Dans le cas d’un point de terminaison interne, le port public n’est pas utilisé, et le port privé peut être une plage, être vide ou défini sur un astérisque pour indiquer qu’il est défini automatiquement par Azure.
-* Dans le cas d’un point de terminaison d’entrée, le port public ne peut être qu’une valeur fixe, et le port privé, lui, peut correspondre à une valeur fixe, une plage vide ou être défini sur un astérisque pour indiquer qu’il est défini automatiquement par Azure.
+* Pour un point de terminaison d’instance d’entrée, port public de hello peut être une plage de ports (par exemple **2000-2010**) et un port privé hello est une valeur fixe.
+* Pour un point de terminaison interne, port public de hello n’est pas utilisé et un port privé hello peut être une plage, ou un vide ou un jeu tooan astérisque tooindicate qu’il est défini automatiquement par Azure.
+* Pour les points de terminaison d’entrée, port public de hello peut être uniquement une valeur fixe, et un port privé hello peut être une valeur fixe, ou un vide ou un jeu tooan astérisque tooindicate qu’il est défini automatiquement par Azure.
 
-Si vous souhaitez utiliser un numéro de port unique et non une plage de numéros, laissez la zone de texte de la fin de plage vide.
+Si vous voulez toouse un numéro de port unique au lieu d’une plage, laissez une zone de texte hello fin hello de plage de hello vide.
 
-Pour les ports qui ont pour valeur Automatique, si vous devez déterminer le port effectivement utilisé lors de l’exécution, votre application peut utiliser l’API Azure Service Runtime, qui est décrite dans le [résumé de package com.microsoft.windowsazure.serviceruntime][com.microsoft.windowsazure.serviceruntime package summary].
+Pour les ports qui sont tooautomatic de jeu, si vous avez besoin de toodetermine le port réellement utilisé pendant l’exécution, votre application peut utiliser hello API Azure Service Runtime, qui est décrit dans hello [com.microsoft.windowsazure.serviceruntime package Résumé][com.microsoft.windowsazure.serviceruntime package summary].
 
-<!-- To see how instance input endpoints can be used to help with debugging a multi-instance deployment, see [Debugging a specific role instance in a multi-instance deployment][Debugging a specific role instance in a multi-instance deployment]. -->
+<!-- toosee how instance input endpoints can be used toohelp with debugging a multi-instance deployment, see [Debugging a specific role instance in a multi-instance deployment][Debugging a specific role instance in a multi-instance deployment]. -->
 
-Pour modifier un point de terminaison, sélectionnez-le puis cliquez sur le bouton **Modifier** situé dans la page de propriété **Points de terminaison**. Une boîte de dialogue vous permettant de modifier le nom du point de terminaison, le type et les ports public et privé. Appuyez sur **OK** pour enregistrer les valeurs de point de terminaison modifiées.
+toomodify un point de terminaison, sélectionnez le point de terminaison hello et cliquez sur hello **modifier** bouton Bonjour **points de terminaison** page de propriétés. Une boîte de dialogue s’ouvre, ce qui vous permet de ports publics et privés, type et nom de point de terminaison toomodify hello. Appuyez sur **OK** toosave hello modifié les valeurs de point de terminaison.
 
-Pour supprimer un point de terminaison, sélectionnez-le, puis cliquez sur le bouton **Supprimer** dans la page de propriété **Points de terminaison**, puis cliquez sur **Oui** pour confirmer la suppression.
+toodelete un point de terminaison, sélectionnez le point de terminaison hello et cliquez sur hello **supprimer** bouton Bonjour **points de terminaison** page de propriétés, puis cliquez sur **Oui** suppression de hello tooconfirm.
 
-Pour configurer correctement certaines fonctionnalités (telles que la mise en cache, l’affinité de session ou le déchargement SSL) activées par l’utilisateur sur un rôle, la boîte à outils peut configurer automatiquement des points de terminaison spéciaux qui seront répertoriés au même titre que les points de terminaison définis par l’utilisateur. La boîte à outils empêche l’utilisateur de modifier ou supprimer automatiquement des points de terminaison générés tant que la fonctionnalité associée est activée.
+Dans l’ordre tooproperly configurer certaines fonctionnalités hello (par exemple, le déchargement SSL, l’affinité de Session ou la mise en cache) activée par l’utilisateur hello sur un rôle, boîte à outils hello peut configurer automatiquement des points de terminaison spéciaux qui sont répertoriés, ainsi que les points de terminaison définis par l’utilisateur. Hello toolkit empêche l’utilisateur de hello de modifier ou supprimer ces points de terminaison générés automatiquement tant que hello associé la fonctionnalité est activée.
 
 <a name="environment_variables_properties"></a> 
 
 ### <a name="environment-variables-properties"></a>Propriétés des variables d’environnement
-Ouvrez le menu contextuel du rôle dans le volet Explorateur de projets Eclipse, cliquez sur **Azure**, puis sur **Variables d’environnement**. Dans cette boîte de dialogue, vous avez la possibilité de créer une variable d’environnement, mais également de la modifier ou de la supprimer une, comme illustré dans l’image suivante.
+Ouvrez le menu contextuel hello rôle de hello dans le volet Explorateur de projets d’Eclipse, cliquez sur **Azure**, puis cliquez sur **Variables d’environnement**. Cette boîte de dialogue ont hello capacité toocreate une variable d’environnement, ainsi que modifier ou supprimer une variable d’environnement, comme indiqué dans hello suivant l’image.
 
 ![][ic719506]
 
-Les variables d’environnement sont disponibles pour votre script de démarrage lorsque le rôle démarre.
+Variables d’environnement sont script de démarrage tooyour disponible au démarrage de rôle de hello.
 
 > [!NOTE]
-> Lorsque vous spécifiez des variables d’environnement ou des lignes de commande, n’oubliez pas que votre déploiement sera publié sur une machine virtuelle Windows, de sorte que les variables d’environnement doivent être valides sur un système d’exploitation Windows.
+> Lorsque vous spécifiez des variables d’environnement, gardez à l’esprit que votre déploiement sera publié tooa machine virtuelle Windows vos variables d’environnement doivent être valides pour un système d’exploitation Windows.
 > 
 > 
 
-Pour obtenir un exemple de variable d’environnement disponible au démarrage du rôle, créez une nouvelle variable d’environnement en cliquant sur un bouton **Ajouter** . L’exemple qui suit montre la création d’une variable d’environnement nommée **MyRoleVersion** et à laquelle la valeur **1.0** est affectée.
+Comme exemple d’une variable d’environnement qui est disponible au démarrage de rôle de hello, créez une variable d’environnement en cliquant sur hello **ajouter** bouton. Hello suivant montre une variable d’environnement nommée **MyRoleVersion** et l’attribution valeur de hello **1.0**.
 
 ![][ic659268]
 
-Dans votre code jsp, vous pouvez afficher la valeur en utilisant la méthode `System.getenv` :
+Dans votre code jsp, vous pouvez afficher la valeur hello à l’aide de hello `System.getenv` méthode :
 
     <body>
       <b> Hello World!</b>
@@ -243,166 +243,166 @@ Résultat de cette sortie lors de l’exécution de votre application :
 
 ![][ic552233]
 
-Pour modifier une variable d’environnement, sélectionnez-la, puis cliquez sur le bouton **Modifier** situé dans la page de propriété **Variables d’environnement**. Une boîte de dialogue vous permettant de modifier les propriétés du cache s’ouvre. Appuyez sur **OK** pour enregistrer les valeurs des variables d’environnement.
+toomodify une variable d’environnement, sélectionnez la variable d’environnement hello et cliquez sur hello **modifier** bouton Bonjour **Variables d’environnement** page de propriétés. Une boîte de dialogue s’ouvre, permettant ainsi vous toomodify hello variable propriétés d’environnement. Appuyez sur **OK** valeurs de variable d’environnement toosave hello.
 
-Pour supprimer une variable d’environnement, sélectionnez-la, puis cliquez sur le bouton **Supprimer** situé dans la page de propriété **Variables d’environnement**, puis cliquez sur **Oui** pour confirmer la suppression.
+toodelete une variable d’environnement, sélectionnez la variable d’environnement hello et cliquez sur hello **supprimer** bouton Bonjour **Variables d’environnement** page de propriétés, puis cliquez sur **Oui**suppression de hello tooconfirm.
 
-Pour configurer correctement certaines fonctionnalités (telles que la configuration serveur, le débogage distant ou le stockage local) activées par l’utilisateur sur un rôle, la boîte à outils peut configurer automatiquement des variables d’environnement spéciales qui seront répertoriées avec des variables d’environnement définies par l’utilisateur. La boîte à outils empêche l’utilisateur de modifier ou de supprimer les variables d’environnement générées aussi longtemps que la fonctionnalité associée est activée.
+Dans l’ordre tooproperly configurer certaines fonctionnalités hello (par exemple, la Configuration du serveur, le débogage à distance ou de stockage Local) activée par l’utilisateur hello sur un rôle, boîte à outils hello peut configurer automatiquement les variables d’environnement spéciales qui sont répertoriés avec variables d’environnement définie par l’utilisateur. Hello toolkit empêche l’utilisateur de hello de modifier ou supprimer ces variables d’environnement générées automatiquement tant que hello associé la fonctionnalité est activée.
 
 <a name="session_affinity_properties"></a> 
 
 ### <a name="load-balancing--session-affinity-aka-sticky-sessions-properties"></a>Propriétés d’équilibre de charge/affinité de session (appelées « sessions temporaires »)
-Ouvrez le menu contextuel du rôle dans le volet Explorateur de projets Eclipse, cliquez sur **Azure**, puis sur **Équilibrage de la charge**. Dans cette boîte de dialogue, vous avez la possibilité d’activer ou de désactiver l’affinité de session, comme indiqué dans l’image suivante.
+Ouvrez le menu contextuel hello rôle de hello dans le volet Explorateur de projets d’Eclipse, cliquez sur **Azure**, puis cliquez sur **l’équilibrage de charge**. Cette boîte de dialogue vous hello capacité tooenable ou désactivez l’affinité de session, comme indiqué dans hello suivant l’image.
 
 ![][ic719492]
 
-Pour plus d’informations, consultez [Affinité de session][Session Affinity]. Notez également le comportement de cette fonctionnalité dans le contexte du déchargement SSL, comme décrit dans [Déchargement SSL][SSL Offloading].
+Pour plus d’informations, consultez [Affinité de session][Session Affinity]. Notez également le comportement de cette fonctionnalité dans le contexte de hello de déchargement SSL, comme décrit dans [déchargement SSL][SSL Offloading].
 
 <a name="local_storage_properties"></a> 
 
 ### <a name="local-storage-properties"></a>Propriétés du stockage local
-Ouvrez le menu contextuel du rôle dans le volet Explorateur de projets Eclipse, cliquez sur **Azure**, puis sur **Stockage local**. Dans cette boîte de dialogue, vous avez la possibilité de créer, modifier ou supprimer un stockage local de la machine virtuelle qui exécute votre application. Il est possible de définir des valeurs de taille de stockage locales, et de déterminer si le contenu doit être conservé au moment du recyclage du rôle, comme illustré dans l’image suivante.
+Ouvrez le menu contextuel hello rôle de hello dans le volet Explorateur de projets d’Eclipse, cliquez sur **Azure**, puis cliquez sur **stockage Local**. Cette boîte de dialogue ont hello capacité toocreate, modifier ou supprimer un stockage local temporaire pour l’ordinateur virtuel hello qui exécute votre application. Des valeurs spécifiques peuvent être définies pour la taille de hello du stockage local de hello, ainsi que si le contenu de hello est conservés lors de la hello rôle est recyclé, comme indiqué dans hello suivant l’image.
 
 ![][ic719508]
 
-Vous pouvez également spécifier une variable d’environnement qui correspond au stockage local.
+Vous pouvez spécifier une variable d’environnement qui correspond le stockage local de toohello.
 
-Par défaut, tous les éléments que vous déployez dans Azure sont placés (et décompressés) dans le dossier **approot** de l’instance de rôle. Bien que la plupart des déploiements simples puissent rester dans le dossier après la décompression, l’espace affecté au répertoire **approot** est limité et n’est pas bien défini (moins de 1 Go est un principe de base raisonnable). Par conséquent, pour vous assurer qu’Azure attribue suffisamment d’espace disque à des déploiements plus volumineux ne pouvant pas tenir dans le dossier **approot**, vous devez définir une ressource de stockage local à l’aide de la boîte de dialogue **Stockage local**. Pour connaître un moyen plus simple d’exécuter cette opération, consultez la page [Déploiements à grande échelle][Deploying Large Deployments].
+Par défaut, tous les éléments que vous déployez dans Azure sont placé (et décompressé) Bonjour **approot** dossier d’instance de rôle hello. Alors que la plupart des déploiements simples peuvent y tenir même après décompression, espace hello alloué hello **approot** répertoire est limité et pas bien défini (moins de 1 Go est une règle empirique raisonnable). Par conséquent, tooensure Azure alloue suffisamment d’espace disque pour les déploiements plus importants qui ne répondent pas à Bonjour **approot** dossier, vous devez définir une ressource de stockage local à l’aide de hello **stockage Local** boîte de dialogue. Pour un moyen simple de toodo, consultez [déploiements à grande échelle déploiement][Deploying Large Deployments].
 
-Il est facile de référencer les ressources de stockage à partir de scripts de démarrage (par exemple, votre **startup.cmd**) en utilisant la variable d’environnement automatiquement associée à la ressource par la boîte à outils Eclipse, comme indiqué dans la boîte de dialogue **Stockage local**. Cette variable d’environnement contiendra le chemin complet de la ressource locale que vous avez configuré au moment de l’exécution du script de démarrage. 
+Vous pouvez aisément référencer la ressource de stockage hello à partir de scripts de démarrage (par exemple, votre **startup.cmd**) à l’aide de la variable d’environnement hello automatiquement associé à la boîte à outils Eclipse de hello hello ressource comme indiqué dans hello  **Stockage local** boîte de dialogue. Cette variable d’environnement contient le chemin d’accès complet de hello de ressource locale de hello que vous avez configuré au moment de hello que votre script de démarrage est exécutée. 
 
-Pour modifier une ressource de stockage locale, sélectionnez-la, puis cliquez sur le bouton **Modifier** situé dans la page de propriété **Stockage local**. Une boîte de dialogue vous permettant de modifier les propriétés de ressource locale s’ouvre. Appuyez sur **OK** pour enregistrer les valeurs de ressource de stockage locales.
+toomodify une ressource de stockage local, sélectionnez la ressource de stockage local hello et cliquez sur hello **modifier** bouton Bonjour **stockage Local** page de propriétés. Une boîte de dialogue s’ouvre, permettant ainsi vous toomodify hello stockage local des propriétés de ressource. Appuyez sur **OK** valeurs de ressources de stockage local toosave hello.
 
-Pour supprimer une ressource de stockage locale, sélectionnez-la, cliquez sur le bouton **Supprimer** situé dans la page de propriété **Stockage local**, puis cliquez sur **Oui** pour confirmer la suppression.
+toodelete une ressource de stockage local, sélectionnez la ressource de stockage local hello et cliquez sur hello **supprimer** bouton Bonjour **stockage Local** page de propriétés, puis cliquez sur **Oui** suppression de hello tooconfirm.
 
 <a name="server_configuration_properties"></a> 
 
 ### <a name="server-configuration-properties"></a>Propriétés de configuration de serveur
-Ouvrez le menu contextuel correspondant au rôle dans le volet Explorateur de projets Eclipse, cliquez sur **Azure**, puis sur **Configuration du serveur**. Dans cette boîte de dialogue, vous avez la possibilité d’ajouter, de supprimer et de modifier JDK et le serveur d’applications Java utilisé par votre déploiement, mais aussi d’ajouter ou supprimer les applications (notamment les fichiers WAR, JAR ou EAR) utilisées par votre déploiement.
+Ouvrez le menu contextuel hello rôle de hello dans le volet Explorateur de projets d’Eclipse, cliquez sur **Azure**, puis cliquez sur **Configuration du serveur**. Cette boîte de dialogue, vous avez hello capacité tooadd, supprimer et de modifier hello JDK et serveur d’applications Java utilisé par votre déploiement, ainsi que d’ajouter ou de supprimer des applications hello (tels que les fichiers WAR, JAR ou EAR) utilisées par votre déploiement.
 
 ### <a name="jdk-configuration"></a>Configuration JDK
-Cette boîte de dialogue vous permet de spécifier le package JDK à utiliser pour votre déploiement. Si vous utilisez Eclipse sous Windows, vous pouvez spécifier le package JDK à utiliser localement lors de l’exécution dans l’émulateur Azure et vous avez la possibilité de déployer cette installation locale vers Azure. Sur les systèmes d’exploitation autres que Windows, le paramètre d’émulateur JDK n’est pas applicable et il est impossible de déployer le JDK installé en local, car il n’est pas compatible avec Windows. Toutefois, quel que soit le système d’exploitation que vous utilisez, vous avez toujours la possibilité de choisir parmi les packages JDK tiers à déployer sur Azure, ou sélectionner votre propre package JDK compatible Windows depuis un autre emplacement de téléchargement.
+Cette boîte de dialogue vous permet de toospecify hello JDK package toouse pour votre déploiement. Si vous utilisez Eclipse sur Windows, vous pouvez spécifier hello JDK package toouse localement lors de l’exécution dans hello émulateur Azure et que vous disposez hello option toodeploy que tooAzure installation locale. Sur les systèmes d’exploitation non-Windows, paramètre hello d’émulateur JDK n’est pas applicable et vous ne pouvez pas déployer hello localement installé JDK, car il n’est pas compatible avec Windows. Toutefois, quel que soit hello système d’exploitation que vous utilisez, vous pouvez toujours choisir parmi hello 3e partie JDK packages toodeploy tooAzure, ou pointer sur votre propre package JDK compatible Windows à partir d’un autre emplacement de téléchargement.
 
-Voici un exemple de la façon dont vous pouvez spécifier un JDK sur une application.
+Hello Voici un exemple de comment vous pouvez spécifier un JDK sur Windows :
 
 ![][ic780647]
 
-Si vous utilisez Eclipse sur Windows, vous pouvez spécifier un JDK à utiliser avec l’émulateur de calcul. Pour ce faire, vérifiez que l’option **Utiliser le JDK à partir de ce chemin d’accès pour un test local** est activée dans la section **Déploiement d’émulateur**. Ensuite, spécifiez le chemin d’accès local vers votre JDK ; vous pouvez accéder à différents JDK si celui que vous souhaitez utiliser n’est pas sélectionné automatiquement. Vous avez également la possibilité de déployer votre JDK sur votre service cloud Azure ; pour ce faire, sélectionnez l’option **Déployer mon JDK local (chargement automatique dans un stockage cloud)** dans la section **Déploiement cloud**.
+Si vous utilisez Eclipse sur Windows, vous pouvez spécifier un toouse JDK avec hello compute emulator ; toodo, veillez à **hello utilisez JDK à partir de ce chemin d’accès de fichier pour tester localement** est archivé hello **déploiement d’émulateur** section. Ensuite, spécifiez le chemin d’accès local de hello tooyour JDK ; Vous pouvez parcourir toodifferent JDK si hello celui que vous voulez toouse n’est pas sélectionné automatiquement. Vous avez également hello option toodeploy votre tooyour JDK service cloud Azure ; toodo, sélectionnez hello **déployer mon JDK local (stockage toocloud de chargement automatique)** option Bonjour **déploiement de cloud computing** section.
 
-Remarque : sur les systèmes d’exploitation autres que Windows, les paramètres de **déploiement d’émulateur** et l’option **Déployer mon JDK local** ne sont pas disponibles. L’exemple suivant illustre la spécification d’un JDK sur un Mac ou un autre système d’exploitation autre que Windows pris en charge :
+Remarque : Sur les systèmes d’exploitation non-Windows, hello **déploiement d’émulateur** paramètres et hello **déployer mon JDK local** option ne sont pas disponibles. Hello exemple suivant illustre la spécification d’un JDK sur un Mac ou autres pris en charge le système d’exploitation non Windows :
 
 ![][ic789643]
 
-Quel que soit le système d’exploitation que vous utilisez, vous disposez des deux options de **déploiement Cloud** suivantes comme source et type de votre package JDK :
+Quel que soit le système d’exploitation du hello vous utilisez, vous avez hello suivant deux **déploiement de cloud computing** options pour la source de hello et le type de votre package JDK :
 
 * **Déployer un package JDK tiers disponible Azure** 
 * **Déploiement depuis un téléchargement personnalisé** 
 
-Si vous utilisez l’option **Déployer un package JDK tiers disponible dans Azure** :
+Si vous utilisez hello **déployer un package JDK tiers 3e à partir d’Azure** option :
 
-1. Cochez la case **Déployer un package JDK tiers disponible dans Azure**.
-2. Dans la liste déroulante, sélectionnez le package JDK tiers disponible sur Azure.
-3. Votre **JDK** onglet doit ressembler à ce qui suit sur Windows : ![][ic780648] et il doit ressembler à ce qui suit sur Mac OS ou autre prise en charge des systèmes d’exploitation non Windows :![][ic789643]
-4. Cliquez sur **OK** pour enregistrer vos modifications.
-5. Lorsque vous êtes invité à accepter le contrat de licence d’un fournisseur de package JDK tiers, prenez connaissance des termes du contrat de licence. Si vous les acceptez, cliquez sur **Oui** pour fermer la boîte de dialogue **Accepter le contrat de licence**.
-    Notez que la logique sous-jacente des éléments apparaissant dans la liste déroulante pour l’option **Déployer un package JDK tiers disponible dans Azure** peut être personnalisée. Pour personnaliser les éléments, dans la boîte de dialogue **JDK**, cliquez sur le lien **Personnaliser**. Cela fermera la page de propriété **JDK** et ouvrira le fichier **componentsets.xml** dans Eclipse, et vous pourrez le modifier par la suite si nécessaire. La documentation pour **componentsets.xml** est incluse dans le fichier **componentsets.xml** lui-même.
+1. Activez hello case **déployer un package JDK tiers 3e à partir d’Azure**.
+2. Dans la liste déroulante hello, sélectionnez hello 3e package JDK tiers disponible sur Azure.
+3. Votre **JDK** onglet recherche similaire suivant toohello sur Windows : ![][ic780648] et il ressemblera similaire suivant toohello sur Mac OS ou autre prise en charge des systèmes d’exploitation non Windows :![][ic789643]
+4. Cliquez sur **OK** toosave vos modifications.
+5. Lorsque tooaccept demandée hello contrat de licence de fournisseur de package hello 3e partie JDK, passez en revue les termes du contrat de licence hello. Si vous acceptez les termes du contrat de hello, cliquez sur **Oui** tooclose hello **accepter le contrat de licence** boîte de dialogue.
+    Notez que hello sous-jacent logique pour lequel les éléments apparaissent dans la liste déroulante de hello pour hello **déployer un package JDK tiers 3e à partir d’Azure** option peut être personnalisée. éléments de hello toocustomize, Bonjour **JDK** boîte de dialogue, cliquez sur hello **personnaliser** lien. Cela entraînera la fermeture hello **JDK** page de propriétés et ouvrez hello **componentsets.xml** fichier dans Eclipse, que vous pouvez modifier en fonction des besoins. Documentation de **componentsets.xml** est inclus dans hello **componentsets.xml** fichier lui-même.
 
-Si vous utilisez l’option **Déployer un JDK à partir d’un téléchargement personnalisé** :
+Si vous utilisez hello **déployer un JDK à partir d’un téléchargement personnalisé** option :
 
-1. Créez un fichier zip de votre répertoire d’installation JDK, en vous assurant que le nœud du répertoire lui-même est enfant de la structure du fichier zip, mais que son contenu ne l’est pas. Prenez note du nom de l’annuaire, car vous en aurez besoin plus tard, et n’oubliez pas que cette installation de JDK sera déployée sur une machine virtuelle Windows.
-2. Téléchargez le fichier zip dans votre compte de stockage Azure en tant qu’objet blob. Vous pouvez effectuer cette opération en utilisant un outil externe disponible pour télécharger des objets blob dans le stockage Azure. Il est recommandé d’utiliser un objet blob privé. Prenez note de l’URL d’objet blob du contenu du zip.
-3. Cochez la case **Déployer un JDK à partir d’un téléchargement personnalisé**.
-    Si vous souhaitez effectuer le téléchargement à partir de votre compte de stockage Azure, sélectionnez-le dans la liste déroulante **Compte de stockage** (vous pouvez cliquer sur le lien **Comptes** pour modifier le contenu de la liste). Le champ **URL** sera alors partiellement renseigné. Remplissez ensuite la partie de l’URL restante. Si vous ne souhaitez pas utiliser le stockage Azure, sélectionnez **(aucun)** dans la liste déroulante **Compte de stockage**, puis saisissez l’URL de votre téléchargement JDK dans le champ **URL**. Si vous utilisez le stockage Azure, les noms d’objets blob dans l’URL doivent être en minuscules.
-4. Assurez-vous que la zone de texte **JAVA_HOME** contient bien le nom de répertoire correct. Par défaut, elle fait référence au nom du répertoire JDK que vous avez choisi pour l’utilisation en local. Mais si le répertoire contenu dans le fichier zip porte un autre nom (par exemple, en raison de l’utilisation d’une version différente), mettez à jour le nom de répertoire dans la zone de texte **JAVA_HOME** en conséquence, car ce paramètre sera utilisé dans le cloud (et non dans l’émulateur de calcul).
-5. Cliquez sur **OK** pour enregistrer vos modifications.
+1. Créer un fichier ZIP de votre répertoire d’installation de JDK, ce nœud de répertoire hello lui-même est enfant hello de structure de hello ZIP et non son contenu. Prenez note du nom hello du répertoire de hello, que vous serez besoin ultérieurement, gardez à l’esprit ce JDK installation sera tooa déployé l’ordinateur virtuel Windows.
+2. Télécharger hello ZIP dans votre compte de stockage Azure comme un objet blob. Pour cela, à l’aide d’un outil disponible en externe pour le téléchargement des objets BLOB tooAzure stockage. Il est recommandé de toouse un objet blob privé. Prenez note de l’URL de blob hello du contenu ZIP hello.
+3. Activez hello case **déployer un JDK à partir d’un téléchargement personnalisé**.
+    Si vous souhaitez toodownload à partir de votre compte de stockage Azure, sélectionnez le compte de stockage hello dans hello **compte de stockage** liste déroulante (vous pouvez cliquer sur hello **comptes** lien toomodify Nouveautés dans la liste de hello), action renseigne partiellement Bonjour **URL** champ, puis renseignez hello portion restante de l’URL de hello. Si vous ne souhaitez pas toouse le stockage Azure, sélectionnez **(aucun)** de hello **compte de stockage** déroulante liste, puis entrez les tooyour d’URL hello JDK télécharger Bonjour **URL** champ. Si vous utilisez le stockage Azure, les noms d’objet blob dans hello URL doivent être en minuscules.
+4. Vérifiez que hello **JAVA_HOME** textbox désigne le nom de répertoire correct toohello. Par défaut, elle fait référence hello du même nom de répertoire JDK en tant que valeur hello choisie pour votre usage local. Mais si le répertoire hello contenue dans hello ZIP porte un nom différent (par exemple, échéance toousing une version différente), nom de répertoire de mise à jour hello Bonjour **JAVA_HOME** zone de texte en conséquence, étant donné que ce paramètre est utilisé dans hello cloud () pas dans l’émulateur de calcul hello).
+5. Cliquez sur **OK** toosave vos modifications.
 
-Vous avez terminé. Maintenant, lorsque vous faites une compilation pour le cloud, vous pouvez constater que la taille du package est beaucoup plus limitée, le processus de génération prend généralement moins de temps, comme la publication sur le cloud. Notez que les options **Déployer mon JDK local (chargement automatique vers un stockage cloud)** ou **Déployer un JDK à partir d’un téléchargement personnalisé** sont appliquées uniquement lorsque votre application est déployée dans le cloud. Elles n’ont aucun effet sur votre expérience avec l’émulateur de calcul ; la version locale des composants est toujours utilisée lors du déploiement vers l’émulateur de calcul. 
+Vous avez terminé. Désormais, lorsque vous générez pour le cloud de hello, vous remarquerez taille du package hello sera beaucoup plus petite, les processus de génération hello doivent prend généralement moins de temps et déploiement hello lui-même lorsque vous publiez toohello cloud doit également prendre moins de temps. Notez que hello **déployer mon JDK local (stockage toocloud de chargement automatique)** ou **déployer un JDK à partir d’un téléchargement personnalisé** options sont uniquement en vigueur lorsque votre application est déployée dans le cloud de hello. Ils n’ont aucun effet sur votre expérience d’émulateur de calcul ; version locale de Hello des composants de hello sera toujours être utilisée lorsque vous déployez l’émulateur de calcul toohello. 
 
 ### <a name="server-configuration"></a>Configurer le serveur
-Voici un exemple de la façon dont vous pouvez spécifier un serveur d’applications.
+Hello Voici un exemple de comment vous pouvez spécifier un serveur d’applications.
 
 ![][ic796926]
 
-Vérifiez que la case à cocher **Déployer un serveur de ce type** est sélectionnée, puis choisissez le type de serveur d’applications à utiliser.
+Vérifiez que hello **déployer un serveur de ce type** case à cocher est sélectionnée, puis choisissez le type de hello du serveur d’applications, vous souhaitez toouse.
 
-Pour spécifier un serveur à utiliser pour le déploiement cloud, vous pouvez utiliser les options suivantes :
+Pour spécifier un toouse de serveur pour le déploiement de cloud computing, vous pouvez tirer parti de hello options suivantes :
 
-1. **Déployer un serveur tiers disponible sur Azure** : cela s’applique en particulier dans les scénarios de développement/test où l’efficacité du déploiement et la simplicité sont une priorité et lorsque le serveur ne nécessite pas une configuration personnalisée. C’est également le cas lorsque vous souhaitez utiliser un de ces serveurs comme point de départ, mais que vous intégrez les étapes de personnalisation du serveur appropriées dans le programme de démarrage de votre déploiement.
-2. **Déployer à partir d’un téléchargement personnalisé** : cette option s’applique en particulier à des scénarios de production lorsque vous disposez d’un serveur spécialement préparé et configuré à utiliser dans le cloud.
-3. **Déployer l’installation de mon serveur local** : cette option s’applique plus particulièrement si l’installation de votre serveur local est déjà configurée et personnalisée pour vous. Si vous choisissez cette option, vous devez également spécifier le chemin d’accès de votre serveur local dans la zone de texte **Chemin d’accès au serveur Local** ci-dessous.
+1. **Déployer un serveur de tiers 3e disponible sur Azure** -cela s’applique en particulier dans les scénarios de développement/test où l’efficacité du déploiement et la simplicité est une priorité et serveur de hello ne nécessite pas une configuration personnalisée. Ou toouse un de ces serveurs en tant que point de départ de hello, mais vous incluez les étapes de personnalisation du serveur approprié dans la logique de démarrage de votre déploiement.
+2. **Déployer à partir d’un téléchargement personnalisé** -il s’agit applique en particulier dans les scénarios de production lorsque vous avez un serveur spécialement préparé et configuré, que vous souhaitez toouse dans le cloud de hello.
+3. **Déployer l’installation de mon serveur local** : cette option s’applique plus particulièrement si l’installation de votre serveur local est déjà configurée et personnalisée pour vous. Si vous choisissez cette option, vous devez également spécifier le chemin d’accès de votre serveur local Bonjour **le chemin d’accès au serveur Local** zone de texte ci-dessous.
 
-Si vous utilisez l’option **Déployer un serveur tiers disponible sur Azure** :
+Si vous utilisez hello **déployer un serveur de tiers 3e disponible sur Azure** option :
 
-1. Cochez la case **Déployer un serveur tiers disponible sur Azure**.
-2. Dans le menu déroulant, sélectionnez le logiciel de serveur à utiliser avec votre déploiement dans le cloud. Notez que si vous avez déjà spécifié un type de serveur à utiliser, vous ne pourrez sélectionner qu’un serveur cloud qui se trouve dans la même famille que ce type de serveur. Mais si vous n’avez pas choisi de type de serveur, vous pouvez choisir parmi tous les serveurs actuellement disponibles sur Azure et le type de serveur est automatiquement sélectionné pour vous.
-3. Cliquez sur **OK** pour enregistrer vos modifications.
+1. Activez hello case **déployer un serveur de tiers 3e disponible sur Azure**.
+2. À partir du menu déroulant de hello, sélectionnez toouse de logiciel serveur hello souhaitée avec votre déploiement dans le cloud de hello. Notez que si vous déjà spécifié un type de toouse server précédemment, vous serez limité toochoosing un seul serveur cloud qui se trouve dans hello même famille que ce type de serveur. Mais si vous n’avez pas choisi un type de serveur, vous pouvez choisir de n’importe quel serveur hello qui sont actuellement disponibles sur Azure et le type de serveur hello sera automatiquement sélectionné pour vous.
+3. Cliquez sur **OK** toosave vos modifications.
 
-Si vous utilisez l’option **Déployer à partir d’un téléchargement personnalisé** :
+Si vous utilisez hello **déployer à partir d’un téléchargement personnalisé** option :
 
-1. Assurez-vous que vous avez sélectionné le type de serveur en respectant les étapes qui précèdent. Cette option déterminera la façon dont le plug-in déploiera le serveur à partir de votre téléchargement personnalisé, car il doit être de la même famille que le type de serveur sélectionné.
-2. Cochez la case **Déploiement depuis un téléchargement personnalisé**.
-    Si vous souhaitez effectuer le téléchargement à partir de votre compte de stockage Azure, sélectionnez le compte de stockage dans la liste déroulante **Compte de stockage** (vous pouvez cliquer sur le lien **Comptes** pour modifier le contenu de la liste). Le champ **URL** est partiellement renseigné. Remplissez la partie restante de l’URL vers le fichier zip de téléchargement serveur (lors de l’utilisation du stockage Azure, les noms d’objets blob dans l’URL doivent être en minuscules). Si vous ne souhaitez pas utiliser le stockage Azure, sélectionnez **(aucun)** dans la liste déroulante **Compte de stockage**, puis saisissez l’URL de votre fichier zip de téléchargement serveur dans le champ **URL**. Le fichier zip contient un dossier enfant représentant votre répertoire d’installation de serveur d’applications. Par exemple, si vous utilisez un fichier zip pour Apache Tomcat 7.0.35, vous devez trouver à l’intérieur un dossier enfant représentant le répertoire d’installation, par exemple **apache-tomcat-7.0.35**. 
-3. Spécifiez la valeur de la variable d’environnement du répertoire de base. Le cas échéant, elle prendra par défaut la valeur utilisée pour votre serveur d’applications local, mais vous pouvez spécifier une valeur différente si le serveur d’applications cloud est différent de votre serveur d’applications local. Vous devez toutefois être sûr que votre serveur d’applications cloud est de la même famille que le type de serveur sélectionné plus tôt.
-    Si vous mettez à jour le fichier zip du serveur d’applications cloud, vous pouvez manuellement changer la configuration de répertoire de base ou l’adapter à la configuration locale (si vous avez également modifié votre serveur d’applications local).
-4. Cliquez sur **OK** pour enregistrer vos modifications.
+1. Assurez-vous que vous avez sélectionné un type de serveur en fonction de toohello étapes précédentes. Cela indique à plug-in hello comment serveur hello de toodeploy à partir de votre téléchargement personnalisé, tel qu’il doit être de hello même famille que votre type de serveur sélectionné.
+2. Activez hello case **déployer à partir d’un téléchargement personnalisé**.
+    Si vous souhaitez toodownload à partir de votre compte de stockage Azure, sélectionnez le compte de stockage hello dans hello **compte de stockage** liste déroulante (vous pouvez cliquer sur hello **comptes** lien toomodify Nouveautés dans la liste de hello), action renseigne partiellement Bonjour **URL** champ, puis renseignez hello portion restante de hello URL tooyour serveur téléchargement le fichier ZIP (lors de l’utilisation du stockage Azure, les noms d’objet blob dans l’URL de hello doit être en minuscule). Si vous ne souhaitez pas toouse le stockage Azure, sélectionnez **(aucun)** de hello **compte de stockage** déroulante liste, puis entrez de téléchargement de serveur hello URL tooyour ZIP Bonjour **URL** champ. contiendrait un dossier enfant représentant votre répertoire d’installation de server application Hello ZIP. Par exemple, si vous utilisez un fichier zip pour Apache Tomcat 7.0.35, au sein de hello zip serait hello enfant dossier représentant hello répertoire d’installation, tel que **tomcat-apache-7.0.35**. 
+3. Spécifiez la valeur hello pour la variable d’environnement hello répertoire de base. Il prend par défaut valeur toohello utilisée pour votre serveur d’applications local, si une, mais vous pouvez spécifier une autre valeur si votre serveur d’applications cloud est différente de votre serveur d’applications local. Toutefois, vous devez toomake assurer que votre serveur d’applications cloud est Hello même famille comme type de serveur hello sélectionné précédemment.
+    Si vous mettez à jour votre zip de serveur d’application cloud Bonjour futures, vous pouvez modifier manuellement les paramètre du répertoire de base hello ou toohave qu’il corresponde à nouveau à votre paramètre local (si vous avez modifié votre serveur d’applications local trop).
+4. Cliquez sur **OK** toosave vos modifications.
 
-La logique sous-jacente pour laquelle les éléments apparaissent dans l’onglet **Serveur** de la page de propriété **Configuration du serveur** peut être personnalisée. Il s’agit d’une fonctionnalité avancée dont vous pourriez avoir besoin si vos besoins dépassent les valeurs par défaut ou si vous souhaitez ajouter d’autres serveurs. Pour personnaliser le programme, dans la boîte de dialogue **Serveur**, cliquez sur le lien **Personnaliser**. Cette opération ferme la page de propriété **Configuration du serveur** et ouvre le fichier **componentsets.xml** dans Eclipse. Vous pourrez par la suite le modifier si nécessaire pour étendre le modèle de configuration serveur. La documentation pour **componentsets.xml** est incluse dans le fichier **componentsets.xml** lui-même.
+Hello sous-jacent logique pour lequel les éléments s’affichent dans hello **Server** onglet Hello **Configuration du serveur** page de propriétés peut être personnalisée. Il s’agit d’une fonctionnalité avancée que vous devrez peut-être si vos besoins dépassent les valeurs par défaut de hello ou si vous souhaitez tooadd autres serveurs. logique de hello toocustomize, Bonjour **Server** boîte de dialogue, cliquez sur hello **personnaliser** lien. Cela entraînera la fermeture hello **Configuration du serveur** page de propriétés et ouvrez hello **componentsets.xml** fichier dans Eclipse, que vous pouvez modifier en tant que modèle de configuration de serveur nécessaires tooextend hello. Documentation de **componentsets.xml** est inclus dans hello **componentsets.xml** fichier lui-même.
 
-Si vous utilisez l’option **Déployer mon serveur local (chargement automatique vers un stockage cloud)** :
+Si vous utilisez hello **déployer mon serveur local (stockage toocloud de chargement automatique)** option :
 
-1. Cochez la case nommée **Déployer mon serveur local (chargement automatique dans un stockage cloud)**.
-2. Avec la liste déroulante **Compte de stockage**, sélectionnez **(auto)**. Si vous spécifiez **(auto)** à ce stade, la boîte à outils Eclipse utilisera pour votre serveur le même compte de stockage que celui que vous sélectionnez pour votre déploiement dans la boîte de dialogue **Publier sur Azure**.
-3. Cliquez sur **OK** pour enregistrer vos modifications.
+1. Activez hello case **déployer mon serveur local (stockage toocloud de chargement automatique)**.
+2. À l’aide de hello **compte de stockage** la liste déroulante, sélectionnez **(auto)**. Si vous spécifiez **(auto)** ici, hello Eclipse toolkit utilisera hello compte de stockage pour votre serveur hello celui que vous sélectionnez pour votre déploiement Bonjour **publier tooAzure** boîte de dialogue.
+3. Cliquez sur **OK** toosave vos modifications.
 
-Sélectionnez un chemin d’installation de serveur sur votre ordinateur dans la zone de texte **Chemin d’accès au serveur Local** si l’une des conditions suivantes est vraie :
+Sélectionnez un chemin d’installation de serveur sur votre ordinateur Bonjour **le chemin d’accès au serveur Local** zone de texte si une de hello conditions suivantes est vraie :
 
-* Vous souhaitez tester votre déploiement dans l’émulateur (s’applique uniquement à Windows).
-* Vous souhaitez déployer votre serveur installé localement dans le cloud.
-* Vous souhaitez utiliser un téléchargement de serveur personnalisé propre dans le cloud, auquel cas, vous devez également vérifier que l’option **Déployer mon serveur local (chargement automatique dans un stockage cloud)** est sélectionnée ci-dessus.
+* Vous souhaitez tootest votre déploiement dans l’émulateur hello (s’applique tooWindows uniquement).
+* Vous souhaitez toodeploy votre cloud de toohello serveur installé localement.
+* Vous souhaitez que toouse un téléchargement de serveur personnalisé de votre propre dans cloud hello, auquel cas, vérifiez également hello **déployer mon serveur local (stockage toocloud de chargement automatique)** option est sélectionnée ci-dessus.
 
-Si aucune des options qui précèdent ne s’applique à votre situation, la configuration du serveur local est facultative.
+Si aucun des hello précédant options s’appliquent tooyour situation, le paramètre du serveur local hello est facultative.
 
 ### <a name="applications-configuration"></a>Configuration des applications
-Voici un exemple de la façon dont vous pouvez spécifier une application.
+Hello Voici un exemple de comment vous pouvez spécifier une application.
 
 ![][ic719512]
 
-Cliquez sur **Ajouter** pour ajouter une autre application, ou sur **Supprimer** pour en supprimer une. Pour des raisons d’efficacité, si vous souhaitez utiliser un téléchargement comme source d’une application lors du déploiement dans le cloud, utilisez [Propriétés des composants](#components_properties) pour spécifier une URL, un compte de stockage, etc. 
+Cliquez sur **ajouter** tooadd une autre application, ou **supprimer** tooremove une application. Par souci d’efficacité, si vous voulez toouse un téléchargement pour la source de hello d’une application lors du déploiement de cloud de toohello, utilisez hello [propriétés des composants](#components_properties) toospecify une URL, le compte de stockage, etc.. 
 
-Depuis la version d’avril 2014, vos applications sont automatiquement téléchargées dans le même compte de stockage (sous le conteneur **eclipsedeploy** ) que celui qui est sélectionné pour votre déploiement. La logique de démarrage de votre déploiement contient une étape qui télécharge d’abord ces applications depuis ce compte de stockage. Vous pouvez donc mettre à niveau les applications de votre déploiement sans avoir à recréer et redéployer l’intégralité du package, en téléchargeant manuellement les versions plus récentes de l’application directement dans ce compte de stockage (en utilisant le portail Azure, par exemple), en remplaçant les fichiers WAR téléchargés à l’origine par la boîte à outils. Initiez ensuite le recyclage de toutes les instances de rôle à l’aide du portail de gestion Azure, ou via les utilitaires de ligne de commande. (Le déclenchement du recyclage de rôle directement depuis la boîte à outils Eclipse n’est pas pris en charge actuellement.)
+À partir de hello version d’avril 2014, vos applications sont automatiquement téléchargées dans hello même compte de stockage (sous hello **eclipsedeploy** conteneur) que celle sélectionnée pour votre déploiement hello. logique de démarrage Hello de votre déploiement contient une étape qui télécharge tout d’abord ces applications à partir de ce compte de stockage. Cela signifie que vous pouvez mettre à niveau vos applications dans votre déploiement sans avoir besoin de toorebuild et redéployer l’ensemble du package hello, en téléchargeant manuellement les versions plus récentes de l’application hello directement dans ce compte de stockage (en utilisant par exemple hello portail Azure) , en remplaçant les fichiers WAR hello de télécharger à l’origine par les outils d’analyse hello. Ensuite, procédez hello recyclage de toutes ces instances de rôle à l’aide du portail de gestion de Azure, ou via les utilitaires de ligne de commande. (Déclencher le recyclage de rôle directement à partir de la boîte à outils Eclipse hello est actuellement pas en charge.)
 
 ### <a name="notes-about-server-configuration"></a>Notes au sujet de la configuration du serveur
-Les modifications apportées dans la page de propriété **Configuration du serveur** sont répercutées dans les éléments `<component>` du fichier package.xml.
+Les modifications apportées via hello **configuration du serveur** page de propriétés sont répercutées dans hello `<component>` éléments du fichier package.xml de hello.
 
-Lorsque vous utilisez les options **Télécharger automatiquement...** ou **Déployer à partir du téléchargement...** pour le JDK ou le serveur d’applications, si vous procédez à la génération sur le cloud (et non l’émulateur de calcul) et êtes connecté au réseau, il se peut que vous receviez des messages de notification de génération sur la sortie de console, car le compilateur Ant vérifie la disponibilité du téléchargement :
+Lorsque vous utilisez hello **charger automatiquement...**  ou **déployer depuis un téléchargement...**  options pour hello JDK ou le serveur d’applications et vous générez pour le cloud hello (pas émulateur de calcul hello) et que vous êtes connecté toohello réseau, vous remarquerez peut-être générer des messages tels que suivants de hello dans la sortie de Console hello, comme hello Ant Générateur vérifie la disponibilité du téléchargement hello :
 
 `[windowsazurepackage] Verifying blob availability (https://example.blob.core.windows.net/temp/tomcat6.zip)...` 
 
-Si vous avez sélectionné l’option **Déployer à partir du téléchargement...** , l’avertissement suivant peut s’afficher, mais la compilation se poursuit :
+Si vous avez sélectionné hello **déployer depuis un téléchargement...**  option, hello suivant l’avertissement peut s’afficher, mais hello génération continue :
 
-`[windowsazurepackage] warning: Failed to confirm blob availability! Make sure the URL and/or the access key is correct (https://example.blob.core.windows.net/temp/tomcat6.zip).` 
+`[windowsazurepackage] warning: Failed tooconfirm blob availability! Make sure hello URL and/or hello access key is correct (https://example.blob.core.windows.net/temp/tomcat6.zip).` 
 
-Cet avertissement est le seul élément qui indique que la disponibilité du téléchargement n’a pas été vérifiée. Par conséquent, pour une raison quelconque, si un déploiement échoue dans le cloud vérifiez si vous avez reçu cet avertissement.
+Cet avertissement est hello seule indication que hello disponibilité du téléchargement n’a pas été vérifiée. Par conséquent, si un déploiement échoue dans le cloud de hello pour une raison quelconque, vous devez vérifier toosee si vous avez reçu cet avertissement.
 
-Si vous souhaitez désactiver la vérification du téléchargement (par exemple, si vous pensez qu’elle ralentit inutilement la compilation), définissez l’attribut `verifydownloads` sur `false` dans l’élément `<windowsazurepackage>` de package.xml : 
+Si vous souhaitez la vérification du téléchargement toodisable hello (par exemple, si vous pensez que cela ralentit inutilement de build de hello), affectez la valeur hello `verifydownloads` trop d’attributs`false` Bonjour `<windowsazurepackage>` élément du fichier package.xml : 
 
 `<windowsazurepackage verifydownloads="false" ...>` 
 
-Si vous avez sélectionné l’option **Télécharger automatiquement...** , dans la fenêtre console, vous verrez des messages de compilation indiquant la progression du téléchargement toutes les 5 secondes, à chaque fois qu’un téléchargement est nécessaire.
+Si vous avez sélectionné hello **charger automatiquement...**  option, puis dans la fenêtre de console hello, vous verrez build messages signaler la progression du téléchargement de hello toutes les 5 secondes, chaque fois qu’un téléchargement est nécessaire hello.
 
 <a name="ssl_offloading_properties"></a> 
 
 ### <a name="ssl-offloading-properties"></a>Propriétés de déchargement SSL
-Ouvrez le menu contextuel correspondant au rôle dans le volet Explorateur de projets Eclipse, cliquez sur **Azure**, puis sur **Déchargement SSL**. 
+Ouvrez le menu contextuel hello rôle de hello dans le volet Explorateur de projets d’Eclipse, cliquez sur **Azure**, puis cliquez sur **déchargement SSL**. 
 
 ![][ic719481]
 
-Dans cette boîte de dialogue, vous pouvez activer le déchargement SSL, ce qui vous permet d’activer en toute simplicité la prise en charge du protocole sécurisé HTTPS (Hypertext Transfer Protocol Secure) dans votre déploiement Java sur Azure, sans avoir à configurer SSL dans votre serveur d’applications Java. Pour plus d’informations, consultez [Déchargement SSL][SSL Offloading] et [Comment utiliser le déchargement SSL][How to Use SSL Offloading].
+Cette boîte de dialogue, vous pouvez activer SSL déchargement, ce qui permet des activer tooeasily protocole sécurisé HTTPS (Hypertext Transfer) prend en charge dans votre déploiement Java sur Azure, sans que vous ayez tooconfigure SSL dans votre serveur d’applications Java. Pour plus d’informations, consultez [déchargement SSL] [ SSL Offloading] et [comment tooUse déchargement SSL][How tooUse SSL Offloading].
 
 ## <a name="see-also"></a>Voir aussi
 [Kit de ressources Azure pour Eclipse][Azure Toolkit for Eclipse]
 
-[Installation du kit de ressources Azure pour Eclipse][Installing the Azure Toolkit for Eclipse]
+[Lors de l’installation hello boîte à outils Azure pour Eclipse][Installing hello Azure Toolkit for Eclipse]
 
 [Création d’une application Hello World pour Azure dans Eclipse][Creating a Hello World Application for Azure in Eclipse]
 
@@ -410,7 +410,7 @@ Dans cette boîte de dialogue, vous pouvez activer le déchargement SSL, ce qui 
 
 [Liste des comptes de stockage Azure][Azure Storage Account List]
 
-Pour plus d’informations sur l’utilisation d’Azure avec Java, consultez le [Centre de développement Java pour Azure][Azure Java Developer Center].
+Pour plus d’informations sur l’utilisation d’Azure avec Java, consultez hello [centre de développement Java Azure][Azure Java Developer Center].
 
 <!-- URL List -->
 
@@ -424,9 +424,9 @@ Pour plus d’informations sur l’utilisation d’Azure avec Java, consultez le
 [Debugging a specific role instance in a multi-instance deployment]: http://go.microsoft.com/fwlink/?LinkID=699535#debugging_specific_role_instance
 [Debugging Azure Applications in Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699535
 [Deploying Large Deployments]: http://go.microsoft.com/fwlink/?LinkID=699536
-[How to Use Co-located Caching]: http://go.microsoft.com/fwlink/?LinkID=699542
-[How to Use SSL Offloading]: http://go.microsoft.com/fwlink/?LinkID=699545
-[Installing the Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
+[How tooUse Co-located Caching]: http://go.microsoft.com/fwlink/?LinkID=699542
+[How tooUse SSL Offloading]: http://go.microsoft.com/fwlink/?LinkID=699545
+[Installing hello Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
 [Session Affinity]: http://go.microsoft.com/fwlink/?LinkID=699548
 [SSL Offloading]: http://go.microsoft.com/fwlink/?LinkID=699549
 

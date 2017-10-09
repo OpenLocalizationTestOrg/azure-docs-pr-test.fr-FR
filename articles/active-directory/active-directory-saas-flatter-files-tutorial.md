@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure AD à Flatter Files | Microsoft Docs"
-description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et Flatter Files."
+description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et les fichiers plate."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,104 +13,104 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/21/2017
 ms.author: jeedes
-ms.openlocfilehash: e02150cb27768d7b403bdca191bc1f189821def4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 73ca2613b7bbaf9992ecf624ff5defabaa44f7a0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-flatter-files"></a>Didacticiel : Intégration d’Azure Active Directory à Flatter Files
 
-Dans ce didacticiel, vous allez apprendre à intégrer Flatter Files à Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous apprendrez comment toointegrate fichiers plate avec Azure Active Directory (Azure AD).
 
-L’intégration de Flatter Files dans Azure AD offre les avantages suivants :
+Intégration des fichiers plate avec Azure AD offre hello avantages suivants :
 
-- Dans Azure AD, vous pouvez contrôler qui a accès à Flatter Files.
-- Vous pouvez autoriser les utilisateurs à se connecter automatiquement à Flatter Files (via l’authentification unique) avec leur compte Azure AD.
-- Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure
+- Vous pouvez contrôler dans Azure AD qui a accès aux fichiers de tooFlatter
+- Vous pouvez activer votre tooautomatically utilisateurs obtenir les fichiers signés sur tooFlatter (Single Sign-On) avec leurs comptes Azure AD
+- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure
 
-Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
+Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Composants requis
 
-Pour configurer l’intégration d’Azure AD avec Flatter Files, vous avez besoin des éléments suivants :
+tooconfigure intégration d’Azure AD avec des fichiers plate, vous devez hello éléments suivants :
 
 - Un abonnement Azure AD
 - Un abonnement Flatter Files pour lequel l’authentification unique est activée
 
 > [!NOTE]
-> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
+> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
 
-Vous devez en outre suivre les recommandations ci-dessous :
+tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
 
-1. Ajout de Flatter Files à partir de la galerie
+1. Ajout de fichiers plate à partir de la galerie de hello
 2. Configuration et test de l’authentification unique Azure AD
 
-## <a name="adding-flatter-files-from-the-gallery"></a>Ajout de Flatter Files à partir de la galerie
-Pour configurer l’intégration de Flatter Files avec Azure AD, vous devez ajouter Flatter Files à partir de la galerie à votre liste d’applications SaaS gérées.
+## <a name="adding-flatter-files-from-hello-gallery"></a>Ajout de fichiers plate à partir de la galerie de hello
+tooconfigure hello intégration des fichiers plate dans Azure AD, vous devez tooadd plate des fichiers à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
 
-**Pour ajouter Flatter Files à partir de la galerie, procédez comme suit :**
+**tooadd plate des fichiers à partir de la galerie hello, procédez hello comme suit :**
 
-1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
+1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
 
     ![Active Directory][1]
 
-2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
+2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
 
     ![Applications][2]
     
-3. Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
+3. tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.
 
     ![Applications][3]
 
-4. Dans la zone de recherche, entrez **Flatter Files**.
+4. Dans la zone de recherche de hello, tapez **fichiers plate**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatterfiles_search.png)
 
-5. Dans le volet de résultats, sélectionnez **Flatter Files**, puis cliquez sur **Ajouter** pour ajouter l’application.
+5. Dans le volet de résultats hello, sélectionnez **fichiers plate**, puis cliquez sur **ajouter** bouton application hello de tooadd.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatterfiles_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configuration et test de l’authentification unique Azure AD
 Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec Flatter Files avec un utilisateur de test appelé « Britta Simon ».
 
-Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur Flatter Files équivalent dans Azure AD. En d’autres termes, une relation entre l’utilisateur Azure AD et l’utilisateur Flatter Files associé doit être établie.
+Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans les fichiers plate est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et l’utilisateur dans les fichiers plate hello doit toobe établie.
 
-Dans Flatter Files, affectez la valeur de **nom d’utilisateur** dans Azure AD comme valeur **Nom d’utilisateur** pour établir la relation.
+Dans les fichiers plate, affecter la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.
 
-Pour configurer et tester l’authentification unique Azure AD avec Flatter Files, vous devez suivre les indications des sections suivantes :
+tooconfigure et test Azure AD l’authentification unique avec des fichiers plate, vous devez hello toocomplete suivant des blocs de construction :
 
-1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
-2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
-3. **[Création d’un utilisateur de test Flatter Files](#creating-a-flatter-files-test-user)** pour avoir un équivalent de Britta Simon dans Flatter Files lié à la représentation Azure AD associée.
-4. **[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
-5. **[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.
+1. **[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
+2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
+3. **[Création d’un utilisateur de test plus plate des fichiers](#creating-a-flatter-files-test-user)**  -toohave un équivalent de Britta Simon dans les fichiers plate qui est la représentation sous forme de toohello lié Azure AD de l’utilisateur.
+4. **[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
+5. **[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configuration de l’authentification unique Azure AD
 
-Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application Flatter Files.
+Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application de fichiers plate.
 
-**Pour configurer l’authentification unique Azure AD avec Flatter Files, procédez comme suit :**
+**tooconfigure Azure AD authentification unique avec des fichiers plate, effectuez hello comme suit :**
 
-1. Dans le portail Azure, sur la page d’intégration de l’application **Flatter Files**, cliquez sur **Authentification unique**.
+1. Bonjour portail Azure, sur hello **fichiers plate** page d’intégration d’application, cliquez sur **l’authentification unique**.
 
     ![Configurer l’authentification unique][4]
 
-2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
+2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
  
     ![Configurer l’authentification unique](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatterfiles_samlbase.png)
 
-3. Dans la section **Domaine et URL Flatter Files**, l’utilisateur n’aura pas à effectuer les étapes que l’application a déjà intégrées préalablement avec Azure.
+3. Sur hello **plate domaine de fichiers et les URL** section, hello utilisateur n’est pas tooperform toutes les étapes que l’application hello est déjà pré-intégration à Azure.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatterfiles_url.png)
  
-4. Dans la section **Certificat de signature SAML**, cliquez sur **Téléchargez le certificat (Base64)** puis enregistrez le fichier du certificat sur votre ordinateur.
+4. Sur hello **le certificat de signature SAML** , cliquez sur **Certificate(Base64)** , puis enregistrez le fichier de certificat hello sur votre ordinateur.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatterfiles_certificate.png) 
 
@@ -118,17 +118,17 @@ Dans cette section, vous allez activer l’authentification unique Azure AD dans
 
     ![Configurer l’authentification unique](./media/active-directory-saas-flatter-files-tutorial/tutorial_general_400.png)
 
-6. Dans la section **Configuration de Flatter Files**, cliquez sur **Configurer Flatter Files** pour ouvrir la fenêtre **Configurer l’authentification**. Copiez l**’URL du service d’authentification unique SAML** à partir de la **section Référence rapide.**
+6. Sur hello **plate fichiers Configuration** , cliquez sur **configurer les fichiers plate** tooopen **configurer l’authentification** fenêtre. Hello de copie **SAML Sign-On URL du Service unique** de hello **section de référence rapide.**
 
     ![Configurer l’authentification unique](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatterfiles_configure.png) 
 
-7. Connectez-vous à votre application Flatter Files en tant qu’administrateur.
+7. Authentification tooyour application fichiers plate en tant qu’administrateur.
 
 8. Cliquez sur **TABLEAU DE BORD**. 
    
     ![Configurer l’authentification unique](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatter_files_05.png)  
 
-9. Cliquez sur **Settings**, puis procédez comme suit dans l’onglet **Company** : 
+9. Cliquez sur **paramètres**, puis exécutez hello comme suit sur hello **société** onglet : 
    
     ![Configurer l’authentification unique](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatter_files_06.png)  
     
@@ -136,100 +136,100 @@ Dans cette section, vous allez activer l’authentification unique Azure AD dans
     
     b. Cliquez sur **Configure SAML**.
 
-8. Dans la boîte de dialogue **SAML Configuration** , procédez comme suit : 
+8. Sur hello **Configuration SAML** boîte de dialogue, effectuer hello comme suit : 
    
     ![Configurer l’authentification unique](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatter_files_08.png)  
    
-    a. Dans la zone de texte **Domaine**, entrez votre domaine enregistré.
+    a. Bonjour **domaine** zone de texte, tapez votre domaine inscrit.
    
     >[!NOTE]
     >Si vous n’avez pas encore de domaine enregistré, contactez votre équipe de support Flatter Files via [support@flatterfiles.com](mailto:support@flatterfiles.com). 
     
-    b. Dans la zone de texte **URL du fournisseur d’identité**, collez la valeur **URL du service d’authentification unique SAML** que vous avez copiée à partir du portail Azure.
+    b. Dans **URL du fournisseur d’identité** zone de texte, valeur hello coller **SAML Sign-On URL du Service unique** dont vous avez copié forment le portail Azure.
    
-    c.  Ouvrez votre certificat codé en base 64 dans le Bloc-notes, copiez son contenu dans le Presse-papiers, puis collez-le dans la zone de texte **Identity provider certificate (Certificat du fournisseur d’identité)**.
+    c.  Ouvrez votre certificat codé en base 64 dans le bloc-notes, hello copie contenu de celui-ci dans le Presse-papiers et le coller ensuite toohello **certificat de fournisseur d’identité** zone de texte.
 
     d. Cliquez sur **Update**.
 
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Création d’un utilisateur de test Azure AD
-L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
+objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
 
 ![Créer un utilisateur Azure AD][100]
 
-**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
+**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
 
-1. Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.
+1. Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-flatter-files-tutorial/create_aaduser_01.png) 
 
-2. Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.
+2. liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-flatter-files-tutorial/create_aaduser_02.png) 
 
-3. Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.
+3. tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-flatter-files-tutorial/create_aaduser_03.png) 
 
-4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
+4. Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-flatter-files-tutorial/create_aaduser_04.png) 
 
-    a. Dans la zone de texte **Nom**, entrez **BrittaSimon**.
+    a. Bonjour **nom** zone de texte, type **BrittaSimon**.
 
-    b. Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.
+    b. Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.
 
-    c. Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.
+    c. Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.
 
     d. Cliquez sur **Create**.
  
 ### <a name="creating-a-flatter-files-test-user"></a>Création d’un utilisateur de test Flatter Files
 
-L’objectif de cette section est de créer un utilisateur appelé Britta Simon dans Flatter Files.
+objectif Hello de cette section est toocreate un utilisateur appelé Britta Simon dans les fichiers plate.
 
-**Pour créer un utilisateur appelé Britta Simon dans Flatter Files, procédez comme suit :**
+**toocreate un utilisateur appelé Britta Simon dans les fichiers plate, effectuez hello comme suit :**
 
-1. Connectez-vous à votre site d’entreprise **Flatter Files** en tant qu’administrateur.
+1. Ouverture de session tooyour **fichiers plate** site d’entreprise en tant qu’administrateur.
 
-2. Dans le volet de navigation situé à gauche, cliquez sur **Paramètres**, puis sur l’onglet **Utilisateurs**.
+2. Dans le volet de navigation hello hello gauche, cliquez sur **paramètres**, puis cliquez sur hello **utilisateurs** onglet.
    
     ![Créer un utilisateur Flatter Files](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatter_files_09.png)
 
 3. Cliquez sur **Add User**. 
 
-4. Dans la boîte de dialogue **Ajouter un utilisateur** , procédez comme suit :
+4. Sur hello **ajouter un utilisateur** boîte de dialogue, effectuer hello comme suit :
    
     ![Créer un utilisateur Flatter Files](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatter_files_10.png)
 
-    a. Dans la zone de texte **First Name**, tapez **Britta**.
+    a. Bonjour **prénom** zone de texte, type **Brian**.
    
-    b. Dans la zone de texte **Last Name**, tapez **Simon**. 
+    b. Bonjour **nom** zone de texte, type **Simon**. 
    
-    c. Dans la zone de texte **Adresse e-mail**, tapez l’adresse de messagerie de Britta indiquée dans le portail Azure.
+    c. Bonjour **adresse de messagerie** zone de texte, tapez l’adresse de messagerie de Brian Bonjour portail Azure.
    
     d. Cliquez sur **Envoyer**.   
 
 
-### <a name="assigning-the-azure-ad-test-user"></a>Affectation de l’utilisateur de test Azure AD
+### <a name="assigning-hello-azure-ad-test-user"></a>Affectation d’utilisateur de test hello Azure AD
 
-Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à Flatter Files.
+Dans cette section, vous activez Britta Simon toouse Azure l’authentification unique par l’octroi d’accéder aux fichiers de tooFlatter.
 
 ![Affecter des utilisateurs][200] 
 
-**Pour affecter Britta Simon à Flatter Files, procédez comme suit :**
+**tooassign Britta Simon tooFlatter fichiers, effectuer hello comme suit :**
 
-1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
+1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications, sélectionnez **Flatter Files**.
+2. Dans la liste des applications hello, sélectionnez **fichiers plate**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-flatter-files-tutorial/tutorial_flatterfiles_app.png) 
 
-3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
+3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
 
     ![Affecter des utilisateurs][202] 
 
@@ -237,7 +237,7 @@ Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentifi
 
     ![Affecter des utilisateurs][203]
 
-5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
+5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -245,14 +245,14 @@ Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentifi
     
 ### <a name="testing-single-sign-on"></a>Test de l’authentification unique
 
-Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.
+Dans cette section, vous tester votre configuration Azure AD unique de session à l’aide de hello panneau d’accès.
 
-Lorsque vous cliquez sur la vignette Flatter Files dans le volet d’accès, vous devez être connecté automatiquement à votre application Flatter Files.
-Pour plus d’informations sur le panneau d’accès, consultez [Présentation du panneau d’accès](active-directory-saas-access-panel-introduction.md).
+Lorsque vous cliquez sur hello fichiers plate vignette Bonjour volet d’accès, vous devez obtenir automatiquement signé sur tooyour fichiers plate une application.
+Pour plus d’informations sur hello volet d’accès, consultez [Introduction toohello volet d’accès](active-directory-saas-access-panel-introduction.md).
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 

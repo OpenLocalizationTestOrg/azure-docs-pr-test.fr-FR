@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory à ArcGIS Online | Microsoft Docs"
-description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et ArcGIS Online."
+description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et de ArcGIS en ligne."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,117 +13,117 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/01/2017
 ms.author: jeedes
-ms.openlocfilehash: df72270ca6443b456c079b22425f1660aa522389
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f3dd55d798cf3256fb2758e011f33946baa405ce
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-arcgis-online"></a>Didacticiel : Intégration d’Azure Active Directory à ArcGIS Online
 
-Dans ce didacticiel, vous allez apprendre à intégrer ArcGIS Online à Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous apprendrez comment toointegrate ArcGIS en ligne avec Azure Active Directory (Azure AD).
 
-L’intégration d’ArcGIS Online à Azure AD vous offre les avantages suivants :
+Intégration de ArcGIS en ligne auprès d’Azure AD offre hello avantages suivants :
 
-- Dans Azure AD, vous pouvez contrôler qui a accès à ArcGIS Online.
-- Vous pouvez autoriser vos utilisateurs à se connecter automatiquement à ArcGIS Online (authentification unique) avec leurs comptes Azure AD.
-- Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure
+- Vous pouvez contrôler dans Azure AD qui a accès tooArcGIS en ligne
+- Vous pouvez activer vos utilisateurs tooautomatically get connecté tooArcGIS en ligne (Single Sign-On) avec leurs comptes Azure AD
+- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure
 
-Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
+Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 <!--## Overview
 
-To enable single sign-on with ArcGIS Online, it must be configured to use Azure Active Directory as an identity provider. This guide provides information and tips on how to perform this configuration in ArcGIS Online.
+tooenable single sign-on with ArcGIS Online, it must be configured toouse Azure Active Directory as an identity provider. This guide provides information and tips on how tooperform this configuration in ArcGIS Online.
 
 >[!Note]: 
->This embedded guide is brand new in the new Azure portal, and we’d love to hear your thoughts. Use the Feedback ? button at the top of the portal to provide feedback. The older guide for using the [Azure classic portal](https://manage.windowsazure.com) to configure this application can be found [here](https://github.com/Azure/AzureAD-App-Docs/blob/master/articles/en-us/_/sso_configure.md).-->
+>This embedded guide is brand new in hello new Azure portal, and we’d love toohear your thoughts. Use hello Feedback ? button at hello top of hello portal tooprovide feedback. hello older guide for using hello [Azure classic portal](https://manage.windowsazure.com) tooconfigure this application can be found [here](https://github.com/Azure/AzureAD-App-Docs/blob/master/articles/en-us/_/sso_configure.md).-->
 
 
 ## <a name="prerequisites"></a>Composants requis
 
-Pour configurer l’intégration d’Azure AD à ArcGIS Online, vous avez besoin des éléments suivants :
+tooconfigure intégration d’Azure AD avec ArcGIS en ligne, vous devez hello éléments suivants :
 
 - Un abonnement Azure AD
 - Un abonnement ArcGIS Online pour lequel l’authentification unique est activée
 
 > [!NOTE]
-> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
+> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
 
-Vous devez en outre suivre les recommandations ci-dessous :
+tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
 
-1. Ajout d’ArcGIS Online à partir de la galerie
+1. Ajout de ArcGIS en ligne à partir de la galerie de hello
 2. Configuration et test de l’authentification unique Azure AD
 
-## <a name="adding-arcgis-online-from-the-gallery"></a>Ajout d’ArcGIS Online à partir de la galerie
-Pour configurer l’intégration d’ArcGIS Online à Azure AD, vous devez ajouter ArcGIS Online à partir de la galerie à votre liste d’applications SaaS gérées.
+## <a name="adding-arcgis-online-from-hello-gallery"></a>Ajout de ArcGIS en ligne à partir de la galerie de hello
+intégration de hello tooconfigure de ArcGIS en ligne dans Azure AD, vous devez tooadd ArcGIS en ligne à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
 
-**Pour ajouter ArcGIS Online à partir de la galerie, effectuez les étapes suivantes :**
+**tooadd ArcGIS en ligne à partir de la galerie hello, procédez hello comme suit :**
 
-1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
+1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
 
     ![Active Directory][1]
 
-2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
+2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
 
     ![Applications][2]
     
-3. Pour ajouter la nouvelle application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
+3. Cliquez sur **nouvelle application** bouton en haut de hello de nouvelle application hello dialogue tooadd.
 
     ![Applications][3]
 
-4. Dans la zone de recherche, tapez **ArcGIS Online**.
+4. Dans la zone de recherche de hello, tapez **ArcGIS en ligne**.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-arcgis-tutorial/tutorial_arcgisonline_search.png)
 
-5. Dans le volet de résultats, sélectionnez **ArcGIS Online**, puis cliquez sur le bouton **Ajouter** pour ajouter l’application.
+5. Dans le volet de résultats hello, sélectionnez **ArcGIS en ligne**, puis cliquez sur **ajouter** bouton application hello de tooadd.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-arcgis-tutorial/tutorial_arcgisonline_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>Configuration et test de l’authentification unique Azure AD
 Dans cette section, vous allez configurer et tester l’authentification unique Azure AD avec ArcGIS Online sur un utilisateur de test nommé « Britta Simon ».
 
-Pour que l’authentification unique fonctionne, Azure AD doit connaître l’utilisateur ArcGIS Online correspondant à l’utilisateur Azure AD. En d’autres termes, une relation doit être établie entre l’utilisateur Azure AD et l’utilisateur ArcGIS Online associé.
+Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans ArcGIS en ligne est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans ArcGIS en ligne doit toobe établie.
 
-Pour cela, affectez la valeur de **nom d’utilisateur** dans Azure AD comme valeur de **nom d’utilisateur** dans ArcGIS Online.
+Cette relation de lien est établie en assignant la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** dans ArcGIS en ligne.
 
-Pour configurer et tester l’authentification unique Azure AD avec ArcGIS Online, vous devez suivre les instructions des sections suivantes :
+tooconfigure et test Azure AD l’authentification unique avec ArcGIS en ligne, vous devez hello toocomplete suivant des blocs de construction :
 
-1. **[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
-2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
-3. **[Création d’un utilisateur de test ArcGIS Online](#creating-an-arcgis-online-test-user)** pour avoir dans ArcGIS Online un équivalent de Britta Simon lié à la représentation Azure AD de l’utilisateur.
-4. **[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
-5. **[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.
+1. **[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
+2. **[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
+3. **[Création d’un utilisateur de test en ligne de ArcGIS](#creating-an-arcgis-online-test-user)**  -toohave un équivalent de Britta Simon dans ArcGIS en ligne qui est la représentation sous forme de toohello lié Azure AD de l’utilisateur.
+4. **[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
+5. **[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>Configuration de l’authentification unique Azure AD
 
-Dans cette section, vous activez l’authentification unique Azure AD dans le portail Azure et configurez l’authentification unique dans votre application ArcGIS Online.
+Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application en ligne de ArcGIS.
 
-**Pour configurer l’authentification unique Azure AD avec ArcGIS Online, effectuez les étapes suivantes :**
+**tooconfigure Azure AD l’authentification unique sur ArcGIS Online, effectuez hello comme suit :**
 
-1. Dans le portail Azure, dans la page d’intégration de l’application **ArcGIS Online**, cliquez sur **Authentification unique**.
+1. Bonjour portail Azure, sur hello **ArcGIS en ligne** page d’intégration d’application, cliquez sur **l’authentification unique**.
 
     ![Configurer l’authentification unique][4]
 
-2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
+2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
  
     ![Configurer l’authentification unique](./media/active-directory-saas-arcgis-tutorial/tutorial_arcgisonline_samlbase.png)
 
-3. Dans la section **Domaine et URL ArcGIS Online**, effectuez les étapes suivantes :
+3. Sur hello **URL et domaine en ligne de ArcGIS** section, effectuer hello suivant l’étape :
 
     ![Configurer l’authentification unique](./media/active-directory-saas-arcgis-tutorial/tutorial_arcgisonline_url.png)
 
-    Dans la zone de texte **URL de connexion**, tapez la valeur au format suivant : `https://<company>.maps.arcgis.com`
+    Bonjour **URL de connexion** zone de texte, valeur hello de type hello suivant le modèle à l’aide de :`https://<company>.maps.arcgis.com`
 
     > [!NOTE] 
-    > Cette valeur n’est pas la valeur réelle. Mettez à jour cette valeur avec l’URL de connexion réelle. Pour obtenir cette valeur, contactez [l’équipe du support ArcGIS Online](http://support.esri.com/). 
+    > Cette valeur n’est pas hello réel. Mettre à jour de cette valeur avec hello URL de connexion réel. Contact [équipe de support Client en ligne de ArcGIS](http://support.esri.com/) tooget cette valeur. 
 
-4. Dans la section **Certificat de signature SAML**, cliquez sur **Métadonnées XML** puis enregistrez le fichier XML sur votre ordinateur.
+4. Sur hello **le certificat de signature SAML** , cliquez sur **Metadata XML** , puis enregistrez le fichier XML de hello sur votre ordinateur.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-arcgis-tutorial/tutorial_arcgisonline_certificate.png) 
 
@@ -145,61 +145,61 @@ Dans cette section, vous activez l’authentification unique Azure AD dans le po
 
     ![Connexions de l’entreprise](./media/active-directory-saas-arcgis-tutorial/ic784744.png "Connexions de l’entreprise")
 
-10. Dans la page de configuration **Set Identity Provider** , procédez comme suit :
+10. Sur hello **définir le fournisseur d’identité** configuration page, effectuer hello comme suit :
    
     ![Définir le fournisseur d’identité](./media/active-directory-saas-arcgis-tutorial/ic784745.png "Définir le fournisseur d’identité")
    
-    a. Dans la zone de texte **Name** (Nom), tapez le nom de votre organisation.
+    a. Bonjour **nom** zone de texte, tapez le nom de votre organisation.
 
-    b. Pour **Metadata for the Enterprise Identity Provider will be supplied using**, sélectionnez **A File**.
+    b. Pour **métadonnées pour hello fournisseur d’identité d’entreprise sont fournies à l’aide de**, sélectionnez **un fichier**.
 
-    c. Pour télécharger votre fichier de métadonnées, cliquez sur **Choose file**.
+    c. tooupload votre fichier de métadonnées téléchargé, cliquez sur **choisir un fichier**.
 
     d. Cliquez sur **Set Identity Provider** (Définir un fournisseur d’identité).
 
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
 
 
 ### <a name="creating-an-azure-ad-test-user"></a>Création d’un utilisateur de test Azure AD
-L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
+objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
 
 ![Créer un utilisateur Azure AD][100]
 
-**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
+**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
 
-1. Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.
+1. Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-arcgis-tutorial/create_aaduser_01.png) 
 
-2. Accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs** pour afficher la liste des utilisateurs.
+2. Accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs** liste de hello toodisplay des utilisateurs.
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-arcgis-tutorial/create_aaduser_02.png) 
 
-3. En haut de la boîte de dialogue, cliquez sur **Ajouter** pour ouvrir la boîte de dialogue **Utilisateur**.
+3. En haut de hello de boîte de dialogue hello, cliquez sur **ajouter** tooopen hello **utilisateur** boîte de dialogue.
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-arcgis-tutorial/create_aaduser_03.png) 
 
-4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
+4. Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-arcgis-tutorial/create_aaduser_04.png) 
 
-    a. Dans la zone de texte **Nom**, entrez **BrittaSimon**.
+    a. Bonjour **nom** zone de texte, type **BrittaSimon**.
 
-    b. Dans la zone de texte **Nom d’utilisateur** , tapez l’**adresse de messagerie** de Britta Simon.
+    b. Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de Britta Simon.
 
-    c. Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.
+    c. Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.
 
     d. Cliquez sur **Create**.
  
 ### <a name="creating-an-arcgis-online-test-user"></a>Création d’un utilisateur de test ArcGIS Online
 
-Pour permettre aux utilisateurs Azure AD de se connecter à ArcGIS Online, vous devez les attribuer dans ArcGIS Online.  
-Pour ArcGIS Online, cette attribution s’effectue manuellement.
+Dans l’ordre tooenable Azure AD les utilisateurs toolog dans ArcGIS en ligne, vous devez les configurer dans ArcGIS en ligne.  
+Dans les cas de hello de ArcGIS en ligne, cette configuration est une tâche manuelle.
 
-**Pour approvisionner un compte d’utilisateur, procédez comme suit :**
+**tooprovision un compte d’utilisateur, effectuez hello comme suit :**
 
-1. Connectez-vous à votre locataire **ArcGIS** .
+1. Connectez-vous à tooyour **ArcGIS** client.
 
 2. Cliquez sur **Invite Members** (Inviter des membres).
    
@@ -209,37 +209,37 @@ Pour ArcGIS Online, cette attribution s’effectue manuellement.
    
     ![Ajouter des membres automatiquement](./media/active-directory-saas-arcgis-tutorial/ic784748.png "Ajouter des membres automatiquement")
 
-4. Dans la page de boîte de dialogue **Members** , procédez comme suit :
+4. Sur hello **membres** boîte de dialogue de page, effectuer hello comme suit :
    
      ![Ajouter et vérifier](./media/active-directory-saas-arcgis-tutorial/ic784749.png "Ajouter et vérifier")
     
-     a. Entrez **l’adresse e-mail**, le **prénom** et le **nom** d’un compte Azure AD valide que vous voulez attribuer.
+     a. Entrez hello **messagerie**, **prénom**, et **nom** d’un compte AAD valide que vous souhaitez tooprovision.
   
      b. Cliquez sur **Add And Review** (Ajouter et vérifier).
-5. Passez en revue les données que vous avez entrées, puis cliquez sur **Add Members** (Ajouter des membres).
+5. Passez en revue les données hello vous avez entrées, puis cliquez sur **ajouter des membres**.
    
     ![Ajouter un membre](./media/active-directory-saas-arcgis-tutorial/ic784750.png "Ajouter un membre")
         
     > [!NOTE]
-    > Le titulaire du compte Azure Active Directory reçoit un message électronique contenant un lien à suivre pour confirmer son compte et l’activer.
+    > titulaire du compte Azure Active Directory Hello sera reçoivent un e-mail et suivez les leur compte d’un tooconfirm lien avant son activation.
 
-### <a name="assigning-the-azure-ad-test-user"></a>Affectation de l’utilisateur de test Azure AD
+### <a name="assigning-hello-azure-ad-test-user"></a>Affectation d’utilisateur de test hello Azure AD
 
-Dans cette section, vous autorisez Britta Simon à utiliser l’authentification unique Azure en accordant l’accès à ArcGIS Online.
+Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant tooArcGIS accès en ligne.
 
 ![Affecter des utilisateurs][200] 
 
-**Pour attribuer Britta Simon à ArcGIS Online, effectuez les étapes suivantes :**
+**tooassign tooArcGIS Britta Simon en ligne, effectuez hello comme suit :**
 
-1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
+1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications, sélectionnez **ArcGIS Online**.
+2. Dans la liste des applications hello, sélectionnez **ArcGIS en ligne**.
 
     ![Configurer l’authentification unique](./media/active-directory-saas-arcgis-tutorial/tutorial_arcgisonline_app.png) 
 
-3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
+3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
 
     ![Affecter des utilisateurs][202] 
 
@@ -247,7 +247,7 @@ Dans cette section, vous autorisez Britta Simon à utiliser l’authentification
 
     ![Affecter des utilisateurs][203]
 
-5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
+5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -255,14 +255,14 @@ Dans cette section, vous autorisez Britta Simon à utiliser l’authentification
     
 ### <a name="testing-single-sign-on"></a>Test de l’authentification unique
 
-Dans cette section, vous allez tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.
+Dans cette section, vous tester votre configuration Azure AD unique de session à l’aide de hello panneau d’accès.
 
-Quand vous cliquez sur la vignette ArcGIS Online dans le volet d’accès, vous devez être authentifié automatiquement auprès de votre application ArcGIS Online.
-Pour plus d’informations sur le panneau d’accès, consultez [Présentation du panneau d’accès](active-directory-saas-access-panel-introduction.md).
+Lorsque vous cliquez sur mosaïque ArcGIS en ligne hello hello volet d’accès, vous devez obtenir tooyour automatiquement signé sur des applications ArcGIS en ligne.
+Pour plus d’informations sur hello volet d’accès, consultez [Introduction toohello volet d’accès](active-directory-saas-access-panel-introduction.md).
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 

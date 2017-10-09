@@ -1,6 +1,6 @@
 ---
-title: "Expériences de connexion avec Azure AD Identity Protection | Microsoft Docs"
-description: "Fournit une vue d’ensemble de l’expérience utilisateur lorsque Identity Protection a atténué ou corrigé la connexion d’un utilisateur ou lorsque l’authentification multifacteur est requise par une stratégie."
+title: "aaaSign dans les expériences avec Azure AD Identity Protection | Documents Microsoft"
+description: "Fournit une vue d’ensemble de l’expérience utilisateur hello lors de la Protection de l’identité a atténué ou mis à jour un utilisateur ou lorsque l’authentification multifacteur est requise par une stratégie."
 services: active-directory
 keywords: "azure active directory identity protection, cloud app discovery, gestion d’applications, sécurité, risque, niveau de risque, vulnérabilité, stratégie de sécurité"
 documentationcenter: 
@@ -15,19 +15,19 @@ ms.topic: article
 ms.date: 07/12/2017
 ms.author: markvi
 ms.reviewer: nigu
-ms.openlocfilehash: e45936280b51fb2e54012a688fceddcc8dabe984
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: fbdca5b86ed93d0a2f2b6df1dd0150da9c0c85c0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sign-in-experiences-with-azure-ad-identity-protection"></a>Expériences de connexion avec Azure AD Identity Protection
 Avec Azure Active Directory Identity Protection, vous pouvez :
 
-* exiger que les utilisateurs s’inscrivent à l’authentification multifacteur
+* exiger des utilisateurs tooregister pour l’authentification multifacteur
 * gérer les connexions risquées et les utilisateurs compromis
 
-La réponse du système à ces problèmes a un impact sur l’expérience de connexion d’un utilisateur, car la connexion à l’aide d’un nom d’utilisateur et d’un mot de passe seulement ne sera plus possible. Des étapes supplémentaires sont nécessaires pour rétablir l’accès d’un utilisateur en toute sécurité.
+réponse Hello des problèmes de toothese hello système a un impact sur l’expérience de connexion d’un utilisateur, car il est simplement directement de signature d’en fournissant un nom d’utilisateur et un mot de passe ne sera pas possible plus. Des étapes supplémentaires sont requis tooget un utilisateur sauvegarder en toute sécurité dans l’entreprise.
 
 Cette rubrique donne une vue d’ensemble de l’expérience de connexion d’un utilisateur pour tous les cas qui peuvent se produire.
 
@@ -47,65 +47,65 @@ Cette rubrique donne une vue d’ensemble de l’expérience de connexion d’un
 * Compte compromis bloqué
 
 ## <a name="multi-factor-authentication-registration"></a>Inscription à l’authentification multifacteur
-L’utilisateur bénéficie d’une expérience optimale pour le flux de récupération de compte compromis et de connexion à risque lorsqu’il peut effectuer lui-même l’opération de récupération. Si des utilisateurs sont inscrits à l’authentification multifacteur, ils ont déjà un numéro de téléphone associé à leur compte qu’ils peuvent utiliser pour répondre aux questions de sécurité. La récupération d’un compte suite à sa compromission ne nécessite pas l’intervention du support technique ou d’un administrateur. Par conséquent, nous vous recommandons vivement de demander à vos utilisateurs de s’inscrire à l’authentification multifacteur. 
+Hello meilleure expérience utilisateur pour les deux, hello du flux de récupération de compte compromis et hello de flux de connexion présente des risques, est lorsque hello utilisateur peut les récupérer. Si les utilisateurs sont inscrits pour l’authentification multifacteur, qu’il a déjà un numéro de téléphone associé à leur compte qui peut être des défis de sécurité toopass utilisé. Sans intervention du support technique ou l’administrateur aide est toorecover nécessaire à partir de la compromission d’un compte. Par conséquent, il est vivement recommandé tooget vos utilisateurs inscrits pour l’authentification multifacteur. 
 
 Les administrateurs peuvent :
 
-* définir une stratégie qui impose aux utilisateurs d’ajouter une vérification de sécurité supplémentaire à leur compte ; 
-* autoriser les utilisateurs à ignorer l’inscription à l’authentification multifacteur pendant 30 jours maximum, s’ils souhaitent leur accorder un délai de grâce avant l’inscription.
+* définir une stratégie qui impose tooset utilisateurs leurs comptes pour la vérification de sécurité supplémentaire. 
+* Autoriser l’enregistrement de l’authentification multifacteur pour des jours de too30, ignoré au cas où ils souhaitent toogive utilisateurs avant d’inscrire une période de grâce.
 
-**L’inscription à l’authentification multifacteur comporte trois étapes :**
+**l’inscription de l’authentification multifacteur Hello comporte trois étapes :**
 
-1. Dans la première étape, l’utilisateur reçoit une notification concernant la nécessité d’inscrire le compte à l’authentification multifacteur. 
+1. Dans la première étape de hello, utilisateur de hello reçoit une notification à propos hello exigence tooset hello du compte pour l’authentification multifacteur. 
    
     ![Correction](./media/active-directory-identityprotection-flows/140.png "Correction")
-2. Pour configurer l’authentification multifacteur, vous devez indiquer au système comment vous souhaitez être contacté.
+2. l’authentification multifacteur tooset haut, il vous faut toolet hello système savoir comment vous souhaitez toobe contacté.
    
     ![Correction](./media/active-directory-identityprotection-flows/141.png "Correction")
-3. Le système vous envoie un défi et vous devez y répondre.
+3. système de Hello soumet une demande d’accès tooyou et que vous devez toorespond.
    
     ![Correction](./media/active-directory-identityprotection-flows/142.png "Correction")
 
 ## <a name="risky-sign-in-recovery"></a>Récupération de connexion à risque
-Lorsqu’un administrateur a configuré une stratégie pour les risques à la connexion, les utilisateurs affectés sont avertis quand ils tentent de se connecter. 
+Lorsqu’un administrateur a configuré une stratégie de risques pour la connexion, les utilisateurs de hello affecté sont avertis quand ils essaient de toosign. 
 
-**Le flux de connexion à risque comporte deux étapes :** 
+**flux de connexion présente des risques Hello comprend deux étapes :** 
 
-1. L’utilisateur est informé que quelque chose d’inhabituel a été détecté concernant sa connexion, par exemple en cas de connexion depuis un nouvel emplacement, un nouvel appareil ou une nouvelle application. 
+1. l’utilisateur Hello est informé que quelque chose d’inhabituel a été détecté sur leurs connectez-vous, telles que la connexion à partir d’un nouvel emplacement, appareil ou application. 
    
     ![Correction](./media/active-directory-identityprotection-flows/120.png "Correction")
-2. L’utilisateur doit prouver son identité en répondant à une question de sécurité. Si l’utilisateur est inscrit à l’authentification multifacteur, il doit saisir un code de sécurité envoyé sur son téléphone. Comme il s’agit simplement d’une connexion à risque et non pas d’un compte compromis, l’utilisateur ne doit pas changer le mot de passe dans ce flux. 
+2. utilisateur de Hello est requis tooprove leur identité en résolvant une vérification de sécurité. Si l’utilisateur de hello est inscrit pour l’authentification multifacteur dont ils ont besoin d’un numéro de téléphone de sécurité code tootheir de tooround-voyage. Comme il s’agit seulement un risque de connexion et non un compte compromis, utilisateur de hello ne devra pas un mot de passe toochange hello dans ce flux. 
    
     ![Correction](./media/active-directory-identityprotection-flows/121.png "Correction")
 
 ## <a name="risky-sign-in-blocked"></a>Connexion à risque bloquée
-Les administrateurs peuvent également choisir de définir une stratégie en matière de risque à la connexion pour bloquer les utilisateurs lors de la connexion selon le niveau de risque. Pour débloquer leur accès, les utilisateurs finaux doivent contacter un administrateur ou leur support technique, ou ils peuvent essayer de se connecter depuis un emplacement ou un appareil connu. Il n’a pas la possibilité de récupérer lui-même son compte en résolvant l’authentification multifacteur dans ce cas précis.
+Les administrateurs peuvent également choisir des tooset une ouverture de session risque stratégie tooblock des utilisateurs lors de l’authentification en fonction du niveau de risque hello. tooget débloqué, les utilisateurs finaux doivent contacter un administrateur ou le support technique, ou ils peuvent essayez de vous connecter à partir d’un emplacement de votre choix ou un périphérique. Il n’a pas la possibilité de récupérer lui-même son compte en résolvant l’authentification multifacteur dans ce cas précis.
 
 ![Correction](./media/active-directory-identityprotection-flows/200.png "Correction")
 
 ## <a name="compromised-account-recovery"></a>Récupération de compte compromis
-Lorsqu’une stratégie de sécurité en matière de risque des utilisateurs a été configurée, les utilisateurs dont le niveau de risque correspond à celui spécifié dans la stratégie (et qui sont donc considérés comme compromis) doivent passer par le flux de récupération de compte compromis avant de pouvoir se connecter. 
+Lorsqu’une stratégie de sécurité risque utilisateur a été configurée, les utilisateurs qui répondent aux utilisateurs de hello risque au niveau spécifié dans la stratégie de hello (et sont donc supposés compromis) doivent passer par le flux de restauration hello utilisateur compromis avant qu’ils peuvent se connecter au. 
 
-**Le flux de récupération de compte compromis comporte trois étapes :**
+**flux de restauration Hello utilisateur compromis comporte trois étapes :**
 
-1. L’utilisateur est informé que la sécurité de son compte est menacée en raison d’activités suspectes ou de la divulgation de ses informations d’identification.
+1. Hello l’utilisateur est informé que leur sécurité du compte est menacée en raison d’une activité suspecte ou une fuite des informations d’identification.
    
     ![Correction](./media/active-directory-identityprotection-flows/101.png "Correction")
-2. L’utilisateur doit prouver son identité en répondant à une question de sécurité. Si l’utilisateur est inscrit à l’authentification multifacteur, il peut récupérer lui-même son compte compromis. Il devra saisir un code de sécurité envoyé sur son téléphone. 
+2. utilisateur de Hello est requis tooprove leur identité en résolvant une vérification de sécurité. Si l’utilisateur de hello est inscrit pour l’authentification multifacteur ils peuvent récupérer automatiquement à partir de la compromission. Ils devront tooround-trip un numéro de téléphone de sécurité code tootheir. 
    
    ![Correction](./media/active-directory-identityprotection-flows/110.png "Correction")
-3. Enfin, l’utilisateur est obligé de changer son mot de passe, car il se peut que quelqu’un d’autre ait eu accès à son compte. 
+3. Enfin, hello utilisateur est forcé toochange leur mot de passe, car une autre personne peut avoir eu accès tootheir compte. 
    Vous trouverez ci-dessous des captures d’écran de cette expérience.
    
    ![Correction](./media/active-directory-identityprotection-flows/111.png "Correction")
 
 ## <a name="compromised-account-blocked"></a>Compte compromis bloqué
-Pour débloquer un compte bloqué par une stratégie de sécurité en matière de risque des utilisateurs, l’utilisateur doit contacter un administrateur ou son support technique. Il n’a pas la possibilité de récupérer lui-même son compte en résolvant l’authentification multifacteur dans ce cas précis.
+tooget un utilisateur qui a été bloqué par une stratégie de sécurité utilisateur risque débloquée, utilisateur de hello doit contacter un administrateur ou le support technique. Il n’a pas la possibilité de récupérer lui-même son compte en résolvant l’authentification multifacteur dans ce cas précis.
 
 ![Correction](./media/active-directory-identityprotection-flows/104.png "Correction")
 
 ## <a name="reset-password"></a>Réinitialiser le mot de passe
-Si des utilisateurs compromis voient leur connexion bloquée, un administrateur peut générer un mot de passe temporaire pour eux. Les utilisateurs devront changer leur mot de passe la prochaine fois qu’ils se connecteront.
+Si des utilisateurs compromis voient leur connexion bloquée, un administrateur peut générer un mot de passe temporaire pour eux. les utilisateurs de Hello ont toochange leur mot de passe pendant une prochaine connexion de.
 
 ![Correction](./media/active-directory-identityprotection-flows/160.png "Correction")
 

@@ -1,6 +1,6 @@
 ---
 title: "Azure AD Connect : effectuer une mise à niveau depuis une version précédente | Microsoft Docs"
-description: "Explique les différentes méthodes de mise à niveau vers la dernière version d’Azure Active Directory Connect, y compris la mise à niveau sur place et la migration « swing »."
+description: "Explique hello différentes méthodes tooupgrade toohello version la plus récente d’Azure Active Directory Connect, y compris une mise à niveau sur place et une migration de basculement."
 services: active-directory
 documentationcenter: 
 author: AndKjell
@@ -14,104 +14,104 @@ ms.tgt_pltfrm: na
 ms.workload: Identity
 ms.date: 07/12/2017
 ms.author: billmath
-ms.openlocfilehash: 52fd9375c71c42feaf87f4a0f4220e1cb3889e63
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 57bd5b094654e4983cafa303b6f3daecadafb01c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-ad-connect-upgrade-from-a-previous-version-to-the-latest"></a>Azure AD Connect : effectuer une mise à niveau vers la dernière version
-Cette rubrique décrit les différentes méthodes que vous pouvez utiliser pour mettre à niveau votre installation Azure Active Directory (Azure AD) Connect vers la dernière version. Nous vous recommandons d’utiliser systématiquement les dernières versions d’Azure AD Connect. Vous pouvez également suivre les étapes décrites dans la section [Migration « swing »](#swing-migration) lorsque vous appliquez une modification importante à la configuration.
+# <a name="azure-ad-connect-upgrade-from-a-previous-version-toohello-latest"></a>Azure AD Connect : Mise à niveau à partir d’une précédente toohello de version plus récente
+Cette rubrique décrit hello différentes méthodes que vous pouvez utiliser tooupgrade votre version la plus récente toohello installation Connect de Azure Active Directory (Azure AD). Nous vous recommandons de conserver vous-même actuel avec les versions hello d’Azure AD Connect. Vous également utilisez les étapes de hello Bonjour [OSCILLANT migration](#swing-migration) section lorsque vous modifiez une configuration substantielle.
 
-Si vous souhaitez effectuer une mise à niveau à partir de DirSync, consultez plutôt [Effectuer une mise à niveau à partir de l’outil de synchronisation Azure AD (DirSync)](active-directory-aadconnect-dirsync-upgrade-get-started.md) .
+Si vous souhaitez tooupgrade de DirSync, consultez [mise à niveau à partir de l’outil de synchronisation AD Azure (DirSync)](active-directory-aadconnect-dirsync-upgrade-get-started.md) à la place.
 
-Il existe plusieurs stratégies que vous pouvez utiliser pour mettre à niveau Azure AD Connect.
+Il existe quelques stratégies différentes que vous pouvez utiliser tooupgrade Azure AD Connect.
 
 | Méthode | Description |
 | --- | --- |
-| [Mise à niveau automatique](active-directory-aadconnect-feature-automatic-upgrade.md) |Pour les clients avec une installation rapide, il s’agit de la méthode la plus simple. |
-| [Mise à niveau sur place](#in-place-upgrade) |Si vous avez un seul serveur, vous pouvez mettre à niveau l’installation sur place sur le même serveur. |
-| [Migration « swing »](#swing-migration) |Avec deux serveurs, vous pouvez en préparer un avec la nouvelle version ou configuration, et changer de serveur actif quand vous êtes prêt. |
+| [Mise à niveau automatique](active-directory-aadconnect-feature-automatic-upgrade.md) |Il s’agit de méthode la plus simple hello pour les clients avec une installation rapide. |
+| [Mise à niveau sur place](#in-place-upgrade) |Si vous avez un seul serveur, vous pouvez mettre à niveau hello installation in situ hello le même serveur. |
+| [Migration « swing »](#swing-migration) |Avec deux serveurs, vous pouvez préparer un des serveurs hello avec la nouvelle version de hello ou la configuration et modifier le serveur active hello lorsque vous êtes prêt. |
 
-Pour plus d’informations sur les autorisations, reportez-vous aux [autorisations requises pour une mise à niveau](active-directory-aadconnect-accounts-permissions.md#upgrade).
+Pour plus d’informations d’autorisations, consultez hello [autorisations requises pour une mise à niveau](active-directory-aadconnect-accounts-permissions.md#upgrade).
 
 > [!NOTE]
-> Une fois que vous avez activé votre nouveau serveur Azure AD Connect pour démarrer la synchronisation des modifications avec Azure AD, vous ne devez pas revenir à l’utilisation de DirSync ou Azure AD Sync. La rétrogradation à partir d’Azure AD Connect vers des clients hérités, notamment DirSync et Azure AD Sync, n’est pas prise en charge et peut entraîner des problèmes tels que la perte de données dans Azure AD.
+> Une fois que vous avez activé votre nouvelle Azure AD Connect server toostart synchronisation modifications tooAzure AD, vous devez restaure pas toousing DirSync ou Azure AD Sync. La rétrogradation à partir d’Azure AD Connect toolegacy clients, y compris le nom de DirSync et Azure AD Sync, n’est pas pris en charge et peut entraîner des tooissues telles qu’une perte de données dans Azure AD.
 
 ## <a name="in-place-upgrade"></a>Mise à niveau sur place
 Une mise à niveau sur place fonctionne à partir d’Azure AD Sync ou d’Azure AD Connect, Elle ne fonctionne pas pour la migration à partir de DirSync ou pour une solution avec Forefront Identity Manager (FIM) + connecteur Azure AD.
 
-Nous vous recommandons cette méthode si vous avez un seul serveur et moins de 100 000 objets environ. Après la mise à niveau, une importation et une synchronisation complètes se produisent si des modifications ont été apportées aux règles de synchronisation out-of-box, pour que la nouvelle configuration s’applique à tous les objets existants dans le système. Cette opération peut prendre plusieurs heures selon le nombre d’objets figurant dans l’étendue du moteur de synchronisation. La synchronisation différentielle normale planifiée (par défaut toutes les 30 minutes) est suspendue, mais la synchronisation des mots de passe continue. Vous pouvez envisager une mise à niveau sur place pendant le week-end. S’il n’y a aucune modification de la configuration par défaut avec la nouvelle version d’Azure AD Connect, une importation/synchronisation différentielle normale démarre à la place.  
+Nous vous recommandons cette méthode si vous avez un seul serveur et moins de 100 000 objets environ. S’il existe des modifications de règles de synchronisation d’out-of-box toohello, une importation intégrale et une synchronisation complète se produisent après la mise à niveau hello. Cette méthode garantit que la configuration du nouveau hello tooall appliqué des objets existants dans le système de hello. Cette exécution peut prendre quelques heures, en fonction du nombre de hello d’objets qui sont dans la portée du moteur de synchronisation hello. Planificateur de synchronisation delta normal Hello (qui synchronise toutes les 30 minutes par défaut) est suspendu, mais continue de la synchronisation de mot de passe. Vous pouvez envisager la mise à niveau in situ de hello pendant le week-end. S’il n’y a aucune configuration d’out-of-box toohello modifications avec mise en production de hello nouveau Azure AD Connect, puis un delta normal importation/synchronisation démarre à la place.  
 ![Mise à niveau sur place](./media/active-directory-aadconnect-upgrade-previous-version/inplaceupgrade.png)
 
-Si vous avez apporté des modifications aux règles de synchronisation par défaut, celles-ci retrouvent leur configuration par défaut au moment de la mise à niveau. Pour conserver votre configuration d’une mise à niveau à l’autre, vérifiez que les modifications sont effectuées conformément aux [meilleures pratiques pour modifier la configuration par défaut](active-directory-aadconnectsync-best-practices-changing-default-configuration.md).
+Si vous avez apporté des modifications des règles de synchronisation d’out-of-box toohello, puis ces règles sont définies dans configuration par défaut de toohello sur la mise à niveau. toomake sûr que votre configuration est conservée entre les mises à niveau, assurez-vous que vous apportez des modifications qu’ils sont décrits dans [meilleures pratiques pour la modification de configuration par défaut de hello](active-directory-aadconnectsync-best-practices-changing-default-configuration.md).
 
-Pendant la mise à niveau sur place, des modifications introduites peuvent nécessiter l’exécution d’activités de synchronisation spécifiques (notamment les étapes d’importation complète et de synchronisation complète) une fois la mise à niveau terminée. Pour différer ces activités, consultez la section [Comment différer la synchronisation complète après la mise à niveau](#how-to-defer-full-synchronization-after-upgrade).
+Au cours de la mise à niveau, il peut y avoir des modifications introduites nécessitant toobe (y compris les étapes d’importation complète et synchronisation complète) des activités de synchronisation spécifique exécuté après la mise à niveau terminée. toodefer ces activités, consultez toosection [comment la synchronisation après mise à niveau de complète toodefer](#how-to-defer-full-synchronization-after-upgrade).
 
 ## <a name="swing-migration"></a>Migration « swing »
-Si vous avez un déploiement complexe ou un nombre d’objets élevé, il peut être difficile d’effectuer une mise à niveau sur place sur le système réel. Pour certains clients, ce processus peut prendre plusieurs jours pendant lesquels aucune modification différentielle n’est traitée. Vous pouvez également utiliser cette méthode lorsque vous envisagez d’apporter des modifications importantes à votre configuration et que vous souhaitez les tester avant de les envoyer dans le cloud.
+Si vous avez un déploiement complexe ou nombreux objets, il peut être peu pratique toodo une mise à niveau sur place sur le système hello. Pour certains clients, ce processus peut prendre plusieurs jours pendant lesquels aucune modification différentielle n’est traitée. Vous pouvez également utiliser cette méthode lorsque vous envisagez de configuration de tooyour toomake des modifications importantes et que vous souhaitez tootry les extraire avant qu’ils sont envoyées toohello cloud.
 
-La méthode recommandée pour ces scénarios consiste à utiliser une migration « swing ». Vous devez avoir (au moins) deux serveurs : un serveur actif et un serveur intermédiaire. Le serveur actif (représenté par des lignes bleues continues dans l’image ci-dessous) est responsable de la charge de production active. Le serveur intermédiaire (représenté par des lignes violettes en pointillé) est préparé avec la nouvelle version ou configuration. Lorsqu’il est prêt, ce serveur devient actif. Le serveur actif précédent, sur lequel est désormais installée l’ancienne version ou configuration, devient le serveur intermédiaire et est mis à niveau.
+méthode recommandée de ces scénarios de Hello est toouse une migration de basculement. Vous devez avoir (au moins) deux serveurs : un serveur actif et un serveur intermédiaire. ASP Hello (indiquée avec des lignes bleues pleines Bonjour suivant image) est chargé de la charge de production actif hello. Hello (indiquée avec des lignes violets en pointillés) de serveur de test est préparée avec la nouvelle version de hello ou la configuration. Lorsqu’il est prêt, ce serveur devient actif. Hello précédent serveur actif, qui a une ancienne version de hello ou de configuration installée, est transformé en hello serveur intermédiaire et est mis à niveau maintenant.
 
-Les deux serveurs peuvent utiliser différentes versions. Par exemple, le serveur actif que vous projetez de désactiver peut utiliser Azure AD Sync et le nouveau serveur intermédiaire peut utiliser Azure AD Connect. Si vous utilisez la migration « swing » pour développer une nouvelle configuration, il est judicieux d’installer les mêmes versions sur les deux serveurs.  
+deux serveurs de Hello peuvent utiliser différentes versions. Par exemple, que vous envisagez de toodecommission ASP hello permettre utiliser Azure AD Sync et nouveau serveur de mise en lots hello permettre utiliser Azure AD Connect. Si vous utilisez basculement migration toodevelop une nouvelle configuration, il une bonne idée toohave hello les mêmes versions sur hello deux serveurs.  
 ![Serveur de test](./media/active-directory-aadconnect-upgrade-previous-version/stagingserver1.png)
 
 > [!NOTE]
-> Certains clients préfèrent avoir trois ou quatre serveurs pour ce scénario. Pendant la mise à niveau du serveur intermédiaire, vous n’avez pas de serveur de sauvegarde pour la [récupération d’urgence](active-directory-aadconnectsync-operations.md#disaster-recovery). Avec trois ou quatre serveurs, vous pouvez préparer un ensemble de serveurs principaux/de secours disposant de la nouvelle version. Ainsi, un serveur intermédiaire est toujours prêt à prendre le relais.
+> Certains clients préfèrent toohave trois ou quatre des serveurs pour ce scénario. Lorsque hello serveur intermédiaire est mis à niveau, vous n’avez pas un serveur de sauvegarde [la récupération d’urgence](active-directory-aadconnectsync-operations.md#disaster-recovery). Avec trois ou quatre serveurs, vous pouvez préparer un ensemble de serveurs principal/secondaire avec hello nouvelle version, ce qui garantit qu’il existe toujours un serveur intermédiaire est prêt tootake sur.
 
-Ces étapes fonctionnent également pour la migration à partir d’Azure AD Sync ou d’une solution avec FIM + connecteur Azure AD. En revanche, elles ne fonctionnent pas pour DirSync, mais on trouve cette même méthode de migration « swing » (également appelée déploiement parallèle) pour DirSync dans [Azure AD Connect : Mise à niveau à partir de DirSync](active-directory-aadconnect-dirsync-upgrade-get-started.md).
+Ces étapes fonctionnent également toomove à partir d’Azure AD Sync ou d’une solution avec FIM + connecteur Azure AD. Ces étapes ne fonctionnent pas pour la synchronisation d’annuaire, mais hello même basculement migration (méthode) (également appelé déploiement parallèle) avec les étapes de synchronisation d’annuaire est en [synchronisation de mise à niveau Azure Active Directory (DirSync)](active-directory-aadconnect-dirsync-upgrade-get-started.md).
 
-### <a name="use-a-swing-migration-to-upgrade"></a>Utiliser une migration « swing » pour effectuer la mise à niveau
-1. Si vous utilisez Azure AD Connect sur les deux serveurs et que vous prévoyez uniquement de modifier la configuration, assurez-vous que votre serveur actif et votre serveur intermédiaire utilisent tous deux la même version. Il sera plus facile de comparer ensuite les différences. Si vous effectuez une mise à niveau à partir d’Azure AD Sync, ces serveurs auront des versions différentes. Si vous effectuez une mise à niveau à partir d’une ancienne version d’Azure AD Connect, il est judicieux, mais pas obligatoire, de commencer avec les deux serveurs qui utilisent la même version.
-2. Si vous avez effectué une configuration personnalisée et que votre serveur intermédiaire ne l’a pas, suivez les étapes décrites dans [Déplacer une configuration personnalisée depuis le serveur actif vers le serveur intermédiaire](#move-custom-configuration-from-active-to-staging-server).
-3. Si vous mettez à niveau depuis une version antérieure d’Azure AD Connect, mettez à niveau le serveur intermédiaire vers la dernière version. Si vous migrez à partir d’Azure AD Sync, installez Azure AD Connect sur votre serveur intermédiaire.
-4. Laissez le moteur de synchronisation effectuer une importation et une synchronisation complètes sur votre serveur intermédiaire.
-5. Vérifiez que la nouvelle configuration n’a pas entraîné de modifications inattendues à l’aide de la procédure indiquée sous « Vérifier » dans [Vérifiez la configuration d’un serveur](active-directory-aadconnectsync-operations.md#verify-the-configuration-of-a-server). Si quelque chose n’est pas comme prévu, corrigez le problème, exécutez l’importation et la synchronisation et vérifiez les données jusqu’à ce qu’elles vous conviennent en suivant les étapes.
-6. Convertissez le serveur de test en serveur actif. C’est la dernière étape, « Changer de serveur actif », de la procédure [Vérifiez la configuration d’un serveur](active-directory-aadconnectsync-operations.md#verify-the-configuration-of-a-server).
-7. Si vous mettez à niveau Azure AD Connect, mettez à niveau le serveur actuellement en mode intermédiaire vers la dernière version. Suivez la même procédure pour mettre à niveau les données et la configuration. Si vous avez effectué une mise à niveau à partir d’Azure AD Sync, vous pouvez maintenant désactiver et retirer votre ancien serveur.
+### <a name="use-a-swing-migration-tooupgrade"></a>Utilisez un tooupgrade de migration de basculement
+1. Si vous utilisez Azure AD Connect sur les serveurs et assurez-vous de tooonly plan une modification de configuration, assurez-vous que votre serveur actif et le serveur de test sont à l’aide de hello même version. Qui rend plus facile toocompare différences ultérieurement. Si vous effectuez une mise à niveau à partir d’Azure AD Sync, ces serveurs auront des versions différentes. Si vous mettez à niveau à partir d’une version antérieure d’Azure AD Connect, il est un toostart recommandé avec les serveurs de hello deux qui sont à l’aide de hello même version, mais il n’est pas nécessaire.
+2. Si vous avez apportées à une configuration personnalisée et il n’est utilisé pour votre serveur de test, suivez les étapes de hello sous [déplacer une configuration personnalisée à partir de toohello du serveur actif hello serveur intermédiaire](#move-custom-configuration-from-active-to-staging-server).
+3. Si vous mettez à niveau à partir d’une version antérieure d’Azure AD Connect, mettez à niveau hello server toohello dernière version de la mise en lots. Si vous migrez à partir d’Azure AD Sync, installez Azure AD Connect sur votre serveur intermédiaire.
+4. Permettent d’importation intégrale du moteur d’exécution de synchronisation hello et une synchronisation complète sur votre serveur de test.
+5. Vérifiez que la configuration du nouveau hello n’a pas été entraîne des modifications inattendues à l’aide des étapes hello sous « Vérifier » dans [configuration hello de vérification d’un serveur](active-directory-aadconnectsync-operations.md#verify-the-configuration-of-a-server). Si un élément n’est pas comme prévu, correct, exécuter l’importation de hello et de synchronisation et vérifier les données de hello jusqu'à ce qu’il semble correct, en suivant les étapes de hello.
+6. Basculez hello server toobe hello active serveur intermédiaire. Il s’agit étape finale de hello « Commutateur active server » dans [configuration hello de vérification d’un serveur](active-directory-aadconnectsync-operations.md#verify-the-configuration-of-a-server).
+7. Si vous mettez à niveau Azure AD Connect, mettez à niveau le serveur hello est intermédiaire maintenant dans la version la plus récente en mode toohello. Suivez hello même procédure qu’avant tooget hello configuration des données et mis à niveau. Si vous avez effectué une mise à niveau à partir d’Azure AD Sync, vous pouvez maintenant désactiver et retirer votre ancien serveur.
 
-### <a name="move-a-custom-configuration-from-the-active-server-to-the-staging-server"></a>Déplacer une configuration personnalisée depuis le serveur actif vers le serveur intermédiaire
-Si vous avez apporté des modifications à la configuration du serveur actif, vous devez vérifier que les mêmes modifications sont appliquées au serveur intermédiaire. Pour faciliter ce déplacement, vous pouvez utiliser la [documentation de configuration d’Azure AD Connect](https://github.com/Microsoft/AADConnectConfigDocumenter).
+### <a name="move-a-custom-configuration-from-hello-active-server-toohello-staging-server"></a>Déplacer une configuration personnalisée hello active toohello intermédiaire serveur
+Si vous avez effectué le serveur de configuration modifications toohello active, vous devez toomake sûr qui hello même les modifications sont appliquée toohello serveur intermédiaire. toohelp avec ce déplacement, vous pouvez utiliser hello [documentation de configuration Azure AD Connect](https://github.com/Microsoft/AADConnectConfigDocumenter).
 
-Vous pouvez migrer les règles de synchronisation personnalisées que vous avez créées à l’aide de PowerShell. Vous devez appliquer d’autres modifications de la même manière sur les deux systèmes, et vous ne pouvez pas migrer les modifications. La [documentation de configuration](https://github.com/Microsoft/AADConnectConfigDocumenter) peut vous aider à comparer les deux systèmes pour vérifier qu’ils sont identiques. L’outil peut également vous aider à automatiser les étapes indiquées dans cette section.
+Vous pouvez déplacer les règles de synchronisation hello que vous avez créé à l’aide de PowerShell. Vous devez appliquer d’autres hello modifications identique sur les deux systèmes et vous ne pouvez pas migrer les modifications hello. Hello [documentation de configuration](https://github.com/Microsoft/AADConnectConfigDocumenter) peut vous aider à comparer toomake de systèmes hello deux assurer qu’ils sont identiques. outil de Hello peut également aider à automatiser les étapes hello trouvés dans cette section.
 
-Vous devez configurer ce qui suit de la même façon sur les deux serveurs :
+Vous devez suivant de hello tooconfigure choses hello même manière sur les deux serveurs :
 
-* Connexion aux mêmes forêts
+* Connexion toohello mêmes forêts
 * Tout filtrage de domaine et d’unité organisationnelle
-* Fonctionnalités facultatives identiques, telles que la synchronisation de mot de passe et l’écriture différée du mot de passe
+* Hello mêmes fonctionnalités facultatives, telles que la synchronisation de mot de passe et d’écriture différée de mot de passe
 
 **Migrer les règles de synchronisation personnalisées**  
-Pour déplacer des règles de synchronisation personnalisées, procédez comme suit :
+règles de synchronisation personnalisées toomove, hello suivant :
 
 1. Ouvrez l’ **Éditeur de règles de synchronisation** sur votre serveur actif.
-2. Sélectionnez une règle personnalisée. Cliquez sur **Exporter**. Une fenêtre Bloc-notes apparaît. Enregistrez le fichier temporaire avec une extension PS1. Le fichier devient un script PowerShell. Copiez le fichier PS1 sur le serveur intermédiaire.  
+2. Sélectionnez une règle personnalisée. Cliquez sur **Exporter**. Une fenêtre Bloc-notes apparaît. Enregistrer le fichier temporaire de hello avec l’extension PS1. Le fichier devient un script PowerShell. Copiez toohello de fichier PS1 hello serveur intermédiaire.  
    ![Exportation des règles de synchronisation](./media/active-directory-aadconnect-upgrade-previous-version/exportrule.png)
-3. Le GUID du connecteur est différent sur le serveur intermédiaire et doit être modifié. Pour obtenir le GUID, démarrez **l’Éditeur de règles de synchronisation**, sélectionnez une des règles par défaut représentant le même système connecté, puis cliquez sur **Exporter**. Remplacez le GUID dans votre fichier PS1 par le GUID se trouvant sur le serveur de test.
-4. Dans une invite de PowerShell, exécutez le fichier PS1. Cette action crée la règle de synchronisation personnalisée sur le serveur intermédiaire.
+3. Hello GUID de connecteur est différente sur hello serveur intermédiaire, et vous devez le modifier. tooget hello GUID, démarrer **Éditeur des règles de synchronisation**, sélectionnez une des règles d’out-of-box hello que hello représentent même connecté système, puis cliquez sur **exporter**. Remplacez hello GUID dans votre fichier PS1 hello GUID à partir de hello serveur intermédiaire.
+4. Ouvrez une invite de PowerShell, exécutez le fichier de la hello PS1. Cela crée un règle de synchronisation personnalisée hello sur hello serveur intermédiaire.
 5. Répétez cette procédure pour toutes vos règles personnalisées.
 
-## <a name="how-to-defer-full-synchronization-after-upgrade"></a>Comment différer la synchronisation complète après la mise à niveau
-Pendant la mise à niveau sur place, des modifications introduites peuvent nécessiter l’exécution d’activités de synchronisation spécifiques (notamment les étapes d’importation complète et de synchronisation complète). Par exemple, les modifications du schéma de connecteur nécessitent l’exécution de l’étape **Importation complète**, et les modifications des règles de synchronisation par défaut nécessitent l’exécution de l’étape **Synchronisation complète** sur les connecteurs affectés. Pendant la mise à niveau, Azure AD Connect détermine les activités de synchronisation requises et les enregistre en tant qu’*actions prioritaires*. Dans le cycle de synchronisation suivant, le planificateur de synchronisation récupère ces actions prioritaires et les exécute. Dès qu’une action prioritaire a été exécutée avec succès, elle est supprimée.
+## <a name="how-toodefer-full-synchronization-after-upgrade"></a>Comment toodefer complète synchronisation après mise à niveau
+Au cours de la mise à niveau, il peut y avoir des modifications introduites nécessitant toobe (y compris les étapes d’importation complète et synchronisation complète) des activités de synchronisation spécifique exécutée. Par exemple, requièrent des modifications de schéma de connecteur **importation intégrale** nécessitent des modifications de règle de synchronisation étape et out-of-box **synchronisation complète** étape toobe exécutée sur les connecteurs affectés. Pendant la mise à niveau, Azure AD Connect détermine les activités de synchronisation requises et les enregistre en tant qu’*actions prioritaires*. Bonjour suivant le cycle de synchronisation, le Planificateur de synchronisation hello récupère ces remplacements et les exécute. Dès qu’une action prioritaire a été exécutée avec succès, elle est supprimée.
 
-Il peut arriver que vous ne souhaitiez pas que ces actions prioritaires aient lieu immédiatement après la mise à niveau. Par exemple, vous avez de nombreux objets synchronisés et vous souhaitez que ces étapes de synchronisation aient lieu après les heures de bureau. Pour supprimer ces actions prioritaires :
+Il peut arriver dans lequel vous ne souhaitez pas ces tootake de remplacements sur place immédiatement après la mise à niveau. Par exemple, vous avez de nombreux objets synchronisés et vous souhaitez que ces toooccur d’étapes de synchronisation après les heures de bureau. tooremove ces remplacements :
 
-1. Pendant la mise à niveau, **désactivez** l’option **Démarrez le processus de synchronisation une fois la configuration terminée**. Cela désactive le planificateur de synchronisation et empêche l’exécution automatique du cycle de synchronisation avant la suppression des actions prioritaires.
+1. Au cours de la mise à niveau, **Décochez** hello option **démarrer le processus de synchronisation hello lors de la fin de la configuration**. Cela désactive le Planificateur de synchronisation hello et empêche cycle de synchronisation ayant lieu automatiquement avant que les remplacements hello soient supprimés.
 
    ![DisableFullSyncAfterUpgrade](./media/active-directory-aadconnect-upgrade-previous-version/disablefullsync01.png)
 
-2. Une fois la mise à niveau terminée, exécutez l’applet de commande suivante pour connaître les actions prioritaires qui ont été ajoutées : `Get-ADSyncSchedulerConnectorOverride | fl`
+2. Une fois la mise à niveau terminée, exécutez hello suivant toofind d’applet de commande out les remplacements ont été ajoutés :`Get-ADSyncSchedulerConnectorOverride | fl`
 
    >[!NOTE]
-   > Les actions prioritaires sont propres au connecteur. Dans l’exemple suivant, les étapes d’importation complète et de synchronisation complète ont été ajoutées au connecteur Active Directory et au connecteur Azure AD locaux.
+   > remplacements de Hello sont spécifiques au connecteur. Bonjour exemple suivant, importation complète et synchronisation complètes ont été ajoutés tooboth hello le connecteur Active Directory sur site et le connecteur Azure AD.
 
    ![DisableFullSyncAfterUpgrade](./media/active-directory-aadconnect-upgrade-previous-version/disablefullsync02.png)
 
-3. Prenez note des actions prioritaires existantes qui ont été ajoutées.
+3. Notez les remplacements hello existants qui ont été ajoutés.
    
-4. Pour supprimer les actions prioritaires pour l’importation complète et la synchronisation complète sur un connecteur arbitraire, exécutez l’applet de commande suivante : `Set-ADSyncSchedulerConnectorOverride -ConnectorIdentifier <Guid-of-ConnectorIdentifier> -FullImportRequired $false -FullSyncRequired $false`
+4. tooremove hello les remplacements d’importation intégrale et une synchronisation complète sur un connecteur arbitraire, exécutez hello suivant l’applet de commande :`Set-ADSyncSchedulerConnectorOverride -ConnectorIdentifier <Guid-of-ConnectorIdentifier> -FullImportRequired $false -FullSyncRequired $false`
 
-   Pour supprimer les actions prioritaires sur tous les connecteurs, exécutez le script PowerShell suivant :
+   remplacements de hello tooremove sur tous les connecteurs, exécutez hello PowerShell script suivant :
 
    ```
    foreach ($connectorOverride in Get-ADSyncSchedulerConnectorOverride)
@@ -120,12 +120,12 @@ Il peut arriver que vous ne souhaitiez pas que ces actions prioritaires aient li
    }
    ```
 
-5. Pour redémarrer le planificateur, exécutez l’applet de commande suivante : `Set-ADSyncScheduler -SyncCycleEnabled $true`
+5. Planificateur de hello tooresume, exécutez hello suivant l’applet de commande :`Set-ADSyncScheduler -SyncCycleEnabled $true`
 
    >[!IMPORTANT]
-   > N’oubliez pas d’exécuter les étapes de synchronisation requises dès que vous le pourrez. Vous pouvez exécuter ces étapes manuellement à l’aide de Synchronization Service Manager ou rajouter les actions prioritaires à l’aide de l’applet de commande Set-ADSyncSchedulerConnectorOverride.
+   > N’oubliez pas d’étapes de synchronisation tooexecute hello requis aussitôt. Vous pouvez manuellement exécuter ces étapes à l’aide de hello Synchronization Service Manager ou ajouter des substitutions hello à l’aide d’applet de commande Set-ADSyncSchedulerConnectorOverride hello.
 
-Pour ajouter les actions prioritaires pour l’importation complète et la synchronisation complète sur un connecteur arbitraire, exécutez l’applet de commande suivante : `Set-ADSyncSchedulerConnectorOverride -ConnectorIdentifier <Guid> -FullImportRequired $true -FullSyncRequired $true`
+tooadd hello les remplacements d’importation intégrale et une synchronisation complète sur un connecteur arbitraire, exécutez hello suivant l’applet de commande :`Set-ADSyncSchedulerConnectorOverride -ConnectorIdentifier <Guid> -FullImportRequired $true -FullSyncRequired $true`
 
 ## <a name="next-steps"></a>Étapes suivantes
 En savoir plus sur [l’intégration de vos identités locales avec Azure Active Directory](active-directory-aadconnect.md).

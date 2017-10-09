@@ -1,6 +1,6 @@
 ---
-title: "Documentation Azure Active Directory B2C - Didacticiels, informations de référence sur les API | Microsoft Docs"
-description: "Découvrez comment déployer une gestion complète des identités de consommateurs dans le cloud. La documentation explique comment protéger des applications web et mobiles visibles pour les consommateurs."
+title: "aaaAzure Active Directory B2C Documentation - didacticiels, référence de l’API | Documents Microsoft"
+description: "Découvrez la gestion des identités consommateur complète toodeploy Bonjour de cloud. Documentation montre comment tooprotect réservée aux consommateurs web et des applications mobiles."
 services: active-directory-b2c
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 2bb7fe165fc88df62a2b12ccf666da0a7965d43b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f9f6939d4d5bbe49533cad037a9085ce3da63155
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 #<a name="active-directory-b2c-documentation"></a>Documentation Active Directory B2C
 
-Découvrez comment configurer et gérer une gestion complète des identités de consommateur dans le cloud avec Active Directory B2C. Des didacticiels, des références et d’autres documents vous montrent comment protéger les applications web et mobiles visibles pour les consommateurs grâce à une authentification sécurisée.
+Découvrez comment tooset configurer et gérer la gestion des identités de consommateur complète dans le cloud hello avec Active Directory B2C. Autre documentation, des références et des didacticiels vous montrent comment tooprotect réservée aux consommateurs web et des applications mobiles avec sécurisent connectez-vous.
 
 <ul class="panelContent cardsFTitle">
     <li>

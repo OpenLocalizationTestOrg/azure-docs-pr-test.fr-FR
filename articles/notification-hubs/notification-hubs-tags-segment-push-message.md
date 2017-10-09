@@ -1,5 +1,5 @@
 ---
-title: Routage et expressions de balise
+title: aaaRouting et les Expressions de balise
 description: Cette rubrique explique les expressions de balise et de routage pour Azure Notification Hubs.
 services: notification-hubs
 documentationcenter: .net
@@ -14,34 +14,34 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 06/29/2016
 ms.author: yuaxu
-ms.openlocfilehash: 18faa88641623e1248d6a33bc2d87099e1c9f624
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c2c60500f7469f1cb1a73a5cf63c221a9ad6cbb4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="routing-and-tag-expressions"></a>Routage et expressions de balise
 ## <a name="overview"></a>Vue d'ensemble
-Les expressions de balise vous permettent de cibler des ensembles spécifiques d'appareils, ou plus précisément d'inscriptions, lors de l'envoi d'une notification push via Notification Hubs.
+Les expressions de balises permettent de tootarget des ensembles spécifiques d’appareils ou plus particulièrement d’inscriptions, lors de l’envoi d’une notification push via des concentrateurs de Notification.
 
 ## <a name="targeting-specific-registrations"></a>Ciblage d'inscriptions spécifiques
-La seule façon de cibler des inscriptions de notification spécifiques consiste à les associer à des balises, puis à cibler ces balises. Comme indiqué dans la rubrique [Gestion des inscriptions](notification-hubs-push-notification-registration-management.md), pour recevoir des notifications push, une application doit inscrire un appareil sur un concentrateur de notification. Lorsqu’une inscription est créée sur un concentrateur de notification, le serveur principal d'application peut envoyer des notifications push.
-Le serveur principal d'application peut choisir les inscriptions à cibler avec une notification spécifique en procédant ainsi :
+Hello uniquement moyen tootarget notification spécifique des enregistrements est balises tooassociate avec eux, puis cibler ces balises. Comme indiqué dans [gestion de l’inscription](notification-hubs-push-notification-registration-management.md), de push de tooreceive d’ordre notifications d’une application a tooregister un appareil gérer sur un concentrateur de notification. Une fois qu’un enregistrement est créé sur un concentrateur de notification, hello principale peut envoyer tooit de notifications push.
+principal d’application Hello peut choisir tootarget d’inscriptions hello avec une notification spécifique Bonjour suivant façons :
 
-1. **Diffusion**: toutes les inscriptions dans le concentrateur de notification reçoivent la notification.
-2. **Balise**: toutes les inscriptions qui contiennent la balise spécifiée reçoivent la notification.
-3. **Expression de balise**: toutes les inscriptions dont le jeu de balises correspond à l'expression spécifiée reçoivent la notification.
+1. **Diffusion**: tous les enregistrements dans le hub de notification hello recevoir une notification de hello.
+2. **Balise**: tous les enregistrements qui contiennent des hello spécifié balise recevoir une notification de hello.
+3. **Expression de balise**: toutes les inscriptions dont l’ensemble de balises correspondance hello expression spécifiée reçoivent notification de hello.
 
 ## <a name="tags"></a>Tags
-Une balise peut être n’importe quelle chaîne, jusqu'à 120 caractères alphanumériques et les caractères non alphanumériques suivants : '_', ' @', '#', '. ',' :', '-'. L'exemple suivant montre une application à partir de laquelle vous pouvez recevoir des notifications toast concernant des groupes musicaux spécifiques. Dans ce scénario, une méthode simple pour acheminer des notifications consiste à étiqueter les inscriptions avec des balises représentant les différents groupes de musique, comme dans l'image suivante.
+Une balise peut être n’importe quelle chaîne, des too120, contenant des caractères alphanumériques et hello les caractères non alphanumériques suivants : '_', ' @', '#', '. ',' :', '-'. Hello suivant montre une application à partir de laquelle vous pouvez recevoir des notifications toast concernant des groupes musicaux spécifiques. Dans ce scénario, une notification de tooroute moyen simple est inscriptions toolabel avec balises qui représentent des bandes différentes hello, comme dans hello illustration suivante.
 
 ![](./media/notification-hubs-routing-tag-expressions/notification-hubs-tags.png)
 
-Dans cette illustration, le message étiqueté **Beatles** est uniquement envoyé à la tablette inscrite avec la balise **Beatles**.
+Dans cette illustration, le message de type hello marquées **Beatles** atteint uniquement hello tablette enregistrée avec la balise de hello **Beatles**.
 
 Pour plus d'informations sur la création d’inscriptions pour des balises, consultez [Gestion des inscriptions](notification-hubs-push-notification-registration-management.md).
 
-Vous pouvez envoyer des notifications à des balises à l'aide des méthodes d’envoi de notifications de la classe `Microsoft.Azure.NotificationHubs.NotificationHubClient` dans le Kit de développement logiciel (SDK) [Microsoft Azure Notification Hubs](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/) . Vous pouvez également utiliser Node.js ou les API REST Notifications Push.  Voici un exemple utilisant le Kit de développement logiciel (SDK).
+Vous pouvez envoyer des tootags des notifications à l’aide de hello d’envoi des méthodes de notifications de hello `Microsoft.Azure.NotificationHubs.NotificationHubClient` classe Bonjour [Microsoft Azure Notification Hubs](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/) Kit de développement logiciel. Vous pouvez également utiliser Node.js ou hello API REST de Notifications Push.  Voici un exemple d’utilisation hello SDK.
 
     Microsoft.Azure.NotificationHubs.NotificationOutcome outcome = null;
 
@@ -58,36 +58,36 @@ Vous pouvez envoyer des notifications à des balises à l'aide des méthodes d�
 
 
 
-Les balises n'ont pas besoin d'être provisionnées et peuvent référencer plusieurs concepts propres à l'application. Par exemple, les utilisateurs de cet exemple d'application peuvent publier des commentaires sur les groupes et recevoir des notifications toast non seulement concernant les commentaires sur leurs groupes favoris, mais également pour tous les commentaires de leurs amis, quel que soit le groupe qu’ils commentent. L'illustration suivante montre un exemple de ce scénario :
+Balises n’ont pas de toobe pré-configurés et peuvent faire référence les concepts de toomultiple spécifique à l’application. Par exemple, les utilisateurs de cet exemple d’application peuvent commenter les bandes et souhaitez tooreceive toasts, non seulement pour les commentaires de hello sur leurs groupes favoris, mais aussi pour tous les commentaires de leurs amis, quel que soit la bande hello sur lequel ils entrent des commentaires. Hello illustration suivante montre un exemple de ce scénario :
 
 ![](./media/notification-hubs-routing-tag-expressions/notification-hubs-tags2.png)
 
-Dans cette image, Alice s'intéresse à l’actualité des Beatles, et Bob à celle des Wailers. Bob est également intéressée par les commentaires de Charlie, et Charlie s'intéresse aux Wailers. Lorsqu'une notification est envoyée concernant un commentaire de Charlie sur les Beatles, Alice et Bob la reçoivent.
+Dans cette image, Alice s’intéresse aux mises à jour pour hello Beatles, et Bob s’intéresse aux mises à jour pour hello aux Wailers. Bob est également intéressée par commentaires de Charlie, et Charlie s’intéresse aux Wailers de hello. Lorsqu’une notification est envoyée pour le commentaire de Charlie sur hello Beatles, Alice et Bob reçoit.
 
-Même s’il est possible d’encoder plusieurs paramètres (par exemple, « band_Beatles » ou « follows_Charlie »), les balises sont des chaînes simples et non des propriétés avec des valeurs. Un enregistrement est mis en correspondance uniquement en présence ou en absence d'une balise spécifique.
+Même s’il est possible d’encoder plusieurs paramètres (par exemple, « band_Beatles » ou « follows_Charlie »), les balises sont des chaînes simples et non des propriétés avec des valeurs. Un enregistrement est mis en correspondance uniquement sur la présence de hello ou l’absence d’une balise spécifique.
 
-Pour obtenir un didacticiel complet et détaillé sur la façon d'utiliser des balises pour l'envoi à des groupes d'intérêt, consultez la rubrique [Dernières nouvelles](notification-hubs-windows-notification-dotnet-push-xplat-segmented-wns.md).
+Pour obtenir un didacticiel complet et détaillé sur comment toouse les balises pour l’envoi de groupes de toointerest, consultez [dernières nouvelles](notification-hubs-windows-notification-dotnet-push-xplat-segmented-wns.md).
 
-## <a name="using-tags-to-target-users"></a>Utilisation de balises pour cibler des utilisateurs
-Une autre façon d'utiliser des balises consiste à identifier tous les appareils d'un utilisateur particulier. Les inscriptions peuvent être étiquetées avec une balise contenant un ID utilisateur, comme dans l'illustration suivante :
+## <a name="using-tags-tootarget-users"></a>À l’aide de balises tootarget utilisateurs
+Une autre façon toouse balises est tooidentify tous les appareils hello d’un utilisateur particulier. Les enregistrements peuvent être identifiés avec une balise qui contient un id d’utilisateur, comme dans hello illustration suivante :
 
 ![](./media/notification-hubs-routing-tag-expressions/notification-hubs-tags3.png)
 
-Dans cette illustration, le message étiqueté uid:Alice atteint toutes les inscriptions marquées uid:Alice et, par conséquent, tous les appareils d'Alice.
+Dans cette image, UID : Alice de message marquée hello atteint tous les enregistrements marqués UID : Alice ; Par conséquent, tous les appareils d’Alice.
 
 ## <a name="tag-expressions"></a>Expressions de balise
-Dans certains cas, une notification doit cibler un jeu d'inscriptions identifié non pas par une balise unique, mais par une expression booléenne sur des balises.
+Il existe des cas dans lesquels une notification a tootarget un jeu d’enregistrements identifié pas par une balise unique, mais par une expression booléenne sur les balises.
 
-Examinons une application de sports qui envoie un rappel à tous les abonnés habitant Boston qu’un match opposera les Red Sox aux Cardinals. Si l'application cliente inscrit des balises spécifiques à ces équipes et à ce lieu, la notification doit être ciblée pour tous les abonnés de Boston qui s’intéressent aux Red Sox ou aux Cardinals. Cette condition peut être exprimée avec l'expression booléenne suivante :
+Considérez une application de sports qui envoie un rappel tooeveryone à Boston concernant un match entre hello Red Sox et les Cardinals. Si hello client application inscrit des balises sur l’intérêt dans les équipes et l’emplacement, puis hello notification doit être ciblée tooeveryone à Boston qui souhaitent hello Red Sox ou de hello Cardinals. Cette condition peut être exprimée par hello expression booléenne suivante :
 
     (follows_RedSox || follows_Cardinals) && location_Boston
 
 
 ![](./media/notification-hubs-routing-tag-expressions/notification-hubs-tags4.png)
 
-Les expressions de balise peuvent contenir tous les opérateurs booléens, notamment AND (&&), OR (||) et NOT (!). Elles peuvent également contenir des parenthèses. Les expressions de balise sont limitées à 20 balises si elles contiennent uniquement des opérateurs OR ; sinon, elles sont limitées à 6 balises.
+Les expressions de balise peuvent contenir tous les opérateurs booléens, notamment AND (&&), OR (||) et NOT (!). Elles peuvent également contenir des parenthèses. Expressions de balises sont limitées too20 balises si elles contiennent uniquement des opérateurs OR ; Sinon, elles sont limitées too6 balises.
 
-Voici un exemple d’envoi de notifications effectué avec des expressions de balise et le Kit de développement logiciel (SDK).
+Voici un exemple pour envoyer des notifications avec des expressions de balise à l’aide du Kit de développement logiciel de hello.
 
     Microsoft.Azure.NotificationHubs.NotificationOutcome outcome = null;
 
@@ -95,10 +95,10 @@ Voici un exemple d’envoi de notifications effectué avec des expressions de ba
 
     // Windows 8.1 / Windows Phone 8.1
     var toast = @"<toast><visual><binding template=""ToastText01""><text id=""1"">" +
-    "You want info on the Red Socks</text></binding></visual></toast>";
+    "You want info on hello Red Socks</text></binding></visual></toast>";
     outcome = await Notifications.Instance.Hub.SendWindowsNativeNotificationAsync(toast, userTag);
 
     // Windows 10
     toast = @"<toast><visual><binding template=""ToastGeneric""><text id=""1"">" +
-    "You want info on the Red Socks</text></binding></visual></toast>";
+    "You want info on hello Red Socks</text></binding></visual></toast>";
     outcome = await Notifications.Instance.Hub.SendWindowsNativeNotificationAsync(toast, userTag);

@@ -1,6 +1,6 @@
 ---
-title: "Basculement et récupération d’urgence pour les appareils de la gamme StorSimple 8000 | Microsoft Docs"
-description: "Découvrez comment basculer votre appareil StorSimple vers le même appareil."
+title: "basculement aaaStorSimple, récupération d’urgence pour les appareils 8000 series | Documents Microsoft"
+description: "Découvrez comment toofail sur votre toohello de périphérique StorSimple même appareil."
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,65 +14,65 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/23/2017
 ms.author: alkohli
-ms.openlocfilehash: acc8929dc3476e9590e8e4d9526b38b7c0719570
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b0b4216c7af6745ff68b85ca3d655691b43b4334
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="fail-over-your-storsimple-physical-device-to-same-device"></a>Basculer votre appareil physique StorSimple vers le même appareil
+# <a name="fail-over-your-storsimple-physical-device-toosame-device"></a>Basculer votre unité toosame du périphérique physique StorSimple
 
 ## <a name="overview"></a>Vue d'ensemble
 
-Ce didacticiel décrit les étapes requises pour basculer un appareil physique de la gamme StorSimple 8000 vers un autre appareil physique StorSimple en cas d’incident.Ce didacticiel décrit les étapes requises pour basculer un appareil physique de la gamme StorSimple 8000 vers lui-même en cas d’incident. StorSimple utilise l’option de basculement d’appareil pour migrer les données d’un appareil physique source dans le centre de données vers un autre appareil physique. Les instructions de ce didacticiel s’appliquent aux appareils physiques de la gamme StorSimple 8000 exécutant le logiciel Update 3 et versions ultérieures.
+Ce didacticiel décrit toofail requis de hello étapes sur un tooitself de périphérique physique StorSimple 8000 series s’il existe un reprise après sinistre. StorSimple utilise des données hello périphérique basculement fonctionnalité toomigrate à partir d’un périphérique physique source dans l’unité physique du tooanother hello centre de données. instructions de Hello dans ce didacticiel s’appliquent à des périphériques physiques série tooStorSimple 8000 exécutant des versions de logiciel mise à jour 3 et versions ultérieures.
 
-Pour plus d’informations sur le basculement d’appareil et son utilisation à des fins de récupération après un incident, accédez à [Failover and disaster recovery for your StorSimple 8000 series device](storsimple-8000-device-failover-disaster-recovery.md) (Basculement et récupération d’urgence pour vos appareils StorSimple de la gamme 8000).
+toolearn en savoir plus sur le basculement de l’appareil et comment il est utilisé toorecover d’urgence, consultez trop[basculement et récupération d’urgence pour les unités StorSimple 8000 series](storsimple-8000-device-failover-disaster-recovery.md).
 
-Pour basculer un appareil physique StorSimple vers un autre appareil physique, accédez à [Fail over to the same StorSimple physical device](storsimple-8000-device-failover-physical-device.md) (Basculer votre appareil physique StorSimple vers lui-même). Pour basculer un appareil physique StorSimple vers une instance StorSimple Cloud Appliance, accédez à [Fail over to your StorSimple Cloud Appliance](storsimple-8000-device-failover-cloud-appliance.md) (Basculement vers votre StorSimple Cloud Appliance).
+toofail sur un périphérique physique tooanother du périphérique physique, allez trop[basculer toohello même appareil physique StorSimple](storsimple-8000-device-failover-physical-device.md). toofail sur un tooa de périphérique physique StorSimple StorSimple Appliance du Cloud, passez trop[basculer tooa StorSimple Cloud Appliance](storsimple-8000-device-failover-cloud-appliance.md).
 
 
 ## <a name="prerequisites"></a>Composants requis
 
-- Assurez-vous d’avoir passé en revue les considérations relatives au basculement d’appareil. Pour plus d’informations, accédez à [Considérations courantes relatives au basculement d’appareil](storsimple-8000-device-failover-disaster-recovery.md).
+- Vérifiez que vous avez consulté les considérations hello pour le basculement de l’appareil. Pour plus d’informations, consultez trop[considérations courantes pour le basculement de l’appareil](storsimple-8000-device-failover-disaster-recovery.md).
 
 
-## <a name="steps-to-fail-over-to-the-same-device"></a>Procédure de basculement vers le même appareil
+## <a name="steps-toofail-over-toohello-same-device"></a>Toofail étapes sur toohello même appareil
 
-Si vous avez besoin d’effectuer un basculement vers le même appareil, procédez comme suit.
+Effectuer hello comme suit si vous avez besoin de toofail sur toohello même appareil.
 
-1. Prenez des instantanés de cloud de tous les volumes de votre appareil. Pour plus d’informations, accédez à [Utiliser le service StorSimple Device Manager dans le portail Azure pour gérer les stratégies de sauvegarde](storsimple-8000-manage-backup-policies-u2.md).
-2. Réinitialisez votre appareil aux valeurs par défaut. Suivez les instructions détaillées dans la section [Rétablissement des paramètres par défaut de l’appareil](storsimple-8000-manage-device-controller.md#reset-the-device-to-factory-default-settings).
-3. Accédez au service StorSimple Device Manager, puis sélectionnez **Appareils**. Dans le panneau **Appareils**, l’ancien appareil doit présenter l’état **Hors connexion**.
+1. Prendre des instantanés de cloud de tous les volumes hello dans votre appareil. Pour plus d’informations, consultez trop[sauvegardes toocreate du service Gestionnaire de périphériques StorSimple](storsimple-8000-manage-backup-policies-u2.md).
+2. Réinitialiser votre toofactory d’appareil. Suivez hello des instructions dans [comment tooreset un toofactory de périphérique StorSimple les paramètres par défaut](storsimple-8000-manage-device-controller.md#reset-the-device-to-factory-default-settings).
+3. Atteindre le service du Gestionnaire de périphériques StorSimple toohello, puis sélectionnez **périphériques**. Bonjour **périphériques** panneau, l’ancien périphérique de hello doit apparaître comme étant **hors connexion**.
 
     ![Appareil source hors connexion](./media/storsimple-8000-device-failover-disaster-recovery/failover-single-dev2.png)
 
-4. Configurez votre appareil et réinscrivez-le auprès de votre service StorSimple Device Manager. L’appareil nouvellement inscrit doit présenter l’état **Prêt pour la configuration**. Le nom du nouvel appareil est le même que celui de l’ancien, mais il est suivi d’un chiffre pour indiquer que ses paramètres d’usine ont été rétablis et qu’il a été inscrit à nouveau.
+4. Configurez votre appareil et réinscrivez-le auprès de votre service StorSimple Device Manager. Hello appareil nouvellement inscrit doit apparaître comme étant **prêt tooset des**. nom du périphérique pour le nouveau périphérique de hello Hello est hello identique à celle de l’ancien périphérique de hello ajouté, mais avec un chiffre tooindicate cet appareil hello était par défaut de réinitialisation toofactory et inscrite à nouveau.
 
-    ![Appareil nouvellement inscrit prêt pour la configuration](./media/storsimple-8000-device-failover-disaster-recovery/failover-single-dev3.png)
-5. Terminez l’installation du nouvel appareil. Pour plus d’informations, accédez à [Étape 4 : Fin de l’installation minimale de l’appareil](storsimple-8000-deployment-walkthrough-u2.md#step-4-complete-minimum-device-setup). Dans le panneau **Appareils**, l’appareil présente maintenant l’état **En ligne**.
+    ![APPAREIL nouvellement inscrit de prêt tooset des](./media/storsimple-8000-device-failover-disaster-recovery/failover-single-dev3.png)
+5. Nouvelle unité de hello, terminez l’installation de périphérique hello. Pour plus d’informations, consultez trop[étape 4 : exécuter le programme d’installation minimale de l’appareil](storsimple-8000-deployment-walkthrough-u2.md#step-4-complete-minimum-device-setup). Sur hello **périphériques** panneau, hello du périphérique de hello devient trop**Online**.
 
    > [!IMPORTANT]
-   > **Effectuez tout d’abord la configuration minimale. Sinon, la récupération d’urgence risque d’échouer.**
+   > **Effectuer la configuration minimale hello en premier, ou la récupération d’urgence peut échouer.**
 
     ![Appareil nouvellement inscrit en ligne](./media/storsimple-8000-device-failover-disaster-recovery/failover-single-dev7.png)
 
-6. Sélectionnez l’ancien appareil (état Hors connexion) et dans la barre de commandes, cliquez sur **Basculement**. Dans le panneau **Basculement**, sélectionnez l’ancien appareil en tant que source et spécifiez l’appareil nouvellement inscrit en tant qu’appareil cible.
+6. Sélectionnez périphérique ancien de hello (état hors connexion) et à partir de la barre de commandes hello, cliquez sur **basculer**. Bonjour **basculer** panneau, sélectionnez l’ancien périphérique en tant que source de hello et spécifiez un appareil cible de hello comme hello les appareil nouvellement inscrit.
 
     ![Synthèse du basculement](./media/storsimple-8000-device-failover-disaster-recovery/failover-single-dev11.png)
 
-    Pour obtenir des instructions détaillées, reportez-vous à la section [Basculer vers un autre appareil physique](#fail-over-to-another-physical-device).
+    Pour obtenir des instructions détaillées, voir la rubrique trop[basculer sur un périphérique physique de tooanother](#fail-over-to-another-physical-device).
 
-7. Un travail de restauration de l’appareil est créé. Vous pouvez suivre sa progression à partir du panneau **Travaux** .
+7. Un travail de restauration du périphérique est créé que vous pouvez surveiller de hello **travaux** panneau.
 
-8. Une fois ce travail terminé, accédez au nouvel appareil, puis au panneau **Conteneurs de volumes** . Vérifiez que tous les conteneurs de volumes de l’ancien appareil ont été migrés vers le nouvel appareil.
+8. Une fois le travail de hello terminé, accéder au nouveau périphérique de hello et accédez toohello **conteneurs de volumes** panneau. Vérifiez que tous les conteneurs de volumes hello à partir de l’ancien périphérique de hello ont été migrés toohello nouveau périphérique.
 
    ![Conteneurs de volumes migrés](./media/storsimple-8000-device-failover-disaster-recovery/failover-single-dev13.png)
 
-9. Une fois le basculement terminé, vous pouvez désactiver et supprimer l’ancien appareil à partir du portail. Sélectionnez l’ancien appareil, cliquez avec le bouton droit, puis sélectionnez **Désactiver**. Une fois l’appareil désactivé, son état est mis à jour.
+9. Une fois le basculement de hello terminée, vous pouvez désactiver et supprimer l’ancien périphérique de hello à partir du portail de hello. Sélectionnez hello ancien périphérique (hors connexion), avec le bouton droit, puis **Deactivate**. Une fois que l’appareil de hello est désactivé, état hello du périphérique de hello est mise à jour.
 
      ![Appareil source désactivé](./media/storsimple-8000-device-failover-disaster-recovery/failover-single-dev14.png)
 
-10. Sélectionnez l’appareil désactivé, cliquez avec le bouton droit, puis sélectionnez **Supprimer**. Votre appareil est supprimé de la liste d’appareils.
+10. Sélectionnez hello désactivé le périphérique, avec le bouton droit et sélectionnez **supprimer**. Cette opération supprime les appareils hello à partir de la liste des appareils hello.
 
     ![Appareil source supprimé](./media/storsimple-8000-device-failover-disaster-recovery/failover-single-dev15.png)
 
@@ -80,6 +80,6 @@ Si vous avez besoin d’effectuer un basculement vers le même appareil, procéd
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* Après avoir effectué un basculement, vous devrez peut-être [désactiver ou supprimer votre appareil StorSimple](storsimple-8000-deactivate-and-delete-device.md).
-* Pour plus d’informations sur l’utilisation du service StorSimple Device Manager, accédez à [Use the StorSimple Device Manager service to administer your StorSimple device](storsimple-8000-manager-service-administration.md) (Utiliser le service StorSimple Device Manager pour gérer votre appareil StorSimple).
+* Une fois que vous avez effectué un basculement, vous devrez peut-être trop[désactiver ou supprimer votre appareil StorSimple](storsimple-8000-deactivate-and-delete-device.md).
+* Pour plus d’informations sur la façon dont toouse hello StorSimple le Gestionnaire de périphériques de service, accédez trop[utilisez hello tooadminister du service Gestionnaire de périphériques StorSimple votre appareil StorSimple](storsimple-8000-manager-service-administration.md).
 

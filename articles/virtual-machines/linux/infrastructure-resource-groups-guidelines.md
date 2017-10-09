@@ -1,6 +1,6 @@
 ---
-title: Groupes de ressources pour les machines virtuelles Linux dans Azure | Microsoft Docs
-description: "Découvrez-en plus sur les principales instructions de conception et d’implémentation pour le déploiement de groupes de ressources dans des services d’infrastructure Azure."
+title: "groupes d’aaaResource pour les machines virtuelles Linux dans Azure | Documents Microsoft"
+description: "Découvrez hello clé conception et implémentation des recommandations pour le déploiement des groupes de ressources dans les services d’infrastructure Azure."
 documentationcenter: 
 services: virtual-machines-linux
 author: iainfoulds
@@ -16,42 +16,42 @@ ms.topic: article
 ms.date: 06/26/2017
 ms.author: iainfou
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 452acde571164a3ab4ce2dcccf99d2aed90361fe
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 8809cb5eeb9a166d2bcf1946cd26b0ee748f8cd6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-resource-group-guidelines-for-linux-vms"></a>Instructions pour les groupes de ressources Azure pour les machines virtuelles Linux 
 
 [!INCLUDE [virtual-machines-linux-infrastructure-guidelines-intro](../../../includes/virtual-machines-linux-infrastructure-guidelines-intro.md)]
 
-Cet article se concentre sur la compréhension de la création logique de votre environnement et du regroupement de tous les composants dans des groupes de ressources.
+Cet article se concentre sur comment toologically élaborer votre environnement et tous les composants de hello dans les groupes de ressources de groupe.
 
 ## <a name="implementation-guidelines-for-resource-groups"></a>Instructions d’implémentation pour les groupes de ressources
 Décisions :
 
-* Allez-vous créer des groupes de ressources avec les composants de l’infrastructure principale, ou avec un déploiement de l’application complète ?
-* Devez-vous restreindre l’accès aux groupes de ressources à l’aide de contrôles d’accès en fonction du rôle ?
+* Vous allez toobuild des groupes de ressources par les composants d’infrastructure principaux hello, ou par le déploiement de l’application complète ?
+* Avez-vous besoin de toorestrict accès tooResource regroupe à l’aide de contrôles d’accès en fonction du rôle ?
 
 Tâches :
 
 * Définissez les composants de l’infrastructure principale et les groupes de ressources dédiés dont vous avez besoin.
-* Déterminez comment implémenter les modèles Resource Manager pour des déploiements cohérents, reproductibles.
-* Définissez les rôles d’accès utilisateur dont vous avez besoin pour accéder aux groupes de ressources.
-* Créer l’ensemble de groupes de ressources à l’aide de votre convention de dénomination. Vous pouvez utiliser le portail ou l’interface de ligne de commande Azure.
+* Vérifier comment tooimplement les modèles de gestionnaire de ressources pour les déploiements cohérentes et reproductibles.
+* Définir les rôles d’accès utilisateur vous avez besoin pour le contrôle des accès aux groupes de tooResource.
+* Créer un jeu hello des groupes de ressources à l’aide de votre convention d’affectation de noms. Vous pouvez utiliser hello CLI d’Azure ou le portail.
 
 ## <a name="resource-groups"></a>Groupes de ressources
-Dans Azure, vous regroupez logiquement des ressources connexes comme les comptes de stockage, les réseaux virtuels et les machines virtuelles afin de les déployer, de les gérer et de les préserver comme une seule entité. Cette approche simplifie le déploiement d’applications tout en gardant toutes les ressources liées ensemble du point de vue de la gestion, ou pour accorder aux autres l’accès à ce groupe de ressources. Les noms des groupes de ressources peuvent avoir une longueur maximale de 90 caractères. Pour en savoir plus sur les groupes de ressources, vous pouvez lire la [Présentation d’Azure Resource Manager](../../azure-resource-manager/resource-group-overview.md).
+Dans Azure, vous logiquement regroupez des ressources connexes tels que les comptes de stockage, des réseaux virtuels et des machines virtuelles (VM) toodeploy, gérez et les gérer comme une seule entité. Cette approche rend plus facile toodeploy applications lors de conservation hello toutes les ressources entre eux à partir d’un point de vue gestion, ou toogrant d’autres groupe toothat d’accès aux ressources. Les noms des groupes de ressources peuvent avoir une longueur maximale de 90 caractères. Pour obtenir une compréhension plus complète des groupes de ressources, vous pouvez lire hello [vue d’ensemble du Gestionnaire de ressources Azure](../../azure-resource-manager/resource-group-overview.md).
 
-Une fonctionnalité clé des groupes de ressources est la possibilité de créer votre environnement à l’aide d’un fichier JSON qui déclare les ressources de stockage, de réseau et de calcul. Vous pouvez également définir des scripts ou des configurations personnalisés connexes à appliquer. Avec ces modèles JSON, vous créez des déploiements cohérents, reproductibles pour vos applications. Cette approche vous permet de créer un environnement de développement, puis d’utiliser de ce même modèle pour créer un déploiement de production, ou vice versa. Pour mieux comprendre l’utilisation des modèles, lisez [la procédure pas à pas du modèle](../../azure-resource-manager/resource-manager-template-walkthrough.md) , qui vous guide à chaque étape de la création d’un modèle JSON.
+Une fonctionnalité clé tooResource groupes est hello toobuild de capacité de votre environnement à l’aide d’un fichier JSON qui déclare le stockage hello, mise en réseau, et des ressources de calcul. Vous pouvez également définir des configurations tooapply ni les scripts personnalisés associés. Avec ces modèles JSON, vous créez des déploiements cohérents, reproductibles pour vos applications. Cette approche vous permet de créer un environnement de développement, puis utiliser ce même toocreate de modèle un déploiement de production, ou vice versa. Pour mieux comprendre l’utilisation des modèles, consultez [hello procédure pas à pas de modèle](../../azure-resource-manager/resource-manager-template-walkthrough.md) qui vous guide tout au long de chaque étape de la création d’un modèle JSON.
 
 Il existe deux approches différentes, que vous pouvez suivre lors de la conception de votre environnement avec des groupes de ressources :
 
-* Des groupes de ressources pour chaque déploiement d’application qui combine les comptes de stockage, les réseaux et les sous-réseaux virtuels, les machines virtuelles, les équilibrages de charge, etc.
+* Groupes de ressources pour chaque déploiement d’application qui combine des comptes de stockage hello, des réseaux virtuels et des sous-réseaux, les machines virtuelles, de charger équilibrages, etc..
 * Des groupes de ressources centralisés qui contiennent votre réseau et vos sous-réseaux virtuels principaux ou vos comptes de stockage. Vos applications se trouvent alors dans leur propre groupe de ressources, qui contient uniquement les machines virtuelles, les équilibreurs de charge, les interfaces réseau, etc.
 
-Lorsque vous augmentez la taille des instances, la création de groupes de ressources centralisés simplifie la création de connexions réseau locales pour des options de connectivité hybride. L’autre approche consiste en ce que chaque application dispose de son propre réseau virtuel, ce qui nécessite une configuration et une maintenance. [Contrôles d’accès en fonction du rôle](../../active-directory/role-based-access-control-what-is.md) offrent une façon granulaire d’accéder aux groupes de ressources. Pour les applications de production, vous pouvez contrôler les utilisateurs qui peuvent accéder à ces ressources, ou pour les ressources d’infrastructure principale, vous pouvez restreindre l’accès aux ingénieurs d’infrastructure pour travailler avec eux. Les propriétaires des applications ont uniquement accès aux composants au sein de leur groupe de ressources et non au cœur de l’infrastructure Azure de votre environnement. Lorsque vous concevez votre environnement, gardez à l’esprit les utilisateurs qui ont besoin d’un accès aux ressources et concevez vos groupes de ressources en conséquence. 
+Comme vous montée en puissance parallèle, créer des groupes de ressources centralisée pour votre réseau virtuel et sous-réseaux rend plus facile toobuild intersite connexion réseau pour les options de connectivité hybride. Hello autre approche consiste, pour chaque application toohave, son propre réseau virtuel qui requiert une configuration et maintenance. [Contrôles d’accès en fonction du rôle](../../active-directory/role-based-access-control-what-is.md) fournissent un accès toocontrol de façon granulaire tooResource groupes. Pour les applications de production, vous pouvez contrôler les utilisateurs hello qui peuvent accéder à ces ressources, ou pour les ressources d’infrastructure hello core, vous pouvez limiter uniquement infrastructure ingénieurs toowork avec eux. Les propriétaires des applications ont uniquement accès aux composants de l’application toohello au sein de leur groupe de ressources et le pas les core hello infrastructure Azure de votre environnement. Lorsque vous concevez votre environnement, envisagez d’utilisateurs hello qui nécessitent des toohello d’accéder aux ressources et concevoir vos groupes de ressources en conséquence. 
 
 ## <a name="next-steps"></a>Étapes suivantes
 [!INCLUDE [virtual-machines-linux-infrastructure-guidelines-next-steps](../../../includes/virtual-machines-linux-infrastructure-guidelines-next-steps.md)]

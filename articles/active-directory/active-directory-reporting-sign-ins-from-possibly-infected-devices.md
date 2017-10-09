@@ -1,5 +1,5 @@
 ---
-title: "Connexions à partir de périphériques potentiellement infectés"
+title: "aaaSign ins à partir d’appareils potentiellement infectés"
 description: "Un rapport incluant des tentatives de connexion effectuées à partir d’appareils sur lesquels des logiciels malveillants peuvent être exécutés."
 services: active-directory
 documentationcenter: 
@@ -14,18 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/04/2016
 ms.author: saah;kenhoff
-ms.openlocfilehash: 3809e20937d8d9829675e20f893101cb849dcea2
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8d973701d6833f748de443f96cf7ed1d060202e3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sign-ins-from-possibly-infected-devices"></a>Connexions à partir de périphériques potentiellement infectés
-Ce rapport tente d’identifier les appareils des utilisateurs qui ont été infectés et font à présent partie d’un botnet. Nous mettons en corrélation les adresses IP des connexions utilisateur et les adresses IP déterminées comme étant en contact avec des serveurs botnet.
+Ce rapport tente tooidentify les appareils qui ont été infectés que font désormais partie d’un botnet de vos utilisateurs. Nous mettre en corrélation les adresses IP des connexions utilisateurs et les adresses IP que nous savons toobe en contact avec les serveurs botnet.
 
-Recommandation : ce rapport suit les adresses IP et non les appareils des utilisateurs. Nous vous recommandons de contacter l'utilisateur et d'analyser tous ses appareils afin d’en acquérir la certitude. Il est également possible que les appareils personnels d'un utilisateur soient infectés, ou qu'une tierce personne utilisant la même adresse IP possède un appareil infecté.
+Recommandation : ce rapport suit les adresses IP et non les appareils des utilisateurs. Nous vous recommandons de vous contactez hello utilisateur et analyser certain toobe d’appareils de tous les utilisateurs hello. Il est également possible que le périphérique personnel d’un utilisateur est infecté, ou que quelqu'un d’autre que de l’utilisateur de hello, qui utilisait hello même adresse IP en tant qu’utilisateur de hello, a un appareil infecté.
 
-Pour plus d'informations sur le traitement des infections de logiciels malveillants, consultez le [Centre de protection contre les programmes malveillants](http://go.microsoft.com/fwlink/?linkid=335773).
+Pour plus d’informations sur les infections de programmes malveillants tooaddress, consultez hello [centre de Protection contre les programmes malveillants](http://go.microsoft.com/fwlink/?linkid=335773).
 
 ![Connexions à partir de périphériques potentiellement infectés](./media/active-directory-reporting-sign-ins-from-possibly-infected-devices/signInsFromPossiblyInfectedDevices.PNG)
 

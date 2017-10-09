@@ -1,6 +1,6 @@
 ---
-title: "Scénarios d’utilisation et considérations relatives au déploiement pour Azure AD Join | Microsoft Docs"
-description: "Explique comment les administrateurs peuvent configurer « Azure AD Join » pour leurs utilisateurs finaux (employés, étudiants, autres utilisateurs). Elle présente également les différents scénarios réels pour l'utilisation de Azure AD Join."
+title: "aaaUsage scénarios et les considérations relatives au déploiement d’Azure AD Join | Documents Microsoft"
+description: "Explique comment les administrateurs peuvent configurer « Azure AD Join » pour leurs utilisateurs finaux (employés, étudiants, autres utilisateurs). Il aborde également les scénarios réels différents hello pour l’utilisation de Azure AD Join."
 services: active-directory
 documentationcenter: 
 author: femila
@@ -15,36 +15,36 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/16/2017
 ms.author: markvi
-ms.openlocfilehash: fd0aab1a14bbd324e734e5efe8fe101e8a8dfefa
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7e57971481aa312ebf8a69999d194f9dcc3d4708
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="usage-scenarios-and-deployment-considerations-for-azure-ad-join"></a>Scénarios d’utilisation et considérations relatives au déploiement pour Azure AD Join
 ## <a name="usage-scenarios-for-azure-ad-join"></a>Scénarios d’utilisation pour Azure AD Join
-### <a name="scenario-1-businesses-largely-in-the-cloud"></a>Scénario 1 : entreprises dont l’activité a lieu en grande partie dans le cloud
-Azure Active Directory Join (Azure AD Join) possède de nombreux avantages si vous utilisez et gérez actuellement votre activité dans le cloud ou si vous envisagez bientôt de passer au cloud. Vous pouvez utiliser un compte que vous avez créé dans Azure AD pour vous connecter à Windows 10. À l’aide de [l’introduction de l’interface logicielle lors de la première utilisation](active-directory-azureadjoin-user-frx.md) ou en rejoignant Azure AD via le [menu des paramètres](active-directory-azureadjoin-user-upgrade.md), vos utilisateurs peuvent joindre leurs ordinateurs à Azure AD.  Ils bénéficient également d’un accès via l’authentification unique (SSO) à des ressources cloud comme Office 365 soit dans le navigateur, soit dans les applications Office.
+### <a name="scenario-1-businesses-largely-in-hello-cloud"></a>Scénario 1 : Les entreprises en grande partie dans le cloud de hello
+Azure Active Directory Join (Azure AD Join) peuvent tirer profit vous si vous opérer et gérez les identités de votre entreprise dans le cloud de hello ou déplacez toohello cloud plus rapidement. Vous pouvez utiliser un compte que vous avez créé dans toosign Azure AD dans tooWindows 10. Via [hello tout d’abord exécuter le processus de l’expérience (FRX)](active-directory-azureadjoin-user-frx.md), ou en joignant Azure AD à partir de [menu des paramètres hello](active-directory-azureadjoin-user-upgrade.md), vos utilisateurs peuvent joindre leur tooAzure ordinateurs Active Directory.  Profitez de vos utilisateurs peuvent également l’authentification unique (SSO) accès cloud trop de ressources, tels qu’Office 365, dans un navigateur ou dans les applications Office.
 
 ### <a name="scenario-2-educational-institutions"></a>Scénario 2 : établissements d’enseignement
-Les établissements d’enseignement ont généralement deux types d’utilisateurs : les enseignants et les étudiants. Les enseignants sont considérés comme des membres à plus long terme de l’organisation. Il est souhaitable de créer des comptes locaux pour eux. Mais les étudiants sont des membres à plus court terme de l’organisation et leurs comptes peuvent être gérés dans Azure AD. Cela signifie que la mise à l'échelle de répertoire peut être transmise vers le cloud au lieu d'être stockée en local. Cela signifie également que ces étudiants pourront se connecter à Windows avec leur compte Azure AD et accéder aux ressources Office 365 dans les applications Office.
+Les établissements d’enseignement ont généralement deux types d’utilisateurs : les enseignants et les étudiants. Enseignants sont considérés comme des membres à long terme de l’organisation de hello. Il est souhaitable de créer des comptes locaux pour eux. Mais les étudiants sont shorter-term membres de l’organisation de hello et leurs comptes peuvent être gérés dans Azure AD. Cela signifie que cloud toohello au lieu d’être stockés en local peut être appliquée à l’échelle du répertoire. Cela signifie également que les étudiants seront en mesure de toosign dans tooWindows avec leurs comptes Azure AD et obtenir des ressources de 365 tooOffice d’accès dans les applications Office.
 
 ### <a name="scenario-3-retail-businesses"></a>Scénario 3 : entreprises de vente au détail
-Les entreprises de vente au détail font appel à des saisonniers et à des salariés à long terme. En général, vous créez des comptes locaux et utilisez des ordinateurs joints au domaine pour les employés à plein temps. À l’inverse, les saisonniers sont présents pour une période plus courte et il est préférable de gérer leurs comptes là où les licences utilisateur peuvent être plus facilement déplacées. Lorsque vous créez leurs comptes utilisateur dans le cloud avec des licences Office 365, cela leur permet de bénéficier des avantages de la connexion à Windows et aux applications Office avec un compte Azure AD, tout en conservant la mobilité de leurs licences une fois qu’ils ont quitté l’établissement.
+Les entreprises de vente au détail font appel à des saisonniers et à des salariés à long terme. En général, vous créez des comptes locaux et utilisez des ordinateurs joints au domaine pour les employés à plein temps. Mais saisonniers sont les membres de l’organisation de hello shorter-term, et il est souhaitable toomanage leurs comptes où les licences utilisateur peuvent être déplacées plus facilement sur. Lorsque vous créez leurs comptes d’utilisateur dans le cloud hello dont les licences d’Office 365, ces utilisateurs bénéficiez des avantages de hello de la connexion tooWindows et les applications Office avec un compte Azure AD, si vous conservez le plus de souplesse avec leurs licences après leur sortie.
 
 ### <a name="scenario-4-additional-scenarios"></a>Scénario 4 : autres cas de figure
-En plus des avantages décrits antérieurement, le fait que les utilisateurs joignent leurs appareils à Azure AD offre les avantages suivants : expérience de jonction au domaine simplifiée, gestion automatique des appareils mobiles et authentification unique auprès d’Azure AD et des ressources locales.  
+En même temps que les avantages de hello indiqués précédemment, vous bénéficiez d’avoir à vos utilisateurs de joindre leur tooAzure d’appareils AD en raison d’une jointure simplifiée, la gestion des appareils efficace, l’inscription de gestion automatiques de l’appareil mobile et tooAzure de l’authentification unique Active Directory et les ressources locales.  
 
 ## <a name="deployment-considerations-for-azure-ad-join"></a>Considérations relatives au déploiement pour Azure AD Join
-### <a name="enable-your-users-to-join-a-company-owned-device-directly-to-azure-ad"></a>Permettre aux utilisateurs de joindre un appareil appartenant à l’entreprise directement à Azure AD
-Les entreprises peuvent fournir des comptes gérés sur le cloud uniquement aux organisations et sociétés partenaires. Ces partenaires peuvent ensuite accéder facilement aux applications et aux ressources d’entreprise avec l’authentification unique. Ce scénario s’applique aux utilisateurs qui accèdent aux ressources principalement dans le cloud, comme Office 365 ou les applications SaaS qui s’appuient sur Azure AD pour l’authentification.
+### <a name="enable-your-users-toojoin-a-company-owned-device-directly-tooazure-ad"></a>Activer votre toojoin utilisateurs un appareil d’entreprise directement tooAzure AD
+Les entreprises peuvent fournir des organisations et comptes cloud uniquement toopartner entreprises. Ces partenaires peuvent ensuite accéder facilement aux applications et aux ressources d’entreprise avec l’authentification unique. Ce scénario est applicable toousers qui accèdent aux ressources principalement dans le cloud de hello, telles que les applications Office 365 ou SaaS qui s’appuient sur Azure AD pour l’authentification.
 
 ### <a name="prerequisites"></a>Composants requis
-**Au niveau de l’entreprise (administrateur)**
+**Au niveau d’entreprise hello (administrateur)**
 
 * Abonnement Azure avec Azure Active Directory  
 
-**Au niveau de l’utilisateur**
+**Au niveau de l’utilisateur hello**
 
 * Windows 10 (éditions Professionnel et Entreprise)
 
@@ -53,18 +53,18 @@ Les entreprises peuvent fournir des comptes gérés sur le cloud uniquement aux 
 
 ### <a name="user-tasks"></a>Tâches de l’utilisateur
 * [Configuration d’un nouvel appareil Windows 10 avec Azure AD lors de l’installation](active-directory-azureadjoin-user-frx.md)
-* [Configuration d’un appareil Windows 10 avec Azure AD à partir du menu des paramètres](active-directory-azureadjoin-user-upgrade.md)
-* [Association d’un appareil Windows 10 personnel à votre organisation](active-directory-azureadjoin-personal-device.md)
+* [Configurer un appareil Windows 10 avec Azure AD à partir du menu Paramètres de hello](active-directory-azureadjoin-user-upgrade.md)
+* [Joindre une organisation de tooyour appareil Windows 10 personnelle](active-directory-azureadjoin-personal-device.md)
 
 ## <a name="enable-byod-in-your-organization-for-windows-10"></a>Activation de BYOD (Apportez votre propre appareil) dans votre organisation pour Windows 10
-Vous pouvez configurer vos employés et utilisateurs afin qu’ils utilisent leurs appareils personnels Windows (BYOD) pour accéder aux applications et ressources de l’entreprise. Vos utilisateurs peuvent ajouter leurs comptes Azure AD (professionnels ou scolaires) à un appareil Windows personnel pour accéder aux ressources de manière sécurisée et conforme.
+Vous pouvez configurer votre toouse employés et les utilisateurs de leurs ressources et applications d’entreprise Windows appareils BYOD tooaccess personnel. Vos utilisateurs peuvent ajouter leurs comptes (comptes professionnels ou scolaires) tooa personnel Windows appareil tooaccess les ressources Azure AD de manière sécurisée et conforme.
 
 ### <a name="prerequisites"></a>Composants requis
-**Au niveau de l’entreprise (administrateur)**
+**Au niveau d’entreprise hello (administrateur)**
 
 * Abonnement Azure AD
 
-**Au niveau de l’utilisateur**
+**Au niveau de l’utilisateur hello**
 
 * Windows 10 (éditions Professionnel et Entreprise)
 
@@ -72,13 +72,13 @@ Vous pouvez configurer vos employés et utilisateurs afin qu’ils utilisent leu
 * [Configuration de l’inscription des appareils](active-directory-azureadjoin-setup.md)
 
 ### <a name="user-tasks"></a>Tâches de l’utilisateur
-* [Association d’un appareil Windows 10 personnel à votre organisation](active-directory-azureadjoin-personal-device.md)
+* [Joindre une organisation de tooyour appareil Windows 10 personnelle](active-directory-azureadjoin-personal-device.md)
 
 ## <a name="additional-information"></a>Informations supplémentaires
-* [Windows 10 pour l’entreprise : plusieurs manières d’utiliser des appareils professionnels](active-directory-azureadjoin-windows10-devices-overview.md)
-* [Extension des fonctionnalités du cloud aux appareils Windows 10 via Azure Active Directory Join](active-directory-azureadjoin-user-upgrade.md)
+* [Windows 10 pour les entreprises hello : appareils toouse de méthodes de travail](active-directory-azureadjoin-windows10-devices-overview.md)
+* [Extension cloud appareils tooWindows 10 de fonctionnalités via Azure Active Directory Join](active-directory-azureadjoin-user-upgrade.md)
 * [Authentification des identités sans mot de passe avec Microsoft Passport](active-directory-azureadjoin-passport.md)
 * [En savoir plus sur les scénarios d’utilisation pour Azure AD Join](active-directory-azureadjoin-deployment-aadjoindirect.md)
-* [Connecter des appareils joints au domaine à Azure AD pour des expériences Windows 10](active-directory-azureadjoin-devices-group-policy.md)
+* [Se connecter tooAzure de périphériques joints au domaine Active Directory pour des expériences Windows 10](active-directory-azureadjoin-devices-group-policy.md)
 * [Configuration d’Azure AD Join](active-directory-azureadjoin-setup.md)
 

@@ -8,7 +8,7 @@
 
 # Prise en main
 ## Portail Azure Classic
-### [Tâche 1 : Créer le groupe d’administrateurs](active-directory-ds-getting-started-create-group.md)
+### [Tâche 1 : créer le groupe d’administrateurs hello](active-directory-ds-getting-started-create-group.md)
 ### [Tâche 2 : Créer ou sélectionner un réseau virtuel](active-directory-ds-getting-started-vnet.md)
 ### [Tâche 3 : Activer Azure AD Domain Services](active-directory-ds-getting-started-enableaadds.md)
 ### [Tâche 4 : Mettre à jour les paramètres DNS du réseau virtuel](active-directory-ds-getting-started-update-dns.md)
@@ -30,9 +30,9 @@
 ### [Administrer DNS sur un domaine géré](active-directory-ds-admin-guide-administer-dns.md)
 ### Configurer le protocole LDAP sécurisé pour un domaine géré
 #### [Tâche 1 : Obtenir un certificat pour le protocole LDAP sécurisé](active-directory-ds-admin-guide-configure-secure-ldap.md)
-#### [Tâche 2 : Exporter le certificat LDAP sécurisé](active-directory-ds-admin-guide-configure-secure-ldap-export-pfx.md)
-#### [Tâche 3 : Activer le protocole LDAP sécurisé pour le domaine managé à l’aide du portail Azure Classic](active-directory-ds-admin-guide-configure-secure-ldap-enable-ldaps-classic.md)
-#### [Tâche 3 : Activer le protocole LDAP sécurisé pour le domaine managé à l’aide du portail Azure (préversion)](active-directory-ds-admin-guide-configure-secure-ldap-enable-ldaps.md)
+#### [Tâche 2 : exporter le certificat LDAP sécurisé de hello](active-directory-ds-admin-guide-configure-secure-ldap-export-pfx.md)
+#### [Tâche 3 : activer LDAP sécurisé pour hello de domaine gérés à l’aide du portail Azure classic](active-directory-ds-admin-guide-configure-secure-ldap-enable-ldaps-classic.md)
+#### [Tâche 3 : activer LDAP sécurisé pour hello de domaine gérés à l’aide du portail Azure (aperçu)](active-directory-ds-admin-guide-configure-secure-ldap-enable-ldaps.md)
 
 ### [Créer une UO sur un domaine géré](active-directory-ds-admin-guide-create-ou.md)
 ### [Administrer la stratégie de groupe sur un domaine géré](active-directory-ds-admin-guide-administer-group-policy.md)
@@ -44,7 +44,7 @@
 ## Résolution des problèmes
 ### [FAQ](active-directory-ds-faqs.md)
 ### [Guide de résolution des problèmes](active-directory-ds-troubleshooting.md)
-### [Activer la préversion de l’expérience du portail Azure](active-directory-ds-azure-portal-enable-preview-access.md)
+### [Activer l’aperçu de hello expérience du portail Azure](active-directory-ds-azure-portal-enable-preview-access.md)
 ### [Résoudre les erreurs relatives à des locataires qui ne correspondent pas](active-directory-ds-mismatched-tenant-error.md)
 
 # Référence

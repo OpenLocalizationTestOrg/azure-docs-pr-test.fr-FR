@@ -1,6 +1,6 @@
 ---
-title: "Assistant Sécurité d’Azure AD Privileged Identity Management"
-description: "La première fois que vous utilisez l’extension Azure Active Directory Privileged Identity Management, un Assistant Sécurité s’affiche. Cet article décrit les étapes d’utilisation de l’Assistant."
+title: "Assistant de sécurité aaaThe Azure AD Privileged Identity Management"
+description: "Hello première fois que vous utilisez extension d’Azure Active Directory Privileged Identity Management hello, s’affiche avec un Assistant de sécurité. Cet article décrit les étapes de hello pour utiliser l’Assistant de hello."
 services: active-directory
 documentationcenter: 
 author: billmath
@@ -15,30 +15,30 @@ ms.workload: identity
 ms.date: 02/27/2017
 ms.author: billmath
 ms.custom: pim ; H1Hack27Feb2017
-ms.openlocfilehash: 260d178f3d8158411b3ad266e3b0d15edbebc722
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0b3019134d3c7cfac33b3acfcf430b4d4f67b119
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="using-the-security-wizard-in-azure-ad-privileged-identity-management"></a>Utilisation de l’Assistant Sécurité d’Azure AD Privileged Identity Management 
-Si vous êtes la première personne à exécuter Azure Privileged Identity Management (PIM) pour votre organisation, un Assistant s’affiche. Celui-ci vous aide à comprendre les risques liés à la sécurité des identités privilégiées et comment utiliser PIM pour les limiter. Vous n’avez pas besoin d’apporter des modifications aux affectations de rôle existantes dans l’Assistant. Vous pouvez le faire ultérieurement si vous préférez.
+# <a name="using-hello-security-wizard-in-azure-ad-privileged-identity-management"></a>À l’aide de l’Assistant sécurité hello dans Azure AD Privileged Identity Management 
+Si vous êtes hello première personne toorun Azure Privileged Identity Management (PIM) pour votre organisation, un Assistant s’affiche. Assistant de Hello vous permet de comprendre les risques de sécurité hello d’identités privilégiées et comment toouse PIM tooreduce ces risques. Vous n’avez pas besoin toomake les attributions de rôle tooexisting modifications dans l’Assistant de hello, si vous préférez toodo plus tard.
 
-## <a name="what-to-expect"></a>À quoi s’attendre
-Avant le démarrage de votre organisation à l’aide de PIM, toutes les attributions de rôles sont permanentes : les utilisateurs ont toujours ces rôles, même s’ils n’ont pas actuellement besoin de leurs privilèges.  La première étape de l’Assistant vous montre une liste des rôles à privilèges élevés et le nombre d’utilisateurs ayant actuellement ces rôles. Vous pouvez explorer en détail un rôle particulier pour en savoir plus sur les utilisateurs si certains vous sont inconnus.
+## <a name="what-tooexpect"></a>Quel tooexpect
+Avant le démarrage de votre organisation à l’aide de PIM, toutes les attributions de rôle sont permanentes : hello utilisateurs sont toujours à ces rôles même si elles ne doivent pas actuellement de leurs privilèges.  Hello première étape de hello Assistant vous présente une liste des rôles de privilèges élevés et le nombre d’utilisateurs actuellement dans ces rôles. Vous pouvez Explorer toolearn de rôle particulier tooa savoir plus sur les utilisateurs si une ou plusieurs d'entre eux sont inconnues.
 
-La deuxième étape de l’Assistant vous donne la possibilité de modifier les attributions du rôle d’administrateur.  
+Hello deuxième étape de hello Assistant vous donne les attributions de rôles d’administrateur toochange opportunité.  
 
 > [!WARNING]
-> Il est important de disposer d’au moins un administrateur général et plusieurs administrateurs de rôle privilégié avec un compte professionnel ou scolaire (et non un compte Microsoft). S’il n’existe qu’un seul administrateur de rôle privilégié, l’organisation ne pourra pas utiliser PIM si ce compte est supprimé.
-> En outre, conservez des affectations de rôle permanentes si un utilisateur possède un compte Microsoft (un compte pour se connecter aux services Microsoft tels que Skype et Outlook.com). Si vous envisagez d’exiger une authentification multifacteur (MFA) pour l’activation de ce rôle, cet utilisateur est exclu de ce rôle.
+> Il est important de disposer d’au moins un administrateur général et plusieurs administrateurs de rôle privilégié avec un compte professionnel ou scolaire (et non un compte Microsoft). S’il n'existe qu’un seul administrateur du rôle privilégié, organisation de hello ne seront pas en mesure de toomanage PIM si ce compte est supprimé.
+> En outre, conserver les attributions de rôles permanente si un utilisateur possède un compte Microsoft (compte qu’ils utilisent toosign dans tooMicrosoft des services tels que Skype et Outlook.com). Si vous envisagez de toorequire l’authentification Multifacteur pour l’activation de ce rôle, cet utilisateur sera verrouillé.
 > 
 > 
 
-Une fois que vous avez apporté les modifications, l’Assistant ne s’affiche plus. La prochaine fois que vous ou un autre administrateur de rôle privilégié utiliserez PIM, vous verrez le tableau de bord de PIM.  
+Une fois que vous avez apporté des modifications, Assistant de hello n’affiche plus. Hello prochaine fois que vous ou un autre administrateur de rôle privilégié utilisez PIM, vous verrez hello PIM tableau de bord.  
 
-* Si vous souhaitez ajouter des utilisateurs dans des rôles ou en supprimer, ou encore modifier des affectations de l’état permanent à l’état éligible, consultez la rubrique [Comment ajouter ou supprimer un rôle d’utilisateur](active-directory-privileged-identity-management-how-to-add-role-to-user.md)pour en savoir plus.
-* Si vous souhaitez autoriser plus d’utilisateurs à gérer PIM, consultez la rubrique expliquant [comment affecter un accès à PIM](active-directory-privileged-identity-management-how-to-give-access-to-pim.md)pour en savoir plus.
+* Si vous souhaitez tooadd ou supprimer des utilisateurs des rôles ou modifier les affectations de tooeligible permanente, en savoir plus sur [comment tooadd ou supprimer le rôle d’un utilisateur](active-directory-privileged-identity-management-how-to-add-role-to-user.md).
+* Si vous souhaitez que toogive davantage d’utilisateurs accès toomanage PIM, en savoir plus sur [comment toogive aux toomanage dans PIM](active-directory-privileged-identity-management-how-to-give-access-to-pim.md).
 
 ## <a name="next-steps"></a>Étapes suivantes
 [!INCLUDE [active-directory-privileged-identity-management-toc](../../includes/active-directory-privileged-identity-management-toc.md)]

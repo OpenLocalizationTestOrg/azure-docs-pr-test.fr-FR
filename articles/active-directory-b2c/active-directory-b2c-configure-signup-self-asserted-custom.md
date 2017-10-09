@@ -1,6 +1,6 @@
 ---
 title: "Azure Active Directory B2C : Modifier l’inscription dans les stratégies personnalisées et configurer le fournisseur autodéclaré"
-description: "Une procédure pas à pas sur l’ajout de revendications pour inscrire et configurer la saisie utilisateur"
+description: "Une procédure pas à pas sur l’ajout de revendications toosign des et configurer l’entrée d’utilisateur hello"
 services: active-directory-b2c
 documentationcenter: 
 author: rojasja
@@ -14,30 +14,30 @@ ms.topic: article
 ms.devlang: na
 ms.date: 04/29/2017
 ms.author: joroja
-ms.openlocfilehash: 64b9d904d7d070052e125b479f4719d208c9ff85
-ms.sourcegitcommit: b0af2a2cf44101a1b1ff41bd2ad795eaef29612a
+ms.openlocfilehash: c31d737263fef3e771bdf451b809b0ca522c8fe0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 09/28/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-active-directory-b2c-modify-sign-up-to-add-new-claims-and-configure-user-input"></a>Azure Active Directory B2C : Modifier l’inscription pour ajouter de nouvelles recommandations et configurer la saisie utilisateur.
+# <a name="azure-active-directory-b2c-modify-sign-up-tooadd-new-claims-and-configure-user-input"></a>Azure B2C Active Directory : Modifier tooadd nouvelles demandes d’inscription et configurer l’entrée d’utilisateur.
 
 [!INCLUDE [active-directory-b2c-advanced-audience-warning](../../includes/active-directory-b2c-advanced-audience-warning.md)]
 
-Dans cet article, vous allez ajouter une nouvelle entrée fournie par l’utilisateur (une revendication) à votre parcours utilisateur d’inscription.  Vous allez configurer l’entrée en tant que liste déroulante et définir si elle est nécessaire.
+Dans cet article, vous allez ajouter un nouveau fournies par l’utilisateur entrée (une revendication) utilisateur tooyour inscription voyage.  Vous configurerez l’entrée de hello comme une liste déroulante et définir s’il est requis.
 
-Modifié par Sipi pour déclencher la remise de test.
+Modifié par Sipi tootrigger test remise.
 
 ## <a name="prerequisites"></a>Composants requis
 
-* Suivez les étapes de l’article [Azure Active Directory B2C : bien démarrer avec les stratégies personnalisées](active-directory-b2c-get-started-custom.md).  Testez le parcours utilisateur d’inscription/de connexion pour inscrire un nouveau compte local avant de continuer.
+* Hello terminé les étapes dans l’article de hello [prise en main des stratégies personnalisées](active-directory-b2c-get-started-custom.md).  Test hello / l’inscription de l’inscription utilisateur voyage toosignup un nouveau compte local avant de continuer.
 
 
-La collecte des données initiales de vos utilisateurs est obtenue via l’inscription/la connexion.  Des revendications supplémentaires peuvent être collectées ultérieurement via des parcours utilisateur de modification de profil. Chaque fois qu’Azure AD B2C rassemble des informations directement à partir de l’utilisateur de manière interactive, l’infrastructure d’expérience d’identité utilise son `selfasserted provider`. Les étapes ci-dessous s’appliquent à chaque fois que ce fournisseur est utilisé.
+La collecte des données initiales de vos utilisateurs est obtenue via l’inscription/la connexion.  Des revendications supplémentaires peuvent être collectées ultérieurement via des parcours utilisateur de modification de profil. Chaque fois qu’Azure AD B2C rassemble des informations directement à partir de l’utilisateur de hello de manière interactive, hello identité expérience Framework utilise son `selfasserted provider`. étapes de Hello ci-dessous s’appliquent à chaque fois que ce fournisseur est utilisé.
 
 
-## <a name="define-the-claim-its-display-name-and-the-user-input-type"></a>Définir la revendication, son nom d’affichage et le type de saisie utilisateur
-Demandons à l’utilisateur la ville où il vit.  Ajoutez l’élément suivant à l’élément `<ClaimsSchema>` dans le fichier de stratégie TrustFrameWorkExtensions :
+## <a name="define-hello-claim-its-display-name-and-hello-user-input-type"></a>Définir hello revendication, son nom complet et le type d’entrée d’utilisateur de hello
+Permet de demander à l’utilisateur de hello pour leur ville.  Ajouter hello suivant élément toohello `<ClaimsSchema>` élément dans le fichier de stratégie TrustFrameWorkExtensions hello :
 
 ```xml
 <ClaimType Id="city">
@@ -47,13 +47,13 @@ Demandons à l’utilisateur la ville où il vit.  Ajoutez l’élément suivant
   <UserInputType>TextBox</UserInputType>
 </ClaimType>
 ```
-Vous pouvez sélectionner d’autres choix pour personnaliser la revendication.  Pour un schéma complet, reportez-vous au **guide de référence technique sur l’infrastructure d’expérience d’identité**.  Ce guide sera bientôt publié dans la section de référence.
+Voici les autres options à que votre disposition ici toocustomize hello de revendication.  Pour un schéma complet, consultez toohello **le Guide de référence technique identité expérience Framework**.  Ce guide sera bientôt publié dans la section de référence hello.
 
-* `<DisplayName>` est une chaîne qui définit *l’étiquette* orientée utilisateur.
+* `<DisplayName>`est une chaîne qui définit hello orientés utilisateur *étiquette*
 
-* `<UserHelpText>` permet à l’utilisateur de comprendre ce qui est nécessaire.
+* `<UserHelpText>`permet à utilisateur de hello de comprendre ce qui est obligatoire
 
-* `<UserInputType>` comprend les quatre options suivantes mises en surbrillance ci-dessous :
+* `<UserInputType>`a hello quatre options suivantes en surbrillance ci-dessous :
     * `TextBox`
 ```xml
 <ClaimType Id="city">
@@ -78,7 +78,7 @@ Vous pouvez sélectionner d’autres choix pour personnaliser la revendication. 
 </ClaimType>
 ```
 
-    * `DropdownSingleSelect` - Permet la sélection d’une valeur valide uniquement.
+    * `DropdownSingleSelect`-Permet de sélectionner hello uniquement une valeur valide.
 
 ![Capture d’écran de l’option de liste déroulante](./media/active-directory-b2c-configure-signup-self-asserted-custom/dropdown-menu-example.png)
 
@@ -97,7 +97,7 @@ Vous pouvez sélectionner d’autres choix pour personnaliser la revendication. 
 ```
 
 
-* `CheckboxMultiSelect` Permet la sélection d’une ou de plusieurs valeurs.
+* `CheckboxMultiSelect`Permet la sélection d’une ou plusieurs valeurs hello.
 
 ![Capture d’écran de l’option de sélection multiple](./media/active-directory-b2c-configure-signup-self-asserted-custom/multiselect-menu-example.png)
 
@@ -115,9 +115,9 @@ Vous pouvez sélectionner d’autres choix pour personnaliser la revendication. 
 </ClaimType>
 ```
 
-## <a name="add-the-claim-to-the-sign-upsign-in-user-journey"></a>Ajouter la revendication pour le parcours utilisateur d’inscription/de connexion
+## <a name="add-hello-claim-toohello-sign-upsign-in-user-journey"></a>Ajouter hello revendication toohello connexion à distance et à la connexion dans le parcours de l’utilisateur
 
-1. Ajoutez la revendication en tant que `<OutputClaim ClaimTypeReferenceId="city"/>` à `LocalAccountSignUpWithLogonEmail` de TechnicalProfile (trouvé dans le fichier de stratégie TrustFrameworkBase).  Notez que ce TechnicalProfile utilise le SelfAssertedAttributeProvider.
+1. Ajouter des revendications hello comme un `<OutputClaim ClaimTypeReferenceId="city"/>` toohello TechnicalProfile `LocalAccountSignUpWithLogonEmail` (trouvée dans le fichier de stratégie TrustFrameworkBase hello).  Notez que cette TechnicalProfile utilise hello SelfAssertedAttributeProvider.
 
   ```xml
   <TechnicalProfile Id="LocalAccountSignUpWithLogonEmail">
@@ -142,7 +142,7 @@ Vous pouvez sélectionner d’autres choix pour personnaliser la revendication. 
       <OutputClaim ClaimTypeReferenceId="executed-SelfAsserted-Input" DefaultValue="true" />
       <OutputClaim ClaimTypeReferenceId="authenticationSource" />
       <OutputClaim ClaimTypeReferenceId="newUser" />
-      <!-- Optional claims, to be collected from the user -->
+      <!-- Optional claims, toobe collected from hello user -->
       <OutputClaim ClaimTypeReferenceId="givenName" />
       <OutputClaim ClaimTypeReferenceId="surName" />
       <OutputClaim ClaimTypeReferenceId="city"/>
@@ -154,7 +154,7 @@ Vous pouvez sélectionner d’autres choix pour personnaliser la revendication. 
   </TechnicalProfile>
   ```
 
-2. Ajoutez la revendication à l’AAD-UserWriteUsingLogonEmail en tant que `<PersistedClaim ClaimTypeReferenceId="city" />` pour écrire la revendication dans le répertoire AAD après sa collecte auprès de l’utilisateur. Vous pouvez ignorer cette étape si vous préférez ne pas conserver la revendication dans le répertoire pour une utilisation ultérieure.
+2. Ajouter hello revendication toohello AAD-UserWriteUsingLogonEmail comme un `<PersistedClaim ClaimTypeReferenceId="city" />` annuaire toowrite hello revendication toohello AAD après sa collecte à partir de l’utilisateur de hello. Vous pouvez ignorer cette étape si vous ne préférez pas toopersist hello revendication dans le répertoire de hello pour un usage ultérieur.
 
   ```xml
   <!-- Technical profiles for local accounts -->
@@ -190,14 +190,14 @@ Vous pouvez sélectionner d’autres choix pour personnaliser la revendication. 
   </TechnicalProfile>
   ```
 
-3. Ajouter la revendication au TechnicalProfile qui lit à partir du répertoire lorsqu’un utilisateur se connecte en tant que `<OutputClaim ClaimTypeReferenceId="city" />`
+3. Ajouter hello revendication toohello TechnicalProfile qui lit à partir du répertoire de hello lorsqu’un utilisateur se connecte en tant qu’un`<OutputClaim ClaimTypeReferenceId="city" />`
 
   ```xml
   <TechnicalProfile Id="AAD-UserReadUsingEmailAddress">
     <Metadata>
       <Item Key="Operation">Read</Item>
       <Item Key="RaiseErrorIfClaimsPrincipalDoesNotExist">true</Item>
-      <Item Key="UserMessageIfClaimsPrincipalDoesNotExist">An account could not be found for the provided user ID.</Item>
+      <Item Key="UserMessageIfClaimsPrincipalDoesNotExist">An account could not be found for hello provided user ID.</Item>
     </Metadata>
     <IncludeInSso>false</IncludeInSso>
     <InputClaims>
@@ -218,7 +218,7 @@ Vous pouvez sélectionner d’autres choix pour personnaliser la revendication. 
   </TechnicalProfile>
   ```
 
-4. Ajoutez `<OutputClaim ClaimTypeReferenceId="city" />` au fichier de stratégie de partie de confiance SignUporSignIn.xml pour que cette revendication soit envoyée à l’application dans le jeton après un parcours utilisateur réussi.
+4. Ajouter hello `<OutputClaim ClaimTypeReferenceId="city" />` du fichier de stratégie toohello RP SignUporSignIn.xml pour que cette revendication est envoyée toohello application dans le jeton de hello après un voyage réussie de l’utilisateur.
 
   ```xml
   <RelyingParty>
@@ -240,17 +240,17 @@ Vous pouvez sélectionner d’autres choix pour personnaliser la revendication. 
   </RelyingParty>
   ```
 
-## <a name="test-the-custom-policy-using-run-now"></a>Tester la stratégie personnalisée avec « Exécuter maintenant »
+## <a name="test-hello-custom-policy-using-run-now"></a>Tester une stratégie personnalisée de hello à l’aide de « Exécuter maintenant »
 
-1. Ouvrez le **panneau Azure AD B2C** et accédez à **Infrastructure d’expérience d’identité > Stratégies personnalisées**.
-2. Sélectionnez la stratégie personnalisée que vous avez téléchargée, puis cliquez sur le bouton **Exécuter maintenant**.
-3. Vous devriez pouvoir vous inscrire à l’aide d’une adresse de messagerie.
+1. Ouvrez hello **Azure AD B2C panneau** et accédez trop**identité expérience Framework > stratégies personnalisées**.
+2. Stratégie personnalisée hello que vous avez téléchargé, puis cliquez sur hello **exécuter maintenant** bouton.
+3. Vous devez être en mesure de toosign à l’aide d’une adresse de messagerie.
 
-L’écran d’inscription en mode test doit ressembler à ceci :
+écran d’inscription Hello en mode test doit ressembler toothis similaire :
 
 ![Capture d’écran de l’option d’inscription modifiée](./media/active-directory-b2c-configure-signup-self-asserted-custom/signup-with-city-claim-dropdown-example.png)
 
-  Le jeton qui est renvoyé à vote application inclut désormais la revendication `city` comme illustré ci-dessous.
+  Hello tooyour précédent jeton application incluront désormais hello `city` revendication comme indiqué ci-dessous
 ```json
 {
   "exp": 1493596822,
@@ -273,16 +273,16 @@ L’écran d’inscription en mode test doit ressembler à ceci :
 
 ## <a name="optional-remove-email-verification-from-signup-journey"></a>Facultatif : Supprimer la vérification de l’adresse e-mail du parcours d’inscription
 
-Pour ignorer la vérification de l’adresse e-mail, l’auteur de la stratégie peut choisir de supprimer `PartnerClaimType="Verified.Email"`. L’adresse e-mail sera requise mais pas vérifiée, sauf si « Requis » = true est supprimé.  Réfléchissez bien pour savoir si cette option peut vous être utile !
+vérification du courrier électronique tooskip, auteur de stratégie de hello peut choisir tooremove `PartnerClaimType="Verified.Email"`. Hello adresse de messagerie est requis mais pas vérifiée, sauf si « Requis » = true est supprimée.  Réfléchissez bien pour savoir si cette option peut vous être utile !
 
-La vérification de l’adresse e-mail est activée par défaut dans `<TechnicalProfile Id="LocalAccountSignUpWithLogonEmail">`, dans le fichier de stratégie TrustFrameworkBase du pack de démarrage :
+Vérifié par courrier électronique est activé par défaut dans hello `<TechnicalProfile Id="LocalAccountSignUpWithLogonEmail">` dans fichier de stratégie TrustFrameworkBase hello dans le pack de démarrage hello :
 ```xml
 <OutputClaim ClaimTypeReferenceId="email" PartnerClaimType="Verified.Email" Required="true" />
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Ajoutez la nouvelle revendication aux flux des connexions aux comptes sociaux en modifiant les éléments TechnicalProfiles répertoriés ci-dessous. Ces derniers sont utilisés par les connexions aux comptes sociaux/fédérés pour écrire et lire les données utilisateur avec alternativeSecurityId en tant que localisateur.
+Ajouter hello nouvelle revendication toohello des flux pour les connexions de réseaux sociaux compte en modifiant hello TechnicalProfiles répertoriées ci-dessous. Ces sont utilisées par compte sociale/fédéré connexions toowrite et lire les données d’utilisateur hello à l’aide de hello alternativeSecurityId comme hello localisateur.
 ```xml
 <TechnicalProfile Id="AAD-UserWriteUsingAlternativeSecurityId">
 <TechnicalProfile Id="AAD-UserReadUsingAlternativeSecurityId">

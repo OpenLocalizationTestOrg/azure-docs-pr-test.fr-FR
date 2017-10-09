@@ -1,6 +1,6 @@
 ---
-title: "Aucun utilisateur n’est approvisionné dans une application de la galerie Azure AD | Microsoft Docs"
-description: "Résolution des problèmes courants rencontrés lorsque les utilisateurs ne figurent pas dans une application de la galerie Azure AD pour que vous avez configurée pour l’approvisionnement d’utilisateurs avec Azure AD"
+title: "aaaNo utilisateurs sont en cours d’application de la galerie tooan mis en service Azure AD | Documents Microsoft"
+description: "Comment tootroubleshoot les problèmes courants rencontrés lorsque vous ne voyez pas les utilisateurs figurant dans une une annonce Azure Application de la galerie que vous avez configuré pour l’approvisionnement des utilisateurs auprès d’Azure AD"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,55 +13,55 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/04/2017
 ms.author: asteen
-ms.openlocfilehash: 30db71c0706de1dcc0d48fb72fa5d62475a14ba7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4d9693a202ed657e1de5571b50e5d499bef1bb3f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="no-users-are-being-provisioned-to-an-azure-ad-gallery-application"></a>Aucun utilisateur n’est approvisionné dans une application de la galerie Azure AD
+# <a name="no-users-are-being-provisioned-tooan-azure-ad-gallery-application"></a>Aucun utilisateur n’est en cours d’application de la galerie tooan mis en service Azure AD
 
-Une fois que l’approvisionnement automatique a été configuré pour une application (avec notamment la vérification des informations d’identification de l’application fournies à Azure AD pour la connexion à l’application), l’approvisionnement des utilisateurs et/ou des groupes dans l’application est déterminé par les éléments suivants :
+Mise en service une fois automatique a été configuré pour une application (notamment pour vérifier que les informations d’identification d’application hello fourni tooAzure AD tooconnect toohello application sont valides). Les utilisateurs ou des groupes sont approvisionnés toohello application et est déterminée par hello suivant choses :
 
--   Quels utilisateurs et groupes ont été **affectés** à l’application. Pour plus d’informations sur l’affectation, consultez [Affecter un utilisateur ou un groupe à une application d’entreprise dans Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-assign-user-azure-portal).
+-   Utilisateurs et groupes ayant été **affecté** toohello application. Pour plus d’informations sur l’attribution, consultez [affecter une application d’entreprise tooan utilisateur ou un groupe dans Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-assign-user-azure-portal).
 
--   Les **mappages d’attributs** sont-ils activés et configurés pour synchroniser les attributs valides d’Azure AD avec l’application. Pour plus de détails sur les mappages d’attributs, consultez [Personnalisation des mappages d’attributs d’approvisionnement d’utilisateurs pour les applications SaaS dans Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-saas-customizing-attribute-mappings).
+-   Ou non **mappages d’attributs** toosync activé et configuré les attributs valide à partir de l’application de toohello Azure AD. Pour plus de détails sur les mappages d’attributs, consultez [Personnalisation des mappages d’attributs d’approvisionnement d’utilisateurs pour les applications SaaS dans Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-saas-customizing-attribute-mappings).
 
 -   Un **filtre d’étendue** permet-il de filtrer les utilisateurs en fonction de valeurs d’attribut spécifiques. Pour plus d’informations sur les filtres d’étendue, consultez [Approvisionnement d’applications basé sur les attributs avec filtres d’étendue](https://docs.microsoft.com/azure/active-directory/active-directory-saas-scoping-filters).
 
-Si vous constatez que les utilisateurs ne sont pas approvisionnés, consultez les journaux d’audit dans Azure AD et recherchez les entrées de journal relatives à un utilisateur spécifique.
+Lorsque vous observez que les utilisateurs ne sont pas configurés, consultez les journaux d’Audit de hello dans Azure AD et recherchez les entrées de journal pour un utilisateur spécifique.
 
-Les journaux d’audit d’approvisionnement sont accessibles dans le portail Azure, sous l’onglet **Azure Active Directory &gt; Applications Entreprise &gt; \[Nom de l’application\] &gt; Journaux d’audit**. Filtrez les journaux sur la catégorie **Approvisionnement des comptes** pour afficher uniquement les événements d’approvisionnement de cette application. Vous pouvez rechercher des utilisateurs en fonction de l’ID de correspondance qui a été configuré pour eux dans les mappages d’attributs. Par exemple, si vous avez configuré le nom d’utilisateur principal ou l’adresse de messagerie en tant qu’attribut correspondant côté Azure AD, et si l’utilisateur qui n’est pas approvisionné a la valeur « audrey@contoso.com », recherchez les journaux d’audit correspondant à « audrey@contoso.com » et passez en revue les entrées renvoyées.
+Hello, journaux d’audit de configuration sont accessibles dans hello portail Azure, Bonjour **Azure Active Directory &gt; applications d’entreprise &gt; \[nom de l’Application\] &gt; lesjournauxd’Audit**onglet. Hello du filtre de session hello **l’approvisionnement de comptes** catégorie tooonly voir hello événements pour cette application de configuration. Vous pouvez rechercher des utilisateurs en fonction de hello « correspondance ID » qui a été configuré pour eux dans les mappages d’attributs hello. Par exemple, si vous avez configuré hello « nom d’utilisateur principal » ou « adresse de messagerie » comme hello attribut côté hello Azure AD correspondant, et ne pas en cours de configuration de l’utilisateur hello a la valeur «audrey@contoso.com». Puis recherchez les journaux d’audit de hello pour «audrey@contoso.com» et révision puis entrées retournées.
 
-Les journaux d’audit d’approvisionnement enregistrent toutes les opérations effectuées par le service d’approvisionnement, y compris l’interrogation d’Azure AD concernant les utilisateurs qui se trouvent dans l’étendue de l’approvisionnement, l’interrogation de l’application cible concernant l’existence de ces utilisateurs, et la comparaison des objets utilisateur du système. Ajoutez ensuite, mettez à jour ou désactivez le compte d’utilisateur dans le système cible en fonction de cette comparaison.
+Hello d’audit de configuration journaux enregistrent que toutes hello opérations effectuées par le service d’approvisionnement hello, y compris l’interrogation d’Azure AD pour les utilisateurs assignés sont dans la portée de l’approvisionnement, interrogation application cible de hello existence hello de ces utilisateurs, comparaison hello objets utilisateur entre le système de hello. Puis ajouter, mettre à jour ou désactiver le compte d’utilisateur hello dans le système cible de hello en fonction de comparaison de hello.
 
-## <a name="general-problem-areas-with-provisioning-to-consider"></a>Problèmes généraux d’approvisionnement à prendre en compte
+## <a name="general-problem-areas-with-provisioning-tooconsider"></a>Zones à problème général avec l’allocation tooconsider
 
-Voici une liste des problèmes généraux que vous pouvez explorer si vous savez par où commencer.
+Voici une liste de hello zones à problème général que vous pouvez Explorer si vous avez une idée de l’endroit où toostart.
 
-* [Le service d’approvisionnement ne semble pas démarrer](#provisioning-service-does-not-appear-to-start)
+* [Service de configuration n’apparaît pas toostart](#provisioning-service-does-not-appear-to-start)
 * [Les journaux d’audit indiquent que les utilisateurs sont ignorés et non approvisionnés, bien qu’ils soient affectés](#audit-logs-say-users-are-skipped-and-not-provisioned-even-though-they-are-assigned)
 
-## <a name="provisioning-service-does-not-appear-to-start"></a>Le service d’approvisionnement ne semble pas démarrer
+## <a name="provisioning-service-does-not-appear-toostart"></a>Service de configuration n’apparaît pas toostart
 
-Si vous définissez le paramètre **État de la configuration** sur **Activé** dans la section **Azure Active Directory &gt; Applications Entreprise &gt; \[Nom de l’application\] &gt;Approvisionnement** du portail Azure. Cependant, si aucune autre information d’état n’est affichée sur cette page après de nouveaux chargements, il est probable que le service est en cours d’exécution mais qu’il n’a pas encore terminé la synchronisation initiale. Vérifiez les **journaux d’audit** décrits ci-dessus pour déterminer les opérations effectuées par le service, et la présence éventuelle d’erreurs.
+Si vous définissez hello **état d’approvisionnement** toobe **sur** Bonjour **Azure Active Directory &gt; applications d’entreprise &gt; \[nomdel’Application\] &gt;Provisioning** section Hello portail Azure. Toutefois aucun autre état détails sont affichés sur cette page après recharge suivantes, il est probable que le service de hello est en cours d’exécution mais encore synchronisation initiale n’est pas terminée. Vérifiez hello **journaux d’Audit** décrite ci-dessus toodetermine quel service de hello opérations s’effectue, et s’il existe des erreurs.
 
 >[!NOTE]
->Une synchronisation initiale peut prendre de 20 minutes à plusieurs heures, en fonction de la taille de l’annuaire Azure AD et du nombre d’utilisateurs présents dans l’étendue de l’approvisionnement. Les synchronisations qui suivent la synchronisation initiale sont plus rapides, car le service d’approvisionnement stocke les filigranes qui représentent l’état des deux systèmes après la synchronisation initiale. Cela améliore les performances des synchronisations suivantes.
+>Une synchronisation initiale peut prendre entre 20 minutes tooseveral heures, selon la taille de hello de Windows Azure AD pour hello et hello des utilisateurs dans la portée pour la configuration. Les synchronisations suivantes après la synchronisation initiale hello sont plus rapides, en tant que hello configuration service stocke les filigranes qui représentent l’état hello des deux systèmes après la synchronisation initiale hello. Cela améliore les performances des synchronisations suivantes.
 >
 >
 
 ## <a name="audit-logs-say-users-are-skipped-and-not-provisioned-even-though-they-are-assigned"></a>Les journaux d’audit indiquent que les utilisateurs sont ignorés et non approvisionnés, bien qu’ils soient affectés
 
-Lorsqu’un utilisateur apparaît comme « ignoré » dans les journaux d’audit, il est essentiel de consulter les détails du message du journal pour en déterminer la raison. Voici les raisons les plus courantes et les solutions correspondantes :
+Lorsqu’un utilisateur s’affiche comme « ignorée » dans les journaux d’audit de hello, il est hello tooread très important détails en raison de hello hello journal message toodetermine étendus. Voici les raisons les plus courantes et les solutions correspondantes :
 
--   **Un filtre d’étendue a été configuré** **et exclut l’utilisateur en fonction d’une valeur d’attribut**. Pour plus d’informations sur les filtres d’étendue, consultez <https://docs.microsoft.com/azure/active-directory/active-directory-saas-scoping-filters>.
+-   **Un filtre d’étendue a été configuré** **qui est filtrant utilisateur de hello basé sur une valeur d’attribut**. Pour plus d’informations sur les filtres d’étendue, consultez <https://docs.microsoft.com/azure/active-directory/active-directory-saas-scoping-filters>.
 
--   **L’utilisateur n’est pas « autorisé de manière effective ».** Ce message d’erreur indique un problème concernant l’enregistrement d’affectation d’utilisateurs stocké dans Azure AD. Pour résoudre ce problème, supprimez l’affectation de l’utilisateur (ou du groupe) à partir de l’application, puis réaffectez l’utilisateur. Pour plus d’informations sur l’affectation, consultez <https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-assign-user-azure-portal>.
+-   **utilisateur de Hello » n’est effectivement en droit ».** Si vous voyez ce message d’erreur spécifique, il est, car il existe un problème avec l’enregistrement d’affectation hello utilisateur stocké dans Azure AD. toofix ce problème, supprimer l’affectation hello utilisateur (ou groupe) à partir de l’application hello et réaffectez à nouveau. Pour plus d’informations sur l’affectation, consultez <https://docs.microsoft.com/azure/active-directory/active-directory-coreapps-assign-user-azure-portal>.
 
--   **Un attribut requis manque ou n’est pas indiqué pour un utilisateur.** Lors de la configuration de l’approvisionnement, il est important de vérifier et configurer les mappages d’attributs et les workflows qui définissent les propriétés de l’utilisateur (ou du groupe) passant d’Azure AD à l’application. Cela inclut la définition d’une « propriété correspondante » réservée à l’utilisation et à la mise en correspondance des utilisateurs/groupes entre les deux systèmes. Pour plus de détails sur ce processus important, consultez [Personnalisation des mappages d’attributs d’approvisionnement d’utilisateurs pour les applications SaaS dans Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-saas-customizing-attribute-mappings).
+-   **Un attribut requis manque ou n’est pas indiqué pour un utilisateur.** Un tooconsider plus important lors de la configuration de l’approvisionnement d’être tooreview et configurer les mappages d’attributs hello et flux de travail qui définissent le flux de propriétés utilisateur (ou groupe) à partir de l’application de toohello Azure AD. Cela inclut le paramètre hello « correspondance property » être toouniquely utilisé identifier et correspondent aux utilisateurs/groupes entre les systèmes de hello deux. Pour plus de détails sur ce processus important, consultez [Personnalisation des mappages d’attributs d’approvisionnement d’utilisateurs pour les applications SaaS dans Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-saas-customizing-attribute-mappings).
 
-  * **Mappages d’attributs pour les groupes :** approvisionnement du nom du groupe et des détails du groupe, en plus des membres, si la prise en charge est effective pour certaines applications. Vous pouvez activer ou désactiver cette fonctionnalité en activant ou désactivant le **mappage** pour les objets de groupe affichés dans l’onglet **Approvisionnement**. Si les groupes d’approvisionnement sont activés, veillez à passer en revue les mappages d’attributs afin de vous assurer qu’un champ approprié est utilisé pour l’« ID correspondant ». Il peut s’agir du nom d’affichage ou de l’alias de courrier électronique dans la mesure où le groupe et ses membres ne sont pas approvisionnés si la propriété correspondante est vide ou n’est pas remplie pour un groupe dans Azure AD.
+  * **Mappages pour les groupes d’attributs :** Provisioning Hello détails nom et de groupe, dans les membres de toohello Ajout du groupe si pris en charge pour certaines applications. Vous pouvez activer ou désactiver cette fonctionnalité en activant ou désactivant hello **mappage** pour les objets de groupe affichés dans hello **Provisioning** onglet. Si la configuration des groupes est activée, veillez à tooreview hello attribut mappages tooensure un champ approprié est utilisé pour hello « correspondant ID ». Il peut s’agir hello affichage nom alias de messagerie électronique), comme groupe de hello et ses membres ne pas être configurés si hello correspondance de propriété est vide ou non remplie pour un groupe dans Azure AD.
 
 ## <a name="next-steps"></a>Étapes suivantes
 [Azure AD Connect Sync : présentation de l’approvisionnement déclaratif](active-directory-aadconnectsync-understanding-declarative-provisioning.md)

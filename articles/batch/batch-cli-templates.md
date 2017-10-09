@@ -1,6 +1,6 @@
 ---
-title: "Exécuter des travaux Azure Batch de bout en bout sans écrire de code (préversion) | Microsoft Docs"
-description: "Créez des modèles de fichier pour Azure CLI afin de créer des pools, travaux et tâches Batch."
+title: "aaaRun Azure Batch travaux de bout en bout sans écrire de code (version préliminaire) | Documents Microsoft"
+description: "Créer des fichiers de modèles pour les pools de lot toocreate hello CLI d’Azure, des tâches et des tâches."
 services: batch
 author: mscurrell
 manager: timlt
@@ -11,88 +11,88 @@ ms.topic: article
 ms.workload: big-compute
 ms.date: 07/20/2017
 ms.author: markscu
-ms.openlocfilehash: 6b91466da46d1f4ca9f25bf1718be783603efc58
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: c0434d09766451f6ba516efbad949834711ee819
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-azure-batch-cli-templates-and-file-transfer-preview"></a>Utiliser des modèles d’interface CLI Azure Batch et le transfert de fichiers (préversion)
 
-Vous pouvez utiliser l’interface Azure CLI pour exécuter des travaux Batch sans écrire de code.
+À l’aide de hello CLI d’Azure il s’agit des traitements toorun possible sans écrire de code.
 
-Les fichiers de modèle peuvent être créés et utilisés avec Azure CLI qui autorise la création de pools, travaux et tâches Batch. Les fichiers d’entrée des travaux peuvent être facilement chargés sur le compte de stockage associé au compte Batch et aux fichiers de sortie de travaux téléchargés.
+Fichiers de modèle peuvent être créés et utilisés avec hello CLI d’Azure qui permettent de lot pools, de tâches toobe tâches créé. Fichiers d’entrée de travail peuvent être facilement transférées au compte de stockage hello associé hello lot compte et le travail de fichiers de sortie téléchargés.
 
 ## <a name="overview"></a>Vue d'ensemble
 
-Une extension de l’interface Azure CLI permet aux utilisateurs qui ne sont pas des développeurs d’utiliser Batch de bout en bout. Un pool peut être créé, les données d’entrée chargées, les travaux et tâches associées créés et les données de sortie produites téléchargées. Aucun code n’est nécessaire, car l’interface CLI est utilisée directement ou intégrée à des scripts.
+Une extension de toohello CLI d’Azure permet de lot toobe utilisée de bout en bout par les utilisateurs qui ne sont pas des développeurs. Un pool peut être créé et téléchargement de données d’entrée, tâches et les tâches associées créés, hello sortie données résultantes téléchargées – aucun code requis, hello CLI utilisée directement ou intégrées dans les scripts.
 
-Les modèles Batch s’appuient sur la [prise en charge actuelle de Batch dans l’interface Azure CLI](https://docs.microsoft.com/azure/batch/batch-cli-get-started#json-files-for-resource-creation) qui permet aux fichiers JSON de spécifier des valeurs de propriété pour la création de pools, travaux, tâches et autres éléments. Avec les modèles Batch, les fonctionnalités suivantes sont ajoutées à celles déjà disponibles avec les fichiers JSON :
+Générer des modèles de traitement par lots sur hello [prise en charge de traitement par lots existante Bonjour Azure CLI](https://docs.microsoft.com/azure/batch/batch-cli-get-started#json-files-for-resource-creation) qui permet de fichiers JSON toospecify les valeurs de propriété pour la création de hello de pools, travaux, tâches et autres éléments. Avec les modèles de lot, hello fonctionnalités suivantes sont ajoutées sur ce qui est possible avec les fichiers au format JSON hello :
 
--   Des paramètres peuvent être définis. Lorsque le modèle est utilisé, seules les valeurs de paramètre sont spécifiées pour créer l’élément et les autres valeurs de propriété d’élément sont spécifiées dans le corps du modèle. Un utilisateur qui comprend Batch et les applications exécutées par Batch peut créer des modèles, en spécifiant les valeurs de propriété des pools, des travaux et des tâches. Un utilisateur moins familiarisé avec Batch et/ou les applications doit uniquement spécifier les valeurs des paramètres définis.
+-   Des paramètres peuvent être définis. Lorsque le modèle de hello est utilisé, seules les valeurs de paramètre hello sont des éléments de hello de toocreate spécifié, avec d’autres valeurs de propriété d’élément spécifiée dans le corps du modèle hello. Un utilisateur qui comprend le traitement par lots et l’applications toobe exécutent par lot peut créer des modèles, en spécifiant le pool de travail et les valeurs de propriété de tâche. Un utilisateur moins familiarisés avec le lot et/ou les applications doit uniquement les valeurs hello toospecify pour les paramètres de hello défini.
 
--   Les fabriques de tâches de travail créent une ou plusieurs tâches associées à un travail sans avoir à créer des définitions de tâches, simplifiant considérablement les soumissions de travaux.
+-   Fabriques de tâches de travail en créer un ou plusieurs tâches associées à un travail, ce qui évite de hello ont besoin pour de nombreux toobe de définitions de tâche créé et ce qui simplifie considérablement la soumission de travaux.
 
 
-Des fichiers de données d’entrée doivent être fournis pour les travaux et des fichiers de données de sortie sont souvent produits. Par défaut, un compte de stockage est associé à chaque compte Batch et les fichiers peuvent être facilement transférés vers ou à partir de ce compte de stockage à l’aide de l’interface CLI, sans que du codage ou des informations d’identification de stockage ne soient requis.
+Les fichiers de données d’entrée doivent toobe fourni pour les travaux et entraînait souvent des fichiers de données de sortie. Un compte de stockage est associé, par défaut, chaque lot compte et les fichiers peuvent être facilement transféré tooand à partir de ce compte de stockage à l’aide de l’interface CLI, sans codage, et aucune information d’identification de stockage ne requis.
 
-Par exemple, [ffmpeg](http://ffmpeg.org/) est une application courante qui traite les fichiers audio et vidéo. L’interface CLI d’Azure Batch peut servir à appeler ffmpeg pour transcoder les fichiers vidéo sources dans différentes résolutions.
+Par exemple, [ffmpeg](http://ffmpeg.org/) est une application courante qui traite les fichiers audio et vidéo. Hello CLI de traitement par lots Azure peut être utilisé tooinvoke ffmpeg tootranscode source des fichiers vidéo toodifferent résolutions.
 
--   Un modèle de pool est créé. L’utilisateur qui crée le modèle sait comment appeler l’application ffmpeg et connaît les prérequis. Il spécifie le système d’exploitation approprié, la taille de machine virtuelle, la façon dont ffmpeg est installé (à partir d’un package d’application ou à l’aide d’un gestionnaire de package, par exemple) et d’autres valeurs de propriété du pool. Les paramètres sont créés de façon à ce que, lorsque le modèle est utilisé, seul l’ID du pool et le nombre de machines virtuelles doivent être spécifiés.
+-   Un modèle de pool est créé. utilisateur Hello création hello modèle sait comment toocall hello ffmpeg application et ses besoins ; ils spécifient hello système d’exploitation approprié, la machine virtuelle de taille, comment ffmpeg est installée (à partir d’un package d’application ou à l’aide d’un gestionnaire de package, par exemple) et d’autres valeurs de propriété du pool. Paramètres sont créés lorsque le modèle de hello est utilisé, seuls les id du pool hello et nombre d’ordinateurs virtuels devez toobe spécifié.
 
--   Un modèle de travail est créé. L’utilisateur qui crée le modèle sait comment appeler ffmpeg pour transcoder la vidéo source dans une résolution différente et spécifie la ligne de commande de la tâche. Il sait également qu’il y a un dossier contenant les fichiers vidéo sources, avec une tâche requise pour chaque fichier d’entrée.
+-   Un modèle de travail est créé. le modèle de hello création Hello utilisateur sait comment ffmpeg besoins toobe appelé autre résolution tootranscode source vidéo tooa et spécifie la ligne de commande de tâche hello ; ils savent également qu’il existe un dossier contenant des fichiers vidéo source de hello, avec une tâche requise par le fichier d’entrée.
 
--   Un utilisateur final avec un ensemble de fichiers vidéo à transcoder crée d’abord un pool à l’aide du modèle de pool, en spécifiant uniquement l’ID du pool et le nombre de machines virtuelles requises. Il peut ensuite charger les fichiers sources à transcoder. Un travail peut ensuite être soumis à l’aide du modèle de travail, en spécifiant uniquement l’ID du pool et l’emplacement des fichiers source chargés. Le travail Batch est créé, avec une tâche par fichier d’entrée généré. Enfin, les fichiers de sortie transcodés peuvent être téléchargés.
+-   Un utilisateur final avec un ensemble de fichiers vidéo tootranscode crée d’abord un pool à l’aide du modèle de pool hello, en spécifiant uniquement id de pool hello et le nombre d’ordinateurs virtuels requis. Ils peuvent ensuite télécharger tootranscode de fichiers source hello. Un travail peut ensuite être envoyé à l’aide du modèle de projet hello, en spécifiant uniquement l’id de pool hello et emplacement des fichiers de source de hello téléchargés. traitement par lots Hello est créé, avec une tâche par le fichier d’entrée qui est généré. Enfin, les fichiers de sortie hello transcodé peuvent être téléchargement.
 
 ## <a name="installation"></a>Installation
 
-Les fonctionnalités de transfert de fichiers et de modèle requièrent l’installation d’une extension.
+fonctionnalités de transfert de modèle et de fichier Hello nécessitent un toobe extension installée.
 
-Pour obtenir des instructions sur l’installation de l’interface Azure CLI, consultez la page [Installation d’Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-azure-cli).
+Pour obtenir des instructions sur tooinstall hello CLI d’Azure voir [installer Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-azure-cli).
 
-Une fois que l’interface Azure CLI est installée, l’extension Batch peut être installée en suivant les commandes de l’interface de ligne de commande suivantes :
+Une fois hello que CLI d’Azure a été installé, hello lot extension peut être installée à l’aide de la commande CLI suivante :
 
 ```azurecli
 az component update --add batch-extensions --allow-third-party
 ```
 
-Pour plus d’informations sur l’extension Batch, consultez [Extensions Microsoft Azure Batch CLI pour Windows, Mac et Linux](https://github.com/Azure/azure-batch-cli-extensions#microsoft-azure-batch-cli-extensions-for-windows-mac-and-linux).
+Pour plus d’informations sur l’extension de traitement par lots de hello, consultez [Microsoft Azure Batch CLI Extensions pour Windows, Mac et Linux](https://github.com/Azure/azure-batch-cli-extensions#microsoft-azure-batch-cli-extensions-for-windows-mac-and-linux).
 
 ## <a name="templates"></a>Modèles
 
-L’interface CLI Azure Batch autorise la création d’éléments tels que des pools, travaux et tâches en spécifiant un fichier JSON qui contient les valeurs et noms de propriétés. Par exemple :
+Hello CLI d’Azure Batch autorise des éléments tels que les pools, toobe de tâches créée en spécifiant un fichier JSON qui contient les noms de propriété et les valeurs de tâches. Par exemple :
 
 ```azurecli
 az batch pool create –-json-file AppPool.json
 ```
 
-Les modèles Azure Batch sont semblables aux modèles Azure Resource Manager en termes de syntaxe et de fonctionnalités. Il s’agit de fichiers JSON qui contiennent des valeurs et noms de propriétés, mais qui intègrent en plus les concepts principaux suivants :
+Modèles de traitement par lots Azure sont des modèles de gestionnaire de ressources tooAzure similaires, dans la syntaxe et des fonctionnalités. Ils sont des fichiers JSON qui contiennent des valeurs et les noms de propriété d’élément, mais ajouter hello suivant des principaux concepts :
 
 -   **Paramètres**
 
-    -   Ils autorisent la spécification des valeurs de propriété dans une section Corps, seules les valeurs de paramètre devant être fournies lorsque le modèle est utilisé. Par exemple, la définition complète d’un pool peut être placée dans le corps et un seul paramètre défini pour l’ID du pool. Par conséquent, seule la chaîne d’ID du pool doit être fournie pour créer un pool.
+    -   Autoriser toobe de valeurs de propriété spécifié dans une section de corps, avec uniquement les valeurs de paramètre nécessitant toobe fourni lorsque le modèle de hello est utilisé. Par exemple, définition complète de hello pour un pool peut être placée dans le corps de hello et qu’un seul paramètre défini pour l’id du pool ; uniquement une chaîne d’id pool doit par conséquent toobe fourni toocreate un pool.
         
-    -   Le corps du modèle peut être créé par une personne connaissant Batch et les applications à exécuter dans celui-ci. Seules les valeurs des paramètres définis par l’auteur doivent être fournis lorsque le modèle est utilisé. Un utilisateur sans connaissance poussée de Batch ou des applications peut par conséquent utiliser les modèles.
+    -   corps de modèle Hello peuvent être créés par une personne disposant de connaissances du lot et hello applications toobe exécutée par le traitement par lots ; Seules les valeurs des paramètres définis par l’auteur de hello doivent être fournis lorsque le modèle de hello est utilisé. Un utilisateur sans hello lot détaillée et/ou des connaissances de l’application peut par conséquent utiliser les modèles.
 
 -   **Variables**
 
-    -   Ils autorisent la spécification de valeurs de paramètre simples ou complexes dans un seul emplacement et leur utilisation dans un ou plusieurs emplacements dans le corps du modèle. Des variables peuvent simplifier et réduire la taille du modèle, ainsi que faciliter sa gestion, en ayant un emplacement où modifier les propriétés dont la valeur peut changer.
+    -   Autoriser toobe de valeurs de paramètre simple ou complexe spécifié dans un seul emplacement et utilisé dans un ou plusieurs emplacements dans le corps du modèle hello. Les variables peuvent simplifier et réduire la taille de hello du modèle de hello, ainsi rendre plus facile à gérer en ayant en un emplacement toochange propriétés dont la valeur peut changer.
 
 -   **Constructions de niveau supérieur**
 
-    -   Certaines constructions de niveau supérieur sont disponibles dans le modèle, mais ne sont pas encore disponibles dans les API Batch. Par exemple, une fabrique de tâches peut être définie dans un modèle de travail qui crée plusieurs tâches pour le travail à l’aide d’une définition de tâche commune. Ces constructions évitent de devoir écrire du code pour créer dynamiquement plusieurs fichiers JSON, par exemple un fichier par tâche, ainsi que de créer des fichiers de script afin d’installer des applications via un gestionnaire de package par exemple.
+    -   Certaines constructions de niveau supérieur sont disponibles dans le modèle hello qui ne sont pas encore disponibles dans hello API de lot. Par exemple, une fabrique de tâches peut être définie dans un modèle de tâche qui crée plusieurs tâches pour la tâche hello à l’aide d’une définition de tâche commune. Ces constructions éviter toocode besoin de hello pour dynamiquement créer plusieurs fichiers JSON, telle qu’un fichier par la tâche, ainsi que de créer de script fichiers tooinstall applications via un gestionnaire de package, par exemple.
 
-    -   À un moment donné, le cas échéant, ces constructions pourront être ajoutées au service Batch et disponibles dans les interfaces utilisateur, API Batch, etc.
+    -   À un point, si applicable, que ces constructions peuvent être ajoutées toothe lot service et disponible dans hello API de lot, les interfaces utilisateur, etc..
 
 ### <a name="pool-templates"></a>Modèles de pool
 
-Outre les fonctionnalités de modèle standard des paramètres et variables, les constructions de niveau supérieur suivantes sont prises en charge par le modèle de pool :
+En outre, toohello des fonctions de modèle standard des paramètres et des variables, hello suivant des structures de niveau supérieur sont pris en charge par le modèle de pool hello :
 
 -   **Références de package**
 
-    -   Autorise éventuellement la copie du logiciel sur les nœuds du pool à l’aide de gestionnaires de packages. Le gestionnaire de package et l’ID du package sont spécifiés. Être en mesure de déclarer un ou plusieurs packages évite de devoir créer un script qui obtient les packages requis, d’installer le script et de l’exécuter sur chaque nœud du pool.
+    -   Si vous le souhaitez permet aux logiciels toobe copié toopool nœuds à l’aide du package gestionnaires. Gestionnaire de package Hello et id de package sont spécifiés. Qui est en mesure de toodeclare un ou plusieurs packages évite hello besoin toocreate un script qui obtient les packages de hello requis, hello script d’installation et exécuter le script de hello sur chaque nœud du pool.
 
-Voici un exemple de modèle qui crée un pool de machines virtuelles Linux avec ffmpeg installé et qui nécessite seulement de spécifier une chaîne d’ID de pool et le nombre de machines virtuelles à fournir :
+Hello Voici un exemple d’un modèle qui crée un pool de machines virtuelles Linux avec ffmpeg installé et que seul nécessite un pool id chaîne hello nombre et de machines virtuelles toobe fourni toouse :
 
 ```json
 {
@@ -100,13 +100,13 @@ Voici un exemple de modèle qui crée un pool de machines virtuelles Linux avec 
         "nodeCount": {
             "type": "int",
             "metadata": {
-                "description": "The number of pool nodes"
+                "description": "hello number of pool nodes"
             }
         },
         "poolId": {
             "type": "string",
             "metadata": {
-                "description": "The pool id "
+                "description": "hello pool id "
             }
         }
     },
@@ -139,7 +139,7 @@ Voici un exemple de modèle qui crée un pool de machines virtuelles Linux avec 
 }
 ```
 
-Si le fichier de modèle est nommé _pool-ffmpeg.json_, le modèle peut être appelé comme suit :
+Si le fichier de modèle hello était nommé _ffmpeg.json-pool_, puis le modèle de hello serait appelé comme suit :
 
 ```azurecli
 az batch pool create --template pool-ffmpeg.json
@@ -147,13 +147,13 @@ az batch pool create --template pool-ffmpeg.json
 
 ### <a name="job-templates"></a>Modèles de travail
 
-Outre les fonctionnalités de modèle standard des paramètres et variables, les constructions de niveau supérieur suivantes sont prises en charge par le modèle de travail :
+En outre, toohello des fonctions de modèle standard des paramètres et des variables, hello suivant des structures de niveau supérieur sont pris en charge par le modèle de tâche hello :
 
 -   **Fabrique de tâches**
 
     -   Crée plusieurs tâches pour un travail à partir d’une définition de tâche. Trois types de fabrique de tâches sont pris en charge : balayage paramétrique, tâche par fichier et collection de tâches.
 
-Voici un exemple de modèle qui crée un travail qui utilise ffmpeg pour transcoder des fichiers vidéo MP4 dans une des deux résolutions inférieures, avec une tâche créée par fichier vidéo source :
+Hello Voici un exemple d’un modèle qui crée une tâche qui utilise ffmpeg pour transcoder tooone de fichiers vidéo MP4 de deux résolutions inférieures, avec une tâche créée par le fichier vidéo source :
 
 ```json
 {
@@ -161,13 +161,13 @@ Voici un exemple de modèle qui crée un travail qui utilise ffmpeg pour transco
         "poolId": {
             "type": "string",
             "metadata": {
-                "description": "The name of Azure Batch pool which runs the job"
+                "description": "hello name of Azure Batch pool which runs hello job"
             }
         },
         "jobId": {
             "type": "string",
             "metadata": {
-                "description": "The name of Azure Batch job"
+                "description": "hello name of Azure Batch job"
             }
         },
         "resolution": {
@@ -229,7 +229,7 @@ Voici un exemple de modèle qui crée un travail qui utilise ffmpeg pour transco
 }
 ```
 
-Si le fichier de modèle est nommé _job-ffmpeg.json_, le modèle peut être appelé comme suit :
+Si le fichier de modèle hello était nommé _ffmpeg.json de travail_, puis le modèle de hello serait appelé comme suit :
 
 ```azurecli
 az batch job create --template job-ffmpeg.json
@@ -237,11 +237,11 @@ az batch job create --template job-ffmpeg.json
 
 ## <a name="file-groups-and-file-transfer"></a>Groupes de fichiers et transfert de fichiers
 
-La plupart des travaux et des tâches requièrent les fichiers d’entrée et produisent des fichiers de sortie. Les fichiers d’entrée et de sortie doivent généralement être transférés, soit du client vers le nœud, soit du nœud vers le client. L’extension CLI d’Azure Batch met de côté le transfert de fichiers et utilise le compte de stockage créé par défaut pour chaque compte Batch.
+La plupart des travaux et des tâches requièrent les fichiers d’entrée et produisent des fichiers de sortie. Les deux fichiers d’entrée et les fichiers de sortie est généralement nécessaire toobe transféré, à partir du nœud de toohello hello client ou à partir du client de toohello nœud hello. Hello extension d’Azure Batch CLI s’approprie le transfert de fichiers absent et utilise le compte de stockage hello est créé par défaut pour chaque compte de traitement par lots.
 
-Un groupe de fichiers correspond à un conteneur créé dans le compte de stockage Azure. Le groupe de fichiers peut contenir des sous-dossiers.
+Un groupe de fichiers équivaut tooa conteneur qui est créé dans hello compte de stockage Azure. groupe de fichiers Hello peut comporter des sous-dossiers.
 
-L’extension Batch CLI fourni des commandes permettant de charger des fichiers du client vers un groupe de fichiers spécifié et de télécharger les fichiers du groupe de fichiers spécifié vers le client.
+Hello, extension de traitement par lots CLI fournit des commandes pour le téléchargement de fichiers à partir du groupe de fichiers spécifié tooa client et télécharger des fichiers à partir du client de tooa groupe hello fichier spécifié.
 
 ```azurecli
 az batch file upload --local-path c:\source_videos\*.mp4 
@@ -251,15 +251,15 @@ az batch file download --file-group ffmpeg-output --local-path
     c:\output_lowres_videos
 ```
 
-Les modèles de pool et de travail permettent de spécifier les fichiers stockés dans des groupes de fichiers pour la copie sur les nœuds de pool ou le renvoi des nœuds de pool vers un groupe de fichiers. Par exemple, dans le modèle de travail spécifié précédemment, le groupe de fichiers « ffmpeg-input » est spécifié pour la fabrique de tâches en tant qu’emplacement des fichiers vidéo sources copiés sur le nœud pour le transcodage ; le groupe de fichiers « ffmpeg-output » est utilisé en tant qu’emplacement où les fichiers de sortie transcodés sont copiés à partir du nœud exécutant chaque tâche.
+Modèles de pool et de travail permettent de fichiers stockés dans toobe de groupes de fichiers spécifié pour la copie sur les nœuds de pool ou hors pool nœuds sauvegarder le groupe de fichiers tooa. Par exemple, dans le modèle de projet spécifié précédemment, hello fichier groupe « ffmpeg-entrée » n’est spécifiée pour la fabrique de tâches hello en tant qu’emplacement hello des fichiers vidéo de hello source copiés vers le bas sur le nœud hello pour le transcodage ; groupe « ffmpeg-sortie de Hello fichier » est utilisé comme emplacement des fichiers de sortie hello transcodé hello copiés nœud de hello toofrom chaque tâche en cours d’exécution.
 
 ## <a name="summary"></a>Résumé
 
-La prise en charge du transfert de fichiers et des modèles a seulement été ajoutée à l’interface Azure CLI pour l’instant. L’objectif est d’étendre le public pouvant utiliser Batch aux utilisateurs qui n’ont pas besoin de développer du code à l’aide des API Batch, tels que les chercheurs, les utilisateurs, etc. Sans effectuer de codage, les utilisateurs qui connaissent bien Azure, Batch et les applications peuvent créer des modèles pour la création de pools et de travaux. Avec les paramètres de modèle, les utilisateurs sans connaissance approfondie de Batch et des applications d’utiliser les modèles.
+Prise en charge du transfert modèle et de fichier actuellement ajoutés uniquement toohello CLI d’Azure. Hello vise audience hello tooexpand qui permet de toousers de lot qui n’ont pas besoin de code toodevelop à l’aide de hello API de lot, tels que les chercheurs, les utilisateurs et ainsi de suite. Sans effectuer de codage, les utilisateurs possédant des connaissances de Azure, lot et toobe d’applications hello exécutée par traitement peuvent créer des modèles pour la création de pool et de travail. Paramètres de modèle, les utilisateurs sans une connaissance détaillée de lot et hello applications peuvent utiliser les modèles de hello.
 
-Testez l’extension Batch pour l’interface de ligne de commande Azure et faites-nous part de vos commentaires et de vos suggestions dans les commentaires de cet article ou via le [forum Azure Batch](https://social.msdn.microsoft.com/forums/azure/home?forum=azurebatch).
+Tester hello extension de traitement par lots pour hello CLI d’Azure et nous fournir des commentaires ou des suggestions, soit hello dans les commentaires pour cet article ou via hello [forum d’Azure Batch](https://social.msdn.microsoft.com/forums/azure/home?forum=azurebatch).
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-- Consultez l’article du blog au sujet des modèles de lot : [Exécution des travaux Azure Batch à l’aide de l’interface de ligne de commande Azure - aucun code requis](https://azure.microsoft.com/en-us/blog/running-azure-batch-jobs-using-the-azure-cli-no-code-required/).
-- Une documentation détaillée sur l’installation et l’utilisation, des exemples et du code source sont disponibles dans le [dépôt GitHub Azure](https://github.com/Azure/azure-batch-cli-extensions).
+- Voir hello lot modèles blog : [des travaux en cours d’exécution de traitement par lots Azure à l’aide de hello CLI d’Azure – aucun code requis](https://azure.microsoft.com/en-us/blog/running-azure-batch-jobs-using-the-azure-cli-no-code-required/).
+- Code source, des exemples et documentation d’installation et d’utilisation détaillée sont disponibles dans hello [référentiel GitHub de Azure](https://github.com/Azure/azure-batch-cli-extensions).

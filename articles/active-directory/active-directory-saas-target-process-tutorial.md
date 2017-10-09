@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : Intégration d’Azure Active Directory à TargetProcess | Microsoft Docs"
-description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et TargetProcess."
+description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et TargetProcess."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,107 +14,107 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: jeedes
-ms.openlocfilehash: d15931a5d430252bbd9ae342e1f8fde1a539355b
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 05c574e2c18d7f73edc6c094093a6e59d46b8e6b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-targetprocess"></a>Didacticiel : Intégration d’Azure AD à TargetProcess
 
-Dans ce didacticiel, vous allez apprendre à intégrer TargetProcess à Azure Active Directory (Azure AD).
+Dans ce didacticiel, vous apprendrez comment toointegrate TargetProcess avec Azure Active Directory (Azure AD).
 
-L’intégration de TargetProcess à Azure AD vous offre les avantages suivants :
+Intégration TargetProcess à Azure AD offre hello avantages suivants :
 
-- Dans Azure AD, vous pouvez contrôler qui a accès à TargetProcess.
-- Vous pouvez autoriser les utilisateurs à se connecter automatiquement à TargetProcess (via l’authentification unique) avec leur compte Azure AD.
-- Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure
+- Vous pouvez contrôler dans Azure AD qui a accès tooTargetProcess
+- Vous pouvez activer vos utilisateurs tooautomatically get connecté tooTargetProcess (Single Sign-On) avec leurs comptes Azure AD
+- Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure
 
-Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).
+Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).
 
 ## <a name="prerequisites"></a>Composants requis
 
-Pour configurer l’intégration d’Azure AD avec TargetProcess, vous avez besoin des éléments suivants :
+tooconfigure intégration d’Azure AD avec TargetProcess, vous devez hello éléments suivants :
 
 - Un abonnement Azure AD
 - Un abonnement TargetProcess pour lequel l’authentification unique est activée
 
 > [!NOTE]
-> Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.
+> tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.
 
-Vous devez en outre suivre les recommandations ci-dessous :
+tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :
 
 - N’utilisez pas votre environnement de production, sauf si cela est nécessaire.
 - Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez [obtenir un essai d’un mois](https://azure.microsoft.com/pricing/free-trial/).
 
 ## <a name="scenario-description"></a>Description du scénario
-Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :
+Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test. scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :
 
-1. Ajouter TargetProcess à partir de la galerie
+1. Ajouter des TargetProcess à partir de la galerie de hello
 2. Configurer et tester l’authentification unique Azure AD
 
-## <a name="add-targetprocess-from-the-gallery"></a>Ajouter TargetProcess à partir de la galerie
-Pour configurer l’intégration de TargetProcess avec Azure AD, vous devez ajouter TargetProcess à partir de la galerie à votre liste d’applications SaaS gérées.
+## <a name="add-targetprocess-from-hello-gallery"></a>Ajouter des TargetProcess à partir de la galerie de hello
+intégration de hello tooconfigure de TargetProcess dans Azure AD, vous devez tooadd TargetProcess à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.
 
-**Pour ajouter TargetProcess à partir de la galerie, procédez comme suit :**
+**tooadd TargetProcess à partir de la galerie hello, procédez hello comme suit :**
 
-1. Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**. 
+1. Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône. 
 
     ![Active Directory][1]
 
-2. Accédez à **Applications d’entreprise**. Accédez ensuite à **Toutes les applications**.
+2. Accédez trop**des applications d’entreprise**. Passez trop**toutes les applications**.
 
     ![Applications][2]
     
-3. Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.
+3. tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.
 
     ![Applications][3]
 
-4. Dans la zone de recherche, tapez **TargetProcess**, sélectionnez **TargetProcess** dans le volet de résultats, puis cliquez sur le bouton **Ajouter** pour ajouter l’application.
+4. Dans la zone de recherche de hello, tapez **TargetProcess**, sélectionnez **TargetProcess** à partir du volet de résultats, puis sur **ajouter** bouton application hello de tooadd.
 
     ![Ajouter TargetProcess à partir de la galerie](./media/active-directory-saas-target-process-tutorial/tutorial_target-process_addfromgallery.png)
 
 ##  <a name="configure-and-test-azure-ad-single-sign-on"></a>Configurer et tester l’authentification unique Azure AD
 Dans cette section, vous allez configurer et tester l’authentification unique Azure AD auprès de TargetProcess avec un utilisateur de test appelé « Britta Simon ».
 
-Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur TargetProcess équivalent dans Azure AD. En d’autres termes, une relation entre l’utilisateur Azure AD et l’utilisateur TargetProcess associé doit être établie.
+Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans TargetProcess est tooa utilisateur dans Azure AD. En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans TargetProcess doit toobe établie.
 
-Dans TargetProcess, assignez la valeur de **nom d’utilisateur** dans Azure AD comme valeur de **Nom d’utilisateur** pour établir la relation.
+Dans TargetProcess, affecter la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.
 
-Pour configurer et tester l’authentification unique Azure AD avec TargetProcess, vous devez suivre les indications des sections suivantes :
+tooconfigure et test Azure AD l’authentification unique avec TargetProcess, vous devez hello toocomplete suivant des blocs de construction :
 
-1. **[Configurer l’authentification unique Azure AD](#configure-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.
-2. **[Créer un utilisateur de test Azure AD](#create-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.
-3. **[Création d’un utilisateur de test TargetProcess](#create-a-targetprocess-test-user)** pour avoir un équivalent de Britta Simon dans TargetProcess lié à la représentation Azure AD associée.
-4. **[Affecter l’utilisateur de test Azure AD](#assign-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.
-5. **[Tester l’authentification unique](#test-single-sign-on)** pour vérifier si la configuration fonctionne.
+1. **[Configurer Azure AD Single Sign-On](#configure-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.
+2. **[Créer un utilisateur de test Azure AD](#create-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.
+3. **[Créer un utilisateur de test TargetProcess](#create-a-targetprocess-test-user)**  -toohave un équivalent de Britta Simon dans TargetProcess est la représentation sous forme de toohello lié Azure AD de l’utilisateur.
+4. **[Affecter l’utilisateur de test hello Azure AD](#assign-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.
+5. **[Tester l’authentification unique sur](#test-single-sign-on)**  -tooverify hello indique si les tâches de configuration.
 
 ### <a name="configure-azure-ad-single-sign-on"></a>Configurer l’authentification unique Azure AD
 
-Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application TargetProcess.
+Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application TargetProcess.
 
-**Pour configurer l’authentification unique Azure AD avec TargetProcess, procédez comme suit :**
+**tooconfigure Azure AD single sign-on avec TargetProcess, effectuez hello comme suit :**
 
-1. Dans le Portail Azure, dans la page d’intégration de l’application **TargetProcess**, cliquez sur **Authentification unique**.
+1. Bonjour portail Azure, sur hello **TargetProcess** page d’intégration d’application, cliquez sur **l’authentification unique**.
 
     ![Configurer l’authentification unique][4]
 
-2. Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.
+2. Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.
  
     ![Authentification basée sur SAML](./media/active-directory-saas-target-process-tutorial/tutorial_target-process_samlbase.png)
 
-3. Dans la section **Domaine et URL TargetProcess**, procédez comme suit :
+3. Sur hello **TargetProcess domaine et les URL** section, effectuer hello comme suit :
 
     ![Section Domaine et URL TargetProcess](./media/active-directory-saas-target-process-tutorial/tutorial_target-process_url.png)
 
-    a. Dans la zone de texte **URL de connexion**, tapez une URL au format suivant : `https://<subdomain>.tpondemand.com/`
+    a. Bonjour **URL de connexion** zone de texte, tapez une URL à l’aide de hello modèle :`https://<subdomain>.tpondemand.com/`
 
-    b. Dans la zone de texte **Identificateur**, tapez une URL au format suivant : `https://<subdomain>.tpondemand.com/`
+    b. Bonjour **identificateur** zone de texte, tapez une URL à l’aide de hello modèle :`https://<subdomain>.tpondemand.com/`
 
     > [!NOTE] 
-    > Il ne s’agit pas de valeurs réelles. Mettez à jour ces valeurs avec l’URL de connexion et l’identificateur réels. Pour obtenir ces valeurs, contactez l’[équipe de support client TargetProcess](mailto:support@targetprocess.com). 
+    > Il ne s’agit pas de valeurs réelles. Mettre à jour les valeurs de hello réel Sign-On URL et l’identificateur. Contact [équipe de support Client de TargetProcess](mailto:support@targetprocess.com) tooget ces valeurs. 
  
-4. Dans la section **Certificat de signature SAML**, cliquez sur **Téléchargez le certificat (Base64)** puis enregistrez le fichier du certificat sur votre ordinateur.
+4. Sur hello **le certificat de signature SAML** , cliquez sur **certificat (Base64)** , puis enregistrez le fichier de certificat hello sur votre ordinateur.
 
     ![Section Certificat de signature SAML](./media/active-directory-saas-target-process-tutorial/tutorial_target-process_certificate.png) 
 
@@ -122,13 +122,13 @@ Dans cette section, vous allez activer l’authentification unique Azure AD dans
 
     ![Bouton Enregistrer](./media/active-directory-saas-target-process-tutorial/tutorial_general_400.png)
 
-6. Dans la section **Configuration de TargetProcess** , cliquez sur **Configurer TargetProcess** pour ouvrir la fenêtre **Configurer l’authentification**. Copiez l**’URL du service d’authentification unique SAML** à partir de la **section Référence rapide.**
+6. Sur hello **TargetProcess Configuration** , cliquez sur **TargetProcess de configurer** tooopen **configurer l’authentification** fenêtre. Hello de copie **SAML Sign-On URL du Service unique** de hello **section de référence rapide.**
 
     ![Section Configuration de TargetProcess](./media/active-directory-saas-target-process-tutorial/tutorial_target-process_configure.png) 
 
-7. Connectez-vous à votre application TargetProcess en tant qu’administrateur.
+7. Authentification tooyour application TargetProcess en tant qu’administrateur.
 
-8. Dans le menu situé en haut, cliquez sur **Setup**.
+8. Dans le menu hello haut de hello, cliquez sur **le programme d’installation**.
    
     ![Paramétrage](./media/active-directory-saas-target-process-tutorial/tutorial_target_process_05.png)
 
@@ -140,80 +140,80 @@ Dans cette section, vous allez activer l’authentification unique Azure AD dans
    
     ![Cliquer sur Authentification unique](./media/active-directory-saas-target-process-tutorial/tutorial_target_process_07.png) 
 
-11. Dans la boîte de dialogue Paramètres d’authentification unique, procédez comme suit :
+11. Sur hello Single Sign-on boîte de dialogue Paramètres, effectuez hello comme suit :
    
     ![Configurer l’authentification unique](./media/active-directory-saas-target-process-tutorial/tutorial_target_process_08.png)
     
     a. Cliquez sur **Enable Single Sign-on**.
     
-    b. Dans la zone de texte **URL de connexion**, collez la valeur de l’**URL du service d’authentification unique SAML** que vous avez copiée à partir du portail Azure.
+    b. Dans **URL de connexion** zone de texte, valeur hello coller **SAML Sign-On URL du Service unique** dont vous avez copié à partir du portail Azure.
 
-    c. Ouvrez le certificat que vous avez téléchargé dans le Bloc-notes, copiez son contenu, puis collez-le dans la zone de texte **Certificat**.
+    c. Ouvrez votre certificat téléchargé dans le bloc-notes, hello copie le contenu et le coller ensuite dans hello **certificat** zone de texte.
     
     d. Cliquez sur **Activer la configuration JIT**.
 
     e. Cliquez sur **Enregistrer**.
 
 > [!TIP]
-> Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.  Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas. Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)
+> Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !  Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello. Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="create-an-azure-ad-test-user"></a>Créer un utilisateur de test Azure AD
-L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.
+objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.
 
 ![Créer un utilisateur Azure AD][100]
 
-**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**
+**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**
 
-1. Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.
+1. Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-target-process-tutorial/create_aaduser_01.png) 
 
-2. Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.
+2. liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.
     
-    ![Pour afficher la liste des utilisateurs](./media/active-directory-saas-target-process-tutorial/create_aaduser_02.png) 
+    ![liste de hello toodisplay des utilisateurs](./media/active-directory-saas-target-process-tutorial/create_aaduser_02.png) 
 
-3. Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.
+3. tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.
  
     ![Bouton Ajouter](./media/active-directory-saas-target-process-tutorial/create_aaduser_03.png) 
 
-4. Dans la boîte de dialogue **Utilisateur**, procédez comme suit :
+4. Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :
  
     ![Section Utilisateur](./media/active-directory-saas-target-process-tutorial/create_aaduser_04.png) 
 
-    a. Dans la zone de texte **Nom**, entrez **BrittaSimon**.
+    a. Bonjour **nom** zone de texte, type **BrittaSimon**.
 
-    b. Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.
+    b. Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.
 
-    c. Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.
+    c. Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.
 
     d. Cliquez sur **Create**.
  
 ### <a name="create-a-targetprocess-test-user"></a>Créer un utilisateur de test TargetProcess
 
-L’objectif de cette section est de créer un utilisateur appelé Britta Simon dans TargetProcess.
+objectif Hello de cette section est toocreate un utilisateur appelé Britta Simon dans TargetProcess.
 
 TargetProcess prend en charge l’approvisionnement juste-à-temps. Vous l’avez déjà activé dans [Configuration de l’authentification unique Azure AD](#configuring-azure-ad-single-sign-on).
 
 Vous n’avez aucune opération à effectuer dans cette section.
 
-### <a name="assign-the-azure-ad-test-user"></a>Affecter l’utilisateur de test Azure AD
+### <a name="assign-hello-azure-ad-test-user"></a>Affecter l’utilisateur de test hello Azure AD
 
-Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à TargetProcess.
+Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooTargetProcess.
 
 ![Affecter des utilisateurs][200] 
 
-**Pour affecter Britta Simon à TargetProcess, procédez comme suit :**
+**tooassign Britta Simon tooTargetProcess, effectuez hello comme suit :**
 
-1. Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.
+1. Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.
 
     ![Affecter des utilisateurs][201] 
 
-2. Dans la liste des applications, sélectionnez **TargetProcess**.
+2. Dans la liste des applications hello, sélectionnez **TargetProcess**.
 
     ![TargetProcess dans la liste des applications](./media/active-directory-saas-target-process-tutorial/tutorial_target-process_app.png) 
 
-3. Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.
+3. Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.
 
     ![Affecter des utilisateurs][202] 
 
@@ -221,7 +221,7 @@ Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentifi
 
     ![Affecter des utilisateurs][203]
 
-5. Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.
+5. Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.
 
 6. Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.
 
@@ -229,13 +229,13 @@ Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentifi
     
 ### <a name="test-single-sign-on"></a>Tester l’authentification unique
 
-L’objectif de cette section est de tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.
+objectif Hello de cette section est tootest votre configuration de l’authentification unique Azure AD à l’aide de hello panneau d’accès.
 
-Lorsque vous cliquez sur la vignette TargetProcess dans le volet d’accès, vous devez être connecté automatiquement à votre application TargetProcess. Pour plus d’informations sur le panneau d’accès, consultez [Présentation du panneau d’accès](active-directory-saas-access-panel-introduction.md).
+Lorsque vous cliquez sur hello TargetProcess vignette Bonjour volet d’accès, vous devez obtenir automatiquement signé sur tooyour TargetProcess application. Pour plus d’informations sur hello volet d’accès, consultez [Introduction toohello volet d’accès](active-directory-saas-access-panel-introduction.md).
 
 ## <a name="additional-resources"></a>Ressources supplémentaires
 
-* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md)
 
 

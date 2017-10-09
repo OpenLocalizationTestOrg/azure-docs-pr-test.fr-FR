@@ -1,5 +1,5 @@
 ---
-title: "Azure AD : vue d’ensemble de la réinitialisation de mot de passe en libre-service Azure AD | Microsoft Docs"
+title: "mot de passe libre-service aaaAzure AD réinitialiser la vue d’ensemble | Documents Microsoft"
 description: "En quoi la réinitialisation de mot de passe en libre-service d’Azure AD peut-elle être utile à votre organisation ?"
 services: active-directory
 documentationcenter: 
@@ -15,19 +15,19 @@ ms.topic: article
 ms.date: 07/17/2017
 ms.author: joflore
 ms.custom: it-pro
-ms.openlocfilehash: 3903c53b78e61b380bb812a9d3ade694655b5afb
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 0efc291b1eeec0b7ae33ff5a7d9ed38e70c8be6d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-ad-self-service-password-reset-for-the-it-professional"></a>La réinitialisation de mot de passe en libre-service Azure AD pour les professionnels de l’informatique
+# <a name="azure-ad-self-service-password-reset-for-hello-it-professional"></a>Azure AD mot de passe libre-service réinitialiser hello pour les professionnels de l’informatique
 
-« Libre-service » est un terme qui est actuellement très employé dans un grand nombre de services informatiques du monde entier, avec toutefois des significations différentes. Le marché regorge de produits permettant de gérer les groupes locaux, les mots de passe ou les profils utilisateur dans le cloud ou en local.
+« Libre-service » fait partie du jargon levé autour à l’intérieur de nombreux services informatiques sur hello world avec différentes significations. marché de Hello est submergé de produits qui vous permettent de toomanage les groupes locaux, des mots de passe ou des profils utilisateur de cloud de hello ou localement.
 
 La réinitialisation de mot de passe libre-service (SSPR) Azure Active Directory (Azure AD) se distingue par sa facilité d’utilisation et de déploiement. La réinitialisation de mot de passe libre-service Azure AD intègre un ensemble de fonctionnalités qui offrent les avantages suivants :
 
-* Possibilité pour les utilisateurs de gérer leur propre mot de passe
+* Autoriser votre toomanage utilisateurs leur mot de passe
   * Depuis n’importe quel appareil
   * De n’importe quel endroit
   * Quel que soit le moment
@@ -37,17 +37,17 @@ Si vous êtes prêt, vous pouvez commencer à utiliser Azure AD SSPR en vous aid
 
 ## <a name="what-is-possible"></a>Ce qui est possible
 
-* **Modification des mots de passe en libre-service** : les utilisateurs finaux ou les administrateurs peuvent modifier leur mot de passe sans faire appel à un administrateur.
-* **Déverrouillage de compte en libre-service** : les utilisateurs finaux peuvent déverrouiller leur propre compte sans faire appel à l’aide d’un administrateur.
-* **Réinitialisation des mots de passe en libre-service** : les utilisateurs finaux ou les administrateurs peuvent réinitialiser automatiquement leur mot de passe sans faire appel à un administrateur. La réinitialisation de mot de passe en libre-service nécessite Azure AD Premium ou Basic - [Éditions d’Azure Active Directory](active-directory-editions.md).
-* **Réinitialisation de mot de passe initiée par l’administrateur** : permet à un administrateur de réinitialiser le mot de passe d’un utilisateur final ou d’un autre administrateur à partir du [portail Azure](https://docs.microsoft.com/azure/azure-portal-overview).
+* **Modification de mot de passe libre-service** permet aux utilisateurs finaux ou aux administrateurs toochange leurs mots de passe sans assistance de l’administrateur
+* **Déverrouillage de compte de libre-service** permet toounlock des utilisateurs finaux à leur propre compte sans assistance de l’administrateur
+* **Réinitialisation du mot de passe libre-service** permet aux utilisateurs finaux ou aux administrateurs tooreset leurs mots de passe automatiquement sans assistance de l’administrateur. La réinitialisation de mot de passe en libre-service nécessite Azure AD Premium ou Basic - [Éditions d’Azure Active Directory](active-directory-editions.md).
+* **Réinitialisation du mot de passe par l’administrateur** permet à un administrateur tooreset passe de l’utilisateur final ou d’un autre administrateur à partir de hello [portail Azure](https://docs.microsoft.com/azure/azure-portal-overview)
 * **Rapports d’activité de gestion des mots de passe** : donnent aux administrateurs un aperçu de l’activité d’inscription et de réinitialisation des mots de passe dans leur organisation - [Rapports de gestion](active-directory-passwords-reporting.md).
-* **Écriture différée de mot de passe** : autorise la gestion des mots de passe locaux à partir du cloud, si bien que tous les scénarios mentionnés ci-dessus peuvent être exécutés par ou pour des utilisateurs fédérés ou synchronisés par mot de passe. L’écriture différée de mot de passe nécessite [Azure AD Premium](active-directory-get-started-premium.md).
+* **L’écriture différée de mot de passe** permet la gestion des mots de passe local du cloud de hello afin que tous les précédents hello scénarios peuvent être effectuées par, ou en nom hello, fédéré ou mot de passe des utilisateurs synchronisés. L’écriture différée de mot de passe nécessite [Azure AD Premium](active-directory-get-started-premium.md).
 
 ## <a name="why-choose-azure-ad-self-service-password-reset"></a>Pourquoi opter pour la réinitialisation de mot de passe en libre-service Azure AD
 
 * **Réduction des coûts** : la réinitialisation de mot de passe assistée par le support technique représente généralement 20 % des dépenses d’un service informatique.
-* **Amélioration de l’expérience des utilisateurs finaux** et **diminution des besoins en support technique** : les utilisateurs finaux peuvent résoudre leurs propres problèmes de mot de passe en une seule fois sans avoir à faire appel au support technique ou à formuler une demande de support.
+* **Améliorer les expériences utilisateur final** et **réduire le volume de support technique** en offrant une fin utilisateurs hello power tooresolve leurs propres problèmes de mot de passe à la fois sans appel à un support technique ou d’ouverture d’une demande de prise en charge.
 * **Encouragement à la mobilité** : les utilisateurs peuvent réinitialiser leur mot de passe où qu’ils se trouvent.
 
 ## <a name="azure-ad-self-service-password-reset-availability"></a>Disponibilité de la réinitialisation de mot de passe en libre-service Azure AD
@@ -56,22 +56,22 @@ La réinitialisation de mot de passe libre-service Azure AD est disponible dans
 
 * **Azure AD Gratuit** : les administrateurs chargés uniquement du cloud peuvent réinitialiser leur propre mot de passe.
 * **Azure AD De base** ou tout **abonnement Office 365 payé** : les clients utilisant uniquement le cloud et les administrateurs chargés uniquement du cloud peuvent réinitialiser leur propre mot de passe.
-* **Azure AD Premium** : n’importe quel utilisateur ou administrateur, notamment les clients utilisant uniquement le cloud et les utilisateurs fédérés ou synchronisés par mot de passe, peuvent réinitialiser leur propre mot de passe. L’écriture différée doit être activée pour les mots de passe locaux.
+* **Azure AD Premium** : n’importe quel utilisateur ou administrateur, notamment les clients utilisant uniquement le cloud et les utilisateurs fédérés ou synchronisés par mot de passe, peuvent réinitialiser leur propre mot de passe. Les mots de passe locaux requièrent toobe d’écriture différée de mot de passe activée.
 
-## <a name="azure-ad-self-service-password-reset-a-sum-of-the-parts"></a>Composants de la réinitialisation de mot de passe en libre-service Azure AD
+## <a name="azure-ad-self-service-password-reset-a-sum-of-hello-parts"></a>Azure AD mot de passe libre-service réinitialiser, une somme de parties de hello
 
-La réinitialisation de mot de passe en libre-service dans Azure AD est constituée des composants suivants :
+Mot de passe libre-service, réinitialiser dans Azure AD est constitué par hello suivant des composants :
 
-* **Portail de configuration de la gestion des mots de passe** : vous permet de contrôler les options de gestion des mots de passe dans votre locataire via le portail Azure.
+* **Portail de configuration de gestion de mot de passe** où vous pouvez contrôler les options pour la gestion des mots de passe dans votre locataire via hello portail Azure
 * **Portail d’inscription à la réinitialisation de mot de passe** : permet aux utilisateurs de s’inscrire à la réinitialisation de mot de passe.
-* **Portail de réinitialisation de mot de passe** : permet aux utilisateurs de réinitialiser leur mot de passe à partir des tests définis par l’administrateur et des réponses qu’ils y ont apportées.
+* **Portail de réinitialisation du mot de passe** où les utilisateurs peuvent réinitialiser leur mot de passe à l’aide des défis hello définis par l’administrateur de hello et les utilisateurs des réponses hello ont été fournis
 * **Portail de changement de mot de passe utilisateur** : permet aux utilisateurs de changer leur propre mot de passe en entrant leur ancien mot de passe et en indiquant le nouveau.
-* **Rapports de gestion des mots de passe** : permettent aux administrateurs de consulter et d’analyser les rapports d’activité sur les mots de passe de leurs locataires dans le portail Azure.
-* **Écriture différée de mot de passe en local à l’aide d’Azure AD Connect** : vous permet d’activer la gestion des utilisateurs locaux, fédérés ou synchronisés par mot de passe à partir du cloud.
+* **Rapports de gestion des mots de passe** où les administrateurs peuvent afficher et analyser l’activité de mot de passe des rapports pour leurs clients Bonjour portail Azure
+* **Mot de passe d’écriture différée à l’aide d’Azure AD Connect tooon local** permet de vous tooenable gestion de localement, fédéré, ou le mot de passe synchronisé les utilisateurs du cloud de hello
 
 ## <a name="azure-ad-pricing-sla-updates-and-roadmap"></a>Tarifs, contrat SLA, mises à jour et feuille de route Azure AD
 
-Vous trouverez davantage de détails sur ces questions dans les pages suivantes :
+Plus de détails sur ces rubriques se trouvent sur hello suivant des pages
 
 * [**Détails concernant les tarifs d’Azure AD**](https://azure.microsoft.com/pricing/details/active-directory/)
 * [**Tarifs d’Office 365**](https://products.office.com/compare-all-microsoft-office-products?tab=2)
@@ -82,15 +82,15 @@ Vous trouverez davantage de détails sur ces questions dans les pages suivantes�
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Les liens suivants fournissent des informations supplémentaires sur la réinitialisation de mot de passe à l’aide d’Azure AD.
+Hello suivant liens fournit des informations supplémentaires concernant le mot de passe réinitialisé à l’aide d’Azure AD
 
-* [**Démarrage rapide**](active-directory-passwords-getting-started.md) : soyez rapidement opérationnel avec la gestion des mots de passe en libre-service Azure AD. 
+* [**Démarrage rapide**](active-directory-passwords-getting-started.md) : soyez rapidement opérationnel avec la gestion des mots de passe en libre-service d’Azure AD. 
 * [**Licences**](active-directory-passwords-licensing.md) : configurez vos licences Azure AD.
-* [**Données**](active-directory-passwords-data.md) : comprenez mieux les données requises et leur utilisation dans la gestion des mots de passe.
-* [**Déploiement**](active-directory-passwords-best-practices.md) : planifiez et déployez la réinitialisation de mot de passe en libre-service pour vos utilisateurs grâce aux conseils figurant ici.
-* [**Personnalisation**](active-directory-passwords-customize.md) : personnalisez l’apparence de l’interface de réinitialisation de mot de passe en libre-service de votre société.
-* [**Rapports**](active-directory-passwords-reporting.md) : découvrez si, quand et où vos utilisateurs accèdent aux fonctionnalités de réinitialisation de mot de passe en libre-service.
-* [**Présentation technique approfondie**](active-directory-passwords-how-it-works.md) : découvrez ce qui se passe sous le capot pour mieux comprendre le fonctionnement.
-* [**Forum Aux Questions (FAQ)**](active-directory-passwords-faq.md) : Comment ? Pourquoi ? Quoi ? Où ? Qui ? Quand ? - Les réponses aux questions que vous vouliez poser depuis toujours.
-* [**Résolution des problèmes**](active-directory-passwords-troubleshoot.md) : découvrez comment résoudre les problèmes courants susceptibles de survenir avec la réinitialisation de mot de passe en libre-service.
+* [**Données** ](active-directory-passwords-data.md) : comprendre les données de hello est nécessaire et comment il est utilisé pour la gestion de mot de passe
+* [**Déploiement** ](active-directory-passwords-best-practices.md) -planifier et déployer des utilisateurs de tooyour SSPR hello d’aide est disponible ici
+* [**Personnaliser** ](active-directory-passwords-customize.md) -personnaliser hello apparence Hello SSPR expérience pour votre entreprise.
+* [**Rapports**](active-directory-passwords-reporting.md) : découvrez si, quand et où vos utilisateurs accèdent aux fonctionnalités de réinitialisation de mot de passe en libre-service
+* [**Présentation approfondie technique** ](active-directory-passwords-how-it-works.md) -accédez derrière hello RIDEAU toounderstand son fonctionnement
+* [**Forum Aux Questions (FAQ)**](active-directory-passwords-faq.md) : Comment ? Pourquoi ? Quoi ? Où ? Qui ? Quand ? -Réponses tooquestions vous souhaitiez toujours tooask
+* [**Résoudre les problèmes** ](active-directory-passwords-troubleshoot.md) -en savoir comment tooresolve commun problèmes que nous pouvons voir avec SSPR
 

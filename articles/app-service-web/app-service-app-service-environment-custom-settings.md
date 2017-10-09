@@ -1,5 +1,5 @@
 ---
-title: "Paramètres personnalisés pour les environnements App Service"
+title: "paramètres d’aaaCustom pour les environnements de Service d’application"
 description: "Paramètres de configuration personnalisés pour les environnements App Service"
 services: app-service
 documentationcenter: 
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/22/2016
 ms.author: stefsch
-ms.openlocfilehash: 687475fae0c90713c15e8abbb92b71059eae81c0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3d140688c88b389e71bfdd465c418339cccab3a6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="custom-configuration-settings-for-app-service-environments"></a>Paramètres de configuration personnalisés pour les environnements App Service
 ## <a name="overview"></a>Vue d'ensemble
-Les environnements App Service étant isolés pour chaque client, certains paramètres de configuration peuvent être appliqués exclusivement à des environnements App Service. Cet article décrit les différentes personnalisations pour les environnements App Service disponibles.
+Environnements de Service d’application étant tooa isolé un seul client, il existe certains des paramètres de configuration qui peuvent être appliqués tooApp exclusivement les environnements de Service. Ce article les documents hello différentes personnalisations spécifiques qui sont disponibles pour les environnements de Service d’application.
 
-Si vous ne possédez pas d’environnement App Service, voir [Comment créer un environnement App Service](app-service-web-how-to-create-an-app-service-environment.md).
+Si vous n’avez pas d’un environnement App Service, consultez [comment tooCreate un environnement App Service](app-service-web-how-to-create-an-app-service-environment.md).
 
-Vous pouvez stocker les personnalisations de l’environnement App Service (App Service Environment) à l’aide d’un tableau dans le nouvel attribut **clusterSettings** . Cet attribut se trouve dans le dictionnaire des « Propriétés » de l’entité Azure Resource Manager *hostingEnvironments* .
+Vous pouvez stocker les personnalisations de l’environnement App Service en utilisant un tableau Bonjour nouvelle **clusterSettings** attribut. Cet attribut est trouvé dans le dictionnaire de « Propriétés » hello Hello *hostingEnvironments* entité d’Azure Resource Manager.
 
-L’extrait de code abrégé de modèle Resource Manager suivant indique l’attribut **clusterSettings** :
+Hello abrégé Gestionnaire de ressources du modèle extrait de code suivant montre hello **clusterSettings** attribut :
 
     "resources": [
     {
@@ -48,25 +48,25 @@ L’extrait de code abrégé de modèle Resource Manager suivant indique l’att
        }
     }
 
-L’attribut **clusterSettings** peut être inclus dans un modèle Resource Manager pour mettre à jour l’environnement App Service.
+Hello **clusterSettings** attribut peut être inclus dans un Bonjour de tooupdate de modèle de gestionnaire de ressources environnement App Service.
 
-## <a name="use-azure-resource-explorer-to-update-an-app-service-environment"></a>Utilisation de l’Explorateur de ressources Azure pour mettre à jour un environnement App Service
-Vous pouvez également mettre à jour l’environnement App Service à l’aide de [l’Explorateur de ressources Azure](https://resources.azure.com).  
+## <a name="use-azure-resource-explorer-tooupdate-an-app-service-environment"></a>Utilisez l’Explorateur de ressources Azure tooupdate un environnement App Service
+Ou bien, vous pouvez mettre à jour hello environnement App Service à l’aide de [Explorateur de ressources Azure](https://resources.azure.com).  
 
-1. Dans l’Explorateur de ressources, accédez au nœud de l’environnement App Service (**abonnements** > **resourceGroups** > **fournisseurs** > **Microsoft.Web** > **hostingEnvironments**). Cliquez ensuite sur l’environnement App Service spécifique que vous souhaitez mettre à jour.
-2. Dans le volet de droite, cliquez sur **Lecture/écriture** dans la barre d’outils du haut pour autoriser la modification interactive dans l’Explorateur de ressources.  
-3. Cliquez sur le bouton bleu **Modifier** pour permettre la modification du modèle Resource Manager.
-4. Faites défiler jusqu'au bas du panneau de droite. L’attribut **clusterSettings** , dont vous pouvez entrer ou mettre à jour la valeur, se trouve tout en bas.
-5. Entrez (ou copiez et collez) le tableau de valeurs de configuration souhaité dans l’attribut **clusterSettings** .  
-6. Cliquez sur le bouton vert **PUT** situé en haut du panneau de droite pour valider la modification apportée à l’environnement App Service.
+1. Dans l’Explorateur de ressources, accédez au nœud toohello hello environnement App Service (**abonnements** > **resourceGroups** > **fournisseurs**  >  **Microsoft.Web** > **hostingEnvironments**). Puis cliquez sur hello environnement App Service spécifique que vous souhaitez tooupdate.
+2. Dans le volet droit de hello, cliquez sur **en lecture/écriture** dans tooallow de barre d’outils supérieure hello interactif de modification dans l’Explorateur de ressources.  
+3. Cliquez sur hello bleu **modifier** modifiable de modèle de gestionnaire de ressources du hello toomake bouton.
+4. Défilement vers le bas toohello du volet de droite hello. Hello **clusterSettings** attribut est à hello tout en bas, où vous pouvez entrer ou mettre à jour sa valeur.
+5. Tableau de hello type (ou copier et coller) de valeurs de configuration souhaitée dans hello **clusterSettings** attribut.  
+6. Cliquez sur hello verte **PUT** bouton qui est située en haut de hello de hello volet droit toocommit hello modification toohello environnement App Service.
 
-Quelle que soit la manière dont vous soumettez les modifications, environ 30 minutes (multipliées par le nombre de serveurs frontaux présents dans l’environnement App Service) pour qu’elles prennent effet.
-Par exemple, si un environnement App Service a quatre serveurs frontaux, la mise à jour de la configuration prendra environ deux heures. Tant que la modification de la configuration n’est pas déployée, aucune autre opération de mise à l’échelle ou de modification de configuration n’est possible dans l’environnement App Service.
+Toutefois, vous envoyez la modification de hello, dure environ 30 minutes pour multiplié par nombre de hello de frontaux Bonjour environnement App Service pour modifier un effet de tootake hello.
+Par exemple, si un environnement App Service a quatre frontaux, il prendra environ deux heures pour toofinish de mise à jour de configuration hello. Lors de la modification de la configuration hello est déployée, aucune autre mise à l’échelle des opérations ou des opérations de modification de configuration ne peuvent avoir lieu dans hello environnement App Service.
 
 ## <a name="disable-tls-10"></a>Désactivation de TLS 1.0
-Il est fréquent que des clients, en particulier ceux faisant l’objet d’audits de conformité PCI, demandent à ce qu’il soit possible de désactiver explicitement TLS 1.0 pour leurs applications.
+Une question récurrente de clients, notamment les clients qui traitent avec mise en conformité PCI audits, est comment tooexplicitly désactiver TLS 1.0 pour leurs applications.
 
-TLS 1.0 peut être désactivé par le biais de l’entrée **clusterSettings** suivante :
+TLS 1.0 peut être désactivé via les éléments suivants de hello **clusterSettings** entrée :
 
         "clusterSettings": [
             {
@@ -76,7 +76,7 @@ TLS 1.0 peut être désactivé par le biais de l’entrée **clusterSettings** 
         ],
 
 ## <a name="change-tls-cipher-suite-order"></a>Modifier l’ordre des suites de chiffrement TLS
-Les clients demandent également s’ils peuvent modifier la liste des chiffrements négociés par leur serveur. Ils peuvent le faire en modifiant l’attribut **clusterSettings** comme indiqué ci-dessous. Vous trouverez la liste des suites de chiffrement disponibles dans [cet article MSDN](https://msdn.microsoft.com/library/windows/desktop/aa374757\(v=vs.85\).aspx).
+Une autre question à partir de clients est si ils peuvent modifier la liste de hello de chiffrements négocié par leur serveur et que cela est possible en modifiant hello **clusterSettings** comme indiqué ci-dessous. liste de Hello des suites de chiffrement disponibles peut être récupérée à partir de [cet article MSDN](https://msdn.microsoft.com/library/windows/desktop/aa374757\(v=vs.85\).aspx).
 
         "clusterSettings": [
             {
@@ -86,12 +86,12 @@ Les clients demandent également s’ils peuvent modifier la liste des chiffreme
         ],
 
 > [!WARNING]
-> Si des valeurs incorrectes sont définies pour la suite de chiffrement et incompréhensibles pour SChannel, l’ensemble de la communication TLS avec votre serveur peut cesser de fonctionner. Dans ce cas, vous devrez supprimer l’entrée *FrontEndSSLCipherSuiteOrder* des **clusterSettings** et envoyer le modèle Resource Manager mis à jour pour rétablir les paramètres de suite de chiffrement par défaut.  Utilisez cette fonctionnalité avec précaution.
+> Si des valeurs incorrectes sont définies pour la suite de chiffrement de hello SChannel ne peut pas comprendre, tous les serveurs de tooyour communication TLS peuvent cesser de fonctionner. Dans ce cas, vous devez tooremove hello *FrontEndSSLCipherSuiteOrder* entrée à partir de **clusterSettings** et envoyer hello mis à jour le Gestionnaire de ressources du modèle toorevert toohello différé par défaut chiffrement paramètres de la suite.  Utilisez cette fonctionnalité avec précaution.
 > 
 > 
 
 ## <a name="get-started"></a>Prise en main
-Le site de modèles Azure Quickstart Resource Manager comprend un modèle dont la définition de base permet de [créer un environnement App Service](https://azure.microsoft.com/documentation/templates/201-web-app-ase-create/).
+site de modèle de gestionnaire de ressources du démarrage rapide Azure Hello comprend un modèle avec la définition de base hello pour [création d’un environnement App Service](https://azure.microsoft.com/documentation/templates/201-web-app-ase-create/).
 
 <!-- LINKS -->
 

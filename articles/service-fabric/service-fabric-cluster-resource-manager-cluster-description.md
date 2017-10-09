@@ -1,6 +1,6 @@
 ---
-title: "Description d’un cluster Cluster Resource Manager | Microsoft Docs"
-description: "Description d’un cluster Service Fabric en spécifiant des domaines d’erreur, des domaines de mise à niveau, les propriétés des nœuds et les capacités des nœuds pour Cluster Resource Manager."
+title: aaaCluster Description du Gestionnaire de ressources Cluster | Documents Microsoft
+description: "Qui décrit un cluster Service Fabric en spécifiant les domaines d’erreur, mettre à niveau des domaines, propriétés de nœud et les capacités de nœud pour hello Gestionnaire de ressources du Cluster."
 services: service-fabric
 documentationcenter: .net
 author: masnider
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/18/2017
 ms.author: masnider
-ms.openlocfilehash: e517eda4d3ff7ad81998003688c3cca78f76e179
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f2822075976bd54402af5ad56991b5b360dfb1d8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="describing-a-service-fabric-cluster"></a>Description d’un cluster Service Fabric
-Le Gestionnaire de ressources de cluster Service Fabric fournit plusieurs mécanismes permettant de décrire un cluster. Pendant l’exécution, Cluster Resource Manager utilise ces informations pour garantir une haute disponibilité des services en cours d’exécution dans le cluster. Tout en appliquant ces règles importantes, il essaie aussi d’optimiser la consommation de ressources au sein du cluster.
+Hello, Gestionnaire de ressources du Cluster Service Fabric fournit plusieurs mécanismes pour la description d’un cluster. Pendant l’exécution, hello Gestionnaire du Cluster de ressource utilise cette information tooensure haute disponibilité des services hello en cours d’exécution dans un cluster de hello. Lors de l’application de ces règles importants, il tente également de la consommation des ressources toooptimize hello au sein du cluster de hello.
 
 ## <a name="key-concepts"></a>Concepts clés
-Le Gestionnaire de ressources de cluster prend en charge plusieurs fonctionnalités qui décrivent un cluster :
+Hello, Gestionnaire de ressources de Cluster prend en charge plusieurs fonctionnalités qui décrivent un cluster :
 
 * Domaines d'erreur
 * Domaines de mise à niveau
@@ -32,70 +32,70 @@ Le Gestionnaire de ressources de cluster prend en charge plusieurs fonctionnalit
 * Capacités du nœud
 
 ## <a name="fault-domains"></a>Domaines d'erreur
-Un domaine d’erreur est une zone d’échec coordonné. Une machine unique constitue un domaine d’erreur (puisqu’elle peut cesser de fonctionner de manière indépendante pour de nombreuses raisons : coupure électrique, défaillance de disque ou erreur de microprogramme de carte d’interface réseau). Les machines connectées à un même commutateur Ethernet se trouvent dans le même domaine d’erreur, tout comme les machines qui partagent une même source d’alimentation ou qui se trouvent à un même emplacement. Dans la mesure où le chevauchement des défaillances matérielles est naturel, les domaines d’erreur sont hiérarchiques par nature et sont représentés en tant qu’URI dans Service Fabric.
+Un domaine d’erreur est une zone d’échec coordonné. Un seul ordinateur est un domaine d’erreur (dans la mesure où il peut échouer sur son propre pour diverses raisons, à partir de l’alimentation approvisionnement échecs toodrive échecs toobad NIC du microprogramme). Machines toohello connecté même commutateur Ethernet sont dans hello même domaine par défaut, comme sont des ordinateurs qui partagent une seule source d’alimentation ou à un emplacement unique. Dans la mesure où il est naturel pour toooverlap des erreurs matérielles, les domaines d’erreur sont par nature hiérarchiques et sont représentées sous la forme d’URI dans l’infrastructure de Service.
 
-Il est important que les domaines d’erreur soient configurés correctement, car Service Fabric utilise ces informations pour placer des services en toute sécurité. Service Fabric ne souhaite pas placer des services si la perte d’un domaine d’erreur (provoquée par la défaillance d’un composant) doit entraîner l’arrêt d’un service. Dans l’environnement Azure, Service Fabric utilise les informations de domaine d’erreur fournies par l’environnement pour configurer correctement les nœuds du cluster en votre nom. Pour Service Fabric autonome, les domaines d’erreur sont définis au moment où le cluster est configuré. 
+Il est important que les domaines d’erreur sont définies correctement, car le Service Fabric utilise cette toosafely place les services. Service Fabric ne veut pas tooplace services tels que la perte hello d’un domaine d’erreur (causée par une défaillance hello d’un composant) provoque une toogo service vers le bas. Bonjour environnement Azure Service Fabric utilise les informations de domaine d’erreur de hello fournies par hello environnement toocorrectly configurer nœuds hello dans un cluster de hello en votre nom. L’infrastructure de Service autonome, les domaines d’erreur sont définis au moment de hello ce cluster hello est configuré 
 
 > [!WARNING]
-> Il est important que les informations de domaine d’erreur fournies à Service Fabric soient précises. Par exemple, supposons que les nœuds de votre cluster Service Fabric s’exécutent à l’intérieur de 10 machines virtuelles, s’exécutant sur cinq hôtes physiques. Dans ce cas, même s’il y a 10 ordinateurs virtuels, il y a seulement 5 domaines d’erreur (de niveau supérieur) différents. Le partage d’un même hôte physique amène les machines virtuelles à partager le même domaine d’erreur racine, car les machines virtuelles subissent une défaillance coordonnée si leur hôte physique subit une défaillance.  
+> Il est important que les informations de domaine d’erreur hello fourni tooService Fabric est exacte. Par exemple, supposons que les nœuds de votre cluster Service Fabric s’exécutent à l’intérieur de 10 machines virtuelles, s’exécutant sur cinq hôtes physiques. Dans ce cas, même s’il y a 10 ordinateurs virtuels, il y a seulement 5 domaines d’erreur (de niveau supérieur) différents. Partage hello même hôte physique provoque tooshare de machines virtuelles hello même domaine racine par défaut, étant donné que hello expérience des machines virtuelles coordonnée échec en cas de leur hôte physique.  
 >
-> Comme Service Fabric s’attend à ce que le domaine d’erreur d’un nœud ne change pas, les autres mécanismes visant à assurer une haute disponibilité des machines virtuelles, tels que [HA-VM](https://technet.microsoft.com/en-us/library/cc967323.aspx), utilisent une migration transparente des machines virtuelles d’un hôte vers un autre. Ces mécanismes ne reconfigurent ni ne notifient le code s’exécutant dans la machine virtuelle. À ce titre, ils ne sont **pas prises en charge** en tant qu’environnements d’exécution de clusters Service Fabric. Service Fabric doit être la seule technologie de haute disponibilité employée. La migration dynamique de machines virtuelles, les SAN et autres mécanismes ne sont pas nécessaires. S’ils sont utilisés avec Service Fabric, ces mécanismes _réduisent_ la disponibilité et la fiabilité des applications, car ils introduisent une complexité supplémentaire, ajoutent des sources centralisées de défaillance et utilisent des stratégies de fiabilité et de disponibilité qui sont en conflit avec celles de Service Fabric. 
+> Étant donné que le Service Fabric attend hello domaine par défaut d’un nœud toochange pas. Autres mécanismes de garantir la haute disponibilité de hello machines virtuelles, telles que [machines virtuelles de la haute disponibilité](https://technet.microsoft.com/en-us/library/cc967323.aspx), utilisez la migration transparente des ordinateurs virtuels à partir d’un ordinateur hôte tooanother. Ces mécanismes de ne pas reconfigurer ou notifier hello code à l’intérieur de hello machine virtuelle en cours d’exécution. À ce titre, ils ne sont **pas prises en charge** en tant qu’environnements d’exécution de clusters Service Fabric. Service Fabric doit être la technologie de haute disponibilité uniquement hello utilisée. La migration dynamique de machines virtuelles, les SAN et autres mécanismes ne sont pas nécessaires. S’ils sont utilisés avec Service Fabric, ces mécanismes _réduisent_ la disponibilité et la fiabilité des applications, car ils introduisent une complexité supplémentaire, ajoutent des sources centralisées de défaillance et utilisent des stratégies de fiabilité et de disponibilité qui sont en conflit avec celles de Service Fabric. 
 >
 >
 
-Dans le graphique ci-dessous, nous avons indiqué en couleur toutes les entités qui contribuent aux domaines d’erreur et nous avons répertorié tous les domaines d’erreur différents qui en résultent. Dans cet exemple, nous avons des centres de données (« DC »), des racks (« R ») et des panneaux (« B »). En théorie, si chaque panneau contient plusieurs machines virtuelles, il peut exister une autre couche dans la hiérarchie de domaine d’erreur.
+Dans le graphique de hello ci-dessous nous couleur toutes les entités hello qui contribuent tooFault domaines et liste que tous les hello différents domaines d’erreur résultant. Dans cet exemple, nous avons des centres de données (« DC »), des racks (« R ») et des panneaux (« B »). En théorie, si chaque panneau conserve plus d’un ordinateur virtuel, il peut être une autre couche Bonjour hiérarchie du domaine d’erreur.
 
 <center>
 ![Nœuds organisés par domaines d’erreur][Image1]
 </center>
 
-Pendant l’exécution, Service Fabric Cluster Resource Manager prend en compte les domaines d’erreur du cluster et planifie des dispositions. Les réplicas avec état ou les instances sans état d’un service donné sont répartis de sorte qu’ils se trouvent dans des domaines d’erreur distincts. La répartition du service entre les domaines d’erreur est l’assurance que la disponibilité du service n’est pas mise à mal quand un domaine d’erreur connaît une défaillance à n’importe quel niveau de la hiérarchie.
+Pendant l’exécution, hello Gestionnaire de ressources du Cluster Service Fabric considère que les domaines d’erreur hello dans un cluster de hello et modes de dispositions. Hello réplicas avec état ou sans état instances pour un service donné sont distribués afin qu’ils soient dans des domaines d’erreur. Distribution de service de hello entre domaines d’erreur garantit une disponibilité hello du service de hello n’est pas compromise en cas d’échec d’un domaine d’erreur à n’importe quel niveau de hiérarchie de hello.
 
-Service Fabric Cluster Resource Manager ne se soucie pas du nombre de couches dans la hiérarchie du domaine d’erreur. Cependant, il essaie de faire en sorte que la perte d’une partie de la hiérarchie n’influe pas sur les services qui s’y exécutent. 
+Gestionnaire de ressources de Cluster du service Fabric ne tient pas compte le nombre de couches existe dans hello hiérarchie du domaine d’erreur. Toutefois, il essaie de tooensure perte hello de toute une partie de la hiérarchie de hello n’affecte pas les services en cours d’exécution qu’il contient. 
 
-Il est préférable d’avoir le même nombre de nœuds à chaque niveau de profondeur dans la hiérarchie du domaine d’erreur. Si « l’arborescence » des domaines d’erreur est déséquilibrée dans votre cluster, il est plus difficile pour Cluster Resource Manager de déterminer la meilleure allocation de services. Des dispositions déséquilibrées de domaines d’erreur signifient que la perte de quelques domaines a un impact plus important sur la disponibilité des services que d’autres domaines. Par conséquent, Cluster Resource Manager est partagé entre deux objectifs : utiliser les machines dans ce domaine « chargé » en y plaçant des services et placer des services dans d’autres domaines pour éviter que la perte d’un domaine n’entraîne des problèmes. 
+Il est préférable de s’il n’y hello même nombre de nœuds à chaque niveau de profondeur Bonjour hiérarchie du domaine d’erreur. Si hello « arborescence » de domaines d’erreur est déséquilibrée dans votre cluster, il rend plus difficile pour hello toofigure Gestionnaire de ressources de Cluster à l’allocation de meilleures hello de services. Déséquilibré mises en page de domaines d’erreur par cette perte de hello de certains domaines de disponibilité de hello impact de services plus que les autres domaines. Par conséquent, hello Gestionnaire de ressources du Cluster est détruite entre deux objectifs : il veut machines de hello toouse dans ce domaine « heavy » en plaçant des services sur les, et il tooplace des services dans d’autres domaines afin qu’une perte de hello d’un domaine n’entraîne aucun problème. 
 
-À quoi ressemblent des domaines déséquilibrés ? Le schéma ci-dessous montre deux dispositions de cluster différentes. Dans le premier exemple, les nœuds sont répartis uniformément entre les domaines d’erreur. Dans le deuxième exemple, un domaine d’erreur contient beaucoup plus de nœuds que les autres domaines d’erreur. 
+À quoi ressemblent des domaines déséquilibrés ? Dans le diagramme hello ci-dessous, nous affichons deux dispositions de cluster différent. Dans le premier exemple de hello, les nœuds de hello sont répartis uniformément entre hello domaines d’erreur. Dans le deuxième exemple de hello, un domaine d’erreur a bien plus de noeuds hello autres domaines d’erreur. 
 
 <center>
 ![Deux dispositions de cluster différentes][Image2]
 </center>
 
-Dans Azure, le choix du domaine d’erreur qui contient un nœud est géré automatiquement. Toutefois, en fonction du nombre de nœuds que vous configurez, vous pouvez malgré tout vous retrouver avec des domaines d’erreur contenant plus de nœuds que d’autres. Supposons, par exemple, que vous avez cinq domaines d’erreur dans le cluster, mais que vous approvisionnez sept nœuds pour un NodeType donné. Dans ce cas, les deux premiers domaines d’erreur se retrouvent avec davantage de nœuds. Si vous continuez à déployer plus de NodeTypes avec seulement deux instances, le problème s’aggrave. C’est pourquoi, le nombre de nœuds dans chaque type de nœud doit de préférence être un multiple du nombre de domaines d’erreur.
+Dans Azure, le choix de hello dont domaine d’erreur contient un nœud est gérée pour vous. Toutefois, en fonction du nombre de hello de nœuds que vous préparez vous pouvez toujours se retrouver avec des domaines d’erreur avec plus de noeuds dans les autres. Par exemple, vous avez cinq domaines d’erreur dans le cluster de hello mais configurez sept nœuds pour un type donné. Dans ce cas, hello tout d’abord deux domaines d’erreur vous retrouver avec plusieurs nœuds. Si vous continuez à toodeploy plus NodeTypes avec seulement quelques instances, hello problème s’aggrave. Pour cette raison, qu'il est recommandé que hello nombre de nœuds dans chaque type de nœud est un multiple de nombre hello de domaines d’erreur.
 
 ## <a name="upgrade-domains"></a>Domaines de mise à niveau
-Les domaines de mise à niveau correspondent à une autre fonctionnalité qui permet à Service Fabric Cluster Resource Manager de comprendre la disposition du cluster. Les domaines de mise à niveau définissent des ensembles de nœuds qui sont mis à niveau en même temps. Les domaines de mise à niveau aident Cluster Resource Manager à comprendre et à orchestrer les opérations de gestion telles que les mises à niveau.
+Domaines de mise à niveau sont une autre fonctionnalité qui permet de hello du Gestionnaire de ressources du Cluster Service Fabric comprendre disposition hello du cluster de hello. Mise à niveau des domaines définissent des jeux de nœuds qui sont mis à niveau en hello même temps. Mettre à niveau des domaines aide hello Gestionnaire de ressources du Cluster de comprendre et orchestrer les opérations de gestion telles que des mises à niveau.
 
-Les domaines de mise à niveau sont très semblables aux domaines d’erreur, avec cependant quelques différences clés. Tout d’abord, les zones de défaillances matérielles coordonnées définissent les domaines d’erreur. D’un autre côté, les domaines de mise à niveau sont définis par une stratégie. Vous pouvez décider du nombre que vous en voulez au lieu que ce chiffre soit dicté par l’environnement. Vous pouvez disposer d’autant de domaines mise à niveau que de nœuds. Une autre différence entre les domaines d’erreur et les domaines de mise à niveau est que les domaines de mise à niveau ne sont pas hiérarchiques. En effet, ils s’apparentent plus à une balise simple. 
+Les domaines de mise à niveau sont très semblables aux domaines d’erreur, avec cependant quelques différences clés. Tout d’abord, les zones de défaillances matérielles coordonnées définissent les domaines d’erreur. Mise à niveau des domaines relatifs hello d’autre part, sont définis par la stratégie. Vous obtenez toodecide combien vous voulez que, au lieu d’il dictée par l’environnement de hello. Vous pouvez disposer d’autant de domaines mise à niveau que de nœuds. Une autre différence entre les domaines d’erreur et les domaines de mise à niveau est que les domaines de mise à niveau ne sont pas hiérarchiques. En effet, ils s’apparentent plus à une balise simple. 
 
-Le diagramme suivant illustre trois domaines de mise à niveau répartis sur trois domaines d’erreur. Il montre également un emplacement possible pour trois réplicas différents d’un service avec état, où chaque réplica est attribué à des domaines d’erreur et de mise à niveau différents. Ce positionnement autorise la perte d’un domaine d’erreur au cours de la mise à niveau d’un service tout en conservant une copie du code et des données.  
+Hello diagramme suivant illustre trois que domaines de mise à niveau sont réparties sur trois domaines d’erreur. Il montre également un emplacement possible pour trois réplicas différents d’un service avec état, où chaque réplica est attribué à des domaines d’erreur et de mise à niveau différents. Cet emplacement permet la perte de hello d’un domaine d’erreur en milieu de hello d’une mise à niveau de service et toujours avoir une copie de données et le code de hello.  
 
 <center>
 ![Positionnement avec des domaines d’erreur et de mise à niveau][Image3]
 </center>
 
-Il existe des avantages et des inconvénients au fait de disposer de nombreux domaines de mise à niveau. Davantage de domaines de mise à niveau signifie que chaque étape de la mise à niveau est plus précise et qu’elle affecte ainsi un plus petit nombre de nœuds ou de services. De ce fait, il y a moins de services à déplacer simultanément, ce qui limite l’activité au sein du système. Cela tend à améliorer la fiabilité, car un pan moins important du service est affecté dans le cas de l’introduction d’un problème pendant la mise à niveau. Davantage de domaines de mise à niveau signifie aussi que vos besoins en mémoire tampon sur les autres nœuds sont moindres pour gérer l’impact de la mise à niveau. Par exemple, si vous avez cinq domaines de mise à niveau, les nœuds présents dans chacun gèrent environ 20 % du trafic. Si vous avez besoin d’arrêter un domaine de mise à niveau pour effectuer une mise à niveau, cette charge doit en principe être affectée autre part. Comme il vous reste quatre domaines de mise à niveau, chacun d’eux doit pouvoir prendre en charge environ 5 % du trafic total. Davantage de domaines de mise à niveau signifie moins de besoins en mémoire tampon sur les nœuds du cluster. Par exemple, imaginons que vous disposez de 10 domaines de mise à niveau. Dans ce cas, chaque domaine de mise à niveau ne gèrerait qu’environ 10 % du trafic total. Quand une mise à jour parcourt le cluster, chaque domaine n’a besoin de prendre en charge qu’environ 1,1 % du trafic total. Le fait de disposer d’un plus grand nombre domaines de mise à niveau vous permet généralement d’exécuter vos nœuds à un taux d’utilisation plus élevé, car vous avez moins besoin de capacité réservée. Cela vaut aussi pour les domaines d’erreur.  
+Il existe des avantages et inconvénients toohaving grand nombre de domaines de mise à niveau. Mettre à niveau vos domaines signifie que chaque étape de mise à niveau hello est plus précis et affecte donc un plus petit nombre de nœuds ou des services. Par conséquent, moins de services ont à la fois, des toomove présentation moins de l’évolution du système de hello. Cela a tendance tooimprove fiabilité, étant donné que moins de service de hello est affectée par n’importe quel problème introduit pendant la mise à niveau hello. Mettre à niveau vos domaines signifie également que vous avez besoin de moins de mémoire tampon disponible autres nœuds toohandle hello l’impact de hello mettre à niveau. Par exemple, si vous avez cinq domaines de mise à niveau, nœuds hello dans chaque sont gère environ 20 % de votre trafic. Si vous devez tootake ce domaine de mise à niveau vers le bas pour une mise à niveau, cette charge doit généralement toogo quelque part. Étant donné que vous avez quatre domaines restants de mise à niveau, chacun doit avoir la salle d’environ 5 % de total du trafic hello. Plusieurs domaines de mise à niveau implique moins mémoire tampon sur les nœuds hello dans un cluster de hello. Par exemple, imaginons que vous disposez de 10 domaines de mise à niveau. Dans ce cas, chaque UD serait uniquement gérer environ 10 % du total du trafic hello. Lorsqu’une mise à niveau parcourt les cluster hello, chaque domaine suffit salle toohave 1.1 % environ de total du trafic hello. Mettre à niveau vos domaines qui vous permettent généralement toorun vos nœuds à une utilisation plus importante, étant donné que vous avez besoin d’une capacité inférieure réservée. Hello même a la valeur true pour les domaines d’erreur.  
 
-L’inconvénient dans le fait d’avoir un grand nombre de domaines de mise à niveau est que les mises à niveau ont tendance à prendre plus de temps. À la fin de l’opération sur le domaine de mise à niveau, Service Fabric attend un bref instant avant d’effectuer des vérifications et commencer à mettre à niveau le suivant. Ces laps de temps permettent de détecter les problèmes introduits par la mise à niveau avant son exécution. Le compromis est acceptable, car il empêche les modifications incorrectes d’affecter une trop grande partie du service à la fois.
+inconvénient Hello d’avoir plusieurs domaines de mise à niveau est que les mises à niveau ont tendance à tootake plus de temps. Service Fabric attend pendant une courte période de temps après qu’une mise à niveau de domaine est terminé et effectue des vérifications avant le début tooupgrade hello suivant. Ces délais activer la détection de problèmes introduits par la mise à niveau hello avant le démarrage de la mise à niveau hello. compromis de Hello est acceptable, car il empêche les modifications incorrectes d’affecter trop de service de hello à la fois.
 
-Un nombre insuffisant de domaines de mise à niveau a de nombreux effets secondaires négatifs : quand chaque domaine de mise à niveau est hors service au cours d’une mise à niveau, une grande partie de votre capacité globale n’est pas disponible. Par exemple, si vous avez seulement trois domaines de mise à niveau, vous vous défaites d’environ 1/3 de votre service global ou de votre capacité de cluster à la fois. Le fait qu’une grande partie de votre service soit arrêtée simultanément n’est pas souhaitable car la capacité doit être suffisante dans le reste de votre cluster pour gérer la charge de travail. En conservant cette mémoire tampon, dans des conditions normales de fonctionnement, ces nœuds subissent une moindre charge. Cela a pour effet d’augmenter le coût d’exécution de votre service.
+Un nombre insuffisant de domaines de mise à niveau a de nombreux effets secondaires négatifs : quand chaque domaine de mise à niveau est hors service au cours d’une mise à niveau, une grande partie de votre capacité globale n’est pas disponible. Par exemple, si vous avez seulement trois domaines de mise à niveau, vous vous défaites d’environ 1/3 de votre service global ou de votre capacité de cluster à la fois. Grande partie de votre service ayant à la fois vers le bas n’est pas souhaitable puisque vous avez toohave une capacité suffisante dans reste hello de votre charge de travail de cluster toohandle hello. En conservant cette mémoire tampon, dans des conditions normales de fonctionnement, ces nœuds subissent une moindre charge. Cela augmente le coût de hello de votre service en cours d’exécution.
 
-Il n’existe aucune limite réelle au nombre total de domaines d’erreur ou de mise à niveau dans un environnement, ni de contraintes sur la façon dont ils se chevauchent. Ceci dit, il existe plusieurs modèles courants :
+Il n’existe aucune limite réelle toohello nombre total de pannes ou les domaines de mise à niveau dans un environnement, ou des contraintes sur la façon dont elles se chevauchent. Ceci dit, il existe plusieurs modèles courants :
 
 - Correspondance parfaite des domaines d’erreur et des domaines de mise à niveau
 - Un domaine de mise à niveau par nœud (instance de système d’exploitation physique ou virtuel)
-- Un modèle « agrégé par bandes » ou de « matrice » dans lequel les domaines d’erreur et les domaines de mise à niveau forment une matrice où les machines s’exécutent généralement en suivant la matrice diagonale
+- Un modèle « agrégés par bandes » ou « matrice », où les domaines d’erreur hello et mettre à niveau forment une matrice avec les ordinateurs généralement en cours d’exécution vers le bas les diagonales hello
 
 <center>
 ![Dispositions de domaines d’erreur et de mise à niveau][Image4]
 </center>
 
-Il n’existe pas de disposition idéale, chacune ayant des avantages et des inconvénients. Par exemple, le modèle à un domaine d’erreur pour un domaine de mise à niveau est simple à mettre en place. Le modèle à un domaine de mise à niveau par nœud ressemble davantage au modèle généralement adopté. Lors des mises à niveau, chaque nœud est mis à jour indépendamment. Il s’agit d’un processus analogue à celui qui consistait par le passé à mettre à jour manuellement des petits groupes d’ordinateurs. 
+Il existe qu'aucune mieux ne répondre à quels toochoose de disposition, chacun possède certains avantages et inconvénients. Par exemple, modèle de 1FD:1UD hello est tooset simple. Hello 1 domaine de mise à niveau par le modèle de nœud est le plus telles que les personnes sont utilisés pour. Lors des mises à niveau, chaque nœud est mis à jour indépendamment. Cela s’apparente toohow de petits ensembles d’ordinateurs ont été mis à niveau manuellement Bonjour passées. 
 
-Le modèle le plus courant est la matrice Domaine d’erreur/Domaine de mise à niveau, où les domaines d’erreur et les domaines de mise à niveau forment une table et où les nœuds sont placés le long de la diagonale. Il s’agit du modèle utilisé par défaut dans les clusters Service Fabric dans Azure. Les clusters constitués d’un grand nombre de nœuds finissent par ressembler au modèle de matrice dense présenté ci-dessus.
+modèle le plus courant Hello est la matrice de FD/UD hello, où hello groupes et domaines d’erreur forment une table et les nœuds sont placés dans hello en diagonale. Il s’agit de modèle hello utilisé par défaut dans les clusters Service Fabric dans Azure. Pour les clusters à plusieurs nœuds, tous les éléments se termine ressemble au modèle de matrice dense hello ci-dessus.
 
 ## <a name="fault-and-upgrade-domain-constraints-and-resulting-behavior"></a>Contraintes des domaines d’erreur et de mise à niveau, et comportement résultant
-Cluster Resource Manager traite le souhait de conserver un service équilibré entre les domaines d’erreur et de mise à niveau en tant que contrainte. Vous trouverez plus d’informations sur les contraintes dans [cet article](service-fabric-cluster-resource-manager-management-integration.md). Les contraintes des domaines d’erreur et de mise à niveau indiquent : « pour une partition de service donnée, il ne doit jamais y avoir une différence *supérieure à un* dans le nombre d’objets de service (instances de service sans état ou réplicas de service avec état) entre deux domaines. » Cela empêche certains déplacements ou organisations qui enfreignent cette contrainte.
+Hello, Gestionnaire de ressources du Cluster traite désir hello tookeep un service équilibrée à travers les domaines d’erreur et mettre à niveau en tant que contrainte. Vous trouverez plus d’informations sur les contraintes dans [cet article](service-fabric-cluster-resource-manager-management-integration.md). Hello d’état de contraintes d’erreur et de mettre à niveau un domaine : « pour une partition de service donné il devrait jamais y avoir une différence *supérieur à un* nombre hello des objets de service (instances de service sans état ou des réplicas de service avec état) entre deux domaines. » Cela empêche certains déplacements ou organisations qui enfreignent cette contrainte.
 
 Examinons un exemple. Supposons que nous avons un cluster avec six nœuds, configuré avec cinq domaines d’erreur et cinq de mise à niveau.
 
@@ -107,9 +107,9 @@ Examinons un exemple. Supposons que nous avons un cluster avec six nœuds, confi
 | **UD3** | | | |N4 | |
 | **UD4** | | | | |N5 |
 
-Maintenant, supposons que nous créons un service en attribuant à TargetReplicaSetSize (ou, pour un service sans état, à InstanceCount) la valeur 5. Les réplicas se trouvent sur N1-N5. En fait, N6 n’est jamais utilisé, quel que soit le nombre de services équivalents que vous créez. Mais pourquoi ? Examinons la différence entre la disposition actuelle et ce qui se passerait si N6 était choisi.
+Maintenant, supposons que nous créons un service en attribuant à TargetReplicaSetSize (ou, pour un service sans état, à InstanceCount) la valeur 5. terres de réplicas Hello sur N1-N5. En fait, N6 n’est jamais utilisé, quel que soit le nombre de services équivalents que vous créez. Mais pourquoi ? Examinons la différence de hello entre la disposition actuelle de hello et ce qui se passerait si vous choisissez N6.
 
-Voici la disposition que nous obtenons et le nombre total de réplicas par domaine d’erreur et de mise à niveau :
+Voici la mise en page hello nous et vos hello nombre total de réplicas par erreur et de domaine de mise à niveau :
 
 |  | FD0 | FD1 | FD2 | FD3 | FD4 | UDTotal |
 | --- |:---:|:---:|:---:|:---:|:---:|:---:|
@@ -120,9 +120,9 @@ Voici la disposition que nous obtenons et le nombre total de réplicas par domai
 | **UD4** | | | | |R5 |1 |
 | **FDTotal** |1 |1 |1 |1 |1 |- |
 
-Cette disposition est équilibrée en termes de nœuds par domaine d’erreur et domaine de mise à niveau. Elle est également équilibrée en termes de nombre de réplicas par domaine d’erreur et domaine de mise à niveau. Chaque domaine possède le même nombre de nœuds et le même nombre de réplicas.
+Cette disposition est équilibrée en termes de nœuds par domaine d’erreur et domaine de mise à niveau. Il est également équilibrée en termes de nombre de hello de réplicas par erreur et de domaine de mise à niveau. Chaque domaine possède hello même nombre de nœuds et hello même nombre de réplicas.
 
-À présent, jetons un œil à ce qui se passerait si au lieu de N2, nous avions utilisé N6. Comment les réplicas auraient-ils été réparties ?
+À présent, jetons un œil à ce qui se passerait si au lieu de N2, nous avions utilisé N6. Comment les réplicas hello est répartis puis ?
 
 |  | FD0 | FD1 | FD2 | FD3 | FD4 | UDTotal |
 | --- |:---:|:---:|:---:|:---:|:---:|:---:|
@@ -133,7 +133,7 @@ Cette disposition est équilibrée en termes de nœuds par domaine d’erreur et
 | **UD4** | | | | |R4 |1 |
 | **FDTotal** |2 |0 |1 |1 |1 |- |
 
-Cette disposition ne respecte pas notre définition de la contrainte du domaine d’erreur. FD0 a deux réplicas, alors que FD1 en a zéro. La différence entre FD0 et FD1 est donc égale à deux. Cluster Resource Manager n’autorise pas cette organisation. De même, si nous avions choisi N2 et N6 (au lieu de N1 et N2) nous aurions obtenu :
+Cette disposition ne respecte pas notre définition pourquoi la contrainte de domaine d’erreur. FD0 a deux réplicas, alors que FD1 a zéro, faisant hello différencie FD0 FD1 un total de deux. Hello, Gestionnaire de ressources de Cluster n’autorise pas cette configuration. De même, si nous avions choisi N2 et N6 (au lieu de N1 et N2) nous aurions obtenu :
 
 |  | FD0 | FD1 | FD2 | FD3 | FD4 | UDTotal |
 | --- |:---:|:---:|:---:|:---:|:---:|:---:|
@@ -144,12 +144,12 @@ Cette disposition ne respecte pas notre définition de la contrainte du domaine 
 | **UD4** | | | | |R4 |1 |
 | **FDTotal** |1 |1 |1 |1 |1 |- |
 
-Cette disposition est équilibrée du point de vue des domaines d’erreur. En revanche, elle enfreint à présent la contrainte de domaine de mise à niveau. Cela est dû au fait que UD0 n’a aucun réplica, alors que UD1 en a deux. Par conséquent, cette disposition n’est pas non plus valide et ne sera pas choisie par Cluster Resource Manager. 
+Cette disposition est équilibrée du point de vue des domaines d’erreur. Toutefois, il est désormais violation contrainte de mise à niveau domaine hello. Cela est dû au fait que UD0 n’a aucun réplica, alors que UD1 en a deux. Par conséquent, cette disposition est également non valide et ne seront pas prise en hello Gestionnaire de ressources du Cluster. 
 
 ## <a name="configuring-fault-and-upgrade-domains"></a>Configuration des domaines d’erreur et de mise à niveau
-La définition des domaines d’erreur et de mise à niveau s’effectue automatiquement dans les déploiements Service Fabric hébergés sur Azure. Service Fabric récupère et utilise les informations d’environnement d’Azure.
+La définition des domaines d’erreur et de mise à niveau s’effectue automatiquement dans les déploiements Service Fabric hébergés sur Azure. Service Fabric récupère et utilise les informations sur l’environnement à partir d’Azure hello.
 
-Si vous créez votre propre cluster (ou si vous voulez exécuter une topologie particulière pendant son développement), vous pouvez vous-même fournir les informations de domaine d’erreur et de domaine de mise à niveau. Dans cet exemple, nous définissons un cluster de développement local à neuf nœuds qui s’étend sur trois « centres de données » (chacun avec trois racks). Ce cluster a également trois domaines de mise à niveau répartis sur ces trois centres de données. Voici un exemple de cette configuration : 
+Si vous créez votre propre cluster (ou souhaitez toorun une topologie particulière en cours de développement), vous pouvez fournir les informations de domaine d’erreur et de mettre à niveau un domaine hello vous-même. Dans cet exemple, nous définissons un cluster de développement local à neuf nœuds qui s’étend sur trois « centres de données » (chacun avec trois racks). Ce cluster a également trois domaines de mise à niveau répartis sur ces trois centres de données. Un exemple de configuration de hello est ci-dessous : 
 
 ClusterManifest.xml
 
@@ -243,31 +243,31 @@ via ClusterConfig.json pour les déploiements autonomes
 ```
 
 > [!NOTE]
-> Quand les clusters sont définis via Azure Resource Manager, les domaines d’erreur et les domaines de mise à niveau sont assignés par Azure. Par conséquent, la définition de vos types de nœud et Virtual Machine Scale Sets dans votre modèle Azure Resource Manager n’inclut pas les informations de domaine d’erreur ou de domaine de mise à niveau.
+> Quand les clusters sont définis via Azure Resource Manager, les domaines d’erreur et les domaines de mise à niveau sont assignés par Azure. Par conséquent, définition hello de vos Types de nœuds et les machines virtuelles identiques dans votre modèle Azure Resource Manager n’inclut pas de domaine par défaut ou domaine de mise à niveau.
 >
 
 ## <a name="node-properties-and-placement-constraints"></a>Propriétés de nœud et contraintes de placement
-Parfois (en réalité, la plupart du temps), vous voudrez faire en sorte que certaines charges de travail s’exécutent uniquement sur certains types de nœud du cluster. Par exemple, certaines charges de travail peuvent nécessiter des GPU ou des SSD, tandis que d’autres n’en ont pas besoin. Presque toutes les architectures multiniveau sont un bon exemple de ciblage du matériel sur des charges de travail spécifiques. Certaines machines font office de système frontal ou remplissent le rôle de service d’API de l’application et sont exposées aux clients ou à Internet. D’autres machines, souvent dotées d’autres ressources matérielles, gèrent le travail des couches de calcul ou de stockage. Celles-ci ne sont généralement _pas_ directement exposées aux clients ou à Internet. Service Fabric s’attend dans certains cas à ce que des charges de travail particulières aient besoin de s’exécuter sur des configurations matérielles particulières. Par exemple :
+Parfois (en fait, la plupart du temps de hello) que vous allez tooensure toowant qui certaines charges de travail s’exécutent uniquement sur certains types de nœuds de cluster de hello. Par exemple, certaines charges de travail peuvent nécessiter des GPU ou des SSD, tandis que d’autres n’en ont pas besoin. Un bon exemple de ciblage des charges de travail tooparticular matériel est presque chaque architecture multicouche très utiles. Certains ordinateurs servent hello frontal ou API servant le côté de l’application hello et sont exposées toohello clients ou hello internet. Des ordinateurs différents, souvent avec les ressources matérielles différentes gérer hello des couches de calcul ou stockage hello. Il s’agit généralement _pas_ directement exposé tooclients ou hello internet. L’infrastructure de service attend qu’il existe des cas où les charges de travail particuliers doivent toorun sur les configurations de matériel spécifique. Par exemple :
 
 * une application multiniveau existante a été « augmentée et déplacée » dans un environnement Service Fabric
-* une charge de travail veut s’exécuter sur un matériel spécifique pour des raisons d’isolation de sécurité, de performance ou de mise à l’échelle
+* une charge de travail souhaite toorun sur du matériel spécifique pour les performances, l’échelle ou des raisons de sécurité d’isolation
 * une charge de travail doit être isolée des autres charges de travail pour des raisons de stratégie ou de consommation de ressources
 
-Pour prendre en charge ces types de configurations, Service Fabric dispose d’une notion de premier ordre des balises qui peuvent être appliquées aux nœuds. Ces balises sont appelés **propriétés de nœud**. Les **contraintes de placement** sont les instructions associées aux différents services que vous sélectionnez pour une ou plusieurs propriétés de nœud. Les contraintes de placement définissent là où les services doivent s’exécuter. L’ensemble de contraintes est extensible ; n’importe quelle paire clé/valeur peut fonctionner. 
+ces types de configurations, de toosupport Service Fabric a une notion de première classe de balises qui peuvent être appliqués toonodes. Ces balises sont appelés **propriétés de nœud**. **Les contraintes de placement** sont des instructions de hello attachés tooindividual les services que vous sélectionnez pour un ou plusieurs propriétés de nœud. Les contraintes de placement définissent là où les services doivent s’exécuter. ensemble Hello de contraintes est extensible, n’importe quelle paire clé/valeur peut travailler. 
 
 <center>
 ![Disposition du cluster avec différentes charges de travail][Image5]
 </center>
 
 ### <a name="built-in-node-properties"></a>Propriétés de nœud intégrées
-Service Fabric définit certaines propriétés de nœud par défaut qui peuvent être utilisées automatiquement sans que l’utilisateur ait à les définir. Les propriétés par défaut définies sur chaque nœud sont **NodeType** et **NodeName**. Par exemple, vous pouvez écrire une contrainte de placement ainsi : `"(NodeType == NodeType03)"`. En règle générale, NodeType est l’une des propriétés les plus couramment utilisées. Elle est utile, car elle correspond parfaitement à un type de machine. Chaque type de machine correspond à un type de charge de travail dans une application multicouche classique.
+L’infrastructure de service définit certaines propriétés de nœud par défaut qui peuvent être utilisées automatiquement sans utilisateur hello toodefine les. propriétés par défaut de Hello définies sur chaque nœud sont hello **NodeType** et hello **NodeName**. Par exemple, vous pouvez écrire une contrainte de placement ainsi : `"(NodeType == NodeType03)"`. Nous avons généralement constaté NodeType toobe une des propriétés de hello couramment utilisé. Elle est utile, car elle correspond parfaitement à un type de machine. Chaque type d’ordinateur correspond type tooa de charge de travail dans une application multicouche classique.
 
 <center>
 ![Contraintes de placement et propriétés de nœud][Image6]
 </center>
 
 ## <a name="placement-constraint-and-node-property-syntax"></a>Syntaxe des contraintes de placement et des propriétés de nœud 
-La valeur spécifiée dans la propriété de nœud peut être une chaîne, une valeur booléenne ou une valeur signée longue. L’instruction au niveau du service est appelée une *contrainte* de placement, car elle contraint l’exécution du service à un emplacement spécifique dans le cluster. La contrainte peut être toute déclaration booléenne qui opère sur les différentes propriétés de nœud du cluster. Les sélecteurs valides dans ces déclarations booléennes sont :
+valeur de Hello spécifiée dans la propriété de nœud hello peut être une chaîne, bool, ou long signé. instruction Hello au niveau de service de hello est appelée un placement *contrainte* , car il limite où service de hello permettre s’exécuter dans un cluster de hello. contrainte de Hello peut être n’importe quelle instruction booléenne qui fonctionne sur hello différentes propriétés du nœud de cluster de hello. sélecteurs de valide Hello dans ces instructions booléennes sont :
 
 1) des vérifications conditionnelles pour la création d’instructions particulières
 
@@ -295,9 +295,9 @@ Voici quelques exemples d’instructions de contrainte de base.
   * `"NodeColor != green"`
   * `"((OneProperty < 100) || ((AnotherProperty == false) && (OneProperty >= 100)))"`
 
-Le service peut être placé sur les nœuds dont l’instruction de contrainte de placement globale prend la valeur « True » uniquement. Les nœuds sans une propriété définie ne correspondent à aucune contrainte de placement contenant cette propriété.
+Seuls les nœuds où hello globalement la sélection élective contrainte instruction prend la valeur trop « True » peuvent avoir service hello placé sur celui-ci. Les nœuds sans une propriété définie ne correspondent à aucune contrainte de placement contenant cette propriété.
 
-Supposons que les propriétés de nœud suivantes aient été définies pour un type de nœud donné :
+Supposons que hello suivant nœud propriétés ont été définies pour un type de nœud donné :
 
 ClusterManifest.xml
 
@@ -314,7 +314,7 @@ ClusterManifest.xml
 via ClusterConfig.json pour les déploiements autonomes ou Template.json pour les clusters hébergés sur Azure. 
 
 > [!NOTE]
-> Dans votre modèle Azure Resource Manager, le type de nœud est généralement paramétré. Il ressemble à « [parameters('vmNodeType1Name')] » plutôt qu’à « NodeType01 ».
+> Dans le nœud de hello de votre modèle Azure Resource Manager type est généralement paramétré. Il ressemble à « [parameters('vmNodeType1Name')] » plutôt qu’à « NodeType01 ».
 >
 
 ```json
@@ -349,9 +349,9 @@ PowerShell :
 New-ServiceFabricService -ApplicationName $applicationName -ServiceName $serviceName -ServiceTypeName $serviceType -Stateful -MinReplicaSetSize 3 -TargetReplicaSetSize 3 -PartitionSchemeSingleton -PlacementConstraint "HasSSD == true && SomeProperty >= 4"
 ```
 
-Si tous les nœuds de NodeType01 sont valides, vous pouvez aussi sélectionner ce type de nœud avec la contrainte « (NodeType == NodeType01) ».
+Si tous les nœuds de NodeType01 sont valides, vous pouvez également sélectionner ce type de nœud avec la contrainte de hello "(NodeType == NodeType01) ».
 
-Un des avantages offerts par les contraintes de placement d’un service est qu’elles peuvent être mises à jour dynamiquement pendant l’exécution. Par conséquent, si vous le souhaitez, vous pouvez déplacer un service dans le cluster, ajouter et supprimer des exigences, etc. Service Fabric se charge de vérifier que le service reste opérationnel et disponible, même quand ces types de modifications sont apportées.
+Une des choses intéressantes hello contraintes de placement d’un service est qu’ils peuvent être mis à jour dynamiquement pendant l’exécution. Par conséquent, si vous le souhaitez, vous pouvez déplacer un service de cluster de hello, ajouter et supprimer, etc.. Prend en charge l’infrastructure de service de s’assurer que le service de hello reste disponible même lorsque ces types de modifications sont apportées.
 
 C# :
 
@@ -367,23 +367,23 @@ PowerShell :
 Update-ServiceFabricService -Stateful -ServiceName $serviceName -PlacementConstraints "NodeType == NodeType01"
 ```
 
-Les contraintes de placement sont spécifiées pour chaque différente instance de service nommée. Les mises à jour prennent toujours la place de (remplacent) ce qui a été précédemment spécifié.
+Les contraintes de placement sont spécifiées pour chaque différente instance de service nommée. Les mises à jour ont toujours lieu hello de (overwrite) ce qui a été spécifié précédemment.
 
-La définition du cluster définit les propriétés d’un nœud. La modification des propriétés d’un nœud nécessite une mise à niveau de la configuration du cluster. Après avoir mis à niveau les propriétés d’un nœud, chaque nœud affecté doit redémarrer pour faire état de ses nouvelles propriétés. Ces mises à niveau propagées sont gérées par Service Fabric.
+définition de cluster Hello définit les propriétés de hello sur un nœud. La modification des propriétés d’un nœud nécessite une mise à niveau de la configuration du cluster. Les propriétés d’un nœud de la mise à niveau nécessite chaque tooreport toorestart de nœud affecté ses nouvelles propriétés. Ces mises à niveau propagées sont gérées par Service Fabric.
 
 ## <a name="describing-and-managing-cluster-resources"></a>Description et gestion des ressources de cluster
-L’une des principales tâches de n’importe quel orchestrateur consiste à vous aider à gérer la consommation de ressources du cluster. La gestion des ressources de cluster peut signifier plusieurs choses. En premier lieu, il peut s’agir de veiller à ce que les machines ne soient pas en surcharge. Cela implique de vérifier que les machines n’exécutent pas plus de services qu’elles ne peuvent en gérer. En second lieu, il peut s’agir d’équilibrer et d’optimiser ce qui est essentiel au bon fonctionnement des services. Les offres de services sensibles aux coûts ou aux performances ne peuvent pas s’accommoder de la présence simultanée de nœuds à chaud et de nœuds à froid. Les nœuds à chaud entraînent des conflits de ressources et des performances médiocres, tandis que les nœuds à froid représentent un gaspillage de ressources et des coûts accrus. 
+Une des principales tâches de n’importe quel orchestrator est toohelp de hello gérer la consommation des ressources de cluster de hello. La gestion des ressources de cluster peut signifier plusieurs choses. En premier lieu, il peut s’agir de veiller à ce que les machines ne soient pas en surcharge. Cela implique de vérifier que les machines n’exécutent pas plus de services qu’elles ne peuvent en gérer. Ensuite, il est équilibrage et optimisation qui est critique toorunning services efficacement. Les offres de service sensibles à compter du ou des performances coûts n’autorise pas certains toobe de nœuds à chaud alors que d’autres sont à froid. Les nœuds à chaud entraîner contention de tooresource et des performances médiocres, des nœuds à froid représentent perdu et les ressources une augmentation des coûts. 
 
-Service Fabric représente les ressources en tant que `Metrics`. Les métriques correspondent à n’importe quelle ressource logique ou physique que vous souhaitez décrire pour Service Fabric. Par exemple, « WorkQueueDepth » et « MemoryInMb » sont des métriques. Pour plus d’informations sur les ressources physiques que Service Fabric peut régir sur les nœuds, consultez [gouvernance des ressources](service-fabric-resource-governance.md). Pour plus d’informations sur la configuration de métriques personnalisées et sur leur utilisation, consultez [cet article](service-fabric-cluster-resource-manager-metrics.md)
+Service Fabric représente les ressources en tant que `Metrics`. Les métriques sont n’importe quelle ressource logique ou physique que vous souhaitez toodescribe tooService l’ensemble fibre optique. Par exemple, « WorkQueueDepth » et « MemoryInMb » sont des métriques. Pour plus d’informations sur les ressources physiques hello qui régit l’infrastructure de Service sur les nœuds, consultez [gouvernance des ressources](service-fabric-resource-governance.md). Pour plus d’informations sur la configuration de métriques personnalisées et sur leur utilisation, consultez [cet article](service-fabric-cluster-resource-manager-metrics.md)
 
-Les mesures sont différentes des contraintes de placement et des propriétés de nœud. Les propriétés de nœud sont des descripteurs statiques des nœuds proprement dits. Les métriques décrivent les ressources à la disposition des nœuds et que les services consomment quand ils s’exécutent sur un nœud. La propriété d’un nœud peut être équivalente à « HasSSD » et définie sur true ou false. La quantité d’espace disponible sur ce disque SSD et la quantité consommée par les services pourrait correspondre à une métrique nommée « DriveSpaceInMb ». 
+Les mesures sont différentes des contraintes de placement et des propriétés de nœud. Propriétés de nœud sont statiques descripteurs de nœuds hello eux-mêmes. Les métriques décrivent les ressources à la disposition des nœuds et que les services consomment quand ils s’exécutent sur un nœud. Une propriété de nœud peut être « HasSSD » et peut être définie tootrue ou false. quantité Hello d’espace disponible sur ce disque SSD et la quantité est consommée par les services est une mesure telle que « DriveSpaceInMb ». 
 
-Il est important de noter que, comme pour les contraintes de placement et les propriétés de nœud, Service Fabric Cluster Resource Manager ne comprend pas ce que signifient les noms des mesures. Les noms des mesures ne sont que des chaînes. Il est recommandé de déclarer les unités dans le cadre des noms des mesures que vous créez lorsque cela peut être ambigu.
+Il est important toonote que la même façon que pour les contraintes de placement et les propriétés du nœud, hello Gestionnaire de ressources du Cluster Service Fabric ne comprend pas les noms hello hello métriques moyenne. Les noms des mesures ne sont que des chaînes. Il s’agit d’un unités toodeclare de bonnes pratiques dans le cadre de noms de métrique hello que vous créez lorsque cela peut être ambiguë.
 
 ## <a name="capacity"></a>Capacity
-Si vous avez désactivé toutes les fonctions d’*équilibrage* des ressources, Cluster Resource Manager de Service Fabric est tout de même en mesure de garantir qu’aucun nœud ne dépasse sa capacité. Il est possible de gérer les dépassements de capacité, sauf si le cluster est saturé ou si la charge de travail dépasse la capacité d’un nœud. La capacité est une autre *contrainte* que Cluster Resource Manager utilise pour comprendre la quantité d’une ressource dont un nœud dispose. La capacité restante est également suivie pour le cluster dans son ensemble. La capacité et la consommation au niveau du service sont toutes deux exprimées en termes de métriques. Par exemple, pour une métrique appelée « ClientConnections », un nœud donné peut avoir une capacité de 32768. Les autres nœuds peuvent avoir d’autres limites. Un service s’exécutant sur ce nœud peut indiquer qu’il consomme actuellement 32256 de la métrique « ClientConnections ».
+Si vous avez désactivé toutes les fonctions d’*équilibrage* des ressources, Cluster Resource Manager de Service Fabric est tout de même en mesure de garantir qu’aucun nœud ne dépasse sa capacité. Il est possible de gérer les dépassements de capacité, sauf si le cluster de hello est saturé ou de la charge de travail hello est supérieure à n’importe quel nœud. La capacité est un autre *contrainte* ce gestionnaire de ressources du Cluster hello utilise toounderstand la quantité d’une ressource, un nœud a. Capacité restante est également suivi pour le cluster de hello dans sa globalité. Capacité de hello et la consommation au niveau de service hello hello sont exprimés en termes de métriques. Par exemple, la métrique de hello peut être « ClientConnections » et un nœud donné peut avoir une capacité de « ClientConnections » de 32 768. Autres nœuds peuvent avoir d’autres limites à certains services en cours d’exécution sur un nœud pouvant dire qu’elle est actuellement utilise des 32256 de métrique de hello « ClientConnections ».
 
-Pendant l’exécution, Cluster Resource Manager assure le suivi de la capacité restante dans le cluster et sur les nœuds. Pour ce faire, Cluster Resource Manager soustrait la consommation de chaque service à la capacité du nœud sur lequel le service s’exécute. Grâce à ces informations, Cluster Resource Manager de Service Fabric peut déterminer où placer ou déplacer les réplicas afin que les nœuds ne dépassent pas la capacité.
+Pendant l’exécution, hello Gestionnaire de ressources de Cluster effectue le suivi de capacité restante dans un cluster de hello et sur les nœuds. Dans l’ordre tootrack hello de capacité Gestionnaire de ressources du Cluster soustrait l’utilisation de chaque service à partir de la capacité du nœud sur lequel s’exécute le service de hello. Avec cette information, hello Gestionnaire de ressources du Cluster Service Fabric peut savoir où tooplace ou déplacez les réplicas afin que les nœuds ne pas dépasser la capacité.
 
 <center>
 ![Nœuds de cluster et capacité][Image7]
@@ -408,7 +408,7 @@ PowerShell :
 New-ServiceFabricService -ApplicationName $applicationName -ServiceName $serviceName -ServiceTypeName $serviceTypeName –Stateful -MinReplicaSetSize 3 -TargetReplicaSetSize 3 -PartitionSchemeSingleton –Metric @("ClientConnections,High,1024,0)
 ```
 
-Vous pouvez voir les capacités définies dans le manifeste de cluster :
+Vous pouvez voir les capacités définies dans le manifeste du cluster hello :
 
 ClusterManifest.xml
 
@@ -433,19 +433,19 @@ via ClusterConfig.json pour les déploiements autonomes ou Template.json pour le
 ],
 ```
 
-En règle générale, la charge d’un service évolue de manière dynamique. Supposons que la charge d’un réplica de « ClientConnections » est passée de 1024 à 2048, mais que le nœud sur lequel il s’exécutait alors n’avait que 512 de capacité restante pour cette métrique. À présent, le placement de ce réplica ou de cette instance n’est pas valide, car il n’y a pas suffisamment d’espace sur ce nœud. Cluster Resource Manager doit intervenir et ramener le nœud en dessous de la capacité. Il réduit la charge sur le nœud en surcapacité en déplaçant un ou plusieurs réplicas ou instances de ce nœud vers d’autres nœuds. Lors du déplacement des réplicas, Cluster Resource Manager essaie de réduire le coût de ces mouvements. La question du coût de déplacement est abordée dans [cet article](service-fabric-cluster-resource-manager-movement-cost.md) et les stratégies et règles de rééquilibrage de Cluster Resource Manager sont décrites plus en détail [ici](service-fabric-cluster-resource-manager-metrics.md).
+En règle générale, la charge d’un service évolue de manière dynamique. Supposons que chargement d’un réplica de « ClientConnections » passé de 1024 too2048 mais le nœud hello s’exécutait sur ensuite avait uniquement 512 capacité restante pour cette métrique. À présent, le placement de ce réplica ou de cette instance n’est pas valide, car il n’y a pas suffisamment d’espace sur ce nœud. Hello Gestionnaire de ressources du Cluster a tookick et obtenir le nœud hello dessous de sa capacité. Il réduit la charge sur le nœud de hello sur la capacité en déplaçant un ou plusieurs réplicas de hello ou les instances à partir de ce nœud tooother nœuds. Lorsque vous déplacez des réplicas, hello Gestionnaire de ressources de Cluster tente de coût de hello toominimize les mouvements. Le coût du mouvement est décrite dans [cet article](service-fabric-cluster-resource-manager-movement-cost.md) plus sur hello Gestionnaire de ressources du Cluster de rééquilibrage des stratégies et les règles sont décrites [ici](service-fabric-cluster-resource-manager-metrics.md).
 
 ## <a name="cluster-capacity"></a>Capacité de cluster
-Comment Service Fabric Cluster Resource Manager fait-il pour éviter la saturation du cluster dans son ensemble ? En fait, du fait du chargement dynamique, il ne peut pas faire grand chose. La charge des services peut augmenter indépendamment des actions entreprises par Cluster Resource Manager. Par conséquent, votre cluster qui dispose de suffisamment d’espace aujourd’hui pourrait ne pas être suffisamment puissant demain une fois que vous serez devenu célèbre. Ceci dit, des moyens existent pour éviter les problèmes. La première chose que nous pouvons faire est d’empêcher la création de nouvelles charges de travail qui risquent de saturer le cluster.
+Comment hello hello de conserver de gestionnaire de ressources du Cluster Service Fabric globale de cluster d’être trop complète ? En fait, du fait du chargement dynamique, il ne peut pas faire grand chose. Services peuvent avoir leur pic de charge indépendamment des actions effectuées par hello Gestionnaire de ressources du Cluster. Par conséquent, votre cluster qui dispose de suffisamment d’espace aujourd’hui pourrait ne pas être suffisamment puissant demain une fois que vous serez devenu célèbre. Ceci dit, il existe certains contrôles sont cuits tooprevent des problèmes. Hello première chose que nous pouvons faire est d’empêcher la création de hello de nouvelles charges de travail qui provoquerait le toobecome de cluster hello complète.
 
-Supposons que vous créez un service sans état et qu’il a une charge associée. Supposons que le service respecte la mesure « DiskSpaceInMb ». Supposons également qu’il va utiliser cinq unités de « DiskSpaceInMb » pour chaque instance du service. Vous souhaitez créer trois instances du service. Parfait ! Cela signifie que nous avons besoin de 15 unités « DiskSpaceInMb » dans le cluster pour être en mesure de créer ces instances de service. The Cluster Resource Manager calcule en permanence la capacité et la consommation de chaque métrique pour déterminer la capacité restante au niveau du cluster. Si l’espace est insuffisant, Cluster Resource Manager rejette l’appel de création du service.
+Supposons que vous créez un service sans état et qu’il a une charge associée. Supposons que le service de hello attentive à mesure de « DiskSpaceInMb » hello. Supposons également qu’il s’agit des cours tooconsume cinq unités de « DiskSpaceInMb » pour chaque instance du service de hello. Vous souhaitez toocreate trois instances de service de hello. Parfait ! Afin que signifie que nous devons 15 unités de « DiskSpaceInMb » toobe présente cluster hello afin que nous tooeven être en mesure de toocreate ces instances de service. Hello Gestionnaire de ressources du Cluster calcule en permanence la capacité de hello et la consommation de chaque mesure afin qu’il peut déterminer la capacité restante de hello dans un cluster de hello. Si l’espace est insuffisant, hello Gestionnaire de ressources de Cluster rejette hello créer appel de service.
 
-Étant donné que l’exigence est seulement de 15 unités disponibles, cet espace peut être affecté de différentes façons. Par exemple, il peut y avoir une unité restante de capacité sur 15 nœuds différents ou trois unités restantes de capacité sur cinq nœuds différents. Si Cluster Resource Manager peut changer l’organisation de façon à avoir cinq unités disponibles sur trois nœuds, il place le service. Il est généralement possible de réorganiser le cluster, à moins que le cluster soit proche de la saturation ou que les services existants ne puissent pas être consolidés pour une raison quelconque.
+Étant donné que hello exigence est seulement qu’il être 15 unités disponibles, cet espace peut être affecté à différentes façons. Par exemple, il peut y avoir une unité restante de capacité sur 15 nœuds différents ou trois unités restantes de capacité sur cinq nœuds différents. Si hello Gestionnaire de ressources du Cluster peut réorganiser les choses afin de cinq unités est disponible sur trois nœuds, il place les service hello. Cluster de hello la réorganisation est généralement possible, sauf si le cluster de hello est presque plein ou les services existants hello ne peut pas être consolidées pour une raison quelconque.
 
 ## <a name="buffered-capacity"></a>Capacité de mise en mémoire tampon
-La capacité mise en mémoire tampon est une autre fonctionnalité de Cluster Resource Manager. Elle permet de réserver une partie de la capacité globale des nœuds. Cette mémoire tampon de capacité sert uniquement à placer les services pendant les mises à niveau et les défaillances de nœuds. La capacité mise en mémoire tampon est spécifiée de manière globale par métrique pour tous les nœuds. La valeur de capacité réservée que vous choisissez est fonction du nombre de domaines d’erreur et de mise à niveau dont vous disposez dans le cluster. Un nombre de domaines d’erreur et de mise à niveau plus important signifie que vous pouvez choisir un nombre inférieur pour la capacité de mise en mémoire tampon. Si vous avez davantage de domaines, une portion moins importante de votre cluster sera indisponible lors de mises à niveau et en cas de défaillance. Spécifier la capacité mise en mémoire tampon n’a de sens que si vous avez aussi spécifié la capacité des nœuds pour une métrique.
+Capacité de mise en mémoire tampon est une autre fonctionnalité de hello Gestionnaire de ressources du Cluster. Il permet de réservation d’une partie du hello capacité globale du nœud. Cette mémoire tampon de la capacité est tooplace utilisés seuls services au cours des mises à niveau et d’échecs de nœud. La capacité mise en mémoire tampon est spécifiée de manière globale par métrique pour tous les nœuds. valeur Hello choisie pour la capacité de hello réservé est une fonction du nombre de hello de domaines d’erreur et mise à niveau vous avez hello cluster. Un nombre de domaines d’erreur et de mise à niveau plus important signifie que vous pouvez choisir un nombre inférieur pour la capacité de mise en mémoire tampon. Si vous avez plusieurs domaines, attendez-vous plus petites quantités de votre cluster de toobe indisponible pendant les mises à niveau et d’échecs. Spécification de capacité de mise en mémoire tampon convient uniquement si vous avez également la capacité de nœud hello spécifié pour une mesure.
 
-Voici un exemple montrant comment spécifier la capacité de mise en mémoire tampon :
+Voici un exemple de comment toospecify mis en mémoire tampon capacité :
 
 ClusterManifest.xml
 
@@ -476,15 +476,15 @@ via ClusterConfig.json pour les déploiements autonomes ou Template.json pour le
 ]
 ```
 
-La création de nouveaux services échoue lorsque la capacité de mise en mémoire tampon du cluster est épuisée pour une mesure. Empêcher la création de services pour préserver la mémoire tampon est l’assurance que les mises à niveau et les défaillances ne provoqueront pas un dépassement de la capacité des nœuds. La capacité de mise en mémoire tampon est facultative mais recommandée dans tout cluster qui définit une capacité pour une mesure.
+la création de nouveaux services Hello échoue lorsque le cluster de hello dépassement de la capacité de mise en mémoire tampon pour une mesure. Empêche la création de la nouvelle mémoire tampon services toopreserve hello hello garantit que les échecs et les mises à niveau ne provoquent pas de nœuds toogo surchargés. La capacité de mise en mémoire tampon est facultative mais recommandée dans tout cluster qui définit une capacité pour une mesure.
 
-Cluster Resource Manager expose ces informations de charge. Pour chaque métrique, ces informations incluent : 
-  - les paramètres de capacité mise en mémoire tampon ;
-  - la capacité totale ;
-  - la consommation actuelle ;
+Hello Gestionnaire du Cluster de ressource expose ces informations de charge. Pour chaque métrique, ces informations incluent : 
+  - Hello mis en mémoire tampon de paramètres de capacité
+  - capacité totale de Hello
+  - consommation actuelle de Hello
   - une indication de l’état équilibré ou non de chaque métrique ;
-  - des statistiques sur l’écart type ;
-  - les nœuds qui ont la charge la plus importante et ceux qui ont la charge la moins importante.  
+  - statistiques concernant l’écart type hello
+  - nœuds Hello ayant hello plus et le moins de charge  
   
 Voici un exemple de cette sortie :
 
@@ -515,10 +515,10 @@ LoadMetricInformation     :
 ```
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Pour plus d’informations sur l’architecture et le flux d’informations dans Cluster Resource Manager, consultez [cet article ](service-fabric-cluster-resource-manager-architecture.md)
-* La définition des mesures de défragmentation est une façon de consolider la charge sur les nœuds au lieu de la répartir. Pour savoir comment configurer la défragmentation, reportez-vous à [cet article](service-fabric-cluster-resource-manager-defragmentation-metrics.md)
-* Commencez au début pour [obtenir une présentation de Service Fabric Cluster Resource Manager](service-fabric-cluster-resource-manager-introduction.md)
-* Pour en savoir plus sur la façon dont Cluster Resource Manager gère et équilibre la charge du cluster, consultez l’article sur [l’équilibrage de la charge](service-fabric-cluster-resource-manager-balancing.md)
+* Pour plus d’informations sur le flux architecture et les informations de hello dans hello Gestionnaire de ressources de Cluster, consultez [cet article](service-fabric-cluster-resource-manager-architecture.md)
+* Défragmentation des mesures sont charge tooconsolidate monodirectionnelle sur les nœuds au lieu de la propagation de. toolearn comment tooconfigure défragmentation, reportez-vous à la section trop[cet article](service-fabric-cluster-resource-manager-defragmentation-metrics.md)
+* Démarrer à partir du début de hello et [obtenir une présentation de toohello Gestionnaire de ressources du Cluster Service Fabric](service-fabric-cluster-resource-manager-introduction.md)
+* toofind out sur comment hello Gestionnaire de ressources de Cluster gère et équilibre la charge du cluster de hello, consultez l’article de hello sur [équilibrage de charge](service-fabric-cluster-resource-manager-balancing.md)
 
 [Image1]:./media/service-fabric-cluster-resource-manager-cluster-description/cluster-fault-domains.png
 [Image2]:./media/service-fabric-cluster-resource-manager-cluster-description/cluster-uneven-fault-domain-layout.png

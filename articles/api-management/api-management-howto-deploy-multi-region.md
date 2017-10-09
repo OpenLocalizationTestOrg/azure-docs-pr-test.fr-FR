@@ -1,6 +1,6 @@
 ---
-title: "Déployer des services Gestion des API Azure sur plusieurs régions Azure | Microsoft Docs"
-description: "Découvrez comment déployer une instance de service Gestion des API Azure dans plusieurs régions Azure."
+title: "aaaDeploy gestion des API Azure services toomultiple Azure régions | Documents Microsoft"
+description: "Découvrez comment toodeploy une gestion des API Azure service instance toomultiple Azure régions."
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,54 +14,54 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: apimpm
-ms.openlocfilehash: 1c39fee739c2f5fd4b928e1e76e1ea57f072b5f8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 04a3e762261237d73a769320a21363f99f1d20cb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-deploy-an-azure-api-management-service-instance-to-multiple-azure-regions"></a>Comment déployer une instance de service Gestion des API Azure dans plusieurs régions Azure
-Gestion des API prend en charge le déploiement sur plusieurs régions, ce qui permet aux éditeurs d’API de ne distribuer qu’un seul service Gestion des API sur le nombre de régions Azure. Ceci permet de réduire la latence de la demande telle qu’elle est perçue par les utilisateurs distribués de l’API. La disponibilité du service est également améliorée si une région est mise hors connexion. 
+# <a name="how-toodeploy-an-azure-api-management-service-instance-toomultiple-azure-regions"></a>Comment toodeploy une gestion des API Azure service instance toomultiple Azure régions
+Gestion des API prend en charge le déploiement de plusieurs régions, ce qui permet des API éditeurs toodistribute un seul service de gestion des API sur n’importe quel nombre de régions Azure souhaités. Ceci permet de réduire la latence de la demande telle qu’elle est perçue par les utilisateurs distribués de l’API. La disponibilité du service est également améliorée si une région est mise hors connexion. 
 
-Lors de la création initiale du service Gestion des API, il ne contient qu’une seule [unité][unit] et se trouve dans une seule région Azure, désignée comme région primaire. D’autres régions peuvent être facilement ajoutées via le portail Azure. Un serveur de passerelle Gestion des API est déployé dans chaque région et le trafic d’appel est acheminé vers la passerelle la plus proche. Si une région est déconnectée, le trafic est automatiquement redirigé vers la passerelle suivante la plus proche. 
+Création d’un service de gestion des API au départ, il contient un seul [unité] [ unit] et se trouve dans une seule région Azure, qui est désignée comme hello région principale. Zones supplémentaires peuvent être ajoutées facilement via hello portail Azure. Un serveur de passerelle de gestion des API est déployé tooeach région et le trafic d’appel est routé toohello les passerelle le plus proche. Si une région est mis hors connexion, le trafic de hello est automatiquement redirigée toohello passerelle le plus proche suivant. 
 
 > [!IMPORTANT]
-> Le déploiement multi-régions est disponible uniquement dans le niveau **[Premium][Premium]**.
+> Déploiement de plusieurs régions est uniquement disponible dans hello  **[Premium] [ Premium]**  couche.
 > 
 > 
 
-## <a name="add-region"> </a>Déploiement d’une instance de service Gestion des API sur une nouvelle région
+## <a name="add-region"></a>Déployer une région tooa nouvelle instance du service Gestion des API
 > [!NOTE]
-> Si vous n’avez pas encore créé une instance de service Gestion des API, consultez la page de [création d’une instance de service Gestion des API][Create an API Management service instance] dans le didacticiel de [prise en main de Gestion des API Azure][Get started with Azure API Management].
+> Si vous n’avez pas encore créé une instance de service de gestion des API, consultez [de créer une instance de service de gestion des API] [ Create an API Management service instance] Bonjour [prise en main Azure API Management] [ Get started with Azure API Management] didacticiel.
 > 
 > 
 
-Dans le portail Azure, accédez à la page **Scale and pricing (Échelle et tarification)** de votre instance du service Gestion des API. 
+Bonjour portail Azure, accédez toohello **mise à l’échelle et la tarification** page de votre instance de service de gestion des API. 
 
 ![Onglet Mettre à l’échelle][api-management-scale-service]
 
-Pour procéder au déploiement vers une nouvelle région, cliquez sur **+ Ajouter une région** dans la barre d’outils.
+toodeploy tooa nouvelle zone, cliquez sur **+ ajouter région** à partir de la barre d’outils hello.
 
 ![Ajouter une région][api-management-add-region]
 
-Sélectionnez l’emplacement dans la liste déroulante et définissez le nombre d’unités à l’aide du curseur.
+Sélectionnez l’emplacement de hello à partir de la liste déroulante de hello et définir nombre hello d’unités pour avec le curseur de hello.
 
 ![Spécifier les unités][api-management-select-location-units]
 
-Cliquez sur **Ajouter** pour placer votre sélection dans la table des emplacements. 
+Cliquez sur **ajouter** tooplace votre sélection dans la table d’emplacements hello. 
 
-Répétez cette procédure jusqu’à ce que vous ayez configuré tous les emplacements, puis cliquez sur **Enregistrer** dans la barre d’outils pour démarrer le déploiement.
+Répétez ce processus jusqu'à ce que vous ayez tous les emplacements configurés, puis cliquez sur **enregistrer** hello barre d’outils toostart hello processus de déploiement.
 
-## <a name="remove-region"> </a>Suppression d’une instance de service Gestion des API dans un emplacement
-Dans le portail Azure, accédez à la page **Scale and pricing (Échelle et tarification)** de votre instance du service Gestion des API. 
+## <a name="remove-region"></a>Suppression d’une instance de service Gestion des API dans un emplacement
+Bonjour portail Azure, accédez toohello **mise à l’échelle et la tarification** page de votre instance de service de gestion des API. 
 
 ![Onglet Mettre à l’échelle][api-management-scale-service]
 
-Pour l’emplacement que vous souhaitez supprimer, ouvrez le menu contextuel à l’aide du bouton **...** situé à l’extrême droite du tableau. Sélectionnez l’option **Supprimer**.
+Pour hello emplacement auquel vous tooremove ouvrir le menu contextuel de hello à l’aide de hello **...**  bouton à hello droite de la table de hello. Sélectionnez hello **supprimer** option.
 
 ![Supprimer la région][api-management-remove-region]
 
-Confirmez la suppression, puis cliquez sur **Enregistrer** pour appliquer les modifications.
+Confirmer la suppression de hello et cliquez sur **enregistrer** modifications de hello tooapply.
 
 [api-management-management-console]: ./media/api-management-howto-deploy-multi-region/api-management-management-console.png
 
@@ -73,7 +73,7 @@ Confirmez la suppression, puis cliquez sur **Enregistrer** pour appliquer les mo
 [Create an API Management service instance]: api-management-get-started.md#create-service-instance
 [Get started with Azure API Management]: api-management-get-started.md
 
-[Deploy an API Management service instance to a new region]: #add-region
+[Deploy an API Management service instance tooa new region]: #add-region
 [Delete an API Management service instance from a region]: #remove-region
 
 [unit]: http://azure.microsoft.com/pricing/details/api-management/

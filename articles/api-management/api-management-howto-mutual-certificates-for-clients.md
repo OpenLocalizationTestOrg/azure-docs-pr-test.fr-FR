@@ -1,6 +1,6 @@
 ---
-title: "Sécuriser les API avec l’authentification de certificat client dans la gestion des API - Gestion des API Azure | Microsoft Docs"
-description: "Apprenez à sécuriser l’accès aux API à l’aide des certificats clients"
+title: "aaaSecure API à l’aide de l’authentification du certificat client dans Gestion des API - gestion des API Azure | Documents Microsoft"
+description: "Découvrez comment accéder à toosecure tooAPIs à l’aide de certificats clients"
 services: api-management
 documentationcenter: 
 author: miaojiang
@@ -13,21 +13,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/01/2017
 ms.author: apimpm
-ms.openlocfilehash: d3d51d0575a6d2dacced931601d48eb1e51a4051
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6ff78bda3d429829da79d0dc4d652f19669cc919
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-secure-apis-using-client-certificate-authentication-in-api-management"></a>Comment sécuriser les API à l'aide d'une authentification par certificat client dans la Gestion des API
+# <a name="how-toosecure-apis-using-client-certificate-authentication-in-api-management"></a>Comment toosecure API client à l’aide de certificat d’authentification dans Gestion des API
 
-La Gestion des API permet de sécuriser l'accès aux API (par ex. client à gestion des API) en utilisant des certificats client. Actuellement, vous pouvez vérifier l’empreinte numérique d’un certificat client par rapport à une valeur souhaitée. Vous pouvez également vérifier l’empreinte numérique par rapport aux certificats existants téléchargés dans la gestion des API.  
+Gestion des API fournit hello capacité toosecure accès tooAPIs (par exemple, client tooAPI Management) à l’aide de certificats clients. Actuellement, vous pouvez vérifier l’empreinte numérique hello d’un certificat client par rapport à la valeur souhaitée. Vous pouvez également vérifier l’empreinte numérique hello contre les certificats existants téléchargés tooAPI Management.  
 
-Pour plus d’informations sur la sécurisation de l’accès au service principal d’une API à l’aide de certificats clients (par exemple, gestion des API vers service principal), consultez [Comment sécuriser les services principaux à l’aide d’une authentification par certificat client](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-mutual-certificates).
+Pour plus d’informations sur la sécurisation des accès toohello back-end d’une API à l’aide de certificats de client (par exemple, gestion des API tooback-fin), consultez [comment toosecure services de back-end à l’aide du client de certificat d’authentification](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-mutual-certificates)
 
-## <a name="checking-the-expiration-date"></a>Vérification de la date d’expiration
+## <a name="checking-hello-expiration-date"></a>La vérification de la date d’expiration de hello
 
-Les stratégies ci-dessous peuvent être configurées pour vérifier si le certificat a expiré :
+Sous stratégies peut être configuré toocheck si le certificat de hello est arrivé à expiration :
 
 ```
 <choose>
@@ -39,9 +39,9 @@ Les stratégies ci-dessous peuvent être configurées pour vérifier si le certi
 </choose>
 ```
 
-## <a name="checking-the-issuer-and-subject"></a>Vérification de l’émetteur et du sujet
+## <a name="checking-hello-issuer-and-subject"></a>La vérification de sujet et l’émetteur de hello
 
-Les stratégies suivantes peuvent être configurées pour vérifier l’émetteur et le sujet d’un certificat client :
+Sous stratégies peut être configuré toocheck hello émetteur et l’objet d’un certificat client :
 
 ```
 <choose>
@@ -53,9 +53,9 @@ Les stratégies suivantes peuvent être configurées pour vérifier l’émetteu
 </choose>
 ```
 
-## <a name="checking-the-thumbprint"></a>Vérification de l’empreinte numérique
+## <a name="checking-hello-thumbprint"></a>La vérification de l’empreinte numérique hello
 
-Les stratégies suivantes peuvent être configurées pour vérifier l’empreinte d’un certificat client :
+Sous stratégies peut être l’empreinte numérique de hello toocheck configuré d’un certificat client :
 
 ```
 <choose>
@@ -67,9 +67,9 @@ Les stratégies suivantes peuvent être configurées pour vérifier l’empreint
 </choose>
 ```
 
-## <a name="checking-a-thumbprint-against-certificates-uploaded-to-api-management"></a>Vérification d’une empreinte par rapport aux certificats téléchargés dans la gestion des API
+## <a name="checking-a-thumbprint-against-certificates-uploaded-tooapi-management"></a>La vérification d’une empreinte numérique contre les certificats téléchargés tooAPI gestion
 
-L’exemple suivant montre comment vérifier l’empreinte d’un certificat client par rapport aux certificats téléchargés dans la gestion des API : 
+Hello suivant montre comment l’empreinte numérique de hello toocheck d’un certificat client contre les certificats téléchargés tooAPI gestion : 
 
 ```
 <choose>
@@ -84,6 +84,6 @@ L’exemple suivant montre comment vérifier l’empreinte d’un certificat cli
 
 ## <a name="next-step"></a>Étape suivante
 
-*  [Comment sécuriser les services principaux à l'aide d'une authentification par certificat client](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-mutual-certificates)
-*  [Comment télécharger des certificats](https://docs.microsoft.com/azure/api-management/api-management-howto-mutual-certificates#a-namestep1-aupload-a-client-certificate)
+*  [Comment l’authentification des certificats toosecure services de back-end à l’aide du client](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-mutual-certificates)
+*  [Comment les certificats tooupload](https://docs.microsoft.com/azure/api-management/api-management-howto-mutual-certificates#a-namestep1-aupload-a-client-certificate)
 

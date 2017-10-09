@@ -1,6 +1,6 @@
 ---
-title: "Gestion des certificats de fédération dans Azure AD | Microsoft Docs"
-description: "Apprenez à personnaliser la date d’expiration pour vos certificats de fédération, mais aussi à renouveler les certificats arrivant à expiration."
+title: "certificats de fédération aaaManage dans Azure AD | Documents Microsoft"
+description: "Découvrez comment celle toocustomize hello pour vos certificats de fédération et utilisation des certificats toorenew qui expire sous peu."
 services: active-directory
 documentationcenter: 
 author: jeevansd
@@ -14,67 +14,67 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/09/2017
 ms.author: jeedes
-ms.openlocfilehash: 1283b570200f05003658824760ecbb6722f241d9
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: e17622d25c9babfa295cc0bb68c24e21b8c574d9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-certificates-for-federated-single-sign-on-in-azure-active-directory"></a>Gérer des certificats pour l’authentification unique fédérée sur Azure Active Directory
-Cet article répond aux questions relatives aux certificats créés par Azure Active Directory (Azure AD) pour établir une authentification unique fédérée vers vos applications SaaS. Ajoutez des applications à partir de la galerie d’applications Azure AD ou à l’aide de modèle d’applications ne figurant pas dans la galerie. Configurez l’application à l’aide de l’option d’authentification unique fédérée.
+Cet article traite des questions courantes et les informations relatives à des certificats toohello que Azure Active Directory (Azure AD) crée tooestablish fédéré unique sign-on (SSO) tooyour applications SaaS. Ajouter des applications à partir de la galerie d’applications Azure AD hello ou à l’aide d’un modèle d’application non-gallery. Configurer l’application hello à l’aide d’option d’authentification unique fédérée de hello.
 
-Cet article concerne uniquement les applications configurées pour utiliser l’authentification unique Azure AD grâce à la fédération SAML, comme le montre l’exemple suivant :
+Cet article est tooapps uniquement pertinentes qui sont toouse configuré l’authentification unique de Azure AD via la fédération SAML, comme indiqué dans hello l’exemple suivant :
 
 ![Authentification unique Azure AD](./media/active-directory-sso-certs/saml_sso.PNG)
 
 ## <a name="auto-generated-certificate-for-gallery-and-non-gallery-applications"></a>Certificat généré automatiquement pour les applications de la galerie et celles ne figurant pas dans la galerie
-Lorsque vous ajoutez une nouvelle application à partir de la galerie et configurez une authentification SAML, Azure AD génère un certificat d’une validité de trois ans pour l’application. Vous pouvez télécharger ce certificat dans la section **Certificat de signature SAML**. Pour les applications de la galerie, cette section peut afficher une option permettant de télécharger le certificat ou les métadonnées. L’option qui s’affiche dépend de la configuration de l’application.
+Lorsque vous ajoutez une nouvelle application à partir de la galerie de hello et que vous configurez une SAML-authentification, Azure AD génère un certificat pour l’application hello qui n’est valide pendant trois ans. Vous pouvez télécharger ce certificat à partir de hello **le certificat de signature SAML** section. Pour les applications de la galerie, cette section peut afficher un certificat de hello toodownload option ou les métadonnées, selon la spécification hello pour application hello.
 
 ![Authentification unique Azure AD](./media/active-directory-sso-certs/saml_certificate_download.png)
 
-## <a name="customize-the-expiration-date-for-your-federation-certificate-and-roll-it-over-to-a-new-certificate"></a>Personnaliser la date d’expiration de votre certificat de fédération et activer le nouveau certificat
-Par défaut, les certificats sont configurés pour expirer au bout de trois ans. Vous pouvez choisir une autre date d’expiration pour votre certificat en réalisant les étapes suivantes.
-Les captures d'écran ont été prises pendant une utilisation de Salesforce, mais les étapes peuvent s'appliquer à n'importe quelle application SaaS fédérée.
+## <a name="customize-hello-expiration-date-for-your-federation-certificate-and-roll-it-over-tooa-new-certificate"></a>Personnaliser la date d’expiration de hello pour votre certificat de la fédération et de le déployer sur le nouveau certificat de tooa
+Par défaut, les certificats sont configurés tooexpire après trois ans. Vous pouvez choisir une autre date d’expiration votre certificat en effectuant hello comme suit.
+captures d’écran Hello utilisent Salesforce pour l’exploration de l’exemple hello, mais ces étapes peuvent s’appliquent tooany fédéré SaaS application.
 
-1. Dans le [portail Azure](https://aad.portal.azure.com), cliquez sur **Application d’entreprise** dans le volet de navigation gauche puis cliquez sur **Nouvelle application** sur la page **Vue d’ensemble** :
+1. Bonjour [portail Azure](https://aad.portal.azure.com), cliquez sur **application d’entreprise** dans hello du volet gauche, puis cliquez sur **nouvelle application** sur hello **vue d’ensemble** page :
 
-   ![Ouvrir l’Assistant Configuration de l’authentification unique](./media/active-directory-sso-certs/enterprise_application_new_application.png)
+   ![Assistant de configuration de l’authentification unique hello ouvert](./media/active-directory-sso-certs/enterprise_application_new_application.png)
 
-2. Recherchez une application dans la galerie, puis sélectionnez celle que vous voulez ajouter. Si vous ne trouvez pas l’application voulue, ajoutez l’application à l’aide de l’option **Application ne figurant pas dans la galerie**. Cette fonctionnalité est disponible uniquement dans Azure AD Premium (P1 et P2).
+2. Rechercher des applications de la galerie hello, puis sélectionnez application hello que vous souhaitez tooadd. Si vous ne trouvez pas application hello requis, ajouter application hello à l’aide de hello **application Non-gallery** option. Cette fonctionnalité est disponible uniquement dans hello référence (SKU) de Azure AD Premium (P1 et P2).
 
     ![Authentification unique Azure AD](./media/active-directory-sso-certs/add_gallery_application.png)
 
-3. Cliquez sur le lien **Authentification unique** dans le volet de gauche, puis configurez le **Mode** sur **Authentification basée sur SAML**. Cette étape génère pour votre application un certificat valide trois ans.
+3. Cliquez sur hello **l’authentification unique** lien Bonjour gauche du volet et changez **Mode d’authentification unique** trop**SAML-authentification**. Cette étape génère pour votre application un certificat valide trois ans.
 
-4. Pour créer un certificat, cliquez sur le lien **Créer un certificat** dans la section **Certificat de signature SAML**.
+4. toocreate un nouveau certificat, cliquez sur hello **créer un nouveau certificat** lien Bonjour **le certificat de signature SAML** section.
 
     ![Générer un nouveau certificat](./media/active-directory-sso-certs/create_new_certficate.png)
 
-5. Le lien **Créer un nouveau certificat** ouvre le contrôle Calendrier. Vous pouvez définir la date et l’heure de votre choix jusqu'à trois ans plus tard à compter de la date actuelle. La date et l’heure sélectionnées correspondent à la nouvelle date et à la nouvelle heure d’expiration de votre nouveau certificat. Cliquez sur **Enregistrer**.
+5. Hello **créer un nouveau certificat** lien ouvre le contrôle de calendrier hello. Vous pouvez définir toute date et heure des années de toothree de hello date actuelle. Hello sélectionné de date et heure est date d’expiration de la nouvelle hello et l’heure de votre nouveau certificat. Cliquez sur **Enregistrer**.
 
-    ![Télécharger, puis charger le certificat](./media/active-directory-sso-certs/certifcate_date_selection.PNG)
+    ![Téléchargez, puis télécharger le certificat de hello](./media/active-directory-sso-certs/certifcate_date_selection.PNG)
 
-6. Le nouveau certificat peut désormais être téléchargé. Cliquez sur le lien **Certificat** pour le télécharger. À ce stade, votre certificat n’est pas encore actif. Pour activer le certificat, cochez la case **Définir comme certificat actif**, puis cliquez sur **Enregistrer**. Une fois le certificat activé, Azure AD démarre à l’aide du nouveau certificat pour authentifier la réponse.
+6. À présent, un nouveau certificat hello toodownload disponible. Cliquez sur hello **certificat** toodownload de lien il. À ce stade, votre certificat n’est pas encore actif. Lorsque vous souhaitez tooroll par toothis certificat, sélectionnez hello **activer le nouveau certificat** case à cocher et cliquez sur **enregistrer**. À partir de là, Azure AD démarre à l’aide d’un nouveau certificat hello pour la signature de réponse de hello.
 
-7.  Pour savoir comment charger le certificat dans une application SaaS spécifique, cliquez sur le lien **Afficher le didacticiel sur la configuration de l’application**.
+7.  toolearn comment hello de tooupload certificat tooyour les application SaaS spécifique, cliquez sur hello **afficher le didacticiel configuration application** lien.
 
 ## <a name="renew-a-certificate-that-will-soon-expire"></a>Renouvellement d’un certificat arrivant à expiration
-Les étapes de renouvellement suivantes ne devraient pas entraîner de temps d’arrêt important pour vos utilisateurs. Les captures d’écran de cette section ont été prises pendant une utilisation de Salesforce, mais les étapes sont valables pour n’importe quelle application SaaS fédérée.
+Hello suit le renouvellement doit-elle entraîner aucune interruption de service importantes pour vos utilisateurs. captures d’écran Hello dans cette fonctionnalité section Salesforce comme un exemple, mais ces étapes peuvent s’appliquer tooany fédéré SaaS application.
 
-1. Sur l’application **Azure Active Directory**, dans la page **Authentification unique**, générez un nouveau certificat pour votre application. Pour cela, cliquez sur le lien **Créer un certificat** dans la section **Certificat de signature SAML**.
+1. Sur hello **Azure Active Directory** application **l’authentification unique** page, générer hello nouveau certificat pour votre application. Vous pouvez faire cela en cliquant sur hello **créer un nouveau certificat** lien Bonjour **le certificat de signature SAML** section.
 
     ![Générer un nouveau certificat](./media/active-directory-sso-certs/create_new_certficate.png)
 
-2. Sélectionnez la date et l’heure d’expiration souhaitées pour votre nouveau certificat, puis cliquez sur **Enregistrer**.
+2. Sélectionnez hello souhaité date d’expiration et l’heure pour votre nouveau certificat cliquez sur **enregistrer**.
 
-3. Téléchargez le certificat à l’aide de l’option **Certificat de signature SAML**. Chargez le nouveau certificat sur l’écran de configuration de l’authentification unique de l’application SaaS. Pour savoir comment charger le certificat dans une application SaaS spécifique, cliquez sur le lien **Afficher le didacticiel sur la configuration de l’application**.
+3. Télécharger le certificat hello Bonjour **certificat de signature de SAML** option. Écran de configuration de l’authentification unique de téléchargement hello certificat toohello SaaS de nouvelle application. toolearn comment toodo pour que votre application SaaS spécifique, cliquez sur hello **afficher le didacticiel configuration application** lien.
    
-4. Pour activer le nouveau certificat dans Azure AD, cochez la case **Définir comme certificat actif**, puis cliquez sur le bouton **Enregistrer** en haut de la page. Le nouveau certificat est ainsi activé côté Azure AD. L’état du certificat passe de **Nouveau** à **Actif**. Une fois le certificat activé, Azure AD démarre à l’aide du nouveau certificat pour authentifier la réponse. 
+4. tooactivate hello nouveau certificat dans Azure AD, sélectionnez hello **activer le nouveau certificat** case à cocher et cliquez sur hello **enregistrer** bouton en hello haut hello. Cette procédure restaure sur le nouveau certificat de hello sur hello côté d’Azure AD. Hello certificat de hello l’état à partir de **nouveau** trop**Active**. À partir de là, Azure AD démarre à l’aide d’un nouveau certificat hello pour la signature de réponse de hello. 
    
     ![Générer un nouveau certificat](./media/active-directory-sso-certs/new_certificate_download.png)
 
 ## <a name="related-articles"></a>Articles connexes
-* [Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [Liste des didacticiels sur la façon de toointegrate les applications SaaS avec Azure Active Directory](active-directory-saas-tutorial-list.md)
 * [Index d’articles pour la gestion des applications dans Azure Active Directory](active-directory-apps-index.md)
 * [Accès aux applications et authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md)
 * [Dépannage de l’authentification unique basée sur SAML](active-directory-saml-debugging.md)

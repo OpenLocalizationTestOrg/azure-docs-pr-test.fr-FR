@@ -1,6 +1,6 @@
 ---
-title: "Configuration d’un appareil Windows 10 avec Azure AD à partir des paramètres | Microsoft Docs"
-description: "Explique comment les utilisateurs peuvent rejoindre Azure AD via le menu Paramètres."
+title: "aaaSet d’un périphérique Windows 10 avec Azure AD à partir des paramètres | Documents Microsoft"
+description: "Explique comment les utilisateurs peuvent participer tooAzure AD via le menu Paramètres de hello."
 services: active-directory
 documentationcenter: 
 author: femila
@@ -15,35 +15,35 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/16/2017
 ms.author: markvi
-ms.openlocfilehash: 5a3963f16b471ad1ca8681b22a1a027935400465
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d6485228338db571cc01f913c99fbba49e0bb74a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="set-up-a-windows-10-device-with-azure-ad-from-settings"></a>Configuration d’un appareil Windows 10 avec Azure AD à partir des paramètres
-Si vous utilisez déjà Windows 7 ou Windows 8 et que votre ordinateur ou appareil a été mis à niveau vers Windows 10, vous pouvez le joindre à Azure Active Directory (Azure AD) avec le menu Paramètres.
+Si vous êtes déjà à l’aide de Windows 7 ou Windows 8 et que votre ordinateur ou le périphérique a été mis à niveau tooWindows 10, vous pouvez joindre tooAzure Active Directory (Azure AD) via le menu Paramètres de hello.
 
-## <a name="to-join-to-azure-ad-from-the-settings-menu"></a>Joindre votre ordinateur à Azure AD à partir du menu Paramètres
-1. Dans le menu **Démarrer**, cliquez sur l’icône **Paramètres**.
+## <a name="toojoin-tooazure-ad-from-hello-settings-menu"></a>toojoin tooAzure AD à partir du menu Paramètres de hello
+1. À partir de hello **Démarrer** menu, cliquez sur hello **paramètres** icône.
 2. Accédez à **Paramètres**, sélectionnez **Système**->**Info produit**->**Rejoindre Azure AD**.
    
    <center>
-   ![Joindre votre ordinateur à Azure AD à partir du menu Paramètres](./media/active-directory-azureadjoin/active-directory-azureadjoin-settings.png) </center>
-3. Cliquez sur **Continuer** dans la fenêtre de message Azure AD Join.
+   ![Rejoindre Azure AD à partir du menu Paramètres de hello](./media/active-directory-azureadjoin/active-directory-azureadjoin-settings.png)</center>
+3. Cliquez sur **continuer** dans la fenêtre de message hello Azure AD Join.
    
    <center>
-   ![Fenêtre de message Joindre Azure AD](./media/active-directory-azureadjoin/active-directory-azureadjoin-message.png) </center>
-4. Indiquez vos informations d’identification de connexion. Ce processus de connexion inclut toutes les étapes requises pour l’authentification. Si vous faites partie d’un client fédéré, votre administrateur vous proposera un processus hébergé par votre organisation.
+   ![Fenêtre de message Joindre Azure AD](./media/active-directory-azureadjoin/active-directory-azureadjoin-message.png)</center>
+4. Indiquez vos informations d’identification de connexion. Cette expérience de connexion inclut toutes les étapes de hello sont l’authentification toocomplete requis. Si vous faites partie d’un locataire fédéré, votre administrateur vous fournira avec l’expérience de fédération hello qui est hébergé par votre organisation.
    <center>
    ![Indiquer les informations d’identification de connexion](./media/active-directory-azureadjoin/active-directory-azureadjoin-sign-in.png)</center>
-5. Si votre organisation a configuré Azure Multi-Factor Authentication pour joindre vos appareils à Azure AD, vous devrez fournir le second facteur avant de pouvoir continuer.
-6. Cliquez sur **Accepter** sur l’écran **Autoriser la gestion de ce périphérique**.
-7. Le message « Votre appareil est maintenant joint à votre organisation dans Azure AD » doit apparaître.
+5. Si votre organisation a configuré l’authentification multifacteur Azure pour joindre tooAzure AD, fournir le second facteur de hello avant de continuer.
+6. Cliquez sur **accepter** sur hello **autoriser cette toobe périphérique géré** écran.
+7. Vous devez voir le message de type hello « votre appareil est maintenant organisation jointes tooyour dans Azure AD ».
 
 ## <a name="additional-information"></a>Informations supplémentaires
 * [En savoir plus sur les scénarios d’utilisation pour Azure AD Join](active-directory-azureadjoin-deployment-aadjoindirect.md)
-* [Connecter des appareils joints au domaine à Azure AD pour des expériences Windows 10](active-directory-azureadjoin-devices-group-policy.md)
+* [Se connecter tooAzure de périphériques joints au domaine Active Directory pour des expériences Windows 10](active-directory-azureadjoin-devices-group-policy.md)
 * [Configuration d’Azure AD Join](active-directory-azureadjoin-setup.md)
 * [Authentification des identités sans mot de passe avec Microsoft Passport](active-directory-azureadjoin-passport.md)
 

@@ -1,6 +1,6 @@
 ---
-title: "Redéploiement des machines virtuelles Linux dans Azure | Microsoft Docs"
-description: "Redéploiement des machines virtuelles Linux dans Azure pour atténuer les problèmes de connexion SSH."
+title: aaaRedeploy ordinateurs virtuels Linux dans Azure | Documents Microsoft
+description: "Comment virtuels tooredeploy Linux dans la connexion SSH toomitigate Azure émet."
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: iainfoulds
@@ -14,37 +14,37 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 06/23/2017
 ms.author: iainfou
-ms.openlocfilehash: 7a8653a82775e718c38f65f246d997ba61f99d58
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9adfd1b11f262d362133366b2bba5e69c70c9b82
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="redeploy-linux-virtual-machine-to-new-azure-node"></a>Redéployer une machine virtuelle vers un nouveau nœud Azure
-Si vous êtes confronté à des problèmes d’accès SSH ou d’accès des applications à une machine virtuelle Linux dans Azure, vous pouvez tenter de redéployer la machine virtuelle. Lorsque vous redéployez une machine virtuelle, celle-ci est déplacée vers un nouveau nœud au sein de l’infrastructure Azure, puis remise en service. Toutes les options de configuration et les ressources associées sont conservées. Cet article vous montre comment redéployer une machine virtuelle à l’aide de l’interface de ligne de commande Azure ou du portail Azure.
+# <a name="redeploy-linux-virtual-machine-toonew-azure-node"></a>Redéployer toonew de machine virtuelle Linux nœud Azure
+Si vous rencontrez des difficultés de résolution des problèmes de SSH ou accéder à application tooa Linux virtual machine (VM) dans Azure, redéploiement hello machine virtuelle peut aider. Lorsque vous redéployez un ordinateur virtuel, il déplace hello VM tooa nouveau nœud au sein de hello infrastructure Azure et donne sur toute sa puissance. Toutes les options de configuration et les ressources associées sont conservées. Cet article vous montre comment tooredeploy une machine virtuelle à l’aide d’Azure CLI ou hello portail Azure.
 
 > [!NOTE]
-> Une fois que vous redéployez une machine virtuelle, le disque temporaire est perdu et les adresses IP dynamiques associées à l’interface réseau virtuelle sont mises à jour. 
+> Une fois que vous redéployez un ordinateur virtuel, disque temporaire de hello est perdu et les adresses IP dynamiques associés à interface réseau virtuelle sont mis à jour. 
 
-Vous pouvez redéployer une machine virtuelle à l’aide d’une des options suivantes. Choisissez une seule option pour redéployer votre machine virtuelle :
+Vous pouvez redéployer une machine virtuelle à l’aide d’une des options suivantes de hello. Vous devez uniquement toochoose une option tooredeploy votre machine virtuelle :
 
 - [Azure CLI 2.0](#azure-cli-20)
 - [Azure CLI 1.0](#azure-cli-10)
 - [Portail Azure](#using-azure-portal)
 
-## <a name="use-the-azure-cli-20"></a>Utiliser Azure CLI 2.0
-Installez la dernière version [d’Azure CLI 2.0](/cli/azure/install-az-cli2) et connectez-vous à un compte Azure avec la commande [az login](/cli/azure/#login).
+## <a name="use-hello-azure-cli-20"></a>Utilisez hello Azure CLI 2.0
+Hello installation dernières [Azure CLI 2.0](/cli/azure/install-az-cli2) et connectez-vous à l’aide du compte Azure tooan [ouverture de session az](/cli/azure/#login).
 
-Redéployez votre machine virtuelle avec la commande [az vm redeploy](/cli/azure/vm#redeploy). L’exemple suivant permet de redéployer la machine virtuelle *myVM* dans le groupe de ressources *myResourceGroup* :
+Redéployez votre machine virtuelle avec la commande [az vm redeploy](/cli/azure/vm#redeploy). Hello suivant redéploiements ultérieurs d’exemple hello ordinateur virtuel nommé *myVM* dans le groupe de ressources hello nommé *myResourceGroup*:
 
 ```azurecli
 az vm redeploy --resource-group myResourceGroup --name myVM 
 ```
 
-## <a name="use-the-azure-cli-10"></a>Utilisation de la CLI Azure 1.0
-Installez la [dernière version d’Azure CLI 1.0](../../cli-install-nodejs.md), connectez-vous à un compte Azure et vérifiez que le mode Resource Manager est activé (`azure config mode arm`).
+## <a name="use-hello-azure-cli-10"></a>Utilisez hello Azure CLI 1.0
+Installer hello [dernière Azure CLI 1.0](../../cli-install-nodejs.md), connectez-vous à tooan compte Azure et vous assurer que vous êtes en mode de gestionnaire de ressources (`azure config mode arm`).
 
-L’exemple suivant permet de redéployer la machine virtuelle *myVM* dans le groupe de ressources *myResourceGroup* :
+Hello suivant redéploiements ultérieurs d’exemple hello ordinateur virtuel nommé *myVM* dans le groupe de ressources hello nommé *myResourceGroup*:
 
 ```azurecli
 azure vm redeploy --resource-group myResourceGroup --vm-name myVM 
@@ -53,5 +53,5 @@ azure vm redeploy --resource-group myResourceGroup --vm-name myVM
 [!INCLUDE [virtual-machines-common-redeploy-to-new-node](../../../includes/virtual-machines-common-redeploy-to-new-node.md)]
 
 ## <a name="next-steps"></a>Étapes suivantes
-Vous pouvez rechercher une aide spécifique sur le [dépannage des connexions SSH](troubleshoot-ssh-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) ou sur les [étapes de dépannage détaillées des connexions SSH](detailed-troubleshoot-ssh-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) si vous rencontrez des problèmes de connexion à votre machine virtuelle. Vous pouvez également lire des informations sur les [problèmes de dépannage des applications](troubleshoot-app-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) si vous ne pouvez pas accéder à une application exécutée sur votre machine virtuelle.
+Si vous rencontrez des problèmes de connexion tooyour machine virtuelle, vous trouverez une aide spécifique sur [dépannage des connexions SSH](troubleshoot-ssh-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) ou [détaillée des étapes de dépannage de SSH](detailed-troubleshoot-ssh-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). Vous pouvez également lire des informations sur les [problèmes de dépannage des applications](troubleshoot-app-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) si vous ne pouvez pas accéder à une application exécutée sur votre machine virtuelle.
 

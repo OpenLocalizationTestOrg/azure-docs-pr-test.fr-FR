@@ -1,6 +1,6 @@
 ---
-title: "Un mauvais ensemble d’utilisateurs est affecté à une application de la galerie Azure AD | Microsoft Docs"
-description: "Découvrez pourquoi un autre ensemble d’utilisateurs que celui que vous attendiez est affecté à une application"
+title: "ensemble aaaWrong d’utilisateurs sont en cours d’application de la galerie tooan mis en service Azure AD | Documents Microsoft"
+description: "Découvrez comment toofind les pourquoi un ensemble différent d’utilisateurs sont mis en service application tooan que ceux attendus"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,100 +13,100 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 85b533584c8ec15a23be32e20db7de583fced6a0
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: adb90b12a53fb3160ce2b73b2559df92b283438e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="wrong-set-of-users-are-being-provisioned-to-an-azure-ad-gallery-application"></a>Un mauvais ensemble d’utilisateurs est affecté à une application de la galerie Azure AD
+# <a name="wrong-set-of-users-are-being-provisioned-tooan-azure-ad-gallery-application"></a>Mauvais groupe d’utilisateurs sont en cours d’application de la galerie tooan mis en service Azure AD
 
-Le choix des utilisateurs affectés à l’application dépend principalement des utilisateurs et groupes qui ont été **affectés** à l’application.
+Les utilisateurs qui sont approvisionnés toohello application est basée sur les utilisateurs et les groupes auxquels ont été **affecté** toohello application.
 
-Utilisez les ressources ci-dessous pour déterminer quels utilisateurs et groupes ont été affectés à une application dans Azure Active Directory.
+Utilisez les ressources hello ci-dessous toolearn comment toocheck les utilisateurs et les groupes auxquels ont été attribué des application tooan dans Azure Active Directory.
 
 ## <a name="assign-a-user-directly-as-an-administrator"></a>Affecter un utilisateur directement en tant qu’administrateur
 
-Pour affecter un ou plusieurs utilisateurs directement à une application, effectuez les étapes suivantes :
+tooassign un ou plusieurs utilisateurs tooan application directement, comme suit hello ci-dessous :
 
-1.  Ouvrez le [**portail Azure**](https://portal.azure.com/) et connectez-vous en tant qu’**administrateur général.**
+1.  Ouvrez hello [ **Azure Portal** ](https://portal.azure.com/) et connectez-vous en tant qu’un **administrateur Global.**
 
-2.  Ouvrez **l’extension Azure Active Directory** en cliquant sur **Autres services** en bas du menu de navigation principal de gauche.
+2.  Ouvrez hello **Extension Azure Active Directory** en cliquant sur **davantage de services** bas hello du menu de navigation de gauche principal hello.
 
-3.  Tapez « **Azure Active Directory** » dans la zone de recherche de filtre et sélectionnez l’élément **Azure Active Directory**.
+3.  Tapez dans **« Azure Active Directory**» dans la zone de recherche filtre hello et sélectionnez hello **Azure Active Directory** élément.
 
-4.  Cliquez sur **Applications d’entreprise** dans le menu de navigation de gauche d’Azure Active Directory.
+4.  Cliquez sur **des Applications d’entreprise** à partir du menu de navigation gauche hello Azure Active Directory.
 
-5.  Cliquez sur **Toutes les applications** pour afficher la liste complète de vos applications.
+5.  Cliquez sur **toutes les Applications** tooview une liste de toutes vos applications.
 
-  * Si l’application que vous recherchez ne figure pas dans la liste, utilisez la commande **Filtre** en haut de la **liste de toutes les applications** et définissez l’option **Afficher** sur **Toutes les applications.**
+  * Si vous ne voyez pas l’application hello que vous souhaitez afficher ici, utilisez hello **filtre** contrôle haut hello hello **liste de toutes les Applications** et ensemble hello **afficher** option trop **Toutes les Applications.**
 
-6.  Dans la liste qui s’affiche, sélectionnez l’application à laquelle vous souhaitez affecter un utilisateur.
+6.  Sélectionnez l’application hello tooassign une liste des utilisateurs toofrom hello.
 
-7.  Une fois l’application chargée, cliquez sur **Utilisateurs et groupes** dans le menu de navigation de gauche de l’application.
+7.  Une fois le charge de l’application hello, cliquez sur **utilisateurs et groupes** à partir du menu de navigation de gauche de l’application hello.
 
-8.  Cliquez sur le bouton **Ajouter** en haut de la liste **Utilisateurs et groupes** pour ouvrir le panneau **Ajouter une attribution**.
+8.  Cliquez sur hello **ajouter** bouton par-dessus hello **utilisateurs et groupes** hello tooopen de liste **ajouter l’affectation** panneau.
 
-9.  Cliquez sur le sélecteur **Utilisateurs et groupes** à partir du panneau **Ajouter une attribution**.
+9.  Cliquez sur hello **utilisateurs et groupes** sélecteur de hello **ajouter l’affectation** panneau.
 
-10. Tapez **le nom complet** ou **l’adresse de messagerie** de l’utilisateur souhaité pour l’attribution dans la zone de recherche **Rechercher par nom ou adresse de messagerie**.
+10. Type Bonjour **nom complet** ou **adresse de messagerie** d’utilisateur hello vous êtes intéressé par attribution dans hello **recherche par nom ou adresse de messagerie** zone de recherche.
 
-11. Pointez sur **l’utilisateur** dans la liste pour afficher une **case à cocher**. Cliquez sur la case à cocher en regard de la photo de profil ou du logo de l’utilisateur pour ajouter ce dernier à la liste **Sélectionné**.
+11. Placez le curseur sur hello **utilisateur** dans hello liste tooreveal un **case à cocher**. Cliquez sur tooadd de photo ou le logo de profil hello case à cocher suivante toohello l’utilisateur à votre toohello utilisateur **sélectionnés** liste.
 
-12. **Facultatif :** si vous souhaitez **ajouter plusieurs utilisateurs**, entrez un autre **nom complet** ou une autre **adresse de messagerie** dans la zone de recherche **Rechercher par nom ou adresse de messagerie**, puis cliquez sur la case à cocher pour ajouter cet utilisateur à la liste **Sélectionné**.
+12. **Facultatif :** si vous souhaitez que trop**ajouter plusieurs utilisateurs**, type dans un autre **nom complet** ou **adresse de messagerie** dans hello **Rechercher par nom ou l’adresse de messagerie** zone de recherche, cliquez sur tooadd de case à cocher hello cette toohello utilisateur **sélectionnés** liste.
 
-13. Après avoir sélectionné les utilisateurs, cliquez sur le bouton **Sélectionner** pour les ajouter à la liste des utilisateurs et des groupes à affecter à l’application.
+13. Lorsque vous avez fini de sélectionner les utilisateurs, cliquez sur hello **sélectionnez** bouton tooadd les toohello la liste des toobe utilisateurs et groupes affectés toohello application.
 
-14. **Facultatif :** cliquez sur le sélecteur **Sélectionner un rôle** dans le panneau **Ajouter une attribution** pour sélectionner un rôle à affecter aux utilisateurs que vous avez sélectionnés.
+14. **Facultatif :** cliquez sur hello **sélectionner un rôle** sélecteur Bonjour **ajouter l’affectation** panneau tooselect un rôle aux utilisateurs de toohello tooassign que vous avez sélectionné.
 
-15. Cliquez sur le bouton **Attribuer** pour affecter l’application aux utilisateurs sélectionnés.
+15. Cliquez sur hello **affecter** bouton tooassign hello application toohello les utilisateurs sélectionnés.
 
-Si l’approvisionnement est configuré et déjà en cours d’exécution pour une application, les nouveaux utilisateurs doivent être affectés à une application en 10 minutes environ. Consultez **les journaux d’audit** pour plus d’informations.
+Si cette configuration est configuré et en cours d’exécution pour une application, les nouveaux utilisateurs doivent être application tooan approvisionnés dans 10 minutes environ. Vérifiez hello **les journaux d’Audit** pour plus d’informations.
 
-## <a name="assign-a-group-directly-to-an-application-as-an-administrator"></a>Affecter un groupe directement à une application en tant qu’administrateur
+## <a name="assign-a-group-directly-tooan-application-as-an-administrator"></a>Assigner un groupe directement tooan application en tant qu’administrateur
 
-Pour affecter un ou plusieurs groupes directement à une application, procédez comme suit :
+tooassign un ou plusieurs groupes tooan application directement, hello suivez les étapes ci-dessous :
 
-1.  Ouvrez le [**portail Azure**](https://portal.azure.com/) et connectez-vous en tant **qu’administrateur général**.
+1.  Ouvrez hello [ **Azure Portal** ](https://portal.azure.com/) et connectez-vous en tant qu’un **administrateur Global.**
 
-2.  Ouvrez **l’extension Azure Active Directory** en cliquant sur **Autres services** en bas du menu de navigation principal de gauche.
+2.  Ouvrez hello **Extension Azure Active Directory** en cliquant sur **davantage de services** bas hello du menu de navigation de gauche principal hello.
 
-3.  Tapez « **Azure Active Directory** » dans la zone de recherche de filtre et sélectionnez l’élément **Azure Active Directory**.
+3.  Tapez dans **« Azure Active Directory**» dans la zone de recherche filtre hello et sélectionnez hello **Azure Active Directory** élément.
 
-4.  Cliquez sur **Applications d’entreprise** dans le menu de navigation de gauche d’Azure Active Directory.
+4.  Cliquez sur **des Applications d’entreprise** à partir du menu de navigation gauche hello Azure Active Directory.
 
-5.  Cliquez sur **Toutes les applications** pour afficher la liste complète de vos applications.
+5.  Cliquez sur **toutes les Applications** tooview une liste de toutes vos applications.
 
-  * Si l’application que vous recherchez ne figure pas dans la liste, utilisez la commande **Filtre** en haut de la **liste de toutes les applications** et définissez l’option **Afficher** sur **Toutes les applications.**
+  * Si vous ne voyez pas l’application hello que vous souhaitez afficher ici, utilisez hello **filtre** contrôle haut hello hello **liste de toutes les Applications** et ensemble hello **afficher** option trop **Toutes les Applications.**
 
-6.  Dans la liste qui s’affiche, sélectionnez l’application à laquelle vous souhaitez affecter un utilisateur.
+6.  Sélectionnez l’application hello tooassign une liste des utilisateurs toofrom hello.
 
-7.  Une fois l’application chargée, cliquez sur **Utilisateurs et groupes** dans le menu de navigation de gauche de l’application.
+7.  Une fois le charge de l’application hello, cliquez sur **utilisateurs et groupes** à partir du menu de navigation de gauche de l’application hello.
 
-8.  Cliquez sur le bouton **Ajouter** en haut de la liste **Utilisateurs et groupes** pour ouvrir le panneau **Ajouter une attribution**.
+8.  Cliquez sur hello **ajouter** bouton par-dessus hello **utilisateurs et groupes** hello tooopen de liste **ajouter l’affectation** panneau.
 
-9.  Cliquez sur le sélecteur **Utilisateurs et groupes** à partir du panneau **Ajouter une attribution**.
+9.  Cliquez sur hello **utilisateurs et groupes** sélecteur de hello **ajouter l’affectation** panneau.
 
-10. Tapez le **nom de groupe complet** du groupe souhaité pour l’attribution dans la zone de recherche **Rechercher par nom ou adresse de messagerie**.
+10. Type Bonjour **nom de groupe complète** groupe hello vous êtes intéressé par attribution dans hello **recherche par nom ou adresse de messagerie** zone de recherche.
 
-11. Pointez sur le **groupe** dans la liste pour afficher une **case à cocher**. Cliquez sur la case à cocher en regard de la photo de profil ou du logo du groupe pour ajouter ce dernier à la liste **Sélectionné**.
+11. Placez le curseur sur hello **groupe** dans hello liste tooreveal un **case à cocher**. Cliquez sur tooadd de photo ou le logo de profil de hello case à cocher toohello groupe suivant votre toohello utilisateur **sélectionnés** liste.
 
-12. **Facultatif :** si vous souhaitez **ajouter plusieurs groupes**, entrez un autre **nom de groupe complet** dans la zone de recherche **Rechercher par nom ou adresse de messagerie**, puis cliquez sur la case à cocher pour ajouter ce groupe à la liste **Sélectionné**.
+12. **Facultatif :** si vous souhaitez que trop**ajouter plusieurs groupes**, type dans un autre **nom de groupe complète** dans hello **recherche par nom ou adresse de messagerie** zone de recherche, Cliquez sur tooadd de case à cocher hello toohello de ce groupe **sélectionnés** liste.
 
-13. Lorsque vous avez fini de sélectionner les groupes, cliquez sur le bouton **Sélectionner** pour les ajouter à la liste des utilisateurs et des groupes à affecter à l’application.
+13. Lorsque vous avez fini de sélectionner les groupes, cliquez sur hello **sélectionnez** bouton tooadd les toohello la liste des toobe utilisateurs et groupes affectés toohello application.
 
-14. **Facultatif :** cliquez sur le sélecteur **Sélectionner un rôle** dans le panneau **Ajouter une attribution** pour sélectionner un rôle à affecter aux groupes que vous avez sélectionnés.
+14. **Facultatif :** cliquez sur hello **sélectionner un rôle** sélecteur Bonjour **ajouter l’affectation** panneau tooselect un toohello de tooassign rôle groupes que vous avez sélectionné.
 
-15. Cliquez sur le bouton **Attribuer** pour affecter l’application aux groupes sélectionnés.
+15. Cliquez sur hello **affecter** bouton tooassign hello application toohello les groupes sélectionnés.
 
-Si l’approvisionnement est configuré et déjà en cours d’exécution pour une application, les nouveaux utilisateurs de ce groupe doivent être affectés à une application en 10 minutes environ. Consultez **les journaux d’audit** pour plus d’informations.
+Si cette configuration est configuré et en cours d’exécution pour une application, les nouveaux utilisateurs contenus dans le groupe de hello doivent être application tooan approvisionnés dans 10 minutes environ. Vérifiez hello **les journaux d’Audit** pour plus d’informations.
 
 >[!IMPORTANT]
->Approvisionnement du nom du groupe et des détails du groupe, en plus des membres, si la prise en charge est effective pour certaines applications. Vous pouvez activer ou désactiver cette fonctionnalité en activant ou désactivant la **mappage** pour les objets de groupe affichés dans l’onglet **Approvisionnement**. 
+>Hello nom du groupe de configuration d’et de groupe plus d’informations, dans les membres de toohello de plus, si la prise en charge pour certaines applications. Vous pouvez activer ou désactiver cette fonctionnalité en activant ou désactivant hello **mappage** pour les objets de groupe affichés dans hello **Provisioning** onglet. 
 >
 >
 
-Si les groupes de configuration sont activés, veillez à passer en revue les mappages d’attributs afin de vous assurer qu'un champ approprié est utilisé pour l’« ID correspondant ». Il peut s’agir du nom d’affichage ou de l’alias de courrier électronique, comme le groupe et ses membres qui ne sont pas approvisionnés si la propriété correspondante est vide ou n’est pas remplie pour un groupe dans Azure AD.
+Si la configuration des groupes est activée, veillez à tooreview hello attribut mappages tooensure un champ approprié est utilisé pour hello « correspondant ID ». Cela peut être le nom d’affichage hello ou par courrier électronique à l’alias, que hello groupe et ses membres ne pas être configurés si hello correspondant est vide ou non remplie pour un groupe dans Azure AD.
 
 ## <a name="next-steps"></a>Étapes suivantes
-[Automatisation de l’approvisionnement et de la l’annulation de l’approvisionnement des utilisateurs pour les applications SaaS avec Azure Active Directory](active-directory-saas-app-provisioning.md)
+[Automatiser la configuration de l’utilisateur et Deprovisioning tooSaaS Applications avec Azure Active Directory](active-directory-saas-app-provisioning.md)
