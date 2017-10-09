@@ -15,22 +15,22 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/04/2017
 ms.author: delhan
-ms.openlocfilehash: 79df187c9093eb01f18b3dfdc25d1d19a2f63c62
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: c695d23167ddba11283f6e223769e29b18a5c7ba
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="community-suggested-third-party-vpn-or-firewall-device-settings-for-azure-vpn-gateway"></a>Paramètres de pare-feu ou VPN tiers suggérés par la communauté pour la passerelle VPN Azure
 
 Cet article fournit plusieurs suggestions de solution pour les pare-feu ou VPN tiers qui sont utilisés avec la passerelle VPN Azure.
 
 > [!Note]
-> Le support technique dédié aux pare-feu ou VPN tiers est fourni par le fabricant de l’appareil. 
+> Le support technique pour les périphériques VPN ou un pare-feu tiers est fourni par le fabricant du périphérique hello. 
 
 ## <a name="more-information"></a>Plus d’informations
 
-Le tableau suivant répertorie plusieurs périphériques courants et l’aide associée :
+Hello tableau suivant répertorie plusieurs périphériques communs et aide connexe :
 
 |Produit    |Référence                                                |
 |-----------|-----------------------------------------------------------|

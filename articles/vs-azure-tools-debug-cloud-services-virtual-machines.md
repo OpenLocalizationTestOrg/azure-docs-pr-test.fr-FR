@@ -1,5 +1,5 @@
 ---
-title: "Débogage d’un service cloud ou d’une machine virtuelle Azure dans Visual Studio | Microsoft Docs"
+title: aaaDebugging Azure cloud service ou machine virtuelle dans Visual Studio | Documents Microsoft
 description: "Débogage d’un service cloud ou d’une machine virtuelle dans Visual Studio"
 services: visual-studio-online
 documentationcenter: na
@@ -14,154 +14,154 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 11/11/2016
 ms.author: kraigb
-ms.openlocfilehash: 2ea3a9d6b3bdd873c139064b3c400eff5977eda4
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 32a326430021ba2ea9317a6a71fa005d4b87c273
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="debugging-an-azure-cloud-service-or-virtual-machine-in-visual-studio"></a>Débogage d'un service cloud ou d'une machine virtuelle Azure dans Visual Studio
 Visual Studio vous offre différentes options de débogage des machines virtuelles et services cloud Azure.
 
 ## <a name="debug-your-cloud-service-on-your-local-computer"></a>Déboguer votre service cloud sur votre ordinateur local
-L’utilisation de l’émulateur de calcul Azure pour déboguer votre service cloud sur une machine locale constitue un gain de temps et d’argent. Déboguer un service localement avant de le déployer vous permet d’améliorer la fiabilité et les performances, tout en évitant les coûts de temps de calcul. Certaines erreurs peuvent toutefois se produire quand vous exécutez un service cloud directement dans Azure. Vous pouvez déboguer ces erreurs si vous activez le débogage distant quand vous publiez votre service, puis attachez le débogueur à une instance de rôle.
+Vous pouvez enregistrer temps et l’argent à l’aide de toodebug d’émulateur de calcul Azure hello votre service cloud sur un ordinateur local. Déboguer un service localement avant de le déployer vous permet d’améliorer la fiabilité et les performances, tout en évitant les coûts de temps de calcul. Certaines erreurs peuvent toutefois se produire quand vous exécutez un service cloud directement dans Azure. Vous pouvez déboguer ces erreurs si vous activez le débogage distant lorsque vous publiez votre service, puis attachez l’instance de rôle du débogueur tooa hello.
 
-L’émulateur simule le service de calcul Azure et s’exécute dans votre environnement local pour vous permettre de tester et déboguer votre service cloud avant son déploiement. Il gère le cycle de vie de vos instances de rôle et donne accès aux ressources simulées, telles que le stockage local. Quand vous déboguez ou exécutez votre service à partir de Visual Studio, le programme démarre automatiquement l’émulateur comme une application d’arrière-plan, puis déploie votre service vers l’émulateur. Vous pouvez utiliser l’émulateur pour voir votre service en cours d’exécution dans l’environnement local. Vous pouvez exécuter la version complète ou express de l’émulateur. (À partir d’Azure 2.3, la version express de l’émulateur est celle par défaut.) Consultez [Utilisation de l’émulateur express pour exécuter et déboguer un service cloud localement](https://msdn.microsoft.com/library/dn339018.aspx).
+émulateur de Hello simule le service de calcul Azure hello et s’exécute dans votre environnement local afin que vous pouvez tester et déboguer votre service cloud avant de le déployer. Hello émulateur handles hello du cycle de vie de vos instances de rôle et fournit l’accès des ressources toosimulated, tels que le stockage local. Lorsque vous déboguez ou exécutez votre service à partir de Visual Studio, il démarre automatiquement émulateur de hello comme une application en arrière-plan et puis déploie un émulateur toohello de votre service. Vous pouvez utiliser hello émulateur tooview votre service lorsqu’il s’exécute dans l’environnement local de hello. Vous pouvez exécuter hello complète version ou hello express de l’émulateur de hello. (Version express de hello de l’émulateur de hello à partir de Azure 2.3, est par défaut de hello.) Consultez [tooRun d’à l’aide de l’émulateur Express et déboguer un Service Cloud localement](https://msdn.microsoft.com/library/dn339018.aspx).
 
-### <a name="to-debug-your-cloud-service-on-your-local-computer"></a>Pour déboguer votre service cloud sur votre ordinateur local
-1. Dans la barre de menus, sélectionnez **Déboguer**, **Démarrer le débogage** pour exécuter votre projet de service cloud Azure. Vous pouvez aussi appuyer sur F5. Un message s’affiche, indiquant que l’émulateur de calcul est en cours de démarrage. Une icône s’affiche dans la zone de notification pour confirmer le démarrage de l’émulateur.
+### <a name="toodebug-your-cloud-service-on-your-local-computer"></a>toodebug votre cloud service sur votre ordinateur local
+1. Dans la barre de menus de hello, choisissez **déboguer**, **démarrer le débogage** toorun votre projet de service cloud Azure. Vous pouvez aussi appuyer sur F5. Vous verrez un message hello émulateur de calcul démarre. Au démarrage de l’émulateur de hello, l’icône de barre d’état système hello le confirme.
 
-    ![Émulateur Azure dans la zone de notification](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC783828.png)
-2. Affichez l’interface utilisateur de l’émulateur de calcul en ouvrant le menu contextuel de l’icône Azure dans la zone de notification, puis en sélectionnant **Afficher l’interface utilisateur de l’émulateur de calcul**.
+    ![Émulateur Azure dans la barre d’état système hello](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC783828.png)
+2. Afficher l’interface utilisateur de hello pour l’émulateur de calcul hello en ouvrant le menu contextuel hello hello icône Azure dans la zone de notification hello et sélectionnez **Show Compute Emulator UI**.
 
-    Le volet gauche de l'interface utilisateur montre les services actuellement déployés sur l'émulateur de calcul et les instances de rôle en cours d'exécution sur chaque service. Vous pouvez sélectionner le service ou des rôles pour afficher les informations liées au cycle de vie, aux journaux et aux diagnostics dans le volet de droite. Si vous placez le focus dans la marge supérieure d’une fenêtre incluse, celle-ci se développe pour remplir le volet droit.
-3. Parcourez l’application en sélectionnant les commandes du menu **Déboguer** et en définissant des points d’arrêt dans votre code. À mesure que vous parcourez l'application dans le débogueur, les volets sont mis à jour avec l'état actuel de l'application. Lorsque vous arrêtez le débogage, le déploiement de l’application est supprimé. Si votre application inclut un rôle web et que vous avez réglé la propriété Action de démarrage pour démarrer le navigateur web, Visual Studio démarre votre application web dans le navigateur. Si vous modifiez le nombre d’instances d’un rôle dans la configuration du service, vous devez arrêter votre service cloud, puis redémarrer le débogage afin de pouvoir déboguer ces nouvelles instances du rôle.
+    volet de gauche de Hello Hello l’interface utilisateur affiche les services de hello qui sont actuellement déployés toohello calcul émulateur et hello instances de rôle que chaque service est en cours d’exécution. Vous pouvez choisir hello service ou des rôles toodisplay cycle de vie de la journalisation et des informations de diagnostic dans le volet de droite hello. Si vous placez le focus de hello dans la marge supérieure de hello d’une fenêtre incluse, il développe le volet de droite toofill hello.
+3. Étapes à l’application hello en sélectionnant les commandes hello **déboguer** menu et en définissant des points d’arrêt dans votre code. À mesure que vous parcourez l’application hello dans le débogueur de hello, les volets de hello sont mis à jour avec l’état actuel de hello de l’application hello. Lorsque vous arrêtez le débogage, le déploiement de l’application hello est supprimé. Si votre application inclut un rôle web et que vous avez défini le navigateur web hello de la propriété action hello démarrage toostart, Visual Studio démarre votre application web dans le navigateur de hello. Si vous modifiez le nombre de hello d’instances d’un rôle dans la configuration du service hello, vous devez arrêter votre service cloud et puis redémarrez le débogage afin que vous puissiez déboguer ces nouvelles instances de rôle de hello.
 
-    **Remarque** : quand vous arrêtez l’exécution ou le débogage de votre service, l’émulateur de calcul et l’émulateur de stockage locaux ne sont pas interrompus. Vous devez les arrêter explicitement à partir de la zone de notification.
+    **Remarque :** lorsque vous arrêtez en cours d’exécution ou débogage de votre service, hello émulateur de calcul local et l’émulateur de stockage ne sont pas arrêtés. Vous devez les arrêter explicitement à partir de la zone de notification hello.
 
 ## <a name="debug-a-cloud-service-in-azure"></a>Déboguer un service cloud dans Azure
-Pour déboguer un service cloud à partir d’une machine distante, vous devez activer cette fonctionnalité de façon explicite au moment du déploiement de ce service. Tous les services nécessaires (msvsmon.exe, par exemple) sont alors installés sur les machines virtuelles qui exécutent vos instances de rôle. Si vous n’avez pas activé le débogage distant quand vous avez publié le service, vous devez republier ce service avec le débogage distant activé.
+toodebug un service cloud à partir d’un ordinateur distant, vous devez activer cette fonctionnalité explicitement lorsque vous déployez votre service cloud afin que requis (msvsmon.exe, par exemple) de services sont installés sur des machines virtuelles hello qui exécutent vos instances de rôle. Si vous n’avez pas activé le débogage distant lorsque vous avez publié le service de hello, vous avez le service de hello toorepublish avec le débogage distant activé.
 
-L’activation du débogage distant pour un service cloud n’entraîne pas de baisse des performances, ni de coûts supplémentaires. Vous ne devez pas utiliser le débogage distant pour un service de production, car cela peut avoir un impact pour les clients qui utilisent ce service.
+L’activation du débogage distant pour un service cloud n’entraîne pas de baisse des performances, ni de coûts supplémentaires. Vous ne devez pas utiliser le débogage distant sur un service de production, car les clients qui utilisent le service de hello peuvent être compromises.
 
 > [!NOTE]
-> Quand vous publiez un service cloud à partir de Visual Studio, vous pouvez activer **IntelliTrace** pour tous les rôles de ce service qui ciblent .NET Framework 4 ou .NET Framework 4.5. Avec **IntelliTrace**, vous pouvez examiner des événements qui se sont déjà produits dans une instance de rôle et reproduire le contexte de ce moment-là. Consultez [Débogage d’un service cloud publié avec IntelliTrace et Visual Studio](http://go.microsoft.com/fwlink/?LinkID=623016) et [Utilisation d’IntelliTrace](https://msdn.microsoft.com/library/dd264915.aspx).
+> Lorsque vous publiez un service cloud à partir de Visual Studio, vous pouvez activer **IntelliTrace** pour tous les rôles dans ce service qui hello cible .NET Framework 4 ou hello .NET Framework 4.5. À l’aide de **IntelliTrace**, vous pouvez examiner les événements qui se sont produites dans une instance de rôle Bonjour passées et reproduire le contexte hello à ce stade. Consultez [Débogage d’un service cloud publié avec IntelliTrace et Visual Studio](http://go.microsoft.com/fwlink/?LinkID=623016) et [Utilisation d’IntelliTrace](https://msdn.microsoft.com/library/dd264915.aspx).
 >
 >
 
-### <a name="to-enable-remote-debugging-for-a-cloud-service"></a>Pour activer le débogage distant pour un service cloud
-1. Ouvrez le menu contextuel du projet Azure, puis sélectionnez **Publier**.
-2. Sélectionnez l’environnement **Intermédiaire** et la configuration **Débogage**.
+### <a name="tooenable-remote-debugging-for-a-cloud-service"></a>tooenable pour un service cloud du débogage distant
+1. Ouvrez le menu contextuel hello hello projet Windows Azure, puis **publier**.
+2. Sélectionnez hello **intermédiaire** environnement et hello **déboguer** configuration.
 
-    Il s’agit simplement d’une indication. Vous pouvez choisir d’exécuter vos environnements de test dans un environnement de production. L’activation du débogage distant sur l’environnement de production risque toutefois d’avoir un impact pour les utilisateurs. Vous pouvez choisir la configuration Release, mais la configuration Debug présente l’avantage de simplifier le débogage.
+    Il s’agit simplement d’une indication. Vous pouvez choisir toorun vos environnements de test dans un environnement de Production. Toutefois, vous pouvez affecter les utilisateurs si vous activez le débogage distant sur l’environnement de Production hello. Vous pouvez choisir la configuration Release de hello, mais la configuration de débogage hello rend le débogage.
 
-    ![Choisir la configuration Debug](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC746717.gif)
-3. Suivez les étapes habituelles, en veillant à cocher la case **Activer le débogueur distant pour tous les rôles** dans l’onglet **Paramètres avancés**.
+    ![Choisissez la configuration de débogage hello](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC746717.gif)
+3. Suivez les étapes habituelles hello, mais sélectionnez hello **activer le débogueur distant pour tous les rôles** case à cocher sur hello **paramètres avancés** onglet.
 
     ![Configuration Debug](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC746718.gif)
 
-### <a name="to-attach-the-debugger-to-a-cloud-service-in-azure"></a>Pour attacher le débogueur à un service cloud dans Azure
-1. Dans l’Explorateur de serveurs, développez le nœud de votre service cloud.
-2. Ouvrez le menu contextuel du rôle ou de l’instance de rôle auquel vous souhaitez joindre le débogueur, puis sélectionnez **Attacher le débogueur**.
+### <a name="tooattach-hello-debugger-tooa-cloud-service-in-azure"></a>service de cloud tooattach hello débogueur tooa dans Azure
+1. Dans l’Explorateur de serveurs, développez le nœud de hello pour votre service cloud.
+2. Menu contextuel de hello ouverte pour le rôle de hello ou toowhich d’instance de rôle que vous souhaitez tooattach, puis sélectionnez **attacher le débogueur**.
 
-    Si vous déboguez un rôle, le débogueur Visual Studio s'attache à chaque instance de ce rôle. Le débogueur s’arrêtera sur un point d’arrêt pour la première instance de rôle qui exécute cette ligne de code et remplit les conditions de ce point d’arrêt. Si vous déboguez une instance, le débogueur est attaché uniquement à cette instance, et s’arrête sur un point d’arrêt quand cette instance spécifique exécute cette ligne de code et remplit les conditions du point d’arrêt.
+    Si vous déboguez un rôle, le débogueur de Visual Studio hello attache instance tooeach de ce rôle. Hello s’y arrête pas sur un point d’arrêt pour hello première instance de rôle qui exécute cette ligne de code et respecte les conditions de ce point d’arrêt. Si vous déboguez une instance, hello débogueur est attaché tooonly que l’instance et s’interrompt sur un point d’arrêt uniquement lorsque cette instance spécifique exécute cette ligne de code et respecte hello les conditions du point d’arrêt.
 
     ![Attacher le débogueur](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC746719.gif)
-3. Une fois que le débogueur est joint à une instance, déboguez comme vous le feriez normalement. Le débogueur se joint automatiquement au processus hôte approprié pour votre rôle. Selon le rôle, le débogueur est attaché à w3wp.exe, WaWorkerHost.exe ou WaIISHost.exe. Pour identifier le processus auquel le débogueur est attaché, développez le nœud de l’instance dans l’Explorateur de serveurs. Pour plus d’informations sur les processus Azure, consultez [Architecture de rôle Azure](http://blogs.msdn.com/b/kwill/archive/2011/05/05/windows-azure-role-architecture.aspx).
+3. Une fois que le débogueur de hello attache tooan instance, de débogage comme d’habitude. Hello est automatiquement attaché toohello des processus de l’ordinateur hôte approprié pour votre rôle. Selon quel hello est rôle, hello débogueur attache toow3wp.exe, WaWorkerHost.exe ou WaIISHost.exe. tooverify hello processus toowhich hello débogueur est attaché, développez le nœud d’instance hello dans l’Explorateur de serveurs. Pour plus d’informations sur les processus Azure, consultez [Architecture de rôle Azure](http://blogs.msdn.com/b/kwill/archive/2011/05/05/windows-azure-role-architecture.aspx).
 
     ![Boîte de dialogue Sélectionner le type de code](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC718346.png)
-4. Pour identifier les processus auxquels le débogueur est attaché, sélectionnez Déboguer, Windows, Processus dans la barre de menus pour ouvrir la boîte de dialogue Processus (ou appuyez sur Ctrl+Alt+Z). Pour détacher un processus spécifique, ouvrez son menu contextuel, puis sélectionnez **Détacher le processus**. Vous pouvez aussi afficher le nœud d’instance dans l’Explorateur de serveurs, rechercher le processus et ouvrir son menu contextuel, puis sélectionnez **Détacher le processus**.
+4. tooidentify hello processus toowhich hello est associé, ouvrez hello boîte de dialogue processus, sur hello barre de menus, en choisissant le débogage, Windows, les processus. (Clavier : Ctrl + Alt + Z) toodetach un processus spécifique, ouvrez le menu contextuel et sélectionnez **détacher le processus**. Ou, recherchez le nœud d’instance hello dans l’Explorateur de serveurs, de trouver le processus de hello, ouvrez son menu contextuel, puis sélectionnez **détacher le processus**.
 
     ![Processus de débogage](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC690787.gif)
 
 > [!WARNING]
-> Évitez les arrêts longs aux points d'arrêt avec le débogage à distance. Azure considère qu’un processus arrêté depuis plusieurs minutes ne répond pas, et cesse d’envoyer du trafic vers cette instance. Si l’arrêt est trop long, msvsmon.exe est détaché du processus.
+> Évitez les arrêts longs aux points d'arrêt avec le débogage à distance. Azure traite un processus est arrêté pendant plus de quelques minutes comme non réactif et cesse d’envoyer l’instance toothat de trafic. Si vous arrêtez pendant trop longtemps, msvsmon.exe est détaché du processus de hello.
 >
 >
 
-Pour détacher le débogueur de tous les processus dans votre instance ou rôle, ouvrez le menu contextuel du rôle ou de l’instance que vous déboguez, puis sélectionnez **Détacher le débogueur**.
+débogueur de hello toodetach de tous les processus dans votre instance ou le rôle, le menu contextuel Ouvrir hello hello rôle ou cette instance que vous déboguez, puis sélectionnez **détacher le débogueur**.
 
 ## <a name="limitations-of-remote-debugging-in-azure"></a>Limitations du débogage distant dans Azure
-À partir de la version 2.3 du Kit de développement logiciel (SDK), le débogage à distance présente les limitations ci-dessous.
+À partir d’Azure SDK 2.3, le débogage distant a hello limites suivantes.
 
 * Quand le débogage distant est activé, vous ne pouvez pas publier un service cloud dans lequel un rôle comporte plus de 25 instances.
-* Le débogueur utilise les ports 30400 à 30424, 31400 à 31424 et 32400 à 32424. Si vous essayez d’utiliser ces ports, vous ne pourrez pas publier votre service, et l’un des messages d’erreur suivants s’affichera dans le journal des activités Azure :
+* débogueur de Hello utilise too30424 30400 de ports, 31400 too31424 et too32424 32400. Si vous essayez toouse ces ports, vous ne serez pas en mesure de toopublish votre service et l’une des hello messages d’erreur suivants seront affiche dans le journal d’activité hello pour Azure :
 
-  * Erreur lors de la validation du fichier .cscfg par rapport au fichier .csdef.
-    La plage de ports réservée ('range') pour le point de terminaison Microsoft.WindowsAzure.Plugins.RemoteDebugger.Connector du rôle ('role') chevauche une plage ou un port déjà défini.
-  * L’allocation a échoué. Réessayez ultérieurement, essayez de réduire la taille de la machine virtuelle ou le nombre d’instances de rôle, ou essayez de déployer dans une autre région.
+  * Erreur lors de la validation du fichier .cscfg de hello sur le fichier de .csdef hello.
+    Hello réservé la plage de ports 'plage' pour le point de terminaison que Microsoft.windowsazure.plugins.remotedebugger.Connector du rôle « rôle » chevauche un port déjà défini ou la plage.
+  * L’allocation a échoué. Veuillez réessayer plus tard, essayez de réduire hello taille de machine virtuelle ou le nombre d’instances de rôle ou essayez de déployer tooa autre région.
 
 ## <a name="debugging-azure-virtual-machines"></a>Déboguer des machines virtuelles Azure
-Vous pouvez déboguer des programmes exécutés sur des machines virtuelles Azure à l’aide de l’Explorateur de serveurs dans Visual Studio. Quand vous activez le débogage distant sur une machine virtuelle Azure, Azure installe l’extension de débogage distant sur cette machine virtuelle. Vous pouvez ensuite l’attacher aux processus sur la machine virtuelle et procéder au débogage normalement.
+Vous pouvez déboguer des programmes exécutés sur des machines virtuelles Azure à l’aide de l’Explorateur de serveurs dans Visual Studio. Lorsque vous activez le débogage distant sur une machine virtuelle Azure, Azure installe l’extension hello de débogage distant sur l’ordinateur virtuel de hello. Ensuite, vous pouvez attacher tooprocesses sur l’ordinateur virtuel de hello et de débogage comme vous le feriez normalement.
 
 > [!NOTE]
-> Les machines virtuelles créées via la pile Azure Resource Manager peuvent être déboguées à distance à l’aide de Cloud Explorer dans Visual Studio 2015. Pour plus d’informations, consultez [Gestion des ressources Azure avec Cloud Explorer](http://go.microsoft.com/fwlink/?LinkId=623031).
+> Machines virtuelles créées par pile de gestionnaire de ressources Azure hello peuvent être débogués à distance à l’aide de l’Explorateur de Cloud dans Visual Studio 2015. Pour plus d’informations, consultez [Gestion des ressources Azure avec Cloud Explorer](http://go.microsoft.com/fwlink/?LinkId=623031).
 >
 >
 
-### <a name="to-debug-an-azure-virtual-machine"></a>Pour déboguer une machine virtuelle Azure
-1. Dans l’Explorateur de serveurs, développez le nœud Machines virtuelles, puis sélectionnez le nœud de la machine virtuelle à déboguer.
-2. Ouvrez le menu contextuel, puis sélectionnez **Activer le débogage**. Quand vous êtes invité à confirmer l’activation du débogage sur la machine virtuelle, sélectionnez **Oui**.
+### <a name="toodebug-an-azure-virtual-machine"></a>toodebug une machine virtuelle Azure
+1. Dans l’Explorateur de serveurs, développez les nœuds de Machines virtuelles hello et sélectionnez hello de machine virtuelle de hello que vous souhaitez toodebug.
+2. Ouvrez le menu contextuel de hello et sélectionnez **activer le débogage**. Lorsque le système demande si vous êtes certain que si vous souhaitez que le débogage sur l’ordinateur virtuel hello, sélectionnez tooenable **Oui**.
 
-    Azure installe l’extension de débogage distant sur la machine virtuelle pour activer le débogage.
+    Azure installe l’extension de débogage distant hello sur le débogage de tooenable hello machine virtuelle.
 
     ![Commande d’activation du débogage de machine virtuelle](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC746720.png)
 
     ![Journal des activités Azure](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC746721.png)
-3. Une fois l’extension de débogage à distance installée, ouvrez le menu contextuel de la machine virtuelle et sélectionnez **Attacher le débogueur...**
+3. Une fois que l’extension de débogage distant hello a terminé l’installation, ouvrez le menu contextuel de l’ordinateur virtuel de hello et sélectionnez **attacher le débogueur...**
 
-    Azure récupère la liste des processus sur la machine virtuelle et l’affiche dans la boîte de dialogue Attacher au processus.
+    Azure Obtient une liste des processus de hello sur l’ordinateur virtuel de hello et les affiche dans la boîte de dialogue tooProcess hello attacher.
 
     ![Commande Attacher le débogueur](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC746722.png)
-4. Dans la boîte de dialogue **Attacher au processus**, sélectionnez **Sélectionner** pour limiter la liste des résultats et afficher uniquement les types de code que vous voulez déboguer. Vous pouvez déboguer du code managé 32 ou 64 bits, du code natif ou les deux.
+4. Bonjour **attacher tooProcess** boîte de dialogue, sélectionnez **sélectionnez** tooshow seuls les types hello la liste des résultats de hello toolimit de code vous souhaitez toodebug. Vous pouvez déboguer du code managé 32 ou 64 bits, du code natif ou les deux.
 
     ![Boîte de dialogue Sélectionner le type de code](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC718346.png)
-5. Sélectionnez les processus que vous voulez déboguer sur la machine virtuelle, puis **Attacher**. Par exemple, vous pouvez choisir le processus w3wp.exe pour déboguer une application web sur la machine virtuelle. Pour plus d’informations, consultez [Déboguer un ou plusieurs processus dans Visual Studio](https://msdn.microsoft.com/library/jj919165.aspx) et [Architecture de rôle Azure](http://blogs.msdn.com/b/kwill/archive/2011/05/05/windows-azure-role-architecture.aspx).
+5. Sélectionner les processus hello vous souhaitez toodebug sur l’ordinateur virtuel de hello, puis sélectionnez **attacher**. Par exemple, vous pouvez choisir le processus w3wp.exe de hello si vous souhaitiez toodebug une application web sur l’ordinateur virtuel de hello. Pour plus d’informations, consultez [Déboguer un ou plusieurs processus dans Visual Studio](https://msdn.microsoft.com/library/jj919165.aspx) et [Architecture de rôle Azure](http://blogs.msdn.com/b/kwill/archive/2011/05/05/windows-azure-role-architecture.aspx).
 
 ## <a name="create-a-web-project-and-a-virtual-machine-for-debugging"></a>Créer un projet web et une machine virtuelle pour le débogage
-Avant de publier votre projet Azure, il peut être utile de le tester dans un environnement contrôlé qui prend en charge les scénarios de test et de débogage, et où vous pouvez installer les programmes de test et de surveillance. Pour ce faire, vous pouvez déboguer votre application à distance sur une machine virtuelle.
+Avant de publier votre projet Windows Azure, il peut s’avérer utile tootest dans un environnement contrôlé prenant en charge le débogage et scénarios de test, et où vous pouvez installer le test et surveillance des programmes. Une façon toodo il s’agit de tooremotely déboguer votre application sur un ordinateur virtuel.
 
-Les projets Visual Studio ASP.NET permettent de créer une machine virtuelle que vous pouvez utiliser pour tester les applications. La machine virtuelle inclut les points de terminaison généralement requis tels que PowerShell, le Bureau à distance et Web Deploy.
+Projets ASP.NET Visual Studio offrent une option toocreate une machine virtuelle que vous pouvez utiliser pour tester les applications. machine virtuelle de Hello inclut des points de terminaison généralement requis tels que PowerShell, Bureau à distance et WebDeploy.
 
-### <a name="to-create-a-web-project-and-a-virtual-machine-for-debugging"></a>Pour créer un projet web et une machine virtuelle pour le débogage
+### <a name="toocreate-a-web-project-and-a-virtual-machine-for-debugging"></a>toocreate un projet web et un ordinateur virtuel pour le débogage
 1. Dans Visual Studio, créez une application web ASP.NET.
-2. Dans la boîte de dialogue Nouveau projet ASP.NET, dans la section Azure, sélectionnez **Machine virtuelle** dans la liste déroulante. Laissez la case **Créer des ressources distantes** cochée. Sélectionnez **OK** pour poursuivre.
+2. Dans le dialogue de nouveau projet ASP.NET hello, Bonjour section Azure, choisissez **Machine virtuelle** dans la zone de liste déroulante hello. Laissez hello **créer des ressources distantes** case à cocher activée. Sélectionnez **OK** tooproceed.
 
-    La boîte de dialogue **Créer une machine virtuelle dans Azure** s’affiche.
+    Hello **créer un ordinateur virtuel sur Azure** boîte de dialogue s’affiche.
 
     ![Boîte de dialogue de création de projet web ASP.NET](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC746723.png)
 
-    **Remarque** : vous serez invité à vous connecter à votre compte Azure si vous ne l’êtes pas déjà.
+    **Remarque :** vous serez invité à indiquer toosign dans tooyour compte Azure si vous n’êtes pas déjà connecté.
 
-1. Sélectionnez les différents paramètres de la machine virtuelle, puis sélectionnez **OK**. Pour plus d’informations, consultez [Machines virtuelles](http://go.microsoft.com/fwlink/?LinkId=623033) .
+1. Sélectionnez hello divers paramètres pour la machine virtuelle de hello, puis sélectionnez **OK**. Pour plus d’informations, consultez [Machines virtuelles](http://go.microsoft.com/fwlink/?LinkId=623033) .
 
-    Le nom que vous entrez dans le champ Nom DNS sera le nom de votre machine virtuelle.
+    nom Hello que vous entrez pour le nom DNS sera nom hello de machine virtuelle de hello.
 
     ![Boîte de dialogue Créer une machine virtuelle sur Microsoft Azure](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC746724.png)
 
-    Azure crée la machine virtuelle, puis déploie et configure les points de terminaison, tels que le Bureau à distance et Web Deploy.
-2. Une fois la machine virtuelle entièrement configurée, sélectionnez son nœud dans l’Explorateur de serveurs.
-3. Ouvrez le menu contextuel, puis sélectionnez **Activer le débogage**. Quand vous êtes invité à confirmer l’activation du débogage sur la machine virtuelle, sélectionnez **Oui**.
+    Azure crée hello virtual machine, puis déploie et configure les points de terminaison hello, telles que le Bureau à distance et Web Deploy
+2. Une fois que l’ordinateur virtuel de hello est entièrement configuré, sélectionnez le nœud de l’ordinateur virtuel de hello dans l’Explorateur de serveurs.
+3. Ouvrez le menu contextuel de hello et sélectionnez **activer le débogage**. Lorsque le système demande si vous êtes certain que si vous souhaitez que le débogage sur l’ordinateur virtuel hello, sélectionnez tooenable **Oui**.
 
-    Azure installe l’extension de débogage distant sur la machine virtuelle pour activer le débogage.
+    Azure installe hello débogage extension toohello machine virtuelle tooenable débogage distant.
 
     ![Commande d’activation du débogage de machine virtuelle](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC746720.png)
 
     ![Journal des activités Azure](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC746721.png)
-4. Publiez votre projet comme décrit dans la rubrique [Déploiement d’un projet web à l’aide de la publication en un clic dans Visual Studio](https://msdn.microsoft.com/library/dd465337.aspx). Comme vous voulez effectuer le débogage sur la machine virtuelle, sur la page **Paramètres** de l’Assistant **Publier le site web**, sélectionnez la configuration **Débogage**. Ceci permet de s’assurer que les symboles de code sont disponibles pendant le débogage.
+4. Publiez votre projet comme décrit dans la rubrique [Déploiement d’un projet web à l’aide de la publication en un clic dans Visual Studio](https://msdn.microsoft.com/library/dd465337.aspx). Pour que vous puissiez toodebug sur machine virtuelle hello, sur hello **paramètres** page Hello **publier le site Web** Assistant, sélectionnez **déboguer** en tant que la configuration de hello. Ceci permet de s’assurer que les symboles de code sont disponibles pendant le débogage.
 
     ![Paramètres de publication](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC718349.png)
-5. Dans **Options de publication des fichiers**, sélectionnez **Supprimer les fichiers supplémentaires à la destination** si le projet a déjà été déployé précédemment.
-6. Une fois le projet publié, dans le menu contextuel de la machine virtuelle dans l’Explorateur de serveurs, sélectionnez **Attacher le débogueur...**
+5. Bonjour **Options de publication du fichier**, sélectionnez **supprimer les fichiers supplémentaires à la destination** si le projet de hello a déjà été déployé à un moment antérieur.
+6. Une fois le projet de hello publie, sur le menu contextuel de l’ordinateur virtuel de hello dans l’Explorateur de serveurs, sélectionnez **attacher le débogueur...**
 
-    Azure récupère la liste des processus sur la machine virtuelle et l’affiche dans la boîte de dialogue Attacher au processus.
+    Azure Obtient une liste des processus de hello sur l’ordinateur virtuel de hello et les affiche dans la boîte de dialogue tooProcess hello attacher.
 
     ![Commande Attacher le débogueur](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC746722.png)
-7. Dans la boîte de dialogue **Attacher au processus**, sélectionnez **Sélectionner** pour limiter la liste des résultats et afficher uniquement les types de code que vous voulez déboguer. Vous pouvez déboguer du code managé 32 ou 64 bits, du code natif ou les deux.
+7. Bonjour **attacher tooProcess** boîte de dialogue, sélectionnez **sélectionnez** tooshow seuls les types hello la liste des résultats de hello toolimit de code vous souhaitez toodebug. Vous pouvez déboguer du code managé 32 ou 64 bits, du code natif ou les deux.
 
     ![Boîte de dialogue Sélectionner le type de code](./media/vs-azure-tools-debug-cloud-services-virtual-machines/IC718346.png)
-8. Sélectionnez les processus que vous voulez déboguer sur la machine virtuelle, puis **Attacher**. Par exemple, vous pouvez choisir le processus w3wp.exe pour déboguer une application web sur la machine virtuelle. Pour plus d’informations, consultez [Déboguer un ou plusieurs processus dans Visual Studio](https://msdn.microsoft.com/library/jj919165.aspx) .
+8. Sélectionner les processus hello vous souhaitez toodebug sur l’ordinateur virtuel de hello, puis sélectionnez **attacher**. Par exemple, vous pouvez choisir le processus w3wp.exe de hello si vous souhaitiez toodebug une application web sur l’ordinateur virtuel de hello. Pour plus d’informations, consultez [Déboguer un ou plusieurs processus dans Visual Studio](https://msdn.microsoft.com/library/jj919165.aspx) .
 
 ## <a name="next-steps"></a>Étapes suivantes
-* Utilisez **IntelliTrace** pour collecter un journal des appels et des événements d’un serveur de publication. Consultez [Débogage d’un service cloud publié avec IntelliTrace et Visual Studio](http://go.microsoft.com/fwlink/?LinkID=623016).
-* Utilisez les **Diagnostics Azure** pour collecter des informations détaillées du code actuellement exécuté dans des rôles qui sont eux-mêmes exécutés dans l’environnement de développement ou dans Azure. Consultez [Collecter des données de journalisation avec les diagnostics Azure](http://go.microsoft.com/fwlink/p/?LinkId=400450).
+* Utilisez **Intellitrace** toocollect un journal des événements à partir d’un serveur de publication et des appels. Consultez [Débogage d’un service cloud publié avec IntelliTrace et Visual Studio](http://go.microsoft.com/fwlink/?LinkID=623016).
+* Utilisez **Azure Diagnostics** toolog obtenir des informations détaillées à partir de l’exécution de code dans des rôles, si les rôles hello sont en cours d’exécution dans l’environnement de développement hello ou dans Azure. Consultez [Collecter des données de journalisation avec les diagnostics Azure](http://go.microsoft.com/fwlink/p/?LinkId=400450).

@@ -1,6 +1,6 @@
 ---
-title: "Optimiser le débit du réseau des machines virtuelles | Microsoft Docs"
-description: "Découvrez comment optimiser le débit du réseau des machines virtuelles Azure."
+title: "débit de réseau de machine virtuelle aaaOptimize | Documents Microsoft"
+description: "Découvrez comment toooptimize machine virtuelle Azure débit du réseau."
 services: virtual-network
 documentationcenter: na
 author: steveesp
@@ -14,34 +14,34 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/24/2017
 ms.author: steveesp
-ms.openlocfilehash: 914747983d4d974810836be66d6c6af343f58b60
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: a5cff2d0ab6e3553c3f90d99629521a431477de0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="optimize-network-throughput-for-azure-virtual-machines"></a>Optimiser le débit du réseau des machines virtuelles Azure
 
-Les machines virtuelles Azure disposent de paramètres réseau par défaut qui peuvent être davantage optimisés pour le débit du réseau. Cet article décrit comment optimiser le débit du réseau pour les machines virtuelles Microsoft Azure Windows et Linux, notamment les distributions majeures telles que Ubuntu, CentOS et Red Hat.
+Les machines virtuelles Azure disposent de paramètres réseau par défaut qui peuvent être davantage optimisés pour le débit du réseau. Cet article décrit comment toooptimize débit du réseau pour Windows Azure de Microsoft et les machines virtuelles Linux, y compris les distributions majeures telles que Ubuntu, CentOS et Red Hat.
 
 ## <a name="windows-vm"></a>Machine virtuelle Windows
 
-Si votre machine virtuelle Windows est compatible avec la [mise en réseau accélérée](virtual-network-create-vm-accelerated-networking.md), l’activation de cette fonctionnalité constitue la configuration optimale pour le débit. Pour toutes les autres machines virtuelles Windows, l’utilisation de la mise à l’échelle côté réception (RSS) peut permettre d’atteindre un débit maximal supérieur à celui d’une machine virtuelle sans RSS. La mise à l’échelle côté réception (RSS) peut être désactivée par défaut sur une machine virtuelle Windows. Effectuez les étapes suivantes pour déterminer si la mise à l’échelle côté réception (RSS) est activée et, si nécessaire, pour l’activer.
+Si votre machine virtuelle Windows est prise en charge avec [Accelerated réseau](virtual-network-create-vm-accelerated-networking.md), l’activation de cette fonctionnalité serait la configuration optimale de hello pour le débit. Pour toutes les autres machines virtuelles Windows, l’utilisation de la mise à l’échelle côté réception (RSS) peut permettre d’atteindre un débit maximal supérieur à celui d’une machine virtuelle sans RSS. La mise à l’échelle côté réception (RSS) peut être désactivée par défaut sur une machine virtuelle Windows. Terminer hello suivant les étapes toodetermine si RSS est activé et tooenable si elle est désactivée.
 
-1. Entrez la commande PowerShell `Get-NetAdapterRss` pour savoir si la mise à l’échelle côté réception (RSS) est activée sur une carte réseau. Dans l’exemple de sortie suivant retourné par `Get-NetAdapterRss`, la mise à l’échelle côté réception (RSS) n’est pas activée.
+1. Entrez hello `Get-NetAdapterRss` toosee de commande PowerShell si RSS est activé pour une carte réseau. Bonjour suivant l’exemple de sortie retourné par hello `Get-NetAdapterRss`, RSS n’est pas activé.
 
     ```powershell
     Name                    : Ethernet
     InterfaceDescription    : Microsoft Hyper-V Network Adapter
     Enabled              : False
     ```
-2. Entrez la commande suivante pour activer la mise à l’échelle côté réception (RSS) :
+2. Entrez hello suivant commande tooenable RSS :
 
     ```powershell
     Get-NetAdapter | % {Enable-NetAdapterRss -Name $_.Name}
     ```
-    La commande précédente n’a pas de sortie. La commande a modifié les paramètres de la carte réseau, entraînant une perte temporaire de la connectivité pendant environ une minute. Une boîte de dialogue de reconnexion s’affiche lors de la perte de connectivité. En général, la connectivité est rétablie après la troisième tentative.
-3. Vérifiez que la mise à l’échelle côté réception (RSS) est activée sur la machine virtuelle en entrant de nouveau la commande `Get-NetAdapterRss`. Si l’opération réussit, l’exemple de sortie suivant est retourné :
+    commande précédente Hello n’a pas une sortie. commande Hello modifié des paramètres de carte réseau, à l’origine de la perte de connectivité temporaire d’une minute environ. Une boîte de dialogue Nouvelle connexion en cours s’affiche lors de la perte de connectivité hello. En général la connectivité est rétablie après une tentative de tiers hello.
+3. Vérifiez que RSS est activé dans la machine virtuelle de hello en entrant hello `Get-NetAdapterRss` réexécutez la commande. En cas de réussite, hello suivant l’exemple de sortie est retournée :
 
     ```powershell
     Name                    :Ethernet
@@ -51,18 +51,18 @@ Si votre machine virtuelle Windows est compatible avec la [mise en réseau accé
 
 ## <a name="linux-vm"></a>Machine virtuelle Linux
 
-La mise à l’échelle côté réception (RSS) est toujours activée par défaut sur une machine virtuelle Azure Linux. Les noyaux Linux publiés depuis janvier 2017 incluent de nouvelles options d’optimisation du réseau qui permettent à une machine virtuelle Linux d’obtenir un débit réseau plus élevé.
+La mise à l’échelle côté réception (RSS) est toujours activée par défaut sur une machine virtuelle Azure Linux. Noyaux Linux publiées depuis janvier 2017 incluent de nouvelles options d’optimisation de réseau qui permettent un débit plus élevé du réseau tooachieve Linux VM.
 
 ### <a name="ubuntu"></a>Ubuntu
 
-Pour bénéficier de l’optimisation, mettez tout d’abord à jour vers la version la plus récente, à compter de juin 2017, qui est :
+Dans l’optimisation de l’ordre tooget hello, tout d’abord mettre à jour version toohello dernières pris en charge, à compter de juin 2017, qui est :
 ```json
 "Publisher": "Canonical",
 "Offer": "UbuntuServer",
 "Sku": "16.04-LTS",
 "Version": "latest"
 ```
-Une fois la mise à jour terminée, entrez les commandes suivantes pour obtenir le noyau le plus récent :
+Une fois la mise à jour hello est terminée, entrez hello suivant du noyau de commandes tooget hello plus récent :
 
 ```bash
 apt-get -f install
@@ -77,12 +77,12 @@ Commande facultative :
 `apt-get -y dist-upgrade`
 #### <a name="ubuntu-azure-preview-kernel"></a>Noyau de la préversion Ubuntu Azure
 > [!WARNING]
-> Ce noyau de la préversion Azure Linux peut ne pas offrir les mêmes niveaux de disponibilité et de fiabilité que les noyaux et images de la Place de marché qui se trouvent dans la version mise à la disposition générale. La fonctionnalité n’est pas prise en charge, est susceptible de disposer de possibilités limitées et peut ne pas être aussi fiable que le noyau par défaut. N’utilisez pas ce noyau pour les charges de travail de production.
+> Cette version d’évaluation Azure Linux noyau ne peut pas avoir hello même niveau de disponibilité et la fiabilité en tant qu’images de Marketplace et noyaux qui sont en général version en disponibilité. fonctionnalité de Hello n’est pas pris en charge peut-être avoir limitées des fonctionnalités et ne peut pas être aussi fiable que le noyau de hello par défaut. N’utilisez pas ce noyau pour les charges de travail de production.
 
-Des performances significatives en termes de débit peuvent être atteintes en installant le noyau Azure Linux proposé. Pour tester ce noyau, ajoutez cette ligne à /etc/apt/sources.list.
+Performances de débit significative possible en installant hello proposé noyau Azure Linux. tootry ce noyau, ajoutez cette ligne de too/etc/apt/sources.list
 
 ```bash
-#add this to the end of /etc/apt/sources.list (requires elevation)
+#add this toohello end of /etc/apt/sources.list (requires elevation)
 deb http://archive.ubuntu.com/ubuntu/ xenial-proposed restricted main multiverse universe
 ```
 
@@ -95,15 +95,15 @@ reboot
 
 ### <a name="centos"></a>CentOS
 
-Pour bénéficier de l’optimisation, mettez tout d’abord à jour vers la version la plus récente, à compter de juillet 2017, qui est :
+Dans l’optimisation de l’ordre tooget hello, tout d’abord mettre à jour version toohello dernières pris en charge, à compter de juillet 2017, qui est :
 ```json
 "Publisher": "OpenLogic",
 "Offer": "CentOS",
 "Sku": "7.3",
 "Version": "latest"
 ```
-Une fois la mise à jour terminée, installez les Services d’intégration Linux (LIS) les plus récents.
-L’optimisation du débit est incluse dans les LIS, à partir de la version 4.2.2-2. Entrez les commandes suivantes pour installer LIS :
+Une fois la mise à jour hello est terminée, installation Bonjour derniers Services d’intégration Linux (LIS).
+optimisation de débit Hello est LIS, en commençant à partir de 4.2.2-2. Entrez hello suivant de commandes tooinstall LIS :
 
 ```bash
 sudo yum update
@@ -113,15 +113,15 @@ sudo yum install microsoft-hyper-v
 
 ### <a name="red-hat"></a>Red Hat
 
-Pour bénéficier de l’optimisation, mettez tout d’abord à jour vers la version la plus récente, à compter de juillet 2017, qui est :
+Dans l’optimisation de l’ordre tooget hello, tout d’abord mettre à jour version toohello dernières pris en charge, à compter de juillet 2017, qui est :
 ```json
 "Publisher": "RedHat"
 "Offer": "RHEL"
 "Sku": "7.3"
 "Version": "7.3.2017071923"
 ```
-Une fois la mise à jour terminée, installez les Services d’intégration Linux (LIS) les plus récents.
-L’optimisation du débit est incluse dans les LIS, à partir de la version 4.2. Entrez les commandes suivantes pour télécharger et installer les LIS :
+Une fois la mise à jour hello est terminée, installation Bonjour derniers Services d’intégration Linux (LIS).
+optimisation de débit Hello est LIS, en commençant à partir de 4.2. Entrez hello suivant toodownload de commandes et installer LIS :
 
 ```bash
 mkdir lis4.2.2-2
@@ -132,8 +132,8 @@ cd LISISO
 install.sh #or upgrade.sh if prior LIS was previously installed
 ```
 
-Apprenez-en plus sur les Services d’intégration Linux version 4.2 pour Hyper-V en consultant la [page de téléchargement](https://www.microsoft.com/download/details.aspx?id=55106).
+En savoir plus sur Linux Integration Services Version 4.2 pour Hyper-V en consultant hello [page de téléchargement](https://www.microsoft.com/download/details.aspx?id=55106).
 
 ## <a name="next-steps"></a>Étapes suivantes
-* À présent que la machine virtuelle est optimisée, voyez le résultat avec le [Test de bande passante/débit de machine virtuelle](virtual-network-bandwidth-testing.md) pour votre scénario.
+* Maintenant que hello machine virtuelle est optimisée, consultez résultat hello avec [la bande passante ou de débit test Azure VM](virtual-network-bandwidth-testing.md) pour votre scénario.
 * En savoir plus avec le [FAQ sur les réseaux virtuels Azure](virtual-networks-faq.md)

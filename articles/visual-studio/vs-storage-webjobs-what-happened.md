@@ -1,6 +1,6 @@
 ---
-title: "Qu’est-il arrivé à mon projet de tâche web (service connecté Azure Storage de Visual Studio) ? | Microsoft Docs"
-description: "Décrit ce qui s’est produit dans un projet de tâche web une fois que vous vous connectez à un compte de stockage à l’aide des services connectés de Visual Studio"
+title: "aaaWhat est devenu le projet de tâche Web toomy (Visual Studio Azure Storage connecté service) ? | Microsoft Docs"
+description: "Décrit ce qui s’est produite dans un projet de la tâche Web Azure après que la connexion de compte de stockage tooa à l’aide de Visual Studio services connectés"
 services: storage
 documentationcenter: 
 author: kraigb
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/02/2016
 ms.author: kraigb
-ms.openlocfilehash: 8891685a99c5ba366b74af0a21396d4a5e499835
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ed0ce75f5b23eca3c41dacb48564d6e5b846f395
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="what-happened-to-my-webjob-project-visual-studio-azure-storage-connected-service"></a>Qu’est-il arrivé à mon projet de tâche web (service connecté Azure Storage de Visual Studio) ?
+# <a name="what-happened-toomy-webjob-project-visual-studio-azure-storage-connected-service"></a>Le projet de tâche Web toomy s’est produit (Visual Studio Azure Storage connecté service) ?
 ## <a name="references-added"></a>Références ajoutées
-Le package NuGet Azure Storage a été ajouté ou mis à jour dans votre projet Visual Studio.  
-Ce package ajoute les références .NET suivantes :
+package NuGet de stockage Azure de Hello a été ajouté tooor mis à jour dans votre projet Visual Studio.  
+Ce package ajoute hello suivant des références .NET :
 
 * **Microsoft.Data.Edm**
 * **Microsoft.Data.OData**
@@ -35,7 +35,7 @@ Ce package ajoute les références .NET suivantes :
 * **System.Spatial**
 
 ## <a name="connection-string-for-azure-storage-added"></a>Chaîne de connexion pour Azure Storage ajoutée
-Dans le fichier App.config de votre projet, les entrées **AzureWebJobsStorage** et **AzureWebJobsDashboard** ont été mises à jour avec la chaîne de connexion et la clé du compte de stockage sélectionné.
+Dans le fichier App.config de hello de votre projet, hello **AzureWebJobsStorage** et **AzureWebJobsDashboard** entrées ont été mises à jour avec la chaîne de connexion et la clé du compte de stockage hello sélectionné.
 
 Pour plus d’informations, consultez [Ressources de documentation relatives à Azure WebJobs](http://go.microsoft.com/fwlink/?linkid=390226).
 

@@ -1,6 +1,6 @@
 ---
-title: "À propos des périphériques VPN pour les connexions Azure entre locaux | Microsoft Docs"
-description: "Cet article traite des périphériques VPN et des paramètres IPsec pour les connexions entre locaux de passerelle VPN S2S. Des liens sont fournis vers des instructions et des exemples de configuration."
+title: "aaaAbout les périphériques VPN pour les connexions Azure entre différents locaux | Documents Microsoft"
+description: "Cet article traite des périphériques VPN et des paramètres IPsec pour les connexions entre locaux de passerelle VPN S2S. Des liens sont fournis des exemples et des instructions de tooconfiguration."
 services: vpn-gateway
 documentationcenter: na
 author: yushwang
@@ -15,27 +15,27 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 06/14/2017
 ms.author: yushwang;cherylmc
-ms.openlocfilehash: c8e1db0a5488b1296206a4d557e47599edc59a88
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 8b84afbf93d807342ecd56ab369d5909a13343e9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="about-vpn-devices-and-ipsecike-parameters-for-site-to-site-vpn-gateway-connections"></a>À propos des périphériques VPN et des paramètres IPsec/IKE pour les connexions de passerelle VPN site à site
 
-Un périphérique VPN est requis pour configurer une connexion VPN site à site (S2S) entre locaux à l’aide d’une passerelle VPN. Vous pouvez utiliser des connexions site à site pour créer une solution hybride, ou chaque fois que vous souhaitez disposer de connexions sécurisées entre vos réseaux locaux et vos réseaux virtuels. Cet article fournit une liste des périphériques VPN validés, ainsi qu’une liste des paramètres IPsec/IKE pour les passerelles VPN.
+Un périphérique VPN est requise tooconfigure un réseau VPN Site à Site (S2S) entre différents locaux à l’aide d’une passerelle VPN. Connexions de site à Site peuvent être utilisé toocreate une solution hybride, ou chaque fois que vous souhaitez sécuriser les connexions entre vos réseaux locaux et de vos réseaux virtuels. Cet article fournit une liste des périphériques VPN validés, ainsi qu’une liste des paramètres IPsec/IKE pour les passerelles VPN.
 
 > [!IMPORTANT]
-> Si vous rencontrez des problèmes de connectivité entre vos périphériques VPN locaux et les passerelles VPN, consultez [Problèmes de compatibilité connus avec le matériel](#known).
+> Si vous rencontrez des problèmes de connectivité entre votre des dispositifs VPN locaux et les passerelles VPN, consultez trop[des problèmes de compatibilité des appareils](#known).
 >
 >
 
-### <a name="items-to-note-when-viewing-the-tables"></a>Éléments à noter lorsque vous affichez les tables :
+### <a name="items-toonote-when-viewing-hello-tables"></a>Éléments toonote lors de l’affichage des tables de hello :
 
-* Une modification de la terminologie a eu lieu pour les passerelles VPN Azure. Seuls les noms ont changé. Aucune modification de fonctionnalité n’est à noter.
+* Une modification de la terminologie a eu lieu pour les passerelles VPN Azure. Seuls les noms hello ont été modifiés. Aucune modification de fonctionnalité n’est à noter.
   * Routage statique = basé sur des stratégies
   * Routage dynamique = basé sur un itinéraire
-* Sauf indication contraire, les spécifications des passerelles VPN HighPerformance sont identiques à celles des passerelles VPN RouteBased. Par exemple, les périphériques VPN validés qui sont compatibles avec les passerelles VPN RouteBased sont également compatibles avec la passerelle VPN HighPerformance.
+* Spécifications de passerelle HighPerformance VPN et passerelle VPN de RouteBased sont hello identiques, sauf indication contraire. Par exemple, les périphériques VPN hello validé qui sont compatibles avec les passerelles VPN de RouteBased sont également compatibles avec hello passerelle HighPerformance VPN.
 
 ## <a name="devicetable"></a>Périphériques VPN validés et guides de configuration des périphériques
 
@@ -43,9 +43,9 @@ Un périphérique VPN est requis pour configurer une connexion VPN site à site 
 > Lorsque vous configurez une connexion site à site, une adresse IPv4 publique est requise pour votre périphérique VPN.
 >
 
-Nous avons validé un ensemble de périphériques VPN standard en partenariat avec des fournisseurs d’appareils. Tous les appareils appartenant aux familles de la liste suivante doivent fonctionner avec les passerelles VPN. Consultez [À propos des paramètres de configuration de la passerelle VPN](vpn-gateway-about-vpn-gateway-settings.md#vpntype) pour comprendre le type de VPN utilisé (PolicyBased ou RouteBased) pour la solution de passerelle VPN que vous souhaitez configurer.
+Nous avons validé un ensemble de périphériques VPN standard en partenariat avec des fournisseurs d’appareils. Toutes les unités hello familles d’appareils hello Bonjour suivant liste doivent fonctionner avec les passerelles VPN. Consultez [sur les paramètres de passerelle VPN](vpn-gateway-about-vpn-gateway-settings.md#vpntype) toounderstand hello VPN tapez use (basée sur des stratégies ou RouteBased) pour hello solution de passerelle VPN souhaité tooconfigure.
 
-Pour configurer plus facilement votre périphérique VPN, reportez-vous aux liens qui correspondent à la famille de périphériques appropriée. Les liens vers les instructions de configuration sont fournis dans la mesure du possible. Pour une prise en charge des appareils VPN, contactez le fabricant de votre appareil.
+toohelp configurer votre périphérique VPN, consultez les liens toohello correspondant famille de périphériques tooappropriate. instructions de tooconfiguration Hello des liens sont fournies sur une base du meilleur effort. Pour une prise en charge des appareils VPN, contactez le fabricant de votre appareil.
 
 |**Fournisseur**          |**Famille de périphériques**     |**Version de système d’exploitation minimale** |**Instructions de configuration PolicyBased** |**Instructions de configuration RouteBased** |
 | ---                | ---                  | ---                   | ---            | ---           |
@@ -77,16 +77,16 @@ Pour configurer plus facilement votre périphérique VPN, reportez-vous aux lien
 
 ## <a name="additionaldevices"></a>Périphériques VPN non validés
 
-Si votre appareil n’est pas répertorié dans le tableau des périphériques VPN validés, il peut tout de même fonctionner avec une connexion site à site. Contactez le fabricant de votre périphérique pour obtenir une prise en charge et des instructions de configuration supplémentaires.
+Si vous ne voyez pas votre appareil dans la liste dans la table de périphériques VPN de validé hello, votre périphérique fonctionne toujours avec une connexion Site à Site. Contactez le fabricant de votre périphérique pour obtenir une prise en charge et des instructions de configuration supplémentaires.
 
 ## <a name="editing"></a>Modification des exemples de configuration de périphérique
 
-Après avoir téléchargé l’exemple de configuration de périphérique VPN fourni, vous devrez remplacer certaines des valeurs spécifiées pour qu’elles reflètent les paramètres de votre environnement.
+Après le téléchargement d’exemple de configuration de périphérique VPN hello fourni, vous devez tooreplace hello certaines valeurs tooreflect des paramètres de hello pour votre environnement.
 
-### <a name="to-edit-a-sample"></a>Pour modifier un exemple :
+### <a name="tooedit-a-sample"></a>tooedit un exemple :
 
-1. Ouvrez l’exemple à l’aide du Bloc-notes.
-2. Recherchez et remplacez toutes les chaînes au format <*texte*> par les valeurs qui correspondent à votre environnement. Prenez soin d’inclure < et >. Lorsque vous sélectionnez un nom, assurez-vous qu’il est unique. Si une commande ne fonctionne pas, consultez la documentation du fabricant du périphérique.
+1. Ouvrez l’exemple hello à l’aide du bloc-notes.
+2. Rechercher et remplacer tout <*texte*> de chaînes avec les valeurs hello spécifiques tooyour environnement. Être tooinclude que < et >. Lorsqu’un nom est spécifié, le nom hello que vous sélectionnez doit être unique. Si une commande ne fonctionne pas, consultez la documentation du fabricant du périphérique.
 
 | **Texte de l’exemple** | **Valeur de substitution** |
 | --- | --- |
@@ -99,17 +99,17 @@ Après avoir téléchargé l’exemple de configuration de périphérique VPN fo
 | &lt;SP_AzureNetworkSubnetMask&gt; |Spécifiez un masque de sous-réseau. Exemple : 255.255.0.0 |
 | &lt;SP_OnPremisesNetworkIpRange&gt; |Spécifiez une plage locale. Exemple : 10.2.1.0 |
 | &lt;SP_OnPremisesNetworkSubnetMask&gt; |Spécifiez un masque de sous-réseau local. Exemple : 255.255.255.0 |
-| &lt;SP_AzureGatewayIpAddress&gt; |Ces informations sont propres à votre réseau virtuel et figurent dans le portail de gestion sous l’intitulé **Adresse IP de la passerelle**. |
-| &lt;SP_PresharedKey&gt; |Ces informations sont propres à votre réseau virtuel et figurent dans le Portail de gestion sous l’intitulé Gérer la clé. |
+| &lt;SP_AzureGatewayIpAddress&gt; |Ce réseau virtuel de tooyour spécifique d’informations et se trouve dans le portail de gestion de hello en tant que **adresse IP de passerelle**. |
+| &lt;SP_PresharedKey&gt; |Ces informations réseau virtuel est tooyour spécifique et se trouve dans hello portail de gestion en tant que de gérer la clé. |
 
 ## <a name="ipsec"></a>Paramètres IPsec/IKE
 
 > [!NOTE]
-> Même si les valeurs répertoriées dans le tableau ci-dessous sont prises en charge par la passerelle VPN, il n’existe pour le moment aucun moyen de spécifier ou de sélectionner une combinaison spécifique d’algorithmes ou de paramètres pour la passerelle VPN. Vous devez spécifier des contraintes à partir du périphérique VPN local. En outre, vous devez définir **MSS** sur **1350**.
+> Bien que les valeurs hello répertoriées Bonjour tableau suivant sont actuellement pris en charge par la passerelle VPN de hello, il n’existe aucun mécanisme pour vous toospecify ou sélectionnez une combinaison spécifique des algorithmes ou des paramètres à partir de la passerelle VPN de hello. Vous devez spécifier des contraintes à partir de l’appareil VPN local hello. En outre, vous devez définir **MSS** sur **1350**.
 > 
 >
 
-Dans les tableaux suivants :
+Bonjour les tableaux suivants :
 
 * AS = association de sécurité
 * IKE Phase 1 est également appelé « Mode principal »
@@ -139,7 +139,7 @@ Dans les tableaux suivants :
 
 ### <a name ="RouteBasedOffers"></a>Offres d’association de sécurité VPN IPsec RouteBased (AS IKE en mode rapide)
 
-Le tableau suivant répertorie les offres d’association de sécurité IPsec (IKE en mode rapide). Les offres sont énumérées dans l’ordre de préférence dans lequel elles sont présentées ou acceptées.
+Hello tableau suivant répertorie les offres d’association de sécurité IPsec (IKE en Mode rapide). Offres sont triés de hello répertoriés de préférence cette offre hello est présentée ou acceptée.
 
 #### <a name="azure-gateway-as-initiator"></a>Passerelle Azure en tant qu’initiateur
 
@@ -183,20 +183,20 @@ Le tableau suivant répertorie les offres d’association de sécurité IPsec (I
 | 25|AES128        |SHA256            |14           |
 | 26|3DES          |SHA1              |14           |
 
-* Vous pouvez spécifier le chiffrement IPsec ESP NULL avec les passerelles VPN RouteBased et HighPerformance. Le chiffrement Null ne fournit pas de protection des données en transit. Il doit être utilisé uniquement lorsqu’un débit maximal et une latence minimale sont requis. Les clients peuvent choisir de l’utiliser dans les scénarios de communication entre les réseaux virtuels ou lorsque le chiffrement est appliqué ailleurs dans la solution.
-* Pour les connexions entre locaux par le biais d’Internet, utilisez les paramètres de passerelle VPN Azure par défaut avec les algorithmes de chiffrement et de hachage répertoriés dans les tableaux ci-dessus pour garantir la sécurité de vos communications cruciales.
+* Vous pouvez spécifier le chiffrement IPsec ESP NULL avec les passerelles VPN RouteBased et HighPerformance. Chiffrement NULL ne fournit pas de toodata protection en transit et doit être utilisé uniquement lorsque le nombre maximal latence sur le débit et la valeur minimale est requise. Les clients peuvent choisir toouse cela dans les scénarios de communication de réseau, ou lorsque le chiffrement est appliqué ailleurs dans la solution de hello.
+* Pour la connectivité intersite via Internet de hello, utilisez les paramètres de passerelle VPN Azure hello par défaut avec le chiffrement et les algorithmes de hachage répertoriés dans les tableaux hello au-dessus de sécurité tooensure de vos communications critiques.
 
 ## <a name="known"></a>Problèmes de compatibilité connus avec le matériel
 
 > [!IMPORTANT]
-> Il s’agit de problèmes de compatibilité connus entre les appareils VPN tiers et les passerelles VPN Azure. L’équipe Azure travaille en étroite collaboration avec les fournisseurs pour résoudre les problèmes répertoriés ici. Une fois les problèmes résolus, cette page sera mise à jour avec les informations les plus récentes. Revenez la consulter régulièrement.
+> Ceux-ci sont hello des problèmes de compatibilité connus entre les appareils VPN tiers et les passerelles VPN Azure. Hello Azure équipe travaille activement avec les fournisseurs hello tooaddress hello problèmes répertoriés ici. Une fois les problèmes de hello résolus, cette page sera mis à jour avec les informations les plus récentes hello. Revenez la consulter régulièrement.
 >
 >
 
 ### <a name="feb-16-2017"></a>16 février 2017
 
-**Appareils Palo Alto Networks dont la version est antérieure à la version 7.1.4** pour les VPN Azure basés sur les itinéraires : si vous utilisez des appareils VPN de Palo Alto Networks avec une version de PAN-OS antérieure à la version 7.1.4 et que vous rencontrez des problèmes de connectivité pour les passerelles VPN Azure basées sur les itinéraires, procédez comme suit :
+**Appareils Palo Alto Networks avec too7.1.4 préalable de version** pour Azure VPN basée sur l’itinéraire : Si vous utilisez des périphériques VPN à partir des réseaux de Palo Alto avec too7.1.4 de PAN-OS version antérieure et que vous rencontrez connectivité émet tooAzure passerelles VPN basée sur l’itinéraire, Effectuez hello comme suit :
 
-1. Vérifiez la version du microprogramme de votre appareil Palo Alto Networks. Si votre version de PAN-OS est antérieure à la version 7.1.4, mettez à niveau vers la version 7.1.4.
-2. Sur l’appareil Palo Alto Networks, modifiez la durée de SA de phase 2 (ou SA mode rapide) sur 28 800 secondes (8 heures) au moment de vous connecter à la passerelle VPN Azure.
-3. Si vous continuez à rencontrer des problèmes de connectivité, ouvrez une demande de support sur le Portail Azure.
+1. Vérifiez la version du microprogramme hello de votre appareil Palo Alto Networks. Si votre version de système d’exploitation de panoramique est antérieure à 7.1.4, mettre à niveau too7.1.4.
+2. Sur l’appareil de Palo Alto Networks hello, modifiez hello too28 de durée de vie Phase 2 SA (ou SA de Mode rapide), 800 secondes (8 heures) lorsque la connexion de passerelle VPN Azure de toohello.
+3. Si vous continuez à rencontrer des problèmes de connectivité, ouvrez une demande de support à partir de hello portail Azure.

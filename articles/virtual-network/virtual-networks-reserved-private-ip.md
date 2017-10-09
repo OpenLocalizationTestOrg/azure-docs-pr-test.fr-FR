@@ -1,6 +1,6 @@
 ---
-title: "Adresse IP privée interne statique - Machine virtuelle Azure - Classic"
-description: Fonctionnement et gestion des adresses IP internes statiques (adresses IP dynamiques)
+title: "aaaStatic interne classique IP - Azure VM - privée"
+description: "Présentation des adresses IP internes statique (adresses IP dynamiques) et la manière dont toomanage les"
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -14,22 +14,22 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/22/2016
 ms.author: jdial
-ms.openlocfilehash: cf9ee59ca4e44ed01836c2efb1f4df5f073bf6e0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5abe1c59f2f3ed19bcf56c269dfe57ac32d4f601
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-set-a-static-internal-private-ip-address-using-powershell-classic"></a>Comment définir une adresse IP privée interne statique à l’aide de PowerShell (Classic)
-Dans la plupart des cas, il n’est pas nécessaire de spécifier une adresse IP interne statique pour votre machine virtuelle. Les machines virtuelles dans un réseau virtuel recevront automatiquement une adresse IP interne à partir d'une plage que vous spécifiez. Toutefois, dans certains cas, il peut être bon de spécifier une adresse IP statique pour une machine virtuelle en particulier. Par exemple, si votre machine virtuelle doit exécuter DNS ou fait office de contrôleur de domaine. Une adresse IP interne statique reste associée à la machine virtuelle même lorsque cette dernière se trouve en état d'arrêt/annulation de l’approvisionnement. 
+# <a name="how-tooset-a-static-internal-private-ip-address-using-powershell-classic"></a>Comment tooset une adresse IP privée interne statique d’adresses à l’aide de PowerShell (classique)
+Dans la plupart des cas, vous ne devez toospecify une adresse IP interne statique pour votre machine virtuelle. Les machines virtuelles dans un réseau virtuel recevront automatiquement une adresse IP interne à partir d'une plage que vous spécifiez. Toutefois, dans certains cas, il peut être bon de spécifier une adresse IP statique pour une machine virtuelle en particulier. Par exemple, si votre machine virtuelle est continu toorun DNS ou être un contrôleur de domaine. Une adresse IP interne statique reste associée aux hello machine virtuelle, même par le biais d’un état d’arrêt/mise hors service. 
 
 > [!IMPORTANT]
-> Azure dispose de deux modèles de déploiement différents pour créer et utiliser des ressources : [Resource Manager et classique](../azure-resource-manager/resource-manager-deployment-model.md). Cet article traite du modèle de déploiement classique. Pour la plupart des nouveaux déploiements, Microsoft recommande d’utiliser le [modèle de déploiement Resource Manager](virtual-networks-static-private-ip-arm-ps.md).
+> Azure dispose de deux modèles de déploiement différents pour créer et utiliser des ressources : [Resource Manager et classique](../azure-resource-manager/resource-manager-deployment-model.md). Cet article décrit à l’aide du modèle de déploiement classique hello. Microsoft recommande à la plupart des nouveaux déploiements hello [modèle de déploiement de gestionnaire de ressources](virtual-networks-static-private-ip-arm-ps.md).
 > 
 > 
 
-## <a name="how-to-verify-if-a-specific-ip-address-is-available"></a>Vérification de la disponibilité d'une adresse IP particulière
-Pour vérifier si l’adresse IP *10.0.0.7* est disponible dans un réseau virtuel nommé *TestVNet*, exécutez la commande PowerShell suivante et vérifiez la valeur pour *IsAvailable* :
+## <a name="how-tooverify-if-a-specific-ip-address-is-available"></a>Comment tooverify si une adresse IP spécifique est disponible
+tooverify si hello adresse IP *10.0.0.7* est disponible dans un réseau virtuel nommé *TestVnet*, exécutez hello suivant de commande PowerShell et vérifiez la valeur hello pour *IsAvailable*:
 
     Test-AzureStaticVNetIP –VNetName TestVNet –IPAddress 10.0.0.7 
 
@@ -40,12 +40,12 @@ Pour vérifier si l’adresse IP *10.0.0.7* est disponible dans un réseau virtu
     OperationStatus      : Succeeded
 
 > [!NOTE]
-> Si vous voulez tester la commande ci-dessus dans un environnement sécurisé, suivez les instructions de l’article [Créer un réseau virtuel (classique)](virtual-networks-create-vnet-classic-pportal.md) pour créer un réseau virtuel nommé *TestVnet* et vérifiez qu’il utilise l’espace d’adressage *10.0.0.0/8*.
+> Si vous souhaitez que la commande de hello tootest ci-dessus dans un environnement sécurisé instructions hello dans [créer un réseau virtuel (classiques)](virtual-networks-create-vnet-classic-pportal.md) toocreate un réseau virtuel nommé *TestVnet* et assurez-vous qu’il utilise hello  *10.0.0.0/8* l’espace d’adressage.
 > 
 > 
 
-## <a name="how-to-specify-a-static-internal-ip-when-creating-a-vm"></a>Spécification d’une adresse IP interne statique lors de la création d'une machine virtuelle
-Le script PowerShell ci-dessous crée un service cloud nommé *TestService*, récupère une image auprès d’Azure, crée une machine virtuelle nommée *TestVM* dans le nouveau service cloud à partir de l’image récupérée, définit la machine virtuelle dans un sous-réseau nommé *Subnet-1*, puis définit *10.0.0.7* comme adresse IP interne statique pour la machine virtuelle :
+## <a name="how-toospecify-a-static-internal-ip-when-creating-a-vm"></a>Comment toospecify une adresse IP interne statique lors de la création d’une machine virtuelle
+Hello script PowerShell ci-dessous crée un nouveau service cloud nommé *TestService*, puis récupère une image à partir d’Azure, puis crée un ordinateur virtuel nommé *TestVM* dans le nouveau service cloud hello, à l’aide de l’image hello récupérée, jeux de hello toobe de machine virtuelle dans un sous-réseau nommé *Subnet-1*et définit *10.0.0.7* en tant qu’une adresse IP interne statique pour hello machine virtuelle :
 
     New-AzureService -ServiceName TestService -Location "Central US"
     $image = Get-AzureVMImage|?{$_.ImageName -like "*RightImage-Windows-2012R2-x64*"}
@@ -55,8 +55,8 @@ Le script PowerShell ci-dessous crée un service cloud nommé *TestService*, ré
     | Set-AzureStaticVNetIP -IPAddress 10.0.0.7 `
     | New-AzureVM -ServiceName "TestService" –VNetName TestVnet
 
-## <a name="how-to-retrieve-static-internal-ip-information-for-a-vm"></a>Récupération des informations d’adresse IP interne statique pour une machine virtuelle
-Pour visualiser les informations d’adresse interne statique concernant la machine virtuelle créée avec le script ci-dessus, exécutez la commande PowerShell ci-après et examinez les valeurs des éléments *IpAddress*:
+## <a name="how-tooretrieve-static-internal-ip-information-for-a-vm"></a>Comment tooretrieve internes informations IP statique pour une machine virtuelle
+tooview hello statique internes informations IP pour hello machine virtuelle créée avec le script hello ci-dessus, exécutez hello suivant de commande PowerShell et observer les valeurs hello pour *IpAddress*:
 
     Get-AzureVM -Name TestVM -ServiceName TestService
 
@@ -87,15 +87,15 @@ Pour visualiser les informations d’adresse interne statique concernant la mac
     OperationId                 : 34c1560a62f0901ab75cde4fed8e8bd1
     OperationStatus             : OK
 
-## <a name="how-to-remove-a-static-internal-ip-from-a-vm"></a>Suppression d’une adresse IP interne statique d'une machine virtuelle
-Pour supprimer l’adresse IP interne statique ajoutée à la machine virtuelle par le biais du script ci-dessus, exécutez la commande PowerShell suivante :
+## <a name="how-tooremove-a-static-internal-ip-from-a-vm"></a>Comment tooremove une adresse IP interne statique d’une machine virtuelle
+adresse IP interne statique de tooremove hello ajouté toohello machine virtuelle dans le script hello ci-dessus, exécutez hello suivant de commande PowerShell :
 
     Get-AzureVM -ServiceName TestService -Name TestVM `
     | Remove-AzureStaticVNetIP `
     | Update-AzureVM
 
-## <a name="how-to-add-a-static-internal-ip-to-an-existing-vm"></a>Ajout d’une adresse IP interne statique à une machine virtuelle existante
-Pour ajouter une adresse IP interne statique à la machine virtuelle créée à l’aide du script ci-dessus, exécutez la commande suivante :
+## <a name="how-tooadd-a-static-internal-ip-tooan-existing-vm"></a>Comment tooadd un tooan d’IP interne statique machine virtuelle existante
+tooadd un toohello IP interne statique machine virtuelle créée à l’aide de script hello ci-dessus, exécutez commande suivante :
 
     Get-AzureVM -ServiceName TestService000 -Name TestVM `
     | Set-AzureStaticVNetIP -IPAddress 10.10.0.7 `

@@ -1,5 +1,5 @@
 ---
-title: "Vue d’ensemble des machines virtuelles Windows | Documents Microsoft"
+title: "vue d’ensemble des machines virtuelles d’aaaWindows | Documents Microsoft"
 description: "Le contenu de la vue d’ensemble des ordinateurs virtuels Windows dans le portail Azure"
 services: virtual-machines-windows
 author: sewatson
@@ -8,19 +8,19 @@ ms.service: virtual-machines-windows
 ms.topic: article
 ms.date: 04/27/2017
 ms.author: sewatson
-ms.openlocfilehash: 03b204d9970a3831543a03dfa08e2a4d8b274034
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 1992c0715d39669565cf1754975d2d82b19d3b22
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="windows-virtual-machines-documentation"></a>Documentation sur les machines virtuelles Windows
 
-Les Machines virtuelles Windows Azure fournissent une infrastructure sécurisée et virtualisée à la demande et à grande échelle avec Windows Server. Découvrez comment créer, configurer, gérer et mettre à l’échelle des machines virtuelles Windows avec nos guides de démarrage rapide, nos didacticiels et nos exemples.
+Les Machines virtuelles Windows Azure fournissent une infrastructure sécurisée et virtualisée à la demande et à grande échelle avec Windows Server. Découvrez comment toocreate, configurer, gérer et mettre à l’échelle de machines virtuelles Windows avec notre Démarrages rapides, didacticiels et exemples.
 
 ## <a name="5-minute-quickstarts"></a>Démarrages en 5 minutes
 
-Découvrez comment déployer un serveur web IIS au sein d’une machine virtuelle exécutant Windows Server 2016 :
+Découvrez comment toodeploy un serveur web IIS au sein d’une Machine virtuelle exécutant Windows Server 2016 :
 
 - [portail Azure](/azure/virtual-machines/virtual-machines-windows-quick-create-portal?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 - [Azure PowerShell](/azure/virtual-machines/virtual-machines-windows-quick-create-powershell?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
@@ -28,7 +28,7 @@ Découvrez comment déployer un serveur web IIS au sein d’une machine virtuell
 
 ## <a name="step-by-step-tutorials"></a>Didacticiels pas à pas
 
-Découvrez comment déployer, gérer et surveiller des ordinateurs virtuels Windows Azure.
+Découvrez comment toodeploy, gérer et surveiller des ordinateurs virtuels Windows Azure.
 
 - [Créer et gérer des machines virtuelles Windows](/azure/virtual-machines/windows/tutorial-manage-vm)
 - [Créer et gérer des disques de machine virtuelle](/azure/virtual-machines/windows/tutorial-manage-data-disk)
@@ -51,12 +51,12 @@ Découvrez comment déployer, gérer et surveiller des ordinateurs virtuels Wind
 
 ## <a name="samples"></a>Exemples
 
-Déployez votre première application dans Azure.
+Déployer votre premier tooAzure d’application.
 
 - [Interface de ligne de commande Azure](/azure/virtual-machines/virtual-machines-windows-cli-samples?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 - [Azure PowerShell](/azure/virtual-machines/virtual-machines-windows-powershell-samples?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 ## <a name="more"></a>En savoir plus
 
-- [Consultez la documentation pour en savoir plus](/azure/virtual-machines/windows/index)
+- [Visitez toolearn documentation plus](/azure/virtual-machines/windows/index)
 - [En savoir plus sur tous les Services Azure](https://aka.ms/j3wr7y)

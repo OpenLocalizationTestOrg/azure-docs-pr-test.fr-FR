@@ -1,6 +1,6 @@
 ---
-title: "Migration et publication d’une application web sur un service cloud Azure à partir de Visual Studio | Microsoft Docs"
-description: "Découvrez comment migrer et publier une application web sur un service cloud Azure à partir de Visual Studio."
+title: aaaHow tooMigrate et publier une Application Web de tooan du Service de Cloud Azure depuis Visual Studio | Documents Microsoft
+description: "Découvrez comment toomigrate et publier votre tooan d’application web service cloud Azure à l’aide de Visual Studio."
 services: visual-studio-online
 documentationcenter: na
 author: kraigb
@@ -14,173 +14,173 @@ ms.tgt_pltfrm: na
 ms.workload: multiple
 ms.date: 11/11/2016
 ms.author: kraigb
-ms.openlocfilehash: 2599741df42b795738abbacffa17fc0bbbba7348
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a2832c37d2ebdbc1e69a307d16b65b1c87e9070c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-migrate-and-publish-a-web-application-to-an-azure-cloud-service-from-visual-studio"></a>Migration et publication d’une application web sur un service cloud Azure à partir de Visual Studio
-Pour tirer parti des services d’hébergement et de l’extensibilité d’Azure, vous pouvez migrer et publier votre application web sur un service cloud Azure. Vous pouvez exécuter une application web dans Azure avec un minimum de modifications sur votre application existante.
+# <a name="how-to-migrate-and-publish-a-web-application-tooan-azure-cloud-service-from-visual-studio"></a>Comment : migrer et publier une Application Web de tooan Azure Cloud Service à partir de Visual Studio
+avantage tootake de hello hébergement des services et l’évolutivité de Azure, vous souhaitez toomigrate et publier votre service cloud Azure de tooan application web. Vous pouvez exécuter une application web dans Azure avec application de modifications minimales tooyour existante.
 
 > [!NOTE]
-> Cette rubrique concerne le déploiement sur des services cloud, pas sur des sites web. Pour plus d’informations sur le déploiement sur des sites web, consultez [Déployer une application web dans Azure App Service](app-service-web/web-sites-deploy.md).
+> Cette rubrique est sur le déploiement de services toocloud, pas les sites tooweb. Pour plus d’informations sur le déploiement de sites de tooweb, consultez [déployer une application web dans Azure App Service](app-service-web/web-sites-deploy.md).
 >
 >
 
-Pour obtenir la liste des modèles spécifiques pris en charge par Visual C# et Visual Basic, consultez la section **Modèles de projet pris en charge** plus loin dans cette rubrique.
+Pour obtenir la liste des modèles spécifiques qui sont pris en charge pour Visual c# et Visual Basic, consultez la section de hello **prise en charge des modèles de projet** plus loin dans cette rubrique.
 
-Vous devez d'abord activer votre application web pour Azure à partir de Visual Studio. L'illustration suivante montre les étapes clés pour publier votre application web existante en ajoutant un projet Azure à utiliser pour le déploiement. Ce processus ajoute à votre solution un projet Azure avec le rôle web nécessaire. Selon le type de votre projet web, les propriétés du projet pour les assemblys sont également mises à jour si le package de services requiert des assemblys supplémentaires pour le déploiement.
+Vous devez d'abord activer votre application web pour Azure à partir de Visual Studio. Hello suivant illustration montre hello étapes clés toopublish votre application web existante en ajoutant un toouse du projet Windows Azure pour le déploiement. Ce processus ajoute un projet Azure avec une solution tooyour rôle web hello requis. En fonction de type hello du projet web que vous avez, propriétés du projet hello pour les assemblys sont également mis à jour si le package de service hello exige des assemblys supplémentaires pour le déploiement.
 
-![Publication d’une application web dans Microsoft Azure](./media/vs-azure-tools-migrate-publish-web-app-to-cloud-service/IC748917.png)
+![Publier un tooMicrosoft d’application Web Azure](./media/vs-azure-tools-migrate-publish-web-app-to-cloud-service/IC748917.png)
 
 > [!NOTE]
-> La commande **Convertir**, **Convertir en projet service cloud Azure** s’affiche uniquement pour le projet web dans votre solution. Par exemple, la commande n'est pas disponible pour un projet Silverlight dans votre solution.
-> Lorsque vous créez un package de services ou publiez votre application dans Azure, des avertissements ou des erreurs peuvent se produire. Ces avertissements et ces erreurs peuvent vous aider à résoudre les problèmes avant le déploiement vers Azure. Par exemple, vous pouvez recevoir un avertissement signalant un assembly manquant. Pour plus d’informations sur la façon de traiter les avertissements comme des erreurs, consultez [Configurer un projet de service cloud Azure avec Visual Studio](vs-azure-tools-configuring-an-azure-project.md). Si vous générez votre application, exécutez celle-ci localement à l’aide de l’émulateur de calcul ou publiez celle-ci sur Azure, vous pouvez voir l’erreur suivante dans la fenêtre **Liste d’erreurs** : **Le chemin d’accès spécifié, le nom de fichier ou les deux sont trop longs**. Cette erreur se produit car le nom qualifié complet du projet Azure est trop long. La longueur du nom du projet, y compris le chemin d’accès complet, ne peut pas dépasser 146 caractères. Voici, par exemple, le nom de projet complet, y compris le chemin d’accès au fichier d’un projet Azure créé pour une application Silverlight : `c:\users\<user name>\documents\visual studio 2015\Projects\SilverlightApplication4\SilverlightApplication4.Web.Azure.ccproj`. Afin de réduire la longueur du nom complet du projet, vous devrez peut-être déplacer votre solution vers un autre répertoire avec un chemin plus court.
+> Hello **convertir**, **convertir tooAzure projet de Service Cloud** commande s’affiche uniquement pour les projets web de hello dans votre solution. Par exemple, la commande hello n’est pas disponible pour un projet Silverlight dans votre solution.
+> Lorsque vous créez un package de service ou que vous publiez votre application tooAzure, des avertissements ou erreurs peuvent se produire. Ces avertissements et erreurs peuvent vous aider à résoudre les problèmes avant de déployer tooAzure. Par exemple, vous pouvez recevoir un avertissement signalant un assembly manquant. Pour plus d’informations sur comment tootreat les avertissements comme des erreurs, consultez [configurer un projet de Service Cloud Azure avec Visual Studio](vs-azure-tools-configuring-an-azure-project.md). Si vous générez votre application, l’exécuter localement à l’aide d’émulateur de calcul hello ou tooAzure le publier, vous pouvez voir hello erreur Bonjour suivante **liste d’erreurs** fenêtre : **hello spécifié le chemin d’accès, le nom de fichier, ou les deux sont trop longs** . Cette erreur se produit parce que la longueur du nom qualifié complet du projet Azure de hello hello est trop longue. Hello du nom de projet hello, y compris le chemin d’accès complet de hello, ne peut pas comporter plus de 146 caractères. Par exemple, c’est le nom de projet complet hello, y compris le chemin d’accès pour un projet Windows Azure qui est créé pour une application Silverlight : `c:\users\<user name>\documents\visual studio 2015\Projects\SilverlightApplication4\SilverlightApplication4.Web.Azure.ccproj`. Vous pouvez avoir toomove votre solution tooa autre répertoire qui a une chemin d’accès tooreduce hello courte du nom qualifié complet du projet de hello.
 >
 >
 
-Pour migrer et publier une application web vers Azure à partir de Visual Studio, suivez ces étapes :
+toomigrate et publier un tooAzure d’application web à partir de Visual Studio, procédez comme suit.
 
-## <a name="enable-a-web-application-for-deployment-to-azure"></a>Activation d’une application web pour un déploiement vers Azure
-### <a name="to-enable-a-web-application-for-deployment-to-azure"></a>Activer une application web pour un déploiement vers Azure
-1. Pour activer votre application web en vue d’un déploiement vers Azure, ouvrez le menu contextuel d’un projet web dans votre solution et choisissez la commande permettant d’ajouter un projet de déploiement Azure.
+## <a name="enable-a-web-application-for-deployment-tooazure"></a>Activer une Application Web pour le déploiement tooAzure
+### <a name="tooenable-a-web-application-for-deployment-tooazure"></a>tooenable une application web pour le déploiement tooAzure
+1. tooenable votre application web pour le déploiement tooAzure, menu contextuel hello ouvrir un site web dans votre solution de projet et choisissez Ajouter un projet de déploiement Azure.
 
-    Les actions suivantes se produisent :
+    Hello suivant des actions se produire :
 
-   * Un projet Azure appelé `<name of the web project>.Azure` est ajouté à la solution pour votre application.
-   * Un rôle web pour le projet web est ajouté à ce projet Azure.
-   * La propriété **Copie locale** est définie sur vrai pour tous les assemblys qui sont nécessaires pour MVC 2, MVC 3, MVC 4 et Silverlight Business Applications. Ceci ajoute ces assemblys au package de services qui est utilisé pour le déploiement.
+   * Un projet Azure appelé `<name of hello web project>.Azure` est ajouté solution toohello pour votre application.
+   * Un rôle web pour le projet web de hello est ajouté toothis projet Windows Azure.
+   * Hello **copie locale** propriété a la valeur tootrue pour tous les assemblys qui sont requis pour MVC 2, MVC 3, MVC 4 et Silverlight Business Applications. Cette opération ajoute ces assemblys toohello package de service du qui est utilisé pour le déploiement.
 
    > [!IMPORTANT]
-   > Si vous avez d’autres assemblys ou fichiers qui sont requis pour cette application web, vous devez définir manuellement les propriétés de ces fichiers. Pour plus d’informations sur la configuration de ces propriétés, consultez la section **Inclure des fichiers dans le package de services** plus loin dans cet article.
+   > Si vous avez d’autres assemblys ou les fichiers qui sont requis pour cette application web, vous devez définir manuellement les propriétés hello pour ces fichiers. Pour plus d’informations sur comment tooset ces propriétés, consultez hello section **des fichiers Include dans hello Package de Service** plus loin dans cet article.
    >
    > [!NOTE]
-   > S’il existe déjà un rôle web pour un projet web spécifique dans un projet Azure de la solution, la commande **Convertir**, **Convertir en projet de service cloud Azure** n’est pas affichée dans le menu contextuel pour ce projet web.
+   > Si un rôle web pour un projet web spécifique existe déjà dans un projet Windows Azure dans la solution de hello, **convertir**, **convertir tooAzure projet de Service Cloud** ne figure pas dans le menu contextuel de hello pour ce projet web .
    >
    >
 
-   Si vous avez plusieurs projets web dans votre application web et que vous souhaitez créer des rôles web pour chacun, vous devez effectuer les étapes de cette procédure pour chaque projet web. Ceci crée des projets Azure distincts pour chaque rôle web. Chaque projet web peut être publié séparément. Alternativement, vous pouvez ajouter manuellement un autre rôle web à un projet Azure existant dans votre application web. Pour ce faire, ouvrez le menu contextuel du dossier **Rôles** dans votre projet Azure et choisissez **Ajouter**, **Projet de rôle web dans la solution**, puis choisissez le projet à ajouter en tant que rôle web et, enfin, cliquez sur le bouton **OK**.
+   Si vous avez plusieurs projets web dans votre application web et que vous souhaitez toocreate les rôles web pour chaque projet web, vous devez effectuer les étapes de hello dans cette procédure pour chaque projet web. Ceci crée des projets Azure distincts pour chaque rôle web. Chaque projet web peut être publié séparément. Ou bien, vous pouvez ajouter manuellement un autre rôle tooan existant Azure projet web dans votre application web. toodo, menu contextuel Ouvrir hello hello **rôles** dossier dans votre projet Windows Azure, choisissez **ajouter**, puis **le projet de rôle Web dans la solution**, choisissez tooadd de projet hello comme un site web rôle, puis choisissez hello **OK** bouton.
 
 ## <a name="use-an-azure-sql-database-for-your-application"></a>Utilisation d’une base de données SQL Azure pour votre application
-Si vous avez une chaîne de connexion pour votre application web qui utilise une base de données SQL Server sur site, vous devez modifier cette chaîne de connexion pour qu’elle utilise une instance de base de données SQL hébergée par Azure à la place.
+Si vous avez une chaîne de connexion pour votre application web qui utilise une base de données SQL Server locale hello, vous devez modifier cette toouse de chaîne de connexion une instance de base de données SQL hébergée par Azure à la place.
 
 > [!IMPORTANT]
-> Votre abonnement vous permet d’utiliser la base de données SQL. Si vous accédez à votre abonnement à partir du [Portail Azure Classic](http://go.microsoft.com/fwlink/?LinkID=213885), vous pouvez déterminer quels services vos abonnements fournissent. Les instructions suivantes s’appliquent au [portail Azure Classic](http://go.microsoft.com/fwlink/?LinkID=213885). Si vous utilisez le [portail Azure](http://portal.microsoft.com), passez à la procédure suivante.|
+> Votre abonnement vous devez activer toouse base de données SQL. Si vous accédez à votre abonnement hello [portail Azure classic](http://go.microsoft.com/fwlink/?LinkID=213885), vous pouvez déterminer les services fournis par votre abonnement. Hello instructions ci-après s’appliquent toohello publié [portail Azure classic](http://go.microsoft.com/fwlink/?LinkID=213885). Si vous utilisez hello [portail Azure](http://portal.microsoft.com), ignorer la procédure suivante de toohello.
 >
 >
 
-### <a name="to-use-a-sql-database-instance-in-your-web-role-for-your-connection-string"></a>Utiliser une instance de base de données SQL dans votre rôle web pour votre chaîne de connexion
-1. Pour créer une instance de base de données SQL dans le [portail Azure Classic](http://go.microsoft.com/fwlink/?LinkID=213885), suivez les étapes décrites dans l’article suivant : [Créer un serveur de base de données SQL](http://go.microsoft.com/fwlink/?LinkId=225109).
+### <a name="toouse-a-sql-database-instance-in-your-web-role-for-your-connection-string"></a>toouse une instance de la base de données SQL dans votre rôle web pour votre chaîne de connexion
+1. toocreate une instance de base de données SQL dans hello [portail Azure classic](http://go.microsoft.com/fwlink/?LinkID=213885), suivez les étapes de hello Bonjour l’article suivant : [créer une base de données SQL Server](http://go.microsoft.com/fwlink/?LinkId=225109).
 
    > [!NOTE]
-   > Quand vous configurez les règles de pare-feu pour votre instance de base de données SQL, vous devez cocher la case **Autoriser l’accès d’autres services Azure à ce serveur** .
+   > Lorsque vous définissez des règles de pare-feu hello pour votre instance de base de données SQL, vous devez sélectionner hello **autoriser autres tooaccess services Azure à ce serveur** case à cocher.
    >
    >
-2. Pour créer une instance de base de données SQL à utiliser pour votre chaîne de connexion, suivez les étapes décrites dans la section suivante de cet article : [Créer une base de données SQL](http://go.microsoft.com/fwlink/?LinkId=225110).
-3. Pour copier la chaîne de connexion ADO.NET à utiliser pour votre chaîne de connexion, effectuez les opérations suivantes dans le [portail Azure Classic](http://go.microsoft.com/fwlink/?LinkID=213885).  
+2. toocreate une instance de toouse de base de données SQL pour votre chaîne de connexion, suivez les étapes de hello dans hello prochaine section dans l’article suivant de hello : [créer une base de données SQL](http://go.microsoft.com/fwlink/?LinkId=225110).
+3. toocopy hello ADO.NET connexion chaîne toouse pour votre chaîne de connexion, effectuez hello comme suit dans hello [portail Azure classic](http://go.microsoft.com/fwlink/?LinkID=213885).  
 
-   1. Choisissez le bouton **Base de données** , puis ouvrez le nœud pour l’abonnement que vous avez utilisé afin de créer votre instance de base de données SQL.
-   2. Pour afficher les instances disponibles de la base de données SQL, choisissez le nœud **Bases de données SQL** .
-   3. Pour afficher les propriétés de la base de données, sélectionnez la base de données. La vue **Propriétés** apparaît.
+   1. Choisissez hello **base de données** bouton et nœud hello puis ouvert pour l’abonnement hello que vous avez utilisé toocreate votre instance de base de données SQL.
+   2. instances disponibles de hello toodisplay de base de données SQL, choisissez hello **bases de données SQL** nœud.
+   3. propriétés de hello toodisplay pour la base de données hello, choisissez la base de données de hello. Hello **propriétés** s’affiche.
 
       > [!NOTE]
-      > Si la vue **Propriétés** ne s’affiche pas, vous devrez peut-être l’ouvrir en utilisant le diviseur.
+      > Si hello **propriétés** vue n’apparaît pas, vous devrez peut-être tooopen à l’aide de hello diviseur.
       >
       >
-   4. Pour afficher les chaînes de connexion, choisissez le bouton de sélection (...) en regard de l’option Affichage.
+   4. chaînes de connexion toodisplay hello, choisissez tooView suivant du bouton points de suspension (...) hello.
 
-      La boîte de dialogue **Chaînes de connexion** s'affiche.
-   5. Pour copier la chaîne de connexion ADO.NET, mettez le texte en surbrillance et appuyez sur les touches Ctrl+C.
-   6. Pour fermer la boîte de dialogue, choisissez le bouton **Fermer** .
-4. Pour remplacer la chaîne de connexion dans le fichier web.config et utiliser cette instance de la base de données SQL à la place, ouvrez le fichier web.config, mettez en surbrillance l’entrée de chaîne de connexion existante, puis appuyez sur les touches Ctrl+V. La chaîne de connexion ADO.NET pour l'instance de base de données SQL remplace la chaîne de connexion existante.
-5. Vous devez également ajouter le paramètre `MultipleActiveResultSets=True` à la chaîne de connexion. La chaîne de connexion suit ce format :
+      Hello **les chaînes de connexion** boîte de dialogue s’affiche.
+   5. toocopy hello chaîne de connexion ADO.NET, mettez en surbrillance le texte hello et appuyez sur Ctrl + C hello.
+   6. boîte de dialogue tooclose hello, choisissez hello **fermer** bouton.
+4. connexion de hello tooreplace chaîne hello web.config fichier toouse de cette instance de base de données SQL, ouvrez le fichier web.config de hello, mettre en surbrillance d’entrée de chaîne de connexion existante hello, puis choisissez les touches Ctrl + V de hello. Hello chaîne de connexion ADO.NET pour l’instance de hello de base de données SQL remplace la chaîne de connexion existante hello.
+5. Vous devez également ajouter le paramètre hello `MultipleActiveResultSets=True` chaîne de connexion toohello. chaîne de connexion Hello doit avoir hello suivant le format :
 
     ```
     connectionString=”Server=tcp:<database_server>.database.windows.net,1433;Database=<database_name>;User ID=<user_name>@<database_server>;Password=<myPassword>;Trusted_Connection=False;Encrypt=True;MultipleActiveResultSets=True"
     ```
-6. (Facultatif) Une autre méthode de modification de la chaîne de connexion directement dans le fichier web.config consiste à ajouter une section dans un des fichiers de transformation web.config, selon la configuration de build que vous utilisez pour créer votre package de services. Ouvrez le fichier Web.Debug.Config ou le fichier Web.Release.Config. Ajoutez la section suivante dans ce fichier :
+6. (Facultatif) Une chaîne de connexion de méthode alternative toochanging hello directement dans le fichier web.config de hello est tooadd une section dans un des fichiers de transformation web.config hello, selon la configuration de build hello utiliser toocreate votre package de services. Ouvrez le fichier de Web.Debug.Config hello ou hello Web.Release.Config. Ajoutez hello suivant la section dans ce fichier :
 
     ```
     XMLCopy<connectionStrings><addname="DefaultConnection"connectionString="Server=tcp:<database_server>.database.windows.net,1433;Database=<database_name>;User ID=<user_name>@<database_server>;Password=<myPassword>;Trusted_Connection=False;Encrypt=True;MultipleActiveResultSets=True"xdt:Transform="SetAttributes"xdt:Locator="Match(name)"/></connectionStrings>
     ```
-7. Enregistrez le fichier que vous avez modifié et republiez votre application.
+7. Enregistrez le fichier hello que vous avez modifié et republiez votre application.
 
-### <a name="to-use-an-instance-of-sql-database-by-using-the-azure-classic-portal"></a>Pour utiliser une instance de base de données SQL à l’aide du Portail Azure Classic
-1. Dans le [portail Azure Classic](http://go.microsoft.com/fwlink/?LinkID=213885), choisissez le nœud Base de données SQL.
+### <a name="toouse-an-instance-of-sql-database-by-using-hello-azure-classic-portal"></a>une instance de base de données SQL à l’aide de toouse hello portail Azure classic
+1. Bonjour [portail Azure classic](http://go.microsoft.com/fwlink/?LinkID=213885), choisissez le nœud bases de données SQL de hello.
 
-   * Si l'instance de base de données SQL que vous souhaitez utiliser s'affiche, ouvrez-la.
-   * Si vous n'avez créé aucune instance, cliquez sur le lien approprié, puis créez une instance.
-2. Après avoir ouvert ou créé une instance de base de données, cliquez sur le lien **Chaînes de connexion** .
-3. En bas de la page, cliquez sur le lien pour configurer les paramètres du pare-feu et acceptez les valeurs par défaut, ou configurez les valeurs dont vous avez besoin.
-4. Copiez la chaîne de connexion ADO.NET, collez-la dans votre fichier web.config sur l’ancienne chaîne de connexion pour la base de données locale, puis veillez à ajouter `MultipleActiveResultSets=True`.
+   * Si l’instance hello de base de données SQL que vous souhaitez toouse s’affiche, choisissez tooopen il.
+   * Si vous n’avez pas créé de toutes les instances, choisissez le lien approprié de hello, puis créez une instance.
+2. Une fois que vous ouvrez ou créez une instance de la base de données, choisissez hello **les chaînes de connexion** lien.
+3. Au bas de hello de page de hello, choisissez les paramètres de pare-feu tooconfigure lien hello et accepter les valeurs par défaut de hello ou valeurs hello dont vous avez besoin de configurer.
+4. Copier la chaîne de connexion hello ADO.NET, collez-la dans votre fichier web.config sur hello ancienne chaîne de connexion de base de données locale de hello et être tooadd vraiment `MultipleActiveResultSets=True`.
 
-## <a name="publish-a-web-application-to-azure"></a>Publication d’une application web dans Azure
-### <a name="to-publish-a-web-application-to-azure"></a>Publier une application web dans Azure
-1. Pour tester l’application dans l’environnement de développement local à l’aide de l’émulateur de calcul Azure, ouvrez le menu contextuel du projet Azure pour le rôle web, puis choisissez **Définir comme projet de démarrage**. Sélectionnez ensuite **Déboguer**, **Démarrer le débogage** (clavier : **F5**).
+## <a name="publish-a-web-application-tooazure"></a>Publier une Application Web de tooAzure
+### <a name="toopublish-a-web-application-tooazure"></a>toopublish un tooAzure d’application Web
+1. application de hello tootest dans l’environnement de développement local hello à l’aide d’émulateur de calcul Azure hello, hello Azure sur le menu contextuel hello ouvrir de projet de rôle web de hello et choisissez **définir comme projet de démarrage**. Sélectionnez ensuite **Déboguer**, **Démarrer le débogage** (clavier : **F5**).
 
-    La boîte de dialogue de **démarrage de l’environnement de débogage Azure** s’ouvre et l’application démarre dans le navigateur. Pour des informations spécifiques sur le démarrage de chaque type d'application web dans l'émulateur de calcul, consultez le tableau dans cette section.
-2. Pour configurer les services de sorte que votre application soit publiée sur Azure, vous devez disposer d’un compte Microsoft et d’un abonnement Azure. Utilisez les étapes de la rubrique suivante pour configurer vos services : [Préparer la publication ou le déploiement d’une application Azure à partir de Visual Studio](vs-azure-tools-cloud-service-publish-set-up-required-services-in-visual-studio.md).
-3. Pour publier l’application web sur Azure, ouvrez le menu contextuel du projet web et choisissez **Publier sur Azure**.
+    Hello **début hello environnement de débogage Azure** boîte de dialogue s’ouvre et l’application hello démarre dans le navigateur de hello. Pour plus d’informations sur la manière dont les toostart chaque type d’application web Bonjour émulateur de calcul, voir le tableau hello dans cette section.
+2. tooset les services de hello pour votre tooAzure de toopublish d’application, vous devez disposer d’un compte Microsoft et un abonnement Azure. Hello d’utiliser les étapes Bonjour suivant tooset rubrique vos services : [toopublish de préparer ou de déployer une application Windows Azure à partir de Visual Studio](vs-azure-tools-cloud-service-publish-set-up-required-services-in-visual-studio.md).
+3. toopublish hello web application tooAzure, ouvrez le menu contextuel projet web de hello hello et choisissez **publier tooAzure**.
 
-    La boîte de dialogue **Publication d’application Azure** s’ouvre et Visual Studio démarre le processus de déploiement. Pour plus d’informations sur la publication de l’application, consultez la section **Publication d’une application Azure à partir de Visual Studio** dans [Publication d’un service cloud à l’aide de Microsoft Azure Tools](vs-azure-tools-publishing-a-cloud-service.md).
+    Hello **publier l’Application Azure** boîte de dialogue s’ouvre et Visual Studio démarre le processus de déploiement hello. Pour plus d’informations sur comment toopublish hello application, consultez la section de hello **publier une Application Azure depuis Visual Studio** dans [publication d’un Service Cloud à l’aide des outils d’Azure hello](vs-azure-tools-publishing-a-cloud-service.md).
 
    > [!NOTE]
-   > Vous pouvez également publier l'application web à partir du projet Azure. Pour cela, ouvrez le menu contextuel du projet Azure, puis sélectionnez **Publier**.
+   > Vous pouvez également publier application hello web hello projet Windows Azure. toodo, ouvrez le menu contextuel hello hello projet Windows Azure et choisissez **publier**.
    >
    >
-4. Pour afficher la progression du déploiement, vous pouvez consulter la fenêtre **Journal des activités Azure** . Ce journal s'affiche automatiquement au démarrage du processus de déploiement. Vous pouvez développer l'élément de la ligne dans le journal des activités pour afficher des informations détaillées, comme indiqué dans l'illustration suivante :
+4. progression de hello toosee du déploiement de hello, vous pouvez afficher hello **journal des activités Azure** fenêtre. Ce fichier journal s’affiche automatiquement au démarrage du processus de déploiement hello. Vous pouvez développer hello élément de ligne dans le journal d’activité hello tooshow des informations détaillées, comme indiqué dans hello après l’illustration :
 
     ![VST_AzureActivityLog](./media/vs-azure-tools-migrate-publish-web-app-to-cloud-service/IC744149.png)
-5. (Facultatif) Pour annuler le processus de déploiement, ouvrez le menu contextuel de cette ligne dans le journal des activités, puis choisissez **Annuler et supprimer**. Cela arrête le processus de déploiement et supprime l'environnement de déploiement d'Azure.
+5. Processus de déploiement hello toocancel (facultatif), ouvrir le menu contextuel de hello pour l’élément de ligne hello dans le journal d’activité hello et choisissez **Annuler et supprimer**. Cela arrête le processus de déploiement hello et supprime l’environnement de déploiement hello de Azure.
 
    > [!NOTE]
-   > Pour supprimer cet environnement de déploiement après son déploiement, vous devez utiliser le [portail Azure Classic](http://go.microsoft.com/fwlink/?LinkID=213885).
+   > tooremove cet environnement de déploiement après qu’il a été déployé, vous devez utiliser hello [portail Azure classic](http://go.microsoft.com/fwlink/?LinkID=213885).
    >
    >
-6. (Facultatif) Une fois vos instances de rôle démarrées, Visual Studio affiche automatiquement l’environnement de déploiement dans le nœud **Calcul Azure** de **Cloud Explorer** ou de l’**Explorateur de serveurs**. À partir de là, vous pouvez consulter l'état de chaque instance de rôle.
+6. (Facultatif) Après avoir démarré vos instances de rôle, Visual Studio affiche automatiquement un environnement de déploiement hello Bonjour **Azure Compute** nœud **Cloud Explorer** ou **l’Explorateur de serveurs**. À ce stade, vous pouvez afficher état hello hello individuelles d’instances de rôle.
 
-    L’illustration suivante montre les instances de rôle dans l’ **Explorateur de serveurs** toujours à l’état d’initialisation :
+    Hello l’illustration suivante montre des instances de rôle hello dans **l’Explorateur de serveurs** pendant qu’elles sont toujours en hello initialisation de l’état :
 
     ![VST_DeployComputeNode](./media/vs-azure-tools-migrate-publish-web-app-to-cloud-service/IC744134.png)
-7. Pour accéder à votre application après le déploiement, cliquez sur la flèche en regard de votre déploiement quand le statut **Terminé** s’affiche dans le **journal des activités Azure**. Cela affiche l'URL de votre application web dans Azure. Consultez le tableau suivant pour plus d'informations sur le démarrage d'un type spécifique de l'application web à partir d’Azure.
+7. tooaccess votre application après le déploiement, choisissez hello flèche suivant tooyour déploiement lorsque le statut de **terminé** s’affiche dans hello **journal des activités Azure**. Cela affiche l’URL hello pour votre application web dans Azure. Consultez hello tableau pour hello plus d’informations sur comment toostart un type particulier d’application web à partir d’Azure.
 
-    Le tableau suivant contient les informations sur le démarrage des applications web spécifiques à partir d’Azure, ainsi que sur l’exécution ou le débogage d’une application web localement à l’aide de l’émulateur de calcul Azure :
+    Hello tableau suivant répertorie les hello plus d’informations sur comment toostart web Azure ou toorun des applications ou déboguer une application web localement à l’aide de hello émulateur de calcul Azure :
 
-   | Type d’application web | Exécution/débogage localement à l'aide de l'émulateur de calcul | Exécution dans Azure |
+   | Type d’application web | Exécution/débogage localement à l’aide de hello émulateur de calcul | Exécution dans Azure |
    | --- | --- | --- |
-   | Application Web ASP.NET |Dans la barre de menus, choisissez **Déboguer**, **Démarrer le débogage** (clavier : appuyez sur la touche **F5**). |Choisissez le lien URL affiché sous l’onglet **Déploiement** du **Journal des activités Azure** pour charger la page de démarrage dans le navigateur. |
-   | Application Web ASP.NET MVC 2 |Dans la barre de menus, choisissez **Déboguer**, **Démarrer le débogage** (clavier : appuyez sur la touche **F5**). |Choisissez le lien URL affiché sous l’onglet **Déploiement** du **Journal des activités Azure** pour charger la page de démarrage dans le navigateur. |
-   | Application Web ASP.NET MVC 3 |Dans la barre de menus, choisissez **Déboguer**, **Démarrer le débogage** (clavier : appuyez sur la touche **F5**). |Choisissez le lien URL affiché sous l’onglet **Déploiement** du **Journal des activités Azure** pour charger la page de démarrage dans le navigateur. |
-   | Application Web ASP.NET MVC 4 |Dans la barre de menus, choisissez **Déboguer**, **Démarrer le débogage** (clavier : appuyez sur la touche **F5**). |Choisissez le lien URL affiché sous l’onglet **Déploiement** du **Journal des activités Azure** pour charger la page de démarrage dans le navigateur. |
-   | Application Web vide ASP.NET |Vous devez ajouter une page .aspx dans votre application et la définir comme page de démarrage pour votre projet web. Dans la barre de menus, choisissez **Déboguer**, **Démarrer le débogage** (clavier : appuyez sur la touche **F5**). |Si votre application contient une page .aspx par défaut, choisissez le lien URL affiché sous l’onglet **Déploiement** du **Journal des activités Azure** ; cette page est chargée dans le navigateur. Si vous avez une page .aspx différente, vous devez naviguer jusqu’à cette page spécifique en utilisant le format suivant pour votre URL : `<url for deployment>/<name of page>.aspx` |
-   | Application Silverlight |Dans la barre de menus, choisissez **Déboguer**, **Démarrer le débogage** (clavier : appuyez sur la touche **F5**). |Vous devez accéder à la page spécifique de votre application en utilisant le format suivant pour votre URL : `<url for deployment>/<name of page>.aspx` |
-   | Silverlight Business Application |Dans la barre de menus, choisissez **Déboguer**, **Démarrer le débogage** (clavier : appuyez sur la touche **F5**). |Vous devez accéder à la page spécifique de votre application en utilisant le format suivant pour votre URL : `<url for deployment>/<name of page>.aspx` |
-   | Silverlight Navigation Application |Dans la barre de menus, choisissez **Déboguer**, **Démarrer le débogage** (clavier : appuyez sur la touche **F5**). |Vous devez accéder à la page spécifique de votre application en utilisant le format suivant pour votre URL :`<url for deployment>/<name of page>.aspx` |
-   | WCF Service Application |Vous devez définir le fichier .svc comme page de démarrage de votre projet de service WCF. Dans la barre de menus, choisissez **Déboguer**, **Démarrer le débogage** (clavier : appuyez sur la touche **F5**). |Vous devez accéder au fichier .svc de votre application en utilisant le format suivant pour votre URL : `<url for deployment>/<name of service file>.svc` |
-   | WCF Workflow Service Application |Vous devez définir le fichier .svc comme page de démarrage de votre projet de service WCF. Dans la barre de menus, choisissez **Déboguer**, **Démarrer le débogage** (clavier : appuyez sur la touche **F5**). |Vous devez accéder au fichier .svc de votre application en utilisant le format suivant pour votre URL : `<url for deployment>/<name of service file>.svc` |
-   | ASP.NET Dynamic Entities |Dans la barre de menus, choisissez **Déboguer**, **Démarrer le débogage** (clavier : appuyez sur la touche **F5**). |Vous devez mettre à jour la chaîne de connexion (voir la section suivante). Vous devez également accéder à la page spécifique de votre application en utilisant le format suivant pour votre URL : `<url for deployment>/<name of page>.aspx` |
-   | ASP.NET Dynamic Data Linq to SQL |Dans la barre de menus, choisissez **Déboguer**, **Démarrer le débogage** (clavier : appuyez sur la touche **F5**). |Vous devez suivre les étapes de cette procédure : Utilisation d’une base de données SQL Azure pour votre application (voir la section plus haut dans cette rubrique). Vous devez également accéder à la page spécifique de votre application en utilisant le format suivant pour votre URL : `<url for deployment>/<name of page>.aspx` |
+   | Application Web ASP.NET |Dans la barre de menus de hello, choisissez **déboguer**, **démarrer le débogage** (clavier : choisissez hello **F5** clé.). |Choisir un lien hypertexte de l’URL hello affiché dans hello **déploiement** onglet hello **journal des activités Azure** page de démarrage tooload hello dans le navigateur de hello. |
+   | Application Web ASP.NET MVC 2 |Dans la barre de menus de hello, choisissez **déboguer**, **démarrer le débogage** (clavier : choisissez hello **F5** clé.). |Choisir un lien hypertexte de l’URL hello affiché dans hello **déploiement** onglet hello **journal des activités Azure** page de démarrage tooload hello dans le navigateur de hello. |
+   | Application Web ASP.NET MVC 3 |Dans la barre de menus de hello, choisissez **déboguer**, **démarrer le débogage** (clavier : choisissez hello **F5** clé.). |Choisir un lien hypertexte de l’URL hello affiché dans hello **déploiement** onglet hello **journal des activités Azure** page de démarrage tooload hello dans le navigateur de hello. |
+   | Application Web ASP.NET MVC 4 |Dans la barre de menus de hello, choisissez **déboguer**, **démarrer le débogage** (clavier : choisissez hello **F5** clé.). |Choisir un lien hypertexte de l’URL hello affiché dans hello **déploiement** onglet hello **journal des activités Azure** page de démarrage tooload hello dans le navigateur de hello. |
+   | Application Web vide ASP.NET |Vous devez ajouter une page .aspx dans votre application et la définir comme page de démarrage hello pour votre projet web. Sur la barre de menus de hello, puis **déboguer**, **démarrer le débogage** (clavier : choisissez hello **F5** clé.). |Si vous avez une page .aspx de valeur par défaut dans votre application, choisissez le lien d’URL de hello affiché dans hello **déploiement** onglet hello **journal des activités Azure** cette page est chargée dans le navigateur de hello. Si vous avez une page .aspx différente, vous devez page spécifique de toonavigate toothis à l’aide de hello respectant le format pour l’url :`<url for deployment>/<name of page>.aspx` |
+   | Application Silverlight |Dans la barre de menus de hello, choisissez **déboguer**, **démarrer le débogage** (clavier : choisissez hello **F5** clé.). |Vous devez toonavigate toohello une page spécifique de votre application à l’aide de hello respectant le format pour l’url :`<url for deployment>/<name of page>.aspx` |
+   | Silverlight Business Application |Dans la barre de menus de hello, choisissez **déboguer**, **démarrer le débogage** (clavier : choisissez hello **F5** clé.). |Vous devez toonavigate toohello une page spécifique de votre application à l’aide de hello respectant le format pour l’url :`<url for deployment>/<name of page>.aspx` |
+   | Silverlight Navigation Application |Dans la barre de menus de hello, choisissez **déboguer**, **démarrer le débogage** (clavier : choisissez hello **F5** clé.). |Vous devez toonavigate toohello une page spécifique de votre application à l’aide de hello respectant le format pour l’url :`<url for deployment>/<name of page>.aspx` |
+   | WCF Service Application |Vous devez définir le fichier .svc de hello comme hello page de démarrage de votre projet de Service WCF. Sur la barre de menus de hello, puis **déboguer**, **démarrer le débogage** (clavier : choisissez hello **F5** clé.). |Vous avez besoin de fichier svc de toohello toonavigate pour votre application à l’aide de hello respectant le format pour l’url :`<url for deployment>/<name of service file>.svc` |
+   | WCF Workflow Service Application |Vous devez définir le fichier .svc de hello comme hello page de démarrage de votre projet de Service WCF. Sur la barre de menus de hello, puis **déboguer**, **démarrer le débogage** (clavier : choisissez hello **F5** clé.). |Vous avez besoin de fichier svc de toohello toonavigate pour votre application à l’aide de hello respectant le format pour l’url :`<url for deployment>/<name of service file>.svc` |
+   | ASP.NET Dynamic Entities |Dans la barre de menus de hello, choisissez **déboguer**, **démarrer le débogage** (clavier : choisissez hello **F5** clé.). |Vous devez mettre à jour la chaîne de connexion hello (voir la section suivante). Vous devez également toonavigate toohello une page spécifique de votre application à l’aide de hello respectant le format pour l’url :`<url for deployment>/<name of page>.aspx` |
+   | ASP.NET Dynamic Data ASP.NET Linq tooSQL |Dans la barre de menus de hello, choisissez **déboguer**, **démarrer le débogage** (clavier : choisissez hello **F5** clé.). |Vous devez suivre les étapes de hello dans cette procédure : utiliser une base de données SQL Azure pour votre application (voir la section plus haut dans cette rubrique). Vous devez également toonavigate toohello une page spécifique de votre application à l’aide de hello respectant le format pour l’url :`<url for deployment>/<name of page>.aspx` |
 
 ## <a name="update-a-connection-string-for-aspnet-dynamic-entities"></a>Mise à jour d’une chaîne de connexion pour ASP.NET Dynamic Entities
-### <a name="to-update-a-connection-string-for-aspnet-dynamic-entities"></a>Mettre à jour une chaîne de connexion pour ASP.NET Dynamic Entities
-1. Pour créer une base de données SQL Azure qui peut être utilisée pour une application web ASP.NET Dynamic Entities, vous devez suivre les étapes de la procédure **Utilisation d’une base de données SQL Azure pour votre application** plus haut dans cette rubrique.
-2. Ajoutez les tables et les champs dont vous avez besoin pour cette base de données à partir du [Portail Azure Classic](http://go.microsoft.com/fwlink/?LinkID=213885).
-3. La chaîne de connexion pour ce type d'application a le format suivant dans le fichier web.config :  
+### <a name="tooupdate-a-connection-string-for-aspnet-dynamic-entities"></a>tooUpdate une chaîne de connexion pour ASP.NET Dynamic Entities
+1. toocreate une base de données SQL Azure qui peut être utilisé pour une application web ASP.NET Dynamic Entities, suivez les étapes de hello dans la procédure de hello **utiliser une base de données SQL Azure pour votre application** plus haut dans cette rubrique.
+2. Ajouter des tables de hello et les champs dont vous avez besoin pour cette base de données à partir de hello [portail Azure classic](http://go.microsoft.com/fwlink/?LinkID=213885).
+3. chaîne de connexion de Hello pour ce type d’application a hello suivant le format dans le fichier web.config de hello :  
 
     ```
     <addname="tempdbEntities"connectionString="metadata=res://*/Model1.csdl|res://*/Model1.ssdl|res://*/Model1.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=<server name>\SQLEXPRESS;initial catalog=<database name>;integrated security=True;multipleactiveresultsets=True;App=EntityFramework&quot;"providerName="System.Data.EntityClient"/>
     ```
 
-    Mettez à jour la valeur *connectionString* avec la chaîne de connexion ADO.NET pour votre base de données SQL Azure comme suit :
+    Hello de mise à jour *connectionString* valeur hello chaîne de connexion ADO.NET pour votre base de données SQL Azure comme suit :
 
     ```
     XMLCopy<addname="tempdbEntities"connectionString="metadata=res://*/Model1.csdl|res://*/Model1.ssdl|res://*/Model1.msl;provider=System.Data.SqlClient;provider connection string=&quot;Server=tcp:<SQL Azure server name>.database.windows.net,1433;Database=<database name>;User ID=<user name>;Password=<password>;Trusted_Connection=False;Encrypt=True;multipleactiveresultsets=True;App=EntityFramework&quot;"providerName="System.Data.EntityClient"/>
     ```
-4. Pour enregistrer le fichier web.config avec les modifications que vous avez apportées à la chaîne de connexion, dans la barre de menu, choisissez **Fichier**, **Enregistrer web.config**.
+4. fichier de web.config hello toosave avec modifications hello que vous avez apportées chaîne de connexion toohello, sur la barre de menus hello choisissez **fichier**, **enregistrer web.config**.
 
 ## <a name="supported-project-templates"></a>Modèles de projet pris en charge
-Pour publier une application web sur Azure, l’application doit utiliser un des modèles de projet pour C# ou Visual Basic répertoriés dans le tableau ci-dessous.
+toopublish un tooAzure d’application web, application hello doit utiliser un des modèles de projet hello pour c# ou Visual Basic, qui est répertorié dans le tableau hello ci-dessous.
 
 | Groupe de modèles de projet | Modèle de projet |
 | --- | --- |
@@ -191,7 +191,7 @@ Pour publier une application web sur Azure, l’application doit utiliser un des
 | Web |Application Web vide ASP.NET |
 | Web |Application Web vide ASP.NET MVC 2 |
 | Web |Application Web ASP.NET Dynamic Data Entities |
-| Web |Application Web ASP.NET Dynamic Data Linq to SQL |
+| Web |ASP.NET Dynamic Data ASP.NET Linq tooSQL Application Web |
 | Silverlight |Application Silverlight |
 | Silverlight |Silverlight Business Application |
 | Silverlight |Silverlight Navigation Application |
@@ -200,4 +200,4 @@ Pour publier une application web sur Azure, l’application doit utiliser un des
 | Workflow |WCF Workflow Service Application |
 
 ## <a name="next-steps"></a>Étapes suivantes
-Pour plus d’informations sur la publication, consultez [Préparer la publication ou le déploiement d’une application Azure à partir de Visual Studio](vs-azure-tools-cloud-service-publish-set-up-required-services-in-visual-studio.md). Consultez également [Configuration des informations d’authentification nommées](vs-azure-tools-setting-up-named-authentication-credentials.md).
+Pour plus d’informations sur la publication, consultez [tooPublish de préparer ou de déployer une Application Azure depuis Visual Studio](vs-azure-tools-cloud-service-publish-set-up-required-services-in-visual-studio.md). Consultez également [Configuration des informations d’authentification nommées](vs-azure-tools-setting-up-named-authentication-credentials.md).

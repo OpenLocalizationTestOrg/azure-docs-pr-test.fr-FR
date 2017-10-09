@@ -1,6 +1,6 @@
 ---
-title: "Connecter des réseaux virtuels classiques à des réseaux virtuels Resource Manager : Portail | Microsoft Docs"
-description: "Découvrez comment créer une connexion VPN entre des réseaux virtuels classiques et des réseaux virtuels Resource Manager à l’aide d’une passerelle VPN et du portail"
+title: "Connecter des réseaux virtuels classiques tooAzure Gestionnaire de ressources VNets : portail | Documents Microsoft"
+description: "Découvrez comment toocreate une connexion VPN entre classique des réseaux virtuels et VNets Gestionnaire de ressources à l’aide de la passerelle VPN et du portail de hello"
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/21/2017
 ms.author: cherylmc
-ms.openlocfilehash: 1b7b67ec28986b7c20b3e990e3565265f74c28e6
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: bef63b4e829335b2e1a9434a35ebfe33b4fd7373
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-virtual-networks-from-different-deployment-models-using-the-portal"></a>Connecter des réseaux virtuels utilisant des modèles de déploiement différents dans le portail
+# <a name="connect-virtual-networks-from-different-deployment-models-using-hello-portal"></a>Connecter des réseaux virtuels à partir de modèles de déploiement différents à l’aide du portail de hello
 
-Cet article vous explique comment connecter des réseaux virtuels classiques à des réseaux virtuels Resource Manager afin de permettre aux ressources situées dans les modèles de déploiement distincts de communiquer entre elles. Les étapes décrites dans cet article utilisent principalement le portail Azure, mais vous pouvez également créer cette configuration à l’aide de PowerShell en sélectionnant l’article dans cette liste.
+Cet article vous explique comment tooconnect classique des réseaux virtuels tooResource Manager VNets tooallow hello ressources situées dans toocommunicate de modèles de déploiement distinct hello entre eux. étapes Hello dans cet article utilisent principalement hello portail Azure, mais vous pouvez également créer cette configuration à l’aide de hello PowerShell en sélectionnant l’article de hello dans cette liste.
 
 > [!div class="op_single_selector"]
 > * [Portail](vpn-gateway-connect-different-deployment-models-portal.md)
@@ -31,19 +31,19 @@ Cet article vous explique comment connecter des réseaux virtuels classiques à 
 > 
 > 
 
-La connexion d’un réseau virtuel classique à un réseau virtuel Resource Manager est semblable à la connexion d’un réseau virtuel à un emplacement de site local. Les deux types de connectivité font appel à une passerelle VPN pour offrir un tunnel sécurisé utilisant Ipsec/IKE. Vous pouvez créer une connexion entre des réseaux virtuels situés dans des abonnements différents et des régions différentes. Vous pouvez également connecter des réseaux virtuels qui disposent déjà de connexions à des réseaux locaux, à condition que la passerelle avec laquelle ils ont été configurés soit dynamique ou basée sur un itinéraire. Pour plus d’informations sur les connexions de réseau virtuel à réseau virtuel, consultez le [Forum Aux Questions sur l’interconnexion de réseaux virtuels](#faq) à la fin de cet article. 
+La connexion d’un tooa de réseau virtuel classique Gestionnaire de ressources du VNet est tooconnecting comme emplacement d’un site réseau virtuel tooan local. Les deux types de connectivité utilisent un tooprovide de passerelle VPN un tunnel sécurisé utilisant IPsec/IKE. Vous pouvez créer une connexion entre des réseaux virtuels situés dans des abonnements différents et des régions différentes. Vous pouvez également connecter des réseaux virtuels qui ont déjà des connexions tooon des réseaux locaux, tant que passerelle hello qui ils ont été configurés avec est dynamique ou basée sur un itinéraire. Pour plus d’informations sur les connexions de réseau virtuel à réseau virtuel, consultez hello [FAQ sur le réseau à](#faq) à fin hello de cet article. 
 
-Si vos réseaux virtuels sont situés dans la même région, vous souhaiterez peut-être plutôt utiliser VNet Peering pour les connecter. L’homologation de réseaux virtuels (ou VNet Peering) n’utilise pas de passerelle VPN. Pour plus d’informations, consultez l’article [Homologation de réseaux virtuels](../virtual-network/virtual-network-peering-overview.md). 
+Si vos réseaux virtuels sont Bonjour même région, vous souhaiterez peut-être tooinstead connectent à l’aide de l’homologation de réseau virtuel. L’homologation de réseaux virtuels (ou VNet Peering) n’utilise pas de passerelle VPN. Pour plus d’informations, consultez l’article [Homologation de réseaux virtuels](../virtual-network/virtual-network-peering-overview.md). 
 
 ### <a name="prerequisites"></a>Composants requis
 
-* Ces étapes supposent que les deux réseaux virtuels ont déjà été créés. Si vous utilisez cet article en guise d’exercice et que vous ne disposez pas de réseaux virtuels, vous trouverez des liens dans les étapes pour vous aider à les créer.
-* Vérifiez que les plages d’adresses des réseaux virtuels ne se chevauchent pas ou ne chevauchent aucune des plages des autres connexions susceptibles d’être utilisées par les passerelles.
-* Installez les dernières applets de commande PowerShell pour le Gestionnaire de ressources et pour la Gestion des services (classique). Dans cet article, nous utilisons le portail Azure et PowerShell. PowerShell est requis pour créer la connexion à partir du réseau virtuel classique vers le réseau virtuel Resource Manager. Pour plus d’informations, consultez la rubrique [Installation et configuration d’Azure PowerShell](/powershell/azure/overview). 
+* Ces étapes supposent que les deux réseaux virtuels ont déjà été créés. Si vous utilisez cet article en guise d’exercice et que vous ne disposez pas des réseaux virtuels, il existe des liaisons dans hello étapes toohelp vous les créez.
+* Vérifiez que les plages d’adresses de hello de hello que réseaux virtuels ne se chevauchent pas entre eux, ou se chevauchent avec les hello plages pour les autres connexions qui hello passerelles peuvent être connectés à.
+* Installer les applets de commande PowerShell dernière hello pour le Gestionnaire de ressources et de gestion des services (classique). Dans cet article, nous utilisons hello portail Azure et PowerShell. PowerShell est requis toocreate hello connexion toohello de réseau virtuel classique hello Gestionnaire de ressources VNet. Pour plus d’informations, consultez [comment tooinstall et configurer Azure PowerShell](/powershell/azure/overview). 
 
 ### <a name="values"></a>Exemples de paramètres
 
-Vous pouvez utiliser ces valeurs pour créer un environnement de test ou vous y référer pour mieux comprendre les exemples de cet article.
+Vous pouvez utiliser ces valeurs de toocreate un environnement de test, ou consultez toothem toobetter comprendre les exemples hello dans cet article.
 
 **Réseau virtuel classique**
 
@@ -72,74 +72,74 @@ Nom de connexion = RMtoClassic
 
 ### <a name="connection-overview"></a>Vue d’ensemble de la connexion
 
-Pour cette configuration, vous créez une connexion de passerelle VPN via un tunnel VPN IPsec/IKE entre les réseaux virtuels. Assurez-vous que vos plages de réseau virtuel ne se chevauchent pas entre elles ou avec un réseau local auquel elles se connectent.
+Pour cette configuration, vous créez une connexion de passerelle VPN via un tunnel IPsec/IKE VPN entre les réseaux virtuels hello. Assurez-vous qu’aucune des plages de votre réseau virtuel se chevauchent entre eux ou avec les réseaux locaux hello auquel ils se connectent à.
 
-Le tableau suivant montre comment les réseaux virtuels et les sites locaux sont définis :
+Hello tableau suivant montre un exemple de la façon dont l’exemple hello des réseaux virtuels et des sites locaux sont définies :
 
-| Réseau virtuel | Espace d'adressage | Région | Se connecte au site de réseau local |
+| Réseau virtuel | Espace d'adressage | Région | Se connecte à un site réseau toolocal |
 |:--- |:--- |:--- |:--- |
 | ClassicVNet |(10.0.0.0/24) |Ouest des États-Unis | RMVNetLocal (192.168.0.0/16) |
 | RMVNet | (192.168.0.0/16) |Est des États-Unis |ClassicVNetLocal (10.0.0.0/24) |
 
-## <a name="classicvnet"></a>1. Configurer les paramètres de réseau virtuel classique
+## <a name="classicvnet"></a>1. Configurer les paramètres de réseau virtuel classiques hello
 
-Dans cette section, vous créez le réseau local (site local) et la passerelle de réseau virtuel pour votre réseau virtuel classique. Si vous n’avez pas de réseau virtuel classique et que vous exécutez ces étapes en guise d’exercice, vous pouvez créer un réseau virtuel à l’aide de [cet article](../virtual-network/virtual-networks-create-vnet-classic-pportal.md) et les valeurs de paramètres [d’exemple](#values) ci-dessus.
+Dans cette section, vous créez hello local (site local) de réseau et passerelle de réseau virtuel hello pour votre réseau virtuel classique. Si vous n’avez pas un réseau virtuel classique et que vous exécutez ces étapes en guise d’exercice, vous pouvez créer un réseau virtuel à l’aide de [cet article](../virtual-network/virtual-networks-create-vnet-classic-pportal.md) et hello [exemple](#values) les valeurs des paramètres ci-dessus.
 
-Lorsque vous utilisez le portail pour créer un réseau virtuel classique, vous devez accéder au panneau de réseau virtuel à l’aide de la procédure suivante, sinon l’option de création d’un réseau virtuel classique n’apparaît pas :
+Lorsque vous utilisez toocreate de portail hello un réseau virtuel classique, vous devez accéder à panneau de réseau virtuel toohello à l’aide de hello comme suit, sinon hello option toocreate un réseau virtuel classique n’apparaît pas :
 
-1. Cliquez sur « + » pour ouvrir le panneau « Nouveau ».
-2. Dans le champ « Rechercher dans le marketplace », saisissez « réseau virtuel ». Si vous sélectionnez Mise en réseau -> Réseau virtuel à la place, l’option de création d’un réseau virtuel classique ne s’affiche pas.
-3. Localisez « Réseau virtuel » dans la liste renvoyée et cliquez dessus pour ouvrir le panneau correspondant. 
-4. Dans le panneau Réseau virtuel, sélectionnez « Classique » pour créer un réseau virtuel classique. 
+1. Cliquez sur hello '+' du Panneau de 'New' tooopen hello.
+2. Dans le champ de « Marketplace hello de recherche » hello, tapez « Réseau virtuel ». Si vous sélectionnez à la place, la mise en réseau -> réseau virtuel, vous n’obtiendrez hello option toocreate un réseau virtuel classique.
+3. Recherchez « Réseau virtuel » à partir de hello retourné la liste et cliquez dessus Panneau de réseau virtuel tooopen hello. 
+4. Dans Panneau de réseau virtuel hello, sélectionnez « Classiques » toocreate un réseau virtuel classique. 
 
-Si vous disposez déjà d’un réseau virtuel avec une passerelle VPN, vérifiez que la passerelle est dynamique. Si elle est statique, vous devez tout d’abord supprimer la passerelle VPN avant de poursuivre.
+Si vous disposez déjà d’un réseau virtuel avec une passerelle VPN, vérifiez que cette passerelle hello est dynamique. Si elle est statique, vous devez d’abord supprimer la passerelle VPN de hello, puis continuer.
 
-Les captures d’écran sont fournies à titre d’exemple. Assurez-vous de remplacer ces valeurs par les vôtres,ou utilisez les valeurs [d’exemple](#values).
+Les captures d’écran sont fournies à titre d’exemple. Être tooreplace que les valeurs hello par les vôtres ou utilisez hello [exemple](#values) valeurs.
 
-### <a name="part-1---configure-the-local-site"></a>Partie 1 : Configurer le site local
+### <a name="part-1---configure-hello-local-site"></a>Partie 1 : configurer le site local de hello
 
-Ouvrez le [portail Azure](https://ms.portal.azure.com) et connectez-vous avec votre compte Azure.
+Ouvrez hello [portail Azure](https://ms.portal.azure.com) et connectez-vous avec votre compte Azure.
 
-1. Accédez à **Toutes les ressources** et recherchez le **réseau virtuel classique** dans la liste.
-2. Dans le panneau **Vue d’ensemble**, dans la section **Connexions VPN**, cliquez sur le graphique **Passerelle** pour créer une passerelle.
+1. Accédez trop**toutes les ressources** et recherchez hello **ClassicVNet** dans la liste de hello.
+2. Sur hello **vue d’ensemble** panneau, Bonjour **connexions VPN** , cliquez sur hello **passerelle** toocreate graphique une passerelle.
 
     ![Configurer une passerelle VPN](./media/vpn-gateway-connect-different-deployment-models-portal/gatewaygraphic.png "Configurer une passerelle VPN")
-3. Dans le panneau **Nouvelle connexion VPN**, pour **Type de connexion**, sélectionnez **De site à site**.
-4. Sous **Site local**, cliquez sur **Configurer les paramètres requis**. Cette opération ouvre le panneau **Site local**.
-5. Dans le panneau **Site local**, créez un nom pour faire référence au réseau virtuel Resource Manager. Par exemple, « RMVNetLocal ».
-6. Si la passerelle VPN pour le réseau virtuel Resource Manager a déjà une adresse IP publique, utilisez cette valeur pour le champ **Adresse IP de passerelle VPN**. Si vous effectuez ces étapes en guise d’exercice, ou si ne disposez pas encore dune passerelle de réseau virtuel pour votre réseau virtuel Resource Manager, vous pouvez créer une adresse IP d’espace réservé. Assurez-vous que l’adresse IP avec espace réservé utilise un format valide. Remplacez ensuite l’adresse IP avec espace réservé par l’adresse IP publique de la passerelle de réseau virtuel Resource Manager.
-7. Pour **Espace d’adressage du client**, utilisez les valeurs des espaces d’adressage IP de réseau virtuel pour le réseau virtuel Resource Manager. Ce paramètre sert à spécifier les espaces d’adressage à router vers le réseau virtuel Resource Manager.
-8. Cliquez sur **OK** pour enregistrer les valeurs et revenez au panneau **Nouvelle connexion VPN**.
+3. Sur hello **nouvelle connexion VPN** panneau, pour **type de connexion**, sélectionnez **Site-à-site**.
+4. Sous **Site local**, cliquez sur **Configurer les paramètres requis**. Cette opération ouvre hello **site Local** panneau.
+5. Sur hello **site Local** panneau, créer un toohello toorefer de nom du Gestionnaire de ressources VNet. Par exemple, « RMVNetLocal ».
+6. Si la passerelle VPN de hello pour hello Gestionnaire de ressources VNet a déjà une adresse IP publique, utiliser la valeur de hello pour hello **adresse IP de passerelle VPN** champ. Si vous effectuez ces étapes en guise d’exercice, ou si ne disposez pas encore dune passerelle de réseau virtuel pour votre réseau virtuel Resource Manager, vous pouvez créer une adresse IP d’espace réservé. Assurez-vous que les adresse IP d’espace réservé hello utilise un format valide. Une version ultérieure, vous remplacez adresse espace réservé de hello en hello adresse IP publique de la passerelle de réseau virtuel du Gestionnaire de ressources hello.
+7. Pour **espace d’adressage Client**, utilisez les valeurs de hello pour les espaces d’adressage IP hello réseau virtuel pour hello Gestionnaire de ressources VNet. Ce paramètre est utilisé toospecify hello adresse espaces tooroute toohello Gestionnaire de ressources du réseau virtuel.
+8. Cliquez sur **OK** toosave hello valeurs et retourner toohello **nouvelle connexion VPN** panneau.
 
-### <a name="part-2---create-the-virtual-network-gateway"></a>Partie 2 : Créer la passerelle de réseau virtuel
+### <a name="part-2---create-hello-virtual-network-gateway"></a>Partie 2 : créer une passerelle de réseau virtuel hello
 
-1. Dans le panneau **Nouvelle connexion VPN**, sélectionnez la case à cocher **Créer une passerelle immédiatement** et cliquez sur **Configuration de passerelle facultative** pour ouvrir le panneau **Configuration de la passerelle**. 
+1. Sur hello **nouvelle connexion VPN** panneau, sélectionnez hello **créer une passerelle immédiatement** case à cocher et cliquez sur **configuration de la passerelle facultatif** tooopen hello  **Configuration de la passerelle** panneau. 
 
     ![Ouvrir le panneau Configuration de la passerelle](./media/vpn-gateway-connect-different-deployment-models-portal/optionalgatewayconfiguration.png "Ouvrir le panneau Configuration de la passerelle")
-2. Cliquez sur **Subnet Configure required settings** (Configurer les paramètres requis pour le sous-réseau) pour ouvrir le panneau **Add subnet** (Ajouter un sous-réseau). Le **Nom** est déjà configuré avec la valeur requise **GatewaySubnet**.
-3. La **Plage d’adresses** fait référence à la plage pour le sous-réseau de passerelle. Bien que vous puissiez créer un sous-réseau de passerelle avec une plage d’adresses /29 (3 adresses), nous vous recommandons de créer un sous-réseau de passerelle qui contient plus d’adresses IP. Cela afin d’accueillir des configurations futures nécessitant la disponibilité d’un plus grand nombre d’adresses IP. Si possible, utilisez /27 ou /28. Si vous suivez ces étapes dans le cadre d’un exercice, vous pouvez vous référer aux valeurs [d’exemple](#values). Cliquez sur **OK** pour créer le sous réseau de passerelle.
-4. Dans le panneau **Configuration de la passerelle**, le paramètre **Taille** désigne la référence SKU de passerelle. Sélectionnez la référence SKU de passerelle pour votre passerelle VPN.
-5. Vérifiez que le **Type de routage** est **Dynamique**, puis cliquez sur **OK** pour revenir au panneau **Nouvelle connexion VPN**.
-6. Dans le panneau **Nouvelle connexion VPN**, cliquez sur **OK** pour commencer à créer votre passerelle VPN. La création d’une passerelle VPN peut prendre jusqu’à 45 minutes.
+2. Cliquez sur **Subnet - configurer les paramètres requis** tooopen hello **ajouter un sous-réseau** panneau. Hello **nom** est déjà configuré avec la valeur de hello requis **GatewaySubnet**.
+3. Hello **plage d’adresses** fait référence toohello plage de sous-réseau de passerelle hello. Bien que vous puissiez créer un sous-réseau de passerelle avec une plage d’adresses /29 (3 adresses), nous vous recommandons de créer un sous-réseau de passerelle qui contient plus d’adresses IP. Cela afin d’accueillir des configurations futures nécessitant la disponibilité d’un plus grand nombre d’adresses IP. Si possible, utilisez /27 ou /28. Si vous utilisez ces étapes en guise d’exercice, vous pouvez faire référence à toohello [exemple](#values) valeurs. Cliquez sur **OK** sous-réseau de passerelle toocreate hello.
+4. Sur hello **configuration de la passerelle** panneau, **taille** fait référence toohello passerelle référence (SKU). Sélectionnez hello passerelle référence (SKU) pour votre passerelle VPN.
+5. Vérifiez que hello **Type de routage** est **dynamique**, puis cliquez sur **OK** tooreturn toohello **nouvelle connexion VPN** panneau.
+6. Sur hello **nouvelle connexion VPN** panneau, cliquez sur **OK** toobegin créer votre passerelle VPN. Création d’une passerelle VPN peut prendre jusqu'à too45 minutes toocomplete.
 
-### <a name="ip"></a>Partie 3 : Copier l’adresse IP publique de passerelle de réseau virtuel
+### <a name="ip"></a>Partie 3 : passerelle de réseau virtuel hello copie adresse IP publique
 
-Une fois la passerelle de réseau virtuel créée, vous pouvez afficher l’adresse IP de la passerelle. 
+Une fois la passerelle de réseau virtuel hello a été créé, vous pouvez afficher l’adresse IP de passerelle hello. 
 
-1. Accédez à votre réseau virtuel classique, puis cliquez sur **Vue d’ensemble**.
-2. Cliquez sur **Connexions VPN** afin d’ouvrir le panneau Connexions VPN. Dans le panneau Connexions VPN, vous pouvez afficher l’adresse IP publique. Il s’agit de l’adresse IP publique affectée à votre passerelle de réseau virtuel. 
-3. Notez ou copiez l’adresse IP. Vous en aurez besoin aux étapes suivantes pour vos paramètres de configuration de passerelle de réseau local Resource Manager. Vous pouvez également afficher l’état de vos connexions à la passerelle. Le site de réseau local que vous avez créé est répertorié comme « Connexion ». Le statut sera modifié une fois les connexions créées.
-4. Fermez le panneau après avoir copié l’adresse IP de passerelle.
+1. Accédez tooyour classique réseau virtuel, puis cliquez sur **vue d’ensemble**.
+2. Cliquez sur **connexions VPN** Panneau de connexions VPN tooopen hello. Dans Panneau de connexions VPN hello, vous pouvez afficher l’adresse IP publique de hello. Il s’agit d’adresse IP publique de hello passerelle de réseau virtuel tooyour affectée. 
+3. Notez ou copiez l’adresse IP de hello. Vous en aurez besoin aux étapes suivantes pour vos paramètres de configuration de passerelle de réseau local Resource Manager. Vous pouvez également afficher le statut de hello de vos connexions de passerelle. Site de réseau local hello avis que vous avez créé est répertorié comme « Connexion ». état de Hello passe après avoir créé vos connexions.
+4. Fermez le panneau de hello après la copie d’adresse IP de passerelle hello.
 
-## <a name="rmvnet"></a>2. Configurer les paramètres du réseau virtuel Resource Manager
+## <a name="rmvnet"></a>2. Configurer les paramètres de réseau virtuel du Gestionnaire des ressources hello
 
-Dans cette section, vous créez la passerelle de réseau virtuel et la passerelle de réseau local pour votre réseau virtuel Resource Manager. Si vous n’avez pas de réseau virtuel Resource Manager et que vous exécutez ces étapes en guise d’exercice, vous pouvez créer un réseau virtuel à l’aide de [cet article](../virtual-network/virtual-networks-create-vnet-arm-pportal.md) et les valeurs de paramètres [d’exemple](#values) ci-dessus.
+Dans cette section, vous créer une passerelle de réseau virtuel hello et passerelle de réseau local hello du VNet de votre gestionnaire de ressources. Si vous n’avez pas un VNet Gestionnaire de ressources et que vous exécutez ces étapes en guise d’exercice, vous pouvez créer un réseau virtuel à l’aide de [cet article](../virtual-network/virtual-networks-create-vnet-arm-pportal.md) et hello [exemple](#values) les valeurs des paramètres ci-dessus.
 
-Les captures d’écran sont fournies à titre d’exemple. Assurez-vous de remplacer ces valeurs par les vôtres,ou utilisez les valeurs [d’exemple](#values).
+Les captures d’écran sont fournies à titre d’exemple. Être tooreplace que les valeurs hello par les vôtres ou utilisez hello [exemple](#values) valeurs.
 
 ### <a name="part-1---create-a-gateway-subnet"></a>Partie 1 : Créer un sous-réseau de passerelle
 
-Vous devez d’abord créer un sous-réseau de passerelle pour pouvoir configurer une passerelle de réseau virtuel. Créez un sous-réseau de passerelle avec un nombre CIDR de /28 ou plus. (/27, /26, etc.)
+Avant de créer une passerelle de réseau virtuel, vous devez d’abord sous-réseau de passerelle toocreate hello. Créez un sous-réseau de passerelle avec un nombre CIDR de /28 ou plus. (/27, /26, etc.)
 
 [!INCLUDE [vpn-gateway-no-nsg-include](../../includes/vpn-gateway-no-nsg-include.md)]
 
@@ -151,59 +151,59 @@ Vous devez d’abord créer un sous-réseau de passerelle pour pouvoir configure
 
 ### <a name="createlng"></a>Partie 3 : Créer une passerelle de réseau local
 
-La passerelle de réseau local spécifie la plage d’adresses et l’adresse IP publique associées à votre réseau virtuel classique et à la passerelle de réseau virtuel.
+passerelle de réseau local Hello spécifie la plage d’adresses hello et l’adresse IP publique de hello associé à votre réseau virtuel classique et la passerelle de réseau virtuel.
 
-Si vous effectuez ces étapes en guise d’exercice, consultez ces paramètres :
+Si vous effectuez ces étapes en guise d’exercice, consultez les paramètres toothese :
 
-| Réseau virtuel | Espace d'adressage | Région | Se connecte au site de réseau local |Adresse IP publique de la passerelle|
+| Réseau virtuel | Espace d'adressage | Région | Se connecte à un site réseau toolocal |Adresse IP publique de la passerelle|
 |:--- |:--- |:--- |:--- |:--- |
-| ClassicVNet |(10.0.0.0/24) |Ouest des États-Unis | RMVNetLocal (192.168.0.0/16) |L’adresse IP publique qui est affectée à la passerelle ClassicVNet|
-| RMVNet | (192.168.0.0/16) |Est des États-Unis |ClassicVNetLocal (10.0.0.0/24) |L’adresse IP publique qui est affectée à la passerelle RMVNet.|
+| ClassicVNet |(10.0.0.0/24) |Ouest des États-Unis | RMVNetLocal (192.168.0.0/16) |Hello adresse IP publique affectée toohello ClassicVNet passerelle|
+| RMVNet | (192.168.0.0/16) |Est des États-Unis |ClassicVNetLocal (10.0.0.0/24) |Hello adresse IP publique affectée toohello RMVNet passerelle.|
 
 [!INCLUDE [vpn-gateway-add-lng-rm-portal](../../includes/vpn-gateway-add-lng-rm-portal-include.md)]
 
-## <a name="modifylng"></a>3. Modifier les paramètres de site local du réseau virtuel classique
+## <a name="modifylng"></a>3. Modifier les paramètres du site local hello classiques réseau virtuel
 
-Dans cette section, vous remplacez l’adresse IP avec espace réservé que vous avez utilisée lorsque vous avez spécifié les paramètres du site local avec l’adresse IP de passerelle de réseau virtuel Resource Manager. Cette section utilise les applets de commande PowerShell (SM) classiques.
+Dans cette section, vous remplacez les adresses IP hello espace réservé que vous avez utilisé lors de la spécification des paramètres de site local hello, par le Gestionnaire de ressources IP adresse la passerelle VPN de hello. Cette section utilise les applets de commande hello classique (SM) PowerShell.
 
-1. Dans le portail Azure, accédez au réseau virtuel classique.
-2. Dans le panneau de votre réseau virtuel, cliquez sur **Vue d’ensemble**.
-3. Dans la section **Connexions VPN**, cliquez sur le nom de votre site local dans le graphique.
+1. Bonjour portail Azure, accédez à toohello de réseau virtuel classique.
+2. Dans le panneau hello pour votre réseau virtuel, cliquez sur **vue d’ensemble**.
+3. Bonjour **connexions VPN** , cliquez sur le nom de hello de votre site local dans le graphique de hello.
 
     ![Connexions VPN](./media/vpn-gateway-connect-different-deployment-models-portal/vpnconnections.png "Connexions VPN")
-4. Dans le panneau **Connexions VPN de site à site**, cliquez sur le nom du site.
+4. Sur hello **les connexions VPN de Site à site** panneau, cliquez sur nom hello du site de hello.
 
     ![Nom du site](./media/vpn-gateway-connect-different-deployment-models-portal/sitetosite3.png "Nom du site local")
-5. Dans le volet de connexion pour votre site local, cliquez sur le nom du site local pour ouvrir le panneau **Site local**.
+5. Dans Panneau de connexion hello pour votre site local, cliquez sur nom hello Hello de hello site local tooopen **site Local** panneau.
 
     ![Ouvrir le site local](./media/vpn-gateway-connect-different-deployment-models-portal/openlocal.png "Ouvrir le site local")
-6. Dans le panneau **Site local**, remplacez **l’adresse IP de passerelle VPN** avec l’adresse IP de la passerelle Resource Manager.
+6. Sur hello **site Local** panneau, remplacer hello **adresse IP de passerelle VPN** avec l’adresse IP de hello de passerelle du Gestionnaire de ressources hello.
 
     ![Adresse IP de la passerelle](./media/vpn-gateway-connect-different-deployment-models-portal/gwipaddress.png "Adresse IP de la passerelle")
-7. Cliquez sur **OK** pour mettre à jour l’adresse IP.
+7. Cliquez sur **OK** adresse IP de hello tooupdate.
 
-## <a name="RMtoclassic"></a>4. Créer une connexion entre Resource Manager et classique
+## <a name="RMtoclassic"></a>4. Créer la connexion du Gestionnaire de ressources tooclassic
 
-Dans cette procédure, vous configurez la connexion entre le réseau virtuel Resource Manager et le réseau virtuel classique à l’aide du portail Azure.
+Dans ces étapes, vous configurez la connexion de hello de hello Gestionnaire de ressources VNet toohello classique réseau virtuel à l’aide de hello portail Azure.
 
-1. Dans **Toutes les ressources**, recherchez la passerelle de réseau local. Dans notre exemple, la passerelle de réseau local est **ClassicVNetLocal**.
-2. Cliquez sur **Configuration** et vérifiez que la valeur d’adresse IP est la passerelle VPN pour le réseau virtuel classique. Mettez à jour si nécessaire, puis cliquez sur **Enregistrer**. Fermez le panneau.
-3. Dans **Toutes les ressources**, cliquez sur la passerelle de réseau local.
-4. Cliquez sur **Connexions** afin d’ouvrir le panneau Connexions.
-5. Dans le panneau **Connexions**, cliquez sur **+** pour ajouter une connexion.
-6. Dans le panneau **Ajouter une connexion**, donnez un nom à la connexion. Par exemple, « RMtoClassic ».
+1. Dans **toutes les ressources**, recherchez la passerelle de réseau local hello. Dans notre exemple, passerelle de réseau local hello est **ClassicVNetLocal**.
+2. Cliquez sur **Configuration** et vérifiez que valeur de l’adresse IP hello est la passerelle VPN de hello pour hello réseau virtuel classique. Mettez à jour si nécessaire, puis cliquez sur **Enregistrer**. Panneau de fermeture hello.
+3. Dans **toutes les ressources**, cliquez sur la passerelle de réseau local hello.
+4. Cliquez sur **connexions** Panneau de connexions tooopen hello.
+5. Sur hello **connexions** panneau, cliquez sur  **+**  tooadd une connexion.
+6. Sur hello **ajouter une connexion** panneau, nom de connexion hello. Par exemple, « RMtoClassic ».
 7. **Site à site** est déjà sélectionnée sur ce panneau.
-8. Sélectionnez la passerelle de réseau virtuel que vous souhaitez associer à ce site.
-9. Créer une **clé partagée**. Cette clé est également utilisée dans la connexion que vous créez entre le réseau virtuel classique et le réseau virtuel Resource Manager. Vous pouvez générer la clé ou en créer une. Dans l’exemple, nous avons utilisé « abc123 », mais vous pouvez (et devriez) utiliser une valeur plus complexe.
-10. Cliquez sur **OK** pour créer la connexion.
+8. Sélectionnez hello passerelle de réseau virtuel que vous souhaitez tooassociate avec ce site.
+9. Créer une **clé partagée**. Cette clé est également utilisée dans la connexion hello que vous créez à partir de toohello de réseau virtuel classique hello Gestionnaire de ressources VNet. Vous pouvez générer une clé de hello ou en créer un. Dans l’exemple, nous avons utilisé « abc123 », mais vous pouvez (et devriez) utiliser une valeur plus complexe.
+10. Cliquez sur **OK** connexion de hello toocreate.
 
-##<a name="classictoRM"></a>5. Créer une connexion entre classique et Resource Manager
+##<a name="classictoRM"></a>5. Créer le Gestionnaire de connexions tooResource classique
 
-Dans cette procédure, vous configurez la connexion entre le réseau virtuel Resource Manager et le réseau virtuel classique à l’aide du portail Azure. Pour ce faire, vous devez utiliser PowerShell. Vous ne pouvez pas créer cette connexion dans le portail. Assurez-vous que vous avez téléchargé et installé les applets de commande PowerShell classiques et Resource Manager (RM).
+Dans ces étapes, vous configurez connexion hello toohello de réseau virtuel classique hello Gestionnaire de ressources VNet. Pour ce faire, vous devez utiliser PowerShell. Impossible de créer cette connexion dans le portail de hello. Assurez-vous que vous avez téléchargé et installé hello classique (SM) et les applets de commande PowerShell de gestionnaire de ressources (RM).
 
-### <a name="1-connect-to-your-azure-account"></a>1. Se connecter au compte Azure
+### <a name="1-connect-tooyour-azure-account"></a>1. Se connecter tooyour compte Azure
 
-Ouvrez la console PowerShell avec des droits élevés et connectez-vous à votre compte Azure. Les applets de commande suivantes vous invitent à entrer les informations d’identification de connexion pour votre compte Azure. Une fois que vous êtes connecté, vos paramètres de compte sont téléchargés pour être reconnus par Azure PowerShell.
+Ouvrez la console PowerShell de hello avec des droits élevés et connectez-vous à tooyour compte Azure. Hello applet de commande suivante vous demande les informations d’identification de hello pour votre compte Azure. Après la connexion, les paramètres de votre compte sont téléchargés afin qu’ils soient disponible tooAzure PowerShell.
 
 ```powershell
 Login-AzureRmAccount
@@ -215,40 +215,40 @@ Si vous possédez plusieurs abonnements, procurez-vous la liste de vos abonnemen
 Get-AzureRmSubscription
 ```
 
-Spécifiez l’abonnement que vous souhaitez utiliser. 
+Spécifiez un abonnement hello que vous souhaitez toouse. 
 
 ```powershell
 Select-AzureRmSubscription -SubscriptionName "Name of subscription"
 ```
 
-Ajoutez votre compte Azure pour utiliser les applets de commande PowerShell classiques. Pour ce faire, vous pouvez utiliser la commande suivante :
+Ajoutez votre compte Azure toouse hello classique applets de commande PowerShell (SM). toodo par conséquent, vous pouvez utiliser hello de commande suivante :
 
 ```powershell
 Add-AzureAccount
 ```
 
-### <a name="2-view-the-network-configuration-file-values"></a>2. Afficher le fichier de configuration réseau
+### <a name="2-view-hello-network-configuration-file-values"></a>2. Afficher les valeurs du fichier de configuration réseau hello
 
-Lorsque vous créez un réseau virtuel dans le portail Azure, le nom complet utilisé par Azure n’est pas visible dans le portail Azure. Par exemple, un réseau virtuel qui semble être nommé « ClassicVNet1 » dans le portail Azure peut avoir un nom beaucoup plus long dans le fichier de configuration réseau. Le nom peut ressembler à ceci : « Group ClassicRG1 ClassicVNet1 ». Dans ces étapes, vous téléchargez le fichier de configuration réseau et affichez les valeurs.
+Lorsque vous créez un réseau virtuel dans hello portail Azure, nom complet hello que Azure utilise n’est pas visible dans hello portail Azure. Par exemple, un réseau virtuel qui s’affiche toobe nommé 'ClassicVNet' Bonjour portail Azure peut avoir un nom beaucoup plus de temps dans le fichier de configuration de réseau hello. Hello nom peut ressembler à ceci : « ClassicRG ClassicVNet de groupe ». Dans ces étapes, vous téléchargez hello fichier et affichage hello valeurs de configuration réseau.
 
-Créez un répertoire sur votre ordinateur, puis exportez le fichier de configuration réseau dans ce répertoire. Dans cet exemple, le fichier de configuration réseau est exporté vers C:\AzureNet.
+Créez un répertoire sur votre ordinateur et exportez répertoire toohello du fichier de configuration hello réseau. Dans cet exemple, le fichier de configuration de réseau hello est tooC:\AzureNet exporté.
 
 ```powershell
 Get-AzureVNetConfig -ExportToFile C:\AzureNet\NetworkConfig.xml
 ```
 
-Dans un éditeur de texte, ouvrez le fichier, puis affichez le nom de votre réseau virtuel classique. Utilisez les noms indiqués dans le fichier de configuration réseau lors de l’exécution de vos applets de commande PowerShell.
+Ouvrez le fichier de hello avec un éditeur et vue hello nom pour votre réseau virtuel classique. Utiliser des noms de hello dans le fichier de configuration de réseau hello lors de l’exécution de vos applets de commande PowerShell.
 
 - Les noms des réseaux virtuels sont répertoriés comme suit : **VirtualNetworkSite name =**
 - Les noms de site sont répertoriés comme suit : **LocalNetworkSite name=**
 
-### <a name="3-create-the-connection"></a>3. Créer la connexion
+### <a name="3-create-hello-connection"></a>3. Créer la connexion de hello
 
-Configurez la clé partagée et créez la connexion à partir du réseau virtuel classique vers le réseau virtuel Resource Manager. Vous ne pouvez pas définir la clé partagée à l’aide du portail. Veillez à exécuter les étapes suivantes lorsque vous êtes connecté à l’aide de la version classique des applets de commande PowerShell. Pour ce faire, utilisez **Add-AzureAccount**. Sinon, vous ne pourrez pas définir « -AzureVNetGatewayKey ».
+Définir la clé partagée de hello et créez hello connexion toohello de réseau virtuel classique hello Gestionnaire de ressources VNet. Impossible de définir la clé partagée de hello à l’aide du portail de hello. Assurez-vous que vous exécutez ces étapes lorsque vous êtes connecté à l’aide de la version classique de hello Hello applets de commande PowerShell. toodo donc utiliser **Add-AzureAccount**. Dans le cas contraire, vous ne serez pas en mesure de tooset hello '-AzureVNetGatewayKey'.
 
-- Dans cet exemple, **-VNetName** est le nom du réseau virtuel classique, comme indiqué dans votre fichier de configuration réseau. 
-- **-LocalNetworkSiteName** est le nom que vous avez spécifié pour le site local, comme indiqué dans votre fichier de configuration réseau.
-- **-SharedKey** est une valeur que vous pouvez générer et spécifier. Dans l’exemple, nous avons utilisé *abc123*, mais vous pouvez générer quelque chose de plus complexe. L’important, c’est que la valeur que vous spécifiez ici doit être identique à celle spécifiée lors de la création de la connexion entre Resource Manager et classique.
+- Dans cet exemple, **VNetName -** est le nom de hello hello classique réseau virtuel en tant que trouvé dans le fichier de configuration de votre réseau. 
+- Hello **- LocalNetworkSiteName** nom hello vous avez spécifié pour le site local de hello, comme se trouve dans votre fichier de configuration réseau.
+- Hello **SharedKey -** est une valeur que vous générez et que vous spécifiez. Dans l’exemple, nous avons utilisé *abc123*, mais vous pouvez générer quelque chose de plus complexe. Hello important est cette valeur hello que vous spécifiez ici doit être hello que même valeur que vous avez spécifié lors de la création de votre connexion tooclassic du Gestionnaire de ressources.
 
 ```powershell
 Set-AzureVNetGatewayKey -VNetName "Group ClassicRG ClassicVNet" `
@@ -257,13 +257,13 @@ Set-AzureVNetGatewayKey -VNetName "Group ClassicRG ClassicVNet" `
 
 ##<a name="verify"></a>6. Vérifiez vos connexions
 
-Vous pouvez vérifier vos connexions à l’aide du portail Azure ou de PowerShell. Lors de la vérification, vous devrez peut-être patienter quelques minutes, le temps que la connexion soit créée. Lorsqu’une connexion est réussie, l’état de connectivité passe de « Connexion » à « Connecté ».
+Vous pouvez vérifier que vos connexions à l’aide de hello portail Azure ou PowerShell. Lors de la vérification, vous devrez peut-être toowait une ou deux minutes lors de la création de connexions de hello. Lorsqu’une connexion est réussie, état de la connectivité hello passe de « Connexion » too'Connected'.
 
-### <a name="to-verify-the-connection-from-your-classic-vnet-to-your-resource-manager-vnet"></a>Pour vérifier la connexion de votre réseau virtuel classique à votre réseau virtuel Resource Manager
+### <a name="tooverify-hello-connection-from-your-classic-vnet-tooyour-resource-manager-vnet"></a>connexion de hello tooverify à partir de votre tooyour de réseau virtuel classique Gestionnaire de ressources VNet
 
 [!INCLUDE [vpn-gateway-verify-connection-azureportal-classic](../../includes/vpn-gateway-verify-connection-azureportal-classic-include.md)]
 
-###<a name="to-verify-the-connection-from-your-resource-manager-vnet-to-your-classic-vnet"></a>Pour vérifier la connexion de votre réseau virtuel Resource Manager à votre réseau virtuel classique
+###<a name="tooverify-hello-connection-from-your-resource-manager-vnet-tooyour-classic-vnet"></a>connexion de hello tooverify à partir de votre gestionnaire de ressources du VNet de tooyour réseau virtuel classique
 
 [!INCLUDE [vpn-gateway-verify-connection-portal-rm](../../includes/vpn-gateway-verify-connection-portal-rm-include.md)]
 

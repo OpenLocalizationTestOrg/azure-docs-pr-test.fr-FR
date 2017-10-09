@@ -1,6 +1,6 @@
 ---
-title: "Contrôler le routage et les appliances virtuelles dans un modèle Azure | Microsoft Docs"
-description: "Découvrez comment contrôler le routage et les appliances virtuelles à l’aide d’un modèle Azure Resource Manager."
+title: "dispositifs de routage et virtuels aaaControl dans Azure - modèle | Documents Microsoft"
+description: "Découvrez comment toocontrol équipements virtuels et de routage à l’aide d’un modèle Azure Resource Manager."
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/23/2016
 ms.author: jdial
-ms.openlocfilehash: b2c962d5449d18b51cfd84b0e1992695b54d1c48
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 781340593541784d2d9772d310c041ad4a5c3101
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-user-defined-routes-udr-using-a-template"></a>Créer des routages définis par l’utilisateur à l’aide d’un modèle
 
@@ -31,14 +31,14 @@ ms.lasthandoff: 07/11/2017
 > * [Interface de ligne de commande (classique)](virtual-network-create-udr-classic-cli.md)
 
 > [!IMPORTANT]
-> Avant d’utiliser des ressources Azure, il est important de comprendre qu’Azure dispose actuellement de deux modèles de déploiement : Azure Resource Manager et classique. Veillez à bien comprendre les [modèles et outils de déploiement](../azure-resource-manager/resource-manager-deployment-model.md) avant d’utiliser une ressource Azure. Pour consulter la documentation relative aux différents outils, cliquez sur les onglets situés en haut de cet article. Cet article traite du modèle de déploiement de Resource Manager. 
+> Avant d’utiliser des ressources Azure, il est important toounderstand que Azure dispose actuellement de deux modèles de déploiement : le Gestionnaire de ressources Azure et classique. Veillez à bien comprendre les [modèles et outils de déploiement](../azure-resource-manager/resource-manager-deployment-model.md) avant d’utiliser une ressource Azure. Vous pouvez afficher la documentation hello pour différents outils en cliquant sur les onglets hello haut hello de cet article. Cet article décrit le modèle de déploiement du Gestionnaire de ressources hello. 
 
 [!INCLUDE [virtual-network-create-udr-scenario-include.md](../../includes/virtual-network-create-udr-scenario-include.md)]
 
 ## <a name="udr-resources-in-a-template-file"></a>Ressources UDR dans un fichier de modèle
-Vous pouvez afficher et télécharger les [exemples de modèles](https://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR).
+Vous pouvez afficher et télécharger hello [exemple de modèle](https://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR).
 
-La section ci-dessous illustre la définition du routage défini par l’utilisateur frontal dans le fichier **azuredeploy-vnet-nsg-udr.json** pour le scénario :
+Hello section suivante présente définition hello Hello frontal UDR Bonjour **azuredeploy-réseau virtuel-groupe de sécurité réseau-udr.json** fichier pour le scénario de hello :
 
     "apiVersion": "2015-06-15",
     "type": "Microsoft.Network/routeTables",
@@ -59,7 +59,7 @@ La section ci-dessous illustre la définition du routage défini par l’utilisa
         }
       ]
 
-Pour associer le routage défini par l’utilisateur au sous-réseau frontal, vous devez modifier la définition du sous-réseau dans le modèle, puis utiliser l’ID de référence du routage défini par l’utilisateur.
+tooassociate hello UDR toohello sous-réseau frontal, vous disposez de définition de sous-réseau toochange hello dans le modèle de hello et utiliser l’id référence hello pour hello UDR.
 
     "subnets": [
         "name": "[parameters('frontEndSubnetName')]",
@@ -73,9 +73,9 @@ Pour associer le routage défini par l’utilisateur au sous-réseau frontal, vo
           }
         },
 
-Notez que la même opération est effectuée pour le groupe de sécurité réseau frontal et le sous-réseau principal (back-end) dans le modèle.
+Notez que même en cours d’exécution pour hello principal groupe de sécurité réseau et hello sous-réseau principal dans le modèle de hello hello.
 
-Vous devez également vous assurer que la machine virtuelle **FW1** dispose de la propriété de transfert d'adresse IP activée sur la carte réseau qui sera utilisée pour recevoir et transmettre les paquets. La section ci-dessous illustre la définition de la carte réseau pour FW1 dans le fichier azuredeploy-nsg-udr.json, selon le scénario ci-dessus.
+Vous devez également tooensure ce hello **FW1** IP hello transfert de propriété est activée sur la carte réseau qui sera utilisé tooreceive et transmettre les paquets de hello est l’ordinateur virtuel. section Hello dessous définition de hello montre de hello NIC pour FW1 dans le fichier de groupe de sécurité réseau-azuredeploy-udr.json hello, selon le scénario hello ci-dessus.
 
     "apiVersion": "2015-06-15",
     "type": "Microsoft.Network/networkInterfaces",
@@ -111,17 +111,17 @@ Vous devez également vous assurer que la machine virtuelle **FW1** dispose de l
       "count": "[parameters('fwCount')]"
     }
 
-## <a name="deploy-the-template-by-using-click-to-deploy"></a>Déployer le modèle en un clic
-L’exemple de modèle disponible dans le référentiel public utilise un fichier de paramètres contenant les valeurs par défaut utilisées pour générer le scénario décrit ci-dessus. Pour déployer ce modèle en un clic, suivez [ce lien](https://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR), cliquez sur **Déployer dans Azure**, remplacez les valeurs de paramètre par défaut si nécessaire, puis suivez les instructions dans le portail.
+## <a name="deploy-hello-template-by-using-click-toodeploy"></a>Déployer le modèle de hello à l’aide de cliquez sur toodeploy
+Hello exemple de modèle disponible dans le référentiel de public hello utilise un fichier de paramètre contenant le scénario hello hello par défaut les valeurs utilisées toogenerate décrit ci-dessus. toodeploy ce modèle à l’aide de cliquez toodeploy, suivez [ce lien](https://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR), cliquez sur **déployer tooAzure**, remplacez les valeurs de paramètre par défaut hello si nécessaire et suivez les instructions de hello dans le portail de hello.
 
-1. Si vous n’avez jamais utilisé Azure PowerShell, consultez [Installation et configuration d’Azure PowerShell](/powershell/azure/overview) et suivez les instructions jusqu’à la fin pour vous connecter à Azure et sélectionner votre abonnement.
-2. Utilisez la commande suivante pour créer un groupe de ressources :
+1. Si vous n’avez jamais utilisé Azure PowerShell, consultez [comment tooInstall et configurer Azure PowerShell](/powershell/azure/overview) et suivez les instructions de hello tous les toohello de façon hello fin toosign dans Azure et sélectionnez votre abonnement.
+2. Exécutez hello suivant toocreate de commande à un groupe de ressources :
 
     ```powershell
     New-AzureRmResourceGroup -Name TestRG -Location westus
     ```
 
-3. Exécutez la commande suivante pour déployer le modèle :
+3. Exécutez hello suivant le modèle de commande toodeploy hello :
 
     ```powershell
     New-AzureRmResourceGroupDeployment -Name DeployUDR -ResourceGroupName TestRG `
@@ -171,22 +171,22 @@ L’exemple de modèle disponible dans le référentiel public utilise un fichie
 
         ResourceId        : /subscriptions/[Subscription Id]/resourceGroups/TestRG
 
-## <a name="deploy-the-template-by-using-the-azure-cli"></a>Déployer le modèle à l’aide de l’interface de ligne de commande Azure
+## <a name="deploy-hello-template-by-using-hello-azure-cli"></a>Déployer le modèle de hello à l’aide de hello CLI d’Azure
 
-Pour déployer le modèle ARM à l’aide d’Azure CLI, procédez comme suit :
+modèle ARM toodeploy hello à l’aide de hello CLI d’Azure, hello complète comme suit :
 
-1. Si vous n’avez jamais utilisé l’interface de ligne de commande Azure, consultez [Installer et configurer l’interface de ligne de commande Azure](../cli-install-nodejs.md) et suivez les instructions jusqu’à l’étape où vous sélectionnez votre compte et votre abonnement Azure.
-2. Exécutez la commande suivante pour passer en mode Resource Manager :
+1. Si vous n’avez jamais utilisé CLI d’Azure, consultez [installer et configurer hello CLI d’Azure](../cli-install-nodejs.md) et suivez les instructions de hello point toohello où vous sélectionnez votre compte Azure et votre abonnement.
+2. Exécutez hello suivant le mode commande tooswitch tooResource Manager :
 
     ```azurecli
     azure config mode arm
     ```
 
-    Voici le résultat attendu pour la commande ci-dessus :
+    Voici la sortie hello attendu pour la commande hello ci-dessus :
 
         info:    New mode is arm
 
-3. À partir de votre navigateur, accédez à **https://raw.githubusercontent.com/telmosampaio/azure-templates/master/IaaS-NSG-UDR/azuredeploy.parameters.json**, copiez le contenu du fichier json, puis collez-le dans un nouveau fichier sur votre ordinateur. Pour ce scénario, les valeurs ci-dessous sont à copier dans un fichier nommé **c:\udr\azuredeploy.parameters.json**.
+3. À partir de votre navigateur, accédez trop**https://raw.githubusercontent.com/telmosampaio/azure-templates/master/IaaS-NSG-UDR/azuredeploy.parameters.json**, contenu hello du fichier json de hello de copier et coller dans un nouveau fichier dans votre ordinateur. Pour ce scénario, vous serez copie les valeurs hello ci-dessous fichier tooa nommé **c:\udr\azuredeploy.parameters.json**.
 
     ```json
         {
@@ -206,7 +206,7 @@ Pour déployer le modèle ARM à l’aide d’Azure CLI, procédez comme suit :
         }
     ```
 
-4. Exécutez la commande suivante pour déployer le nouveau réseau virtuel en utilisant le modèle et les fichiers de paramètres que vous avez téléchargés et modifiés plus haut :
+4. Exécutez hello toodeploy hello nouveau réseau virtuel à l’aide de fichiers de modèle et le paramètre hello vous avez téléchargé et de modifier les propriétés de commande suivante :
 
     ```azurecli
     azure group create -n TestRG -l westus --template-uri 'https://raw.githubusercontent.com/telmosampaio/azure-templates/master/IaaS-NSG-UDR/azuredeploy.json' -e 'c:\udr\azuredeploy.parameters.json'
@@ -229,7 +229,7 @@ Pour déployer le modèle ARM à l’aide d’Azure CLI, procédez comme suit :
         data:    
         info:    group create command OK
 
-5. Exécutez la commande suivante pour afficher les ressources créées dans le nouveau groupe de ressources :
+5. Exécutez hello suivant des ressources de hello tooview commande créés dans le nouveau groupe de ressources hello :
 
     ```azurecli
     azure group show TestRG
@@ -239,7 +239,7 @@ Pour déployer le modèle ARM à l’aide d’Azure CLI, procédez comme suit :
 
             info:    Executing command group show
             info:    Listing resource groups
-            info:    Listing resources for the group
+            info:    Listing resources for hello group
             data:    Id:                  /subscriptions/[Subscription Id]/resourceGroups/TestRG
             data:    Name:                TestRG
             data:    Location:            westus
@@ -404,5 +404,5 @@ Pour déployer le modèle ARM à l’aide d’Azure CLI, procédez comme suit :
             info:    group show command OK
 
 > [!TIP]
-> Si vous ne voyez pas toutes les ressources, exécutez la commande `azure group deployment show` pour vérifier que l’état d’approvisionnement du déploiement indique *Succeded*.
+> Si vous ne voyez pas toutes les ressources de hello, exécutez hello `azure group deployment show` commande tooensure hello état de configuration de déploiement de hello est *a été déplacée vers*.
 > 

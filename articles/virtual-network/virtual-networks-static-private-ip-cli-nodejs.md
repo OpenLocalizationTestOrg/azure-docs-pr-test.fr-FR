@@ -1,6 +1,6 @@
 ---
-title: "Configurer des adresses IP privées pour les machines virtuelles - Azure CLI 1.0 | Microsoft Docs"
-description: "Apprenez à configurer des adresses IP privées pour les machines virtuelles à l’aide de l’interface Azure CLI 1.0."
+title: "les adresses IP privées aaaConfigure pour les machines virtuelles - Azure CLI 1.0 | Documents Microsoft"
+description: "Découvrez comment les adresses IP privées tooconfigure pour les ordinateurs virtuels à l’aide de hello Azure interface de ligne de commande (CLI) 1.0."
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -16,53 +16,53 @@ ms.workload: infrastructure-services
 ms.date: 03/15/2016
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 9179319095c31d5eb454860e173ffa7c65fc9f73
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6caae79c98c7bc5f246b7bb3bb8bd8f032eb2d8f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="configure-private-ip-addresses-for-a-virtual-machine-using-the-azure-cli-10"></a>Configurer des adresses IP privées pour une machine virtuelle à l’aide de l’interface Azure CLI 1.0
+# <a name="configure-private-ip-addresses-for-a-virtual-machine-using-hello-azure-cli-10"></a>Configurer des adresses IP privées pour un ordinateur virtuel à l’aide de hello Azure CLI 1.0
 
 
-## <a name="cli-versions-to-complete-the-task"></a>Versions de l’interface de ligne de commande permettant d’effectuer la tâche 
+## <a name="cli-versions-toocomplete-hello-task"></a>Tâche de hello CLI versions toocomplete 
 
-Vous pouvez exécuter la tâche en utilisant l’une des versions suivantes de l’interface de ligne de commande (CLI) : 
+Vous pouvez exécuter la tâche hello à l’aide de hello CLI versions suivantes : 
 
-- [Azure CLI 1.0](#how-to-specify-a-static-private-ip-address-when-creating-a-vm) : notre interface de ligne de commande pour les modèles de déploiement Classique et Resource Manager (cet article)
-- [Azure CLI 2.0](virtual-networks-static-private-ip-arm-cli.md) : notre interface Azure CLI nouvelle génération pour le modèle de déploiement Resource Manager 
+- [Azure CLI 1.0](#how-to-specify-a-static-private-ip-address-when-creating-a-vm) – notre CLI pour hello classique et la ressource gestion des modèles de déploiement (cet article)
+- [Azure CLI 2.0](virtual-networks-static-private-ip-arm-cli.md) -CLI de notre nouvelle génération pour le modèle de déploiement de gestion de ressources hello 
 
 [!INCLUDE [virtual-networks-static-private-ip-intro-include](../../includes/virtual-networks-static-private-ip-intro-include.md)]
 
 [!INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)]
 
-Cet article traite du modèle de déploiement de Resource Manager. Vous pouvez également [gérer une adresse IP privée statique dans le modèle de déploiement classique](virtual-networks-static-private-ip-classic-cli.md).
+Cet article décrit le modèle de déploiement du Gestionnaire de ressources hello. Vous pouvez également [gérer une adresse IP privée statique dans le modèle de déploiement classique hello](virtual-networks-static-private-ip-classic-cli.md).
 
 [!INCLUDE [virtual-networks-static-ip-scenario-include](../../includes/virtual-networks-static-ip-scenario-include.md)]
 
-Les commandes d’interface de ligne de commande Azure attendent un environnement simple déjà créé. Si vous souhaitez exécuter les commandes telles qu’elles sont présentées dans ce document, commencez par créer l’environnement de test décrit dans [Créer un réseau virtuel](virtual-networks-create-vnet-arm-cli.md).
+commandes CLI d’Azure d’exemple Hello ci-dessous s’attendre à un environnement simple déjà créé. Si vous souhaitez que les commandes de hello toorun car elles sont affichées dans ce document, tout d’abord créer d’environnement de test hello décrit dans [créer un réseau virtuel](virtual-networks-create-vnet-arm-cli.md).
 
-## <a name="how-to-specify-a-static-private-ip-address-when-creating-a-vm"></a>Comment spécifier une adresse IP privée statique lors de la création d’une machine virtuelle
-Pour créer une machine virtuelle nommée *DNS01* dans le sous-réseau *FrontEnd* d’un réseau virtuel nommé *TestVNet* avec l’adresse IP privée statique *192.168.1.101*, procédez comme suit :
+## <a name="how-toospecify-a-static-private-ip-address-when-creating-a-vm"></a>Comment toospecify une adresse IP privée statique d’adresses lorsque vous créez une machine virtuelle
+toocreate un ordinateur virtuel nommé *DNS01* Bonjour *frontal* sous-réseau d’un réseau virtuel nommé *TestVNet* avec une adresse IP privée statique de *192.168.1.101*, Suivez les étapes de hello ci-dessous :
 
-1. Si vous n’avez jamais utilisé l’interface de ligne de commande Azure, consultez [Installer et configurer l’interface de ligne de commande Azure](../cli-install-nodejs.md) et suivez les instructions jusqu’à l’étape où vous sélectionnez votre compte et votre abonnement Azure.
-2. Exécutez la commande **azure config mode** pour passer en mode Resource Manager, comme illustré ci-dessous.
+1. Si vous n’avez jamais utilisé CLI d’Azure, consultez [installer et configurer hello CLI d’Azure](../cli-install-nodejs.md) et suivez les instructions de hello point toohello où vous sélectionnez votre compte Azure et votre abonnement.
+2. Exécutez hello **configuration azure mode** mode Manager tooResource commande tooswitch, comme indiqué ci-dessous.
    
         azure config mode arm
    
     Sortie attendue :
    
         info:    New mode is arm
-3. Exécutez la commande **azure network public-ip create** pour créer une adresse IP publique de la machine virtuelle. La liste affichée après le résultat présente les différents paramètres utilisés.
+3. Exécutez hello **public-ip de réseau azure créer** toocreate une adresse IP publique pour hello machine virtuelle. liste de Hello affiché après la sortie de hello explique paramètres hello utilisés.
    
         azure network public-ip create -g TestRG -n TestPIP -l centralus
    
     Sortie attendue :
    
         info:    Executing command network public-ip create
-        + Looking up the public ip "TestPIP"
+        + Looking up hello public ip "TestPIP"
         + Creating public ip address "TestPIP"
-        + Looking up the public ip "TestPIP"
+        + Looking up hello public ip "TestPIP"
         data:    Id                              : /subscriptions/628dad04-b5d1-4f10-b3a4-dc61d88cf97c/resourceGroups/TestRG/providers/Microsoft.Network/publicIPAddresses/TestPIP
         data:    Name                            : TestPIP
         data:    Type                            : Microsoft.Network/publicIPAddresses
@@ -72,19 +72,19 @@ Pour créer une machine virtuelle nommée *DNS01* dans le sous-réseau *FrontEnd
         data:    Idle timeout                    : 4
         info:    network public-ip create command OK
    
-   * **-g (ou --resource-group)**. Nom du groupe de ressources dans l’IP public, lequel sera créé le réseau virtuel.
-   * **-n (ou --name)**. Nom de l’adresse IP publique.
-   * **-l (ou --location)**. Région Azure où le réseau virtuel doit être créé. Pour notre scénario, *centralus*.
-4. Exécutez la commande **azure network nic create** pour créer une carte réseau avec une adresse IP privée statique. La liste affichée après le résultat présente les différents paramètres utilisés.
+   * **-g (ou --resource-group)**. Nom de l’adresse IP publique hello ressource groupe hello sera créé dans.
+   * **-n (ou --name)**. Nom de l’adresse IP publique hello.
+   * **-l (ou --location)**. Région Azure où adresse IP publique hello sera créé. Pour notre scénario, *centralus*.
+4. Exécutez hello **créer des cartes réseau du réseau azure** commande toocreate une carte réseau avec une adresse IP statique privée. liste de Hello affiché après la sortie de hello explique paramètres hello utilisés.
    
         azure network nic create -g TestRG -n TestNIC -l centralus -a 192.168.1.101 -m TestVNet -k FrontEnd
    
     Sortie attendue :
    
-        + Looking up the network interface "TestNIC"
-        + Looking up the subnet "FrontEnd"
+        + Looking up hello network interface "TestNIC"
+        + Looking up hello subnet "FrontEnd"
         + Creating network interface "TestNIC"
-        + Looking up the network interface "TestNIC"
+        + Looking up hello network interface "TestNIC"
         data:    Id                              : /subscriptions/628dad04-b5d1-4f10-b3a4-dc61d88cf97c/resourceGroups/TestRG/providers/Microsoft.Network/networkInterfaces/TestNIC
         data:    Name                            : TestNIC
         data:    Type                            : Microsoft.Network/networkInterfaces
@@ -100,50 +100,50 @@ Pour créer une machine virtuelle nommée *DNS01* dans le sous-réseau *FrontEnd
         data:
         info:    network nic create command OK
    
-   * **-a (or --private-ip-address)**. Adresse IP privée statique pour la carte réseau.
-   * **-m (or --subnet-vnet-name)**. Nom du réseauVNet où sera créé le sous-réseau.
-   * **-k (or --subnet-name)**. Nom du réseau virtuel où sera créé le sous-réseau.
-5. Exécutez la commande **azure vm create** pour créer la machine virtuelle à l’aide de l’adresse IP publique et la carte réseau créées ci-dessus. La liste affichée après le résultat présente les différents paramètres utilisés.
+   * **-a (or --private-ip-address)**. Adresse IP privée statique pour hello carte réseau.
+   * **-m (or --subnet-vnet-name)**. Nom de hello réseau virtuel où hello carte réseau doit être créé.
+   * **-k (or --subnet-name)**. Nom du sous-réseau hello où hello carte réseau doit être créé.
+5. Exécutez hello **créer de machine virtuelle azure** commande toocreate hello machine virtuelle en utilisant l’adresse IP publique hello et la carte réseau créé précédemment. liste de Hello affiché après la sortie de hello explique paramètres hello utilisés.
    
         azure vm create -g TestRG -n DNS01 -l centralus -y Windows -f TestNIC -i TestPIP -F TestVNet -j FrontEnd -o vnetstorage -q bd507d3a70934695bc2128e3e5a255ba__RightImage-Windows-2012R2-x64-v14.2 -u adminuser -p AdminP@ssw0rd
    
     Sortie attendue :
    
         info:    Executing command vm create
-        + Looking up the VM "DNS01"
-        info:    Using the VM Size "Standard_A1"
-        warn:    The image "bd507d3a70934695bc2128e3e5a255ba__RightImage-Windows-2012R2-x64-v14.2" will be used for VM
-        info:    The [OS, Data] Disk or image configuration requires storage account
-        + Looking up the storage account vnetstorage
-        + Looking up the NIC "TestNIC"
+        + Looking up hello VM "DNS01"
+        info:    Using hello VM Size "Standard_A1"
+        warn:    hello image "bd507d3a70934695bc2128e3e5a255ba__RightImage-Windows-2012R2-x64-v14.2" will be used for VM
+        info:    hello [OS, Data] Disk or image configuration requires storage account
+        + Looking up hello storage account vnetstorage
+        + Looking up hello NIC "TestNIC"
         info:    Found an existing NIC "TestNIC"
-        info:    Found an IP configuration with virtual network subnet id "/subscriptions/628dad04-b5d1-4f10-b3a4-dc61d88cf97c/resourceGroups/TestRG/providers/Microsoft.Network/virtualNetworks/TestVNet/subnets/FrontEnd" in the NIC "TestNIC"
-        info:    Found public ip parameters, trying to setup PublicIP profile
-        + Looking up the public ip "TestPIP"
+        info:    Found an IP configuration with virtual network subnet id "/subscriptions/628dad04-b5d1-4f10-b3a4-dc61d88cf97c/resourceGroups/TestRG/providers/Microsoft.Network/virtualNetworks/TestVNet/subnets/FrontEnd" in hello NIC "TestNIC"
+        info:    Found public ip parameters, trying toosetup PublicIP profile
+        + Looking up hello public ip "TestPIP"
         info:    Found an existing PublicIP "TestPIP"
         info:    Configuring identified NIC IP configuration with PublicIP "TestPIP"
         + Updating NIC "TestNIC"
-        + Looking up the NIC "TestNIC"
+        + Looking up hello NIC "TestNIC"
         + Creating VM "DNS01"
         info:    vm create command OK
    
-   * **-y (ou type de système d’exploitation--)**. Type de système d’exploitation pour la machine virtuelle, soit *Windows*, soit *Linux*.
-   * **-f (ou nom de la carte réseau--)**. Nom de la carte réseau que la machine virtuelle utilisera.
-   * **-i (ou --nom ip public)**. Nom de l’adresse IP publique que la machine virtuelle utilisera.
-   * **-F (ou --nom vnet)**. Nom du réseauVNet où sera créée la machine virtuelle.
-   * **-j (or --vnet-subnet-name)**. Nom du sous-réseau où sera créée la machine virtuelle.
+   * **-y (ou type de système d’exploitation--)**. Type de hello machine virtuelle, système d’exploitation, soit *Windows* ou *Linux*.
+   * **-f (ou nom de la carte réseau--)**. Nom de Bonjour Bonjour de carte réseau virtuelle utilisera.
+   * **-i (ou --nom ip public)**. Nom de Bonjour Bonjour IP public VM utilisera.
+   * **-F (ou --nom vnet)**. Nom de hello réseau virtuel où hello machine virtuelle doit être créé.
+   * **-j (or --vnet-subnet-name)**. Nom du sous-réseau hello où hello machine virtuelle doit être créé.
 
-## <a name="how-to-retrieve-static-private-ip-address-information-for-a-vm"></a>Comment récupérer des informations d’adresse IP privée statique pour une machine virtuelle
-Pour visualiser les informations d’adresse IP privée statique concernant la machine virtuelle créée avec le script ci-dessus, exécutez la commande Azure CLI suivante, puis examinez les valeurs *Private IP alloc-method* et *Private IP address* :
+## <a name="how-tooretrieve-static-private-ip-address-information-for-a-vm"></a>Comment informations pour une machine virtuelle d’adresse IP privée statique de tooretrieve
+adresse IP privée statique de tooview hello adresse hello pour les ordinateurs virtuels créés avec script hello ci-dessus, exécutez hello suivant commande CLI d’Azure et observer les valeurs hello pour *IP privée de la méthode d’allocation* et *l’adresse IP privée*:
 
     azure vm show -g TestRG -n DNS01
 
 Sortie attendue :
 
     info:    Executing command vm show
-    + Looking up the VM "DNS01"
-    + Looking up the NIC "TestNIC"
-    + Looking up the public ip "TestPIP
+    + Looking up hello VM "DNS01"
+    + Looking up hello NIC "TestNIC"
+    + Looking up hello public ip "TestPIP
     data:    Id                              :/subscriptions/628dad04-b5d1-4f10-b3a4-dc61d88cf97c/resourceGroups/TestRG/providers/Microsoft.Compute/virtualMachines/DNS01
     data:    ProvisioningState               :Succeeded
     data:    Name                            :DNS01
@@ -186,20 +186,20 @@ Sortie attendue :
     data:            Public IP address       :40.122.213.159
     info:    vm show command OK
 
-## <a name="how-to-remove-a-static-private-ip-address-from-a-vm"></a>Comment supprimer une adresse IP privée statique d’une machine virtuelle
-Vous ne pouvez pas supprimer une adresse IP privée statique à partir d’une carte réseau dans l’interface de ligne de commande de Resource Manager. Vous devez créer une nouvelle carte réseau qui utilise une adresse IP dynamique, supprimer la carte réseau précédente de la machine virtuelle et ajouter la nouvelle carte réseau à la machine virtuelle. Pour modifier la carte réseau de la machine virtuelle utilisée dans les commandes ci-dessus, suivez les étapes ci-dessous.
+## <a name="how-tooremove-a-static-private-ip-address-from-a-vm"></a>Comment tooremove une privée d’adresses IP statiques à partir d’une machine virtuelle
+Vous ne pouvez pas supprimer une adresse IP privée statique à partir d’une carte réseau dans l’interface de ligne de commande de Resource Manager. Vous devez créer une nouvelle carte réseau qui utilise une adresse IP dynamique, supprimez hello NIC précédente à partir de la machine virtuelle de hello et ajoutez hello nouvelle carte réseau toohello machine virtuelle. toochange hello NIC pour hello VM utilisé int eh commandes ci-dessus, suivez les étapes de hello ci-dessous.
 
-1. Exécutez la commande **azure network nic create** pour créer une nouvelle carte réseau à l’aide de l’allocation d’adresses IP dynamiques. Notez que cette fois, vous n’avez pas besoin de spécifier l’adresse IP.
+1. Exécutez hello **créer des cartes réseau du réseau azure** commande toocreate une nouvelle carte réseau à l’aide de l’allocation dynamique d’IP. Notez comment il est inutile adresse IP de hello toospecify cette heure.
    
         azure network nic create -g TestRG -n TestNIC2 -l centralus -m TestVNet -k FrontEnd
    
     Sortie attendue :
    
         info:    Executing command network nic create
-        + Looking up the network interface "TestNIC2"
-        + Looking up the subnet "FrontEnd"
+        + Looking up hello network interface "TestNIC2"
+        + Looking up hello subnet "FrontEnd"
         + Creating network interface "TestNIC2"
-        + Looking up the network interface "TestNIC2"
+        + Looking up hello network interface "TestNIC2"
         data:    Id                              : /subscriptions/628dad04-b5d1-4f10-b3a4-dc61d88cf97c/resourceGroups/TestRG/providers/Microsoft.Network/networkInterfaces/TestNIC2
         data:    Name                            : TestNIC2
         data:    Type                            : Microsoft.Network/networkInterfaces
@@ -214,39 +214,39 @@ Vous ne pouvez pas supprimer une adresse IP privée statique à partir d’une c
         data:      Subnet                        : /subscriptions/628dad04-b5d1-4f10-b3a4-dc61d88cf97c/resourceGroups/TestRG/providers/Microsoft.Network/virtualNetworks/TestVNet/subnets/FrontEnd
         data:
         info:    network nic create command OK
-2. exécutez la commande **azure vm set** pour modifier la carte réseau utilisée par la machine virtuelle.
+2. Exécutez hello **ensemble de la machine virtuelle azure** commande toochange hello carte réseau utilisée par hello machine virtuelle.
    
         azure vm set -g TestRG -n DNS01 -N TestNIC2
    
     Sortie attendue :
    
         info:    Executing command vm set
-        + Looking up the VM "DNS01"
-        + Looking up the NIC "TestNIC2"
+        + Looking up hello VM "DNS01"
+        + Looking up hello NIC "TestNIC2"
         + Updating VM "DNS01"
         info:    vm set command OK
-3. le cas échéant, exécutez la commande **azure network nic delete** pour supprimer l’ancienne carte réseau.
+3. Si vous souhaitiez, exécutez hello **supprimer les cartes réseau du réseau azure** commande hello de toodelete ancien NIC.
    
         azure network nic delete -g TestRG -n TestNIC --quiet
    
     Sortie attendue :
    
         info:    Executing command network nic delete
-        + Looking up the network interface "TestNIC"
+        + Looking up hello network interface "TestNIC"
         + Deleting network interface "TestNIC"
         info:    network nic delete command OK
 
-## <a name="how-to-add-a-static-private-ip-address-to-an-existing-vm"></a>Comment ajouter une adresse IP privée statique à une machine virtuelle existante
-Pour ajouter une adresse IP privée statique à la carte d’interface réseau utilisée par la machine virtuelle créée à l’aide du script ci-dessus, exécutez la commande suivante :
+## <a name="how-tooadd-a-static-private-ip-address-tooan-existing-vm"></a>Comment tooadd une adresse IP privée statique d’adresses tooan existant de machine virtuelle
+tooadd un toohello d’adresse IP privée statique carte réseau utilisée par l’ordinateur virtuel créé à l’aide du script hello ci-dessus, exécutez hello de commande suivante :
 
     azure network nic set -g TestRG -n TestNIC2 -a 192.168.1.101
 
 Sortie attendue :
 
     info:    Executing command network nic set
-    + Looking up the network interface "TestNIC2"
+    + Looking up hello network interface "TestNIC2"
     + Updating network interface "TestNIC2"
-    + Looking up the network interface "TestNIC2"
+    + Looking up hello network interface "TestNIC2"
     data:    Id                              : /subscriptions/628dad04-b5d1-4f10-b3a4-dc61d88cf97c/resourceGroups/TestRG/providers/Microsoft.Network/networkInterfaces/TestNIC2
     data:    Name                            : TestNIC2
     data:    Type                            : Microsoft.Network/networkInterfaces
@@ -267,5 +267,5 @@ Sortie attendue :
 ## <a name="next-steps"></a>Étapes suivantes
 * En savoir plus sur les [adresses IP publiques réservées](virtual-networks-reserved-public-ip.md) .
 * En savoir plus sur les [adresses IP publiques de niveau d’instance](virtual-networks-instance-level-public-ip.md) .
-* Consulter les [API REST d’adresse IP réservée](https://msdn.microsoft.com/library/azure/dn722420.aspx).
+* Consultez hello [API REST de IP réservée](https://msdn.microsoft.com/library/azure/dn722420.aspx).
 

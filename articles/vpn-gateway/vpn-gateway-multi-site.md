@@ -1,6 +1,6 @@
 ---
-title: "Connecter un réseau virtuel à plusieurs sites en utilisant une passerelle VPN et PowerShell : Classic | Microsoft Docs"
-description: "Cet article vous guidera pour la connexion de plusieurs sites locaux à un réseau virtuel à l’aide d’une passerelle VPN pour le modèle de déploiement classique."
+title: "Se connecter à un site toomultiple de réseau virtuel à l’aide de la passerelle VPN et PowerShell : classique | Documents Microsoft"
+description: "Cet article vous guidera dans la connexion réseau virtuel tooa sur site local sites multiples à l’aide d’une passerelle VPN pour le modèle de déploiement classique hello."
 services: vpn-gateway
 documentationcenter: na
 author: yushwang
@@ -15,13 +15,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/20/2017
 ms.author: yushwang
-ms.openlocfilehash: bb3129f70f5eeed99d5889226aa6727f675b6217
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 5404b1c55ed3453b4dbc94dfd93e47c0812025f4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-a-site-to-site-connection-to-a-vnet-with-an-existing-vpn-gateway-connection-classic"></a>Ajouter une connexion de site à site à un réseau virtuel avec une connexion de passerelle VPN existante (Classic)
+# <a name="add-a-site-to-site-connection-tooa-vnet-with-an-existing-vpn-gateway-connection-classic"></a>Ajouter un tooa de connexion de Site à Site réseau virtuel avec une connexion de passerelle VPN existante (classique)
 
 [!INCLUDE [deployment models](../../includes/vpn-gateway-classic-deployment-model-include.md)]
 
@@ -31,61 +31,61 @@ ms.lasthandoff: 08/18/2017
 >
 >
 
-Cet article vous explique comment utiliser PowerShell pour ajouter des connexions de site à site (S2S) à une passerelle VPN qui dispose déjà d’une connexion. Pour ce type de connexion, on fait souvent référence à une configuration « multisite ». Les étapes de cet article s’appliquent aux réseaux virtuels créés à l’aide du modèle de déploiement Classic (également connu comme le modèle Gestion des services). Ces étapes ne s’appliquent pas aux configurations de connexion coexistante ExpressRoute/site à site.
+Cet article vous guide tout au long de l’aide de PowerShell tooadd Site à Site (S2S) connexions tooa passerelle VPN qui dispose d’une connexion existante. Ce type de connexion est souvent tooas auxquels une configuration de « multisite ». Hello étapes décrites dans cet article s’appliquent les réseaux toovirtual créés à l’aide du modèle de déploiement classique hello (également appelé Service Management). Ces étapes ne s’appliquent pas à la configuration des connexions coexistence tooExpressRoute/Site à Site.
 
 ### <a name="deployment-models-and-methods"></a>Outils et modèles de déploiement
 
 [!INCLUDE [vpn-gateway-clasic-rm](../../includes/vpn-gateway-classic-rm-include.md)]
 
-Nous mettons à jour ce tableau à mesure que de nouveaux articles et des outils supplémentaires sont disponibles pour cette configuration. Quand un article est disponible, le lien vers cet article est ajouté à ce tableau.
+Nous mettons à jour ce tableau à mesure que de nouveaux articles et des outils supplémentaires sont disponibles pour cette configuration. Quand un article est disponible, nous lier directement tooit à partir de cette table.
 
 [!INCLUDE [vpn-gateway-table-multi-site](../../includes/vpn-gateway-table-multisite-include.md)]
 
 ## <a name="about-connecting"></a>À propos de la connexion
 
-Vous pouvez connecter plusieurs sites locaux à un même réseau virtuel. Cela est particulièrement intéressant pour la création de solutions de cloud hybrides. La création d’une connexion sur plusieurs sites à votre passerelle de réseau virtuel Azure ressemble à la création d’autres connexions de site à site. En fait, vous pouvez utiliser une passerelle VPN Azure existante tant que la passerelle est dynamique (basée sur un itinéraire).
+Vous pouvez connecter plusieurs sites tooa unique virtuel réseau local. Cela est particulièrement intéressant pour la création de solutions de cloud hybrides. Création d’une passerelle de réseau virtuel Azure tooyour connexion multisite est similaire toocreating autres connexions de Site à Site. En fait, vous pouvez utiliser une passerelle VPN Azure existante, tant que passerelle de hello est dynamique (basé sur l’itinéraire).
 
-Si une passerelle statique est déjà connectée à votre réseau virtuel, vous pouvez changer le type de passerelle en dynamique sans avoir à régénérer le réseau virtuel pour prendre en charge plusieurs sites. Dans ce cas, assurez-vous que votre passerelle VPN locale prend en charge les configurations VPN basées sur un itinéraire.
+Si vous disposez déjà d’un réseau virtuel de passerelle statique tooyour connecté, vous pouvez modifier toodynamic de type hello passerelle sans avoir besoin de réseau virtuel de toorebuild hello dans plusieurs sites de commande tooaccommodate. Avant de modifier le type de routage hello, assurez-vous que votre passerelle VPN locale prend en charge les configurations de VPN basée sur un itinéraire.
 
 ![diagramme multi-sites](./media/vpn-gateway-multi-site/multisite.png "multi-sites")
 
-## <a name="points-to-consider"></a>Éléments à prendre en considération
+## <a name="points-tooconsider"></a>Points tooconsider
 
-**Vous ne pouvez pas utiliser le portail pour apporter des modifications à ce réseau virtuel.** Vous devez apporter des modifications au fichier de configuration réseau au lieu d’utiliser le portail. Si vous apportez des modifications dans le portail, ces dernières affectent vos paramètres de référence multisite pour ce réseau virtuel.
+**Vous ne serez pas réseau virtuel toothis du modifications toomake portail toouse en mesure de hello.** Vous avez besoin de fichier de configuration réseau toomake modifications toohello au lieu d’utiliser le portail de hello. Si vous apportez des modifications dans le portail de hello, elles remplaceront vos paramètres de référence multisite pour ce réseau virtuel.
 
-Vous aurez le temps de vous familiariser avec le fichier de configuration réseau au terme de la procédure multisite. Toutefois, si plusieurs personnes travaillent sur la configuration de votre réseau, vous devez vous assurer que tout le monde a connaissance de cette limitation. Cela ne signifie pas que vous ne pouvez pas du tout utiliser le portail. Vous pouvez l’utiliser pour toutes les procédures, à l’exception des modifications de configuration de ce réseau virtuel spécifique.
+Vous devriez vous sentir à l’aise à l’aide du fichier de configuration de réseau hello par temps de hello vous avez terminé la procédure de plusieurs sites hello. Toutefois, si vous avez plusieurs personnes travaillent sur la configuration de votre réseau, vous devez toomake assurer que tout le monde connaît cette limitation. Cela ne signifie pas que vous ne pouvez pas utiliser portal de hello du tout. Vous pouvez l’utiliser pour tout le reste, à l’exception de renforcement de réseau virtuel particulier toothis configuration modifications.
 
 ## <a name="before-you-begin"></a>Avant de commencer
 
-Avant de commencer la configuration, vérifiez que les conditions suivantes sont remplies :
+Avant de commencer la configuration, vérifiez que vous disposez des éléments suivants de hello :
 
-* Matériel VPN compatible pour chaque emplacement local. Voir [À propos des périphériques VPN pour la connectivité au réseau virtuel](vpn-gateway-about-vpn-devices.md) pour vérifier si l’appareil que vous souhaitez utiliser est bien compatible.
-* Une adresse IP IPv4 publique exposée en externe pour chaque périphérique VPN. L’adresse IP ne peut pas se trouver derrière un NAT. Cela est obligatoire.
-* Vous aurez besoin d’installer la dernière version des applets de commande PowerShell Azure. Veillez à installer à la fois la version Gestion des services et la version Resource Manager. Pour plus d’informations, consultez [Installation et configuration d’Azure PowerShell](/powershell/azure/overview) .
-* Un expert en configuration du matériel VPN. Vous devez avoir une bonne maîtrise de la façon de configurer votre périphérique VPN ou de collaborer avec quelqu’un disposant des connaissances nécessaires.
-* Les plages d’adresses IP que vous souhaitez utiliser pour votre réseau virtuel (si vous n’en avez pas déjà créé).
-* Les plages d’adresses IP pour chacun des sites du réseau local auxquels vous vous connecterez. Vous devez vous assurer que les plages d’adresses IP pour chacun des sites du réseau local auxquels vous souhaitez vous connecter ne se chevauchent ne pas. Dans le cas contraire, le portail ou l’API REST rejette la configuration en cours de chargement.<br>Par exemple, si vous avez deux sites de réseau local contenant la plage d’adresse IP 10.2.3.0/24 et que vous disposez d’un package avec une adresse de destination 10.2.3.3, Azure ne saura pas à quel site envoyer le package, car les plages d’adresses se chevauchent. Pour éviter les problèmes de routage, Azure ne vous permet pas de télécharger un fichier de configuration ayant des plages qui se chevauchent.
+* Matériel VPN compatible pour chaque emplacement local. Vérifiez [sur des périphériques VPN pour la connectivité de réseau virtuel](vpn-gateway-about-vpn-devices.md) tooverify si unité hello que toouse est un élément connu toobe compatible.
+* Une adresse IP IPv4 publique exposée en externe pour chaque périphérique VPN. adresse IP de Hello ne peut pas se trouver derrière un NAT. Cela est obligatoire.
+* Vous devez tooinstall hello dernière version de hello applets de commande PowerShell de Azure. Assurez-vous que vous installez la version de Service Management (SM) de hello dans la version de gestionnaire de ressources toohello Ajout. Consultez [comment tooinstall et configurer Azure PowerShell](/powershell/azure/overview) pour plus d’informations.
+* Un expert en configuration du matériel VPN. Vous avez toohave un fort comprendre comment tooconfigure votre périphérique VPN ou un travail avec une personne.
+* plages d’adresses IP Hello que vous souhaitez toouse pour votre réseau virtuel (si vous n’avez pas déjà créé une).
+* plages d’adresses IP Hello pour chacun des sites de réseau local hello que vous vous connectez. Vous devez toomake que les plages d’adresse IP de hello pour chacun des sites de réseau local hello que vous souhaitez tooconnect toodo pas de chevauchement. Dans le cas contraire, le portail de hello ou hello API REST rejettera configuration hello en cours de téléchargement.<br>Par exemple, si vous avez deux sites de réseau local que tous les deux contenir hello IP adresse plage 10.2.3.0/24 et que vous disposez d’un package avec une adresse de destination 10.2.3.3, Azure ne saura pas le site auquel vous souhaitez que les plages d’adresses toosend hello package toobecause hello sont qui se chevauchent. problèmes de routage tooprevent, Azure n’autorise pas vous tooupload un fichier de configuration qui comporte des plages qui se chevauchent.
 
 ## <a name="1-create-a-site-to-site-vpn"></a>1. Créer un VPN de site à site
-Si vous avez déjà un VPN de site à site avec une passerelle de routage dynamique, bravo ! Vous pouvez [Exporter les paramètres de configuration de réseau virtuel](#export). Sinon, procédez ainsi :
+Si vous avez déjà un VPN de site à site avec une passerelle de routage dynamique, bravo ! Vous pouvez passer trop[exporter les paramètres de configuration de réseau virtuel hello](#export). Dans le cas contraire, procédez comme hello suivant :
 
 ### <a name="if-you-already-have-a-site-to-site-virtual-network-but-it-has-a-static-policy-based-routing-gateway"></a>Si vous avez déjà un réseau virtuel de site à site, mais que sa passerelle de routage est statique :
-1. Modifiez le type de passerelle en routage dynamique. Un VPN multisite requiert une passerelle de routage dynamique (ou basée sur un itinéraire). Pour modifier le type de passerelle, vous devez d’abord supprimer la passerelle existante, puis en créer une nouvelle. Pour obtenir des instructions, consultez la page [Modification du type de routage VPN de votre passerelle](vpn-gateway-configure-vpn-gateway-mp.md).  
-2. Configurez votre nouvelle passerelle et créez votre tunnel VPN. Pour obtenir des instructions, consultez [Configuration d’une passerelle VPN dans le portail Azure Classic](vpn-gateway-configure-vpn-gateway-mp.md). Tout d’abord, changez le type de votre passerelle en dynamique.
+1. Modifier votre toodynamic de type de passerelle routage. Un VPN multisite requiert une passerelle de routage dynamique (ou basée sur un itinéraire). type de toochange votre passerelle, vous aurez besoin toofirst delete hello existant passerelle, puis créez-en un nouveau. Pour obtenir des instructions, consultez [comment toochange hello type de routage VPN pour votre passerelle](vpn-gateway-configure-vpn-gateway-mp.md).  
+2. Configurez votre nouvelle passerelle et créez votre tunnel VPN. Pour obtenir des instructions, consultez [configurer une passerelle VPN Bonjour portail classique Azure](vpn-gateway-configure-vpn-gateway-mp.md). Tout d’abord, modifiez votre toodynamic de type de passerelle routage.
 
 ### <a name="if-you-dont-have-a-site-to-site-virtual-network"></a>Si vous n’avez pas de réseau virtuel de site à site :
-1. Créez votre réseau virtuel de site à site en suivant la procédure décrite dans [Création d’un réseau virtuel avec une connexion VPN de site à site dans le portail Azure Classic](vpn-gateway-site-to-site-create.md).  
-2. Configurez une passerelle de routage dynamique en suivant la procédure décrite dans [Configuration d’une passerelle VPN](vpn-gateway-configure-vpn-gateway-mp.md). Veillez à sélectionner le **routage dynamique** pour le type de passerelle.
+1. Créer votre réseau virtuel de Site à Site à l’aide de ces instructions : [créer un réseau virtuel avec une connexion VPN de Site à Site Bonjour portail classique Azure](vpn-gateway-site-to-site-create.md).  
+2. Configurez une passerelle de routage dynamique en suivant la procédure décrite dans [Configuration d’une passerelle VPN](vpn-gateway-configure-vpn-gateway-mp.md). Être vraiment tooselect **routage dynamique** pour le type de passerelle.
 
-## <a name="export"></a>2. Exporter le fichier de configuration réseau
-Exportez votre fichier de configuration réseau Azure en exécutant la commande suivante. Vous pouvez modifier l’emplacement d’exportation du fichier si nécessaire.
+## <a name="export"></a>2. Exporter le fichier de configuration de réseau hello
+Exportez votre fichier de configuration réseau Azure en exécutant hello commande suivante. Vous pouvez modifier l’emplacement de hello de hello tooexport tooa autre emplacement de fichier si nécessaire.
 
 ```powershell
 Get-AzureVNetConfig -ExportToFile C:\AzureNet\NetworkConfig.xml
 ```
 
-## <a name="3-open-the-network-configuration-file"></a>3. Ouvrir le fichier de configuration réseau
-Ouvrez le fichier de configuration réseau que vous avez téléchargé à l’étape précédente. Utilisez l’éditeur xml de votre choix. Le fichier doit se présenter ainsi :
+## <a name="3-open-hello-network-configuration-file"></a>3. Fichier de configuration de réseau hello ouvert
+Ouvrez le fichier de configuration de réseau hello que vous avez téléchargé dans la dernière étape de hello. Utilisez l’éditeur xml de votre choix. fichier de Hello doit ressembler similaire toohello suivantes :
 
         <NetworkConfiguration xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/ServiceHosting/2011/07/NetworkConfiguration">
           <VirtualNetworkConfiguration>
@@ -135,7 +135,7 @@ Ouvrez le fichier de configuration réseau que vous avez téléchargé à l’é
         </NetworkConfiguration>
 
 ## <a name="4-add-multiple-site-references"></a>4. Ajouter plusieurs références de site
-Lorsque vous ajoutez ou supprimez les informations de référence de site, des modifications de configuration sont apportées à ConnectionsToLocalNetwork/LocalNetworkSiteRef. À l’ajout d’une nouvelle référence de site local, Azure crée un nouveau tunnel. Dans l’exemple ci-dessous, la configuration du réseau correspond à une connexion de site unique. Enregistrez le fichier une fois que vous avez terminé d’apporter vos modifications.
+Lorsque vous ajoutez ou supprimez les informations de référence de site, vous apporterez des modifications de configuration toohello ConnectionsToLocalNetwork/LocalNetworkSiteRef. Ajoutez une nouvelle référence de site locale déclenche toocreate Azure un tunnel. Dans l’exemple hello ci-dessous, la configuration du réseau hello est pour une connexion de site unique. Enregistrer le fichier de hello une fois que vous avez terminé d’apporter vos modifications.
 
 ```
   <Gateway>
@@ -145,7 +145,7 @@ Lorsque vous ajoutez ou supprimez les informations de référence de site, des m
   </Gateway>
 ```
 
-Pour ajouter des références de site supplémentaires (créer une configuration multisite), ajoutez simplement des lignes « LocalNetworkSiteRef », comme illustré dans l’exemple ci-dessous :
+références à des sites supplémentaires tooadd (créer une configuration multisite), ajoutez simplement les lignes « LocalNetworkSiteRef » supplémentaires, comme indiqué dans l’exemple hello ci-dessous :
 
 ```
   <Gateway>
@@ -156,11 +156,11 @@ Pour ajouter des références de site supplémentaires (créer une configuration
   </Gateway>
 ```
 
-## <a name="5-import-the-network-configuration-file"></a>5. Importer le fichier de configuration réseau
-Importez le fichier de configuration réseau. Lorsque vous importez ce fichier avec les modifications, les nouveaux tunnels sont ajoutés. Les tunnels utilisent la passerelle dynamique que vous avez créée précédemment. Vous pouvez utiliser la version Classic du portail ou PowerShell pour importer le fichier.
+## <a name="5-import-hello-network-configuration-file"></a>5. Importer le fichier configuration réseau hello
+Importez le fichier de configuration de réseau hello. Lorsque vous importez ce fichier avec les modifications de hello, nouveaux tunnels de hello seront ajoutés. les tunnels Hello utilisera la passerelle dynamique hello que vous avez créé précédemment. Vous pouvez utiliser portail classique de hello ou fichier de hello tooimport PowerShell.
 
 ## <a name="6-download-keys"></a>6. Télécharger les clés
-Une fois les tunnels ajoutés, utilisez la cmdlet PowerShell Get-AzureVNetGatewayKey pour obtenir les clés prépartagées IPsec/IKE de chaque tunnel.
+Une fois que les nouveaux tunnels ont été ajoutés, utilisez hello PowerShell applet de commande 'Get-AzureVNetGatewayKey' tooget hello IPsec/IKE clés prépartagées pour chaque tunnel.
 
 Par exemple :
 
@@ -169,10 +169,10 @@ Get-AzureVNetGatewayKey –VNetName "VNet1" –LocalNetworkSiteName "Site1"
 Get-AzureVNetGatewayKey –VNetName "VNet1" –LocalNetworkSiteName "Site2"
 ```
 
-Si vous préférez, vous pouvez également utiliser l’API REST *Obtenir la clé partagée de la passerelle de réseau virtuel* pour obtenir les clés prépartagées.
+Si vous préférez, vous pouvez également utiliser hello *Get Virtual Network Gateway Shared Key* tooget de l’API REST hello clés prépartagées.
 
 ## <a name="7-verify-your-connections"></a>7. Vérifiez vos connexions
-Vérifiez l’état de tunnel multisite. Après avoir téléchargé les clés de chaque tunnel, vérifiez les connexions. Utilisez Get-AzureVnetConnection pour obtenir la liste des tunnels de réseau virtuel, comme indiqué dans l’exemple ci-dessous. VNet1 est le nom du réseau virtuel.
+Vérifiez l’état des tunnels multisite hello. Après avoir téléchargé les clés hello de chaque tunnel, vous souhaiterez tooverify connexions. Utilisez « Get-AzureVnetConnection' tooget une liste de réseau virtuel tunnels, comme indiqué dans l’exemple hello ci-dessous. VNet1 désigne hello hello réseau virtuel.
 
 ```powershell
 Get-AzureVnetConnection -VNetName VNET1
@@ -186,7 +186,7 @@ L’exemple renvoie :
     IngressBytesTransferred   : 519207
     LastConnectionEstablished : 5/2/2014 2:51:40 PM
     LastEventID               : 23401
-    LastEventMessage          : The connectivity state for the local network site 'Site1' changed from Not Connected to Connected.
+    LastEventMessage          : hello connectivity state for hello local network site 'Site1' changed from Not Connected tooConnected.
     LastEventTimeStamp        : 5/2/2014 2:51:40 PM
     LocalNetworkSiteName      : Site1
     OperationDescription      : Get-AzureVNetConnection
@@ -198,7 +198,7 @@ L’exemple renvoie :
     IngressBytesTransferred   : 143908
     LastConnectionEstablished : 5/2/2014 3:20:40 PM
     LastEventID               : 23401
-    LastEventMessage          : The connectivity state for the local network site 'Site2' changed from Not Connected to Connected.
+    LastEventMessage          : hello connectivity state for hello local network site 'Site2' changed from Not Connected tooConnected.
     LastEventTimeStamp        : 5/2/2014 2:51:40 PM
     LocalNetworkSiteName      : Site2
     OperationDescription      : Get-AzureVNetConnection
@@ -208,4 +208,4 @@ L’exemple renvoie :
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-Pour en savoir plus sur les passerelles VPN, consultez [À propos des passerelles VPN](vpn-gateway-about-vpngateways.md).
+toolearn en savoir plus sur les passerelles VPN, consultez [sur les passerelles VPN](vpn-gateway-about-vpngateways.md).

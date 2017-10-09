@@ -1,6 +1,6 @@
 ---
 title: "Configurer le tunneling forcé pour les connexions de site à site - Resource Manager | Microsoft Docs"
-description: "Comment rediriger ou « forcer » tout le trafic Internet vers votre emplacement local."
+description: "Comment tooredirect ou 'force' tous les Internet liées au trafic arrière tooyour emplacement local."
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
@@ -15,19 +15,19 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/31/2017
 ms.author: cherylmc
-ms.openlocfilehash: 207c53924863eb51ee369fe46d5ad12fb1905c53
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 6bc52c04ab0749a674c9863be5e4f9a9f7c98df4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="configure-forced-tunneling-using-the-azure-resource-manager-deployment-model"></a>Configuration du tunneling forcé à l’aide du modèle de déploiement Azure Resource Manager
+# <a name="configure-forced-tunneling-using-hello-azure-resource-manager-deployment-model"></a>Configurer le tunneling forcé à l’aide de modèle de déploiement du Gestionnaire de ressources Azure hello
 
-Le tunneling forcé vous permet de rediriger ou de « forcer » tout le trafic Internet vers votre emplacement local via un tunnel VPN site à site pour l’inspection et l’audit. Il s’agit d’une condition de sécurité critique pour la plupart des stratégies informatiques d’entreprise. Sans le tunneling forcé, le trafic Internet depuis vos machines virtuelles dans Azure se fait toujours à travers l’infrastructure du réseau Azure directement vers Internet, sans vous permettre d’inspecter ou de vérifier le trafic. L’accès Internet non autorisés est susceptible d’entraîner la divulgation d’informations ou tout autre type de violation de sécurité.
+Forcé tunneling permet de rediriger ou de « forcer » tous les Internet liées au trafic tooyour arrière local emplacement via un tunnel VPN de Site à Site pour l’inspection et d’audit. Il s’agit d’une condition de sécurité critique pour la plupart des stratégies informatiques d’entreprise. Sans tunneling forcé, le trafic Internet à partir de vos machines virtuelles dans Azure toujours parcourt à partir de l’infrastructure réseau Azure directement out toohello Internet, sans hello option tooallow vous tooinspect ou audit du trafic hello. Accès Internet non autorisé peut entraîner la divulgation de tooinformation ou d’autres types de failles de sécurité.
 
 [!INCLUDE [vpn-gateway-clasic-rm](../../includes/vpn-gateway-classic-rm-include.md)] 
 
-Cet article vous guide dans la configuration du tunneling forcé pour les réseaux virtuels créés à l’aide du modèle de déploiement Resource Manager. Le tunneling forcé peut être configuré à l’aide de PowerShell, et non pas dans le portail. Si vous souhaitez configurer le tunneling forcé pour le modèle de déploiement de classique, sélectionnez l’article Classique dans la liste déroulante suivante :
+Cet article vous guide dans la configuration forcé tunneling pour les réseaux virtuels créés à l’aide du modèle de déploiement du Gestionnaire de ressources hello. Le tunneling forcé peut être configuré à l’aide de PowerShell, pas via le portail de hello. Si vous souhaitez tooconfigure tunneling pour le modèle de déploiement classique hello forcé, sélectionnez l’article classique hello suivant la liste déroulante :
 
 > [!div class="op_single_selector"]
 > * [PowerShell - Classique](vpn-gateway-about-forced-tunneling.md)
@@ -37,40 +37,40 @@ Cet article vous guide dans la configuration du tunneling forcé pour les résea
 
 ## <a name="about-forced-tunneling"></a>À propos du tunneling forcé
 
-Le diagramme suivant illustre le fonctionnement du tunneling forcé. 
+Hello suivant le diagramme illustre le fonctionnement du tunneling forcé. 
 
 ![Tunneling forcé](./media/vpn-gateway-forced-tunneling-rm/forced-tunnel.png)
 
-Dans l’exemple ci-dessus, le sous-réseau frontal n’utilise pas le tunneling forcé. Les charges de travail du sous-réseau frontal peuvent continuer à accepter et à répondre aux demandes des clients directement à partir d’Internet. Les sous-réseaux intermédiaire et principal utilisent le tunneling forcé. Toutes les connexions sortantes à partir de ces deux sous-réseaux vers Internet seront forcées ou redirigées vers un site local via l’un des tunnels VPN S2S.
+Dans l’exemple hello ci-dessus, hello frontal sous-réseau n’est pas forcé en tunnel. les charges de travail Hello dans le sous-réseau du serveur frontal hello continuer tooaccept et répondre toocustomer demandes de hello Internet directement. Hello sous-réseaux de niveau intermédiaire et principaux sont forcés en tunnel. Toutes les connexions sortantes à partir de ces toohello deux sous-réseaux Internet sera forcée ou redirigée retour tooan sur site local via l’une des hello que les tunnels VPN de S2S.
 
-Cela vous permet de restreindre et d’inspecter l’accès à Internet à partir de vos machines virtuelles ou des services cloud dans Azure, tout en continuant d’activer votre architecture de service multiniveaux requise. Vous avez également la possibilité d’appliquer le tunneling forcé à tous les réseaux virtuels s’il n’existe aucune charge de travail Internet dans vos réseaux virtuels.
+Cela vous permet de toorestrict et inspecter les accès Internet à partir de vos machines virtuelles ou services cloud dans Azure, tout en continuant tooenable votre architecture de service à plusieurs niveaux requise. S’il n’y a aucune charge de travail sur Internet dans vos réseaux virtuels, vous pouvez également appliquer forcé tunneling toohello réseaux virtuels entiers.
 
 ## <a name="requirements-and-considerations"></a>Conditions requises et éléments à prendre en compte
 
-Le tunneling forcé dans Azure est configuré via les itinéraires de réseau virtuel définis par l’utilisateur. La redirection du trafic vers un site local est exprimée comme un itinéraire par défaut vers la passerelle VPN Azure. Pour plus d’informations sur les réseaux virtuels et les itinéraires définis par l’utilisateur, consultez [Itinéraires définis par l’utilisateur et transfert IP](../virtual-network/virtual-networks-udr-overview.md).
+Le tunneling forcé dans Azure est configuré via les itinéraires de réseau virtuel définis par l’utilisateur. Redirection du trafic tooan local de site est exprimé comme passerelle VPN Azure toohello itinéraire par défaut. Pour plus d’informations sur les réseaux virtuels et les itinéraires définis par l’utilisateur, consultez [Itinéraires définis par l’utilisateur et transfert IP](../virtual-network/virtual-networks-udr-overview.md).
 
-* Chaque sous-réseau du réseau virtuel dispose d’une table de routage système intégrée. La table de routage système comporte les trois groupes d’itinéraires suivants :
+* Chaque sous-réseau du réseau virtuel dispose d’une table de routage système intégrée. table de routage système Hello a hello trois groupes d’itinéraires suivants :
   
-  * **Itinéraires de réseau virtuel local :** directement vers les machines virtuelles de destination dans le même réseau virtuel.
-  * **Itinéraires locaux :** vers la passerelle VPN Azure.
-  * **Itinéraire par défaut :** directement vers Internet. Les paquets destinés aux adresses IP privées non couvertes par les deux itinéraires précédents sont supprimés.
-* Cette procédure utilise des itinéraires définis par l’utilisateur (UDR) pour créer une table de routage et ajouter un itinéraire par défaut, puis associer la table de routage à vos sous-réseaux de réseaux virtuels pour activer le tunneling forcé sur ces sous-réseaux.
-* Le tunneling forcé doit être associé à un réseau virtuel équipé d’une passerelle VPN avec itinéraire. Vous devez définir un « site par défaut » parmi les sites locaux intersites connectés au réseau virtuel. En outre, le périphérique VPN local doit être configuré à l’aide de 0.0.0.0/0 comme des sélecteurs de trafic. 
-* Le tunneling forcé ExpressRoute n'est pas configuré de cette manière, mais il est activé par la publication d’un itinéraire par défaut via les sessions d'homologation BGP ExpressRoute. Pour plus d’informations, consultez la [Documentation ExpressRoute](https://azure.microsoft.com/documentation/services/expressroute/).
+  * **Les itinéraires de réseau virtuel locales :** directement toohello machines virtuelles de destination Bonjour même réseau virtuel.
+  * **Itinéraires locaux :** passerelle VPN Azure de toohello.
+  * **L’itinéraire par défaut :** directement toohello Internet. Les paquets destinés aux toohello des adresses IP privées non couvertes par les itinéraires hello deux précédents sont supprimés.
+* Cette procédure utilise des itinéraires définis par l’utilisateur (UDR) toocreate un tooadd table de routage un itinéraire par défaut, puis associer hello routage table tooyour réseau virtuel ou les sous-réseaux tooenable forcé tunneling sur ces sous-réseaux.
+* Le tunneling forcé doit être associé à un réseau virtuel équipé d’une passerelle VPN avec itinéraire. Vous devez tooset un « site par défaut » entre le réseau virtuel de hello intersite sites locaux toohello connecté. En outre, hello local périphérique VPN doit être configuré à l’aide de 0.0.0.0/0 comme des sélecteurs de trafic. 
+* ExpressRoute le tunneling forcé n’est pas configuré via ce mécanisme, mais au lieu de cela, est activé par annonce un itinéraire par défaut via hello BGP ExpressRoute sessions d’homologation. Pour plus d’informations, consultez hello [Documentation d’ExpressRoute](https://azure.microsoft.com/documentation/services/expressroute/).
 
 ## <a name="configuration-overview"></a>Présentation de la configuration
 
-La procédure suivante vous aide à créer un groupe de ressources et un réseau virtuel. Vous créerez ensuite une passerelle VPN et configurerez le tunneling forcé. Dans cette procédure, le réseau virtuel « MultiTier-VNet » comporte trois sous-réseaux : « Frontend », « Midtier » et « Backend », ainsi que quatre connexions intersites : « DefaultSiteHQ » et trois « Branches ».
+Hello procédure vous permet de créer un groupe de ressources et un réseau virtuel. Vous créerez ensuite une passerelle VPN et configurerez le tunneling forcé. Dans cette procédure, réseau virtuel de hello 'MultiTier-VNet' a trois sous-réseaux : « Frontal », « Intermédiaire » et « Principal », avec quatre connexions intersites : 'DefaultSiteHQ' et trois Branches.
 
-Les étapes de la procédure définissent « DefaultSiteHQ » comme connexion de site par défaut pour le tunneling forcé et configure les sous-réseaux « Midtier » et « Backend » de manière à utiliser le tunneling forcé.
+étapes de la procédure Hello définir hello 'DefaultSiteHQ' comme connexion de site par défaut hello pour le tunneling forcé et configurer hello « Intermédiaire » et « Backend » toouse de sous-réseaux tunneling forcé.
 
 ## <a name="before-you-begin"></a>Avant de commencer
 
-Installez la dernière version des applets de commande PowerShell Azure Resource Manager. Pour plus d’informations sur l’installation des applets de commande PowerShell, consultez [Installation et configuration d’Azure PowerShell](/powershell/azure/overview) .
+Installer la version la plus récente hello Hello applets de commande PowerShell de gestionnaire de ressources Azure. Consultez [comment tooinstall et configurer Azure PowerShell](/powershell/azure/overview) pour plus d’informations sur l’installation des applets de commande PowerShell hello.
 
-### <a name="to-log-in"></a>Pour se connecter
+### <a name="toolog-in"></a>toolog dans
 
-[!INCLUDE [To log in](../../includes/vpn-gateway-ps-login-include.md)]
+[!INCLUDE [toolog in](../../includes/vpn-gateway-ps-login-include.md)]
 
 ## <a name="configure-forced-tunneling"></a>Configurer un tunneling forcé
 
@@ -88,7 +88,7 @@ Installez la dernière version des applets de commande PowerShell Azure Resource
   $s4 = New-AzureRmVirtualNetworkSubnetConfig -Name "GatewaySubnet" -AddressPrefix "10.1.200.0/28"
   $vnet = New-AzureRmVirtualNetwork -Name "MultiTier-VNet" -Location "North Europe" -ResourceGroupName "ForcedTunneling" -AddressPrefix "10.1.0.0/16" -Subnet $s1,$s2,$s3,$s4
   ```
-3. Créez les passerelles de réseau local.
+3. Créer des passerelles de réseau local hello.
 
   ```powershell
   $lng1 = New-AzureRmLocalNetworkGateway -Name "DefaultSiteHQ" -ResourceGroupName "ForcedTunneling" -Location "North Europe" -GatewayIpAddress "111.111.111.111" -AddressPrefix "192.168.1.0/24"
@@ -96,7 +96,7 @@ Installez la dernière version des applets de commande PowerShell Azure Resource
   $lng3 = New-AzureRmLocalNetworkGateway -Name "Branch2" -ResourceGroupName "ForcedTunneling" -Location "North Europe" -GatewayIpAddress "111.111.111.113" -AddressPrefix "192.168.3.0/24"
   $lng4 = New-AzureRmLocalNetworkGateway -Name "Branch3" -ResourceGroupName "ForcedTunneling" -Location "North Europe" -GatewayIpAddress "111.111.111.114" -AddressPrefix "192.168.4.0/24"
   ```
-4. Créez la table d’itinéraires et la règle de routage.
+4. Créer la règle de table et d’itinéraire de routage hello.
 
   ```powershell
   New-AzureRmRouteTable –Name "MyRouteTable" -ResourceGroupName "ForcedTunneling" –Location "North Europe"
@@ -104,7 +104,7 @@ Installez la dernière version des applets de commande PowerShell Azure Resource
   Add-AzureRmRouteConfig -Name "DefaultRoute" -AddressPrefix "0.0.0.0/0" -NextHopType VirtualNetworkGateway -RouteTable $rt
   Set-AzureRmRouteTable -RouteTable $rt
   ```
-5. Associez la table d’itinéraire vers le niveau intermédiaire et les sous-réseaux principaux.
+5. Associer hello itinéraire table toohello milieu de gamme et des sous-réseaux du serveur principal.
 
   ```powershell
   $vnet = Get-AzureRmVirtualNetwork -Name "MultiTier-Vnet" -ResourceGroupName "ForcedTunneling"
@@ -112,7 +112,7 @@ Installez la dernière version des applets de commande PowerShell Azure Resource
   Set-AzureRmVirtualNetworkSubnetConfig -Name "Backend" -VirtualNetwork $vnet -AddressPrefix "10.1.2.0/24" -RouteTable $rt
   Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
   ```
-6. Créez la passerelle avec un site par défaut. Cette opération prend un certain temps, parfois 45 minutes voire plus, car vous créez et configurez la passerelle.<br> **-GatewayDefaultSite** est le paramètre d’applet de commande qui permet à la configuration de routage forcé de fonctionner. Configurez ce paramètre correctement. Il est disponible uniquement dans PowerShell 1.0 ou une version ultérieure.
+6. Créez hello passerelle avec un site par défaut. Cette étape prend certaines toocomplete de temps, parfois 45 minutes ou plus, étant donné que vous créez et configurez hello passerelle.<br> Hello **- GatewayDefaultSite** est hello paramètre d’applet de commande qui permet d’hello forcé routage toowork de configuration, par conséquent, prenez soin tooconfigure ce paramètre correctement. Il est disponible uniquement dans PowerShell 1.0 ou une version ultérieure.
 
   ```powershell
   $pip = New-AzureRmPublicIpAddress -Name "GatewayIP" -ResourceGroupName "ForcedTunneling" -Location "North Europe" -AllocationMethod Dynamic
@@ -120,7 +120,7 @@ Installez la dernière version des applets de commande PowerShell Azure Resource
   $ipconfig = New-AzureRmVirtualNetworkGatewayIpConfig -Name "gwIpConfig" -SubnetId $gwsubnet.Id -PublicIpAddressId $pip.Id
   New-AzureRmVirtualNetworkGateway -Name "Gateway1" -ResourceGroupName "ForcedTunneling" -Location "North Europe" -IpConfigurations $ipconfig -GatewayType Vpn -VpnType RouteBased -GatewaySku VpnGw1 -GatewayDefaultSite $lng1 -EnableBgp $false
   ```
-7. Établissez des connexions VPN de site à site.
+7. Établir une connexion VPN hello Site à Site.
 
   ```powershell
   $gateway = Get-AzureRmVirtualNetworkGateway -Name "Gateway1" -ResourceGroupName "ForcedTunneling"
