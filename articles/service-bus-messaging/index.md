@@ -1,15 +1,15 @@
 ---
 layout: LandingPage
-title: Documentation sur la messagerie Service Bus
-description: "Apprenez à configurer une messagerie permettant de connecter les applications et services entre les environnements cloud et locaux."
-ms.openlocfilehash: 559bbabe07ae50b2cc83fad5e867c23c9272d6ab
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+title: aaaService documentation sur le Bus de messagerie
+description: "Découvrez comment tooset la messagerie qui connecte les applications et services locaux et les environnements de cloud computing."
+ms.openlocfilehash: ea8c58b6e954cc0d53c3eed1f761b1d1e3984e66
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="service-bus-messaging-documentation"></a>Documentation sur la messagerie Service Bus
-Le service de messagerie assure une distribution fiable des informations en tant que système de communication tiers ou réparti.
+Hello service de messagerie fournit la remise fiable informations comme mécanisme de communication répartie ou tiers.
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -59,7 +59,7 @@ Le service de messagerie assure une distribution fiable des informations en tant
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Créer un espace de noms à l’aide du portail</h3>
+                        <h3>Créer un espace de noms à l’aide du portail de hello</h3>
                     </div>
                 </div>
             </div>

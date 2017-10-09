@@ -1,12 +1,12 @@
 # Vue d'ensemble
-## [Présentation du service Azure Data Factory](data-factory-introduction.md)
+## [Introduction tooAzure Data Factory](data-factory-introduction.md)
 ## Concepts
 ### [Pipelines et activités](data-factory-create-pipelines.md)
 ### [Groupes de données](data-factory-create-datasets.md)
 ### [Planification et exécution](data-factory-scheduling-and-execution.md)
 
 # Prise en main
-## [Didacticiel : Créer un pipeline pour copier des données](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)
+## [Didacticiel : Créer un pipeline toocopy de données](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)
 ### [Assistant de copie](data-factory-copy-data-wizard-tutorial.md)
 ### [Portail Azure](data-factory-copy-activity-tutorial-using-azure-portal.md)
 ### [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md)
@@ -14,8 +14,8 @@
 ### [Modèle Azure Resource Manager](data-factory-copy-activity-tutorial-using-azure-resource-manager-template.md)
 ### [API REST](data-factory-copy-activity-tutorial-using-rest-api.md)
 ### [API .NET](data-factory-copy-activity-tutorial-using-dotnet-api.md)
-## [Didacticiel : Créer un pipeline pour transformer des données](data-factory-build-your-first-pipeline.md)
-### [portail Azure](data-factory-build-your-first-pipeline-using-editor.md)
+## [Didacticiel : Créer un pipeline tootransform de données](data-factory-build-your-first-pipeline.md)
+### [Portail Azure](data-factory-build-your-first-pipeline-using-editor.md)
 ### [Visual Studio](data-factory-build-your-first-pipeline-using-vs.md)
 ### [PowerShell](data-factory-build-your-first-pipeline-using-powershell.md)
 ### [Modèle Azure Resource Manager](data-factory-build-your-first-pipeline-using-arm.md)
@@ -64,7 +64,7 @@
 ### Passerelle de gestion de données
 #### [Vue d'ensemble](data-factory-data-management-gateway.md)
 #### [Haute disponibilité et extensibilité (version préliminaire)](data-factory-data-management-gateway-high-availability-scalability.md)
-#### [Guide : Déplacer des données depuis un serveur SQL Server local vers un Stockage Blob Azure](data-factory-move-data-between-onprem-and-cloud.md)
+#### [Procédure pas à pas : Déplacement des données à partir d’un tooAzure de SQL Server locale stockage d’objets Blob](data-factory-move-data-between-onprem-and-cloud.md)
 
 
 ## [Transformer les données](data-factory-data-transformation-activities.md)

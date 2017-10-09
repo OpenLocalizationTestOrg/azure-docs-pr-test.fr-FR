@@ -1,6 +1,6 @@
 ---
-title: "Définir des préférences de préversion pour Azure Application Insights | Microsoft Docs"
-description: "L’équipe de développement Azure Application Insights déploie de nouvelles expériences. Vous pouvez définir les nouvelles expériences dont vous souhaitez avoir une préversion dans le portail Azure."
+title: "préférences de prévisualisation aaaSet pour Azure Application Insights | Documents Microsoft"
+description: "équipe de développement d’Application Azure Insights Hello déploie les nouvelles expériences. Vous pouvez définir les nouvelles expériences que vous souhaitez toopreview Bonjour portail Azure."
 services: application-insights
 documentationcenter: 
 author: CFreemanwa
@@ -13,28 +13,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/1/2017
 ms.author: bwren
-ms.openlocfilehash: 03b69f68911a79adeab1d29f868d26653d6a7ac0
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 04a1d763bd706a9cc050d72512a8ca405f980dc4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="preview-upcoming-changes-to-azure-application-insights"></a><span data-ttu-id="b0376-104">Aperçu des modifications à venir pour Azure Application Insights</span><span class="sxs-lookup"><span data-stu-id="b0376-104">Preview upcoming changes to Azure Application Insights</span></span> 
+# <a name="preview-upcoming-changes-tooazure-application-insights"></a><span data-ttu-id="10c80-104">Aperçu à venir change tooAzure Application Insights</span><span class="sxs-lookup"><span data-stu-id="10c80-104">Preview upcoming changes tooAzure Application Insights</span></span> 
 
-<span data-ttu-id="b0376-105">Application Insights sort souvent de nouvelles fonctionnalités.</span><span class="sxs-lookup"><span data-stu-id="b0376-105">Application Insights frequently releases new features.</span></span> <span data-ttu-id="b0376-106">Si vous souhaitez voir ces améliorations sou forme de préversion, vous pouvez vous inscrire sur le panneau Préversion d’Application Insights.</span><span class="sxs-lookup"><span data-stu-id="b0376-106">If you want to see previews of these improvements, you can sign up on the Application Insights Preview blade.</span></span>  <span data-ttu-id="b0376-107">L’équipe de développement met à disposition un nombre limité de préversions des nouvelles fonctionnalités avant leur diffusion auprès de tous les utilisateurs.</span><span class="sxs-lookup"><span data-stu-id="b0376-107">The development team makes previews of new features available on a limited basis before releasing them to all users.</span></span> 
+<span data-ttu-id="10c80-105">Application Insights sort souvent de nouvelles fonctionnalités.</span><span class="sxs-lookup"><span data-stu-id="10c80-105">Application Insights frequently releases new features.</span></span> <span data-ttu-id="10c80-106">Si vous souhaitez que les versions préliminaires de toosee de ces améliorations, vous pouvez vous inscrire sur le panneau d’Application Insights aperçu hello.</span><span class="sxs-lookup"><span data-stu-id="10c80-106">If you want toosee previews of these improvements, you can sign up on hello Application Insights Preview blade.</span></span>  <span data-ttu-id="10c80-107">équipe de développement Hello rend aperçus des nouvelles fonctionnalités disponibles de façon limitée avant de libérer ces tooall utilisateurs.</span><span class="sxs-lookup"><span data-stu-id="10c80-107">hello development team makes previews of new features available on a limited basis before releasing them tooall users.</span></span> 
 
-<span data-ttu-id="b0376-108">L’image suivante illustre comment définir vos préférences de préversion.</span><span class="sxs-lookup"><span data-stu-id="b0376-108">The following image illustrates how to set your preview preferences.</span></span>
+<span data-ttu-id="10c80-108">Hello image suivante illustre comment tooset vos préférences d’aperçu.</span><span class="sxs-lookup"><span data-stu-id="10c80-108">hello following image illustrates how tooset your preview preferences.</span></span>
 
 ![Panneau Préversion d’Application Insights](./media/app-insights-preview/preview.png)
 
-## <a name="set-preferences"></a><span data-ttu-id="b0376-110">Définir des préférences</span><span class="sxs-lookup"><span data-stu-id="b0376-110">Set preferences</span></span>
+## <a name="set-preferences"></a><span data-ttu-id="10c80-110">Définir des préférences</span><span class="sxs-lookup"><span data-stu-id="10c80-110">Set preferences</span></span>
 
-<span data-ttu-id="b0376-111">Le panneau Préversion vous permet d’effectuer une sélection parmi les options suivantes relatives à l’affichage des préversions.</span><span class="sxs-lookup"><span data-stu-id="b0376-111">On the Preview blade, you can select from the following options for when you see previews.</span></span>
+<span data-ttu-id="10c80-111">Sur le panneau d’aperçu hello, vous pouvez sélectionner de hello possibilités pour lorsque vous consultez les versions préliminaires suivantes.</span><span class="sxs-lookup"><span data-stu-id="10c80-111">On hello Preview blade, you can select from hello following options for when you see previews.</span></span>
 
-- <span data-ttu-id="b0376-112">Toujours : les expériences de préversion s’affichent dès qu’elles sont disponibles.</span><span class="sxs-lookup"><span data-stu-id="b0376-112">Always: You see Preview experiences as soon as they are available.</span></span>
-- <span data-ttu-id="b0376-113">Auto : vous voyez les préversions recommandées par Microsoft pour votre compte.</span><span class="sxs-lookup"><span data-stu-id="b0376-113">Auto: You see Preview experiences that Microsoft recommends for your account.</span></span> 
-- <span data-ttu-id="b0376-114">Jamais : vous voyez seulement les préversions sélectionnées.</span><span class="sxs-lookup"><span data-stu-id="b0376-114">Never: You will only see Preview experiences that you select.</span></span> 
+- <span data-ttu-id="10c80-112">Toujours : les expériences de préversion s’affichent dès qu’elles sont disponibles.</span><span class="sxs-lookup"><span data-stu-id="10c80-112">Always: You see Preview experiences as soon as they are available.</span></span>
+- <span data-ttu-id="10c80-113">Auto : vous voyez les préversions recommandées par Microsoft pour votre compte.</span><span class="sxs-lookup"><span data-stu-id="10c80-113">Auto: You see Preview experiences that Microsoft recommends for your account.</span></span> 
+- <span data-ttu-id="10c80-114">Jamais : vous voyez seulement les préversions sélectionnées.</span><span class="sxs-lookup"><span data-stu-id="10c80-114">Never: You will only see Preview experiences that you select.</span></span> 
 
-## <a name="next-steps"></a><span data-ttu-id="b0376-115">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="b0376-115">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="10c80-115">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="10c80-115">Next steps</span></span>
 
-- [<span data-ttu-id="b0376-116">Créer un groupe de ressources</span><span class="sxs-lookup"><span data-stu-id="b0376-116">Create a resource</span></span>](app-insights-create-new-resource.md)
+- [<span data-ttu-id="10c80-116">Créer un groupe de ressources</span><span class="sxs-lookup"><span data-stu-id="10c80-116">Create a resource</span></span>](app-insights-create-new-resource.md)

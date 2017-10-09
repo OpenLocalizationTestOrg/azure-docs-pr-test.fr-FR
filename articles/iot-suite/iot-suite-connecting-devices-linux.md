@@ -1,6 +1,6 @@
 ---
-title: "Connecter un périphérique à l’aide de C sous Linux | Microsoft Docs"
-description: "Explique comment connecter un appareil à la solution de surveillance à distance Azure IoT Suite préconfigurée à l’aide d’une application écrite en C et exécutée sous Linux."
+title: "aaaConnect un appareil à l’aide de C sur Linux | Documents Microsoft"
+description: "Décrit comment tooconnect un toohello appareil Azure IoT Suite préconfiguré solution d’analyse à distance à l’aide d’une application écrite en C en cours d’exécution sur Linux."
 services: 
 suite: iot-suite
 documentationcenter: na
@@ -15,55 +15,55 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: dobett
-ms.openlocfilehash: 9adbc9cc13f0b4cafa3a3a7703c46f8085b15232
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 57393817d40d3555177956a01fa71058bc256988
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-your-device-to-the-remote-monitoring-preconfigured-solution-linux"></a><span data-ttu-id="b9ab0-103">Connexion de votre appareil à la solution préconfigurée de surveillance à distance (Linux)</span><span class="sxs-lookup"><span data-stu-id="b9ab0-103">Connect your device to the remote monitoring preconfigured solution (Linux)</span></span>
+# <a name="connect-your-device-toohello-remote-monitoring-preconfigured-solution-linux"></a><span data-ttu-id="9cd2f-103">Se connecter à votre solution préconfigurée (Linux) de surveillance à distance de toohello périphérique</span><span class="sxs-lookup"><span data-stu-id="9cd2f-103">Connect your device toohello remote monitoring preconfigured solution (Linux)</span></span>
 [!INCLUDE [iot-suite-selector-connecting](../../includes/iot-suite-selector-connecting.md)]
 
-## <a name="build-and-run-a-sample-c-client-linux"></a><span data-ttu-id="b9ab0-104">Création et exécution d’un exemple de client Linux C</span><span class="sxs-lookup"><span data-stu-id="b9ab0-104">Build and run a sample C client Linux</span></span>
-<span data-ttu-id="b9ab0-105">Les étapes suivantes vous montrent comment créer une application cliente qui communique avec la solution préconfigurée de surveillance à distance.</span><span class="sxs-lookup"><span data-stu-id="b9ab0-105">The following steps show you how to create a client application that communicates with the remote monitoring preconfigured solution.</span></span> <span data-ttu-id="b9ab0-106">Cette application est écrite en C, générée et exécutée sur Ubuntu Linux.</span><span class="sxs-lookup"><span data-stu-id="b9ab0-106">This application is written in C and built and run on Ubuntu Linux.</span></span>
+## <a name="build-and-run-a-sample-c-client-linux"></a><span data-ttu-id="9cd2f-104">Création et exécution d’un exemple de client Linux C</span><span class="sxs-lookup"><span data-stu-id="9cd2f-104">Build and run a sample C client Linux</span></span>
+<span data-ttu-id="9cd2f-105">Hello suit vous montre comment toocreate une application cliente qui communique avec le contrôle à distance hello solution préconfigurée.</span><span class="sxs-lookup"><span data-stu-id="9cd2f-105">hello following steps show you how toocreate a client application that communicates with hello remote monitoring preconfigured solution.</span></span> <span data-ttu-id="9cd2f-106">Cette application est écrite en C, générée et exécutée sur Ubuntu Linux.</span><span class="sxs-lookup"><span data-stu-id="9cd2f-106">This application is written in C and built and run on Ubuntu Linux.</span></span>
 
-<span data-ttu-id="b9ab0-107">Pour effectuer ces étapes, vous avez besoin d’un appareil exécutant Ubuntu version 15.04 ou 15.10.</span><span class="sxs-lookup"><span data-stu-id="b9ab0-107">To complete these steps, you need a device running Ubuntu version 15.04 or 15.10.</span></span> <span data-ttu-id="b9ab0-108">Avant de continuer, installez les packages requis sur votre appareil Ubuntu à l’aide de la commande suivante :</span><span class="sxs-lookup"><span data-stu-id="b9ab0-108">Before proceeding, install the prerequisite packages on your Ubuntu device using the following command:</span></span>
+<span data-ttu-id="9cd2f-107">toocomplete ces étapes, vous devez un périphérique qui exécute la version 15.04 ou 15.10 d’Ubuntu.</span><span class="sxs-lookup"><span data-stu-id="9cd2f-107">toocomplete these steps, you need a device running Ubuntu version 15.04 or 15.10.</span></span> <span data-ttu-id="9cd2f-108">Avant de continuer, installez les packages de composants requis hello sur votre appareil Ubuntu à l’aide de hello de commande suivante :</span><span class="sxs-lookup"><span data-stu-id="9cd2f-108">Before proceeding, install hello prerequisite packages on your Ubuntu device using hello following command:</span></span>
 
 ```
 sudo apt-get install cmake gcc g++
 ```
 
-## <a name="install-the-client-libraries-on-your-device"></a><span data-ttu-id="b9ab0-109">Installation des bibliothèques clientes sur votre appareil</span><span class="sxs-lookup"><span data-stu-id="b9ab0-109">Install the client libraries on your device</span></span>
-<span data-ttu-id="b9ab0-110">Les bibliothèques clientes Azure IoT Hub sont disponibles sous la forme d’un package que vous pouvez installer sur votre appareil Ubuntu à l’aide de la commande **apt-get** .</span><span class="sxs-lookup"><span data-stu-id="b9ab0-110">The Azure IoT Hub client libraries are available as a package you can install on your Ubuntu device using the **apt-get** command.</span></span> <span data-ttu-id="b9ab0-111">Procédez comme suit pour installer le package contenant les fichiers d’en-tête et de bibliothèque du client IoT Hub sur votre ordinateur Ubuntu :</span><span class="sxs-lookup"><span data-stu-id="b9ab0-111">Complete the following steps to install the package that contains the IoT Hub client library and header files on your Ubuntu computer:</span></span>
+## <a name="install-hello-client-libraries-on-your-device"></a><span data-ttu-id="9cd2f-109">Installer les bibliothèques clientes hello sur votre appareil</span><span class="sxs-lookup"><span data-stu-id="9cd2f-109">Install hello client libraries on your device</span></span>
+<span data-ttu-id="9cd2f-110">Bonjour Azure IoT Hub bibliothèques clientes sont disponibles sous forme de package que vous pouvez installer sur votre appareil Ubuntu à l’aide de hello **apt-get** commande.</span><span class="sxs-lookup"><span data-stu-id="9cd2f-110">hello Azure IoT Hub client libraries are available as a package you can install on your Ubuntu device using hello **apt-get** command.</span></span> <span data-ttu-id="9cd2f-111">Hello complet suivant les étapes tooinstall hello package contenant hello bibliothèque cliente de IoT Hub et les fichiers d’en-tête sur votre ordinateur Ubuntu :</span><span class="sxs-lookup"><span data-stu-id="9cd2f-111">Complete hello following steps tooinstall hello package that contains hello IoT Hub client library and header files on your Ubuntu computer:</span></span>
 
-1. <span data-ttu-id="b9ab0-112">Dans un interpréteur de commandes, ajoutez le référentiel AzureIoT sur votre ordinateur :</span><span class="sxs-lookup"><span data-stu-id="b9ab0-112">In a shell, add the AzureIoT repository to your computer:</span></span>
+1. <span data-ttu-id="9cd2f-112">Dans un interpréteur de commandes, ajouter de hello AzureIoT référentiel tooyour :</span><span class="sxs-lookup"><span data-stu-id="9cd2f-112">In a shell, add hello AzureIoT repository tooyour computer:</span></span>
    
     ```
     sudo add-apt-repository ppa:aziotsdklinux/ppa-azureiot
     sudo apt-get update
     ```
-2. <span data-ttu-id="b9ab0-113">Installation du package azure-iot-sdk-c-dev</span><span class="sxs-lookup"><span data-stu-id="b9ab0-113">Install the azure-iot-sdk-c-dev package</span></span>
+2. <span data-ttu-id="9cd2f-113">Installer le package d’azure-iot-sdk-c-dev hello</span><span class="sxs-lookup"><span data-stu-id="9cd2f-113">Install hello azure-iot-sdk-c-dev package</span></span>
    
     ```
     sudo apt-get install -y azure-iot-sdk-c-dev
     ```
 
-## <a name="install-the-parson-json-parser"></a><span data-ttu-id="b9ab0-114">Installation de l’analyseur JSON Parson JSON</span><span class="sxs-lookup"><span data-stu-id="b9ab0-114">Install the Parson JSON parser</span></span>
-<span data-ttu-id="b9ab0-115">Les bibliothèques clientes IoT Hub utilisent l’analyseur JSON Parson pour analyser les charges utiles des messages.</span><span class="sxs-lookup"><span data-stu-id="b9ab0-115">The IoT Hub client libraries use the Parson JSON parser to parse message payloads.</span></span> <span data-ttu-id="b9ab0-116">Dans un dossier approprié sur votre ordinateur, clonez le référentiel GitHub Parson à l’aide de la commande suivante :</span><span class="sxs-lookup"><span data-stu-id="b9ab0-116">In a suitable folder on your computer, clone the Parson GitHub repository using the following command:</span></span>
+## <a name="install-hello-parson-json-parser"></a><span data-ttu-id="9cd2f-114">Installer hello Analyseur de Parson JSON</span><span class="sxs-lookup"><span data-stu-id="9cd2f-114">Install hello Parson JSON parser</span></span>
+<span data-ttu-id="9cd2f-115">Hello client IoT Hub bibliothèques utilisent hello charges de message tooparse Parson JSON analyseur.</span><span class="sxs-lookup"><span data-stu-id="9cd2f-115">hello IoT Hub client libraries use hello Parson JSON parser tooparse message payloads.</span></span> <span data-ttu-id="9cd2f-116">Dans un dossier approprié sur votre ordinateur, cloner le référentiel de Parson GitHub hello à l’aide de hello de commande suivante :</span><span class="sxs-lookup"><span data-stu-id="9cd2f-116">In a suitable folder on your computer, clone hello Parson GitHub repository using hello following command:</span></span>
 
 ```
 git clone https://github.com/kgabis/parson.git
 ```
 
-## <a name="prepare-your-project"></a><span data-ttu-id="b9ab0-117">Préparation du projet</span><span class="sxs-lookup"><span data-stu-id="b9ab0-117">Prepare your project</span></span>
-<span data-ttu-id="b9ab0-118">Sur votre ordinateur Ubuntu, créez un dossier nommé **remote\_monitoring**.</span><span class="sxs-lookup"><span data-stu-id="b9ab0-118">On your Ubuntu machine, create a folder called **remote\_monitoring**.</span></span> <span data-ttu-id="b9ab0-119">Dans le dossier **remote\_monitoring** :</span><span class="sxs-lookup"><span data-stu-id="b9ab0-119">In the **remote\_monitoring** folder:</span></span>
+## <a name="prepare-your-project"></a><span data-ttu-id="9cd2f-117">Préparation du projet</span><span class="sxs-lookup"><span data-stu-id="9cd2f-117">Prepare your project</span></span>
+<span data-ttu-id="9cd2f-118">Sur votre ordinateur Ubuntu, créez un dossier nommé **remote\_monitoring**.</span><span class="sxs-lookup"><span data-stu-id="9cd2f-118">On your Ubuntu machine, create a folder called **remote\_monitoring**.</span></span> <span data-ttu-id="9cd2f-119">Bonjour **distant\_analyse** dossier :</span><span class="sxs-lookup"><span data-stu-id="9cd2f-119">In hello **remote\_monitoring** folder:</span></span>
 
-- <span data-ttu-id="b9ab0-120">Créez quatre fichiers : **main.c**, **remote\_monitoring.c**, **remote\_monitoring.h** et **CMakeLists.txt**.</span><span class="sxs-lookup"><span data-stu-id="b9ab0-120">Create the four files **main.c**, **remote\_monitoring.c**, **remote\_monitoring.h**, and **CMakeLists.txt**.</span></span>
-- <span data-ttu-id="b9ab0-121">Créez un dossier nommé **parson**.</span><span class="sxs-lookup"><span data-stu-id="b9ab0-121">Create folder called **parson**.</span></span>
+- <span data-ttu-id="9cd2f-120">Créer des quatre fichiers hello **main.c**, **distant\_monitoring.c**, **distant\_monitoring.h**, et **CMakeLists.txt**.</span><span class="sxs-lookup"><span data-stu-id="9cd2f-120">Create hello four files **main.c**, **remote\_monitoring.c**, **remote\_monitoring.h**, and **CMakeLists.txt**.</span></span>
+- <span data-ttu-id="9cd2f-121">Créez un dossier nommé **parson**.</span><span class="sxs-lookup"><span data-stu-id="9cd2f-121">Create folder called **parson**.</span></span>
 
-<span data-ttu-id="b9ab0-122">Copiez les fichiers **parson.c** et **parson.h** à partir de votre copie locale du référentiel Parson dans le dossier **remote\_monitoring/parson**.</span><span class="sxs-lookup"><span data-stu-id="b9ab0-122">Copy the files **parson.c** and **parson.h** from your local copy of the Parson repository into the **remote\_monitoring/parson** folder.</span></span>
+<span data-ttu-id="9cd2f-122">Copiez les fichiers hello **parson.c** et **parson.h** à partir de votre copie locale du référentiel de Parson hello en hello **distant\_analyse/parson** dossier.</span><span class="sxs-lookup"><span data-stu-id="9cd2f-122">Copy hello files **parson.c** and **parson.h** from your local copy of hello Parson repository into hello **remote\_monitoring/parson** folder.</span></span>
 
-<span data-ttu-id="b9ab0-123">Dans un éditeur de texte, ouvrez le fichier **remote\_monitoring.c**.</span><span class="sxs-lookup"><span data-stu-id="b9ab0-123">In a text editor, open the **remote\_monitoring.c** file.</span></span> <span data-ttu-id="b9ab0-124">Ajoutez les instructions `#include` suivantes :</span><span class="sxs-lookup"><span data-stu-id="b9ab0-124">Add the following `#include` statements:</span></span>
+<span data-ttu-id="9cd2f-123">Dans un éditeur de texte, ouvrez hello **distant\_monitoring.c** fichier.</span><span class="sxs-lookup"><span data-stu-id="9cd2f-123">In a text editor, open hello **remote\_monitoring.c** file.</span></span> <span data-ttu-id="9cd2f-124">Ajoutez hello suit `#include` instructions :</span><span class="sxs-lookup"><span data-stu-id="9cd2f-124">Add hello following `#include` statements:</span></span>
    
 ```
 #include "iothubtransportmqtt.h"
@@ -78,14 +78,14 @@ git clone https://github.com/kgabis/parson.git
 
 [!INCLUDE [iot-suite-connecting-code](../../includes/iot-suite-connecting-code.md)]
 
-## <a name="call-the-remotemonitoringrun-function"></a><span data-ttu-id="b9ab0-125">Appel de la fonction remote\_monitoring\_run</span><span class="sxs-lookup"><span data-stu-id="b9ab0-125">Call the remote\_monitoring\_run function</span></span>
-<span data-ttu-id="b9ab0-126">Dans un éditeur de texte, ouvrez le fichier **remote_monitoring.h**.</span><span class="sxs-lookup"><span data-stu-id="b9ab0-126">In a text editor, open the **remote_monitoring.h** file.</span></span> <span data-ttu-id="b9ab0-127">Ajoutez le code suivant :</span><span class="sxs-lookup"><span data-stu-id="b9ab0-127">Add the following code:</span></span>
+## <a name="call-hello-remotemonitoringrun-function"></a><span data-ttu-id="9cd2f-125">Appelez hello distant\_analyse\_exécuter (fonction)</span><span class="sxs-lookup"><span data-stu-id="9cd2f-125">Call hello remote\_monitoring\_run function</span></span>
+<span data-ttu-id="9cd2f-126">Dans un éditeur de texte, ouvrez hello **remote_monitoring.h** fichier.</span><span class="sxs-lookup"><span data-stu-id="9cd2f-126">In a text editor, open hello **remote_monitoring.h** file.</span></span> <span data-ttu-id="9cd2f-127">Ajoutez hello suivant de code :</span><span class="sxs-lookup"><span data-stu-id="9cd2f-127">Add hello following code:</span></span>
 
 ```
 void remote_monitoring_run(void);
 ```
 
-<span data-ttu-id="b9ab0-128">Dans un éditeur de texte, ouvrez le fichier **main.c** .</span><span class="sxs-lookup"><span data-stu-id="b9ab0-128">In a text editor, open the **main.c** file.</span></span> <span data-ttu-id="b9ab0-129">Ajoutez le code suivant :</span><span class="sxs-lookup"><span data-stu-id="b9ab0-129">Add the following code:</span></span>
+<span data-ttu-id="9cd2f-128">Dans un éditeur de texte, ouvrez hello **main.c** fichier.</span><span class="sxs-lookup"><span data-stu-id="9cd2f-128">In a text editor, open hello **main.c** file.</span></span> <span data-ttu-id="9cd2f-129">Ajoutez hello suivant de code :</span><span class="sxs-lookup"><span data-stu-id="9cd2f-129">Add hello following code:</span></span>
 
 ```
 #include "remote_monitoring.h"
@@ -98,12 +98,12 @@ int main(void)
 }
 ```
 
-## <a name="build-and-run-the-application"></a><span data-ttu-id="b9ab0-130">Génération et exécution de l’application</span><span class="sxs-lookup"><span data-stu-id="b9ab0-130">Build and run the application</span></span>
-<span data-ttu-id="b9ab0-131">Les étapes suivantes décrivent comment utiliser *CMake* pour créer votre application cliente.</span><span class="sxs-lookup"><span data-stu-id="b9ab0-131">The following steps describe how to use *CMake* to build your client application.</span></span>
+## <a name="build-and-run-hello-application"></a><span data-ttu-id="9cd2f-130">Générer et exécuter l’application hello</span><span class="sxs-lookup"><span data-stu-id="9cd2f-130">Build and run hello application</span></span>
+<span data-ttu-id="9cd2f-131">Hello étapes suivantes décrivent comment toouse *CMake* toobuild votre application cliente.</span><span class="sxs-lookup"><span data-stu-id="9cd2f-131">hello following steps describe how toouse *CMake* toobuild your client application.</span></span>
 
-1. <span data-ttu-id="b9ab0-132">Dans un éditeur de texte, ouvrez le fichier **CMakeLists.txt** dans le dossier **remote_monitoring**.</span><span class="sxs-lookup"><span data-stu-id="b9ab0-132">In a text editor, open the **CMakeLists.txt** file in the **remote_monitoring** folder.</span></span>
+1. <span data-ttu-id="9cd2f-132">Dans un éditeur de texte, ouvrez hello **CMakeLists.txt** fichier Bonjour **remote_monitoring** dossier.</span><span class="sxs-lookup"><span data-stu-id="9cd2f-132">In a text editor, open hello **CMakeLists.txt** file in hello **remote_monitoring** folder.</span></span>
 
-1. <span data-ttu-id="b9ab0-133">Ajoutez les instructions suivantes pour définir comment créer votre application cliente :</span><span class="sxs-lookup"><span data-stu-id="b9ab0-133">Add the following instructions to define how to build your client application:</span></span>
+1. <span data-ttu-id="9cd2f-133">Ajouter hello suivant les instructions toodefine comment toobuild votre application cliente :</span><span class="sxs-lookup"><span data-stu-id="9cd2f-133">Add hello following instructions toodefine how toobuild your client application:</span></span>
    
     ```
     macro(compileAsC99)
@@ -151,7 +151,7 @@ int main(void)
         m
     )
     ```
-1. <span data-ttu-id="b9ab0-134">Dans le dossier **remote_monitoring**, créez un dossier pour stocker les fichiers *make* générés par CMake, puis exécutez les commandes **cmake** et **make** comme suit :</span><span class="sxs-lookup"><span data-stu-id="b9ab0-134">In the **remote_monitoring** folder, create a folder to store the *make* files that CMake generates and then run the **cmake** and **make** commands as follows:</span></span>
+1. <span data-ttu-id="9cd2f-134">Bonjour **remote_monitoring** dossier, créez un Bonjour toostore de dossier *rendre* fichiers que CMake génère et puis exécutez hello **cmake** et **rendre** commandes comme suit :</span><span class="sxs-lookup"><span data-stu-id="9cd2f-134">In hello **remote_monitoring** folder, create a folder toostore hello *make* files that CMake generates and then run hello **cmake** and **make** commands as follows:</span></span>
    
     ```
     mkdir cmake
@@ -160,7 +160,7 @@ int main(void)
     make
     ```
 
-1. <span data-ttu-id="b9ab0-135">Exécutez l’application cliente et envoyez les données de télémétrie à IoT Hub :</span><span class="sxs-lookup"><span data-stu-id="b9ab0-135">Run the client application and send telemetry to IoT Hub:</span></span>
+1. <span data-ttu-id="9cd2f-135">Exécuter l’application cliente de hello et envoyer des données de télémétrie tooIoT Hub :</span><span class="sxs-lookup"><span data-stu-id="9cd2f-135">Run hello client application and send telemetry tooIoT Hub:</span></span>
    
     ```
     ./sample_app

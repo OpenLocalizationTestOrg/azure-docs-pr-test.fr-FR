@@ -1,6 +1,6 @@
 ---
-title: "Documentation Azure Event Hubs - Didacticiels, informations de référence sur les API | Microsoft Docs"
-description: "Découvrez comment utiliser Event Hubs pour ingérer des millions d’événements par seconde à partir des appareils IoT connectés et des applications sur de nombreuses plateformes."
+title: "aaaAzure documentation sur les concentrateurs d’événements - didacticiels, référence de l’API | Documents Microsoft"
+description: "Découvrez comment toouse concentrateurs d’événements tooingest des millions d’événements par seconde à partir de connectées appareils IoT et des applications sur un large éventail de plateformes."
 services: event-hubs
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 56c24eb26faf1729c33b025d5c9fcf5d13abd376
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: b75a4f958f66afdbca2fc612e2359df241164818
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="event-hubs-documentation"></a>Documentation Event Hubs
 
-Découvrez comment utiliser Event Hubs pour collecter et gérer des millions d’événements par seconde à partir d’appareils IoT connectés et d’applications. Des didacticiels, des références d’API et d’autres documents vous montrent comment configurer une ingestion évolutive des événements sur un large éventail de plateformes.
+Découvrez comment toouse concentrateurs d’événements toocollect et gérer des millions d’événements par seconde à partir des appareils IoT connectés et les applications. Des didacticiels, des références d’API et d’autres documents vous montrent comment configurer une ingestion évolutive des événements sur un large éventail de plateformes.
 
 <ul class="panelContent cardsFTitle">
      <li>
@@ -70,7 +70,7 @@ Découvrez comment utiliser Event Hubs pour collecter et gérer des millions d�
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Prise en main du guide de programmation de concentrateurs d’événements</h3>
+                        <h3>Prise en main guide de programmation de concentrateurs d’événements hello</h3>
                     </div>
                 </div>
             </div>
@@ -88,7 +88,7 @@ Découvrez comment utiliser Event Hubs pour collecter et gérer des millions d�
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>Prise en main des concentrateurs d’événements à l’aide du portail Azure</h3>
+                        <h3>Prise en main des concentrateurs d’événements à l’aide de hello portail Azure</h3>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 ---
-title: Connecteur Wunderlist dans Azure Logic Apps | Microsoft Docs
-description: "Créez une connexion à Wunderlist et utilisez cette connexion pour générer votre flux de travail dans les applications logiques."
+title: "connecteur d’aaaWunderlist je n logique Azure applications | Documents Microsoft"
+description: "Créer un tooWunderlist de connexion et utiliser cette toobuild de connexion à votre flux de travail dans les applications de logique."
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: MandiOhlinger
@@ -15,32 +15,32 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 08/18/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: 899110992cc52ca5edf1706320fd5570473de784
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8b960a0bd8a16d51933dfc75e7291c8a0ae0f923
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-wunderlist-connector"></a><span data-ttu-id="d8ed0-103">Prise en main du connecteur Wunderlist</span><span class="sxs-lookup"><span data-stu-id="d8ed0-103">Get started with the Wunderlist connector</span></span>
-<span data-ttu-id="d8ed0-104">Wunderlist fournit un gestionnaire de tâches et de listes de tâches pour aider les utilisateurs à travailler efficacement.</span><span class="sxs-lookup"><span data-stu-id="d8ed0-104">Wunderlist provide a todo list and task manager to help people get their stuff done.</span></span>  <span data-ttu-id="d8ed0-105">Si vous partagez une liste de courses avec un proche, si vous travaillez sur un projet ou planifiez des vacances, Wunderlist facilite la capture, le partage et le suivi de vos listes de tâches.</span><span class="sxs-lookup"><span data-stu-id="d8ed0-105">Whether you’re sharing a grocery list with a loved one, working on a project, or planning a vacation, Wunderlist makes it easy to capture, share, and complete your to¬dos.</span></span> <span data-ttu-id="d8ed0-106">Wunderlist est instantanément synchronisé entre votre téléphone, votre tablette et votre ordinateur, pour vous permettre d’accéder à toutes vos tâches à partir de n’importe quel endroit.</span><span class="sxs-lookup"><span data-stu-id="d8ed0-106">Wunderlist instantly syncs between your phone, tablet and computer, so you can access all your tasks from anywhere.</span></span>
+# <a name="get-started-with-hello-wunderlist-connector"></a><span data-ttu-id="47f7e-103">Prise en main connecteur de Wunderlist hello</span><span class="sxs-lookup"><span data-stu-id="47f7e-103">Get started with hello Wunderlist connector</span></span>
+<span data-ttu-id="47f7e-104">Wunderlist une liste de tâches et personnes de tâche manager toohelp obtenir son travail terminé.</span><span class="sxs-lookup"><span data-stu-id="47f7e-104">Wunderlist provide a todo list and task manager toohelp people get their stuff done.</span></span>  <span data-ttu-id="47f7e-105">Si vous partagez une liste des courses par exemple un, vous travaillez sur un projet ou planification des vacances, Wunderlist facilite toocapture, partager et de votre to¬dos.</span><span class="sxs-lookup"><span data-stu-id="47f7e-105">Whether you’re sharing a grocery list with a loved one, working on a project, or planning a vacation, Wunderlist makes it easy toocapture, share, and complete your to¬dos.</span></span> <span data-ttu-id="47f7e-106">Wunderlist est instantanément synchronisé entre votre téléphone, votre tablette et votre ordinateur, pour vous permettre d’accéder à toutes vos tâches à partir de n’importe quel endroit.</span><span class="sxs-lookup"><span data-stu-id="47f7e-106">Wunderlist instantly syncs between your phone, tablet and computer, so you can access all your tasks from anywhere.</span></span>
 
-<span data-ttu-id="d8ed0-107">Commencez par créer une application logique. Pour cela, consultez [Créer une application logique](../logic-apps/logic-apps-create-a-logic-app.md).</span><span class="sxs-lookup"><span data-stu-id="d8ed0-107">Get started by creating a logic app now; see [Create a logic app](../logic-apps/logic-apps-create-a-logic-app.md).</span></span>
+<span data-ttu-id="47f7e-107">Commencez par créer une application logique. Pour cela, consultez [Créer une application logique](../logic-apps/logic-apps-create-a-logic-app.md).</span><span class="sxs-lookup"><span data-stu-id="47f7e-107">Get started by creating a logic app now; see [Create a logic app](../logic-apps/logic-apps-create-a-logic-app.md).</span></span>
 
-## <a name="create-a-connection-to-wunderlist"></a><span data-ttu-id="d8ed0-108">Créer une connexion à Wunderlist</span><span class="sxs-lookup"><span data-stu-id="d8ed0-108">Create a connection to Wunderlist</span></span>
-<span data-ttu-id="d8ed0-109">Pour créer des applications logiques avec Wunderlist, vous devez d’abord créer une **connexion**, puis fournir les détails pour les propriétés suivantes :</span><span class="sxs-lookup"><span data-stu-id="d8ed0-109">To create Logic apps with Wunderlist, you must first create a **connection** then provide the details for the following properties:</span></span>
+## <a name="create-a-connection-toowunderlist"></a><span data-ttu-id="47f7e-108">Créer un tooWunderlist de connexion</span><span class="sxs-lookup"><span data-stu-id="47f7e-108">Create a connection tooWunderlist</span></span>
+<span data-ttu-id="47f7e-109">toocreate Logic apps avec Wunderlist, vous devez d’abord créer un **connexion** puis fournissez les informations de hello pour hello propriétés suivantes :</span><span class="sxs-lookup"><span data-stu-id="47f7e-109">toocreate Logic apps with Wunderlist, you must first create a **connection** then provide hello details for hello following properties:</span></span>
 
-| <span data-ttu-id="d8ed0-110">Propriété</span><span class="sxs-lookup"><span data-stu-id="d8ed0-110">Property</span></span> | <span data-ttu-id="d8ed0-111">Requis</span><span class="sxs-lookup"><span data-stu-id="d8ed0-111">Required</span></span> | <span data-ttu-id="d8ed0-112">Description</span><span class="sxs-lookup"><span data-stu-id="d8ed0-112">Description</span></span> |
+| <span data-ttu-id="47f7e-110">Propriété</span><span class="sxs-lookup"><span data-stu-id="47f7e-110">Property</span></span> | <span data-ttu-id="47f7e-111">Requis</span><span class="sxs-lookup"><span data-stu-id="47f7e-111">Required</span></span> | <span data-ttu-id="47f7e-112">Description</span><span class="sxs-lookup"><span data-stu-id="47f7e-112">Description</span></span> |
 | --- | --- | --- |
-| <span data-ttu-id="d8ed0-113">Jeton</span><span class="sxs-lookup"><span data-stu-id="d8ed0-113">Token</span></span> |<span data-ttu-id="d8ed0-114">Oui</span><span class="sxs-lookup"><span data-stu-id="d8ed0-114">Yes</span></span> |<span data-ttu-id="d8ed0-115">Fournir des informations d’identification Wunderlist</span><span class="sxs-lookup"><span data-stu-id="d8ed0-115">Provide Wunderlist Credentials</span></span> |
+| <span data-ttu-id="47f7e-113">Jeton</span><span class="sxs-lookup"><span data-stu-id="47f7e-113">Token</span></span> |<span data-ttu-id="47f7e-114">Oui</span><span class="sxs-lookup"><span data-stu-id="47f7e-114">Yes</span></span> |<span data-ttu-id="47f7e-115">Fournir des informations d’identification Wunderlist</span><span class="sxs-lookup"><span data-stu-id="47f7e-115">Provide Wunderlist Credentials</span></span> |
 
-<span data-ttu-id="d8ed0-116">Après avoir créé la connexion, vous pouvez l’utiliser pour exécuter les actions et écouter les déclencheurs.</span><span class="sxs-lookup"><span data-stu-id="d8ed0-116">After you create the connection, you can use it to execute the actions and listen for the triggers.</span></span>
+<span data-ttu-id="47f7e-116">Après avoir créé la connexion de hello, vous pouvez utiliser les actions de hello tooexecute et écouter les déclencheurs de hello.</span><span class="sxs-lookup"><span data-stu-id="47f7e-116">After you create hello connection, you can use it tooexecute hello actions and listen for hello triggers.</span></span>
 
-> [!INCLUDE [Steps to create a connection to Wunderlist](../../includes/connectors-create-api-wunderlist.md)]
+> [!INCLUDE [Steps toocreate a connection tooWunderlist](../../includes/connectors-create-api-wunderlist.md)]
 > 
 
-## <a name="connector-specific-details"></a><span data-ttu-id="d8ed0-117">Détails spécifiques aux connecteurs</span><span class="sxs-lookup"><span data-stu-id="d8ed0-117">Connector-specific details</span></span>
+## <a name="connector-specific-details"></a><span data-ttu-id="47f7e-117">Détails spécifiques du connecteur</span><span class="sxs-lookup"><span data-stu-id="47f7e-117">Connector-specific details</span></span>
 
-<span data-ttu-id="d8ed0-118">Consultez tous les déclencheurs et les actions définies dans le swagger, ainsi que les éventuelles limites dans les [détails des connecteurs](/connectors/wunderlist/).</span><span class="sxs-lookup"><span data-stu-id="d8ed0-118">View any triggers and actions defined in the swagger, and also see any limits in the [connector details](/connectors/wunderlist/).</span></span>
+<span data-ttu-id="47f7e-118">Afficher les déclencheurs et les actions définies dans les swagger hello et également voir les limites Bonjour [détails du connecteur](/connectors/wunderlist/).</span><span class="sxs-lookup"><span data-stu-id="47f7e-118">View any triggers and actions defined in hello swagger, and also see any limits in hello [connector details](/connectors/wunderlist/).</span></span>
 
-## <a name="more-connectors"></a><span data-ttu-id="d8ed0-119">Autres connecteurs</span><span class="sxs-lookup"><span data-stu-id="d8ed0-119">More connectors</span></span>
-<span data-ttu-id="d8ed0-120">Revenir à la [liste des API](apis-list.md).</span><span class="sxs-lookup"><span data-stu-id="d8ed0-120">Go back to the [APIs list](apis-list.md).</span></span>
+## <a name="more-connectors"></a><span data-ttu-id="47f7e-119">Autres connecteurs</span><span class="sxs-lookup"><span data-stu-id="47f7e-119">More connectors</span></span>
+<span data-ttu-id="47f7e-120">Revenir en arrière toohello [liste des API](apis-list.md).</span><span class="sxs-lookup"><span data-stu-id="47f7e-120">Go back toohello [APIs list](apis-list.md).</span></span>

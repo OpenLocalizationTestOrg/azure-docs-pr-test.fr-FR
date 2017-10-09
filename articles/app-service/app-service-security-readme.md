@@ -1,6 +1,6 @@
 ---
-title: "Sécurité dans Azure App Service"
-description: "Découvrez comment sécuriser des applications logiques, API, web et mobiles dans Azure App Service."
+title: aaaAzure App Service Security
+description: "Découvrez comment toosecure des applications Web, mobiles, API et la logique dans Azure App Service."
 services: app-service
 documentationcenter: 
 author: naziml
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/16/2015
 ms.author: naziml
-ms.openlocfilehash: 7d26d52ad04bd4158a1450ae0f49fc7c1f8a04e8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8a0bff7d9665abadd70c1cfd07dca265ea057596
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-app-service-security"></a><span data-ttu-id="65f15-103">Sécurité dans Azure App Service</span><span class="sxs-lookup"><span data-stu-id="65f15-103">Azure App Service Security</span></span>
-<span data-ttu-id="65f15-104">Azure App Service respecte les principaux standards du secteur en termes de sécurité et de fiabilité pour fournir à nos clients une plateforme sécurisée.</span><span class="sxs-lookup"><span data-stu-id="65f15-104">Azure App Services complies with the key industry standards for security and reliability to provide our customers a secure platform.</span></span> <span data-ttu-id="65f15-105">Nous disposons de plusieurs fonctionnalités simples d’utilisation pour aider à sécuriser le trafic entrant et sortant de votre application.</span><span class="sxs-lookup"><span data-stu-id="65f15-105">We have several easy-to-use features to help secure both inbound and outbound traffic for your app.</span></span> <span data-ttu-id="65f15-106">Nous aidons également nos clients à sécuriser leur code d’application en fournissant des fonctionnalités en externe pour analyser votre application web et y rechercher des vulnérabilités.</span><span class="sxs-lookup"><span data-stu-id="65f15-106">We also help customers secure their application code by providing externally provided functionality to scan your web application for vulnerabilities.</span></span>
+# <a name="azure-app-service-security"></a><span data-ttu-id="71d9b-103">Sécurité dans Azure App Service</span><span class="sxs-lookup"><span data-stu-id="71d9b-103">Azure App Service Security</span></span>
+<span data-ttu-id="71d9b-104">Services d’application Azure est conforme aux normes de clés de l’industrie hello pour la sécurité et fiabilité tooprovide nos clients une plateforme sécurisée.</span><span class="sxs-lookup"><span data-stu-id="71d9b-104">Azure App Services complies with hello key industry standards for security and reliability tooprovide our customers a secure platform.</span></span> <span data-ttu-id="71d9b-105">Nous avons plusieurs facile à utiliser les fonctionnalités toohelp sécuriser le trafic entrant et sortant pour votre application.</span><span class="sxs-lookup"><span data-stu-id="71d9b-105">We have several easy-to-use features toohelp secure both inbound and outbound traffic for your app.</span></span> <span data-ttu-id="71d9b-106">Nous aident également les clients sécurisée leur code d’application en fournissant en externe fourni fonctionnalité tooscan votre application web pour les vulnérabilités.</span><span class="sxs-lookup"><span data-stu-id="71d9b-106">We also help customers secure their application code by providing externally provided functionality tooscan your web application for vulnerabilities.</span></span>
 
 [!INCLUDE [app-service-blueprint-security](../../includes/app-service-blueprint-security.md)]
 
-<span data-ttu-id="65f15-107">Azure App Service utilise la même solution anti-programme malveillant qu’Azure Cloud Services et que les ordinateurs virtuels.</span><span class="sxs-lookup"><span data-stu-id="65f15-107">Azure App Service uses the same Antimalware solution used by Azure Cloud Services and Virtual Machines.</span></span> <span data-ttu-id="65f15-108">Pour en savoir plus à ce sujet, consultez notre [documentation sur les logiciels anti-programme malveillant](../security/azure-security-antimalware.md).</span><span class="sxs-lookup"><span data-stu-id="65f15-108">To learn more about this refer to our [Antimalware documentation](../security/azure-security-antimalware.md).</span></span> 
+<span data-ttu-id="71d9b-107">Azure App Service utilise hello même solution anti-programme malveillant utilisée par les Services de cloud computing Azure et les ordinateurs virtuels.</span><span class="sxs-lookup"><span data-stu-id="71d9b-107">Azure App Service uses hello same Antimalware solution used by Azure Cloud Services and Virtual Machines.</span></span> <span data-ttu-id="71d9b-108">toolearn à ce sujet plus faire référence tooour [documentation du logiciel anti-programme malveillant](../security/azure-security-antimalware.md).</span><span class="sxs-lookup"><span data-stu-id="71d9b-108">toolearn more about this refer tooour [Antimalware documentation](../security/azure-security-antimalware.md).</span></span> 
 

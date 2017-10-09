@@ -1,6 +1,6 @@
 ---
-title: "Analyser les sentiments Twitter en temps réel avec HBase - Azure | Microsoft Docs"
-description: "Apprenez à effectuer une analyse des sentiments des données volumineuses en temps réel à partir de Twitter à l'aide de HBase dans un cluster HDInsight (Hadoop)."
+title: "aaaAnalyze des sentiments Twitter en temps réel avec HBase - Azure | Documents Microsoft"
+description: "Découvrez comment toodo une analyse des sentiments en temps réel des données big de Twitter à utiliser HBase dans un cluster HDInsight (Hadoop)."
 services: hdinsight
 documentationcenter: 
 author: mumian
@@ -15,76 +15,76 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/24/2017
 ms.author: jgao
-ms.openlocfilehash: 4d5bb90c0e7573afb75282810c9ba58e7163e127
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 87e5c0c0a90d222a3f0bc3c3f3fce1e938320480
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="analyze-real-time-twitter-sentiment-with-hbase-in-hdinsight"></a><span data-ttu-id="b1dd0-103">Analyse de sentiments Twitter en temps réel avec HBase dans HDInsight</span><span class="sxs-lookup"><span data-stu-id="b1dd0-103">Analyze real-time Twitter sentiment with HBase in HDInsight</span></span>
-<span data-ttu-id="b1dd0-104">Apprenez à effectuer une [analyse des sentiments](http://en.wikipedia.org/wiki/Sentiment_analysis) des données volumineuses en temps réel à partir de Twitter à l’aide d’un cluster HBase dans HDInsight.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-104">Learn how to do real-time [sentiment analysis](http://en.wikipedia.org/wiki/Sentiment_analysis) of big data from Twitter by using a HBase cluster in HDInsight.</span></span>
+# <a name="analyze-real-time-twitter-sentiment-with-hbase-in-hdinsight"></a><span data-ttu-id="6597f-103">Analyse de sentiments Twitter en temps réel avec HBase dans HDInsight</span><span class="sxs-lookup"><span data-stu-id="6597f-103">Analyze real-time Twitter sentiment with HBase in HDInsight</span></span>
+<span data-ttu-id="6597f-104">Découvrez comment toodo en temps réel [analyse des sentiments](http://en.wikipedia.org/wiki/Sentiment_analysis) de données volumineuses de Twitter à l’aide d’un cluster HBase dans HDInsight.</span><span class="sxs-lookup"><span data-stu-id="6597f-104">Learn how toodo real-time [sentiment analysis](http://en.wikipedia.org/wiki/Sentiment_analysis) of big data from Twitter by using a HBase cluster in HDInsight.</span></span>
 
-<span data-ttu-id="b1dd0-105">Les sites web sociaux constituent l'un des principaux motifs de l'utilisation du modèle des données volumineuses.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-105">Social websites are one of the major driving forces for big data adoption.</span></span> <span data-ttu-id="b1dd0-106">Les API publiques fournies par des sites comme Twitter représentent une source de données utile pour l'analyse et la compréhension des tendances populaires.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-106">Public APIs provided by sites like Twitter are a useful source of data for analyzing and understanding popular trends.</span></span> <span data-ttu-id="b1dd0-107">Ce didacticiel va vous permettre de développer une application console de service de diffusion et une application web ASP.NET afin d’effectuer les opérations suivantes :</span><span class="sxs-lookup"><span data-stu-id="b1dd0-107">In this tutorial, you develop a console streaming service application and an ASP.NET web application to perform the following:</span></span>
+<span data-ttu-id="6597f-105">Sites Web sociaux sont une des forces positives de hello principaux pour l’adoption des données volumineuses.</span><span class="sxs-lookup"><span data-stu-id="6597f-105">Social websites are one of hello major driving forces for big data adoption.</span></span> <span data-ttu-id="6597f-106">Les API publiques fournies par des sites comme Twitter représentent une source de données utile pour l'analyse et la compréhension des tendances populaires.</span><span class="sxs-lookup"><span data-stu-id="6597f-106">Public APIs provided by sites like Twitter are a useful source of data for analyzing and understanding popular trends.</span></span> <span data-ttu-id="6597f-107">Dans ce didacticiel, vous développez une application de service et un suivant de hello ASP.NET web application tooperform de diffusion en continu de console :</span><span class="sxs-lookup"><span data-stu-id="6597f-107">In this tutorial, you develop a console streaming service application and an ASP.NET web application tooperform hello following:</span></span>
 
 ![Analyse de sentiments Twitter avec HBase dans HDInsight.][img-app-arch]
 
-* <span data-ttu-id="b1dd0-109">Application de diffusion en continu</span><span class="sxs-lookup"><span data-stu-id="b1dd0-109">The streaming application</span></span>
+* <span data-ttu-id="6597f-109">application de diffusion en continu de Hello</span><span class="sxs-lookup"><span data-stu-id="6597f-109">hello streaming application</span></span>
 
-  * <span data-ttu-id="b1dd0-110">recevoir en temps réel des tweets avec emplacement en utilisant une API de diffusion Twitter</span><span class="sxs-lookup"><span data-stu-id="b1dd0-110">get geo-tagged tweets in real time by using the Twitter streaming API</span></span>
-  * <span data-ttu-id="b1dd0-111">évaluer les sentiments de ces tweets</span><span class="sxs-lookup"><span data-stu-id="b1dd0-111">evaluate the sentiment of these tweets</span></span>
-  * <span data-ttu-id="b1dd0-112">stocker les informations de sentiments dans HBase à l'aide du Kit de développement logiciel (SDK) Microsoft HBase</span><span class="sxs-lookup"><span data-stu-id="b1dd0-112">store the sentiment information in HBase by using the Microsoft HBase SDK</span></span>
-* <span data-ttu-id="b1dd0-113">L'application Sites Web Microsoft Azure</span><span class="sxs-lookup"><span data-stu-id="b1dd0-113">The Azure Websites application</span></span>
+  * <span data-ttu-id="6597f-110">obtenue géo-réplication marqué un Tweet en temps réel à l’aide de hello Twitter streaming API</span><span class="sxs-lookup"><span data-stu-id="6597f-110">get geo-tagged tweets in real time by using hello Twitter streaming API</span></span>
+  * <span data-ttu-id="6597f-111">évaluer des sentiments hello de ces tweets</span><span class="sxs-lookup"><span data-stu-id="6597f-111">evaluate hello sentiment of these tweets</span></span>
+  * <span data-ttu-id="6597f-112">stocker des sentiments hello dans HBase à l’aide des informations hello HBase SDK Microsoft</span><span class="sxs-lookup"><span data-stu-id="6597f-112">store hello sentiment information in HBase by using hello Microsoft HBase SDK</span></span>
+* <span data-ttu-id="6597f-113">Hello application des sites Web Azure</span><span class="sxs-lookup"><span data-stu-id="6597f-113">hello Azure Websites application</span></span>
 
-  * <span data-ttu-id="b1dd0-114">représenter graphiquement les résultats statistiques en temps réel à l'aide d'une application Web ASP.NET.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-114">plot the real-time statistical results on Bing maps by using an ASP.NET web application.</span></span> <span data-ttu-id="b1dd0-115">Visuellement, les tweets sont semblables à la capture d’écran suivante :</span><span class="sxs-lookup"><span data-stu-id="b1dd0-115">A visualization of the tweets is similar to the following screenshot:</span></span>
+  * <span data-ttu-id="6597f-114">tracer les résultats de statistiques en temps réel hello sur Bing maps à l’aide d’une application web ASP.NET.</span><span class="sxs-lookup"><span data-stu-id="6597f-114">plot hello real-time statistical results on Bing maps by using an ASP.NET web application.</span></span> <span data-ttu-id="6597f-115">Une visualisation de hello tweet est similaire toohello suivant capture d’écran :</span><span class="sxs-lookup"><span data-stu-id="6597f-115">A visualization of hello tweets is similar toohello following screenshot:</span></span>
 
     ![hdinsight.hbase.twitter.sentiment.bing.map][img-bing-map]
 
-    <span data-ttu-id="b1dd0-117">Vous pouvez effectuer des recherches par mots clés sur des tweets afin d’évaluer si l’opinion qui y est exprimée est positive, négative ou neutre.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-117">You are able to query tweets with certain keywords to get a sense of if the expressed opinion in the tweets is positive, negative, or neutral.</span></span>
+    <span data-ttu-id="6597f-117">Vous êtes tweet en mesure de tooquery avec certain mots clés de tooget une idée de si avis hello exprimée dans hello tweet est positive, négative ou neutre.</span><span class="sxs-lookup"><span data-stu-id="6597f-117">You are able tooquery tweets with certain keywords tooget a sense of if hello expressed opinion in hello tweets is positive, negative, or neutral.</span></span>
 
-<span data-ttu-id="b1dd0-118">Un exemple de solution Visual Studio complète est accessible sur GitHub : [application d’analyse de sentiments sociaux en temps réel](https://github.com/maxluk/tweet-sentiment).</span><span class="sxs-lookup"><span data-stu-id="b1dd0-118">A complete Visual Studio solution sample can be found on GitHub: [Realtime social sentiment analysis app](https://github.com/maxluk/tweet-sentiment).</span></span>
+<span data-ttu-id="6597f-118">Un exemple de solution Visual Studio complète est accessible sur GitHub : [application d’analyse de sentiments sociaux en temps réel](https://github.com/maxluk/tweet-sentiment).</span><span class="sxs-lookup"><span data-stu-id="6597f-118">A complete Visual Studio solution sample can be found on GitHub: [Realtime social sentiment analysis app](https://github.com/maxluk/tweet-sentiment).</span></span>
 
-### <a name="prerequisites"></a><span data-ttu-id="b1dd0-119">Composants requis</span><span class="sxs-lookup"><span data-stu-id="b1dd0-119">Prerequisites</span></span>
-<span data-ttu-id="b1dd0-120">Avant de commencer ce didacticiel, vous devez disposer des éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="b1dd0-120">Before you begin this tutorial, you must have the following:</span></span>
+### <a name="prerequisites"></a><span data-ttu-id="6597f-119">Composants requis</span><span class="sxs-lookup"><span data-stu-id="6597f-119">Prerequisites</span></span>
+<span data-ttu-id="6597f-120">Avant de commencer ce didacticiel, vous devez disposer de hello :</span><span class="sxs-lookup"><span data-stu-id="6597f-120">Before you begin this tutorial, you must have hello following:</span></span>
 
-* <span data-ttu-id="b1dd0-121">**Un cluster HBase dans HDInsight**.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-121">**An HBase cluster in HDInsight**.</span></span> <span data-ttu-id="b1dd0-122">Pour les instructions sur la création de clusters, voir la section [Prise en main de HBase avec Hadoop dans HDInsight][hbase-get-started].</span><span class="sxs-lookup"><span data-stu-id="b1dd0-122">For instructions about creating clusters, see  [Get started using HBase with Hadoop in HDInsight][hbase-get-started].</span></span> 
+* <span data-ttu-id="6597f-121">**Un cluster HBase dans HDInsight**.</span><span class="sxs-lookup"><span data-stu-id="6597f-121">**An HBase cluster in HDInsight**.</span></span> <span data-ttu-id="6597f-122">Pour les instructions sur la création de clusters, voir la section [Prise en main de HBase avec Hadoop dans HDInsight][hbase-get-started].</span><span class="sxs-lookup"><span data-stu-id="6597f-122">For instructions about creating clusters, see  [Get started using HBase with Hadoop in HDInsight][hbase-get-started].</span></span> 
 
-* <span data-ttu-id="b1dd0-123">**Un poste de travail** où Visual Studio 2013/2015/2017 a été installé.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-123">**A workstation** with Visual Studio 2013/2015/2017 installed.</span></span> <span data-ttu-id="b1dd0-124">Pour les instructions, voir la section [Installation de Visual Studio](http://msdn.microsoft.com/library/e2h7fzkw.aspx).</span><span class="sxs-lookup"><span data-stu-id="b1dd0-124">For instructions, see [Installing Visual Studio](http://msdn.microsoft.com/library/e2h7fzkw.aspx).</span></span>
+* <span data-ttu-id="6597f-123">**Un poste de travail** où Visual Studio 2013/2015/2017 a été installé.</span><span class="sxs-lookup"><span data-stu-id="6597f-123">**A workstation** with Visual Studio 2013/2015/2017 installed.</span></span> <span data-ttu-id="6597f-124">Pour les instructions, voir la section [Installation de Visual Studio](http://msdn.microsoft.com/library/e2h7fzkw.aspx).</span><span class="sxs-lookup"><span data-stu-id="6597f-124">For instructions, see [Installing Visual Studio](http://msdn.microsoft.com/library/e2h7fzkw.aspx).</span></span>
 
-## <a name="create-a-twitter-application-id-and-secrets"></a><span data-ttu-id="b1dd0-125">Création de l'ID et des secrets d'une application Twitter</span><span class="sxs-lookup"><span data-stu-id="b1dd0-125">Create a Twitter application ID and secrets</span></span>
-<span data-ttu-id="b1dd0-126">Les API de diffusion Twitter utilisent [OAuth](http://oauth.net/) pour autoriser les demandes.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-126">The Twitter streaming APIs use [OAuth](http://oauth.net/) to authorize requests.</span></span> <span data-ttu-id="b1dd0-127">Pour utiliser OAuth, la première étape consiste à créer une nouvelle application sur le site du développeur Twitter.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-127">The first step to use OAuth is to create a new application on the Twitter developer site.</span></span>
+## <a name="create-a-twitter-application-id-and-secrets"></a><span data-ttu-id="6597f-125">Création de l'ID et des secrets d'une application Twitter</span><span class="sxs-lookup"><span data-stu-id="6597f-125">Create a Twitter application ID and secrets</span></span>
+<span data-ttu-id="6597f-126">Hello Twitter utiliser des API de diffusion en continu [OAuth](http://oauth.net/) tooauthorize demandes.</span><span class="sxs-lookup"><span data-stu-id="6597f-126">hello Twitter streaming APIs use [OAuth](http://oauth.net/) tooauthorize requests.</span></span> <span data-ttu-id="6597f-127">Hello première étape toouse OAuth est toocreate une nouvelle application sur site de développement hello Twitter.</span><span class="sxs-lookup"><span data-stu-id="6597f-127">hello first step toouse OAuth is toocreate a new application on hello Twitter developer site.</span></span>
 
-<span data-ttu-id="b1dd0-128">**Pour créer l'ID et les secrets d'une application Twitter**</span><span class="sxs-lookup"><span data-stu-id="b1dd0-128">**To create Twitter application ID and secrets**</span></span>
+<span data-ttu-id="6597f-128">**ID de l’application Twitter toocreate et des clés secrètes**</span><span class="sxs-lookup"><span data-stu-id="6597f-128">**toocreate Twitter application ID and secrets**</span></span>
 
-1. <span data-ttu-id="b1dd0-129">Connectez-vous aux [Applications Twitter](https://apps.twitter.com/).</span><span class="sxs-lookup"><span data-stu-id="b1dd0-129">Sign in to [Twitter Apps](https://apps.twitter.com/).</span></span> <span data-ttu-id="b1dd0-130">Cliquez sur le lien **Sign up now** si vous ne disposez pas d'un compte Twitter.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-130">Click the **Sign up now** link if you don't have a Twitter account.</span></span>
-2. <span data-ttu-id="b1dd0-131">Cliquez sur **Create New App**.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-131">Click **Create New App**.</span></span>
-3. <span data-ttu-id="b1dd0-132">Entrez un **Nom**, une **Description** et un **Site web**.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-132">Enter a **Name**, **Description**, and **Website**.</span></span> <span data-ttu-id="b1dd0-133">Le nom de l'application Twitter doit être unique.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-133">The Twitter application name must be a unique name.</span></span> <span data-ttu-id="b1dd0-134">Le champ Website n'est pas réellement utilisé.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-134">The Website field is not really used.</span></span> <span data-ttu-id="b1dd0-135">Il n'est pas nécessaire que ce soit une URL valide.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-135">It doesn't have to be a valid URL.</span></span>
-4. <span data-ttu-id="b1dd0-136">Cochez la case **Yes, I agree**, puis cliquez **Create your Twitter application**.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-136">Check **Yes, I agree**, and then click **Create your Twitter application**.</span></span>
-5. <span data-ttu-id="b1dd0-137">Cliquez sur l’onglet **Permissions** (Autorisations), puis sur **Read only** (Lecture seule).</span><span class="sxs-lookup"><span data-stu-id="b1dd0-137">Click the **Permissions** tab, and then click **Read only**.</span></span> <span data-ttu-id="b1dd0-138">L’autorisation d’accès en lecture seule est suffisante pour ce didacticiel.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-138">The read-only permission is sufficient for this tutorial.</span></span>
-6. <span data-ttu-id="b1dd0-139">Cliquez sur l’onglet **Keys and Access Tokens** .</span><span class="sxs-lookup"><span data-stu-id="b1dd0-139">Click the **Keys and Access Tokens** tab.</span></span>
-7. <span data-ttu-id="b1dd0-140">Cliquez sur **Create my access token** (Créer mon jeton d’accès) en bas de la page.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-140">Click **Create my access token** on the bottom of the page.</span></span>
-9. <span data-ttu-id="b1dd0-141">Copiez les valeurs de **Consumer Key (API Key)** (Clé du client [clé API]), **Consumer Secret (API Secret)** (Secret du client [secret API]), **Access token** (Jeton d’accès) et **Access token secret** (Secret du jeton d’accès).</span><span class="sxs-lookup"><span data-stu-id="b1dd0-141">Copy the **Consumer Key (API Key)**, **Consumer Secret (API Secret)**, **Access token**, and **Access token secret** values.</span></span> <span data-ttu-id="b1dd0-142">Vous aurez besoin de ces valeurs plus loin dans le didacticiel.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-142">You need these values later in the tutorial.</span></span>
+1. <span data-ttu-id="6597f-129">Connectez-vous trop[Twitter des applications](https://apps.twitter.com/).</span><span class="sxs-lookup"><span data-stu-id="6597f-129">Sign in too[Twitter Apps](https://apps.twitter.com/).</span></span> <span data-ttu-id="6597f-130">Cliquez sur hello **s’inscrire maintenant** lien si vous n’avez pas un compte Twitter.</span><span class="sxs-lookup"><span data-stu-id="6597f-130">Click hello **Sign up now** link if you don't have a Twitter account.</span></span>
+2. <span data-ttu-id="6597f-131">Cliquez sur **Create New App**.</span><span class="sxs-lookup"><span data-stu-id="6597f-131">Click **Create New App**.</span></span>
+3. <span data-ttu-id="6597f-132">Entrez un **Nom**, une **Description** et un **Site web**.</span><span class="sxs-lookup"><span data-stu-id="6597f-132">Enter a **Name**, **Description**, and **Website**.</span></span> <span data-ttu-id="6597f-133">nom de l’application Hello Twitter doit être un nom unique.</span><span class="sxs-lookup"><span data-stu-id="6597f-133">hello Twitter application name must be a unique name.</span></span> <span data-ttu-id="6597f-134">champ de site Web Hello n’est pas réellement utilisé.</span><span class="sxs-lookup"><span data-stu-id="6597f-134">hello Website field is not really used.</span></span> <span data-ttu-id="6597f-135">Il n’a toobe une URL valide.</span><span class="sxs-lookup"><span data-stu-id="6597f-135">It doesn't have toobe a valid URL.</span></span>
+4. <span data-ttu-id="6597f-136">Cochez la case **Yes, I agree**, puis cliquez **Create your Twitter application**.</span><span class="sxs-lookup"><span data-stu-id="6597f-136">Check **Yes, I agree**, and then click **Create your Twitter application**.</span></span>
+5. <span data-ttu-id="6597f-137">Cliquez sur hello **autorisations** onglet, puis cliquez sur **en lecture seule**.</span><span class="sxs-lookup"><span data-stu-id="6597f-137">Click hello **Permissions** tab, and then click **Read only**.</span></span> <span data-ttu-id="6597f-138">les autorisations en lecture seule Hello est suffisante pour ce didacticiel.</span><span class="sxs-lookup"><span data-stu-id="6597f-138">hello read-only permission is sufficient for this tutorial.</span></span>
+6. <span data-ttu-id="6597f-139">Cliquez sur hello **clés et les jetons d’accès** onglet.</span><span class="sxs-lookup"><span data-stu-id="6597f-139">Click hello **Keys and Access Tokens** tab.</span></span>
+7. <span data-ttu-id="6597f-140">Cliquez sur **créer mon jeton d’accès** bas hello de page de hello.</span><span class="sxs-lookup"><span data-stu-id="6597f-140">Click **Create my access token** on hello bottom of hello page.</span></span>
+9. <span data-ttu-id="6597f-141">Hello de copie **Consumer Key (clé d’API)**, **question secrète du client (clé secrète API)**, **jeton d’accès**, et **secret du jeton d’accès** valeurs.</span><span class="sxs-lookup"><span data-stu-id="6597f-141">Copy hello **Consumer Key (API Key)**, **Consumer Secret (API Secret)**, **Access token**, and **Access token secret** values.</span></span> <span data-ttu-id="6597f-142">Vous avez besoin de ces valeurs plus loin dans le didacticiel de hello.</span><span class="sxs-lookup"><span data-stu-id="6597f-142">You need these values later in hello tutorial.</span></span>
 
-    > <span data-ttu-id="b1dd0-143">![REMARQUE] Le bouton Test OAuth ne fonctionne plus.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-143">![NOTE] The Test OAuth button does not work anymore.</span></span>
+    > <span data-ttu-id="6597f-143">! Bouton de Test OAuth hello [Remarque] ne fonctionnera plus.</span><span class="sxs-lookup"><span data-stu-id="6597f-143">![NOTE] hello Test OAuth button does not work anymore.</span></span>
 
-## <a name="create-twitter-streaming-service"></a><span data-ttu-id="b1dd0-144">Création d'un service de diffusion Twitter</span><span class="sxs-lookup"><span data-stu-id="b1dd0-144">Create Twitter streaming service</span></span>
-<span data-ttu-id="b1dd0-145">Vous devez créer une application pour recevoir des tweets, calculer le résultat des sentiments des tweets et envoyer les mots tweets traités à HBase.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-145">You need to create an application to get tweets, calculate tweet sentiment score, and send the processed tweet words to HBase.</span></span>
+## <a name="create-twitter-streaming-service"></a><span data-ttu-id="6597f-144">Création d'un service de diffusion Twitter</span><span class="sxs-lookup"><span data-stu-id="6597f-144">Create Twitter streaming service</span></span>
+<span data-ttu-id="6597f-145">Vous devez toocreate une tooget application tweets, calculer le score d’opinion tweet et hello traité tweet mots tooHBase d’envoi.</span><span class="sxs-lookup"><span data-stu-id="6597f-145">You need toocreate an application tooget tweets, calculate tweet sentiment score, and send hello processed tweet words tooHBase.</span></span>
 
-<span data-ttu-id="b1dd0-146">**Création de l’application de diffusion en continu**</span><span class="sxs-lookup"><span data-stu-id="b1dd0-146">**To create the streaming application**</span></span>
+<span data-ttu-id="6597f-146">**hello toocreate application de diffusion en continu**</span><span class="sxs-lookup"><span data-stu-id="6597f-146">**toocreate hello streaming application**</span></span>
 
-1. <span data-ttu-id="b1dd0-147">Ouvrez **Visual Studio**, puis créez une application console Visual C# appelée **TweetSentimentStreaming**.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-147">Open **Visual Studio**, and create a Visual C# console application called **TweetSentimentStreaming**.</span></span>
-2. <span data-ttu-id="b1dd0-148">Dans la **Console du gestionnaire de package**, entrez les commandes suivantes :</span><span class="sxs-lookup"><span data-stu-id="b1dd0-148">From **Package Manager Console**, run the following commands:</span></span>
+1. <span data-ttu-id="6597f-147">Ouvrez **Visual Studio**, puis créez une application console Visual C# appelée **TweetSentimentStreaming**.</span><span class="sxs-lookup"><span data-stu-id="6597f-147">Open **Visual Studio**, and create a Visual C# console application called **TweetSentimentStreaming**.</span></span>
+2. <span data-ttu-id="6597f-148">À partir de **Package Manager Console**, exécutez hello commandes suivantes :</span><span class="sxs-lookup"><span data-stu-id="6597f-148">From **Package Manager Console**, run hello following commands:</span></span>
 
         Install-Package Microsoft.HBase.Client -version 0.4.2.0
         Install-Package TweetinviAPI -version 1.0.0.0
 
-    <span data-ttu-id="b1dd0-149">Utilisez les commandes suivantes pour installer le package [HBase .NET SDK](https://www.nuget.org/packages/Microsoft.HBase.Client/), qui représente la bibliothèque cliente pour accéder au cluster HBase, et le package [Tweetinvi API](https://www.nuget.org/packages/TweetinviAPI/), utilisé pour accéder à l’API Twitter.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-149">These commands install the [HBase .NET SDK](https://www.nuget.org/packages/Microsoft.HBase.Client/) package, which is the client library to access the HBase cluster, and the [Tweetinvi API](https://www.nuget.org/packages/TweetinviAPI/) package, which is used to access the Twitter API.</span></span>
+    <span data-ttu-id="6597f-149">Ces commandes installent hello [HBase .NET SDK](https://www.nuget.org/packages/Microsoft.HBase.Client/) package, qui est le cluster HBase de hello client bibliothèque tooaccess hello et hello [Tweetinvi API](https://www.nuget.org/packages/TweetinviAPI/) package, qui est utilisé tooaccess hello API Twitter.</span><span class="sxs-lookup"><span data-stu-id="6597f-149">These commands install hello [HBase .NET SDK](https://www.nuget.org/packages/Microsoft.HBase.Client/) package, which is hello client library tooaccess hello HBase cluster, and hello [Tweetinvi API](https://www.nuget.org/packages/TweetinviAPI/) package, which is used tooaccess hello Twitter API.</span></span>
 
    > [!NOTE]
-   > <span data-ttu-id="b1dd0-150">L’exemple utilisé dans cet article a été testé à l’aide de la version spécifiée ci-dessus.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-150">The sample used in this article has been tested using the version specified above.</span></span>  <span data-ttu-id="b1dd0-151">Vous pouvez supprimer le commutateur -version pour installer la version la plus récente.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-151">You can remove the -version switch to install the latest version.</span></span>
+   > <span data-ttu-id="6597f-150">exemple Hello utilisée dans cet article a été testé à l’aide de la version de hello spécifiée ci-dessus.</span><span class="sxs-lookup"><span data-stu-id="6597f-150">hello sample used in this article has been tested using hello version specified above.</span></span>  <span data-ttu-id="6597f-151">Vous pouvez supprimer hello - la version la plus récente version commutateur tooinstall hello.</span><span class="sxs-lookup"><span data-stu-id="6597f-151">You can remove hello -version switch tooinstall hello latest version.</span></span>
    >
    >
-3. <span data-ttu-id="b1dd0-152">Dans l’**Explorateur de solutions**, ajoutez **System.Configuration** à la référence.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-152">From **Solution Explorer**, add **System.Configuration** to the reference.</span></span>
-4. <span data-ttu-id="b1dd0-153">Ajoutez un nouveau fichier de classe au projet nommé **HBaseWriter.cs**, puis remplacez le code par ce qui suit :</span><span class="sxs-lookup"><span data-stu-id="b1dd0-153">Add a new class file to the project called **HBaseWriter.cs**, and then replace the code with the following:</span></span>
+3. <span data-ttu-id="6597f-152">À partir de **l’Explorateur de solutions**, ajoutez **System.Configuration** toohello référence.</span><span class="sxs-lookup"><span data-stu-id="6597f-152">From **Solution Explorer**, add **System.Configuration** toohello reference.</span></span>
+4. <span data-ttu-id="6597f-153">Ajouter un nouveau projet de toohello fichier classe appelé **HBaseWriter.cs**, puis remplacez le code de hello avec les éléments suivants de hello :</span><span class="sxs-lookup"><span data-stu-id="6597f-153">Add a new class file toohello project called **HBaseWriter.cs**, and then replace hello code with hello following:</span></span>
 
         using System;
         using System.Collections.Generic;
@@ -103,8 +103,8 @@ ms.lasthandoff: 08/03/2017
             {
                 // HDinsight HBase cluster and HBase table information
                 const string CLUSTERNAME = "https://<Enter Your Cluster Name>.azurehdinsight.net/";
-                const string HADOOPUSERNAME = "admin"; //the default name is "admin"
-                const string HADOOPUSERPASSWORD = "<Enter the Hadoop User Password>";
+                const string HADOOPUSERNAME = "admin"; //hello default name is "admin"
+                const string HADOOPUSERPASSWORD = "<Enter hello Hadoop User Password>";
 
                 const string HBASETABLENAME = "tweets_by_words";
                 const string COUNT_ROW_KEY = "~ROWCOUNT";
@@ -112,13 +112,13 @@ ms.lasthandoff: 08/03/2017
 
                 long rowCount = 0;
 
-                // Sentiment dictionary file and the punctuation characters
+                // Sentiment dictionary file and hello punctuation characters
                 const string DICTIONARYFILENAME = @"..\..\dictionary.tsv";
                 private static char[] _punctuationChars = new[] {
             ' ', '!', '\"', '#', '$', '%', '&', '\'', '(', ')', '*', '+', ',', '-', '.', '/',   //ascii 23--47
             ':', ';', '<', '=', '>', '?', '@', '[', ']', '^', '_', '`', '{', '|', '}', '~' };   //ascii 58--64 + misc.
 
-                // For writting to HBase
+                // For writting tooHBase
                 HBaseClient client;
 
                 // a sentiment dictionary for estimate sentiment. It is loaded from a physical file.
@@ -129,13 +129,13 @@ ms.lasthandoff: 08/03/2017
                 Queue<ITweet> queue = new Queue<ITweet>();
                 bool threadRunning = true;
 
-                // This function connects to HBase, loads the sentiment dictionary, and starts the thread for writting.
+                // This function connects tooHBase, loads hello sentiment dictionary, and starts hello thread for writting.
                 public HBaseWriter()
                 {
                     ClusterCredentials credentials = new ClusterCredentials(new Uri(CLUSTERNAME), HADOOPUSERNAME, HADOOPUSERPASSWORD);
                     client = new HBaseClient(credentials);
 
-                    // create the HBase table if it doesn't exist
+                    // create hello HBase table if it doesn't exist
                     if (!client.ListTablesAsync().Result.name.Contains(HBASETABLENAME))
                     {
                         TableSchema tableSchema = new TableSchema();
@@ -151,7 +151,7 @@ ms.lasthandoff: 08/03/2017
                     // Load sentiment dictionary from a file
                     LoadDictionary();
 
-                    // Start a thread for writting to HBase
+                    // Start a thread for writting tooHBase
                     writerThread = new Thread(new ThreadStart(WriterThreadFunction));
                     writerThread.Start();
                 }
@@ -179,7 +179,7 @@ ms.lasthandoff: 08/03/2017
                     }
                     catch(Exception ex)
                     {
-                        if (ex.InnerException.Message.Equals("The remote server returned an error: (404) Not Found.", StringComparison.OrdinalIgnoreCase))
+                        if (ex.InnerException.Message.Equals("hello remote server returned an error: (404) Not Found.", StringComparison.OrdinalIgnoreCase))
                         {
                             return 0;
                         }
@@ -193,7 +193,7 @@ ms.lasthandoff: 08/03/2017
                     return 0;
                 }
 
-                // Enqueue the Tweets received
+                // Enqueue hello Tweets received
                 public void WriteTweet(ITweet tweet)
                 {
                     lock (queue)
@@ -260,19 +260,19 @@ ms.lasthandoff: 08/03/2017
                     }
                 }
 
-                // Popular a CellSet object to be written into HBase
+                // Popular a CellSet object toobe written into HBase
                 private void CreateTweetByWordsCells(CellSet set, ITweet tweet)
                 {
-                    // Split the Tweet into words
+                    // Split hello Tweet into words
                     string[] words = tweet.Text.ToLower().Split(_punctuationChars);
 
-                    // Calculate sentiment score base on the words
+                    // Calculate sentiment score base on hello words
                     int sentimentScore = CalcSentimentScore(words);
                     var word_pairs = words.Take(words.Length - 1)
                                         .Select((word, idx) => string.Format("{0} {1}", word, words[idx + 1]));
                     var all_words = words.Concat(word_pairs).ToList();
 
-                    // For each word in the Tweet add a row to the HBase table
+                    // For each word in hello Tweet add a row toohello HBase table
                     foreach (string word in all_words)
                     {
                         string time_index = (ulong.MaxValue - (ulong)tweet.CreatedAt.ToBinary()).ToString().PadLeft(20) + tweet.IdStr;
@@ -281,7 +281,7 @@ ms.lasthandoff: 08/03/2017
                         // Create a row
                         var row = new CellSet.Row { key = Encoding.UTF8.GetBytes(key) };
 
-                        // Add columns to the row, including Tweet identifier, language, coordinator(if available), and sentiment
+                        // Add columns toohello row, including Tweet identifier, language, coordinator(if available), and sentiment
                         var value = new Cell { column = Encoding.UTF8.GetBytes("d:id_str"), data = Encoding.UTF8.GetBytes(tweet.IdStr) };
                         row.values.Add(value);
 
@@ -302,7 +302,7 @@ ms.lasthandoff: 08/03/2017
                     }
                 }
 
-                // Write a Tweet (CellSet) to HBase
+                // Write a Tweet (CellSet) tooHBase
                 public void WriterThreadFunction()
                 {
                     try
@@ -321,7 +321,7 @@ ms.lasthandoff: 08/03/2017
                                     } while (queue.Count > 0);
                                 }
 
-                                // Write the Tweet by words cell set to the HBase table
+                                // Write hello Tweet by words cell set toohello HBase table
                                 client.StoreCellsAsync(HBASETABLENAME, set).Wait();
                                 Console.WriteLine("\tRows written: {0}", set.rows.Count);
                             }
@@ -344,8 +344,8 @@ ms.lasthandoff: 08/03/2017
                 public string Polarity { get; set; }
             }
         }
-5. <span data-ttu-id="b1dd0-154">Définissez les constantes dans le code précédent, notamment **CLUSTERNAME**, **HADOOPUSERNAME**, **HADOOPUSERPASSWORD** et DICTIONARYFILENAME.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-154">Set the constants in the previous code, including **CLUSTERNAME**, **HADOOPUSERNAME**, **HADOOPUSERPASSWORD**, and DICTIONARYFILENAME.</span></span> <span data-ttu-id="b1dd0-155">DICTIONARYFILENAME est le nom du fichier et l'emplacement de direction.tsv.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-155">The DICTIONARYFILENAME is the filename and the location of the direction.tsv.</span></span>  <span data-ttu-id="b1dd0-156">Le fichier peut être téléchargé à partir de **https://hditutorialdata.blob.core.windows.net/twittersentiment/dictionary.tsv**.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-156">The file can be downloaded from **https://hditutorialdata.blob.core.windows.net/twittersentiment/dictionary.tsv**.</span></span> <span data-ttu-id="b1dd0-157">Si vous souhaitez modifier le nom de la table HBase, vous devez également modifier le nom de la table dans l'application Web.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-157">If you want to change the HBase table name, you must change the table name in the web application accordingly.</span></span>
-6. <span data-ttu-id="b1dd0-158">Ouvrez le fichier **Program.cs**et remplacez le code par le suivant :</span><span class="sxs-lookup"><span data-stu-id="b1dd0-158">Open **Program.cs**, and replace the code with the following:</span></span>
+5. <span data-ttu-id="6597f-154">Définir des constantes de hello dans le code précédent hello, y compris **CLUSTERNAME**, **HADOOPUSERNAME**, **HADOOPUSERPASSWORD**et DICTIONARYFILENAME.</span><span class="sxs-lookup"><span data-stu-id="6597f-154">Set hello constants in hello previous code, including **CLUSTERNAME**, **HADOOPUSERNAME**, **HADOOPUSERPASSWORD**, and DICTIONARYFILENAME.</span></span> <span data-ttu-id="6597f-155">Hello DICTIONARYFILENAME est hello le nom de fichier et l’emplacement de hello de hello direction.tsv.</span><span class="sxs-lookup"><span data-stu-id="6597f-155">hello DICTIONARYFILENAME is hello filename and hello location of hello direction.tsv.</span></span>  <span data-ttu-id="6597f-156">fichier de Hello peut être téléchargé à partir de **https://hditutorialdata.blob.core.windows.net/twittersentiment/dictionary.tsv**.</span><span class="sxs-lookup"><span data-stu-id="6597f-156">hello file can be downloaded from **https://hditutorialdata.blob.core.windows.net/twittersentiment/dictionary.tsv**.</span></span> <span data-ttu-id="6597f-157">Si vous souhaitez que le nom de la table toochange hello HBase, vous devez modifier le nom de table hello dans l’application web de hello en conséquence.</span><span class="sxs-lookup"><span data-stu-id="6597f-157">If you want toochange hello HBase table name, you must change hello table name in hello web application accordingly.</span></span>
+6. <span data-ttu-id="6597f-158">Ouvrez **Program.cs**et remplacez le code de hello par qui suit hello :</span><span class="sxs-lookup"><span data-stu-id="6597f-158">Open **Program.cs**, and replace hello code with hello following:</span></span>
 
         using System;
         using System.Diagnostics;
@@ -386,7 +386,7 @@ ms.lasthandoff: 08/03/2017
                                 tweetCount++;
                                 var tweet = args.Tweet;
 
-                                // Write Tweets to HBase
+                                // Write Tweets tooHBase
                                 hbase.WriteTweet(tweet);
 
                                 if (timer.ElapsedMilliseconds > 1000)
@@ -416,50 +416,50 @@ ms.lasthandoff: 08/03/2017
 
             }
         }
-7. <span data-ttu-id="b1dd0-159">Définissez les constantes, notamment **TWITTERAPPACCESSTOKEN**, **TWITTERAPPACCESSTOKENSECRET**, **TWITTERAPPAPIKEY** et **TWITTERAPPAPISECRET**.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-159">Set the constants including **TWITTERAPPACCESSTOKEN**, **TWITTERAPPACCESSTOKENSECRET**, **TWITTERAPPAPIKEY** and **TWITTERAPPAPISECRET**.</span></span>
+7. <span data-ttu-id="6597f-159">Définir des constantes hello notamment **TWITTERAPPACCESSTOKEN**, **TWITTERAPPACCESSTOKENSECRET**, **TWITTERAPPAPIKEY** et **TWITTERAPPAPISECRET**.</span><span class="sxs-lookup"><span data-stu-id="6597f-159">Set hello constants including **TWITTERAPPACCESSTOKEN**, **TWITTERAPPACCESSTOKENSECRET**, **TWITTERAPPAPIKEY** and **TWITTERAPPAPISECRET**.</span></span>
 
-<span data-ttu-id="b1dd0-160">Pour exécuter le service de diffusion, appuyez sur **F5**.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-160">To run the streaming service, press **F5**.</span></span> <span data-ttu-id="b1dd0-161">La capture d'écran suivante présente l'application console :</span><span class="sxs-lookup"><span data-stu-id="b1dd0-161">The following is a screenshot of the console application:</span></span>
+<span data-ttu-id="6597f-160">hello toorun diffusion en continu de service, appuyez sur **F5**.</span><span class="sxs-lookup"><span data-stu-id="6597f-160">toorun hello streaming service, press **F5**.</span></span> <span data-ttu-id="6597f-161">Hello Voici une capture d’écran de l’application de console hello :</span><span class="sxs-lookup"><span data-stu-id="6597f-161">hello following is a screenshot of hello console application:</span></span>
 
 ![hdinsight.hbase.twitter.sentiment.streaming.service][img-streaming-service]
 
-<span data-ttu-id="b1dd0-163">Continuez à exécuter l'application console pendant que vous développez l'application Web, de façon à disposer de davantage de données.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-163">Keep the streaming console application running while you develop the web application, so you have more data to use.</span></span> <span data-ttu-id="b1dd0-164">Pour examiner les données insérées dans la table, vous pouvez utiliser HBase Shell.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-164">To examine the data inserted into the table, you can use HBase Shell.</span></span> <span data-ttu-id="b1dd0-165">Voir [Prise en main de HBase sur HDInsight](hdinsight-hbase-tutorial-get-started-linux.md#create-tables-and-insert-data).</span><span class="sxs-lookup"><span data-stu-id="b1dd0-165">See [Get started with HBase in HDInsight](hdinsight-hbase-tutorial-get-started-linux.md#create-tables-and-insert-data).</span></span>
+<span data-ttu-id="6597f-163">Gardez à l’application de console en cours d’exécution pendant que vous développez une application web de hello, afin que vous ayez plus toouse de données de diffusion en continu de hello.</span><span class="sxs-lookup"><span data-stu-id="6597f-163">Keep hello streaming console application running while you develop hello web application, so you have more data toouse.</span></span> <span data-ttu-id="6597f-164">les données de salutation tooexamine insérées dans la table de hello, vous pouvez utiliser le HBase Shell.</span><span class="sxs-lookup"><span data-stu-id="6597f-164">tooexamine hello data inserted into hello table, you can use HBase Shell.</span></span> <span data-ttu-id="6597f-165">Voir [Prise en main de HBase sur HDInsight](hdinsight-hbase-tutorial-get-started-linux.md#create-tables-and-insert-data).</span><span class="sxs-lookup"><span data-stu-id="6597f-165">See [Get started with HBase in HDInsight](hdinsight-hbase-tutorial-get-started-linux.md#create-tables-and-insert-data).</span></span>
 
-## <a name="visualize-real-time-sentiment"></a><span data-ttu-id="b1dd0-166">Visualiser les données de sentiments en temps réel</span><span class="sxs-lookup"><span data-stu-id="b1dd0-166">Visualize real-time sentiment</span></span>
-<span data-ttu-id="b1dd0-167">Dans cette section, vous allez créer une application web ASP.NET MVC afin de lire les données de sentiments en temps réel de HBase et les représenter graphiquement sur Bing Maps.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-167">In this section, you create an ASP.NET MVC web application to read the real-time sentiment data from HBase and plot the data on Bing maps.</span></span>
+## <a name="visualize-real-time-sentiment"></a><span data-ttu-id="6597f-166">Visualiser les données de sentiments en temps réel</span><span class="sxs-lookup"><span data-stu-id="6597f-166">Visualize real-time sentiment</span></span>
+<span data-ttu-id="6597f-167">Dans cette section, vous créez un ASP.NET MVC web application tooread hello sentiment en temps réel de données à partir des données de hello HBase et tracer sur Bing maps.</span><span class="sxs-lookup"><span data-stu-id="6597f-167">In this section, you create an ASP.NET MVC web application tooread hello real-time sentiment data from HBase and plot hello data on Bing maps.</span></span>
 
-<span data-ttu-id="b1dd0-168">**Pour créer une application Web ASP.NET MVC**</span><span class="sxs-lookup"><span data-stu-id="b1dd0-168">**To create an ASP.NET MVC Web application**</span></span>
+<span data-ttu-id="6597f-168">**toocreate une application Web ASP.NET MVC**</span><span class="sxs-lookup"><span data-stu-id="6597f-168">**toocreate an ASP.NET MVC Web application**</span></span>
 
-1. <span data-ttu-id="b1dd0-169">Ouvrez Visual Studio.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-169">Open Visual Studio.</span></span>
-2. <span data-ttu-id="b1dd0-170">Cliquez sur **Fichier**, **Nouveau**, puis sur **Projet**.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-170">Click **File**, click **New**, and then click **Project**.</span></span>
-3. <span data-ttu-id="b1dd0-171">Entrez les informations suivantes :</span><span class="sxs-lookup"><span data-stu-id="b1dd0-171">Enter the following information:</span></span>
+1. <span data-ttu-id="6597f-169">Ouvrez Visual Studio.</span><span class="sxs-lookup"><span data-stu-id="6597f-169">Open Visual Studio.</span></span>
+2. <span data-ttu-id="6597f-170">Cliquez sur **Fichier**, **Nouveau**, puis sur **Projet**.</span><span class="sxs-lookup"><span data-stu-id="6597f-170">Click **File**, click **New**, and then click **Project**.</span></span>
+3. <span data-ttu-id="6597f-171">Entrez hello informations suivantes :</span><span class="sxs-lookup"><span data-stu-id="6597f-171">Enter hello following information:</span></span>
 
-   * <span data-ttu-id="b1dd0-172">Catégorie de modèle : **Visual C#/Web**</span><span class="sxs-lookup"><span data-stu-id="b1dd0-172">Template category: **Visual C#/Web**</span></span>
-   * <span data-ttu-id="b1dd0-173">Modèle : **Application Web ASP.NET**</span><span class="sxs-lookup"><span data-stu-id="b1dd0-173">Template: **ASP.NET Web Application**</span></span>
-   * <span data-ttu-id="b1dd0-174">Nom : **TweetSentimentWeb**</span><span class="sxs-lookup"><span data-stu-id="b1dd0-174">Name: **TweetSentimentWeb**</span></span>
-   * <span data-ttu-id="b1dd0-175">Emplacement : **C:\Tutorials**</span><span class="sxs-lookup"><span data-stu-id="b1dd0-175">Location: **C:\Tutorials**</span></span>
-4. <span data-ttu-id="b1dd0-176">Cliquez sur **OK**.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-176">Click **OK**.</span></span>
-5. <span data-ttu-id="b1dd0-177">Dans **Sélectionner un modèle**, cliquez sur **MVC**.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-177">In **Select a template**, click **MVC**.</span></span>
-6. <span data-ttu-id="b1dd0-178">Dans **Microsoft Azure**, cliquez sur **Gérer les abonnements**.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-178">In **Microsoft Azure**, click **Manage Subscriptions**.</span></span>
-7. <span data-ttu-id="b1dd0-179">Dans **Gérer les abonnements Microsoft Azure**, cliquez sur **Se connecter**.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-179">From **Manage Microsoft Azure Subscriptions**, click **Sign in**.</span></span>
-8. <span data-ttu-id="b1dd0-180">Entrez vos informations d’identification Azure.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-180">Enter your Azure credentials.</span></span> <span data-ttu-id="b1dd0-181">Les informations de votre abonnement Azure s’affichent dans l’onglet **Comptes** .</span><span class="sxs-lookup"><span data-stu-id="b1dd0-181">Your Azure subscription information is shown on the **Accounts** tab.</span></span>
-9. <span data-ttu-id="b1dd0-182">Cliquez sur **Fermer** pour fermer la fenêtre **Gérer les abonnements Microsoft Azure**.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-182">Click **Close** to close the **Manage Microsoft Azure Subscriptions** window.</span></span>
-10. <span data-ttu-id="b1dd0-183">Dans **Nouveau projet ASP.NET - TweetSentimentWeb**, cliquez sur **OK**.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-183">From **New ASP.NET Project - TweetSentimentWeb**, click **OK**.</span></span>
-11. <span data-ttu-id="b1dd0-184">Dans **Configurer les paramètres du site Microsoft Azure**, sélectionnez la **Région** la plus proche de vous.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-184">From **Configure Microsoft Azure Site Settings**, select the **Region** that is closest to you.</span></span> <span data-ttu-id="b1dd0-185">Il n'est pas nécessaire de spécifier un serveur de base de données.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-185">You don't need to specify a database server.</span></span>
-12. <span data-ttu-id="b1dd0-186">Cliquez sur **OK**.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-186">Click **OK**.</span></span>
+   * <span data-ttu-id="6597f-172">Catégorie de modèle : **Visual C#/Web**</span><span class="sxs-lookup"><span data-stu-id="6597f-172">Template category: **Visual C#/Web**</span></span>
+   * <span data-ttu-id="6597f-173">Modèle : **Application Web ASP.NET**</span><span class="sxs-lookup"><span data-stu-id="6597f-173">Template: **ASP.NET Web Application**</span></span>
+   * <span data-ttu-id="6597f-174">Nom : **TweetSentimentWeb**</span><span class="sxs-lookup"><span data-stu-id="6597f-174">Name: **TweetSentimentWeb**</span></span>
+   * <span data-ttu-id="6597f-175">Emplacement : **C:\Tutorials**</span><span class="sxs-lookup"><span data-stu-id="6597f-175">Location: **C:\Tutorials**</span></span>
+4. <span data-ttu-id="6597f-176">Cliquez sur **OK**.</span><span class="sxs-lookup"><span data-stu-id="6597f-176">Click **OK**.</span></span>
+5. <span data-ttu-id="6597f-177">Dans **Sélectionner un modèle**, cliquez sur **MVC**.</span><span class="sxs-lookup"><span data-stu-id="6597f-177">In **Select a template**, click **MVC**.</span></span>
+6. <span data-ttu-id="6597f-178">Dans **Microsoft Azure**, cliquez sur **Gérer les abonnements**.</span><span class="sxs-lookup"><span data-stu-id="6597f-178">In **Microsoft Azure**, click **Manage Subscriptions**.</span></span>
+7. <span data-ttu-id="6597f-179">Dans **Gérer les abonnements Microsoft Azure**, cliquez sur **Se connecter**.</span><span class="sxs-lookup"><span data-stu-id="6597f-179">From **Manage Microsoft Azure Subscriptions**, click **Sign in**.</span></span>
+8. <span data-ttu-id="6597f-180">Entrez vos informations d’identification Azure.</span><span class="sxs-lookup"><span data-stu-id="6597f-180">Enter your Azure credentials.</span></span> <span data-ttu-id="6597f-181">Vos informations d’abonnement Azure sont indiquées sur hello **comptes** onglet.</span><span class="sxs-lookup"><span data-stu-id="6597f-181">Your Azure subscription information is shown on hello **Accounts** tab.</span></span>
+9. <span data-ttu-id="6597f-182">Cliquez sur **fermer** tooclose hello **gérer les abonnements Microsoft Azure** fenêtre.</span><span class="sxs-lookup"><span data-stu-id="6597f-182">Click **Close** tooclose hello **Manage Microsoft Azure Subscriptions** window.</span></span>
+10. <span data-ttu-id="6597f-183">Dans **Nouveau projet ASP.NET - TweetSentimentWeb**, cliquez sur **OK**.</span><span class="sxs-lookup"><span data-stu-id="6597f-183">From **New ASP.NET Project - TweetSentimentWeb**, click **OK**.</span></span>
+11. <span data-ttu-id="6597f-184">À partir de **configurer les paramètres de Site Microsoft Azure**, sélectionnez hello **région** qui est le plus proche tooyou.</span><span class="sxs-lookup"><span data-stu-id="6597f-184">From **Configure Microsoft Azure Site Settings**, select hello **Region** that is closest tooyou.</span></span> <span data-ttu-id="6597f-185">Vous n’avez pas besoin toospecify un serveur de base de données.</span><span class="sxs-lookup"><span data-stu-id="6597f-185">You don't need toospecify a database server.</span></span>
+12. <span data-ttu-id="6597f-186">Cliquez sur **OK**.</span><span class="sxs-lookup"><span data-stu-id="6597f-186">Click **OK**.</span></span>
 
-<span data-ttu-id="b1dd0-187">**Pour installer les packages Nuget**</span><span class="sxs-lookup"><span data-stu-id="b1dd0-187">**To install NuGet packages**</span></span>
+<span data-ttu-id="6597f-187">**packages NuGet tooinstall**</span><span class="sxs-lookup"><span data-stu-id="6597f-187">**tooinstall NuGet packages**</span></span>
 
-1. <span data-ttu-id="b1dd0-188">Dans le menu **Outils**, cliquez sur **Gestionnaire de package NuGet**, puis sur **Console du Gestionnaire de package**.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-188">From the **Tools** menu, click **Nuget Package Manager**, and then click **Package Manager Console**.</span></span> <span data-ttu-id="b1dd0-189">Le panneau de console est ouvert au bas de la page.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-189">The console panel is opened at the bottom of the page.</span></span>
-2. <span data-ttu-id="b1dd0-190">Utilisez la commande suivante pour installer le package [HBase .NET SDK](https://www.nuget.org/packages/Microsoft.HBase.Client/) , qui est la bibliothèque cliente permettant d’accéder au cluster HBase :</span><span class="sxs-lookup"><span data-stu-id="b1dd0-190">Use the following command to install the [HBase .NET SDK](https://www.nuget.org/packages/Microsoft.HBase.Client/) package, which is the client library to access HBase cluster:</span></span>
+1. <span data-ttu-id="6597f-188">À partir de hello **outils** menu, cliquez sur **Gestionnaire de Package Nuget**, puis cliquez sur **Package Manager Console**.</span><span class="sxs-lookup"><span data-stu-id="6597f-188">From hello **Tools** menu, click **Nuget Package Manager**, and then click **Package Manager Console**.</span></span> <span data-ttu-id="6597f-189">volet de console Hello est ouvert en bas hello de page de hello.</span><span class="sxs-lookup"><span data-stu-id="6597f-189">hello console panel is opened at hello bottom of hello page.</span></span>
+2. <span data-ttu-id="6597f-190">Suivant de hello utilisez commande tooinstall hello [HBase .NET SDK](https://www.nuget.org/packages/Microsoft.HBase.Client/) package, qui est hello client bibliothèque tooaccess cluster HBase :</span><span class="sxs-lookup"><span data-stu-id="6597f-190">Use hello following command tooinstall hello [HBase .NET SDK](https://www.nuget.org/packages/Microsoft.HBase.Client/) package, which is hello client library tooaccess HBase cluster:</span></span>
 
         Install-Package Microsoft.HBase.Client
 
-<span data-ttu-id="b1dd0-191">**Pour ajouter une classe HBaseReader**</span><span class="sxs-lookup"><span data-stu-id="b1dd0-191">**To add HBaseReader class**</span></span>
+<span data-ttu-id="6597f-191">**tooadd HBaseReader classe**</span><span class="sxs-lookup"><span data-stu-id="6597f-191">**tooadd HBaseReader class**</span></span>
 
-1. <span data-ttu-id="b1dd0-192">Dans l’**Explorateur de solutions**, développez **TweetSentiment**.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-192">From **Solution Explorer**, expand **TweetSentiment**.</span></span>
-2. <span data-ttu-id="b1dd0-193">Cliquez avec le bouton droit sur **Modèles**, puis cliquez sur **Ajouter** et enfin sur **Classe**.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-193">Right-click **Models**, click **Add**, and then click **Class**.</span></span>
-3. <span data-ttu-id="b1dd0-194">Dans le champ **Nom**, entrez **HBaseReader.cs**, puis cliquez sur **Ajouter**.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-194">In the **Name** field, type **HBaseReader.cs**, and then click **Add**.</span></span>
-4. <span data-ttu-id="b1dd0-195">Remplacez le code par ce qui suit :</span><span class="sxs-lookup"><span data-stu-id="b1dd0-195">Replace the code with the following:</span></span>
+1. <span data-ttu-id="6597f-192">Dans l’**Explorateur de solutions**, développez **TweetSentiment**.</span><span class="sxs-lookup"><span data-stu-id="6597f-192">From **Solution Explorer**, expand **TweetSentiment**.</span></span>
+2. <span data-ttu-id="6597f-193">Cliquez avec le bouton droit sur **Modèles**, puis cliquez sur **Ajouter** et enfin sur **Classe**.</span><span class="sxs-lookup"><span data-stu-id="6597f-193">Right-click **Models**, click **Add**, and then click **Class**.</span></span>
+3. <span data-ttu-id="6597f-194">Bonjour **nom** , tapez **HBaseReader.cs**, puis cliquez sur **ajouter**.</span><span class="sxs-lookup"><span data-stu-id="6597f-194">In hello **Name** field, type **HBaseReader.cs**, and then click **Add**.</span></span>
+4. <span data-ttu-id="6597f-195">Remplacez le code de hello par hello qui suit :</span><span class="sxs-lookup"><span data-stu-id="6597f-195">Replace hello code with hello following:</span></span>
 
         using System;
         using System.Collections.Generic;
@@ -485,7 +485,7 @@ ms.lasthandoff: 08/03/2017
                 const string HADOOPUSERPASSWORD = "<HBaseCluserUserPassword>";
                 const string HBASETABLENAME = "tweets_by_words";
 
-                // The constructor
+                // hello constructor
                 public HBaseReader()
                 {
                     ClusterCredentials creds = new ClusterCredentials(
@@ -495,12 +495,12 @@ ms.lasthandoff: 08/03/2017
                     client = new HBaseClient(creds);
                 }
 
-                // Query Tweets sentiment data from the HBase table asynchronously
+                // Query Tweets sentiment data from hello HBase table asynchronously
                 public async Task<IEnumerable<Tweet>> QueryTweetsByKeywordAsync(string keyword)
                 {
                     List<Tweet> list = new List<Tweet>();
 
-                    // Demonstrate Filtering the data from the past 6 hours the row key
+                    // Demonstrate Filtering hello data from hello past 6 hours hello row key
                     string timeIndex = (ulong.MaxValue -
                         (ulong)DateTime.UtcNow.Subtract(new TimeSpan(6, 0, 0)).ToBinary()).ToString().PadLeft(20);
                     string startRow = keyword + "_" + timeIndex;
@@ -522,7 +522,7 @@ ms.lasthandoff: 08/03/2017
                     {
                         foreach (CellSet.Row row in next.rows)
                         {
-                            // find the cell with string pattern "d:coor"
+                            // find hello cell with string pattern "d:coor"
                             var coordinates =
                                 row.values.Find(c => Encoding.UTF8.GetString(c.column) == "d:coor");
 
@@ -567,23 +567,23 @@ ms.lasthandoff: 08/03/2017
                 public int Sentiment { get; set; }
             }
         }
-5. <span data-ttu-id="b1dd0-196">Dans la classe **HBaseReader** , modifiez les valeurs de constante comme suit :</span><span class="sxs-lookup"><span data-stu-id="b1dd0-196">Inside the **HBaseReader** class, change the constant values as follows:</span></span>
+5. <span data-ttu-id="6597f-196">À l’intérieur hello **HBaseReader** de classe, modifiez les valeurs de constante hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="6597f-196">Inside hello **HBaseReader** class, change hello constant values as follows:</span></span>
 
-   * <span data-ttu-id="b1dd0-197">**CLUSTERNAME** : nom du cluster HBase, par exemple, *https://<HBaseClusterName>.azurehdinsight.net/*.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-197">**CLUSTERNAME**: The HBase cluster name, for example, *https://<HBaseClusterName>.azurehdinsight.net/*.</span></span>
-   * <span data-ttu-id="b1dd0-198">**HADOOPUSERNAME**: le nom d'utilisateur Hadoop du cluster HBase.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-198">**HADOOPUSERNAME**: The HBase cluster Hadoop user user name.</span></span> <span data-ttu-id="b1dd0-199">Le nom par défaut est *admin*.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-199">The default name is *admin*.</span></span>
-   * <span data-ttu-id="b1dd0-200">**HADOOPUSERPASSWORD**: le mot de passe utilisateur Hadoop du cluster HBase.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-200">**HADOOPUSERPASSWORD**: The HBase cluster Hadoop user password.</span></span>
-   * <span data-ttu-id="b1dd0-201">**HBASETABLENAME** = « tweets_by_words » ;</span><span class="sxs-lookup"><span data-stu-id="b1dd0-201">**HBASETABLENAME** = "tweets_by_words";</span></span>
+   * <span data-ttu-id="6597f-197">**CLUSTERNAME**: hello HBase nom du cluster, par exemple, *https://<HBaseClusterName>.azurehdinsight.net/*.</span><span class="sxs-lookup"><span data-stu-id="6597f-197">**CLUSTERNAME**: hello HBase cluster name, for example, *https://<HBaseClusterName>.azurehdinsight.net/*.</span></span>
+   * <span data-ttu-id="6597f-198">**HADOOPUSERNAME**: nom d’utilisateur hello HBase cluster Hadoop.</span><span class="sxs-lookup"><span data-stu-id="6597f-198">**HADOOPUSERNAME**: hello HBase cluster Hadoop user user name.</span></span> <span data-ttu-id="6597f-199">le nom par défaut Hello est *admin*.</span><span class="sxs-lookup"><span data-stu-id="6597f-199">hello default name is *admin*.</span></span>
+   * <span data-ttu-id="6597f-200">**HADOOPUSERPASSWORD**: hello HBase cluster Hadoop mot de passe.</span><span class="sxs-lookup"><span data-stu-id="6597f-200">**HADOOPUSERPASSWORD**: hello HBase cluster Hadoop user password.</span></span>
+   * <span data-ttu-id="6597f-201">**HBASETABLENAME** = « tweets_by_words » ;</span><span class="sxs-lookup"><span data-stu-id="6597f-201">**HBASETABLENAME** = "tweets_by_words";</span></span>
 
-     <span data-ttu-id="b1dd0-202">Le nom de la table HBase est **« tweets_by_words » ;**.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-202">The HBase table name is **"tweets_by_words";**.</span></span> <span data-ttu-id="b1dd0-203">Les valeurs doivent correspondre aux valeurs que vous avez envoyées au service de diffusion pour que l'application Web lise les données de la même table HBase.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-203">The values must match the values you sent in the streaming service, so that the web application reads the data from the same HBase table.</span></span>
+     <span data-ttu-id="6597f-202">nom de la table HBase Hello est **« tweets_by_words » ;**.</span><span class="sxs-lookup"><span data-stu-id="6597f-202">hello HBase table name is **"tweets_by_words";**.</span></span> <span data-ttu-id="6597f-203">les valeurs de Hello doivent correspondre les valeurs hello envoyé Bonjour de diffusion en continu de service, afin que l’application web de hello lit des données de hello hello même table HBase.</span><span class="sxs-lookup"><span data-stu-id="6597f-203">hello values must match hello values you sent in hello streaming service, so that hello web application reads hello data from hello same HBase table.</span></span>
 
-<span data-ttu-id="b1dd0-204">**Pour ajouter un contrôleur TweetsController**</span><span class="sxs-lookup"><span data-stu-id="b1dd0-204">**To add TweetsController controller**</span></span>
+<span data-ttu-id="6597f-204">**tooadd TweetsController contrôleur**</span><span class="sxs-lookup"><span data-stu-id="6597f-204">**tooadd TweetsController controller**</span></span>
 
-1. <span data-ttu-id="b1dd0-205">Dans l’**Explorateur de solutions**, développez **TweetSentimentWeb**.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-205">From **Solution Explorer**, expand **TweetSentimentWeb**.</span></span>
-2. <span data-ttu-id="b1dd0-206">Cliquez avec le bouton droit sur **Contrôleurs**, puis cliquez sur **Ajouter** et enfin sur **Contrôleur**.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-206">Right-click **Controllers**, click **Add**, and then click **Controller**.</span></span>
-3. <span data-ttu-id="b1dd0-207">Cliquez sur **Contrôleur API 2 web - Vide**, puis sur **Ajouter**.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-207">Click **Web API 2 Controller - Empty**, and then click **Add**.</span></span>
-4. <span data-ttu-id="b1dd0-208">Dans le champ **Nom du contrôleur**, entrez **TweetsController**, puis cliquez sur **Ajouter**.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-208">In the **Controller name** field, type **TweetsController**, and then click **Add**.</span></span>
-5. <span data-ttu-id="b1dd0-209">Dans l' **Explorateur de solutions**, double-cliquez sur TweetsController.cs pour ouvrir le fichier.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-209">From **Solution Explorer**, double-click TweetsController.cs to open the file.</span></span>
-6. <span data-ttu-id="b1dd0-210">Modifiez le fichier pour qu'il ressemble à ceci :</span><span class="sxs-lookup"><span data-stu-id="b1dd0-210">Modify the file, so it looks like the following:</span></span>
+1. <span data-ttu-id="6597f-205">Dans l’**Explorateur de solutions**, développez **TweetSentimentWeb**.</span><span class="sxs-lookup"><span data-stu-id="6597f-205">From **Solution Explorer**, expand **TweetSentimentWeb**.</span></span>
+2. <span data-ttu-id="6597f-206">Cliquez avec le bouton droit sur **Contrôleurs**, puis cliquez sur **Ajouter** et enfin sur **Contrôleur**.</span><span class="sxs-lookup"><span data-stu-id="6597f-206">Right-click **Controllers**, click **Add**, and then click **Controller**.</span></span>
+3. <span data-ttu-id="6597f-207">Cliquez sur **Contrôleur API 2 web - Vide**, puis sur **Ajouter**.</span><span class="sxs-lookup"><span data-stu-id="6597f-207">Click **Web API 2 Controller - Empty**, and then click **Add**.</span></span>
+4. <span data-ttu-id="6597f-208">Bonjour **nom de contrôleur** , tapez **TweetsController**, puis cliquez sur **ajouter**.</span><span class="sxs-lookup"><span data-stu-id="6597f-208">In hello **Controller name** field, type **TweetsController**, and then click **Add**.</span></span>
+5. <span data-ttu-id="6597f-209">À partir de **l’Explorateur de solutions**, double-cliquez sur le fichier de TweetsController.cs tooopen hello.</span><span class="sxs-lookup"><span data-stu-id="6597f-209">From **Solution Explorer**, double-click TweetsController.cs tooopen hello file.</span></span>
+6. <span data-ttu-id="6597f-210">Modifier le fichier de hello, afin d’obtenir hello suivantes :</span><span class="sxs-lookup"><span data-stu-id="6597f-210">Modify hello file, so it looks like hello following:</span></span>
 
         using System;
         using System.Collections.Generic;
@@ -608,12 +608,12 @@ ms.lasthandoff: 08/03/2017
             }
         }
 
-<span data-ttu-id="b1dd0-211">**Pour ajouter heatmap.js**</span><span class="sxs-lookup"><span data-stu-id="b1dd0-211">**To add heatmap.js**</span></span>
+<span data-ttu-id="6597f-211">**tooadd heatmap.js**</span><span class="sxs-lookup"><span data-stu-id="6597f-211">**tooadd heatmap.js**</span></span>
 
-1. <span data-ttu-id="b1dd0-212">Dans l’**Explorateur de solutions**, développez **TweetSentimentWeb**.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-212">From **Solution Explorer**, expand **TweetSentimentWeb**.</span></span>
-2. <span data-ttu-id="b1dd0-213">Cliquez avec le bouton droit sur **Scripts**, puis cliquez sur **Ajouter** et enfin sur **Fichier JavaScript**.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-213">Right-click **Scripts**, click **Add**, click **JavaScript File**.</span></span>
-3. <span data-ttu-id="b1dd0-214">Dans le champ **Nom de l’élément** tapez **heatmap.js**.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-214">In the **Item name** field, type **heatmap.js**.</span></span>
-4. <span data-ttu-id="b1dd0-215">Collez le code suivant dans le fichier.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-215">Paste the following code into the file.</span></span> <span data-ttu-id="b1dd0-216">Le code a été écrit par Alastair Aitchison.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-216">The code was written by Alastair Aitchison.</span></span> <span data-ttu-id="b1dd0-217">Pour plus d'informations, consultez [Bibliothèque Bing Maps AJAX v7 HeatMap](http://alastaira.wordpress.com/2011/04/15/bing-maps-ajax-v7-heatmap-library/).</span><span class="sxs-lookup"><span data-stu-id="b1dd0-217">For more information, see [Bing Maps AJAX v7 HeatMap Library](http://alastaira.wordpress.com/2011/04/15/bing-maps-ajax-v7-heatmap-library/).</span></span>
+1. <span data-ttu-id="6597f-212">Dans l’**Explorateur de solutions**, développez **TweetSentimentWeb**.</span><span class="sxs-lookup"><span data-stu-id="6597f-212">From **Solution Explorer**, expand **TweetSentimentWeb**.</span></span>
+2. <span data-ttu-id="6597f-213">Cliquez avec le bouton droit sur **Scripts**, puis cliquez sur **Ajouter** et enfin sur **Fichier JavaScript**.</span><span class="sxs-lookup"><span data-stu-id="6597f-213">Right-click **Scripts**, click **Add**, click **JavaScript File**.</span></span>
+3. <span data-ttu-id="6597f-214">Bonjour **nom de l’élément** , tapez **heatmap.js**.</span><span class="sxs-lookup"><span data-stu-id="6597f-214">In hello **Item name** field, type **heatmap.js**.</span></span>
+4. <span data-ttu-id="6597f-215">Collez hello après le code dans le fichier de hello.</span><span class="sxs-lookup"><span data-stu-id="6597f-215">Paste hello following code into hello file.</span></span> <span data-ttu-id="6597f-216">code de Hello a été écrit par Alastair Aitchison.</span><span class="sxs-lookup"><span data-stu-id="6597f-216">hello code was written by Alastair Aitchison.</span></span> <span data-ttu-id="6597f-217">Pour plus d'informations, consultez [Bibliothèque Bing Maps AJAX v7 HeatMap](http://alastaira.wordpress.com/2011/04/15/bing-maps-ajax-v7-heatmap-library/).</span><span class="sxs-lookup"><span data-stu-id="6597f-217">For more information, see [Bing Maps AJAX v7 HeatMap Library](http://alastaira.wordpress.com/2011/04/15/bing-maps-ajax-v7-heatmap-library/).</span></span>
 
         /*******************************************************************************
         * Author: Alastair Aitchison
@@ -621,22 +621,22 @@ ms.lasthandoff: 08/03/2017
         * Date: 15th April 2011
         *
         * Description:
-        * This JavaScript file provides an algorithm that can be used to add a heatmap
-        * overlay on a Bing Maps v7 control. The intensity and temperature palette
-        * of the heatmap are designed to be easily customisable.
+        * This JavaScript file provides an algorithm that can be used tooadd a heatmap
+        * overlay on a Bing Maps v7 control. hello intensity and temperature palette
+        * of hello heatmap are designed toobe easily customisable.
         *
         * Requirements:
-        * The heatmap layer itself is created dynamically on the client-side using
-        * the HTML5 &lt;canvas> element, and therefore requires a browser that supports
+        * hello heatmap layer itself is created dynamically on hello client-side using
+        * hello HTML5 &lt;canvas> element, and therefore requires a browser that supports
         * this element. It has been tested on IE9, Firefox 3.6/4 and
         * Chrome 10 browsers. If you can confirm whether it works on other browsers or
-        * not, I'd love to hear from you!
+        * not, I'd love toohear from you!
         *
         * Usage:
-        * The HeatMapLayer constructor requires:
-        * - A reference to a map object
+        * hello HeatMapLayer constructor requires:
+        * - A reference tooa map object
         * - An array or Microsoft.Maps.Location items
-        * - Optional parameters to customise the appearance of the layer
+        * - Optional parameters toocustomise hello appearance of hello layer
         *  (Radius,, Unit, Intensity, and ColourGradient), and a callback function
         */
 
@@ -652,16 +652,16 @@ ms.lasthandoff: 08/03/2017
 
             // Set default options
             var _options = {
-                // Opacity at the centre of each heat point
+                // Opacity at hello centre of each heat point
                 intensity: 0.5,
 
                 // Affected radius of each heat point
                 radius: 1000,
 
-                // Whether the radius is an absolute pixel value or meters
+                // Whether hello radius is an absolute pixel value or meters
                 unit: 'meters',
 
-                // Colour temperature gradient of the map
+                // Colour temperature gradient of hello map
                 colourgradient: {
                     "0.00": 'rgba(255,0,255,20)',  // Magenta
                     "0.25": 'rgba(0,0,255,40)',    // Blue
@@ -670,7 +670,7 @@ ms.lasthandoff: 08/03/2017
                     "1.00": 'rgba(255,0,0,150)'    // Red
                 },
 
-                // Callback function to be fired after heatmap layer has been redrawn
+                // Callback function toobe fired after heatmap layer has been redrawn
                 callback: null
             };
 
@@ -679,7 +679,7 @@ ms.lasthandoff: 08/03/2017
                 var _mapDiv = _map.getRootElement();
 
                 if (_mapDiv.childNodes.length >= 3 && _mapDiv.childNodes[2].childNodes.length >= 2) {
-                    // Create the canvas element
+                    // Create hello canvas element
                     _canvas = document.createElement('canvas');
                     _canvas.style.position = 'relative';
 
@@ -691,16 +691,16 @@ ms.lasthandoff: 08/03/2017
 
                     _mapDiv.childNodes[2].childNodes[1].appendChild(container);
 
-                    // Override defaults with any options passed in the constructor
+                    // Override defaults with any options passed in hello constructor
                     _setOptions(options);
 
                     // Load array of location data
                     _setPoints(locations);
 
-                    // Create a colour gradient from the suppied colourstops
+                    // Create a colour gradient from hello suppied colourstops
                     _temperaturemap = _createColourGradient(_options.colourgradient);
 
-                    // Wire up the event handler to redraw heatmap canvas
+                    // Wire up hello event handler tooredraw heatmap canvas
                     _viewchangestarthandler = Microsoft.Maps.Events.addHandler(_map, 'viewchangestart', _clearHeatMap);
                     _viewchangeendhandler = Microsoft.Maps.Events.addHandler(_map, 'viewchangeend', _createHeatMap);
 
@@ -712,7 +712,7 @@ ms.lasthandoff: 08/03/2017
                 }
             }
 
-            // Resets the heat map
+            // Resets hello heat map
             function _clearHeatMap() {
                 var ctx = _canvas.getContext("2d");
                 ctx.clearRect(0, 0, _canvas.width, _canvas.height);
@@ -730,19 +730,19 @@ ms.lasthandoff: 08/03/2017
                 return ctx.getImageData(0, 0, 256, 1).data;
             }
 
-            // Applies a colour gradient to the intensity map
+            // Applies a colour gradient toohello intensity map
             function _colouriseHeatMap() {
                 var ctx = _canvas.getContext("2d");
                 var dat = ctx.getImageData(0, 0, _canvas.width, _canvas.height);
                 var pix = dat.data; // pix is a CanvasPixelArray containing height x width x 4 bytes of data (RGBA)
                 for (var p = 0, len = pix.length; p < len;) {
-                    var a = pix[p + 3] * 4; // get the alpha of this pixel
-                    if (a != 0) { // If there is any data to plot
-                        pix[p] = _temperaturemap[a]; // set the red value of the gradient that corresponds to this alpha
-                        pix[p + 1] = _temperaturemap[a + 1]; //set the green value based on alpha
-                        pix[p + 2] = _temperaturemap[a + 2]; //set the blue value based on alpha
+                    var a = pix[p + 3] * 4; // get hello alpha of this pixel
+                    if (a != 0) { // If there is any data tooplot
+                        pix[p] = _temperaturemap[a]; // set hello red value of hello gradient that corresponds toothis alpha
+                        pix[p + 1] = _temperaturemap[a + 1]; //set hello green value based on alpha
+                        pix[p + 2] = _temperaturemap[a + 2]; //set hello blue value based on alpha
                     }
-                    p += 4; // Move on to the next pixel
+                    p += 4; // Move on toohello next pixel
                 }
                 ctx.putImageData(dat, 0, 0);
             }
@@ -754,22 +754,22 @@ ms.lasthandoff: 08/03/2017
                 }
             }
 
-            // Sets the heatmap points from an array of Microsoft.Maps.Locations  
+            // Sets hello heatmap points from an array of Microsoft.Maps.Locations  
             function _setPoints(locations) {
                 _locations = locations;
             }
 
-            // Main method to draw the heatmap
+            // Main method toodraw hello heatmap
             function _createHeatMap() {
-                // Ensure the canvas matches the current dimensions of the map
-                // This also has the effect of resetting the canvas
+                // Ensure hello canvas matches hello current dimensions of hello map
+                // This also has hello effect of resetting hello canvas
                 _canvas.height = _map.getHeight();
                 _canvas.width = _map.getWidth();
 
                 _canvas.style.top = -_canvas.height / 2 + 'px';
                 _canvas.style.left = -_canvas.width / 2 + 'px';
 
-                // Calculate the pixel radius of each heatpoint at the current map zoom
+                // Calculate hello pixel radius of each heatpoint at hello current map zoom
                 if (_options.unit == "pixels") {
                     radiusInPixel = _options.radius;
                 } else {
@@ -778,12 +778,12 @@ ms.lasthandoff: 08/03/2017
 
                 var ctx = _canvas.getContext("2d");
 
-                // Convert lat/long to pixel location
+                // Convert lat/long toopixel location
                 var pixlocs = _map.tryLocationToPixel(_locations, Microsoft.Maps.PixelReference.control);
                 var shadow = 'rgba(0, 0, 0, ' + _options.intensity + ')';
                 var mapWidth = 256 * Math.pow(2, _map.getZoom());
 
-                // Create the Intensity Map by looping through each location
+                // Create hello Intensity Map by looping through each location
                 for (var i = 0, len = pixlocs.length; i < len; i++) {
                     var x = pixlocs[i].x;
                     var y = pixlocs[i].y;
@@ -797,15 +797,15 @@ ms.lasthandoff: 08/03/2017
                     grd.addColorStop(0.0, shadow);
                     grd.addColorStop(1.0, 'transparent');
 
-                    // Draw the heatpoint onto the canvas
+                    // Draw hello heatpoint onto hello canvas
                     ctx.fillStyle = grd;
                     ctx.fillRect(x - radiusInPixel, y - radiusInPixel, 2 * radiusInPixel, 2 * radiusInPixel);
                 }
 
-                // Apply the specified colour gradient to the intensity map
+                // Apply hello specified colour gradient toohello intensity map
                 _colouriseHeatMap();
 
-                // Call the callback function, if specified
+                // Call hello callback function, if specified
                 if (_options.callback) {
                     _options.callback();
                 }
@@ -830,17 +830,17 @@ ms.lasthandoff: 08/03/2017
                 _setOptions(options);
             }
 
-            // Sets an array of Microsoft.Maps.Locations from which the heatmap is created
+            // Sets an array of Microsoft.Maps.Locations from which hello heatmap is created
             this.SetPoints = function (locations) {
-                // Reset the existing heatmap layer
+                // Reset hello existing heatmap layer
                 _clearHeatMap();
-                // Pass in the new set of locations
+                // Pass in hello new set of locations
                 _setPoints(locations);
-                // Recreate the layer
+                // Recreate hello layer
                 _createHeatMap();
             }
 
-            // Removes the heatmap layer from the DOM
+            // Removes hello heatmap layer from hello DOM
             this.Remove = function () {
                 _canvas.parentNode.parentNode.removeChild(_canvas.parentNode);
 
@@ -855,19 +855,19 @@ ms.lasthandoff: 08/03/2017
                 _viewchangeendhandler = null;
             }
 
-            // Call the initialisation routine
+            // Call hello initialisation routine
             _init();
         };
 
-        // Call the Module Loaded method
+        // Call hello Module Loaded method
         Microsoft.Maps.moduleLoaded('HeatMapModule');
 
-<span data-ttu-id="b1dd0-218">**Pour ajouter twitterStream.js**</span><span class="sxs-lookup"><span data-stu-id="b1dd0-218">**To add twitterStream.js**</span></span>
+<span data-ttu-id="6597f-218">**tooadd twitterStream.js**</span><span class="sxs-lookup"><span data-stu-id="6597f-218">**tooadd twitterStream.js**</span></span>
 
-1. <span data-ttu-id="b1dd0-219">Dans l’**Explorateur de solutions**, développez **TweetSentimentWeb**.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-219">From **Solution Explorer**, expand **TweetSentimentWeb**.</span></span>
-2. <span data-ttu-id="b1dd0-220">Cliquez avec le bouton droit sur **Scripts**, puis cliquez sur **Ajouter** et enfin sur **Fichier JavaScript**.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-220">Right-click **Scripts**, click **Add**, click **JavaScript File**.</span></span>
-3. <span data-ttu-id="b1dd0-221">Dans le champ **Nom de l’élément**, saisissez **twitterStream.js**.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-221">In the **Item name** field, type**twitterStream.js**.</span></span>
-4. <span data-ttu-id="b1dd0-222">Copiez et collez le code suivant dans le fichier :</span><span class="sxs-lookup"><span data-stu-id="b1dd0-222">Copy and paste the following code into the file:</span></span>
+1. <span data-ttu-id="6597f-219">Dans l’**Explorateur de solutions**, développez **TweetSentimentWeb**.</span><span class="sxs-lookup"><span data-stu-id="6597f-219">From **Solution Explorer**, expand **TweetSentimentWeb**.</span></span>
+2. <span data-ttu-id="6597f-220">Cliquez avec le bouton droit sur **Scripts**, puis cliquez sur **Ajouter** et enfin sur **Fichier JavaScript**.</span><span class="sxs-lookup"><span data-stu-id="6597f-220">Right-click **Scripts**, click **Add**, click **JavaScript File**.</span></span>
+3. <span data-ttu-id="6597f-221">Bonjour **nom de l’élément** , tapez**twitterStream.js**.</span><span class="sxs-lookup"><span data-stu-id="6597f-221">In hello **Item name** field, type**twitterStream.js**.</span></span>
+4. <span data-ttu-id="6597f-222">Copiez et collez hello après le code dans le fichier de hello :</span><span class="sxs-lookup"><span data-stu-id="6597f-222">Copy and paste hello following code into hello file:</span></span>
 
         var liveTweetsPos = [];
         var liveTweets = [];
@@ -878,7 +878,7 @@ ms.lasthandoff: 08/03/2017
         var heatmapPos;
 
         function initialize() {
-            // Initialize the map
+            // Initialize hello map
             var options = {
                 credentials: "AvFJTZPZv8l3gF8VC3Y7BPBd0r7LKo8dqKG02EAlqg9WAi0M7la6zSIT-HwkMQbx",
                 center: new Microsoft.Maps.Location(23.0, 8.0),
@@ -891,24 +891,24 @@ ms.lasthandoff: 08/03/2017
             // Heatmap options for positive, neutral and negative layers
 
             var heatmapOptions = {
-                // Opacity at the centre of each heat point
+                // Opacity at hello centre of each heat point
                 intensity: 0.5,
 
                 // Affected radius of each heat point
                 radius: 15,
 
-                // Whether the radius is an absolute pixel value or meters
+                // Whether hello radius is an absolute pixel value or meters
                 unit: 'pixels'
             };
 
             var heatmapPosOptions = {
-                // Opacity at the centre of each heat point
+                // Opacity at hello centre of each heat point
                 intensity: 0.5,
 
                 // Affected radius of each heat point
                 radius: 15,
 
-                // Whether the radius is an absolute pixel value or meters
+                // Whether hello radius is an absolute pixel value or meters
                 unit: 'pixels',
 
                 colourgradient: {
@@ -926,13 +926,13 @@ ms.lasthandoff: 08/03/2017
             };
 
             var heatmapNegOptions = {
-                // Opacity at the centre of each heat point
+                // Opacity at hello centre of each heat point
                 intensity: 0.5,
 
                 // Affected radius of each heat point
                 radius: 15,
 
-                // Whether the radius is an absolute pixel value or meters
+                // Whether hello radius is an absolute pixel value or meters
                 unit: 'pixels',
 
                 colourgradient: {
@@ -949,7 +949,7 @@ ms.lasthandoff: 08/03/2017
                 }
             };
 
-            // Register and load the Client Side HeatMap Module
+            // Register and load hello Client Side HeatMap Module
             Microsoft.Maps.registerModule("HeatMapModule", "scripts/heatmap.js");
             Microsoft.Maps.loadModule("HeatMapModule", {
                 callback: function () {
@@ -993,7 +993,7 @@ ms.lasthandoff: 08/03/2017
         }
 
         function addTweet(item) {
-            //Add tweet to the heat map arrays.
+            //Add tweet toohello heat map arrays.
             var tweetLocation = new Microsoft.Maps.Location(item.Latitude, item.Longtitude);
             if (item.Sentiment > 0) {
                 liveTweetsPos.push(tweetLocation);
@@ -1063,10 +1063,10 @@ ms.lasthandoff: 08/03/2017
             }
         }
 
-<span data-ttu-id="b1dd0-223">**Pour modifier layout.cshtml**</span><span class="sxs-lookup"><span data-stu-id="b1dd0-223">**To modify the layout.cshtml**</span></span>
+<span data-ttu-id="6597f-223">**toomodify hello layout.cshtml**</span><span class="sxs-lookup"><span data-stu-id="6597f-223">**toomodify hello layout.cshtml**</span></span>
 
-1. <span data-ttu-id="b1dd0-224">Dans l’**Explorateur de solutions**, développez **TweetSentimentWeb**, **Affichages**, **Partagé**, puis double-cliquez sur _**Layout.cshtml**.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-224">From **Solution Explorer**, expand **TweetSentimentWeb**, expand **Views**, expand **Shared**, and then double-click _**Layout.cshtml**.</span></span>
-2. <span data-ttu-id="b1dd0-225">Remplacez le contenu par ce qui suit :</span><span class="sxs-lookup"><span data-stu-id="b1dd0-225">Replace the content with the following:</span></span>
+1. <span data-ttu-id="6597f-224">Dans l’**Explorateur de solutions**, développez **TweetSentimentWeb**, **Affichages**, **Partagé**, puis double-cliquez sur _**Layout.cshtml**.</span><span class="sxs-lookup"><span data-stu-id="6597f-224">From **Solution Explorer**, expand **TweetSentimentWeb**, expand **Views**, expand **Shared**, and then double-click _**Layout.cshtml**.</span></span>
+2. <span data-ttu-id="6597f-225">Remplacez le contenu hello par hello qui suit :</span><span class="sxs-lookup"><span data-stu-id="6597f-225">Replace hello content with hello following:</span></span>
 
         <!DOCTYPE html>
         <html>
@@ -1126,10 +1126,10 @@ ms.lasthandoff: 08/03/2017
         </body>
         </html>
 
-<span data-ttu-id="b1dd0-226">**Pour modifier Index.cshtml**</span><span class="sxs-lookup"><span data-stu-id="b1dd0-226">**To modify the Index.cshtml**</span></span>
+<span data-ttu-id="6597f-226">**toomodify hello Index.cshtml**</span><span class="sxs-lookup"><span data-stu-id="6597f-226">**toomodify hello Index.cshtml**</span></span>
 
-1. <span data-ttu-id="b1dd0-227">Dans l’**Explorateur de solutions**, développez **TweetSentimentWeb**, **Affichages**, **Accueil**, puis double-cliquez sur **Index.cshtml**.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-227">From **Solution Explorer**, expand **TweetSentimentWeb**, expand **Views**, expand **Home**, and then double-click **Index.cshtml**.</span></span>
-2. <span data-ttu-id="b1dd0-228">Remplacez le contenu par ce qui suit :</span><span class="sxs-lookup"><span data-stu-id="b1dd0-228">Replace the content with the following:</span></span>
+1. <span data-ttu-id="6597f-227">Dans l’**Explorateur de solutions**, développez **TweetSentimentWeb**, **Affichages**, **Accueil**, puis double-cliquez sur **Index.cshtml**.</span><span class="sxs-lookup"><span data-stu-id="6597f-227">From **Solution Explorer**, expand **TweetSentimentWeb**, expand **Views**, expand **Home**, and then double-click **Index.cshtml**.</span></span>
+2. <span data-ttu-id="6597f-228">Remplacez le contenu hello par hello qui suit :</span><span class="sxs-lookup"><span data-stu-id="6597f-228">Replace hello content with hello following:</span></span>
 
         @{
             ViewBag.Title = "Tweet Sentiment";
@@ -1139,10 +1139,10 @@ ms.lasthandoff: 08/03/2017
             <div id="map_canvas"/>
         </div>
 
-<span data-ttu-id="b1dd0-229">**Pour modifier le fichier site.css**</span><span class="sxs-lookup"><span data-stu-id="b1dd0-229">**To modify the site.css file**</span></span>
+<span data-ttu-id="6597f-229">**fichier site.css de hello toomodify**</span><span class="sxs-lookup"><span data-stu-id="6597f-229">**toomodify hello site.css file**</span></span>
 
-1. <span data-ttu-id="b1dd0-230">Dans l’**Explorateur de solutions**, développez **TweetSentimentWeb** et **Contenu**, puis double-cliquez sur **Site.css**.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-230">From **Solution Explorer**, expand **TweetSentimentWeb**, expand **Content**, and then double-click **Site.css**.</span></span>
-2. <span data-ttu-id="b1dd0-231">Ajoutez le code suivant au fichier :</span><span class="sxs-lookup"><span data-stu-id="b1dd0-231">Append the following code to the file:</span></span>
+1. <span data-ttu-id="6597f-230">Dans l’**Explorateur de solutions**, développez **TweetSentimentWeb** et **Contenu**, puis double-cliquez sur **Site.css**.</span><span class="sxs-lookup"><span data-stu-id="6597f-230">From **Solution Explorer**, expand **TweetSentimentWeb**, expand **Content**, and then double-click **Site.css**.</span></span>
+2. <span data-ttu-id="6597f-231">Ajouter hello fichier toohello de code suivant :</span><span class="sxs-lookup"><span data-stu-id="6597f-231">Append hello following code toohello file:</span></span>
 
         /* make container, and thus map, 100% width */
         .map_container {
@@ -1162,39 +1162,39 @@ ms.lasthandoff: 08/03/2017
           font-size: 30px;
         }
 
-<span data-ttu-id="b1dd0-232">**Pour modifier le fichier global.asax**</span><span class="sxs-lookup"><span data-stu-id="b1dd0-232">**To modify the global.asax file**</span></span>
+<span data-ttu-id="6597f-232">**fichier global.asax de hello toomodify**</span><span class="sxs-lookup"><span data-stu-id="6597f-232">**toomodify hello global.asax file**</span></span>
 
-1. <span data-ttu-id="b1dd0-233">Dans l’**Explorateur de solutions**, développez **TweetSentimentWeb**, puis double-cliquez sur **Global.asax**.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-233">From **Solution Explorer**, expand **TweetSentimentWeb**, and then double-click **Global.asax**.</span></span>
-2. <span data-ttu-id="b1dd0-234">Ajoutez les instructions **using** suivantes :</span><span class="sxs-lookup"><span data-stu-id="b1dd0-234">Add the following **using** statement:</span></span>
+1. <span data-ttu-id="6597f-233">Dans l’**Explorateur de solutions**, développez **TweetSentimentWeb**, puis double-cliquez sur **Global.asax**.</span><span class="sxs-lookup"><span data-stu-id="6597f-233">From **Solution Explorer**, expand **TweetSentimentWeb**, and then double-click **Global.asax**.</span></span>
+2. <span data-ttu-id="6597f-234">Ajoutez hello suivant **à l’aide de** instruction :</span><span class="sxs-lookup"><span data-stu-id="6597f-234">Add hello following **using** statement:</span></span>
 
         using System.Web.Http;
-3. <span data-ttu-id="b1dd0-235">Ajoutez les lignes suivantes dans la fonction **Application_Start()** :</span><span class="sxs-lookup"><span data-stu-id="b1dd0-235">Add the following lines inside the **Application_Start()** function:</span></span>
+3. <span data-ttu-id="6597f-235">Ajouter hello suivant des lignes à l’intérieur de hello **Application_Start()** (fonction) :</span><span class="sxs-lookup"><span data-stu-id="6597f-235">Add hello following lines inside hello **Application_Start()** function:</span></span>
 
         // Register API routes
         GlobalConfiguration.Configure(WebApiConfig.Register);
 
-    <span data-ttu-id="b1dd0-236">Modifiez l'enregistrement des itinéraires API pour que le contrôleur API Web fonctionne à l'intérieur de l'application MVC.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-236">Modify the registration of the API routes to make the Web API controller work inside the MVC application.</span></span>
+    <span data-ttu-id="6597f-236">Modifier l’inscription de hello de hello API itinéraires toomake hello Web API contrôleur travail au sein de l’application MVC de hello.</span><span class="sxs-lookup"><span data-stu-id="6597f-236">Modify hello registration of hello API routes toomake hello Web API controller work inside hello MVC application.</span></span>
 
-<span data-ttu-id="b1dd0-237">**Pour exécuter l'application Web**</span><span class="sxs-lookup"><span data-stu-id="b1dd0-237">**To run the web application**</span></span>
+<span data-ttu-id="6597f-237">**application web de hello toorun**</span><span class="sxs-lookup"><span data-stu-id="6597f-237">**toorun hello web application**</span></span>
 
-1. <span data-ttu-id="b1dd0-238">Vérifiez que l'application console de service de diffusion est en cours d'exécution de façon à pouvoir observer les modifications en temps réel.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-238">Verify that the streaming service console application is still running so you can see the real-time changes.</span></span>
-2. <span data-ttu-id="b1dd0-239">Appuyez sur la touche **F5** pour exécuter l'application Web.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-239">Press **F5** to run the web application:</span></span>
+1. <span data-ttu-id="6597f-238">Vérifiez que hello application console de service de diffusion en continu est toujours en cours d’exécution afin de voir les modifications en temps réel hello.</span><span class="sxs-lookup"><span data-stu-id="6597f-238">Verify that hello streaming service console application is still running so you can see hello real-time changes.</span></span>
+2. <span data-ttu-id="6597f-239">Appuyez sur **F5** application web de hello toorun :</span><span class="sxs-lookup"><span data-stu-id="6597f-239">Press **F5** toorun hello web application:</span></span>
 
     ![hdinsight.hbase.twitter.sentiment.bing.map][img-bing-map]
-3. <span data-ttu-id="b1dd0-241">Dans la zone de texte, entrez un mot clé, puis cliquez sur **OK**.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-241">In the text box, enter a keyword, and then click **Go**.</span></span>  <span data-ttu-id="b1dd0-242">En fonction des données collectées dans la table HBase, il se peut que certains mots clés soient introuvables.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-242">Depending on the data collected in the HBase table, some keywords might not be found.</span></span> <span data-ttu-id="b1dd0-243">Essayez quelques mots clés communs tels que « amour », « xbox », « playstation ».</span><span class="sxs-lookup"><span data-stu-id="b1dd0-243">Try some common keywords, such as "love," "xbox," and "playstation."</span></span>
-4. <span data-ttu-id="b1dd0-244">Basculez entre **Positif**, **Neutre** et **Négatif** pour comparer les sentiments sur le sujet.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-244">Toggle among **Positive**, **Neutral**, and **Negative** to compare sentiment on the subject.</span></span>
-5. <span data-ttu-id="b1dd0-245">Laissez le service de diffusion s'exécuter une heure de plus, puis effectuez une recherche sur le même mot clé et comparez les résultats.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-245">Let the streaming service run for another hour, and then search the same keywords, and compare the results.</span></span>
+3. <span data-ttu-id="6597f-241">Dans la zone de texte hello, entrez un mot clé, puis cliquez sur **accédez**.</span><span class="sxs-lookup"><span data-stu-id="6597f-241">In hello text box, enter a keyword, and then click **Go**.</span></span>  <span data-ttu-id="6597f-242">Selon les données hello collectées dans la table HBase à hello, certains mots clés peuvent être introuvable.</span><span class="sxs-lookup"><span data-stu-id="6597f-242">Depending on hello data collected in hello HBase table, some keywords might not be found.</span></span> <span data-ttu-id="6597f-243">Essayez quelques mots clés communs tels que « amour », « xbox », « playstation ».</span><span class="sxs-lookup"><span data-stu-id="6597f-243">Try some common keywords, such as "love," "xbox," and "playstation."</span></span>
+4. <span data-ttu-id="6597f-244">Basculer entre **positif**, **neutre**, et **négatif** sentiment toocompare sur le sujet de hello.</span><span class="sxs-lookup"><span data-stu-id="6597f-244">Toggle among **Positive**, **Neutral**, and **Negative** toocompare sentiment on hello subject.</span></span>
+5. <span data-ttu-id="6597f-245">Permettent d’hello service de diffusion en continu s’exécuter pendant une heure supplémentaire et puis hello les mêmes mots clés et de comparer les résultats de hello.</span><span class="sxs-lookup"><span data-stu-id="6597f-245">Let hello streaming service run for another hour, and then search hello same keywords, and compare hello results.</span></span>
 
-<span data-ttu-id="b1dd0-246">Vous pouvez également déployer l'application sur les Sites Web Microsoft Azure.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-246">Optionally, you can deploy the application to Azure Websites.</span></span> <span data-ttu-id="b1dd0-247">Pour les instructions, consultez la page [Prise en main des Sites Web Azure et de ASP.NET][website-get-started].</span><span class="sxs-lookup"><span data-stu-id="b1dd0-247">For instructions, see [Get started with Azure Websites and ASP.NET][website-get-started].</span></span>
+<span data-ttu-id="6597f-246">Si vous le souhaitez, vous pouvez déployer hello application tooAzure sites Web.</span><span class="sxs-lookup"><span data-stu-id="6597f-246">Optionally, you can deploy hello application tooAzure Websites.</span></span> <span data-ttu-id="6597f-247">Pour les instructions, consultez la page [Prise en main des Sites Web Azure et de ASP.NET][website-get-started].</span><span class="sxs-lookup"><span data-stu-id="6597f-247">For instructions, see [Get started with Azure Websites and ASP.NET][website-get-started].</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="b1dd0-248">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="b1dd0-248">Next Steps</span></span>
-<span data-ttu-id="b1dd0-249">Dans ce didacticiel, vous avez appris à recevoir des tweets, analyser les sentiments des tweets, enregistrer les données de sentiments dans HBase et présenter les données de sentiments Twitter en temps réel sur Bing Maps.</span><span class="sxs-lookup"><span data-stu-id="b1dd0-249">In this tutorial, you learned how to get tweets, analyze the sentiment of tweets, save the sentiment data to HBase, and present the real-time Twitter sentiment data to Bing maps.</span></span> <span data-ttu-id="b1dd0-250">Pour plus d'informations, consultez les rubriques suivantes :</span><span class="sxs-lookup"><span data-stu-id="b1dd0-250">To learn more, see:</span></span>
+## <a name="next-steps"></a><span data-ttu-id="6597f-248">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="6597f-248">Next Steps</span></span>
+<span data-ttu-id="6597f-249">Dans ce didacticiel, vous avez appris comment tooget tweets, analyser des sentiments hello de tweets, enregistrez hello sentiment données tooHBase et présent hello en temps réel Twitter sentiment tooBing des mappages de données.</span><span class="sxs-lookup"><span data-stu-id="6597f-249">In this tutorial, you learned how tooget tweets, analyze hello sentiment of tweets, save hello sentiment data tooHBase, and present hello real-time Twitter sentiment data tooBing maps.</span></span> <span data-ttu-id="6597f-250">toolearn, voir :</span><span class="sxs-lookup"><span data-stu-id="6597f-250">toolearn more, see:</span></span>
 
-* <span data-ttu-id="b1dd0-251">[Prise en main de HDInsight][hdinsight-get-started]</span><span class="sxs-lookup"><span data-stu-id="b1dd0-251">[Get started with HDInsight][hdinsight-get-started]</span></span>
-* [<span data-ttu-id="b1dd0-252">Configuration de la géo-réplication HBase dans HDInsigtht</span><span class="sxs-lookup"><span data-stu-id="b1dd0-252">Configure HBase replication in HDInsight</span></span>](hdinsight-hbase-replication.md)
-* <span data-ttu-id="b1dd0-253">[Analyse des données Twitter avec Hadoop dans HDInsight][hdinsight-analyze-twitter-data]</span><span class="sxs-lookup"><span data-stu-id="b1dd0-253">[Analyze Twitter data with Hadoop in HDInsight][hdinsight-analyze-twitter-data]</span></span>
-* <span data-ttu-id="b1dd0-254">[Analyse des données sur les retards de vol avec HDInsight][hdinsight-analyze-flight-delay-data]</span><span class="sxs-lookup"><span data-stu-id="b1dd0-254">[Analyze flight delay data using HDInsight][hdinsight-analyze-flight-delay-data]</span></span>
-* <span data-ttu-id="b1dd0-255">[Développement de programmes MapReduce en Java pour HDInsight][hdinsight-develop-mapreduce]</span><span class="sxs-lookup"><span data-stu-id="b1dd0-255">[Develop Java MapReduce programs for HDInsight][hdinsight-develop-mapreduce]</span></span>
+* <span data-ttu-id="6597f-251">[Prise en main de HDInsight][hdinsight-get-started]</span><span class="sxs-lookup"><span data-stu-id="6597f-251">[Get started with HDInsight][hdinsight-get-started]</span></span>
+* [<span data-ttu-id="6597f-252">Configuration de la géo-réplication HBase dans HDInsigtht</span><span class="sxs-lookup"><span data-stu-id="6597f-252">Configure HBase replication in HDInsight</span></span>](hdinsight-hbase-replication.md)
+* <span data-ttu-id="6597f-253">[Analyse des données Twitter avec Hadoop dans HDInsight][hdinsight-analyze-twitter-data]</span><span class="sxs-lookup"><span data-stu-id="6597f-253">[Analyze Twitter data with Hadoop in HDInsight][hdinsight-analyze-twitter-data]</span></span>
+* <span data-ttu-id="6597f-254">[Analyse des données sur les retards de vol avec HDInsight][hdinsight-analyze-flight-delay-data]</span><span class="sxs-lookup"><span data-stu-id="6597f-254">[Analyze flight delay data using HDInsight][hdinsight-analyze-flight-delay-data]</span></span>
+* <span data-ttu-id="6597f-255">[Développement de programmes MapReduce en Java pour HDInsight][hdinsight-develop-mapreduce]</span><span class="sxs-lookup"><span data-stu-id="6597f-255">[Develop Java MapReduce programs for HDInsight][hdinsight-develop-mapreduce]</span></span>
 
 [hbase-get-started]: hdinsight-hbase-tutorial-get-started-linux.md
 [website-get-started]: ../app-service-web/app-service-web-get-started-dotnet.md

@@ -1,6 +1,6 @@
 ---
-title: "Créer des flux de travail d’encodage avancé avec le Concepteur de flux de travail | Microsoft Docs"
-description: "Découvrez comment créer des flux de travail d’encodage avancé avec le Concepteur de flux de travail."
+title: "aaaCreate avancée d’encodage des flux de travail avec le Concepteur de flux de travail | Documents Microsoft"
+description: "Découvrez comment toocreate avancé codage des flux de travail avec le Concepteur de flux de travail."
 services: media-services
 documentationcenter: 
 author: anilmur
@@ -14,81 +14,81 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/19/2017
 ms.author: juliako;johndeu;anilmur
-ms.openlocfilehash: ef277710713d342eb9aaaf119e2985e8c1d82d0c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 3744cde54c78bec7c7b586962ec1a8fe9529c1d2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-advanced-encoding-workflows-with-workflow-designer"></a><span data-ttu-id="69c2d-103">Créer des flux de travail d’encodage avancé avec le Concepteur de flux de travail</span><span class="sxs-lookup"><span data-stu-id="69c2d-103">Create Advanced Encoding Workflows with Workflow Designer</span></span>
-## <a name="overview"></a><span data-ttu-id="69c2d-104">Vue d'ensemble</span><span class="sxs-lookup"><span data-stu-id="69c2d-104">Overview</span></span>
-<span data-ttu-id="69c2d-105">Le **Concepteur de flux de travail** est un outil de bureau Windows qui permet de concevoir et de générer des flux de travail personnalisés à encoder avec **Media Encoder Premium Workflow**.</span><span class="sxs-lookup"><span data-stu-id="69c2d-105">The **Workflow Designer** is a Windows desktop tool that is used to design and build custom workflows for encoding with **Media Encoder Premium Workflow**.</span></span>
-<span data-ttu-id="69c2d-106">À l'aide de la puissance de l'outil de conception de flux de travail, vous pouvez concevoir et créer des flux de travail complexes qui seront exécutés dans **Media Encoder Premium**.</span><span class="sxs-lookup"><span data-stu-id="69c2d-106">By using the power of the workflow designer tool, you can design and create complex workflows that will run in **Media Encoder Premium**.</span></span>  
+# <a name="create-advanced-encoding-workflows-with-workflow-designer"></a><span data-ttu-id="541d7-103">Créer des flux de travail d’encodage avancé avec le Concepteur de flux de travail</span><span class="sxs-lookup"><span data-stu-id="541d7-103">Create Advanced Encoding Workflows with Workflow Designer</span></span>
+## <a name="overview"></a><span data-ttu-id="541d7-104">Vue d'ensemble</span><span class="sxs-lookup"><span data-stu-id="541d7-104">Overview</span></span>
+<span data-ttu-id="541d7-105">Hello **le Concepteur de flux de travail** est un outil de bureau Windows qui est utilisé toodesign build et flux de travail personnalisés pour l’encodage avec **Workflow d’encodeur multimédia Premium**.</span><span class="sxs-lookup"><span data-stu-id="541d7-105">hello **Workflow Designer** is a Windows desktop tool that is used toodesign and build custom workflows for encoding with **Media Encoder Premium Workflow**.</span></span>
+<span data-ttu-id="541d7-106">À l’aide des hello de l’outil Concepteur de flux de travail hello, vous pouvez concevoir et créer des flux de travail complexes qui s’exécutera dans **Media Encoder Premium**.</span><span class="sxs-lookup"><span data-stu-id="541d7-106">By using hello power of hello workflow designer tool, you can design and create complex workflows that will run in **Media Encoder Premium**.</span></span>  
 
-<span data-ttu-id="69c2d-107">Les flux de travail peuvent inclure la logique de décision et le branchement client basés sur les propriétés du fichier source d'entrée.</span><span class="sxs-lookup"><span data-stu-id="69c2d-107">Workflows can include customer decision logic and branching based on the input source file's properties.</span></span> <span data-ttu-id="69c2d-108">Vous pouvez créer des flux de travail avec des propriétés substituables et des valeurs dynamiques pour rendre même les tâches d'encodage les plus complexes faciles à répéter et à personnaliser dans le cloud.</span><span class="sxs-lookup"><span data-stu-id="69c2d-108">You can create workflows with overridable properties and dynamic values to make even the most complex encoding tasks easy to repeat and customize in the cloud.</span></span>
+<span data-ttu-id="541d7-107">Les workflows peuvent inclure la logique de décision de client et créer une branche basée sur les propriétés du fichier de source d’entrée hello.</span><span class="sxs-lookup"><span data-stu-id="541d7-107">Workflows can include customer decision logic and branching based on hello input source file's properties.</span></span> <span data-ttu-id="541d7-108">Vous pouvez créer des flux de travail avec des propriétés substituables et les valeurs dynamiques toomake même hello plus complexes encodage tâches facile toorepeat et personnaliser dans le cloud de hello.</span><span class="sxs-lookup"><span data-stu-id="541d7-108">You can create workflows with overridable properties and dynamic values toomake even hello most complex encoding tasks easy toorepeat and customize in hello cloud.</span></span>
 
-<span data-ttu-id="69c2d-109">Exemples de flux de travail que vous pouvez créer :</span><span class="sxs-lookup"><span data-stu-id="69c2d-109">Example workflows that you can create include:</span></span>
+<span data-ttu-id="541d7-109">Exemples de flux de travail que vous pouvez créer :</span><span class="sxs-lookup"><span data-stu-id="541d7-109">Example workflows that you can create include:</span></span>
 
-* <span data-ttu-id="69c2d-110">Flux de travail basés sur décision qui inspectent le contenu source pour la résolution et codent uniquement les pistes de sortie souhaitées.</span><span class="sxs-lookup"><span data-stu-id="69c2d-110">Decision based workflows that inspect the source content for resolution and encode only the desired output tracks.</span></span>  <span data-ttu-id="69c2d-111">Ceci sert à éliminer les pistes gaspillées générées par le dimensionnement par inadvertance du contenu source.</span><span class="sxs-lookup"><span data-stu-id="69c2d-111">This is helfpul by eliminating the wasted tracks that would be generated by upscaling the source content inadvertantly.</span></span>
-* <span data-ttu-id="69c2d-112">Des fichiers d'entrée multiples peuvent être utilisés pour prendre en charge des légendes, des superpositions et pour assembler le contenu.</span><span class="sxs-lookup"><span data-stu-id="69c2d-112">Multiple input files can be used to support captions, overlays and stitching together content.</span></span> 
+* <span data-ttu-id="541d7-110">La décision des flux de travail qui contrôlent le contenu source hello pour la résolution et d’encode les pistes de sortie de hello souhaité uniquement.</span><span class="sxs-lookup"><span data-stu-id="541d7-110">Decision based workflows that inspect hello source content for resolution and encode only hello desired output tracks.</span></span>  <span data-ttu-id="541d7-111">Il s’agit helfpul en éliminant les pistes hello gaspillé qui sont générés par l’interpolation source de hello contenu par inadvertance.</span><span class="sxs-lookup"><span data-stu-id="541d7-111">This is helfpul by eliminating hello wasted tracks that would be generated by upscaling hello source content inadvertantly.</span></span>
+* <span data-ttu-id="541d7-112">Plusieurs fichiers d’entrée peuvent être utilisé toosupport légendes, superpositions et liaison contenu ensemble.</span><span class="sxs-lookup"><span data-stu-id="541d7-112">Multiple input files can be used toosupport captions, overlays and stitching together content.</span></span> 
 
-<span data-ttu-id="69c2d-113">Cet outil permet aussi de modifier nos [flux de travail publiés](media-services-workflow-designer.md#existing_workflows).</span><span class="sxs-lookup"><span data-stu-id="69c2d-113">This tool can also be used to modify any of our [published workflows](media-services-workflow-designer.md#existing_workflows).</span></span> 
+<span data-ttu-id="541d7-113">Cet outil peut également être toomodify utilisé notre [publié le flux de travail](media-services-workflow-designer.md#existing_workflows).</span><span class="sxs-lookup"><span data-stu-id="541d7-113">This tool can also be used toomodify any of our [published workflows](media-services-workflow-designer.md#existing_workflows).</span></span> 
 
 > [!NOTE]
-> <span data-ttu-id="69c2d-114">Pour obtenir une copie de l'outil Concepteur de flux de travail, contactez mepd@microsoft.com.</span><span class="sxs-lookup"><span data-stu-id="69c2d-114">To get your copy of the Workflow Designer tool, please contact mepd@microsoft.com.</span></span>
+> <span data-ttu-id="541d7-114">tooget votre copie de l’outil du Concepteur de Workflow hello, veuillez contacter mepd@microsoft.com.</span><span class="sxs-lookup"><span data-stu-id="541d7-114">tooget your copy of hello Workflow Designer tool, please contact mepd@microsoft.com.</span></span>
 > 
 > 
 
-<span data-ttu-id="69c2d-115">Une fois créé, un fichier de flux de travail peut être téléchargé comme ressource et être utilisé pour l'encodage de fichiers multimédias.</span><span class="sxs-lookup"><span data-stu-id="69c2d-115">Once a workflow file is created, it can be uploaded as an Asset, and then be used for encoding media files.</span></span> <span data-ttu-id="69c2d-116">Pour plus d'informations sur l'encodage avec **Media Encoder Premium Workflow** en utilisant **.NET**, consultez la page [Encodage avancé avec Media Encoder Premium Workflow](media-services-encode-with-premium-workflow.md).</span><span class="sxs-lookup"><span data-stu-id="69c2d-116">For information on how to encode with **Media Encoder Premium Workflow** using **.NET**, see [Advanced encoding with Media Encoder Premium Workflow](media-services-encode-with-premium-workflow.md).</span></span>
+<span data-ttu-id="541d7-115">Une fois créé, un fichier de flux de travail peut être téléchargé comme ressource et être utilisé pour l'encodage de fichiers multimédias.</span><span class="sxs-lookup"><span data-stu-id="541d7-115">Once a workflow file is created, it can be uploaded as an Asset, and then be used for encoding media files.</span></span> <span data-ttu-id="541d7-116">Pour plus d’informations sur la façon de tooencode avec **Workflow d’encodeur multimédia Premium** à l’aide de **.NET**, consultez [avancé encodage avec Workflow d’encodeur multimédia Premium](media-services-encode-with-premium-workflow.md).</span><span class="sxs-lookup"><span data-stu-id="541d7-116">For information on how tooencode with **Media Encoder Premium Workflow** using **.NET**, see [Advanced encoding with Media Encoder Premium Workflow](media-services-encode-with-premium-workflow.md).</span></span>
 
-## <span data-ttu-id="69c2d-117"><a id="existing_workflows"></a>Modifier des flux de travail existants</span><span class="sxs-lookup"><span data-stu-id="69c2d-117"><a id="existing_workflows"></a>Modify existing workflows</span></span>
-<span data-ttu-id="69c2d-118">Les [flux de travail publiés](media-services-workflow-designer.md#existing_workflows) par défaut peuvent être modifiés à l'aide de l'outil Concepteur.</span><span class="sxs-lookup"><span data-stu-id="69c2d-118">The default [published workflows](media-services-workflow-designer.md#existing_workflows) can be modified using the designer tool.</span></span> <span data-ttu-id="69c2d-119">Vous pouvez vous procurer les fichiers de flux de travail par défaut [ici](https://github.com/Azure/azure-media-services-samples/tree/master/Encoding%20Presets/VoD/MediaEncoderPremiumWorkfows).</span><span class="sxs-lookup"><span data-stu-id="69c2d-119">You can get the default workflow files [here](https://github.com/Azure/azure-media-services-samples/tree/master/Encoding%20Presets/VoD/MediaEncoderPremiumWorkfows).</span></span> <span data-ttu-id="69c2d-120">Le dossier contient aussi la description de ces fichiers.</span><span class="sxs-lookup"><span data-stu-id="69c2d-120">The folder also contains the description of these files.</span></span>
+## <span data-ttu-id="541d7-117"><a id="existing_workflows"></a>Modifier des flux de travail existants</span><span class="sxs-lookup"><span data-stu-id="541d7-117"><a id="existing_workflows"></a>Modify existing workflows</span></span>
+<span data-ttu-id="541d7-118">Hello par défaut [publié le flux de travail](media-services-workflow-designer.md#existing_workflows) peut être modifié à l’aide du Concepteur de hello.</span><span class="sxs-lookup"><span data-stu-id="541d7-118">hello default [published workflows](media-services-workflow-designer.md#existing_workflows) can be modified using hello designer tool.</span></span> <span data-ttu-id="541d7-119">Vous pouvez obtenir par défaut de hello les fichiers de flux de travail [ici](https://github.com/Azure/azure-media-services-samples/tree/master/Encoding%20Presets/VoD/MediaEncoderPremiumWorkfows).</span><span class="sxs-lookup"><span data-stu-id="541d7-119">You can get hello default workflow files [here](https://github.com/Azure/azure-media-services-samples/tree/master/Encoding%20Presets/VoD/MediaEncoderPremiumWorkfows).</span></span> <span data-ttu-id="541d7-120">dossier de Hello contient également la description hello de ces fichiers.</span><span class="sxs-lookup"><span data-stu-id="541d7-120">hello folder also contains hello description of these files.</span></span>
 
-<span data-ttu-id="69c2d-121">Les vidéos suivantes vous indiquent comment utiliser le concepteur.</span><span class="sxs-lookup"><span data-stu-id="69c2d-121">The following videos demonstrate how to use the designer.</span></span>
+<span data-ttu-id="541d7-121">Hello suivant vidéos montrent comment toouse hello concepteur.</span><span class="sxs-lookup"><span data-stu-id="541d7-121">hello following videos demonstrate how toouse hello designer.</span></span>
 
-### <a name="day-1--getting-started"></a><span data-ttu-id="69c2d-122">Jour 1 : prise en main</span><span class="sxs-lookup"><span data-stu-id="69c2d-122">Day 1 – Getting Started</span></span>
-<span data-ttu-id="69c2d-123">La vidéo du jour 1 présente :</span><span class="sxs-lookup"><span data-stu-id="69c2d-123">Day 1 video covers:</span></span>
+### <a name="day-1--getting-started"></a><span data-ttu-id="541d7-122">Jour 1 : prise en main</span><span class="sxs-lookup"><span data-stu-id="541d7-122">Day 1 – Getting Started</span></span>
+<span data-ttu-id="541d7-123">La vidéo du jour 1 présente :</span><span class="sxs-lookup"><span data-stu-id="541d7-123">Day 1 video covers:</span></span>
 
-* <span data-ttu-id="69c2d-124">Vue d'ensemble du concepteur</span><span class="sxs-lookup"><span data-stu-id="69c2d-124">Designer Overview</span></span>
-* <span data-ttu-id="69c2d-125">Flux de travail de base : « Hello World »</span><span class="sxs-lookup"><span data-stu-id="69c2d-125">Basic Workflows – "Hello World"</span></span>
-* <span data-ttu-id="69c2d-126">Création de plusieurs fichiers de sortie MP4 à utiliser avec la diffusion en continu d’Azure Media Services</span><span class="sxs-lookup"><span data-stu-id="69c2d-126">Creating multiple output MP4 files for use with Azure Media Services streaming</span></span>
+* <span data-ttu-id="541d7-124">Vue d'ensemble du concepteur</span><span class="sxs-lookup"><span data-stu-id="541d7-124">Designer Overview</span></span>
+* <span data-ttu-id="541d7-125">Flux de travail de base : « Hello World »</span><span class="sxs-lookup"><span data-stu-id="541d7-125">Basic Workflows – "Hello World"</span></span>
+* <span data-ttu-id="541d7-126">Création de plusieurs fichiers de sortie MP4 à utiliser avec la diffusion en continu d’Azure Media Services</span><span class="sxs-lookup"><span data-stu-id="541d7-126">Creating multiple output MP4 files for use with Azure Media Services streaming</span></span>
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/Azure-Premium-Encoder-Workflow-Designer-Training-Videos-Day-1/player]
 > 
 > 
 
-### <a name="day-2"></a><span data-ttu-id="69c2d-127">Jour 2</span><span class="sxs-lookup"><span data-stu-id="69c2d-127">Day 2</span></span>
-<span data-ttu-id="69c2d-128">La vidéo du jour 2 présente :</span><span class="sxs-lookup"><span data-stu-id="69c2d-128">Day 2 video covers:</span></span>
+### <a name="day-2"></a><span data-ttu-id="541d7-127">Jour 2</span><span class="sxs-lookup"><span data-stu-id="541d7-127">Day 2</span></span>
+<span data-ttu-id="541d7-128">La vidéo du jour 2 présente :</span><span class="sxs-lookup"><span data-stu-id="541d7-128">Day 2 video covers:</span></span>
 
-* <span data-ttu-id="69c2d-129">Divers scénarios de fichiers source : gestion des fichiers audio</span><span class="sxs-lookup"><span data-stu-id="69c2d-129">Varying Source file scenarios – handling audio</span></span>
-* <span data-ttu-id="69c2d-130">Flux de travail avec une logique avancée</span><span class="sxs-lookup"><span data-stu-id="69c2d-130">Workflows with advanced Logic</span></span>
-* <span data-ttu-id="69c2d-131">Étapes du graphique</span><span class="sxs-lookup"><span data-stu-id="69c2d-131">Graph stages</span></span>
+* <span data-ttu-id="541d7-129">Divers scénarios de fichiers source : gestion des fichiers audio</span><span class="sxs-lookup"><span data-stu-id="541d7-129">Varying Source file scenarios – handling audio</span></span>
+* <span data-ttu-id="541d7-130">Flux de travail avec une logique avancée</span><span class="sxs-lookup"><span data-stu-id="541d7-130">Workflows with advanced Logic</span></span>
+* <span data-ttu-id="541d7-131">Étapes du graphique</span><span class="sxs-lookup"><span data-stu-id="541d7-131">Graph stages</span></span>
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/Azure-Premium-Encoder-Workflow-Designer-Training-Videos-Day-2/player]
 > 
 > 
 
-### <a name="day-3"></a><span data-ttu-id="69c2d-132">Jour 3</span><span class="sxs-lookup"><span data-stu-id="69c2d-132">Day 3</span></span>
-<span data-ttu-id="69c2d-133">La vidéo du jour 3 présente :</span><span class="sxs-lookup"><span data-stu-id="69c2d-133">Day 3 video covers:</span></span>
+### <a name="day-3"></a><span data-ttu-id="541d7-132">Jour 3</span><span class="sxs-lookup"><span data-stu-id="541d7-132">Day 3</span></span>
+<span data-ttu-id="541d7-133">La vidéo du jour 3 présente :</span><span class="sxs-lookup"><span data-stu-id="541d7-133">Day 3 video covers:</span></span>
 
-* <span data-ttu-id="69c2d-134">Création de scripts de flux de travail/de modèles</span><span class="sxs-lookup"><span data-stu-id="69c2d-134">Scripting inside of Workflows/Blueprints</span></span>
-* <span data-ttu-id="69c2d-135">Restrictions de l'encodeur actuel</span><span class="sxs-lookup"><span data-stu-id="69c2d-135">Restrictions with the current Encoder</span></span>
-* <span data-ttu-id="69c2d-136">Questions et réponses  </span><span class="sxs-lookup"><span data-stu-id="69c2d-136">Q&A</span></span>
+* <span data-ttu-id="541d7-134">Création de scripts de flux de travail/de modèles</span><span class="sxs-lookup"><span data-stu-id="541d7-134">Scripting inside of Workflows/Blueprints</span></span>
+* <span data-ttu-id="541d7-135">Restrictions avec hello encodeur actuel</span><span class="sxs-lookup"><span data-stu-id="541d7-135">Restrictions with hello current Encoder</span></span>
+* <span data-ttu-id="541d7-136">Questions et réponses  </span><span class="sxs-lookup"><span data-stu-id="541d7-136">Q&A</span></span>
 
 > [!VIDEO https://channel9.msdn.com/Blogs/Azure/Azure-Premium-Encoder-Workflow-Designer-Training-Videos-Day-3/player]
 > 
 > 
 
-## <a name="next-step"></a><span data-ttu-id="69c2d-137">Étape suivante</span><span class="sxs-lookup"><span data-stu-id="69c2d-137">Next step</span></span>
-<span data-ttu-id="69c2d-138">Consultez les parcours d’apprentissage de Media Services.</span><span class="sxs-lookup"><span data-stu-id="69c2d-138">Review Media Services learning paths.</span></span>
+## <a name="next-step"></a><span data-ttu-id="541d7-137">Étape suivante</span><span class="sxs-lookup"><span data-stu-id="541d7-137">Next step</span></span>
+<span data-ttu-id="541d7-138">Consultez les parcours d’apprentissage de Media Services.</span><span class="sxs-lookup"><span data-stu-id="541d7-138">Review Media Services learning paths.</span></span>
 
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-## <a name="provide-feedback"></a><span data-ttu-id="69c2d-139">Fournir des commentaires</span><span class="sxs-lookup"><span data-stu-id="69c2d-139">Provide feedback</span></span>
+## <a name="provide-feedback"></a><span data-ttu-id="541d7-139">Fournir des commentaires</span><span class="sxs-lookup"><span data-stu-id="541d7-139">Provide feedback</span></span>
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-<span data-ttu-id="69c2d-140">Si vous avez besoin d'aide ou si vous avez des questions à propos de la création de flux de travail personnalisés dans l'outil Concepteur de flux de travail, envoyez un courrier électronique à mepd@microsoft.com.</span><span class="sxs-lookup"><span data-stu-id="69c2d-140">If you need support or have questions about creating custom workflows in the Workflow designer tool, please send email to mepd@microsoft.com.</span></span>
+<span data-ttu-id="541d7-140">Si vous devez prendre en charge ou avez des questions sur la création de flux de travail personnalisés dans le Concepteur de flux de travail hello, envoyez un courrier électronique toomepd@microsoft.com.</span><span class="sxs-lookup"><span data-stu-id="541d7-140">If you need support or have questions about creating custom workflows in hello Workflow designer tool, please send email toomepd@microsoft.com.</span></span>
 
-## <a name="see-also"></a><span data-ttu-id="69c2d-141">Voir aussi</span><span class="sxs-lookup"><span data-stu-id="69c2d-141">See Also</span></span>
-[<span data-ttu-id="69c2d-142">Vidéos de formation pour le Concepteur de flux de travail Azure Premium Encoder</span><span class="sxs-lookup"><span data-stu-id="69c2d-142">Azure Premium Encoder Workflow Designer Training Videos</span></span>](http://johndeutscher.com/2015/07/06/azure-premium-encoder-workflow-designer-training-videos/)
+## <a name="see-also"></a><span data-ttu-id="541d7-141">Voir aussi</span><span class="sxs-lookup"><span data-stu-id="541d7-141">See Also</span></span>
+[<span data-ttu-id="541d7-142">Vidéos de formation pour le Concepteur de flux de travail Azure Premium Encoder</span><span class="sxs-lookup"><span data-stu-id="541d7-142">Azure Premium Encoder Workflow Designer Training Videos</span></span>](http://johndeutscher.com/2015/07/06/azure-premium-encoder-workflow-designer-training-videos/)
 

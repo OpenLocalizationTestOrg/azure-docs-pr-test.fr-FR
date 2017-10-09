@@ -1,6 +1,6 @@
 ---
-title: Utilisation du chiffrement commun dynamique PlayReady et/ou Widevine | Microsoft Docs
-description: "Microsoft Azure Media Services vous permet de fournir des flux MPEG-DASH, Smooth Streaming et HLS (Http-Live-Streaming) protégés par Microsoft PlayReady DRM. Vous pouvez également l’utiliser pour diffuser du contenu DASH chiffré avec Widevine DRM. Cette rubrique montre comment chiffrer dynamiquement avec PlayReady et Widevine DRM."
+title: aaaUsing PlayReady et/ou Widevine dynamique chiffrement commun | Documents Microsoft
+description: "Microsoft Azure Media Services permet de vous toodeliver MPEG-DASH, Smooth Streaming et Http-Live-Streaming (HLS) flux protégés par Microsoft PlayReady DRM. Il vous permet également de toodelivery DASH chiffré avec Widevine DRM. Cette rubrique montre comment toodynamically chiffrer avec PlayReady et Widevine DRM."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,143 +14,143 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/18/2017
 ms.author: juliako
-ms.openlocfilehash: 6cfb7b558b8dce511d517e69c022765feae245fa
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 0475e6ec80dcf39eb4e5c4ad4d17f821502951bd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="using-playready-andor-widevine-dynamic-common-encryption"></a><span data-ttu-id="0fdb4-105">Utilisation du chiffrement commun dynamique PlayReady et/ou Widevine</span><span class="sxs-lookup"><span data-stu-id="0fdb4-105">Using PlayReady and/or Widevine dynamic common encryption</span></span>
+# <a name="using-playready-andor-widevine-dynamic-common-encryption"></a><span data-ttu-id="a20c2-105">Utilisation du chiffrement commun dynamique PlayReady et/ou Widevine</span><span class="sxs-lookup"><span data-stu-id="a20c2-105">Using PlayReady and/or Widevine dynamic common encryption</span></span>
 
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="0fdb4-106">.NET</span><span class="sxs-lookup"><span data-stu-id="0fdb4-106">.NET</span></span>](media-services-protect-with-drm.md)
-> * [<span data-ttu-id="0fdb4-107">Java</span><span class="sxs-lookup"><span data-stu-id="0fdb4-107">Java</span></span>](https://github.com/southworkscom/azure-sdk-for-media-services-java-samples)
-> * [<span data-ttu-id="0fdb4-108">PHP</span><span class="sxs-lookup"><span data-stu-id="0fdb4-108">PHP</span></span>](https://github.com/Azure/azure-sdk-for-php/tree/master/examples/MediaServices)
+> * [<span data-ttu-id="a20c2-106">.NET</span><span class="sxs-lookup"><span data-stu-id="a20c2-106">.NET</span></span>](media-services-protect-with-drm.md)
+> * [<span data-ttu-id="a20c2-107">Java</span><span class="sxs-lookup"><span data-stu-id="a20c2-107">Java</span></span>](https://github.com/southworkscom/azure-sdk-for-media-services-java-samples)
+> * [<span data-ttu-id="a20c2-108">PHP</span><span class="sxs-lookup"><span data-stu-id="a20c2-108">PHP</span></span>](https://github.com/Azure/azure-sdk-for-php/tree/master/examples/MediaServices)
 >
 >
 
-<span data-ttu-id="0fdb4-109">Microsoft Azure Media Services vous permet de fournir des flux MPEG-DASH, Smooth Streaming et HLS (HTTP-Live-Streaming) protégés par [Microsoft PlayReady DRM](https://www.microsoft.com/playready/overview/).</span><span class="sxs-lookup"><span data-stu-id="0fdb4-109">Microsoft Azure Media Services enables you to deliver MPEG-DASH, Smooth Streaming, and HTTP-Live-Streaming (HLS) streams protected with [Microsoft PlayReady DRM](https://www.microsoft.com/playready/overview/).</span></span> <span data-ttu-id="0fdb4-110">Vous pouvez également l’utiliser pour diffuser du contenu DASH chiffré avec des licences Widevine DRM.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-110">It also enables you to deliver encrypted DASH streams with Widevine DRM licenses.</span></span> <span data-ttu-id="0fdb4-111">PlayReady et Widewine sont chiffrés conformément à la spécification de chiffrement commun (ISO/IEC 23001-7 CENC).</span><span class="sxs-lookup"><span data-stu-id="0fdb4-111">Both PlayReady and Widevine are encrypted per the Common Encryption (ISO/IEC 23001-7 CENC) specification.</span></span> <span data-ttu-id="0fdb4-112">Vous pouvez utiliser [AMS .NET SDK](https://www.nuget.org/packages/windowsazure.mediaservices/) (en commençant par la version 3.5.1) ou une API REST pour configurer votre AssetDeliveryConfiguration afin d’utiliser Widevine.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-112">You can use [AMS .NET SDK](https://www.nuget.org/packages/windowsazure.mediaservices/) (starting with the version 3.5.1) or REST API to configure your AssetDeliveryConfiguration to use Widevine.</span></span>
+<span data-ttu-id="a20c2-109">Microsoft Azure Media Services vous permet de toodeliver MPEG-DASH, Smooth Streaming et les flux HTTP Live Streaming (HLS) protégés avec [Microsoft PlayReady DRM](https://www.microsoft.com/playready/overview/).</span><span class="sxs-lookup"><span data-stu-id="a20c2-109">Microsoft Azure Media Services enables you toodeliver MPEG-DASH, Smooth Streaming, and HTTP-Live-Streaming (HLS) streams protected with [Microsoft PlayReady DRM](https://www.microsoft.com/playready/overview/).</span></span> <span data-ttu-id="a20c2-110">Il vous permet également de flux de tiret toodeliver chiffré avec licences Widevine DRM.</span><span class="sxs-lookup"><span data-stu-id="a20c2-110">It also enables you toodeliver encrypted DASH streams with Widevine DRM licenses.</span></span> <span data-ttu-id="a20c2-111">PlayReady et Widevine sont chiffrées par hello spécification de chiffrement commun (CENC 23001-7 de norme ISO/IEC).</span><span class="sxs-lookup"><span data-stu-id="a20c2-111">Both PlayReady and Widevine are encrypted per hello Common Encryption (ISO/IEC 23001-7 CENC) specification.</span></span> <span data-ttu-id="a20c2-112">Vous pouvez utiliser [AMS .NET SDK](https://www.nuget.org/packages/windowsazure.mediaservices/) (depuis la version de hello 3.5.1) ou REST API tooconfigure votre toouse AssetDeliveryConfiguration Widevine.</span><span class="sxs-lookup"><span data-stu-id="a20c2-112">You can use [AMS .NET SDK](https://www.nuget.org/packages/windowsazure.mediaservices/) (starting with hello version 3.5.1) or REST API tooconfigure your AssetDeliveryConfiguration toouse Widevine.</span></span>
 
-<span data-ttu-id="0fdb4-113">Media Services fournit un service de remise de licences DRM PlayReady et Widevine.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-113">Media Services provides a service for delivering PlayReady and Widevine DRM licenses.</span></span> <span data-ttu-id="0fdb4-114">Media Services fournit également des API qui vous permettent de configurer les droits et les restrictions que vous souhaitez pour le runtime DRM PlayReady ou Widevine, qui s’appliquent lorsqu’un utilisateur lit un contenu protégé.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-114">Media Services also provides APIs that let you configure the rights and restrictions that you want for the PlayReady or Widevine DRM runtime to enforce when a user plays back protected content.</span></span> <span data-ttu-id="0fdb4-115">Lorsqu’un utilisateur demande un contenu DRM protégé, l’application de lecteur demande une licence du service de licence AMS.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-115">When a user requests a DRM protected content, the player application will request a license from the AMS license service.</span></span> <span data-ttu-id="0fdb4-116">Le service de licence AMS émet une licence pour le lecteur s’il est autorisé.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-116">The AMS license service will issue a license to the player if it is authorized.</span></span> <span data-ttu-id="0fdb4-117">Une licence PlayReady ou Widevine contient la clé de déchiffrement qui peut être utilisée par le lecteur client pour déchiffrer et diffuser le contenu.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-117">A PlayReady or Widevine license contains the decryption key that can be used by the client player to decrypt and stream the content.</span></span>
+<span data-ttu-id="a20c2-113">Media Services fournit un service de remise de licences DRM PlayReady et Widevine.</span><span class="sxs-lookup"><span data-stu-id="a20c2-113">Media Services provides a service for delivering PlayReady and Widevine DRM licenses.</span></span> <span data-ttu-id="a20c2-114">Media Services fournit également des API qui vous permettent de configurer les droits hello et restrictions que vous souhaitez pour hello PlayReady ou Widevine DRM runtime tooenforce lorsqu’un utilisateur lit le contenu protégé.</span><span class="sxs-lookup"><span data-stu-id="a20c2-114">Media Services also provides APIs that let you configure hello rights and restrictions that you want for hello PlayReady or Widevine DRM runtime tooenforce when a user plays back protected content.</span></span> <span data-ttu-id="a20c2-115">Lorsqu’un utilisateur demande un contenu protégé par DRM, application de lecteur hello demande une licence de service de licence hello AMS.</span><span class="sxs-lookup"><span data-stu-id="a20c2-115">When a user requests a DRM protected content, hello player application will request a license from hello AMS license service.</span></span> <span data-ttu-id="a20c2-116">service de licence Hello AMS émettra un lecteur toohello de licence s’il est autorisé.</span><span class="sxs-lookup"><span data-stu-id="a20c2-116">hello AMS license service will issue a license toohello player if it is authorized.</span></span> <span data-ttu-id="a20c2-117">Une licence PlayReady ou Widevine contient la clé de déchiffrement hello qui peut être utilisé par hello client toodecrypt et flux hello contenu du lecteur.</span><span class="sxs-lookup"><span data-stu-id="a20c2-117">A PlayReady or Widevine license contains hello decryption key that can be used by hello client player toodecrypt and stream hello content.</span></span>
 
-<span data-ttu-id="0fdb4-118">Vous pouvez également utiliser les partenaires AMS suivants pour vous aider à distribuer des licences Widevine : [Axinom](http://www.axinom.com/press/ibc-axinom-drm-6/), [EZDRM](http://ezdrm.com/), [castLabs](http://castlabs.com/company/partners/azure/).</span><span class="sxs-lookup"><span data-stu-id="0fdb4-118">You can also use the following AMS partners to help you deliver Widevine licenses: [Axinom](http://www.axinom.com/press/ibc-axinom-drm-6/), [EZDRM](http://ezdrm.com/), [castLabs](http://castlabs.com/company/partners/azure/).</span></span> <span data-ttu-id="0fdb4-119">Pour plus d’informations, consultez : Intégration à [Axinom](media-services-axinom-integration.md) et [castLabs](media-services-castlabs-integration.md).</span><span class="sxs-lookup"><span data-stu-id="0fdb4-119">For more information, see: integration with [Axinom](media-services-axinom-integration.md) and [castLabs](media-services-castlabs-integration.md).</span></span>
+<span data-ttu-id="a20c2-118">Vous pouvez également utiliser hello suivant toohelp de partenaires AMS vous fournir des licences Widevine : [Axinom](http://www.axinom.com/press/ibc-axinom-drm-6/), [EZDRM](http://ezdrm.com/), [castLabs](http://castlabs.com/company/partners/azure/).</span><span class="sxs-lookup"><span data-stu-id="a20c2-118">You can also use hello following AMS partners toohelp you deliver Widevine licenses: [Axinom](http://www.axinom.com/press/ibc-axinom-drm-6/), [EZDRM](http://ezdrm.com/), [castLabs](http://castlabs.com/company/partners/azure/).</span></span> <span data-ttu-id="a20c2-119">Pour plus d’informations, consultez : Intégration à [Axinom](media-services-axinom-integration.md) et [castLabs](media-services-castlabs-integration.md).</span><span class="sxs-lookup"><span data-stu-id="a20c2-119">For more information, see: integration with [Axinom](media-services-axinom-integration.md) and [castLabs](media-services-castlabs-integration.md).</span></span>
 
-<span data-ttu-id="0fdb4-120">Media Services prend en charge plusieurs méthodes d’autorisation des utilisateurs effectuant des demandes de clé.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-120">Media Services supports multiple ways of authorizing users who make key requests.</span></span> <span data-ttu-id="0fdb4-121">La stratégie d’autorisation des clés de contenu peut comporter une ou plusieurs restrictions d’autorisation : ouverte ou restriction à jeton.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-121">The content key authorization policy could have one or more authorization restrictions: open or token restriction.</span></span> <span data-ttu-id="0fdb4-122">La stratégie de restriction à jeton doit être accompagnée d’un jeton émis par un service de jeton sécurisé (STS).</span><span class="sxs-lookup"><span data-stu-id="0fdb4-122">The token restricted policy must be accompanied by a token issued by a Secure Token Service (STS).</span></span> <span data-ttu-id="0fdb4-123">Media Services prend en charge les jetons aux formats [SWT](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_2) (Simple Web Tokens) et [JWT](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_3) (JSON Web Token).</span><span class="sxs-lookup"><span data-stu-id="0fdb4-123">Media Services supports tokens in the [Simple Web Tokens](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_2) (SWT) format and [JSON Web Token](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_3) (JWT) format.</span></span> <span data-ttu-id="0fdb4-124">Pour plus d'informations, consultez Configurer la stratégie d'autorisation de la clé de contenu.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-124">For more information, see Configure the content key’s authorization policy.</span></span>
+<span data-ttu-id="a20c2-120">Media Services prend en charge plusieurs méthodes d’autorisation des utilisateurs effectuant des demandes de clé.</span><span class="sxs-lookup"><span data-stu-id="a20c2-120">Media Services supports multiple ways of authorizing users who make key requests.</span></span> <span data-ttu-id="a20c2-121">Hello contenu clé peut avoir une ou plusieurs restrictions d’autorisation : ouvrir ou de restriction de jeton.</span><span class="sxs-lookup"><span data-stu-id="a20c2-121">hello content key authorization policy could have one or more authorization restrictions: open or token restriction.</span></span> <span data-ttu-id="a20c2-122">stratégie de restriction token Hello doit être accompagné d’un jeton émis par un Service (jeton de sécurité).</span><span class="sxs-lookup"><span data-stu-id="a20c2-122">hello token restricted policy must be accompanied by a token issued by a Secure Token Service (STS).</span></span> <span data-ttu-id="a20c2-123">Media Services prend en charge les jetons Bonjour [des jetons Web simples](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_2) format de (SWT) et [jeton Web JSON](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_3) format (JWT).</span><span class="sxs-lookup"><span data-stu-id="a20c2-123">Media Services supports tokens in hello [Simple Web Tokens](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_2) (SWT) format and [JSON Web Token](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_3) (JWT) format.</span></span> <span data-ttu-id="a20c2-124">Pour plus d’informations, consultez la stratégie d’autorisation de configurer hello de clé du contenu.</span><span class="sxs-lookup"><span data-stu-id="a20c2-124">For more information, see Configure hello content key’s authorization policy.</span></span>
 
-<span data-ttu-id="0fdb4-125">Pour tirer parti du chiffrement dynamique, vous devez avoir un élément multimédia qui contient un ensemble de fichiers MP4 à débit binaire multiple ou de fichiers sources de diffusion en continu lisse (Smooth Streaming) à débit binaire multiple.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-125">To take advantage of dynamic encryption, you need to have an asset that contains a set of multi-bitrate MP4 files or multi-bitrate Smooth Streaming source files.</span></span> <span data-ttu-id="0fdb4-126">Vous devez également configurer les stratégies de remise pour l’élément multimédia (décrites plus loin dans cette rubrique).</span><span class="sxs-lookup"><span data-stu-id="0fdb4-126">You also need to configure the delivery policies for the asset (described later in this topic).</span></span> <span data-ttu-id="0fdb4-127">Ensuite, en fonction du format spécifié dans l'URL de diffusion, le serveur de streaming à la demande s'assure que le flux est livré conformément au protocole choisi.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-127">Then, based on the format specified in the streaming URL, the On-Demand Streaming server will ensure that the stream is delivered in the protocol you have chosen.</span></span> <span data-ttu-id="0fdb4-128">Par conséquent, il vous suffit de stocker et de payer les fichiers dans un seul format de stockage. Media Services se charge de créer et de fournir la réponse HTTP appropriée à chaque demande des clients.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-128">As a result, you only need to store and pay for the files in a single storage format and Media Services will build and serve the appropriate HTTP response based on each request from a client.</span></span>
+<span data-ttu-id="a20c2-125">tootake parti du chiffrement dynamique, vous devez toohave une ressource qui contient un ensemble de fichiers MP4 à plusieurs débits ou des fichiers sources de diffusion en continu lisse débits.</span><span class="sxs-lookup"><span data-stu-id="a20c2-125">tootake advantage of dynamic encryption, you need toohave an asset that contains a set of multi-bitrate MP4 files or multi-bitrate Smooth Streaming source files.</span></span> <span data-ttu-id="a20c2-126">Vous devez également les stratégies de remise tooconfigure hello pour un composant hello (décrite plus loin dans cette rubrique).</span><span class="sxs-lookup"><span data-stu-id="a20c2-126">You also need tooconfigure hello delivery policies for hello asset (described later in this topic).</span></span> <span data-ttu-id="a20c2-127">Ensuite, selon le format de hello spécifié dans l’URL de diffusion en continu de hello, serveur de diffusion en continu à la demande de hello s’assure que ce flux de données hello est remis dans le protocole hello que vous avez choisi.</span><span class="sxs-lookup"><span data-stu-id="a20c2-127">Then, based on hello format specified in hello streaming URL, hello On-Demand Streaming server will ensure that hello stream is delivered in hello protocol you have chosen.</span></span> <span data-ttu-id="a20c2-128">Par conséquent, vous devez uniquement toostore et payer pour les fichiers hello dans un seul format de stockage et les Services de support crée et fournit la réponse HTTP approprié de hello, en fonction de chaque demande d’un client.</span><span class="sxs-lookup"><span data-stu-id="a20c2-128">As a result, you only need toostore and pay for hello files in a single storage format and Media Services will build and serve hello appropriate HTTP response based on each request from a client.</span></span>
 
-<span data-ttu-id="0fdb4-129">Cette rubrique peut être utile aux développeurs travaillant sur des applications qui fournissent un support protégé avec plusieurs DRM comme PlayReady et Widevine.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-129">This topic would be useful to developers that work on applications that deliver media protected with multiple DRMs, such as PlayReady and Widevine.</span></span> <span data-ttu-id="0fdb4-130">La rubrique vous montre comment configurer le service de distribution des licences PlayReady avec des stratégies d’autorisation, afin que seuls les clients autorisés puissent recevoir les licences PlayReady ou Widevine.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-130">The topic shows you how to configure the PlayReady license delivery service with authorization policies so that only authorized clients could receive PlayReady or Widevine licenses.</span></span> <span data-ttu-id="0fdb4-131">Il indique également comment utiliser le chiffrement de cryptage dynamique avec PlayReady ou Widevine DRM sur DASH.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-131">It also shows how to use dynamic encryption encryption with PlayReady or Widevine DRM over DASH.</span></span>
+<span data-ttu-id="a20c2-129">Cette rubrique serait utile toodevelopers qui fonctionnent sur les applications qui fournissent du support protégé avec plusieurs DRMs, tels que PlayReady et Widevine.</span><span class="sxs-lookup"><span data-stu-id="a20c2-129">This topic would be useful toodevelopers that work on applications that deliver media protected with multiple DRMs, such as PlayReady and Widevine.</span></span> <span data-ttu-id="a20c2-130">rubrique de Hello vous montre comment tooconfigure hello service de fourniture de licence PlayReady avec les stratégies d’autorisation afin que seuls les clients autorisés puissent recevoir des licences PlayReady ou Widevine.</span><span class="sxs-lookup"><span data-stu-id="a20c2-130">hello topic shows you how tooconfigure hello PlayReady license delivery service with authorization policies so that only authorized clients could receive PlayReady or Widevine licenses.</span></span> <span data-ttu-id="a20c2-131">Il montre également comment le chiffrement de chiffrement dynamique toouse avec PlayReady ou DRM Widevine sur tiret.</span><span class="sxs-lookup"><span data-stu-id="a20c2-131">It also shows how toouse dynamic encryption encryption with PlayReady or Widevine DRM over DASH.</span></span>
 
 >[!NOTE]
-><span data-ttu-id="0fdb4-132">Une fois votre compte AMS créé, un point de terminaison de streaming **par défaut** est ajouté à votre compte à l’état **Arrêté**.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-132">When your AMS account is created a **default** streaming endpoint is added to your account in the **Stopped** state.</span></span> <span data-ttu-id="0fdb4-133">Pour démarrer la diffusion en continu de votre contenu et tirer parti de l’empaquetage et du chiffrement dynamiques, le point de terminaison de streaming à partir duquel vous souhaitez diffuser du contenu doit se trouver à l’état **En cours d’exécution**.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-133">To start streaming your content and take advantage of dynamic packaging and dynamic encryption, the streaming endpoint from which you want to stream content has to be in the **Running** state.</span></span> 
+><span data-ttu-id="a20c2-132">Création de votre compte AMS un **par défaut** point de terminaison de diffusion en continu est ajoutée tooyour compte Bonjour **arrêté** état.</span><span class="sxs-lookup"><span data-stu-id="a20c2-132">When your AMS account is created a **default** streaming endpoint is added tooyour account in hello **Stopped** state.</span></span> <span data-ttu-id="a20c2-133">toostart de diffusion en continu de votre contenu et profitez de l’empaquetage dynamique et chiffrement dynamique, hello de point de terminaison de diffusion en continu à partir de laquelle vous souhaitez que le contenu toostream a toobe Bonjour **en cours d’exécution** état.</span><span class="sxs-lookup"><span data-stu-id="a20c2-133">toostart streaming your content and take advantage of dynamic packaging and dynamic encryption, hello streaming endpoint from which you want toostream content has toobe in hello **Running** state.</span></span> 
 
-## <a name="download-sample"></a><span data-ttu-id="0fdb4-134">Charger l’exemple</span><span class="sxs-lookup"><span data-stu-id="0fdb4-134">Download sample</span></span>
-<span data-ttu-id="0fdb4-135">Vous pouvez télécharger l’exemple décrit dans cet article à partir d’ [ici](https://github.com/Azure-Samples/media-services-dotnet-dynamic-encryption-with-drm).</span><span class="sxs-lookup"><span data-stu-id="0fdb4-135">You can download the sample described in this article from [here](https://github.com/Azure-Samples/media-services-dotnet-dynamic-encryption-with-drm).</span></span>
+## <a name="download-sample"></a><span data-ttu-id="a20c2-134">Charger l’exemple</span><span class="sxs-lookup"><span data-stu-id="a20c2-134">Download sample</span></span>
+<span data-ttu-id="a20c2-135">Vous pouvez télécharger des exemple hello décrit dans cet article à partir de [ici](https://github.com/Azure-Samples/media-services-dotnet-dynamic-encryption-with-drm).</span><span class="sxs-lookup"><span data-stu-id="a20c2-135">You can download hello sample described in this article from [here](https://github.com/Azure-Samples/media-services-dotnet-dynamic-encryption-with-drm).</span></span>
 
-## <a name="configuring-dynamic-common-encryption-and-drm-license-delivery-services"></a><span data-ttu-id="0fdb4-136">Configuration de Dynamic Common Encryption et services de distribution de licences DRM</span><span class="sxs-lookup"><span data-stu-id="0fdb4-136">Configuring Dynamic Common Encryption and DRM License Delivery Services</span></span>
+## <a name="configuring-dynamic-common-encryption-and-drm-license-delivery-services"></a><span data-ttu-id="a20c2-136">Configuration de Dynamic Common Encryption et services de distribution de licences DRM</span><span class="sxs-lookup"><span data-stu-id="a20c2-136">Configuring Dynamic Common Encryption and DRM License Delivery Services</span></span>
 
-<span data-ttu-id="0fdb4-137">Voici les étapes générales que vous aurez à exécuter lors de la protection de vos éléments multimédias avec PlayReady, en utilisant le service de distribution des licences Media Services, ainsi que le chiffrement dynamique.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-137">The following are general steps that you would need to perform when protecting your assets with PlayReady, using the Media Services license delivery service, and also using dynamic encryption.</span></span>
+<span data-ttu-id="a20c2-137">Hello Voici les étapes générales que vous devez tooperform lors de la protection de vos éléments multimédias avec PlayReady, à l’aide du service de remise de licences de Media Services hello et utiliser le chiffrement dynamique.</span><span class="sxs-lookup"><span data-stu-id="a20c2-137">hello following are general steps that you would need tooperform when protecting your assets with PlayReady, using hello Media Services license delivery service, and also using dynamic encryption.</span></span>
 
-1. <span data-ttu-id="0fdb4-138">Créer un élément multimédia et télécharger des fichiers dans l'élément multimédia.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-138">Create an asset and upload files into the asset.</span></span>
-2. <span data-ttu-id="0fdb4-139">Encoder l'élément multimédia contenant le fichier selon le débit binaire MP4 défini.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-139">Encode the asset containing the file to the adaptive bitrate MP4 set.</span></span>
-3. <span data-ttu-id="0fdb4-140">Créer une clé de contenu et l'associer à l'élément multimédia encodé.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-140">Create a content key and associate it with the encoded asset.</span></span> <span data-ttu-id="0fdb4-141">Dans Media Services, la clé de contenu contient la clé de chiffrement de l'élément multimédia.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-141">In Media Services, the content key contains the asset’s encryption key.</span></span>
-4. <span data-ttu-id="0fdb4-142">Configurer la stratégie d'autorisation de la clé de contenu.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-142">Configure the content key’s authorization policy.</span></span> <span data-ttu-id="0fdb4-143">La stratégie d'autorisation de la clé de contenu doit être configurée par vous et respectée par le client afin que la clé de contenu soit remise au client.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-143">The content key authorization policy must be configured by you and met by the client in order for the content key to be delivered to the client.</span></span>
+1. <span data-ttu-id="a20c2-138">Créer un élément multimédia et télécharger des fichiers dans l’élément multimédia de hello.</span><span class="sxs-lookup"><span data-stu-id="a20c2-138">Create an asset and upload files into hello asset.</span></span>
+2. <span data-ttu-id="a20c2-139">Encoder hello asset contenant hello fichier toohello ensemble à débit adaptatif MP4.</span><span class="sxs-lookup"><span data-stu-id="a20c2-139">Encode hello asset containing hello file toohello adaptive bitrate MP4 set.</span></span>
+3. <span data-ttu-id="a20c2-140">Créer une clé de contenu et l’associer à asset de hello encodé.</span><span class="sxs-lookup"><span data-stu-id="a20c2-140">Create a content key and associate it with hello encoded asset.</span></span> <span data-ttu-id="a20c2-141">Dans Media Services, clé de contenu hello contient la clé de chiffrement de l’élément multimédia hello.</span><span class="sxs-lookup"><span data-stu-id="a20c2-141">In Media Services, hello content key contains hello asset’s encryption key.</span></span>
+4. <span data-ttu-id="a20c2-142">Configurez la stratégie d’autorisation de la clé de contenu hello.</span><span class="sxs-lookup"><span data-stu-id="a20c2-142">Configure hello content key’s authorization policy.</span></span> <span data-ttu-id="a20c2-143">stratégie d’autorisation de clé contenu de Hello doit être configurée par vous et remplie par client hello pour hello toobe clé contenu livré toohello client.</span><span class="sxs-lookup"><span data-stu-id="a20c2-143">hello content key authorization policy must be configured by you and met by hello client in order for hello content key toobe delivered toohello client.</span></span>
 
-    <span data-ttu-id="0fdb4-144">Lorsque vous créez la stratégie d’autorisation de clé de contenu, vous devez spécifier les éléments suivants : méthode de livraison (PlayReady ou Widevine), restrictions de remise (ouvertes ou jeton) et informations spécifiques au type de remise de clé qui définit comment la clé est fournie au client (modèle de licence [PlayReady](media-services-playready-license-template-overview.md) ou [Widevine](media-services-widevine-license-template-overview.md)).</span><span class="sxs-lookup"><span data-stu-id="0fdb4-144">When creating the content key authorization policy, you need to specify the following: delivery method (PlayReady or Widevine), restrictions (open or token), and information specific to the key delivery type that defines how the key is delivered to the client ([PlayReady](media-services-playready-license-template-overview.md) or [Widevine](media-services-widevine-license-template-overview.md) license template).</span></span>
+    <span data-ttu-id="a20c2-144">Lorsque vous créez la stratégie d’autorisation de clé contenu de hello, toospecify, hello éléments suivants sont nécessaires : (méthode) (PlayReady ou Widevine), restrictions de remise (ouvertes ou jeton) et le type de distribution de clés de toohello spécifique d’informations qui définit le mode de remise de clé de hello client de toohello ([PlayReady](media-services-playready-license-template-overview.md) ou [Widevine](media-services-widevine-license-template-overview.md) modèle de licence).</span><span class="sxs-lookup"><span data-stu-id="a20c2-144">When creating hello content key authorization policy, you need toospecify hello following: delivery method (PlayReady or Widevine), restrictions (open or token), and information specific toohello key delivery type that defines how hello key is delivered toohello client ([PlayReady](media-services-playready-license-template-overview.md) or [Widevine](media-services-widevine-license-template-overview.md) license template).</span></span>
 
-5. <span data-ttu-id="0fdb4-145">Configurer la stratégie de remise pour un élément multimédia.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-145">Configure the delivery policy for an asset.</span></span> <span data-ttu-id="0fdb4-146">La configuration de la stratégie de remise inclut : le protocole de remise (par exemple, MPEG DASH, HLS, Smooth Streaming ou tous), le type de chiffrement dynamique (par exemple, chiffrement commun), l’URL d’acquisition de licence PlayReady ou Widevine.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-146">The delivery policy configuration includes: delivery protocol (for example, MPEG DASH, HLS, Smooth Streaming or all), the type of dynamic encryption (for example, Common Encryption), PlayReady or Widevine license acquisition URL.</span></span>
+5. <span data-ttu-id="a20c2-145">Configurer la stratégie de livraison de hello pour un élément multimédia.</span><span class="sxs-lookup"><span data-stu-id="a20c2-145">Configure hello delivery policy for an asset.</span></span> <span data-ttu-id="a20c2-146">configuration de la stratégie Hello livraison inclut : protocole de remise (par exemple, MPEG DASH, HLS, Smooth Streaming ou tous), hello type de chiffrement dynamique (par exemple, chiffrement commun), PlayReady ou l’URL d’acquisition de licences Widevine.</span><span class="sxs-lookup"><span data-stu-id="a20c2-146">hello delivery policy configuration includes: delivery protocol (for example, MPEG DASH, HLS, Smooth Streaming or all), hello type of dynamic encryption (for example, Common Encryption), PlayReady or Widevine license acquisition URL.</span></span>
 
-    <span data-ttu-id="0fdb4-147">Vous pouvez appliquer des stratégies différentes à chaque protocole dans le même élément multimédia.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-147">You could apply different policy to each protocol on the same asset.</span></span> <span data-ttu-id="0fdb4-148">Par exemple, vous pouvez appliquer le chiffrement PlayReady à Smooth/DASH et AES Envelope à HLS.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-148">For example, you could apply PlayReady encryption to Smooth/DASH and AES Envelope to HLS.</span></span> <span data-ttu-id="0fdb4-149">Tous les protocoles qui ne sont pas définis dans une stratégie de remise (par exemple, en cas d’ajout d’une stratégie unique qui spécifie uniquement TLS comme protocole) seront bloqués de la diffusion en continu.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-149">Any protocols that are not defined in a delivery policy (for example, you add a single policy that only specifies HLS as the protocol) will be blocked from streaming.</span></span> <span data-ttu-id="0fdb4-150">Cela ne s’applique toutefois pas si vous n’avez défini aucune stratégie de remise de ressources.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-150">The exception to this is if you have no asset delivery policy defined at all.</span></span> <span data-ttu-id="0fdb4-151">Tous les protocoles seront alors autorisés.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-151">Then, all protocols will be allowed in the clear.</span></span>
+    <span data-ttu-id="a20c2-147">Vous pouvez appliquer le protocole de tooeach stratégie différente sur hello même actif.</span><span class="sxs-lookup"><span data-stu-id="a20c2-147">You could apply different policy tooeach protocol on hello same asset.</span></span> <span data-ttu-id="a20c2-148">Par exemple, vous pouvez appliquer tooSmooth de chiffrement PlayReady/DASH et tooHLS d’enveloppe AES.</span><span class="sxs-lookup"><span data-stu-id="a20c2-148">For example, you could apply PlayReady encryption tooSmooth/DASH and AES Envelope tooHLS.</span></span> <span data-ttu-id="a20c2-149">Tous les protocoles qui ne sont pas définis dans une stratégie de remise (par exemple, vous ajoutez une stratégie unique qui spécifie seulement le HLS en tant que protocole de hello) sera bloquée à partir de la diffusion en continu.</span><span class="sxs-lookup"><span data-stu-id="a20c2-149">Any protocols that are not defined in a delivery policy (for example, you add a single policy that only specifies HLS as hello protocol) will be blocked from streaming.</span></span> <span data-ttu-id="a20c2-150">Hello exception toothis est si vous ne disposez d’aucune stratégie de remise actif du tout défini.</span><span class="sxs-lookup"><span data-stu-id="a20c2-150">hello exception toothis is if you have no asset delivery policy defined at all.</span></span> <span data-ttu-id="a20c2-151">Ensuite, tous les protocoles seront autorisés en hello clair.</span><span class="sxs-lookup"><span data-stu-id="a20c2-151">Then, all protocols will be allowed in hello clear.</span></span>
 
-6. <span data-ttu-id="0fdb4-152">Créer un localisateur à la demande afin d'obtenir une URL de diffusion en continu.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-152">Create an OnDemand locator in order to get a streaming URL.</span></span>
+6. <span data-ttu-id="a20c2-152">Créer un localisateur OnDemand dans l’ordre tooget une URL de diffusion en continu.</span><span class="sxs-lookup"><span data-stu-id="a20c2-152">Create an OnDemand locator in order tooget a streaming URL.</span></span>
 
-<span data-ttu-id="0fdb4-153">Vous trouverez un exemple .NET complet à la fin de la rubrique.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-153">You will find a complete .NET example at the end of the topic.</span></span>
+<span data-ttu-id="a20c2-153">Vous trouverez un exemple complet de .NET à fin hello de rubrique de hello.</span><span class="sxs-lookup"><span data-stu-id="a20c2-153">You will find a complete .NET example at hello end of hello topic.</span></span>
 
-<span data-ttu-id="0fdb4-154">L'illustration suivante montre le flux de travail décrit ci-dessus.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-154">The following image demonstrates the workflow described above.</span></span> <span data-ttu-id="0fdb4-155">Ici, le jeton est utilisé pour l'authentification.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-155">Here the token is used for authentication.</span></span>
+<span data-ttu-id="a20c2-154">Hello suivant image montre workflow hello décrit ci-dessus.</span><span class="sxs-lookup"><span data-stu-id="a20c2-154">hello following image demonstrates hello workflow described above.</span></span> <span data-ttu-id="a20c2-155">Ici, le jeton de hello est utilisé pour l’authentification.</span><span class="sxs-lookup"><span data-stu-id="a20c2-155">Here hello token is used for authentication.</span></span>
 
 ![Protéger avec PlayReady](./media/media-services-content-protection-overview/media-services-content-protection-with-drm.png)
 
-<span data-ttu-id="0fdb4-157">Le reste de cette rubrique fournit des explications détaillées, des exemples de code et des liens vers des rubriques qui vous expliquent comment réaliser les tâches décrites ci-dessus.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-157">The rest of this topic provides detailed explanations, code examples, and links to topics that show you how to achieve the tasks described above.</span></span>
+<span data-ttu-id="a20c2-157">reste Hello de cette rubrique fournit des explications détaillées, des exemples de code et tootopics des liens qui vous montrent comment tooachieve hello les tâches décrites ci-dessus.</span><span class="sxs-lookup"><span data-stu-id="a20c2-157">hello rest of this topic provides detailed explanations, code examples, and links tootopics that show you how tooachieve hello tasks described above.</span></span>
 
-## <a name="current-limitations"></a><span data-ttu-id="0fdb4-158">Limitations actuelles</span><span class="sxs-lookup"><span data-stu-id="0fdb4-158">Current limitations</span></span>
-<span data-ttu-id="0fdb4-159">Si vous ajoutez ou mettez à jour une stratégie de remise de ressource, vous devez supprimer le localisateur associé (le cas échéant) et en créer un nouveau.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-159">If you add or update an asset delivery policy, you must delete the associated locator (if any) and create a new locator.</span></span>
+## <a name="current-limitations"></a><span data-ttu-id="a20c2-158">Limitations actuelles</span><span class="sxs-lookup"><span data-stu-id="a20c2-158">Current limitations</span></span>
+<span data-ttu-id="a20c2-159">Si vous ajoutez ou mettez à jour une stratégie de remise asset, vous devez supprimer le localisateur de hello associé (le cas échéant) et créer un nouveau.</span><span class="sxs-lookup"><span data-stu-id="a20c2-159">If you add or update an asset delivery policy, you must delete hello associated locator (if any) and create a new locator.</span></span>
 
-<span data-ttu-id="0fdb4-160">Limites lors du chiffrement Widevine avec Azure Media Services : actuellement, plusieurs clés de contenu ne sont pas prises en charge.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-160">Limitation when encrypting with Widevine with Azure Media Services: currently, multiple content keys are not supported.</span></span>
+<span data-ttu-id="a20c2-160">Limites lors du chiffrement Widevine avec Azure Media Services : actuellement, plusieurs clés de contenu ne sont pas prises en charge.</span><span class="sxs-lookup"><span data-stu-id="a20c2-160">Limitation when encrypting with Widevine with Azure Media Services: currently, multiple content keys are not supported.</span></span>
 
-## <a name="create-an-asset-and-upload-files-into-the-asset"></a><span data-ttu-id="0fdb4-161">Créer un élément multimédia et télécharger des fichiers dans l'élément multimédia</span><span class="sxs-lookup"><span data-stu-id="0fdb4-161">Create an asset and upload files into the asset</span></span>
-<span data-ttu-id="0fdb4-162">Pour gérer, encoder et diffuser vos vidéos, vous devez d'abord télécharger votre contenu dans Microsoft Azure Media Services.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-162">In order to manage, encode, and stream your videos, you must first upload your content into Microsoft Azure Media Services.</span></span> <span data-ttu-id="0fdb4-163">Une fois téléchargé, votre contenu est stocké en toute sécurité dans le cloud et peut faire l’objet d’un traitement et d’une diffusion en continu.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-163">Once uploaded, your content is stored securely in the cloud for further processing and streaming.</span></span>
+## <a name="create-an-asset-and-upload-files-into-hello-asset"></a><span data-ttu-id="a20c2-161">Créer un élément multimédia et télécharger des fichiers dans l’élément multimédia de hello</span><span class="sxs-lookup"><span data-stu-id="a20c2-161">Create an asset and upload files into hello asset</span></span>
+<span data-ttu-id="a20c2-162">Dans l’ordre toomanage, encoder et diffuser en continu vos vidéos, vous devez d’abord télécharger votre contenu dans Microsoft Azure Media Services.</span><span class="sxs-lookup"><span data-stu-id="a20c2-162">In order toomanage, encode, and stream your videos, you must first upload your content into Microsoft Azure Media Services.</span></span> <span data-ttu-id="a20c2-163">Une fois téléchargé, votre contenu est stocké en toute sécurité dans le cloud hello pour poursuivre le traitement et la diffusion en continu.</span><span class="sxs-lookup"><span data-stu-id="a20c2-163">Once uploaded, your content is stored securely in hello cloud for further processing and streaming.</span></span>
 
-<span data-ttu-id="0fdb4-164">Pour plus d’informations, consultez [Charger des fichiers vers un compte Media Services](media-services-dotnet-upload-files.md).</span><span class="sxs-lookup"><span data-stu-id="0fdb4-164">For detailed information, see [Upload Files into a Media Services account](media-services-dotnet-upload-files.md).</span></span>
+<span data-ttu-id="a20c2-164">Pour plus d’informations, consultez [Charger des fichiers vers un compte Media Services](media-services-dotnet-upload-files.md).</span><span class="sxs-lookup"><span data-stu-id="a20c2-164">For detailed information, see [Upload Files into a Media Services account](media-services-dotnet-upload-files.md).</span></span>
 
-## <a name="encode-the-asset-containing-the-file-to-the-adaptive-bitrate-mp4-set"></a><span data-ttu-id="0fdb4-165">Encoder l'élément multimédia contenant le fichier selon le débit binaire MP4 défini</span><span class="sxs-lookup"><span data-stu-id="0fdb4-165">Encode the asset containing the file to the adaptive bitrate MP4 set</span></span>
-<span data-ttu-id="0fdb4-166">Avec le chiffrement dynamique, il vous suffit de créer un élément multimédia qui contient un ensemble de fichiers MP4 à débit binaire multiple ou de fichiers sources de diffusion en continu lisse à débit binaire multiple.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-166">With dynamic encryption all you need is to create an asset that contains a set of multi-bitrate MP4 files or multi-bitrate Smooth Streaming source files.</span></span> <span data-ttu-id="0fdb4-167">Ensuite, en fonction du format spécifié dans le manifeste et la demande de fragment, le serveur de diffusion en continu à la demande s’assure que vous recevez le flux conforme au protocole choisi.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-167">Then, based on the specified format in the manifest and fragment request, the On-Demand Streaming server will ensure that you receive the stream in the protocol you have chosen.</span></span> <span data-ttu-id="0fdb4-168">Par conséquent, il vous suffit de stocker et de payer les fichiers dans un seul format de stockage. Le service Media Services se charge de créer et de fournir la réponse appropriée en fonction des demandes des clients.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-168">As a result, you only need to store and pay for the files in single storage format and Media Services service will build and serve the appropriate response based on requests from a client.</span></span> <span data-ttu-id="0fdb4-169">Pour plus d’informations, consultez la rubrique [Vue d’ensemble de l’empaquetage dynamique](media-services-dynamic-packaging-overview.md).</span><span class="sxs-lookup"><span data-stu-id="0fdb4-169">For more information, see the [Dynamic Packaging Overview](media-services-dynamic-packaging-overview.md) topic.</span></span>
+## <a name="encode-hello-asset-containing-hello-file-toohello-adaptive-bitrate-mp4-set"></a><span data-ttu-id="a20c2-165">Encoder hello asset contenant hello fichier toohello ensemble à débit adaptatif MP4</span><span class="sxs-lookup"><span data-stu-id="a20c2-165">Encode hello asset containing hello file toohello adaptive bitrate MP4 set</span></span>
+<span data-ttu-id="a20c2-166">Avec le chiffrement dynamique, il vous suffit de toocreate un élément multimédia contenant un ensemble de fichiers MP4 à plusieurs débits ou des fichiers sources de diffusion en continu lisse débits.</span><span class="sxs-lookup"><span data-stu-id="a20c2-166">With dynamic encryption all you need is toocreate an asset that contains a set of multi-bitrate MP4 files or multi-bitrate Smooth Streaming source files.</span></span> <span data-ttu-id="a20c2-167">Ensuite, en fonction hello le format spécifié dans le manifeste de hello et demande de fragment, hello à la demande de diffusion en continu serveur garantit que vous recevez des flux de hello protocole hello que vous avez choisi.</span><span class="sxs-lookup"><span data-stu-id="a20c2-167">Then, based on hello specified format in hello manifest and fragment request, hello On-Demand Streaming server will ensure that you receive hello stream in hello protocol you have chosen.</span></span> <span data-ttu-id="a20c2-168">Par conséquent, vous devez uniquement toostore et payer pour les fichiers hello dans un seul format de stockage et le service Media Services pour la génération et fournit hello de réponse appropriée en fonction des demandes d’un client.</span><span class="sxs-lookup"><span data-stu-id="a20c2-168">As a result, you only need toostore and pay for hello files in single storage format and Media Services service will build and serve hello appropriate response based on requests from a client.</span></span> <span data-ttu-id="a20c2-169">Pour plus d’informations, consultez hello [présentation de la mise en package dynamique](media-services-dynamic-packaging-overview.md) rubrique.</span><span class="sxs-lookup"><span data-stu-id="a20c2-169">For more information, see hello [Dynamic Packaging Overview](media-services-dynamic-packaging-overview.md) topic.</span></span>
 
-<span data-ttu-id="0fdb4-170">Pour savoir comment encoder, consultez [Encodage d’un élément multimédia à l’aide de Media Encoder Standard](media-services-dotnet-encode-with-media-encoder-standard.md).</span><span class="sxs-lookup"><span data-stu-id="0fdb4-170">For instructions on how to encode, see [How to encode an asset using Media Encoder Standard](media-services-dotnet-encode-with-media-encoder-standard.md).</span></span>
+<span data-ttu-id="a20c2-170">Pour obtenir des instructions sur la façon de tooencode, consultez [comment tooencode un élément multimédia à l’aide de Media Encoder Standard](media-services-dotnet-encode-with-media-encoder-standard.md).</span><span class="sxs-lookup"><span data-stu-id="a20c2-170">For instructions on how tooencode, see [How tooencode an asset using Media Encoder Standard](media-services-dotnet-encode-with-media-encoder-standard.md).</span></span>
 
-## <span data-ttu-id="0fdb4-171"><a id="create_contentkey"></a>Créer une clé de contenu et l’associer à l’élément multimédia encodé</span><span class="sxs-lookup"><span data-stu-id="0fdb4-171"><a id="create_contentkey"></a>Create a content key and associate it with the encoded asset</span></span>
-<span data-ttu-id="0fdb4-172">Dans Media Services, la clé de contenu contient la clé que vous souhaitez utiliser pour chiffrer un élément multimédia.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-172">In Media Services, the content key contains the key that you want to encrypt an asset with.</span></span>
+## <span data-ttu-id="a20c2-171"><a id="create_contentkey"></a>Créer une clé de contenu et l’associer à asset de hello codée</span><span class="sxs-lookup"><span data-stu-id="a20c2-171"><a id="create_contentkey"></a>Create a content key and associate it with hello encoded asset</span></span>
+<span data-ttu-id="a20c2-172">Dans Media Services, clé de contenu hello contient la clé hello que vous souhaitez tooencrypt un élément multimédia avec.</span><span class="sxs-lookup"><span data-stu-id="a20c2-172">In Media Services, hello content key contains hello key that you want tooencrypt an asset with.</span></span>
 
-<span data-ttu-id="0fdb4-173">Pour plus d’informations, consultez [Créer une clé de contenu](media-services-dotnet-create-contentkey.md).</span><span class="sxs-lookup"><span data-stu-id="0fdb4-173">For detailed information, see [Create content key](media-services-dotnet-create-contentkey.md).</span></span>
+<span data-ttu-id="a20c2-173">Pour plus d’informations, consultez [Créer une clé de contenu](media-services-dotnet-create-contentkey.md).</span><span class="sxs-lookup"><span data-stu-id="a20c2-173">For detailed information, see [Create content key](media-services-dotnet-create-contentkey.md).</span></span>
 
-## <span data-ttu-id="0fdb4-174"><a id="configure_key_auth_policy"></a>Configurez la stratégie d’autorisation de la clé de contenu.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-174"><a id="configure_key_auth_policy"></a>Configure the content key’s authorization policy</span></span>
-<span data-ttu-id="0fdb4-175">Media Services prend en charge plusieurs méthodes d’authentification des utilisateurs effectuant des demandes de clé.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-175">Media Services supports multiple ways of authenticating users who make key requests.</span></span> <span data-ttu-id="0fdb4-176">La stratégie d'autorisation de la clé de contenu doit être configurée par vous et respectée par le client (lecteur) afin que la clé soit remise au client.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-176">The content key authorization policy must be configured by you and met by the client (player) in order for the key to be delivered to the client.</span></span> <span data-ttu-id="0fdb4-177">La stratégie d’autorisation des clés de contenu peut comporter une ou plusieurs restrictions d’autorisation : ouverte ou restriction à jeton.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-177">The content key authorization policy could have one or more authorization restrictions: open or token restriction.</span></span>
+## <span data-ttu-id="a20c2-174"><a id="configure_key_auth_policy"></a>Configurer la stratégie d’autorisation de clé de contenu hello</span><span class="sxs-lookup"><span data-stu-id="a20c2-174"><a id="configure_key_auth_policy"></a>Configure hello content key’s authorization policy</span></span>
+<span data-ttu-id="a20c2-175">Media Services prend en charge plusieurs méthodes d’authentification des utilisateurs effectuant des demandes de clé.</span><span class="sxs-lookup"><span data-stu-id="a20c2-175">Media Services supports multiple ways of authenticating users who make key requests.</span></span> <span data-ttu-id="a20c2-176">stratégie d’autorisation de clé contenu de Hello doit être configurée par vous et remplie par le client hello (lecteur) afin que les toobe clé hello remis toohello client.</span><span class="sxs-lookup"><span data-stu-id="a20c2-176">hello content key authorization policy must be configured by you and met by hello client (player) in order for hello key toobe delivered toohello client.</span></span> <span data-ttu-id="a20c2-177">Hello contenu clé peut avoir une ou plusieurs restrictions d’autorisation : ouvrir ou de restriction de jeton.</span><span class="sxs-lookup"><span data-stu-id="a20c2-177">hello content key authorization policy could have one or more authorization restrictions: open or token restriction.</span></span>
 
-<span data-ttu-id="0fdb4-178">Pour plus d’informations, consultez [Configurer la stratégie d’autorisation de clé de contenu](media-services-dotnet-configure-content-key-auth-policy.md#playready-dynamic-encryption).</span><span class="sxs-lookup"><span data-stu-id="0fdb4-178">For detailed information, see [Configure Content Key Authorization Policy](media-services-dotnet-configure-content-key-auth-policy.md#playready-dynamic-encryption).</span></span>
+<span data-ttu-id="a20c2-178">Pour plus d’informations, consultez [Configurer la stratégie d’autorisation de clé de contenu](media-services-dotnet-configure-content-key-auth-policy.md#playready-dynamic-encryption).</span><span class="sxs-lookup"><span data-stu-id="a20c2-178">For detailed information, see [Configure Content Key Authorization Policy](media-services-dotnet-configure-content-key-auth-policy.md#playready-dynamic-encryption).</span></span>
 
-## <span data-ttu-id="0fdb4-179"><a id="configure_asset_delivery_policy"></a>Configurer la stratégie de distribution d’éléments multimédia</span><span class="sxs-lookup"><span data-stu-id="0fdb4-179"><a id="configure_asset_delivery_policy"></a>Configure asset delivery policy</span></span>
-<span data-ttu-id="0fdb4-180">Configurez la stratégie de remise pour votre élément multimédia.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-180">Configure the delivery policy for your asset.</span></span> <span data-ttu-id="0fdb4-181">Certains éléments que la configuration de la stratégie de remise de l'élément multimédia inclut :</span><span class="sxs-lookup"><span data-stu-id="0fdb4-181">Some things that the asset delivery policy configuration includes:</span></span>
+## <span data-ttu-id="a20c2-179"><a id="configure_asset_delivery_policy"></a>Configurer la stratégie de distribution d’éléments multimédia</span><span class="sxs-lookup"><span data-stu-id="a20c2-179"><a id="configure_asset_delivery_policy"></a>Configure asset delivery policy</span></span>
+<span data-ttu-id="a20c2-180">Configurer la stratégie de livraison de hello pour votre élément multimédia.</span><span class="sxs-lookup"><span data-stu-id="a20c2-180">Configure hello delivery policy for your asset.</span></span> <span data-ttu-id="a20c2-181">Les éléments qui hello configuration actif de la stratégie de livraison inclut :</span><span class="sxs-lookup"><span data-stu-id="a20c2-181">Some things that hello asset delivery policy configuration includes:</span></span>
 
-* <span data-ttu-id="0fdb4-182">L’URL d’acquisition de licence PlayReady.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-182">The DRM license acquisition URL.</span></span>
-* <span data-ttu-id="0fdb4-183">Le protocole de remise de l’élément multimédia (par exemple, MPEG DASH, HLS, Smooth Streaming ou tous).</span><span class="sxs-lookup"><span data-stu-id="0fdb4-183">The asset delivery protocol (for example, MPEG DASH, HLS, Smooth Streaming or all).</span></span>
-* <span data-ttu-id="0fdb4-184">Le type de chiffrement dynamique (dans ce cas, Common Encryption).</span><span class="sxs-lookup"><span data-stu-id="0fdb4-184">The type of dynamic encryption (in this case, Common Encryption).</span></span>
+* <span data-ttu-id="a20c2-182">URL d’acquisition de licence DRM Hello.</span><span class="sxs-lookup"><span data-stu-id="a20c2-182">hello DRM license acquisition URL.</span></span>
+* <span data-ttu-id="a20c2-183">protocole de la livraison d’asset Hello (par exemple, MPEG DASH, HLS, Smooth Streaming ou tous).</span><span class="sxs-lookup"><span data-stu-id="a20c2-183">hello asset delivery protocol (for example, MPEG DASH, HLS, Smooth Streaming or all).</span></span>
+* <span data-ttu-id="a20c2-184">type Hello du chiffrement dynamique (dans ce cas, le chiffrement commun).</span><span class="sxs-lookup"><span data-stu-id="a20c2-184">hello type of dynamic encryption (in this case, Common Encryption).</span></span>
 
-<span data-ttu-id="0fdb4-185">Pour plus d’informations, consultez [Configurer la stratégie de distribution d’éléments multimédia ](media-services-rest-configure-asset-delivery-policy.md).</span><span class="sxs-lookup"><span data-stu-id="0fdb4-185">For detailed information, see [Configure asset delivery policy ](media-services-rest-configure-asset-delivery-policy.md).</span></span>
+<span data-ttu-id="a20c2-185">Pour plus d’informations, consultez [Configurer la stratégie de distribution d’éléments multimédia ](media-services-rest-configure-asset-delivery-policy.md).</span><span class="sxs-lookup"><span data-stu-id="a20c2-185">For detailed information, see [Configure asset delivery policy ](media-services-rest-configure-asset-delivery-policy.md).</span></span>
 
-## <span data-ttu-id="0fdb4-186"><a id="create_locator"></a>Créer un localisateur de diffusion en continu à la demande afin d’obtenir une URL de diffusion en continu</span><span class="sxs-lookup"><span data-stu-id="0fdb4-186"><a id="create_locator"></a>Create an OnDemand streaming locator in order to get a streaming URL</span></span>
-<span data-ttu-id="0fdb4-187">Vous devrez fournir aux utilisateurs l'URL de diffusion en continu pour Smooth, DASH ou HLS.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-187">You will need to provide your user with the streaming URL for Smooth, DASH or HLS.</span></span>
+## <span data-ttu-id="a20c2-186"><a id="create_locator"></a>Créer une recherche dans l’ordre tooget une URL de diffusion en continu de diffusion en continu à la demande</span><span class="sxs-lookup"><span data-stu-id="a20c2-186"><a id="create_locator"></a>Create an OnDemand streaming locator in order tooget a streaming URL</span></span>
+<span data-ttu-id="a20c2-187">Vous devez tooprovide votre utilisateur avec hello URL pour Smooth, DASH ou HLS de diffusion en continu.</span><span class="sxs-lookup"><span data-stu-id="a20c2-187">You will need tooprovide your user with hello streaming URL for Smooth, DASH or HLS.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="0fdb4-188">Si vous ajoutez ou mettez à jour la stratégie de remise de votre ressource, vous devez supprimer le localisateur existant (le cas échéant) et en créer un nouveau.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-188">If you add or update your asset’s delivery policy, you must delete an existing locator (if any) and create a new locator.</span></span>
+> <span data-ttu-id="a20c2-188">Si vous ajoutez ou mettez à jour la stratégie de remise de votre ressource, vous devez supprimer le localisateur existant (le cas échéant) et en créer un nouveau.</span><span class="sxs-lookup"><span data-stu-id="a20c2-188">If you add or update your asset’s delivery policy, you must delete an existing locator (if any) and create a new locator.</span></span>
 >
 >
 
-<span data-ttu-id="0fdb4-189">Pour savoir comment publier une ressource et générer une URL de diffusion en continu, consultez [Générer une URL de diffusion en continu](media-services-deliver-streaming-content.md).</span><span class="sxs-lookup"><span data-stu-id="0fdb4-189">For instructions on how to publish an asset and build a streaming URL, see [Build a streaming URL](media-services-deliver-streaming-content.md).</span></span>
+<span data-ttu-id="a20c2-189">Pour plus d’informations sur comment toopublish un élément multimédia et créer une URL de diffusion en continu, consultez [générer une URL de diffusion en continu](media-services-deliver-streaming-content.md).</span><span class="sxs-lookup"><span data-stu-id="a20c2-189">For instructions on how toopublish an asset and build a streaming URL, see [Build a streaming URL](media-services-deliver-streaming-content.md).</span></span>
 
-## <a name="get-a-test-token"></a><span data-ttu-id="0fdb4-190">Obtenir un test de jeton</span><span class="sxs-lookup"><span data-stu-id="0fdb4-190">Get a test token</span></span>
-<span data-ttu-id="0fdb4-191">Obtenez un jeton de test basé sur la restriction par jeton utilisée pour la stratégie d’autorisation de clé.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-191">Get a test token based on the token restriction that was used for the key authorization policy.</span></span>
+## <a name="get-a-test-token"></a><span data-ttu-id="a20c2-190">Obtenir un test de jeton</span><span class="sxs-lookup"><span data-stu-id="a20c2-190">Get a test token</span></span>
+<span data-ttu-id="a20c2-191">Obtenez un test de jeton basé sur la restriction de type hello token qui a été utilisée pour la stratégie d’autorisation de clé de hello.</span><span class="sxs-lookup"><span data-stu-id="a20c2-191">Get a test token based on hello token restriction that was used for hello key authorization policy.</span></span>
 
     // Deserializes a string containing an Xml representation of a TokenRestrictionTemplate
     // back into a TokenRestrictionTemplate class instance.
     TokenRestrictionTemplate tokenTemplate =
         TokenRestrictionTemplateSerializer.Deserialize(tokenTemplateString);
 
-    // Generate a test token based on the data in the given TokenRestrictionTemplate.
-    //The GenerateTestToken method returns the token without the word “Bearer” in front
-    //so you have to add it in front of the token string.
+    // Generate a test token based on hello data in hello given TokenRestrictionTemplate.
+    //hello GenerateTestToken method returns hello token without hello word “Bearer” in front
+    //so you have tooadd it in front of hello token string.
     string testToken = TokenRestrictionTemplateSerializer.GenerateTestToken(tokenTemplate);
-    Console.WriteLine("The authorization token is:\nBearer {0}", testToken);
+    Console.WriteLine("hello authorization token is:\nBearer {0}", testToken);
 
 
-<span data-ttu-id="0fdb4-192">Vous pouvez utiliser le [lecteur AMS](http://amsplayer.azurewebsites.net/azuremediaplayer.html) pour tester votre flux.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-192">You can use the [AMS Player](http://amsplayer.azurewebsites.net/azuremediaplayer.html) to test your stream.</span></span>
+<span data-ttu-id="a20c2-192">Vous pouvez utiliser hello [AMS lecteur](http://amsplayer.azurewebsites.net/azuremediaplayer.html) tootest votre flux de données.</span><span class="sxs-lookup"><span data-stu-id="a20c2-192">You can use hello [AMS Player](http://amsplayer.azurewebsites.net/azuremediaplayer.html) tootest your stream.</span></span>
 
-## <a name="create-and-configure-a-visual-studio-project"></a><span data-ttu-id="0fdb4-193">Créer et configurer un projet Visual Studio</span><span class="sxs-lookup"><span data-stu-id="0fdb4-193">Create and configure a Visual Studio project</span></span>
+## <a name="create-and-configure-a-visual-studio-project"></a><span data-ttu-id="a20c2-193">Créer et configurer un projet Visual Studio</span><span class="sxs-lookup"><span data-stu-id="a20c2-193">Create and configure a Visual Studio project</span></span>
 
-1. <span data-ttu-id="0fdb4-194">Configurez votre environnement de développement et ajoutez des informations de connexion au fichier app.config selon la procédure décrite dans l’article [Développement Media Services avec .NET](media-services-dotnet-how-to-use.md).</span><span class="sxs-lookup"><span data-stu-id="0fdb4-194">Set up your development environment and populate the app.config file with connection information, as described in [Media Services development with .NET](media-services-dotnet-how-to-use.md).</span></span> 
-2. <span data-ttu-id="0fdb4-195">Ajoutez les éléments suivants aux **appSettings** définis dans votre fichier app.config :</span><span class="sxs-lookup"><span data-stu-id="0fdb4-195">Add the following elements to **appSettings** defined in your app.config file:</span></span>
+1. <span data-ttu-id="a20c2-194">Configurer votre environnement de développement et de remplir le fichier app.config de hello avec les informations de connexion, comme décrit dans [développement Media Services avec .NET](media-services-dotnet-how-to-use.md).</span><span class="sxs-lookup"><span data-stu-id="a20c2-194">Set up your development environment and populate hello app.config file with connection information, as described in [Media Services development with .NET](media-services-dotnet-how-to-use.md).</span></span> 
+2. <span data-ttu-id="a20c2-195">Ajouter hello suivant éléments trop**appSettings** défini dans votre fichier app.config :</span><span class="sxs-lookup"><span data-stu-id="a20c2-195">Add hello following elements too**appSettings** defined in your app.config file:</span></span>
 
         <add key="Issuer" value="http://testacs.com"/>
         <add key="Audience" value="urn:test"/>
 
-## <a name="example"></a><span data-ttu-id="0fdb4-196">Exemple</span><span class="sxs-lookup"><span data-stu-id="0fdb4-196">Example</span></span>
+## <a name="example"></a><span data-ttu-id="a20c2-196">Exemple</span><span class="sxs-lookup"><span data-stu-id="a20c2-196">Example</span></span>
 
-<span data-ttu-id="0fdb4-197">L’exemple suivant illustre la fonctionnalité présentée dans le kit de développement logiciel Azure Media Services pour .Net-Version 3.5.2 (en particulier, la possibilité de définir un modèle de licence Widevine et de demander une licence Widevine Azure Media Services).</span><span class="sxs-lookup"><span data-stu-id="0fdb4-197">The following sample demonstrates functionality that was introduced in Azure Media Services SDK for .Net -Version 3.5.2 (specifically, the ability to define a Widevine license template and request a Widevine license from Azure Media Services).</span></span>
+<span data-ttu-id="a20c2-197">Hello exemple suivant illustre la fonctionnalité qui a été introduite dans Azure Media Services SDK pour .net-Version 3.5.2 (plus précisément, hello capacité toodefine un Widevine modèle de licence et demande une licence Widevine à partir d’Azure Media Services).</span><span class="sxs-lookup"><span data-stu-id="a20c2-197">hello following sample demonstrates functionality that was introduced in Azure Media Services SDK for .Net -Version 3.5.2 (specifically, hello ability toodefine a Widevine license template and request a Widevine license from Azure Media Services).</span></span>
 
-<span data-ttu-id="0fdb4-198">Remplacez le code dans votre fichier Program.cs par le code présenté dans cette section.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-198">Overwrite the code in your Program.cs file with the code shown in this section.</span></span>
+<span data-ttu-id="a20c2-198">Remplacer le code hello dans votre fichier Program.cs avec le code hello présenté dans cette section.</span><span class="sxs-lookup"><span data-stu-id="a20c2-198">Overwrite hello code in your Program.cs file with hello code shown in this section.</span></span>
 
 >[!NOTE]
-><span data-ttu-id="0fdb4-199">Un nombre limite de 1 000 000 a été défini pour les différentes stratégies AMS (par exemple, pour la stratégie de localisateur ou pour ContentKeyAuthorizationPolicy).</span><span class="sxs-lookup"><span data-stu-id="0fdb4-199">There is a limit of 1,000,000 policies for different AMS policies (for example, for Locator policy or ContentKeyAuthorizationPolicy).</span></span> <span data-ttu-id="0fdb4-200">Vous devez utiliser le même ID de stratégie si vous utilisez toujours les mêmes jours / autorisations d’accès, par exemple, les stratégies pour les localisateurs destinées à demeurer en place pendant une longue période (stratégies sans chargement).</span><span class="sxs-lookup"><span data-stu-id="0fdb4-200">You should use the same policy ID if you are always using the same days / access permissions, for example, policies for locators that are intended to remain in place for a long time (non-upload policies).</span></span> <span data-ttu-id="0fdb4-201">Pour plus d’informations, consultez [cette rubrique](media-services-dotnet-manage-entities.md#limit-access-policies) .</span><span class="sxs-lookup"><span data-stu-id="0fdb4-201">For more information, see [this](media-services-dotnet-manage-entities.md#limit-access-policies) topic.</span></span>
+><span data-ttu-id="a20c2-199">Un nombre limite de 1 000 000 a été défini pour les différentes stratégies AMS (par exemple, pour la stratégie de localisateur ou pour ContentKeyAuthorizationPolicy).</span><span class="sxs-lookup"><span data-stu-id="a20c2-199">There is a limit of 1,000,000 policies for different AMS policies (for example, for Locator policy or ContentKeyAuthorizationPolicy).</span></span> <span data-ttu-id="a20c2-200">Vous devez utiliser hello ID de stratégie même si vous utilisez toujours hello même jours / autorisations d’accès, par exemple, les stratégies pour les localisateurs sont tooremain prévue en place pendant une longue période (non-téléchargement stratégies).</span><span class="sxs-lookup"><span data-stu-id="a20c2-200">You should use hello same policy ID if you are always using hello same days / access permissions, for example, policies for locators that are intended tooremain in place for a long time (non-upload policies).</span></span> <span data-ttu-id="a20c2-201">Pour plus d’informations, consultez [cette rubrique](media-services-dotnet-manage-entities.md#limit-access-policies) .</span><span class="sxs-lookup"><span data-stu-id="a20c2-201">For more information, see [this](media-services-dotnet-manage-entities.md#limit-access-policies) topic.</span></span>
 
-<span data-ttu-id="0fdb4-202">Veillez à mettre à jour les variables pour pointer vers les dossiers où se trouvent vos fichiers d'entrée.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-202">Make sure to update variables to point to folders where your input files are located.</span></span>
+<span data-ttu-id="a20c2-202">Assurez-vous que tooupdate variables toopoint toofolders où se trouvent vos fichiers d’entrée.</span><span class="sxs-lookup"><span data-stu-id="a20c2-202">Make sure tooupdate variables toopoint toofolders where your input files are located.</span></span>
 
     using System;
     using System.Collections.Generic;
@@ -168,7 +168,7 @@ ms.lasthandoff: 08/29/2017
     {
         class Program
         {
-        // Read values from the App.config file.
+        // Read values from hello App.config file.
         private static readonly string _AADTenantDomain =
         ConfigurationManager.AppSettings["AADTenantDomain"];
         private static readonly string _RESTAPIEndpoint =
@@ -205,7 +205,7 @@ ms.lasthandoff: 08/29/2017
             Console.WriteLine("Encoded asset: {0}", encodedAsset.Id);
 
             IContentKey key = CreateCommonTypeContentKey(encodedAsset);
-            Console.WriteLine("Created key {0} for the asset {1} ", key.Id, encodedAsset.Id);
+            Console.WriteLine("Created key {0} for hello asset {1} ", key.Id, encodedAsset.Id);
             Console.WriteLine("PlayReady License Key delivery URL: {0}", key.GetKeyDeliveryUrl(ContentKeyDeliveryType.PlayReadyLicense));
             Console.WriteLine();
 
@@ -228,17 +228,17 @@ ms.lasthandoff: 08/29/2017
             TokenRestrictionTemplate tokenTemplate =
                 TokenRestrictionTemplateSerializer.Deserialize(tokenTemplateString);
 
-            // Generate a test token based on the the data in the given TokenRestrictionTemplate.
-            // Note, you need to pass the key id Guid because we specified
-            // TokenClaim.ContentKeyIdentifierClaim in during the creation of TokenRestrictionTemplate.
+            // Generate a test token based on hello hello data in hello given TokenRestrictionTemplate.
+            // Note, you need toopass hello key id Guid because we specified
+            // TokenClaim.ContentKeyIdentifierClaim in during hello creation of TokenRestrictionTemplate.
             Guid rawkey = EncryptionUtils.GetKeyIdAsGuid(key.Id);
             string testToken = TokenRestrictionTemplateSerializer.GenerateTestToken(tokenTemplate, null, rawkey,
                                         DateTime.UtcNow.AddDays(365));
-            Console.WriteLine("The authorization token is:\nBearer {0}", testToken);
+            Console.WriteLine("hello authorization token is:\nBearer {0}", testToken);
             Console.WriteLine();
             }
 
-            // You can use the http://amsplayer.azurewebsites.net/azuremediaplayer.html player to test streams.
+            // You can use hello http://amsplayer.azurewebsites.net/azuremediaplayer.html player tootest streams.
             // Note that DASH works on IE 11 (via PlayReady), Edge (via PlayReady), Chrome (via Widevine).
 
             string url = GetStreamingOriginLocator(encodedAsset);
@@ -274,7 +274,7 @@ ms.lasthandoff: 08/29/2017
         {
             var encodingPreset = "Adaptive Streaming";
 
-            IJob job = _context.Jobs.Create(String.Format("Encoding into Mp4 {0} to {1}",
+            IJob job = _context.Jobs.Create(String.Format("Encoding into Mp4 {0} too{1}",
                         inputAsset.Name,
                         encodingPreset));
 
@@ -308,7 +308,7 @@ ms.lasthandoff: 08/29/2017
                         "ContentKey",
                         ContentKeyType.CommonEncryption);
 
-            // Associate the key with the asset.
+            // Associate hello key with hello asset.
             asset.ContentKeys.Add(key);
 
             return key;
@@ -353,7 +353,7 @@ ms.lasthandoff: 08/29/2017
 
             contentKeyAuthorizationPolicy.Options.Add(PlayReadyPolicy);
             contentKeyAuthorizationPolicy.Options.Add(WidevinePolicy);
-            // Associate the content key authorization policy with the content key.
+            // Associate hello content key authorization policy with hello content key.
             contentKey.AuthorizationPolicyId = contentKeyAuthorizationPolicy.Id;
             contentKey = contentKey.UpdateAsync().Result;
         }
@@ -395,7 +395,7 @@ ms.lasthandoff: 08/29/2017
             contentKeyAuthorizationPolicy.Options.Add(PlayReadyPolicy);
             contentKeyAuthorizationPolicy.Options.Add(WidevinePolicy);
 
-            // Associate the content key authorization policy with the content key
+            // Associate hello content key authorization policy with hello content key
             contentKey.AuthorizationPolicyId = contentKeyAuthorizationPolicy.Id;
             contentKey = contentKey.UpdateAsync().Result;
 
@@ -417,41 +417,41 @@ ms.lasthandoff: 08/29/2017
 
         static private string ConfigurePlayReadyLicenseTemplate()
         {
-            // The following code configures PlayReady License Template using .NET classes
-            // and returns the XML string.
+            // hello following code configures PlayReady License Template using .NET classes
+            // and returns hello XML string.
 
-            //The PlayReadyLicenseResponseTemplate class represents the template for the response sent back to the end user.
-            //It contains a field for a custom data string between the license server and the application
+            //hello PlayReadyLicenseResponseTemplate class represents hello template for hello response sent back toohello end user.
+            //It contains a field for a custom data string between hello license server and hello application
             //(may be useful for custom app logic) as well as a list of one or more license templates.
             PlayReadyLicenseResponseTemplate responseTemplate = new PlayReadyLicenseResponseTemplate();
 
-            // The PlayReadyLicenseTemplate class represents a license template for creating PlayReady licenses
-            // to be returned to the end users.
-            //It contains the data on the content key in the license and any rights or restrictions to be
-            //enforced by the PlayReady DRM runtime when using the content key.
+            // hello PlayReadyLicenseTemplate class represents a license template for creating PlayReady licenses
+            // toobe returned toohello end users.
+            //It contains hello data on hello content key in hello license and any rights or restrictions toobe
+            //enforced by hello PlayReady DRM runtime when using hello content key.
             PlayReadyLicenseTemplate licenseTemplate = new PlayReadyLicenseTemplate();
-            //Configure whether the license is persistent (saved in persistent storage on the client)
-            //or non-persistent (only held in memory while the player is using the license).  
+            //Configure whether hello license is persistent (saved in persistent storage on hello client)
+            //or non-persistent (only held in memory while hello player is using hello license).  
             licenseTemplate.LicenseType = PlayReadyLicenseType.Nonpersistent;
 
-            // AllowTestDevices controls whether test devices can use the license or not.  
-            // If true, the MinimumSecurityLevel property of the license
-            // is set to 150.  If false (the default), the MinimumSecurityLevel property of the license is set to 2000.
+            // AllowTestDevices controls whether test devices can use hello license or not.  
+            // If true, hello MinimumSecurityLevel property of hello license
+            // is set too150.  If false (hello default), hello MinimumSecurityLevel property of hello license is set too2000.
             licenseTemplate.AllowTestDevices = true;
 
-            // You can also configure the Play Right in the PlayReady license by using the PlayReadyPlayRight class.
-            // It grants the user the ability to playback the content subject to the zero or more restrictions
-            // configured in the license and on the PlayRight itself (for playback specific policy).
-            // Much of the policy on the PlayRight has to do with output restrictions
-            // which control the types of outputs that the content can be played over and
+            // You can also configure hello Play Right in hello PlayReady license by using hello PlayReadyPlayRight class.
+            // It grants hello user hello ability tooplayback hello content subject toohello zero or more restrictions
+            // configured in hello license and on hello PlayRight itself (for playback specific policy).
+            // Much of hello policy on hello PlayRight has toodo with output restrictions
+            // which control hello types of outputs that hello content can be played over and
             // any restrictions that must be put in place when using a given output.
-            // For example, if the DigitalVideoOnlyContentRestriction is enabled,
-            //then the DRM runtime will only allow the video to be displayed over digital outputs
-            //(analog video outputs won’t be allowed to pass the content).
+            // For example, if hello DigitalVideoOnlyContentRestriction is enabled,
+            //then hello DRM runtime will only allow hello video toobe displayed over digital outputs
+            //(analog video outputs won’t be allowed toopass hello content).
 
-            //IMPORTANT: These types of restrictions can be very powerful but can also affect the consumer experience.
-            // If the output protections are configured too restrictive,
-            // the content might be unplayable on some clients. For more information, see the PlayReady Compliance Rules document.
+            //IMPORTANT: These types of restrictions can be very powerful but can also affect hello consumer experience.
+            // If hello output protections are configured too restrictive,
+            // hello content might be unplayable on some clients. For more information, see hello PlayReady Compliance Rules document.
 
             // For example:
             //licenseTemplate.PlayRight.AgcAndColorStripeRestriction = new AgcAndColorStripeRestriction(1);
@@ -489,15 +489,15 @@ ms.lasthandoff: 08/29/2017
 
         static public void CreateAssetDeliveryPolicy(IAsset asset, IContentKey key)
         {
-            // Get the PlayReady license service URL.
+            // Get hello PlayReady license service URL.
             Uri acquisitionUrl = key.GetKeyDeliveryUrl(ContentKeyDeliveryType.PlayReadyLicense);
 
-            // GetKeyDeliveryUrl for Widevine attaches the KID to the URL.
+            // GetKeyDeliveryUrl for Widevine attaches hello KID toohello URL.
             // For example: https://amsaccount1.keydelivery.mediaservices.windows.net/Widevine/?KID=268a6dcb-18c8-4648-8c95-f46429e4927c.  
-            // The WidevineBaseLicenseAcquisitionUrl (used below) also tells Dynamaic Encryption
-            // to append /? KID =< keyId > to the end of the url when creating the manifest.
+            // hello WidevineBaseLicenseAcquisitionUrl (used below) also tells Dynamaic Encryption
+            // tooappend /? KID =< keyId > toohello end of hello url when creating hello manifest.
             // As a result Widevine license acquisition URL will have KID appended twice,
-            // so we need to remove the KID that in the URL when we call GetKeyDeliveryUrl.
+            // so we need tooremove hello KID that in hello URL when we call GetKeyDeliveryUrl.
 
             Uri widevineUrl = key.GetKeyDeliveryUrl(ContentKeyDeliveryType.Widevine);
             UriBuilder uriBuilder = new UriBuilder(widevineUrl);
@@ -512,7 +512,7 @@ ms.lasthandoff: 08/29/2017
 
             };
 
-            // In this case we only specify Dash streaming protocol in the delivery policy,
+            // In this case we only specify Dash streaming protocol in hello delivery policy,
             // All other protocols will be blocked from streaming.
             var assetDeliveryPolicy = _context.AssetDeliveryPolicies.Create(
                 "AssetDeliveryPolicy",
@@ -521,21 +521,21 @@ ms.lasthandoff: 08/29/2017
             assetDeliveryPolicyConfiguration);
 
 
-            // Add AssetDelivery Policy to the asset
+            // Add AssetDelivery Policy toohello asset
             asset.DeliveryPolicies.Add(assetDeliveryPolicy);
 
         }
 
         /// <summary>
-        /// Gets the streaming origin locator.
+        /// Gets hello streaming origin locator.
         /// </summary>
         /// <param name="assets"></param>
         /// <returns></returns>
         static public string GetStreamingOriginLocator(IAsset asset)
         {
 
-            // Get a reference to the streaming manifest file from the  
-            // collection of files in the asset.
+            // Get a reference toohello streaming manifest file from hello  
+            // collection of files in hello asset.
 
             var assetFile = asset.AssetFiles.Where(f => f.Name.ToLower().
                          EndsWith(".ism")).
@@ -546,12 +546,12 @@ ms.lasthandoff: 08/29/2017
             TimeSpan.FromDays(30),
             AccessPermissions.Read);
 
-            // Create a locator to the streaming content on an origin.
+            // Create a locator toohello streaming content on an origin.
             ILocator originLocator = _context.Locators.CreateLocator(LocatorType.OnDemandOrigin, asset,
             policy,
             DateTime.UtcNow.AddMinutes(-5));
 
-            // Create a URL to the manifest file.
+            // Create a URL toohello manifest file.
             return originLocator.Path + assetFile.Name;
         }
 
@@ -579,17 +579,17 @@ ms.lasthandoff: 08/29/2017
     }
 
 
-## <a name="next-step"></a><span data-ttu-id="0fdb4-203">Étape suivante</span><span class="sxs-lookup"><span data-stu-id="0fdb4-203">Next step</span></span>
-<span data-ttu-id="0fdb4-204">Consultez les parcours d’apprentissage de Media Services.</span><span class="sxs-lookup"><span data-stu-id="0fdb4-204">Review Media Services learning paths.</span></span>
+## <a name="next-step"></a><span data-ttu-id="a20c2-203">Étape suivante</span><span class="sxs-lookup"><span data-stu-id="a20c2-203">Next step</span></span>
+<span data-ttu-id="a20c2-204">Consultez les parcours d’apprentissage de Media Services.</span><span class="sxs-lookup"><span data-stu-id="a20c2-204">Review Media Services learning paths.</span></span>
 
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-## <a name="provide-feedback"></a><span data-ttu-id="0fdb4-205">Fournir des commentaires</span><span class="sxs-lookup"><span data-stu-id="0fdb4-205">Provide feedback</span></span>
+## <a name="provide-feedback"></a><span data-ttu-id="a20c2-205">Fournir des commentaires</span><span class="sxs-lookup"><span data-stu-id="a20c2-205">Provide feedback</span></span>
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-## <a name="see-also"></a><span data-ttu-id="0fdb4-206">Voir aussi</span><span class="sxs-lookup"><span data-stu-id="0fdb4-206">See also</span></span>
-[<span data-ttu-id="0fdb4-207">CENC avec Multi-DRM et Access Control</span><span class="sxs-lookup"><span data-stu-id="0fdb4-207">CENC with Multi-DRM and Access Control</span></span>](media-services-cenc-with-multidrm-access-control.md)
+## <a name="see-also"></a><span data-ttu-id="a20c2-206">Voir aussi</span><span class="sxs-lookup"><span data-stu-id="a20c2-206">See also</span></span>
+[<span data-ttu-id="a20c2-207">CENC avec Multi-DRM et Access Control</span><span class="sxs-lookup"><span data-stu-id="a20c2-207">CENC with Multi-DRM and Access Control</span></span>](media-services-cenc-with-multidrm-access-control.md)
 
-[<span data-ttu-id="0fdb4-208">Configurer l’empaquetage Widevine avec AMS</span><span class="sxs-lookup"><span data-stu-id="0fdb4-208">Configure Widevine packaging with AMS</span></span>](http://mingfeiy.com/how-to-configure-widevine-packaging-with-azure-media-services)
+[<span data-ttu-id="a20c2-208">Configurer l’empaquetage Widevine avec AMS</span><span class="sxs-lookup"><span data-stu-id="a20c2-208">Configure Widevine packaging with AMS</span></span>](http://mingfeiy.com/how-to-configure-widevine-packaging-with-azure-media-services)
 
-[<span data-ttu-id="0fdb4-209">Annonce des services de distribution de licence Google Widevine dans Azure Media Services</span><span class="sxs-lookup"><span data-stu-id="0fdb4-209">Announcing Google Widevine license delivery services in Azure Media Services</span></span>](https://azure.microsoft.com/blog/announcing-general-availability-of-google-widevine-license-services/)
+[<span data-ttu-id="a20c2-209">Annonce des services de distribution de licence Google Widevine dans Azure Media Services</span><span class="sxs-lookup"><span data-stu-id="a20c2-209">Announcing Google Widevine license delivery services in Azure Media Services</span></span>](https://azure.microsoft.com/blog/announcing-general-availability-of-google-widevine-license-services/)

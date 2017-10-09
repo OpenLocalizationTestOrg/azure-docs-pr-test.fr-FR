@@ -13,7 +13,7 @@
 ### [Guide du développeur Key Vault](key-vault-developers-guide.md)
 ### [Limites du service](key-vault-service-limits.md)
 ### [Clés protégées par HSM](key-vault-hsm-protected-keys.md)
-### [Migrer vers .NET 2.0](key-vault-dotnet2api-release-notes.md)
+### [Migrer too.NET 2.0](key-vault-dotnet2api-release-notes.md)
 ### Vues d’ensemble
 #### [Mondes de sécurité](key-vault-ovw-security-worlds.md)
 #### [Suppression réversible](key-vault-ovw-soft-delete.md)
@@ -26,9 +26,9 @@
 ### [Disponibilité et redondance](key-vault-disaster-recovery-guidance.md)
 ### [Modifier l’ID de locataire](key-vault-subscription-move-fix.md)
 ### [Créer et gérer à l’aide de CLI 2.0](key-vault-manage-with-cli2.md)
-### [Utilisation de la suppression réversible Key Vault avec l’interface CLI](key-vault-soft-delete-cli.md)
-### [Utilisation de la suppression réversible Key Vault avec l’interface CLI](key-vault-soft-delete-powershell.md)
-### [Utiliser des groupes pour accorder l’accès](key-vault-group-permissions-for-apps.md)
+### [Comment toouse le coffre de clés soft-suppression avec l’interface CLI](key-vault-soft-delete-cli.md)
+### [Comment toouse le coffre de clés soft-suppression avec PowerShell](key-vault-soft-delete-powershell.md)
+### [Utiliser des groupes l’accès toogrant](key-vault-group-permissions-for-apps.md)
 ### [Sécurisez votre coffre de clés](key-vault-secure-your-key-vault.md)
 
 ## Automatisation

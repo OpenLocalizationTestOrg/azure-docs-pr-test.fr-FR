@@ -1,6 +1,6 @@
 ---
-title: "  Publier du contenu avec le Portail Azure | Microsoft Docs"
-description: "Ce didacticiel vous guide à travers les étapes de publication de votre contenu avec le Portail Azure."
+title: "AAA » publier du contenu avec hello portail Azure | Documents Microsoft »"
+description: "Ce didacticiel vous guide tout au long des étapes hello de publication de votre contenu avec hello portail Azure."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,88 +14,88 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/07/2017
 ms.author: juliako
-ms.openlocfilehash: 68a2fbdda0996cf4ba5ea3b09816bf845af756f4
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a7a3867a6939b4b9da883176c6cc20c99d6c54e7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="publish-content-with-the-azure-portal"></a><span data-ttu-id="aee44-103">Publier du contenu avec le Portail Azure</span><span class="sxs-lookup"><span data-stu-id="aee44-103">Publish content with the Azure portal</span></span>
+# <a name="publish-content-with-hello-azure-portal"></a><span data-ttu-id="90a0f-103">Publier du contenu avec hello portail Azure</span><span class="sxs-lookup"><span data-stu-id="90a0f-103">Publish content with hello Azure portal</span></span>
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="aee44-104">Portail</span><span class="sxs-lookup"><span data-stu-id="aee44-104">Portal</span></span>](media-services-portal-publish.md)
-> * [<span data-ttu-id="aee44-105">.NET</span><span class="sxs-lookup"><span data-stu-id="aee44-105">.NET</span></span>](media-services-deliver-streaming-content.md)
-> * [<span data-ttu-id="aee44-106">REST</span><span class="sxs-lookup"><span data-stu-id="aee44-106">REST</span></span>](media-services-rest-deliver-streaming-content.md)
+> * [<span data-ttu-id="90a0f-104">Portail</span><span class="sxs-lookup"><span data-stu-id="90a0f-104">Portal</span></span>](media-services-portal-publish.md)
+> * [<span data-ttu-id="90a0f-105">.NET</span><span class="sxs-lookup"><span data-stu-id="90a0f-105">.NET</span></span>](media-services-deliver-streaming-content.md)
+> * [<span data-ttu-id="90a0f-106">REST</span><span class="sxs-lookup"><span data-stu-id="90a0f-106">REST</span></span>](media-services-rest-deliver-streaming-content.md)
 > 
 > 
 
-## <a name="overview"></a><span data-ttu-id="aee44-107">Vue d'ensemble</span><span class="sxs-lookup"><span data-stu-id="aee44-107">Overview</span></span>
+## <a name="overview"></a><span data-ttu-id="90a0f-107">Vue d'ensemble</span><span class="sxs-lookup"><span data-stu-id="90a0f-107">Overview</span></span>
 > [!NOTE]
-> <span data-ttu-id="aee44-108">Pour suivre ce didacticiel, vous avez besoin d'un compte Azure.</span><span class="sxs-lookup"><span data-stu-id="aee44-108">To complete this tutorial, you need an Azure account.</span></span> <span data-ttu-id="aee44-109">Pour plus d'informations, consultez la page [Version d'évaluation gratuite d'Azure](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="aee44-109">For details, see [Azure Free Trial](https://azure.microsoft.com/pricing/free-trial/).</span></span> 
+> <span data-ttu-id="90a0f-108">toocomplete ce didacticiel, vous avez besoin d’un compte Azure.</span><span class="sxs-lookup"><span data-stu-id="90a0f-108">toocomplete this tutorial, you need an Azure account.</span></span> <span data-ttu-id="90a0f-109">Pour plus d'informations, consultez la page [Version d'évaluation gratuite d'Azure](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="90a0f-109">For details, see [Azure Free Trial](https://azure.microsoft.com/pricing/free-trial/).</span></span> 
 > 
 > 
 
-<span data-ttu-id="aee44-110">Pour fournir aux utilisateurs une URL pouvant être utilisée pour diffuser en continu ou télécharger votre contenu, vous devez d’abord « publier » votre élément multimédia en créant un localisateur.</span><span class="sxs-lookup"><span data-stu-id="aee44-110">To provide your user with a  URL that can be used to stream or download your content, you first need to "publish" your asset by creating a locator.</span></span> <span data-ttu-id="aee44-111">Les localisateurs assurent l’accès aux fichiers contenus dans l’élément multimédia.</span><span class="sxs-lookup"><span data-stu-id="aee44-111">Locators provide access to files contained in the asset.</span></span> <span data-ttu-id="aee44-112">Media Services prend en charge deux types de localisateurs :</span><span class="sxs-lookup"><span data-stu-id="aee44-112">Media Services supports two types of locators:</span></span> 
+<span data-ttu-id="90a0f-110">tooprovide votre utilisateur avec une URL qui peut être utilisé toostream ou télécharger votre contenu, vous tout d’abord besoin trop « publier » votre élément multimédia en créant un localisateur.</span><span class="sxs-lookup"><span data-stu-id="90a0f-110">tooprovide your user with a  URL that can be used toostream or download your content, you first need too"publish" your asset by creating a locator.</span></span> <span data-ttu-id="90a0f-111">Les localisateurs offrent toofiles accès contenues dans l’élément multimédia de hello.</span><span class="sxs-lookup"><span data-stu-id="90a0f-111">Locators provide access toofiles contained in hello asset.</span></span> <span data-ttu-id="90a0f-112">Media Services prend en charge deux types de localisateurs :</span><span class="sxs-lookup"><span data-stu-id="90a0f-112">Media Services supports two types of locators:</span></span> 
 
-* <span data-ttu-id="aee44-113">les localisateurs de diffusion en continu (OnDemandOrigin), utilisés pour la diffusion adaptative (par exemple, MPEG DASH, HLS ou Smooth Streaming) ;</span><span class="sxs-lookup"><span data-stu-id="aee44-113">Streaming (OnDemandOrigin) locators, used for adaptive streaming (for example, to stream MPEG DASH, HLS, or Smooth Streaming).</span></span> <span data-ttu-id="aee44-114">Pour créer un localisateur de diffusion en continu, votre élément multimédia doit contenir un fichier .ism ;</span><span class="sxs-lookup"><span data-stu-id="aee44-114">To create a streaming locator your asset must contain an .ism file.</span></span> 
-* <span data-ttu-id="aee44-115">les localisateurs progressifs (SAS), utilisés pour la diffusion de vidéo par téléchargement progressif.</span><span class="sxs-lookup"><span data-stu-id="aee44-115">Progressive (SAS) locators, used for delivery of video via progressive download.</span></span>
+* <span data-ttu-id="90a0f-113">Diffusion en continu les localisateurs (OnDemandOrigin), utilisés pour la diffusion adaptative en continu (par exemple, toostream MPEG DASH, HLS ou Smooth Streaming).</span><span class="sxs-lookup"><span data-stu-id="90a0f-113">Streaming (OnDemandOrigin) locators, used for adaptive streaming (for example, toostream MPEG DASH, HLS, or Smooth Streaming).</span></span> <span data-ttu-id="90a0f-114">toocreate un localisateur de diffusion en continu votre élément multimédia doit contenir un fichier .ism.</span><span class="sxs-lookup"><span data-stu-id="90a0f-114">toocreate a streaming locator your asset must contain an .ism file.</span></span> 
+* <span data-ttu-id="90a0f-115">les localisateurs progressifs (SAS), utilisés pour la diffusion de vidéo par téléchargement progressif.</span><span class="sxs-lookup"><span data-stu-id="90a0f-115">Progressive (SAS) locators, used for delivery of video via progressive download.</span></span>
 
-<span data-ttu-id="aee44-116">Les URL de diffusion en continu, que vous pouvez utiliser pour lire des éléments multimédias Smooth Streaming, ont le format suivant.</span><span class="sxs-lookup"><span data-stu-id="aee44-116">A streaming URL has the following format and you can use it to play Smooth Streaming assets.</span></span>
+<span data-ttu-id="90a0f-116">Une URL de diffusion en continu a hello suivant le format et vous pouvez l’utiliser de ressources de diffusion en continu lisse tooplay.</span><span class="sxs-lookup"><span data-stu-id="90a0f-116">A streaming URL has hello following format and you can use it tooplay Smooth Streaming assets.</span></span>
 
     {streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest
 
-<span data-ttu-id="aee44-117">Pour créer une URL de diffusion en continu HLS, ajoutez (format=m3u8-aapl) à l’URL.</span><span class="sxs-lookup"><span data-stu-id="aee44-117">To build an HLS streaming URL, append (format=m3u8-aapl) to the URL.</span></span>
+<span data-ttu-id="90a0f-117">ajouter des toobuild une URL de diffusion en continu de TLS (format = m3u8-aapl) toohello URL.</span><span class="sxs-lookup"><span data-stu-id="90a0f-117">toobuild an HLS streaming URL, append (format=m3u8-aapl) toohello URL.</span></span>
 
     {streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest(format=m3u8-aapl)
 
-<span data-ttu-id="aee44-118">Pour créer une URL de diffusion en continu MPEG DASH, ajoutez (format=mpd-time-csf) à l’URL.</span><span class="sxs-lookup"><span data-stu-id="aee44-118">To build an  MPEG DASH streaming URL, append (format=mpd-time-csf) to the URL.</span></span>
+<span data-ttu-id="90a0f-118">ajouter des toobuild une URL de diffusion en continu de MPEG DASH (format = mpd-heure-csf) toohello URL.</span><span class="sxs-lookup"><span data-stu-id="90a0f-118">toobuild an  MPEG DASH streaming URL, append (format=mpd-time-csf) toohello URL.</span></span>
 
     {streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest(format=mpd-time-csf)
 
-<span data-ttu-id="aee44-119">Une URL SAS a le format suivant :</span><span class="sxs-lookup"><span data-stu-id="aee44-119">A SAS URL has the following format.</span></span>
+<span data-ttu-id="90a0f-119">Une URL SAS a hello suivant le format.</span><span class="sxs-lookup"><span data-stu-id="90a0f-119">A SAS URL has hello following format.</span></span>
 
     {blob container name}/{asset name}/{file name}/{SAS signature}
 
-<span data-ttu-id="aee44-120">Pour plus d’informations, consultez [Fournir du contenu (vue d’ensemble)](media-services-deliver-content-overview.md).</span><span class="sxs-lookup"><span data-stu-id="aee44-120">For more information, see [Delivering content overview](media-services-deliver-content-overview.md).</span></span>
+<span data-ttu-id="90a0f-120">Pour plus d’informations, consultez [Fournir du contenu (vue d’ensemble)](media-services-deliver-content-overview.md).</span><span class="sxs-lookup"><span data-stu-id="90a0f-120">For more information, see [Delivering content overview](media-services-deliver-content-overview.md).</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="aee44-121">Si vous avez utilisé le portail pour créer des localisateurs avant mars 2015, des localisateurs présentant une date d’expiration de deux ans ont été créés.</span><span class="sxs-lookup"><span data-stu-id="aee44-121">If you used the portal to create locators before March 2015, locators with a two year expiration date were created.</span></span>  
+> <span data-ttu-id="90a0f-121">Si vous avez utilisé les localisateurs toocreate portail hello avant mars 2015, les localisateurs avec une date d’expiration de deux ans ont été créés.</span><span class="sxs-lookup"><span data-stu-id="90a0f-121">If you used hello portal toocreate locators before March 2015, locators with a two year expiration date were created.</span></span>  
 > 
 > 
 
-<span data-ttu-id="aee44-122">Pour mettre à jour la date d’expiration d’un localisateur, utilisez les API [REST](https://docs.microsoft.com/rest/api/media/operations/locator#update_a_locator) ou [.NET](http://go.microsoft.com/fwlink/?LinkID=533259).</span><span class="sxs-lookup"><span data-stu-id="aee44-122">To update an expiration date on a locator, use [REST](https://docs.microsoft.com/rest/api/media/operations/locator#update_a_locator) or [.NET](http://go.microsoft.com/fwlink/?LinkID=533259) APIs.</span></span> <span data-ttu-id="aee44-123">Notez que lorsque vous mettez à jour la date d’expiration d’un localisateur SAS, l’URL est modifiée.</span><span class="sxs-lookup"><span data-stu-id="aee44-123">Note that when you update the expiration date of a SAS locator, the URL changes.</span></span>
+<span data-ttu-id="90a0f-122">tooupdate une date d’expiration sur un localisateur, utilisez [reste](https://docs.microsoft.com/rest/api/media/operations/locator#update_a_locator) ou [.NET](http://go.microsoft.com/fwlink/?LinkID=533259) API.</span><span class="sxs-lookup"><span data-stu-id="90a0f-122">tooupdate an expiration date on a locator, use [REST](https://docs.microsoft.com/rest/api/media/operations/locator#update_a_locator) or [.NET](http://go.microsoft.com/fwlink/?LinkID=533259) APIs.</span></span> <span data-ttu-id="90a0f-123">Notez que lorsque vous mettez à jour date d’expiration de hello d’un localisateur SAS, hello URL change.</span><span class="sxs-lookup"><span data-stu-id="90a0f-123">Note that when you update hello expiration date of a SAS locator, hello URL changes.</span></span>
 
-### <a name="to-use-the-portal-to-publish-an-asset"></a><span data-ttu-id="aee44-124">Pour publier un élément multimédia à l’aide du portail</span><span class="sxs-lookup"><span data-stu-id="aee44-124">To use the portal to publish an asset</span></span>
-<span data-ttu-id="aee44-125">Pour utiliser le portail pour publier un élément multimédia, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="aee44-125">To use the portal to publish an asset, do the following:</span></span>
+### <a name="toouse-hello-portal-toopublish-an-asset"></a><span data-ttu-id="90a0f-124">toouse hello toopublish portail un élément multimédia</span><span class="sxs-lookup"><span data-stu-id="90a0f-124">toouse hello portal toopublish an asset</span></span>
+<span data-ttu-id="90a0f-125">toouse hello toopublish portail un élément multimédia, hello suivant :</span><span class="sxs-lookup"><span data-stu-id="90a0f-125">toouse hello portal toopublish an asset, do hello following:</span></span>
 
-1. <span data-ttu-id="aee44-126">Dans le [portail Azure](https://portal.azure.com/), sélectionnez votre compte Azure Media Services.</span><span class="sxs-lookup"><span data-stu-id="aee44-126">In the [Azure portal](https://portal.azure.com/), select your Azure Media Services account.</span></span>
-2. <span data-ttu-id="aee44-127">Sélectionnez **Paramètres** > **Éléments multimédias**.</span><span class="sxs-lookup"><span data-stu-id="aee44-127">Select **Settings** > **Assets**.</span></span>
-3. <span data-ttu-id="aee44-128">Sélectionnez l’élément que vous souhaitez publier.</span><span class="sxs-lookup"><span data-stu-id="aee44-128">Select the asset that you want to publish.</span></span>
-4. <span data-ttu-id="aee44-129">Cliquez sur le bouton **Publier** .</span><span class="sxs-lookup"><span data-stu-id="aee44-129">Click the **Publish** button.</span></span>
-5. <span data-ttu-id="aee44-130">Sélectionnez le type de localisateur.</span><span class="sxs-lookup"><span data-stu-id="aee44-130">Select the locator type.</span></span>
-6. <span data-ttu-id="aee44-131">Cliquez sur **Ajouter**.</span><span class="sxs-lookup"><span data-stu-id="aee44-131">Press **Add**.</span></span>
+1. <span data-ttu-id="90a0f-126">Bonjour [portail Azure](https://portal.azure.com/), sélectionnez votre compte Azure Media Services.</span><span class="sxs-lookup"><span data-stu-id="90a0f-126">In hello [Azure portal](https://portal.azure.com/), select your Azure Media Services account.</span></span>
+2. <span data-ttu-id="90a0f-127">Sélectionnez **Paramètres** > **Éléments multimédias**.</span><span class="sxs-lookup"><span data-stu-id="90a0f-127">Select **Settings** > **Assets**.</span></span>
+3. <span data-ttu-id="90a0f-128">Sélectionnez asset hello que vous souhaitez toopublish.</span><span class="sxs-lookup"><span data-stu-id="90a0f-128">Select hello asset that you want toopublish.</span></span>
+4. <span data-ttu-id="90a0f-129">Cliquez sur hello **publier** bouton.</span><span class="sxs-lookup"><span data-stu-id="90a0f-129">Click hello **Publish** button.</span></span>
+5. <span data-ttu-id="90a0f-130">Sélectionnez le type de localisateur hello.</span><span class="sxs-lookup"><span data-stu-id="90a0f-130">Select hello locator type.</span></span>
+6. <span data-ttu-id="90a0f-131">Cliquez sur **Ajouter**.</span><span class="sxs-lookup"><span data-stu-id="90a0f-131">Press **Add**.</span></span>
    
     ![Publier](./media/media-services-portal-vod-get-started/media-services-publish1.png)
 
-<span data-ttu-id="aee44-133">L’URL sera ajoutée à la liste des **URL publiées**.</span><span class="sxs-lookup"><span data-stu-id="aee44-133">The URL will be added to the list of **Published URLs**.</span></span>
+<span data-ttu-id="90a0f-133">URL de Hello sera ajouté toohello la liste des **URL de publication**.</span><span class="sxs-lookup"><span data-stu-id="90a0f-133">hello URL will be added toohello list of **Published URLs**.</span></span>
 
-## <a name="play-content-from-the-portal"></a><span data-ttu-id="aee44-134">Lecture de contenu sur le portail</span><span class="sxs-lookup"><span data-stu-id="aee44-134">Play content from the portal</span></span>
-<span data-ttu-id="aee44-135">Le portail Azure propose un lecteur de contenu que vous pouvez utiliser pour tester votre vidéo.</span><span class="sxs-lookup"><span data-stu-id="aee44-135">The Azure portal provides a content player that you can use to test your video.</span></span>
+## <a name="play-content-from-hello-portal"></a><span data-ttu-id="90a0f-134">Lire le contenu à partir du portail de hello</span><span class="sxs-lookup"><span data-stu-id="90a0f-134">Play content from hello portal</span></span>
+<span data-ttu-id="90a0f-135">portail Azure Hello fournit un lecteur de contenu que vous pouvez utiliser tootest votre vidéo.</span><span class="sxs-lookup"><span data-stu-id="90a0f-135">hello Azure portal provides a content player that you can use tootest your video.</span></span>
 
-<span data-ttu-id="aee44-136">Cliquez sur la vidéo de votre choix, puis sur le bouton **Lire** .</span><span class="sxs-lookup"><span data-stu-id="aee44-136">Click the desired video and then click the **Play** button.</span></span>
+<span data-ttu-id="90a0f-136">Vidéo de hello souhaité, puis cliquez sur hello **lire** bouton.</span><span class="sxs-lookup"><span data-stu-id="90a0f-136">Click hello desired video and then click hello **Play** button.</span></span>
 
 ![Publier](./media/media-services-portal-vod-get-started/media-services-play.png)
 
-<span data-ttu-id="aee44-138">Certaines considérations s’appliquent :</span><span class="sxs-lookup"><span data-stu-id="aee44-138">Some considerations apply:</span></span>
+<span data-ttu-id="90a0f-138">Certaines considérations s’appliquent :</span><span class="sxs-lookup"><span data-stu-id="90a0f-138">Some considerations apply:</span></span>
 
-* <span data-ttu-id="aee44-139">Assurez-vous que la vidéo a été publiée.</span><span class="sxs-lookup"><span data-stu-id="aee44-139">Make sure the video has been published.</span></span>
-* <span data-ttu-id="aee44-140">Le **lecteur multimédia** effectue la lecture à partir du point de terminaison de diffusion en continu par défaut.</span><span class="sxs-lookup"><span data-stu-id="aee44-140">This **Media player** plays from the default streaming endpoint.</span></span> <span data-ttu-id="aee44-141">Si vous souhaitez lire à partir d’un autre point de terminaison de diffusion en continu que celui par défaut, cliquez sur l’URL pour la copier et utilisez un autre lecteur,</span><span class="sxs-lookup"><span data-stu-id="aee44-141">If you want to play from a non-default streaming endpoint, click to copy the URL and use another player.</span></span> <span data-ttu-id="aee44-142">par exemple, le [lecteur Azure Media Services](http://amsplayer.azurewebsites.net/azuremediaplayer.html).</span><span class="sxs-lookup"><span data-stu-id="aee44-142">For example, [Azure Media Services Player](http://amsplayer.azurewebsites.net/azuremediaplayer.html).</span></span>
-* <span data-ttu-id="aee44-143">Le point de terminaison de streaming à partir duquel vous diffusez en continu doit être en cours d’exécution.</span><span class="sxs-lookup"><span data-stu-id="aee44-143">The streaming endpoint from which you are streaming must be running.</span></span>  
+* <span data-ttu-id="90a0f-139">Vérifiez que hello vidéo a été publié.</span><span class="sxs-lookup"><span data-stu-id="90a0f-139">Make sure hello video has been published.</span></span>
+* <span data-ttu-id="90a0f-140">Cela **Media player** est lu à partir du point de terminaison de diffusion en continu de la valeur par défaut hello.</span><span class="sxs-lookup"><span data-stu-id="90a0f-140">This **Media player** plays from hello default streaming endpoint.</span></span> <span data-ttu-id="90a0f-141">Si vous souhaitez tooplay à partir d’un élément non défini par défaut diffusion en continu de point de terminaison, cliquez sur l’URL toocopy hello et utilisez un autre lecteur.</span><span class="sxs-lookup"><span data-stu-id="90a0f-141">If you want tooplay from a non-default streaming endpoint, click toocopy hello URL and use another player.</span></span> <span data-ttu-id="90a0f-142">par exemple, le [lecteur Azure Media Services](http://amsplayer.azurewebsites.net/azuremediaplayer.html).</span><span class="sxs-lookup"><span data-stu-id="90a0f-142">For example, [Azure Media Services Player](http://amsplayer.azurewebsites.net/azuremediaplayer.html).</span></span>
+* <span data-ttu-id="90a0f-143">Bonjour à partir de laquelle vous diffusiez en continu un point de terminaison de diffusion en continu doit s’exécuter.</span><span class="sxs-lookup"><span data-stu-id="90a0f-143">hello streaming endpoint from which you are streaming must be running.</span></span>  
 
-## <a name="next-steps"></a><span data-ttu-id="aee44-144">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="aee44-144">Next steps</span></span>
-<span data-ttu-id="aee44-145">Consultez les parcours d’apprentissage de Media Services.</span><span class="sxs-lookup"><span data-stu-id="aee44-145">Review Media Services learning paths.</span></span>
+## <a name="next-steps"></a><span data-ttu-id="90a0f-144">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="90a0f-144">Next steps</span></span>
+<span data-ttu-id="90a0f-145">Consultez les parcours d’apprentissage de Media Services.</span><span class="sxs-lookup"><span data-stu-id="90a0f-145">Review Media Services learning paths.</span></span>
 
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-## <a name="provide-feedback"></a><span data-ttu-id="aee44-146">Fournir des commentaires</span><span class="sxs-lookup"><span data-stu-id="aee44-146">Provide feedback</span></span>
+## <a name="provide-feedback"></a><span data-ttu-id="90a0f-146">Fournir des commentaires</span><span class="sxs-lookup"><span data-stu-id="90a0f-146">Provide feedback</span></span>
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 

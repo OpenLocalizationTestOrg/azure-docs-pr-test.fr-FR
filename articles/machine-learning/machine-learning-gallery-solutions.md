@@ -1,6 +1,6 @@
 ---
-title: Solutions de la galerie Cortana Intelligence | Microsoft Docs
-description: "Découvrez des solutions dans la galerie Cortana Intelligence."
+title: "Galerie de Solutions d’analyse décisionnelle d’aaaCortana | Documents Microsoft"
+description: "Découvrez les Solutions Bonjour Cortana Intelligence galerie."
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -14,38 +14,38 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: roopalik;garye
-ms.openlocfilehash: 8e180db2ab5fbabf5238b18b1d2866b746eb9994
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2cb6b0892c2eba873fa7e685288dc3b12d1dc981
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="discover-solutions-in-the-cortana-intelligence-gallery"></a><span data-ttu-id="122a3-103">Découvrir des solutions dans la galerie Cortana Intelligence</span><span class="sxs-lookup"><span data-stu-id="122a3-103">Discover Solutions in the Cortana Intelligence Gallery</span></span>
+# <a name="discover-solutions-in-hello-cortana-intelligence-gallery"></a><span data-ttu-id="21098-103">Découvrir des Solutions dans hello Cortana Intelligence galerie</span><span class="sxs-lookup"><span data-stu-id="21098-103">Discover Solutions in hello Cortana Intelligence Gallery</span></span>
 [!INCLUDE [machine-learning-gallery-item-selector](../../includes/machine-learning-gallery-item-selector.md)]
 
-## <a name="solutions"></a><span data-ttu-id="122a3-104">Solutions</span><span class="sxs-lookup"><span data-stu-id="122a3-104">Solutions</span></span>
-<span data-ttu-id="122a3-105">Une **[Solution](https://gallery.cortanaintelligence.com/solutions)** dans la galerie fournit un point de départ pour créer rapidement des Solutions Cortana Intelligence à partir de solutions préconfigurées, d’architectures de référence et de modèles de conception.</span><span class="sxs-lookup"><span data-stu-id="122a3-105">A **[Solution](https://gallery.cortanaintelligence.com/solutions)** in the Gallery provides a jumpstart to quickly build Cortana Intelligence Solutions from preconfigured solutions, reference architectures, and design patterns.</span></span>
-<span data-ttu-id="122a3-106">Appropriez-les vous propres avec les instructions fournies, ou à l’aide d’un partenaire proposé.</span><span class="sxs-lookup"><span data-stu-id="122a3-106">Make them your own with the included instructions or with a featured partner.</span></span>  
+## <a name="solutions"></a><span data-ttu-id="21098-104">Solutions</span><span class="sxs-lookup"><span data-stu-id="21098-104">Solutions</span></span>
+<span data-ttu-id="21098-105">A  **[Solution](https://gallery.cortanaintelligence.com/solutions)**  hello galerie fournit une build de tooquickly jumpstart Cortana Solutions d’analyse décisionnelle des solutions préconfigurées, architectures de référence, des modèles de conception.</span><span class="sxs-lookup"><span data-stu-id="21098-105">A **[Solution](https://gallery.cortanaintelligence.com/solutions)** in hello Gallery provides a jumpstart tooquickly build Cortana Intelligence Solutions from preconfigured solutions, reference architectures, and design patterns.</span></span>
+<span data-ttu-id="21098-106">Rendre vos propres instructions de hello inclus ou avec un proposée partenaire.</span><span class="sxs-lookup"><span data-stu-id="21098-106">Make them your own with hello included instructions or with a featured partner.</span></span>  
 
-## <a name="discover"></a><span data-ttu-id="122a3-107">Découvrez</span><span class="sxs-lookup"><span data-stu-id="122a3-107">Discover</span></span>
-  <span data-ttu-id="122a3-108">Pour rechercher dans la galerie des solutions, ouvrez le [galerie](http://gallery.cortanaintelligence.com) et cliquez sur **Solutions** en haut de la page d’accueil de la galerie.</span><span class="sxs-lookup"><span data-stu-id="122a3-108">To browse for solutions in the Gallery, open the [Gallery](http://gallery.cortanaintelligence.com) and click **Solutions** at the top of the Gallery home page.</span></span>
+## <a name="discover"></a><span data-ttu-id="21098-107">Découvrez</span><span class="sxs-lookup"><span data-stu-id="21098-107">Discover</span></span>
+  <span data-ttu-id="21098-108">toobrowse pour les solutions Bonjour galerie, ouvrez hello [galerie](http://gallery.cortanaintelligence.com) et cliquez sur **Solutions** haut hello de page d’accueil de la galerie de hello.</span><span class="sxs-lookup"><span data-stu-id="21098-108">toobrowse for solutions in hello Gallery, open hello [Gallery](http://gallery.cortanaintelligence.com) and click **Solutions** at hello top of hello Gallery home page.</span></span>
 
- <span data-ttu-id="122a3-109">Le  **[Solutions](https://gallery.cortanaintelligence.com/solutions)**  page affiche une liste des Solutions plus récemment ajoutées.</span><span class="sxs-lookup"><span data-stu-id="122a3-109">The **[Solutions](https://gallery.cortanaintelligence.com/solutions)** page displays a list of the most recently added Solutions.</span></span>
-<span data-ttu-id="122a3-110">Cliquez sur **Afficher tout** pour afficher toutes les solutions.</span><span class="sxs-lookup"><span data-stu-id="122a3-110">Click **See all** to view all Solutions.</span></span>
-<span data-ttu-id="122a3-111">Sur cette page, vous pouvez parcourir toutes les solutions de la galerie.</span><span class="sxs-lookup"><span data-stu-id="122a3-111">From this page, you can browse all the Solutions in the Gallery.</span></span> <span data-ttu-id="122a3-112">Vous pouvez également effectuer une recherche en sélectionnant les critères de filtre sur la gauche de la page et en entrant les termes de la recherche en haut.</span><span class="sxs-lookup"><span data-stu-id="122a3-112">You also can search by selecting filter criteria on the left of the page and entering search terms at the top.</span></span>
+ <span data-ttu-id="21098-109">Le  **[Solutions](https://gallery.cortanaintelligence.com/solutions)**  page affiche une liste de hello plus récemment ajouté des Solutions.</span><span class="sxs-lookup"><span data-stu-id="21098-109">The **[Solutions](https://gallery.cortanaintelligence.com/solutions)** page displays a list of hello most recently added Solutions.</span></span>
+<span data-ttu-id="21098-110">Cliquez sur **afficher tous les** tooview toutes les Solutions.</span><span class="sxs-lookup"><span data-stu-id="21098-110">Click **See all** tooview all Solutions.</span></span>
+<span data-ttu-id="21098-111">À partir de cette page, vous pouvez parcourir toutes les Solutions dans la galerie de hello.</span><span class="sxs-lookup"><span data-stu-id="21098-111">From this page, you can browse all the Solutions in hello Gallery.</span></span> <span data-ttu-id="21098-112">Vous pouvez également rechercher en sélectionnant des critères de filtre sur la gauche hello de page de hello et Saisie des termes de recherche au hello haut.</span><span class="sxs-lookup"><span data-stu-id="21098-112">You also can search by selecting filter criteria on hello left of hello page and entering search terms at hello top.</span></span>
 
- <span data-ttu-id="122a3-113">Cliquez sur une solution pour ouvrir sa page de détails, puis lisez des informations supplémentaires.</span><span class="sxs-lookup"><span data-stu-id="122a3-113">Click any Solution to open its details page and read more information.</span></span> <span data-ttu-id="122a3-114">Dans cette page, vous pouvez commenter, fournir un retour d’expérience ou poser des questions dans la section des commentaires.</span><span class="sxs-lookup"><span data-stu-id="122a3-114">On this page you can comment, provide feedback, or ask questions through the comments section.</span></span> <span data-ttu-id="122a3-115">Vous pouvez même la partager avec des amis ou collègues à l’aide des fonctionnalités de partage de LinkedIn ou Twitter.</span><span class="sxs-lookup"><span data-stu-id="122a3-115">You can even share it with friends or colleagues using the share capabilities of LinkedIn or Twitter.</span></span> <span data-ttu-id="122a3-116">Vous pouvez également envoyer par e-mail un lien vers la solution pour inviter d’autres utilisateurs à consulter la page.</span><span class="sxs-lookup"><span data-stu-id="122a3-116">You can also email a link to the Solution to invite other users to view the page.</span></span>
+ <span data-ttu-id="21098-113">Cliquez sur n’importe quel tooopen Solution sa page de détails et plus d’informations.</span><span class="sxs-lookup"><span data-stu-id="21098-113">Click any Solution tooopen its details page and read more information.</span></span> <span data-ttu-id="21098-114">Dans cette page, que vous pouvez mettre en commentaire, fournir des commentaires ou poser des questions dans la section des commentaires hello.</span><span class="sxs-lookup"><span data-stu-id="21098-114">On this page you can comment, provide feedback, or ask questions through hello comments section.</span></span> <span data-ttu-id="21098-115">Vous pouvez même le partager avec vos amis ou vos collègues à l’aide de hello partagent les fonctionnalités des LinkedIn ou Twitter.</span><span class="sxs-lookup"><span data-stu-id="21098-115">You can even share it with friends or colleagues using hello share capabilities of LinkedIn or Twitter.</span></span> <span data-ttu-id="21098-116">Vous pouvez également envoyer par courrier électronique un tooinvite de Solution toothe lien page utilisateurs tooview hello.</span><span class="sxs-lookup"><span data-stu-id="21098-116">You can also email a link toothe Solution tooinvite other users tooview hello page.</span></span>
 
 ![Partager cet élément avec des amis](media/machine-learning-gallery-how-to-use-contribute-publish/share-links.png)
 
 ![Ajouter vos propres commentaires](media/machine-learning-gallery-how-to-use-contribute-publish/comments.png)
 
-## <a name="deploy"></a><span data-ttu-id="122a3-119">Déployer</span><span class="sxs-lookup"><span data-stu-id="122a3-119">Deploy</span></span>
-<span data-ttu-id="122a3-120">Si vous souhaitez utiliser une solution, cliquez sur **Déployer**.</span><span class="sxs-lookup"><span data-stu-id="122a3-120">If you want to use a Solution, click **Deploy**.</span></span> <span data-ttu-id="122a3-121">Suivez les étapes décrites pour configurer et déployer la solution dans votre espace de travail.</span><span class="sxs-lookup"><span data-stu-id="122a3-121">Follow the steps presented to configure and deploy the Solution in your workspace.</span></span>
+## <a name="deploy"></a><span data-ttu-id="21098-119">Déployer</span><span class="sxs-lookup"><span data-stu-id="21098-119">Deploy</span></span>
+<span data-ttu-id="21098-120">Si vous souhaitez toouse une Solution, cliquez sur **déployer**.</span><span class="sxs-lookup"><span data-stu-id="21098-120">If you want toouse a Solution, click **Deploy**.</span></span> <span data-ttu-id="21098-121">Suivez les étapes de hello présentées tooconfigure et déployer hello Solution dans votre espace de travail.</span><span class="sxs-lookup"><span data-stu-id="21098-121">Follow hello steps presented tooconfigure and deploy hello Solution in your workspace.</span></span>
 
 ![Déployer une solution de la galerie](media/machine-learning-gallery-solutions/deploy-solution.png)
 
-<span data-ttu-id="122a3-123">**[ALLER À LA GALERIE >>](http://gallery.cortanaintelligence.com)**</span><span class="sxs-lookup"><span data-stu-id="122a3-123">**[TAKE ME TO THE GALLERY >>](http://gallery.cortanaintelligence.com)**</span></span>
+<span data-ttu-id="21098-123">**[PRENDRE ME toohello galerie >>](http://gallery.cortanaintelligence.com)**</span><span class="sxs-lookup"><span data-stu-id="21098-123">**[TAKE ME toohello GALLERY >>](http://gallery.cortanaintelligence.com)**</span></span>
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 

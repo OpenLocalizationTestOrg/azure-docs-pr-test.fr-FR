@@ -1,6 +1,6 @@
 ---
-title: "Documentation Azure Mobile Engagement - Didacticiels, informations de référence sur les API | Microsoft Docs"
-description: "Découvrez comment obtenir des informations sur l’utilisation des applications mobiles et la segmentation des utilisateurs en temps réel, et comment activer des notifications push en contexte ainsi que la messagerie dans l’application."
+title: "aaaAzure Mobile Engagement Documentation - didacticiels, référence de l’API | Documents Microsoft"
+description: "Découvrez comment tooget informations détaillées concernant l’utilisation des applications mobiles et segmentation des utilisateurs en temps réel, et comment tooenable intelligentes prenant en charge les push notifications et dans l’application de messagerie."
 services: mobile-engagement
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 738cc1fc5b5cca411c08fda4229950f481cd0aa6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c9d9dd859914d620b6e3c287bbde1906142f4736
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="mobile-engagement-documentation"></a>Documentation Mobile Engagement
 
-Découvrez comment optimiser l’utilisation, la rétention et la monétisation d’applications mobiles avec Mobile Engagement. Des didacticiels, des kits de développement logiciel et d’autres documents vous montrent comment obtenir des informations sur l’utilisation des applications et la segmentation des utilisateurs en temps réel, et comment activer des notifications push en contexte ainsi que la messagerie dans l’application.
+Découvrez comment tooincrease hello monétisation des applications mobiles avec Mobile Engagement, la rétention et l’utilisation. Autre documentation, didacticiels et kits de développement logiciel vous montrent comment tooget informations détaillées concernant l’utilisation des applications et segmentation des utilisateurs en temps réel, et comment tooenable intelligentes prenant en charge les push notifications et dans l’application de messagerie.
 
 <ul class="panelContent cardsFTitle">
     <li>

@@ -1,6 +1,6 @@
 ---
-title: "Utiliser des émoticônes Emoji dans Azure Mobile Engagement"
-description: "Comment utiliser des émoticônes Emoji dans vos notifications push"
+title: "aaaUse des émoticônes Emoji dans Azure Mobile Engagement"
+description: "Comment toouse des émoticônes Emoji dans vos notifications push"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,30 +14,30 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: bbb7ce5e95b229a7505c5e97b6866d5a302a1d27
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 63bfc59ef472e9fe9aa28b5ac8761017b9250e0f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-emoji-emoticon-within-push-notifications"></a><span data-ttu-id="70ed2-103">Utiliser l’émoticône Emoji dans les notifications push</span><span class="sxs-lookup"><span data-stu-id="70ed2-103">Use Emoji emoticon within Push Notifications</span></span>
-<span data-ttu-id="70ed2-104">Vous pouvez inclure des émoticônes Emoji dans votre notification Push en quelques étapes simples :</span><span class="sxs-lookup"><span data-stu-id="70ed2-104">You can include Emoji emoticons in you push notification in a few easy steps:</span></span> 
+# <a name="use-emoji-emoticon-within-push-notifications"></a><span data-ttu-id="f1f7d-103">Utiliser l’émoticône Emoji dans les notifications push</span><span class="sxs-lookup"><span data-stu-id="f1f7d-103">Use Emoji emoticon within Push Notifications</span></span>
+<span data-ttu-id="f1f7d-104">Vous pouvez inclure des émoticônes Emoji dans votre notification Push en quelques étapes simples :</span><span class="sxs-lookup"><span data-stu-id="f1f7d-104">You can include Emoji emoticons in you push notification in a few easy steps:</span></span> 
 
-1. <span data-ttu-id="70ed2-105">Recherchez d’abord l’Emoji à insérer dans le message.</span><span class="sxs-lookup"><span data-stu-id="70ed2-105">First of all you need to find the Emoji you want to send in the message.</span></span> <span data-ttu-id="70ed2-106">Veillez à ce qu’elle soit prise en charge par l’appareil cible. En effet, l’ajout d’émoticônes Emoji nouvellement approuvées aux plateformes d’appareils peut prendre un certain temps.</span><span class="sxs-lookup"><span data-stu-id="70ed2-106">Please ensure that the Emoji you are selecting will be supported by the target device as device manufactures take some time to add newly approved Emojis to the device platforms.</span></span> 
-2. <span data-ttu-id="70ed2-107">Sur **Windows** : vous pouvez accéder à ce [lien](http://apps.timwhitlock.info/emoji/tables/unicode) et copier l’icône « Native ».</span><span class="sxs-lookup"><span data-stu-id="70ed2-107">On **Windows** - you can navigate to this [link](http://apps.timwhitlock.info/emoji/tables/unicode) and copy the 'Native' icon.</span></span>
+1. <span data-ttu-id="f1f7d-105">Tout d’abord, vous devez toofind hello Emoji souhaité toosend dans le message de type hello.</span><span class="sxs-lookup"><span data-stu-id="f1f7d-105">First of all you need toofind hello Emoji you want toosend in hello message.</span></span> <span data-ttu-id="f1f7d-106">Vérifiez que hello Emoji que vous sélectionnez sera pris en charge par le périphérique cible de hello comme les fabricants de périphériques prennent certaines tooadd temps des plateformes d’appareils toohello Emojis qui vient d’être approuvées.</span><span class="sxs-lookup"><span data-stu-id="f1f7d-106">Please ensure that hello Emoji you are selecting will be supported by hello target device as device manufactures take some time tooadd newly approved Emojis toohello device platforms.</span></span> 
+2. <span data-ttu-id="f1f7d-107">Sur **Windows** -vous pouvez naviguer toothis [lien](http://apps.timwhitlock.info/emoji/tables/unicode) et l’icône de copie hello 'Native'.</span><span class="sxs-lookup"><span data-stu-id="f1f7d-107">On **Windows** - you can navigate toothis [link](http://apps.timwhitlock.info/emoji/tables/unicode) and copy hello 'Native' icon.</span></span>
    
     ![][7] 
-3. <span data-ttu-id="70ed2-108">Sur **Mac** : les émoticônes Emoji se trouvent dans l’application Dictionnaire sous Modifier -> Emoji et symboles.</span><span class="sxs-lookup"><span data-stu-id="70ed2-108">On **Mac** - you can find the Emojis in Dictionary application under Edit -> Emoji & Symbols.</span></span>
+3. <span data-ttu-id="f1f7d-108">Sur **Mac** -vous pouvez trouver hello Emojis dans une application de type dictionnaire sous Modifier -> Emoji et symboles.</span><span class="sxs-lookup"><span data-stu-id="f1f7d-108">On **Mac** - you can find hello Emojis in Dictionary application under Edit -> Emoji & Symbols.</span></span>
    
     ![][6] 
-4. <span data-ttu-id="70ed2-109">Accédez à l’onglet **Reach** du portail Azure Mobile Engagement.</span><span class="sxs-lookup"><span data-stu-id="70ed2-109">Now, go to the **Reach** tab on the the Azure Mobile Engagement portal.</span></span> <span data-ttu-id="70ed2-110">Sélectionnez le type de votre notification push (annonce, interrogation, etc.).</span><span class="sxs-lookup"><span data-stu-id="70ed2-110">Select the type of your push notification (Announcement, polls etc).</span></span> <span data-ttu-id="70ed2-111">Pour cet exemple, nous choisissons une annonce push.</span><span class="sxs-lookup"><span data-stu-id="70ed2-111">For this example we choose an announcement push.</span></span>
-5. <span data-ttu-id="70ed2-112">Spécifiez les différents champs de la notification jusqu'à ce que vous atteigniez le texte de la notification.</span><span class="sxs-lookup"><span data-stu-id="70ed2-112">Specify the different fields of the notification until you reach the text of the notification.</span></span> <span data-ttu-id="70ed2-113">C’est là que vous allez ajouter votre émoticône Emoji.</span><span class="sxs-lookup"><span data-stu-id="70ed2-113">This is where you will add your Emoji Emoticon.</span></span> <span data-ttu-id="70ed2-114">Vous pouvez la placer dans le titre, dans le message ou les deux.</span><span class="sxs-lookup"><span data-stu-id="70ed2-114">You can choose to put it in the title, the message, or both.</span></span> <span data-ttu-id="70ed2-115">Faites glisser-déplacer ou copiez les émoticônes Emoji figurant dans les emplacements ci-dessus.</span><span class="sxs-lookup"><span data-stu-id="70ed2-115">You will need to drag and drop or copy the Emoji that you find from the locations above.</span></span> 
+4. <span data-ttu-id="f1f7d-109">Passez maintenant toohello **atteindre** onglet sur le portail Azure Mobile Engagement hello hello.</span><span class="sxs-lookup"><span data-stu-id="f1f7d-109">Now, go toohello **Reach** tab on hello hello Azure Mobile Engagement portal.</span></span> <span data-ttu-id="f1f7d-110">Sélectionnez le type hello votre notification push (annonce, sondages, etc.).</span><span class="sxs-lookup"><span data-stu-id="f1f7d-110">Select hello type of your push notification (Announcement, polls etc).</span></span> <span data-ttu-id="f1f7d-111">Pour cet exemple, nous choisissons une annonce push.</span><span class="sxs-lookup"><span data-stu-id="f1f7d-111">For this example we choose an announcement push.</span></span>
+5. <span data-ttu-id="f1f7d-112">Spécifiez hello différents champs de notification de hello jusqu'à ce que vous atteigniez texte hello de notification de hello.</span><span class="sxs-lookup"><span data-stu-id="f1f7d-112">Specify hello different fields of hello notification until you reach hello text of hello notification.</span></span> <span data-ttu-id="f1f7d-113">C’est là que vous allez ajouter votre émoticône Emoji.</span><span class="sxs-lookup"><span data-stu-id="f1f7d-113">This is where you will add your Emoji Emoticon.</span></span> <span data-ttu-id="f1f7d-114">Vous pouvez choisir tooput dans le titre de hello, le message de type hello ou les deux.</span><span class="sxs-lookup"><span data-stu-id="f1f7d-114">You can choose tooput it in hello title, hello message, or both.</span></span> <span data-ttu-id="f1f7d-115">Vous devez toodrag et supprimer ou copier hello Emoji que vous trouvez à partir d’emplacements hello ci-dessus.</span><span class="sxs-lookup"><span data-stu-id="f1f7d-115">You will need toodrag and drop or copy hello Emoji that you find from hello locations above.</span></span> 
    
     ![][1]
-6. <span data-ttu-id="70ed2-116">Renseignez les autres champs de la notification et enregistrez-la.</span><span class="sxs-lookup"><span data-stu-id="70ed2-116">Complete the other fields for the notification and save it.</span></span> 
-7. <span data-ttu-id="70ed2-117">Lorsque vous exécutez un test ou activez l'annonce, une notification s’affiche avec l'émoticône spécifiée.</span><span class="sxs-lookup"><span data-stu-id="70ed2-117">When you run a test or activate the announcement you will see a notification with the emoticon as specified.</span></span>   
+6. <span data-ttu-id="f1f7d-116">Complète hello autres champs pour la notification de hello et l’enregistrer.</span><span class="sxs-lookup"><span data-stu-id="f1f7d-116">Complete hello other fields for hello notification and save it.</span></span> 
+7. <span data-ttu-id="f1f7d-117">Lorsque vous exécutez un test ou que vous activez l’annonce de type hello vous verrez une notification avec les émoticône hello comme spécifié.</span><span class="sxs-lookup"><span data-stu-id="f1f7d-117">When you run a test or activate hello announcement you will see a notification with hello emoticon as specified.</span></span>   
    
-    <span data-ttu-id="70ed2-118">![][3] ![][4] ![][5]</span><span class="sxs-lookup"><span data-stu-id="70ed2-118">![][3] ![][4] ![][5]</span></span>
+    <span data-ttu-id="f1f7d-118">![][3]![][4]![][5]</span><span class="sxs-lookup"><span data-stu-id="f1f7d-118">![][3] ![][4] ![][5]</span></span>
 
 <!-- Images. -->
 [1]: ./media/mobile-engagement-use-emoji-with-push/notification_input.png

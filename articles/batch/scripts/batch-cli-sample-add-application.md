@@ -1,5 +1,5 @@
 ---
-title: "Exemple de script Azure CLI - Ajout d’une application dans Batch | Microsoft Docs"
+title: aaaAzure exemple de Script CLI - ajouter une Application de traitement par lots | Documents Microsoft
 description: "Exemple de script Azure CLI - Ajout d’une application dans Batch"
 services: batch
 documentationcenter: 
@@ -14,47 +14,47 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 05/02/2017
 ms.author: antisch
-ms.openlocfilehash: 5d057eaf32867aedc95d58c5185e2be1f9385ec0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: cb33b3a7b30610011b19954a987995cc5f0257c4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="adding-applications-to-azure-batch-with-azure-cli"></a><span data-ttu-id="612c0-103">Ajout d’applications dans Azure Batch avec Azure CLI</span><span class="sxs-lookup"><span data-stu-id="612c0-103">Adding applications to Azure Batch with Azure CLI</span></span>
+# <a name="adding-applications-tooazure-batch-with-azure-cli"></a><span data-ttu-id="e99ee-103">Ajout d’applications tooAzure lot avec CLI d’Azure</span><span class="sxs-lookup"><span data-stu-id="e99ee-103">Adding applications tooAzure Batch with Azure CLI</span></span>
 
-<span data-ttu-id="612c0-104">Ce script explique comment configurer une application à utiliser avec une tâche ou un pool Azure Batch.</span><span class="sxs-lookup"><span data-stu-id="612c0-104">This script demonstrates how to set up an application for use with an Azure Batch pool or task.</span></span> <span data-ttu-id="612c0-105">Pour configurer cette application, placez votre fichier exécutable et toutes ses éventuelles dépendances dans un fichier .zip.</span><span class="sxs-lookup"><span data-stu-id="612c0-105">To set up an application, package your executable, together with any dependencies, into a .zip file.</span></span> <span data-ttu-id="612c0-106">Dans cet exemple, le fichier .zip est appelé « my-application-exe.zip ».</span><span class="sxs-lookup"><span data-stu-id="612c0-106">In this example the executable zip file is called 'my-application-exe.zip'.</span></span>
+<span data-ttu-id="e99ee-104">Ce script montre comment tooset d’une application pour une utilisation avec un pool Azure Batch ou une tâche.</span><span class="sxs-lookup"><span data-stu-id="e99ee-104">This script demonstrates how tooset up an application for use with an Azure Batch pool or task.</span></span> <span data-ttu-id="e99ee-105">tooset d’une application, empaqueter votre fichier exécutable, avec toutes ses dépendances, dans un fichier .zip.</span><span class="sxs-lookup"><span data-stu-id="e99ee-105">tooset up an application, package your executable, together with any dependencies, into a .zip file.</span></span> <span data-ttu-id="e99ee-106">Dans ce fichier zip d’exécutable hello exemple fichier est appelé « Mon-application-exe.zip ».</span><span class="sxs-lookup"><span data-stu-id="e99ee-106">In this example hello executable zip file is called 'my-application-exe.zip'.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="612c0-107">Composants requis</span><span class="sxs-lookup"><span data-stu-id="612c0-107">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="e99ee-107">Composants requis</span><span class="sxs-lookup"><span data-stu-id="e99ee-107">Prerequisites</span></span>
 
-- <span data-ttu-id="612c0-108">Installez Azure CLI en suivant les instructions fournies dans le [Guide d’installation d’Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli), si ce n’est déjà fait.</span><span class="sxs-lookup"><span data-stu-id="612c0-108">Install the Azure CLI using the instructions provided in the [Azure CLI installation guide](https://docs.microsoft.com/cli/azure/install-azure-cli), if you have not already done so.</span></span>
-- <span data-ttu-id="612c0-109">Créez un compte Azure si vous n’en avez pas.</span><span class="sxs-lookup"><span data-stu-id="612c0-109">Create a Batch account if you don't already have one.</span></span> <span data-ttu-id="612c0-110">Pour un exemple de script qui crée un compte, voir [Créer un compte Batch avec Azure CLI](https://docs.microsoft.com/azure/batch/scripts/batch-cli-sample-create-account).</span><span class="sxs-lookup"><span data-stu-id="612c0-110">See [Create a Batch account with the Azure CLI](https://docs.microsoft.com/azure/batch/scripts/batch-cli-sample-create-account) for a sample script that creates an account.</span></span>
+- <span data-ttu-id="e99ee-108">Installation hello CLI d’Azure à l’aide d’instructions hello de hello [guide d’installation Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli), si vous n’avez pas déjà fait.</span><span class="sxs-lookup"><span data-stu-id="e99ee-108">Install hello Azure CLI using hello instructions provided in hello [Azure CLI installation guide](https://docs.microsoft.com/cli/azure/install-azure-cli), if you have not already done so.</span></span>
+- <span data-ttu-id="e99ee-109">Créez un compte Azure si vous n’en avez pas.</span><span class="sxs-lookup"><span data-stu-id="e99ee-109">Create a Batch account if you don't already have one.</span></span> <span data-ttu-id="e99ee-110">Consultez [créer un compte de traitement par lots avec hello CLI d’Azure](https://docs.microsoft.com/azure/batch/scripts/batch-cli-sample-create-account) pour un exemple de script qui crée un compte.</span><span class="sxs-lookup"><span data-stu-id="e99ee-110">See [Create a Batch account with hello Azure CLI](https://docs.microsoft.com/azure/batch/scripts/batch-cli-sample-create-account) for a sample script that creates an account.</span></span>
 
-## <a name="sample-script"></a><span data-ttu-id="612c0-111">Exemple de script</span><span class="sxs-lookup"><span data-stu-id="612c0-111">Sample script</span></span>
+## <a name="sample-script"></a><span data-ttu-id="e99ee-111">Exemple de script</span><span class="sxs-lookup"><span data-stu-id="e99ee-111">Sample script</span></span>
 
-<span data-ttu-id="612c0-112">[!code-azurecli[principal](../../../cli_scripts/batch/add-application/add-application.sh "Ajouter une application")]</span><span class="sxs-lookup"><span data-stu-id="612c0-112">[!code-azurecli[main](../../../cli_scripts/batch/add-application/add-application.sh "Add Application")]</span></span>
+[!code-azurecli[main](../../../cli_scripts/batch/add-application/add-application.sh "Add Application")]
 
-## <a name="clean-up-application"></a><span data-ttu-id="612c0-113">Supprimer l’application</span><span class="sxs-lookup"><span data-stu-id="612c0-113">Clean up application</span></span>
+## <a name="clean-up-application"></a><span data-ttu-id="e99ee-112">Supprimer l’application</span><span class="sxs-lookup"><span data-stu-id="e99ee-112">Clean up application</span></span>
 
-<span data-ttu-id="612c0-114">Une fois l’exemple de script ci-dessus exécuté, lancez les commandes suivantes pour supprimer l’application et tous les packages associés qui ont été chargés.</span><span class="sxs-lookup"><span data-stu-id="612c0-114">After you run the above sample script, run the following commands to remove the application and all of its uploaded application packages.</span></span>
+<span data-ttu-id="e99ee-113">Après avoir exécuté hello ci-dessus un exemple de script, exécuter hello suivant tooremove de commandes de l’application et tous ses packages d’application chargés.</span><span class="sxs-lookup"><span data-stu-id="e99ee-113">After you run hello above sample script, run hello following commands tooremove the application and all of its uploaded application packages.</span></span>
 
 ```azurecli
 az batch application package delete -g myresourcegroup -n mybatchaccount --application-id myapp --version 1.0 --yes
 az batch application delete -g myresourcegroup -n mybatchaccount --application-id myapp --yes
 ```
 
-## <a name="script-explanation"></a><span data-ttu-id="612c0-115">Explication du script</span><span class="sxs-lookup"><span data-stu-id="612c0-115">Script explanation</span></span>
+## <a name="script-explanation"></a><span data-ttu-id="e99ee-114">Explication du script</span><span class="sxs-lookup"><span data-stu-id="e99ee-114">Script explanation</span></span>
 
-<span data-ttu-id="612c0-116">Ce script utilise les commandes suivantes pour créer une application et charger un package d’application.</span><span class="sxs-lookup"><span data-stu-id="612c0-116">This script uses the following commands to create an application and upload an application package.</span></span>
-<span data-ttu-id="612c0-117">Chaque commande de la table renvoie à une documentation spécifique.</span><span class="sxs-lookup"><span data-stu-id="612c0-117">Each command in the table links to command-specific documentation.</span></span>
+<span data-ttu-id="e99ee-115">Ce script utilise hello suivant de commandes toocreate une application et le téléchargement d’un package d’application.</span><span class="sxs-lookup"><span data-stu-id="e99ee-115">This script uses hello following commands toocreate an application and upload an application package.</span></span>
+<span data-ttu-id="e99ee-116">Chaque commande dans la table de hello lie documentation toocommand spécifique.</span><span class="sxs-lookup"><span data-stu-id="e99ee-116">Each command in hello table links toocommand-specific documentation.</span></span>
 
-| <span data-ttu-id="612c0-118">Commande</span><span class="sxs-lookup"><span data-stu-id="612c0-118">Command</span></span> | <span data-ttu-id="612c0-119">Remarques</span><span class="sxs-lookup"><span data-stu-id="612c0-119">Notes</span></span> |
+| <span data-ttu-id="e99ee-117">Commande</span><span class="sxs-lookup"><span data-stu-id="e99ee-117">Command</span></span> | <span data-ttu-id="e99ee-118">Remarques</span><span class="sxs-lookup"><span data-stu-id="e99ee-118">Notes</span></span> |
 |---|---|
-| [<span data-ttu-id="612c0-120">az batch application create</span><span class="sxs-lookup"><span data-stu-id="612c0-120">az batch application create</span></span>](https://docs.microsoft.com/cli/azure/batch/application#create) | <span data-ttu-id="612c0-121">Crée une application.</span><span class="sxs-lookup"><span data-stu-id="612c0-121">Creates an application.</span></span>  |
-| [<span data-ttu-id="612c0-122">az batch application set</span><span class="sxs-lookup"><span data-stu-id="612c0-122">az batch application set</span></span>](https://docs.microsoft.com/cli/azure/batch/application#set) | <span data-ttu-id="612c0-123">Met à jour les propriétés d’une application.</span><span class="sxs-lookup"><span data-stu-id="612c0-123">Updates properties of an application.</span></span>  |
-| [<span data-ttu-id="612c0-124">az batch application package create</span><span class="sxs-lookup"><span data-stu-id="612c0-124">az batch application package create</span></span>](https://docs.microsoft.com/cli/azure/batch/application/package#create) | <span data-ttu-id="612c0-125">Ajoute un package d’application à l’application spécifiée.</span><span class="sxs-lookup"><span data-stu-id="612c0-125">Adds an application package to the specified application.</span></span>  |
+| [<span data-ttu-id="e99ee-119">az batch application create</span><span class="sxs-lookup"><span data-stu-id="e99ee-119">az batch application create</span></span>](https://docs.microsoft.com/cli/azure/batch/application#create) | <span data-ttu-id="e99ee-120">Crée une application.</span><span class="sxs-lookup"><span data-stu-id="e99ee-120">Creates an application.</span></span>  |
+| [<span data-ttu-id="e99ee-121">az batch application set</span><span class="sxs-lookup"><span data-stu-id="e99ee-121">az batch application set</span></span>](https://docs.microsoft.com/cli/azure/batch/application#set) | <span data-ttu-id="e99ee-122">Met à jour les propriétés d’une application.</span><span class="sxs-lookup"><span data-stu-id="e99ee-122">Updates properties of an application.</span></span>  |
+| [<span data-ttu-id="e99ee-123">az batch application package create</span><span class="sxs-lookup"><span data-stu-id="e99ee-123">az batch application package create</span></span>](https://docs.microsoft.com/cli/azure/batch/application/package#create) | <span data-ttu-id="e99ee-124">Ajoute un toohello de package d’application spécifié application.</span><span class="sxs-lookup"><span data-stu-id="e99ee-124">Adds an application package toohello specified application.</span></span>  |
 
-## <a name="next-steps"></a><span data-ttu-id="612c0-126">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="612c0-126">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="e99ee-125">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="e99ee-125">Next steps</span></span>
 
-<span data-ttu-id="612c0-127">Pour plus d’informations sur l’interface Azure CLI, consultez la [documentation relative à l’interface Azure CLI](https://docs.microsoft.com/cli/azure/overview).</span><span class="sxs-lookup"><span data-stu-id="612c0-127">For more information on the Azure CLI, see [Azure CLI documentation](https://docs.microsoft.com/cli/azure/overview).</span></span>
+<span data-ttu-id="e99ee-126">Pour plus d’informations sur hello CLI d’Azure, consultez [documentation relative à Azure CLI](https://docs.microsoft.com/cli/azure/overview).</span><span class="sxs-lookup"><span data-stu-id="e99ee-126">For more information on hello Azure CLI, see [Azure CLI documentation](https://docs.microsoft.com/cli/azure/overview).</span></span>
 
-<span data-ttu-id="612c0-128">Vous trouverez des exemples supplémentaires de scripts CLI Batch dans la [documentation relative à la CLI Azure Batch](../batch-cli-samples.md).</span><span class="sxs-lookup"><span data-stu-id="612c0-128">Additional Batch CLI script samples can be found in the [Azure Batch CLI documentation](../batch-cli-samples.md).</span></span>
+<span data-ttu-id="e99ee-127">Vous trouverez des exemples supplémentaires de script CLI de lot Bonjour [documentation d’Azure Batch CLI](../batch-cli-samples.md).</span><span class="sxs-lookup"><span data-stu-id="e99ee-127">Additional Batch CLI script samples can be found in hello [Azure Batch CLI documentation](../batch-cli-samples.md).</span></span>

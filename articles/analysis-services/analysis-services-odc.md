@@ -1,6 +1,6 @@
 ---
-title: "Créer un fichier .odc pour se connecter à un serveur Azure Analysis Services | Microsoft Docs"
-description: "Découvrez comment créer un fichier Office Data Connection pour se connecter à un serveur Analysis Services dans Azure et en obtenir les données."
+title: aaaCreate un serveur Azure Analysis Services tooan de tooconnect de fichiers .odc | Documents Microsoft
+description: "Découvrez comment toocreate un tooand tooconnect de fichier Office Data Connection obtenir des données à partir d’un serveur Analysis Services dans Azure."
 services: analysis-services
 documentationcenter: 
 author: minewiskan
@@ -15,34 +15,34 @@ ms.tgt_pltfrm: NA
 ms.workload: na
 ms.date: 08/23/2017
 ms.author: owend
-ms.openlocfilehash: 530f3b5c9e90cb45ffb6e12d0d08a35f8d687471
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 9c8c8df23b17f19905d7ec51af4eb63eb995045e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-an-office-data-connection-file"></a><span data-ttu-id="bb3d3-103">Créer un fichier Office Data Connection</span><span class="sxs-lookup"><span data-stu-id="bb3d3-103">Create an Office Data Connection file</span></span>
+# <a name="create-an-office-data-connection-file"></a><span data-ttu-id="3bd26-103">Créer un fichier Office Data Connection</span><span class="sxs-lookup"><span data-stu-id="3bd26-103">Create an Office Data Connection file</span></span>
 
-<span data-ttu-id="bb3d3-104">Les informations de cet article expliquent comment créer un fichier Office Data Connection pour se connecter à un serveur Azure Analysis Services à partir d’Excel 2016 version 16.0.7369.2117 ou une version antérieure, ou Excel 2013.</span><span class="sxs-lookup"><span data-stu-id="bb3d3-104">Information in this article describes how you can create an Office Data Connection file to connect to an Azure Analysis Services server from Excel 2016 version number 16.0.7369.2117 or earlier, or Excel 2013.</span></span> <span data-ttu-id="bb3d3-105">Un [fournisseur MSOLAP.7 mis à jour](analysis-services-data-providers.md) est également requis.</span><span class="sxs-lookup"><span data-stu-id="bb3d3-105">An updated [MSOLAP.7 provider](analysis-services-data-providers.md) is also required.</span></span>
-
-
-1. <span data-ttu-id="bb3d3-106">Copiez l’exemple de fichier de connexion et collez-le dans un éditeur de texte.</span><span class="sxs-lookup"><span data-stu-id="bb3d3-106">Copy the sample connection file below and paste into a text editor.</span></span> 
-
-2. <span data-ttu-id="bb3d3-107">Dans `odc:ConnectionString`, modifiez les propriétés suivantes :</span><span class="sxs-lookup"><span data-stu-id="bb3d3-107">In `odc:ConnectionString`, change the following properties:</span></span>
-
-    *   <span data-ttu-id="bb3d3-108">Dans `Data Source=asazure://<region>.asazure.windows.net/<servername>;`, modifiez `<region>` sur la région de votre serveur Analysis Services et `<servername>` avec sur le nom de votre serveur.</span><span class="sxs-lookup"><span data-stu-id="bb3d3-108">In `Data Source=asazure://<region>.asazure.windows.net/<servername>;` change `<region>` to the region of your Analysis Services server and `<servername>` to the name of your  server.</span></span>
-
-    *   <span data-ttu-id="bb3d3-109">Dans `Initial Catalog=<database>;`, modifiez `<database>` sur le nom de votre base de données.</span><span class="sxs-lookup"><span data-stu-id="bb3d3-109">In `Initial Catalog=<database>;` change `<database>` to the name of your database.</span></span>
-
-3. <span data-ttu-id="bb3d3-110">Dans `<odc:CommandText>Model</odc:CommandText>`, modifiez `Model` sur le nom de votre perspective ou modèle.</span><span class="sxs-lookup"><span data-stu-id="bb3d3-110">In `<odc:CommandText>Model</odc:CommandText>` change `Model` to the name of your model or perspective.</span></span> 
-
-4. <span data-ttu-id="bb3d3-111">Enregistrez le fichier avec une extension `.odc` pour le dossier C:\Users\\*nom d’utilisateur*\Documents\My Data Sources.</span><span class="sxs-lookup"><span data-stu-id="bb3d3-111">Save the file with an `.odc` extension to the C:\Users\\*username*\Documents\My Data Sources folder.</span></span>
-
-5. <span data-ttu-id="bb3d3-112">Cliquez avec le bouton droit sur le fichier, puis cliquez sur **Ouvrir dans Excel**.</span><span class="sxs-lookup"><span data-stu-id="bb3d3-112">Right-click the file, and then click **Open in Excel**.</span></span> <span data-ttu-id="bb3d3-113">Ou, dans Excel, sur le ruban **Données**, cliquez sur **Connexions existantes**, sélectionnez votre fichier, puis cliquez sur **Ouvrir**.</span><span class="sxs-lookup"><span data-stu-id="bb3d3-113">Or in Excel, on the **Data** ribbon, click **Existing Connections**, select your file, and then click **Open**.</span></span>
+<span data-ttu-id="3bd26-104">Informations de cet article décrivent comment vous pouvez créer un serveur Azure Analysis Services tooan de tooconnect de fichier Office Data Connection à partir d’Excel 2016, le numéro de version 16.0.7369.2117 ou une version antérieure, ou Excel 2013.</span><span class="sxs-lookup"><span data-stu-id="3bd26-104">Information in this article describes how you can create an Office Data Connection file tooconnect tooan Azure Analysis Services server from Excel 2016 version number 16.0.7369.2117 or earlier, or Excel 2013.</span></span> <span data-ttu-id="3bd26-105">Un [fournisseur MSOLAP.7 mis à jour](analysis-services-data-providers.md) est également requis.</span><span class="sxs-lookup"><span data-stu-id="3bd26-105">An updated [MSOLAP.7 provider](analysis-services-data-providers.md) is also required.</span></span>
 
 
+1. <span data-ttu-id="3bd26-106">Copiez le fichier de connexion exemple hello ci-dessous et les coller dans un éditeur de texte.</span><span class="sxs-lookup"><span data-stu-id="3bd26-106">Copy hello sample connection file below and paste into a text editor.</span></span> 
 
-<span data-ttu-id="bb3d3-114">**Exemple de fichier de connexion**</span><span class="sxs-lookup"><span data-stu-id="bb3d3-114">**Sample connection file**</span></span>
+2. <span data-ttu-id="3bd26-107">Dans `odc:ConnectionString`, modifiez hello propriétés suivantes :</span><span class="sxs-lookup"><span data-stu-id="3bd26-107">In `odc:ConnectionString`, change hello following properties:</span></span>
+
+    *   <span data-ttu-id="3bd26-108">Dans `Data Source=asazure://<region>.asazure.windows.net/<servername>;` modifier `<region>` toohello la région de votre serveur Analysis Services et `<servername>` nom toohello de votre serveur.</span><span class="sxs-lookup"><span data-stu-id="3bd26-108">In `Data Source=asazure://<region>.asazure.windows.net/<servername>;` change `<region>` toohello region of your Analysis Services server and `<servername>` toohello name of your  server.</span></span>
+
+    *   <span data-ttu-id="3bd26-109">Dans `Initial Catalog=<database>;` modifier `<database>` nom toohello de votre base de données.</span><span class="sxs-lookup"><span data-stu-id="3bd26-109">In `Initial Catalog=<database>;` change `<database>` toohello name of your database.</span></span>
+
+3. <span data-ttu-id="3bd26-110">Dans `<odc:CommandText>Model</odc:CommandText>` modifier `Model` nom toohello de votre modèle ou de perspective.</span><span class="sxs-lookup"><span data-stu-id="3bd26-110">In `<odc:CommandText>Model</odc:CommandText>` change `Model` toohello name of your model or perspective.</span></span> 
+
+4. <span data-ttu-id="3bd26-111">Enregistrez le fichier hello avec un `.odc` extension toohello C:\Users\\*nom d’utilisateur*dossier de Sources de données \Documents\My.</span><span class="sxs-lookup"><span data-stu-id="3bd26-111">Save hello file with an `.odc` extension toohello C:\Users\\*username*\Documents\My Data Sources folder.</span></span>
+
+5. <span data-ttu-id="3bd26-112">Fichier de hello d’avec le bouton droit, puis cliquez sur **ouvrir dans Excel**.</span><span class="sxs-lookup"><span data-stu-id="3bd26-112">Right-click hello file, and then click **Open in Excel**.</span></span> <span data-ttu-id="3bd26-113">Ou, dans Excel, sur hello **données** du ruban, cliquez sur **connexions existantes**, sélectionnez votre fichier, puis cliquez sur **ouvrir**.</span><span class="sxs-lookup"><span data-stu-id="3bd26-113">Or in Excel, on hello **Data** ribbon, click **Existing Connections**, select your file, and then click **Open**.</span></span>
+
+
+
+<span data-ttu-id="3bd26-114">**Exemple de fichier de connexion**</span><span class="sxs-lookup"><span data-stu-id="3bd26-114">**Sample connection file**</span></span>
 ```
 <html xmlns:o="urn:schemas-microsoft-com:office:office"
 xmlns="http://www.w3.org/TR/REC-html40">

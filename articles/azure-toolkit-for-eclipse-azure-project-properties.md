@@ -1,6 +1,6 @@
 ---
-title: "Propriétés du projet Azure"
-description: "Décrit les paramètres de propriétés du projet Azure dans la boîte à outils Azure pour Eclipse."
+title: "aaaAzure propriétés du projet"
+description: "Décrit les paramètres de propriétés du projet Azure hello Bonjour boîte à outils Azure pour Eclipse."
 services: 
 documentationcenter: java
 author: rmcmurray
@@ -14,38 +14,38 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 04/14/2017
 ms.author: robmcm
-ms.openlocfilehash: 9d9eb695b63c2f4efa3ebea97ddb2f2780180bca
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6d8993ca38e7e03a8c7ebe96d174594aa0ff78e2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-project-properties"></a><span data-ttu-id="e6e06-103">Propriétés du projet Azure</span><span class="sxs-lookup"><span data-stu-id="e6e06-103">Azure Project Properties</span></span>
-<span data-ttu-id="e6e06-104">Vous avez la possibilité de définir différents paramètres pour votre projet Azure dans la boîte à outils Azure pour Eclipse.</span><span class="sxs-lookup"><span data-stu-id="e6e06-104">Various settings for your Azure project can be set within the Azure Toolkit for Eclipse.</span></span>
+# <a name="azure-project-properties"></a><span data-ttu-id="43175-103">Propriétés du projet Azure</span><span class="sxs-lookup"><span data-stu-id="43175-103">Azure Project Properties</span></span>
+<span data-ttu-id="43175-104">Peuvent être définir divers paramètres pour votre projet Windows Azure hello boîte à outils Azure pour Eclipse.</span><span class="sxs-lookup"><span data-stu-id="43175-104">Various settings for your Azure project can be set within hello Azure Toolkit for Eclipse.</span></span>
 
-## <a name="configuring-azure-project-properties"></a><span data-ttu-id="e6e06-105">Configuration des propriétés du projet Azure</span><span class="sxs-lookup"><span data-stu-id="e6e06-105">Configuring Azure Project Properties</span></span>
-<span data-ttu-id="e6e06-106">La configuration des propriétés de votre projet Azure s’effectue via les boîtes de dialogue de votre propriétés de votre projet Azure.</span><span class="sxs-lookup"><span data-stu-id="e6e06-106">Configuring your Azure Project Properties is accomplished through the property dialogs for your Azure project.</span></span> <span data-ttu-id="e6e06-107">Cliquez avec le bouton droit sur le projet dans l’Explorateur de projets Eclipse, cliquez sur **Propriétés**, puis sélectionnez le sous-menu **Azure**.</span><span class="sxs-lookup"><span data-stu-id="e6e06-107">Right-click the project in Eclipse's Project Explorer pane, click **Properties**, and then select the **Azure** sub-menu.</span></span>
+## <a name="configuring-azure-project-properties"></a><span data-ttu-id="43175-105">Configuration des propriétés du projet Azure</span><span class="sxs-lookup"><span data-stu-id="43175-105">Configuring Azure Project Properties</span></span>
+<span data-ttu-id="43175-106">Configuration des propriétés de votre projet Azure est accomplie via les boîtes de dialogue de propriétés pour votre projet Windows Azure hello.</span><span class="sxs-lookup"><span data-stu-id="43175-106">Configuring your Azure Project Properties is accomplished through hello property dialogs for your Azure project.</span></span> <span data-ttu-id="43175-107">Cliquez sur projet hello dans le volet Explorateur de projets d’Eclipse, cliquez sur **propriétés**, puis sélectionnez hello **Azure** sous-menu.</span><span class="sxs-lookup"><span data-stu-id="43175-107">Right-click hello project in Eclipse's Project Explorer pane, click **Properties**, and then select hello **Azure** sub-menu.</span></span>
 
 ![][ic719480]
 
-<span data-ttu-id="e6e06-108">Dans cette page de propriétés, vous pouvez modifier les éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="e6e06-108">Within this property page, you can change the following items:</span></span> 
+<span data-ttu-id="43175-108">Dans cette page de propriétés, vous pouvez modifier hello éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="43175-108">Within this property page, you can change hello following items:</span></span> 
 
-* <span data-ttu-id="e6e06-109">**Nom du service :** nom de votre projet Azure.</span><span class="sxs-lookup"><span data-stu-id="e6e06-109">**Service name:** The name for your Azure project.</span></span>
-* <span data-ttu-id="e6e06-110">**Générer pour :** indique si le projet doit être généré pour l’émulateur de calcul ou être déployé dans Azure.</span><span class="sxs-lookup"><span data-stu-id="e6e06-110">**Build for:** Whether the project is set for building to the compute emulator or deployment to Azure.</span></span>
-* <span data-ttu-id="e6e06-111">**Système d’exploitation cible :** système d’exploitation à utiliser lors du déploiement de votre projet dans Azure.</span><span class="sxs-lookup"><span data-stu-id="e6e06-111">**Target OS:** The operating system to use when your project is deployed to Azure.</span></span>
+* <span data-ttu-id="43175-109">**Nom du service :** nom hello pour votre projet Windows Azure.</span><span class="sxs-lookup"><span data-stu-id="43175-109">**Service name:** hello name for your Azure project.</span></span>
+* <span data-ttu-id="43175-110">**Build :** si le projet de hello est définie pour la création de tooAzure de déploiement ou d’émulateur de calcul toohello.</span><span class="sxs-lookup"><span data-stu-id="43175-110">**Build for:** Whether hello project is set for building toohello compute emulator or deployment tooAzure.</span></span>
+* <span data-ttu-id="43175-111">**Cible du système d’exploitation :** hello toouse du système d’exploitation lorsque votre projet est déployé tooAzure.</span><span class="sxs-lookup"><span data-stu-id="43175-111">**Target OS:** hello operating system toouse when your project is deployed tooAzure.</span></span>
 
-## <a name="see-also"></a><span data-ttu-id="e6e06-112">Voir aussi</span><span class="sxs-lookup"><span data-stu-id="e6e06-112">See Also</span></span>
-<span data-ttu-id="e6e06-113">[Kit de ressources Azure pour Eclipse][Azure Toolkit for Eclipse]</span><span class="sxs-lookup"><span data-stu-id="e6e06-113">[Azure Toolkit for Eclipse][Azure Toolkit for Eclipse]</span></span>
+## <a name="see-also"></a><span data-ttu-id="43175-112">Voir aussi</span><span class="sxs-lookup"><span data-stu-id="43175-112">See Also</span></span>
+<span data-ttu-id="43175-113">[Kit de ressources Azure pour Eclipse][Azure Toolkit for Eclipse]</span><span class="sxs-lookup"><span data-stu-id="43175-113">[Azure Toolkit for Eclipse][Azure Toolkit for Eclipse]</span></span>
 
-<span data-ttu-id="e6e06-114">[Installation du kit de ressources Azure pour Eclipse][Installing the Azure Toolkit for Eclipse]</span><span class="sxs-lookup"><span data-stu-id="e6e06-114">[Installing the Azure Toolkit for Eclipse][Installing the Azure Toolkit for Eclipse]</span></span> 
+<span data-ttu-id="43175-114">[Lors de l’installation hello boîte à outils Azure pour Eclipse][Installing hello Azure Toolkit for Eclipse]</span><span class="sxs-lookup"><span data-stu-id="43175-114">[Installing hello Azure Toolkit for Eclipse][Installing hello Azure Toolkit for Eclipse]</span></span> 
 
-<span data-ttu-id="e6e06-115">[Création d’une application Hello World pour Azure dans Eclipse][Creating a Hello World Application for Azure in Eclipse]</span><span class="sxs-lookup"><span data-stu-id="e6e06-115">[Creating a Hello World Application for Azure in Eclipse][Creating a Hello World Application for Azure in Eclipse]</span></span>
+<span data-ttu-id="43175-115">[Création d’une application Hello World pour Azure dans Eclipse][Creating a Hello World Application for Azure in Eclipse]</span><span class="sxs-lookup"><span data-stu-id="43175-115">[Creating a Hello World Application for Azure in Eclipse][Creating a Hello World Application for Azure in Eclipse]</span></span>
 
-<span data-ttu-id="e6e06-116">[Propriétés du rôle Azure][Azure Role Properties]</span><span class="sxs-lookup"><span data-stu-id="e6e06-116">[Azure Role Properties][Azure Role Properties]</span></span>
+<span data-ttu-id="43175-116">[Propriétés du rôle Azure][Azure Role Properties]</span><span class="sxs-lookup"><span data-stu-id="43175-116">[Azure Role Properties][Azure Role Properties]</span></span>
 
-<span data-ttu-id="e6e06-117">[Liste des comptes de stockage Azure][Azure Storage Account List]</span><span class="sxs-lookup"><span data-stu-id="e6e06-117">[Azure Storage Account List][Azure Storage Account List]</span></span>
+<span data-ttu-id="43175-117">[Liste des comptes de stockage Azure][Azure Storage Account List]</span><span class="sxs-lookup"><span data-stu-id="43175-117">[Azure Storage Account List][Azure Storage Account List]</span></span>
 
-<span data-ttu-id="e6e06-118">Pour plus d’informations sur l’utilisation d’Azure avec Java, consultez le [Centre de développement Java pour Azure][Azure Java Developer Center].</span><span class="sxs-lookup"><span data-stu-id="e6e06-118">For more information about using Azure with Java, see the [Azure Java Developer Center][Azure Java Developer Center].</span></span>
+<span data-ttu-id="43175-118">Pour plus d’informations sur l’utilisation d’Azure avec Java, consultez hello [centre de développement Java Azure][Azure Java Developer Center].</span><span class="sxs-lookup"><span data-stu-id="43175-118">For more information about using Azure with Java, see hello [Azure Java Developer Center][Azure Java Developer Center].</span></span>
 
 <!-- URL List -->
 
@@ -54,7 +54,7 @@ ms.lasthandoff: 07/11/2017
 [Azure Role Properties]: http://go.microsoft.com/fwlink/?LinkID=699525
 [Azure Storage Account List]: http://go.microsoft.com/fwlink/?LinkID=699528
 [Creating a Hello World Application for Azure in Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699533
-[Installing the Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
+[Installing hello Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
 
 <!-- IMG List -->
 

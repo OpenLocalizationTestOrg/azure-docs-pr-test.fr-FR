@@ -1,0 +1,63 @@
+---
+title: "aaaHandling les alertes de sécurité dans le centre de sécurité Azure | Documents Microsoft"
+description: "Ce document vous aide aux incidents de sécurité toouse Azure Security Center fonctionnalités toohandle."
+services: security-center
+documentationcenter: na
+author: YuriDio
+manager: mbaldwin
+editor: 
+ms.assetid: e8feb669-8f30-49eb-ba38-046edf3f9656
+ms.service: security-center
+ms.topic: hero-article
+ms.devlang: na
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 04/27/2017
+ms.author: yurid
+ms.openlocfilehash: edb911c298a2ce93cd0ea5b22ce002005040090f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.translationtype: MT
+ms.contentlocale: fr-FR
+ms.lasthandoff: 10/06/2017
+---
+# <a name="handling-security-incidents-in-azure-security-center"></a><span data-ttu-id="27ded-103">Gestion des incidents de sécurité dans Azure Security Center</span><span class="sxs-lookup"><span data-stu-id="27ded-103">Handling Security Incidents in Azure Security Center</span></span>
+<span data-ttu-id="27ded-104">Triage et examen des alertes de sécurité peuvent être fastidieuse pour les analystes en sécurité même hello expérimentés, et pour la plupart se tooeven difficile de savoir où toobegin.</span><span class="sxs-lookup"><span data-stu-id="27ded-104">Triaging and investigating security alerts can be time consuming for even hello most skilled security analysts, and for many it is hard tooeven know where toobegin.</span></span> <span data-ttu-id="27ded-105">À l’aide de [analytique](security-center-detection-capabilities.md) tooconnect les informations de hello entre distinctes [alertes de sécurité](security-center-managing-and-responding-alerts.md), centre de sécurité peut vous fournir une vue unique d’une campagne d’attaque et que tous les Hello connexes alertes – vous pouvez comprendre rapidement les intrus de hello actions a duré et quelles ressources ont été affectés.</span><span class="sxs-lookup"><span data-stu-id="27ded-105">By using [analytics](security-center-detection-capabilities.md) tooconnect hello information between distinct [security alerts](security-center-managing-and-responding-alerts.md), Security Center can provide you with a single view of an attack campaign and all of hello related alerts – you can quickly understand what actions hello attacker took and what resources were impacted.</span></span>
+
+<span data-ttu-id="27ded-106">Ce document explique comment toouse sécurité fonctionnalité disponible dans le centre de sécurité tooassist vous avertir des incidents de sécurité.</span><span class="sxs-lookup"><span data-stu-id="27ded-106">This document discusses how toouse security alert capability in Security Center tooassist you handling security incidents.</span></span>
+
+## <a name="what-is-a-security-incident"></a><span data-ttu-id="27ded-107">Qu’est-ce qu’un incident de sécurité ?</span><span class="sxs-lookup"><span data-stu-id="27ded-107">What is a security incident?</span></span>
+<span data-ttu-id="27ded-108">Dans le Centre de sécurité, un incident de sécurité est un regroupement de toutes les alertes d’une ressource correspondant à des modèles de [chaîne de destruction](https://blogs.technet.microsoft.com/office365security/addressing-your-cxos-top-five-cloud-security-concerns/) .</span><span class="sxs-lookup"><span data-stu-id="27ded-108">In Security Center, a security incident is an aggregation of all alerts for a resource that align with [kill chain](https://blogs.technet.microsoft.com/office365security/addressing-your-cxos-top-five-cloud-security-concerns/) patterns.</span></span> <span data-ttu-id="27ded-109">Incidents apparaissent dans hello [alertes de sécurité](security-center-managing-and-responding-alerts.md) vignette et lame.</span><span class="sxs-lookup"><span data-stu-id="27ded-109">Incidents appear in hello [Security Alerts](security-center-managing-and-responding-alerts.md) tile and blade.</span></span> <span data-ttu-id="27ded-110">Un Incident indiquent liste hello d’alertes associées, ce qui permet de vous tooobtain plus d’informations sur chaque occurrence.</span><span class="sxs-lookup"><span data-stu-id="27ded-110">An Incident will reveal hello list of related alerts, which enables you tooobtain more information about each occurrence.</span></span>
+
+## <a name="managing-security-incidents"></a><span data-ttu-id="27ded-111">Gestion des incidents de sécurité</span><span class="sxs-lookup"><span data-stu-id="27ded-111">Managing security incidents</span></span>
+<span data-ttu-id="27ded-112">Vous pouvez examiner les incidents de sécurité actuel en examinant hello sécurité alertes vignette.</span><span class="sxs-lookup"><span data-stu-id="27ded-112">You can review your current security incidents by looking at hello security alerts tile.</span></span> <span data-ttu-id="27ded-113">Accès hello portail Azure et suivez les étapes de hello ci-dessous toosee plus de détails sur chaque incident de sécurité :</span><span class="sxs-lookup"><span data-stu-id="27ded-113">Access hello Azure Portal and follow hello steps below toosee more details about each security incident:</span></span>
+
+1. <span data-ttu-id="27ded-114">Tableau de bord du centre de sécurité hello, vous verrez hello **alertes de sécurité** vignette.</span><span class="sxs-lookup"><span data-stu-id="27ded-114">On hello Security Center dashboard, you will see hello **Security alerts** tile.</span></span>
+
+    ![Vignette Alertes de sécurité dans le Centre de sécurité](./media/security-center-incident/security-center-incident-fig1.png)
+
+2. <span data-ttu-id="27ded-116">Cliquez sur cette tooexpand vignette il et si un incident de sécurité est détectée, elle s’affiche sous le graphique d’alertes de sécurité hello comme indiqué ci-dessous :</span><span class="sxs-lookup"><span data-stu-id="27ded-116">Click on this tile tooexpand it and if a security incident is detected, it will appear under hello security alerts graph as shown  below:</span></span>
+
+    ![Incident de sécurité](./media/security-center-incident/security-center-incident-fig2.png)
+
+3. <span data-ttu-id="27ded-118">Remarquez que description de l’incident hello sécurité comporte une icône différente par rapport à tooother alertes.</span><span class="sxs-lookup"><span data-stu-id="27ded-118">Notice that hello security incident description has a different icon compared tooother alerts.</span></span> <span data-ttu-id="27ded-119">Cliquez sur cette tooview plus d’informations sur cet incident.</span><span class="sxs-lookup"><span data-stu-id="27ded-119">Click on it tooview more details about this incident.</span></span>
+
+    ![Incident de sécurité](./media/security-center-incident/security-center-incident-fig3.png)
+
+4. <span data-ttu-id="27ded-121">Sur hello **incident** panneau s’affiche en plus des détails sur cet incident de sécurité, notamment sa description complet, sa gravité (qui dans ce cas est élevée), son état actuel (dans ce cas, il est toujours *active*, ce qui implique l’utilisateur de hello n’a pas mis un tooit action - cela, avec le bouton droit sur l’incident hello Bonjour **alertes de sécurité** panneau), hello effectuées sur la ressource (dans ce cas *VM1*), hello des étapes de mise à jour d’incident de hello et dans le volet du bas hello vous avez des alertes hello qui ont été inclus dans cet incident.</span><span class="sxs-lookup"><span data-stu-id="27ded-121">On hello **incident** blade you will see more details about this security incident, which includes its full description, its severity (which in this case is high), its current state (in this case it is still *active*, which implies hello user hasn't taken an action tooit - this can be done by right clicking on hello incident in hello **Security alerts** blade), hello attacked resource (in this case *VM1*), hello remediation steps for hello incident, and in hello bottom pane you have hello alerts that were included in this incident.</span></span> <span data-ttu-id="27ded-122">Si vous souhaitez tooobtain plus d’informations sur chaque alerte, cliquez sur elle et un autre panneau s’ouvre, comme indiqué ci-dessous :</span><span class="sxs-lookup"><span data-stu-id="27ded-122">If you want tooobtain more information on each alert, just click on it and another blade will open, as shown below:</span></span>
+
+    ![Incident de sécurité](./media/security-center-incident/security-center-incident-fig4.png)
+
+<span data-ttu-id="27ded-124">Hello plus d’informations sur ce panneau varie en fonction toohello alerte.</span><span class="sxs-lookup"><span data-stu-id="27ded-124">hello information on this blade will vary according toohello alert.</span></span> <span data-ttu-id="27ded-125">Lecture [toosecurity répond et de la gestion des alertes dans le centre de sécurité Azure](security-center-managing-and-responding-alerts.md) pour plus d’informations sur la façon de toomanage ces alertes.</span><span class="sxs-lookup"><span data-stu-id="27ded-125">Read [Managing and responding toosecurity alerts in Azure Security Center](security-center-managing-and-responding-alerts.md) for more information on how toomanage these alerts.</span></span> <span data-ttu-id="27ded-126">Voici quelques considérations importantes concernant cette fonctionnalité :</span><span class="sxs-lookup"><span data-stu-id="27ded-126">Some important considerations regarding this capability:</span></span>
+
+* <span data-ttu-id="27ded-127">Un nouveau filtre vous permet de toocustomize que votre tooIncident vue uniquement, les alertes uniquement, ou les deux.</span><span class="sxs-lookup"><span data-stu-id="27ded-127">A new filter enables you toocustomize your view tooIncident only, Alerts only, or both.</span></span>
+* <span data-ttu-id="27ded-128">Hello même alerte peut exister en tant que partie d’un Incident (le cas échéant), ainsi que les toobe visible sous la forme d’une alerte autonome.</span><span class="sxs-lookup"><span data-stu-id="27ded-128">hello same alert can exist as part of an Incident (if applicable), as well as toobe visible as a standalone alert.</span></span>
+
+## <a name="see-also"></a><span data-ttu-id="27ded-129">Voir aussi</span><span class="sxs-lookup"><span data-stu-id="27ded-129">See also</span></span>
+<span data-ttu-id="27ded-130">Dans ce document, vous avez appris comment toouse hello fonctionnalité incident de sécurité dans le centre de sécurité.</span><span class="sxs-lookup"><span data-stu-id="27ded-130">In this document, you learned how toouse hello security incident capability in Security Center.</span></span> <span data-ttu-id="27ded-131">toolearn en savoir plus sur le centre de sécurité, voir hello :</span><span class="sxs-lookup"><span data-stu-id="27ded-131">toolearn more about Security Center, see hello following:</span></span>
+
+* [<span data-ttu-id="27ded-132">La gestion et de répondre toosecurity des alertes dans le centre de sécurité Azure</span><span class="sxs-lookup"><span data-stu-id="27ded-132">Managing and responding toosecurity alerts in Azure Security Center</span></span>](security-center-managing-and-responding-alerts.md)
+* [<span data-ttu-id="27ded-133">Fonctionnalités de détection d’Azure Security Center</span><span class="sxs-lookup"><span data-stu-id="27ded-133">Azure Security Center Detection Capabilities</span></span>](security-center-detection-capabilities.md)
+* [<span data-ttu-id="27ded-134">Guide des opérations et de planification du Centre de sécurité Azure</span><span class="sxs-lookup"><span data-stu-id="27ded-134">Azure Security Center Planning and Operations Guide</span></span>](security-center-planning-and-operations-guide.md)
+* [<span data-ttu-id="27ded-135">La gestion et de répondre toosecurity des alertes dans le centre de sécurité Azure</span><span class="sxs-lookup"><span data-stu-id="27ded-135">Managing and responding toosecurity alerts in Azure Security Center</span></span>](security-center-managing-and-responding-alerts.md)
+* <span data-ttu-id="27ded-136">[Forum aux questions sur Azure Security Center](security-center-faq.md)--rechercher Forum aux questions sur l’utilisation du service de hello.</span><span class="sxs-lookup"><span data-stu-id="27ded-136">[Azure Security Center FAQ](security-center-faq.md)--Find frequently asked questions about using hello service.</span></span>
+* <span data-ttu-id="27ded-137">[Blog sur la sécurité Azure](http://blogs.msdn.com/b/azuresecurity/): trouvez des billets de blog sur la sécurité et la conformité Azure.</span><span class="sxs-lookup"><span data-stu-id="27ded-137">[Azure Security blog](http://blogs.msdn.com/b/azuresecurity/)--Find blog posts about Azure security and compliance.</span></span>

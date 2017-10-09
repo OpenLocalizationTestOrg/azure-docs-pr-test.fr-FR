@@ -1,6 +1,6 @@
 ---
-title: "Approvisionnement de l’application web avec le cache Redis"
-description: "Utilisez un modèle Azure Resource Manager pour déployer une application web Azure avec le cache Redis."
+title: aaaProvision application Web avec le Cache Redis
+description: "Utilisez Azure Resource Manager modèle toodeploy l’application web avec le Cache Redis."
 services: app-service
 documentationcenter: 
 author: steved0x
@@ -14,36 +14,36 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/06/2017
 ms.author: sdanie
-ms.openlocfilehash: 810c1cedd4fe0bd6ecdf9bd32dfb241f5f345300
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b95b5e230dc40c1157940c2017cba836975b6930
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-web-app-plus-redis-cache-using-a-template"></a><span data-ttu-id="8050f-103">Création d’une application web avec le cache Redis à l’aide d’un modèle</span><span class="sxs-lookup"><span data-stu-id="8050f-103">Create a Web App plus Redis Cache using a template</span></span>
-<span data-ttu-id="8050f-104">Dans cette rubrique, vous allez apprendre à créer un modèle Azure Resource Manager qui déploie une application web Azure avec le cache Redis.</span><span class="sxs-lookup"><span data-stu-id="8050f-104">In this topic, you will learn how to create an Azure Resource Manager template that deploys an Azure Web App with Redis cache.</span></span> <span data-ttu-id="8050f-105">Vous allez apprendre comment définir les ressources à déployer et configurer les paramètres qui sont spécifiés lors de l’exécution du déploiement.</span><span class="sxs-lookup"><span data-stu-id="8050f-105">You will learn how to define which resources are deployed and how to define parameters that are specified when the deployment is executed.</span></span> <span data-ttu-id="8050f-106">Vous pouvez utiliser ce modèle pour vos propres déploiements, ou le personnaliser afin qu’il réponde à vos besoins.</span><span class="sxs-lookup"><span data-stu-id="8050f-106">You can use this template for your own deployments, or customize it to meet your requirements.</span></span>
+# <a name="create-a-web-app-plus-redis-cache-using-a-template"></a><span data-ttu-id="ef21a-103">Création d’une application web avec le cache Redis à l’aide d’un modèle</span><span class="sxs-lookup"><span data-stu-id="ef21a-103">Create a Web App plus Redis Cache using a template</span></span>
+<span data-ttu-id="ef21a-104">Dans cette rubrique, vous allez apprendre comment toocreate un modèle Azure Resource Manager qui déploie une application Web de Azure avec le cache Redis.</span><span class="sxs-lookup"><span data-stu-id="ef21a-104">In this topic, you will learn how toocreate an Azure Resource Manager template that deploys an Azure Web App with Redis cache.</span></span> <span data-ttu-id="ef21a-105">Vous allez apprendre comment toodefine les ressources qui sont déployés et comment les paramètres toodefine sont spécifiés lorsque le déploiement de hello est exécutée.</span><span class="sxs-lookup"><span data-stu-id="ef21a-105">You will learn how toodefine which resources are deployed and how toodefine parameters that are specified when hello deployment is executed.</span></span> <span data-ttu-id="ef21a-106">Vous pouvez utiliser ce modèle pour vos propres déploiements, ou personnaliser toomeet vos besoins.</span><span class="sxs-lookup"><span data-stu-id="ef21a-106">You can use this template for your own deployments, or customize it toomeet your requirements.</span></span>
 
-<span data-ttu-id="8050f-107">Pour en savoir plus sur la création de modèles, voir [Création de modèles Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md).</span><span class="sxs-lookup"><span data-stu-id="8050f-107">For more information about creating templates, see [Authoring Azure Resource Manager Templates](../azure-resource-manager/resource-group-authoring-templates.md).</span></span>
+<span data-ttu-id="ef21a-107">Pour en savoir plus sur la création de modèles, voir [Création de modèles Azure Resource Manager](../azure-resource-manager/resource-group-authoring-templates.md).</span><span class="sxs-lookup"><span data-stu-id="ef21a-107">For more information about creating templates, see [Authoring Azure Resource Manager Templates](../azure-resource-manager/resource-group-authoring-templates.md).</span></span>
 
-<span data-ttu-id="8050f-108">Pour le modèle complet, consultez la page [Modèle d’application web avec le cache Redis](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-with-redis-cache/azuredeploy.json).</span><span class="sxs-lookup"><span data-stu-id="8050f-108">For the complete template, see [Web App with Redis Cache template](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-with-redis-cache/azuredeploy.json).</span></span>
+<span data-ttu-id="ef21a-108">Pour le modèle complète de hello, consultez [application Web avec le modèle de Cache Redis](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-with-redis-cache/azuredeploy.json).</span><span class="sxs-lookup"><span data-stu-id="ef21a-108">For hello complete template, see [Web App with Redis Cache template](https://github.com/Azure/azure-quickstart-templates/blob/master/201-web-app-with-redis-cache/azuredeploy.json).</span></span>
 
-## <a name="what-you-will-deploy"></a><span data-ttu-id="8050f-109">Ce que vous allez déployer</span><span class="sxs-lookup"><span data-stu-id="8050f-109">What you will deploy</span></span>
-<span data-ttu-id="8050f-110">Dans ce modèle, vous allez déployer :</span><span class="sxs-lookup"><span data-stu-id="8050f-110">In this template, you will deploy:</span></span>
+## <a name="what-you-will-deploy"></a><span data-ttu-id="ef21a-109">Ce que vous allez déployer</span><span class="sxs-lookup"><span data-stu-id="ef21a-109">What you will deploy</span></span>
+<span data-ttu-id="ef21a-110">Dans ce modèle, vous allez déployer :</span><span class="sxs-lookup"><span data-stu-id="ef21a-110">In this template, you will deploy:</span></span>
 
-* <span data-ttu-id="8050f-111">Application web Azure</span><span class="sxs-lookup"><span data-stu-id="8050f-111">Azure Web App</span></span>
-* <span data-ttu-id="8050f-112">Cache Redis Azure.</span><span class="sxs-lookup"><span data-stu-id="8050f-112">Azure Redis Cache.</span></span>
+* <span data-ttu-id="ef21a-111">Application web Azure</span><span class="sxs-lookup"><span data-stu-id="ef21a-111">Azure Web App</span></span>
+* <span data-ttu-id="ef21a-112">Cache Redis Azure.</span><span class="sxs-lookup"><span data-stu-id="ef21a-112">Azure Redis Cache.</span></span>
 
-<span data-ttu-id="8050f-113">Pour exécuter automatiquement le déploiement, cliquez sur le bouton ci-dessous :</span><span class="sxs-lookup"><span data-stu-id="8050f-113">To run the deployment automatically, click the following button:</span></span>
+<span data-ttu-id="ef21a-113">toorun hello déploiement automatiquement, cliquez sur hello suivant bouton :</span><span class="sxs-lookup"><span data-stu-id="ef21a-113">toorun hello deployment automatically, click hello following button:</span></span>
 
-<span data-ttu-id="8050f-114">[![Déploiement sur Azure](./media/cache-web-app-arm-with-redis-cache-provision/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-with-redis-cache%2Fazuredeploy.json)</span><span class="sxs-lookup"><span data-stu-id="8050f-114">[![Deploy to Azure](./media/cache-web-app-arm-with-redis-cache-provision/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-with-redis-cache%2Fazuredeploy.json)</span></span>
+<span data-ttu-id="ef21a-114">[![Déployer tooAzure](./media/cache-web-app-arm-with-redis-cache-provision/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-with-redis-cache%2Fazuredeploy.json)</span><span class="sxs-lookup"><span data-stu-id="ef21a-114">[![Deploy tooAzure](./media/cache-web-app-arm-with-redis-cache-provision/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-web-app-with-redis-cache%2Fazuredeploy.json)</span></span>
 
-## <a name="parameters-to-specify"></a><span data-ttu-id="8050f-115">Paramètres à spécifier</span><span class="sxs-lookup"><span data-stu-id="8050f-115">Parameters to specify</span></span>
+## <a name="parameters-toospecify"></a><span data-ttu-id="ef21a-115">Paramètres toospecify</span><span class="sxs-lookup"><span data-stu-id="ef21a-115">Parameters toospecify</span></span>
 [!INCLUDE [app-service-web-deploy-web-parameters](../../includes/app-service-web-deploy-web-parameters.md)]
 
 [!INCLUDE [cache-deploy-parameters](../../includes/cache-deploy-parameters.md)]
 
-## <a name="variables-for-names"></a><span data-ttu-id="8050f-116">Variables pour les noms</span><span class="sxs-lookup"><span data-stu-id="8050f-116">Variables for names</span></span>
-<span data-ttu-id="8050f-117">Ce modèle utilise des variables afin de créer des noms pour les ressources.</span><span class="sxs-lookup"><span data-stu-id="8050f-117">This template uses variables to construct names for the resources.</span></span> <span data-ttu-id="8050f-118">Il utilise la fonction [uniqueString](../azure-resource-manager/resource-group-template-functions-string.md#uniquestring) pour construire une valeur basée sur l’identifiant du groupe de ressources.</span><span class="sxs-lookup"><span data-stu-id="8050f-118">It uses the [uniqueString](../azure-resource-manager/resource-group-template-functions-string.md#uniquestring) function to construct a value based on the resource group id.</span></span>
+## <a name="variables-for-names"></a><span data-ttu-id="ef21a-116">Variables pour les noms</span><span class="sxs-lookup"><span data-stu-id="ef21a-116">Variables for names</span></span>
+<span data-ttu-id="ef21a-117">Ce modèle utilise des noms de tooconstruct de variables pour les ressources de hello.</span><span class="sxs-lookup"><span data-stu-id="ef21a-117">This template uses variables tooconstruct names for hello resources.</span></span> <span data-ttu-id="ef21a-118">Il utilise hello [uniqueString](../azure-resource-manager/resource-group-template-functions-string.md#uniquestring) tooconstruct une valeur basée sur l’id de groupe de ressources de la fonction.</span><span class="sxs-lookup"><span data-stu-id="ef21a-118">It uses hello [uniqueString](../azure-resource-manager/resource-group-template-functions-string.md#uniquestring) function tooconstruct a value based on the resource group id.</span></span>
 
     "variables": {
       "hostingPlanName": "[concat('hostingplan', uniqueString(resourceGroup().id))]",
@@ -52,13 +52,13 @@ ms.lasthandoff: 07/11/2017
     },
 
 
-## <a name="resources-to-deploy"></a><span data-ttu-id="8050f-119">Ressources à déployer</span><span class="sxs-lookup"><span data-stu-id="8050f-119">Resources to deploy</span></span>
+## <a name="resources-toodeploy"></a><span data-ttu-id="ef21a-119">Ressources toodeploy</span><span class="sxs-lookup"><span data-stu-id="ef21a-119">Resources toodeploy</span></span>
 [!INCLUDE [app-service-web-deploy-web-host](../../includes/app-service-web-deploy-web-host.md)]
 
-### <a name="redis-cache"></a><span data-ttu-id="8050f-120">Cache Redis</span><span class="sxs-lookup"><span data-stu-id="8050f-120">Redis Cache</span></span>
-<span data-ttu-id="8050f-121">Crée le cache Redis Azure utilisé avec l'application web.</span><span class="sxs-lookup"><span data-stu-id="8050f-121">Creates the Azure Redis Cache that is used with the web app.</span></span> <span data-ttu-id="8050f-122">Le nom du cache est spécifié dans la variable **cacheName** .</span><span class="sxs-lookup"><span data-stu-id="8050f-122">The name of the cache is specified in the **cacheName** variable.</span></span>
+### <a name="redis-cache"></a><span data-ttu-id="ef21a-120">Cache Redis</span><span class="sxs-lookup"><span data-stu-id="ef21a-120">Redis Cache</span></span>
+<span data-ttu-id="ef21a-121">Crée hello du Cache Redis Azure qui est utilisé avec l’application web hello.</span><span class="sxs-lookup"><span data-stu-id="ef21a-121">Creates hello Azure Redis Cache that is used with hello web app.</span></span> <span data-ttu-id="ef21a-122">nom de Hello du cache de hello est spécifié dans hello **cacheName** variable.</span><span class="sxs-lookup"><span data-stu-id="ef21a-122">hello name of hello cache is specified in hello **cacheName** variable.</span></span>
 
-<span data-ttu-id="8050f-123">Le modèle crée le cache au même emplacement que le groupe de ressources.</span><span class="sxs-lookup"><span data-stu-id="8050f-123">The template creates the cache in the same location as the resource group.</span></span>
+<span data-ttu-id="ef21a-123">modèle de Hello crée un cache de hello Bonjour même emplacement que le groupe de ressources hello.</span><span class="sxs-lookup"><span data-stu-id="ef21a-123">hello template creates hello cache in hello same location as hello resource group.</span></span>
 
     {
       "name": "[variables('cacheName')]",
@@ -79,10 +79,10 @@ ms.lasthandoff: 07/11/2017
     }
 
 
-### <a name="web-app"></a><span data-ttu-id="8050f-124">Application web</span><span class="sxs-lookup"><span data-stu-id="8050f-124">Web app</span></span>
-<span data-ttu-id="8050f-125">Crée l’application web avec le nom spécifié dans la variable **webSiteName** .</span><span class="sxs-lookup"><span data-stu-id="8050f-125">Creates the web app with name specified in the **webSiteName** variable.</span></span>
+### <a name="web-app"></a><span data-ttu-id="ef21a-124">Application web</span><span class="sxs-lookup"><span data-stu-id="ef21a-124">Web app</span></span>
+<span data-ttu-id="ef21a-125">Crée l’application hello web avec le nom spécifié dans hello **webSiteName** variable.</span><span class="sxs-lookup"><span data-stu-id="ef21a-125">Creates hello web app with name specified in hello **webSiteName** variable.</span></span>
 
-<span data-ttu-id="8050f-126">Notez que l’application web est configurée selon des paramètres qui lui permettent d’utiliser le cache Redis.</span><span class="sxs-lookup"><span data-stu-id="8050f-126">Notice that the web app is configured with app setting properties that enable it to work with the Redis Cache.</span></span> <span data-ttu-id="8050f-127">Ces paramètres sont créés de façon dynamique en fonction des valeurs fournies lors du déploiement.</span><span class="sxs-lookup"><span data-stu-id="8050f-127">This app settings are dynamically created based on values provided during deployment.</span></span>
+<span data-ttu-id="ef21a-126">Notez que l’application hello web est configurée avec application de définir des propriétés qui lui toowork avec hello du Cache Redis.</span><span class="sxs-lookup"><span data-stu-id="ef21a-126">Notice that hello web app is configured with app setting properties that enable it toowork with hello Redis Cache.</span></span> <span data-ttu-id="ef21a-127">Ces paramètres sont créés de façon dynamique en fonction des valeurs fournies lors du déploiement.</span><span class="sxs-lookup"><span data-stu-id="ef21a-127">This app settings are dynamically created based on values provided during deployment.</span></span>
 
     {
       "apiVersion": "2015-08-01",
@@ -117,11 +117,11 @@ ms.lasthandoff: 07/11/2017
       ]
     }
 
-## <a name="commands-to-run-deployment"></a><span data-ttu-id="8050f-128">Commandes pour l’exécution du déploiement</span><span class="sxs-lookup"><span data-stu-id="8050f-128">Commands to run deployment</span></span>
+## <a name="commands-toorun-deployment"></a><span data-ttu-id="ef21a-128">Déploiement de toorun de commandes</span><span class="sxs-lookup"><span data-stu-id="ef21a-128">Commands toorun deployment</span></span>
 [!INCLUDE [app-service-deploy-commands](../../includes/app-service-deploy-commands.md)]
 
-### <a name="powershell"></a><span data-ttu-id="8050f-129">PowerShell</span><span class="sxs-lookup"><span data-stu-id="8050f-129">PowerShell</span></span>
+### <a name="powershell"></a><span data-ttu-id="ef21a-129">PowerShell</span><span class="sxs-lookup"><span data-stu-id="ef21a-129">PowerShell</span></span>
     New-AzureRmResourceGroupDeployment -TemplateUri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-web-app-with-redis-cache/azuredeploy.json -ResourceGroupName ExampleDeployGroup
 
-### <a name="azure-cli"></a><span data-ttu-id="8050f-130">Interface de ligne de commande Azure</span><span class="sxs-lookup"><span data-stu-id="8050f-130">Azure CLI</span></span>
+### <a name="azure-cli"></a><span data-ttu-id="ef21a-130">Interface de ligne de commande Azure</span><span class="sxs-lookup"><span data-stu-id="ef21a-130">Azure CLI</span></span>
     azure group deployment create --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-web-app-with-redis-cache/azuredeploy.json -g ExampleDeployGroup

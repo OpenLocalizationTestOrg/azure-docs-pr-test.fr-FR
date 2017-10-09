@@ -1,6 +1,6 @@
 ---
-title: "Information de référence pour les développeurs JavaScript sur Azure Functions | Microsoft Docs"
-description: "Découvrez comment développer des fonctions à l’aide de JavaScript."
+title: "référence du développeur pour les fonctions Azure aaaJavaScript | Documents Microsoft"
+description: "Comprendre le fonctionnement de toodevelop à l’aide de JavaScript."
 services: functions
 documentationcenter: na
 author: christopheranderson
@@ -16,31 +16,31 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 05/25/2017
 ms.author: glenga
-ms.openlocfilehash: 7ea81ed47f391fbce1432c2b11ac176ab6c04ae0
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 6220b42f965b6ee2463341aaf270836623fdf7fa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-functions-javascript-developer-guide"></a><span data-ttu-id="3e878-104">Guide des développeurs JavaScript sur Azure Functions</span><span class="sxs-lookup"><span data-stu-id="3e878-104">Azure Functions JavaScript developer guide</span></span>
+# <a name="azure-functions-javascript-developer-guide"></a><span data-ttu-id="40489-104">Guide des développeurs JavaScript sur Azure Functions</span><span class="sxs-lookup"><span data-stu-id="40489-104">Azure Functions JavaScript developer guide</span></span>
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="3e878-105">Script C#</span><span class="sxs-lookup"><span data-stu-id="3e878-105">C# script</span></span>](functions-reference-csharp.md)
-> * [<span data-ttu-id="3e878-106">Script F#</span><span class="sxs-lookup"><span data-stu-id="3e878-106">F# script</span></span>](functions-reference-fsharp.md)
-> * [<span data-ttu-id="3e878-107">JavaScript</span><span class="sxs-lookup"><span data-stu-id="3e878-107">JavaScript</span></span>](functions-reference-node.md)
+> * [<span data-ttu-id="40489-105">Script C#</span><span class="sxs-lookup"><span data-stu-id="40489-105">C# script</span></span>](functions-reference-csharp.md)
+> * [<span data-ttu-id="40489-106">Script F#</span><span class="sxs-lookup"><span data-stu-id="40489-106">F# script</span></span>](functions-reference-fsharp.md)
+> * [<span data-ttu-id="40489-107">JavaScript</span><span class="sxs-lookup"><span data-stu-id="40489-107">JavaScript</span></span>](functions-reference-node.md)
 > 
 > 
 
-<span data-ttu-id="3e878-108">L’expérience JavaScript pour Azure Functions facilite l’exportation d’une fonction qui reçoit un objet `context` pour communiquer avec le runtime et pour recevoir et envoyer des données par le biais des liaisons.</span><span class="sxs-lookup"><span data-stu-id="3e878-108">The JavaScript experience for Azure Functions makes it easy to export a function, which is passed as a `context` object for communicating with the runtime and for receiving and sending data via bindings.</span></span>
+<span data-ttu-id="40489-108">Hello JavaScript expérience pour les fonctions Azure rend facile tooexport une fonction qui est passée comme un `context` objet permettant de communiquer avec le runtime de hello et pour recevoir et envoyer des données via les liaisons.</span><span class="sxs-lookup"><span data-stu-id="40489-108">hello JavaScript experience for Azure Functions makes it easy tooexport a function, which is passed as a `context` object for communicating with hello runtime and for receiving and sending data via bindings.</span></span>
 
-<span data-ttu-id="3e878-109">Cet article suppose que vous ayez déjà lu l’article [Informations de référence pour les développeurs sur Azure Functions](functions-reference.md).</span><span class="sxs-lookup"><span data-stu-id="3e878-109">This article assumes that you've already read the [Azure Functions developer reference](functions-reference.md).</span></span>
+<span data-ttu-id="40489-109">Cet article suppose que vous avez déjà lu hello [référence du développeur Azure fonctions](functions-reference.md).</span><span class="sxs-lookup"><span data-stu-id="40489-109">This article assumes that you've already read hello [Azure Functions developer reference](functions-reference.md).</span></span>
 
-## <a name="exporting-a-function"></a><span data-ttu-id="3e878-110">Exporter une fonction</span><span class="sxs-lookup"><span data-stu-id="3e878-110">Exporting a function</span></span>
-<span data-ttu-id="3e878-111">Toutes les fonctions JavaScript doivent exporter un seul `function` par le biais de `module.exports` pour que le runtime trouve la fonction et l’exécute.</span><span class="sxs-lookup"><span data-stu-id="3e878-111">All JavaScript functions must export a single `function` via `module.exports` for the runtime to find the function and run it.</span></span> <span data-ttu-id="3e878-112">Cette fonction doit toujours inclure un objet `context` .</span><span class="sxs-lookup"><span data-stu-id="3e878-112">This function must always include a `context` object.</span></span>
+## <a name="exporting-a-function"></a><span data-ttu-id="40489-110">Exporter une fonction</span><span class="sxs-lookup"><span data-stu-id="40489-110">Exporting a function</span></span>
+<span data-ttu-id="40489-111">Toutes les fonctions JavaScript doivent exporter un seul `function` via `module.exports` pour hello runtime toofind hello fonction et l’exécuter.</span><span class="sxs-lookup"><span data-stu-id="40489-111">All JavaScript functions must export a single `function` via `module.exports` for hello runtime toofind hello function and run it.</span></span> <span data-ttu-id="40489-112">Cette fonction doit toujours inclure un objet `context` .</span><span class="sxs-lookup"><span data-stu-id="40489-112">This function must always include a `context` object.</span></span>
 
 ```javascript
 // You must include a context, but other arguments are optional
 module.exports = function(context) {
-    // Additional inputs can be accessed by the arguments property
+    // Additional inputs can be accessed by hello arguments property
     if(arguments.length === 4) {
         context.log('This function has 4 inputs');
     }
@@ -51,16 +51,16 @@ module.exports = function(context, myTrigger, myInput, myOtherInput) {
 };
 ```
 
-<span data-ttu-id="3e878-113">Les liaisons de `direction === "in"` sont transmises en tant qu’arguments de fonction, ce qui signifie que vous pouvez utiliser [`arguments`](https://msdn.microsoft.com/library/87dw3w1k.aspx) pour gérer de manière dynamique les nouvelles entrées (par exemple, en utilisant `arguments.length` pour effectuer une itération sur toutes vos entrées).</span><span class="sxs-lookup"><span data-stu-id="3e878-113">Bindings of `direction === "in"` are passed along as function arguments, which means that you can use [`arguments`](https://msdn.microsoft.com/library/87dw3w1k.aspx) to dynamically handle new inputs (for example, by using `arguments.length` to iterate over all your inputs).</span></span> <span data-ttu-id="3e878-114">Cette fonctionnalité est pratique si vous ne disposez que d’un déclencheur sans entrée supplémentaire, dans la mesure où vous pouvez accéder de manière prévisible aux données de votre déclencheur sans faire référence à votre objet `context`.</span><span class="sxs-lookup"><span data-stu-id="3e878-114">This functionality is convenient when you have only a trigger and no additional inputs, because you can predictably access your trigger data without referencing your `context` object.</span></span>
+<span data-ttu-id="40489-113">Liaisons de `direction === "in"` sont passés comme arguments de fonction, ce qui signifie que vous pouvez utiliser [ `arguments` ](https://msdn.microsoft.com/library/87dw3w1k.aspx) toodynamically gérer de nouvelles entrées (par exemple, à l’aide de `arguments.length` tooiterate sur toutes vos entrées).</span><span class="sxs-lookup"><span data-stu-id="40489-113">Bindings of `direction === "in"` are passed along as function arguments, which means that you can use [`arguments`](https://msdn.microsoft.com/library/87dw3w1k.aspx) toodynamically handle new inputs (for example, by using `arguments.length` tooiterate over all your inputs).</span></span> <span data-ttu-id="40489-114">Cette fonctionnalité est pratique si vous ne disposez que d’un déclencheur sans entrée supplémentaire, dans la mesure où vous pouvez accéder de manière prévisible aux données de votre déclencheur sans faire référence à votre objet `context`.</span><span class="sxs-lookup"><span data-stu-id="40489-114">This functionality is convenient when you have only a trigger and no additional inputs, because you can predictably access your trigger data without referencing your `context` object.</span></span>
 
-<span data-ttu-id="3e878-115">Les arguments sont toujours transmis à la fonction dans leur ordre d’apparition dans *function.json*, même si vous ne les spécifiez pas dans votre instruction d’exportation.</span><span class="sxs-lookup"><span data-stu-id="3e878-115">The arguments are always passed along to the function in the order in which they occur in *function.json*, even if you don't specify them in your exports statement.</span></span> <span data-ttu-id="3e878-116">Par exemple, si vous avez `function(context, a, b)` et le remplacez par `function(context, a)`, vous pouvez toujours obtenir la valeur `b` dans le code de fonction en faisant référence à `arguments[3]`.</span><span class="sxs-lookup"><span data-stu-id="3e878-116">For example, if you have `function(context, a, b)` and change it to `function(context, a)`, you can still get the value of `b` in function code by referring to `arguments[3]`.</span></span>
+<span data-ttu-id="40489-115">arguments de Hello sont toujours passées le long de la fonction toohello dans l’ordre de hello dans lequel ils apparaissent dans *function.json*, même si vous ne les spécifiez dans votre instruction d’exportations.</span><span class="sxs-lookup"><span data-stu-id="40489-115">hello arguments are always passed along toohello function in hello order in which they occur in *function.json*, even if you don't specify them in your exports statement.</span></span> <span data-ttu-id="40489-116">Par exemple, si vous avez `function(context, a, b)` et modifiez-le trop`function(context, a)`, vous pouvez toujours obtenir les valeur hello `b` dans le code de fonction en vous reportant trop`arguments[3]`.</span><span class="sxs-lookup"><span data-stu-id="40489-116">For example, if you have `function(context, a, b)` and change it too`function(context, a)`, you can still get hello value of `b` in function code by referring too`arguments[3]`.</span></span>
 
-<span data-ttu-id="3e878-117">Toutes les liaisons, quelle que soit leur direction, sont également transmises sur l’objet `context` (voir le script ci-dessous).</span><span class="sxs-lookup"><span data-stu-id="3e878-117">All bindings, regardless of direction, are also passed along on the `context` object (see the following script).</span></span> 
+<span data-ttu-id="40489-117">Toutes les liaisons, quelle que soit la direction, sont également transmis sur hello `context` (voir hello script suivant) de l’objet.</span><span class="sxs-lookup"><span data-stu-id="40489-117">All bindings, regardless of direction, are also passed along on hello `context` object (see hello following script).</span></span> 
 
-## <a name="context-object"></a><span data-ttu-id="3e878-118">Objet de contexte</span><span class="sxs-lookup"><span data-stu-id="3e878-118">context object</span></span>
-<span data-ttu-id="3e878-119">Le runtime utilise un objet `context` pour transmettre des données vers et à partir de votre fonction et vous permettre de communiquer avec le runtime.</span><span class="sxs-lookup"><span data-stu-id="3e878-119">The runtime uses a `context` object to pass data to and from your function and to let you communicate with the runtime.</span></span>
+## <a name="context-object"></a><span data-ttu-id="40489-118">Objet de contexte</span><span class="sxs-lookup"><span data-stu-id="40489-118">context object</span></span>
+<span data-ttu-id="40489-119">Hello runtime utilise un `context` objet toopass données tooand à partir de votre fonction et le toolet vous communiquez avec le runtime de hello.</span><span class="sxs-lookup"><span data-stu-id="40489-119">hello runtime uses a `context` object toopass data tooand from your function and toolet you communicate with hello runtime.</span></span>
 
-<span data-ttu-id="3e878-120">L’objet de contexte est toujours le premier paramètre d’une fonction et doit toujours être inclus, car il possède des méthodes telles que `context.done` et `context.log` nécessaires pour utiliser correctement le runtime.</span><span class="sxs-lookup"><span data-stu-id="3e878-120">The context object is always the first parameter to a function and must be included because it has methods such as `context.done` and `context.log`, which are required to use the runtime correctly.</span></span> <span data-ttu-id="3e878-121">Vous pouvez nommer l’objet comme vous le souhaitez (par exemple, `ctx` ou `c`).</span><span class="sxs-lookup"><span data-stu-id="3e878-121">You can name the object whatever you would like (for example, `ctx` or `c`).</span></span>
+<span data-ttu-id="40489-120">Hello objet de contexte est toujours première fonction de tooa paramètre hello et doit être inclus, car il possède des méthodes telles que `context.done` et `context.log`, qui sont requis toouse hello runtime correctement.</span><span class="sxs-lookup"><span data-stu-id="40489-120">hello context object is always hello first parameter tooa function and must be included because it has methods such as `context.done` and `context.log`, which are required toouse hello runtime correctly.</span></span> <span data-ttu-id="40489-121">Vous pouvez nommer les objets hello ce que vous voulez (par exemple, `ctx` ou `c`).</span><span class="sxs-lookup"><span data-stu-id="40489-121">You can name hello object whatever you would like (for example, `ctx` or `c`).</span></span>
 
 ```javascript
 // You must include a context, but other arguments are optional
@@ -69,12 +69,12 @@ module.exports = function(context) {
 };
 ```
 
-### <a name="contextbindings-property"></a><span data-ttu-id="3e878-122">Propriété context.bindings</span><span class="sxs-lookup"><span data-stu-id="3e878-122">context.bindings property</span></span>
+### <a name="contextbindings-property"></a><span data-ttu-id="40489-122">Propriété context.bindings</span><span class="sxs-lookup"><span data-stu-id="40489-122">context.bindings property</span></span>
 
 ```
 context.bindings
 ```
-<span data-ttu-id="3e878-123">Retourne un objet nommé qui contient toutes vos données d’entrée et de sortie.</span><span class="sxs-lookup"><span data-stu-id="3e878-123">Returns a named object that contains all your input and output data.</span></span> <span data-ttu-id="3e878-124">Par exemple, la définition de liaison suivante dans votre *function.json* vous permet d’accéder au contenu de la file d’attente à partir de l’objet `context.bindings.myInput`.</span><span class="sxs-lookup"><span data-stu-id="3e878-124">For example, the following binding definition in your *function.json* lets you access the contents of the queue from the `context.bindings.myInput` object.</span></span> 
+<span data-ttu-id="40489-123">Retourne un objet nommé qui contient toutes vos données d’entrée et de sortie.</span><span class="sxs-lookup"><span data-stu-id="40489-123">Returns a named object that contains all your input and output data.</span></span> <span data-ttu-id="40489-124">Par exemple, hello après la définition de la liaison dans votre *function.json* permet d’accéder à hello le contenu de la file d’attente de hello de hello `context.bindings.myInput` objet.</span><span class="sxs-lookup"><span data-stu-id="40489-124">For example, hello following binding definition in your *function.json* lets you access hello contents of hello queue from hello `context.bindings.myInput` object.</span></span> 
 
 ```json
 {
@@ -86,7 +86,7 @@ context.bindings
 ```
 
 ```javascript
-// myInput contains the input data, which may have properties such as "name"
+// myInput contains hello input data, which may have properties such as "name"
 var author = context.bindings.myInput.name;
 // Similarly, you can set your output data
 context.bindings.myOutput = { 
@@ -94,50 +94,50 @@ context.bindings.myOutput = {
         a_number: 1 };
 ```
 
-### <a name="contextdone-method"></a><span data-ttu-id="3e878-125">Méthode context.done</span><span class="sxs-lookup"><span data-stu-id="3e878-125">context.done method</span></span>
+### <a name="contextdone-method"></a><span data-ttu-id="40489-125">Méthode context.done</span><span class="sxs-lookup"><span data-stu-id="40489-125">context.done method</span></span>
 ```
 context.done([err],[propertyBag])
 ```
 
-<span data-ttu-id="3e878-126">Informe le runtime que votre code est terminé.</span><span class="sxs-lookup"><span data-stu-id="3e878-126">Informs the runtime that your code has finished.</span></span> <span data-ttu-id="3e878-127">Vous devez appeler `context.done`. Sinon, le runtime ne sait pas que votre fonction est terminée et que l’exécution va expirer.</span><span class="sxs-lookup"><span data-stu-id="3e878-127">You must call `context.done`, or else the runtime never knows that your function is complete, and the execution will time out.</span></span> 
+<span data-ttu-id="40489-126">Informe le runtime hello que votre code est terminée.</span><span class="sxs-lookup"><span data-stu-id="40489-126">Informs hello runtime that your code has finished.</span></span> <span data-ttu-id="40489-127">Vous devez appeler `context.done`, ou autre hello runtime jamais sait que votre fonction est terminée et l’exécution de hello va expirer.</span><span class="sxs-lookup"><span data-stu-id="40489-127">You must call `context.done`, or else hello runtime never knows that your function is complete, and hello execution will time out.</span></span> 
 
-<span data-ttu-id="3e878-128">La méthode `context.done` permet de transmettre une erreur définie par l’utilisateur au runtime ainsi qu’un conteneur de propriétés, qui remplaceront les propriétés de l’objet `context.bindings`.</span><span class="sxs-lookup"><span data-stu-id="3e878-128">The `context.done` method allows you to pass back both a user-defined error to the runtime and a property bag of properties that overwrite the properties on the `context.bindings` object.</span></span>
+<span data-ttu-id="40489-128">Hello `context.done` méthode permet de vous toopass sauvegarder un runtime de toohello d’erreur définis par l’utilisateur et un sac de propriétés qui remplacent les propriétés de hello sur hello `context.bindings` objet.</span><span class="sxs-lookup"><span data-stu-id="40489-128">hello `context.done` method allows you toopass back both a user-defined error toohello runtime and a property bag of properties that overwrite hello properties on hello `context.bindings` object.</span></span>
 
 ```javascript
-// Even though we set myOutput to have:
+// Even though we set myOutput toohave:
 //  -> text: hello world, number: 123
 context.bindings.myOutput = { text: 'hello world', number: 123 };
-// If we pass an object to the done function...
+// If we pass an object toohello done function...
 context.done(null, { myOutput: { text: 'hello there, world', noNumber: true }});
-// the done method will overwrite the myOutput binding to be: 
+// hello done method will overwrite hello myOutput binding toobe: 
 //  -> text: hello there, world, noNumber: true
 ```
 
-### <a name="contextlog-method"></a><span data-ttu-id="3e878-129">Méthode context.log</span><span class="sxs-lookup"><span data-stu-id="3e878-129">context.log method</span></span>  
+### <a name="contextlog-method"></a><span data-ttu-id="40489-129">Méthode context.log</span><span class="sxs-lookup"><span data-stu-id="40489-129">context.log method</span></span>  
 
 ```
 context.log(message)
 ```
-<span data-ttu-id="3e878-130">Vous permet d’écrire dans les journaux de console de streaming au niveau de trace par défaut.</span><span class="sxs-lookup"><span data-stu-id="3e878-130">Allows you to write to the streaming console logs at the default trace level.</span></span> <span data-ttu-id="3e878-131">Des méthodes de journalisation supplémentaires sont disponibles sur `context.log` pour vous permettre d’écrire dans le journal de console à d’autres niveaux de trace :</span><span class="sxs-lookup"><span data-stu-id="3e878-131">On `context.log`, additional logging methods are available that let you write to the console log at other trace levels:</span></span>
+<span data-ttu-id="40489-130">Vous permet de toowrite toohello diffusion en continu journaux de la console au niveau de trace par défaut hello.</span><span class="sxs-lookup"><span data-stu-id="40489-130">Allows you toowrite toohello streaming console logs at hello default trace level.</span></span> <span data-ttu-id="40489-131">Sur `context.log`, d’autres méthodes de journalisation qui vous permettre d’écrire le journal de la console toohello à d’autres niveaux de trace :</span><span class="sxs-lookup"><span data-stu-id="40489-131">On `context.log`, additional logging methods are available that let you write toohello console log at other trace levels:</span></span>
 
 
-| <span data-ttu-id="3e878-132">Méthode</span><span class="sxs-lookup"><span data-stu-id="3e878-132">Method</span></span>                 | <span data-ttu-id="3e878-133">Description</span><span class="sxs-lookup"><span data-stu-id="3e878-133">Description</span></span>                                |
+| <span data-ttu-id="40489-132">Méthode</span><span class="sxs-lookup"><span data-stu-id="40489-132">Method</span></span>                 | <span data-ttu-id="40489-133">Description</span><span class="sxs-lookup"><span data-stu-id="40489-133">Description</span></span>                                |
 | ---------------------- | ------------------------------------------ |
-| <span data-ttu-id="3e878-134">**error(_message_)**</span><span class="sxs-lookup"><span data-stu-id="3e878-134">**error(_message_)**</span></span>   | <span data-ttu-id="3e878-135">Écrit dans la journalisation du niveau d’erreur, ou à un niveau inférieur.</span><span class="sxs-lookup"><span data-stu-id="3e878-135">Writes to error level logging, or lower.</span></span>   |
-| <span data-ttu-id="3e878-136">**warn(_message_)**</span><span class="sxs-lookup"><span data-stu-id="3e878-136">**warn(_message_)**</span></span>    | <span data-ttu-id="3e878-137">Écrit dans la journalisation du niveau d’avertissement, ou à un niveau inférieur.</span><span class="sxs-lookup"><span data-stu-id="3e878-137">Writes to warning level logging, or lower.</span></span> |
-| <span data-ttu-id="3e878-138">**info(_message_)**</span><span class="sxs-lookup"><span data-stu-id="3e878-138">**info(_message_)**</span></span>    | <span data-ttu-id="3e878-139">Écrit dans la journalisation du niveau d’information, ou à un niveau inférieur.</span><span class="sxs-lookup"><span data-stu-id="3e878-139">Writes to info level logging, or lower.</span></span>    |
-| <span data-ttu-id="3e878-140">**verbose(_message_)**</span><span class="sxs-lookup"><span data-stu-id="3e878-140">**verbose(_message_)**</span></span> | <span data-ttu-id="3e878-141">Écrit dans la journalisation du niveau détaillé.</span><span class="sxs-lookup"><span data-stu-id="3e878-141">Writes to verbose level logging.</span></span>           |
+| <span data-ttu-id="40489-134">**error(_message_)**</span><span class="sxs-lookup"><span data-stu-id="40489-134">**error(_message_)**</span></span>   | <span data-ttu-id="40489-135">Écrit tooerror au niveau de journalisation, ou inférieure.</span><span class="sxs-lookup"><span data-stu-id="40489-135">Writes tooerror level logging, or lower.</span></span>   |
+| <span data-ttu-id="40489-136">**warn(_message_)**</span><span class="sxs-lookup"><span data-stu-id="40489-136">**warn(_message_)**</span></span>    | <span data-ttu-id="40489-137">Écrit toowarning au niveau de journalisation, ou inférieure.</span><span class="sxs-lookup"><span data-stu-id="40489-137">Writes toowarning level logging, or lower.</span></span> |
+| <span data-ttu-id="40489-138">**info(_message_)**</span><span class="sxs-lookup"><span data-stu-id="40489-138">**info(_message_)**</span></span>    | <span data-ttu-id="40489-139">Écrit tooinfo au niveau de journalisation, ou inférieure.</span><span class="sxs-lookup"><span data-stu-id="40489-139">Writes tooinfo level logging, or lower.</span></span>    |
+| <span data-ttu-id="40489-140">**verbose(_message_)**</span><span class="sxs-lookup"><span data-stu-id="40489-140">**verbose(_message_)**</span></span> | <span data-ttu-id="40489-141">Écrit la journalisation au niveau du tooverbose.</span><span class="sxs-lookup"><span data-stu-id="40489-141">Writes tooverbose level logging.</span></span>           |
 
-<span data-ttu-id="3e878-142">L’exemple suivant écrit dans la console au niveau de trace d’avertissement :</span><span class="sxs-lookup"><span data-stu-id="3e878-142">The following example writes to the console at the warning trace level:</span></span>
+<span data-ttu-id="40489-142">Hello exemple suivant écrit console toohello au niveau de trace d’avertissement hello :</span><span class="sxs-lookup"><span data-stu-id="40489-142">hello following example writes toohello console at hello warning trace level:</span></span>
 
 ```javascript
 context.log.warn("Something has happened."); 
 ```
-<span data-ttu-id="3e878-143">Vous pouvez définir le seuil du niveau de trace pour la journalisation dans le fichier host.json, ou le désactiver.</span><span class="sxs-lookup"><span data-stu-id="3e878-143">You can set the trace-level threshold for logging in the host.json file, or turn it off.</span></span>  <span data-ttu-id="3e878-144">Pour plus d’informations sur l’écriture dans les journaux, consultez la section suivante.</span><span class="sxs-lookup"><span data-stu-id="3e878-144">For more information about how to write to the logs, see the next section.</span></span>
+<span data-ttu-id="40489-143">Vous pouvez définir le seuil de niveau de trace hello pour l’enregistrement dans le fichier de host.json hello ou mettez-le hors tension.</span><span class="sxs-lookup"><span data-stu-id="40489-143">You can set hello trace-level threshold for logging in hello host.json file, or turn it off.</span></span>  <span data-ttu-id="40489-144">Pour plus d’informations sur le fonctionnement des journaux toowrite toohello, consultez la section de suivante de hello.</span><span class="sxs-lookup"><span data-stu-id="40489-144">For more information about how toowrite toohello logs, see hello next section.</span></span>
 
-## <a name="binding-data-type"></a><span data-ttu-id="3e878-145">Type de données d’une liaison</span><span class="sxs-lookup"><span data-stu-id="3e878-145">Binding data type</span></span>
+## <a name="binding-data-type"></a><span data-ttu-id="40489-145">Type de données d’une liaison</span><span class="sxs-lookup"><span data-stu-id="40489-145">Binding data type</span></span>
 
-<span data-ttu-id="3e878-146">Pour définir le type de données pour une liaison d’entrée, utilisez la propriété `dataType` dans la définition de la liaison.</span><span class="sxs-lookup"><span data-stu-id="3e878-146">To define the data type for an input binding, use the `dataType` property in the binding definition.</span></span> <span data-ttu-id="3e878-147">Par exemple, pour lire le contenu d’une requête HTTP au format binaire, utilisez le type `binary` :</span><span class="sxs-lookup"><span data-stu-id="3e878-147">For example, to read the content of an HTTP request in binary format, use the type `binary`:</span></span>
+<span data-ttu-id="40489-146">toodefine type de données de hello pour une liaison d’entrée, utilisez hello `dataType` propriété dans la définition de la liaison hello.</span><span class="sxs-lookup"><span data-stu-id="40489-146">toodefine hello data type for an input binding, use hello `dataType` property in hello binding definition.</span></span> <span data-ttu-id="40489-147">Par exemple, tooread hello contenu d’une requête HTTP au format binaire, utilisez le type de hello `binary`:</span><span class="sxs-lookup"><span data-stu-id="40489-147">For example, tooread hello content of an HTTP request in binary format, use hello type `binary`:</span></span>
 
 ```json
 {
@@ -148,50 +148,50 @@ context.log.warn("Something has happened.");
 }
 ```
 
-<span data-ttu-id="3e878-148">Les autres options pour `dataType` sont `stream` et `string`.</span><span class="sxs-lookup"><span data-stu-id="3e878-148">Other options for `dataType` are `stream` and `string`.</span></span>
+<span data-ttu-id="40489-148">Les autres options pour `dataType` sont `stream` et `string`.</span><span class="sxs-lookup"><span data-stu-id="40489-148">Other options for `dataType` are `stream` and `string`.</span></span>
 
-## <a name="writing-trace-output-to-the-console"></a><span data-ttu-id="3e878-149">Écrire la sortie de trace dans la console</span><span class="sxs-lookup"><span data-stu-id="3e878-149">Writing trace output to the console</span></span> 
+## <a name="writing-trace-output-toohello-console"></a><span data-ttu-id="40489-149">Console de toohello de sortie de trace en écriture</span><span class="sxs-lookup"><span data-stu-id="40489-149">Writing trace output toohello console</span></span> 
 
-<span data-ttu-id="3e878-150">Dans Functions, vous utilisez les méthodes `context.log` pour écrire la sortie de trace dans la console.</span><span class="sxs-lookup"><span data-stu-id="3e878-150">In Functions, you use the `context.log` methods to write trace output to the console.</span></span> <span data-ttu-id="3e878-151">À ce stade, vous ne pouvez pas utiliser `console.log` pour écrire dans la console.</span><span class="sxs-lookup"><span data-stu-id="3e878-151">At this point, you cannot use `console.log` to write to the console.</span></span>
+<span data-ttu-id="40489-150">Dans les fonctions, vous utilisez hello `context.log` console toohello de méthodes toowrite trace sortie.</span><span class="sxs-lookup"><span data-stu-id="40489-150">In Functions, you use hello `context.log` methods toowrite trace output toohello console.</span></span> <span data-ttu-id="40489-151">À ce stade, vous ne pouvez pas utiliser `console.log` toowrite toohello console.</span><span class="sxs-lookup"><span data-stu-id="40489-151">At this point, you cannot use `console.log` toowrite toohello console.</span></span>
 
-<span data-ttu-id="3e878-152">Lorsque vous appelez `context.log()`, votre message est écrit dans la console au niveau de trace par défaut, qui est le niveau de trace d’_informations_.</span><span class="sxs-lookup"><span data-stu-id="3e878-152">When you call `context.log()`, your message is written to the console at the default trace level, which is the _info_ trace level.</span></span> <span data-ttu-id="3e878-153">Le code suivant écrit dans la console au niveau de trace d’informations :</span><span class="sxs-lookup"><span data-stu-id="3e878-153">The following code writes to the console at the info trace level:</span></span>
+<span data-ttu-id="40489-152">Lorsque vous appelez `context.log()`, votre message est écrit console toohello au niveau de trace par défaut de hello, qui est hello _info_ niveau de suivi.</span><span class="sxs-lookup"><span data-stu-id="40489-152">When you call `context.log()`, your message is written toohello console at hello default trace level, which is hello _info_ trace level.</span></span> <span data-ttu-id="40489-153">Hello de code suivant écrit console toohello au niveau de trace hello info :</span><span class="sxs-lookup"><span data-stu-id="40489-153">hello following code writes toohello console at hello info trace level:</span></span>
 
 ```javascript
 context.log({hello: 'world'});  
 ```
 
-<span data-ttu-id="3e878-154">Il équivaut à ce qui suit :</span><span class="sxs-lookup"><span data-stu-id="3e878-154">The preceding code is equivalent to the following code:</span></span>
+<span data-ttu-id="40489-154">Bonjour code précédent est équivalent toohello suivant de code :</span><span class="sxs-lookup"><span data-stu-id="40489-154">hello preceding code is equivalent toohello following code:</span></span>
 
 ```javascript
 context.log.info({hello: 'world'});  
 ```
 
-<span data-ttu-id="3e878-155">Le code suivant écrit dans la console au niveau de trace d’erreur :</span><span class="sxs-lookup"><span data-stu-id="3e878-155">The following code writes to the console at the error level:</span></span>
+<span data-ttu-id="40489-155">Hello de code suivant écrit console toohello au niveau d’erreur hello :</span><span class="sxs-lookup"><span data-stu-id="40489-155">hello following code writes toohello console at hello error level:</span></span>
 
 ```javascript
 context.log.error("An error has occurred.");  
 ```
 
-<span data-ttu-id="3e878-156">Étant donné que le niveau d’_erreur_ constitue le niveau de trace le plus élevé, cette trace est écrite dans la sortie à tous les niveaux de trace tant que la journalisation est activée.</span><span class="sxs-lookup"><span data-stu-id="3e878-156">Because _error_ is the highest trace level, this trace is written to the output at all trace levels as long as logging is enabled.</span></span>  
+<span data-ttu-id="40489-156">Étant donné que _erreur_ est hello de trace la plus élevée au niveau, cette trace est écrite sortie toohello à tous les niveaux de trace tant que la journalisation est activée.</span><span class="sxs-lookup"><span data-stu-id="40489-156">Because _error_ is hello highest trace level, this trace is written toohello output at all trace levels as long as logging is enabled.</span></span>  
 
 
-<span data-ttu-id="3e878-157">Toutes les méthodes `context.log` prennent en charge le même format de paramètre que celui pris en charge par la [méthode util.format](https://nodejs.org/api/util.html#util_util_format_format) Node.js.</span><span class="sxs-lookup"><span data-stu-id="3e878-157">All `context.log` methods support the same parameter format that's supported by the Node.js [util.format method](https://nodejs.org/api/util.html#util_util_format_format).</span></span> <span data-ttu-id="3e878-158">Prenons le code suivant qui écrit dans la console en utilisant le niveau de trace par défaut :</span><span class="sxs-lookup"><span data-stu-id="3e878-158">Consider the following code, which writes to the console by using the default trace level:</span></span>
+<span data-ttu-id="40489-157">Tous les `context.log` méthodes prennent en charge hello même format de paramètre est pris en charge par hello Node.js [util.format méthode](https://nodejs.org/api/util.html#util_util_format_format).</span><span class="sxs-lookup"><span data-stu-id="40489-157">All `context.log` methods support hello same parameter format that's supported by hello Node.js [util.format method](https://nodejs.org/api/util.html#util_util_format_format).</span></span> <span data-ttu-id="40489-158">Tenez compte des hello suivant de code, qui écrit toohello console à l’aide du niveau de trace par défaut hello :</span><span class="sxs-lookup"><span data-stu-id="40489-158">Consider hello following code, which writes toohello console by using hello default trace level:</span></span>
 
 ```javascript
 context.log('Node.js HTTP trigger function processed a request. RequestUri=' + req.originalUrl);
 context.log('Request Headers = ' + JSON.stringify(req.headers));
 ```
 
-<span data-ttu-id="3e878-159">Vous pouvez écrire ce même code au format suivant :</span><span class="sxs-lookup"><span data-stu-id="3e878-159">You can also write the same code in the following format:</span></span>
+<span data-ttu-id="40489-159">Vous pouvez également hello écriture même code Bonjour suivant le format :</span><span class="sxs-lookup"><span data-stu-id="40489-159">You can also write hello same code in hello following format:</span></span>
 
 ```javascript
 context.log('Node.js HTTP trigger function processed a request. RequestUri=%s', req.originalUrl);
 context.log('Request Headers = ', JSON.stringify(req.headers));
 ```
 
-### <a name="configure-the-trace-level-for-console-logging"></a><span data-ttu-id="3e878-160">Configurer le niveau de trace pour la journalisation de la console</span><span class="sxs-lookup"><span data-stu-id="3e878-160">Configure the trace level for console logging</span></span>
+### <a name="configure-hello-trace-level-for-console-logging"></a><span data-ttu-id="40489-160">Configurer le niveau de trace hello pour la journalisation de console</span><span class="sxs-lookup"><span data-stu-id="40489-160">Configure hello trace level for console logging</span></span>
 
-<span data-ttu-id="3e878-161">Functions vous permet de définir le niveau de trace du seuil pour écrire dans la console, ce qui facilite le contrôle de l’écriture des traces dans la console à partir de vos fonctions.</span><span class="sxs-lookup"><span data-stu-id="3e878-161">Functions lets you define the threshold trace level for writing to the console, which makes it easy to control the way traces are written to the console from your functions.</span></span> <span data-ttu-id="3e878-162">Utilisez la propriété `tracing.consoleLevel` dans le fichier host.json pour définir le seuil de toutes les traces écrites dans la console.</span><span class="sxs-lookup"><span data-stu-id="3e878-162">To set the threshold for all traces written to the console, use the `tracing.consoleLevel` property in the host.json file.</span></span> <span data-ttu-id="3e878-163">Ce paramètre s’applique à toutes les fonctions dans votre Function App.</span><span class="sxs-lookup"><span data-stu-id="3e878-163">This setting applies to all functions in your function app.</span></span> <span data-ttu-id="3e878-164">L’exemple suivant définit le seuil de trace permettant d’activer la journalisation détaillée :</span><span class="sxs-lookup"><span data-stu-id="3e878-164">The following example sets the trace threshold to enable verbose logging:</span></span>
+<span data-ttu-id="40489-161">Fonctions vous permet de définir le niveau de trace hello seuil pour l’écriture de console toohello, ce qui rend la façon de hello toocontrol facilement les traces sont écrites toohello console à partir de vos fonctions.</span><span class="sxs-lookup"><span data-stu-id="40489-161">Functions lets you define hello threshold trace level for writing toohello console, which makes it easy toocontrol hello way traces are written toohello console from your functions.</span></span> <span data-ttu-id="40489-162">seuil de hello tooset pour toutes les traces écrites toohello console, utilisez hello `tracing.consoleLevel` propriété dans le fichier de host.json hello.</span><span class="sxs-lookup"><span data-stu-id="40489-162">tooset hello threshold for all traces written toohello console, use hello `tracing.consoleLevel` property in hello host.json file.</span></span> <span data-ttu-id="40489-163">Ce paramètre s’applique à des fonctions de tooall dans votre application de la fonction.</span><span class="sxs-lookup"><span data-stu-id="40489-163">This setting applies tooall functions in your function app.</span></span> <span data-ttu-id="40489-164">Hello exemple suivant définit la journalisation documentée hello trace seuil tooenable :</span><span class="sxs-lookup"><span data-stu-id="40489-164">hello following example sets hello trace threshold tooenable verbose logging:</span></span>
 
 ```json
 { 
@@ -201,58 +201,58 @@ context.log('Request Headers = ', JSON.stringify(req.headers));
 }  
 ```
 
-<span data-ttu-id="3e878-165">Les valeurs de **consoleLevel** correspondent aux noms des méthodes `context.log`.</span><span class="sxs-lookup"><span data-stu-id="3e878-165">Values of **consoleLevel** correspond to the names of the `context.log` methods.</span></span> <span data-ttu-id="3e878-166">Pour désactiver toutes les journalisations de trace dans la console, définissez **consoleLevel** sur _désactivé_.</span><span class="sxs-lookup"><span data-stu-id="3e878-166">To disable all trace logging to the console, set **consoleLevel** to _off_.</span></span> <span data-ttu-id="3e878-167">Pour plus d’informations sur le fichier host.json, consultez la [rubrique de référence host.json](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json).</span><span class="sxs-lookup"><span data-stu-id="3e878-167">For more information about the host.json file, see the [host.json reference topic](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json).</span></span>
+<span data-ttu-id="40489-165">Les valeurs de **consoleLevel** correspondent toohello les noms de hello `context.log` méthodes.</span><span class="sxs-lookup"><span data-stu-id="40489-165">Values of **consoleLevel** correspond toohello names of hello `context.log` methods.</span></span> <span data-ttu-id="40489-166">le jeu de la trace de toutes les journalisation toohello console, toodisable **consoleLevel** too_off_.</span><span class="sxs-lookup"><span data-stu-id="40489-166">toodisable all trace logging toohello console, set **consoleLevel** too_off_.</span></span> <span data-ttu-id="40489-167">Pour plus d’informations sur le fichier de host.json hello, consultez hello [rubrique de référence host.json](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json).</span><span class="sxs-lookup"><span data-stu-id="40489-167">For more information about hello host.json file, see hello [host.json reference topic](https://github.com/Azure/azure-webjobs-sdk-script/wiki/host.json).</span></span>
 
-## <a name="http-triggers-and-bindings"></a><span data-ttu-id="3e878-168">Déclencheurs et liaisons HTTP</span><span class="sxs-lookup"><span data-stu-id="3e878-168">HTTP triggers and bindings</span></span>
+## <a name="http-triggers-and-bindings"></a><span data-ttu-id="40489-168">Déclencheurs et liaisons HTTP</span><span class="sxs-lookup"><span data-stu-id="40489-168">HTTP triggers and bindings</span></span>
 
-<span data-ttu-id="3e878-169">Les déclencheurs HTTP et webhook ainsi que les liaisons de sortie HTTP utilisent les objets de requête et de réponse pour représenter la messagerie HTTP.</span><span class="sxs-lookup"><span data-stu-id="3e878-169">HTTP and webhook triggers and HTTP output bindings use request and response objects to represent the HTTP messaging.</span></span>  
+<span data-ttu-id="40489-169">De sortie HTTP et les déclencheurs de webhook et HTTP liaisons utilisent la demande et messages de réponse objets toorepresent hello HTTP.</span><span class="sxs-lookup"><span data-stu-id="40489-169">HTTP and webhook triggers and HTTP output bindings use request and response objects toorepresent hello HTTP messaging.</span></span>  
 
-### <a name="request-object"></a><span data-ttu-id="3e878-170">Objet Requête</span><span class="sxs-lookup"><span data-stu-id="3e878-170">Request object</span></span>
+### <a name="request-object"></a><span data-ttu-id="40489-170">Objet Requête</span><span class="sxs-lookup"><span data-stu-id="40489-170">Request object</span></span>
 
-<span data-ttu-id="3e878-171">L’objet `request` dispose des propriétés suivantes :</span><span class="sxs-lookup"><span data-stu-id="3e878-171">The `request` object has the following properties:</span></span>
+<span data-ttu-id="40489-171">Hello `request` objet a hello propriétés suivantes :</span><span class="sxs-lookup"><span data-stu-id="40489-171">hello `request` object has hello following properties:</span></span>
 
-| <span data-ttu-id="3e878-172">Propriété</span><span class="sxs-lookup"><span data-stu-id="3e878-172">Property</span></span>      | <span data-ttu-id="3e878-173">Description</span><span class="sxs-lookup"><span data-stu-id="3e878-173">Description</span></span>                                                    |
+| <span data-ttu-id="40489-172">Propriété</span><span class="sxs-lookup"><span data-stu-id="40489-172">Property</span></span>      | <span data-ttu-id="40489-173">Description</span><span class="sxs-lookup"><span data-stu-id="40489-173">Description</span></span>                                                    |
 | ------------- | -------------------------------------------------------------- |
-| <span data-ttu-id="3e878-174">_body_</span><span class="sxs-lookup"><span data-stu-id="3e878-174">_body_</span></span>        | <span data-ttu-id="3e878-175">Objet qui contient le corps de la demande.</span><span class="sxs-lookup"><span data-stu-id="3e878-175">An object that contains the body of the request.</span></span>               |
-| <span data-ttu-id="3e878-176">_headers_</span><span class="sxs-lookup"><span data-stu-id="3e878-176">_headers_</span></span>     | <span data-ttu-id="3e878-177">Objet qui contient les en-têtes de la demande.</span><span class="sxs-lookup"><span data-stu-id="3e878-177">An object that contains the request headers.</span></span>                   |
-| <span data-ttu-id="3e878-178">_method_</span><span class="sxs-lookup"><span data-stu-id="3e878-178">_method_</span></span>      | <span data-ttu-id="3e878-179">Méthode HTTP de la demande.</span><span class="sxs-lookup"><span data-stu-id="3e878-179">The HTTP method of the request.</span></span>                                |
-| <span data-ttu-id="3e878-180">_originalUrl_</span><span class="sxs-lookup"><span data-stu-id="3e878-180">_originalUrl_</span></span> | <span data-ttu-id="3e878-181">URL de la demande.</span><span class="sxs-lookup"><span data-stu-id="3e878-181">The URL of the request.</span></span>                                        |
-| <span data-ttu-id="3e878-182">_params_</span><span class="sxs-lookup"><span data-stu-id="3e878-182">_params_</span></span>      | <span data-ttu-id="3e878-183">Objet qui contient les paramètres de routage de la demande.</span><span class="sxs-lookup"><span data-stu-id="3e878-183">An object that contains the routing parameters of the request.</span></span> |
-| <span data-ttu-id="3e878-184">_query_</span><span class="sxs-lookup"><span data-stu-id="3e878-184">_query_</span></span>       | <span data-ttu-id="3e878-185">Objet qui contient les paramètres de la requête.</span><span class="sxs-lookup"><span data-stu-id="3e878-185">An object that contains the query parameters.</span></span>                  |
-| <span data-ttu-id="3e878-186">_rawBody_</span><span class="sxs-lookup"><span data-stu-id="3e878-186">_rawBody_</span></span>     | <span data-ttu-id="3e878-187">Corps du message en tant que chaîne.</span><span class="sxs-lookup"><span data-stu-id="3e878-187">The body of the message as a string.</span></span>                           |
+| <span data-ttu-id="40489-174">_body_</span><span class="sxs-lookup"><span data-stu-id="40489-174">_body_</span></span>        | <span data-ttu-id="40489-175">Objet qui contient le corps hello de demande de hello.</span><span class="sxs-lookup"><span data-stu-id="40489-175">An object that contains hello body of hello request.</span></span>               |
+| <span data-ttu-id="40489-176">_headers_</span><span class="sxs-lookup"><span data-stu-id="40489-176">_headers_</span></span>     | <span data-ttu-id="40489-177">Objet qui contient les en-têtes de demande hello.</span><span class="sxs-lookup"><span data-stu-id="40489-177">An object that contains hello request headers.</span></span>                   |
+| <span data-ttu-id="40489-178">_method_</span><span class="sxs-lookup"><span data-stu-id="40489-178">_method_</span></span>      | <span data-ttu-id="40489-179">Bonjour la méthode HTTP de la demande de hello.</span><span class="sxs-lookup"><span data-stu-id="40489-179">hello HTTP method of hello request.</span></span>                                |
+| <span data-ttu-id="40489-180">_originalUrl_</span><span class="sxs-lookup"><span data-stu-id="40489-180">_originalUrl_</span></span> | <span data-ttu-id="40489-181">Hello l’URL de demande de hello.</span><span class="sxs-lookup"><span data-stu-id="40489-181">hello URL of hello request.</span></span>                                        |
+| <span data-ttu-id="40489-182">_params_</span><span class="sxs-lookup"><span data-stu-id="40489-182">_params_</span></span>      | <span data-ttu-id="40489-183">Objet qui contient les paramètres de routage hello de demande de hello.</span><span class="sxs-lookup"><span data-stu-id="40489-183">An object that contains hello routing parameters of hello request.</span></span> |
+| <span data-ttu-id="40489-184">_query_</span><span class="sxs-lookup"><span data-stu-id="40489-184">_query_</span></span>       | <span data-ttu-id="40489-185">Objet qui contient des paramètres de requête hello.</span><span class="sxs-lookup"><span data-stu-id="40489-185">An object that contains hello query parameters.</span></span>                  |
+| <span data-ttu-id="40489-186">_rawBody_</span><span class="sxs-lookup"><span data-stu-id="40489-186">_rawBody_</span></span>     | <span data-ttu-id="40489-187">corps de Hello du message de type hello en tant que chaîne.</span><span class="sxs-lookup"><span data-stu-id="40489-187">hello body of hello message as a string.</span></span>                           |
 
 
-### <a name="response-object"></a><span data-ttu-id="3e878-188">Objet Réponse</span><span class="sxs-lookup"><span data-stu-id="3e878-188">Response object</span></span>
+### <a name="response-object"></a><span data-ttu-id="40489-188">Objet Réponse</span><span class="sxs-lookup"><span data-stu-id="40489-188">Response object</span></span>
 
-<span data-ttu-id="3e878-189">L’objet `response` dispose des propriétés suivantes :</span><span class="sxs-lookup"><span data-stu-id="3e878-189">The `response` object has the following properties:</span></span>
+<span data-ttu-id="40489-189">Hello `response` objet a hello propriétés suivantes :</span><span class="sxs-lookup"><span data-stu-id="40489-189">hello `response` object has hello following properties:</span></span>
 
-| <span data-ttu-id="3e878-190">Propriété</span><span class="sxs-lookup"><span data-stu-id="3e878-190">Property</span></span>  | <span data-ttu-id="3e878-191">Description</span><span class="sxs-lookup"><span data-stu-id="3e878-191">Description</span></span>                                               |
+| <span data-ttu-id="40489-190">Propriété</span><span class="sxs-lookup"><span data-stu-id="40489-190">Property</span></span>  | <span data-ttu-id="40489-191">Description</span><span class="sxs-lookup"><span data-stu-id="40489-191">Description</span></span>                                               |
 | --------- | --------------------------------------------------------- |
-| <span data-ttu-id="3e878-192">_body_</span><span class="sxs-lookup"><span data-stu-id="3e878-192">_body_</span></span>    | <span data-ttu-id="3e878-193">Objet qui contient le corps de la réponse.</span><span class="sxs-lookup"><span data-stu-id="3e878-193">An object that contains the body of the response.</span></span>         |
-| <span data-ttu-id="3e878-194">_headers_</span><span class="sxs-lookup"><span data-stu-id="3e878-194">_headers_</span></span> | <span data-ttu-id="3e878-195">Objet qui contient les en-têtes de la réponse.</span><span class="sxs-lookup"><span data-stu-id="3e878-195">An object that contains the response headers.</span></span>             |
-| <span data-ttu-id="3e878-196">_isRaw_</span><span class="sxs-lookup"><span data-stu-id="3e878-196">_isRaw_</span></span>   | <span data-ttu-id="3e878-197">Indique que la mise en forme est ignorée pour la réponse.</span><span class="sxs-lookup"><span data-stu-id="3e878-197">Indicates that formatting is skipped for the response.</span></span>    |
-| <span data-ttu-id="3e878-198">_statut_</span><span class="sxs-lookup"><span data-stu-id="3e878-198">_status_</span></span>  | <span data-ttu-id="3e878-199">Code d’état HTTP de la réponse.</span><span class="sxs-lookup"><span data-stu-id="3e878-199">The HTTP status code of the response.</span></span>                     |
+| <span data-ttu-id="40489-192">_body_</span><span class="sxs-lookup"><span data-stu-id="40489-192">_body_</span></span>    | <span data-ttu-id="40489-193">Objet qui contient le corps de réponse de hello de hello.</span><span class="sxs-lookup"><span data-stu-id="40489-193">An object that contains hello body of hello response.</span></span>         |
+| <span data-ttu-id="40489-194">_headers_</span><span class="sxs-lookup"><span data-stu-id="40489-194">_headers_</span></span> | <span data-ttu-id="40489-195">Objet qui contient les en-têtes de réponse hello.</span><span class="sxs-lookup"><span data-stu-id="40489-195">An object that contains hello response headers.</span></span>             |
+| <span data-ttu-id="40489-196">_isRaw_</span><span class="sxs-lookup"><span data-stu-id="40489-196">_isRaw_</span></span>   | <span data-ttu-id="40489-197">Indique que la mise en forme est ignorée pour la réponse de hello.</span><span class="sxs-lookup"><span data-stu-id="40489-197">Indicates that formatting is skipped for hello response.</span></span>    |
+| <span data-ttu-id="40489-198">_statut_</span><span class="sxs-lookup"><span data-stu-id="40489-198">_status_</span></span>  | <span data-ttu-id="40489-199">code d’état HTTP de la réponse de hello de Hello.</span><span class="sxs-lookup"><span data-stu-id="40489-199">hello HTTP status code of hello response.</span></span>                     |
 
-### <a name="accessing-the-request-and-response"></a><span data-ttu-id="3e878-200">Accès à la demande et à la réponse</span><span class="sxs-lookup"><span data-stu-id="3e878-200">Accessing the request and response</span></span> 
+### <a name="accessing-hello-request-and-response"></a><span data-ttu-id="40489-200">L’accès à la demande de hello et de réponse</span><span class="sxs-lookup"><span data-stu-id="40489-200">Accessing hello request and response</span></span> 
 
-<span data-ttu-id="3e878-201">Lorsque vous travaillez avec des déclencheurs HTTP, trois méthodes vous permettent d’accéder à des objets de demande et de réponse HTTP :</span><span class="sxs-lookup"><span data-stu-id="3e878-201">When you work with HTTP triggers, you can access the HTTP request and response objects in any of three ways:</span></span>
+<span data-ttu-id="40489-201">Lorsque vous travaillez avec des déclencheurs HTTP, vous pouvez accéder aux objets de demande et de réponse HTTP dans une des trois manières hello :</span><span class="sxs-lookup"><span data-stu-id="40489-201">When you work with HTTP triggers, you can access hello HTTP request and response objects in any of three ways:</span></span>
 
-+ <span data-ttu-id="3e878-202">À partir de des liaisons dites d’entrée et de sortie.</span><span class="sxs-lookup"><span data-stu-id="3e878-202">From the named input and output bindings.</span></span> <span data-ttu-id="3e878-203">Avec cette méthode, le déclencheur HTTP et les liaisons fonctionnent de la même manière que toute autre liaison.</span><span class="sxs-lookup"><span data-stu-id="3e878-203">In this way, the HTTP trigger and bindings work the same as any other binding.</span></span> <span data-ttu-id="3e878-204">L’exemple suivant définit l’objet de réponse en utilisant une liaison nommée `response` :</span><span class="sxs-lookup"><span data-stu-id="3e878-204">The following example sets the response object by using a named `response` binding:</span></span> 
++ <span data-ttu-id="40489-202">Hello nommé d’entrée et de sortie des liaisons.</span><span class="sxs-lookup"><span data-stu-id="40489-202">From hello named input and output bindings.</span></span> <span data-ttu-id="40489-203">De cette façon, le déclencheur HTTP hello et liaisons fonctionnent hello même comme toute autre liaison.</span><span class="sxs-lookup"><span data-stu-id="40489-203">In this way, hello HTTP trigger and bindings work hello same as any other binding.</span></span> <span data-ttu-id="40489-204">Hello exemple suivant définit l’objet de réponse hello aide portant un nom `response` liaison :</span><span class="sxs-lookup"><span data-stu-id="40489-204">hello following example sets hello response object by using a named `response` binding:</span></span> 
 
     ```javascript
     context.bindings.response = { status: 201, body: "Insert succeeded." };
     ```
 
-+ <span data-ttu-id="3e878-205">À partir des propriétés `req` et `res` sur l’objet `context`.</span><span class="sxs-lookup"><span data-stu-id="3e878-205">From `req` and `res` properties on the `context` object.</span></span> <span data-ttu-id="3e878-206">Avec cette méthode, vous pouvez utiliser le modèle classique pour accéder aux données HTTP à partir de l’objet de contexte, au lieu d’utiliser le modèle `context.bindings.name` complet.</span><span class="sxs-lookup"><span data-stu-id="3e878-206">In this way, you can use the conventional pattern to access HTTP data from the context object, instead of having to use the full `context.bindings.name` pattern.</span></span> <span data-ttu-id="3e878-207">L’exemple suivant montre comment accéder aux objets `req` et `res` sur `context` :</span><span class="sxs-lookup"><span data-stu-id="3e878-207">The following example shows how to access the `req` and `res` objects on the `context`:</span></span>
++ <span data-ttu-id="40489-205">À partir de `req` et `res` propriétés hello `context` objet.</span><span class="sxs-lookup"><span data-stu-id="40489-205">From `req` and `res` properties on hello `context` object.</span></span> <span data-ttu-id="40489-206">De cette façon, vous pouvez utiliser les données de tooaccess HTTP de modèle classique de hello à partir de l’objet de contexte hello, au lieu d’avoir hello toouse complète `context.bindings.name` modèle.</span><span class="sxs-lookup"><span data-stu-id="40489-206">In this way, you can use hello conventional pattern tooaccess HTTP data from hello context object, instead of having toouse hello full `context.bindings.name` pattern.</span></span> <span data-ttu-id="40489-207">Hello suivant montre l’exemple de comment tooaccess hello `req` et `res` objets hello `context`:</span><span class="sxs-lookup"><span data-stu-id="40489-207">hello following example shows how tooaccess hello `req` and `res` objects on hello `context`:</span></span>
 
     ```javascript
-    // You can access your http request off the context ...
+    // You can access your http request off hello context ...
     if(context.req.body.emoji === ':pizza:') context.log('Yay!');
     // and also set your http response
     context.res = { status: 202, body: 'You successfully ordered more coffee!' }; 
     ```
 
-+ <span data-ttu-id="3e878-208">En appelant `context.done()`.</span><span class="sxs-lookup"><span data-stu-id="3e878-208">By calling `context.done()`.</span></span> <span data-ttu-id="3e878-209">Un type spécial de liaison HTTP renvoie la réponse transmise à la méthode `context.done()`.</span><span class="sxs-lookup"><span data-stu-id="3e878-209">A special kind of HTTP binding returns the response that is passed to the `context.done()` method.</span></span> <span data-ttu-id="3e878-210">La liaison de sortie HTTP suivante définit un paramètre de sortie `$return` :</span><span class="sxs-lookup"><span data-stu-id="3e878-210">The following HTTP output binding defines a `$return` output parameter:</span></span>
++ <span data-ttu-id="40489-208">En appelant `context.done()`.</span><span class="sxs-lookup"><span data-stu-id="40489-208">By calling `context.done()`.</span></span> <span data-ttu-id="40489-209">Un type spécial de liaison HTTP renvoie la réponse hello passé toohello `context.done()` (méthode).</span><span class="sxs-lookup"><span data-stu-id="40489-209">A special kind of HTTP binding returns hello response that is passed toohello `context.done()` method.</span></span> <span data-ttu-id="40489-210">Hello suivant HTTP sortie liaison définit un `$return` paramètre de sortie :</span><span class="sxs-lookup"><span data-stu-id="40489-210">hello following HTTP output binding defines a `$return` output parameter:</span></span>
 
     ```json
     {
@@ -261,7 +261,7 @@ context.log('Request Headers = ', JSON.stringify(req.headers));
       "name": "$return"
     }
     ``` 
-    <span data-ttu-id="3e878-211">Cette liaison de sortie suppose que vous fournissiez la réponse lorsque vous appelez `done()` comme suit :</span><span class="sxs-lookup"><span data-stu-id="3e878-211">This output binding expects you to supply the response when you call `done()`, as follows:</span></span>
+    <span data-ttu-id="40489-211">Cette liaison de sortie attend réponse de hello toosupply lorsque vous appelez `done()`, comme suit :</span><span class="sxs-lookup"><span data-stu-id="40489-211">This output binding expects you toosupply hello response when you call `done()`, as follows:</span></span>
 
     ```javascript
      // Define a valid response object.
@@ -269,25 +269,25 @@ context.log('Request Headers = ', JSON.stringify(req.headers));
     context.done(null, res);   
     ```  
 
-## <a name="node-version-and-package-management"></a><span data-ttu-id="3e878-212">Version du nœud et gestion des packages</span><span class="sxs-lookup"><span data-stu-id="3e878-212">Node version and Package Management</span></span>
-<span data-ttu-id="3e878-213">La version de Node est actuellement verrouillée sur `6.5.0`.</span><span class="sxs-lookup"><span data-stu-id="3e878-213">The node version is currently locked at `6.5.0`.</span></span> <span data-ttu-id="3e878-214">Nous examinons la prise en charge d’autres versions ainsi que le fait de la rendre configurable.</span><span class="sxs-lookup"><span data-stu-id="3e878-214">We're investigating adding support for more versions and making it configurable.</span></span>
+## <a name="node-version-and-package-management"></a><span data-ttu-id="40489-212">Version du nœud et gestion des packages</span><span class="sxs-lookup"><span data-stu-id="40489-212">Node version and Package Management</span></span>
+<span data-ttu-id="40489-213">version du nœud Hello est actuellement verrouillée à `6.5.0`.</span><span class="sxs-lookup"><span data-stu-id="40489-213">hello node version is currently locked at `6.5.0`.</span></span> <span data-ttu-id="40489-214">Nous examinons la prise en charge d’autres versions ainsi que le fait de la rendre configurable.</span><span class="sxs-lookup"><span data-stu-id="40489-214">We're investigating adding support for more versions and making it configurable.</span></span>
 
-<span data-ttu-id="3e878-215">Les étapes suivantes vous permettent d’inclure des packages dans votre Function App :</span><span class="sxs-lookup"><span data-stu-id="3e878-215">The following steps let you include packages in your function app:</span></span> 
+<span data-ttu-id="40489-215">Hello suit vous permettre d’inclure des packages dans votre application de fonction :</span><span class="sxs-lookup"><span data-stu-id="40489-215">hello following steps let you include packages in your function app:</span></span> 
 
-1. <span data-ttu-id="3e878-216">Accédez à `https://<function_app_name>.scm.azurewebsites.net`</span><span class="sxs-lookup"><span data-stu-id="3e878-216">Go to `https://<function_app_name>.scm.azurewebsites.net`.</span></span>
+1. <span data-ttu-id="40489-216">Accédez trop`https://<function_app_name>.scm.azurewebsites.net`.</span><span class="sxs-lookup"><span data-stu-id="40489-216">Go too`https://<function_app_name>.scm.azurewebsites.net`.</span></span>
 
-2. <span data-ttu-id="3e878-217">Cliquez sur **Console de débogage** > **CMD**.</span><span class="sxs-lookup"><span data-stu-id="3e878-217">Click **Debug Console** > **CMD**.</span></span>
+2. <span data-ttu-id="40489-217">Cliquez sur **Console de débogage** > **CMD**.</span><span class="sxs-lookup"><span data-stu-id="40489-217">Click **Debug Console** > **CMD**.</span></span>
 
-3. <span data-ttu-id="3e878-218">Accédez à `D:\home\site\wwwroot`, puis faites glisser le fichier package.json vers le dossier **wwwroot** dans la partie supérieure de la page.</span><span class="sxs-lookup"><span data-stu-id="3e878-218">Go to `D:\home\site\wwwroot`, and then drag your package.json file to the **wwwroot** folder at the top half of the page.</span></span>  
-    <span data-ttu-id="3e878-219">Il existe d’autres manières de télécharger des fichiers dans votre Function App.</span><span class="sxs-lookup"><span data-stu-id="3e878-219">You can upload files to your function app in other ways also.</span></span> <span data-ttu-id="3e878-220">Pour plus d’informations, consultez [Comment mettre à jour les fichiers du conteneur de fonctions](functions-reference.md#fileupdate).</span><span class="sxs-lookup"><span data-stu-id="3e878-220">For more information, see [How to update function app files](functions-reference.md#fileupdate).</span></span> 
+3. <span data-ttu-id="40489-218">Accédez trop`D:\home\site\wwwroot`, puis faites glisser votre toohello de fichier package.json **wwwroot** dossier au niveau de la partie supérieure de la page de hello hello.</span><span class="sxs-lookup"><span data-stu-id="40489-218">Go too`D:\home\site\wwwroot`, and then drag your package.json file toohello **wwwroot** folder at hello top half of hello page.</span></span>  
+    <span data-ttu-id="40489-219">Vous pouvez télécharger les fichiers tooyour fonction application autrement également.</span><span class="sxs-lookup"><span data-stu-id="40489-219">You can upload files tooyour function app in other ways also.</span></span> <span data-ttu-id="40489-220">Pour plus d’informations, consultez [fonctionnement des fichiers de l’application tooupdate](functions-reference.md#fileupdate).</span><span class="sxs-lookup"><span data-stu-id="40489-220">For more information, see [How tooupdate function app files](functions-reference.md#fileupdate).</span></span> 
 
-4. <span data-ttu-id="3e878-221">Une fois le fichier package.json chargé, exécutez la commande `npm install` dans la **console d’exécution à distance Kudu**.</span><span class="sxs-lookup"><span data-stu-id="3e878-221">After the package.json file is uploaded, run the `npm install` command in the **Kudu remote execution console**.</span></span>  
-    <span data-ttu-id="3e878-222">Les packages d’actions indiqués dans le fichier package.json sont téléchargés et Function App redémarre.</span><span class="sxs-lookup"><span data-stu-id="3e878-222">This action downloads the packages indicated in the package.json file and restarts the function app.</span></span>
+4. <span data-ttu-id="40489-221">Une fois hello package.json fichier est chargé, exécutez hello `npm install` commande hello **console de l’exécution à distance Kudu**.</span><span class="sxs-lookup"><span data-stu-id="40489-221">After hello package.json file is uploaded, run hello `npm install` command in hello **Kudu remote execution console**.</span></span>  
+    <span data-ttu-id="40489-222">Cette action télécharge les packages hello indiqués dans le fichier de package.json hello et redémarre l’application de fonction hello.</span><span class="sxs-lookup"><span data-stu-id="40489-222">This action downloads hello packages indicated in hello package.json file and restarts hello function app.</span></span>
 
-<span data-ttu-id="3e878-223">Une fois les packages nécessaires installés, vous pouvez les importer dans votre fonction en appelant `require('packagename')`, comme dans l’exemple suivant :</span><span class="sxs-lookup"><span data-stu-id="3e878-223">After the packages you need are installed, you import them to your function by calling `require('packagename')`, as in the following example:</span></span>
+<span data-ttu-id="40489-223">Une fois hello packages dont vous avez besoin sont installés, vous importez les tooyour fonction en appelant `require('packagename')`, comme dans hello l’exemple suivant :</span><span class="sxs-lookup"><span data-stu-id="40489-223">After hello packages you need are installed, you import them tooyour function by calling `require('packagename')`, as in hello following example:</span></span>
 
 ```javascript
-// Import the underscore.js library
+// Import hello underscore.js library
 var _ = require('underscore');
 var version = process.version; // version === 'v6.5.0'
 
@@ -297,10 +297,10 @@ module.exports = function(context) {
         .where(context.bindings.myInput.names, {first: 'Carla'});
 ```
 
-<span data-ttu-id="3e878-224">Vous devez définir un fichier `package.json` à la racine de votre Function App.</span><span class="sxs-lookup"><span data-stu-id="3e878-224">You should define a `package.json` file at the root of your function app.</span></span> <span data-ttu-id="3e878-225">Cela permet à toutes les fonctions de l’application de partager les mêmes packages mis en cache, pour des performances optimales.</span><span class="sxs-lookup"><span data-stu-id="3e878-225">Defining the file lets all functions in the app share the same cached packages, which gives the best performance.</span></span> <span data-ttu-id="3e878-226">En cas de conflit de version, vous pouvez ajouter un fichier `package.json` dans le dossier d’une fonction spécifique pour le résoudre.</span><span class="sxs-lookup"><span data-stu-id="3e878-226">If a version conflict arises, you can resolve it by adding a `package.json` file in the folder of a specific function.</span></span>  
+<span data-ttu-id="40489-224">Vous devez définir un `package.json` fichier à votre application de la fonction hello racine.</span><span class="sxs-lookup"><span data-stu-id="40489-224">You should define a `package.json` file at hello root of your function app.</span></span> <span data-ttu-id="40489-225">Fichier de définition hello permet à toutes les fonctions de partage d’application hello hello mêmes packages mis en cache, ce qui donne de meilleurs hello.</span><span class="sxs-lookup"><span data-stu-id="40489-225">Defining hello file lets all functions in hello app share hello same cached packages, which gives hello best performance.</span></span> <span data-ttu-id="40489-226">Si un conflit de version, vous pouvez le résoudre en ajoutant un `package.json` fichier dans le dossier hello d’une fonction spécifique.</span><span class="sxs-lookup"><span data-stu-id="40489-226">If a version conflict arises, you can resolve it by adding a `package.json` file in hello folder of a specific function.</span></span>  
 
-## <a name="environment-variables"></a><span data-ttu-id="3e878-227">Variables d’environnement</span><span class="sxs-lookup"><span data-stu-id="3e878-227">Environment variables</span></span>
-<span data-ttu-id="3e878-228">Pour obtenir une variable d’environnement ou une valeur de paramètre d’application, utilisez `process.env`, comme illustré dans l’exemple de code suivant :</span><span class="sxs-lookup"><span data-stu-id="3e878-228">To get an environment variable or an app setting value, use `process.env`, as shown in the following code example:</span></span>
+## <a name="environment-variables"></a><span data-ttu-id="40489-227">Variables d’environnement</span><span class="sxs-lookup"><span data-stu-id="40489-227">Environment variables</span></span>
+<span data-ttu-id="40489-228">tooget une variable d’environnement ou une valeur de paramètre d’application, utilisez `process.env`, comme indiqué dans l’exemple de code suivant de hello :</span><span class="sxs-lookup"><span data-stu-id="40489-228">tooget an environment variable or an app setting value, use `process.env`, as shown in hello following code example:</span></span>
 
 ```javascript
 module.exports = function (context, myTimer) {
@@ -318,23 +318,23 @@ function GetEnvironmentVariable(name)
     return name + ": " + process.env[name];
 }
 ```
-## <a name="considerations-for-javascript-functions"></a><span data-ttu-id="3e878-229">Considérations relatives aux fonctions JavaScript</span><span class="sxs-lookup"><span data-stu-id="3e878-229">Considerations for JavaScript functions</span></span>
+## <a name="considerations-for-javascript-functions"></a><span data-ttu-id="40489-229">Considérations relatives aux fonctions JavaScript</span><span class="sxs-lookup"><span data-stu-id="40489-229">Considerations for JavaScript functions</span></span>
 
-<span data-ttu-id="3e878-230">Lorsque vous utilisez des fonctions JavaScript, tenez compte des considérations décrites dans les deux sections suivantes.</span><span class="sxs-lookup"><span data-stu-id="3e878-230">When you work with JavaScript functions, be aware of the considerations in the following two sections.</span></span>
+<span data-ttu-id="40489-230">Lorsque vous travaillez avec les fonctions JavaScript, tenez compte des considérations hello Bonjour les deux sections suivantes.</span><span class="sxs-lookup"><span data-stu-id="40489-230">When you work with JavaScript functions, be aware of hello considerations in hello following two sections.</span></span>
 
-### <a name="choose-single-core-app-service-plans"></a><span data-ttu-id="3e878-231">Choisir des plans App Service à cœur unique</span><span class="sxs-lookup"><span data-stu-id="3e878-231">Choose single-core App Service plans</span></span>
+### <a name="choose-single-core-app-service-plans"></a><span data-ttu-id="40489-231">Choisir des plans App Service à cœur unique</span><span class="sxs-lookup"><span data-stu-id="40489-231">Choose single-core App Service plans</span></span>
 
-<span data-ttu-id="3e878-232">Lorsque vous créez une Function App qui utilise le plan App Service, nous vous recommandons de sélectionner un plan à cœur unique plutôt qu’un plan à plusieurs cœurs.</span><span class="sxs-lookup"><span data-stu-id="3e878-232">When you create a function app that uses the App Service plan, we recommend that you select a single-core plan rather than a plan with multiple cores.</span></span> <span data-ttu-id="3e878-233">À l’heure actuelle, Functions exécute les fonctions JavaScript plus efficacement sur des machines virtuelles à cœur unique. Le recours à de plus grandes machines virtuelles ne produit pas les améliorations de performances attendues.</span><span class="sxs-lookup"><span data-stu-id="3e878-233">Today, Functions runs JavaScript functions more efficiently on single-core VMs, and using larger VMs does not produce the expected performance improvements.</span></span> <span data-ttu-id="3e878-234">Le cas échéant, vous pouvez faire une mise à l’échelle horizontale manuellement en ajoutant des instances de machine virtuelle à cœur unique, ou vous pouvez activer la mise à l’échelle automatique.</span><span class="sxs-lookup"><span data-stu-id="3e878-234">When necessary, you can manually scale out by adding more single-core VM instances, or you can enable auto-scale.</span></span> <span data-ttu-id="3e878-235">Pour plus d’informations, consultez [Mettre à l’échelle le nombre d’instances manuellement ou automatiquement](../monitoring-and-diagnostics/insights-how-to-scale.md?toc=%2fazure%2fapp-service-web%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="3e878-235">For more information, see [Scale instance count manually or automatically](../monitoring-and-diagnostics/insights-how-to-scale.md?toc=%2fazure%2fapp-service-web%2ftoc.json).</span></span>    
+<span data-ttu-id="40489-232">Lorsque vous créez une application de fonction qui utilise hello plan App Service, nous vous recommandons de sélectionner un plan à cœur unique au lieu d’un plan à plusieurs cœurs.</span><span class="sxs-lookup"><span data-stu-id="40489-232">When you create a function app that uses hello App Service plan, we recommend that you select a single-core plan rather than a plan with multiple cores.</span></span> <span data-ttu-id="40489-233">Aujourd'hui, les fonctions exécute les fonctions JavaScript plus efficacement sur des machines virtuelles à cœur unique, et à l’aide de machines virtuelles plus grandes ne produit pas les améliorations des performances hello attendu.</span><span class="sxs-lookup"><span data-stu-id="40489-233">Today, Functions runs JavaScript functions more efficiently on single-core VMs, and using larger VMs does not produce hello expected performance improvements.</span></span> <span data-ttu-id="40489-234">Le cas échéant, vous pouvez faire une mise à l’échelle horizontale manuellement en ajoutant des instances de machine virtuelle à cœur unique, ou vous pouvez activer la mise à l’échelle automatique.</span><span class="sxs-lookup"><span data-stu-id="40489-234">When necessary, you can manually scale out by adding more single-core VM instances, or you can enable auto-scale.</span></span> <span data-ttu-id="40489-235">Pour plus d’informations, consultez [Mettre à l’échelle le nombre d’instances manuellement ou automatiquement](../monitoring-and-diagnostics/insights-how-to-scale.md?toc=%2fazure%2fapp-service-web%2ftoc.json).</span><span class="sxs-lookup"><span data-stu-id="40489-235">For more information, see [Scale instance count manually or automatically](../monitoring-and-diagnostics/insights-how-to-scale.md?toc=%2fazure%2fapp-service-web%2ftoc.json).</span></span>    
 
-### <a name="typescript-and-coffeescript-support"></a><span data-ttu-id="3e878-236">Prise en charge de typeScript et CoffeeScript</span><span class="sxs-lookup"><span data-stu-id="3e878-236">TypeScript and CoffeeScript support</span></span>
-<span data-ttu-id="3e878-237">Comme il n’existe encore aucune prise en charge directe pour l’auto-compilation de TypeScript/CoffeeScript via le runtime, cela nécessite une gestion externe au runtime, au moment du déploiement.</span><span class="sxs-lookup"><span data-stu-id="3e878-237">Because direct support does not yet exist for auto-compiling TypeScript or CoffeeScript via the runtime, such support needs to be handled outside the runtime, at deployment time.</span></span> 
+### <a name="typescript-and-coffeescript-support"></a><span data-ttu-id="40489-236">Prise en charge de typeScript et CoffeeScript</span><span class="sxs-lookup"><span data-stu-id="40489-236">TypeScript and CoffeeScript support</span></span>
+<span data-ttu-id="40489-237">Étant donné que la prise en charge directe n’existe pas encore de TypeScript ou CoffeeScript de compilation automatique via l’exécution de hello, cette prise en charge doit toobe gérée en dehors de l’exécution de hello, au moment du déploiement.</span><span class="sxs-lookup"><span data-stu-id="40489-237">Because direct support does not yet exist for auto-compiling TypeScript or CoffeeScript via hello runtime, such support needs toobe handled outside hello runtime, at deployment time.</span></span> 
 
-## <a name="next-steps"></a><span data-ttu-id="3e878-238">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="3e878-238">Next steps</span></span>
-<span data-ttu-id="3e878-239">Pour plus d’informations, consultez les ressources suivantes :</span><span class="sxs-lookup"><span data-stu-id="3e878-239">For more information, see the following resources:</span></span>
+## <a name="next-steps"></a><span data-ttu-id="40489-238">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="40489-238">Next steps</span></span>
+<span data-ttu-id="40489-239">Pour plus d’informations, consultez hello suivant des ressources :</span><span class="sxs-lookup"><span data-stu-id="40489-239">For more information, see hello following resources:</span></span>
 
-* [<span data-ttu-id="3e878-240">Meilleures pratiques pour Azure Functions</span><span class="sxs-lookup"><span data-stu-id="3e878-240">Best practices for Azure Functions</span></span>](functions-best-practices.md)
-* [<span data-ttu-id="3e878-241">Référence du développeur Azure Functions</span><span class="sxs-lookup"><span data-stu-id="3e878-241">Azure Functions developer reference</span></span>](functions-reference.md)
-* [<span data-ttu-id="3e878-242">Informations de référence pour les développeurs C# sur Azure Functions</span><span class="sxs-lookup"><span data-stu-id="3e878-242">Azure Functions C# developer reference</span></span>](functions-reference-csharp.md)
-* [<span data-ttu-id="3e878-243">Informations de référence pour les développeurs F# sur Azure Functions</span><span class="sxs-lookup"><span data-stu-id="3e878-243">Azure Functions F# developer reference</span></span>](functions-reference-fsharp.md)
-* [<span data-ttu-id="3e878-244">Déclencheurs et liaisons Azure Functions</span><span class="sxs-lookup"><span data-stu-id="3e878-244">Azure Functions triggers and bindings</span></span>](functions-triggers-bindings.md)
+* [<span data-ttu-id="40489-240">Meilleures pratiques pour Azure Functions</span><span class="sxs-lookup"><span data-stu-id="40489-240">Best practices for Azure Functions</span></span>](functions-best-practices.md)
+* [<span data-ttu-id="40489-241">Référence du développeur Azure Functions</span><span class="sxs-lookup"><span data-stu-id="40489-241">Azure Functions developer reference</span></span>](functions-reference.md)
+* [<span data-ttu-id="40489-242">Informations de référence pour les développeurs C# sur Azure Functions</span><span class="sxs-lookup"><span data-stu-id="40489-242">Azure Functions C# developer reference</span></span>](functions-reference-csharp.md)
+* [<span data-ttu-id="40489-243">Informations de référence pour les développeurs F# sur Azure Functions</span><span class="sxs-lookup"><span data-stu-id="40489-243">Azure Functions F# developer reference</span></span>](functions-reference-fsharp.md)
+* [<span data-ttu-id="40489-244">Déclencheurs et liaisons Azure Functions</span><span class="sxs-lookup"><span data-stu-id="40489-244">Azure Functions triggers and bindings</span></span>](functions-triggers-bindings.md)
 

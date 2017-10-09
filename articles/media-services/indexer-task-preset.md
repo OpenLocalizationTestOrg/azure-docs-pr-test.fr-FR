@@ -1,5 +1,5 @@
 ---
-title: "Tâches prédéfinies pour Azure Media Indexer"
+title: "aaaTask prédéfini pour Azure Media Indexer"
 description: "Cette rubrique offre une vue d’ensemble des tâches prédéfinies pour Azure Media Indexer."
 services: media-services
 documentationcenter: 
@@ -13,27 +13,27 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/03/2017
 ms.author: adsolank;juliako;
-ms.openlocfilehash: ae6c4da189cd6637b4e1fa9274473b62f6664e51
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ca0b3e7aa9f6dd9fdecddfc5b3137281ed5cef35
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="task-preset-for-azure-media-indexer"></a>Tâches prédéfinies pour Azure Media Indexer
 
-Azure Media Indexer est un processeur multimédia qui permet d’effectuer les tâches suivantes : rendre possibles les recherches dans les fichiers et le contenu multimédias, générer des pistes de sous-titrage et des mots clés et indexer les fichiers qui font partie d’une ressource.
+Azure Media Indexer est un processeur multimédia que vous utilisez hello tooperform tâches suivantes : effectuer des recherches des fichiers multimédias et contenu, générer des mots clés et des pistes de sous-titres, fichiers d’éléments multimédias qui font partie de votre élément multimédia d’index.
 
-Cette rubrique décrit les tâches prédéfinies que vous devez transmettre à votre travail d’indexation. Pour obtenir un exemple complet, consultez [Indexation des fichiers multimédias avec Azure Media Indexer](media-services-index-content.md).
+Cette rubrique décrit hello de présélection des tâches que vous devez tooyour toopass l’indexation de travail. Pour obtenir un exemple complet, consultez [Indexation des fichiers multimédias avec Azure Media Indexer](media-services-index-content.md).
 
 ## <a name="azure-media-indexer-configuration-xml"></a>Fichier de configuration XML d’Azure Media Indexer
 
-Le tableau suivant décrit les éléments et les attributs du fichier de configuration XML.
+Hello tableau suivant explique les éléments et attributs du fichier XML de configuration hello.
 
 |Nom|Require|Description|
 |---|---|---|
-|Entrée|true|Fichiers de ressources que vous souhaitez indexer.<br/>Azure Media Indexer prend en charge les formats de fichiers multimédias suivants : MP4, MOV, WMV, MP3, M4A, WMA, AAC, WAV. <br/><br/>Vous pouvez spécifier le nom des fichiers dans l’attribut **name** ou **list** de l’élément **input** (comme indiqué ci-dessous). Si vous ne spécifiez pas les fichiers d’élément multimédia à indexer, le fichier principal est sélectionné. Si aucun fichier principal n’est défini, le premier fichier de ressource d’entrée est indexé.<br/><br/>Pour spécifier explicitement le nom du fichier multimédia, effectuez ceci :<br/>```<input name="TestFile.wmv" />```<br/><br/>Vous pouvez également indexer plusieurs fichiers de ressources à la fois (jusqu'à 10 fichiers). Pour ce faire :<br/>- Créez un fichier texte (fichier manifeste) et affectez-lui une extension .lst.<br/>- Ajoutez une liste de tous les noms des fichiers de votre élément multimédia d’entrée à ce fichier de manifeste.<br/>- Ajoutez (chargez) le fichier manifeste dans l’élément multimédia.<br/>- Spécifiez le nom du fichier manifeste dans l’attribut list de l’élément input.<br/>```<input list="input.lst">```<br/><br/>**Remarque :** si vous ajoutez plus de 10 fichiers dans le fichier manifeste, la tâche d’indexation échouera avec le code d’erreur 2006.|
-|métadonnées|false|Métadonnées des fichiers d’élément multimédia spécifiés.<br/>```<metadata key="..." value="..." />```<br/><br/>Vous pouvez fournir des valeurs de clés prédéfinies. <br/><br/>À l’heure actuelle, les clés suivantes sont prises en charge :<br/><br/>**title** et **description** : permettent de mettre à jour le modèle linguistique pour améliorer la précision de la reconnaissance vocale.<br/>```<metadata key="title" value="[Title of the media file]" /><metadata key="description" value="[Description of the media file]" />```<br/><br/>**username** et **password** : utilisées à des fins d’authentification lors du téléchargement de fichiers Internet via HTTP ou HTTPS.<br/>```<metadata key="username" value="[UserName]" /><metadata key="password" value="[Password]" />```<br/>Les valeurs username et password s’appliquent à toutes les URL de média du manifeste d’entrée.|
-|features<br/><br/>ajoutées dans la version 1.2. Actuellement, la seule fonctionnalité prise en charge est la reconnaissance vocale (« ASR »).|false|La fonctionnalité de reconnaissance vocale a les clés de paramètres suivantes :<br/><br/>Language :<br/>- Langue naturelle à reconnaître dans le fichier multimédia.<br/>- English, Spanish<br/><br/>CaptionFormats :<br/>- Liste délimitée par des points-virgules des formats de sous-titre souhaités (le cas échéant).<br/>- ttml;sami;webvtt<br/><br/><br/>GenerateAIB :<br/>- Indicateur booléen spécifiant si un fichier AIB est requis ou non (pour une utilisation avec SQL Server et l’indexeur IFilter client). Pour plus d’informations, consultez Utilisation de fichiers AIB avec Azure Media Indexer et SQL Server.<br/>- true, false<br/><br/>GenerateKeywords :<br/>- Indicateur booléen spécifiant si un fichier XML de mot-clé est requis ou non.<br/>- true, false|
+|Entrée|true|Fichier (s) actif que vous souhaitez tooindex.<br/>Azure Media Indexer prend en charge hello suivant les formats de fichiers multimédias : MP4, MOV, WMV, MP3, M4A, WMA, AAC, WAV. <br/><br/>Vous pouvez spécifier le nom de fichier hello (s) Bonjour **nom** ou **liste** attribut Hello **d’entrée** élément (comme indiqué ci-dessous). Si vous ne spécifiez pas le tooindex de fichier actif, le fichier primaire de hello est choisi. Si aucun fichier principal n’est définie, le premier fichier de ressource en entrée hello hello est indexé.<br/><br/>tooexplicitly spécifier le nom du fichier multimédia hello, procédez comme :<br/>```<input name="TestFile.wmv" />```<br/><br/>Vous pouvez également indexer plusieurs fichiers d’éléments multimédias à la fois (des fichiers de too10). toodo cela :<br/>- Créez un fichier texte (fichier manifeste) et affectez-lui une extension .lst.<br/>-Ajouter une liste de tous les noms de fichier actif hello dans votre fichier de manifeste toothis élément multimédia d’entrée.<br/>-Ajoutez (Téléchargez) thanifest fichier toohello actif.<br/>-Spécifiez le nom hello du fichier de manifeste hello dans l’attribut de la liste de l’entrée hello.<br/>```<input list="input.lst">```<br/><br/>**Remarque :** si vous ajoutez le fichier manifeste de plus de 10 fichiers toohello, la tâche d’indexation hello échoue avec le code d’erreur hello 2006.|
+|metadata|false|Les métadonnées pour hello spécifiées ou les fichiers actifs.<br/>```<metadata key="..." value="..." />```<br/><br/>Vous pouvez fournir des valeurs de clés prédéfinies. <br/><br/>Actuellement, hello suivant clés est pris en charge :<br/><br/>**titre** et **description** -utilisé la précision de reconnaissance vocale tooimprove de modèle de tooupdate hello language.<br/>```<metadata key="title" value="[Title of hello media file]" /><metadata key="description" value="[Description of hello media file]" />```<br/><br/>**username** et **password** : utilisées à des fins d’authentification lors du téléchargement de fichiers Internet via HTTP ou HTTPS.<br/>```<metadata key="username" value="[UserName]" /><metadata key="password" value="[Password]" />```<br/>Hello nom d’utilisateur et les valeurs de mot de passe s’appliquent tooall URL de média dans le manifeste d’entrée de hello.|
+|features<br/><br/>ajoutées dans la version 1.2. Actuellement, la fonctionnalité de hello uniquement pris en charge est la reconnaissance vocale (« ASR »).|false|fonctionnalité de reconnaissance vocale Hello a hello suivant les clés de paramètres :<br/><br/>Language :<br/>-hello toobe de langage naturel reconnu dans le fichier multimédia de hello.<br/>- English, Spanish<br/><br/>CaptionFormats :<br/>-une liste délimitée par des points-virgules de hello souhaitée des formats de sortie de légende (le cas échéant)<br/>- ttml;sami;webvtt<br/><br/><br/>GenerateAIB :<br/>-Un indicateur booléen indiquant si un fichier AIB est requis (pour une utilisation avec SQL Server et hello Indexer IFilter client). Pour plus d’informations, consultez Utilisation de fichiers AIB avec Azure Media Indexer et SQL Server.<br/>- true, false<br/><br/>GenerateKeywords :<br/>- Indicateur booléen spécifiant si un fichier XML de mot-clé est requis ou non.<br/>- true, false|
 
 ## <a name="azure-media-indexer-configuration-xml-example"></a>Exemple de fichier de configuration XML d’Azure Media Indexer
 
@@ -41,8 +41,8 @@ Le tableau suivant décrit les éléments et les attributs du fichier de configu
 <?xml version="1.0" encoding="utf-8"?>  
 <configuration version="2.0">  
   <input>  
-    <metadata key="title" value="[Title of the media file]" />  
-    <metadata key="description" value="[Description of the media file]" />  
+    <metadata key="title" value="[Title of hello media file]" />  
+    <metadata key="description" value="[Description of hello media file]" />  
   </input>  
   <settings>  
   </settings>  

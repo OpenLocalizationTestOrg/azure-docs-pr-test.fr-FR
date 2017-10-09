@@ -1,5 +1,5 @@
 ---
-title: "Didacticiel Azure Container Service - Mettre à l’échelle une application | Microsoft Docs"
+title: "didacticiel de Service de conteneur aaaAzure - Application de la mise à l’échelle | Documents Microsoft"
 description: "Didacticiel Azure Container Service - Mettre à l’échelle une application"
 services: container-service
 documentationcenter: 
@@ -17,40 +17,40 @@ ms.workload: na
 ms.date: 07/25/2017
 ms.author: danlep
 ms.custom: mvc
-ms.openlocfilehash: 62e70e34d06f5220734ff85c70a0c9b475f9579b
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 29571eef0fd91bd6b40f00d8c018539f320179bf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="scale-kubernetes-pods-and-kubernetes-infrastructure"></a><span data-ttu-id="39d92-104">Mettre à l’échelle des pods Kubernetes et l’infrastructure Kubernetes</span><span class="sxs-lookup"><span data-stu-id="39d92-104">Scale Kubernetes pods and Kubernetes infrastructure</span></span>
+# <a name="scale-kubernetes-pods-and-kubernetes-infrastructure"></a><span data-ttu-id="e8f42-104">Mettre à l’échelle des pods Kubernetes et l’infrastructure Kubernetes</span><span class="sxs-lookup"><span data-stu-id="e8f42-104">Scale Kubernetes pods and Kubernetes infrastructure</span></span>
 
-<span data-ttu-id="39d92-105">Si vous avez suivi les didacticiels, vous disposez d’un cluster Kubernetes opérationnel dans Azure Container Service et vous avez déployé l’application Azure Vote.</span><span class="sxs-lookup"><span data-stu-id="39d92-105">If you've been following the tutorials, you have a working Kubernetes cluster in Azure Container Service and you deployed the Azure Voting app.</span></span> 
+<span data-ttu-id="e8f42-105">Si vous avez effectué les didacticiels de hello, vous avez une Kubernetes cluster dans le conteneur de Service Azure et que vous avez déployé l’application Azure vote de hello.</span><span class="sxs-lookup"><span data-stu-id="e8f42-105">If you've been following hello tutorials, you have a working Kubernetes cluster in Azure Container Service and you deployed hello Azure Voting app.</span></span> 
 
-<span data-ttu-id="39d92-106">Dans ce didacticiel (issu d’une série de sept didacticiels), vous allez augmenter le nombre de pods dans l’application et essayer la mise à l’échelle automatique des pods.</span><span class="sxs-lookup"><span data-stu-id="39d92-106">In this tutorial, part five of seven, you scale out the pods in the app and try pod autoscaling.</span></span> <span data-ttu-id="39d92-107">Vous allez également apprendre à mettre à l’échelle le nombre de nœuds d’agents de machine virtuelle Azure afin de modifier la capacité du cluster pour l’hébergement des charges de travail.</span><span class="sxs-lookup"><span data-stu-id="39d92-107">You also learn how to scale the number of Azure VM agent nodes to change the cluster's capacity for hosting workloads.</span></span> <span data-ttu-id="39d92-108">Les tâches accomplies sont les suivantes :</span><span class="sxs-lookup"><span data-stu-id="39d92-108">Tasks completed include:</span></span>
+<span data-ttu-id="e8f42-106">Dans ce didacticiel, partie 5, 7, vous montée en puissance parallèle POD hello dans l’application hello et essayez d’échelle de pod.</span><span class="sxs-lookup"><span data-stu-id="e8f42-106">In this tutorial, part five of seven, you scale out hello pods in hello app and try pod autoscaling.</span></span> <span data-ttu-id="e8f42-107">Vous apprendrez également comment le nombre de hello tooscale de toochange de nœuds de l’agent de machine virtuelle Azure hello capacité du cluster pour l’hébergement des charges de travail.</span><span class="sxs-lookup"><span data-stu-id="e8f42-107">You also learn how tooscale hello number of Azure VM agent nodes toochange hello cluster's capacity for hosting workloads.</span></span> <span data-ttu-id="e8f42-108">Les tâches accomplies sont les suivantes :</span><span class="sxs-lookup"><span data-stu-id="e8f42-108">Tasks completed include:</span></span>
 
 > [!div class="checklist"]
-> * <span data-ttu-id="39d92-109">Mise à l’échelle manuelle des pods Kubernetes</span><span class="sxs-lookup"><span data-stu-id="39d92-109">Manually scaling Kubernetes pods</span></span>
-> * <span data-ttu-id="39d92-110">Configuration de la mise à l’échelle automatique des pods qui exécutent le front-end de l’application</span><span class="sxs-lookup"><span data-stu-id="39d92-110">Configuring Autoscale pods running the app front end</span></span>
-> * <span data-ttu-id="39d92-111">Mettre à l’échelle les nœuds d’agents Azure Kubernetes</span><span class="sxs-lookup"><span data-stu-id="39d92-111">Scale the Kubernetes Azure agent nodes</span></span>
+> * <span data-ttu-id="e8f42-109">Mise à l’échelle manuelle des pods Kubernetes</span><span class="sxs-lookup"><span data-stu-id="e8f42-109">Manually scaling Kubernetes pods</span></span>
+> * <span data-ttu-id="e8f42-110">Configuration des blocs de mise à l’échelle le frontal application hello en cours d’exécution</span><span class="sxs-lookup"><span data-stu-id="e8f42-110">Configuring Autoscale pods running hello app front end</span></span>
+> * <span data-ttu-id="e8f42-111">Mettre à l’échelle des nœuds de l’agent Azure hello Kubernetes</span><span class="sxs-lookup"><span data-stu-id="e8f42-111">Scale hello Kubernetes Azure agent nodes</span></span>
 
-<span data-ttu-id="39d92-112">Dans les didacticiels suivants, l’application Azure Vote est mise à jour et Operations Management Suite est configuré pour la surveillance du cluster Kubernetes.</span><span class="sxs-lookup"><span data-stu-id="39d92-112">In subsequent tutorials, the Azure Vote application is updated, and Operations Management Suite configured to monitor the Kubernetes cluster.</span></span>
+<span data-ttu-id="e8f42-112">Dans les didacticiels suivants hello application de Vote de Azure est mis à jour et Operations Management Suite configuré le cluster de Kubernetes toomonitor hello.</span><span class="sxs-lookup"><span data-stu-id="e8f42-112">In subsequent tutorials, hello Azure Vote application is updated, and Operations Management Suite configured toomonitor hello Kubernetes cluster.</span></span>
 
-## <a name="before-you-begin"></a><span data-ttu-id="39d92-113">Avant de commencer</span><span class="sxs-lookup"><span data-stu-id="39d92-113">Before you begin</span></span>
+## <a name="before-you-begin"></a><span data-ttu-id="e8f42-113">Avant de commencer</span><span class="sxs-lookup"><span data-stu-id="e8f42-113">Before you begin</span></span>
 
-<span data-ttu-id="39d92-114">Dans les didacticiels précédents, une application a été empaquetée dans une image conteneur, l’image a été chargée dans Azure Container Registry et un cluster Kubernetes a été créé.</span><span class="sxs-lookup"><span data-stu-id="39d92-114">In previous tutorials, an application was packaged into a container image, this image uploaded to Azure Container Registry, and a Kubernetes cluster created.</span></span> <span data-ttu-id="39d92-115">L’application a ensuite été exécutée sur le cluster Kubernetes.</span><span class="sxs-lookup"><span data-stu-id="39d92-115">The application was then run on the Kubernetes cluster.</span></span> <span data-ttu-id="39d92-116">Si vous n’avez pas accompli ces étapes et que vous souhaitez suivre cette procédure, revenez au [Didacticiel 1 – Créer des images conteneur](./container-service-tutorial-kubernetes-prepare-app.md).</span><span class="sxs-lookup"><span data-stu-id="39d92-116">If you have not done these steps, and would like to follow along, return to the [Tutorial 1 – Create container images](./container-service-tutorial-kubernetes-prepare-app.md).</span></span> 
+<span data-ttu-id="e8f42-114">Dans les didacticiels précédents, une application a été empaquetée dans une image de conteneur, cette image téléchargée tooAzure Registre de conteneur et un cluster Kubernetes créé.</span><span class="sxs-lookup"><span data-stu-id="e8f42-114">In previous tutorials, an application was packaged into a container image, this image uploaded tooAzure Container Registry, and a Kubernetes cluster created.</span></span> <span data-ttu-id="e8f42-115">application Hello puis exécutée sur le cluster de Kubernetes hello.</span><span class="sxs-lookup"><span data-stu-id="e8f42-115">hello application was then run on hello Kubernetes cluster.</span></span> <span data-ttu-id="e8f42-116">Si vous n’avez pas fait ces étapes et que vous aimeriez toofollow le long, retourner toohello [didacticiel 1 : créer des images de conteneur](./container-service-tutorial-kubernetes-prepare-app.md).</span><span class="sxs-lookup"><span data-stu-id="e8f42-116">If you have not done these steps, and would like toofollow along, return toohello [Tutorial 1 – Create container images](./container-service-tutorial-kubernetes-prepare-app.md).</span></span> 
 
-<span data-ttu-id="39d92-117">Ce didacticiel nécessite au minimum un cluster Kubernetes avec une application en cours d’exécution.</span><span class="sxs-lookup"><span data-stu-id="39d92-117">At minimum, this tutorial requires a Kubernetes cluster with a running application.</span></span>
+<span data-ttu-id="e8f42-117">Ce didacticiel nécessite au minimum un cluster Kubernetes avec une application en cours d’exécution.</span><span class="sxs-lookup"><span data-stu-id="e8f42-117">At minimum, this tutorial requires a Kubernetes cluster with a running application.</span></span>
 
-## <a name="manually-scale-pods"></a><span data-ttu-id="39d92-118">Mettre à l’échelle des pods manuellement</span><span class="sxs-lookup"><span data-stu-id="39d92-118">Manually scale pods</span></span>
+## <a name="manually-scale-pods"></a><span data-ttu-id="e8f42-118">Mettre à l’échelle des pods manuellement</span><span class="sxs-lookup"><span data-stu-id="e8f42-118">Manually scale pods</span></span>
 
-<span data-ttu-id="39d92-119">Jusqu’à maintenant, le front-end Azure Vote et l’instance de Redis ont été déployés, chacun avec un réplica unique.</span><span class="sxs-lookup"><span data-stu-id="39d92-119">Thus far, the Azure Vote front-end and Redis instance have been deployed, each with a single replica.</span></span> <span data-ttu-id="39d92-120">À des fins de vérification, exécutez la commande [kubectl get](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#get).</span><span class="sxs-lookup"><span data-stu-id="39d92-120">To verify, run the [kubectl get](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#get) command.</span></span>
+<span data-ttu-id="e8f42-119">Jusqu'à présent, hello Vote Azure frontal et instance Redis ont été déployées, chacune avec un seul réplica.</span><span class="sxs-lookup"><span data-stu-id="e8f42-119">Thus far, hello Azure Vote front-end and Redis instance have been deployed, each with a single replica.</span></span> <span data-ttu-id="e8f42-120">tooverify, exécutez hello [kubectl obtenir](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#get) commande.</span><span class="sxs-lookup"><span data-stu-id="e8f42-120">tooverify, run hello [kubectl get](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#get) command.</span></span>
 
 ```azurecli-interactive
 kubectl get pods
 ```
 
-<span data-ttu-id="39d92-121">Output:</span><span class="sxs-lookup"><span data-stu-id="39d92-121">Output:</span></span>
+<span data-ttu-id="e8f42-121">Output:</span><span class="sxs-lookup"><span data-stu-id="e8f42-121">Output:</span></span>
 
 ```bash
 NAME                               READY     STATUS    RESTARTS   AGE
@@ -58,19 +58,19 @@ azure-vote-back-2549686872-4d2r5   1/1       Running   0          31m
 azure-vote-front-848767080-tf34m   1/1       Running   0          31m
 ```
 
-<span data-ttu-id="39d92-122">Modifiez manuellement le nombre de pods dans le déploiement `azure-vote-front` à l’aide de la commande [kubectl scale](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#scale).</span><span class="sxs-lookup"><span data-stu-id="39d92-122">Manually change the number of pods in the `azure-vote-front` deployment using the [kubectl scale](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#scale) command.</span></span> <span data-ttu-id="39d92-123">Cet exemple augmente le nombre à 5.</span><span class="sxs-lookup"><span data-stu-id="39d92-123">This example increases the number to 5.</span></span>
+<span data-ttu-id="e8f42-122">Modifier manuellement le nombre de hello de POD Bonjour `azure-vote-front` déploiement à l’aide de hello [kubectl échelle](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#scale) commande.</span><span class="sxs-lookup"><span data-stu-id="e8f42-122">Manually change hello number of pods in hello `azure-vote-front` deployment using hello [kubectl scale](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#scale) command.</span></span> <span data-ttu-id="e8f42-123">Cet exemple augmente too5 numéro de hello.</span><span class="sxs-lookup"><span data-stu-id="e8f42-123">This example increases hello number too5.</span></span>
 
 ```azurecli-interactive
 kubectl scale --replicas=5 deployment/azure-vote-front
 ```
 
-<span data-ttu-id="39d92-124">Exécutez [kubectl get pods](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#get) pour vérifier que Kubernetes crée les pods.</span><span class="sxs-lookup"><span data-stu-id="39d92-124">Run [kubectl get pods](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#get) to verify that Kubernetes is creating the pods.</span></span> <span data-ttu-id="39d92-125">Au bout d’une minute environ, les pods supplémentaires sont en cours d’exécution :</span><span class="sxs-lookup"><span data-stu-id="39d92-125">After a minute or so, the additional pods are running:</span></span>
+<span data-ttu-id="e8f42-124">Exécutez [kubectl obtenir POD](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#get) tooverify que Kubernetes crée les POD hello.</span><span class="sxs-lookup"><span data-stu-id="e8f42-124">Run [kubectl get pods](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#get) tooverify that Kubernetes is creating hello pods.</span></span> <span data-ttu-id="e8f42-125">Après environ une minute, POD supplémentaires de hello est en cours d’exécution :</span><span class="sxs-lookup"><span data-stu-id="e8f42-125">After a minute or so, hello additional pods are running:</span></span>
 
 ```azurecli-interactive
 kubectl get pods
 ```
 
-<span data-ttu-id="39d92-126">Output:</span><span class="sxs-lookup"><span data-stu-id="39d92-126">Output:</span></span>
+<span data-ttu-id="e8f42-126">Output:</span><span class="sxs-lookup"><span data-stu-id="e8f42-126">Output:</span></span>
 
 ```bash
 NAME                                READY     STATUS    RESTARTS   AGE
@@ -82,11 +82,11 @@ azure-vote-front-3309479140-hrbf2   1/1       Running   0          15m
 azure-vote-front-3309479140-qphz8   1/1       Running   0          3m
 ```
 
-## <a name="autoscale-pods"></a><span data-ttu-id="39d92-127">Mettre à l’échelle les pods automatiquement</span><span class="sxs-lookup"><span data-stu-id="39d92-127">Autoscale pods</span></span>
+## <a name="autoscale-pods"></a><span data-ttu-id="e8f42-127">Mettre à l’échelle les pods automatiquement</span><span class="sxs-lookup"><span data-stu-id="e8f42-127">Autoscale pods</span></span>
 
-<span data-ttu-id="39d92-128">Kubernetes prend en charge la [mise à l’échelle automatique des pods horizontaux](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) pour ajuster le nombre de pods dans un déploiement en fonction de l’utilisation du processeur ou d’autres métriques.</span><span class="sxs-lookup"><span data-stu-id="39d92-128">Kubernetes supports [horizontal pod autoscaling](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) to adjust the number of pods in a deployment depending on CPU utilization or other select metrics.</span></span> 
+<span data-ttu-id="e8f42-128">Prend en charge les Kubernetes [pod horizontal échelle](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) nombre de hello tooadjust de blocs dans un déploiement en fonction de l’utilisation du processeur ou d’autres sélectionner des mesures.</span><span class="sxs-lookup"><span data-stu-id="e8f42-128">Kubernetes supports [horizontal pod autoscaling](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) tooadjust hello number of pods in a deployment depending on CPU utilization or other select metrics.</span></span> 
 
-<span data-ttu-id="39d92-129">Pour utiliser la mise à l’échelle automatique, vos pods doivent avoir des demandes et limites de processeur définies.</span><span class="sxs-lookup"><span data-stu-id="39d92-129">To use the autoscaler, your pods must have CPU requests and limits defined.</span></span> <span data-ttu-id="39d92-130">Dans le déploiement `azure-vote-front`, le conteneur frontal demande 0,25 processeur, avec une limite de 0,5 processeur.</span><span class="sxs-lookup"><span data-stu-id="39d92-130">In the `azure-vote-front` deployment, the front-end container requests 0.25 CPU, with a limit of 0.5 CPU.</span></span> <span data-ttu-id="39d92-131">Les paramètres s’apparentent aux suivants :</span><span class="sxs-lookup"><span data-stu-id="39d92-131">The settings look like:</span></span>
+<span data-ttu-id="e8f42-129">toouse hello autoscaler, votre POD doit avoir des demandes de l’UC et les limites définies.</span><span class="sxs-lookup"><span data-stu-id="e8f42-129">toouse hello autoscaler, your pods must have CPU requests and limits defined.</span></span> <span data-ttu-id="e8f42-130">Bonjour `azure-vote-front` déploiement, hello du processeur de requêtes 0,25 conteneur frontal, avec une limite de 0,5 UC.</span><span class="sxs-lookup"><span data-stu-id="e8f42-130">In hello `azure-vote-front` deployment, hello front-end container requests 0.25 CPU, with a limit of 0.5 CPU.</span></span> <span data-ttu-id="e8f42-131">paramètres de Hello ressembler à :</span><span class="sxs-lookup"><span data-stu-id="e8f42-131">hello settings look like:</span></span>
 
 ```YAML
 resources:
@@ -96,39 +96,39 @@ resources:
      cpu: 500m
 ```
 
-<span data-ttu-id="39d92-132">L’exemple suivant utilise la commande [kubectl autoscale](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#autoscale) pour mettre automatiquement à l’échelle le nombre de pods dans le déploiement `azure-vote-front`.</span><span class="sxs-lookup"><span data-stu-id="39d92-132">The following example uses the [kubectl autoscale](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#autoscale) command to autoscale the number of pods in the `azure-vote-front` deployment.</span></span> <span data-ttu-id="39d92-133">Ici, si l’utilisation du processeur dépasse 50 %, le nombre de pods augmente jusqu’à un maximum de 10.</span><span class="sxs-lookup"><span data-stu-id="39d92-133">Here, if CPU utilization exceeds 50%, the autoscaler increases the pods to a maximum of 10.</span></span>
+<span data-ttu-id="e8f42-132">exemple Hello utilise hello [kubectl mise à l’échelle](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#autoscale) commande le nombre de hello tooautoscale de POD Bonjour `azure-vote-front` déploiement.</span><span class="sxs-lookup"><span data-stu-id="e8f42-132">hello following example uses hello [kubectl autoscale](https://kubernetes.io/docs/user-guide/kubectl/v1.6/#autoscale) command tooautoscale hello number of pods in hello `azure-vote-front` deployment.</span></span> <span data-ttu-id="e8f42-133">Ici, si l’utilisation du processeur dépasse 50 %, hello autoscaler augmente hello POD tooa 10 au maximum.</span><span class="sxs-lookup"><span data-stu-id="e8f42-133">Here, if CPU utilization exceeds 50%, hello autoscaler increases hello pods tooa maximum of 10.</span></span>
 
 
 ```azurecli-interactive
 kubectl autoscale deployment azure-vote-front --cpu-percent=50 --min=3 --max=10
 ```
 
-<span data-ttu-id="39d92-134">Pour voir l’état de la mise à l’échelle automatique, exécutez la commande suivante :</span><span class="sxs-lookup"><span data-stu-id="39d92-134">To see the status of the autoscaler, run the following command:</span></span>
+<span data-ttu-id="e8f42-134">état de hello toosee d’autoscaler hello, exécutez hello de commande suivante :</span><span class="sxs-lookup"><span data-stu-id="e8f42-134">toosee hello status of hello autoscaler, run hello following command:</span></span>
 
 ```azurecli-interactive
 kubectl get hpa
 ```
 
-<span data-ttu-id="39d92-135">Output:</span><span class="sxs-lookup"><span data-stu-id="39d92-135">Output:</span></span>
+<span data-ttu-id="e8f42-135">Output:</span><span class="sxs-lookup"><span data-stu-id="e8f42-135">Output:</span></span>
 
 ```bash
 NAME               REFERENCE                     TARGETS    MINPODS   MAXPODS   REPLICAS   AGE
 azure-vote-front   Deployment/azure-vote-front   0% / 50%   3         10        3          2m
 ```
 
-<span data-ttu-id="39d92-136">Au bout de quelques minutes, avec une charge minimale sur l’application Azure Vote, le nombre de réplicas de pods descend automatiquement à 3.</span><span class="sxs-lookup"><span data-stu-id="39d92-136">After a few minutes, with minimal load on the Azure Vote app, the number of pod replicas decreases automatically to 3.</span></span>
+<span data-ttu-id="e8f42-136">Après quelques minutes, avec une charge minimale sur l’application de Vote de Azure hello, hello nombre de réplicas de pod diminue automatiquement too3.</span><span class="sxs-lookup"><span data-stu-id="e8f42-136">After a few minutes, with minimal load on hello Azure Vote app, hello number of pod replicas decreases automatically too3.</span></span>
 
-## <a name="scale-the-agents"></a><span data-ttu-id="39d92-137">Mettre à l’échelle les agents</span><span class="sxs-lookup"><span data-stu-id="39d92-137">Scale the agents</span></span>
+## <a name="scale-hello-agents"></a><span data-ttu-id="e8f42-137">Agents de mise à l’échelle hello</span><span class="sxs-lookup"><span data-stu-id="e8f42-137">Scale hello agents</span></span>
 
-<span data-ttu-id="39d92-138">Si vous avez créé votre cluster Kubernetes à l’aide des commandes par défaut dans le didacticiel précédent, il comporte trois nœuds agents.</span><span class="sxs-lookup"><span data-stu-id="39d92-138">If you created your Kubernetes cluster using default commands in the previous tutorial, it has three agent nodes.</span></span> <span data-ttu-id="39d92-139">Vous pouvez ajuster le nombre d’agents manuellement si vous prévoyez davantage ou moins de charges de travail de conteneur sur votre cluster.</span><span class="sxs-lookup"><span data-stu-id="39d92-139">You can adjust the number of agents manually if you plan more or fewer container workloads on your cluster.</span></span> <span data-ttu-id="39d92-140">Utilisez la commande [az acs scale](/cli/azure/acs#scale), puis spécifiez le nombre d’agents avec le paramètre `--new-agent-count`.</span><span class="sxs-lookup"><span data-stu-id="39d92-140">Use the [az acs scale](/cli/azure/acs#scale) command, and specify the number of agents with the `--new-agent-count` parameter.</span></span>
+<span data-ttu-id="e8f42-138">Si vous avez créé votre cluster Kubernetes à l’aide des commandes par défaut dans le cadre du didacticiel précédent hello, il a trois nœuds de l’agent.</span><span class="sxs-lookup"><span data-stu-id="e8f42-138">If you created your Kubernetes cluster using default commands in hello previous tutorial, it has three agent nodes.</span></span> <span data-ttu-id="e8f42-139">Vous pouvez ajuster nombre hello d’agents manuellement si vous envisagez de charges de travail plus ou moins de conteneur sur votre cluster.</span><span class="sxs-lookup"><span data-stu-id="e8f42-139">You can adjust hello number of agents manually if you plan more or fewer container workloads on your cluster.</span></span> <span data-ttu-id="e8f42-140">Hello d’utilisation [mettre à l’échelle des services acs az](/cli/azure/acs#scale) de commandes et spécifiez le nombre hello d’agents avec hello `--new-agent-count` paramètre.</span><span class="sxs-lookup"><span data-stu-id="e8f42-140">Use hello [az acs scale](/cli/azure/acs#scale) command, and specify hello number of agents with hello `--new-agent-count` parameter.</span></span>
 
-<span data-ttu-id="39d92-141">L’exemple suivant permet d’augmenter le nombre de nœuds agents à 4 dans le cluster Kubernetes nommé *myK8sCluster*.</span><span class="sxs-lookup"><span data-stu-id="39d92-141">The following example increases the number of agent nodes to 4 in the Kubernetes cluster named *myK8sCluster*.</span></span> <span data-ttu-id="39d92-142">Quelques minutes sont nécessaires pour exécuter la commande.</span><span class="sxs-lookup"><span data-stu-id="39d92-142">The command takes a couple of minutes to complete.</span></span>
+<span data-ttu-id="e8f42-141">Hello exemple suivant augmente nombre hello de too4 de nœuds de l’agent dans le cluster de Kubernetes hello nommé *myK8sCluster*.</span><span class="sxs-lookup"><span data-stu-id="e8f42-141">hello following example increases hello number of agent nodes too4 in hello Kubernetes cluster named *myK8sCluster*.</span></span> <span data-ttu-id="e8f42-142">commande Hello prend quelques minutes toocomplete.</span><span class="sxs-lookup"><span data-stu-id="e8f42-142">hello command takes a couple of minutes toocomplete.</span></span>
 
 ```azurecli-interactive
 az acs scale --resource-group=myResourceGroup --name=myK8SCluster --new-agent-count 4
 ```
 
-<span data-ttu-id="39d92-143">La sortie de la commande indique le nombre de nœuds agents dans la valeur de `agentPoolProfiles:count` :</span><span class="sxs-lookup"><span data-stu-id="39d92-143">The command output shows the number of agent nodes in the value of `agentPoolProfiles:count`:</span></span>
+<span data-ttu-id="e8f42-143">Hello sortie de la commande affiche hello numéro de l’agent de nœuds de valeur hello `agentPoolProfiles:count`:</span><span class="sxs-lookup"><span data-stu-id="e8f42-143">hello command output shows hello number of agent nodes in hello value of `agentPoolProfiles:count`:</span></span>
 
 ```azurecli
 {
@@ -145,17 +145,17 @@ az acs scale --resource-group=myResourceGroup --name=myK8SCluster --new-agent-co
 
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="39d92-144">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="39d92-144">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="e8f42-144">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="e8f42-144">Next steps</span></span>
 
-<span data-ttu-id="39d92-145">Dans ce didacticiel, vous avez utilisé différentes fonctionnalités de mise à l’échelle dans votre cluster Kubernetes.</span><span class="sxs-lookup"><span data-stu-id="39d92-145">In this tutorial, you used different scaling features in your Kubernetes cluster.</span></span> <span data-ttu-id="39d92-146">Les tâches traitées ont inclus :</span><span class="sxs-lookup"><span data-stu-id="39d92-146">Tasks covered included:</span></span>
+<span data-ttu-id="e8f42-145">Dans ce didacticiel, vous avez utilisé différentes fonctionnalités de mise à l’échelle dans votre cluster Kubernetes.</span><span class="sxs-lookup"><span data-stu-id="e8f42-145">In this tutorial, you used different scaling features in your Kubernetes cluster.</span></span> <span data-ttu-id="e8f42-146">Les tâches traitées ont inclus :</span><span class="sxs-lookup"><span data-stu-id="e8f42-146">Tasks covered included:</span></span>
 
 > [!div class="checklist"]
-> * <span data-ttu-id="39d92-147">Mise à l’échelle manuelle des pods Kubernetes</span><span class="sxs-lookup"><span data-stu-id="39d92-147">Manually scaling Kubernetes pods</span></span>
-> * <span data-ttu-id="39d92-148">Configuration de la mise à l’échelle automatique des pods qui exécutent le front-end de l’application</span><span class="sxs-lookup"><span data-stu-id="39d92-148">Configuring Autoscale pods running the app front end</span></span>
-> * <span data-ttu-id="39d92-149">Mettre à l’échelle les nœuds d’agents Azure Kubernetes</span><span class="sxs-lookup"><span data-stu-id="39d92-149">Scale the Kubernetes Azure agent nodes</span></span>
+> * <span data-ttu-id="e8f42-147">Mise à l’échelle manuelle des pods Kubernetes</span><span class="sxs-lookup"><span data-stu-id="e8f42-147">Manually scaling Kubernetes pods</span></span>
+> * <span data-ttu-id="e8f42-148">Configuration des blocs de mise à l’échelle le frontal application hello en cours d’exécution</span><span class="sxs-lookup"><span data-stu-id="e8f42-148">Configuring Autoscale pods running hello app front end</span></span>
+> * <span data-ttu-id="e8f42-149">Mettre à l’échelle des nœuds de l’agent Azure hello Kubernetes</span><span class="sxs-lookup"><span data-stu-id="e8f42-149">Scale hello Kubernetes Azure agent nodes</span></span>
 
-<span data-ttu-id="39d92-150">Passez au didacticiel suivant pour en savoir plus sur la mise à jour d’une application dans Kubernetes.</span><span class="sxs-lookup"><span data-stu-id="39d92-150">Advance to the next tutorial to learn about updating application in Kubernetes.</span></span>
+<span data-ttu-id="e8f42-150">Toohello toolearn de didacticiel suivant sur la mise à jour d’application dans Kubernetes d’avance.</span><span class="sxs-lookup"><span data-stu-id="e8f42-150">Advance toohello next tutorial toolearn about updating application in Kubernetes.</span></span>
 
 > [!div class="nextstepaction"]
-> [<span data-ttu-id="39d92-151">Mettre à jour une application dans Kubernetes</span><span class="sxs-lookup"><span data-stu-id="39d92-151">Update an application in Kubernetes</span></span>](./container-service-tutorial-kubernetes-app-update.md)
+> [<span data-ttu-id="e8f42-151">Mettre à jour une application dans Kubernetes</span><span class="sxs-lookup"><span data-stu-id="e8f42-151">Update an application in Kubernetes</span></span>](./container-service-tutorial-kubernetes-app-update.md)
 

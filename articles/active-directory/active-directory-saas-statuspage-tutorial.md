@@ -1,6 +1,6 @@
 ---
 title: "Didacticiel : intégration d’Azure Active Directory à StatusPage | Microsoft Docs"
-description: "Découvrez comment configurer l’authentification unique entre Azure Active Directory et StatusPage."
+description: "Découvrez comment tooconfigure l’authentification unique entre Azure Active Directory et StatusPage."
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -13,261 +13,261 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: jeedes
-ms.openlocfilehash: fa16cdec7b89404c140435fe57d5aa4b08cfa985
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 7c6717017984241e9e459273ead4b5e062311120
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-azure-active-directory-integration-with-statuspage"></a><span data-ttu-id="9338c-103">Didacticiel : Intégration d’Azure Active Directory à StatusPage</span><span class="sxs-lookup"><span data-stu-id="9338c-103">Tutorial: Azure Active Directory integration with StatusPage</span></span>
+# <a name="tutorial-azure-active-directory-integration-with-statuspage"></a><span data-ttu-id="e8c0d-103">Didacticiel : Intégration d’Azure Active Directory à StatusPage</span><span class="sxs-lookup"><span data-stu-id="e8c0d-103">Tutorial: Azure Active Directory integration with StatusPage</span></span>
 
-<span data-ttu-id="9338c-104">Dans ce didacticiel, vous allez apprendre à intégrer StatusPage à Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="9338c-104">In this tutorial, you learn how to integrate StatusPage with Azure Active Directory (Azure AD).</span></span>
+<span data-ttu-id="e8c0d-104">Dans ce didacticiel, vous apprendrez comment toointegrate StatusPage avec Azure Active Directory (Azure AD).</span><span class="sxs-lookup"><span data-stu-id="e8c0d-104">In this tutorial, you learn how toointegrate StatusPage with Azure Active Directory (Azure AD).</span></span>
 
-<span data-ttu-id="9338c-105">L’intégration de StatusPage dans Azure AD vous offre les avantages suivants :</span><span class="sxs-lookup"><span data-stu-id="9338c-105">Integrating StatusPage with Azure AD provides you with the following benefits:</span></span>
+<span data-ttu-id="e8c0d-105">Intégration StatusPage à Azure AD offre hello avantages suivants :</span><span class="sxs-lookup"><span data-stu-id="e8c0d-105">Integrating StatusPage with Azure AD provides you with hello following benefits:</span></span>
 
-- <span data-ttu-id="9338c-106">Dans Azure AD, vous pouvez contrôler qui a accès à StatusPage.</span><span class="sxs-lookup"><span data-stu-id="9338c-106">You can control in Azure AD who has access to StatusPage</span></span>
-- <span data-ttu-id="9338c-107">Vous pouvez autoriser les utilisateurs à se connecter automatiquement à StatusPage (par le biais de l’authentification unique) avec leur compte Azure AD.</span><span class="sxs-lookup"><span data-stu-id="9338c-107">You can enable your users to automatically get signed-on to StatusPage (Single Sign-On) with their Azure AD accounts</span></span>
-- <span data-ttu-id="9338c-108">Vous pouvez gérer vos comptes à partir d’un emplacement central : le portail Azure</span><span class="sxs-lookup"><span data-stu-id="9338c-108">You can manage your accounts in one central location - the Azure portal</span></span>
+- <span data-ttu-id="e8c0d-106">Vous pouvez contrôler dans Azure AD qui a accès tooStatusPage</span><span class="sxs-lookup"><span data-stu-id="e8c0d-106">You can control in Azure AD who has access tooStatusPage</span></span>
+- <span data-ttu-id="e8c0d-107">Vous pouvez activer vos utilisateurs tooautomatically get connecté tooStatusPage (Single Sign-On) avec leurs comptes Azure AD</span><span class="sxs-lookup"><span data-stu-id="e8c0d-107">You can enable your users tooautomatically get signed-on tooStatusPage (Single Sign-On) with their Azure AD accounts</span></span>
+- <span data-ttu-id="e8c0d-108">Vous pouvez gérer vos comptes dans un emplacement central : hello portail Azure</span><span class="sxs-lookup"><span data-stu-id="e8c0d-108">You can manage your accounts in one central location - hello Azure portal</span></span>
 
-<span data-ttu-id="9338c-109">Pour en savoir plus sur l’intégration des applications SaaS avec Azure AD, consultez [Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="9338c-109">If you want to know more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
+<span data-ttu-id="e8c0d-109">Si vous souhaitez tooknow plus de détails sur l’intégration d’application SaaS à Azure AD, consultez [quel est l’accès à l’application et l’authentification unique avec Azure Active Directory](active-directory-appssoaccess-whatis.md).</span><span class="sxs-lookup"><span data-stu-id="e8c0d-109">If you want tooknow more details about SaaS app integration with Azure AD, see [what is application access and single sign-on with Azure Active Directory](active-directory-appssoaccess-whatis.md).</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="9338c-110">Composants requis</span><span class="sxs-lookup"><span data-stu-id="9338c-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="e8c0d-110">Composants requis</span><span class="sxs-lookup"><span data-stu-id="e8c0d-110">Prerequisites</span></span>
 
-<span data-ttu-id="9338c-111">Pour configurer l’intégration d’Azure AD avec StatusPage, vous avez besoin des éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="9338c-111">To configure Azure AD integration with StatusPage, you need the following items:</span></span>
+<span data-ttu-id="e8c0d-111">tooconfigure intégration d’Azure AD avec StatusPage, vous devez hello éléments suivants :</span><span class="sxs-lookup"><span data-stu-id="e8c0d-111">tooconfigure Azure AD integration with StatusPage, you need hello following items:</span></span>
 
-- <span data-ttu-id="9338c-112">Un abonnement Azure AD</span><span class="sxs-lookup"><span data-stu-id="9338c-112">An Azure AD subscription</span></span>
-- <span data-ttu-id="9338c-113">Un abonnement StatusPage pour lequel l’authentification unique est activée</span><span class="sxs-lookup"><span data-stu-id="9338c-113">A StatusPage single sign-on enabled subscription</span></span>
+- <span data-ttu-id="e8c0d-112">Un abonnement Azure AD</span><span class="sxs-lookup"><span data-stu-id="e8c0d-112">An Azure AD subscription</span></span>
+- <span data-ttu-id="e8c0d-113">Un abonnement StatusPage pour lequel l’authentification unique est activée</span><span class="sxs-lookup"><span data-stu-id="e8c0d-113">A StatusPage single sign-on enabled subscription</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="9338c-114">Pour tester les étapes de ce didacticiel, nous déconseillons l’utilisation d’un environnement de production.</span><span class="sxs-lookup"><span data-stu-id="9338c-114">To test the steps in this tutorial, we do not recommend using a production environment.</span></span>
+> <span data-ttu-id="e8c0d-114">tootest hello les étapes de ce didacticiel, nous ne recommandons pas à l’aide d’un environnement de production.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-114">tootest hello steps in this tutorial, we do not recommend using a production environment.</span></span>
 
-<span data-ttu-id="9338c-115">Vous devez en outre suivre les recommandations ci-dessous :</span><span class="sxs-lookup"><span data-stu-id="9338c-115">To test the steps in this tutorial, you should follow these recommendations:</span></span>
+<span data-ttu-id="e8c0d-115">tootest hello étapes décrites dans ce didacticiel, vous devez suivre ces recommandations :</span><span class="sxs-lookup"><span data-stu-id="e8c0d-115">tootest hello steps in this tutorial, you should follow these recommendations:</span></span>
 
-- <span data-ttu-id="9338c-116">N’utilisez pas votre environnement de production, sauf si cela est nécessaire.</span><span class="sxs-lookup"><span data-stu-id="9338c-116">Do not use your production environment, unless it is necessary.</span></span>
-- <span data-ttu-id="9338c-117">Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="9338c-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
+- <span data-ttu-id="e8c0d-116">N’utilisez pas votre environnement de production, sauf si cela est nécessaire.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-116">Do not use your production environment, unless it is necessary.</span></span>
+- <span data-ttu-id="e8c0d-117">Si vous n’avez pas d’environnement d’essai Azure AD, vous pouvez obtenir un essai d’un mois [ici](https://azure.microsoft.com/pricing/free-trial/).</span><span class="sxs-lookup"><span data-stu-id="e8c0d-117">If you don't have an Azure AD trial environment, you can get a one-month trial [here](https://azure.microsoft.com/pricing/free-trial/).</span></span>
 
-## <a name="scenario-description"></a><span data-ttu-id="9338c-118">Description du scénario</span><span class="sxs-lookup"><span data-stu-id="9338c-118">Scenario description</span></span>
-<span data-ttu-id="9338c-119">Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test.</span><span class="sxs-lookup"><span data-stu-id="9338c-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="9338c-120">Le scénario décrit dans ce didacticiel se compose des deux sections principales suivantes :</span><span class="sxs-lookup"><span data-stu-id="9338c-120">The scenario outlined in this tutorial consists of two main building blocks:</span></span>
+## <a name="scenario-description"></a><span data-ttu-id="e8c0d-118">Description du scénario</span><span class="sxs-lookup"><span data-stu-id="e8c0d-118">Scenario description</span></span>
+<span data-ttu-id="e8c0d-119">Dans ce didacticiel, vous testez l’authentification unique Azure AD dans un environnement de test.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-119">In this tutorial, you test Azure AD single sign-on in a test environment.</span></span> <span data-ttu-id="e8c0d-120">scénario Hello décrite dans ce didacticiel se compose de deux blocs de construction principaux :</span><span class="sxs-lookup"><span data-stu-id="e8c0d-120">hello scenario outlined in this tutorial consists of two main building blocks:</span></span>
 
-1. <span data-ttu-id="9338c-121">Ajout de StatusPage à partir de la galerie</span><span class="sxs-lookup"><span data-stu-id="9338c-121">Adding StatusPage from the gallery</span></span>
-2. <span data-ttu-id="9338c-122">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="9338c-122">Configuring and testing Azure AD single sign-on</span></span>
+1. <span data-ttu-id="e8c0d-121">Ajout de StatusPage à partir de la galerie de hello</span><span class="sxs-lookup"><span data-stu-id="e8c0d-121">Adding StatusPage from hello gallery</span></span>
+2. <span data-ttu-id="e8c0d-122">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="e8c0d-122">Configuring and testing Azure AD single sign-on</span></span>
 
-## <a name="adding-statuspage-from-the-gallery"></a><span data-ttu-id="9338c-123">Ajout de StatusPage à partir de la galerie</span><span class="sxs-lookup"><span data-stu-id="9338c-123">Adding StatusPage from the gallery</span></span>
-<span data-ttu-id="9338c-124">Pour configurer l’intégration de StatusPage avec Azure AD, vous devez ajouter StatusPage à partir de la galerie à votre liste d’applications SaaS gérées.</span><span class="sxs-lookup"><span data-stu-id="9338c-124">To configure the integration of StatusPage into Azure AD, you need to add StatusPage from the gallery to your list of managed SaaS apps.</span></span>
+## <a name="adding-statuspage-from-hello-gallery"></a><span data-ttu-id="e8c0d-123">Ajout de StatusPage à partir de la galerie de hello</span><span class="sxs-lookup"><span data-stu-id="e8c0d-123">Adding StatusPage from hello gallery</span></span>
+<span data-ttu-id="e8c0d-124">intégration de hello tooconfigure de StatusPage dans Azure AD, vous devez tooadd StatusPage à partir de la liste de tooyour hello Galerie d’applications SaaS gérées.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-124">tooconfigure hello integration of StatusPage into Azure AD, you need tooadd StatusPage from hello gallery tooyour list of managed SaaS apps.</span></span>
 
-<span data-ttu-id="9338c-125">**Pour ajouter StatusPage à partir de la galerie, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="9338c-125">**To add StatusPage from the gallery, perform the following steps:**</span></span>
+<span data-ttu-id="e8c0d-125">**tooadd StatusPage à partir de la galerie hello, procédez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="e8c0d-125">**tooadd StatusPage from hello gallery, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="9338c-126">Dans le volet de navigation gauche du **[portail Azure](https://portal.azure.com)**, cliquez sur l’icône **Azure Active Directory**.</span><span class="sxs-lookup"><span data-stu-id="9338c-126">In the **[Azure portal](https://portal.azure.com)**, on the left navigation panel, click **Azure Active Directory** icon.</span></span> 
+1. <span data-ttu-id="e8c0d-126">Bonjour  **[portail Azure](https://portal.azure.com)**sur hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-126">In hello **[Azure portal](https://portal.azure.com)**, on hello left navigation panel, click **Azure Active Directory** icon.</span></span> 
 
     ![Active Directory][1]
 
-2. <span data-ttu-id="9338c-128">Accédez à **Applications d’entreprise**.</span><span class="sxs-lookup"><span data-stu-id="9338c-128">Navigate to **Enterprise applications**.</span></span> <span data-ttu-id="9338c-129">Accédez ensuite à **Toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="9338c-129">Then go to **All applications**.</span></span>
+2. <span data-ttu-id="e8c0d-128">Accédez trop**des applications d’entreprise**.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-128">Navigate too**Enterprise applications**.</span></span> <span data-ttu-id="e8c0d-129">Passez trop**toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-129">Then go too**All applications**.</span></span>
 
     ![Applications][2]
     
-3. <span data-ttu-id="9338c-131">Pour ajouter l’application, cliquez sur le bouton **Nouvelle application** en haut de la boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="9338c-131">To add new application, click **New application** button on the top of dialog.</span></span>
+3. <span data-ttu-id="e8c0d-131">tooadd nouvelle application, cliquez sur **nouvelle application** bouton en haut de hello de boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-131">tooadd new application, click **New application** button on hello top of dialog.</span></span>
 
     ![Applications][3]
 
-4. <span data-ttu-id="9338c-133">Dans la zone de recherche, entrez **StatusPage**.</span><span class="sxs-lookup"><span data-stu-id="9338c-133">In the search box, type **StatusPage**.</span></span>
+4. <span data-ttu-id="e8c0d-133">Dans la zone de recherche de hello, tapez **StatusPage**.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-133">In hello search box, type **StatusPage**.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-statuspage-tutorial/tutorial_statuspage_search.png)
 
-5. <span data-ttu-id="9338c-135">Dans le volet de résultats, sélectionnez **StatusPage**, puis cliquez sur **Ajouter** pour ajouter l’application.</span><span class="sxs-lookup"><span data-stu-id="9338c-135">In the results panel, select **StatusPage**, and then click **Add** button to add the application.</span></span>
+5. <span data-ttu-id="e8c0d-135">Dans le volet de résultats hello, sélectionnez **StatusPage**, puis cliquez sur **ajouter** bouton application hello de tooadd.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-135">In hello results panel, select **StatusPage**, and then click **Add** button tooadd hello application.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-statuspage-tutorial/tutorial_statuspage_addfromgallery.png)
 
-##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="9338c-137">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="9338c-137">Configuring and testing Azure AD single sign-on</span></span>
-<span data-ttu-id="9338c-138">Dans cette section, vous allez configurer et tester l’authentification unique Azure AD auprès de StatusPage, avec un utilisateur de test appelé « Britta Simon ».</span><span class="sxs-lookup"><span data-stu-id="9338c-138">In this section, you configure and test Azure AD single sign-on with StatusPage based on a test user called "Britta Simon".</span></span>
+##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a><span data-ttu-id="e8c0d-137">Configuration et test de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="e8c0d-137">Configuring and testing Azure AD single sign-on</span></span>
+<span data-ttu-id="e8c0d-138">Dans cette section, vous allez configurer et tester l’authentification unique Azure AD auprès de StatusPage, avec un utilisateur de test appelé « Britta Simon ».</span><span class="sxs-lookup"><span data-stu-id="e8c0d-138">In this section, you configure and test Azure AD single sign-on with StatusPage based on a test user called "Britta Simon".</span></span>
 
-<span data-ttu-id="9338c-139">Pour que l’authentification unique fonctionne, Azure AD doit savoir qui est l’utilisateur StatusPage équivalent dans Azure AD.</span><span class="sxs-lookup"><span data-stu-id="9338c-139">For single sign-on to work, Azure AD needs to know what the counterpart user in StatusPage is to a user in Azure AD.</span></span> <span data-ttu-id="9338c-140">En d’autres termes, une relation entre l’utilisateur Azure AD et l’utilisateur StatusPage associé doit être établie.</span><span class="sxs-lookup"><span data-stu-id="9338c-140">In other words, a link relationship between an Azure AD user and the related user in StatusPage needs to be established.</span></span>
+<span data-ttu-id="e8c0d-139">Pour toowork de l’authentification unique, Azure AD doit tooknow quel utilisateur d’équivalent hello dans StatusPage est tooa utilisateur dans Azure AD.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-139">For single sign-on toowork, Azure AD needs tooknow what hello counterpart user in StatusPage is tooa user in Azure AD.</span></span> <span data-ttu-id="e8c0d-140">En d’autres termes, une relation de lien entre un utilisateur Azure AD et un utilisateur hello dans StatusPage doit toobe établie.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-140">In other words, a link relationship between an Azure AD user and hello related user in StatusPage needs toobe established.</span></span>
 
-<span data-ttu-id="9338c-141">Dans StatusPage, affectez la valeur du **nom d’utilisateur** dans Azure AD comme valeur de **Nom d’utilisateur** pour établir la relation.</span><span class="sxs-lookup"><span data-stu-id="9338c-141">In StatusPage, assign the value of the **user name** in Azure AD as the value of the **Username** to establish the link relationship.</span></span>
+<span data-ttu-id="e8c0d-141">Dans StatusPage, affecter la valeur hello hello **nom d’utilisateur** dans Azure AD en tant que valeur hello Hello **nom d’utilisateur** relation de lien tooestablish hello.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-141">In StatusPage, assign hello value of hello **user name** in Azure AD as hello value of hello **Username** tooestablish hello link relationship.</span></span>
 
-<span data-ttu-id="9338c-142">Pour configurer et tester l’authentification unique Azure AD avec StatusPage, vous devez suivre les indications des sections suivantes :</span><span class="sxs-lookup"><span data-stu-id="9338c-142">To configure and test Azure AD single sign-on with StatusPage, you need to complete the following building blocks:</span></span>
+<span data-ttu-id="e8c0d-142">tooconfigure et test Azure AD l’authentification unique avec StatusPage, vous devez hello toocomplete suivant des blocs de construction :</span><span class="sxs-lookup"><span data-stu-id="e8c0d-142">tooconfigure and test Azure AD single sign-on with StatusPage, you need toocomplete hello following building blocks:</span></span>
 
-1. <span data-ttu-id="9338c-143">**[Configuration de l’authentification unique Azure AD](#configuring-azure-ad-single-sign-on)** pour permettre à vos utilisateurs d’utiliser cette fonctionnalité.</span><span class="sxs-lookup"><span data-stu-id="9338c-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - to enable your users to use this feature.</span></span>
-2. <span data-ttu-id="9338c-144">**[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)** pour tester l’authentification unique Azure AD avec Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="9338c-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - to test Azure AD single sign-on with Britta Simon.</span></span>
-3. <span data-ttu-id="9338c-145">**[Création d’un utilisateur de test StatusPage](#creating-a-statuspage-test-user)** pour avoir un équivalent de Britta Simon dans StatusPage qui soit lié à la représentation Azure AD associée.</span><span class="sxs-lookup"><span data-stu-id="9338c-145">**[Creating a StatusPage test user](#creating-a-statuspage-test-user)** - to have a counterpart of Britta Simon in StatusPage that is linked to the Azure AD representation of user.</span></span>
-4. <span data-ttu-id="9338c-146">**[Affectation de l’utilisateur de test Azure AD](#assigning-the-azure-ad-test-user)** pour permettre à Britta Simon d’utiliser l’authentification unique Azure AD.</span><span class="sxs-lookup"><span data-stu-id="9338c-146">**[Assigning the Azure AD test user](#assigning-the-azure-ad-test-user)** - to enable Britta Simon to use Azure AD single sign-on.</span></span>
-5. <span data-ttu-id="9338c-147">**[Testing Single Sign-On](#testing-single-sign-on)** pour vérifier si la configuration fonctionne.</span><span class="sxs-lookup"><span data-stu-id="9338c-147">**[Testing Single Sign-On](#testing-single-sign-on)** - to verify whether the configuration works.</span></span>
+1. <span data-ttu-id="e8c0d-143">**[Configuration d’Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)**  -tooenable toouse de vos utilisateurs cette fonctionnalité.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-143">**[Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on)** - tooenable your users toouse this feature.</span></span>
+2. <span data-ttu-id="e8c0d-144">**[Création d’un utilisateur de test Azure AD](#creating-an-azure-ad-test-user)**  -tootest Azure AD single sign-on avec Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-144">**[Creating an Azure AD test user](#creating-an-azure-ad-test-user)** - tootest Azure AD single sign-on with Britta Simon.</span></span>
+3. <span data-ttu-id="e8c0d-145">**[Création d’un utilisateur de test StatusPage](#creating-a-statuspage-test-user)**  -toohave un équivalent de Britta Simon dans StatusPage est la représentation sous forme de toohello lié Azure AD de l’utilisateur.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-145">**[Creating a StatusPage test user](#creating-a-statuspage-test-user)** - toohave a counterpart of Britta Simon in StatusPage that is linked toohello Azure AD representation of user.</span></span>
+4. <span data-ttu-id="e8c0d-146">**[Utilisateur de test affectation hello Azure AD](#assigning-the-azure-ad-test-user)**  -tooenable Britta Simon toouse Azure AD de l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-146">**[Assigning hello Azure AD test user](#assigning-the-azure-ad-test-user)** - tooenable Britta Simon toouse Azure AD single sign-on.</span></span>
+5. <span data-ttu-id="e8c0d-147">**[Test de l’authentification unique sur](#testing-single-sign-on)**  -tooverify hello indique si les tâches de configuration.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-147">**[Testing Single Sign-On](#testing-single-sign-on)** - tooverify whether hello configuration works.</span></span>
 
-### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="9338c-148">Configuration de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="9338c-148">Configuring Azure AD single sign-on</span></span>
+### <a name="configuring-azure-ad-single-sign-on"></a><span data-ttu-id="e8c0d-148">Configuration de l’authentification unique Azure AD</span><span class="sxs-lookup"><span data-stu-id="e8c0d-148">Configuring Azure AD single sign-on</span></span>
 
-<span data-ttu-id="9338c-149">Dans cette section, vous allez activer l’authentification unique Azure AD dans le portail Azure et configurer l’authentification unique dans votre application StatusPage.</span><span class="sxs-lookup"><span data-stu-id="9338c-149">In this section, you enable Azure AD single sign-on in the Azure portal and configure single sign-on in your StatusPage application.</span></span>
+<span data-ttu-id="e8c0d-149">Dans cette section, vous activez Azure AD l’authentification unique sur Bonjour portail Azure et configurez l’authentification unique dans votre application StatusPage.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-149">In this section, you enable Azure AD single sign-on in hello Azure portal and configure single sign-on in your StatusPage application.</span></span>
 
-<span data-ttu-id="9338c-150">**Pour configurer l’authentification unique Azure AD avec StatusPage, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="9338c-150">**To configure Azure AD single sign-on with StatusPage, perform the following steps:**</span></span>
+<span data-ttu-id="e8c0d-150">**tooconfigure Azure AD single sign-on avec StatusPage, effectuez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="e8c0d-150">**tooconfigure Azure AD single sign-on with StatusPage, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="9338c-151">Dans le Portail Azure, dans la page d’intégration de l’application **StatusPage**, cliquez sur **Authentification unique**.</span><span class="sxs-lookup"><span data-stu-id="9338c-151">In the Azure portal, on the **StatusPage** application integration page, click **Single sign-on**.</span></span>
+1. <span data-ttu-id="e8c0d-151">Bonjour portail Azure, sur hello **StatusPage** page d’intégration d’application, cliquez sur **l’authentification unique**.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-151">In hello Azure portal, on hello **StatusPage** application integration page, click **Single sign-on**.</span></span>
 
     ![Configurer l’authentification unique][4]
 
-2. <span data-ttu-id="9338c-153">Dans la boîte de dialogue **Authentification unique**, pour le **Mode**, sélectionnez **Authentification basée sur SAML** pour activer l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="9338c-153">On the **Single sign-on** dialog, select **Mode** as **SAML-based Sign-on** to enable single sign-on.</span></span>
+2. <span data-ttu-id="e8c0d-153">Sur hello **l’authentification unique** boîte de dialogue, sélectionnez **Mode** en tant que **SAML-authentification** tooenable l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-153">On hello **Single sign-on** dialog, select **Mode** as   **SAML-based Sign-on** tooenable single sign-on.</span></span>
  
     ![Configurer l’authentification unique](./media/active-directory-saas-statuspage-tutorial/tutorial_statuspage_samlbase.png)
 
-3. <span data-ttu-id="9338c-155">Dans la section **Domaine et URL StatusPage**, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="9338c-155">On the **StatusPage Domain and URLs** section, perform the following steps:</span></span>
+3. <span data-ttu-id="e8c0d-155">Sur hello **StatusPage domaine et les URL** section, effectuer hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="e8c0d-155">On hello **StatusPage Domain and URLs** section, perform hello following steps:</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-statuspage-tutorial/tutorial_statuspage_url.png)
 
-    <span data-ttu-id="9338c-157">a.</span><span class="sxs-lookup"><span data-stu-id="9338c-157">a.</span></span> <span data-ttu-id="9338c-158">Dans la zone de texte **Identificateur**, tapez une URL au format suivant :</span><span class="sxs-lookup"><span data-stu-id="9338c-158">In the **Identifier** textbox, type a URL using the following pattern:</span></span>
+    <span data-ttu-id="e8c0d-157">a.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-157">a.</span></span> <span data-ttu-id="e8c0d-158">Bonjour **identificateur** zone de texte, tapez une URL à l’aide de hello modèle :</span><span class="sxs-lookup"><span data-stu-id="e8c0d-158">In hello **Identifier** textbox, type a URL using hello following pattern:</span></span>
     | |
     |--|
     | `https://<subdomain>.statuspagestaging.com/` |
     | `https://<subdomain>.statuspage.io/` |
 
-    <span data-ttu-id="9338c-159">b.</span><span class="sxs-lookup"><span data-stu-id="9338c-159">b.</span></span> <span data-ttu-id="9338c-160">Dans la zone de texte **URL de réponse** , tapez une URL au format suivant :</span><span class="sxs-lookup"><span data-stu-id="9338c-160">In the **Reply URL** textbox, type a URL using the following pattern:</span></span> 
+    <span data-ttu-id="e8c0d-159">b.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-159">b.</span></span> <span data-ttu-id="e8c0d-160">Bonjour **URL de réponse** zone de texte, tapez une URL à l’aide de hello modèle :</span><span class="sxs-lookup"><span data-stu-id="e8c0d-160">In hello **Reply URL** textbox, type a URL using hello following pattern:</span></span> 
     | |
     |--|
     | `https://<subdomain>.statuspagestaging.com/sso/saml/consume` |
     | `https://<subdomain>.statuspage.io/sso/saml/consume` |
 
     > [!NOTE]
-    > <span data-ttu-id="9338c-161">Contactez l’équipe de support StatusPage à l’adresse [SupportTeam@statuspage.io](mailto:SupportTeam@statuspage.io)pour demander les métadonnées nécessaires à la configuration de l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="9338c-161">Contact the StatusPage support team at [SupportTeam@statuspage.io](mailto:SupportTeam@statuspage.io)to request metadata necessary to configure single sign-on.</span></span> 
+    > <span data-ttu-id="e8c0d-161">Contacter l’équipe de support hello StatusPage à [ SupportTeam@statuspage.io ](mailto:SupportTeam@statuspage.io)toorequest métadonnées tooconfigure nécessaires de l’authentification unique.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-161">Contact hello StatusPage support team at [SupportTeam@statuspage.io](mailto:SupportTeam@statuspage.io)toorequest metadata necessary tooconfigure single sign-on.</span></span> 
     >
-    ><span data-ttu-id="9338c-162">a.</span><span class="sxs-lookup"><span data-stu-id="9338c-162">a.</span></span> <span data-ttu-id="9338c-163">À partir des métadonnées, copiez la valeur de l’émetteur et collez-la dans la zone de texte **Identificateur** .</span><span class="sxs-lookup"><span data-stu-id="9338c-163">From the metadata, copy the Issuer value, and then paste it into the **Identifier** textbox.</span></span>
+    ><span data-ttu-id="e8c0d-162">a.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-162">a.</span></span> <span data-ttu-id="e8c0d-163">À partir des métadonnées de hello, copiez la valeur d’émetteur hello, puis collez-le dans hello **identificateur** zone de texte.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-163">From hello metadata, copy hello Issuer value, and then paste it into hello **Identifier** textbox.</span></span>
     >
-    ><span data-ttu-id="9338c-164">b.</span><span class="sxs-lookup"><span data-stu-id="9338c-164">b.</span></span> <span data-ttu-id="9338c-165">À partir des métadonnées, copiez l’URL de réponse et collez-la dans la zone de texte **URL de réponse** .</span><span class="sxs-lookup"><span data-stu-id="9338c-165">From the metadata, copy the Reply URL, and then paste it into the **Reply URL** textbox.</span></span>
+    ><span data-ttu-id="e8c0d-164">b.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-164">b.</span></span> <span data-ttu-id="e8c0d-165">À partir des métadonnées de hello, hello URL de réponse de copier et coller ensuite dans hello **URL de réponse** zone de texte.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-165">From hello metadata, copy hello Reply URL, and then paste it into hello **Reply URL** textbox.</span></span>
 
-4. <span data-ttu-id="9338c-166">Dans la section **Certificat de signature SAML**, cliquez sur **Téléchargez le certificat (Base64)** puis enregistrez le fichier du certificat sur votre ordinateur.</span><span class="sxs-lookup"><span data-stu-id="9338c-166">On the **SAML Signing Certificate** section, click **Certificate (Base64)** and then save the certificate file on your computer.</span></span>
+4. <span data-ttu-id="e8c0d-166">Sur hello **le certificat de signature SAML** , cliquez sur **certificat (Base64)** , puis enregistrez le fichier de certificat hello sur votre ordinateur.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-166">On hello **SAML Signing Certificate** section, click **Certificate (Base64)** and then save hello certificate file on your computer.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-statuspage-tutorial/tutorial_statuspage_certificate.png) 
 
-5. <span data-ttu-id="9338c-168">Cliquez sur le bouton **Enregistrer** .</span><span class="sxs-lookup"><span data-stu-id="9338c-168">Click **Save** button.</span></span>
+5. <span data-ttu-id="e8c0d-168">Cliquez sur le bouton **Enregistrer** .</span><span class="sxs-lookup"><span data-stu-id="e8c0d-168">Click **Save** button.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-statuspage-tutorial/tutorial_general_400.png)
 
-6. <span data-ttu-id="9338c-170">Dans la section **Configuration de StatusPage** , cliquez sur **Configurer StatusPage** pour ouvrir la fenêtre **Configurer l’authentification**.</span><span class="sxs-lookup"><span data-stu-id="9338c-170">On the **StatusPage Configuration** section, click **Configure StatusPage** to open **Configure sign-on** window.</span></span> <span data-ttu-id="9338c-171">Copiez l**’URL du service d’authentification unique SAML** à partir de la **section Référence rapide.**</span><span class="sxs-lookup"><span data-stu-id="9338c-171">Copy the **SAML Single Sign-On Service URL** from the **Quick Reference section.**</span></span>
+6. <span data-ttu-id="e8c0d-170">Sur hello **StatusPage Configuration** , cliquez sur **StatusPage de configurer** tooopen **configurer l’authentification** fenêtre.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-170">On hello **StatusPage Configuration** section, click **Configure StatusPage** tooopen **Configure sign-on** window.</span></span> <span data-ttu-id="e8c0d-171">Hello de copie **SAML Sign-On URL du Service unique** de hello **section de référence rapide.**</span><span class="sxs-lookup"><span data-stu-id="e8c0d-171">Copy hello **SAML Single Sign-On Service URL** from hello **Quick Reference section.**</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-statuspage-tutorial/tutorial_statuspage_configure.png) 
 
-7. <span data-ttu-id="9338c-173">Dans une autre fenêtre de navigateur, connectez-vous à votre site d’entreprise StatusPage en tant qu’administrateur.</span><span class="sxs-lookup"><span data-stu-id="9338c-173">In another browser window, sign on to your StatusPage company site as an administrator.</span></span>
+7. <span data-ttu-id="e8c0d-173">Dans une autre fenêtre de navigateur, connectez-vous sur le site d’entreprise tooyour StatusPage en tant qu’administrateur.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-173">In another browser window, sign on tooyour StatusPage company site as an administrator.</span></span>
 
-8. <span data-ttu-id="9338c-174">Dans la barre d’outils principale, cliquez sur **Manage Account**(Gérer le compte).</span><span class="sxs-lookup"><span data-stu-id="9338c-174">In the main toolbar, click **Manage Account**.</span></span>
+8. <span data-ttu-id="e8c0d-174">Dans la barre d’outils principale hello, cliquez sur **gérer le compte**.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-174">In hello main toolbar, click **Manage Account**.</span></span>
    
     ![Configurer l’authentification unique](./media/active-directory-saas-statuspage-tutorial/tutorial_statuspage_06.png) 
 
-10. <span data-ttu-id="9338c-176">Cliquez sur l’onglet **Single Sign-on** (Authentification unique).</span><span class="sxs-lookup"><span data-stu-id="9338c-176">Click the **Single Sign-on** tab.</span></span> 
+10. <span data-ttu-id="e8c0d-176">Cliquez sur hello **Single Sign-on** onglet.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-176">Click hello **Single Sign-on** tab.</span></span> 
    
     ![Configurer l’authentification unique](./media/active-directory-saas-statuspage-tutorial/tutorial_statuspage_07.png) 
 
-11. <span data-ttu-id="9338c-178">Sur la page de configuration de l’authentification unique, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="9338c-178">On the SSO Setup page, perform the following steps:</span></span>
+11. <span data-ttu-id="e8c0d-178">Sur la page de configuration de l’authentification unique de hello, procédez hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="e8c0d-178">On hello SSO Setup page, perform hello following steps:</span></span>
    
     ![Configurer l’authentification unique](./media/active-directory-saas-statuspage-tutorial/tutorial_statuspage_08.png) 
 
     ![Configurer l’authentification unique](./media/active-directory-saas-statuspage-tutorial/tutorial_statuspage_09.png) 
  
-    <span data-ttu-id="9338c-181">a.</span><span class="sxs-lookup"><span data-stu-id="9338c-181">a.</span></span> <span data-ttu-id="9338c-182">Dans la zone de texte **URL de cible d’authentification**, collez la valeur de **l’URL du service d’authentification unique SAML** que vous avez copiée à partir du portail Azure.</span><span class="sxs-lookup"><span data-stu-id="9338c-182">In the **SSO Target URL** textbox, paste the value of **SAML Single Sign-On Service URL**, which you have copied from Azure portal.</span></span>
+    <span data-ttu-id="e8c0d-181">a.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-181">a.</span></span> <span data-ttu-id="e8c0d-182">Bonjour **URL cible de l’authentification unique** zone de texte, valeur hello coller **SAML Sign-On URL du Service unique**, lequel vous avez copié à partir du portail Azure.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-182">In hello **SSO Target URL** textbox, paste hello value of **SAML Single Sign-On Service URL**, which you have copied from Azure portal.</span></span>
 
-    <span data-ttu-id="9338c-183">b.</span><span class="sxs-lookup"><span data-stu-id="9338c-183">b.</span></span> <span data-ttu-id="9338c-184">Ouvrez le certificat que vous avez téléchargé dans le Bloc-notes, copiez son contenu, puis collez-le dans la zone de texte **Certificat** .</span><span class="sxs-lookup"><span data-stu-id="9338c-184">Open your downloaded certificate in Notepad, copy the content, and then paste it into the **Certificate** textbox.</span></span> 
+    <span data-ttu-id="e8c0d-183">b.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-183">b.</span></span> <span data-ttu-id="e8c0d-184">Ouvrez votre certificat téléchargé dans le bloc-notes, hello copie le contenu et le coller ensuite dans hello **certificat** zone de texte.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-184">Open your downloaded certificate in Notepad, copy hello content, and then paste it into hello **Certificate** textbox.</span></span> 
 
-    <span data-ttu-id="9338c-185">c.</span><span class="sxs-lookup"><span data-stu-id="9338c-185">c.</span></span> <span data-ttu-id="9338c-186">Cliquez sur **ENREGISTRER LA CONFIGURATION**.</span><span class="sxs-lookup"><span data-stu-id="9338c-186">Click **SAVE CONFIGURATION**.</span></span>
+    <span data-ttu-id="e8c0d-185">c.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-185">c.</span></span> <span data-ttu-id="e8c0d-186">Cliquez sur **ENREGISTRER LA CONFIGURATION**.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-186">Click **SAVE CONFIGURATION**.</span></span>
 
 > [!TIP]
-> <span data-ttu-id="9338c-187">Vous pouvez maintenant lire une version concise de ces instructions dans le [portail Azure](https://portal.azure.com), pendant que vous configurez l’application.</span><span class="sxs-lookup"><span data-stu-id="9338c-187">You can now read a concise version of these instructions inside the [Azure portal](https://portal.azure.com), while you are setting up the app!</span></span>  <span data-ttu-id="9338c-188">Après avoir ajouté cette application à partir de la section **Active Directory > Applications d’entreprise**, cliquez simplement sur l’onglet **Authentification unique** et accédez à la documentation incorporée par le biais de la section **Configuration** en bas.</span><span class="sxs-lookup"><span data-stu-id="9338c-188">After adding this app from the **Active Directory > Enterprise Applications** section, simply click the **Single Sign-On** tab and access the embedded documentation through the **Configuration** section at the bottom.</span></span> <span data-ttu-id="9338c-189">Vous pouvez en savoir plus sur la fonctionnalité de documentation incorporée ici : [Documentation incorporée Azure AD]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="9338c-189">You can read more about the embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
+> <span data-ttu-id="e8c0d-187">Vous pouvez maintenant lire une version concise de ces instructions à l’intérieur de hello [portail Azure](https://portal.azure.com), lors de la configuration de l’application hello !</span><span class="sxs-lookup"><span data-stu-id="e8c0d-187">You can now read a concise version of these instructions inside hello [Azure portal](https://portal.azure.com), while you are setting up hello app!</span></span>  <span data-ttu-id="e8c0d-188">Après l’ajout de cette application à partir de hello **Active Directory > Applications d’entreprise** , cliquez simplement sur hello **Single Sign-On** hello onglet et accès incorporé documentation via hello  **Configuration** section bas hello.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-188">After adding this app from hello **Active Directory > Enterprise Applications** section, simply click hello **Single Sign-On** tab and access hello embedded documentation through hello **Configuration** section at hello bottom.</span></span> <span data-ttu-id="e8c0d-189">Vous pouvez en savoir plus sur la fonctionnalité de documentation embedded hello ici : [Azure AD incorporé documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span><span class="sxs-lookup"><span data-stu-id="e8c0d-189">You can read more about hello embedded documentation feature here: [Azure AD embedded documentation]( https://go.microsoft.com/fwlink/?linkid=845985)</span></span>
 > 
 
-### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="9338c-190">Création d’un utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="9338c-190">Creating an Azure AD test user</span></span>
-<span data-ttu-id="9338c-191">L’objectif de cette section est de créer un utilisateur de test appelé Britta Simon dans le portail Azure.</span><span class="sxs-lookup"><span data-stu-id="9338c-191">The objective of this section is to create a test user in the Azure portal called Britta Simon.</span></span>
+### <a name="creating-an-azure-ad-test-user"></a><span data-ttu-id="e8c0d-190">Création d’un utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="e8c0d-190">Creating an Azure AD test user</span></span>
+<span data-ttu-id="e8c0d-191">objectif Hello de cette section est toocreate Bonjour Azure portal appelé Britta Simon, un utilisateur de test.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-191">hello objective of this section is toocreate a test user in hello Azure portal called Britta Simon.</span></span>
 
 ![Créer un utilisateur Azure AD][100]
 
-<span data-ttu-id="9338c-193">**Pour créer un utilisateur de test dans Azure AD, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="9338c-193">**To create a test user in Azure AD, perform the following steps:**</span></span>
+<span data-ttu-id="e8c0d-193">**toocreate un utilisateur test dans Azure AD, procédez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="e8c0d-193">**toocreate a test user in Azure AD, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="9338c-194">Dans le panneau de navigation gauche du **portail Azure**, cliquez sur l’icône **Azure Active Directory**.</span><span class="sxs-lookup"><span data-stu-id="9338c-194">In the **Azure portal**, on the left navigation pane, click **Azure Active Directory** icon.</span></span>
+1. <span data-ttu-id="e8c0d-194">Bonjour **portail Azure**, on hello du volet de navigation gauche, cliquez sur **Azure Active Directory** icône.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-194">In hello **Azure portal**, on hello left navigation pane, click **Azure Active Directory** icon.</span></span>
 
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-statuspage-tutorial/create_aaduser_01.png) 
 
-2. <span data-ttu-id="9338c-196">Pour afficher la liste des utilisateurs, accédez à **Utilisateurs et groupes**, puis cliquez sur **Tous les utilisateurs**.</span><span class="sxs-lookup"><span data-stu-id="9338c-196">To display the list of users, go to **Users and groups** and click **All users**.</span></span>
+2. <span data-ttu-id="e8c0d-196">liste de hello toodisplay des utilisateurs, accédez trop**utilisateurs et groupes** et cliquez sur **tous les utilisateurs**.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-196">toodisplay hello list of users, go too**Users and groups** and click **All users**.</span></span>
     
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-statuspage-tutorial/create_aaduser_02.png) 
 
-3. <span data-ttu-id="9338c-198">Pour ouvrir la boîte de dialogue **Utilisateur**, cliquez sur **Ajouter** en haut de la boîte de dialogue.</span><span class="sxs-lookup"><span data-stu-id="9338c-198">To open the **User** dialog, click **Add** on the top of the dialog.</span></span>
+3. <span data-ttu-id="e8c0d-198">tooopen hello **utilisateur** boîte de dialogue, cliquez sur **ajouter** haut hello de boîte de dialogue hello.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-198">tooopen hello **User** dialog, click **Add** on hello top of hello dialog.</span></span>
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-statuspage-tutorial/create_aaduser_03.png) 
 
-4. <span data-ttu-id="9338c-200">Dans la boîte de dialogue **Utilisateur**, procédez comme suit :</span><span class="sxs-lookup"><span data-stu-id="9338c-200">On the **User** dialog page, perform the following steps:</span></span>
+4. <span data-ttu-id="e8c0d-200">Sur hello **utilisateur** boîte de dialogue de page, effectuer hello comme suit :</span><span class="sxs-lookup"><span data-stu-id="e8c0d-200">On hello **User** dialog page, perform hello following steps:</span></span>
  
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-statuspage-tutorial/create_aaduser_04.png) 
 
-    <span data-ttu-id="9338c-202">a.</span><span class="sxs-lookup"><span data-stu-id="9338c-202">a.</span></span> <span data-ttu-id="9338c-203">Dans la zone de texte **Nom**, entrez **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="9338c-203">In the **Name** textbox, type **BrittaSimon**.</span></span>
+    <span data-ttu-id="e8c0d-202">a.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-202">a.</span></span> <span data-ttu-id="e8c0d-203">Bonjour **nom** zone de texte, type **BrittaSimon**.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-203">In hello **Name** textbox, type **BrittaSimon**.</span></span>
 
-    <span data-ttu-id="9338c-204">b.</span><span class="sxs-lookup"><span data-stu-id="9338c-204">b.</span></span> <span data-ttu-id="9338c-205">Dans la zone de texte **Nom d’utilisateur**, tapez **l’adresse e-mail** de Britta Simon.</span><span class="sxs-lookup"><span data-stu-id="9338c-205">In the **User name** textbox, type the **email address** of BrittaSimon.</span></span>
+    <span data-ttu-id="e8c0d-204">b.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-204">b.</span></span> <span data-ttu-id="e8c0d-205">Bonjour **nom d’utilisateur** hello de type zone de texte **adresse de messagerie** de BrittaSimon.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-205">In hello **User name** textbox, type hello **email address** of BrittaSimon.</span></span>
 
-    <span data-ttu-id="9338c-206">c.</span><span class="sxs-lookup"><span data-stu-id="9338c-206">c.</span></span> <span data-ttu-id="9338c-207">Sélectionnez **Afficher le mot de passe** et notez la valeur du **mot de passe**.</span><span class="sxs-lookup"><span data-stu-id="9338c-207">Select **Show Password** and write down the value of the **Password**.</span></span>
+    <span data-ttu-id="e8c0d-206">c.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-206">c.</span></span> <span data-ttu-id="e8c0d-207">Sélectionnez **afficher le mot de passe** et notez la valeur hello hello **mot de passe**.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-207">Select **Show Password** and write down hello value of hello **Password**.</span></span>
 
-    <span data-ttu-id="9338c-208">d.</span><span class="sxs-lookup"><span data-stu-id="9338c-208">d.</span></span> <span data-ttu-id="9338c-209">Cliquez sur **Create**.</span><span class="sxs-lookup"><span data-stu-id="9338c-209">Click **Create**.</span></span>
+    <span data-ttu-id="e8c0d-208">d.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-208">d.</span></span> <span data-ttu-id="e8c0d-209">Cliquez sur **Create**.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-209">Click **Create**.</span></span>
  
-### <a name="creating-a-statuspage-test-user"></a><span data-ttu-id="9338c-210">Création d’un utilisateur de test StatusPage</span><span class="sxs-lookup"><span data-stu-id="9338c-210">Creating a StatusPage test user</span></span>
+### <a name="creating-a-statuspage-test-user"></a><span data-ttu-id="e8c0d-210">Création d’un utilisateur de test StatusPage</span><span class="sxs-lookup"><span data-stu-id="e8c0d-210">Creating a StatusPage test user</span></span>
 
-<span data-ttu-id="9338c-211">L’objectif de cette section est de créer un utilisateur appelé Britta Simon dans StatusPage.</span><span class="sxs-lookup"><span data-stu-id="9338c-211">The objective of this section is to create a user called Britta Simon in StatusPage.</span></span>
+<span data-ttu-id="e8c0d-211">objectif Hello de cette section est toocreate un utilisateur appelé Britta Simon dans StatusPage.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-211">hello objective of this section is toocreate a user called Britta Simon in StatusPage.</span></span>
 
-<span data-ttu-id="9338c-212">StatusPage prend en charge l’approvisionnement juste-à-temps.</span><span class="sxs-lookup"><span data-stu-id="9338c-212">StatusPage supports just-in-time provisioning.</span></span> <span data-ttu-id="9338c-213">Vous l’avez déjà activé dans [Configuration de l’authentification unique Azure AD](#configuring-azure-ad-single-sign-on).</span><span class="sxs-lookup"><span data-stu-id="9338c-213">You have already enabled it in [Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on).</span></span>
+<span data-ttu-id="e8c0d-212">StatusPage prend en charge l’approvisionnement juste-à-temps.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-212">StatusPage supports just-in-time provisioning.</span></span> <span data-ttu-id="e8c0d-213">Vous l’avez déjà activé dans [Configuration de l’authentification unique Azure AD](#configuring-azure-ad-single-sign-on).</span><span class="sxs-lookup"><span data-stu-id="e8c0d-213">You have already enabled it in [Configuring Azure AD Single Sign-On](#configuring-azure-ad-single-sign-on).</span></span>
 
-<span data-ttu-id="9338c-214">**Pour créer un utilisateur appelé Britta Simon dans StatusPage, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="9338c-214">**To create a user called Britta Simon in StatusPage, perform the following steps:**</span></span>
+<span data-ttu-id="e8c0d-214">**toocreate un utilisateur appelé Britta Simon dans StatusPage, effectuez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="e8c0d-214">**toocreate a user called Britta Simon in StatusPage, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="9338c-215">Connectez-vous à votre site d’entreprise StatusPage en tant qu’administrateur.</span><span class="sxs-lookup"><span data-stu-id="9338c-215">Sign-on to your StatusPage company site as an administrator.</span></span>
+1. <span data-ttu-id="e8c0d-215">Site d’entreprise StatusPage tooyour ouverture de session en tant qu’administrateur.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-215">Sign-on tooyour StatusPage company site as an administrator.</span></span>
 
-2. <span data-ttu-id="9338c-216">Dans le menu situé en haut, cliquez sur **Manage Account**.</span><span class="sxs-lookup"><span data-stu-id="9338c-216">In the menu on the top, click **Manage Account**.</span></span>
+2. <span data-ttu-id="e8c0d-216">Dans le menu hello haut de hello, cliquez sur **gérer le compte**.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-216">In hello menu on hello top, click **Manage Account**.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-statuspage-tutorial/tutorial_statuspage_06.png)
 
-3. <span data-ttu-id="9338c-218">Cliquez sur l’onglet **Team Members** (Membres de l’équipe).</span><span class="sxs-lookup"><span data-stu-id="9338c-218">Click the **Team Members** tab.</span></span> 
+3. <span data-ttu-id="e8c0d-218">Cliquez sur hello **membres de l’équipe** onglet.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-218">Click hello **Team Members** tab.</span></span> 
    
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-statuspage-tutorial/tutorial_statuspage_10.png) 
 
-4. <span data-ttu-id="9338c-220">Cliquez sur l’onglet **ADD TEAM MEMBER** (Ajouter un membre d’équipe).</span><span class="sxs-lookup"><span data-stu-id="9338c-220">Click **ADD TEAM MEMBER**.</span></span> 
+4. <span data-ttu-id="e8c0d-220">Cliquez sur l’onglet **ADD TEAM MEMBER** (Ajouter un membre d’équipe).</span><span class="sxs-lookup"><span data-stu-id="e8c0d-220">Click **ADD TEAM MEMBER**.</span></span> 
    
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-statuspage-tutorial/tutorial_statuspage_11.png) 
 
-5. <span data-ttu-id="9338c-222">Entrez l’adresse électronique, le prénom et le nom de l’utilisateur valide que vous souhaitez approvisionner dans les zones de texte correspondantes, à savoir, **Email Address** (Adresse électronique), **First Name** (Prénom) et **Surname** (Nom).</span><span class="sxs-lookup"><span data-stu-id="9338c-222">Type the **Email Address**, **First Name**, and **Sur Name** of a valid user you want to provision into the related textboxes.</span></span> 
+5. <span data-ttu-id="e8c0d-222">Hello de type **adresse de messagerie**, **prénom**, et **Sur nom** d’un utilisateur valide, vous voulez tooprovision dans hello relatives des zones de texte.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-222">Type hello **Email Address**, **First Name**, and **Sur Name** of a valid user you want tooprovision into hello related textboxes.</span></span> 
    
     ![Création d’un utilisateur de test Azure AD](./media/active-directory-saas-statuspage-tutorial/tutorial_statuspage_12.png) 
 
-6. <span data-ttu-id="9338c-224">Pour **Role**, choisissez **Client Administrator**.</span><span class="sxs-lookup"><span data-stu-id="9338c-224">As **Role**, choose **Client Administrator**.</span></span>
+6. <span data-ttu-id="e8c0d-224">Pour **Role**, choisissez **Client Administrator**.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-224">As **Role**, choose **Client Administrator**.</span></span>
 
-7. <span data-ttu-id="9338c-225">Cliquez sur **CREATE ACCOUNT** (Créer un compte).</span><span class="sxs-lookup"><span data-stu-id="9338c-225">Click **CREATE ACCOUNT**.</span></span>
+7. <span data-ttu-id="e8c0d-225">Cliquez sur **CREATE ACCOUNT** (Créer un compte).</span><span class="sxs-lookup"><span data-stu-id="e8c0d-225">Click **CREATE ACCOUNT**.</span></span>
 
-### <a name="assigning-the-azure-ad-test-user"></a><span data-ttu-id="9338c-226">Affectation de l’utilisateur de test Azure AD</span><span class="sxs-lookup"><span data-stu-id="9338c-226">Assigning the Azure AD test user</span></span>
+### <a name="assigning-hello-azure-ad-test-user"></a><span data-ttu-id="e8c0d-226">Affectation d’utilisateur de test hello Azure AD</span><span class="sxs-lookup"><span data-stu-id="e8c0d-226">Assigning hello Azure AD test user</span></span>
 
-<span data-ttu-id="9338c-227">Dans cette section, vous allez autoriser Britta Simon à utiliser l’authentification unique Azure en lui accordant l’accès à StatusPage.</span><span class="sxs-lookup"><span data-stu-id="9338c-227">In this section, you enable Britta Simon to use Azure single sign-on by granting access to StatusPage.</span></span>
+<span data-ttu-id="e8c0d-227">Dans cette section, vous activez toouse Britta Simon Azure l’authentification unique en accordant l’accès tooStatusPage.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-227">In this section, you enable Britta Simon toouse Azure single sign-on by granting access tooStatusPage.</span></span>
 
 ![Affecter des utilisateurs][200] 
 
-<span data-ttu-id="9338c-229">**Pour attribuer Britta Simon à StatusPage, procédez comme suit :**</span><span class="sxs-lookup"><span data-stu-id="9338c-229">**To assign Britta Simon to StatusPage, perform the following steps:**</span></span>
+<span data-ttu-id="e8c0d-229">**tooassign Britta Simon tooStatusPage, effectuez hello comme suit :**</span><span class="sxs-lookup"><span data-stu-id="e8c0d-229">**tooassign Britta Simon tooStatusPage, perform hello following steps:**</span></span>
 
-1. <span data-ttu-id="9338c-230">Dans le portail Azure, ouvrez la vue des applications, accédez à la vue des répertoires, accédez à **Applications d’entreprise**, puis cliquez sur **Toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="9338c-230">In the Azure portal, open the applications view, and then navigate to the directory view and go to **Enterprise applications** then click **All applications**.</span></span>
+1. <span data-ttu-id="e8c0d-230">Bonjour portail Azure, ouvrez la vue des applications hello, puis naviguez toohello vue d’annuaire et accédez trop**des applications d’entreprise** puis cliquez sur **toutes les applications**.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-230">In hello Azure portal, open hello applications view, and then navigate toohello directory view and go too**Enterprise applications** then click **All applications**.</span></span>
 
     ![Affecter des utilisateurs][201] 
 
-2. <span data-ttu-id="9338c-232">Dans la liste des applications, sélectionnez **StatusPage**.</span><span class="sxs-lookup"><span data-stu-id="9338c-232">In the applications list, select **StatusPage**.</span></span>
+2. <span data-ttu-id="e8c0d-232">Dans la liste des applications hello, sélectionnez **StatusPage**.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-232">In hello applications list, select **StatusPage**.</span></span>
 
     ![Configurer l’authentification unique](./media/active-directory-saas-statuspage-tutorial/tutorial_statuspage_app.png) 
 
-3. <span data-ttu-id="9338c-234">Dans le menu de gauche, cliquez sur **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="9338c-234">In the menu on the left, click **Users and groups**.</span></span>
+3. <span data-ttu-id="e8c0d-234">Dans le menu hello hello gauche, cliquez sur **utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-234">In hello menu on hello left, click **Users and groups**.</span></span>
 
     ![Affecter des utilisateurs][202] 
 
-4. <span data-ttu-id="9338c-236">Cliquez sur le bouton **Ajouter**.</span><span class="sxs-lookup"><span data-stu-id="9338c-236">Click **Add** button.</span></span> <span data-ttu-id="9338c-237">Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="9338c-237">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
+4. <span data-ttu-id="e8c0d-236">Cliquez sur le bouton **Ajouter**.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-236">Click **Add** button.</span></span> <span data-ttu-id="e8c0d-237">Ensuite, sélectionnez **Utilisateurs et groupes** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-237">Then select **Users and groups** on **Add Assignment** dialog.</span></span>
 
     ![Affecter des utilisateurs][203]
 
-5. <span data-ttu-id="9338c-239">Dans la boîte de dialogue **Utilisateurs et groupes**, sélectionnez **Britta Simon** dans la liste des utilisateurs.</span><span class="sxs-lookup"><span data-stu-id="9338c-239">On **Users and groups** dialog, select **Britta Simon** in the Users list.</span></span>
+5. <span data-ttu-id="e8c0d-239">Sur **utilisateurs et groupes** boîte de dialogue, sélectionnez **Britta Simon** dans la liste des utilisateurs hello.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-239">On **Users and groups** dialog, select **Britta Simon** in hello Users list.</span></span>
 
-6. <span data-ttu-id="9338c-240">Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="9338c-240">Click **Select** button on **Users and groups** dialog.</span></span>
+6. <span data-ttu-id="e8c0d-240">Cliquez sur le bouton **Sélectionner** dans la boîte de dialogue **Utilisateurs et groupes**.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-240">Click **Select** button on **Users and groups** dialog.</span></span>
 
-7. <span data-ttu-id="9338c-241">Cliquez sur le bouton **Affecter** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="9338c-241">Click **Assign** button on **Add Assignment** dialog.</span></span>
+7. <span data-ttu-id="e8c0d-241">Cliquez sur le bouton **Affecter** dans la boîte de dialogue **Ajouter une affectation**.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-241">Click **Assign** button on **Add Assignment** dialog.</span></span>
     
-### <a name="testing-single-sign-on"></a><span data-ttu-id="9338c-242">Test de l’authentification unique</span><span class="sxs-lookup"><span data-stu-id="9338c-242">Testing single sign-on</span></span>
+### <a name="testing-single-sign-on"></a><span data-ttu-id="e8c0d-242">Test de l’authentification unique</span><span class="sxs-lookup"><span data-stu-id="e8c0d-242">Testing single sign-on</span></span>
 
-<span data-ttu-id="9338c-243">L’objectif de cette section est de tester la configuration de l’authentification unique Azure AD à l’aide du volet d’accès.</span><span class="sxs-lookup"><span data-stu-id="9338c-243">The objective of this section is to test your Azure AD single sign-on configuration using the Access Panel.</span></span>
+<span data-ttu-id="e8c0d-243">objectif Hello de cette section est tootest votre configuration de l’authentification unique Azure AD à l’aide de hello panneau d’accès.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-243">hello objective of this section is tootest your Azure AD single sign-on configuration using hello Access Panel.</span></span>
 
-<span data-ttu-id="9338c-244">Lorsque vous cliquez sur la vignette StatusPage dans le volet d’accès, vous devez être connecté automatiquement à votre application StatusPage.</span><span class="sxs-lookup"><span data-stu-id="9338c-244">When you click the StatusPage tile in the Access Panel, you should get automatically signed-on to your StatusPage application.</span></span>
+<span data-ttu-id="e8c0d-244">Lorsque vous cliquez sur mosaïque StatusPage hello hello volet d’accès, vous devez obtenir automatiquement signé sur tooyour StatusPage application.</span><span class="sxs-lookup"><span data-stu-id="e8c0d-244">When you click hello StatusPage tile in hello Access Panel, you should get automatically signed-on tooyour StatusPage application.</span></span>
 
-## <a name="additional-resources"></a><span data-ttu-id="9338c-245">Ressources supplémentaires</span><span class="sxs-lookup"><span data-stu-id="9338c-245">Additional resources</span></span>
+## <a name="additional-resources"></a><span data-ttu-id="e8c0d-245">Ressources supplémentaires</span><span class="sxs-lookup"><span data-stu-id="e8c0d-245">Additional resources</span></span>
 
-* [<span data-ttu-id="9338c-246">Liste de didacticiels sur l’intégration d’applications SaaS avec Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="9338c-246">List of Tutorials on How to Integrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
-* [<span data-ttu-id="9338c-247">Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?</span><span class="sxs-lookup"><span data-stu-id="9338c-247">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
+* [<span data-ttu-id="e8c0d-246">Liste des didacticiels sur la façon de tooIntegrate les applications SaaS avec Azure Active Directory</span><span class="sxs-lookup"><span data-stu-id="e8c0d-246">List of Tutorials on How tooIntegrate SaaS Apps with Azure Active Directory</span></span>](active-directory-saas-tutorial-list.md)
+* [<span data-ttu-id="e8c0d-247">Qu’est-ce que l’accès aux applications et l’authentification unique avec Azure Active Directory ?</span><span class="sxs-lookup"><span data-stu-id="e8c0d-247">What is application access and single sign-on with Azure Active Directory?</span></span>](active-directory-appssoaccess-whatis.md)
 
 
 

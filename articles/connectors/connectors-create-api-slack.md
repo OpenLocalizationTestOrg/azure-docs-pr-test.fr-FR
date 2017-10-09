@@ -1,6 +1,6 @@
 ---
-title: Utiliser le connecteur Slack dans vos applications logiques Azure | Microsoft Docs
-description: "Se connecter à Slack dans vos applications logiques"
+title: aaaUse hello Slack connecteur dans vos applications Azure logique | Documents Microsoft
+description: Se connecter tooSlack dans vos applications logiques
 services: logic-apps
 documentationcenter: 
 author: MandiOhlinger
@@ -15,48 +15,48 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/18/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: fc5fc128efe01bd0727e3ff30d8938918e89ac3a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6599d7b69d2147425c9fab978c5d0f93e5605f19
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-slack-connector"></a><span data-ttu-id="178f1-103">Prise en main du connecteur Slack</span><span class="sxs-lookup"><span data-stu-id="178f1-103">Get started with the Slack connector</span></span>
-<span data-ttu-id="178f1-104">Slack est un outil de communication collaboratif qui centralise toutes les communications de votre équipe dans un seul emplacement que vous pouvez consulter instantanément, où que vous vous trouviez.</span><span class="sxs-lookup"><span data-stu-id="178f1-104">Slack is a team communication tool, that brings together all of your team communications in one place, instantly searchable and available wherever you go.</span></span> 
+# <a name="get-started-with-hello-slack-connector"></a><span data-ttu-id="e2b87-103">Prise en main connecteur de marge hello</span><span class="sxs-lookup"><span data-stu-id="e2b87-103">Get started with hello Slack connector</span></span>
+<span data-ttu-id="e2b87-104">Slack est un outil de communication collaboratif qui centralise toutes les communications de votre équipe dans un seul emplacement que vous pouvez consulter instantanément, où que vous vous trouviez.</span><span class="sxs-lookup"><span data-stu-id="e2b87-104">Slack is a team communication tool, that brings together all of your team communications in one place, instantly searchable and available wherever you go.</span></span> 
 
-<span data-ttu-id="178f1-105">Commencez par créer une application logique. Pour cela, consultez [Créer une application logique](../logic-apps/logic-apps-create-a-logic-app.md).</span><span class="sxs-lookup"><span data-stu-id="178f1-105">Get started by creating a logic app now; see [Create a logic app](../logic-apps/logic-apps-create-a-logic-app.md).</span></span>
+<span data-ttu-id="e2b87-105">Commencez par créer une application logique. Pour cela, consultez [Créer une application logique](../logic-apps/logic-apps-create-a-logic-app.md).</span><span class="sxs-lookup"><span data-stu-id="e2b87-105">Get started by creating a logic app now; see [Create a logic app](../logic-apps/logic-apps-create-a-logic-app.md).</span></span>
 
-## <a name="create-a-connection-to-slack"></a><span data-ttu-id="178f1-106">Créer une connexion à Slack</span><span class="sxs-lookup"><span data-stu-id="178f1-106">Create a connection to Slack</span></span>
-<span data-ttu-id="178f1-107">Pour utiliser le connecteur Slack, vous devez créer une **connexion** , puis fournir les détails de ces propriétés :</span><span class="sxs-lookup"><span data-stu-id="178f1-107">To use the Slack connector, you first create a **connection** then provide the details for these properties:</span></span> 
+## <a name="create-a-connection-tooslack"></a><span data-ttu-id="e2b87-106">Créer un tooSlack de connexion</span><span class="sxs-lookup"><span data-stu-id="e2b87-106">Create a connection tooSlack</span></span>
+<span data-ttu-id="e2b87-107">connecteur de marge hello toouse, tout d’abord créer un **connexion** puis fournissez les informations de hello pour ces propriétés :</span><span class="sxs-lookup"><span data-stu-id="e2b87-107">toouse hello Slack connector, you first create a **connection** then provide hello details for these properties:</span></span> 
 
-| <span data-ttu-id="178f1-108">Propriété</span><span class="sxs-lookup"><span data-stu-id="178f1-108">Property</span></span> | <span data-ttu-id="178f1-109">Requis</span><span class="sxs-lookup"><span data-stu-id="178f1-109">Required</span></span> | <span data-ttu-id="178f1-110">Description</span><span class="sxs-lookup"><span data-stu-id="178f1-110">Description</span></span> |
+| <span data-ttu-id="e2b87-108">Propriété</span><span class="sxs-lookup"><span data-stu-id="e2b87-108">Property</span></span> | <span data-ttu-id="e2b87-109">Requis</span><span class="sxs-lookup"><span data-stu-id="e2b87-109">Required</span></span> | <span data-ttu-id="e2b87-110">Description</span><span class="sxs-lookup"><span data-stu-id="e2b87-110">Description</span></span> |
 | --- | --- | --- |
-| <span data-ttu-id="178f1-111">Jeton</span><span class="sxs-lookup"><span data-stu-id="178f1-111">Token</span></span> |<span data-ttu-id="178f1-112">Oui</span><span class="sxs-lookup"><span data-stu-id="178f1-112">Yes</span></span> |<span data-ttu-id="178f1-113">Fournir les informations d’identification de Slack</span><span class="sxs-lookup"><span data-stu-id="178f1-113">Provide Slack Credentials</span></span> |
+| <span data-ttu-id="e2b87-111">Jeton</span><span class="sxs-lookup"><span data-stu-id="e2b87-111">Token</span></span> |<span data-ttu-id="e2b87-112">Oui</span><span class="sxs-lookup"><span data-stu-id="e2b87-112">Yes</span></span> |<span data-ttu-id="e2b87-113">Fournir les informations d’identification de Slack</span><span class="sxs-lookup"><span data-stu-id="e2b87-113">Provide Slack Credentials</span></span> |
 
-<span data-ttu-id="178f1-114">Suivez ces étapes pour vous connecter à Slack et terminer la configuration de la **connexion** à Slack dans votre application logique :</span><span class="sxs-lookup"><span data-stu-id="178f1-114">Follow these steps to sign into Slack, and complete the configuration of the Slack **connection** in your logic app:</span></span>
+<span data-ttu-id="e2b87-114">Suivez ces étapes toosign en marge et la configuration de hello complète de hello Slack **connexion** dans votre application logique :</span><span class="sxs-lookup"><span data-stu-id="e2b87-114">Follow these steps toosign into Slack, and complete hello configuration of hello Slack **connection** in your logic app:</span></span>
 
-1. <span data-ttu-id="178f1-115">Sélectionnez **Périodicité**</span><span class="sxs-lookup"><span data-stu-id="178f1-115">Select **Recurrence**</span></span>
-2. <span data-ttu-id="178f1-116">Sélectionnez une **Fréquence** et entrez un **Intervalle**</span><span class="sxs-lookup"><span data-stu-id="178f1-116">Select a **Frequency** and enter an **Interval**</span></span>
-3. <span data-ttu-id="178f1-117">Sélectionnez **Ajouter une action**</span><span class="sxs-lookup"><span data-stu-id="178f1-117">Select **Add an action**</span></span>  
-   <span data-ttu-id="178f1-118">![Configurer Slack][1]</span><span class="sxs-lookup"><span data-stu-id="178f1-118">![Configure Slack][1]</span></span>  
-4. <span data-ttu-id="178f1-119">Entrez Slack dans la zone de recherche et attendez que la recherche renvoie toutes les entrées contenant Slack dans leur nom</span><span class="sxs-lookup"><span data-stu-id="178f1-119">Enter Slack in the search box and wait for the search to return all entries with Slack in the name</span></span>
-5. <span data-ttu-id="178f1-120">Sélectionnez **Slack - Publier un message**</span><span class="sxs-lookup"><span data-stu-id="178f1-120">Select **Slack - Post message**</span></span>
-6. <span data-ttu-id="178f1-121">Sélectionnez **Se connecter à Slack** :</span><span class="sxs-lookup"><span data-stu-id="178f1-121">Select **Sign in to Slack**:</span></span>  
-   <span data-ttu-id="178f1-122">![Configurer Slack][2]</span><span class="sxs-lookup"><span data-stu-id="178f1-122">![Configure Slack][2]</span></span>
-7. <span data-ttu-id="178f1-123">Entrer vos informations d’identification Slack pour vous connecter et autoriser l’application</span><span class="sxs-lookup"><span data-stu-id="178f1-123">Provide your Slack credentials to sign in to authorize the  application</span></span>    
+1. <span data-ttu-id="e2b87-115">Sélectionnez **Périodicité**</span><span class="sxs-lookup"><span data-stu-id="e2b87-115">Select **Recurrence**</span></span>
+2. <span data-ttu-id="e2b87-116">Sélectionnez une **Fréquence** et entrez un **Intervalle**</span><span class="sxs-lookup"><span data-stu-id="e2b87-116">Select a **Frequency** and enter an **Interval**</span></span>
+3. <span data-ttu-id="e2b87-117">Sélectionnez **Ajouter une action**</span><span class="sxs-lookup"><span data-stu-id="e2b87-117">Select **Add an action**</span></span>  
+   <span data-ttu-id="e2b87-118">![Configurer Slack][1]</span><span class="sxs-lookup"><span data-stu-id="e2b87-118">![Configure Slack][1]</span></span>  
+4. <span data-ttu-id="e2b87-119">Entrez une marge dans la zone de recherche hello et hello recherche tooreturn attendre que toutes les entrées avec une marge de nom de hello</span><span class="sxs-lookup"><span data-stu-id="e2b87-119">Enter Slack in hello search box and wait for hello search tooreturn all entries with Slack in hello name</span></span>
+5. <span data-ttu-id="e2b87-120">Sélectionnez **Slack - Publier un message**</span><span class="sxs-lookup"><span data-stu-id="e2b87-120">Select **Slack - Post message**</span></span>
+6. <span data-ttu-id="e2b87-121">Sélectionnez **connecter tooSlack**:</span><span class="sxs-lookup"><span data-stu-id="e2b87-121">Select **Sign in tooSlack**:</span></span>  
+   <span data-ttu-id="e2b87-122">![Configurer Slack][2]</span><span class="sxs-lookup"><span data-stu-id="e2b87-122">![Configure Slack][2]</span></span>
+7. <span data-ttu-id="e2b87-123">Fournissez votre toosign les informations d’identification Slack dans l’application de hello tooauthorize</span><span class="sxs-lookup"><span data-stu-id="e2b87-123">Provide your Slack credentials toosign in tooauthorize hello  application</span></span>    
    ![Configurer Slack][3]  
-8. <span data-ttu-id="178f1-125">Vous êtes redirigé vers la page de connexion de votre organisation.</span><span class="sxs-lookup"><span data-stu-id="178f1-125">You'll be redirected to your organization's Log in page.</span></span> <span data-ttu-id="178f1-126">**Autorisez** Slack à interagir avec votre application logique :</span><span class="sxs-lookup"><span data-stu-id="178f1-126">**Authorize** Slack to interact with your logic app:</span></span>      
-   <span data-ttu-id="178f1-127">![Configurer Slack][5]</span><span class="sxs-lookup"><span data-stu-id="178f1-127">![Configure Slack][5]</span></span> 
-9. <span data-ttu-id="178f1-128">Une fois l’autorisation terminée, vous serez redirigé vers votre application logique pour la terminer en configurant la section **Slack - Obtenir tous les messages** .</span><span class="sxs-lookup"><span data-stu-id="178f1-128">After the authorization completes you'll be redirected to your logic app to complete it by configuring the **Slack - Get all messages** section.</span></span> <span data-ttu-id="178f1-129">Ajouter les autres déclencheurs et actions dont vous avez besoin.</span><span class="sxs-lookup"><span data-stu-id="178f1-129">Add other triggers and actions that you need.</span></span>  
-   <span data-ttu-id="178f1-130">![Configurer Slack][6]</span><span class="sxs-lookup"><span data-stu-id="178f1-130">![Configure Slack][6]</span></span>
-10. <span data-ttu-id="178f1-131">Enregistrez votre travail en sélectionnant **Enregistrer** sur la barre de menu supérieure.</span><span class="sxs-lookup"><span data-stu-id="178f1-131">Save your work by selecting **Save** on the menu bar above.</span></span>
+8. <span data-ttu-id="e2b87-125">Vous serez page de connexion redirigé tooyour organisation.</span><span class="sxs-lookup"><span data-stu-id="e2b87-125">You'll be redirected tooyour organization's Log in page.</span></span> <span data-ttu-id="e2b87-126">**Autoriser** marge toointeract avec votre application logique :</span><span class="sxs-lookup"><span data-stu-id="e2b87-126">**Authorize** Slack toointeract with your logic app:</span></span>      
+   <span data-ttu-id="e2b87-127">![Configurer Slack][5]</span><span class="sxs-lookup"><span data-stu-id="e2b87-127">![Configure Slack][5]</span></span> 
+9. <span data-ttu-id="e2b87-128">Une fois l’autorisation de hello terminée, vous serez redirigé tooyour logique application toocomplete il en configurant hello **marge - obtenir tous les messages** section.</span><span class="sxs-lookup"><span data-stu-id="e2b87-128">After hello authorization completes you'll be redirected tooyour logic app toocomplete it by configuring hello **Slack - Get all messages** section.</span></span> <span data-ttu-id="e2b87-129">Ajouter les autres déclencheurs et actions dont vous avez besoin.</span><span class="sxs-lookup"><span data-stu-id="e2b87-129">Add other triggers and actions that you need.</span></span>  
+   <span data-ttu-id="e2b87-130">![Configurer Slack][6]</span><span class="sxs-lookup"><span data-stu-id="e2b87-130">![Configure Slack][6]</span></span>
+10. <span data-ttu-id="e2b87-131">Enregistrez votre travail en sélectionnant **enregistrer** sur la barre de menus hello ci-dessus.</span><span class="sxs-lookup"><span data-stu-id="e2b87-131">Save your work by selecting **Save** on hello menu bar above.</span></span>
 
-## <a name="connector-specific-details"></a><span data-ttu-id="178f1-132">Détails spécifiques aux connecteurs</span><span class="sxs-lookup"><span data-stu-id="178f1-132">Connector-specific details</span></span>
+## <a name="connector-specific-details"></a><span data-ttu-id="e2b87-132">Détails spécifiques du connecteur</span><span class="sxs-lookup"><span data-stu-id="e2b87-132">Connector-specific details</span></span>
 
-<span data-ttu-id="178f1-133">Consultez tous les déclencheurs et les actions définies dans le swagger, ainsi que les éventuelles limites dans les [détails des connecteurs](/connectors/slack/).</span><span class="sxs-lookup"><span data-stu-id="178f1-133">View any triggers and actions defined in the swagger, and also see any limits in the [connector details](/connectors/slack/).</span></span>
+<span data-ttu-id="e2b87-133">Afficher les déclencheurs et les actions définies dans les swagger hello et également voir les limites Bonjour [détails du connecteur](/connectors/slack/).</span><span class="sxs-lookup"><span data-stu-id="e2b87-133">View any triggers and actions defined in hello swagger, and also see any limits in hello [connector details](/connectors/slack/).</span></span>
 
-## <a name="more-connectors"></a><span data-ttu-id="178f1-134">Autres connecteurs</span><span class="sxs-lookup"><span data-stu-id="178f1-134">More connectors</span></span>
-<span data-ttu-id="178f1-135">Revenir à la [liste des API](apis-list.md).</span><span class="sxs-lookup"><span data-stu-id="178f1-135">Go back to the [APIs list](apis-list.md).</span></span>
+## <a name="more-connectors"></a><span data-ttu-id="e2b87-134">Autres connecteurs</span><span class="sxs-lookup"><span data-stu-id="e2b87-134">More connectors</span></span>
+<span data-ttu-id="e2b87-135">Revenir en arrière toohello [liste des API](apis-list.md).</span><span class="sxs-lookup"><span data-stu-id="e2b87-135">Go back toohello [APIs list](apis-list.md).</span></span>
 
 [1]: ./media/connectors-create-api-slack/connectionconfig1.png
 [2]: ./media/connectors-create-api-slack/connectionconfig2.png 

@@ -1,6 +1,6 @@
 ---
-title: "Déplacer des ressources d’application web vers un autre groupe de ressources"
-description: "Décrit les scénarios dans lesquels vous pouvez déplacer des applications web et services d’application d’un groupe de ressources vers un autre."
+title: "Ressources d’application Web d’aaaMove tooanother groupe de ressources"
+description: "Décrit des scénarios hello où vous pouvez déplacer des applications Web et les Services d’application à partir d’un groupe de ressources tooanother."
 services: app-service
 documentationcenter: 
 author: ZainRizvi
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/21/2016
 ms.author: zarizvi
-ms.openlocfilehash: 1b5059dc052005b6079f70ecf6771a3771df8d87
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 931012fee656b7f8a4b2c225c38739a9171d3b2e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="supported-move-configurations"></a><span data-ttu-id="5d606-103">Configurations de déplacement prises en charge</span><span class="sxs-lookup"><span data-stu-id="5d606-103">Supported Move Configurations</span></span>
-<span data-ttu-id="5d606-104">Vous pouvez déplacer des ressources d’application web Azure à l’aide de l’[API de déplacement des ressources Azure Manager](../azure-resource-manager/resource-group-move-resources.md).</span><span class="sxs-lookup"><span data-stu-id="5d606-104">You can move Azure Web App resources using the [Resource Manager Move Resources API](../azure-resource-manager/resource-group-move-resources.md).</span></span>
+# <a name="supported-move-configurations"></a><span data-ttu-id="5496f-103">Configurations de déplacement prises en charge</span><span class="sxs-lookup"><span data-stu-id="5496f-103">Supported Move Configurations</span></span>
+<span data-ttu-id="5496f-104">Vous pouvez déplacer des ressources de l’application Web Azure à l’aide de hello [API ressources déplacer du Gestionnaire de ressources](../azure-resource-manager/resource-group-move-resources.md).</span><span class="sxs-lookup"><span data-stu-id="5496f-104">You can move Azure Web App resources using hello [Resource Manager Move Resources API](../azure-resource-manager/resource-group-move-resources.md).</span></span>
 
-<span data-ttu-id="5d606-105">Les applications web Azure prennent actuellement en charge les scénarios de déplacement suivants :</span><span class="sxs-lookup"><span data-stu-id="5d606-105">Azure Web Apps currently supports the following move scenarios:</span></span>
+<span data-ttu-id="5496f-105">Les applications Web Azure prend actuellement en charge hello déplacer les scénarios suivants :</span><span class="sxs-lookup"><span data-stu-id="5496f-105">Azure Web Apps currently supports hello following move scenarios:</span></span>
 
-* <span data-ttu-id="5d606-106">Déplacez tout le contenu d’un groupe de ressources (applications web, plans de service d’application et certificats) vers un autre groupe de ressources.</span><span class="sxs-lookup"><span data-stu-id="5d606-106">Move the entire contents of a resource group (web apps, app service plans, and certificates) to another resource group.</span></span> 
+* <span data-ttu-id="5496f-106">Déplacer hello tout le contenu d’un groupe de ressources (les applications web, les plans de service d’application et les certificats) groupe de ressources tooanother.</span><span class="sxs-lookup"><span data-stu-id="5496f-106">Move hello entire contents of a resource group (web apps, app service plans, and certificates) tooanother resource group.</span></span> 
    > [!Note]
-   > <span data-ttu-id="5d606-107">Le groupe de ressources de destination ne peut pas contenir de ressources Microsoft.Web dans ce scénario.</span><span class="sxs-lookup"><span data-stu-id="5d606-107">The destination resource group can not contain any Microsoft.Web resources in this scenario.</span></span>
+   > <span data-ttu-id="5496f-107">groupe de ressources Hello destination ne peut pas contenir toutes les ressources Microsoft.Web dans ce scénario.</span><span class="sxs-lookup"><span data-stu-id="5496f-107">hello destination resource group can not contain any Microsoft.Web resources in this scenario.</span></span>
 
-* <span data-ttu-id="5d606-108">Déplacez des applications web individuelles vers un groupe de ressources différent, tout en les hébergeant toujours dans leur plan de service d’application actuel (le plan de service d’application reste dans l’ancien groupe de ressources).</span><span class="sxs-lookup"><span data-stu-id="5d606-108">Move individual web apps to a different resource group, while still hosting them in their current app service plan (the app service plan stays in the old resource group).</span></span>
+* <span data-ttu-id="5496f-108">Déplacer le groupe de ressources différent de tooa des applications web individuelles, tout en hébergeant les dans leur plan app service en cours (hello app service plan reste dans le groupe de ressources ancien hello).</span><span class="sxs-lookup"><span data-stu-id="5496f-108">Move individual web apps tooa different resource group, while still hosting them in their current app service plan (hello app service plan stays in hello old resource group).</span></span>
 
 

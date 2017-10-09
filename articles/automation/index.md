@@ -1,6 +1,6 @@
 ---
-title: "Documentation Azure Automation - Didacticiels, informations de référence sur les API | Microsoft Docs"
-description: "Apprenez à utiliser Automation pour automatiser les processus et la gestion de la configuration afin de gagner du temps, tout en renforçant la fiabilité de vos tâches d’administration récurrentes."
+title: "aaaAzure Automation Documentation - didacticiels, référence de l’API | Documents Microsoft"
+description: "Découvrez comment le processus de tooautomate toouse Automation et la gestion de la configuration dans l’ordre toosave de temps et augmentent la fiabilité des tâches d’administration récurrentes."
 services: automation
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 00c4fe633a7ef76b20d2a9d1c704bb09da6b19a0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: eda979bac2434d9b4a91a4e661f5b46a6540a1d2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="automation-documentation"></a>Documentation Automation
 
-Apprenez à utiliser Automation pour gagner du temps et accroître la fiabilité des tâches d’administration récurrentes exécutées dans un environnement de cloud. Des didacticiels, références d’API et autres documents vous montrent comment automatiser les processus à l’aide de Runbooks, ou comment automatiser la gestion de configuration avec la Configuration de l’état souhaité (DSC, Desired State Configuration).
+Découvrez comment augmenter et le temps toosave toouse hello la fiabilité des tâches d’administration récurrentes effectuées dans un environnement de cloud. Didacticiels, des références de l’API et toute autre documentation vous montrent comment tooautomate traite à l’aide de procédures opérationnelles ou automatiser la gestion de la configuration à l’aide de la Configuration d’état souhaité.
 
 <ul class="panelContent cardsFTitle">
     <li>

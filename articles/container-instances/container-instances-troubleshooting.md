@@ -1,6 +1,6 @@
 ---
-title: "Résolution des problèmes liés à Azure Container Instances"
-description: "Découvrez comment résoudre les problèmes liés à Azure Container Instances"
+title: aaaTroubleshooting les Instances du conteneur Azure
+description: "Découvrez comment tootroubleshoot problèmes avec les Instances du conteneur Azure"
 services: container-instances
 documentationcenter: 
 author: seanmck
@@ -17,25 +17,25 @@ ms.workload: na
 ms.date: 08/03/2017
 ms.author: seanmck
 ms.custom: mvc
-ms.openlocfilehash: 86fa4b7dca7c362f95c0243a33f03d1f2dd3ab42
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: dfec636a0a174c74a6f2e9d9c4da6e871f8d2fda
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="troubleshoot-deployment-issues-with-azure-container-instances"></a><span data-ttu-id="924ee-103">Résoudre les problèmes de déploiement liés à Azure Container Instances</span><span class="sxs-lookup"><span data-stu-id="924ee-103">Troubleshoot deployment issues with Azure Container Instances</span></span>
+# <a name="troubleshoot-deployment-issues-with-azure-container-instances"></a><span data-ttu-id="9d7c1-103">Résoudre les problèmes de déploiement liés à Azure Container Instances</span><span class="sxs-lookup"><span data-stu-id="9d7c1-103">Troubleshoot deployment issues with Azure Container Instances</span></span>
 
-<span data-ttu-id="924ee-104">Cet article explique comment résoudre les problèmes de déploiement de conteneurs sur Azure Container Instances.</span><span class="sxs-lookup"><span data-stu-id="924ee-104">This article shows how to troubleshoot issues when deploying containers to Azure Container Instances.</span></span> <span data-ttu-id="924ee-105">Il décrit également les problèmes courants que vous risquez de rencontrer.</span><span class="sxs-lookup"><span data-stu-id="924ee-105">It also describes some of the common issues you may run into.</span></span>
+<span data-ttu-id="9d7c1-104">Cet article explique comment tootroubleshoot problèmes lors du déploiement de conteneurs tooAzure les Instances du conteneur.</span><span class="sxs-lookup"><span data-stu-id="9d7c1-104">This article shows how tootroubleshoot issues when deploying containers tooAzure Container Instances.</span></span> <span data-ttu-id="9d7c1-105">Elle décrit également les problèmes courants de hello que vous risquez de rencontrer.</span><span class="sxs-lookup"><span data-stu-id="9d7c1-105">It also describes some of hello common issues you may run into.</span></span>
 
-## <a name="getting-diagnostic-events"></a><span data-ttu-id="924ee-106">Récupération des événements de diagnostic</span><span class="sxs-lookup"><span data-stu-id="924ee-106">Getting diagnostic events</span></span>
+## <a name="getting-diagnostic-events"></a><span data-ttu-id="9d7c1-106">Récupération des événements de diagnostic</span><span class="sxs-lookup"><span data-stu-id="9d7c1-106">Getting diagnostic events</span></span>
 
-<span data-ttu-id="924ee-107">Pour afficher les journaux à partir de votre code d’application dans un conteneur, vous pouvez utiliser la commande [az container logs](/cli/azure/container#logs).</span><span class="sxs-lookup"><span data-stu-id="924ee-107">To view logs from your application code within a container, you can use the [az container logs](/cli/azure/container#logs) command.</span></span> <span data-ttu-id="924ee-108">Toutefois, si votre conteneur ne se déploie pas correctement, vous devez examiner les informations de diagnostic fournies par le fournisseur de ressources Azure Container Instances.</span><span class="sxs-lookup"><span data-stu-id="924ee-108">But if your container does not deploy successfully, you need to review the diagnostic information provided by the Azure Container Instances resource provider.</span></span> <span data-ttu-id="924ee-109">Pour afficher les événements liés à votre conteneur, exécutez la commande suivante :</span><span class="sxs-lookup"><span data-stu-id="924ee-109">To view the events for your container, run the following command:</span></span>
+<span data-ttu-id="9d7c1-107">journaux tooview à partir de votre code d’application dans un conteneur, vous pouvez utiliser hello [az conteneur journaux](/cli/azure/container#logs) commande.</span><span class="sxs-lookup"><span data-stu-id="9d7c1-107">tooview logs from your application code within a container, you can use hello [az container logs](/cli/azure/container#logs) command.</span></span> <span data-ttu-id="9d7c1-108">Mais si votre conteneur ne déploie pas correctement, vous devez tooreview hello des informations de diagnostic fournies par le fournisseur de ressources des Instances de conteneurs Azure hello.</span><span class="sxs-lookup"><span data-stu-id="9d7c1-108">But if your container does not deploy successfully, you need tooreview hello diagnostic information provided by hello Azure Container Instances resource provider.</span></span> <span data-ttu-id="9d7c1-109">événements de hello tooview pour votre conteneur, exécutez hello de commande suivante :</span><span class="sxs-lookup"><span data-stu-id="9d7c1-109">tooview hello events for your container, run hello following command:</span></span>
 
 ```azurecli-interactive
 az container show -n mycontainername -g myresourcegroup
 ```
 
-<span data-ttu-id="924ee-110">La sortie inclut les propriétés principales de votre conteneur, ainsi que les événements de déploiement :</span><span class="sxs-lookup"><span data-stu-id="924ee-110">The output includes the core properties of your container, along with deployment events:</span></span>
+<span data-ttu-id="9d7c1-110">sortie de Hello inclut des propriétés principales de hello de votre conteneur, ainsi que les événements de déploiement :</span><span class="sxs-lookup"><span data-stu-id="9d7c1-110">hello output includes hello core properties of your container, along with deployment events:</span></span>
 
 ```bash
 {
@@ -87,13 +87,13 @@ az container show -n mycontainername -g myresourcegroup
 }
 ```
 
-## <a name="common-deployment-issues"></a><span data-ttu-id="924ee-111">Problèmes de déploiement courants</span><span class="sxs-lookup"><span data-stu-id="924ee-111">Common deployment issues</span></span>
+## <a name="common-deployment-issues"></a><span data-ttu-id="9d7c1-111">Problèmes de déploiement courants</span><span class="sxs-lookup"><span data-stu-id="9d7c1-111">Common deployment issues</span></span>
 
-<span data-ttu-id="924ee-112">La plupart des erreurs de déploiement sont liées à quelques problèmes courants.</span><span class="sxs-lookup"><span data-stu-id="924ee-112">There are a few common issues that account for most errors in deployment.</span></span>
+<span data-ttu-id="9d7c1-112">La plupart des erreurs de déploiement sont liées à quelques problèmes courants.</span><span class="sxs-lookup"><span data-stu-id="9d7c1-112">There are a few common issues that account for most errors in deployment.</span></span>
 
-### <a name="unable-to-pull-image"></a><span data-ttu-id="924ee-113">Impossible d’extraire l’image</span><span class="sxs-lookup"><span data-stu-id="924ee-113">Unable to pull image</span></span>
+### <a name="unable-toopull-image"></a><span data-ttu-id="9d7c1-113">Impossible de toopull image</span><span class="sxs-lookup"><span data-stu-id="9d7c1-113">Unable toopull image</span></span>
 
-<span data-ttu-id="924ee-114">Si Azure Container Instances ne parvient pas à extraire votre image initialement, il réessaie pendant une certaine période, sans succès.</span><span class="sxs-lookup"><span data-stu-id="924ee-114">If Azure Container Instances is unable to pull your image initially, it retries for some period before eventually failing.</span></span> <span data-ttu-id="924ee-115">Des événements tels que les suivants sont alors affichés :</span><span class="sxs-lookup"><span data-stu-id="924ee-115">If the image cannot be pulled, events like the following are shown:</span></span>
+<span data-ttu-id="9d7c1-114">Si les Instances du conteneur Azure est impossible toopull votre image au départ, il effectue une nouvelle tentative pendant une certaine période avant l’échec par la suite.</span><span class="sxs-lookup"><span data-stu-id="9d7c1-114">If Azure Container Instances is unable toopull your image initially, it retries for some period before eventually failing.</span></span> <span data-ttu-id="9d7c1-115">Si l’image de hello ne peut pas être extraite, événements comme hello suivantes sont affichées :</span><span class="sxs-lookup"><span data-stu-id="9d7c1-115">If hello image cannot be pulled, events like hello following are shown:</span></span>
 
 ```bash
 "events": [
@@ -108,7 +108,7 @@ az container show -n mycontainername -g myresourcegroup
     "count": 1,
     "firstTimestamp": "2017-08-03T22:19:32+00:00",
     "lastTimestamp": "2017-08-03T22:19:32+00:00",
-    "message": "Failed: Failed to pull image \"microsoft/aci-hellowrld\": rpc error: code 2 desc Error: image microsoft/aci-hellowrld:latest not found",
+    "message": "Failed: Failed toopull image \"microsoft/aci-hellowrld\": rpc error: code 2 desc Error: image microsoft/aci-hellowrld:latest not found",
     "type": "Warning"
   },
   {
@@ -121,11 +121,11 @@ az container show -n mycontainername -g myresourcegroup
 ]
 ```
 
-<span data-ttu-id="924ee-116">Pour résoudre cette situation, supprimez le conteneur et essayez de le redéployer, en veillant à taper correctement le nom de l’image.</span><span class="sxs-lookup"><span data-stu-id="924ee-116">To resolve, delete the container and retry your deployment, paying close attention that you have typed the image name correctly.</span></span>
+<span data-ttu-id="9d7c1-116">tooresolve, supprimer le conteneur de hello et réessayez votre déploiement, qui paient attention particulière que vous avez tapé un nom de l’image hello correctement.</span><span class="sxs-lookup"><span data-stu-id="9d7c1-116">tooresolve, delete hello container and retry your deployment, paying close attention that you have typed hello image name correctly.</span></span>
 
-### <a name="container-continually-exits-and-restarts"></a><span data-ttu-id="924ee-117">Le conteneur s’arrête et redémarre en permanence</span><span class="sxs-lookup"><span data-stu-id="924ee-117">Container continually exits and restarts</span></span>
+### <a name="container-continually-exits-and-restarts"></a><span data-ttu-id="9d7c1-117">Le conteneur s’arrête et redémarre en permanence</span><span class="sxs-lookup"><span data-stu-id="9d7c1-117">Container continually exits and restarts</span></span>
 
-<span data-ttu-id="924ee-118">Azure Container Instances prend uniquement en charge les services de longue durée.</span><span class="sxs-lookup"><span data-stu-id="924ee-118">Currently, Azure Container Instances only supports long-running services.</span></span> <span data-ttu-id="924ee-119">Si votre conteneur s’exécute jusqu’au bout et s’arrête, il redémarre et se réexécute automatiquement.</span><span class="sxs-lookup"><span data-stu-id="924ee-119">If your container runs to completion and exits, it automatically restarts and runs again.</span></span> <span data-ttu-id="924ee-120">Si cela se produit, les événements tels que ceux qui suivent sont affichés.</span><span class="sxs-lookup"><span data-stu-id="924ee-120">If this happens, events like those following are shown.</span></span> <span data-ttu-id="924ee-121">Notez que le conteneur démarre correctement, puis redémarre rapidement.</span><span class="sxs-lookup"><span data-stu-id="924ee-121">Note that the container successfully starts, then quickly restarts.</span></span> <span data-ttu-id="924ee-122">L’API Container Instances inclut une propriété `retryCount` qui indique combien de fois un conteneur particulier a redémarré.</span><span class="sxs-lookup"><span data-stu-id="924ee-122">The Container Instances API includes a `retryCount` property that shows how many times a particular container has restarted.</span></span>
+<span data-ttu-id="9d7c1-118">Azure Container Instances prend uniquement en charge les services de longue durée.</span><span class="sxs-lookup"><span data-stu-id="9d7c1-118">Currently, Azure Container Instances only supports long-running services.</span></span> <span data-ttu-id="9d7c1-119">Si votre conteneur s’exécute toocompletion et s’arrête, il automatiquement redémarre et s’exécute à nouveau.</span><span class="sxs-lookup"><span data-stu-id="9d7c1-119">If your container runs toocompletion and exits, it automatically restarts and runs again.</span></span> <span data-ttu-id="9d7c1-120">Si cela se produit, les événements tels que ceux qui suivent sont affichés.</span><span class="sxs-lookup"><span data-stu-id="9d7c1-120">If this happens, events like those following are shown.</span></span> <span data-ttu-id="9d7c1-121">Notez que le conteneur de hello démarre correctement, puis redémarre rapidement.</span><span class="sxs-lookup"><span data-stu-id="9d7c1-121">Note that hello container successfully starts, then quickly restarts.</span></span> <span data-ttu-id="9d7c1-122">Hello API des Instances de conteneur inclut un `retryCount` propriété qui indique combien de fois un conteneur particulier a redémarré.</span><span class="sxs-lookup"><span data-stu-id="9d7c1-122">hello Container Instances API includes a `retryCount` property that shows how many times a particular container has restarted.</span></span>
 
 ```bash
 "events": [
@@ -189,25 +189,25 @@ az container show -n mycontainername -g myresourcegroup
 ```
 
 > [!NOTE]
-> <span data-ttu-id="924ee-123">La plupart des images conteneur pour les distributions Linux définissent un interpréteur de commandes, tel que bash, comme commande par défaut.</span><span class="sxs-lookup"><span data-stu-id="924ee-123">Most container images for Linux distributions set a shell, such as bash, as the default command.</span></span> <span data-ttu-id="924ee-124">Un interpréteur de commandes n’étant pas en soi un service de longue durée, ces conteneurs quittent la procédure immédiatement et entrent dans une boucle de redémarrage.</span><span class="sxs-lookup"><span data-stu-id="924ee-124">Since a shell on its own is not a long-running service, these containers immediately exit and fall into a restart loop.</span></span>
+> <span data-ttu-id="9d7c1-123">La plupart des images de conteneur pour les distributions Linux définir un interpréteur de commandes, tels que bash, comme la commande hello par défaut.</span><span class="sxs-lookup"><span data-stu-id="9d7c1-123">Most container images for Linux distributions set a shell, such as bash, as hello default command.</span></span> <span data-ttu-id="9d7c1-124">Un interpréteur de commandes n’étant pas en soi un service de longue durée, ces conteneurs quittent la procédure immédiatement et entrent dans une boucle de redémarrage.</span><span class="sxs-lookup"><span data-stu-id="9d7c1-124">Since a shell on its own is not a long-running service, these containers immediately exit and fall into a restart loop.</span></span>
 
-### <a name="container-takes-a-long-time-to-start"></a><span data-ttu-id="924ee-125">Le démarrage du conteneur prend beaucoup de temps</span><span class="sxs-lookup"><span data-stu-id="924ee-125">Container takes a long time to start</span></span>
+### <a name="container-takes-a-long-time-toostart"></a><span data-ttu-id="9d7c1-125">Conteneur prend un toostart beaucoup de temps</span><span class="sxs-lookup"><span data-stu-id="9d7c1-125">Container takes a long time toostart</span></span>
 
-<span data-ttu-id="924ee-126">Si le démarrage de votre conteneur prend beaucoup de temps, commencez par examiner la taille de votre image conteneur.</span><span class="sxs-lookup"><span data-stu-id="924ee-126">If your container takes a long time to start, but eventually succeeds, start by looking at the size of your container image.</span></span> <span data-ttu-id="924ee-127">Étant donné qu’Azure Container Instances extrait l’image conteneur à la demande, le temps de démarrage est directement lié à la taille de cette image.</span><span class="sxs-lookup"><span data-stu-id="924ee-127">Because Azure Container Instances pulls your container image on demand, the startup time you experience is directly related to its size.</span></span>
+<span data-ttu-id="9d7c1-126">Si votre conteneur prend un toostart beaucoup de temps, mais finit par aboutit, commencez par examiner de taille hello de votre image de conteneur.</span><span class="sxs-lookup"><span data-stu-id="9d7c1-126">If your container takes a long time toostart, but eventually succeeds, start by looking at hello size of your container image.</span></span> <span data-ttu-id="9d7c1-127">Étant donné que les Instances du conteneur Azure extrait l’image de conteneur à la demande, le temps de démarrage de hello vous rencontrez est directement lié tooits taille.</span><span class="sxs-lookup"><span data-stu-id="9d7c1-127">Because Azure Container Instances pulls your container image on demand, hello startup time you experience is directly related tooits size.</span></span>
 
-<span data-ttu-id="924ee-128">Vous pouvez afficher la taille de votre image conteneur à l’aide de l’interface CLI Docker :</span><span class="sxs-lookup"><span data-stu-id="924ee-128">You can view the size of your container image using the Docker CLI:</span></span>
+<span data-ttu-id="9d7c1-128">Vous pouvez afficher la taille de hello de votre image de conteneur à l’aide de hello Docker CLI :</span><span class="sxs-lookup"><span data-stu-id="9d7c1-128">You can view hello size of your container image using hello Docker CLI:</span></span>
 
 ```bash
 docker images
 ```
 
-<span data-ttu-id="924ee-129">Output:</span><span class="sxs-lookup"><span data-stu-id="924ee-129">Output:</span></span>
+<span data-ttu-id="9d7c1-129">Output:</span><span class="sxs-lookup"><span data-stu-id="9d7c1-129">Output:</span></span>
 
 ```bash
 REPOSITORY                             TAG                 IMAGE ID            CREATED             SIZE
 microsoft/aci-helloworld               latest              7f78509b568e        13 days ago         68.1MB
 ```
 
-<span data-ttu-id="924ee-130">Pour que l’image conserve une petite taille, faites en sorte que l’image finale ne contienne aucun élément qui soit superflu au moment de l’exécution.</span><span class="sxs-lookup"><span data-stu-id="924ee-130">The key to keeping image sizes small is ensuring that your final image does not contain anything that is not required at runtime.</span></span> <span data-ttu-id="924ee-131">Pour ce faire, vous pouvez utiliser des [builds à plusieurs étapes](https://docs.docker.com/engine/userguide/eng-image/multistage-build/).</span><span class="sxs-lookup"><span data-stu-id="924ee-131">One way to do this is with [multi-stage builds](https://docs.docker.com/engine/userguide/eng-image/multistage-build/).</span></span> <span data-ttu-id="924ee-132">Grâce aux builds à plusieurs étapes, vous pouvez facilement faire en sorte que l’image finale ne contienne que les artefacts nécessaires à votre application, à l’exclusion de tout contenu supplémentaire qui était requis au moment de la génération.</span><span class="sxs-lookup"><span data-stu-id="924ee-132">Multi-stage builds make it easy to ensure that the final image contains only the artifacts you need for your application, and not any of the extra content that was required at build time.</span></span>
+<span data-ttu-id="9d7c1-130">tailles d’image clé tookeeping Hello small est de vous assurer que votre image finale ne contienne pas tout ce qui n’est pas nécessaire lors de l’exécution.</span><span class="sxs-lookup"><span data-stu-id="9d7c1-130">hello key tookeeping image sizes small is ensuring that your final image does not contain anything that is not required at runtime.</span></span> <span data-ttu-id="9d7c1-131">Une façon toodo avec [en plusieurs builds](https://docs.docker.com/engine/userguide/eng-image/multistage-build/).</span><span class="sxs-lookup"><span data-stu-id="9d7c1-131">One way toodo this is with [multi-stage builds](https://docs.docker.com/engine/userguide/eng-image/multistage-build/).</span></span> <span data-ttu-id="9d7c1-132">En plusieurs builds rendent tooensure facile qu’image finale de hello contient des artefacts hello uniquement vous avez besoin pour votre application, et pas les hello supplémentaire de contenu qui a été requis au moment de la génération.</span><span class="sxs-lookup"><span data-stu-id="9d7c1-132">Multi-stage builds make it easy tooensure that hello final image contains only hello artifacts you need for your application, and not any of hello extra content that was required at build time.</span></span>
 
-<span data-ttu-id="924ee-133">Une autre façon de réduire l’impact de l’extraction de l’image sur le temps de démarrage de votre conteneur consiste à héberger l’image conteneur à l’aide d’Azure Container Registry dans la région où vous envisagez d’utiliser Azure Container Instances.</span><span class="sxs-lookup"><span data-stu-id="924ee-133">The other way to reduce the impact of the image pull on your container's startup time is to host the container image using the Azure Container Registry in the same region where you intend to use Azure Container Instances.</span></span> <span data-ttu-id="924ee-134">Cette opération raccourcit le chemin réseau que l’image conteneur doit parcourir, réduisant considérablement le temps de téléchargement.</span><span class="sxs-lookup"><span data-stu-id="924ee-134">This shortens the network path that the container image needs to travel, significantly shortening the download time.</span></span>
+<span data-ttu-id="9d7c1-133">Hello autre impact n’hello tooreduce moyen de l’extraction d’image hello dans les temps de démarrage de votre conteneur est image de conteneur hello toohost à l’aide de hello Registre de conteneur Azure Bonjour même région où vous prévoyez d’Instances de conteneurs toouse Azure.</span><span class="sxs-lookup"><span data-stu-id="9d7c1-133">hello other way tooreduce hello impact of hello image pull on your container's startup time is toohost hello container image using hello Azure Container Registry in hello same region where you intend toouse Azure Container Instances.</span></span> <span data-ttu-id="9d7c1-134">Cela réduit le chemin d’accès réseau hello qui hello tootravel de besoins image conteneur, raccourcir considérablement les temps de téléchargement hello.</span><span class="sxs-lookup"><span data-stu-id="9d7c1-134">This shortens hello network path that hello container image needs tootravel, significantly shortening hello download time.</span></span>

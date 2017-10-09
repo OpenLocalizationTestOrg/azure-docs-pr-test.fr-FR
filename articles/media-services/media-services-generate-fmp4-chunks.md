@@ -1,6 +1,6 @@
 ---
-title: "Création d’une tâche de codage Azure Media Services qui génère des segments fMP4 | Microsoft Docs"
-description: "Cette rubrique explique comment créer une tâche de codage qui génère des segments fMP4. Lorsque cette tâche est utilisée avec l’encodeur Media Encoder Standard ou Media Encoder Premium Workflow, la ressource de sortie contient des segments fMP4 au lieu de fichiers MP4 ISO."
+title: "aaaCreate une tâche d’encodage Azure Media Services qui génère les segments fMP4 | Documents Microsoft"
+description: "Cette rubrique montre comment toocreate une tâche de codage qui génère fMP4 blocs. Lorsque cette tâche est utilisée avec hello Media Encoder Standard ou d’encodeur de Workflow d’encodeur multimédia Premium, la ressource en sortie hello contiendra segments fMP4 au lieu de fichiers MP4 ISO."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,39 +14,39 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: juliako
-ms.openlocfilehash: 55dca4bcb80e8daab2b4d293a9cc85a087055110
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 388f3ccb9865b5c4e159af86d5a9ee2f4e3f6120
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-#  <a name="create-an-encoding-task-that-generates-fmp4-chunks"></a><span data-ttu-id="b1ca6-104">Création d’une tâche qui génère des segments fMP4</span><span class="sxs-lookup"><span data-stu-id="b1ca6-104">Create an encoding task that generates fMP4 chunks</span></span>
+#  <a name="create-an-encoding-task-that-generates-fmp4-chunks"></a><span data-ttu-id="5e96d-104">Création d’une tâche qui génère des segments fMP4</span><span class="sxs-lookup"><span data-stu-id="5e96d-104">Create an encoding task that generates fMP4 chunks</span></span>
 
-## <a name="overview"></a><span data-ttu-id="b1ca6-105">Vue d'ensemble</span><span class="sxs-lookup"><span data-stu-id="b1ca6-105">Overview</span></span>
+## <a name="overview"></a><span data-ttu-id="5e96d-105">Vue d'ensemble</span><span class="sxs-lookup"><span data-stu-id="5e96d-105">Overview</span></span>
 
-<span data-ttu-id="b1ca6-106">Cette rubrique explique comment créer une tâche de codage qui génère des segments fragmentés au format MP4 (fMP4) au lieu de fichiers MP4 ISO.</span><span class="sxs-lookup"><span data-stu-id="b1ca6-106">This topic shows how to create an encoding task that generates fragmented MP4 (fMP4) chunks instead of ISO MP4 files.</span></span> <span data-ttu-id="b1ca6-107">Pour générer des segments fMP4, utilisez l’encodeur **Media Encoder Standard** ou **Media Encoder Premium Workflow** afin de créer une tâche d’encodage puis spécifiez l’option **AssetFormatOption.AdaptiveStreaming**, comme indiqué dans cet extrait de code :</span><span class="sxs-lookup"><span data-stu-id="b1ca6-107">To generate fMP4 chunks, use the **Media Encoder Standard** or **Media Encoder Premium Workflow** encoder to create an encoding task and also specify **AssetFormatOption.AdaptiveStreaming** option, as shown in this code snippet:</span></span>  
+<span data-ttu-id="5e96d-106">Cette rubrique montre comment MP4 fragmenté toocreate une tâche de codage qui génère les segments (fMP4) au lieu de fichiers MP4 ISO.</span><span class="sxs-lookup"><span data-stu-id="5e96d-106">This topic shows how toocreate an encoding task that generates fragmented MP4 (fMP4) chunks instead of ISO MP4 files.</span></span> <span data-ttu-id="5e96d-107">toogenerate fMP4 segments, utilisez hello **Media Encoder Standard** ou **Workflow d’encodeur multimédia Premium** toocreate d’encodeur de tâches et pour spécifier un codage  **AssetFormatOption.AdaptiveStreaming** option, comme indiqué dans cet extrait de code :</span><span class="sxs-lookup"><span data-stu-id="5e96d-107">toogenerate fMP4 chunks, use hello **Media Encoder Standard** or **Media Encoder Premium Workflow** encoder toocreate an encoding task and also specify **AssetFormatOption.AdaptiveStreaming** option, as shown in this code snippet:</span></span>  
     
     task.OutputAssets.AddNew(@"Output Asset containing fMP4 chunks", 
             options: AssetCreationOptions.None, 
             formatOption: AssetFormatOption.AdaptiveStreaming);
 
 
-## <span data-ttu-id="b1ca6-108"><a id="encoding_with_dotnet"></a>Encodage à l’aide du Kit de développement logiciel (SDK) .NET de Media Services</span><span class="sxs-lookup"><span data-stu-id="b1ca6-108"><a id="encoding_with_dotnet"></a>Encoding with Media Services .NET SDK</span></span>
+## <span data-ttu-id="5e96d-108"><a id="encoding_with_dotnet"></a>Encodage à l’aide du Kit de développement logiciel (SDK) .NET de Media Services</span><span class="sxs-lookup"><span data-stu-id="5e96d-108"><a id="encoding_with_dotnet"></a>Encoding with Media Services .NET SDK</span></span>
 
-<span data-ttu-id="b1ca6-109">Le code suivant utilise le Kit de développement logiciel (SDK) .NET de Media Services pour effectuer les tâches suivantes :</span><span class="sxs-lookup"><span data-stu-id="b1ca6-109">The following code example uses Media Services .NET SDK to perform the following tasks:</span></span>
+<span data-ttu-id="5e96d-109">Hello, exemple de code suivant utilise hello tooperform de Media Services .NET SDK tâches suivantes :</span><span class="sxs-lookup"><span data-stu-id="5e96d-109">hello following code example uses Media Services .NET SDK tooperform hello following tasks:</span></span>
 
-- <span data-ttu-id="b1ca6-110">Création d’une tâche d’encodage.</span><span class="sxs-lookup"><span data-stu-id="b1ca6-110">Create an encoding job.</span></span>
-- <span data-ttu-id="b1ca6-111">Obtention d’une référence à l’encodeur **Media Encoder Standard**.</span><span class="sxs-lookup"><span data-stu-id="b1ca6-111">Get a reference to the **Media Encoder Standard** encoder.</span></span>
-- <span data-ttu-id="b1ca6-112">Ajout d’une tâche d’encodage au travail et spécification de l’option pour utiliser la présélection **Diffusion adaptative**.</span><span class="sxs-lookup"><span data-stu-id="b1ca6-112">Add an encoding task to the job and specify to use the **Adaptive Streaming** preset.</span></span> 
-- <span data-ttu-id="b1ca6-113">Création d’une ressource de sortie qui contiendra des segments fMP4 et un fichier .ism.</span><span class="sxs-lookup"><span data-stu-id="b1ca6-113">Create an output asset that will contain fMP4 chunks and an .ism file.</span></span>
-- <span data-ttu-id="b1ca6-114">Ajout d’un gestionnaire d’événements pour vérifier la progression de la tâche.</span><span class="sxs-lookup"><span data-stu-id="b1ca6-114">Add an event handler to check the job progress.</span></span>
-- <span data-ttu-id="b1ca6-115">Envoyez le travail.</span><span class="sxs-lookup"><span data-stu-id="b1ca6-115">Submit the job.</span></span>
+- <span data-ttu-id="5e96d-110">Création d’une tâche d’encodage.</span><span class="sxs-lookup"><span data-stu-id="5e96d-110">Create an encoding job.</span></span>
+- <span data-ttu-id="5e96d-111">Obtenir une référence toohello **Media Encoder Standard** encodeur.</span><span class="sxs-lookup"><span data-stu-id="5e96d-111">Get a reference toohello **Media Encoder Standard** encoder.</span></span>
+- <span data-ttu-id="5e96d-112">Ajouter une tâche de toohello tâche codage et spécifiez toouse hello **diffusion adaptative en continu** prédéfini.</span><span class="sxs-lookup"><span data-stu-id="5e96d-112">Add an encoding task toohello job and specify toouse hello **Adaptive Streaming** preset.</span></span> 
+- <span data-ttu-id="5e96d-113">Création d’une ressource de sortie qui contiendra des segments fMP4 et un fichier .ism.</span><span class="sxs-lookup"><span data-stu-id="5e96d-113">Create an output asset that will contain fMP4 chunks and an .ism file.</span></span>
+- <span data-ttu-id="5e96d-114">Ajouter une événement Gestionnaire toocheck hello progression de la tâche.</span><span class="sxs-lookup"><span data-stu-id="5e96d-114">Add an event handler toocheck hello job progress.</span></span>
+- <span data-ttu-id="5e96d-115">Envoi de la tâche de hello.</span><span class="sxs-lookup"><span data-stu-id="5e96d-115">Submit hello job.</span></span>
 
-#### <a name="create-and-configure-a-visual-studio-project"></a><span data-ttu-id="b1ca6-116">Créer et configurer un projet Visual Studio</span><span class="sxs-lookup"><span data-stu-id="b1ca6-116">Create and configure a Visual Studio project</span></span>
+#### <a name="create-and-configure-a-visual-studio-project"></a><span data-ttu-id="5e96d-116">Créer et configurer un projet Visual Studio</span><span class="sxs-lookup"><span data-stu-id="5e96d-116">Create and configure a Visual Studio project</span></span>
 
-<span data-ttu-id="b1ca6-117">Configurez votre environnement de développement et ajoutez des informations de connexion au fichier app.config selon la procédure décrite dans l’article [Développement Media Services avec .NET](media-services-dotnet-how-to-use.md).</span><span class="sxs-lookup"><span data-stu-id="b1ca6-117">Set up your development environment and populate the app.config file with connection information, as described in [Media Services development with .NET](media-services-dotnet-how-to-use.md).</span></span> 
+<span data-ttu-id="5e96d-117">Configurer votre environnement de développement et de remplir le fichier app.config de hello avec les informations de connexion, comme décrit dans [développement Media Services avec .NET](media-services-dotnet-how-to-use.md).</span><span class="sxs-lookup"><span data-stu-id="5e96d-117">Set up your development environment and populate hello app.config file with connection information, as described in [Media Services development with .NET](media-services-dotnet-how-to-use.md).</span></span> 
 
-#### <a name="example"></a><span data-ttu-id="b1ca6-118">Exemple</span><span class="sxs-lookup"><span data-stu-id="b1ca6-118">Example</span></span>
+#### <a name="example"></a><span data-ttu-id="5e96d-118">Exemple</span><span class="sxs-lookup"><span data-stu-id="5e96d-118">Example</span></span>
 
     using System;
     using System.Configuration;
@@ -58,7 +58,7 @@ ms.lasthandoff: 08/29/2017
     {
         class Program
         {
-        // Read values from the App.config file.
+        // Read values from hello App.config file.
         private static readonly string _AADTenantDomain =
             ConfigurationManager.AppSettings["AADTenantDomain"];
         private static readonly string _RESTAPIEndpoint =
@@ -77,7 +77,7 @@ ms.lasthandoff: 08/29/2017
             // Get an uploaded asset.
             var asset = _context.Assets.FirstOrDefault();
 
-            // Encode and generate the output using the "Adaptive Streaming" preset.
+            // Encode and generate hello output using hello "Adaptive Streaming" preset.
             EncodeToAdaptiveBitrateMP4Set(asset);
 
             Console.ReadLine();
@@ -87,8 +87,8 @@ ms.lasthandoff: 08/29/2017
             // Declare a new job.
             IJob job = _context.Jobs.Create("Media Encoder Standard Job");
 
-            // Get a media processor reference, and pass to it the name of the 
-            // processor to use for the specific task.
+            // Get a media processor reference, and pass tooit hello name of hello 
+            // processor toouse for hello specific task.
             IMediaProcessor processor = GetLatestMediaProcessorByName("Media Encoder Standard");
 
             // Create a task
@@ -97,15 +97,15 @@ ms.lasthandoff: 08/29/2017
             "Adaptive Streaming",
             TaskOptions.None);
 
-            // Specify the input asset to be encoded.
+            // Specify hello input asset toobe encoded.
             task.InputAssets.Add(asset);
 
-            // Add an output asset to contain the results of the job. 
+            // Add an output asset toocontain hello results of hello job. 
 
             // This output is specified as AssetCreationOptions.None, which 
-            // means the output asset is not encrypted. 
-            // It is also specified to use AssetFormatOption.AdaptiveStreaming, 
-            // which means the output asset will contain fMP4 chunks.
+            // means hello output asset is not encrypted. 
+            // It is also specified toouse AssetFormatOption.AdaptiveStreaming, 
+            // which means hello output asset will contain fMP4 chunks.
 
             task.OutputAssets.AddNew(@"Output Asset containing fMP4 chunks",
             options: AssetCreationOptions.None,
@@ -159,12 +159,12 @@ ms.lasthandoff: 08/29/2017
         }
     }
 
-## <a name="media-services-learning-paths"></a><span data-ttu-id="b1ca6-119">Parcours d’apprentissage de Media Services</span><span class="sxs-lookup"><span data-stu-id="b1ca6-119">Media Services learning paths</span></span>
+## <a name="media-services-learning-paths"></a><span data-ttu-id="5e96d-119">Parcours d’apprentissage de Media Services</span><span class="sxs-lookup"><span data-stu-id="5e96d-119">Media Services learning paths</span></span>
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-## <a name="provide-feedback"></a><span data-ttu-id="b1ca6-120">Fournir des commentaires</span><span class="sxs-lookup"><span data-stu-id="b1ca6-120">Provide feedback</span></span>
+## <a name="provide-feedback"></a><span data-ttu-id="5e96d-120">Fournir des commentaires</span><span class="sxs-lookup"><span data-stu-id="5e96d-120">Provide feedback</span></span>
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
-## <a name="see-also"></a><span data-ttu-id="b1ca6-121">Voir aussi</span><span class="sxs-lookup"><span data-stu-id="b1ca6-121">See Also</span></span>
-[<span data-ttu-id="b1ca6-122">Vue d’ensemble de l’encodage de Media Services</span><span class="sxs-lookup"><span data-stu-id="b1ca6-122">Media Services Encoding Overview</span></span>](media-services-encode-asset.md)
+## <a name="see-also"></a><span data-ttu-id="5e96d-121">Voir aussi</span><span class="sxs-lookup"><span data-stu-id="5e96d-121">See Also</span></span>
+[<span data-ttu-id="5e96d-122">Vue d’ensemble de l’encodage de Media Services</span><span class="sxs-lookup"><span data-stu-id="5e96d-122">Media Services Encoding Overview</span></span>](media-services-encode-asset.md)
 

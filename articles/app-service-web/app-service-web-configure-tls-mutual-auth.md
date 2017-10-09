@@ -1,6 +1,6 @@
 ---
-title: Configuration de l'authentification mutuelle TLS pour une application Web
-description: "Découvrez comment configurer votre application Web pour utiliser l'authentification par certificat client sur TLS."
+title: "aaaHow tooConfigure TLS l’authentification mutuelle pour l’application Web"
+description: "Découvrez comment tooconfigure votre client toouse de l’application web de certificat d’authentification sur TLS."
 services: app-service
 documentationcenter: 
 author: naziml
@@ -14,30 +14,30 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/08/2016
 ms.author: naziml
-ms.openlocfilehash: db69852cffd1ff331ac4a640b04ea4360d00bf75
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8aeb9b35058fac50b8b38f6428207ad4a82d8637
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-configure-tls-mutual-authentication-for-web-app"></a><span data-ttu-id="1df2b-103">Configuration de l'authentification mutuelle TLS pour une application Web</span><span class="sxs-lookup"><span data-stu-id="1df2b-103">How To Configure TLS Mutual Authentication for Web App</span></span>
-## <a name="overview"></a><span data-ttu-id="1df2b-104">Vue d'ensemble</span><span class="sxs-lookup"><span data-stu-id="1df2b-104">Overview</span></span>
-<span data-ttu-id="1df2b-105">Vous pouvez restreindre l'accès à votre application Web Azure en activant différents types d'authentification.</span><span class="sxs-lookup"><span data-stu-id="1df2b-105">You can restrict access to your Azure web app by enabling different types of authentication for it.</span></span> <span data-ttu-id="1df2b-106">Une méthode consiste à authentifier à l'aide d'un certificat client lorsque la requête est exécutée sur TLS/SSL.</span><span class="sxs-lookup"><span data-stu-id="1df2b-106">One way to do so is to authenticate using a client certificate when the request is over TLS/SSL.</span></span> <span data-ttu-id="1df2b-107">Ce mécanisme est appelé authentification mutuelle TLS ou authentification par certificat client. Cet article décrit en détail comment configurer votre application Web pour utiliser l'authentification par certificat client.</span><span class="sxs-lookup"><span data-stu-id="1df2b-107">This mechanism is called TLS mutual authentication or client certificate authentication and this article will detail how to setup your web app to use client certificate authentication.</span></span>
+# <a name="how-tooconfigure-tls-mutual-authentication-for-web-app"></a><span data-ttu-id="c86bd-103">Comment tooConfigure l’authentification mutuelle de TLS pour l’application Web</span><span class="sxs-lookup"><span data-stu-id="c86bd-103">How tooConfigure TLS Mutual Authentication for Web App</span></span>
+## <a name="overview"></a><span data-ttu-id="c86bd-104">Vue d'ensemble</span><span class="sxs-lookup"><span data-stu-id="c86bd-104">Overview</span></span>
+<span data-ttu-id="c86bd-105">Vous pouvez limiter les accès tooyour Azure web app en activant les différents types d’authentification pour celle-ci.</span><span class="sxs-lookup"><span data-stu-id="c86bd-105">You can restrict access tooyour Azure web app by enabling different types of authentication for it.</span></span> <span data-ttu-id="c86bd-106">Une façon toodo est donc tooauthenticate à l’aide d’un certificat client lors de la demande de hello est via le protocole TLS/SSL.</span><span class="sxs-lookup"><span data-stu-id="c86bd-106">One way toodo so is tooauthenticate using a client certificate when hello request is over TLS/SSL.</span></span> <span data-ttu-id="c86bd-107">Ce mécanisme est appelé une authentification mutuelle TLS ou l’authentification par certificat client, et cet article décrit en détail comment toosetup votre web application toouse authentification par certificat.</span><span class="sxs-lookup"><span data-stu-id="c86bd-107">This mechanism is called TLS mutual authentication or client certificate authentication and this article will detail how toosetup your web app toouse client certificate authentication.</span></span>
 
-> <span data-ttu-id="1df2b-108">**Remarque :** si vous accédez à votre site sur HTTP et non HTTPS, vous ne recevez pas de certificat client.</span><span class="sxs-lookup"><span data-stu-id="1df2b-108">**Note:** If you access your site over HTTP and not HTTPS, you will not receive any client certificate.</span></span> <span data-ttu-id="1df2b-109">Par conséquent, si votre application requiert des certificats clients, vous ne devez pas autoriser les demandes à votre application sur HTTP.</span><span class="sxs-lookup"><span data-stu-id="1df2b-109">So if your application requires client certificates you should not allow requests to your application over HTTP.</span></span>
+> <span data-ttu-id="c86bd-108">**Remarque :** si vous accédez à votre site sur HTTP et non HTTPS, vous ne recevez pas de certificat client.</span><span class="sxs-lookup"><span data-stu-id="c86bd-108">**Note:** If you access your site over HTTP and not HTTPS, you will not receive any client certificate.</span></span> <span data-ttu-id="c86bd-109">Par conséquent, si votre application requiert des certificats clients vous ne devez pas autoriser les demandes tooyour application via HTTP.</span><span class="sxs-lookup"><span data-stu-id="c86bd-109">So if your application requires client certificates you should not allow requests tooyour application over HTTP.</span></span>
 > 
 > 
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
-## <a name="configure-web-app-for-client-certificate-authentication"></a><span data-ttu-id="1df2b-110">Configuration d'une application Web pour l'authentification par certificat client</span><span class="sxs-lookup"><span data-stu-id="1df2b-110">Configure Web App for Client Certificate Authentication</span></span>
-<span data-ttu-id="1df2b-111">Pour configurer votre application Web afin qu'elle exige des certificats clients, vous devez ajouter le paramètre de site clientCertEnabled pour votre application Web et lui donner la valeur true.</span><span class="sxs-lookup"><span data-stu-id="1df2b-111">To setup your web app to require client certificates you need to add the clientCertEnabled site setting for your web app and set it to true.</span></span> <span data-ttu-id="1df2b-112">Ce paramètre n’est actuellement pas disponible par le biais de l’expérience de gestion dans le portail et vous devrez utiliser l’API REST pour y parvenir.</span><span class="sxs-lookup"><span data-stu-id="1df2b-112">This setting is not currently available through the management experience in the Portal, and the REST API will need to be used to accomplish this.</span></span>
+## <a name="configure-web-app-for-client-certificate-authentication"></a><span data-ttu-id="c86bd-110">Configuration d'une application Web pour l'authentification par certificat client</span><span class="sxs-lookup"><span data-stu-id="c86bd-110">Configure Web App for Client Certificate Authentication</span></span>
+<span data-ttu-id="c86bd-111">toosetup vos certificats de client web application toorequire que vous devez tooadd hello clientCertEnabled site configuration pour votre application web et la définir tootrue.</span><span class="sxs-lookup"><span data-stu-id="c86bd-111">toosetup your web app toorequire client certificates you need tooadd hello clientCertEnabled site setting for your web app and set it tootrue.</span></span> <span data-ttu-id="c86bd-112">Ce paramètre n’est pas actuellement disponible via l’expérience de gestion hello Bonjour Portal et hello API REST en aurez besoin toobe utilisé tooaccomplish.</span><span class="sxs-lookup"><span data-stu-id="c86bd-112">This setting is not currently available through hello management experience in hello Portal, and hello REST API will need toobe used tooaccomplish this.</span></span>
 
-<span data-ttu-id="1df2b-113">Vous pouvez utiliser l' [outil ARMClient](https://github.com/projectkudu/ARMClient) pour faciliter l’élaboration de l’appel de l’API REST.</span><span class="sxs-lookup"><span data-stu-id="1df2b-113">You can use the [ARMClient tool](https://github.com/projectkudu/ARMClient) to make it easy to craft the REST API call.</span></span> <span data-ttu-id="1df2b-114">Une fois que vous êtes connecté avec l'outil, vous devez émettre la commande suivante :</span><span class="sxs-lookup"><span data-stu-id="1df2b-114">After you log in with the tool you will need to issue the following command:</span></span>
+<span data-ttu-id="c86bd-113">Vous pouvez utiliser hello [ARMClient outil](https://github.com/projectkudu/ARMClient) toomake il toocraft facile hello appel d’API REST.</span><span class="sxs-lookup"><span data-stu-id="c86bd-113">You can use hello [ARMClient tool](https://github.com/projectkudu/ARMClient) toomake it easy toocraft hello REST API call.</span></span> <span data-ttu-id="c86bd-114">Une fois que vous ouvrez une session avec l’outil de hello, vous devrez hello tooissue commande suivante :</span><span class="sxs-lookup"><span data-stu-id="c86bd-114">After you log in with hello tool you will need tooissue hello following command:</span></span>
 
     ARMClient PUT subscriptions/{Subscription Id}/resourcegroups/{Resource Group Name}/providers/Microsoft.Web/sites/{Website Name}?api-version=2015-04-01 @enableclientcert.json -verbose
 
-<span data-ttu-id="1df2b-115">en remplaçant tous les éléments {} par des informations de votre application Web et en créant un fichier appelé enableclientcert.json avec le contenu JSON suivant :</span><span class="sxs-lookup"><span data-stu-id="1df2b-115">replacing everything in {} with information for your web app and creating a file called enableclientcert.json with the following JSON content:</span></span>
+<span data-ttu-id="c86bd-115">remplacement de tous les éléments de {} avec les informations de votre application web et la création d’un fichier appelé enableclientcert.json avec hello suivant JSON contenu :</span><span class="sxs-lookup"><span data-stu-id="c86bd-115">replacing everything in {} with information for your web app and creating a file called enableclientcert.json with hello following JSON content:</span></span>
 
     {
         "location": "My Web App Location",
@@ -46,19 +46,19 @@ ms.lasthandoff: 07/11/2017
         }
     }
 
-<span data-ttu-id="1df2b-116">Veillez à modifier la valeur de « location » par l'emplacement de votre application Web ; par exemple, Nord du centre des États-Unis ou Ouest des États-Unis, etc.</span><span class="sxs-lookup"><span data-stu-id="1df2b-116">Make sure to change the value of "location" to wherever your web app is located e.g. North Central US or West US etc.</span></span>
+<span data-ttu-id="c86bd-116">Assurez-vous que la valeur hello toochange toowherever « location » votre application web est situé, par exemple Amérique du Nord ou ouest des États-Unis etc..</span><span class="sxs-lookup"><span data-stu-id="c86bd-116">Make sure toochange hello value of "location" toowherever your web app is located e.g. North Central US or West US etc.</span></span>
 
-<span data-ttu-id="1df2b-117">Vous pouvez également utiliser https://resources.azure.com pour basculer la propriété `clientCertEnabled` sur `true`.</span><span class="sxs-lookup"><span data-stu-id="1df2b-117">You can also use https://resources.azure.com to flip the `clientCertEnabled` property to `true`.</span></span>
+<span data-ttu-id="c86bd-117">Vous pouvez également utiliser https://resources.azure.com tooflip hello `clientCertEnabled` propriété trop`true`.</span><span class="sxs-lookup"><span data-stu-id="c86bd-117">You can also use https://resources.azure.com tooflip hello `clientCertEnabled` property too`true`.</span></span>
 
-> <span data-ttu-id="1df2b-118">**Remarque :** si vous exécutez ARMClient à partir de PowerShell, vous devez placer dans une séquence d’échappement le symbole @ pour le fichier JSON avec une apostrophe inversée (\`).</span><span class="sxs-lookup"><span data-stu-id="1df2b-118">**Note:** If you run ARMClient from Powershell, you will need to escape the @ symbol for the JSON file with a back tick \`.</span></span>
+> <span data-ttu-id="c86bd-118">**Remarque :** si vous exécutez ARMClient à partir de Powershell, vous devez hello tooescape symbole @ pour le fichier JSON de hello avec un backtick '.</span><span class="sxs-lookup"><span data-stu-id="c86bd-118">**Note:** If you run ARMClient from Powershell, you will need tooescape hello @ symbol for hello JSON file with a back tick \`.</span></span>
 > 
 > 
 
-## <a name="accessing-the-client-certificate-from-your-web-app"></a><span data-ttu-id="1df2b-119">Accès au certificat client à partir de votre application Web</span><span class="sxs-lookup"><span data-stu-id="1df2b-119">Accessing the Client Certificate From Your Web App</span></span>
-<span data-ttu-id="1df2b-120">Si vous utilisez ASP.NET et configurez votre application pour utiliser l’authentification de certificat client, le certificat est disponible au moyen de la propriété **HttpRequest.ClientCertificate** .</span><span class="sxs-lookup"><span data-stu-id="1df2b-120">If you are using ASP.NET and configure your app to use client certificate authentication, the certificate will be available through the **HttpRequest.ClientCertificate** property.</span></span> <span data-ttu-id="1df2b-121">Pour les autres piles d’application, le certificat client est disponible dans votre application par le biais d’une valeur codée en base64 dans l’en-tête de la requête « X-ARR-ClientCert ».</span><span class="sxs-lookup"><span data-stu-id="1df2b-121">For other application stacks, the client cert will be available in your app through a base64 encoded value in the "X-ARR-ClientCert" request header.</span></span> <span data-ttu-id="1df2b-122">Votre application peut créer un certificat à partir de cette valeur et ensuite l'utiliser à des fins d'authentification et d'autorisation dans votre application.</span><span class="sxs-lookup"><span data-stu-id="1df2b-122">Your application can create a certificate from this value and then use it for authentication and authorization purposes in your application.</span></span>
+## <a name="accessing-hello-client-certificate-from-your-web-app"></a><span data-ttu-id="c86bd-119">Hello l’accès au certificat à partir de votre Web application cliente</span><span class="sxs-lookup"><span data-stu-id="c86bd-119">Accessing hello Client Certificate From Your Web App</span></span>
+<span data-ttu-id="c86bd-120">Si vous utilisez ASP.NET et configurez l’authentification de certificat client application toouse, certificat de hello seront disponible via hello **HttpRequest.ClientCertificate** propriété.</span><span class="sxs-lookup"><span data-stu-id="c86bd-120">If you are using ASP.NET and configure your app toouse client certificate authentication, hello certificate will be available through hello **HttpRequest.ClientCertificate** property.</span></span> <span data-ttu-id="c86bd-121">Pour les autres piles de l’application, certificat de client hello sera disponible dans votre application via une valeur codée en base64 dans l’en-tête de demande « X-ARR ClientCert » hello.</span><span class="sxs-lookup"><span data-stu-id="c86bd-121">For other application stacks, hello client cert will be available in your app through a base64 encoded value in hello "X-ARR-ClientCert" request header.</span></span> <span data-ttu-id="c86bd-122">Votre application peut créer un certificat à partir de cette valeur et ensuite l'utiliser à des fins d'authentification et d'autorisation dans votre application.</span><span class="sxs-lookup"><span data-stu-id="c86bd-122">Your application can create a certificate from this value and then use it for authentication and authorization purposes in your application.</span></span>
 
-## <a name="special-considerations-for-certificate-validation"></a><span data-ttu-id="1df2b-123">Considérations spéciales pour la validation de certificat</span><span class="sxs-lookup"><span data-stu-id="1df2b-123">Special Considerations for Certificate Validation</span></span>
-<span data-ttu-id="1df2b-124">Le certificat client qui est envoyé à l'application n'est soumis à aucune validation par la plateforme Azure Web Apps.</span><span class="sxs-lookup"><span data-stu-id="1df2b-124">The client certificate that is sent to the application does not go through any validation by the Azure Web Apps platform.</span></span> <span data-ttu-id="1df2b-125">La validation de ce certificat est la responsabilité de l'application Web.</span><span class="sxs-lookup"><span data-stu-id="1df2b-125">Validating this certificate is the responsibility of the web app.</span></span> <span data-ttu-id="1df2b-126">Voici un exemple de code ASP.NET qui valide les propriétés du certificat pour l'authentification.</span><span class="sxs-lookup"><span data-stu-id="1df2b-126">Here is sample ASP.NET code that validates certificate properties for authentication purposes.</span></span>
+## <a name="special-considerations-for-certificate-validation"></a><span data-ttu-id="c86bd-123">Considérations spéciales pour la validation de certificat</span><span class="sxs-lookup"><span data-stu-id="c86bd-123">Special Considerations for Certificate Validation</span></span>
+<span data-ttu-id="c86bd-124">certificat de client de Hello est envoyé toohello application ne passe pas par une validation par la plateforme d’applications Web Azure hello.</span><span class="sxs-lookup"><span data-stu-id="c86bd-124">hello client certificate that is sent toohello application does not go through any validation by hello Azure Web Apps platform.</span></span> <span data-ttu-id="c86bd-125">Valider ce certificat est hello d’application web de hello.</span><span class="sxs-lookup"><span data-stu-id="c86bd-125">Validating this certificate is hello responsibility of hello web app.</span></span> <span data-ttu-id="c86bd-126">Voici un exemple de code ASP.NET qui valide les propriétés du certificat pour l'authentification.</span><span class="sxs-lookup"><span data-stu-id="c86bd-126">Here is sample ASP.NET code that validates certificate properties for authentication purposes.</span></span>
 
     using System;
     using System.Collections.Specialized;
@@ -81,8 +81,8 @@ ms.lasthandoff: 07/11/2017
             public bool isValidCert = false;
 
             //
-            // Read the certificate from the header into an X509Certificate2 object
-            // Display properties of the certificate on the page
+            // Read hello certificate from hello header into an X509Certificate2 object
+            // Display properties of hello certificate on hello page
             //
             protected void Page_Load(object sender, EventArgs e)
             {
@@ -124,13 +124,13 @@ ms.lasthandoff: 07/11/2017
             //
             private bool IsValidClientCertificate()
             {
-                // In this example we will only accept the certificate as a valid certificate if all the conditions below are met:
-                // 1. The certificate is not expired and is active for the current time on server.
-                // 2. The subject name of the certificate has the common name nildevecc
-                // 3. The issuer name of the certificate has the common name nildevecc and organization name Microsoft Corp
-                // 4. The thumbprint of the certificate is 30757A2E831977D8BD9C8496E4C99AB26CB9622B
+                // In this example we will only accept hello certificate as a valid certificate if all hello conditions below are met:
+                // 1. hello certificate is not expired and is active for hello current time on server.
+                // 2. hello subject name of hello certificate has hello common name nildevecc
+                // 3. hello issuer name of hello certificate has hello common name nildevecc and organization name Microsoft Corp
+                // 4. hello thumbprint of hello certificate is 30757A2E831977D8BD9C8496E4C99AB26CB9622B
                 //
-                // This example does NOT test that this certificate is chained to a Trusted Root Authority (or revoked) on the server 
+                // This example does NOT test that this certificate is chained tooa Trusted Root Authority (or revoked) on hello server 
                 // and it allows for self signed certificates
                 //
 
@@ -175,7 +175,7 @@ ms.lasthandoff: 07/11/2017
                 // 4. Check thumprint of certificate
                 if (String.Compare(certificate.Thumbprint.Trim().ToUpper(), "30757A2E831977D8BD9C8496E4C99AB26CB9622B") != 0) return false;
 
-                // If you also want to test if the certificate chains to a Trusted Root Authority you can uncomment the code below
+                // If you also want tootest if hello certificate chains tooa Trusted Root Authority you can uncomment hello code below
                 //
                 //X509Chain certChain = new X509Chain();
                 //certChain.Build(certificate);

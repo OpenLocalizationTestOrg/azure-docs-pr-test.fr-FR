@@ -1,6 +1,6 @@
 ---
-title: "Sécuriser votre solution Azure IoT de bout en bout | Microsoft Docs"
-description: "Comment utiliser les fonctionnalités de sécurité intégrée de Microsoft Azure IoT Hub et de Suite."
+title: "aaaSecure d’arrière-plan de votre solution Azure IoT hello | Documents Microsoft"
+description: "Comment toouse hello des fonctionnalités de sécurité intégrée de Microsoft Azure IoT Hub et la Suite."
 services: iot-hub
 documentationcenter: 
 author: YuriDio
@@ -14,24 +14,24 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: yurid
-ms.openlocfilehash: 6a0ac22e85a85dca9bad06aa2c722523d3086537
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 8009b19cf3cdff0507158513097a0709bbac06e6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 [!INCLUDE [iot-security-ground-up](../../includes/iot-security-ground-up.md)]
 
-## <a name="see-also"></a><span data-ttu-id="fd8f5-103">Voir aussi</span><span class="sxs-lookup"><span data-stu-id="fd8f5-103">See also</span></span>
-<span data-ttu-id="fd8f5-104">Pour en savoir plus sur la sécurisation de votre solution IoT, consultez :</span><span class="sxs-lookup"><span data-stu-id="fd8f5-104">To learn more about securing your IoT solution, see:</span></span>
+## <a name="see-also"></a><span data-ttu-id="88a0d-103">Voir aussi</span><span class="sxs-lookup"><span data-stu-id="88a0d-103">See also</span></span>
+<span data-ttu-id="88a0d-104">toolearn savoir plus sur la sécurisation de votre solution IoT, consultez :</span><span class="sxs-lookup"><span data-stu-id="88a0d-104">toolearn more about securing your IoT solution, see:</span></span>
 
-* <span data-ttu-id="fd8f5-105">[Meilleures pratiques relatives à la sécurité IoT][lnk-security-best-practices]</span><span class="sxs-lookup"><span data-stu-id="fd8f5-105">[IoT Security Best Practices][lnk-security-best-practices]</span></span>
-* <span data-ttu-id="fd8f5-106">[Architecture de la sécurité IoT][lnk-security-architecture]</span><span class="sxs-lookup"><span data-stu-id="fd8f5-106">[IoT Security Architecture][lnk-security-architecture]</span></span>
-* <span data-ttu-id="fd8f5-107">[Sécuriser votre déploiement IoT][lnk-security-deployment]</span><span class="sxs-lookup"><span data-stu-id="fd8f5-107">[Secure your IoT deployment][lnk-security-deployment]</span></span>
+* <span data-ttu-id="88a0d-105">[Meilleures pratiques relatives à la sécurité IoT][lnk-security-best-practices]</span><span class="sxs-lookup"><span data-stu-id="88a0d-105">[IoT Security Best Practices][lnk-security-best-practices]</span></span>
+* <span data-ttu-id="88a0d-106">[Architecture de la sécurité IoT][lnk-security-architecture]</span><span class="sxs-lookup"><span data-stu-id="88a0d-106">[IoT Security Architecture][lnk-security-architecture]</span></span>
+* <span data-ttu-id="88a0d-107">[Sécuriser votre déploiement IoT][lnk-security-deployment]</span><span class="sxs-lookup"><span data-stu-id="88a0d-107">[Secure your IoT deployment][lnk-security-deployment]</span></span>
 
-<span data-ttu-id="fd8f5-108">Pour explorer davantage les capacités de IoT Hub, consultez :</span><span class="sxs-lookup"><span data-stu-id="fd8f5-108">To further explore the capabilities of IoT Hub, see:</span></span>
+<span data-ttu-id="88a0d-108">toofurther Explorez les fonctionnalités de hello d’IoT Hub, consultez :</span><span class="sxs-lookup"><span data-stu-id="88a0d-108">toofurther explore hello capabilities of IoT Hub, see:</span></span>
 
-* <span data-ttu-id="fd8f5-109">[Simulation d’un appareil avec Azure IoT Edge][lnk-iotedge]</span><span class="sxs-lookup"><span data-stu-id="fd8f5-109">[Simulating a device with Azure IoT Edge][lnk-iotedge]</span></span>
+* <span data-ttu-id="88a0d-109">[Simulation d’un appareil avec Azure IoT Edge][lnk-iotedge]</span><span class="sxs-lookup"><span data-stu-id="88a0d-109">[Simulating a device with Azure IoT Edge][lnk-iotedge]</span></span>
 
 [lnk-security-best-practices]: iot-hub-security-best-practices.md
 [lnk-security-architecture]: iot-hub-security-architecture.md

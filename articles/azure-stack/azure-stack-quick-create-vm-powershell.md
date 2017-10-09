@@ -1,5 +1,5 @@
 ---
-title: "Créer une machine virtuelle Windows à l’aide de PowerShell dans Azure Stack | Microsoft Docs"
+title: "aaaCreate machine virtuelle Windows à l’aide de PowerShell dans la pile de Azure | Documents Microsoft"
 description: "Créer une machine virtuelle Windows à l’aide de PowerShell dans Azure Stack."
 services: azure-stack
 documentationcenter: 
@@ -14,30 +14,30 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/10/2017
 ms.author: sngun
-ms.openlocfilehash: 4b6706b289e323706009c40e9d1ad0149f8accc5
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: de063eae6f0782d8916da991f285a9de6b41def4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-windows-virtual-machine-by-using-powershell-in-azure-stack"></a><span data-ttu-id="0b499-103">Créer une machine virtuelle Windows à l’aide de PowerShell dans Azure Stack</span><span class="sxs-lookup"><span data-stu-id="0b499-103">Create a Windows virtual machine by using PowerShell in Azure Stack</span></span>
+# <a name="create-a-windows-virtual-machine-by-using-powershell-in-azure-stack"></a><span data-ttu-id="8ced0-103">Créer une machine virtuelle Windows à l’aide de PowerShell dans Azure Stack</span><span class="sxs-lookup"><span data-stu-id="8ced0-103">Create a Windows virtual machine by using PowerShell in Azure Stack</span></span>
 
-<span data-ttu-id="0b499-104">Dans Azure Stack, les machines virtuelles vous donnent la flexibilité de la virtualisation sans devoir acheter le matériel physique qui l’exécute ni en assurer la maintenance.</span><span class="sxs-lookup"><span data-stu-id="0b499-104">Virtual machines in Azure Stack give you the flexibility of virtualization without having to buy and maintain the physical hardware that runs it.</span></span> <span data-ttu-id="0b499-105">Quand vous utilisez des machines virtuelles, vous devez savoir qu’il existe des différences entre les fonctionnalités disponibles dans Azure et celles disponibles dans Azure Stack. Reportez-vous à la rubrique [Considérations relatives aux machines virtuelles dans Azure Stack](azure-stack-vm-considerations.md) pour en savoir plus sur ces différences.</span><span class="sxs-lookup"><span data-stu-id="0b499-105">When you use Virtual Machines, understand that there are some differences between the features that are available in Azure and Azure Stack, refer to the [Considerations for virtual machines in Azure Stack](azure-stack-vm-considerations.md) topic to learn about these differences.</span></span> 
+<span data-ttu-id="8ced0-104">Machines virtuelles dans donnent Azure pile hello flexibilité de la virtualisation sans avoir toobuy et de mettre à jour hello matériel physique qui l’exécute.</span><span class="sxs-lookup"><span data-stu-id="8ced0-104">Virtual machines in Azure Stack give you hello flexibility of virtualization without having toobuy and maintain hello physical hardware that runs it.</span></span> <span data-ttu-id="8ced0-105">Lorsque vous utilisez des Machines virtuelles, comprenez qu’il existe des différences entre les fonctionnalités de hello qui sont disponibles dans Azure et de la pile d’Azure, consultez le toohello [considérations relatives à des machines virtuelles dans Azure pile](azure-stack-vm-considerations.md) toolearn rubrique sur Ces différences.</span><span class="sxs-lookup"><span data-stu-id="8ced0-105">When you use Virtual Machines, understand that there are some differences between hello features that are available in Azure and Azure Stack, refer toohello [Considerations for virtual machines in Azure Stack](azure-stack-vm-considerations.md) topic toolearn about these differences.</span></span> 
 
-<span data-ttu-id="0b499-106">Ce guide explique comment utiliser PowerShell pour créer une machine virtuelle Windows Server 2016 dans Azure Stack.</span><span class="sxs-lookup"><span data-stu-id="0b499-106">This guide details using PowerShell to create a Windows Server 2016 virtual machine in Azure Stack.</span></span> <span data-ttu-id="0b499-107">Vous pouvez exécuter les étapes décrites dans cet article à partir du Kit de développement Azure Stack ou à partir d’un client externe Windows si vous êtes connecté par le biais d’un VPN.</span><span class="sxs-lookup"><span data-stu-id="0b499-107">You can run the steps described in this article either from the Azure Stack Development Kit, or from a Windows-based external client if you are connected through VPN.</span></span> 
+<span data-ttu-id="8ced0-106">Ce guide des détails à l’aide de PowerShell toocreate machine virtuelle Windows Server 2016 dans la pile de Azure.</span><span class="sxs-lookup"><span data-stu-id="8ced0-106">This guide details using PowerShell toocreate a Windows Server 2016 virtual machine in Azure Stack.</span></span> <span data-ttu-id="8ced0-107">Vous pouvez exécuter des étapes de hello décrits dans cet article hello Kit de développement Azure pile ou d’un client externe basé sur Windows, si vous êtes connecté via VPN.</span><span class="sxs-lookup"><span data-stu-id="8ced0-107">You can run hello steps described in this article either from hello Azure Stack Development Kit, or from a Windows-based external client if you are connected through VPN.</span></span> 
 
-## <a name="prerequisites"></a><span data-ttu-id="0b499-108">Composants requis</span><span class="sxs-lookup"><span data-stu-id="0b499-108">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="8ced0-108">Composants requis</span><span class="sxs-lookup"><span data-stu-id="8ced0-108">Prerequisites</span></span>
 
-1. <span data-ttu-id="0b499-109">La Place de Marché Azure Stack ne contient pas par défaut l’image Windows Server 2016.</span><span class="sxs-lookup"><span data-stu-id="0b499-109">The Azure Stack marketplace doesn't contain the Windows Server 2016 image by default.</span></span> <span data-ttu-id="0b499-110">Par conséquent, avant de pouvoir créer une machine virtuelle, vérifiez que l’opérateur Azure Stack [ajoute l’image Windows Server 2016 à la Place de Marché Azure Stack](azure-stack-add-default-image.md).</span><span class="sxs-lookup"><span data-stu-id="0b499-110">So, before you can create a virtual machine, make sure that the Azure Stack operator [adds the Windows Server 2016 image to the Azure Stack marketplace](azure-stack-add-default-image.md).</span></span> 
-2. <span data-ttu-id="0b499-111">Azure Stack nécessite une version spécifique du module Azure PowerShell pour créer et gérer les ressources.</span><span class="sxs-lookup"><span data-stu-id="0b499-111">Azure Stack requires specific version of Azure PowerShell module to create and manage the resources.</span></span> <span data-ttu-id="0b499-112">Utilisez les étapes décrites dans la rubrique [Installer PowerShell pour Azure Stack](azure-stack-powershell-install.md) pour installer la version exigée.</span><span class="sxs-lookup"><span data-stu-id="0b499-112">Use the steps described in [Install PowerShell for Azure Stack](azure-stack-powershell-install.md) topic to install the required version.</span></span>
-3. [<span data-ttu-id="0b499-113">Configurer l’environnement PowerShell de l’utilisateur Azure Stack</span><span class="sxs-lookup"><span data-stu-id="0b499-113">Configure the Azure Stack user's PowerShell environment</span></span>](azure-stack-powershell-configure-user.md) 
+1. <span data-ttu-id="8ced0-109">marketplace d’Azure pile Hello ne contient pas les images hello Windows Server 2016 par défaut.</span><span class="sxs-lookup"><span data-stu-id="8ced0-109">hello Azure Stack marketplace doesn't contain hello Windows Server 2016 image by default.</span></span> <span data-ttu-id="8ced0-110">Par conséquent, avant de pouvoir créer un ordinateur virtuel, assurez-vous que cet opérateur de pile de Azure hello [ajoute marketplace d’Azure pile hello Windows Server 2016 image toohello](azure-stack-add-default-image.md).</span><span class="sxs-lookup"><span data-stu-id="8ced0-110">So, before you can create a virtual machine, make sure that hello Azure Stack operator [adds hello Windows Server 2016 image toohello Azure Stack marketplace](azure-stack-add-default-image.md).</span></span> 
+2. <span data-ttu-id="8ced0-111">Pile Azure nécessite une version spécifique du toocreate du module Azure PowerShell et gérer les ressources de hello.</span><span class="sxs-lookup"><span data-stu-id="8ced0-111">Azure Stack requires specific version of Azure PowerShell module toocreate and manage hello resources.</span></span> <span data-ttu-id="8ced0-112">Utilisez les étapes hello décrites dans [installer PowerShell pour Azure pile](azure-stack-powershell-install.md) version requise de rubrique tooinstall hello.</span><span class="sxs-lookup"><span data-stu-id="8ced0-112">Use hello steps described in [Install PowerShell for Azure Stack](azure-stack-powershell-install.md) topic tooinstall hello required version.</span></span>
+3. [<span data-ttu-id="8ced0-113">Configurer l’environnement de l’utilisateur hello pile d’Azure PowerShell</span><span class="sxs-lookup"><span data-stu-id="8ced0-113">Configure hello Azure Stack user's PowerShell environment</span></span>](azure-stack-powershell-configure-user.md) 
 
-## <a name="create-a-resource-group"></a><span data-ttu-id="0b499-114">Créer un groupe de ressources</span><span class="sxs-lookup"><span data-stu-id="0b499-114">Create a resource group</span></span>
+## <a name="create-a-resource-group"></a><span data-ttu-id="8ced0-114">Créer un groupe de ressources</span><span class="sxs-lookup"><span data-stu-id="8ced0-114">Create a resource group</span></span>
 
-<span data-ttu-id="0b499-115">Un groupe de ressources est un conteneur logique dans lequel les ressources Azure Stack sont déployées et gérées.</span><span class="sxs-lookup"><span data-stu-id="0b499-115">A resource group is a logical container into which Azure Stack resources are deployed and managed.</span></span> <span data-ttu-id="0b499-116">Utilisez le bloc de code suivant pour créer un groupe de ressources.</span><span class="sxs-lookup"><span data-stu-id="0b499-116">Use the following code block to create a resource group.</span></span> <span data-ttu-id="0b499-117">Nous avons affecté des valeurs à toutes les variables de ce document. Vous pouvez les utiliser en l’état ou affecter une valeur différente.</span><span class="sxs-lookup"><span data-stu-id="0b499-117">We have assigned values for all variables in this document, you can use them as is or assign a different value.</span></span>  
+<span data-ttu-id="8ced0-115">Un groupe de ressources est un conteneur logique dans lequel les ressources Azure Stack sont déployées et gérées.</span><span class="sxs-lookup"><span data-stu-id="8ced0-115">A resource group is a logical container into which Azure Stack resources are deployed and managed.</span></span> <span data-ttu-id="8ced0-116">Utilisez hello suivant le bloc de code toocreate un groupe de ressources.</span><span class="sxs-lookup"><span data-stu-id="8ced0-116">Use hello following code block toocreate a resource group.</span></span> <span data-ttu-id="8ced0-117">Nous avons affecté des valeurs à toutes les variables de ce document. Vous pouvez les utiliser en l’état ou affecter une valeur différente.</span><span class="sxs-lookup"><span data-stu-id="8ced0-117">We have assigned values for all variables in this document, you can use them as is or assign a different value.</span></span>  
 
 ```powershell
-# Create variables to store the location and resource group names.
+# Create variables toostore hello location and resource group names.
 $location = "local"
 $ResourceGroupName = "myResourceGroup"
 
@@ -46,12 +46,12 @@ New-AzureRmResourceGroup `
   -Location $location
 ```
 
-## <a name="create-storage-resources"></a><span data-ttu-id="0b499-118">Créer des ressources de stockage</span><span class="sxs-lookup"><span data-stu-id="0b499-118">Create storage resources</span></span> 
+## <a name="create-storage-resources"></a><span data-ttu-id="8ced0-118">Créer des ressources de stockage</span><span class="sxs-lookup"><span data-stu-id="8ced0-118">Create storage resources</span></span> 
 
-<span data-ttu-id="0b499-119">Créez un compte de stockage, ainsi qu’un conteneur de stockage pour stocker l’image Windows Server 2016.</span><span class="sxs-lookup"><span data-stu-id="0b499-119">Create a storage account, and a storage container to store the Windows Server 2016 image.</span></span>
+<span data-ttu-id="8ced0-119">Créer un compte de stockage et une image de stockage conteneur toostore hello Windows Server 2016.</span><span class="sxs-lookup"><span data-stu-id="8ced0-119">Create a storage account, and a storage container toostore hello Windows Server 2016 image.</span></span>
 
 ```powershell
-# Create variables to store the storage account name and the storage account SKU information
+# Create variables toostore hello storage account name and hello storage account SKU information
 $StorageAccountName = "mystorageaccount"
 $SkuName = "Standard_LRS"
 
@@ -66,16 +66,16 @@ Set-AzureRmCurrentStorageAccount `
   -StorageAccountName $storageAccountName `
   -ResourceGroupName $resourceGroupName
 
-# Create a storage container to store the virtual machine image
+# Create a storage container toostore hello virtual machine image
 $containerName = 'osdisks'
 $container = New-AzureStorageContainer `
   -Name $containerName `
   -Permission Blob
 ```
 
-## <a name="create-networking-resources"></a><span data-ttu-id="0b499-120">Création de ressources de mise en réseau</span><span class="sxs-lookup"><span data-stu-id="0b499-120">Create networking resources</span></span>
+## <a name="create-networking-resources"></a><span data-ttu-id="8ced0-120">Création de ressources de mise en réseau</span><span class="sxs-lookup"><span data-stu-id="8ced0-120">Create networking resources</span></span>
 
-<span data-ttu-id="0b499-121">Créez un réseau virtuel, un sous-réseau et une adresse IP publique.</span><span class="sxs-lookup"><span data-stu-id="0b499-121">Create a virtual network, subnet, and a public IP address.</span></span> <span data-ttu-id="0b499-122">Ces ressources sont utilisées pour fournir une connectivité réseau à la machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="0b499-122">These resources are used to provide network connectivity to the virtual machine.</span></span>  
+<span data-ttu-id="8ced0-121">Créez un réseau virtuel, un sous-réseau et une adresse IP publique.</span><span class="sxs-lookup"><span data-stu-id="8ced0-121">Create a virtual network, subnet, and a public IP address.</span></span> <span data-ttu-id="8ced0-122">Ces ressources sont utilisées tooprovide réseau connectivité toohello virtual machine.</span><span class="sxs-lookup"><span data-stu-id="8ced0-122">These resources are used tooprovide network connectivity toohello virtual machine.</span></span>  
 
 ```powershell
 # Create a subnet configuration
@@ -100,9 +100,9 @@ $pip = New-AzureRmPublicIpAddress `
   -Name "mypublicdns$(Get-Random)"
 ```
 
-### <a name="create-a-network-security-group-and-a-network-security-group-rule"></a><span data-ttu-id="0b499-123">Créez un groupe de sécurité réseau et une règle de groupe de sécurité réseau</span><span class="sxs-lookup"><span data-stu-id="0b499-123">Create a network security group and a network security group rule</span></span>
+### <a name="create-a-network-security-group-and-a-network-security-group-rule"></a><span data-ttu-id="8ced0-123">Créez un groupe de sécurité réseau et une règle de groupe de sécurité réseau</span><span class="sxs-lookup"><span data-stu-id="8ced0-123">Create a network security group and a network security group rule</span></span>
 
-<span data-ttu-id="0b499-124">Le groupe de sécurité réseau sécurise la machine virtuelle à l’aide de règles de trafic entrantes et sortantes.</span><span class="sxs-lookup"><span data-stu-id="0b499-124">The network security group secures the virtual machine by using inbound and outbound rules.</span></span> <span data-ttu-id="0b499-125">Créons une règle de trafic entrant pour le port 3389 pour autoriser les connexions Bureau à distance entrantes, et une règle de trafic entrant pour le port 80 pour autoriser le trafic web entrant.</span><span class="sxs-lookup"><span data-stu-id="0b499-125">Lets create an inbound rule for port 3389 to allow incoming Remote Desktop connections and an inbound rule for port 80 to allow incoming web traffic.</span></span>
+<span data-ttu-id="8ced0-124">groupe de sécurité réseau Hello sécurise hello virtuels à l’aide de règles de trafic entrants et sortants.</span><span class="sxs-lookup"><span data-stu-id="8ced0-124">hello network security group secures hello virtual machine by using inbound and outbound rules.</span></span> <span data-ttu-id="8ced0-125">Permet de créer une règle de trafic entrant pour le port 3389 tooallow Bureau à distance les connexions entrantes et une règle de trafic entrant pour le trafic web entrant port 80 tooallow.</span><span class="sxs-lookup"><span data-stu-id="8ced0-125">Lets create an inbound rule for port 3389 tooallow incoming Remote Desktop connections and an inbound rule for port 80 tooallow incoming web traffic.</span></span>
 
 ```powershell
 # Create an inbound network security group rule for port 3389
@@ -137,9 +137,9 @@ $nsg = New-AzureRmNetworkSecurityGroup `
   -SecurityRules $nsgRuleRDP,$nsgRuleWeb 
 ```
  
-### <a name="create-a-network-card-for-the-virtual-machine"></a><span data-ttu-id="0b499-126">Créer une carte réseau pour la machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="0b499-126">Create a network card for the virtual machine</span></span>
+### <a name="create-a-network-card-for-hello-virtual-machine"></a><span data-ttu-id="8ced0-126">Créer une carte réseau pour la machine virtuelle de hello</span><span class="sxs-lookup"><span data-stu-id="8ced0-126">Create a network card for hello virtual machine</span></span>
 
-<span data-ttu-id="0b499-127">La carte réseau connecte la machine virtuelle à un sous-réseau, un groupe de sécurité réseau et une adresse IP publique.</span><span class="sxs-lookup"><span data-stu-id="0b499-127">The network card connects the virtual machine to a subnet, network security group, and public IP address.</span></span>
+<span data-ttu-id="8ced0-127">carte réseau de Hello connecte le sous-réseau de tooa d’ordinateurs virtuels hello, groupe de sécurité réseau et adresse IP publique.</span><span class="sxs-lookup"><span data-stu-id="8ced0-127">hello network card connects hello virtual machine tooa subnet, network security group, and public IP address.</span></span>
 
 ```powershell
 # Create a virtual network card and associate it with public IP address and NSG
@@ -152,17 +152,17 @@ $nic = New-AzureRmNetworkInterface `
   -NetworkSecurityGroupId $nsg.Id 
 ```
 
-## <a name="create-a-virtual-machine"></a><span data-ttu-id="0b499-128">Création d'une machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="0b499-128">Create a virtual machine</span></span>
+## <a name="create-a-virtual-machine"></a><span data-ttu-id="8ced0-128">Création d'une machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="8ced0-128">Create a virtual machine</span></span>
 
-<span data-ttu-id="0b499-129">Créez une configuration de machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="0b499-129">Create a virtual machine configuration.</span></span> <span data-ttu-id="0b499-130">La configuration inclut les paramètres qui sont utilisés lors du déploiement de la machine virtuelle, comme une image, une taille et des informations d’identification de machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="0b499-130">The configuration includes the settings that are used when deploying the virtual machine such as a virtual machine image, size, credentials.</span></span>
+<span data-ttu-id="8ced0-129">Créez une configuration de machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="8ced0-129">Create a virtual machine configuration.</span></span> <span data-ttu-id="8ced0-130">configuration de Hello inclut des paramètres hello sont utilisées lors du déploiement d’ordinateur virtuel de hello telles que les informations d’identification, de la taille, de l’image de machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="8ced0-130">hello configuration includes hello settings that are used when deploying hello virtual machine such as a virtual machine image, size, credentials.</span></span>
 
 ```powershell
-# Define a credential object to store the username and password for the virtual machine
+# Define a credential object toostore hello username and password for hello virtual machine
 $UserName='demouser'
 $Password='Password@123'| ConvertTo-SecureString -Force -AsPlainText
 $Credential=New-Object PSCredential($UserName,$Password)
 
-# Create the virtual machine configuration object
+# Create hello virtual machine configuration object
 $VmName = "VirtualMachinelatest"
 $VmSize = "Standard_A1"
 $VirtualMachine = New-AzureRmVMConfig `
@@ -188,7 +188,7 @@ $osDiskUri = '{0}vhds/{1}-{2}.vhd' -f `
   $vmName.ToLower(), `
   $osDiskName
 
-# Sets the operating system disk properties on a virtual machine. 
+# Sets hello operating system disk properties on a virtual machine. 
 $VirtualMachine = Set-AzureRmVMOSDisk `
   -VM $VirtualMachine `
   -Name $osDiskName `
@@ -196,37 +196,37 @@ $VirtualMachine = Set-AzureRmVMOSDisk `
   -CreateOption FromImage | `
   Add-AzureRmVMNetworkInterface -Id $nic.Id 
 
-#Create the virtual machine.
+#Create hello virtual machine.
 New-AzureRmVM `
   -ResourceGroupName $ResourceGroupName `
   -Location $location `
   -VM $VirtualMachine
 ```
 
-## <a name="connect-to-the-virtual-machine"></a><span data-ttu-id="0b499-131">Connectez-vous à la machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="0b499-131">Connect to the virtual machine</span></span>
+## <a name="connect-toohello-virtual-machine"></a><span data-ttu-id="8ced0-131">Connecter l’ordinateur virtuel de toohello</span><span class="sxs-lookup"><span data-stu-id="8ced0-131">Connect toohello virtual machine</span></span>
 
-<span data-ttu-id="0b499-132">Une fois la machine virtuelle correctement créée, ouvrez une connexion Bureau à distance à la machine virtuelle à partir du kit de développement, ou à partir d’un client externe Windows si vous êtes connecté par le biais d’un VPN.</span><span class="sxs-lookup"><span data-stu-id="0b499-132">After the virtual machine is successfully created, open a Remote Desktop connection to the virtual machine from the development kit, or from a Windows-based external client if you are connected through VPN.</span></span> <span data-ttu-id="0b499-133">Pour accéder à distance à la machine virtuelle créée à l’étape précédente, vous avez besoin de son adresse IP publique.</span><span class="sxs-lookup"><span data-stu-id="0b499-133">To remote into the virtual machine that you created in the previous step, you need its public IP address.</span></span> <span data-ttu-id="0b499-134">Exécutez la commande suivante pour obtenir l’adresse IP publique de la machine virtuelle :</span><span class="sxs-lookup"><span data-stu-id="0b499-134">Run the following command to get the public IP address of the virtual machine:</span></span> 
+<span data-ttu-id="8ced0-132">Une fois la machine virtuelle de hello est correctement créé, ouvrir une machine virtuelle de bureau à distance connexion toohello du kit de développement hello ou à partir d’un client externe Windows si vous êtes connecté via VPN.</span><span class="sxs-lookup"><span data-stu-id="8ced0-132">After hello virtual machine is successfully created, open a Remote Desktop connection toohello virtual machine from hello development kit, or from a Windows-based external client if you are connected through VPN.</span></span> <span data-ttu-id="8ced0-133">tooremote en machine virtuelle hello que vous avez créé à l’étape précédente de hello, vous avez besoin de son adresse IP publique.</span><span class="sxs-lookup"><span data-stu-id="8ced0-133">tooremote into hello virtual machine that you created in hello previous step, you need its public IP address.</span></span> <span data-ttu-id="8ced0-134">Exécutez hello suivant commande tooget hello adresse IP publique de l’ordinateur virtuel de hello :</span><span class="sxs-lookup"><span data-stu-id="8ced0-134">Run hello following command tooget hello public IP address of hello virtual machine:</span></span> 
 
 ```powershell
 Get-AzureRmPublicIpAddress `
   -ResourceGroupName $ResourceGroupName | Select IpAddress
 ```
  
-<span data-ttu-id="0b499-135">Utilisez la commande suivante pour créer une session Bureau à distance avec la machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="0b499-135">Use the following command to create a Remote Desktop session with the virtual machine.</span></span> <span data-ttu-id="0b499-136">Remplacez l’adresse IP par l’adresse publicIPAddress de votre machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="0b499-136">Replace the IP address with the publicIPAddress of your virtual machine.</span></span> <span data-ttu-id="0b499-137">Quand vous y êtes invité, entrez le nom d’utilisateur et le mot de passe que vous avez utilisés lors de la création de la machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="0b499-137">When prompted, enter the username and password that you used when creating the virtual machine.</span></span>
+<span data-ttu-id="8ced0-135">La commande suivante de hello utilisation toocreate une session Bureau à distance avec l’ordinateur virtuel de hello.</span><span class="sxs-lookup"><span data-stu-id="8ced0-135">Use hello following command toocreate a Remote Desktop session with hello virtual machine.</span></span> <span data-ttu-id="8ced0-136">Remplacez l’adresse IP de hello avec l’adresse IP publique hello de votre machine virtuelle.</span><span class="sxs-lookup"><span data-stu-id="8ced0-136">Replace hello IP address with hello publicIPAddress of your virtual machine.</span></span> <span data-ttu-id="8ced0-137">Lorsque vous y êtes invité, entrez le nom d’utilisateur hello et un mot de passe que vous avez utilisé lors de la création d’ordinateur virtuel de hello.</span><span class="sxs-lookup"><span data-stu-id="8ced0-137">When prompted, enter hello username and password that you used when creating hello virtual machine.</span></span>
 
 ```powershell
 mstsc /v:<publicIpAddress>
 ```
-## <a name="delete-the-virtual-machine"></a><span data-ttu-id="0b499-138">Supprimer la machine virtuelle</span><span class="sxs-lookup"><span data-stu-id="0b499-138">Delete the virtual machine</span></span>
+## <a name="delete-hello-virtual-machine"></a><span data-ttu-id="8ced0-138">Supprimer la machine virtuelle de hello</span><span class="sxs-lookup"><span data-stu-id="8ced0-138">Delete hello virtual machine</span></span>
 
-<span data-ttu-id="0b499-139">Quand vous n’en avez plus besoin, utilisez la commande suivante pour supprimer le groupe de ressources qui contient la machine virtuelle et les ressources qui lui sont associées :</span><span class="sxs-lookup"><span data-stu-id="0b499-139">When no longer needed, use the following command to remove the resource group that contains the virtual machine and its related resources:</span></span>
+<span data-ttu-id="8ced0-139">Lorsque vous n’est plus nécessaire, utilisez hello suivant commande tooremove hello groupe de ressources qui contient l’ordinateur virtuel de hello et ses ressources connexes :</span><span class="sxs-lookup"><span data-stu-id="8ced0-139">When no longer needed, use hello following command tooremove hello resource group that contains hello virtual machine and its related resources:</span></span>
 
 ```powershell
 Remove-AzureRmResourceGroup `
   -Name $ResourceGroupName
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="0b499-140">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="0b499-140">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="8ced0-140">Étapes suivantes</span><span class="sxs-lookup"><span data-stu-id="8ced0-140">Next steps</span></span>
 
-<span data-ttu-id="0b499-141">Pour en savoir plus sur le stockage dans Azure Stack, reportez-vous à la rubrique [Vue d’ensemble du stockage](azure-stack-storage-overview.md).</span><span class="sxs-lookup"><span data-stu-id="0b499-141">To learn about Storage in Azure Stack, refer to the [storage overview](azure-stack-storage-overview.md) topic.</span></span>
+<span data-ttu-id="8ced0-141">toolearn sur le stockage dans la pile d’Azure, consultez toohello [vue d’ensemble du stockage](azure-stack-storage-overview.md) rubrique.</span><span class="sxs-lookup"><span data-stu-id="8ced0-141">toolearn about Storage in Azure Stack, refer toohello [storage overview](azure-stack-storage-overview.md) topic.</span></span>
 

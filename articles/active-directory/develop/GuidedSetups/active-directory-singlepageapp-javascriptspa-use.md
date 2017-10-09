@@ -1,5 +1,5 @@
 ---
-title: "Configuration guidée d’Azure AD v2 JS SPA - Utilisation | Microsoft Docs"
+title: "aaaAzure AD v2 JS SPA guidée par le programme d’installation - utilisez | Documents Microsoft"
 description: "Comment les applications JavaScript SPA peuvent appeler une API qui nécessite des jetons d’accès à partir d’un point de terminaison Azure Active Directory v2"
 services: active-directory
 documentationcenter: dev-center-name
@@ -13,22 +13,22 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 06/01/2017
 ms.author: andret
-ms.openlocfilehash: f52157df298ddfc1c1b29a18dc9a54aae59b52a3
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4f7f824ed787d998dc4aea3dc21c95d7dfe70ae0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-## <a name="use-the-microsoft-authentication-library-msal-to-sign-in-the-user"></a><span data-ttu-id="03ddd-103">Utiliser Microsoft Authentication Library (MSAL) pour connecter l’utilisateur</span><span class="sxs-lookup"><span data-stu-id="03ddd-103">Use the Microsoft Authentication Library (MSAL) to sign-in the user</span></span>
+## <a name="use-hello-microsoft-authentication-library-msal-toosign-in-hello-user"></a><span data-ttu-id="596b8-103">Utilisez hello bibliothèque d’authentification Microsoft (MSAL) dans toosign hello utilisateur</span><span class="sxs-lookup"><span data-stu-id="596b8-103">Use hello Microsoft Authentication Library (MSAL) toosign-in hello user</span></span>
 
-1.  <span data-ttu-id="03ddd-104">Créez un fichier appelé `app.js`.</span><span class="sxs-lookup"><span data-stu-id="03ddd-104">Create a file named `app.js`.</span></span> <span data-ttu-id="03ddd-105">Si vous utilisez Visual Studio, sélectionnez le projet (dossier racine du projet), cliquez avec le bouton droit, puis sélectionnez `Add` > `New Item` > `JavaScript File` :</span><span class="sxs-lookup"><span data-stu-id="03ddd-105">If you are using Visual Studio, select the project (project root folder), right click and select: `Add` > `New Item` > `JavaScript File`:</span></span>
-2.  <span data-ttu-id="03ddd-106">Ajoutez le code suivant à votre fichier `app.js` :</span><span class="sxs-lookup"><span data-stu-id="03ddd-106">Add the following code to your `app.js` file:</span></span>
+1.  <span data-ttu-id="596b8-104">Créez un fichier appelé `app.js`.</span><span class="sxs-lookup"><span data-stu-id="596b8-104">Create a file named `app.js`.</span></span> <span data-ttu-id="596b8-105">Si vous utilisez un projet Visual Studio, sélectionnez hello (dossier racine du projet), cliquez droit et sélectionnez : `Add`  >  `New Item`  >  `JavaScript File`:</span><span class="sxs-lookup"><span data-stu-id="596b8-105">If you are using Visual Studio, select hello project (project root folder), right click and select: `Add` > `New Item` > `JavaScript File`:</span></span>
+2.  <span data-ttu-id="596b8-106">Ajouter hello suivant code tooyour `app.js` fichier :</span><span class="sxs-lookup"><span data-stu-id="596b8-106">Add hello following code tooyour `app.js` file:</span></span>
 
 ```javascript
-// Graph API endpoint to show user profile
+// Graph API endpoint tooshow user profile
 var graphApiEndpoint = "https://graph.microsoft.com/v1.0/me";
 
-// Graph API scope used to obtain the access token to read user profile
+// Graph API scope used tooobtain hello access token tooread user profile
 var graphAPIScopes = ["https://graph.microsoft.com/user.read"];
 
 // Initialize application
@@ -42,7 +42,7 @@ if (userAgentApplication.redirectUri) {
 }
 
 window.onload = function () {
-    // If page is refreshed, continue to display user info
+    // If page is refreshed, continue toodisplay user info
     if (!userAgentApplication.isCallback(window.location.hash) && window.parent === window && !window.opener) {
         var user = userAgentApplication.getUser();
         if (user) {
@@ -52,21 +52,21 @@ window.onload = function () {
 }
 
 /**
- * Call the Microsoft Graph API and display the results on the page. Sign the user in if necessary
+ * Call hello Microsoft Graph API and display hello results on hello page. Sign hello user in if necessary
  */
 function callGraphApi() {
     var user = userAgentApplication.getUser();
     if (!user) {
-        // If user is not signed in, then prompt user to sign in via loginRedirect.
-        // This will redirect user to the Azure Active Directory v2 Endpoint
+        // If user is not signed in, then prompt user toosign in via loginRedirect.
+        // This will redirect user toohello Azure Active Directory v2 Endpoint
         userAgentApplication.loginRedirect(graphAPIScopes);
-        // The call to loginRedirect above frontloads the consent to query Graph API during the sign-in.
-        // If you want to use dynamic consent, just remove the graphAPIScopes from loginRedirect call.
-        // As such, user will be prompted to give consent when requested access to a resource that 
-        // he/she hasn't consented before. In the case of this application - 
-        // the first time the Graph API call to obtain user's profile is executed.
+        // hello call toologinRedirect above frontloads hello consent tooquery Graph API during hello sign-in.
+        // If you want toouse dynamic consent, just remove hello graphAPIScopes from loginRedirect call.
+        // As such, user will be prompted toogive consent when requested access tooa resource that 
+        // he/she hasn't consented before. In hello case of this application - 
+        // hello first time hello Graph API call tooobtain user's profile is executed.
     } else {
-        // If user is already signed in, display the user info
+        // If user is already signed in, display hello user info
         var userInfoElement = document.getElementById("userInfo");
         userInfoElement.parentElement.classList.remove("hidden");
         userInfoElement.innerHTML = JSON.stringify(user, null, 4);
@@ -74,24 +74,24 @@ function callGraphApi() {
         // Show Sign-Out button
         document.getElementById("signOutButton").classList.remove("hidden");
 
-        // Now Call Graph API to show the user profile information:
+        // Now Call Graph API tooshow hello user profile information:
         var graphCallResponseElement = document.getElementById("graphResponse");
         graphCallResponseElement.parentElement.classList.remove("hidden");
         graphCallResponseElement.innerText = "Calling Graph ...";
 
-        // In order to call the Graph API, an access token needs to be acquired.
-        // Try to acquire the token used to query Graph API silently first:
+        // In order toocall hello Graph API, an access token needs toobe acquired.
+        // Try tooacquire hello token used tooquery Graph API silently first:
         userAgentApplication.acquireTokenSilent(graphAPIScopes)
             .then(function (token) {
-                //After the access token is acquired, call the Web API, sending the acquired token
+                //After hello access token is acquired, call hello Web API, sending hello acquired token
                 callWebApiWithToken(graphApiEndpoint, token, graphCallResponseElement, document.getElementById("accessToken"));
 
             }, function (error) {
-                // If the acquireTokenSilent() method fails, then acquire the token interactively via acquireTokenRedirect().
-                // In this case, the browser will redirect user back to the Azure Active Directory v2 Endpoint so the user 
-                // can reenter the current username/ password and/ or give consent to new permissions your application is requesting.
+                // If hello acquireTokenSilent() method fails, then acquire hello token interactively via acquireTokenRedirect().
+                // In this case, hello browser will redirect user back toohello Azure Active Directory v2 Endpoint so hello user 
+                // can reenter hello current username/ password and/ or give consent toonew permissions your application is requesting.
                 // After authentication/ authorization completes, this page will be reloaded again and callGraphApi() will be executed on page load.
-                // Then, acquireTokenSilent will then get the token silently, the Graph API call results will be made and results will be displayed in the page.
+                // Then, acquireTokenSilent will then get hello token silently, hello Graph API call results will be made and results will be displayed in hello page.
                 if (error) {
                     userAgentApplication.acquireTokenRedirect(graphAPIScopes);
                 }
@@ -101,11 +101,11 @@ function callGraphApi() {
 }
 
 /**
- * Callback method from sign-in: if no errors, call callGraphApi() to show results.
- * @param {string} errorDesc - If error occur, the error message
- * @param {object} token - The token received from login
- * @param {object} error - The error string
- * @param {string} tokenType - the token type: usually id_token
+ * Callback method from sign-in: if no errors, call callGraphApi() tooshow results.
+ * @param {string} errorDesc - If error occur, hello error message
+ * @param {object} token - hello token received from login
+ * @param {object} error - hello error string
+ * @param {string} tokenType - hello token type: usually id_token
  */
 function loginCallback(errorDesc, token, error, tokenType) {
     if (errorDesc) {
@@ -116,8 +116,8 @@ function loginCallback(errorDesc, token, error, tokenType) {
 }
 
 /**
- * Show an error message in the page
- * @param {string} endpoint - the endpoint used for the error message
+ * Show an error message in hello page
+ * @param {string} endpoint - hello endpoint used for hello error message
  * @param {string} error - Error string
  * @param {string} errorDesc - Error description
  */
@@ -133,42 +133,42 @@ function showError(endpoint, error, errorDesc) {
 ```
 
 <!--start-collapse-->
-### <a name="more-information"></a><span data-ttu-id="03ddd-107">Informations complémentaires</span><span class="sxs-lookup"><span data-stu-id="03ddd-107">More Information</span></span>
+### <a name="more-information"></a><span data-ttu-id="596b8-107">Informations complémentaires</span><span class="sxs-lookup"><span data-stu-id="596b8-107">More Information</span></span>
 
-<span data-ttu-id="03ddd-108">Quand un utilisateur clique sur le bouton *Call Microsoft Graph API* (Appeler l’API Graph Microsoft) pour la première fois, la méthode `callGraphApi` appelle `loginRedirect` pour connecter l’utilisateur.</span><span class="sxs-lookup"><span data-stu-id="03ddd-108">After a user clicks the *‘Call Microsoft Graph API’* button for the first time, `callGraphApi` method calls `loginRedirect` to sign in the user.</span></span> <span data-ttu-id="03ddd-109">Cette méthode redirige l’utilisateur vers le *point de terminaison Microsoft Azure Active Directory v2* afin de demander et valider les informations d’identification de l’utilisateur.</span><span class="sxs-lookup"><span data-stu-id="03ddd-109">This method results in redirecting the user to the *Microsoft Azure Active Directory v2 endpoint* to prompt and validate the user's credentials.</span></span> <span data-ttu-id="03ddd-110">Une fois connecté, l’utilisateur est redirigé vers la page *index.html* d’origine. Ensuite, un jeton est reçu, puis traité par `msal.js`, et les informations contenues dans le jeton sont mises en cache.</span><span class="sxs-lookup"><span data-stu-id="03ddd-110">As a result of a successful sign-in, the user is redirected back to the original *index.html* page, and a token is received, processed by `msal.js` and the information contained in the token is cached.</span></span> <span data-ttu-id="03ddd-111">Ce jeton est le *jeton d’ID* et contient des informations de base sur l’utilisateur, telles que son nom d’affichage.</span><span class="sxs-lookup"><span data-stu-id="03ddd-111">This token is known as the *ID token* and contains basic information about the user, such as the user display name.</span></span> <span data-ttu-id="03ddd-112">Si vous envisagez d’utiliser les données fournies par ce jeton à toutes fins que ce soit, vous devez vous assurer que ce jeton est validé par le serveur principal afin de garantir qu’il a été émis pour un utilisateur valide de votre application.</span><span class="sxs-lookup"><span data-stu-id="03ddd-112">If you plan to use any data provided by this token for any purposes, you need to make sure this token is validated by your backend server to guarantee that the token was issued to a valid user for your application.</span></span>
+<span data-ttu-id="596b8-108">Quand un utilisateur clique sur hello *'Appeler l’API Microsoft Graph'* bouton pour hello première fois, `callGraphApi` les appels de méthode `loginRedirect` toosign utilisateur de hello.</span><span class="sxs-lookup"><span data-stu-id="596b8-108">After a user clicks hello *‘Call Microsoft Graph API’* button for hello first time, `callGraphApi` method calls `loginRedirect` toosign in hello user.</span></span> <span data-ttu-id="596b8-109">Cette méthode entraîne redirection hello utilisateur toohello *point de terminaison Microsoft Azure Active Directory v2* tooprompt et valider les informations d’identification de l’utilisateur hello.</span><span class="sxs-lookup"><span data-stu-id="596b8-109">This method results in redirecting hello user toohello *Microsoft Azure Active Directory v2 endpoint* tooprompt and validate hello user's credentials.</span></span> <span data-ttu-id="596b8-110">À la suite d’une réussite sign-in, utilisateur de hello est redirigé toohello arrière d’origine *index.html* page et un jeton est reçu, traité par `msal.js` et les informations de hello contenues dans le jeton de hello sont mis en cache.</span><span class="sxs-lookup"><span data-stu-id="596b8-110">As a result of a successful sign-in, hello user is redirected back toohello original *index.html* page, and a token is received, processed by `msal.js` and hello information contained in hello token is cached.</span></span> <span data-ttu-id="596b8-111">Ce jeton est appelé hello *le jeton d’ID* et contient des informations sur l’utilisateur hello, telles que nom d’affichage utilisateur hello.</span><span class="sxs-lookup"><span data-stu-id="596b8-111">This token is known as hello *ID token* and contains basic information about hello user, such as hello user display name.</span></span> <span data-ttu-id="596b8-112">Si vous envisagez de toouse toutes les données fournies par ce jeton à des fins, vous devez toomake que ce jeton est validé par votre tooguarantee de serveur principal qui hello jeton a été émises tooa les utilisateurs valides pour votre application.</span><span class="sxs-lookup"><span data-stu-id="596b8-112">If you plan toouse any data provided by this token for any purposes, you need toomake sure this token is validated by your backend server tooguarantee that hello token was issued tooa valid user for your application.</span></span>
 
-<span data-ttu-id="03ddd-113">L’application SPA créée dans ce guide n’utilise pas directement le jeton d’ID. En effet, elle appelle `acquireTokenSilent` et/ou `acquireTokenRedirect` pour acquérir un *jeton d’accès* utilisé pour interroger l’API Microsoft Graph.</span><span class="sxs-lookup"><span data-stu-id="03ddd-113">The SPA generated by this guide does not make use directly of the ID token – instead, it calls `acquireTokenSilent` and/or `acquireTokenRedirect` to acquire an *access token* used to query the Microsoft Graph API.</span></span> <span data-ttu-id="03ddd-114">Si vous avez besoin d’un exemple qui valide le jeton d’ID, regardez [cet exemple d’application](https://github.com/Azure-Samples/active-directory-javascript-singlepageapp-dotnet-webapi-v2 "exemple Github active-directory-javascript-singlepageapp-dotnet-webapi-v2") dans GitHub. Cet exemple utilise une API web ASP.NET pour la validation du jeton.</span><span class="sxs-lookup"><span data-stu-id="03ddd-114">If you need a sample that validates the ID token, take a look at [this](https://github.com/Azure-Samples/active-directory-javascript-singlepageapp-dotnet-webapi-v2 "Github active-directory-javascript-singlepageapp-dotnet-webapi-v2 sample") sample application in GitHub – the sample uses an ASP.NET Web API for token validation.</span></span>
+<span data-ttu-id="596b8-113">Hello SPA généré par ce guide ne rend pas utiliser directement du jeton d’ID hello – au lieu de cela, il appelle `acquireTokenSilent` et/ou `acquireTokenRedirect` tooacquire un *jeton d’accès* utilisé tooquery hello Microsoft Graph API.</span><span class="sxs-lookup"><span data-stu-id="596b8-113">hello SPA generated by this guide does not make use directly of hello ID token – instead, it calls `acquireTokenSilent` and/or `acquireTokenRedirect` tooacquire an *access token* used tooquery hello Microsoft Graph API.</span></span> <span data-ttu-id="596b8-114">Si vous avez besoin d’un exemple qui valide le jeton d’ID hello, examinons [cela](https://github.com/Azure-Samples/active-directory-javascript-singlepageapp-dotnet-webapi-v2 "exemple active-directory-javascript-singlepageapp-dotnet-webapi-v2 de Github") exemple d’application dans GitHub – exemple hello utilise une API Web ASP.NET pour la validation du jeton.</span><span class="sxs-lookup"><span data-stu-id="596b8-114">If you need a sample that validates hello ID token, take a look at [this](https://github.com/Azure-Samples/active-directory-javascript-singlepageapp-dotnet-webapi-v2 "Github active-directory-javascript-singlepageapp-dotnet-webapi-v2 sample") sample application in GitHub – hello sample uses an ASP.NET Web API for token validation.</span></span>
 
-#### <a name="getting-a-user-token-interactively"></a><span data-ttu-id="03ddd-115">Obtention d’un jeton d’utilisateur de manière interactive</span><span class="sxs-lookup"><span data-stu-id="03ddd-115">Getting a user token interactively</span></span>
+#### <a name="getting-a-user-token-interactively"></a><span data-ttu-id="596b8-115">Obtention d’un jeton d’utilisateur de manière interactive</span><span class="sxs-lookup"><span data-stu-id="596b8-115">Getting a user token interactively</span></span>
 
-<span data-ttu-id="03ddd-116">Après la première connexion, il n’est pas souhaitable de demander aux utilisateurs de se réauthentifier chaque fois qu’ils ont besoin d’un jeton pour accéder à une ressource. Par conséquent, *acquireTokenSilent* doit être utilisé pour acquérir des jetons dans la plupart des situations.</span><span class="sxs-lookup"><span data-stu-id="03ddd-116">After the initial sign-in, you do not want the ask users to reauthenticate every time they need to request a token to access a resource – so *acquireTokenSilent* should be used most of the time to acquire tokens.</span></span> <span data-ttu-id="03ddd-117">Il existe cependant des situations dans lesquelles vous devez forcer les utilisateurs à interagir avec le point de terminaison Azure Active Directory v2. Voici quelques exemples de telles situations :</span><span class="sxs-lookup"><span data-stu-id="03ddd-117">There are situations however that you need to force users interact with Azure Active Directory v2 endpoint – some examples include:</span></span>
--   <span data-ttu-id="03ddd-118">Les utilisateurs doivent réentrer leurs informations d’identification, car le mot de passe a expiré.</span><span class="sxs-lookup"><span data-stu-id="03ddd-118">Users may need to reenter their credentials because the password has expired</span></span>
--   <span data-ttu-id="03ddd-119">Votre application demande l’accès à une ressource pour laquelle l’utilisateur doit donner son consentement.</span><span class="sxs-lookup"><span data-stu-id="03ddd-119">Your application is requesting access to a resource that the user needs to consent to</span></span>
--   <span data-ttu-id="03ddd-120">Une authentification à 2 facteurs est demandée.</span><span class="sxs-lookup"><span data-stu-id="03ddd-120">Two factor authentication is required</span></span>
+<span data-ttu-id="596b8-116">Après hello initiale de connexion, vous ne souhaitez pas hello poser tooreauthenticate des utilisateurs chaque fois qu’ils ont besoin toorequest un jeton tooaccess une ressource : par conséquent, *acquireTokenSilent* doivent être utilisées la plupart des jetons de tooacquire temps hello.</span><span class="sxs-lookup"><span data-stu-id="596b8-116">After hello initial sign-in, you do not want hello ask users tooreauthenticate every time they need toorequest a token tooaccess a resource – so *acquireTokenSilent* should be used most of hello time tooacquire tokens.</span></span> <span data-ttu-id="596b8-117">Il existe cependant des situations que vous avez besoin de tooforce les utilisateurs interagissent avec le point de terminaison Azure Active Directory v2, voici quelques exemples :</span><span class="sxs-lookup"><span data-stu-id="596b8-117">There are situations however that you need tooforce users interact with Azure Active Directory v2 endpoint – some examples include:</span></span>
+-   <span data-ttu-id="596b8-118">Utilisateurs auront peut-être besoin tooreenter leurs informations d’identification, car le mot de passe hello a expiré</span><span class="sxs-lookup"><span data-stu-id="596b8-118">Users may need tooreenter their credentials because hello password has expired</span></span>
+-   <span data-ttu-id="596b8-119">Votre application demande une ressource tooa accès hello tooconsent de besoins utilisateur pour</span><span class="sxs-lookup"><span data-stu-id="596b8-119">Your application is requesting access tooa resource that hello user needs tooconsent to</span></span>
+-   <span data-ttu-id="596b8-120">Une authentification à 2 facteurs est demandée.</span><span class="sxs-lookup"><span data-stu-id="596b8-120">Two factor authentication is required</span></span>
 
-<span data-ttu-id="03ddd-121">Le fait d’appeler *acquireTokenRedirect(scope)* entraîne la redirection des utilisateurs vers le point de terminaison Azure Active Directory v2 (ou l’appel de *acquireTokenPopup(scope)* entraîne l’affichage d’une fenêtre contextuelle) avec lequel ils doivent interagir en confirmant leurs informations d’identification, en consentant à ce que l’application accède à la ressource ou en effectuant l’authentification à 2 facteurs.</span><span class="sxs-lookup"><span data-stu-id="03ddd-121">Calling the *acquireTokenRedirect(scope)* result in redirecting users to the Azure Active Directory v2 endpoint (or *acquireTokenPopup(scope)* result on a popup window) where users need to interact with by either confirming their credentials, giving the consent to the required resource, or completing the two factor authentication.</span></span>
+<span data-ttu-id="596b8-121">Appel hello *acquireTokenRedirect(scope)* entraîner de redirection du point de terminaison toohello Azure Active Directory v2 utilisateurs (ou *acquireTokenPopup(scope)* résultat dans une fenêtre contextuelle) où les utilisateurs ont besoin toointeract avec par soit confirmer leurs informations d’identification, en donnant hello consentement toohello requis de ressource ou authentification à deux facteurs hello fin.</span><span class="sxs-lookup"><span data-stu-id="596b8-121">Calling hello *acquireTokenRedirect(scope)* result in redirecting users toohello Azure Active Directory v2 endpoint (or *acquireTokenPopup(scope)* result on a popup window) where users need toointeract with by either confirming their credentials, giving hello consent toohello required resource, or completing hello two factor authentication.</span></span>
 
-#### <a name="getting-a-user-token-silently"></a><span data-ttu-id="03ddd-122">Obtention d’un jeton d’utilisateur en mode silencieux</span><span class="sxs-lookup"><span data-stu-id="03ddd-122">Getting a user token silently</span></span>
-<span data-ttu-id="03ddd-123">La méthode ` acquireTokenSilent` gère les acquisitions et renouvellements de jetons sans aucune interaction de l’utilisateur.</span><span class="sxs-lookup"><span data-stu-id="03ddd-123">The ` acquireTokenSilent` method handles token acquisitions and renewal without any user interaction.</span></span> <span data-ttu-id="03ddd-124">Quand `loginRedirect` (ou `loginPopup`) est exécuté pour la première fois, c’est en général la méthode `acquireTokenSilent` qui est utilisée pour obtenir les jetons permettant d’accéder aux ressources protégées pour les appels suivants, car les appels de demande ou de renouvellement des jetons sont émis de manière silencieuse.</span><span class="sxs-lookup"><span data-stu-id="03ddd-124">After `loginRedirect` (or `loginPopup`) is executed for the first time, `acquireTokenSilent` is the method commonly used to obtain tokens used to access protected resources for subsequent calls - as calls to request or renew tokens are made silently.</span></span>
-<span data-ttu-id="03ddd-125">`acquireTokenSilent` risque d’échouer dans certains cas (par exemple, si le mot de passe a expiré).</span><span class="sxs-lookup"><span data-stu-id="03ddd-125">`acquireTokenSilent` may fail in some cases – for example, the user's password has expired.</span></span> <span data-ttu-id="03ddd-126">Votre application peut gérer cette exception de deux manières :</span><span class="sxs-lookup"><span data-stu-id="03ddd-126">Your application can handle this exception in two ways:</span></span>
+#### <a name="getting-a-user-token-silently"></a><span data-ttu-id="596b8-122">Obtention d’un jeton d’utilisateur en mode silencieux</span><span class="sxs-lookup"><span data-stu-id="596b8-122">Getting a user token silently</span></span>
+<span data-ttu-id="596b8-123">Hello ` acquireTokenSilent` méthode gère l’acquisition de jeton et renouvellement sans intervention de l’utilisateur.</span><span class="sxs-lookup"><span data-stu-id="596b8-123">hello ` acquireTokenSilent` method handles token acquisitions and renewal without any user interaction.</span></span> <span data-ttu-id="596b8-124">Après avoir `loginRedirect` (ou `loginPopup`) est exécuté pour hello première fois, `acquireTokenSilent` est hello méthode couramment utilisée tooobtain jetons utilisés tooaccess protégée des ressources pour les appels suivants - en tant qu’appels toorequest ou renouveler des jetons sont effectuées en mode silencieux.</span><span class="sxs-lookup"><span data-stu-id="596b8-124">After `loginRedirect` (or `loginPopup`) is executed for hello first time, `acquireTokenSilent` is hello method commonly used tooobtain tokens used tooaccess protected resources for subsequent calls - as calls toorequest or renew tokens are made silently.</span></span>
+<span data-ttu-id="596b8-125">`acquireTokenSilent`peut échouer dans certains cas, par exemple, hello mot de passe a expiré.</span><span class="sxs-lookup"><span data-stu-id="596b8-125">`acquireTokenSilent` may fail in some cases – for example, hello user's password has expired.</span></span> <span data-ttu-id="596b8-126">Votre application peut gérer cette exception de deux manières :</span><span class="sxs-lookup"><span data-stu-id="596b8-126">Your application can handle this exception in two ways:</span></span>
 
-1.  <span data-ttu-id="03ddd-127">En appelant immédiatement `acquireTokenRedirect` pour que l’utilisateur soit invité à se connecter.</span><span class="sxs-lookup"><span data-stu-id="03ddd-127">Make a call to `acquireTokenRedirect` immediately, which results in prompting the user to sign in.</span></span> <span data-ttu-id="03ddd-128">Cette méthode est couramment employée avec les applications en ligne dans lesquelles aucun contenu non authentifié n’est disponible pour l’utilisateur.</span><span class="sxs-lookup"><span data-stu-id="03ddd-128">This pattern is commonly used in online applications where there is no unauthenticated content in the application available to the user.</span></span> <span data-ttu-id="03ddd-129">L’exemple créé avec cette installation guidée utilise ce modèle.</span><span class="sxs-lookup"><span data-stu-id="03ddd-129">The sample generated by this guided setup uses this pattern.</span></span>
+1.  <span data-ttu-id="596b8-127">Effectuer un appel trop`acquireTokenRedirect` immédiatement, ce qui aboutit à l’invite hello toosign utilisateur dans.</span><span class="sxs-lookup"><span data-stu-id="596b8-127">Make a call too`acquireTokenRedirect` immediately, which results in prompting hello user toosign in.</span></span> <span data-ttu-id="596b8-128">Ce modèle est couramment utilisé dans les applications en ligne où il n’existe aucun contenu non authentifié dans utilisateur toohello disponibles de l’application hello.</span><span class="sxs-lookup"><span data-stu-id="596b8-128">This pattern is commonly used in online applications where there is no unauthenticated content in hello application available toohello user.</span></span> <span data-ttu-id="596b8-129">exemple Hello généré par cet Assistant d’installation utilise ce modèle.</span><span class="sxs-lookup"><span data-stu-id="596b8-129">hello sample generated by this guided setup uses this pattern.</span></span>
 
-2. <span data-ttu-id="03ddd-130">Les applications peuvent également signaler à l’utilisateur qu’une connexion interactive est requise afin qu’il puisse choisir le bon moment pour se connecter ou que l’application puisse réessayer d’exécuter `acquireTokenSilent` ultérieurement.</span><span class="sxs-lookup"><span data-stu-id="03ddd-130">Applications can also make a visual indication to the user that an interactive sign-in is required, so the user can select the right time to sign in, or the application can retry `acquireTokenSilent` at a later time.</span></span> <span data-ttu-id="03ddd-131">Cette solution est couramment retenue lorsque l’utilisateur peut utiliser d’autres fonctionnalités de l’application sans être perturbé, notamment lorsque du contenu non authentifié est disponible dans l’application.</span><span class="sxs-lookup"><span data-stu-id="03ddd-131">This is commonly used when the user can use other functionality of the application without being disrupted - for example, there is unauthenticated content available in the application.</span></span> <span data-ttu-id="03ddd-132">Dans ce cas, l’utilisateur peut décider de se connecter pour accéder à la ressource protégée ou pour actualiser les informations obsolètes.</span><span class="sxs-lookup"><span data-stu-id="03ddd-132">In this case, the user can decide when they want to sign in to access the protected resource, or to refresh the outdated information.</span></span>
+2. <span data-ttu-id="596b8-130">Les applications peuvent également faire d’un utilisateur de toohello d’indication visuelle qui une connexion à interactive étant requise, hello utilisateur sélectionne toosign du moment opportun hello dans ou application hello peut réessayer `acquireTokenSilent` ultérieurement.</span><span class="sxs-lookup"><span data-stu-id="596b8-130">Applications can also make a visual indication toohello user that an interactive sign-in is required, so hello user can select hello right time toosign in, or hello application can retry `acquireTokenSilent` at a later time.</span></span> <span data-ttu-id="596b8-131">Elle est couramment utilisée lors de l’utilisateur de hello peut utiliser d’autres fonctionnalités de l’application hello sans dérangement - par exemple, il est contenu non authentifié disponibles dans l’application hello.</span><span class="sxs-lookup"><span data-stu-id="596b8-131">This is commonly used when hello user can use other functionality of hello application without being disrupted - for example, there is unauthenticated content available in hello application.</span></span> <span data-ttu-id="596b8-132">Dans ce cas, les utilisateur hello peuvent décider quand ils veulent toosign dans la ressource de hello protégé tooaccess ou toorefresh hello des informations obsolètes.</span><span class="sxs-lookup"><span data-stu-id="596b8-132">In this case, hello user can decide when they want toosign in tooaccess hello protected resource, or toorefresh hello outdated information.</span></span>
 
 <!--end-collapse-->
 
-## <a name="call-the-microsoft-graph-api-using-the-token-you-just-obtained"></a><span data-ttu-id="03ddd-133">Appeler l’API Microsoft Graph à l’aide du jeton que vous venez d’obtenir</span><span class="sxs-lookup"><span data-stu-id="03ddd-133">Call the Microsoft Graph API using the token you just obtained</span></span>
+## <a name="call-hello-microsoft-graph-api-using-hello-token-you-just-obtained"></a><span data-ttu-id="596b8-133">Appeler l’API Microsoft Graph hello à l’aide du jeton hello que simplement obtenu</span><span class="sxs-lookup"><span data-stu-id="596b8-133">Call hello Microsoft Graph API using hello token you just obtained</span></span>
 
-<span data-ttu-id="03ddd-134">Ajoutez le code suivant à votre fichier `app.js` :</span><span class="sxs-lookup"><span data-stu-id="03ddd-134">Add the following code to your `app.js` file:</span></span>
+<span data-ttu-id="596b8-134">Ajouter hello suivant code tooyour `app.js` fichier :</span><span class="sxs-lookup"><span data-stu-id="596b8-134">Add hello following code tooyour `app.js` file:</span></span>
 
 ```javascript
 /**
  * Call a Web API using an access token.
  * @param {any} endpoint - Web API endpoint
  * @param {any} token - Access token
- * @param {object} responseElement - HTML element used to display the results
- * @param {object} showTokenElement = HTML element used to display the RAW access token
+ * @param {object} responseElement - HTML element used toodisplay hello results
+ * @param {object} showTokenElement = HTML element used toodisplay hello RAW access token
  */
 function callWebApiWithToken(endpoint, token, responseElement, showTokenElement) {
     var headers = new Headers();
@@ -185,7 +185,7 @@ function callWebApiWithToken(endpoint, token, responseElement, showTokenElement)
             if (response.status === 200 && contentType && contentType.indexOf("application/json") !== -1) {
                 response.json()
                     .then(function (data) {
-                        // Display response in the page
+                        // Display response in hello page
                         console.log(data);
                         responseElement.innerHTML = JSON.stringify(data, null, 4);
                         if (showTokenElement) {
@@ -199,7 +199,7 @@ function callWebApiWithToken(endpoint, token, responseElement, showTokenElement)
             } else {
                 response.json()
                     .then(function (data) {
-                        // Display response as error in the page
+                        // Display response as error in hello page
                         showError(endpoint, data);
                     })
                     .catch(function (error) {
@@ -214,19 +214,19 @@ function callWebApiWithToken(endpoint, token, responseElement, showTokenElement)
 ```
 <!--start-collapse-->
 
-### <a name="more-information-on-making-a-rest-call-against-a-protected-api"></a><span data-ttu-id="03ddd-135">Plus d’informations sur l’envoi d’un appel REST à une API protégée</span><span class="sxs-lookup"><span data-stu-id="03ddd-135">More information on making a REST call against a protected API</span></span>
+### <a name="more-information-on-making-a-rest-call-against-a-protected-api"></a><span data-ttu-id="596b8-135">Plus d’informations sur l’envoi d’un appel REST à une API protégée</span><span class="sxs-lookup"><span data-stu-id="596b8-135">More information on making a REST call against a protected API</span></span>
 
-<span data-ttu-id="03ddd-136">Dans l’exemple d’application créé par ce guide, la méthode `callWebApiWithToken()` est utilisée pour envoyer une demande HTTP `GET` à une ressource protégée qui nécessite un jeton, puis pour retourner le contenu à l’appelant.</span><span class="sxs-lookup"><span data-stu-id="03ddd-136">In the sample application created by this guide, the `callWebApiWithToken()` method is used to make an HTTP `GET` request against a protected resource that requires a token and then return the content to the caller.</span></span> <span data-ttu-id="03ddd-137">Cette méthode ajoute le jeton acquis à l’*en-tête d’autorisation HTTP*.</span><span class="sxs-lookup"><span data-stu-id="03ddd-137">This method adds the acquired token in the *HTTP Authorization header*.</span></span> <span data-ttu-id="03ddd-138">Dans l’exemple d’application créé par ce guide, la ressource est le point de terminaison *me* de l’API Microsoft Graph, qui affiche les informations de profil de l’utilisateur.</span><span class="sxs-lookup"><span data-stu-id="03ddd-138">For the sample application created by this guide, the resource is the Microsoft Graph API *me* endpoint – which displays the user's profile information.</span></span>
+<span data-ttu-id="596b8-136">Dans l’application d’exemple hello créée par ce guide, hello `callWebApiWithToken()` méthode est utilisée toomake HTTP `GET` demande par rapport à une ressource protégée qui requiert un appelant de contenu toohello hello jeton, puis de retourner.</span><span class="sxs-lookup"><span data-stu-id="596b8-136">In hello sample application created by this guide, hello `callWebApiWithToken()` method is used toomake an HTTP `GET` request against a protected resource that requires a token and then return hello content toohello caller.</span></span> <span data-ttu-id="596b8-137">Cette méthode ajoute un jeton de hello acquis Bonjour *en-tête d’autorisation HTTP*.</span><span class="sxs-lookup"><span data-stu-id="596b8-137">This method adds hello acquired token in hello *HTTP Authorization header*.</span></span> <span data-ttu-id="596b8-138">Pour l’application d’exemple hello créée par ce guide, les ressources hello sont hello Microsoft Graph API *me* endpoint – qui affiche des informations de profil de l’utilisateur hello.</span><span class="sxs-lookup"><span data-stu-id="596b8-138">For hello sample application created by this guide, hello resource is hello Microsoft Graph API *me* endpoint – which displays hello user's profile information.</span></span>
 
 <!--end-collapse-->
 
-## <a name="add-a-method-to-sign-out-the-user"></a><span data-ttu-id="03ddd-139">Ajouter une méthode pour déconnecter l’utilisateur</span><span class="sxs-lookup"><span data-stu-id="03ddd-139">Add a method to sign out the user</span></span>
+## <a name="add-a-method-toosign-out-hello-user"></a><span data-ttu-id="596b8-139">Ajouter un toosign méthode utilisateur de hello</span><span class="sxs-lookup"><span data-stu-id="596b8-139">Add a method toosign out hello user</span></span>
 
-<span data-ttu-id="03ddd-140">Ajoutez le code suivant à votre fichier `app.js` :</span><span class="sxs-lookup"><span data-stu-id="03ddd-140">Add the following code to your `app.js` file:</span></span>
+<span data-ttu-id="596b8-140">Ajouter hello suivant code tooyour `app.js` fichier :</span><span class="sxs-lookup"><span data-stu-id="596b8-140">Add hello following code tooyour `app.js` file:</span></span>
 
 ```javascript
 /**
- * Sign-out the user
+ * Sign-out hello user
  */
 function signOut() {
     userAgentApplication.logout();
