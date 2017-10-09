@@ -1,6 +1,6 @@
 ---
-title: "Créer une machine virtuelle avec une adresse IP publique statique - Azure PowerShell | Microsoft Docs"
-description: "Découvrez comment créer une machine virtuelle avec une adresse IP publique statique à l’aide de PowerShell."
+title: aaaCreate une machine virtuelle avec une adresse IP publique statique - Azure PowerShell | Documents Microsoft
+description: "Découvrez comment toocreate une machine virtuelle avec une adresse IP publique statique d’adresses à l’aide de PowerShell."
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -16,11 +16,11 @@ ms.workload: infrastructure-services
 ms.date: 03/15/2016
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: e4c413d3cb5c242a16f3e534dafe322785a35141
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0d2b88319cb114b8616f60dbee41e8fdc6d8b1b1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-vm-with-a-static-public-ip-address-using-powershell"></a>Créer une machine virtuelle avec une adresse IP publique statique à l’aide de PowerShell
 
@@ -34,16 +34,16 @@ ms.lasthandoff: 07/11/2017
 [!INCLUDE [virtual-network-deploy-static-pip-intro-include.md](../../includes/virtual-network-deploy-static-pip-intro-include.md)]
 
 > [!NOTE]
-> Azure dispose de deux modèles de déploiement différents pour créer et utiliser des ressources : [Resource Manager et classique](../resource-manager-deployment-model.md). Cet article traite de l’utilisation du modèle de déploiement Resource Manager que Microsoft recommande pour la plupart des nouveaux déploiements à la place du modèle de déploiement classique.
+> Azure dispose de deux modèles de déploiement différents pour créer et utiliser des ressources : [Resource Manager et classique](../resource-manager-deployment-model.md). Cet article décrit à l’aide du modèle de déploiement Resource Manager hello, qui recommandées par Microsoft pour la plupart des déploiements de nouveau au lieu du modèle de déploiement classique hello.
 
 [!INCLUDE [virtual-network-deploy-static-pip-scenario-include.md](../../includes/virtual-network-deploy-static-pip-scenario-include.md)]
 
 [!INCLUDE [azure-ps-prerequisites-include.md](../../includes/azure-ps-prerequisites-include.md)]
 
 ## <a name="step-1---start-your-script"></a>Étape 1 : démarrer votre script
-Vous pouvez télécharger le script PowerShell complet utilisé [ici](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/IaaS-Story/03-Static-public-IP/virtual-network-deploy-static-pip-arm-ps.ps1). Suivez les étapes ci-dessous pour modifier le script afin qu’il fonctionne dans votre environnement.
+Vous pouvez télécharger le script PowerShell complet hello utilisé [ici](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/IaaS-Story/03-Static-public-IP/virtual-network-deploy-static-pip-arm-ps.ps1). Suivez les étapes de hello ci-dessous toochange hello script toowork dans votre environnement.
 
-Remplacez les valeurs des variables suivantes par celles que vous souhaitez utiliser pour votre déploiement. Les valeurs suivantes mappent au scénario utilisé dans cet article :
+Modifier les valeurs hello de variables hello ci-dessous en fonction des valeurs de hello souhaité toouse pour votre déploiement. Hello valeurs carte toohello scénario utilisé dans cet article :
 
 ```powershell
 # Set variables resource group
@@ -74,8 +74,8 @@ $pipName               = "PIPWEB1"
 $dnsName               = "iaasstoryws1"
 ```
 
-## <a name="step-2---create-the-necessary-resources-for-your-vm"></a>Étape 2 : créer les ressources nécessaires pour vos machines virtuelles
-Avant de créer une machine virtuelle, vous devez mettre à sa disposition un groupe de ressources, un réseau virtuel, une adresse IP publique et une carte réseau.
+## <a name="step-2---create-hello-necessary-resources-for-your-vm"></a>Étape 2 : créer des ressources nécessaires hello pour votre machine virtuelle
+Avant de créer une machine virtuelle, vous avez besoin d’un groupe de ressources, réseau virtuel, publique IP et réseau toobe utilisé par hello machine virtuelle.
 
 1. Créez un groupe de ressources.
 
@@ -83,7 +83,7 @@ Avant de créer une machine virtuelle, vous devez mettre à sa disposition un gr
     New-AzureRmResourceGroup -Name $rgName -Location $location
     ```
 
-2. Créez le réseau virtuel et le sous-réseau.
+2. Créer hello réseau virtuel et le sous-réseau.
 
     ```powershell
     $vnet = New-AzureRmVirtualNetwork -ResourceGroupName $rgName -Name $vnetName `
@@ -95,14 +95,14 @@ Avant de créer une machine virtuelle, vous devez mettre à sa disposition un gr
     Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
     ```
 
-3. Créez la ressource IP publique. 
+3. Créer la ressource IP publique hello. 
 
     ```powershell
     $pip = New-AzureRmPublicIpAddress -Name $pipName -ResourceGroupName $rgName `
         -AllocationMethod Static -DomainNameLabel $dnsName -Location $location
     ```
 
-4. Créez la carte réseau pour la machine virtuelle dans le sous-réseau créé ci-dessus, avec l’adresse IP publique. Notez que la première applet de commande récupère le réseau virtuel d’Azure. Cette opération est nécessaire dans la mesure où l’applet de commande `Set-AzureRmVirtualNetwork` a été exécutée pour modifier le réseau virtuel existant.
+4. Créez l’interface de réseau de hello (NIC) pour hello machine virtuelle dans un sous-réseau hello créé ci-dessus, avec l’adresse IP publique hello. Notez hello première applet de commande récupérant hello réseau virtuel Azure, cela est nécessaire, car un `Set-AzureRmVirtualNetwork` a été exécutée toochange hello réseau virtuel existant.
 
     ```powershell
     $vnet = Get-AzureRmVirtualNetwork -Name $vnetName -ResourceGroupName $rgName
@@ -112,26 +112,26 @@ Avant de créer une machine virtuelle, vous devez mettre à sa disposition un gr
         -PublicIpAddress $pip
     ```
 
-5. Créez un compte de stockage pour héberger le lecteur du système d’exploitation de la machine virtuelle.
+5. Créer un hello de toohost de compte de stockage lecteur du système d’exploitation de la machine virtuelle.
 
     ```powershell
     $stdStorageAccount = New-AzureRmStorageAccount -Name $stdStorageAccountName `
     -ResourceGroupName $rgName -Type Standard_LRS -Location $location
     ```
 
-## <a name="step-3---create-the-vm"></a>Étape 3 : créer la machine virtuelle
+## <a name="step-3---create-hello-vm"></a>Étape 3 : création de hello machine virtuelle
 Une fois toutes les ressources nécessaires en place, vous pouvez créer une machine virtuelle.
 
-1. Créez l’objet de configuration pour la machine virtuelle.
+1. Créer un objet de configuration de hello pour hello machine virtuelle.
 
     ```powershell
     $vmConfig = New-AzureRmVMConfig -VMName $vmName -VMSize $vmSize
     ```
 
-2. Obtenez les informations d’identification du compte d’administrateur local de la machine virtuelle.
+2. Obtenir des informations d’identification pour hello compte administrateur local d’ordinateur virtuel.
 
     ```powershell
-    $cred = Get-Credential -Message "Type the name and password for the local administrator account."
+    $cred = Get-Credential -Message "Type hello name and password for hello local administrator account."
     ```
 
 3. Créez un objet de configuration de machine virtuelle.
@@ -141,39 +141,39 @@ Une fois toutes les ressources nécessaires en place, vous pouvez créer une mac
         -Credential $cred -ProvisionVMAgent -EnableAutoUpdate
     ```
 
-4. Définissez l’image du système d’exploitation pour la machine virtuelle.
+4. Définir l’image de système d’exploitation hello pour hello machine virtuelle.
 
     ```powershell
     $vmConfig = Set-AzureRmVMSourceImage -VM $vmConfig -PublisherName $publisher `
         -Offer $offer -Skus $sku -Version $version
     ```
 
-5. Configurez le disque du système d’exploitation.
+5. Configurer le disque de hello du système d’exploitation.
 
     ```powershell
     $osVhdUri = $stdStorageAccount.PrimaryEndpoints.Blob.ToString() + "vhds/" + $osDiskName + ".vhd"
     $vmConfig = Set-AzureRmVMOSDisk -VM $vmConfig -Name $osDiskName -VhdUri $osVhdUri -CreateOption fromImage
     ```
 
-6. Ajoutez la carte réseau à la machine virtuelle.
+6. Ajoutez hello toohello de carte réseau virtuelle.
 
     ```powershell
     $vmConfig = Add-AzureRmVMNetworkInterface -VM $vmConfig -Id $nic.Id -Primary
     ```
 
-7. Créez la machine virtuelle.
+7. Créer hello machine virtuelle.
 
     ```powershell
     New-AzureRmVM -VM $vmConfig -ResourceGroupName $rgName -Location $location
     ```
 
-8. Enregistrez le fichier de script.
+8. Enregistrez le fichier de script hello.
 
-## <a name="step-4---run-the-script"></a>Étape 4 : exécution du script
-Une fois que vous avez effectué les modifications nécessaires et compris le script ci-dessus, exécutez le script. 
+## <a name="step-4---run-hello-script"></a>Étape 4 : exécution hello script
+Une fois vos modifications et que vous comprenez le script de hello afficher au-dessus, exécuter le script de hello. 
 
-1. À partir d’une console PowerShell ou de PowerShell ISE, exécutez le script ci-dessus.
-2. La sortie suivante doit s’afficher après quelques minutes :
+1. À partir d’une console PowerShell ou PowerShell ISE, exécutez le script hello ci-dessus.
+2. Hello suivant la sortie doit s’afficher après quelques minutes :
    
         ResourceGroupName : IaaSStory
         Location          : westus

@@ -1,6 +1,6 @@
 ---
-title: "Déploiement d’un cluster Deis à 3 nœuds | Microsoft Docs"
-description: "Cet article explique comment créer un cluster Deis à 3 nœuds sur Azure à l’aide d’un modèle Azure Resource Manager."
+title: "aaaDeploy 3 nœuds Deis cluster | Documents Microsoft"
+description: "Cet article décrit comment toocreate Deis 3 nœuds clusters sur Azure à l’aide d’un modèle Azure Resource Manager"
 services: virtual-machines-linux
 documentationcenter: 
 author: HaishiBai
@@ -16,63 +16,63 @@ ms.workload: infrastructure-services
 ms.date: 06/24/2015
 ms.author: hbai
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 9a0c3dd7562dfb5ce54c2ebfd4665109f59cd8fd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a4c0fb8cbb849264e64b433540157c9afecd184e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-and-configure-a-3-node-deis-cluster-in-azure"></a>Déployer et configurer un cluster Deis à 3 nœuds dans Azure
-Cet article vous détaille l’approvisionnement d’un cluster [Deis](http://deis.io/) sur Azure. Il aborde toutes les étapes, de la création des certificats requis au déploiement et à la mise à l’échelle d’un exemple d’application **Go** sur le cluster qui vient d’être approvisionné.
+Cet article vous détaille l’approvisionnement d’un cluster [Deis](http://deis.io/) sur Azure. Elle couvre toutes les étapes de hello de création toodeploying des certificats nécessaires hello et un exemple de mise à l’échelle **accédez** application sur le cluster qui vient d’être mis en service de hello.
 
-Le diagramme suivant représente l’architecture du système déployé. Un administrateur système gère le cluster à l’aide d’outils Deis, comme **deis** et **deisctl**. Les connexions sont établies via un équilibreur de charge Azure, qui transfère les connexions à l’un des nœuds membres du cluster. Les clients accèdent aux applications déployées via l’équilibreur de charge, également. Dans ce cas, l’équilibreur de charge envoie le trafic à un maillage de routeur Deis, qui achemine le trafic vers des conteneurs Docker hébergés sur le cluster.
+Hello diagramme suivant illustre architecture hello du système de hello déployé. Un administrateur système gère à l’aide du cluster hello Deis des outils tels que **deis** et **deisctl**. Les connexions sont établies via un équilibrage de charge Azure, qui transfère les nœuds de cluster de hello tooone de connexions hello du membre de hello. accès des clients Hello des applications via l’équilibrage de charge hello également déployées. Dans ce cas, équilibrage de charge hello transfère hello trafic tooa Deis maillage du routeur, qui achemine davantage de conteneurs Docker de trafic toocorresponding hébergés sur le cluster de hello.
 
   ![Diagramme d’architecture du cluster Deis déployé](./media/deis-cluster/architecture-overview.png)
 
-Pour exécuter les étapes suivantes, vous aurez besoin des éléments suivants :
+Dans toorun ordre via hello comme suit, vous devez :
 
 * Un abonnement Azure actif. Si vous n’en avez pas, vous pouvez obtenir une version d’essai sur [azure.com](https://azure.microsoft.com/).
-* Un ID professionnel ou scolaire afin de pouvoir utiliser des groupes de ressources Azure. Si vous avez un compte personnel et que vous vous connectez avec un ID Microsoft, vous devez [créer un ID de travail à partir de votre ID personnel](../windows/create-aad-work-id.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
-* Il vous faut également l’outil [Azure PowerShell](/powershell/azureps-cmdlets-docs) ou la [CLI Azure pour Mac, Linux et Windows](../../cli-install-nodejs.md) de votre système d’exploitation client.
-* [OpenSSL](https://www.openssl.org/). OpenSSL est utilisé pour générer les certificats nécessaires.
+* Un travail ou des groupes de ressources Azure scolaire id toouse. Si vous avez un compte personnel et un journal avec un id Microsoft, vous devez trop[créer un id de travail de votre personnel une](../windows/create-aad-work-id.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+* Soit--selon votre système d’exploitation du client--hello [Azure PowerShell](/powershell/azureps-cmdlets-docs) ou hello [CLI d’Azure pour Mac, Linux et Windows](../../cli-install-nodejs.md).
+* [OpenSSL](https://www.openssl.org/). OpenSSL est utilisé toogenerate hello les certificats nécessaires.
 * Un client Git, comme [Git Bash](https://git-scm.com/).
-* Vous devez également configurer un serveur DNS pour pouvoir tester l’exemple d’application. Vous pouvez utiliser les serveurs ou services DNS qui prennent en charge les enregistrements DNS de caractères génériques A Record.
-* Un ordinateur pour exécuter les outils clients Deis. Vous pouvez utiliser un ordinateur local ou une machine virtuelle. Vous pouvez exécuter ces outils sur n’importe quelle distribution Linux. Toutefois, les instructions suivantes concernent Ubuntu.
+* tootest hello exemple d’application, vous devez également un serveur DNS. Vous pouvez utiliser les serveurs ou services DNS qui prennent en charge les enregistrements DNS de caractères génériques A Record.
+* Un ordinateur toorun Deis des outils clients. Vous pouvez utiliser un ordinateur local ou une machine virtuelle. Vous pouvez exécuter ces outils sur presque n’importe quel distribution Linux, mais Ubuntu utilisent hello instructions suivantes.
 
-## <a name="provision-the-cluster"></a>Approvisionner le cluster
-Dans cette section, vous allez utiliser un modèle [Azure Resource Manager](../../azure-resource-manager/resource-group-overview.md) à partir du dépôt open source [azure-quickstart-templates](https://github.com/Azure/azure-quickstart-templates). Tout d’abord, copiez le modèle. Ensuite, créez une paire de clés SSH à des fins d’authentification. Ensuite, configurez le nouvel identifiant de votre cluster. Enfin, utilisez le script Shell ou le script PowerShell pour approvisionner le cluster.
+## <a name="provision-hello-cluster"></a>Cluster hello de disposition
+Dans cette section, vous allez utiliser un [Azure Resource Manager](../../azure-resource-manager/resource-group-overview.md) modèle à partir du référentiel open source de hello [modèles de démarrage rapide azure](https://github.com/Azure/azure-quickstart-templates). Tout d’abord, vous allez copier vers le bas du modèle de hello. Ensuite, créez une paire de clés SSH à des fins d’authentification. Ensuite, configurez le nouvel identifiant de votre cluster. Et enfin, vous allez utiliser le script de Shell hello ou le cluster hello tooprovision hello PowerShell script.
 
-1. Clonez le dépôt : [https://github.com/Azure/azure-quickstart-templates](https://github.com/Azure/azure-quickstart-templates).
+1. Référentiel de hello clone : [https://github.com/Azure/azure-quickstart-templates](https://github.com/Azure/azure-quickstart-templates).
    
         git clone https://github.com/Azure/azure-quickstart-templates
-2. Accédez au dossier de modèles :
+2. Atteindre le dossier de modèles toohello :
    
         cd azure-quickstart-templates\deis-cluster-coreos
 3. Créez une paire de clés SSH à l’aide de l’outil ssh-keygen :
    
         ssh-keygen -t rsa -b 4096 -c "[your_email@domain.com]"
-4. Générez un certificat à l’aide de la clé privée ci-dessus :
+4. Générer un certificat à l’aide de hello au-dessus de clé privée :
    
-        openssl req -x509 -days 365 -new -key [your private key file] -out [cert file to be generated]
-5. Accédez à l’élément [https://discovery.etcd.io/new](https://discovery.etcd.io/new) pour générer un nouveau jeton de cluster, qui ressemblera à ce qui suit :
+        openssl req -x509 -days 365 -new -key [your private key file] -out [cert file toobe generated]
+5. Accédez trop[https://discovery.etcd.io/new](https://discovery.etcd.io/new) toogenerate un nouveau jeton de cluster, qui ressemble à quelque chose comme :
    
         https://discovery.etcd.io/6a28e078895c5ec737174db2419bb2f3
    <br />
-   Chaque cluster CoreOS doit bénéficier d’un jeton unique, fourni par ce service gratuit. Pour plus d’informations, voir la [documentation CoreOS](https://coreos.com/docs/cluster-management/setup/cluster-discovery/) .
-6. Modifiez le fichier **cloud-config.yaml** afin de remplacer le jeton **discovery** existant par le nouveau jeton :
+   Chaque cluster CoreOS doit toohave un jeton unique à partir de ce service gratuit. Pour plus d’informations, voir la [documentation CoreOS](https://coreos.com/docs/cluster-management/setup/cluster-discovery/) .
+6. Modifier hello **cloud-config.yaml** fichier existant de hello tooreplace **découverte** jeton avec le nouveau jeton d’hello :
    
         #cloud-config
         ---
         coreos:
           etcd:
             # generate a new token for each unique cluster from https://discovery.etcd.io/new
-            # uncomment the following line and replace it with your discovery URL
+            # uncomment hello following line and replace it with your discovery URL
             discovery: https://discovery.etcd.io/3973057f670770a7628f917d58c2208a
         ...
-7. Modifiez le fichier **azuredeploy-parameters.json** : ouvrez le certificat que vous avez créé à l’étape 4 dans un éditeur de texte. Copiez le texte figurant entre les éléments `----BEGIN CERTIFICATE-----` et `-----END CERTIFICATE-----`, et collez-le dans le paramètre **sshKeyData** (vous devrez supprimer tous les caractères de saut de ligne).
-8. Modifiez le paramètre **newStorageAccountName** . Il s’agit du compte de stockage associé aux disques du système d’exploitation de la machine virtuelle. Le nom de ce compte doit être unique au niveau global.
-9. Modifiez le paramètre **publicDomainName** . Il fera partie du nom DNS associé à l’adresse IP publique de l’équilibreur de charge. Le FQDN présente la valeur suivante : *[valeur de ce paramètre]*.*[région]*.cloudapp.azure.com. Par exemple, si vous spécifiez le nom « deishbai32 » et que le groupe de ressources est déployé dans la région ouest des États-Unis, le FQDN final de votre équilibreur de charge sera le suivant : deishbai32.westus.cloudapp.azure.com.
-10. Enregistrez le fichier de paramètres. Ensuite, vous pouvez approvisionner le cluster au moyen de Microsoft Azure PowerShell :
+7. Modifier hello **azuredeploy-parameters.json** fichier : certificat hello ouvrir créé à l’étape 4 dans un éditeur de texte. Copiez tout le texte entre `----BEGIN CERTIFICATE-----` et `-----END CERTIFICATE-----` dans hello **sshKeyData** paramètre (vous devez tooremove tous les caractères de saut de ligne).
+8. Modifier hello **newStorageAccountName** paramètre. Il s’agit de compte de stockage hello pour les disques de machine virtuelle du système d’exploitation. Nom de ce compte a toobe global unique.
+9. Modifier hello **publicDomainName** paramètre. Cela va faire partie du nom DNS de hello associé hello charge équilibrage adresse IP publique. Hello FQDN final auront hello format de *[valeur de ce paramètre]*. *[Région]* . cloudapp.azure.com. Par exemple, si vous spécifiez le nom de hello en tant que deishbai32, et groupe de ressources hello est la région ouest des États-Unis toohello déployé, puis hello final équilibrage de charge de nom de domaine complet tooyour sera deishbai32.westus.cloudapp.azure.com.
+10. Enregistrez le fichier de paramètres hello. Et ensuite, vous pouvez configurer cluster hello à l’aide d’Azure PowerShell :
     
         .\deploy-deis.ps1 -ResourceGroupName [resource group name] -ResourceGroupLocation "West US" -TemplateFile
         .\azuredeploy.json -ParametersFile .\azuredeploy-parameters.json -CloudInitFile .\cloud-config.yaml
@@ -81,49 +81,49 @@ Dans cette section, vous allez utiliser un modèle [Azure Resource Manager](../.
     
         ./deploy-deis.sh -n "[resource group name]" -l "West US" -f ./azuredeploy.json -e ./azuredeploy-parameters.json
         -c ./cloud-config.yaml  
-11. Une fois que le groupe de ressources est approvisionné, vous pouvez voir toutes les ressources dans le groupe sur le portail Azure Classic. Comme le montre la capture d’écran suivante, le groupe de ressources contient un réseau virtuel incluant trois machines virtuelles, associées au même groupe à haute disponibilité. Le groupe contient également un équilibreur de charge, qui est associé à une adresse IP publique.
+11. Une fois le groupe de ressources hello est configuré, vous pouvez voir toutes les ressources hello dans le groupe de hello sur le portail Azure classic. Comme indiqué dans hello suivant hello capture d’écran, groupe de ressources contient un réseau virtuel avec trois machines virtuelles, qui sont jointes toohello même groupe à haute disponibilité. groupe de Hello contient également un équilibreur de charge, ce qui a une adresse IP publique associée.
     
-    ![Groupe de ressources provisionné sur le portail Azure Classic](./media/deis-cluster/resource-group.png)
+    ![Hello configuré le groupe de ressources sur le portail Azure classic](./media/deis-cluster/resource-group.png)
 
-## <a name="install-the-client"></a>Installation du client
-Vous devez utiliser l’outil **deisctl** pour contrôler votre cluster Deis. Bien que cet outil soit automatiquement installé sur tous les nœuds du cluster, nous vous recommandons de l’utiliser sur un ordinateur d’administration distinct. En outre, comme tous les nœuds sont configurés avec des adresses IP privées uniquement, vous devrez utiliser un tunnel SSL via l’équilibreur de charge, qui présente une adresse IP publique, pour la connexion à tous les nœuds. Voici les étapes à suivre pour configurer l’outil deisctl sur une machine virtuelle ou physique distincte dotée d’Ubuntu.
+## <a name="install-hello-client"></a>Installer le client de hello
+Vous devez **deisctl** toocontrol votre Deis de cluster. Deisctl est installé automatiquement dans tous les nœuds de cluster hello, mais il est un deisctl toouse de bonnes pratiques sur un ordinateur d’administration distinct. En outre, étant donné que tous les nœuds sont configurés avec uniquement des adresses IP privées, vous devez toouse SSH tunneling via l’équilibrage de charge hello, qui a une adresse IP publique, ordinateurs de nœud tooconnect toohello. Hello Voici étapes hello paramétrant deisctl sur un ordinateur virtuel ou Ubuntu physique distinct.
 
 1. Installez deisctl:mkdir deis.
    
         cd deis
         curl -sSL http://deis.io/deisctl/install.sh | sh -s 1.6.1
         sudo ln -fs $PWD/deisctl /usr/local/bin/deisctl
-2. Ajoutez votre clé privée à l’agent ssh :
+2. Ajoutez votre agent toossh de clé privée :
    
         eval `ssh-agent -s`
-        ssh-add [path to the private key file, see step 1 in the previous section]
+        ssh-add [path toohello private key file, see step 1 in hello previous section]
 3. Configurez deisctl :
    
-        export DEISCTL_TUNNEL=[public ip of the load balancer]:2223
+        export DEISCTL_TUNNEL=[public ip of hello load balancer]:2223
 
-Le modèle définit les règles NAT entrantes qui mappent la valeur 2223 à l’instance 1, la valeur 2224, à l’instance 2 et la valeur 2225, à l’instance 3. Cela assure la redondance liée à l’utilisation de l’outil deisctl. Vous pouvez examiner ces règles sur le portail Azure Classic :
+Hello modèle définit les règles NAT entrantes qui mappent 2223 tooinstance 1, 2224 tooinstance 2 et 2225 tooinstance 3. Cela procure une redondance pour l’outil de deisctl hello. Vous pouvez examiner ces règles sur le portail Azure Classic :
 
-![Règles NAT sur l’équilibreur de charge](./media/deis-cluster/nat-rules.png)
+![Règles NAT sur l’équilibrage de charge hello](./media/deis-cluster/nat-rules.png)
 
 > [!NOTE]
-> Actuellement, le modèle prend uniquement en charge les clusters à 3 nœuds. En effet, la définition des règles NAT des modèles Azure Resource Manager présente une limitation : elle ne prend pas en charge la syntaxe de boucle.
+> Actuellement le modèle de hello prend uniquement en charge les clusters à 3 nœuds. En effet, la définition des règles NAT des modèles Azure Resource Manager présente une limitation : elle ne prend pas en charge la syntaxe de boucle.
 > 
 > 
 
-## <a name="install-and-start-the-deis-platform"></a>Installer et démarrer la plateforme Deis
-Vous pouvez désormais utiliser l’outil deisctl pour installer et démarrer la plate-forme Deis :
+## <a name="install-and-start-hello-deis-platform"></a>Installez et démarrez hello Deis de plate-forme
+Vous pouvez désormais utiliser deisctl tooinstall et démarrer hello Deis plateforme :
 
     deisctl config platform set domain=[some domain]
-    deisctl config platform set sshPrivateKey=[path to the private key file]
+    deisctl config platform set sshPrivateKey=[path toohello private key file]
     deisctl install platform
     deisctl start platform
 
 > [!NOTE]
-> Le démarrage de la plate-forme peut prendre un certain temps (jusqu’à 10 minutes, parfois). En particulier, le démarrage du service de générateur peut être long. De plus, vous devrez peut-être vous y prendre à plusieurs fois. Si l’opération se fige, appuyez sur `ctrl+c` pour arrêter l’exécution de la commande et recommencer.
+> Plateforme de hello départ prend un certain temps (jusqu'à 10 minutes). En particulier, le démarrage du service de générateur hello peut prendre un certain temps. Et parfois, il prend quelques tentatives toosucceed : si l’opération de hello semble toohang, essayez de taper `ctrl+c` exécution toobreak de commande hello, puis réessayez.
 > 
 > 
 
-Vous pouvez utiliser la commande `deisctl list` pour vérifier si tous les services sont exécutés :
+Vous pouvez utiliser `deisctl list` tooverify si tous les services sont en cours d’exécution :
 
     deisctl list
     UNIT                            MACHINE                 LOAD    ACTIVE          SUB
@@ -155,12 +155,12 @@ Vous pouvez utiliser la commande `deisctl list` pour vérifier si tous les servi
     deis-store-volume.service       9c79bbdd.../10.0.0.5    loaded  active          running
     deis-store-volume.service       ebe3005e.../10.0.0.6    loaded  active          running
 
-Félicitations ! Votre nouveau cluster Deis est opérationnel sur Azure. À présent, nous allons déployer un exemple d’application Go pour voir le cluster en action.
+Félicitations ! Votre nouveau cluster Deis est opérationnel sur Azure. Ensuite, nous allons déployer un cluster de hello Go application toosee dans l’action de l’exemple.
 
 ## <a name="deploy-and-scale-a-hello-world-application"></a>Déployer et mettre à l’échelle une application Hello World
-Les étapes suivantes indiquent comment déployer une application Go « Hellow World » sur le cluster. Ces étapes sont basées sur la [documentation Deis](http://docs.deis.io/en/latest/using_deis/using-dockerfiles/#using-dockerfiles).
+Hello étapes suivantes montrent comment toodeploy « Hello World » accédez cluster toohello d’application. étapes de Hello sont basées sur [Deis documentation](http://docs.deis.io/en/latest/using_deis/using-dockerfiles/#using-dockerfiles).
 
-1. Pour que le maillage de routage fonctionne correctement, vous devrez disposer d’un enregistrement « A record » pour votre domaine, qui pointe sur l’adresse IP publique de l’équilibreur de charge. La capture d’écran suivante illustre l’enregistrement « A record » associé à un exemple d’enregistrement de domaine sur GoDaddy :
+1. Pour hello routage maillage toowork correctement, vous devez toohave un enregistrement générique A pour votre domaine pointe toohello adresse IP publique de l’équilibrage de charge hello. Hello capture d’écran suivante affiche hello un enregistrement d’un enregistrement de domaine exemple sur GoDaddy :
    
     ![Enregistrement « A Record » GoDaddy](./media/deis-cluster/go-daddy.png)
    
@@ -171,11 +171,11 @@ Les étapes suivantes indiquent comment déployer une application Go « Hellow
         cd deis
         curl -sSL http://deis.io/deis-cli/install.sh | sh
         ln -fs $PWD/deis /usr/local/bin/deis
-3. Créez une clé SSH, puis ajoutez la clé publique sur GitHub (bien sûr, vous pouvez également utiliser des clés existantes). Pour créer une paire de clés SSH, procédez comme suit :
+3. Créer une clé SSH, puis ajoutez hello tooGitHub de clé publique (bien entendu, vous pouvez également réutiliser vos clés existantes). toocreate une nouvelle paire de clés SSH, utilisez :
    
         cd ~/.ssh
-        ssh-keygen (press [Enter]s to use default file names and empty passcode)
-4. Ajoute l’élément id_rsa.pub, ou la clé publique de votre choix, à GitHub. Pour cela, utilisez le bouton permettant d’ajouter une clé SSH sur l’écran de configuration des clés SSH :
+        ssh-keygen (press [Enter]s toouse default file names and empty passcode)
+4. Ajoutez id_rsa.pub ou hello de clé publique de votre choix, tooGitHub. Pour cela, à l’aide de hello ajouter SSH bouton clé dans l’écran de configuration de clés SSH :
    
    ![Clé GitHub](./media/deis-cluster/github-key.png)
    
@@ -184,9 +184,9 @@ Les étapes suivantes indiquent comment déployer une application Go « Hellow
    
         deis register http://deis.[your domain]
    <p />
-6. Ajoutez la clé SSH :
+6. Ajoutez la clé SSH hello :
    
-        deis keys:add [path to your SSH public key]
+        deis keys:add [path tooyour SSH public key]
    <p />      
 7. Créez une application.
    
@@ -195,29 +195,29 @@ Les étapes suivantes indiquent comment déployer une application Go « Hellow
         deis create
         git push deis master
    <p />
-8. L’action Git de type push déclenche la création et le déploiement d’images Docker, qui peuvent prendre quelques minutes. D’après mon expérience, il arrive parfois que l’étape 10 (insertion d’images dans le dépôt privé) se bloque. Dans ce cas, vous pouvez arrêter le processus, supprimer l’application à l’aide de `deis apps:destroy –a <application name>` to remove the application and try again. You can use `deis apps:list` pour identifier le nom de votre application. Si tout fonctionne, des éléments similaires à ce qui suit doivent figurer à la fin des sorties de commandes :
+8.push de git Hello déclenchera Docker images toobe généré et déployé, qui prendra quelques minutes. À partir de mon expérience, occasionnellement, étape 10 (référentiel de push image tooprivate) peut se bloquer. Dans ce cas, vous pouvez arrêter le processus de hello, à l’aide de remove hello application ' deis applications : détruire : un <application name> ` tooremove hello application and try again. You can use `deis apps:list' toofind nom hello de votre application. Si tout fonctionne, vous devez voir quelque chose comme suit hello à fin hello de sorties de commandes :
    
         -----> Launching...
-               done, lambda-underdog:v2 deployed to Deis
+               done, lambda-underdog:v2 deployed tooDeis
                http://lambda-underdog.artitrack.com
-               To learn more, use `deis help` or visit http://deis.io
-        To ssh://git@deis.artitrack.com:2222/lambda-underdog.git
+               toolearn more, use `deis help` or visit http://deis.io
+        toossh://git@deis.artitrack.com:2222/lambda-underdog.git
          * [new branch]      master -> master
    <p />
-9. Vérifiez que l’application fonctionne :
+9. Vérifiez si l’application hello fonctionne :
    
         curl -S http://[your application name].[your domain]
    Ce qui suit doit s’afficher :
    
-        Welcome to Deis!
-        See the documentation at http://docs.deis.io/ for more information.
-        (you can use geis apps:list to get the name of your application).
+        Welcome tooDeis!
+        See hello documentation at http://docs.deis.io/ for more information.
+        (you can use geis apps:list tooget hello name of your application).
    <p />
-10. Mettez l’application à l’échelle pour 3 instances :
+10. Mettre à l’échelle too3 instances de l’application hello :
     
         deis scale cmd=3
     <p />
-11. Si vous le souhaitez, vous pouvez utiliser la commande « deis info » pour examiner les détails de votre application. Les sorties suivantes proviennent du déploiement de mon application :
+11. Si vous le souhaitez, vous pouvez utiliser deis Infos tooexamine détails de votre application. Hello sorties suivantes sont mon déploiement d’application :
     
         deis info
         === lambda-underdog Application
@@ -243,10 +243,10 @@ Les étapes suivantes indiquent comment déployer une application Go « Hellow
         No domains
 
 ## <a name="next-steps"></a>Étapes suivantes
-Cet article vous a présenté toutes les étapes d’approvisionnement d’un nouveau cluster Deis sur Azure, au moyen d’un modèle Azure Resource Manager. Le modèle prend en charge la redondance des outils de connexion, ainsi que l’équilibrage de charge des applications déployées. Le modèle évite également d’utiliser des adresses IP publiques sur les nœuds membres, ce qui permet de préserver des ressources d’adresses IP publiques précieuses et fournit un environnement plus sécurisé pour les applications hôtes. Pour en savoir plus, consultez les articles suivants :
+Cet article vous parcouru toutes les tooprovision d’étapes hello Deis un nouveau cluster sur Azure à l’aide d’un modèle Azure Resource Manager. modèle de Hello prend en charge la redondance dans les connexions, ainsi que pour les applications déployées d’équilibrage de charge des outils. modèle de Hello évite également à l’aide d’adresses IP publiques sur les nœuds membres, qui enregistre des précieuses ressources IP publics et fournit un environnement plus sécurisé d’applications toohost. toolearn, voir hello suivant des articles :
 
 [Présentation d’Azure Resource Manager][resource-group-overview]  
-[Utilisation de l’interface de ligne de commande Azure][azure-command-line-tools]  
+[Comment toouse hello CLI d’Azure][azure-command-line-tools]  
 [Utilisation d’Azure PowerShell avec Azure Resource Manager][powershell-azure-resource-manager]  
 
 [azure-command-line-tools]: ../../cli-install-nodejs.md

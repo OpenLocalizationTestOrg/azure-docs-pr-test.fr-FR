@@ -1,6 +1,6 @@
 ---
-title: "Surveillance et gestion des travaux Stream Analytics à l’aide de PowerShell | Microsoft Docs"
-description: "Découvrez comment utiliser Azure PowerShell et les applets de commande pour surveiller et gérer des travaux Stream Analytics."
+title: "aaaMonitor et gérer des tâches de flux de données Analytique avec PowerShell | Documents Microsoft"
+description: "Découvrez comment toomonitor d’Azure PowerShell et les applets de commande toouse et gérer des tâches de flux de données Analytique."
 keywords: azure powershell, applets de commande azure powershell, commande powershell, scripts powershell
 services: stream-analytics
 documentationcenter: 
@@ -15,27 +15,27 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 03/28/2017
 ms.author: jeffstok
-ms.openlocfilehash: e3449ee90cc83c5e823e5948a2a2e7e633c454f1
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 44abc82f1c44a5ebc1701badd6547b84dac239b6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="monitor-and-manage-stream-analytics-jobs-with-azure-powershell-cmdlets"></a>Surveillance et gestion des travaux Stream Analytics à l’aide des applets de commande Azure PowerShell
-Découvrez comment surveiller et gérer les ressources Stream Analytics à l’aide d’applets de commande Azure PowerShell et de scripts PowerShell qui exécutent les tâches Stream Analytics de base.
+Découvrez comment toomonitor et gérer les ressources de flux de données Analytique avec les applets de commande PowerShell de Azure et l’écriture de scripts powershell qui exécutent des tâches de flux de données Analytique base.
 
 ## <a name="prerequisites-for-running-azure-powershell-cmdlets-for-stream-analytics"></a>Conditions requises pour l'exécution des applets de commande Azure PowerShell pour Stream Analytics
-* Créez un groupe de ressources Azure dans votre abonnement. Voici un exemple de script Azure PowerShell : Pour obtenir des informations sur Azure PowerShell, consultez [Installation et configuration d’Azure PowerShell](/powershell/azure/overview).  
+* Créez un groupe de ressources Azure dans votre abonnement. Hello Voici un exemple de script Azure PowerShell. Pour obtenir des informations sur Azure PowerShell, consultez [Installation et configuration d’Azure PowerShell](/powershell/azure/overview).  
 
 Azure PowerShell 0.9.8 :  
 
-         # Log in to your Azure account
+         # Log in tooyour Azure account
         Add-AzureAccount
 
-        # Select the Azure subscription you want to use to create the resource group if you have more than one subscription on your account.
+        # Select hello Azure subscription you want toouse toocreate hello resource group if you have more than one subscription on your account.
         Select-AzureSubscription -SubscriptionName <subscription name>
 
-        # If Stream Analytics has not been registered to the subscription, remove remark symbol below (#) to run the Register-AzureProvider cmdlet to register the provider namespace.
+        # If Stream Analytics has not been registered toohello subscription, remove remark symbol below (#) toorun hello Register-AzureProvider cmdlet tooregister hello provider namespace.
         #Register-AzureProvider -Force -ProviderNamespace 'Microsoft.StreamAnalytics'
 
         # Create an Azure resource group
@@ -43,13 +43,13 @@ Azure PowerShell 0.9.8 :
 
 Azure PowerShell 1.0 :  
 
-         # Log in to your Azure account
+         # Log in tooyour Azure account
         Login-AzureRmAccount
 
-        # Select the Azure subscription you want to use to create the resource group.
+        # Select hello Azure subscription you want toouse toocreate hello resource group.
         Get-AzureRmSubscription –SubscriptionName “your sub” | Select-AzureRmSubscription
 
-        # If Stream Analytics has not been registered to the subscription, remove remark symbol below (#) to run the Register-AzureProvider cmdlet to register the provider namespace.
+        # If Stream Analytics has not been registered toohello subscription, remove remark symbol below (#) toorun hello Register-AzureProvider cmdlet tooregister hello provider namespace.
         #Register-AzureRmResourceProvider -Force -ProviderNamespace 'Microsoft.StreamAnalytics'
 
         # Create an Azure resource group
@@ -58,16 +58,16 @@ Azure PowerShell 1.0 :
 
 
 > [!NOTE]
-> Par défaut, la surveillance n’est pas activée pour les travaux Stream Analytics créés par programme.  Vous pouvez activer manuellement la surveillance dans le portail Azure. Pour cela, accédez à la page de surveillance du travail et cliquez sur le bouton Activer. Vous pouvez également procéder par programme en suivant les étapes décrites dans [Azure Stream Analytics - Surveillance des travaux Stream Analytics par programme](stream-analytics-monitor-jobs.md).
+> Par défaut, la surveillance n’est pas activée pour les travaux Stream Analytics créés par programme.  Vous pouvez manuellement activer l’analyse dans le portail Azure en parcourant la page de surveillance de la tâche toohello de hello et en cliquant sur le bouton Activer de hello ou vous pouvez le faire par programme en suivant les étapes de hello situés [Analytique de flux de données Azure - analyse de flux de données Analytique des travaux par programmation](stream-analytics-monitor-jobs.md).
 > 
 > 
 
 ## <a name="azure-powershell-cmdlets-for-stream-analytics"></a>Applets de commande Azure PowerShell pour Stream Analytics
-Vous pouvez utiliser les applets de commande Azure PowerShell suivantes pour surveiller et gérer des travaux Azure Stream Analytics. Notez qu'il existe différentes versions d'Azure PowerShell. 
-**Dans les exemples répertoriés, la première commande s'applique à Azure PowerShell 0.9.8, la deuxième commande s'applique à Azure PowerShell 1.0.** Les commandes Azure PowerShell 1.0 contiennent toujours « AzureRM » dans la commande.
+Hello suivant d’applets de commande PowerShell de Azure peut être utilisé toomonitor et gérer des tâches d’Analytique de flux de données Azure. Notez qu'il existe différentes versions d'Azure PowerShell. 
+**Dans les exemples hello hello répertoriés première commande est de Azure PowerShell 0.9.8, commande deuxième hello est pour Azure PowerShell 1.0.** commandes Hello Azure PowerShell 1.0 aura toujours « Azure Resource Manager » dans la commande hello.
 
 ### <a name="get-azurestreamanalyticsjob--get-azurermstreamanalyticsjob"></a>Get-AzureStreamAnalyticsJob | Get-AzureRMStreamAnalyticsJob
-Répertorie tous les travaux Stream Analytics définis dans l’abonnement Azure ou le groupe de ressources spécifié, ou obtient des informations sur un travail spécifique au sein d’un groupe de ressources.
+Répertorie toutes les tâches de flux de données Analytique définies dans hello abonnement Azure ou le groupe de ressources spécifié, ou obtient des informations sur une tâche spécifique au sein d’un groupe de ressources.
 
 **Exemple 1**
 
@@ -79,7 +79,7 @@ Azure PowerShell 1.0 :
 
     Get-AzureRMStreamAnalyticsJob
 
-Cette commande PowerShell retourne des informations sur tous les travaux Stream Analytics dans l’abonnement Azure.
+Cette commande PowerShell retourne des informations sur toutes les tâches de flux de données Analytique hello Bonjour abonnement Azure.
 
 **Exemple 2**
 
@@ -91,7 +91,7 @@ Azure PowerShell 1.0 :
 
     Get-AzureRMStreamAnalyticsJob -ResourceGroupName StreamAnalytics-Default-Central-US 
 
-Cette commande PowerShell retourne des informations sur tous les travaux Stream Analytics dans le groupe de ressources StreamAnalytics-Default-Central-US.
+Cette commande PowerShell retourne des informations sur toutes les tâches de flux de données Analytique hello dans le groupe de ressources hello Stream Analytics par défaut-Centre des États-Unis.
 
 **Exemple 3**
 
@@ -103,10 +103,10 @@ Azure PowerShell 1.0 :
 
     Get-AzureRMStreamAnalyticsJob -ResourceGroupName StreamAnalytics-Default-Central-US -Name StreamingJob
 
-Cette commande PowerShell retourne des informations sur le travail Stream Analytics StreamingJob dans le groupe de ressources StreamAnalytics-Default-Central-US.
+Cette commande PowerShell retourne des informations sur la tâche de flux de données Analytique hello StreamingJob dans le groupe de ressources hello Stream Analytics par défaut-Centre des États-Unis.
 
 ### <a name="get-azurestreamanalyticsinput--get-azurermstreamanalyticsinput"></a>Get-AzureStreamAnalyticsInput | Get-AzureRMStreamAnalyticsInput
-Répertorie toutes les entrées qui sont définies dans un travail Stream Analytics spécifié ou obtient des informations sur une entrée spécifique.
+Répertorie toutes les entrées de hello qui sont définies dans une tâche de flux de données Analytique spécifiée ou obtient des informations sur une entrée spécifique.
 
 **Exemple 1**
 
@@ -118,7 +118,7 @@ Azure PowerShell 1.0 :
 
     Get-AzureRMStreamAnalyticsInput -ResourceGroupName StreamAnalytics-Default-Central-US -JobName StreamingJob
 
-Cette commande PowerShell retourne des informations sur toutes les entrées définies dans le travail StreamingJob.
+Cette commande PowerShell retourne des informations sur toutes les entrées de hello définis dans le travail hello StreamingJob.
 
 **Exemple 2**
 
@@ -130,10 +130,10 @@ Azure PowerShell 1.0 :
 
     Get-AzureRMStreamAnalyticsInput -ResourceGroupName StreamAnalytics-Default-Central-US -JobName StreamingJob –Name EntryStream
 
-Cette commande PowerShell retourne des informations sur l’entrée nommée EntryStream définie dans le travail StreamingJob.
+Cette commande PowerShell retourne des informations sur les entrées hello nommée EntryStream défini dans le travail hello StreamingJob.
 
 ### <a name="get-azurestreamanalyticsoutput--get-azurermstreamanalyticsoutput"></a>Get-AzureStreamAnalyticsOutput | Get-AzureRMStreamAnalyticsOutput
-Répertorie toutes les sorties qui sont définies dans un travail Stream Analytics spécifié ou obtient des informations sur une sortie spécifique.
+Répertorie toutes les sorties hello qui sont définies dans une tâche de flux de données Analytique spécifiée ou obtient des informations sur une sortie spécifique.
 
 **Exemple 1**
 
@@ -145,7 +145,7 @@ Azure PowerShell 1.0 :
 
     Get-AzureRMStreamAnalyticsOutput -ResourceGroupName StreamAnalytics-Default-Central-US -JobName StreamingJob
 
-Cette commande PowerShell retourne des informations sur les sorties définies dans le travail StreamingJob.
+Cette commande PowerShell retourne des informations sur les sorties hello définies dans la tâche de hello StreamingJob.
 
 **Exemple 2**
 
@@ -157,10 +157,10 @@ Azure PowerShell 1.0 :
 
     Get-AzureRMStreamAnalyticsOutput -ResourceGroupName StreamAnalytics-Default-Central-US -JobName StreamingJob –Name Output
 
-Cette commande PowerShell retourne des informations sur la sortie nommée Output définie dans le travail StreamingJob.
+Cette commande PowerShell retourne des informations sur la sortie hello nommé défini dans le travail hello StreamingJob de sortie.
 
 ### <a name="get-azurestreamanalyticsquota--get-azurermstreamanalyticsquota"></a>Get-AzureStreamAnalyticsQuota | Get-AzureRMStreamAnalyticsQuota
-Obtient des informations sur le quota des unités de diffusion en continu d'une région spécifiée.
+Obtient les informations de quota de hello de diffusion en continu les unités dans la région spécifiée.
 
 **Exemple 1**
 
@@ -172,7 +172,7 @@ Azure PowerShell 1.0 :
 
     Get-AzureRMStreamAnalyticsQuota –Location "Central US" 
 
-Cette commande PowerShell retourne des informations sur le quota et l’utilisation des unités de diffusion en continu dans la région Centre des États-Unis.
+Cette commande PowerShell retourne des informations sur le quota de hello et de l’utilisation des unités de diffusion en continu dans la région du centre des États-Unis hello.
 
 ### <a name="get-azurestreamanalyticstransformation--getazurermstreamanalyticstransformation"></a>Get-AzureStreamAnalyticsTransformation | GetAzureRMStreamAnalyticsTransformation
 Obtient des informations sur une transformation spécifique définie dans un travail Stream Analytics.
@@ -187,18 +187,18 @@ Azure PowerShell 1.0 :
 
     Get-AzureRMStreamAnalyticsTransformation -ResourceGroupName StreamAnalytics-Default-Central-US -JobName StreamingJob –Name StreamingJob
 
-Cette commande PowerShell retourne des informations sur la transformation nommée StreamingJob dans le travail StreamingJob.
+Cette commande PowerShell retourne des informations sur la transformation hello appelée StreamingJob dans la tâche de hello StreamingJob.
 
 ### <a name="new-azurestreamanalyticsinput--new-azurermstreamanalyticsinput"></a>New-AzureStreamAnalyticsInput | New-AzureRMStreamAnalyticsInput
 Crée une entrée dans un travail Stream Analytics ou met à jour une entrée spécifiée existante.
 
-Vous pouvez spécifier le nom de l'entrée dans le fichier .json ou sur la ligne de commande. Si vous spécifiez les deux, le nom indiqué sur la ligne de commande doit être identique à celui contenu dans le fichier.
+Hello nom de l’entrée de hello peut être spécifié dans le fichier .json de hello ou sur la ligne de commande hello. Si les deux sont spécifiées, nom hello sur la ligne de commande hello doit hello identique hello un fichier de hello.
 
-Si vous spécifiez une entrée qui existe déjà et que vous ne spécifiez pas le paramètre -Force, l'applet de commande vous demande s'il faut remplacer l'entrée existante.
+Si vous spécifiez une entrée existe déjà et que vous ne spécifiez pas hello – paramètre Force, applet de commande hello demandera ou non tooreplace hello entrée existante.
 
-Si vous spécifiez le paramètre -Force et un nom d'entrée existant, l'entrée est remplacée sans confirmation.
+Si vous spécifiez hello – paramètre Force et spécifiez un existant, nom d’entrée, hello entrée sera remplacée sans confirmation.
 
-Pour plus d’informations sur la structure et le contenu du fichier JSON, reportez-vous à la section [Création d’une entrée (Azure Stream Analytics)][msdn-rest-api-create-stream-analytics-input] de la [bibliothèque de référence des API REST de gestion de Stream Analytics][stream.analytics.rest.api.reference].
+Pour plus d’informations sur la structure du fichier JSON hello et de contenu, consultez toohello [créer une entrée (Analytique de flux de données Azure)] [ msdn-rest-api-create-stream-analytics-input] section Hello [API REST de gestion des flux de données Analytique Bibliothèque de référence][stream.analytics.rest.api.reference].
 
 **Exemple 1**
 
@@ -210,7 +210,7 @@ Azure PowerShell 1.0 :
 
     New-AzureRMStreamAnalyticsInput -ResourceGroupName StreamAnalytics-Default-Central-US -JobName StreamingJob –File "C:\Input.json" 
 
-Cette commande PowerShell crée une entrée à partir du fichier Input.json. Si une entrée existante avec le nom spécifié dans le fichier de définition d'entrée est déjà définie, l'applet de commande vous demande s'il faut la remplacer.
+Cette commande PowerShell crée une nouvelle entrée à partir du fichier de hello Input.json. Si une entrée existante avec le nom hello spécifié dans le fichier de définition d’entrée de hello est déjà définie, l’applet de commande hello vous demande ou non tooreplace il.
 
 **Exemple 2**
 
@@ -222,7 +222,7 @@ Azure PowerShell 1.0 :
 
     New-AzureRMStreamAnalyticsInput -ResourceGroupName StreamAnalytics-Default-Central-US -JobName StreamingJob –File "C:\Input.json" –Name EntryStream
 
-Cette commande PowerShell crée une entrée dans le travail nommé EntryStream. Si une entrée existante portant ce nom est déjà définie, l'applet de commande vous demande s'il faut la remplacer.
+Cette commande PowerShell crée une entrée dans la tâche hello appelé EntryStream. Si une entrée existante portant ce nom est déjà définie, l’applet de commande hello vous demande ou non tooreplace il.
 
 **Exemple 3**
 
@@ -234,18 +234,18 @@ Azure PowerShell 1.0 :
 
     New-AzureRMStreamAnalyticsInput -ResourceGroupName StreamAnalytics-Default-Central-US -JobName StreamingJob –File "C:\Input.json" –Name EntryStream -Force
 
-Cette commande PowerShell remplace la définition de la source d’entrée existante nommée EntryStream par la définition qui se trouve dans le fichier.
+Cette commande PowerShell remplace la définition de hello de source d’entrée existante hello appelé EntryStream avec définition hello à partir du fichier de hello.
 
 ### <a name="new-azurestreamanalyticsjob--new-azurermstreamanalyticsjob"></a>New-AzureStreamAnalyticsJob | New-AzureRMStreamAnalyticsJob
-Crée un travail Stream Analytics dans Microsoft Azure ou met à jour la définition d'un travail existant spécifié.
+Crée une tâche de flux de données Analytique dans Microsoft Azure, ou met à jour de définition de hello d’une tâche spécifiée existante.
 
-Vous pouvez spécifier le nom du travail dans le fichier .json ou sur la ligne de commande. Si vous spécifiez les deux, le nom indiqué sur la ligne de commande doit être identique à celui contenu dans le fichier.
+nom de Hello du travail de hello peut être spécifié dans le fichier .json de hello ou sur la ligne de commande hello. Si les deux sont spécifiées, nom hello sur la ligne de commande hello doit hello identique hello un fichier de hello.
 
-Si vous spécifiez un nom de travail qui existe déjà et que vous ne spécifiez pas le paramètre -Force, l'applet de commande vous demande s'il faut remplacer le travail existant.
+Si vous spécifiez un nom de tâche existe déjà et que vous ne spécifiez pas hello – paramètre Force, applet de commande hello demandera ou non tooreplace hello travail existant.
 
-Si vous spécifiez le paramètre -Force et un nom de travail existant, la définition de travail est remplacée sans confirmation.
+Si vous spécifiez hello – paramètre Force et spécifiez un nom de travail existant, définition de la tâche hello est remplacée sans confirmation.
 
-Pour plus d’informations sur la structure et le contenu du fichier JSON, reportez-vous à la section [Création d’un travail Stream Analytics][msdn-rest-api-create-stream-analytics-job] de la [bibliothèque de référence des API REST de gestion de Stream Analytics][stream.analytics.rest.api.reference].
+Pour plus d’informations sur la structure du fichier JSON hello et de contenu, consultez toohello [créer une tâche de flux de données Analytique] [ msdn-rest-api-create-stream-analytics-job] section Hello [référence d’API REST gestion des flux de données Analytique Bibliothèque][stream.analytics.rest.api.reference].
 
 **Exemple 1**
 
@@ -257,7 +257,7 @@ Azure PowerShell 1.0 :
 
     New-AzureRMStreamAnalyticsJob -ResourceGroupName StreamAnalytics-Default-Central-US –File "C:\JobDefinition.json" 
 
-Cette commande PowerShell crée un travail à partir de la définition qui se trouve dans JobDefinition.json. Si un travail existant avec le nom spécifié dans le fichier de définition de travail est déjà défini, l'applet de commande vous demande s'il faut le remplacer.
+Cette commande PowerShell crée une nouvelle tâche à partir de la définition de hello dans JobDefinition.json. Si un travail existant avec le nom hello spécifié dans le fichier de définition de tâche hello est déjà défini, l’applet de commande hello vous demande ou non tooreplace il.
 
 **Exemple 2**
 
@@ -269,18 +269,18 @@ Azure PowerShell 1.0 :
 
     New-AzureRMStreamAnalyticsJob -ResourceGroupName StreamAnalytics-Default-Central-US –File "C:\JobDefinition.json" –Name StreamingJob -Force
 
-Cette commande PowerShell remplace la définition du travail StreamingJob.
+Cette commande PowerShell remplace la définition de tâche hello StreamingJob.
 
 ### <a name="new-azurestreamanalyticsoutput--new-azurermstreamanalyticsoutput"></a>New-AzureStreamAnalyticsOutput | New-AzureRMStreamAnalyticsOutput
 Crée une sortie dans un travail Stream Analytics ou met à jour une sortie existante.  
 
-Vous pouvez spécifier le nom de la sortie dans le fichier .json ou sur la ligne de commande. Si vous spécifiez les deux, le nom indiqué sur la ligne de commande doit être identique à celui contenu dans le fichier.
+nom de Hello de sortie de hello peut être spécifié dans le fichier .json de hello ou sur la ligne de commande hello. Si les deux sont spécifiées, nom hello sur la ligne de commande hello doit hello identique hello un fichier de hello.
 
-Si vous spécifiez une sortie qui existe déjà et que vous ne spécifiez pas le paramètre -Force, l'applet de commande vous demande s'il faut remplacer la sortie existante.
+Si vous spécifiez une sortie qui existe déjà et que vous ne spécifiez pas hello – paramètre Force, applet de commande hello demandera ou non tooreplace hello sortie existant.
 
-Si vous spécifiez le paramètre -Force et un nom de sortie existant, la sortie est remplacée sans confirmation.
+Si vous spécifiez hello – paramètre Force et spécifiez le nom de sortie existant, la sortie de hello est remplacé sans confirmation.
 
-Pour plus d’informations sur la structure et le contenu du fichier JSON, reportez-vous à la section [Création d’une sortie (Azure Stream Analytics)][msdn-rest-api-create-stream-analytics-output] de la[ bibliothèque de référence des API REST de gestion de Stream Analytics][stream.analytics.rest.api.reference].
+Pour plus d’informations sur la structure du fichier JSON hello et de contenu, consultez toohello [créer une sortie (Analytique de flux de données Azure)] [ msdn-rest-api-create-stream-analytics-output] section Hello [API REST de gestion des flux de données Analytique Bibliothèque de référence][stream.analytics.rest.api.reference].
 
 **Exemple 1**
 
@@ -292,7 +292,7 @@ Azure PowerShell 1.0 :
 
     New-AzureRMStreamAnalyticsOutput -ResourceGroupName StreamAnalytics-Default-Central-US –File "C:\Output.json" –JobName StreamingJob –Name output
 
-Cette commande PowerShell crée une sortie nommée « output » dans le travail StreamingJob. Si une sortie existante portant ce nom est déjà définie, l'applet de commande vous demande s'il faut la remplacer.
+Cette commande PowerShell crée une sortie appelée « sortie » dans la tâche de hello StreamingJob. Si une sortie existante portant ce nom est déjà définie, l’applet de commande hello vous demande ou non tooreplace il.
 
 **Exemple 2**
 
@@ -304,18 +304,18 @@ Azure PowerShell 1.0 :
 
     New-AzureRMStreamAnalyticsOutput -ResourceGroupName StreamAnalytics-Default-Central-US –File "C:\Output.json" –JobName StreamingJob –Name output -Force
 
-Cette commande PowerShell remplace la définition de la sortie « output » dans le travail StreamingJob.
+Cette commande PowerShell remplace la définition de hello de « sortie » dans la tâche de hello StreamingJob.
 
 ### <a name="new-azurestreamanalyticstransformation--new-azurermstreamanalyticstransformation"></a>New-AzureStreamAnalyticsTransformation | New-AzureRMStreamAnalyticsTransformation
-Crée une transformation dans un travail Stream Analytics ou met à jour la transformation existante.
+Crée une nouvelle transformation au sein d’une tâche de flux de données Analytique ou met à jour de la transformation de hello existant.
 
-Vous pouvez spécifier le nom de la transformation dans le fichier .json ou sur la ligne de commande. Si vous spécifiez les deux, le nom indiqué sur la ligne de commande doit être identique à celui contenu dans le fichier.
+nom de Hello de transformation de hello peut être spécifié dans le fichier .json de hello ou sur la ligne de commande hello. Si les deux sont spécifiées, nom hello sur la ligne de commande hello doit hello identique hello un fichier de hello.
 
-Si vous spécifiez une transformation qui existe déjà et que vous ne spécifiez pas le paramètre -Force, l'applet de commande vous demande s'il faut remplacer la transformation existante.
+Si vous spécifiez une transformation qui existe déjà et que vous ne spécifiez pas hello – paramètre Force, applet de commande hello demandera ou non tooreplace hello transformation existante.
 
-Si vous spécifiez le paramètre -Force et un nom de transformation existant, la transformation est remplacée sans confirmation.
+Si vous spécifiez hello – paramètre Force et spécifiez un nom existant de la transformation, la transformation de hello est remplacée sans confirmation.
 
-Pour plus d’informations sur la structure et le contenu du fichier JSON, reportez-vous à la section [Création d’une transformation (Azure Stream Analytics)][msdn-rest-api-create-stream-analytics-transformation] de la [bibliothèque de référence des API REST de gestion de Stream Analytics][stream.analytics.rest.api.reference].
+Pour plus d’informations sur la structure du fichier JSON hello et de contenu, consultez toohello [créer une Transformation (Analytique de flux de données Azure)] [ msdn-rest-api-create-stream-analytics-transformation] section Hello [gestion des flux de données Analytique Bibliothèque de référence d’API REST][stream.analytics.rest.api.reference].
 
 **Exemple 1**
 
@@ -327,7 +327,7 @@ Azure PowerShell 1.0 :
 
     New-AzureRMStreamAnalyticsTransformation -ResourceGroupName StreamAnalytics-Default-Central-US –File "C:\Transformation.json" –JobName StreamingJob –Name StreamingJobTransform
 
-Cette commande PowerShell crée une transformation nommée StreamingJobTransform dans le travail StreamingJob. Si une transformation existante est déjà définie avec ce nom, l'applet de commande vous demande s'il faut la remplacer.
+Cette commande PowerShell crée une nouvelle transformation appelée StreamingJobTransform dans la tâche de hello StreamingJob. Si une transformation existante est déjà définie avec ce nom, l’applet de commande hello vous demande ou non tooreplace il.
 
 **Exemple 2**
 
@@ -339,11 +339,11 @@ Azure PowerShell 1.0 :
 
     New-AzureRMStreamAnalyticsTransformation -ResourceGroupName StreamAnalytics-Default-Central-US –File "C:\Transformation.json" –JobName StreamingJob –Name StreamingJobTransform -Force
 
- Cette commande PowerShell remplace la définition de StreamingJobTransform dans le travail StreamingJob.
+ Cette commande PowerShell remplace la définition de hello de StreamingJobTransform dans la tâche de hello StreamingJob.
 
 ### <a name="remove-azurestreamanalyticsinput--remove-azurermstreamanalyticsinput"></a>Remove-AzureStreamAnalyticsInput | Remove-AzureRMStreamAnalyticsInput
 Supprime de manière asynchrone une entrée spécifique d'un travail Stream Analytics dans Microsoft Azure.  
-Si vous spécifiez le paramètre -Force, l'entrée est supprimée sans confirmation.
+Si vous spécifiez hello – paramètre Force, hello d’entrée est supprimée sans confirmation.
 
 **Exemple 1**
 
@@ -355,11 +355,11 @@ Azure PowerShell 1.0 :
 
     Remove-AzureRMStreamAnalyticsInput -ResourceGroupName StreamAnalytics-Default-Central-US –JobName StreamingJob –Name EventStream
 
-Cette commande PowerShell supprime l’entrée EventStream dans le travail StreamingJob.  
+Cette commande PowerShell supprime hello EventStream d’entrée dans la tâche de hello StreamingJob.  
 
 ### <a name="remove-azurestreamanalyticsjob--remove-azurermstreamanalyticsjob"></a>Remove-AzureStreamAnalyticsJob | Remove-AzureRMStreamAnalyticsJob
 Supprime de manière asynchrone un travail Stream Analytics spécifique dans Microsoft Azure.  
-Si vous spécifiez le paramètre -Force, le travail est supprimé sans confirmation.
+Si vous spécifiez hello – paramètre Force, hello travail sera supprimée sans confirmation.
 
 **Exemple 1**
 
@@ -371,11 +371,11 @@ Azure PowerShell 1.0 :
 
     Remove-AzureRMStreamAnalyticsJob -ResourceGroupName StreamAnalytics-Default-Central-US –Name StreamingJob 
 
-Cette commande PowerShell supprime le travail StreamingJob.  
+Cette commande PowerShell supprime le travail de hello StreamingJob.  
 
 ### <a name="remove-azurestreamanalyticsoutput--remove-azurermstreamanalyticsoutput"></a>Remove-AzureStreamAnalyticsOutput | Remove-AzureRMStreamAnalyticsOutput
 Supprime de manière asynchrone une sortie spécifique d'un travail Stream Analytics dans Microsoft Azure.  
-Si vous spécifiez le paramètre -Force, la sortie est supprimée sans confirmation.
+Si vous spécifiez hello – paramètre Force, hello sortie sera supprimée sans confirmation.
 
 **Exemple 1**
 
@@ -387,7 +387,7 @@ Azure PowerShell 1.0 :
 
     Remove-AzureRMStreamAnalyticsOutput -ResourceGroupName StreamAnalytics-Default-Central-US –JobName StreamingJob –Name Output
 
-Cette commande PowerShell supprime la sortie Output dans le travail StreamingJob.  
+Sortie de sortie de cette commande supprime hello de PowerShell dans la tâche de hello StreamingJob.  
 
 ### <a name="start-azurestreamanalyticsjob--start-azurermstreamanalyticsjob"></a>Start-AzureStreamAnalyticsJob | Start-AzureRMStreamAnalyticsJob
 Déploie et démarre un travail Stream Analytics dans Microsoft Azure de façon asynchrone.
@@ -402,10 +402,10 @@ Azure PowerShell 1.0 :
 
     Start-AzureRMStreamAnalyticsJob -ResourceGroupName StreamAnalytics-Default-Central-US -Name StreamingJob -OutputStartMode CustomTime -OutputStartTime 2012-12-12T12:12:12Z
 
-Cette commande PowerShell démarre le travail StreamingJob avec une heure de début de sortie personnalisée définie sur le 12 décembre 2012, 12:12:12 UTC.
+Cette commande PowerShell démarre hello travail StreamingJob avec une heure de début de sortie personnalisée définie tooDecember 12, 2012, 12:12:12 UTC.
 
 ### <a name="stop-azurestreamanalyticsjob--stop-azurermstreamanalyticsjob"></a>Stop-AzureStreamAnalyticsJob | Stop-AzureRMStreamAnalyticsJob
-Arrête l'exécution d'un travail Stream Analytics dans Microsoft Azure de façon asynchrone et libère les ressources qui étaient utilisées. La définition du travail et les métadonnées restent disponibles dans votre abonnement par le biais du Portail Azure et des API de gestion ; ainsi, le travail peut être modifié et redémarré. Un travail à l'état Arrêté ne vous sera pas facturé.
+Arrête l'exécution d'un travail Stream Analytics dans Microsoft Azure de façon asynchrone et libère les ressources qui étaient utilisées. Hello métadonnées et la définition de la tâche reste disponibles au sein de votre abonnement via hello portail Azure et les API de gestion, telles que hello travail peut être modifié et redémarré. Vous ne serez pas facturé pour une tâche dans l’état de hello s’est arrêté.
 
 **Exemple 1**
 
@@ -417,10 +417,10 @@ Azure PowerShell 1.0 :
 
     Stop-AzureRMStreamAnalyticsJob -ResourceGroupName StreamAnalytics-Default-Central-US –Name StreamingJob 
 
-Cette commande PowerShell arrête le travail StreamingJob.  
+Cette commande PowerShell arrête le travail hello StreamingJob.  
 
 ### <a name="test-azurestreamanalyticsinput--test-azurermstreamanalyticsinput"></a>Test-AzureStreamAnalyticsInput | Test-AzureRMStreamAnalyticsInput
-Teste la capacité de Stream Analytics à se connecter à une entrée spécifiée.
+Possibilité de hello de tests de flux de données Analytique tooconnect tooa spécifié d’entrée.
 
 **Exemple 1**
 
@@ -432,10 +432,10 @@ Azure PowerShell 1.0 :
 
     Test-AzureRMStreamAnalyticsInput -ResourceGroupName StreamAnalytics-Default-Central-US –JobName StreamingJob –Name EntryStream
 
-Cette commande PowerShell teste l’état de la connexion de l’entrée EntryStream dans StreamingJob.  
+Cet état connexion hello de tests de commande PowerShell de hello entrée EntryStream dans StreamingJob.  
 
 ### <a name="test-azurestreamanalyticsoutput--test-azurermstreamanalyticsoutput"></a>Test-AzureStreamAnalyticsOutput | Test-AzureRMStreamAnalyticsOutput
-Teste la capacité de Stream Analytics à se connecter à une sortie spécifiée.
+Possibilité de hello de tests de flux de données Analytique tooconnect tooa spécifié de sortie.
 
 **Exemple 1**
 
@@ -447,13 +447,13 @@ Azure PowerShell 1.0 :
 
     Test-AzureRMStreamAnalyticsOutput -ResourceGroupName StreamAnalytics-Default-Central-US –JobName StreamingJob –Name Output
 
-Cette commande PowerShell teste l’état de la connexion de la sortie Output dans StreamingJob.  
+Cet état connexion hello de tests de commande PowerShell de hello output sortie dans StreamingJob.  
 
 ## <a name="get-support"></a>Obtenir de l'aide
 Pour obtenir une assistance, consultez le [forum Azure Stream Analytics](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics) 
 
 ## <a name="next-steps"></a>Étapes suivantes
-* [Présentation d’Azure Stream Analytics](stream-analytics-introduction.md)
+* [Introduction tooAzure Analytique de flux de données](stream-analytics-introduction.md)
 * [Prise en main d’Azure Stream Analytics](stream-analytics-real-time-fraud-detection.md)
 * [Mise à l'échelle des travaux Azure Stream Analytics](stream-analytics-scale-jobs.md)
 * [Références sur le langage des requêtes d'Azure Stream Analytics](https://msdn.microsoft.com/library/azure/dn834998.aspx)

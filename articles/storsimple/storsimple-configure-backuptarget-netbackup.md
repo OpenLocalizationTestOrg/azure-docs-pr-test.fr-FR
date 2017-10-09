@@ -1,6 +1,6 @@
 ---
-title: "Gamme StorSimple 8000 en tant que cible de sauvegarde avec NetBackup | Microsoft Docs"
-description: "Décrit la configuration de la cible de sauvegarde StorSimple avec Veritas NetBackup."
+title: "série aaaStorSimple 8000 en tant que cible de sauvegarde avec NetBackup | Documents Microsoft"
+description: "Décrit la configuration de cible de sauvegarde hello StorSimple avec Veritas NetBackup."
 services: storsimple
 documentationcenter: 
 author: harshakirank
@@ -14,25 +14,25 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/15/2017
 ms.author: hkanna
-ms.openlocfilehash: c9b3a259f9bc3e0561c7ba94e91edf7c8e0deabb
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7d032bbcf6e40e7609e51437e290fc92b232a48f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="storsimple-as-a-backup-target-with-netbackup"></a>StorSimple comme cible de sauvegarde avec NetBackup
 
 ## <a name="overview"></a>Vue d’ensemble
 
-Azure StorSimple est une solution de stockage cloud hybride de Microsoft. StorSimple s’attaque à la complexité de la croissance exponentielle des données en utilisant un compte de stockage Azure en tant qu’extension de la solution locale et en hiérarchisant automatiquement les données sur le stockage local et sur le stockage cloud.
+Azure StorSimple est une solution de stockage cloud hybride de Microsoft. StorSimple adresses complexités hello de croissance exponentielle des données à l’aide d’un compte de stockage Azure comme une extension de la solution locale de hello et automatiquement hiérarchisation des données sur le stockage local et le stockage cloud.
 
-Dans cet article, nous traitons de l’intégration de StorSimple à NetBackup et des meilleures pratiques en matière d’intégration de ces deux solutions. Nous fournissons également diverses recommandations concernant la procédure de configuration de Veritas NetBackup de manière à optimiser son intégration à StorSimple. Nous nous reposons sur les meilleures pratiques, concepteurs d’architecture de sauvegarde et administrateurs de Veritas quant à la meilleure manière de configurer Veritas NetBackup pour répondre aux besoins de sauvegarde individuels et aux contrats de niveau de service.
+Dans cet article, nous traitons de l’intégration de StorSimple à NetBackup et des meilleures pratiques en matière d’intégration de ces deux solutions. Nous avons aussi formuler des recommandations sur comment intégrer des tooset de Veritas NetBackup toobest avec StorSimple. Nous différer tooVeritas meilleures pratiques, les architectes de sauvegarde et les administrateurs de hello meilleure manière tooset les exigences de sauvegarde individuelles de Veritas NetBackup toomeet et les contrats de niveau de service (SLA).
 
-Bien que cet article illustre les étapes de configuration et les concepts clés, cela ne constitue en aucun cas un guide de configuration ou d’installation pas à pas. Nous nous reposons sur l’hypothèse que l’infrastructure et les composants de base sont en état de fonctionnement et prêts à prendre en charge les concepts que nous décrivons.
+Bien que cet article illustre les étapes de configuration et les concepts clés, cela ne constitue en aucun cas un guide de configuration ou d’installation pas à pas. Nous partons du principe qu’infrastructure et des composants de base hello sont dans l’ordre de travail et prêt toosupport hello des concepts que nous décrivons.
 
 ### <a name="who-should-read-this"></a>Qui doit lire ce document ?
 
-Les informations dans cet article s’adressent principalement aux administrateurs de sauvegarde, aux administrateurs de stockage et aux concepteurs d’architecture de stockage qui disposent de connaissances concernant le stockage, Windows Server 2012 R2, Ethernet, les services cloud et Veritas NetBackup.
+informations de Hello dans cet article seront plus utiles toobackup administrateurs, les administrateurs de stockage et les architectes de stockage qui ont une connaissance de stockage, Windows Server 2012 R2, Ethernet, services de cloud computing et Veritas NetBackup.
 
 ### <a name="supported-versions"></a>Versions prises en charge
 
@@ -44,48 +44,48 @@ Les informations dans cet article s’adressent principalement aux administrateu
 
 StorSimple est un bon choix en tant que cible de sauvegarde, car :
 
--   Il offre un stockage local standard utilisable par les applications de sauvegarde pour fournir une destination de sauvegarde rapide, sans aucune modification. Vous pouvez utiliser StorSimple pour les restaurations rapides des sauvegardes récentes.
--   Sa hiérarchisation cloud s’intègre de façon transparente à un compte de stockage cloud Azure pour tirer parti d’un stockage Azure économique.
+-   Il fournit un stockage local standard toouse des applications de sauvegarde comme destination de sauvegarde rapide, sans aucune modification. Vous pouvez utiliser StorSimple pour les restaurations rapides des sauvegardes récentes.
+-   Son cloud hiérarchisation est intégrée de manière transparente avec un toouse de compte de stockage Azure cloud Azure un stockage économique.
 -   StorSimple fournit automatiquement un stockage hors site pour la récupération d’urgence.
 
 ## <a name="key-concepts"></a>Concepts clés
 
-Comme dans le cas de toute solution de stockage, une évaluation en profondeur des performances de stockage de la solution, des contrats de niveau de service, de la fréquence de changement et de l’augmentation des besoins en matière de capacité se révèle un facteur décisif de réussite. L’idée générale consiste à introduire un niveau cloud, de sorte que les temps d’accès et débits que vous offre le cloud joueront un rôle fondamental dans l’efficacité de StorSimple.
+Comme avec toute solution de stockage, une évaluation précise de performances de stockage de la solution de hello, SLA, taux de modification et les besoins en capacité croissance est toosuccess critiques. Hello principale est qu’en introduisant un niveau de cloud, votre cloud toohello heures d’accès et les débits jouent un rôle fondamental dans capacité hello de StorSimple toodo son travail.
 
-StorSimple est conçu pour fournir une capacité de stockage aux applications qui opèrent sur un jeu de données de travail (données chaudes) bien défini. Dans ce modèle, le jeu de données de travail est stocké sur les niveaux locaux, tandis que les données inactives/froides/archivées sont hiérarchisées vers le cloud. Ce modèle est illustré dans la figure ci-après. La ligne verte quasiment plate représente les données stockées sur les niveaux locaux de l’appareil StorSimple. La ligne rouge représente la quantité totale de données stockées sur tous les niveaux de la solution StorSimple. L’espace entre la ligne verte plate et la courbe exponentielle rouge représente la quantité totale de données stockées dans le cloud.
+StorSimple est conçu tooprovide stockage tooapplications qui opèrent sur un ensemble bien défini de travail de données (à chaud). Dans ce modèle, le jeu de travail hello de données est stocké sur les couches locales hello, et hello ensemble de chômés/froid/archivé restant de données est hiérarchisé toohello cloud. Ce modèle est représenté dans la figure suivante de hello. ligne de Hello presque plat verte représente des données hello stockées sur les niveaux de hello local de l’appareil StorSimple hello. Hello ligne rouge représente hello le montant total des données stockées sur hello solution StorSimple à tous les niveaux. espace Hello entre les ligne hello plat verte et une courbe exponentielle rouge hello représente la quantité totale de hello des données stockées dans le cloud de hello.
 
 **Hiérarchisation StorSimple**
 ![Diagramme de la hiérarchisation StorSimple](./media/storsimple-configure-backup-target-using-netbackup/image1.jpg)
 
-En gardant cette architecture à l’esprit, vous découvrirez que la solution StorSimple constitue une cible de sauvegarde idéale. Vous pouvez utiliser StorSimple pour :
--   procéder aux restaurations les plus fréquentes à partir du jeu de données de travail local ;
--   utiliser le cloud pour la récupération d’urgence hors site et pour les données plus anciennes impliquant des restaurations moins fréquentes.
+Avec cette architecture n’oubliez pas, vous constaterez que StorSimple est parfaitement toooperate comme cible de sauvegarde. Vous pouvez utiliser StorSimple pour :
+-   Effectuer votre des restaurations plus fréquentes à partir de la plage de travail local hello de données.
+-   Utilisez les cloud hello pour la récupération d’urgence hors site et les données plus anciennes, où les restaurations sont moins fréquentes.
 
 ## <a name="storsimple-benefits"></a>Avantages de StorSimple
 
-StorSimple fournit une solution locale qui s’intègre parfaitement à Microsoft Azure en tirant parti d’un accès transparent au stockage local et cloud.
+StorSimple fournit une solution locale qui s’intègrent avec Microsoft Azure, en tirant parti des transparente tooon local d’accès et le stockage cloud.
 
-StorSimple utilise la hiérarchisation automatique entre l’appareil local, qui contient un stockage SSD (solid-state device) et SAS (serial-attached SCSI), et le service Stockage Azure. La hiérarchisation automatique conserve les données fréquemment sollicitées en local, sur les niveaux SSD et SAS. Elle déplace les données rarement utilisées vers le Stockage Azure.
+StorSimple utilise la hiérarchisation automatique entre un périphérique local hello, qui a un appareil (SSD) et serial attached SCSI (SAS) stockage et le stockage Azure. Conserve hiérarchisation automatique fréquence d’accès aux données locales sur les couches SSD et disques durs SAS hello. Il déplace les données rarement tooAzure stockage.
 
 StorSimple offre les avantages suivants :
 
--   Algorithmes de déduplication et de compression uniques qui tirent parti du cloud pour atteindre des niveaux de déduplication inégalés
+-   Algorithmes de déduplication et compression uniques qui utilisent des niveaux de la déduplication sans précédent tooachieve hello cloud
 -   Haute disponibilité
 -   Géoréplication reposant sur la fonctionnalité de géoréplication Azure
 -   Intégration à Azure
--   Chiffrement de données dans le cloud
+-   Chiffrement des données dans le cloud de hello
 -   Récupération d’urgence et conformité améliorées
 
-Bien que StorSimple présente deux principaux scénarios de déploiement (cible de sauvegarde principale et secondaire), il s’agit essentiellement d’un dispositif de stockage de bloc. StorSimple exécute la totalité des tâches de compression et de déduplication. Il envoie et récupère de façon transparente les données entre le cloud, l’application et le système de fichiers.
+Bien que StorSimple présente deux principaux scénarios de déploiement (cible de sauvegarde principale et secondaire), il s’agit essentiellement d’un dispositif de stockage de bloc. StorSimple tout hello la compression et la déduplication. Il envoie et récupère les données entre le cloud de hello et application hello et système de fichiers en toute transparence.
 
-Pour plus d’informations sur StorSimple, consultez l’article [StorSimple série 8000 : une solution de stockage de cloud hybride](storsimple-overview.md). En outre, vous pouvez consulter les [caractéristiques techniques de StorSimple série 8000](storsimple-technical-specifications-and-compliance.md).
+Pour plus d’informations sur StorSimple, consultez l’article [StorSimple série 8000 : une solution de stockage de cloud hybride](storsimple-overview.md). En outre, vous pouvez consulter hello [spécifications techniques de la série StorSimple 8000](storsimple-technical-specifications-and-compliance.md).
 
 > [!IMPORTANT]
 > L’utilisation d’un appareil StorSimple comme cible de sauvegarde n’est prise en charge que pour StorSimple 8000 Update 3 et les versions ultérieures.
 
 ## <a name="architecture-overview"></a>Présentation de l'architecture
 
-Les tableaux ci-après contiennent les informations d’aide initiales concernant l’architecture liée aux différents modèles d’appareil.
+Hello tableaux suivants indiquent les premiers conseils hello appareil-à-architecture du modèle.
 
 **Capacités de stockage local et cloud offertes par StorSimple**
 
@@ -99,70 +99,70 @@ Les tableaux ci-après contiennent les informations d’aide initiales concernan
 
 | Scénario de sauvegarde  | Capacité de stockage local  | Capacité de stockage cloud  |
 |---|---|---|
-| Sauvegarde principale  | Sauvegardes récentes stockées sur le stockage local afin d’accélérer la récupération pour se conformer à l’objectif de point de récupération (RPO) | Capacité du cloud adaptée à l’historique des sauvegardes (RPO) |
+| Sauvegarde principale  | Sauvegardes récentes stockés sur le stockage local pour la récupération rapide toomeet point de récupération (RPO) | Capacité du cloud adaptée à l’historique des sauvegardes (RPO) |
 | Sauvegarde secondaire | Possibilité de stocker une copie secondaire des données de sauvegarde dans la capacité du cloud  | N/A  |
 
 ## <a name="storsimple-as-a-primary-backup-target"></a>Utiliser StorSimple comme cible de sauvegarde principale
 
-Dans ce scénario, les volumes StorSimple sont présentés à l’application de sauvegarde comme l’unique référentiel pour les sauvegardes. La figure ci-dessous illustre l’architecture de la solution dans laquelle toutes les sauvegardes utilisent les volumes hiérarchisés StorSimple pour les sauvegardes et pour les restaurations.
+Dans ce scénario, les volumes StorSimple sont présentés toohello l’application de sauvegarde comme hello seul référentiel pour les sauvegardes. Hello figure suivante montre une architecture de solution dans lequel toutes les sauvegardes StorSimple hiérarchisé volumes pour les sauvegardes et restaurations.
 
 ![Diagramme logique de l’utilisation de StorSimple comme cible de sauvegarde principale](./media/storsimple-configure-backup-target-using-netbackup/primarybackuptargetlogicaldiagram.png)
 
 ### <a name="primary-target-backup-logical-steps"></a>Procédure logique de sauvegarde de la cible principale
 
-1.  Le serveur de sauvegarde contacte l’agent de sauvegarde cible qui transmet alors des données au serveur de sauvegarde.
-2.  Le serveur de sauvegarde écrit les données sur les volumes hiérarchisés StorSimple.
-3.  Le serveur de sauvegarde met à jour la base de données de catalogues et accomplit le travail de sauvegarde.
-4.  Un script de capture instantanée déclenche le gestionnaire des captures instantanées de StorSimple (démarrage ou suppression).
-5.  Conformément à une stratégie de rétention, le serveur de sauvegarde supprime les sauvegardes arrivées à expiration.
+1.  contacts du serveur de sauvegarde Hello hello agent de sauvegarde cible et l’agent de sauvegarde hello transmet des données toohello sauvegarde du serveur.
+2.  serveur de sauvegarde Hello écrit des données toohello StorSimple à plusieurs niveaux de volumes.
+3.  serveur de sauvegarde Hello met à jour la base de données de catalogue hello et puis termine le travail de sauvegarde hello.
+4.  Un script d’instantané déclenche le Gestionnaire d’instantanés StorSimple hello (début ou suppression).
+5.  serveur de sauvegarde Hello supprime les sauvegardes ayant expirés basés sur une stratégie de rétention.
 
 ### <a name="primary-target-restore-logical-steps"></a>Procédure logique de restauration de la cible principale
 
-1.  Le serveur de sauvegarde commence à restaurer les données appropriées du référentiel de stockage.
-2.  L’agent de sauvegarde reçoit les données en provenance du serveur de sauvegarde.
-3.  Le serveur de sauvegarde achève le travail de restauration.
+1.  serveur de sauvegarde Hello démarre la restauration des données appropriées de hello à partir de l’espace de stockage hello.
+2.  agent de sauvegarde Hello reçoit les données de hello hello serveur de sauvegarde.
+3.  serveur de sauvegarde Hello termine le travail de restauration hello.
 
 ## <a name="storsimple-as-a-secondary-backup-target"></a>Utiliser StorSimple comme cible de sauvegarde secondaire
 
 Dans ce scénario, les volumes StorSimple sont principalement utilisés à des fins de rétention à long terme ou d’archivage.
 
-La figure ci-après illustre l’architecture dans laquelle les sauvegardes et restaurations initiales ciblent un volume hautes performances. Ces sauvegardes sont copiées et archivées sur un volume hiérarchisé StorSimple conformément à une planification donnée.
+Hello figure suivante illustre une architecture dans laquelle les sauvegardes initiales et restaure le volume cible hautes performances. Ces sauvegardes sont copiées et archivée tooa StorSimple à plusieurs niveaux de volume sur une planification définie.
 
-Il est important que vous configuriez correctement votre volume hautes performances pour lui permettre de prendre en charge les exigences en matière de performances et de capacité de stratégie de rétention.
+Il est important toosize votre volume hautes performances de sorte qu’elle puisse gérer vos conditions de performances et la capacité de stratégie de rétention.
 
 ![Diagramme logique de l’utilisation de StorSimple comme cible de sauvegarde secondaire](./media/storsimple-configure-backup-target-using-netbackup/secondarybackuptargetlogicaldiagram.png)
 
 ### <a name="secondary-target-backup-logical-steps"></a>Procédure logique de sauvegarde de la cible secondaire
 
-1.  Le serveur de sauvegarde contacte l’agent de sauvegarde cible qui transmet alors des données au serveur de sauvegarde.
-2.  Le serveur de sauvegarde écrit les données dans le stockage hautes performances.
-3.  Le serveur de sauvegarde met à jour la base de données de catalogues et accomplit le travail de sauvegarde.
-4.  Conformément à une stratégie de rétention, le serveur de sauvegarde copie les sauvegardes dans StorSimple.
-5.  Un script de capture instantanée déclenche le gestionnaire des captures instantanées de StorSimple (démarrage ou suppression).
-6.  Conformément à une stratégie de rétention, le serveur de sauvegarde supprime les sauvegardes arrivées à expiration.
+1.  contacts du serveur de sauvegarde Hello hello agent de sauvegarde cible et l’agent de sauvegarde hello transmet des données toohello sauvegarde du serveur.
+2.  serveur de sauvegarde Hello écrit stockage toohigh-performances des données.
+3.  serveur de sauvegarde Hello met à jour la base de données de catalogue hello et puis termine le travail de sauvegarde hello.
+4.  Bonjour tooStorSimple de sauvegardes de copies de sauvegarde du serveur basé sur une stratégie de rétention.
+5.  Un script d’instantané déclenche le Gestionnaire d’instantanés StorSimple hello (début ou suppression).
+6.  hello de suppressions de sauvegarde du serveur Hello expiré basés sur une stratégie de rétention des sauvegardes.
 
 ### <a name="secondary-target-restore-logical-steps"></a>Procédure logique de restauration de la cible secondaire
 
-1.  Le serveur de sauvegarde commence à restaurer les données appropriées du référentiel de stockage.
-2.  L’agent de sauvegarde reçoit les données en provenance du serveur de sauvegarde.
-3.  Le serveur de sauvegarde achève le travail de restauration.
+1.  serveur de sauvegarde Hello démarre la restauration des données appropriées de hello à partir de l’espace de stockage hello.
+2.  agent de sauvegarde Hello reçoit les données de hello hello serveur de sauvegarde.
+3.  serveur de sauvegarde Hello termine le travail de restauration hello.
 
-## <a name="deploy-the-solution"></a>Déployer la solution
+## <a name="deploy-hello-solution"></a>Déployer la solution de hello
 
 Trois étapes sont nécessaires pour le déploiement de la solution :
-1. Préparer l’infrastructure réseau.
+1. Préparer l’infrastructure de réseau hello.
 2. Déployer votre appareil StorSimple comme cible de sauvegarde.
 3. Déployer Veritas NetBackup.
 
-Chacune de ces étapes est abordée en détail dans les sections suivantes.
+Chaque étape est décrite en détail dans les sections suivantes de hello.
 
-### <a name="set-up-the-network"></a>Configurer le réseau
+### <a name="set-up-hello-network"></a>La configuration du réseau de hello
 
-En tant que solution intégrée au cloud Azure, StorSimple requiert une connexion active et opérationnelle à ce dernier. Cette connexion est utilisée pour des opérations telles que les captures instantanées cloud, la gestion des données, le transfert de métadonnées et la hiérarchisation des données les plus anciennes et les moins sollicitées vers le stockage cloud Azure.
+StorSimple est une solution qui est intégrée à hello cloud Azure, StorSimple requiert une toohello connexion active et fonctionne cloud Azure. Cette connexion est utilisée pour les opérations telles que les instantanés cloud, gestion des données et le transfert de métadonnées et stockage en cloud tooAzure tootier des données plus anciennes et moins sollicitées.
 
-Pour que la solution fonctionne de manière optimale, nous vous recommandons d’appliquer les meilleures pratiques de mise en réseau suivantes :
+Hello solution tooperform de façon optimale, nous vous recommandons que vous suivez ces conseils de mise en réseau :
 
--   La liaison qui connecte la hiérarchisation StorSimple à Azure doit répondre à vos exigences de bande passante. Pour ce faire, appliquez la Qualité de service (QoS) appropriée aux commutateurs de votre infrastructure conformément à vos contrats de niveau de service en matière d’objectifs de point de récupération (RPO) et de temps de récupération (RTO).
+-   lien Hello qui se connecte tooAzure de hiérarchisation hello StorSimple doit répondre aux besoins en bande passante. tooachieve, appliquer hello approprié qualité de Service (QoS) tooyour de niveau infrastructure commutateurs toomatch votre RPO et la récupération temps SLA d’objectif (RTO).
 
 -   Les latences d’accès maximales au service Stockage Blob Azure doivent être de l’ordre de 80 ms.
 
@@ -172,46 +172,46 @@ Pour découvrir un guide de déploiement de StorSimple pas à pas, consultez l�
 
 ### <a name="deploy-netbackup"></a>Déployer NetBackup
 
-Pour découvrir un guide de déploiement pas à pas de NetBackup 7.7.x, consultez la [documentation NetBackup 7.7.x](http://www.veritas.com/docs/000094423).
+Pour obtenir des conseils de déploiement de 7.7.x NetBackup, consultez hello [NetBackup 7.7.x documentation](http://www.veritas.com/docs/000094423).
 
-## <a name="set-up-the-solution"></a>Configurer la solution
+## <a name="set-up-hello-solution"></a>Configurer la solution de hello
 
-Dans cette section, nous fournissons quelques exemples de configuration. Les exemples et recommandations ci-après illustrent l’implémentation la plus élémentaire et fondamentale. Cette implémentation peut ne pas s’appliquer directement à vos exigences spécifiques en matière de sauvegarde.
+Dans cette section, nous fournissons quelques exemples de configuration. Hello des exemples et des recommandations suivantes illustrent implémentation élémentaire et fondamental de hello. Cette implémentation ne s’appliquent pas directement les exigences de sauvegarde spécifique tooyour.
 
 ### <a name="set-up-storsimple"></a>Configurer StorSimple
 
 | Tâches de déploiement StorSimple  | Commentaires supplémentaires |
 |---|---|
 | Déploiement de votre appareil StorSimple local | Versions prises en charge : Update 3 et versions ultérieures. |
-| Activez la cible de sauvegarde. | Utilisez ces commandes pour activer ou désactiver le mode de cible de sauvegarde et pour obtenir l’état. Pour plus d’informations, consultez l’article [Connexion à distance à un appareil StorSimple](storsimple-remote-connect.md).</br> Pour activer le mode de sauvegarde : `Set-HCSBackupApplianceMode -enable`. </br> Pour désactiver le mode de sauvegarde : `Set-HCSBackupApplianceMode -disable`. </br> Pour obtenir l’état actuel des paramètres de mode de sauvegarde : `Get-HCSBackupApplianceMode`. |
-| Création d’un conteneur de volumes commun pour votre volume qui stocke les données de sauvegarde. Toutes les données d’un conteneur de volumes sont dédupliquées. | Les conteneurs de volumes StorSimple définissent les domaines de déduplication.  |
-| Créez les volumes StorSimple. | Créez des volumes en les dimensionnant le plus conformément possible à l’usage que vous prévoyez d’en faire, car la taille du volume a une incidence sur la durée des captures instantanées cloud. Pour plus d’informations sur la taille d’un volume, consultez les [stratégies de rétention](#retention-policies).</br> </br> Utilisez les volumes hiérarchisés StorSimple et cochez la case **Utiliser ce volume pour les données d’archivage auxquelles vous accédez moins souvent**. </br> L’utilisation de volumes épinglés localement uniquement n’est pas prise en charge. |
-| Création d’une stratégie de sauvegarde StorSimple unique pour tous les volumes cibles de sauvegarde. | Une stratégie de sauvegarde StorSimple définit le groupe de cohérence de volume. |
-| Désactivez la planification lorsque les captures instantanées arrivent à expiration. | Les captures instantanées sont déclenchées sous la forme d’une opération post-traitement. |
+| Cible de sauvegarde hello sous tension. | Utilisez ces tooturn de commandes sur ou désactiver le mode cible de sauvegarde et l’état de tooget. Pour plus d’informations, consultez [se connecter à distance de l’appareil StorSimple tooa](storsimple-remote-connect.md).</br> tooturn sur le mode de sauvegarde : `Set-HCSBackupApplianceMode -enable`. </br> tooturn désactive le mode de sauvegarde : `Set-HCSBackupApplianceMode -disable`. </br> état actuel de hello tooget des paramètres de mode de sauvegarde : `Get-HCSBackupApplianceMode`. |
+| Créer un conteneur de volume commun pour le volume qui stocke les données de sauvegarde hello. Toutes les données d’un conteneur de volumes sont dédupliquées. | Les conteneurs de volumes StorSimple définissent les domaines de déduplication.  |
+| Créez les volumes StorSimple. | Créer des volumes avec des tailles comme une utilisation toohello fermer anticipée que possible, car la taille du volume affecte la durée d’instantané de cloud. Pour plus d’informations sur la façon toosize un volume, pour en savoir plus sur [stratégies de rétention](#retention-policies).</br> </br> Utilisez StorSimple à plusieurs niveaux des volumes et sélectionnez hello **utiliser ce volume pour les données d’archive moins fréquemment sollicitées** case à cocher. </br> L’utilisation de volumes épinglés localement uniquement n’est pas prise en charge. |
+| Créer une stratégie de sauvegarde StorSimple unique pour tous les volumes de cible de sauvegarde hello. | Une stratégie de sauvegarde StorSimple définit un groupe de cohérence de volume hello. |
+| Désactiver la planification de hello expiration des instantanés de hello. | Les captures instantanées sont déclenchées sous la forme d’une opération post-traitement. |
 
-### <a name="set-up-the-host-backup-server-storage"></a>Configurer le stockage du serveur de sauvegarde hôte
+### <a name="set-up-hello-host-backup-server-storage"></a>Configurer le stockage de sauvegarde du serveur hôte hello
 
-Configurez le stockage du serveur de sauvegarde hôte conformément aux instructions suivantes :  
+Vous pouvez configurer le stockage de sauvegarde du serveur hôte hello selon les instructions toothese :  
 
 - N’utilisez pas de volumes fractionnés (créés par le Gestionnaire de disque Windows), car ces volumes ne sont pas pris en charge.
 - Formatez vos volumes à l’aide du système de fichiers NTFS avec une taille d’allocation de 64 Ko.
-- Mappez les volumes StorSimple directement sur le serveur NetBackup.
+- Mapper les volumes StorSimple hello directement toohello NetBackup server.
     - Utilisez iSCSI pour les serveurs physiques.
     - Utilisez des disques pass-through pour les serveurs virtuels.
 
 
 ## <a name="best-practices-for-storsimple-and-netbackup"></a>Meilleures pratiques pour StorSimple et NetBackup
 
-Configurez votre solution en respectant les instructions dans les sections suivantes.
+Configurer votre solution en fonction des instructions toohello Bonjour les premières sections suivantes.
 
 ### <a name="operating-system-best-practices"></a>Meilleures pratiques concernant le système d’exploitation
 
--   Désactivez le chiffrement et la déduplication Windows Server pour le système de fichiers NTFS.
--   Désactivez la défragmentation Windows Server sur les volumes StorSimple.
--   Désactivez l’indexation Windows Server sur les volumes StorSimple.
--   Exécutez une analyse antivirus au niveau de l’hôte source (et non par rapport aux volumes StorSimple).
--   Désactivez l’activité [Maintenance Windows Server](https://msdn.microsoft.com/library/windows/desktop/hh848037.aspx) par défaut dans le Gestionnaire des tâches. Pour ce faire, procédez de l’une des manières suivantes :
-    - Désactivez le programme de configuration de l’activité de maintenance dans le Planificateur de tâches Windows.
+-   Désactiver le chiffrement de Windows Server et la déduplication pour le système de fichiers NTFS hello.
+-   Désactiver la défragmentation de Windows Server sur des volumes StorSimple hello.
+-   Désactiver l’indexation sur hello de volumes StorSimple de Windows Server.
+-   Exécuter une analyse antivirus sur l’hôte source de hello (et non sur des volumes StorSimple hello).
+-   Désactiver la valeur par défaut hello [maintenance de Windows Server](https://msdn.microsoft.com/library/windows/desktop/hh848037.aspx) dans le Gestionnaire des tâches. Procédez comme suit dans un des hello suivant façons :
+    - Désactiver le Configurateur de Maintenance hello dans le Planificateur de tâches Windows.
     - Téléchargez [PsExec](https://technet.microsoft.com/sysinternals/bb897553.aspx) à partir de Windows Sysinternals. Après avoir téléchargé PsExec, exécutez Windows PowerShell en tant qu’administrateur, puis tapez :
       ```powershell
       psexec \\%computername% -s schtasks /change /tn “MicrosoftWindowsTaskSchedulerMaintenance Configurator" /disable
@@ -219,25 +219,25 @@ Configurez votre solution en respectant les instructions dans les sections suiva
 
 ### <a name="storsimple-best-practices"></a>Meilleures pratiques concernant StorSimple
 
--   Assurez-vous que l’appareil StorSimple est mis à jour avec la version [Update 3 ou une version ultérieure](storsimple-install-update-3.md).
--   Isolez le trafic iSCSI et cloud. Utilisez des connexions iSCSI dédiées pour le trafic entre StorSimple et le serveur de sauvegarde.
+-   Assurez-vous que l’appareil StorSimple hello est mis à jour trop[mise à jour 3 ou version ultérieure](storsimple-install-update-3.md).
+-   Isolez le trafic iSCSI et cloud. Utiliser des connexions iSCSI dédié pour le trafic entre le serveur de sauvegarde StorSimple et hello.
 -   Assurez-vous que l’appareil StorSimple est une cible de sauvegarde dédiée. Les charges de travail mixtes ne sont pas prises en charge, car elles affectent le RTO et le RPO.
 
 ### <a name="netbackup-best-practices"></a>Meilleures pratiques concernant NetBackup
 
--   La base de données NetBackup doit être locale sur le serveur et ne doit pas se trouver sur un volume StorSimple.
--   Pour la récupération d’urgence, sauvegardez la base de données NetBackup sur un volume StorSimple.
--   Nous prenons en charge les sauvegardes complètes et incrémentielles NetBackup (également appelées sauvegardes incrémentielles différentielles dans NetBackup) pour cette solution. Nous vous déconseillons d’utiliser les sauvegardes synthétiques et incrémentielles cumulatives.
--   Les fichiers de données de sauvegarde doivent uniquement contenir les données d’un travail spécifique. Par exemple, aucun ajout de supports n’est autorisé entre les différents travaux.
+-   base de données de NetBackup Hello doit être local toohello serveur et ne réside pas sur un volume StorSimple.
+-   Récupération d’urgence, sauvegarder la base de données de NetBackup hello sur un volume StorSimple.
+-   Nous prenons en charge les sauvegardes complètes et incrémentielles NetBackup (également désignée tooas différentielle des sauvegardes incrémentielles dans NetBackup) pour cette solution. Nous vous déconseillons d’utiliser les sauvegardes synthétiques et incrémentielles cumulatives.
+-   Les fichiers de données de sauvegarde doivent contenir uniquement les données de salutation d’une tâche spécifique. Par exemple, aucun ajout de supports n’est autorisé entre les différents travaux.
 
-Pour obtenir les paramètres et les meilleures pratiques de NetBackup relatifs à l’implémentation de ces exigences, consultez la documentation de NetBackup à l’adresse [www.veritas.com](https://www.veritas.com).
+Pourquoi NetBackup paramètres les plus récents et les meilleures pratiques pour l’implémentation de ces exigences, consultez documentation NetBackup hello [www.veritas.com](https://www.veritas.com).
 
 
 ## <a name="retention-policies"></a>Stratégies de rétention
 
-L’une des stratégies de rétention de sauvegarde les plus utilisées est la stratégie GFS (Grandfather, Father, and Son - Grand-père, père et fils). Dans une stratégie GFS, une sauvegarde incrémentielle est effectuée tous les jours et les sauvegardes complètes sont effectuées de façon hebdomadaire et mensuelle. Cette stratégie donne lieu à six volumes hiérarchisés StorSimple : un même volume contient les sauvegardes complètes hebdomadaires, mensuelles et annuelles ; les cinq autres volumes stockent les sauvegardes incrémentielles quotidiennes.
+Un des types de stratégie de rétention de sauvegarde les plus courants hello est une stratégie grand-père Père et fils (GFS). Dans une stratégie GFS, une sauvegarde incrémentielle est effectuée tous les jours et les sauvegardes complètes sont effectuées de façon hebdomadaire et mensuelle. Les résultats de cette stratégie de StorSimple six niveaux de volumes : un volume contient hello hebdomadaire, mensuel et annuel sauvegardes complètes ; Hello autres cinq volumes stockent des sauvegardes incrémentielles quotidiennes.
 
-Dans l’exemple ci-après, nous utilisons une rotation GFS. Cet exemple repose sur les données suivantes :
+Bonjour l’exemple suivant, nous utilisons une rotation GFS. exemple de Hello suppose hello qui suit :
 
 -   Utilisation de données non dédupliquées ni compressées.
 -   Sauvegardes complètes de 1 Tio chacune.
@@ -246,7 +246,7 @@ Dans l’exemple ci-après, nous utilisons une rotation GFS. Cet exemple repose 
 -   Douze sauvegardes mensuelles sont conservées pendant un an.
 -   Une sauvegarde annuelle est conservée pendant 10 ans.
 
-Sur la base des hypothèses qui précèdent, créez un volume hiérarchisé StorSimple de 26 Tio pour les sauvegardes complètes mensuelles et annuelles. Créez un volume hiérarchisé StorSimple de 5 Tio pour chacune des sauvegardes incrémentielles quotidiennes.
+Hello précédant les hypothèses, créer un 26-TiB StorSimple à plusieurs niveaux de volume pour les sauvegardes complètes hello mensuel et annuel. Créer un 5-TiB StorSimple à plusieurs niveaux de volume pour chacune des sauvegardes quotidiennes incrémentielles de hello.
 
 | Type de sauvegarde et rétention | Taille (Tio) | Multiplicateur GFS\* | Capacité totale (Tio)  |
 |---|---|---|---|
@@ -256,29 +256,29 @@ Sur la base des hypothèses qui précèdent, créez un volume hiérarchisé Stor
 | Complète annuelle | 1  | 10 | 10 |
 | Exigence GFS |   | 38 |   |
 | Quota supplémentaire  | 4  |   | 42 au total pour l’exigence GFS  |
-\* Le multiplicateur GFS est le nombre de copies que vous devez protéger et conserver pour vous conformer à vos stratégies de sauvegarde.
+\*nombre de hello est Hello multiplicateur GFS de copies vous devez tooprotect et conserver toomeet vos exigences de stratégie de sauvegarde.
 
 ## <a name="set-up-netbackup-storage"></a>Configurer le stockage NetBackup
 
-### <a name="to-set-up-netbackup-storage"></a>Pour configurer le stockage NetBackup
+### <a name="tooset-up-netbackup-storage"></a>tooset NetBackup l’espace de stockage
 
-1.  Dans la console d’administration NetBackup, sélectionnez **Media and Device Management (Gestion des supports et des appareils)** > **Devices (Appareils)** > **Disk Pools (Pools de disques)**. Dans l’Assistant de configuration de pool de disques, sélectionnez le type de serveur de stockage **AdvancedDisk**, puis sélectionnez **Next (Suivant)**.
+1.  Dans la Console d’Administration NetBackup de hello, sélectionnez **support et la gestion des appareils** > **périphériques** > **des Pools de disques**. Bonjour Assistant de Configuration de Pool de disque, sélectionnez le type de serveur de stockage de hello **AdvancedDisk**, puis sélectionnez **suivant**.
 
     ![Console d’administration NetBackup, Assistant de configuration de pool de disques](./media/storsimple-configure-backup-target-using-netbackup/nbimage1.png)
 
 2.  Sélectionnez votre serveur, puis **Next (Suivant)**.
 
-    ![Console d’administration NetBackup, sélection du serveur](./media/storsimple-configure-backup-target-using-netbackup/nbimage2.png)
+    ![Console d’Administration NetBackup, serveur de hello select](./media/storsimple-configure-backup-target-using-netbackup/nbimage2.png)
 
 3.  Sélectionnez votre volume StorSimple.
 
-    ![Console d’administration NetBackup, sélection du disque du volume StorSimple](./media/storsimple-configure-backup-target-using-netbackup/nbimage3.png)
+    ![Console d’Administration NetBackup, disque du volume StorSimple hello select](./media/storsimple-configure-backup-target-using-netbackup/nbimage3.png)
 
-4.  Entrez un nom pour la cible de sauvegarde, puis sélectionnez **Next (Suivant)** > **Next (Suivant)** pour terminer l’Assistant.
+4.  Entrez un nom pour la cible de sauvegarde hello et sélectionnez **suivant** > **suivant** Assistant de hello toofinish.
 
-5.  Passez en revue les paramètres, puis sélectionnez **Finish (Terminer)**.
+5.  Passez en revue les paramètres hello et sélectionnez **Terminer**.
 
-6.  À la fin de chaque affectation de volume, modifiez les paramètres du dispositif de stockage conformément aux paramètres recommandés dans les [Meilleures pratiques pour StorSimple et NetBackup](#best-practices-for-storsimple-and-netbackup).
+6.  À fin hello de chaque attribution de volume, modifiez hello stockage périphérique paramètres toomatch celles recommandées dans [meilleures pratiques pour StorSimple et NetBackup](#best-practices-for-storsimple-and-netbackup).
 
 7. Répétez les étapes 1 à 6 jusqu’à avoir terminé d’affecter vos volumes StorSimple.
 
@@ -287,9 +287,9 @@ Sur la base des hypothèses qui précèdent, créez un volume hiérarchisé Stor
 ## <a name="set-up-storsimple-as-a-primary-backup-target"></a>Configurer StorSimple comme cible de sauvegarde principale
 
 > [!NOTE]
-> En cas de restauration de données à partir d’une sauvegarde qui a été hiérarchisée vers le cloud, la restauration se produit à la vitesse du cloud.
+> Restaurations de données à partir d’une sauvegarde qui a été toohello hiérarchisé cloud se produisent à des vitesses de cloud.
 
-La figure ci-après illustre le mappage d’un volume classique sur un travail de sauvegarde. Dans ce cas précis, toutes les sauvegardes hebdomadaires sont mappées sur le disque des sauvegardes complètes effectuées le samedi, et les sauvegardes incrémentielles sont mappées sur les disques des sauvegardes incrémentielles exécutées du lundi au vendredi. Toutes les sauvegardes et restaurations se produisent à partir d’un volume hiérarchisé StorSimple.
+Hello figure suivante illustre mappage hello d’un travail de sauvegarde tooa volume classique. Dans ce cas, toutes les sauvegardes hebdomadaires hello mappent disque plein de toohello samedi, et les sauvegardes incrémentielles hello mappent les disques incrémentielle tooMonday-vendredi. Tous les hello des sauvegardes et de restaurations à partir d’un StorSimple à plusieurs niveaux de volume.
 
 ![Diagramme logique de la configuration de la cible de sauvegarde principale ](./media/storsimple-configure-backup-target-using-netbackup/primarybackuptargetdiagram.png)
 
@@ -303,92 +303,92 @@ Voici un exemple de planification de rotation GFS pour quatre semaines, mensuell
 | Mensuelle  | Samedi  |   |
 | Annuelle | Samedi  |   |   |
 
-## <a name="assigning-storsimple-volumes-to-a-netbackup-backup-job"></a>Affectation de volumes StorSimple à un travail de sauvegarde NetBackup
+## <a name="assigning-storsimple-volumes-tooa-netbackup-backup-job"></a>Affectation de tâche de sauvegarde StorSimple volumes tooa NetBackup
 
-La procédure ci-après repose sur l’hypothèse que NetBackup et l’hôte cible sont configurés conformément aux instructions de l’agent NetBackup.
+Hello suivant séquence suppose que cet hôte cible NetBackup et hello est configuré conformément aux instructions de l’agent NetBackup hello.
 
-### <a name="to-assign-storsimple-volumes-to-a-netbackup-backup-job"></a>Pour affecter des volumes StorSimple à un travail de sauvegarde NetBackup
+### <a name="tooassign-storsimple-volumes-tooa-netbackup-backup-job"></a>tooassign StorSimple volumes tooa NetBackup travail de sauvegarde
 
-1.  Dans la Console d’administration NetBackup, sélectionnez **NetBackup Management (Gestion NetBackup)**, cliquez avec le bouton droit sur **Policies (Stratégies)**, puis sélectionnez **New Policy (Nouvelle stratégie)**.
+1.  Dans la Console d’Administration NetBackup de hello, sélectionnez **NetBackup gestion**, avec le bouton droit **stratégies**, puis sélectionnez **nouvelle stratégie**.
 
     ![Console d’administration NetBackup, création d’une stratégie](./media/storsimple-configure-backup-target-using-netbackup/nbimage6.png)
 
-2.  Dans la boîte de dialogue **Add a New Policy (Ajouter une nouvelle stratégie)**, entrez un nom pour la stratégie, puis cochez la case **Use Policy Configuration Wizard (Utiliser l’Assistant de configuration de stratégie)**. Sélectionnez **OK**.
+2.  Bonjour **ajouter une nouvelle stratégie** boîte de dialogue, entrez un nom pour la stratégie de hello et sélectionnez hello **utiliser l’Assistant Configuration de stratégie** case à cocher. Sélectionnez **OK**.
 
     ![Console d’administration NetBackup, boîte de dialogue d’ajout d’une nouvelle stratégie](./media/storsimple-configure-backup-target-using-netbackup/nbimage7.png)
 
-3.  Dans l’Assistant de configuration de stratégie de sauvegarde, choisissez le type de sauvegarde de votre choix, puis sélectionnez **Next (Suivant)**.
+3.  Dans l’Assistant de Configuration de stratégie de sauvegarde de hello, ectionnez hello type sauvegarde de votre choix, puis sélectionnez **suivant**.
 
     ![Console d’administration NetBackup, sélection du type de sauvegarde](./media/storsimple-configure-backup-target-using-netbackup/nbimage8.png)
 
-4.  Pour définir le type de stratégie, sélectionnez **Standard**, puis sélectionnez **Next (Suivant)**.
+4.  tooset hello stratégie, sélectionnez le type **Standard**, puis sélectionnez **suivant**.
 
     ![Console d’administration NetBackup, sélection du type de stratégie](./media/storsimple-configure-backup-target-using-netbackup/nbimage9.png)
 
-5.  Sélectionnez votre hôte, cochez la case **Detect client operating system (Détecter le système d’exploitation client)**, puis sélectionnez **Add (Ajouter)**. Sélectionnez **Suivant**.
+5.  Sélectionnez votre hôte, sélectionnez hello **détecter le système d’exploitation client** case à cocher, puis sélectionnez **ajouter**. Sélectionnez **Suivant**.
 
     ![Console d’administration NetBackup, répertorier les clients dans une nouvelle stratégie](./media/storsimple-configure-backup-target-using-netbackup/nbimage10.png)
 
-6.  Sélectionnez les disques à sauvegarder.
+6.  Sélectionnez hello lecteurs tooback haut.
 
     ![Console d’administration NetBackup, sélections de sauvegarde pour une nouvelle stratégie](./media/storsimple-configure-backup-target-using-netbackup/nbimage11.png)
 
-7.  Sélectionnez les valeurs de fréquence et de rétention conformément à vos besoins de rotation de sauvegarde.
+7.  Sélectionnez la fréquence de hello et de valeurs de rétention qui répondent à vos besoins de rotation des sauvegardes.
 
     ![Console d’administration NetBackup, fréquence et rotation de sauvegarde pour une nouvelle stratégie](./media/storsimple-configure-backup-target-using-netbackup/nbimage12.png)
 
-8.  Sélectionnez **Next (Suivant)** > **Next (Suivant)** > **Finish (Terminer)**.  Vous pouvez modifier la planification une fois la stratégie créée.
+8.  Sélectionnez **Next (Suivant)** > **Next (Suivant)** > **Finish (Terminer)**.  Vous pouvez modifier la planification de hello après que hello stratégie est créée.
 
-9.  Développez la stratégie que vous avez créée, puis sélectionnez **Schedules (Planifications)**.
+9.  Sélectionnez stratégie hello tooexpand que vous venez créé, puis **planifications**.
 
     ![Console d’administration NetBackup, planifications pour une nouvelle stratégie](./media/storsimple-configure-backup-target-using-netbackup/nbimage13.png)
 
-10.  Cliquez avec le bouton droit sur **Differential-Inc (Différentielle incrémentielle)**, sélectionnez **Copy to new (Copier vers nouveau)**, puis sélectionnez **OK**.
+10.  Avec le bouton droit **différentielle-Inc**, sélectionnez **copier toonew**, puis sélectionnez **OK**.
 
-    ![Console d’administration NetBackup, copier la planification vers une nouvelle stratégie](./media/storsimple-configure-backup-target-using-netbackup/nbimage14.png)
+    ![Console d’Administration NetBackup, copie planification tooa nouvelle stratégie](./media/storsimple-configure-backup-target-using-netbackup/nbimage14.png)
 
-11.  Cliquez avec le bouton droit sur la nouvelle planification, puis sélectionnez **Change (Modifier)**.
+11.  Avec le bouton droit de la planification de hello qui vient d’être créé, puis sélectionnez **modification**.
 
-12.  Dans l’onglet **Attributes (Attributs)**, cochez la case **Override policy storage selection (Écraser la sélection de stratégie de stockage)**, puis sélectionnez le volume réservé aux sauvegardes incrémentielles effectuées le lundi.
+12.  Sur hello **attributs** onglet, sélectionnez hello **remplacer la sélection de la stratégie stockage** case à cocher et volume hello puis sélectionnez où lundi adresser les sauvegardes incrémentielles.
 
     ![Console d’administration NetBackup, modifier la planification](./media/storsimple-configure-backup-target-using-netbackup/nbimage15.png)
 
-13.  Dans l’onglet **Start Window (Fenêtre de démarrage)**, sélectionnez la fenêtre horaire pour vos sauvegardes.
+13.  Sur hello **fenêtre Démarrer** onglet, la fenêtre de temps sélectionnez hello pour vos sauvegardes.
 
     ![Console d’administration NetBackup, modifier la fenêtre de démarrage](./media/storsimple-configure-backup-target-using-netbackup/nbimage16.png)
 
 14.  Sélectionnez **OK**.
 
-15.  Répétez les étapes 10 à 14 pour chaque sauvegarde incrémentielle. Sélectionnez le volume et la planification appropriés pour chaque sauvegarde que vous créez.
+15.  Répétez les étapes 10 à 14 pour chaque sauvegarde incrémentielle. Sélectionnez le volume approprié de hello et de planification pour chaque sauvegarde que vous créez.
 
-16.  Cliquez avec le bouton droit sur la planification **Differential-Inc (Différentielle incrémentielle)**, puis supprimez-la.
+16.  Avec le bouton hello **différentielle-Inc** planifier, puis supprimez-le.
 
-17.  Modifiez la planification complète conformément à vos besoins de sauvegarde.
+17.  Modifiez votre toomeet de planification de sauvegarde complète qu'a besoin de votre sauvegarde.
 
     ![Console d’administration NetBackup, modifier la planification complète](./media/storsimple-configure-backup-target-using-netbackup/nbimage17.png)
 
-18.  Modifiez la fenêtre de démarrage.
+18.  Changement de fenêtre Démarrer hello.
 
-    ![Console d’administration NetBackup, modifier la fenêtre de démarrage](./media/storsimple-configure-backup-target-using-netbackup/nbimage18.png)
+    ![Console d’Administration NetBackup, changement de fenêtre hello début](./media/storsimple-configure-backup-target-using-netbackup/nbimage18.png)
 
-19.  La planification finale ressemble à ceci :
+19.  planification de Hello final ressemble à ceci :
 
     ![Console d’administration NetBackup, planification finale](./media/storsimple-configure-backup-target-using-netbackup/nbimage19.png)
 
 ## <a name="set-up-storsimple-as-a-secondary-backup-target"></a>Configurer StorSimple comme cible de sauvegarde secondaire
 
 > [!NOTE]
->En cas de restauration de données à partir d’une sauvegarde qui a été hiérarchisée vers le cloud, la restauration se produit à la vitesse du cloud.
+>Restaurations de données à partir d’une sauvegarde qui a été toohello hiérarchisé cloud se produisent à des vitesses de cloud.
 
-Dans ce modèle, vous devez disposer d’un média de stockage (autre que StorSimple) faisant office de cache temporaire. Par exemple, vous pouvez utiliser une matrice redondante de volumes de disques indépendants (RAID) pour prendre en charge l’espace, l’entrée/la sortie (E/S) et la bande passante. Nous vous recommandons d’utiliser les valeurs RAID 5, 50 et 10.
+Dans ce modèle, vous devez avoir un tooserve de support (autres que StorSimple) de stockage comme un cache temporaire. Par exemple, vous pouvez utiliser une baie redondante de disques indépendants (RAID) volume tooaccommodate d’espace, d’entrée/sortie (e/s) et la bande passante. Nous vous recommandons d’utiliser les valeurs RAID 5, 50 et 10.
 
-La figure ci-après illustre des volumes locaux de rétention à court terme (sur le serveur) et des volumes d’archive de rétention à long terme classiques. Dans ce scénario, toutes les sauvegardes s’exécutent sur le volume RAID local (sur le serveur). Ces sauvegardes sont régulièrement dupliquées et archivées sur un volume d’archive. Veillez à dimensionner votre volume RAID local (sur le serveur) conformément aux exigences en matière de performances et de capacité de rétention à court terme.
+Hello figure suivante montre à court terme rétention type locale (serveur toohello) volumes les archives des volumes et rétention à long terme. Dans ce scénario, toutes les sauvegardes se hello local (serveur toohello) volume RAID. Ces sauvegardes sont dupliquées régulièrement et archivée tooan archive volume. Il est important toosize local (serveur toohello) volume RAID afin qu’il puisse gérer vos exigences de capacité et de performances rétention à court terme.
 
 ### <a name="storsimple-as-a-secondary-backup-target-gfs-example"></a>Exemple GFS pour StorSimple utilisé comme cible de sauvegarde secondaire
 
 ![Diagramme logique de l’utilisation de StorSimple comme cible de sauvegarde secondaire](./media/storsimple-configure-backup-target-using-netbackup/secondarybackuptargetdiagram.png)
 
-Le tableau suivant montre comment configurer des sauvegardes à exécuter sur les disques locaux et StorSimple. Il inclut les besoins en capacité individuelle et totale.
+tableau Hello suivant montre comment tooset des toorun de sauvegardes sur hello local et les disques de StorSimple. Il inclut les besoins en capacité individuelle et totale.
 
 ### <a name="backup-configuration-and-capacity-requirements"></a>Configuration des sauvegardes et exigences de capacité
 
@@ -414,53 +414,53 @@ Le tableau suivant montre comment configurer des sauvegardes à exécuter sur le
 | Annuelle | StorSimple annuelle  |   |   |   |   |   |   |
 
 
-## <a name="assign-storsimple-volumes-to-a-netbackup-archive-and-duplication-job"></a>Attribuer des volumes StorSimple à un travail d’archivage et de déduplication NetBackup
+## <a name="assign-storsimple-volumes-tooa-netbackup-archive-and-duplication-job"></a>Affecter StorSimple volumes tooa NetBackup archive et la duplication de travail
 
-Étant donné que NetBackup offre un large éventail d’options pour la gestion du stockage et des supports, nous vous recommandons de consulter votre concepteur de solutions Veritas ou NetBackup pour évaluer correctement les exigences en matière de stratégies de cycle de vie du stockage.
+NetBackup propose un large éventail d’options pour la gestion du stockage et de support, nous vous recommandons que vous consultez avec Veritas ou votre tooproperly d’architecte NetBackup évaluer vos besoins de la stratégie (SLP) de cycle de vie de stockage.
 
-Une fois que vous avez défini les pools de disques initiaux, vous devez définir trois stratégies de cycle de vie du stockage supplémentaires, pour un total de quatre stratégies :
+Une fois que vous avez défini des pools de disque initiale hello, vous devez toodefine trois stratégies de cycle de vie du stockage supplémentaire, pour un total de quatre stratégies :
 * LocalRAIDVolume (VolumeRAIDLocal)
 * StorSimpleWeek2-4 (StorSimpleSemaines2-4)
 * StorSimpleMonthlyFulls (StorSimpleComplètesMensuelles)
 * StorSimpleYearlyFulls (StorSimpleComplètesAnnuelles)
 
-### <a name="to-assign-storsimple-volumes-to-a-netbackup-archive-and-duplication-job"></a>Pour attribuer des volumes StorSimple à un travail d’archivage et de duplication NetBackup
+### <a name="tooassign-storsimple-volumes-tooa-netbackup-archive-and-duplication-job"></a>tooassign StorSimple volumes tooa NetBackup travail et d’archivage duplication
 
-1.  Dans la Console d’administration NetBackup, sélectionnez **Storage (Stockage)** > **Storage Lifecycle Policies (Stratégies de cycle de vie du stockage)** > **New Storage Lifecycle Policy (Nouvelle stratégie de cycle de vie du stockage)**.
+1.  Dans la Console d’Administration NetBackup de hello, sélectionnez **stockage** > **stratégies de cycle de vie de stockage** > **stratégie de cycle de vie de stockage**.
 
     ![Console d’administration de NetBackup, nouvelle stratégie de cycle de vie du stockage](./media/storsimple-configure-backup-target-using-netbackup/nbimage20.png)
 
-2.  Entrez un nom pour la capture instantanée, puis sélectionnez **Add (Ajouter)**.
+2.  Entrez un nom pour la capture instantanée de hello et sélectionnez **ajouter**.
 
-3.  Dans la boîte de dialogue **New Operation (Nouvelle opération)**, dans l’onglet **Properties (Propriétés)**, pour **Operation (Opération)**, sélectionnez **Backup (Sauvegarde)**. Sélectionnez les valeurs souhaitées pour **Destination storage (Stockage cible)**, **Retention type (Type de rétention)** et **Retention period (Période de rétention)**. Sélectionnez **OK**.
+3.  Bonjour **nouvelle opération** la boîte de dialogue hello **propriétés** onglet, pour **opération**, sélectionnez **sauvegarde**. Sélectionnez valeurs hello pour **stockage de Destination**, **type de rétention**, et **période de rétention**. Sélectionnez **OK**.
 
     ![Console d’administration NetBackup, boîte de dialogue Nouvelle opération](./media/storsimple-configure-backup-target-using-netbackup/nbimage22.png)
 
-    Cette opération définit la première opération de sauvegarde et le référentiel.
+    Cela définit le référentiel et la première opération de sauvegarde hello.
 
-4.  Sélectionnez pour mettre en surbrillance l’opération précédente, puis sélectionnez **Add (Ajouter)**. Dans la boîte de dialogue **Change Storage Operation (Modifier l’opération de sauvegarde)**, sélectionnez les valeurs souhaitées pour **Destination storage (Stockage cible)**, **Retention type (Type de rétention)** et **Retention period (Période de rétention)**.
+4.  Sélectionnez une opération précédente toohighlight hello, puis **ajouter**. Bonjour **opération de modification du stockage** boîte de dialogue, sélectionnez hello voulus pour **stockage de Destination**, **type de rétention**, et **période de rétention** .
 
     ![Console d’administration NetBackup, boîte de dialogue Modifier l’opération de sauvegarde](./media/storsimple-configure-backup-target-using-netbackup/nbimage23.png)
 
-5.  Sélectionnez pour mettre en surbrillance l’opération précédente, puis sélectionnez **Add (Ajouter)**. Dans la boîte de dialogue **New Storage Lifecycle Policy (Nouvelle stratégie de cycle de vie du stockage)**, ajoutez des sauvegardes mensuelles pour une année.
+5.  Sélectionnez une opération précédente toohighlight hello, puis **ajouter**. Bonjour **stratégie de cycle de vie de stockage** boîte de dialogue zone, ajouter des sauvegardes mensuelles pour une année.
 
     ![Console d’administration de NetBackup, boîte de dialogue Nouvelle stratégie de cycle de vie du stockage](./media/storsimple-configure-backup-target-using-netbackup/nbimage24.png)
 
-6.  Répétez les étapes 4 et 5 jusqu’à avoir créé la stratégie de rétention SLP complète dont vous avez besoin.
+6.  Répétez les étapes 4 à 5 jusqu'à ce que vous avez créé hello complète SLP stratégie de rétention que vous avez besoin.
 
-    ![Console d’administration de NetBackup, Ajouter des stratégies dans la boîte de dialogue Nouvelle stratégie de cycle de vie du stockage](./media/storsimple-configure-backup-target-using-netbackup/nbimage25.png)
+    ![Console d’Administration NetBackup, ajouter des stratégies dans la boîte de dialogue Nouvelle stratégie de cycle de vie de stockage hello](./media/storsimple-configure-backup-target-using-netbackup/nbimage25.png)
 
-7.  Lorsque vous avez terminé de définir votre stratégie de rétention SLP, sous **Policy (Stratégie)**, définissez une stratégie de sauvegarde en suivant les étapes détaillées dans [Affectation de volumes StorSimple à un travail de sauvegarde NetBackup](#assigning-storsimple-volumes-to-a-netbackup-backup-job).
+7.  Lorsque vous avez terminé de définir votre stratégie de rétention SLP sous **stratégie**, définir une stratégie de sauvegarde en suivant les étapes hello détaillées dans [tâche de sauvegarde StorSimple d’affectation de volumes tooa NetBackup](#assigning-storsimple-volumes-to-a-netbackup-backup-job).
 
-8.  Sous **Schedules (Planifications)**, dans la boîte de dialogue **Change Schedule (Modifier la planification)**, cliquez avec le bouton droit sur **Full (Complète)**, puis sélectionnez **Change (Modifier)**.
+8.  Sous **planifications**, Bonjour **modifier la planification** boîte de dialogue, avec le bouton droit **complète**, puis sélectionnez **modification**.
 
     ![Console d’administration NetBackup, boîte de dialogue Modifier la planification](./media/storsimple-configure-backup-target-using-netbackup/nbimage26.png)
 
-9.  Cochez la case **Override policy storage selection (Écraser la sélection de stratégie de stockage)**, puis sélectionnez la stratégie de rétention SLP créée aux étapes 1 à 6.
+9.  Sélectionnez hello **remplacer la sélection de la stratégie stockage** case à cocher, puis sélectionnez hello SLP de rétention que vous avez créé dans les étapes 1 à 6.
 
     ![Console d’Administration NetBackup, Écraser la sélection de stratégie de stockage](./media/storsimple-configure-backup-target-using-netbackup/nbimage27.png)
 
-10.  Cliquez sur **OK**, puis répétez la procédure pour la planification des sauvegardes incrémentielles.
+10.  Sélectionnez **OK**, puis répétez pour la planification de sauvegarde incrémentielle hello.
 
     ![Console d’administration NetBackup, boîte de dialogue Modifier la planification pour les sauvegardes incrémentielles](./media/storsimple-configure-backup-target-using-netbackup/nbimage28.png)
 
@@ -468,26 +468,26 @@ Une fois que vous avez défini les pools de disques initiaux, vous devez défini
 | Type de sauvegarde et rétention | Taille (Tio) | Multiplicateur GFS\* | Capacité totale (Tio)  |
 |---|---|---|---|
 | Complète hebdomadaire |  1  |  4 | 4  |
-| Incrémentielle quotidienne  | 0.5  | 20 (cycles correspondant au nombre de semaines par mois) | 12 (2 pour le quota supplémentaire) |
+| Incrémentielle quotidienne  | 0.5  | 20 (cycles sont nombre toohello égal de semaines par mois) | 12 (2 pour le quota supplémentaire) |
 | Complète mensuelle  | 1 | 12 | 12 |
 | Complète annuelle | 1  | 10 | 10 |
 | Exigence GFS  |     |     | 38 |
 | Quota supplémentaire  | 4  |    | 42 au total pour l’exigence GFS |
-\* Le multiplicateur GFS est le nombre de copies que vous devez protéger et conserver pour vous conformer à vos stratégies de sauvegarde.
+\*nombre de hello est Hello multiplicateur GFS de copies vous devez tooprotect et conserver toomeet vos exigences de stratégie de sauvegarde.
 
 ## <a name="storsimple-cloud-snapshots"></a>Captures instantanées cloud StorSimple
 
-Les captures instantanées cloud StorSimple protègent les données qui se trouvent sur votre appareil StorSimple. La création d’une capture instantanée cloud est équivalente à l’envoi des bandes de sauvegarde locales vers une installation hors site. Si vous utilisez le stockage géoredondant Azure, la création d’une capture instantanée cloud équivaut à l’envoi des bandes de sauvegarde vers plusieurs sites. Si vous devez restaurer un appareil après un sinistre, vous pouvez mettre un autre appareil StorSimple en ligne et procéder à un basculement. Après le basculement, vous serez ainsi en mesure d’accéder aux données (à la vitesse du cloud) à partir de la capture instantanée cloud la plus récente.
+Instantanés de cloud StorSimple protéger les données de hello qui réside dans votre appareil StorSimple. Création d’un instantané cloud est facilité de tooshipping équivalentes des bandes de sauvegarde local tooan hors site. Si vous utilisez un stockage géo-redondant Azure, la création d’un instantané cloud est sites de toomultiple tooshipping équivalent bandes de sauvegarde. Si vous devez toorestore un appareil après un sinistre, vous pouvez mettre un autre appareil StorSimple en ligne et effectuer un basculement. Après le basculement de hello, vous serez en mesure de tooaccess les données de hello (à des vitesses de cloud) à partir de l’instantané cloud le plus récent hello.
 
-La section ci-après décrit comment créer un bref script pour déclencher et supprimer des captures instantanées cloud StorSimple au cours du post-traitement de sauvegarde.
+Hello suivant la section décrit comment toocreate un toostart script court et delete StorSimple instantanés cloud lors du post-traitement de la sauvegarde.
 
 > [!NOTE]
-> Les captures instantanées qui sont créées manuellement ou par programme ne suivent pas la stratégie d’expiration des captures instantanées StorSimple. Ces captures instantanées doivent être supprimées manuellement ou par programme.
+> Instantanés créés manuellement ou par programmation ne suivent pas la stratégie d’expiration de hello StorSimple snapshot. Ces captures instantanées doivent être supprimées manuellement ou par programme.
 
 ### <a name="start-and-delete-cloud-snapshots-by-using-a-script"></a>Démarrer et supprimer des captures instantanées cloud avec un script
 
 > [!NOTE]
-> Évaluez soigneusement les répercussions sur la conformité et sur la rétention des données avant de supprimer une capture instantanée StorSimple. Pour plus d’informations sur l’exécution d’un script après la sauvegarde, consultez la [documentation NetBackup](http://www.veritas.com/docs/000094423).
+> Évaluer avec soin la conformité de hello et des répercussions de rétention de données avant de supprimer un instantané StorSimple. Pour plus d’informations sur la façon toorun un script de postsauvegarde, consultez hello [NetBackup documentation](http://www.veritas.com/docs/000094423).
 
 ### <a name="backup-lifecycle"></a>Cycle de vie de sauvegarde
 
@@ -495,22 +495,22 @@ La section ci-après décrit comment créer un bref script pour déclencher et s
 
 ### <a name="requirements"></a>Configuration requise
 
--   Le serveur qui exécute le script doit avoir accès aux ressources du cloud Azure.
--   Le compte d’utilisateur doit disposer des autorisations nécessaires.
--   Une stratégie de sauvegarde StorSimple avec les volumes StorSimple associés doit être configurée mais non activée.
--   Vous devez disposer du nom de la ressource StorSimple, de la clé d’inscription, du nom de l’appareil et de l’ID de la stratégie de sauvegarde.
+-   serveur Hello qui exécute le script de hello doit avoir à accéder aux ressources de cloud tooAzure.
+-   compte d’utilisateur Hello doit avoir les autorisations nécessaires hello.
+-   Une stratégie de sauvegarde StorSimple avec hello associés StorSimple volumes doivent être configurés mais pas sous tension.
+-   Vous devez hello StorSimple nom de la ressource, la clé d’enregistrement, nom de l’appareil et ID de stratégie de sauvegarde.
 
-### <a name="to-start-or-delete-a-cloud-snapshot"></a>Pour démarrer ou supprimer une capture instantanée cloud
+### <a name="toostart-or-delete-a-cloud-snapshot"></a>toostart ou supprimer un instantané cloud
 
 1.  [Installez Azure PowerShell](/powershell/azure/overview).
 2.  [Téléchargez et importez les paramètres de publication et les informations d’abonnement](https://msdn.microsoft.com/library/dn385850.aspx).
-3.  Dans le Portail Azure Classic, obtenez le nom de la ressource et la [clé d’inscription pour votre service StorSimple Manager](storsimple-deployment-walkthrough-u2.md#step-2-get-the-service-registration-key).
-4.  Sur le serveur qui exécute le script, exécutez PowerShell en tant qu’administrateur. Tapez la commande suivante :
+3.  Dans l’hello portail Azure classic, obtenir le nom de la ressource hello et [clé d’inscription de votre service StorSimple Manager](storsimple-deployment-walkthrough-u2.md#step-2-get-the-service-registration-key).
+4.  Sur serveur hello qui exécute le script de hello, exécutez PowerShell en tant qu’administrateur. Tapez la commande suivante :
 
     `Get-AzureStorSimpleDeviceBackupPolicy –DeviceName <device name>`
 
-    Prenez notre de l’ID de la stratégie de sauvegarde.
-5.  Dans le Bloc-notes, créez un script PowerShell en utilisant le code suivant.
+    Code de note hello stratégie de sauvegarde.
+5.  Dans le bloc-notes, créez un script PowerShell à l’aide de hello suivant de code.
 
     Copiez et collez cet extrait de code :
     ```powershell
@@ -525,7 +525,7 @@ La section ci-après décrit comment créer un bref script pour déclencher et s
     Start-AzureStorSimpleDeviceBackupJob –DeviceName $ApplianceName -BackupType CloudSnapshot -BackupPolicyId <BackupId> -Verbose
     $CompletedSnapshots =@()
     $CompletedSnapshots = Get-AzureStorSimpleDeviceBackup -DeviceName $ApplianceName
-    Write-Host "The Expiration date is " $ExpirationDate
+    Write-Host "hello Expiration date is " $ExpirationDate
     Write-Host
 
     ForEach ($SnapShot in $CompletedSnapshots)
@@ -537,38 +537,38 @@ La section ci-après décrit comment créer un bref script pour déclencher et s
             $SnapShotInstanceID = $SnapShot.InstanceId
             Write-Host "This snpashotdate was created on " $SnapshotStartTimeStamp.Date.ToShortDateString()
             Write-Host "Instance ID " $SnapShotInstanceID
-            Write-Host "This snpashotdate is older and needs to be deleted"
+            Write-Host "This snpashotdate is older and needs toobe deleted"
             Write-host "\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#"
             Remove-AzureStorSimpleDeviceBackup -DeviceName $ApplianceName -BackupId $SnapShotInstanceID -Force -Verbose
         }
     }
     ```
-      Enregistrez le script PowerShell dans le même emplacement que celui où vous avez enregistré vos paramètres de publication Azure. Par exemple, C:\CloudSnapshot\StorSimpleCloudSnapshot.ps1.
-6.  Ajoutez le script à votre travail de sauvegarde dans NetBackup. Pour ce faire, modifiez vos commandes de prétraitement et de post-traitement des options de travail NetBackup.
+      Enregistrement toohello de script PowerShell hello même emplacement où vous avez enregistré votre Azure de paramètres de publication. Par exemple, C:\CloudSnapshot\StorSimpleCloudSnapshot.ps1.
+6.  Ajouter le travail de sauvegarde tooyour script hello dans NetBackup. toodo, modifier votre NetBackup travail options' prétraitement et après le traitement des commandes.
 
 > [!NOTE]
-> Nous vous recommandons d’exécuter votre stratégie de sauvegarde de captures instantanées cloud StorSimple à la fin de votre travail de sauvegarde quotidien sous la forme d’un script de post-traitement. Pour plus d’informations sur la façon de sauvegarder et de restaurer votre environnement d’application de sauvegarde pour vous aider à atteindre vos objectifs RPO et RTO, consultez votre concepteur d’architecture de sauvegarde.
+> Nous vous conseillons d’exécuter votre stratégie de sauvegarde d’instantané cloud StorSimple en tant que script de post-traitement à fin hello de votre tâche de sauvegarde quotidienne. Pour plus d’informations sur comment tooback configuration et restauration votre toohelp d’environnement de l’application de sauvegarde vous remplissez votre RPO et RTO, veuillez consulter avec votre architecte de sauvegarde.
 
 ## <a name="storsimple-as-a-restore-source"></a>Utiliser StorSimple comme source de restauration
 
-Les restaurations à partir d’un appareil StorSimple fonctionnent comme les restaurations effectuées à partir de n’importe quel dispositif de stockage de bloc. Les restaurations de données hiérarchisées vers le cloud se produisent à la vitesse du cloud. Pour les données locales, les restaurations sont effectuées à la vitesse du disque local de l’appareil. Pour plus d’informations sur l’exécution d’une restauration, consultez la [documentation NetBackup](http://www.veritas.com/docs/000094423). Nous vous recommandons de respecter les meilleures pratiques de NetBackup relatives à la restauration.
+Les restaurations à partir d’un appareil StorSimple fonctionnent comme les restaurations effectuées à partir de n’importe quel dispositif de stockage de bloc. Restaurations de données à plusieurs niveaux toohello cloud se produit à des vitesses de cloud. Pour les données locales, les restaurations se produisent à la vitesse du disque local hello du périphérique de hello. Pour plus d’informations sur la façon tooperform une restauration, consultez hello [NetBackup documentation](http://www.veritas.com/docs/000094423). Il est recommandé que vous conformer tooNetBackup restauration meilleures pratiques.
 
 ## <a name="storsimple-failover-and-disaster-recovery"></a>Basculement et récupération d’urgence StorSimple
 
 > [!NOTE]
 > Pour les scénarios relatifs aux cibles de sauvegarde, l’appliance cloud StorSimple n’est pas prise en charge en tant que cible de restauration.
 
-Un sinistre peut être dû à plusieurs facteurs. Le tableau ci-après répertorie les scénarios de récupération d’urgence courants.
+Un sinistre peut être dû à plusieurs facteurs. Hello tableau suivant répertorie les scénarios de récupération d’urgence courants.
 
-| Scénario | Impact | Procédure de récupération | Remarques |
+| Scénario | Impact | Comment toorecover | Remarques |
 |---|---|---|---|
-| Défaillance d’appareil StorSimple | Les opérations de sauvegarde et de restauration sont interrompues. | Remplacez l’appareil défaillant et effectuez [un basculement et une récupération d’urgence StorSimple](storsimple-device-failover-disaster-recovery.md). | Si vous devez procéder à une restauration après la récupération de l’appareil, les jeux de données de travail complets sont récupérés sur le nouvel appareil à partir du cloud. Toutes les opérations sont exécutées à la vitesse du cloud. Le processus de nouvelle analyse des index et catalogues peut entraîner l’analyse et l’extraction de tous les jeux de données de sauvegarde du niveau cloud vers un niveau d’appareil local, ce qui peut prendre un certain temps. |
-| Défaillance du serveur NetBackup | Les opérations de sauvegarde et de restauration sont interrompues. | Régénérez le serveur de sauvegarde et effectuez la restauration de base de données. | Vous devez reconstruire ou restaurer le serveur NetBackup sur le site de récupération d’urgence. Restaurez la base de données à partir du point de défaillance le plus récent. Si la base de données NetBackup restaurée n’est pas synchronisée avec vos derniers travaux de sauvegarde, vous devez procéder à une indexation et à un catalogage. Cette nouvelle analyse des index et catalogues peut entraîner l’analyse et l’extraction de tous les jeux de données de sauvegarde du niveau cloud vers un niveau d’appareil local. Ce processus peut donc prendre un certain temps. |
-| Défaillance du site entraînant la perte du serveur de sauvegarde et de l’appareil StorSimple | Les opérations de sauvegarde et de restauration sont interrompues. | Commencez par restaurer StorSimple, puis restaurez NetBackup. | Commencez par restaurer StorSimple, puis restaurez NetBackup. Si vous devez procéder à une restauration après la récupération de l’appareil, les jeux de données de travail complets sont récupérés sur le nouvel appareil à partir du cloud. Toutes les opérations sont exécutées à la vitesse du cloud. |
+| Défaillance d’appareil StorSimple | Les opérations de sauvegarde et de restauration sont interrompues. | Remplacer le périphérique avec échec hello et exécuter [StorSimple basculement et récupération d’urgence](storsimple-device-failover-disaster-recovery.md). | Si vous devez tooperform une restauration après la récupération de l’appareil, les jeux de travail complète des données sont extraites hello cloud toohello nouvel appareil. Toutes les opérations sont exécutées à la vitesse du cloud. index de Hello et le catalogue une nouvelle analyse de processus risque de tous les jeux de sauvegarde toobe, analysés et extraite hello cloud couche toohello appareil local niveau, qui peut prendre du temps. |
+| Défaillance du serveur NetBackup | Les opérations de sauvegarde et de restauration sont interrompues. | Reconstruire le serveur de sauvegarde hello et restaurez la base de données. | Vous devez reconstruire ou restaurer hello NetBackup server sur site de récupération d’urgence hello. Hello de base de données toohello plus récent point de restauration. Si hello NetBackup base de données restaurée n’est pas synchronisée avec vos travaux de sauvegarde plus récente, l’indexation et de catalogage sont requis. Cet index et le catalogue une nouvelle analyse de processus risque de tous les jeux de sauvegarde toobe, analysées et extraites de la couche de hello cloud couche toohello périphérique local. Ce processus peut donc prendre un certain temps. |
+| Défaillance du site qui entraîne la perte de hello du serveur de sauvegarde hello et StorSimple | Les opérations de sauvegarde et de restauration sont interrompues. | Commencez par restaurer StorSimple, puis restaurez NetBackup. | Commencez par restaurer StorSimple, puis restaurez NetBackup. Si vous devez tooperform une restauration après la récupération de l’appareil, jeux de travail hello complète des données est extraites hello cloud toohello nouvel appareil. Toutes les opérations sont exécutées à la vitesse du cloud. |
 
 ## <a name="references"></a>Références
 
-Les documents référencés dans cet article sont les suivants :
+Hello suivant les documents ont été référencé pour cet article :
 
 - [StorSimple multipath I/O setup (Configuration de StorSimple MPIO)](storsimple-configure-mpio-windows-server.md)
 - [Storage scenarios: Thin provisioning (Scénarios de stockage : allocation dynamique)](http://msdn.microsoft.com/library/windows/hardware/dn265487.aspx)
@@ -577,5 +577,5 @@ Les documents référencés dans cet article sont les suivants :
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-- En savoir plus sur la [restauration à partir d’un jeu de sauvegarde](storsimple-restore-from-backup-set-u2.md).
-- En savoir plus sur l’exécution [d’un basculement et d’une récupération d’urgence pour un appareil](storsimple-device-failover-disaster-recovery.md).
+- En savoir plus sur la façon trop[restauration à partir d’un jeu de sauvegarde](storsimple-restore-from-backup-set-u2.md).
+- En savoir plus sur la façon tooperform [appareil basculement et récupération d’urgence](storsimple-device-failover-disaster-recovery.md).

@@ -1,6 +1,6 @@
 ---
-title: "Déployer des machines virtuelles Linux dans un réseau existant avec l’interface Azure CLI 1.0 | Microsoft Docs"
-description: "Procédure de déploiement d’une machine virtuelle Linux dans un réseau virtuel existant à l’aide de l’interface Azure CLI 1.0"
+title: "aaaDeploy les machines virtuelles Linux sur un réseau existant avec Azure CLI 1.0 | Documents Microsoft"
+description: "Comment un VM Linux dans un réseau virtuel existant à l’aide de toodeploy hello Azure CLI 1.0"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: iainfoulds
@@ -15,34 +15,34 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/11/2017
 ms.author: iainfou
-ms.openlocfilehash: 767a3f7cadba6b1e71e5a8f5995a9db090e419dd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e660f1563d386efc7788bd236f8b067145ea09bb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-deploy-a-linux-virtual-machine-into-an-existing-azure-virtual-network-with-the-azure-cli-10"></a>Procédure de déploiement d’une machine virtuelle Linux dans un réseau virtuel Azure existant à l’aide de l’interface Azure CLI 1.0
+# <a name="how-toodeploy-a-linux-virtual-machine-into-an-existing-azure-virtual-network-with-hello-azure-cli-10"></a>Comment toodeploy une machine virtuelle de Linux dans un réseau virtuel Azure existant avec hello Azure CLI 1.0
 
-Cet article vous montre comment utiliser l’interface Azure CLI 1.0 pour déployer une machine virtuelle dans un réseau virtuel existant (VNet). Les conditions requises sont :
+Cet article vous montre comment toouse Azure CLI 1.0 toodeploy un ordinateur virtuel (VM) dans un réseau virtuel (VNet). spécifications de Hello sont :
 
 - [un compte Azure](https://azure.microsoft.com/pricing/free-trial/)
 - [des fichiers de clés SSH publiques et privées](mac-create-ssh-keys.md)
 
 
-## <a name="cli-versions-to-complete-the-task"></a>Versions de l’interface de ligne de commande permettant d’effectuer la tâche
-Vous pouvez exécuter la tâche en utilisant l’une des versions suivantes de l’interface de ligne de commande (CLI) :
+## <a name="cli-versions-toocomplete-hello-task"></a>Tâche de hello CLI versions toocomplete
+Vous pouvez exécuter la tâche hello à l’aide de hello CLI versions suivantes :
 
-- [Azure CLI 1.0](#quick-commands) : notre interface de ligne de commande pour les modèles de déploiement Classique et Resource Manager (cet article)
-- [Azure CLI 2.0](deploy-linux-vm-into-existing-vnet-using-cli.md) : notre interface Azure CLI nouvelle génération pour le modèle de déploiement Resource Manager
+- [Azure CLI 1.0](#quick-commands) – notre CLI pour hello classique et la ressource gestion des modèles de déploiement (cet article)
+- [Azure CLI 2.0](deploy-linux-vm-into-existing-vnet-using-cli.md) -notre prochaine génération CLI pour le modèle de déploiement de gestion de ressources hello
 
 
 ## <a name="quick-commands"></a>Commandes rapides
 
-Si vous avez besoin d’accomplir rapidement cette tâche, la section suivante décrit les commandes nécessaires. Pour obtenir plus d’informations et davantage de contexte pour chaque étape, lisez la suite de ce document, [à partir de cette section](deploy-linux-vm-into-existing-vnet-using-cli.md#detailed-walkthrough).
+Si vous avez besoin de tooquickly accomplir la tâche hello, hello suivant la section Détails des commandes hello nécessaires. Plus d’informations et le contexte de chaque étape se trouve reste hello du document de hello, [Démarrer ici](deploy-linux-vm-into-existing-vnet-using-cli.md#detailed-walkthrough).
 
 Configuration requise : groupe de ressources, réseau virtuel, groupe de sécurité réseau avec SSH entrant, sous-réseau. Remplacez les exemples par vos propres paramètres.
 
-### <a name="deploy-the-vm-into-the-virtual-network-infrastructure"></a>Déployer la machine virtuelle dans l’infrastructure de réseau virtuel
+### <a name="deploy-hello-vm-into-hello-virtual-network-infrastructure"></a>Déployer hello VM dans l’infrastructure de réseau virtuel hello
 
 ```azurecli
 azure vm create myVM \
@@ -61,19 +61,19 @@ azure vm create myVM \
 
 ## <a name="detailed-walkthrough"></a>Procédure pas à pas
 
-Les ressources Azure telles que les réseaux virtuels et les groupes de sécurité réseau doivent être des ressources statiques et durables qui sont rarement déployées. Une fois un réseau virtuel déployé, il peut être réutilisé par de nouveaux redéploiements, sans impact négatif sur l’infrastructure. Voyez les réseaux virtuels comme étant des commutateurs réseau physiques traditionnels. Vous n’avez pas besoin de configurer un nouveau commutateur matériel avec chaque déploiement. Avec un réseau virtuel correctement configuré, vous pouvez continuer à déployer de nouveaux serveurs dans ce réseau virtuel encore et encore avec peu de modifications requises, voire aucune, tout au long de la durée de vie du réseau virtuel.
+Ressources Azure, comme hello des réseaux virtuels et des groupes de sécurité réseau doivent être statiques et de longue durée de vie ressources qui sont rarement déployées. Une fois qu’un réseau virtuel a été déployé, il peut être réutilisé par nouveaux déploiements sans n’importe quelle infrastructure de toohello répercussions négatives. Voyez les réseaux virtuels comme étant des commutateurs réseau physiques traditionnels. Vous ne devez pas tooconfigure basculer d’un nouveau matériel à chaque déploiement. Avec un réseau virtuel configuré correctement, vous pouvez poursuivre toodeploy nouveaux serveurs dans ce réseau virtuel apportant peu, le cas échéant, de modifications nécessaires pendant toute la durée hello Hello réseau virtuel.
 
-## <a name="create-the-resource-group"></a>Créer le groupe de ressources
+## <a name="create-hello-resource-group"></a>Créer le groupe de ressources hello
 
-Tout d’abord, créez un groupe de ressources pour organiser tous les éléments créés dans cette procédure pas à pas. Pour plus d’informations sur les groupes de ressources, consultez [Vue d’ensemble d’Azure Resource Manager](../../azure-resource-manager/resource-group-overview.md)
+Commencez par créer un tooorganize de groupe de ressources tout ce que vous créez dans cette procédure pas à pas. Pour plus d’informations sur les groupes de ressources, consultez [Vue d’ensemble d’Azure Resource Manager](../../azure-resource-manager/resource-group-overview.md)
 
 ```azurecli
 azure group create myResourceGroup --location eastus
 ```
 
-## <a name="create-the-vnet"></a>Créez le réseau virtuel.
+## <a name="create-hello-vnet"></a>Créer hello réseau virtuel
 
-La première étape consiste à créer un réseau virtuel dans lequel lancer les machines virtuelles. Le réseau virtuel contient un sous-réseau pour cette procédure pas à pas. Pour plus d’informations sur les réseaux virtuels Azure, consultez la section [Créer un réseau virtuel à l’aide de l’interface de ligne de commande Azure](../../virtual-network/virtual-networks-create-vnet-arm-cli.md).
+première étape de Hello est toobuild un toolaunch de réseau virtuel hello des machines virtuelles dans. Hello réseau virtuel contient un sous-réseau pour cette procédure pas à pas. Pour plus d’informations sur des réseaux virtuels Azure, consultez [créer un réseau virtuel à l’aide de hello CLI d’Azure](../../virtual-network/virtual-networks-create-vnet-arm-cli.md)
 
 ```azurecli
 azure network vnet create myVNet \
@@ -82,9 +82,9 @@ azure network vnet create myVNet \
     --location eastus
 ```
 
-## <a name="create-the-network-security-group"></a>Créer le groupe de sécurité réseau
+## <a name="create-hello-network-security-group"></a>Créer un groupe de sécurité réseau hello
 
-Le sous-réseau se trouvant derrière un groupe de sécurité réseau existant, vous devez développer le groupe de sécurité en premier. Les groupes de sécurité réseau Azure s’apparentent à un pare-feu au niveau de la couche réseau. Pour plus d’informations sur les groupes de sécurité réseau Azure, consultez [Guide de création des groupes de sécurité réseau dans l’interface de ligne de commande Azure](../../virtual-network/virtual-networks-create-nsg-arm-cli.md)
+sous-réseau de Hello repose derrière un groupe de sécurité réseau existant ainsi générer le groupe de sécurité de réseau hello avant le sous-réseau de hello. Groupes de sécurité réseau Azure sont pare-feu tooa équivalente à la couche réseau hello. Pour plus d’informations sur les groupes de sécurité réseau Azure, consultez [comment les groupes de sécurité de réseau toocreate Bonjour CLI d’Azure](../../virtual-network/virtual-networks-create-nsg-arm-cli.md)
 
 ```azurecli
 azure network nsg create myNetworkSecurityGroup \
@@ -94,7 +94,7 @@ azure network nsg create myNetworkSecurityGroup \
 
 ## <a name="add-an-inbound-ssh-allow-rule"></a>Ajouter une règle d’autorisation SSH entrante
 
-La machine virtuelle a besoin d’un accès à partir d’Internet. Une règle autorisant le trafic entrant sur le port 22 à être acheminé à travers le réseau jusqu’au port 22 de la machine virtuelle est donc nécessaire.
+Hello machine virtuelle a besoin d’accéder à partir de hello internet pour une règle autorisant le port entrant 22 trafic toobe transmises via le réseau de hello tooport 22 sur hello machine virtuelle est nécessaire.
 
 ```azurecli
 azure network nsg rule create inboundSSH \
@@ -110,9 +110,9 @@ azure network nsg rule create inboundSSH \
     --destination-port-range 22
 ```
 
-## <a name="add-a-subnet-to-the-vnet"></a>Ajouter un sous-réseau au réseau virtuel
+## <a name="add-a-subnet-toohello-vnet"></a>Ajouter un sous-réseau de toohello réseau virtuel
 
-Les machines virtuelles d’un réseau virtuel doivent se trouver dans un sous-réseau. Chaque réseau virtuel peut présenter plusieurs sous-réseaux. Créez le sous-réseau et associez-le au groupe de sécurité réseau.
+Machines virtuelles au sein de hello réseau virtuel doivent se trouver dans un sous-réseau. Chaque réseau virtuel peut présenter plusieurs sous-réseaux. Créer hello sous-réseau et l’associer à un groupe de sécurité réseau hello.
 
 ```azurecli
 azure network vnet subnet create mySubNet \
@@ -122,12 +122,12 @@ azure network vnet subnet create mySubNet \
     --network-security-group-name myNetworkSecurityGroup
 ```
 
-Le sous-réseau est désormais ajouté au sein du réseau virtuel et associé au groupe de sécurité réseau et à la règle dédiée.
+Hello sous-réseau est désormais ajouté à l’intérieur de hello réseau virtuel et associé à la règle et le groupe de sécurité réseau hello.
 
 
-## <a name="add-a-vnic-to-the-subnet"></a>Ajouter une carte réseau virtuelle au réseau virtuel
+## <a name="add-a-vnic-toohello-subnet"></a>Ajouter un sous-réseau toohello de carte réseau virtuelle
 
-Les cartes réseau virtuelles (VNic) sont importantes, car vous pouvez les réutiliser en les connectant sur différentes machines virtuelles. Cette approche conserve la carte réseau virtuelle comme une ressource statique, tandis que les machines virtuelles peuvent être temporaires. Créez une carte réseau virtuelle et associez-la au sous-réseau créé à l’étape précédente.
+Les cartes réseau virtuelles (cartes réseau) sont importantes que vous puissiez les réutiliser en connectant les machines virtuelles de toodifferent. Cette approche conserve hello VNic comme une ressource statique hello machines virtuelles peut être temporaire. Créer une carte réseau virtuelle et l’associer à sous-réseau hello créé à l’étape précédente de hello.
 
 ```azurecli
 azure network nic create myVNic \
@@ -137,11 +137,11 @@ azure network nic create myVNic \
     --subnet-name mySubNet
 ```
 
-## <a name="deploy-the-vm-into-the-vnet-and-nsg"></a>Déployer la machine virtuelle dans le réseau virtuel et le groupe de sécurité réseau
+## <a name="deploy-hello-vm-into-hello-vnet-and-nsg"></a>Déployer hello VM dans hello réseau virtuel et le groupe de sécurité réseau
 
-Vous disposez désormais d’un réseau virtuel et d’un sous-réseau au sein de celui-ci, ainsi que d’un groupe de sécurité réseau qui protège le sous-réseau en bloquant l’ensemble du trafic entrant, à l’exception du port 22 pour SSH. La machine virtuelle peut désormais être déployée au sein de cette infrastructure réseau existante.
+Vous avez maintenant un réseau virtuel et un sous-réseau à l’intérieur de ce réseau virtuel et un groupe de sécurité réseau font Office de sous-réseau de hello tooprotect en bloque tout le trafic entrant, à l’exception de port 22 pour SSH. Hello machine virtuelle peut désormais être déployé à l’intérieur de cette infrastructure réseau existante.
 
-À l’aide de l’interface CLI Azure, et de la commande `azure vm create`, la machine virtuelle Linux est déployée dans le groupe de ressources Azure, le réseau virtuel, le sous-réseau et la carte réseau virtuelle Azure existants. Pour plus d’informations sur l’utilisation de l’interface CLI pour déployer une machine virtuelle complète, consultez la section [Création d’un environnement Linux complet à l’aide de l’interface CLI Azure](create-cli-complete.md).
+À l’aide de hello CLI d’Azure et hello `azure vm create` hello Linux VM est déployé toohello existante du groupe de ressources Azure, du réseau virtuel, sous-réseau et une carte réseau virtuelle de la commande. Pour plus d’informations sur l’utilisation de hello CLI toodeploy une machine virtuelle complète, consultez [créer un environnement complet de Linux à l’aide de hello CLI d’Azure](create-cli-complete.md)
 
 ```azurecli
 azure vm create myVM \
@@ -157,10 +157,10 @@ azure vm create myVM \
     --nic-name myVNic
 ```
 
-En utilisant les indicateurs CLI pour appeler les ressources existantes, vous indiquez à Azure de déployer la machine virtuelle au sein du réseau existant. Lorsqu’un réseau virtuel et un sous-réseau ont été déployés, ils peuvent être conservés en tant que ressources statiques ou permanentes à l’intérieur de votre région Azure.  
+À l’aide de hello CLI indicateurs toocall les ressources existantes, vous indiquez à Azure toodeploy hello machine virtuelle à l’intérieur du réseau existant de hello. Lorsqu’un réseau virtuel et un sous-réseau ont été déployés, ils peuvent être conservés en tant que ressources statiques ou permanentes à l’intérieur de votre région Azure.  
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* [Déploiement et gestion de machines virtuelles à l’aide des modèles Azure Resource Manager et de l’interface de ligne de commande Azure](../windows/cli-deploy-templates.md)
+* [Utilisez un toocreate de modèle Azure Resource Manager un déploiement spécifique](../windows/cli-deploy-templates.md)
 * [Créer votre propre environnement personnalisé pour une machine virtuelle Linux à l’aide des commandes de l’interface de ligne de commande Azure directement](create-cli-complete.md)
 * [Création d’une machine virtuelle Linux sur Azure à l’aide de modèles](create-ssh-secured-vm-from-template.md)

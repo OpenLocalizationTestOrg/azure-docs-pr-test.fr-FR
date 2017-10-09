@@ -1,6 +1,6 @@
 ---
-title: "Créer une machine virtuelle Windows avec PowerShell | Microsoft Docs"
-description: "Créez des machines virtuelles Windows avec Azure PowerShell et le modèle de déploiement classique."
+title: aaaCreate une machine virtuelle de Windows avec PowerShell | Documents Microsoft
+description: "Créer des machines virtuelles Windows Azure PowerShell et le modèle de déploiement classique hello."
 services: virtual-machines-windows
 documentationcenter: 
 author: cynthn
@@ -15,13 +15,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/30/2017
 ms.author: cynthn
-ms.openlocfilehash: 75c6cf17ee269ae169d9f2f748d0985ca07e454e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5339f458c1f08f6e1752a53191f19402fab8ea25
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-windows-virtual-machine-with-powershell-and-the-classic-deployment-model"></a>Créer une machine virtuelle Windows avec PowerShell et le modèle de déploiement Classic
+# <a name="create-a-windows-virtual-machine-with-powershell-and-hello-classic-deployment-model"></a>Créer une machine virtuelle Windows avec PowerShell et hello modèle de déploiement classique
 > [!div class="op_single_selector"]
 > * [Portail Azure - Windows](tutorial.md)
 > * [PowerShell - Windows](create-powershell.md)
@@ -31,32 +31,32 @@ ms.lasthandoff: 07/11/2017
 <br>
 
 > [!IMPORTANT] 
-> Azure dispose de deux modèles de déploiement différents pour créer et utiliser des ressources : [le déploiement Resource Manager et le déploiement classique](../../../resource-manager-deployment-model.md). Cet article traite du modèle de déploiement classique. Pour la plupart des nouveaux déploiements, Microsoft recommande d’utiliser le modèle Resource Manager. Découvrez comment [effectuer ces étapes à l’aide du modèle Resource Manager](../../virtual-machines-windows-ps-create.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+> Azure dispose de deux modèles de déploiement différents pour créer et utiliser des ressources : [le déploiement Resource Manager et le déploiement classique](../../../resource-manager-deployment-model.md). Cet article décrit à l’aide du modèle de déploiement classique hello. Microsoft recommande que la plupart des nouveaux déploiements de modèle du Gestionnaire de ressources hello. Découvrez comment trop[effectuer ces étapes à l’aide du modèle de gestionnaire de ressources hello](../../virtual-machines-windows-ps-create.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 
-Ces étapes vous montrent comment personnaliser un jeu de commandes Azure PowerShell en vue de créer et de préconfigurer une machine virtuelle Azure basée sur Windows à l'aide d'une approche modulaire. À l'aide de cette procédure, vous pouvez créer rapidement un jeu de commandes pour une nouvelle machine virtuelle basée sur Windows et étendre un déploiement existant, ou créer plusieurs jeux de commandes qui génèrent rapidement un environnement personnalisé de développement/test ou destiné aux professionnels de l'informatique.
+Ces étapes montrent le fonctionnement des commandes toocustomize un ensemble d’Azure PowerShell qui créer et préconfigurer une machine virtuelle Azure Windows à l’aide d’une approche de bloc de construction. Vous pouvez utiliser ce processus tooquickly créer un jeu de commandes pour un nouvel ordinateur virtuel basé sur Windows et développez un déploiement existant ou toocreate plusieurs commandes qui définit rapidement créer un environnement de pro informatique ou de développement et de test personnalisé.
 
-Ces étapes utilisent une méthode de cases à remplir pour créer des jeux de commandes Azure PowerShell. Cette méthode peut être utile si vous découvrez PowerShell ou simplement si vous souhaitez connaître les valeurs à indiquer pour une configuration réussie. Les utilisateurs avancés de PowerShell peuvent prendre les commandes et indiquer leurs propres valeurs pour les variables (lignes commençant par « $ »).
+Ces étapes utilisent une méthode de cases à remplir pour créer des jeux de commandes Azure PowerShell. Cette approche peut être utile si vous êtes tooPowerShell nouveau ou vous souhaitiez tooknow le toospecify de valeurs pour la configuration réussie. Les utilisateurs expérimentés PowerShell peuvent prendre les commandes hello et remplacer leurs propres valeurs pour les variables de hello (lignes hello commençant par « $»).
 
-Si ce n’est pas encore fait, installez Azure PowerShell sur votre ordinateur local à l’aide des instructions décrites dans [Installation et configuration d’Azure PowerShell](/powershell/azure/overview) . Puis ouvrez une invite de commandes Windows PowerShell.
+Si vous n’avez pas déjà fait, suivez les instructions de hello de [comment tooinstall et configurer Azure PowerShell](/powershell/azure/overview) tooinstall Azure PowerShell sur votre ordinateur local. Puis ouvrez une invite de commandes Windows PowerShell.
 
 ## <a name="step-1-add-your-account"></a>Étape 1 : Ajouter votre compte
-1. À l’invite PowerShell, tapez **Add-AzureAccount**, puis cliquez sur **Entrée**. 
-2. Tapez l’adresse de messagerie associée à votre abonnement Azure, puis cliquez sur **Continuer**. 
-3. Tapez le mot de passe de votre compte. 
+1. À l’invite de commandes PowerShell hello, tapez **Add-AzureAccount** et cliquez sur **entrée**. 
+2. Tapez hello adresse de messagerie associée à votre abonnement Azure et cliquez sur **continuer**. 
+3. Tapez hello de mot de passe pour votre compte. 
 4. Cliquez sur **Se connecter**.
 
 ## <a name="step-2-set-your-subscription-and-storage-account"></a>Étape 2 : Configurer votre abonnement et votre compte de stockage
-Pour configurer votre abonnement et votre compte de stockage Azure, exécutez ces commandes à l’invite de commandes Windows PowerShell. Remplacez tous les éléments entre guillemets, y compris les caractères < et >, par les noms appropriés.
+Définissez votre abonnement Azure et le compte de stockage en exécutant ces commandes à l’invite de commandes Windows PowerShell hello. Tous les éléments entre guillemets hello, notamment hello < et >, remplacez les noms corrects hello.
 
     $subscr="<subscription name>"
     $staccount="<storage account name>"
     Select-AzureSubscription -SubscriptionName $subscr –Current
     Set-AzureSubscription -SubscriptionName $subscr -CurrentStorageAccountName $staccount
 
-Le nom de l’abonnement apparaît dans la propriété SubscriptionName du résultat de la commande **Get-AzureSubscription** . Le nom du compte de stockage correct apparaît dans la propriété Label de la sortie de la commande **Get-AzureStorageAccount** une fois que vous avez exécuté la commande **Select-AzureSubscription**.
+Vous pouvez obtenir les nom d’abonnement approprié hello de hello propriété SubscriptionName de sortie hello Hello **Get-AzureSubscription** commande. Vous pouvez obtenir nom de compte de stockage correct hello de hello propriété Label du résultat hello de hello **Get-AzureStorageAccount** commande une fois que vous exécutez hello **Select-AzureSubscription** commande.
 
-## <a name="step-3-determine-the-imagefamily"></a>Étape 3 : déterminer la valeur ImageFamily
-Vous devez ensuite déterminer la valeur ImageFamily ou Étiquette pour l'image spécifique correspondant à la machine virtuelle Azure que vous voulez créer. Vous pouvez obtenir la liste des valeurs ImageFamily disponibles à l'aide de cette commande.
+## <a name="step-3-determine-hello-imagefamily"></a>Étape 3 : Déterminer hello ImageFamily
+Ensuite, vous devez toodetermine hello ImageFamily ou la valeur de l’étiquette pour hello image spécifique toohello correspondante machine virtuelle Azure, vous souhaitez toocreate. Vous pouvez obtenir la liste de hello de valeurs ImageFamily disponibles avec cette commande.
 
     Get-AzureVMImage | select ImageFamily -Unique
 
@@ -67,22 +67,22 @@ Voici des exemples de valeurs ImageFamily pour les ordinateurs basés sur Window
 * Windows Server 2016 Technical Preview 4
 * SQL Server 2012 SP1 Enterprise sur Windows Server 2012
 
-Si vous trouvez l’image que vous recherchez, ouvrez une nouvelle instance de l’éditeur de texte de votre choix ou de l’environnement d’écriture de scripts intégré de PowerShell (ISE). Copiez le texte suivant dans le nouveau fichier texte ou PowerShell ISE, en remplaçant la valeur ImageFamily.
+Si vous trouvez image hello que vous cherchez, ouvrez une nouvelle instance de l’éditeur de texte hello de votre choix ou de hello PowerShell Integrated Scripting Environment (ISE). Copiez suivant de hello en fichier texte hello ou hello PowerShell ISE, en remplaçant la valeur de ImageFamily hello.
 
     $family="<ImageFamily value>"
     $image=Get-AzureVMImage | where { $_.ImageFamily -eq $family } | sort PublishedDate -Descending | select -ExpandProperty ImageName -First 1
 
-Dans certains cas, le nom de l'image se trouve dans la propriété Étiquette au lieu de la valeur ImageFamily. Si vous ne trouvez pas l'image souhaitée à l'aide de la propriété ImageFamily, triez les images par propriété Étiquette à l'aide de cette commande.
+Dans certains cas, le nom d’image de hello est Bonjour propriété Label au lieu de hello ImageFamily valeur. Si vous ne trouvez pas image hello que vous cherchez à l’aide de la propriété ImageFamily hello, la liste des images de hello par leur propriété étiquette avec cette commande.
 
     Get-AzureVMImage | select Label -Unique
 
-Si vous trouvez l'image appropriée avec cette commande, ouvrez une nouvelle instance de l'éditeur de texte de votre choix ou PowerShell ISE. Copiez le texte suivant dans le nouveau fichier texte ou PowerShell ISE, en remplaçant la valeur Label.
+Si vous trouvez d’image de droite hello avec cette commande, ouvrez une nouvelle instance de l’éditeur de texte hello de votre choix ou de hello PowerShell ISE. Copiez suivant de hello en fichier texte hello ou hello PowerShell ISE, en remplaçant la valeur de l’étiquette hello.
 
     $label="<Label value>"
     $image = Get-AzureVMImage | where { $_.Label -eq $label } | sort PublishedDate -Descending | select -ExpandProperty ImageName -First 1
 
 ## <a name="step-4-build-your-command-set"></a>Étape 4 : générer votre jeu de commandes
-Créez le reste de votre jeu de commandes en copiant le jeu de blocs approprié ci-dessous dans votre nouveau fichier texte ou ISE, puis en renseignant les valeurs des variables et en supprimant les caractères < et >. Pour avoir une idée du résultat final, consultez les deux [exemples](#examples) figurant à la fin de cet article.
+Créer reste hello de votre commande en copiant l’ensemble approprié de hello de blocs ci-dessous dans votre nouveau fichier texte ou hello ISE renseigner les valeurs des variables hello et suppression hello < et >. Consultez hello deux [exemples](#examples) à fin hello de cet article pour avoir une idée du résultat final de hello.
 
 Pour commencer, choisissez l'un des deux blocs de commandes suivants (obligatoire).
 
@@ -99,31 +99,31 @@ Option 2 : spécifiez un nom, une taille et un nom de groupe à haute disponib
     $availset="<set name>"
     $vm1=New-AzureVMConfig -Name $vmname -InstanceSize $vmsize -ImageName $image -AvailabilitySetName $availset
 
-Pour plus d’informations sur les valeurs InstanceSize des machines virtuelles des séries D, DS et G, voir l’article [Tailles de machines virtuelles et de services cloud pour Microsoft Azure](https://msdn.microsoft.com/library/azure/dn197896.aspx).
+Pour les valeurs de InstanceSize hello pour D, DS ou machines virtuelles de série G, consultez [Machine virtuelle et les tailles de Service Cloud pour Azure](https://msdn.microsoft.com/library/azure/dn197896.aspx).
 
 > [!NOTE]
-> Si vous avez conclu un accord d’entreprise avec Software Assurance et souhaitez tirer parti de Windows Server [Hybrid Use Benefit](https://azure.microsoft.com/pricing/hybrid-use-benefit/), ajoutez le paramètre **-LicenseType** à l’applet de commande **New-AzureVMConfig**, en passant la valeur **Windows_Server** pour le cas d’utilisation standard.  Vérifiez que vous utilisez une image que vous avez téléchargée ; vous ne pouvez pas utiliser une image standard de la galerie avec Hybrid Use Benefit.
+> Si vous avez un contrat d’entreprise avec Software Assurance et que vous envisagez d’avantage tootake Hello Windows Server [hybride utilisez avantage](https://azure.microsoft.com/pricing/hybrid-use-benefit/), ajouter le **- LicenseType** paramètre toohello  **Nouveau-AzureVMConfig** applet de commande, en passant la valeur de hello **Windows_Server** hello classique pour les cas d’usage.  Vérifiez que vous utilisez une image que vous avez téléchargé ; Vous ne pouvez pas utiliser une image standard à partir de la galerie de hello avec hello avantage d’utiliser hybride.
 > 
 > 
 
-Pour un ordinateur Windows autonome, vous pouvez éventuellement spécifier le compte et le mot de passe de l'administrateur local.
+Si vous le souhaitez, pour un ordinateur Windows autonome, vous devez spécifier un mot de passe et le compte d’administrateur local hello.
 
-    $cred=Get-Credential -Message "Type the name and password of the local administrator account."
+    $cred=Get-Credential -Message "Type hello name and password of hello local administrator account."
     $vm1 | Add-AzureProvisioningConfig -Windows -AdminUsername $cred.Username -Password $cred.GetNetworkCredential().Password
 
-Choisissez un mot de passe fort. Pour en vérifier la force, consultez la page [Password Checker : Utilisation de mots de passe forts](https://www.microsoft.com/security/pc-security/password-checker.aspx).
+Choisissez un mot de passe fort. toocheck sa force, consultez [vérificateur de mot de passe : à l’aide de mots de passe forts](https://www.microsoft.com/security/pc-security/password-checker.aspx).
 
-Pour ajouter l’ordinateur Windows à un domaine Active Directory existant, vous pouvez éventuellement spécifier le compte et le mot de passe de l’administrateur local, le domaine, ainsi que le nom et le mot de passe d’un compte de domaine.
+Si vous le souhaitez, tooadd hello Windows ordinateur tooan domaine Active Directory existant, spécifiez le compte d’administrateur local hello et de mot de passe, de domaine hello et de nom de hello et de mot de passe d’un compte de domaine.
 
-    $cred1=Get-Credential –Message "Type the name and password of the local administrator account."
-    $cred2=Get-Credential –Message "Now type the name (not including the domain) and password of an account that has permission to add the machine to the domain."
-    $domaindns="<FQDN of the domain that the machine is joining>"
-    $domacctdomain="<domain of the account that has permission to add the machine to the domain>"
+    $cred1=Get-Credential –Message "Type hello name and password of hello local administrator account."
+    $cred2=Get-Credential –Message "Now type hello name (not including hello domain) and password of an account that has permission tooadd hello machine toohello domain."
+    $domaindns="<FQDN of hello domain that hello machine is joining>"
+    $domacctdomain="<domain of hello account that has permission tooadd hello machine toohello domain>"
     $vm1 | Add-AzureProvisioningConfig -AdminUsername $cred1.Username -Password $cred1.GetNetworkCredential().Password -WindowsDomain -Domain $domacctdomain -DomainUserName $cred2.Username -DomainPassword $cred2.GetNetworkCredential().Password -JoinDomain $domaindns
 
-Pour connaître les autres options de préconfiguration disponibles pour les machines virtuelles Windows, consultez la syntaxe des jeux de paramètres **Windows** et **WindowsDomain** dans [Add-AzureProvisioningConfig](/powershell/module/azure/add-azureprovisioningconfig).
+Pour d’autres options de configuration préalable pour les ordinateurs virtuels basés sur Windows, consultez la syntaxe hello pour hello **Windows** et **WindowsDomain** paramètre définit [ Ajouter-AzureProvisioningConfig](/powershell/module/azure/add-azureprovisioningconfig).
 
-Vous pouvez éventuellement attribuer à la machine virtuelle une adresse IP spécifique, appelée DIP statique.
+Assignez éventuellement une machine virtuelle hello une adresse IP spécifique, appelée une adresse DIP statique.
 
     $vm1 | Set-AzureStaticVNetIP -IPAddress <IP address>
 
@@ -131,71 +131,71 @@ Vous pouvez vérifier la disponibilité d'une adresse IP particulière à l'aid
 
     Test-AzureStaticVNetIP –VNetName <VNet name> –IPAddress <IP address>
 
-Vous pouvez éventuellement affecter la machine virtuelle à un sous-réseau spécifique dans un réseau virtuel Azure.
+Assignez éventuellement sous-réseau spécifique du tooa hello machine virtuelle dans un réseau virtuel Azure.
 
-    $vm1 | Set-AzureSubnet -SubnetNames "<name of the subnet>"
+    $vm1 | Set-AzureSubnet -SubnetNames "<name of hello subnet>"
 
-Vous pouvez éventuellement ajouter un disque de données unique à la machine virtuelle.
+Si vous le souhaitez, ajoutez un ordinateur virtuel de données unique disque toohello.
 
-    $disksize=<size of the disk in GB>
-    $disklabel="<the label on the disk>"
-    $lun=<Logical Unit Number (LUN) of the disk>
+    $disksize=<size of hello disk in GB>
+    $disklabel="<hello label on hello disk>"
+    $lun=<Logical Unit Number (LUN) of hello disk>
     $hcaching="<Specify one: ReadOnly, ReadWrite, None>"
     $vm1 | Add-AzureDataDisk -CreateNew -DiskSizeInGB $disksize -DiskLabel $disklabel -LUN $lun -HostCaching $hcaching
 
-Pour un contrôleur de domaine Active Directory, définissez $hcaching sur « Aucun ».
+Pour un contrôleur de domaine Active Directory, définissez $hcaching trop « None ».
 
-Vous pouvez éventuellement ajouter la machine virtuelle à un jeu à charge équilibrée existant pour le trafic externe.
+Si vous le souhaitez, ajoutez hello tooan existant équilibrée ensemble de machines virtuelles pour le trafic externe.
 
     $protocol="<Specify one: tcp, udp>"
-    $localport=<port number of the internal port>
-    $pubport=<port number of the external port>
-    $endpointname="<name of the endpoint>"
-    $lbsetname="<name of the existing load-balanced set>"
+    $localport=<port number of hello internal port>
+    $pubport=<port number of hello external port>
+    $endpointname="<name of hello endpoint>"
+    $lbsetname="<name of hello existing load-balanced set>"
     $probeprotocol="<Specify one: tcp, http>"
     $probeport=<TCP or HTTP port number of probe traffic>
     $probepath="<URL path for probe traffic>"
     $vm1 | Add-AzureEndpoint -Name $endpointname -Protocol $protocol -LocalPort $localport -PublicPort $pubport -LBSetName $lbsetname -ProbeProtocol $probeprotocol -ProbePort $probeport -ProbePath $probepath
 
-Enfin, choisissez l'un de ces blocs de commande requis pour la création de la machine virtuelle.
+Enfin, choisissez un de ces blocs de commande requis pour la création d’ordinateur virtuel de hello.
 
-Option 1 : créez la machine virtuelle dans un service cloud existant.
+Option 1 : Créer une machine virtuelle de hello dans un service cloud existant.
 
-    New-AzureVM –ServiceName "<short name of the cloud service>" -VMs $vm1
+    New-AzureVM –ServiceName "<short name of hello cloud service>" -VMs $vm1
 
-Le nom abrégé du service cloud est celui qui apparaît dans la liste Cloud Services dans le portail Azure ou dans la liste des groupes de ressources dans le portail Azure.
+nom court de Hello du service de cloud hello est nom hello qui apparaît dans la liste hello de Services de cloud computing dans hello portail Azure ou dans liste hello des groupes de ressources hello portail Azure.
 
-Option 2 : créez la machine virtuelle dans un service cloud et un réseau virtuel existants.
+Option 2 : Créer hello virtuels dans un service cloud existant et le réseau virtuel.
 
-    $svcname="<short name of the cloud service>"
-    $vnetname="<name of the virtual network>"
+    $svcname="<short name of hello cloud service>"
+    $vnetname="<name of hello virtual network>"
     New-AzureVM –ServiceName $svcname -VMs $vm1 -VNetName $vnetname
 
 ## <a name="step-5-run-your-command-set"></a>Étape 5 : exécuter votre jeu de commandes
-Passez en revue le jeu de commandes Azure PowerShell que vous avez créé dans votre éditeur de texte ou dans l’environnement d’écriture de scripts intégré de PowerShell (ISE), constitué de plusieurs blocs de commandes de l’étape 4. Vérifiez que vous avez spécifié toutes les variables nécessaires et qu’elles ont les valeurs correctes. Vérifiez également que vous avez supprimé tous les caractères < et >.
+Passez en revue le jeu de commandes Azure PowerShell hello créé dans votre éditeur de texte ou hello PowerShell ISE composé de plusieurs blocs de commandes à partir de l’étape 4. Assurez-vous que vous avez spécifié toutes les variables hello nécessité et ont les valeurs correctes hello. Assurez-vous également que vous avez supprimé tous les hello < et > caractères.
 
-Si vous utilisez un éditeur de texte, copiez le jeu de commandes dans le Presse-papiers, puis cliquez avec le bouton droit sur votre invite de commandes Windows PowerShell ouverte. Vous émettez ainsi le jeu de commandes en tant que série de commandes PowerShell et créez votre machine virtuelle Azure. Vous pouvez également exécuter le jeu de commandes dans PowerShell ISE.
+Si vous utilisez un éditeur de texte, copie hello commande définir toohello Presse-papiers et puis cliquez sur votre invite de commandes Windows PowerShell ouverte. Cela émettre un jeu de commandes hello comme une série de commandes PowerShell et créez votre machine virtuelle Azure. Vous pouvez également exécuter commande hello Bonjour PowerShell ISE.
 
 Si vous comptez créer cette machine virtuelle de nouveau ou une autre similaire, vous pouvez :
 
 * Enregistrez ce jeu de commandes en tant que fichier de script PowerShell (*.ps1).
-* Enregistrez ce jeu de commandes en tant que Runbook Azure Automation dans la section **Comptes Automation** du Portail Azure.
+* Enregistrer cette commande défini comme un runbook Azure Automation Bonjour **comptes Automation** section Hello portail Azure.
 
 ## <a id="examples"></a>Exemples
-Voici deux exemples d'utilisation des étapes ci-dessus pour créer des jeux de commandes Azure PowerShell qui créent des machines virtuelles Azure basées sur Windows.
+Voici deux exemples d’étapes de hello ci-dessus toobuild des ensembles de commandes Azure PowerShell qui créent des machines virtuelles basées sur Windows.
 
 ### <a name="example-1"></a>Exemple 1
-J'ai besoin d'un jeu de commandes PowerShell permettant de créer la machine virtuelle initiale pour un contrôleur de domaine Active Directory qui :
+J’ai besoin d’un PowerShell toocreate hello machine virtuelle initiale pour un contrôleur de domaine Active Directory de commande de définir :
 
-* utilise l'image Windows Server 2012 R2 Datacenter
-* se nomme AZDC1
+* Utilise l’image de Windows Server 2012 R2 Datacenter hello.
+* A le nom hello AZDC1.
 * est un ordinateur autonome
 * comporte un disque de données supplémentaire de 20 Go
-* possède l'adresse IP statique 192.168.244.4
-* se trouve dans le sous-réseau BackEnd du réseau virtuel AZDatacenter
-* se trouve dans le service cloud Azure-TailspinToys.
+* A hello d’adresse IP statique 192.168.244.4.
+* Est dans un sous-réseau de principal de hello du réseau virtuel de AZDatacenter hello.
+* Est en hello TailspinToys-Azure cloud service.
 
-Voici le jeu de commandes Azure PowerShell correspondant qui permet de créer cette machine virtuelle. Les lignes vides entre chaque bloc offrent une meilleure lisibilité.
+Voici toocreate Azure PowerShell correspondante du jeu de commande hello cet ordinateur virtuel, des lignes vides entre chaque bloc pour une meilleure lisibilité.
 
     $family="Windows Server 2012 R2 Datacenter"
     $image=Get-AzureVMImage | where { $_.ImageFamily -eq $family } | sort PublishedDate -Descending | select -ExpandProperty ImageName -First 1
@@ -203,7 +203,7 @@ Voici le jeu de commandes Azure PowerShell correspondant qui permet de créer ce
     $vmsize="Medium"
     $vm1=New-AzureVMConfig -Name $vmname -InstanceSize $vmsize -ImageName $image
 
-    $cred=Get-Credential -Message "Type the name and password of the local administrator account."
+    $cred=Get-Credential -Message "Type hello name and password of hello local administrator account."
     $vm1 | Add-AzureProvisioningConfig -Windows -AdminUsername $cred.Username -Password $cred.GetNetworkCredential().Password
 
     $vm1 | Set-AzureSubnet -SubnetNames "BackEnd"
@@ -221,16 +221,16 @@ Voici le jeu de commandes Azure PowerShell correspondant qui permet de créer ce
     New-AzureVM –ServiceName $svcname -VMs $vm1 -VNetName $vnetname
 
 ### <a name="example-2"></a>Exemple 2
-J'ai besoin d'un jeu de commandes PowerShell permettant de créer une machine virtuelle pour un serveur métier qui :
+J’ai besoin d’un PowerShell commande définir toocreate un ordinateur virtuel pour un serveur de métier qui :
 
-* utilise l'image Windows Server 2012 R2 Datacenter
-* se nomme LOB1
-* appartient au domaine corp.contoso.com
+* Utilise l’image de Windows Server 2012 R2 Datacenter hello.
+* A le nom hello LOB1.
+* Est un membre du domaine corp.contoso.com de hello.
 * comporte un disque de données supplémentaire de 200 Go
-* se trouve dans le sous-réseau FrontEnd du réseau virtuel AZDatacenter
-* se trouve dans le service cloud Azure-TailspinToys.
+* Est dans le sous-réseau du serveur frontal hello du réseau virtuel de AZDatacenter hello.
+* Est en hello TailspinToys-Azure cloud service.
 
-Voici le jeu de commandes Azure PowerShell correspondant qui permet de créer cette machine virtuelle.
+Voici toocreate Azure PowerShell correspondante du jeu de commande hello cet ordinateur virtuel.
 
     $family="Windows Server 2012 R2 Datacenter"
     $image=Get-AzureVMImage | where { $_.ImageFamily -eq $family } | sort PublishedDate -Descending | select -ExpandProperty ImageName -First 1
@@ -238,8 +238,8 @@ Voici le jeu de commandes Azure PowerShell correspondant qui permet de créer ce
     $vmsize="Large"
     $vm1=New-AzureVMConfig -Name $vmname -InstanceSize $vmsize -ImageName $image
 
-    $cred1=Get-Credential –Message "Type the name and password of the local administrator account."
-    $cred2=Get-Credential –Message "Now type the name (not including the domain) and password of an account that has permission to add the machine to the domain."
+    $cred1=Get-Credential –Message "Type hello name and password of hello local administrator account."
+    $cred2=Get-Credential –Message "Now type hello name (not including hello domain) and password of an account that has permission tooadd hello machine toohello domain."
     $domaindns="corp.contoso.com"
     $domacctdomain="CORP"
     $vm1 | Add-AzureProvisioningConfig -AdminUsername $cred1.Username -Password $cred1.GetNetworkCredential().Password -WindowsDomain -Domain $domacctdomain -DomainUserName $cred2.Username -DomainPassword $cred2.GetNetworkCredential().Password -JoinDomain $domaindns
@@ -258,5 +258,5 @@ Voici le jeu de commandes Azure PowerShell correspondant qui permet de créer ce
 
 
 ## <a name="next-steps"></a>Étapes suivantes
-Si vous avez besoin d’un disque de système d’exploitation supérieur à 127 Go, vous pouvez [étendre ce dernier](../../virtual-machines-windows-expand-os-disk.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
+Si vous avez besoin d’un disque de système d’exploitation qui est supérieur à 127 Go, vous pouvez [développez hello du système d’exploitation disque](../../virtual-machines-windows-expand-os-disk.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).
 

@@ -1,6 +1,6 @@
 ---
-title: "Réinitialiser votre mot de passe Linux local sur les machines virtuelles Azure | Microsoft Docs"
-description: "Introduction des étapes pour réinitialiser votre mot de passe Linux local sur la machine virtuelle Azure"
+title: aaaHow tooreset Linux mot de passe local sur les machines virtuelles Azure | Documents Microsoft
+description: "Introduire hello étapes tooreset hello Linux mot de passe local sur la machine virtuelle Azure"
 services: virtual-machines-linux
 documentationcenter: 
 author: Deland-Han
@@ -15,41 +15,41 @@ ms.devlang: na
 ms.topic: article
 ms.date: 7/3/2017
 ms.author: delhan
-ms.openlocfilehash: bd48128a078821b7a4baa02d5d7ceecc6de99608
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: b28a679a36bf93c6881633eefa03aef3cd33e804
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-reset-local-linux-password-on-azure-vms"></a>Réinitialiser votre mot de passe Linux local sur les machines virtuelles Azure
+# <a name="how-tooreset-local-linux-password-on-azure-vms"></a>Comment tooreset Linux mot de passe local sur les machines virtuelles Azure
 
-Cet article présente plusieurs méthodes pour réinitialiser les mots de passe Linux locaux sur les machines virtuelles. Si le compte utilisateur a expiré ou si vous souhaitez simplement créer un nouveau compte, utilisez les méthodes suivantes pour créer un nouveau compte d’administrateur local pour retrouver l’accès à la machine virtuelle.
+Cet article présente plusieurs méthodes tooreset local Linux Virtual Machine (VM) des mots de passe. Si le compte d’utilisateur hello a expiré ou que vous souhaitiez toocreate un nouveau compte, vous pouvez utiliser hello suivant les méthodes toocreate un nouveau compte d’administrateur local et ré-obtenir l’accès toohello machine virtuelle.
 
 ## <a name="symptoms"></a>Symptômes
 
-Vous ne pouvez pas vous connecter à la machine virtuelle, et vous recevez un message vous informant que votre mot de passe est incorrect. De plus, vous ne pouvez pas utiliser VMAgent pour réinitialiser votre mot de passe sur le portail Azure. 
+Vous ne pouvez pas vous connecter toohello machine virtuelle, et vous recevez un message indiquant que ce mot de passe hello que vous avez utilisé est incorrect. En outre, vous ne pouvez pas utiliser défini tooreset votre mot de passe sur hello portail Azure. 
 
 ## <a name="manual-password-reset-procedure"></a>Procédure de réinitialisation manuelle du mot de passe
 
-1.  Supprimez la machine virtuelle et conservez les disques joints.
+1.  Supprimer hello machine virtuelle et conserver les disques hello attaché.
 
-2.  Joignez le lecteur du système d’exploitation comme disque de données à une autre machine virtuelle temporaire, située au même endroit.
+2.  Attacher hello lecteur du système d’exploitation comme un tooanother de disque de données temporel VM Bonjour même emplacement.
 
-3.  Exécutez la commande SSH suivante dans la machine virtuelle temporaire pour devenir un super utilisateur.
+3.  Exécutez hello suivant de commande SSH sur hello temporelle VM toobecome un super utilisateur.
 
 
     ~~~~
     sudo su
     ~~~~
 
-4.  Exécutez **fdisk -l** ou consultez les journaux système pour trouver le disque joint. Recherchez le nom du lecteur à monter. Sur la machine virtuelle temporaire, cherchez dans le fichier journal correspondant.
+4.  Exécutez **fdisk -l** ou regardez hello de toofind journaux système disque a été attaché récemment. Recherchez toomount de nom de lecteur hello. Puis sur hello le VM temporelle, Regarder dans hello pertinentes fichier journal.
 
     ~~~~
     grep SCSI /var/log/kern.log (ubuntu)
     grep SCSI /var/log/messages (centos, suse, oracle)
     ~~~~
 
-    Voici un exemple de sortie de la commande grep :
+    Hello Voici la sortie de l’exemple de commande de grep hello :
 
     ~~~~
     kernel: [ 9707.100572] sd 3:0:0:0: [sdc] Attached SCSI disk
@@ -61,7 +61,7 @@ Vous ne pouvez pas vous connecter à la machine virtuelle, et vous recevez un me
     mkdir /tempmount
     ~~~~
 
-6.  Monter le disque du système d’exploitation sur le point de montage. Il faut en général monter sdc1 ou sdc2. Tout dépend de la partition d’hébergement dans le répertoire /etc du disque de la machine défaillante.
+6.  Montez le disque de hello du système d’exploitation sur le point de montage hello. Vous devez généralement toomount sdc1 ou sdc2. Cela dépend de hello partition directory etc à partir du disque de machine rompue hello d’hébergement.
 
     ~~~~
     mount /dev/sdc1 /tempmount
@@ -78,13 +78,13 @@ Vous ne pouvez pas vous connecter à la machine virtuelle, et vous recevez un me
     cp /tempmount/etc/shadow /tempmount/etc/shadow_orig
     ~~~~
 
-8.  Réinitialisez le mot de passe de l'utilisateur dont vous avez besoin :
+8.  Réinitialiser le mot de passe de l’utilisateur hello dont vous avez besoin :
 
     ~~~~
     passwd <<USER>> 
     ~~~~
 
-9.  Déplacez les fichiers modifiés dans le bon dossier sur le disque de la machine défaillante.
+9.  Déplacement hello modifié emplacement correct des fichiers toohello sur hello rompu disque de l’ordinateur.
 
     ~~~~
     cp /etc/passwd /tempmount/etc/passwd
@@ -92,18 +92,18 @@ Vous ne pouvez pas vous connecter à la machine virtuelle, et vous recevez un me
     cp /etc/passwd_orig /etc/passwd
     cp /etc/shadow_orig /etc/shadow
     
-10. Go back to the root and unmount the disk.
+10. Go back toohello root and unmount hello disk.
 
     ~~~~
     cd / umount /tempmount
     ~~~~
 
-11. Detach the disk from the management portal.
+11. Detach hello disk from hello management portal.
 
-12. Recreate the VM.
+12. Recreate hello VM.
 
 ## Next steps
 
-* [Troubleshoot Azure VM by attaching OS disk to another Azure VM](http://social.technet.microsoft.com/wiki/contents/articles/18710.troubleshoot-azure-vm-by-attaching-os-disk-to-another-azure-vm.aspx)
+* [Troubleshoot Azure VM by attaching OS disk tooanother Azure VM](http://social.technet.microsoft.com/wiki/contents/articles/18710.troubleshoot-azure-vm-by-attaching-os-disk-to-another-azure-vm.aspx)
 
-* [Azure CLI: How to delete and re-deploy a VM from VHD](https://blogs.msdn.microsoft.com/linuxonazure/2016/07/21/azure-cli-how-to-delete-and-re-deploy-a-vm-from-vhd/)
+* [Azure CLI: How toodelete and re-deploy a VM from VHD](https://blogs.msdn.microsoft.com/linuxonazure/2016/07/21/azure-cli-how-to-delete-and-re-deploy-a-vm-from-vhd/)

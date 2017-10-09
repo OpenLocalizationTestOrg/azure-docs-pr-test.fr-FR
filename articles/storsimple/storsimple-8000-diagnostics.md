@@ -1,6 +1,6 @@
 ---
-title: "Outil de diagnostic pour la résolution des problèmes de l’appareil StorSimple 8000 | Microsoft Docs"
-description: "Décrit les modes de l’appareil StorSimple et explique comment utiliser Windows PowerShell for StorSimple pour changer le mode de l’appareil."
+title: Appareil de tootroubleshoot StorSimple 8000 outil aaaDiagnostics | Documents Microsoft
+description: "Décrit les modes du périphérique StorSimple hello et explique comment toouse Windows PowerShell pour StorSimple toochange hello mode de l’appareil."
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,86 +14,86 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/27/2017
 ms.author: alkohli
-ms.openlocfilehash: 8fae7bb357f8e5e8eff249edfe3a2aaafe04283c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: e8b7fdbc44d2533973b63da841335ba73ba0014b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-the-storsimple-diagnostics-tool-to-troubleshoot-8000-series-device-issues"></a>Utiliser l’outil de diagnostic StorSimple pour résoudre les problèmes des appareils de la gamme 8000
+# <a name="use-hello-storsimple-diagnostics-tool-tootroubleshoot-8000-series-device-issues"></a>Utilisez les problèmes de périphériques série 8000 hello outil de diagnostic StorSimple tootroubleshoot
 
 ## <a name="overview"></a>Vue d'ensemble
 
-L’outil de diagnostic StorSimple permet de détecter les problèmes liés au système, aux performances, au réseau et à l’intégrité des composants matériels sur un appareil StorSimple. L’outil de diagnostic peut être utilisé dans différents scénarios. Ces scénarios incluent la planification de la charge de travail, le déploiement d’un appareil StorSimple, l’évaluation de l’environnement réseau et la détermination des performances d’un appareil opérationnel. Cet article offre une vue d’ensemble de l’outil de diagnostic et explique comment utiliser cet outil avec un appareil StorSimple.
+Hello, outil de diagnostic de StorSimple diagnostique toosystem connexes de problèmes, les performances, réseau et l’intégrité du composant matériel pour un appareil StorSimple. outil de diagnostic Hello peut être utilisé dans divers scénarios. Ces scénarios incluent la planification de la charge de travail, déploiement d’un appareil StorSimple, évaluer l’environnement de réseau hello et déterminer les performances d’une unité opérationnelle hello. Cet article fournit une vue d’ensemble de l’outil de diagnostic hello et décrit comment les outil hello peuvent être utilisé avec un appareil StorSimple.
 
-L’outil de diagnostic est destiné principalement aux appareils locaux de la gamme StorSimple 8000 (8100 et 8600).
+outil de diagnostic Hello est principalement utilisée pour les appareils StorSimple 8000 series local (8100 et 8600).
 
 ## <a name="run-diagnostics-tool"></a>Exécuter l’outil de diagnostic
 
-Cet outil peut être exécuté à partir de l’interface Windows PowerShell de votre appareil StorSimple. Pour accéder à l’interface locale de votre appareil, deux options s’offrent à vous :
+Cet outil peut être exécuté via l’interface Windows PowerShell de hello de votre appareil StorSimple. Il existe deux façons tooaccess hello interface locale de votre appareil :
 
-* [Utiliser PuTTY pour vous connecter à la console série de l’appareil](storsimple-deployment-walkthrough-u2.md#use-putty-to-connect-to-the-device-serial-console).
-* [Accéder à l’outil à distance via Windows PowerShell pour StorSimple](storsimple-remote-connect.md).
+* [Console série du périphérique toohello tooconnect PuTTY utilisation](storsimple-deployment-walkthrough-u2.md#use-putty-to-connect-to-the-device-serial-console).
+* [Accéder à distance à outil hello via hello Windows PowerShell pour StorSimple](storsimple-remote-connect.md).
 
-Dans cet article, nous partons du principe que vous vous êtes connecté à la console série de l’appareil via PuTTY.
+Dans cet article, nous supposons que vous avez connecté la console série du périphérique toohello via PuTTY.
 
-#### <a name="to-run-the-diagnostics-tool"></a>Pour exécuter l’outil de diagnostic
+#### <a name="toorun-hello-diagnostics-tool"></a>outil de diagnostic hello toorun
 
-Une fois que vous êtes connecté à l’interface Windows PowerShell de l’appareil, procédez comme suit pour exécuter l’applet de commande.
-1. Ouvrez une session sur la console série de l'appareil en suivant les étapes dans [Utilisation de PuTTY pour se connecter à la console série de l'appareil](storsimple-deployment-walkthrough-u2.md#use-putty-to-connect-to-the-device-serial-console).
+Une fois que vous avez connecté l’interface Windows PowerShell de toohello du périphérique de hello, effectuer hello suivant les étapes toorun hello applet de commande.
+1. Ouvrez une session sur la console série du périphérique toohello en suivant les étapes de hello dans [console série du périphérique toohello tooconnect utilisez PuTTY](storsimple-deployment-walkthrough-u2.md#use-putty-to-connect-to-the-device-serial-console).
 
-2. Tapez la commande suivante : 
+2. Tapez hello de commande suivante :
 
     `Invoke-HcsDiagnostics`
 
-    Si le paramètre d’étendue (Scope) n’est pas spécifié, l’applet de commande exécute tous les tests de diagnostic. Ceux-ci incluent des tests du système, de l’intégrité des composants matériels, du réseau et des performances. 
+    Si le paramètre d’étendue hello n’est pas spécifié, hello applet de commande exécute tous les tests de diagnostic hello. Ceux-ci incluent des tests du système, de l’intégrité des composants matériels, du réseau et des performances. 
     
-    Pour exécuter un test spécifique, spécifiez le paramètre Scope. Par exemple, pour exécuter uniquement le test du réseau, tapez :
+    toorun un test spécifique, spécifier un paramètre d’étendue hello. Par exemple, toorun uniquement hello réseau test, type
 
     `Invoke-HcsDiagnostics -Scope Network`
 
-3. Sélectionnez et copiez la sortie de la fenêtre PuTTY dans un fichier texte pour approfondir l’analyse.
+3. Sélectionner et copier la sortie de hello hello PuTTY fenêtre dans un fichier texte pour une analyse plus approfondie.
 
-## <a name="scenarios-to-use-the-diagnostics-tool"></a>Scénarios d’utilisation de l’outil de diagnostic
+## <a name="scenarios-toouse-hello-diagnostics-tool"></a>Outil de diagnostic de scénarios toouse hello
 
-L’outil de diagnostic permet de résoudre les problèmes de réseau, de performances, de système et d’intégrité matérielle de l’appareil. Voici quelques scénarios possibles :
+Utilisez hello diagnostics outil tootroubleshoot hello réseau, les performances, système et matériel d’intégrité du système de hello. Voici quelques scénarios possibles :
 
-* **Appareil hors connexion** : votre appareil de la gamme StorSimple 8000 est hors connexion. Toutefois, dans l’interface Windows PowerShell, les deux contrôleurs semblent être opérationnels.
-    * Vous pouvez utiliser cet outil pour déterminer l’état du réseau.
+* **Appareil hors connexion** : votre appareil de la gamme StorSimple 8000 est hors connexion. Toutefois, à partir de l’interface Windows PowerShell de hello, il semble que les deux contrôleurs hello sont en cours d’exécution.
+    * Vous pouvez utiliser cet outil toothen déterminer l’état du réseau hello.
          
          > [!NOTE]
-         > N’utilisez pas cet outil pour évaluer les performances et les paramètres réseau sur un appareil avant son inscription (ou sa configuration via l’Assistant d’installation). Une adresse IP valide est affectée à l’appareil lors de sa configuration via l’Assistant installation et de son inscription. Vous pouvez exécuter cette applet de commande sur un appareil qui n’est pas inscrit pour évaluer l’intégrité matérielle et le système. Utilisez le paramètre Scope, par exemple :
+         > N’utilisez pas cette tooassess performances et les paramètres réseau sur un appareil avant l’inscription de hello (ou de configurer via l’Assistant d’installation). Une adresse IP valide est attribuée toohello périphérique lors de l’inscription et l’Assistant installation. Vous pouvez exécuter cette applet de commande sur un appareil qui n’est pas inscrit pour évaluer l’intégrité matérielle et le système. Utilisez le paramètre d’étendue hello, par exemple :
          >
          > `Invoke-HcsDiagnostics -Scope Hardware`
          >
          > `Invoke-HcsDiagnostics -Scope System`
 
-* **Problèmes d’appareil persistants** : vous rencontrez des problèmes d’appareil qui semblent persister. Par exemple, son inscription échoue. Vous pouvez également rencontrer des problèmes alors que l’appareil a été inscrit avec succès et que vous l’utilisez depuis un certain temps.
-    * Dans ce cas, utilisez cet outil pour procéder à un dépannage préliminaire avant d’enregistrer une demande de service auprès du Support Microsoft. Nous vous recommandons d’exécuter cet outil et de consigner sa sortie. Vous pouvez ensuite fournir cette sortie à la prise en charge afin d’accélérer la résolution des problèmes.
+* **Problèmes de l’appareil persistant** -vous rencontrez des problèmes de l’appareil qui semblent toopersist. Par exemple, son inscription échoue. Vous pouvez également rencontrer des problèmes de périphérique une fois hello appareil correctement inscrit et opérationnel pendant un certain temps.
+    * Dans ce cas, utilisez cet outil pour procéder à un dépannage préliminaire avant d’enregistrer une demande de service auprès du Support Microsoft. Nous vous conseillons d’exécuter cette sortie hello outil et de capture de cet outil. Vous pouvez ensuite fournir cette sortie tooSupport tooexpedite procédure de dépannage.
     * En cas de défaillances de composants matériels ou de clusters, vous devez enregistrer une demande de Support.
 
 * **Faibles performances de l’appareil** : votre appareil StorSimple est lent.
-    * Dans ce cas, exécutez cette applet de commande avec le paramètre Scope défini sur Performance. Analysez la sortie. Vous obtenez les latences de lecture-écriture dans le cloud. Utilisez les latences signalées en tant que cible maximale possible, prenez en compte une certaine surcharge pour le traitement interne des données, puis déployez les charges de travail sur le système. Pour obtenir des informations sur l’utilisation du test du réseau pour résoudre les problèmes de performances de l’appareil, consultez la section [Test du réseau](#network-test).
+    * Dans ce cas, exécutez cette applet de commande avec tooperformance de jeu de paramètres de portée. Analyser la sortie de hello. Vous obtenez le cloud de hello latences de lecture-écriture. Hello d’utilisation signalées facteur dans une surcharge pour le traitement des données internes hello et latences en tant que cible réalisable maximale, puis déployer les charges de travail hello sur le système de hello. Pour plus d’informations, consultez trop[utiliser les performances de l’appareil hello réseau test tootroubleshoot](#network-test).
 
 
 ## <a name="diagnostics-test-and-sample-outputs"></a>Tests de diagnostic et exemples de sorties
 
 ### <a name="hardware-test"></a>Test du matériel
 
-Ce test permet de déterminer l’état des composants matériels, du microprogramme USM et du microprogramme de disque de votre système.
+Ce test détermine hello état des composants matériels de hello, le microprogramme USM hello et du microprogramme du disque hello en cours d’exécution sur votre système.
 
-* Les composants matériels signalés sont ceux pour lesquels le test a échoué ou qui ne sont pas présents dans le système.
-* Les versions du microprogramme USM et du microprogramme de disque sont indiquées pour le contrôleur 0, le contrôleur 1 et les composants partagés de votre système. Pour obtenir une liste complète des composants matériels, consultez :
+* les composants de matériels Hello signalés sont ces composants ce test hello ayant échoué ou ne sont pas présentes dans le système de hello.
+* versions du microprogramme Hello USM microprogramme et de disque sont signalées pour hello contrôleur 0, le contrôleur 1 et des composants partagés de votre système. Pour obtenir une liste complète des composants matériels, consultez :
 
     * [Composants du boîtier principal](storsimple-monitor-hardware-status.md#component-list-for-primary-enclosure-of-storsimple-device)
     * [Composants du boîtier EBOD](storsimple-monitor-hardware-status.md#component-list-for-ebod-enclosure-of-storsimple-device)
 
 > [!NOTE]
-> Si le test du matériel signale des composants défectueux, [enregistrez une demande de service auprès du Support Microsoft](storsimple-contact-microsoft-support.md).
+> Si les composants en échec, des rapports de test sur du matériel hello [connectez-vous à une demande de service avec le Support technique de Microsoft](storsimple-contact-microsoft-support.md).
 
 #### <a name="sample-output-of-hardware-test-run-on-an-8100-device"></a>Exemple de sortie du test du matériel sur un appareil 8100
 
-Voici un exemple de sortie pour un appareil StorSimple 8100. Le modèle 8100 ne présente pas de boîtier EBOD. Par conséquent, les composants du contrôleur du boîtier EBOD ne sont pas signalés.
+Voici un exemple de sortie pour un appareil StorSimple 8100. Dans l’appareil de modèle 8100 hello, hello boîtiers n’est pas présente. Par conséquent, les composants du contrôleur EBOD hello ne sont pas signalées.
 
 ```
 Controller0>Invoke-HcsDiagnostics -Scope Hardware
@@ -205,17 +205,17 @@ DisksFirmware       : SmrtStor:TXA2D20400GA6XYR:KZ50
 
 ### <a name="system-test"></a>Test du système
 
-Ce test fait état des informations système, des mises à jour disponibles, des informations sur les clusters et des informations sur les services pour votre appareil.
+Ce test signale des informations de système de hello, hello mises à jour disponibles, les informations de cluster hello et informations du service hello pour votre appareil.
 
-* Les informations système incluent le modèle, le numéro de série de l’appareil, le fuseau horaire, l’état du contrôleur et le détail de la version du logiciel exécuté sur le système. Pour comprendre les différents paramètres du système signalés dans la sortie, consultez [Interprétation des informations système](#appendix-interpreting-system-information).
+* informations de système de Hello incluent hello modèle, numéro de série de périphérique, fuseau horaire, l’état du contrôleur et en cours d’exécution sur le système de hello de la version du logiciel détaillées hello. hello toounderstand divers paramètres système signalés en tant que sortie de hello, accédez trop[interprétation des informations système](#appendix-interpreting-system-information).
 
-* Les informations sur la disponibilité de mises à jour indiquent si des mises à jour sont disponibles pour les modes normal et maintenance et, le cas échéant, le nom des packages associés. Si `RegularUpdates` et `MaintenanceModeUpdates` présentent la valeur `false`, cela indique qu’aucune mise à jour n’est disponible. Votre appareil est à jour.
-* Les informations sur les clusters incluent des informations sur les différents composants logiques de l’ensemble des groupes de clusters HCS et sur leur état respectif. Si un groupe de clusters hors connexion apparaît dans cette section du rapport, [contactez le Support Microsoft](storsimple-contact-microsoft-support.md).
-* Les informations sur les services incluent le nom et l’état de tous les services HCS et CiS exécutés sur votre appareil. Ces informations aident le Support Microsoft à résoudre les problèmes d’appareil associés.
+* rapports de disponibilité de mises à jour de Hello si les modes standard et la maintenance hello sont disponibles et leurs noms de package associé. Si `RegularUpdates` et `MaintenanceModeUpdates` sont `false`, cela indique que les mises à jour hello ne sont pas disponibles. Votre appareil est à jour.
+* cluster Hello contient hello des informations sur les différents composants de logiques de tous les groupes de cluster HCS hello et leurs États respectifs. Si vous voyez un groupe de clusters en mode hors connexion dans cette section du rapport de hello, [contactez le Support Microsoft](storsimple-contact-microsoft-support.md).
+* informations sur le service Hello incluent les noms de hello et états de tous les hello HCS et services des éléments de configuration en cours d’exécution sur votre appareil. Ces informations sont utiles pour hello Support Microsoft à résoudre les problème de périphérique hello.
 
 #### <a name="sample-output-of-system-test-run-on-an-8100-device"></a>Exemple de sortie du test du système sur un appareil 8100
 
-Voici un exemple de sortie du test du système sur un appareil 8100.
+Voici un exemple de sortie hello système de série de tests sur un appareil 8100.
 
 ```
 Controller0>Invoke-HcsDiagnostics -Scope System
@@ -322,20 +322,20 @@ hcs_startup                                   Stopped hcs_startup
 
 ### <a name="network-test"></a>Test du réseau
 
-Ce test vérifie l’état des interfaces réseau, des ports, de la connectivité des serveurs DNS et NTP, du certificat SSL, des informations d’identification de compte de stockage, de la connectivité aux serveurs de mise à jour et de la connectivité du proxy web sur votre appareil StorSimple.
+Ce test vérifie l’état de hello des interfaces réseau de hello, ports, DNS et NTP connectivité du serveur, SSL certificat, informations d’identification du compte de stockage, serveurs de mise à jour toohello de connectivité et connectivité de proxy web sur votre appareil StorSimple.
 
 #### <a name="sample-output-of-network-test-when-only-data0-is-enabled"></a>Exemple de sortie du test du réseau lorsque seule l’interface DATA0 est activée
 
-Voici un exemple de sortie pour l’appareil 8100. Vous pouvez observer dans la sortie que :
+Voici un exemple de sortie de l’appareil de 8100 hello. Vous pouvez voir dans la sortie de hello qui :
 * Seules les interfaces réseau DATA0 et DATA1 sont activées et configurées.
-* Les interfaces DATA2 à DATA5 ne sont pas activées dans le portail.
-* La configuration du serveur DNS est valide et l’appareil peut se connecter via le serveur DNS.
-* La connectivité du serveur NTP est également correcte.
-* Les ports 80 et 443 sont ouverts. Toutefois, le port 9354 est bloqué. Conformément à la [configuration réseau requise pour le système](storsimple-system-requirements.md), vous devez ouvrir ce port pour la communication avec Service Bus.
-* Le certificat SSL est valide.
-* L’appareil peut se connecter au compte de stockage _myss8000storageacct_.
-* La connectivité aux serveurs de mise à jour est valide.
-* Le proxy web n’est pas configuré sur cet appareil.
+* 2 à 5 de données ne sont pas activées dans le portail de hello.
+* configuration du serveur DNS Hello est valide et appareils de hello de se connecter via des serveurs DNS hello.
+* Hello connectivité du serveur NTP fonctionne également bien.
+* Les ports 80 et 443 sont ouverts. Toutefois, le port 9354 est bloqué. En fonction de hello [configuration système requise du réseau](storsimple-system-requirements.md), vous devez tooopen ce port pour la communication de bus de service hello.
+* la certification SSL de Hello est valide.
+* Hello appareils de se connecter compte de stockage toohello : _myss8000storageacct_.
+* serveurs de tooUpdate Hello connectivité n’est valide.
+* le proxy web Hello n’est pas configuré sur ce périphérique.
 
 #### <a name="sample-output-of-network-test-when-data0-and-data1-are-enabled"></a>Exemple de sortie du test du réseau lorsque les interfaces DATA0 et DATA1 sont activées
 
@@ -367,29 +367,29 @@ Web proxy                               Not enabled         Web proxy is not...
 
 ### <a name="performance-test"></a>Test de performance
 
-Ce test fait état des performances cloud via les latences de lecture-écriture dans le cloud pour votre appareil. Cet outil peut être utilisé afin de déterminer les performances cloud potentielles de l’appareil StorSimple. L’outil signale les performances maximales (scénario optimal pour les latences de lecture-écriture) que vous pouvez obtenir pour votre connexion.
+Ce test signale les performances du cloud hello via des latences de lecture-écriture hello cloud pour votre appareil. Cet outil peut être utilisé tooestablish une ligne de base des performances de cloud hello que vous pouvez obtenir avec StorSimple. Hello outil rapports hello performances maximales (scénario meilleur des cas de latence de lecture-écriture) que vous pouvez obtenir pour votre connexion.
 
-Comme l’outil signale les performances maximales possibles, nous pouvons utiliser les latences de lecture-écriture signalées en tant que cibles lors du déploiement des charges de travail.
+Outil de hello rapports des performances maximales réalisable hello, nous pouvons utiliser hello déclarée en lecture-écriture latences cibles lors du déploiement hello les charges de travail.
 
-Le test simule les tailles d’objet blob associées aux types différents de volumes sur l’appareil. Les volumes hiérarchisés standard et les sauvegardes des volumes épinglés localement utilisent une taille d’objet blob de 64 Ko. Les volumes hiérarchisés avec option d’archivage activée utilisent une taille d’objet blob de 512 Ko. Si des volumes hiérarchisés et épinglés localement sont configurés pour votre appareil, seul le test correspondant à la taille d’objet blob de 64 Ko est exécuté.
+test de Hello simule les tailles de blob hello associées aux types de volume différent hello sur l’appareil de hello. Les volumes hiérarchisés standard et les sauvegardes des volumes épinglés localement utilisent une taille d’objet blob de 64 Ko. Les volumes hiérarchisés avec option d’archivage activée utilisent une taille d’objet blob de 512 Ko. Si votre appareil a volumes attachés localement et hiérarchisés configuré, seuls hello test too64 Ko objet blob correspondant taille des données est exécutée.
 
-Pour utiliser cet outil, procédez comme suit :
+toouse cette outil, effectuer hello comme suit :
 
-1.  Tout d’abord, créez un ensemble de volumes hiérarchisés et de volumes hiérarchisés avec option d’archivage activée. L’outil exécutera ainsi les tests pour les tailles d’objet blob de 64 Ko et 512 Ko.
+1.  Tout d’abord, créez un ensemble de volumes hiérarchisés et de volumes hiérarchisés avec option d’archivage activée. Cette action garantit que cet outil hello exécute les tests de hello 64 Ko et 512 Ko pour les tailles des objets blob.
 
-2. Une fois que vous avez créé et configuré les volumes, exécutez l’applet de commande. Tapez :
+2. Exécuter l’applet de commande hello après avoir créé et configuré les volumes hello. Entrez :
 
     `Invoke-HcsDiagnostics -Scope Performance`
 
-3. Notez les latences de lecture-écriture signalées par l’outil. L’affichage des résultats du test peut prendre plusieurs minutes.
+3. Prenez note des latences de lecture-écriture hello signalés par l’outil de hello. Ce test peut prendre plusieurs minutes toorun avant de signaler les résultats hello.
 
-4. Si les latences de connexion sont toutes inférieures à la plage attendue, les latences signalées par l’outil peuvent être utilisées en tant que cible maximale possible lors du déploiement des charges de travail. Prenez en compte une certaine surcharge pour le traitement interne des données.
+4. Si le temps de latence de connexion hello sont tous sous hello plages attendues, puis hello latences signalés par l’outil de hello est utilisable comme cible réalisable maximale lors du déploiement de charges de travail hello. Prenez en compte une certaine surcharge pour le traitement interne des données.
 
-    Si les latences de lecture-écriture signalées par l’outil de diagnostic sont élevées :
+    Si la latence de lecture-écriture hello signalés par outil de diagnostic hello sont élevées :
 
-    1. Configurez Storage Analytics pour les services BLOB et analysez la sortie pour déterminer les latences du compte de stockage Azure. Pour obtenir des instructions détaillées sur l’activation et la configuration de Storage Analytics, consultez [cet article](../storage/common/storage-enable-and-view-metrics.md). Si ces latences sont également élevées et comparables aux valeurs fournies par l’outil de diagnostic StorSimple, vous devez enregistrer une demande de service auprès de Stockage Azure.
+    1. Configurer le stockage Analytique pour les services blob et analysez les hello sortie toounderstand hello latences pour hello compte de stockage Azure. Pour obtenir des instructions détaillées, consultez trop[activer et configurer le stockage Analytique](../storage/common/storage-enable-and-view-metrics.md). Si ces temps de latence sont également numéros élevée et comparables toohello que vous avez reçu de hello outil de diagnostic de StorSimple, vous devez toolog une demande de service avec le stockage Azure.
 
-    2. Si les latences du compte de stockage sont faibles, contactez votre administrateur réseau pour qu’il recherche les éventuels problèmes de latence du réseau.
+    2. Si les latences de compte de stockage hello sont insuffisantes, contactez votre tooinvestigate d’administrateur réseau aucun temps d’attente de problèmes dans votre réseau.
 
 #### <a name="sample-output-of-performance-test-run-on-an-8100-device"></a>Exemple de sortie du test des performances sur un appareil 8100
 
@@ -411,34 +411,34 @@ Controller0>
 
 ## <a name="appendix-interpreting-system-information"></a>Annexe : Interprétation des informations système
 
-Le tableau ci-dessous décrit les différents paramètres Windows PowerShell dans les informations système. 
+Voici un tableau décrivant le hello différents paramètres de Windows PowerShell dans les informations de système de hello mappent à. 
 
 | Paramètre PowerShell    | Description  |
 |-------------------------|------------------|
 | ID de l’instance             | Un identificateur unique ou un GUID est associé à chaque contrôleur.|
-| Nom                    | Nom convivial configuré pour l’appareil via le portail Azure lors du déploiement de l’appareil. Le nom convivial par défaut est le numéro de série de l’appareil. |
-| Modèle                   | Modèle de votre appareil de la gamme StorSimple 8000. Il peut s’agir du modèle 8100 ou 8600.|
-| SerialNumber            | Le numéro de série de l’appareil est attribué en usine et comprend 15 caractères. Par exemple, 8600-SHX0991003G44HT indique :<br> 8600 : modèle de l’appareil.<br>SHX : site de fabrication.<br> 0991003 : produit spécifique. <br> G44HT : les 5 derniers chiffres sont incrémentés pour créer des numéros de série uniques. Il ne s’agit pas nécessairement d’une suite.|
-| TimeZone                | Fuseau horaire configuré pour l’appareil dans le portail Azure lors du déploiement de l’appareil.|
-| CurrentController       | Contrôleur auquel vous êtes connecté via l’interface Windows PowerShell de votre appareil StorSimple.|
-| ActiveController        | Contrôleur qui est actif sur votre appareil et contrôle toutes les opérations de réseau et de disque. Il peut s’agir du contrôleur 0 ou du contrôleur 1.  |
-| Controller0Status       | État du contrôleur 0 sur votre appareil. L’état du contrôleur peut être Normal, Recovery (Récupération) ou Unreachable (Inaccessible).|
-| Controller1Status       | État du contrôleur 1 sur votre appareil.  L’état du contrôleur peut être Normal, Recovery (Récupération) ou Unreachable (Inaccessible).|
-| SystemMode              | État général de votre appareil StorSimple. L’état de l’appareil peut être Normal, Maintenance ou Decommissioned (Retiré) (correspond à Désactivé dans le portail Azure).|
-| FriendlySoftwareVersion | Chaîne conviviale qui correspond à la version du logiciel de l’appareil. Pour un système exécutant Update 4, la version conviviale du logiciel serait StorSimple 8000 Series Update 4.0.|
-| HcsSoftwareVersion      | Version du logiciel HCS exécutée sur votre appareil. Par exemple, la version du logiciel HCS correspondant à StorSimple 8000 Series Update 4.0 est 6.3.9600.17820. |
-| ApiVersion              | Version du logiciel de l’API Windows PowerShell de l’appareil HCS.|
-| VhdVersion              | Version du logiciel de l’image d’usine fournie avec l’appareil. Si vous avez rétabli les paramètres d’usine de votre appareil, ce dernier exécute cette version du logiciel.|
-| OSVersion:               | Version du logiciel du système d’exploitation Windows Server exécuté sur l’appareil. L’appareil StorSimple est basé sur Windows Server 2012 R2, qui correspond à la version 6.3.9600.|
-| CisAgentVersion         | Version de l’agent Cis exécuté sur votre appareil StorSimple. Cet agent permet de communiquer avec le service StorSimple Manager exécuté dans Azure.|
-| MdsAgentVersion         | Version correspondant à l’agent Mds exécuté sur votre appareil StorSimple. Cet agent transfère des données au service de surveillance et de diagnostics (Monitoring and Diagnostics Service, ou MDS).|
-| Lsisas2Version          | Version correspondant aux pilotes LSI exécutés sur votre appareil StorSimple.|
-| Capacité                | Capacité totale de l’appareil en octets.|
-| RemoteManagementMode    | Indique si l’appareil peut être géré à distance via son interface Windows PowerShell. |
-| FipsMode                | Indique si le mode FIPS (Federal Information Processing Standard) est activé sur votre appareil. La norme FIPS 140 définit les algorithmes de chiffrement qui sont approuvés pour une utilisation sur les systèmes informatiques du gouvernement fédéral américain dans le but de protéger les données sensibles. Pour les appareils exécutant Update 4 ou version ultérieure, le mode FIPS est activé par défaut. |
+| Nom                    | nom convivial de Hello du périphérique hello configuré via hello portail Azure pendant le déploiement de l’appareil. nom convivial de Hello par défaut est le numéro de série du périphérique hello. |
+| Modèle                   | modèle Hello de votre appareil de série StorSimple 8000. modèle de Hello peut être 8100 ou 8600.|
+| SerialNumber            | numéro de série du périphérique Hello est attribué à la fabrique de hello et 15 caractères. Par exemple, 8600-SHX0991003G44HT indique :<br> 8600 – est le modèle d’appareil hello.<br>SHX – hello fabrication site.<br> 0991003 : produit spécifique. <br> G44HT-hello 5 derniers chiffres sont incrémentés toocreate les numéros de série uniques. Il ne s’agit pas nécessairement d’une suite.|
+| TimeZone                | Hello fuseau horaire configuré Bonjour Azure portal durant le déploiement de l’appareil.|
+| CurrentController       | contrôleur Hello que vous êtes connecté toothrough interface de Windows PowerShell hello de votre appareil StorSimple.|
+| ActiveController        | contrôleur Hello qui est active sur votre appareil et contrôle toutes les opérations de réseau et disque hello. Il peut s’agir du contrôleur 0 ou du contrôleur 1.  |
+| Controller0Status       | état de Hello du contrôleur 0 sur votre appareil. état du contrôleur Hello peut être normal, en mode de récupération ou inaccessible.|
+| Controller1Status       | état de Hello du contrôleur 1 sur votre appareil.  état du contrôleur Hello peut être normal, en mode de récupération ou inaccessible.|
+| SystemMode              | Bonjour à l’état global de votre appareil StorSimple. état du périphérique Hello peut être normal, maintenance, ou mis hors service (correspond toodeactivated Bonjour portail Azure).|
+| FriendlySoftwareVersion | chaîne conviviale Hello correspondant toohello version du logiciel. Pour un système exécutant la mise à jour 4, version du logiciel convivial hello serait StorSimple 8000 Series Update 4.0.|
+| HcsSoftwareVersion      | version du logiciel HCS Hello en cours d’exécution sur votre appareil. Par exemple, hello tooStorSimple correspondante de la version logicielle HCS 8000 Series Update 4.0 est 6.3.9600.17820. |
+| ApiVersion              | version du logiciel Hello Hello API PowerShell de Windows du périphérique HCS de hello.|
+| VhdVersion              | version du logiciel Hello d’image de fabrique hello hello périphérique a été livré avec. Si vous réinitialisez votre toofactory de périphérique par défaut, puis il exécute cette version du logiciel.|
+| OSVersion:               | version du logiciel Hello de hello système d’exploitation Windows en cours d’exécution sur l’appareil de hello. hello Windows Server 2012 R2 correspondant too6.3.9600 est basée sur l’appareil StorSimple Hello.|
+| CisAgentVersion         | version Hello pour votre agent d’éléments de configuration en cours d’exécution sur votre appareil StorSimple. Cet agent permet de communiquer avec le service StorSimple Manager hello s’exécutant dans Azure.|
+| MdsAgentVersion         | Hello version toohello Mds agent correspondant en cours d’exécution sur votre appareil StorSimple. Cet agent déplace les données toohello analyse et Diagnostics de Service (MDS).|
+| Lsisas2Version          | Bonjour version des pilotes toohello LSI correspondants sur votre appareil StorSimple.|
+| Capacity                | capacité totale de Hello du périphérique hello en octets.|
+| RemoteManagementMode    | Indique si les appareils hello peuvent être gérés à distance via son interface Windows PowerShell. |
+| FipsMode                | Indique si le mode hello United States traitement Standard FIPS (Federal Information) est activé sur votre appareil. norme de Hello FIPS 140 définit les algorithmes de chiffrement approuvés pour une utilisation par les systèmes d’ordinateur gouvernement fédéral nous pour une protection des données sensibles hello. Pour les appareils exécutant Update 4 ou version ultérieure, le mode FIPS est activé par défaut. |
 
 ## <a name="next-steps"></a>Étapes suivantes
 
-* Découvrez la [syntaxe de l’applet de commande Invoke-HcsDiagnostics](https://technet.microsoft.com/library/mt795371.aspx).
+* En savoir plus hello [syntaxe de l’applet de commande Invoke-HcsDiagnostics de hello](https://technet.microsoft.com/library/mt795371.aspx).
 
-* Découvrez plus en détail comment [résoudre les problèmes de déploiement](storsimple-troubleshoot-deployment.md) sur votre appareil StorSimple.
+* En savoir plus sur la façon trop[résoudre les problèmes de déploiement](storsimple-troubleshoot-deployment.md) sur votre appareil StorSimple.

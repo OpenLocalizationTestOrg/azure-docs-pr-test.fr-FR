@@ -1,6 +1,6 @@
 ---
-title: "Créer et gérer des machines virtuelles Windows dans Visual Studio | Microsoft Docs"
-description: "Découvrez comment utiliser Visual Studio pour créer et gérer des machines virtuelles Azure exécutant Windows"
+title: "aaaCreate et de gérer les machines virtuelles Windows dans Visual Studio | Documents Microsoft"
+description: "En savoir plus toouse Visual Studio toocreate et gérer des machines virtuelles Azure exécutant Windows"
 services: visual-studio-online,virtual-machines-windows
 documentationcenter: na
 author: kraigb
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: na
 ms.date: 12/09/2016
 ms.author: kraigb
-ms.openlocfilehash: 1b188b2a057da56c0c44bdbf52086ebb037edb6b
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 942fe37c873a14b6457cc6303107a48683b8bee4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-and-manage-windows-virtual-machines-in-visual-studio"></a>Créer et gérer des machines virtuelles Windows dans Visual Studio
 [!INCLUDE [virtual-machines-common-classic-manage-visual-studio](../../../../includes/virtual-machines-common-classic-manage-visual-studio.md)]

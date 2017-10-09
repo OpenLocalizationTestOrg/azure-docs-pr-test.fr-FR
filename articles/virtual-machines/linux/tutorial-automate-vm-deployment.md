@@ -1,6 +1,6 @@
 ---
-title: "Personnaliser une machine virtuelle Linux au premier démarrage dans Azure | Microsoft Docs"
-description: "Découvrez comment utiliser cloud-init et Key Vault pour personnaliser les machines virtuelles lors de leur premier démarrage dans Azure"
+title: "aaaCustomize un VM Linux au premier démarrage dans Azure | Documents Microsoft"
+description: "Découvrez comment toouse cloud-init et hello de machines virtuelles Linux coffre de clés toocustomze première fois que les serveurs démarrent dans Azure"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: iainfoulds
@@ -16,35 +16,35 @@ ms.workload: infrastructure
 ms.date: 08/11/2017
 ms.author: iainfou
 ms.custom: mvc
-ms.openlocfilehash: 6adf4e43aa80c28c6f5f8d8a071966323ba85723
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 280189723ac0205226f9c0068bd605da13249ace
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-customize-a-linux-virtual-machine-on-first-boot"></a>Comment personnaliser une machine virtuelle Linux au premier démarrage
-Dans un didacticiel précédent, vous avez appris comment établir une connexion SSH à une machine virtuelle et installer NGINX manuellement. Pour créer des machines virtuelles de façon rapide et cohérente, une certaine forme d’automatisation est généralement souhaitable. Pour personnaliser une machine virtuelle au premier démarrage, l’approche la plus courante consiste à utiliser [cloud-init](https://cloudinit.readthedocs.io). Ce tutoriel vous montre comment effectuer les opérations suivantes :
+# <a name="how-toocustomize-a-linux-virtual-machine-on-first-boot"></a>Comment toocustomize une machine virtuelle de Linux au premier démarrage
+Dans un didacticiel précédent, vous avez appris comment tooSSH tooa virtual machine (VM) et installer manuellement les NGINX. toocreate machines virtuelles de manière rapide et cohérente, une forme d’automatisation est généralement souhaité. Un toocustomize approche commune une machine virtuelle au premier démarrage est toouse [cloud-init](https://cloudinit.readthedocs.io). Ce didacticiel vous explique comment effectuer les opérations suivantes :
 
 > [!div class="checklist"]
 > * Créer un fichier de configuration cloud-init
 > * Créer une machine virtuelle utilisant un fichier cloud-init
-> * Afficher une application Node.js en cours d’exécution une fois la machine virtuelle est créée
-> * Utiliser un Key Vault pour stocker des certificats en toute sécurité
+> * Afficher une application en cours d’exécution de Node.js après hello que machine virtuelle est créée.
+> * Utiliser des certificats de coffre de clés toosecurely magasin
 > * Automatiser des déploiements sécurisés de NGINX avec cloud-init
 
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-Si vous choisissez d’installer et d’utiliser l’interface de ligne de commande localement, vous devez exécuter Azure CLI version 2.0.4 ou une version ultérieure pour poursuivre la procédure décrite dans ce didacticiel. Exécutez `az --version` pour trouver la version. Si vous devez installer ou mettre à niveau, consultez [Installation d’Azure CLI 2.0]( /cli/azure/install-azure-cli).  
+Si vous choisissez tooinstall et que vous utilisez hello CLI localement, ce didacticiel nécessite que vous exécutez hello CLI d’Azure version 2.0.4 ou version ultérieure. Exécutez `az --version` version de hello toofind. Si vous avez besoin de tooinstall ou mise à niveau, consultez [installer Azure CLI 2.0]( /cli/azure/install-azure-cli).  
 
 
 
 ## <a name="cloud-init-overview"></a>Présentation de cloud-init
-[Cloud-init](https://cloudinit.readthedocs.io) est une méthode largement utilisée pour personnaliser une machine virtuelle Linux lors de son premier démarrage. Vous pouvez utiliser cloud-init pour installer des packages et écrire des fichiers, ou encore pour configurer des utilisateurs ou des paramètres de sécurité. Comme cloud-init s’exécute pendant le processus de démarrage initial, aucune autre étape ni aucun agent ne sont nécessaires pour appliquer votre configuration.
+[Init-cloud](https://cloudinit.readthedocs.io) est un toocustomize approche largement utilisée une VM Linux au démarrage pour hello première fois. Vous pouvez utiliser des packages tooinstall init de cloud et écrire des fichiers, ou de tooconfigure utilisateurs et de sécurité. Comme le cloud-init s’exécute pendant le processus de démarrage initial hello, il n’existe aucune étape supplémentaire ou agents tooapply votre configuration.
 
-Cloud-init fonctionne aussi sur les différentes distributions. Par exemple, vous n’utilisez pas **apt-get install** ou **yum install** pour installer un package. Au lieu de cela, vous pouvez définir une liste des packages à installer, après quoi cloud-init se charge d’utiliser automatiquement l’outil de gestion de package natif correspondant à la distribution que vous sélectionnez.
+Cloud-init fonctionne aussi sur les différentes distributions. Par exemple, vous n’utilisez pas **apt-get install** ou **yum installer** tooinstall un package. Au lieu de cela, vous pouvez définir une liste de packages tooinstall. Init-cloud utilise automatiquement l’outil de gestion de package native de hello pour distribution hello que vous sélectionnez.
 
-Nous collaborons avec nos partenaires pour que cloud-init soit inclus et fonctionne dans les images qu’ils fournissent à Azure. Le tableau suivant présente la disponibilité actuelle de cloud-init sur les images de plateforme Azure :
+Nous sommes utilisation de nos partenaires tooget cloud-init inclus et utilisation dans des images hello qu’ils fournissent des tooAzure. Hello tableau suivant souligne hello actuel cloud-init disponibilité sur les images de plateforme Azure :
 
 | Alias | Éditeur | Offer | SKU | Version |
 |:--- |:--- |:--- |:--- |:--- |:--- |
@@ -54,9 +54,9 @@ Nous collaborons avec nos partenaires pour que cloud-init soit inclus et fonctio
 
 
 ## <a name="create-cloud-init-config-file"></a>Créer un fichier de configuration cloud-init
-Pour voir le cloud-init en action, créez une machine virtuelle qui installe NGINX et exécute une simple application « Hello World » Node.js. La configuration cloud-init suivante installe les packages, crée une application Node.js, puis initialise et démarre l’application.
+toosee cloud-init dans action, créez une machine virtuelle qui installe NGINX et exécute une application Node.js de « Hello World » simple. Hello configuration du cloud-init suivante installe les packages hello requis, crée une application Node.js, puis initialisez et démarre l’application hello.
 
-Dans l’interpréteur de commandes actuel, créez un fichier nommé *cloud-init.txt* et collez la configuration suivante. Par exemple, créez le fichier dans l’interpréteur de commandes Cloud et non sur votre ordinateur local. Vous pouvez utiliser l’éditeur de votre choix. Entrez `sensible-editor cloud-init.txt` pour créer le fichier et afficher la liste des éditeurs disponibles. Vérifiez que l’intégralité du fichier cloud-init est copiée, en particulier la première ligne :
+Dans votre environnement actuel, créez un fichier nommé *cloud-init.txt* et coller hello de configuration suivante. Par exemple, créer le fichier de hello Bonjour Cloud Shell pas sur votre ordinateur local. Vous pouvez utiliser l’éditeur de votre choix. Entrez `sensible-editor cloud-init.txt` toocreate hello fichier et afficher la liste des éditeurs disponibles. Assurez-vous que ce fichier d’ensemble cloud-init hello est copié correctement, en particulier hello première ligne :
 
 ```yaml
 #cloud-config
@@ -103,13 +103,13 @@ runcmd:
 Pour plus d’informations sur les options de configuration de cloud-init, consultez les [exemples de configuration cloud-init](https://cloudinit.readthedocs.io/en/latest/topics/examples.html).
 
 ## <a name="create-virtual-machine"></a>Create virtual machine
-Pour pouvoir créer une machine virtuelle, vous devez créer un groupe de ressources avec la commande [az group create](/cli/azure/group#create). L’exemple suivant crée un groupe de ressources nommé *myResourceGroupAutomate* dans l’emplacement *westus*:
+Pour pouvoir créer une machine virtuelle, vous devez créer un groupe de ressources avec la commande [az group create](/cli/azure/group#create). Hello exemple suivant crée un groupe de ressources nommé *myResourceGroupAutomate* Bonjour *eastus* emplacement :
 
 ```azurecli-interactive 
 az group create --name myResourceGroupAutomate --location eastus
 ```
 
-Créez maintenant une machine virtuelle avec la commande [az vm create](/cli/azure/vm#create). Utilisez le paramètre `--custom-data` à transmettre dans votre fichier de configuration cloud-init. Indiquez le chemin complet vers la configuration *cloud-init.txt* si vous avez enregistré le fichier en dehors de votre répertoire de travail actuel. L’exemple suivant permet de créer une machine virtuelle nommée *myAutomatedVM* :
+Créez maintenant une machine virtuelle avec la commande [az vm create](/cli/azure/vm#create). Hello d’utilisation `--custom-data` toopass de paramètre dans votre fichier de configuration cloud-init. Fournir hello chemin d’accès complet toohello *init.txt de cloud* configuration si vous avez enregistré le fichier de hello en dehors de votre répertoire de travail actuelle. Hello exemple suivant crée un ordinateur virtuel nommé *myAutomatedVM*:
 
 ```azurecli-interactive 
 az vm create \
@@ -121,34 +121,34 @@ az vm create \
     --custom-data cloud-init.txt
 ```
 
-Vous devez patienter quelques minutes le temps que la machine virtuelle soit créée, que les packages soient installés et que l’application démarre. Certaines tâches en arrière-plan continuent à s’exécuter une fois que l’interface CLI Azure vous renvoie à l’invite de commandes. Un délai de quelques minutes peut être nécessaire avant que vous puissiez accéder à l’application. Une fois la machine virtuelle créée, notez la valeur de `publicIpAddress` qui s’affiche dans l’interface Azure CLI. Cette adresse est utilisée pour accéder à l’application Node.js via un navigateur web.
+Il prend quelques minutes pour hello toobe de machine virtuelle créée, hello packages tooinstall et toostart d’application hello. Il existe des tâches en arrière-plan qui continuer toorun après que hello CLI d’Azure vous renvoie toohello invite. Il peut être une ou deux minutes avant que vous pouvez accéder à application hello. Lorsque hello machine virtuelle a été créé, prenez note de hello `publicIpAddress` affiché par hello CLI d’Azure. Cette adresse est utilisée tooaccess hello Node.js application via un navigateur web.
 
-Pour autoriser le trafic web à accéder à votre machine virtuelle, ouvrez le port 80 à partir d’Internet à l’aide de la commande [az vm open-port](/cli/azure/vm#open-port) :
+tooallow web tooreach de trafic de votre machine virtuelle, ouvrez port 80 du hello Internet avec [ouvrir un ordinateur virtuel az-port](/cli/azure/vm#open-port):
 
 ```azurecli-interactive 
 az vm open-port --port 80 --resource-group myResourceGroupAutomate --name myVM
 ```
 
 ## <a name="test-web-app"></a>Tester l’application web
-Vous pouvez maintenant ouvrir un navigateur web et entrer *http://<publicIpAddress>* dans la barre d’adresse. Indiquez votre propre adresse IP publique à partir du processus de création de la machine virtuelle. Votre application Node.js apparaît telle que dans l’exemple suivant :
+Vous pouvez désormais ouvrir un navigateur web et entrez *http://<publicIpAddress>*  dans la barre d’adresses hello. Fournissez vos propres adresse IP à partir de la machine virtuelle de hello créer le processus. Votre application Node.js s’affiche comme dans hello l’exemple suivant :
 
 ![Afficher le site NGINX en cours d’exécution](./media/tutorial-automate-vm-deployment/nginx.png)
 
 
 ## <a name="inject-certificates-from-key-vault"></a>Injecter des certificats à partir de Key Vault
-Cette section montre comment stocker des certificats en toute sécurité dans Azure Key Vault et comment les injecter lors du déploiement de la machine virtuelle. Au lieu d’utiliser une image personnalisée qui inclut les certificats intégrés, ce processus permet d’injecter les certificats les plus récents dans une machine virtuelle dès le premier démarrage. Pendant le processus, le certificat ne quitte jamais la plateforme Azure ; il est exposé dans un script, un historique de ligne de commande ou un modèle.
+Cette section montre comment vous pouvez stocker des certificats dans le coffre de clés Azure en toute sécurité et les injecter pendant hello déploiement des ordinateurs virtuels. Au lieu d’utiliser une image personnalisée qui inclut les certificats de hello cuit-in, ce processus garantit que les certificats hello plus récentes sont injectées tooa VM au premier démarrage. Pendant le processus de hello, certificat hello jamais laisse hello plateforme Azure ou est exposée dans un script, un historique de ligne de commande ou un modèle.
 
-Azure Key Vault protège les clés de chiffrement et les secrets, tels que les certificats ou les mots de passe. Key Vault rationalise le processus de gestion de clés et vous permet de garder le contrôle des clés qui accèdent à vos données et les chiffrent. Ce scénario présente quelques concepts de Key Vault permettant de créer et utiliser un certificat ; il ne prétend pas détailler de manière exhaustive l’utilisation de Key Vault.
+Azure Key Vault protège les clés de chiffrement et les secrets, tels que les certificats ou les mots de passe. Coffre de clés permet de rationaliser le processus de gestion de clés hello et vous permet de contrôler toomaintain clés d’accès et de chiffrer vos données. Ce scénario présente certains toocreate des concepts de coffre de clés et les utiliser un certificat, bien que n’est pas une vue d’ensemble exhaustive sur la façon de toouse le coffre de clés.
 
-Les étapes suivantes vous expliquent comment :
+comment vous pouvez affiche les Hello comme suit :
 
 - Créer un Azure Key Vault
-- Générer ou télécharger un certificat dans Key Vault
-- Créer un secret à partir du certificat pour l’injecter dans une machine virtuelle
-- Créer une machine virtuelle et injecter le certificat
+- Générer ou télécharger un certificat de toohello le coffre de clés
+- Créer une clé secrète à partir de tooinject de certificat hello dans tooa machine virtuelle
+- Créer une machine virtuelle et injecter du certificat de hello
 
 ### <a name="create-an-azure-key-vault"></a>Créer un Azure Key Vault
-Commencez par créer un Key Vault avec la commande [az keyvault create](/cli/azure/keyvault#create) et activez son utilisation lors du déploiement d’une machine virtuelle. Chaque Key Vault requiert un nom unique en minuscules. Remplacez *mykeyvault* dans l’exemple suivant par le nom unique de votre propre Key Vault :
+Commencez par créer un Key Vault avec la commande [az keyvault create](/cli/azure/keyvault#create) et activez son utilisation lors du déploiement d’une machine virtuelle. Chaque Key Vault requiert un nom unique en minuscules. Remplacez *mykeyvault* Bonjour votre propre nom de coffre de clés unique de l’exemple suivant :
 
 ```azurecli-interactive 
 keyvault_name=mykeyvault
@@ -159,7 +159,7 @@ az keyvault create \
 ```
 
 ### <a name="generate-certificate-and-store-in-key-vault"></a>Générer le certificat et le stocker dans Key Vault
-Dans un environnement de production, vous devez importer un certificat valide signé par un fournisseur approuvé à l’aide de la commande [az keyvault certificate import](/cli/azure/keyvault/certificate#import). Pour ce didacticiel, l’exemple suivant vous montre comment générer un certificat auto-signé avec la commande [az keyvault certificate create](/cli/azure/keyvault/certificate#create) qui utilise la stratégie de certificat par défaut :
+Dans un environnement de production, vous devez importer un certificat valide signé par un fournisseur approuvé à l’aide de la commande [az keyvault certificate import](/cli/azure/keyvault/certificate#import). Pour ce didacticiel, hello suivant montre comment vous pouvez générer un certificat auto-signé avec [création de certificat de keyvault az](/cli/azure/keyvault/certificate#create) qui utilise la stratégie de certificat par défaut hello :
 
 ```azurecli-interactive 
 az keyvault certificate create \
@@ -170,7 +170,7 @@ az keyvault certificate create \
 
 
 ### <a name="prepare-certificate-for-use-with-vm"></a>Préparer le certificat en vue de son utilisation avec la machine virtuelle
-Pour utiliser le certificat au cours du processus de création de la machine virtuelle, récupérez l’ID de votre certificat à l’aide de la commande [az keyvault secret list-versions](/cli/azure/keyvault/secret#list-versions). Le certificat doit respecter un certain format pour être injecté au démarrage du système par la machine virtuelle. Par conséquent, convertissez le certificat avec [az vm format-secret](/cli/azure/vm#format-secret). L’exemple suivant affecte la sortie de ces commandes à des variables, afin de simplifier la procédure dans les étapes suivantes :
+certificat de hello de toouse pendant hello VM créer un processus, obtenir l’ID hello de votre certificat avec [az keyvault secrète liste versions](/cli/azure/keyvault/secret#list-versions). Hello machine virtuelle a besoin de certificat de hello dans une certaine tooinject format il au démarrage du système, par conséquent, convertir certificat hello avec [az vm format-secret](/cli/azure/vm#format-secret). Hello, l’exemple suivant attribue à sortie hello de toovariables de ces commandes pour faciliter l’utilisation Bonjour étapes suivantes :
 
 ```azurecli-interactive 
 secret=$(az keyvault secret list-versions \
@@ -181,10 +181,10 @@ vm_secret=$(az vm format-secret --secret "$secret")
 ```
 
 
-### <a name="create-cloud-init-config-to-secure-nginx"></a>Créer la configuration cloud-init pour sécuriser NGINX
-Lorsque vous créez une machine virtuelle, les certificats et les clés sont stockés dans le répertoire */var/lib/waagent/* protégé. Pour ajouter le certificat à la machine virtuelle et configurer NGINX de façon automatique, vous pouvez utiliser une configuration cloud-init mise à jour par rapport à l’exemple précédent.
+### <a name="create-cloud-init-config-toosecure-nginx"></a>Créer le nuage-init config toosecure NGINX
+Lorsque vous créez une machine virtuelle, les certificats et clés sont stockées dans hello protégé */var/lib/waagent/* active. tooautomate Ajout hello certificat toohello machine virtuelle et la configuration NGINX, vous pouvez utiliser une configuration cloud-init mis à jour à partir de l’exemple précédent de hello.
 
-Créez un fichier nommé *cloud-init-secured.txt* et collez la configuration suivante. Là encore, si vous utilisez Cloud Shell, vous devez créer le fichier de configuration cloud-init ici et non sur votre ordinateur local. Utilisez `sensible-editor cloud-init-secured.txt` pour créer le fichier et afficher la liste des éditeurs disponibles. Vérifiez que l’intégralité du fichier cloud-init est copiée, en particulier la première ligne :
+Créez un fichier nommé *cloud-init-secured.txt* et coller hello de configuration suivante. Là encore, si vous utilisez hello Shell de cloud computing, vous devez créer le fichier de configuration cloud-init hello ici et pas sur votre ordinateur local. Utilisez `sensible-editor cloud-init-secured.txt` toocreate hello fichier et afficher la liste des éditeurs disponibles. Assurez-vous que ce fichier d’ensemble cloud-init hello est copié correctement, en particulier hello première ligne :
 
 ```yaml
 #cloud-config
@@ -236,7 +236,7 @@ runcmd:
 ```
 
 ### <a name="create-secure-vm"></a>Créer une machine virtuelle sécurisée
-Créez maintenant une machine virtuelle avec la commande [az vm create](/cli/azure/vm#create). Les données de certificat sont injectées à partir de Key Vault avec le paramètre `--secrets`. Comme dans l’exemple précédent, vous allez également transmettre la configuration de cloud-init avec le paramètre `--custom-data` :
+Créez maintenant une machine virtuelle avec la commande [az vm create](/cli/azure/vm#create). les données de certificat Hello sont injectées dans le coffre de clés avec hello `--secrets` paramètre. Comme exemple précédent de hello, vous passez également dans la configuration du cloud-init hello avec hello `--custom-data` paramètre :
 
 ```azurecli-interactive 
 az vm create \
@@ -249,9 +249,9 @@ az vm create \
     --secrets "$vm_secret"
 ```
 
-Vous devez patienter quelques minutes le temps que la machine virtuelle soit créée, que les packages soient installés et que l’application démarre. Certaines tâches en arrière-plan continuent à s’exécuter une fois que l’interface CLI Azure vous renvoie à l’invite de commandes. Un délai de quelques minutes peut être nécessaire avant que vous puissiez accéder à l’application. Une fois la machine virtuelle créée, notez la valeur de `publicIpAddress` qui s’affiche dans l’interface Azure CLI. Cette adresse est utilisée pour accéder à l’application Node.js via un navigateur web.
+Il prend quelques minutes pour hello toobe de machine virtuelle créée, hello packages tooinstall et toostart d’application hello. Il existe des tâches en arrière-plan qui continuer toorun après que hello CLI d’Azure vous renvoie toohello invite. Il peut être une ou deux minutes avant que vous pouvez accéder à application hello. Lorsque hello machine virtuelle a été créé, prenez note de hello `publicIpAddress` affiché par hello CLI d’Azure. Cette adresse est utilisée tooaccess hello Node.js application via un navigateur web.
 
-Pour autoriser le trafic web sécurisé à accéder à votre machine virtuelle, ouvrez le port 443 à partir d’Internet à l’aide de la commande [az vm open-port](/cli/azure/vm#open-port) :
+tooallow sécurisé tooreach du trafic web de votre machine virtuelle, ouvrir le port 443 à partir de hello Internet avec [ouvrir un ordinateur virtuel az-port](/cli/azure/vm#open-port):
 
 ```azurecli-interactive 
 az vm open-port \
@@ -261,11 +261,11 @@ az vm open-port \
 ```
 
 ### <a name="test-secure-web-app"></a>Tester l’application web sécurisée
-Vous pouvez maintenant ouvrir un navigateur web et entrer *https://<publicIpAddress>* dans la barre d’adresse. Indiquez votre propre adresse IP publique à partir du processus de création de la machine virtuelle. Acceptez l’avertissement de sécurité si vous avez utilisé un certificat auto-signé :
+Vous pouvez désormais ouvrir un navigateur web et entrez *https://<publicIpAddress>*  dans la barre d’adresses hello. Fournissez vos propres adresse IP à partir de la machine virtuelle de hello créer le processus. Acceptez l’avertissement de sécurité hello si vous avez utilisé un certificat auto-signé :
 
 ![Accepter l’avertissement de sécurité du navigateur web](./media/tutorial-automate-vm-deployment/browser-warning.png)
 
-Votre site NGINX sécurisé et votre application Node.js apparaissent maintenant dans l’exemple suivant :
+Votre site NGINX sécurisés et les Node.js application est ensuite affichée comme hello l’exemple suivant :
 
 ![Afficher le site NGINX sécurisé en cours d’exécution](./media/tutorial-automate-vm-deployment/secured-nginx.png)
 
@@ -276,11 +276,11 @@ Ce didacticiel vous a montré comment configurer des machines virtuelles au prem
 > [!div class="checklist"]
 > * Créer un fichier de configuration cloud-init
 > * Créer une machine virtuelle utilisant un fichier cloud-init
-> * Afficher une application Node.js en cours d’exécution une fois la machine virtuelle est créée
-> * Utiliser un Key Vault pour stocker des certificats en toute sécurité
+> * Afficher une application en cours d’exécution de Node.js après hello que machine virtuelle est créée.
+> * Utiliser des certificats de coffre de clés toosecurely magasin
 > * Automatiser des déploiements sécurisés de NGINX avec cloud-init
 
-Passez au didacticiel suivant pour découvrir comment créer des images de machine virtuelle personnalisées.
+Avancer toolearn de didacticiel suivant toohello comment toocreate les images de machine virtuelle personnalisées.
 
 > [!div class="nextstepaction"]
 > [Créer des images de machine virtuelle personnalisées](./tutorial-custom-images.md)

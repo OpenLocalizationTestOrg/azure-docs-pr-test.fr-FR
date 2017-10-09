@@ -1,5 +1,5 @@
 ---
-title: "Utilisation de PowerShell pour gérer Traffic Manager dans Azure | Microsoft Docs"
+title: aaaUsing PowerShell toomanage Traffic Manager dans Azure | Documents Microsoft
 description: Utilisation de Powershell pour Traffic Manager avec Azure Resource Manager
 services: traffic-manager
 documentationcenter: na
@@ -13,65 +13,65 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/16/2017
 ms.author: kumud
-ms.openlocfilehash: 1cd7bd7e32c96398d72c7cd3b51e2b456d60f01d
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 018c37db63beb82fdad54cfd7e13ab3cb645723a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="using-powershell-to-manage-traffic-manager"></a>Utilisation de PowerShell pour gérer Traffic Manager
+# <a name="using-powershell-toomanage-traffic-manager"></a>À l’aide de PowerShell toomanage Traffic Manager
 
-Azure Resource Manager est l’interface de gestion par défaut des services Azure. Les outils et API d’Azure Resource Manager permettent de gérer les profils Azure Traffic Manager.
+Le Gestionnaire de ressources Azure est l’interface de gestion préférés hello pour les services dans Azure. Les outils et API d’Azure Resource Manager permettent de gérer les profils Azure Traffic Manager.
 
 ## <a name="resource-model"></a>Modèle de ressource
 
-Azure Traffic Manager est configuré à l'aide d'un ensemble de paramètres appelé profil Traffic Manager. Ce profil contient les paramètres DNS, les paramètres de routage du trafic, les paramètres de surveillance des points de terminaison et la liste des points de terminaison de service vers lesquels le trafic est acheminé.
+Azure Traffic Manager est configuré à l'aide d'un ensemble de paramètres appelé profil Traffic Manager. Ce profil contient les paramètres DNS, les paramètres de routage du trafic, les paramètres de surveillance de point de terminaison, et une liste de trafic de toowhich de points de terminaison de service est routée.
 
-Chaque profil Traffic Manager est représenté par une ressource de type « TrafficManagerProfiles ». Au niveau de l'API REST, l'URI de chaque profil est la suivante :
+Chaque profil Traffic Manager est représenté par une ressource de type « TrafficManagerProfiles ». Au niveau de l’API REST de hello, hello URI pour chaque profil est la suivante :
 
     https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Network/trafficManagerProfiles/{profile-name}?api-version={api-version}
 
 ## <a name="setting-up-azure-powershell"></a>Configuration d’Azure PowerShell
 
-Ces instructions utilisent Microsoft Azure PowerShell. L’article suivant explique comment installer et configurer Azure PowerShell.
+Ces instructions utilisent Microsoft Azure PowerShell. Hello suivant explique comment tooinstall et configurer Azure PowerShell.
 
-* [Installation et configuration d’Azure PowerShell](/powershell/azure/overview)
+* [Comment tooinstall et configurer Azure PowerShell](/powershell/azure/overview)
 
-Les exemples de cet article supposent que vous disposez déjà d’un groupe de ressources. Vous pouvez en créer un à l’aide de la commande suivante :
+exemples de Hello dans cet article supposent que vous disposez d’un groupe de ressources existant. Vous pouvez créer un groupe de ressources à l’aide de hello de commande suivante :
 
 ```powershell
 New-AzureRmResourceGroup -Name MyRG -Location "West US"
 ```
 
 > [!NOTE]
-> Azure Resource Manager exige des groupes de ressources qu’ils disposent tous d’un emplacement. Celui-ci est utilisé comme emplacement par défaut pour les ressources créées dans ce groupe de ressources. Cependant, étant donné que les ressources de profil Traffic Manager sont mondiales et non régionales, le choix de l’emplacement du groupe de ressources n’a aucune incidence sur Azure Traffic Manager.
+> Azure Resource Manager exige des groupes de ressources qu’ils disposent tous d’un emplacement. Cet emplacement est utilisé comme valeur par défaut hello pour les ressources créées dans ce groupe de ressources. Toutefois, étant donné que les ressources du profil Traffic Manager sont globales, pas régional, choix hello de l’emplacement du groupe de ressources n’a aucun impact sur Azure Traffic Manager.
 
 ## <a name="create-a-traffic-manager-profile"></a>Créer un profil Traffic Manager
 
-Pour créer un profil Traffic Manager, utilisez l’applet de commande `New-AzureRmTrafficManagerProfile` :
+toocreate un profil Traffic Manager, utilisez hello `New-AzureRmTrafficManagerProfile` applet de commande :
 
 ```powershell
 $profile = New-AzureRmTrafficManagerProfile -Name MyProfile -ResourceGroupName MyRG -TrafficRoutingMethod Performance -RelativeDnsName contoso -Ttl 30 -MonitorProtocol HTTP -MonitorPort 80 -MonitorPath "/"
 ```
 
-Le tableau suivant décrit les paramètres :
+Hello tableau suivant décrit les paramètres de hello :
 
 | Paramètre | Description |
 | --- | --- |
-| Name |Nom de la ressource de profil Traffic Manager. Les profils d’un même groupe de ressources doivent avoir un nom unique. Ce nom est différent du nom DNS utilisé pour les requêtes DNS. |
-| ResourceGroupName |Nom du groupe de ressources contenant la ressource de profil. |
-| TrafficRoutingMethod |Spécifie la méthode de routage du trafic utilisée pour identifier le point de terminaison qui est retourné en réponse à une requête DNS. Les valeurs possibles sont « Performance », « Weighted » ou « Priority ». |
-| RelativeDnsName |Spécifie la partie nom d’hôte du nom DNS fourni par ce profil Traffic Manager. Cette valeur est combinée au nom de domaine DNS utilisé par Azure Traffic Manager pour former le nom de domaine complet (FQDN) du profil. Par exemple, la valeur définie « contoso » devient « contoso.trafficmanager.net ». |
-| TTL |Spécifie la durée de vie (TTL) du DNS en secondes. Ce paramètre indique aux programmes de résolution DNS locaux et aux clients DNS la durée de mise en cache des réponses DNS pour ce profil Traffic Manager. |
-| MonitorProtocol |Spécifie le protocole à utiliser pour surveiller l’intégrité des points de terminaison. Les valeurs possibles sont « HTTP » et « HTTPS ». |
-| MonitorPort |Spécifie le port TCP utilisé pour surveiller l’intégrité des points de terminaison. |
-| MonitorPort |Spécifie le chemin relatif du nom de domaine de point de terminaison utilisé pour évaluer l’intégrité des points de terminaison. |
+| Nom |nom de la ressource Hello pour hello ressource de profil Traffic Manager. Profils Bonjour même groupe de ressources doive avoir des noms uniques. Ce nom est différent du nom DNS de hello utilisé pour les requêtes DNS. |
+| ResourceGroupName |nom de Hello de hello groupe conteneur hello profil ressource. |
+| TrafficRoutingMethod |Spécifie les hello de routage du trafic méthode utilisée toodetermine point de terminaison qui est retourné en réponse à une requête DNS. Les valeurs possibles sont « Performance », « Weighted » ou « Priority ». |
+| RelativeDnsName |Spécifie la partie du nom d’hôte hello du nom DNS de hello fournie par ce profil Traffic Manager. Cette valeur est combinée avec le nom de domaine DNS hello utilisé par Azure Traffic Manager tooform hello nom de domaine complet (FQDN) du profil de hello. Par exemple, la définition de valeur hello de « contoso » devient « contoso.trafficmanager.net ». |
+| TTL |Spécifie les hello DNS Time-to-Live (TTL), en secondes. Cette durée de vie indique aux résolutions DNS locales de hello et les clients DNS les réponses DNS la durée pendant laquelle toocache pour ce profil Traffic Manager. |
+| MonitorProtocol |Spécifie le contrôle d’intégrité du point de terminaison de toomonitor toouse hello protocole. Les valeurs possibles sont « HTTP » et « HTTPS ». |
+| MonitorPort |Spécifie hello le port TCP utilisé d’intégrité du point de terminaison toomonitor. |
+| MonitorPort |Spécifie le nom de domaine de point de terminaison hello chemin d’accès relatif toohello utilisé tooprobe pour le contrôle d’intégrité du point de terminaison. |
 
-L’applet de commande crée un profil Traffic Manager dans Azure et retourne un objet de profil correspondant à PowerShell. À ce stade, le profil ne contient aucun point de terminaison. Pour plus d’informations sur l’ajout de points de terminaison à un profil Traffic Manager, consultez [Ajout de points de terminaison Traffic Manager](#adding-traffic-manager-endpoints).
+applet de commande Hello crée un profil Traffic Manager dans Azure et renvoie un tooPowerShell objet de profil correspondant. À ce stade, le profil hello ne contient aucun point de terminaison. Pour plus d’informations sur l’ajout du profil Traffic Manager tooa points de terminaison, consultez [Ajout de points de terminaison de Traffic Manager](#adding-traffic-manager-endpoints).
 
 ## <a name="get-a-traffic-manager-profile"></a>Récupérer un profil Traffic Manager
 
-Pour récupérer un objet de profil Traffic Manager existant, utilisez l’applet de commande `Get-AzureRmTrafficManagerProfle` :
+tooretrieve un objet de profil Traffic Manager existant, utilisez hello `Get-AzureRmTrafficManagerProfle` applet de commande :
 
 ```powershell
 $profile = Get-AzureRmTrafficManagerProfile -Name MyProfile -ResourceGroupName MyRG
@@ -83,13 +83,13 @@ Cette applet de commande renvoie un objet de profil Traffic Manager.
 
 La modification des profils Traffic Manager est un processus en 3 étapes :
 
-1. Récupérez le profil à l’aide de `Get-AzureRmTrafficManagerProfile` ou utilisez le profil retourné par `New-AzureRmTrafficManagerProfile`.
-2. Modifiez le profil. Vous pouvez ajouter et supprimer des points de terminaison ou modifier les paramètres des points de terminaison ou du profil. Ces modifications sont des opérations hors connexion. Vous modifiez seulement l’objet local en mémoire qui représente le profil.
-3. Validez vos modifications à l’aide de l’applet de commande `Set-AzureRmTrafficManagerProfile`.
+1. À l’aide de profil récupérer hello `Get-AzureRmTrafficManagerProfile` ou utiliser le profil hello retourné par `New-AzureRmTrafficManagerProfile`.
+2. Modifier le profil de hello. Vous pouvez ajouter et supprimer des points de terminaison ou modifier les paramètres des points de terminaison ou du profil. Ces modifications sont des opérations hors connexion. Vous ne modifiez objet local de hello en mémoire qui représente le profil de hello.
+3. Valider les modifications apportées à l’aide de hello `Set-AzureRmTrafficManagerProfile` applet de commande.
 
-Toutes les propriétés de profil peuvent être modifiées à l’exception de RelativeDnsName. Pour modifier la propriété RelativeDnsName, vous devez supprimer le profil et en créer un sous un nouveau nom.
+Toutes les propriétés de profil peuvent être modifiées à l’exception RelativeDnsName du profil hello. toochange hello RelativeDnsName, vous devez supprimer le profil et un nouveau profil avec un nouveau nom.
 
-L’exemple suivant montre comment modifier la durée de vie (TTL) du profil :
+Bonjour à l’exemple suivant montre comment toochange hello durée de vie du profil :
 
 ```powershell
 $profile = Get-AzureRmTrafficManagerProfile -Name MyProfile -ResourceGroupName MyRG
@@ -101,30 +101,30 @@ Il existe trois types de points de terminaison Traffic Manager :
 
 1. Les **points de terminaison Azure** sont des services hébergés dans Azure.
 2. Les **points de terminaison externes** sont des services hébergés en dehors d’Azure.
-3. Les **points de terminaison imbriqués** servent à construire des hiérarchies imbriquées de profils Traffic Manager. Ils permettent de définir des configurations de routage du trafic avancées pour les applications complexes.
+3. **Imbriqué des points de terminaison** sont des hiérarchies utilisé tooconstruct imbriqué de profils Traffic Manager. Ils permettent de définir des configurations de routage du trafic avancées pour les applications complexes.
 
 Dans ces trois cas, les points de terminaison peuvent être ajoutés de deux manières :
 
-1. En suivant le processus en 3 étapes décrit précédemment. L’avantage de cette méthode est que plusieurs modifications de point de terminaison peuvent être apportées en une seule mise à jour.
-2. En utilisant l’applet de commande New-AzureRmTrafficManagerEndpoint. Celle-ci permet d’ajouter un point de terminaison à un profil Traffic Manager existant en une seule opération.
+1. En suivant le processus en 3 étapes décrit précédemment. avantage Hello de cette méthode est que plusieurs modifications de point de terminaison peuvent être effectuées dans une seule mise à jour.
+2. À l’aide d’applet de commande New-AzureRmTrafficManagerEndpoint hello. Cette applet de commande ajoute un point de terminaison tooan existant du profil Traffic Manager en une seule opération.
 
 ## <a name="adding-azure-endpoints"></a>Ajout de points de terminaison Azure
 
 Les points de terminaison Azure font référence à des services hébergés dans Azure. Les types de point de terminaison Azure pris en charge sont au nombre de deux :
 
 1. Azure Web Apps 
-2. Ressources PublicIpAddress Azure (peuvent être attachées à un équilibreur de charge ou à une carte réseau de machine virtuelle). PublicIpAddress doit se voir affecter un nom DNS pour être utilisé dans Traffic Manager.
+2. Ressources d’adresse IP publique Azure (qui peuvent être attaché tooa équilibreur de charge ou une carte réseau de machine virtuelle). Hello adresse IP publique doit avoir un nom DNS assigné toobe utilisé dans le Gestionnaire de trafic.
 
 Dans chaque cas :
 
-* Le service est spécifié à l’aide du paramètre « targetResourceId » de `Add-AzureRmTrafficManagerEndpointConfig` ou `New-AzureRmTrafficManagerEndpoint`.
-* « Target » et « EndpointLocation » sont définis implicitement selon TargetResourceId.
-* La spécification du paramètre « Pondération » est facultative. Les pondérations ne sont utilisées que si le profil est configuré pour utiliser la méthode de routage du trafic « Weighted ». Autrement, elles sont ignorées. S’il est spécifié, le paramètre doit avoir une valeur numérique comprise entre 1 et 1 000. La valeur par défaut est « 1 ».
-* La spécification du paramètre « Priorité » est facultative. Les priorités ne sont utilisées que si le profil est configuré pour utiliser la méthode d’acheminement de trafic « Priority ». Autrement, elles sont ignorées. Les valeurs valides vont de 1 à 1 000, les valeurs basses indiquant une priorité élevée. Si elles sont spécifiées pour un point de terminaison, elles doivent l’être pour tous les points de terminaison. En cas d’omission, les valeurs par défaut à partir de « 1 » sont appliquées dans l’ordre où les points de terminaison sont répertoriés.
+* service de Hello est spécifié à l’aide du paramètre de « targetResourceId » hello de `Add-AzureRmTrafficManagerEndpointConfig` ou `New-AzureRmTrafficManagerEndpoint`.
+* Hello 'Target' et 'EndpointLocation' sont implicitement hello TargetResourceId.
+* Spécification de hello « Weight » est facultative. Poids sont uniquement utilisés si le profil de hello est la méthode de routage du trafic toouse configuré hello 'Weighted'. Autrement, elles sont ignorées. Si spécifié, la valeur de hello doit être un nombre compris entre 1 et 1000. valeur par défaut de Hello est '1'.
+* En spécifiant hello 'Priority' est facultatif. Les priorités sont uniquement utilisées si le profil de hello est la méthode de routage du trafic toouse configuré hello 'Priority'. Autrement, elles sont ignorées. Les valeurs valides sont de 1 too1000 ayant des valeurs inférieures indiquant une priorité plus élevée. Si elles sont spécifiées pour un point de terminaison, elles doivent l’être pour tous les points de terminaison. Si omis, les valeurs par défaut à partir de '1' sont appliquées dans l’ordre de hello que les points de terminaison hello sont répertoriés.
 
 ### <a name="example-1-adding-web-app-endpoints-using-add-azurermtrafficmanagerendpointconfig"></a>Exemple 1 : ajout de points de terminaison d’application web à l’aide de `Add-AzureRmTrafficManagerEndpointConfig`
 
-Dans cet exemple, nous créons un profil Traffic Manager et ajoutons deux points de terminaison d’application web à l’aide de l’applet de commande `Add-AzureRmTrafficManagerEndpointConfig`.
+Dans cet exemple, nous créons un profil Traffic Manager et ajouter deux points de terminaison de l’application Web à l’aide de hello `Add-AzureRmTrafficManagerEndpointConfig` applet de commande.
 
 ```powershell
 $profile = New-AzureRmTrafficManagerProfile -Name myprofile -ResourceGroupName MyRG -TrafficRoutingMethod Performance -RelativeDnsName myapp -Ttl 30 -MonitorProtocol HTTP -MonitorPort 80 -MonitorPath "/"
@@ -136,7 +136,7 @@ Set-AzureRmTrafficManagerProfile -TrafficManagerProfile $profile
 ```
 ### <a name="example-2-adding-a-publicipaddress-endpoint-using-new-azurermtrafficmanagerendpoint"></a>Exemple 2 : ajout d’un point de terminaison publicIpAddress à l’aide de `New-AzureRmTrafficManagerEndpoint`
 
-Dans cet exemple, une ressource d’adresse IP publique est ajoutée au profil Traffic Manager. L’adresse IP publique doit avoir un nom DNS configuré et peut être liée à la carte réseau d’une machine virtuelle ou à un équilibreur de charge.
+Dans cet exemple, une ressource d’adresse IP publique est ajoutée le profil Traffic Manager toohello. adresse IP publique de Hello doit avoir un nom DNS configuré et peut être lié soit toohello carte réseau d’un équilibrage de charge de machine virtuelle ou tooa.
 
 ```powershell
 $ip = Get-AzureRmPublicIpAddress -Name MyPublicIP -ResourceGroupName MyRG
@@ -145,17 +145,17 @@ New-AzureRmTrafficManagerEndpoint -Name MyIpEndpoint -ProfileName MyProfile -Res
 
 ## <a name="adding-external-endpoints"></a>Ajout de points de terminaison externes
 
-Traffic Manager utilise les points de terminaison externes pour diriger le trafic vers les services hébergés en dehors d’Azure. Comme les points de terminaison Azure, les points de terminaison externes peuvent être ajoutés à l’aide de `Add-AzureRmTrafficManagerEndpointConfig` suivi de `Set-AzureRmTrafficManagerProfile`, ou avec `New-AzureRMTrafficManagerEndpoint`.
+Traffic Manager utilise des points de terminaison externe toodirect trafic tooservices hébergé en dehors d’Azure. Comme les points de terminaison Azure, les points de terminaison externes peuvent être ajoutés à l’aide de `Add-AzureRmTrafficManagerEndpointConfig` suivi de `Set-AzureRmTrafficManagerProfile`, ou avec `New-AzureRMTrafficManagerEndpoint`.
 
 Lors de la spécification de points de terminaison externes :
 
-* Le nom de domaine du point de terminaison doit être spécifié en utilisant le paramètre « Target »
-* Si la méthode de routage du trafic « Performance » est utilisée, le paramètre « EndpointLocation » doit être renseigné. Sinon, il est facultatif. La valeur doit être un [nom de région Azure valide](https://azure.microsoft.com/regions/).
-* Les paramètres « Weight » et « Priority » sont facultatifs.
+* nom de domaine du point de terminaison Hello doit être spécifié à l’aide du paramètre de 'Target' hello
+* Si hello méthode de routage du trafic « Performance » est utilisé, hello 'EndpointLocation' est requis. Sinon, il est facultatif. la valeur Hello doit être un [nom de la région Azure valide](https://azure.microsoft.com/regions/).
+* Hello 'Poids' et 'Priority' est facultatif.
 
 ### <a name="example-1-adding-external-endpoints-using-add-azurermtrafficmanagerendpointconfig-and-set-azurermtrafficmanagerprofile"></a>Exemple 1 : ajout de points de terminaison externes à l’aide de `Add-AzureRmTrafficManagerEndpointConfig` et `Set-AzureRmTrafficManagerProfile`
 
-Dans cet exemple, nous créons un profil Traffic Manager, ajoutons deux points de terminaison externes et validons les modifications.
+Dans cet exemple, nous créer un profil Traffic Manager, ajoutez les deux points de terminaison externes et valider les modifications de hello.
 
 ```powershell
 $profile = New-AzureRmTrafficManagerProfile -Name myprofile -ResourceGroupName MyRG -TrafficRoutingMethod Performance -RelativeDnsName myapp -Ttl 30 -MonitorProtocol HTTP -MonitorPort 80 -MonitorPath "/"
@@ -166,7 +166,7 @@ Set-AzureRmTrafficManagerProfile -TrafficManagerProfile $profile
 
 ### <a name="example-2-adding-external-endpoints-using-new-azurermtrafficmanagerendpoint"></a>Exemple 2 : ajout de points de terminaison externes à l’aide de `New-AzureRmTrafficManagerEndpoint`
 
-Dans cet exemple, nous ajoutons un point de terminaison externe à un profil existant. Le profil est spécifié en utilisant les noms de profil et de groupe de ressources.
+Dans cet exemple, nous ajouter un profil existant tooan de point de terminaison externe. profil de Hello est spécifié à l’aide de noms de groupe de ressources et un profil de hello.
 
 ```powershell
 New-AzureRmTrafficManagerEndpoint -Name eu-endpoint -ProfileName MyProfile -ResourceGroupName MyRG -Type ExternalEndpoints -Target app-eu.contoso.com -EndpointStatus Enabled
@@ -174,18 +174,18 @@ New-AzureRmTrafficManagerEndpoint -Name eu-endpoint -ProfileName MyProfile -Reso
 
 ## <a name="adding-nested-endpoints"></a>Ajout de points de terminaison « imbriqués »
 
-Chaque profil Traffic Manager spécifie une seule méthode de routage du trafic. Cependant, certains scénarios exigent une méthode de routage du trafic plus sophistiquée que celle proposée par un profil Traffic Manager unique. Vous pouvez imbriquer des profils Traffic Manager pour combiner les avantages de plusieurs méthodes de routage du trafic. Les profils imbriqués permettent de modifier le comportement par défaut de Traffic Manager pour prendre en charge des déploiements d’applications plus importants et plus complexes. Pour obtenir des informations plus détaillées, consultez [Profils Traffic Manager imbriqués](traffic-manager-nested-profiles.md).
+Chaque profil Traffic Manager spécifie une seule méthode de routage du trafic. Toutefois, il existe des scénarios qui requièrent que le routage hello fournis par un seul profil Traffic Manager le routage du trafic plus sophistiquées. Vous pouvez imbriquer des avantages de hello de toocombine de profils Traffic Manager de plusieurs méthodes de routage du trafic. Profils imbriqués permettent toooverride hello par défaut Traffic Manager comportement toosupport plus volumineux et les déploiements d’applications plus complexes. Pour obtenir des informations plus détaillées, consultez [Profils Traffic Manager imbriqués](traffic-manager-nested-profiles.md).
 
-Les points de terminaison imbriqués sont configurés sur le profil parent, à l’aide d’un type de point de terminaison spécifique, « NestedEndpoints ». Lors de la spécification de points de terminaison imbriqués :
+Points de terminaison imbriquées sont configurées au profil parent de hello, à l’aide d’un type de point de terminaison spécifique, 'NestedEndpoints'. Lors de la spécification de points de terminaison imbriqués :
 
-* Le point de terminaison doit être spécifié à l’aide du paramètre « targetResourceId ».
-* Si la méthode de routage du trafic « Performance » est utilisée, le paramètre « EndpointLocation » doit être renseigné. Sinon, il est facultatif. La valeur doit être un [nom de région Azure valide](http://azure.microsoft.com/regions/).
-* Les paramètres « Pondération » et « Priorité » sont facultatifs, comme pour les points de terminaison Azure.
-* Le paramètre « MinChildEndpoints » est facultatif. La valeur par défaut est « 1 ». Si le nombre de points de terminaison disponibles tombe sous ce seuil, le profil parent considère le profil enfant comme étant « dégradé » et dirige le trafic vers les autres points de terminaison du profil parent.
+* point de terminaison Hello doit être spécifié à l’aide du paramètre de 'targetResourceId' hello
+* Si hello méthode de routage du trafic « Performance » est utilisé, hello 'EndpointLocation' est requis. Sinon, il est facultatif. la valeur Hello doit être un [nom de la région Azure valide](http://azure.microsoft.com/regions/).
+* Hello 'Poids' et 'Priority' est facultatif, comme pour les points de terminaison Azure.
+* paramètre de 'MinChildEndpoints' Hello est facultatif. valeur par défaut de Hello est '1'. Si le nombre de hello de points de terminaison disponibles tombe sous ce seuil, profil parent de hello considère que le profil enfant hello « dégradé » et dévie le trafic toohello autres points de terminaison dans le profil de hello parent.
 
 ### <a name="example-1-adding-nested-endpoints-using-add-azurermtrafficmanagerendpointconfig-and-set-azurermtrafficmanagerprofile"></a>Exemple 1 : ajout de points de terminaison imbriqués à l’aide de `Add-AzureRmTrafficManagerEndpointConfig` et `Set-AzureRmTrafficManagerProfile`
 
-Dans cet exemple, nous créons des profils Traffic Manager enfant et parent, ajoutons l’enfant en tant que point de terminaison imbriqué au parent et validons les modifications.
+Dans cet exemple, nous créer des profils de parent et enfant Traffic Manager, ajouter un enfant de hello en tant que point de terminaison imbriquée toohello parent et valider les modifications de hello.
 
 ```powershell
 $child = New-AzureRmTrafficManagerProfile -Name child -ResourceGroupName MyRG -TrafficRoutingMethod Priority -RelativeDnsName child -Ttl 30 -MonitorProtocol HTTP -MonitorPort 80 -MonitorPath "/"
@@ -194,11 +194,11 @@ Add-AzureRmTrafficManagerEndpointConfig -EndpointName child-endpoint -TrafficMan
 Set-AzureRmTrafficManagerProfile -TrafficManagerProfile $profile
 ```
 
-Par souci de concision, dans cet exemple, nous n’avons pas ajouté d’autres points de terminaison aux profils enfant ou parent.
+Par souci de concision dans cet exemple, nous n’avez pas ajouté de tous les autres points de terminaison toohello enfant ou parent profils.
 
 ### <a name="example-2-adding-nested-endpoints-using-new-azurermtrafficmanagerendpoint"></a>Exemple 2 : ajout de points de terminaison imbriqués à l’aide de `New-AzureRmTrafficManagerEndpoint`
 
-Dans cet exemple, nous ajoutons un profil enfant existant en tant que point de terminaison imbriqué à un profil parent existant. Le profil est spécifié en utilisant les noms de profil et de groupe de ressources.
+Dans cet exemple, nous ajouter un profil enfant existant comme point de terminaison imbriquée tooan existant parent profil. profil de Hello est spécifié à l’aide de noms de groupe de ressources et un profil de hello.
 
 ```powershell
 $child = Get-AzureRmTrafficManagerEndpoint -Name child -ResourceGroupName MyRG
@@ -207,14 +207,14 @@ New-AzureRmTrafficManagerEndpoint -Name child-endpoint -ProfileName parent -Reso
 
 ## <a name="update-a-traffic-manager-endpoint"></a>Mettre à jour un point de terminaison Traffic Manager
 
-Il existe deux façons de mettre à jour un point de terminaison Traffic Manager existant :
+Il existe deux façons tooupdate un point de terminaison Traffic Manager existant :
 
-1. Obtenir le profil Traffic Manager à l’aide de `Get-AzureRmTrafficManagerProfile`, mettre à jour les propriétés de point de terminaison dans le profil et valider les modifications apportées à l’aide de `Set-AzureRmTrafficManagerProfile`. Cette méthode présente l’avantage de pouvoir mettre à jour plusieurs points de terminaison en une seule opération.
-2. Obtenir le point de terminaison Traffic Manager à l’aide de `Get-AzureRmTrafficManagerEndpoint`, mettre à jour les propriétés de point de terminaison et valider les modifications apportées à l’aide de `Set-AzureRmTrafficManagerEndpoint`. Cette méthode est plus simple, car elle ne nécessite pas d’indexation dans le tableau de points de terminaison dans le profil.
+1. Obtenir à l’aide de profil Traffic Manager hello `Get-AzureRmTrafficManagerProfile`, mettre à jour les propriétés du point de terminaison hello dans le profil de hello et valider les modifications hello à l’aide de `Set-AzureRmTrafficManagerProfile`. Cette méthode présente un avantage hello d’être en mesure de tooupdate plus d’un point de terminaison en une seule opération.
+2. Obtenir à l’aide de point de terminaison de Traffic Manager hello `Get-AzureRmTrafficManagerEndpoint`, mettre à jour les propriétés du point de terminaison hello et valider les modifications hello à l’aide de `Set-AzureRmTrafficManagerEndpoint`. Cette méthode est plus simple, car il ne nécessite pas l’indexation dans un tableau de points de terminaison hello dans le profil de hello.
 
 ### <a name="example-1-updating-endpoints-using-get-azurermtrafficmanagerprofile-and-set-azurermtrafficmanagerprofile"></a>Exemple 1 : mise à jour des points de terminaison à l’aide de `Get-AzureRmTrafficManagerProfile` et `Set-AzureRmTrafficManagerProfile`
 
-Dans cet exemple, nous modifions l’ordre de priorité de deux points de terminaison dans un profil existant.
+Dans cet exemple, nous modifions la priorité de hello deux points de terminaison au sein d’un profil existant.
 
 ```powershell
 $profile = Get-AzureRmTrafficManagerProfile -Name myprofile -ResourceGroupName MyRG
@@ -225,7 +225,7 @@ Set-AzureRmTrafficManagerProfile -TrafficManagerProfile $profile
 
 ### <a name="example-2-updating-an-endpoint-using-get-azurermtrafficmanagerendpoint-and-set-azurermtrafficmanagerendpoint"></a>Exemple 2 : mise à jour d’un point de terminaison à l’aide de `Get-AzureRmTrafficManagerEndpoint` et `Set-AzureRmTrafficManagerEndpoint`
 
-Dans cet exemple, nous modifions le poids d’un point de terminaison unique dans un profil existant.
+Dans cet exemple, nous modifions poids hello d’un point de terminaison unique dans un profil existant.
 
 ```powershell
 $endpoint = Get-AzureRmTrafficManagerEndpoint -Name myendpoint -ProfileName myprofile -ResourceGroupName MyRG -Type ExternalEndpoints
@@ -235,65 +235,65 @@ Set-AzureRmTrafficManagerEndpoint -TrafficManagerEndpoint $endpoint
 
 ## <a name="enabling-and-disabling-endpoints-and-profiles"></a>Activation et désactivation des points de terminaison et des profils
 
-Traffic Manager permet d’activer et de désactiver des points de terminaison individuels, tout en permettant l’activation et la désactivation des profils complets.
-Ces modifications peuvent être effectuées par obtention/mise à jour/définition du point de terminaison ou de ressources de profil. Pour rationaliser les opérations courantes, elles sont également prises en charge via les applets de commande dédiées.
+Traffic Manager permet de points de terminaison individuels toobe activé et désactivé, tout en permettant l’activation et désactivation des profils de l’ensemble.
+Ces modifications peuvent être apportées par les ressources de point de terminaison ou le profil de l’obtention/la mise à jour/définition hello. toostreamline ces opérations courantes, elles sont également prises en charge via les applets de commande dédiées.
 
 ### <a name="example-1-enabling-and-disabling-a-traffic-manager-profile"></a>Exemple 1 : activation et désactivation d’un profil Traffic Manager
 
-Pour activer un profil Traffic Manager, utilisez `Enable-AzureRmTrafficManagerProfile`. Le profil peut être spécifié à l’aide d’un objet de profil. L’objet de profil peut être transmis via le pipeline ou en utilisant le paramètre « -TrafficManagerProfile ». Dans cet exemple, nous spécifions le profil avec le nom de profil et le nom de groupe de ressources.
+tooenable un profil Traffic Manager, utilisez `Enable-AzureRmTrafficManagerProfile`. profil de Hello peut être spécifié à l’aide d’un objet de profil. Hello objet de profil peut être transmis via le pipeline de hello ou à l’aide de hello '-TrafficManagerProfile' paramètre. Dans cet exemple, nous spécifions le profil de hello par nom de groupe de ressources et un profil de hello.
 
 ```powershell
 Enable-AzureRmTrafficManagerProfile -Name MyProfile -ResourceGroupName MyResourceGroup
 ```
 
-Pour désactiver un profil Traffic Manager :
+toodisable un profil Traffic Manager :
 
 ```powershell
 Disable-AzureRmTrafficManagerProfile -Name MyProfile -ResourceGroupName MyResourceGroup
 ```
 
-L’applet de commande Disable-AzureRmTrafficManagerProfile vous demande de confirmer l’opération. Ce message peut être supprimé en utilisant le paramètre « -Force ».
+applet de commande Disable-AzureRmTrafficManagerProfile Hello demande confirmation. Ce message peut être supprimé à l’aide de hello '-Force' paramètre.
 
 ### <a name="example-2-enabling-and-disabling-a-traffic-manager-endpoint"></a>Exemple 2 : activation et désactivation d’un point de terminaison Traffic Manager
 
-Pour activer un point de terminaison Traffic Manager, utilisez `Enable-AzureRmTrafficManagerEndpoint`. Il existe deux façons de spécifier le point de terminaison :
+tooenable un point de terminaison Traffic Manager, utilisez `Enable-AzureRmTrafficManagerEndpoint`. Il existe deux points de terminaison hello de toospecify façons
 
-1. en utilisant un objet TrafficManagerEndpoint, qui est transmis via le pipeline ou en utilisant le paramètre « -TrafficManagerEndpoint » ;
-2. en utilisant le nom du point de terminaison, le type du point de terminaison, le nom du profil et le nom du groupe de ressources :
+1. À l’aide d’un objet TrafficManagerEndpoint transmis via le pipeline de hello ou hello '-TrafficManagerEndpoint' paramètre
+2. À l’aide du nom de point de terminaison hello, type de point de terminaison, nom du profil et nom de groupe de ressources :
 
 ```powershell
 Enable-AzureRmTrafficManagerEndpoint -Name MyEndpoint -Type AzureEndpoints -ProfileName MyProfile -ResourceGroupName MyRG
 ```
 
-De même, pour désactiver un point de terminaison Traffic Manager :
+De même, toodisable un point de terminaison Traffic Manager :
 
 ```powershell
 Disable-AzureRmTrafficManagerEndpoint -Name MyEndpoint -Type AzureEndpoints -ProfileName MyProfile -ResourceGroupName MyRG -Force
 ```
 
-Comme `Disable-AzureRmTrafficManagerProfile`, l’applet de commande `Disable-AzureRmTrafficManagerEndpoint` vous demande de confirmer l’opération. Ce message peut être supprimé en utilisant le paramètre « -Force ».
+Comme avec `Disable-AzureRmTrafficManagerProfile`, hello `Disable-AzureRmTrafficManagerEndpoint` applet de commande vous demande confirmation. Ce message peut être supprimé à l’aide de hello '-Force' paramètre.
 
 ## <a name="delete-a-traffic-manager-endpoint"></a>Supprimer un point de terminaison Traffic Manager
 
-Pour supprimer des points de terminaison individuels, utilisez l’applet de commande `Remove-AzureRmTrafficManagerEndpoint` :
+tooremove des points de terminaison individuels, utilisez hello `Remove-AzureRmTrafficManagerEndpoint` applet de commande :
 
 ```powershell
 Remove-AzureRmTrafficManagerEndpoint -Name MyEndpoint -Type AzureEndpoints -ProfileName MyProfile -ResourceGroupName MyRG
 ```
 
-Cette applet de commande vous demande de confirmer l’opération. Ce message peut être supprimé en utilisant le paramètre « -Force ».
+Cette applet de commande vous demande de confirmer l’opération. Ce message peut être supprimé à l’aide de hello '-Force' paramètre.
 
 ## <a name="delete-a-traffic-manager-profile"></a>Supprimer un profil Traffic Manager
 
-Pour supprimer un profil Traffic Manager, utilisez l’applet de commande `Remove-AzureRmTrafficManagerProfile` en indiquant les noms de profil et de groupe de ressources :
+toodelete un profil Traffic Manager, utilisez hello `Remove-AzureRmTrafficManagerProfile` applet de commande, en spécifiant les noms de groupe de ressources et un profil de hello :
 
 ```powershell
 Remove-AzureRmTrafficManagerProfile -Name MyProfile -ResourceGroupName MyRG [-Force]
 ```
 
-Cette applet de commande vous demande de confirmer l’opération. Ce message peut être supprimé en utilisant le paramètre « -Force ».
+Cette applet de commande vous demande de confirmer l’opération. Ce message peut être supprimé à l’aide de hello '-Force' paramètre.
 
-Le profil à supprimer peut également être spécifié par un objet de profil :
+toobe de profil Hello supprimé peut également être spécifié à l’aide d’un objet de profil :
 
 ```powershell
 $profile = Get-AzureRmTrafficManagerProfile -Name MyProfile -ResourceGroupName MyRG

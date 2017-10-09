@@ -1,6 +1,6 @@
 ---
-title: Abonnement et comptes pour les machines virtuelles Windows dans Azure | Microsoft Docs
-description: "Découvrez les principales instructions de conception et d’implémentation pour les abonnements et les comptes sur Azure."
+title: aaaSubscription et les comptes pour les machines virtuelles Windows dans Azure | Documents Microsoft
+description: "Découvrez hello clé conception et implémentation des recommandations pour les abonnements et les comptes dans Azure."
 documentationcenter: 
 services: virtual-machines-windows
 author: iainfoulds
@@ -16,50 +16,50 @@ ms.topic: article
 ms.date: 06/26/2017
 ms.author: iainfou
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 8b54e18ed6ecef26a059a6ce742bca03a6434183
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f9dc712af559b04490be1dc721a9b9f7fe9ed88f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-subscription-and-accounts-guidelines-for-windows-vms"></a>Instructions pour les abonnements et les comptes Azure pour machines virtuelles Windows
 
 [!INCLUDE [virtual-machines-windows-infrastructure-guidelines-intro](../../../includes/virtual-machines-windows-infrastructure-guidelines-intro.md)]
 
-Cet article se concentre sur la compréhension de l’approche de la gestion des abonnements et des comptes lorsque votre environnement et votre base d’utilisateurs augmentent.
+Cet article se concentre sur comment tooapproach abonnement et gestion des comptes en tant que votre environnement et de la base d’utilisateurs augmente.
 
 ## <a name="implementation-guidelines-for-subscriptions-and-accounts"></a>Instructions d’implémentation pour les abonnements et les comptes
 Décisions :
 
-* Quel est l’ensemble d’abonnements et de comptes dont vous avez besoin pour héberger votre charge de travail ou votre infrastructure informatique ?
-* Comment détailler la hiérarchie pour l’adapter à votre organisation ?
+* Le jeu de comptes et les abonnements devez-vous toohost votre charge de travail informatique ou d’infrastructure ?
+* Comment toobreak vers le bas hello hiérarchie toofit votre organisation ?
 
 Tâches :
 
-* Définissez la hiérarchie logique de votre organisation que vous souhaitez gérer à partir d’un niveau d’abonnement.
-* Pour faire correspondre cette hiérarchie logique, définissez les comptes nécessaires et les abonnements sous chaque compte.
-* Créez l’ensemble d’abonnements et de comptes à l’aide de votre convention d’affectation de noms.
+* Définir la hiérarchie logique que vous aimeriez toomanage à partir d’un niveau d’abonnement.
+* toomatch cette hiérarchie logique, les comptes hello requis et des abonnements sous chaque compte.
+* Créer un jeu hello des abonnements et des comptes à l’aide de votre convention d’affectation de noms.
 
 ## <a name="subscriptions-and-accounts"></a>Abonnements et comptes
-Pour utiliser Azure, vous avez besoin d’un ou de plusieurs abonnements Azure. Des ressources telles que des machines virtuelles ou des réseaux virtuels existent dans le contexte de ces abonnements.
+toowork avec Azure, vous devez un ou plusieurs abonnements Azure. Des ressources telles que des machines virtuelles ou des réseaux virtuels existent dans le contexte de ces abonnements.
 
-* Les clients d’entreprises disposent généralement d’une inscription d’entreprise, qui est la ressource principale dans la hiérarchie et est associée à un ou plusieurs comptes.
-* Pour les particuliers et les clients sans inscription d’entreprise, la ressource principale est le compte.
-* Les abonnements sont associés à des comptes, et chaque compte peut être associé à un ou plusieurs abonnements. Azure enregistre les informations de facturation au niveau de l’abonnement.
+* Les clients d’entreprise ont généralement une inscription d’entreprise, hello des ressources de plus haut dans la hiérarchie de hello et tooone associée ou autres comptes.
+* Pour les particuliers et les clients sans une inscription de l’entreprise, la ressource de plus de hello est compte de hello.
+* Les abonnements sont associés tooaccounts, et il peut y avoir un ou plusieurs abonnements par compte. Azure enregistre les informations au niveau d’abonnement hello de facturation.
 
-La relation compte/abonnement étant limitée à deux niveaux de hiérarchie, il est important d'aligner la convention d'affectation de noms des comptes et des abonnements sur les besoins liés à la facturation. Par exemple, si une entreprise multinationale utilise Azure, elle peut choisir d’avoir un seul compte par région et des abonnements gérés au niveau régional :
+En raison de la limite de toohello de niveaux de hiérarchie deux sur la relation d’abonnement de compte/hello, il est important tooalign hello conventions d’affectation des comptes et des abonnements toohello besoins de facturation. Par exemple, si une entreprise internationale utilise Azure, ils peuvent choisir le compte de toohave un par région et ont des abonnements gérés au niveau de la région de hello :
 
 ![](./media/virtual-machines-common-infrastructure-service-guidelines/sub01.png)
 
-Par exemple, vous pouvez utiliser la structure suivante :
+Par exemple, vous pouvez utiliser hello suivant structure :
 
 ![](./media/virtual-machines-common-infrastructure-service-guidelines/sub02.png)
 
-Si une région décide d’avoir plusieurs abonnements associés à un groupe spécifique, la convention d’affectation de noms doit comprendre un code pour les données supplémentaires dans le nom du compte ou de l’abonnement. Cette organisation permet le transfert de données de facturation pour générer de nouveaux niveaux de hiérarchie lors de l’établissement de rapports de facturation :
+Si une région décide toohave plus de groupe tooa associé à un seul abonnement, convention d’affectation de noms de hello doit incorporer un tooencode moyen hello des données supplémentaires sur le compte de hello ou nom de l’abonnement hello. Cette organisation permet masser facturation données toogenerate hello nouveaux niveaux de hiérarchie au cours de la facturation de rapports :
 
 ![](./media/virtual-machines-common-infrastructure-service-guidelines/sub03.png)
 
-L’organisation peut ressembler à l’exemple suivant :
+organisation de Hello pourrait ressembler à hello l’exemple suivant :
 
 ![](./media/virtual-machines-common-infrastructure-service-guidelines/sub04.png)
 

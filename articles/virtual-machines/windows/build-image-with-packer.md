@@ -1,6 +1,6 @@
 ---
-title: "Comment créer des images de machines virtuelles Microsoft Azure avec Packer | Microsoft Docs"
-description: "Découvrez comment utiliser Packer pour créer des images de machines virtuelles Windows dans Azure"
+title: aaaHow toocreate Images de machine virtuelle Windows Azure avec compression | Documents Microsoft
+description: "Découvrez comment les images toocreate toouse garniture de machines virtuelles Windows Azure"
 services: virtual-machines-windows
 documentationcenter: virtual-machines
 author: iainfoulds
@@ -14,20 +14,20 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 ms.date: 08/18/2017
 ms.author: iainfou
-ms.openlocfilehash: 11a4a4d65be09e6c518836c25bb455a6df738dcb
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: d310fae3becb453b52d21281cb8ac53fa14a3fc2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-packer-to-create-windows-virtual-machine-images-in-azure"></a>Comment utiliser Packer pour créer des images de machines virtuelles Windows dans Azure
-Chaque machine virtuelle dans Azure est créée à partir d’une image qui définit la distribution Windows et la version du système d’exploitation. Les images peuvent inclure des configurations et des applications pré-installées. La Place de marché Microsoft Azure fournit de nombreuses images internes et de tiers pour les systèmes d’exploitation et environnements d’application les plus courants. Vous pouvez également créer vos propres images personnalisées selon vos besoins. Cet article explique comment utiliser l’outil open source [Packer](https://www.packer.io/) pour définir et générer des images personnalisées dans Azure.
+# <a name="how-toouse-packer-toocreate-windows-virtual-machine-images-in-azure"></a>Comment l’image de machine virtuelle de toouse GARNITURE toocreate Windows dans Azure
+Chaque ordinateur virtuel (VM) dans Azure est créé à partir d’une image qui définit hello distribution Windows et la version du système d’exploitation. Les images peuvent inclure des configurations et des applications pré-installées. Hello Azure Marketplace fournit de nombreuses images premier et le tiers pour courants du système d’exploitation et environnements d’application, ou vous pouvez créer vos propres besoins de tooyour adaptés des images personnalisées. Cet article décrit en détail comment toouse hello ouvrir outil source [GARNITURE](https://www.packer.io/) toodefine et créer des images personnalisées dans Azure.
 
 
 ## <a name="create-azure-resource-group"></a>Créer un groupe de ressources Azure
-Pendant le processus de génération, Packer crée des ressources Azure temporaires lorsqu’il génère la machine virtuelle source. Pour capturer cette machine virtuelle source afin de l’utiliser en tant qu’image, vous devez définir un groupe de ressources. La sortie du processus de génération Packer est stockée dans ce groupe de ressources.
+Pendant le processus de génération hello, GARNITURE crée des ressources Azure temporaires lorsqu’il crée l’ordinateur virtuel source de hello. toocapture qui de source pour une utilisation en tant qu’image de machine virtuelle, vous devez définir un groupe de ressources. Hello sortie à partir de processus de génération du programme de compression hello est stockée dans ce groupe de ressources.
 
-Créez un groupe de ressources avec [New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup). L’exemple suivant crée un groupe de ressources nommé *myResourceGroup* à l’emplacement *eastus* :
+Créez un groupe de ressources avec [New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup). Hello exemple suivant crée un groupe de ressources nommé *myResourceGroup* Bonjour *eastus* emplacement :
 
 ```powershell
 $rgName = "myResourceGroup"
@@ -36,9 +36,9 @@ New-AzureRmResourceGroup -Name $rgName -Location $location
 ```
 
 ## <a name="create-azure-credentials"></a>Créer des informations d’identification Azure
-Packer s’authentifie auprès d’Azure à l’aide d’un principal de service. Un principal de service Azure est une identité de sécurité que vous pouvez utiliser avec des applications, des services et des outils d’automatisation comme Packer. Vous contrôlez et définissez les opérations que le principal de service est autorisé à effectuer dans Azure.
+Packer s’authentifie auprès d’Azure à l’aide d’un principal de service. Un principal de service Azure est une identité de sécurité que vous pouvez utiliser avec des applications, des services et des outils d’automatisation comme Packer. Contrôler et de définir des autorisations de hello comme principal du service hello toowhat opérations réalisables dans Azure.
 
-Créez un principal de service avec la commande [New-AzureRmADServicePrincipal](/powershell/module/azurerm.resources/new-azurermadserviceprincipal) et assignez au principal de service les autorisations requises pour créer et gérer des ressources avec la commande [New-AzureRmRoleAssignment](/powershell/module/azurerm.resources/new-azurermroleassignment) :
+Créer un service principal avec [New-AzureRmADServicePrincipal](/powershell/module/azurerm.resources/new-azurermadserviceprincipal) et attribuer des autorisations pour toocreate principal du service hello et gérer les ressources avec [New-AzureRmRoleAssignment](/powershell/module/azurerm.resources/new-azurermroleassignment):
 
 ```powershell
 $sp = New-AzureRmADServicePrincipal -DisplayName "Azure Packer IKF" -Password "P@ssw0rd!"
@@ -46,7 +46,7 @@ Sleep 20
 New-AzureRmRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $sp.ApplicationId
 ```
 
-Pour vous authentifier auprès d’Azure, vous devez également obtenir vos ID client et d’abonnement Azure à l’aide de la commande [Get-AzureRmSubscription](/powershell/module/azurerm.profile/get-azurermsubscription) :
+tooauthenticate tooAzure, vous devez également tooobtain votre ID client et un abonnement Azure avec [Get-AzureRmSubscription](/powershell/module/azurerm.profile/get-azurermsubscription):
 
 ```powershell
 $sub = Get-AzureRmSubscription
@@ -54,23 +54,23 @@ $sub.TenantId
 $sub.SubscriptionId
 ```
 
-Vous utiliserez ces deux ID à l’étape suivante.
+Vous utilisez ces deux ID à l’étape suivante de hello.
 
 
 ## <a name="define-packer-template"></a>Définition du modèle Packer
-Pour générer les images, vous devez créer un modèle en tant que fichier JSON. Dans le modèle, vous définissez des générateurs et des fournisseurs pour mener à bien le processus de génération réel. Packer possède un [fournisseur pour Azure](https://www.packer.io/docs/builders/azure.html) qui vous permet de définir des ressources Azure, telles que les informations d’identification du principal de service créées à l’étape précédente.
+toobuild images, vous créez un modèle en tant qu’un fichier JSON. Dans le modèle de hello, vous définissez des générateurs et provisioners mener à bien hello réel des processus de génération. Programme de compression a un [un fournisseur pour Azure](https://www.packer.io/docs/builders/azure.html) qui vous permet de toodefine Azure ressources, telles que hello principal des références de service créés dans hello précédant l’étape.
 
-Créez un fichier nommé *windows.json* et collez le contenu suivant : Saisissez vos propres valeurs comme suit :
+Créez un fichier nommé *windows.json* et coller hello suivant le contenu. Entrez vos propres valeurs pour les éléments suivants de hello :
 
-| Paramètre                           | Emplacement |
+| Paramètre                           | Où tooobtain |
 |-------------------------------------|----------------------------------------------------|
 | *client_id*                         | Affichage de l’ID du principal de service avec `$sp.applicationId` |
 | *client_secret*                     | Mot de passe que vous avez spécifié dans `$securePassword` |
 | *tenant_id*                         | Sortie de la commande `$sub.TenantId` |
 | *subscription_id*                   | Sortie de la commande `$sub.SubscriptionId` |
 | *object_id*                         | Affichage de l’ID d’objet du principal de service avec `$sp.Id` |
-| *managed_image_resource_group_name* | Nom du groupe de ressources créé lors de la première étape |
-| *managed_image_name*                | Nom de l’image de disque géré créée |
+| *managed_image_resource_group_name* | Nom du groupe de ressources que vous avez créé dans la première étape de hello |
+| *managed_image_name*                | Nom d’image de disque géré hello qui est créé |
 
 ```json
 {
@@ -116,19 +116,19 @@ Créez un fichier nommé *windows.json* et collez le contenu suivant : Saisisse
 }
 ```
 
-Ce modèle génère une machine virtuelle Windows Server 2016, installe IIS, puis généralise la machine virtuelle avec Sysprep.
+Ce modèle génère un ordinateur Windows Server 2016, installe les services IIS, puis généralise hello machine virtuelle avec Sysprep.
 
 
 ## <a name="build-packer-image"></a>Génération de l’image Packer
-Si Packer n’est pas encore installé sur votre ordinateur local, [suivez les instructions d’installation de Packer](https://www.packer.io/docs/install/index.html).
+Si vous n’avez pas encore installé sur votre ordinateur local, un programme de compression [suivez les instructions d’installation du programme de compression hello](https://www.packer.io/docs/install/index.html).
 
-Générez l’image en spécifiant votre fichier de modèle Packer comme suit :
+Créer hello image en spécifiant votre programme de compression des fichiers de modèle comme suit :
 
 ```bash
 ./packer build windows.json
 ```
 
-Voici un exemple de sortie issue des commandes précédentes :
+Voici un exemple de sortie de hello de hello précédant les commandes :
 
 ```bash
 azure-arm output will be in this color.
@@ -147,25 +147,25 @@ azure-arm output will be in this color.
 ==> azure-arm: Deploying deployment template ...
 ==> azure-arm:  -> ResourceGroupName : ‘packer-Resource-Group-pq0mthtbtt’
 ==> azure-arm:  -> DeploymentName    : ‘pkrdppq0mthtbtt’
-==> azure-arm: Getting the certificate’s URL ...
+==> azure-arm: Getting hello certificate’s URL ...
 ==> azure-arm:  -> Key Vault Name        : ‘pkrkvpq0mthtbtt’
 ==> azure-arm:  -> Key Vault Secret Name : ‘packerKeyVaultSecret’
 ==> azure-arm:  -> Certificate URL       : ‘https://pkrkvpq0mthtbtt.vault.azure.net/secrets/packerKeyVaultSecret/8c7bd823e4fa44e1abb747636128adbb'
-==> azure-arm: Setting the certificate’s URL ...
+==> azure-arm: Setting hello certificate’s URL ...
 ==> azure-arm: Validating deployment template ...
 ==> azure-arm:  -> ResourceGroupName : ‘packer-Resource-Group-pq0mthtbtt’
 ==> azure-arm:  -> DeploymentName    : ‘pkrdppq0mthtbtt’
 ==> azure-arm: Deploying deployment template ...
 ==> azure-arm:  -> ResourceGroupName : ‘packer-Resource-Group-pq0mthtbtt’
 ==> azure-arm:  -> DeploymentName    : ‘pkrdppq0mthtbtt’
-==> azure-arm: Getting the VM’s IP address ...
+==> azure-arm: Getting hello VM’s IP address ...
 ==> azure-arm:  -> ResourceGroupName   : ‘packer-Resource-Group-pq0mthtbtt’
 ==> azure-arm:  -> PublicIPAddressName : ‘packerPublicIP’
 ==> azure-arm:  -> NicName             : ‘packerNic’
 ==> azure-arm:  -> Network Connection  : ‘PublicEndpoint’
 ==> azure-arm:  -> IP Address          : ‘40.76.55.35’
-==> azure-arm: Waiting for WinRM to become available...
-==> azure-arm: Connected to WinRM!
+==> azure-arm: Waiting for WinRM toobecome available...
+==> azure-arm: Connected tooWinRM!
 ==> azure-arm: Provisioning with Powershell...
 ==> azure-arm: Provisioning with shell script: /var/folders/h1/ymh5bdx15wgdn5hvgj1wc0zh0000gn/T/packer-powershell-provisioner902510110
     azure-arm: #< CLIXML
@@ -174,7 +174,7 @@ azure-arm output will be in this color.
     azure-arm: ------- -------------- ---------      --------------
     azure-arm: True    No             Success        {Common HTTP Features, Default Document, D...
     azure-arm: <Objs Version=“1.1.0.1” xmlns=“http://schemas.microsoft.com/powershell/2004/04"><Obj S=“progress” RefId=“0"><TN RefId=“0”><T>System.Management.Automation.PSCustomObject</T><T>System.Object</T></TN><MS><I64 N=“SourceId”>1</I64><PR N=“Record”><AV>Preparing modules for first use.</AV><AI>0</AI><Nil /><PI>-1</PI><PC>-1</PC><T>Completed</T><SR>-1</SR><SD> </SD></PR></MS></Obj></Objs>
-==> azure-arm: Querying the machine’s properties ...
+==> azure-arm: Querying hello machine’s properties ...
 ==> azure-arm:  -> ResourceGroupName : ‘packer-Resource-Group-pq0mthtbtt’
 ==> azure-arm:  -> ComputeName       : ‘pkrvmpq0mthtbtt’
 ==> azure-arm:  -> Managed OS Disk   : ‘/subscriptions/guid/resourceGroups/packer-Resource-Group-pq0mthtbtt/providers/Microsoft.Compute/disks/osdisk’
@@ -190,11 +190,11 @@ azure-arm output will be in this color.
 ==> azure-arm:  -> Image Location            : ‘eastus’
 ==> azure-arm: Deleting resource group ...
 ==> azure-arm:  -> ResourceGroupName : ‘packer-Resource-Group-pq0mthtbtt’
-==> azure-arm: Deleting the temporary OS disk ...
+==> azure-arm: Deleting hello temporary OS disk ...
 ==> azure-arm:  -> OS Disk : skipping, managed disk was used...
 Build ‘azure-arm’ finished.
 
-==> Builds finished. The artifacts of successful builds are:
+==> Builds finished. hello artifacts of successful builds are:
 --> azure-arm: Azure.ResourceManagement.VMImage:
 
 ManagedImageResourceGroupName: myResourceGroup
@@ -202,17 +202,17 @@ ManagedImageName: myPackerImage
 ManagedImageLocation: eastus
 ```
 
-La génération de la machine virtuelle, l’exécution des fournisseurs et le nettoyage du déploiement par Packer ne prennent que quelques minutes.
+Il prend quelques minutes pour hello toobuild de programme de compression machine virtuelle, exécutez provisioners de hello, installation et de nettoyage hello déploiement.
 
 
 ## <a name="create-vm-from-azure-image"></a>Création d’une machine virtuelle à partir d’une image Azure
-Définissez un nom d’utilisateur administrateur et un mot de passe pour les machines virtuelles avec [Get-Credential](https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.security/Get-Credential).
+Définir un administrateur de nom d’utilisateur et mot de passe pour les machines virtuelles hello avec [Get-Credential](https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.security/Get-Credential).
 
 ```powershell
 $cred = Get-Credential
 ```
 
-Vous pouvez à présent créer une machine virtuelle à partir de votre image à l’aide de la commande [New-AzureRmVM](/powershell/module/azurerm.compute/new-azurermvm). L’exemple suivant permet de créer une machine virtuelle nommée *myVM* à partir de *myPackerImage*.
+Vous pouvez à présent créer une machine virtuelle à partir de votre image à l’aide de la commande [New-AzureRmVM](/powershell/module/azurerm.compute/new-azurermvm). Hello exemple suivant crée un ordinateur virtuel nommé *myVM* de *myPackerImage*.
 
 ```powershell
 # Create a subnet configuration
@@ -264,7 +264,7 @@ $nic = New-AzureRmNetworkInterface `
     -PublicIpAddressId $publicIP.Id `
     -NetworkSecurityGroupId $nsg.Id
 
-# Define the image created by Packer
+# Define hello image created by Packer
 $image = Get-AzureRMImage -ImageName myPackerImage -ResourceGroupName $rgName
 
 # Create a virtual machine configuration
@@ -276,11 +276,11 @@ Add-AzureRmVMNetworkInterface -Id $nic.Id
 New-AzureRmVM -ResourceGroupName $rgName -Location $location -VM $vmConfig
 ```
 
-La création de la machine virtuelle ne nécessite que quelques minutes.
+Il prend quelques minutes de toocreate hello machine virtuelle.
 
 
 ## <a name="test-vm-and-iis"></a>Test de la machine virtuelle et d’IIS
-Obtenez l’adresse IP publique de votre machine virtuelle avec [Get-AzureRmPublicIPAddress](/powershell/module/azurerm.network/get-azurermpublicipaddress). L’exemple suivant obtient l’adresse IP pour *myPublicIP* créée précédemment :
+Obtenir hello une adresse IP publique de votre machine virtuelle avec [Get-AzureRmPublicIPAddress](/powershell/module/azurerm.network/get-azurermpublicipaddress). exemple Hello obtient adresse IP hello *myPublicIP* créé précédemment :
 
 ```powershell
 Get-AzureRmPublicIPAddress `
@@ -288,12 +288,12 @@ Get-AzureRmPublicIPAddress `
     -Name "myPublicIP" | select "IpAddress"
 ```
 
-Vous pouvez alors entrer l’adresse IP publique dans un navigateur web.
+Vous pouvez entrer ensuite des adresse IP publique de hello dans tooa navigateur.
 
 ![Site IIS par défaut](./media/build-image-with-packer/iis.png) 
 
 
 ## <a name="next-steps"></a>Étapes suivantes
-Dans cet exemple, IIS était déjà installé et vous avez utilisé Packer pour créer une image de machine virtuelle. Vous pouvez utiliser cette image de machine virtuelle avec les flux de travail de déploiement existants, par exemple pour déployer votre application sur les machines virtuelles créées à partir de l’image avec Team Services, Ansible, Chef ou Puppet.
+Dans cet exemple, vous avez utilisé le programme de compression toocreate une image de machine virtuelle avec IIS est déjà installé. Vous pouvez utiliser cette image de machine virtuelle en même temps que les workflows existants de déploiement, telles que toodeploy tooVMs de votre application créé à partir de hello Image avec Team Services, Ansible, Chef ou Puppet.
 
 Pour obtenir d’autres exemples de modèles Packer pour d’autres distributions Windows, consultez [ce référentiel GitHub](https://github.com/hashicorp/packer/tree/master/examples/azure).

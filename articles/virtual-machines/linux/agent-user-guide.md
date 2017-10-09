@@ -1,6 +1,6 @@
 ---
-title: "Vue d’ensemble de l’agent de machine virtuelle Linux Azure | Microsoft Docs"
-description: "Apprenez à installer et à configurer l'agent Linux (waagent) pour gérer l'interaction de votre machine virtuelle avec le contrôleur de structure Azure."
+title: "aaaAzure présentation de l’Agent de machine virtuelle Linux | Documents Microsoft"
+description: "Découvrez comment tooinstall et configurer le Linux Agent (waagent) toomanage interaction de votre machine virtuelle avec le contrôleur de structure Azure."
 services: virtual-machines-linux
 documentationcenter: 
 author: szarkos
@@ -16,20 +16,20 @@ ms.topic: article
 ms.date: 10/17/2016
 ms.author: szark
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 486ad6bb148583a957fb82b7954ff94f853b12cc
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4e08c84d9205f4db7aae6fd1568ec1f15fba395c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="understanding-and-using-the-azure-linux-agent"></a>Présentation et utilisation de l’agent Linux Azure
+# <a name="understanding-and-using-hello-azure-linux-agent"></a>Présentation et utilisation hello Linux Agent Azure
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-both-include.md)]
 
 ## <a name="introduction"></a>Introduction
-L’agent Microsoft Azure Linux (waagent) gère l’approvisionnement de Linux et FreeBSD, ainsi que l’interaction des machines virtuelles avec le contrôleur de structure Azure. Il offre les fonctionnalités suivantes pour les déploiements IaaS Linux et FreeBSD :
+Hello Microsoft Azure Linux (waagent) géré par l’Agent Linux et FreeBSD approvisionnement et machine virtuelle interaction avec hello contrôleur de structure Azure. Il fournit hello suivant de fonctionnalités pour les déploiements de Linux et FreeBSD IaaS :
 
 > [!NOTE]
-> Pour plus d’informations, consultez le fichier [README](https://github.com/Azure/WALinuxAgent/blob/master/README.md) de l’agent Linux Azure.
+> Consultez la rubrique hello Azure Linux agent [Lisez-moi](https://github.com/Azure/WALinuxAgent/blob/master/README.md) pour plus d’informations.
 > 
 > 
 
@@ -38,43 +38,43 @@ L’agent Microsoft Azure Linux (waagent) gère l’approvisionnement de Linux e
   * Création d'un compte d'utilisateur
   * Configuration des types d'authentification SSH
   * Déploiement des clés publiques et des paires de clés SSH
-  * Définition du nom d'hôte
-  * Publication du nom d'hôte sur la plateforme DNS
-  * Génération de rapports sur l'empreinte digitale de la clé d'hôte SSH destinés à la plateforme
+  * Nom du paramètre hello hôte
+  * Plateforme de publication hello hôte nom toohello DNS
+  * Toohello plateforme de création de rapports SSH hôte clé empreinte digitale
   * Gestion du disque de ressources
-  * Formatage et montage du disque de ressources
+  * Mise en forme et le montage du disque de ressources hello
   * Configuration de l'espace d'échange
 * **Mise en réseau**
   
-  * Gestion des itinéraires afin d'améliorer la compatibilité avec les serveurs DHCP de plateforme
-  * Garantie de la stabilité du nom de l'interface réseau
+  * Gère les itinéraires tooimprove la compatibilité avec les serveurs DHCP de plateforme
+  * Garantit la stabilité hello du nom de l’interface réseau hello
 * **Noyau**
   
   * Configure la topologie NUMA virtuelle (désactivée pour le noyau < à 2.6.37)
   * Consommation de l'entropie Hyper-V pour /dev/random
-  * Configuration des délais d'expiration SCSI de l'appareil racine (qui peut être distant)
+  * Configure les délais d’expiration SCSI pour appareil de racine hello (qui peut être à distance)
 * **Diagnostics**
   
-  * Redirection de la console vers le port série
+  * Port de console redirection toohello série
 * **Déploiements SCVMM**
   
-  * Détection et amorçage de l'agent VMM pour Linux lors de l'exécution dans un environnement System Center Virtual Machine Manager 2012 R2
+  * Détecte et amorce l’agent VMM de hello pour Linux lors de l’exécution dans un environnement de System Center Virtual Machine Manager 2012 R2
 * **Extension de machine virtuelle**
   
-  * Injection de composants créés par Microsoft et ses partenaires dans la machine virtuelle Linux pour activer les logiciels et l’automatisation de la configuration
+  * Injecter des composants créés par Microsoft et partenaires dans automation de logiciels et la configuration de tooenable Linux VM (IaaS)
   * Implémentation de référence de l’extension de machine virtuelle à l’adresse [https://github.com/Azure/azure-linux-extensions](https://github.com/Azure/azure-linux-extensions)
 
 ## <a name="communication"></a>Communication
-Le flux d'informations de la plateforme à l'agent se produit via deux canaux :
+Hello flux d’informations à partir de l’agent de hello plateforme toohello se produit via deux canaux :
 
-* Un DVD attaché au moment du démarrage pour les déploiements IaaS. Ce DVD comprend un fichier de configuration compatible OVF qui inclut toutes les informations d'approvisionnement différentes des paires de clés SSH réelles.
-* Un point de terminaison TCP qui expose une API REST utilisée pour obtenir la configuration du déploiement et de la topologie.
+* Un DVD attaché au moment du démarrage pour les déploiements IaaS. Ce DVD comprend un fichier de configuration conformes OVF qui inclut toutes les informations de configuration autre que les paires de clés hello réel SSH.
+* Un point de terminaison TCP exposer une API REST utilisée tooobtain déploiement et configuration de la topologie.
 
 ## <a name="requirements"></a>Configuration requise
-Les systèmes suivants ont été testés et fonctionnent avec l’agent Linux Azure :
+Hello systèmes suivants ont été testées et sont connues toowork avec hello Linux Agent Azure :
 
 > [!NOTE]
-> Notez que cette liste peut être différente de la liste officielle des systèmes pris en charge sur la plateforme Microsoft Azure, disponible ici : [http://support.microsoft.com/kb/2805216](http://support.microsoft.com/kb/2805216)
+> Cette liste peut différer de la liste officielle de hello des systèmes pris en charge sur hello plateforme Microsoft Azure, comme décrit ici : [http://support.microsoft.com/kb/2805216](http://support.microsoft.com/kb/2805216)
 > 
 > 
 
@@ -91,7 +91,7 @@ Autres systèmes pris en charge :
 
 * FreeBSD 10+ (agent Azure Linux v2.0.10+)
 
-L’agent Linux repose sur certains packages système pour fonctionner correctement :
+l’agent de Linux Hello dépend de certains packages de système dans l’ordre toofunction correctement :
 
 * Python 2.6+
 * OpenSSL 1.0+
@@ -103,9 +103,9 @@ L’agent Linux repose sur certains packages système pour fonctionner correctem
 * Prise en charge du noyau pour le montage de systèmes de fichiers UDF.
 
 ## <a name="installation"></a>Installation
-L’installation à l’aide d’un package RPM ou DEB à partir de votre référentiel de packages de distribution est la méthode privilégiée pour installer et mettre à niveau l’agent Microsoft Linux Azure. Tous les [fournisseurs de distribution approuvés](endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) intègrent l’agent Azure Linux dans leurs images et référentiels.
+Installation à l’aide d’un fichier RPM ou un package DEB à partir d’un référentiel de packages de distribution de votre est la méthode hello préféré de l’installation et la mise à niveau hello Linux Agent Azure. Tous les hello [approuvée des fournisseurs de distribution](endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) intégrer leurs images et des référentiels du package de l’agent Azure Linux hello.
 
-Consultez la documentation dans le [référentiel de l’agent Linux Azure sur GitHub](https://github.com/Azure/WALinuxAgent) pour connaître les options d’installation avancées, telles que les préfixes et l’installation à partir d’une source ou dans des emplacements personnalisés.
+Consultez la documentation du toohello Bonjour [référentiel Linux Agent Azure sur GitHub](https://github.com/Azure/WALinuxAgent) pour les options d’installation avancées, telles que l’installation à partir d’emplacements source ou toocustom ou de préfixes.
 
 ## <a name="command-line-options"></a>Options de la ligne de commande
 ### <a name="flags"></a>Indicateurs
@@ -113,28 +113,28 @@ Consultez la documentation dans le [référentiel de l’agent Linux Azure sur G
 * force : ignore la confirmation interactive de certaines commandes.
 
 ### <a name="commands"></a>Commandes
-* help : répertorie les commandes et les indicateurs pris en charge.
-* deprovision : essaie de nettoyer le système et de le préparer pour le réapprovisionnement. Cette opération supprime les éléments suivants :
+* aide : répertorie les commandes hello pris en charge et les indicateurs.
+* annulation du déploiement : tentative de système de hello tooclean et adapté à la reconfiguration. Cette opération supprimé suivant de hello :
   
-  * toutes les clés de l'hôte SSH (si Provisioning.RegenerateSshHostKeyPair a la valeur « y » dans le fichier de configuration) ;
+  * Toutes les clés d’hôte SSH (si Provisioning.RegenerateSshHostKeyPair est « y » dans le fichier de configuration hello)
   * la configuration de Nameserver dans /etc/resolv.conf ;
-  * le mot de passe racine de /etc/shadow (si Provisioning.DeleteRootPassword a la valeur « y » dans le fichier de configuration) ;
+  * Mot de passe racine à partir / etc/shadow (si Provisioning.DeleteRootPassword est « y » dans le fichier de configuration hello)
   * les baux du client DHCP mis en cache.
-  * Réinitialise le nom d’hôte sur localhost.localdomain.
+  * Réinitialise héberge nom toolocalhost.localdomain
 
 > [!WARNING]
-> L’annulation de l’approvisionnement ne garantit pas que l’image est exempte de toute information sensible et qu’elle convient à la redistribution.
+> Mise hors service ne garantit pas que cette image hello est désactivée de toutes les informations sensibles et appropriée pour la redistribution.
 > 
 > 
 
-* deprovision+user : effectue tout ce qui est décrit sous -deprovision (ci-dessus) et supprime également le dernier compte d’utilisateur approvisionné (obtenu à partir de /var/lib/waagent) et les données associées. Ce paramètre est utilisé pour annuler l'approvisionnement d'une image qui a été précédemment approvisionnée sur Azure en vue d'être capturée et réutilisée.
-* version : affiche la version de waagent.
-* serialconsole : configure GRUB pour marquer ttyS0 (premier port série) en tant que console de démarrage. Les journaux de démarrage du noyau sont ainsi envoyés au port série et sont prêts à être débogués.
-* daemon : exécute waagent en tant que démon afin de gérer l’interaction avec la plateforme. Cet argument est spécifié à waagent dans le script waagent init.
+* Annuler le déploiement + utilisateur : effectue tout sous - deprovision (ci-dessus) et également supprime hello dernier compte d’utilisateur configuré (obtenu à partir de /var/lib/waagent) et les données associées. Ce paramètre est utilisé pour annuler l'approvisionnement d'une image qui a été précédemment approvisionnée sur Azure en vue d'être capturée et réutilisée.
+* version : affiche la version de waagent hello
+* serialconsole : Configure GRUB toomark ttyS0 (hello le premier port série) en tant que console de démarrage hello. Cela garantit que les journaux du démarrage du noyau sont envoyés de port série toothe et sont accessibles pour le débogage.
+* démon : exécuté waagent comme une interaction de toomanage démon avec la plateforme de hello. Cet argument est toowaagent spécifié dans le script d’initialisation waagent hello.
 * start : exécute waagent en arrière-plan
 
 ## <a name="configuration"></a>Configuration
-Un fichier de configuration (/etc/waagent.conf) contrôle les actions de waagent. Un exemple de fichier de configuration est affiché ci-dessous :
+Un fichier de configuration (/ etc/waagent.conf) contrôles hello actions de waagent. Un exemple de fichier de configuration est affiché ci-dessous :
 
     Provisioning.Enabled=y
     Provisioning.DeleteRootPassword=n
@@ -158,16 +158,16 @@ Un fichier de configuration (/etc/waagent.conf) contrôle les actions de waagent
     HttpProxy.Host=None
     HttpProxy.Port=None
 
-Les diverses options de configuration sont décrites de manière détaillée ci-dessous. Elles sont de trois types : Boolean, String ou Integer. Les options de configuration Boolean peuvent être spécifiées à l'aide de « y » (oui) ou « n » (non). Le mot clé « None » (Aucun) peut être utilisé dans le cas de certaines entrées de type chaîne comme décrit ci-dessous.
+Hello que différentes options de configuration sont décrites en détail ci-dessous. Elles sont de trois types : Boolean, String ou Integer. options de configuration booléenne de Hello peuvent être spécifiées en tant que « y » ou « n ». Bonjour mot clé spécial « None » peut être utilisé pour une chaîne type entrées de configuration comme indiqué ci-dessous.
 
 **Provisioning.Enabled :**  
 Type : booléen  
 Par défaut : y
 
-L'utilisateur peut activer ou désactiver la fonctionnalité d'approvisionnement dans l'agent. Les valeurs valides sont « y » ou « n ». Si l'approvisionnement est désactivé, les clés d'utilisateur et d'hôte SSH dans l'image sont conservées et toute configuration spécifiée dans l'API d'approvisionnement Azure est ignorée.
+Cela permet de hello utilisateur tooenable ou désactiver hello configuration des fonctionnalités de l’agent de hello. Les valeurs valides sont « y » ou « n ». Si la configuration est désactivée, clés d’hôte et d’utilisateur SSH dans l’image de hello sont conservés et toute configuration spécifiée Bonjour Azure API de configuration est ignorée.
 
 > [!NOTE]
-> La valeur par défaut du paramètre `Provisioning.Enabled` est « n » dans les images cloud Ubuntu qui utilisent cloud-init pour l’approvisionnement.
+> Hello `Provisioning.Enabled` trop « n » sur les Images de Cloud Ubuntu qui utilisent cloud-init pour la configuration de paramètres par défaut.
 > 
 > 
 
@@ -175,27 +175,27 @@ L'utilisateur peut activer ou désactiver la fonctionnalité d'approvisionnement
 Type : booléen  
 Par défaut : n
 
-Si elle est définie, le mot de passe racine dans le fichier /etc/shadow est effacé au cours du processus d'approvisionnement.
+Si set, mot de passe racine hello dans le fichier de clichés instantanés/etc/hello est effacé au cours de hello le processus d’approvisionnement.
 
 **Provisioning.RegenerateSshHostKeyPair :**  
 Type : booléen  
 Par défaut : y
 
-Si elle est définie, toutes les paires de clés d'hôte SSH (ecdsa, dsa et rsa) sont supprimées de /etc/ssh/ au cours du processus d'approvisionnement. Une nouvelle paire de clés unique est générée.
+Si l’ensemble, tous les SSH hôte paires de clés (ecdsa, dsa et rsa) est supprimé lors de hello processus à partir d’etc/ssh/de configuration. Une nouvelle paire de clés unique est générée.
 
-L'entrée Provisioning.SshHostKeyPairType peut configurer le type de chiffrement pour la nouvelle paire de clés. Veuillez noter que certaines distributions créent à nouveau les paires de clés SSH pour tout type de chiffrement manquant au redémarrage du démon SSH.
+le type de chiffrement Hello pour la nouvelle paire de clés de hello est configurable par hello Provisioning.SshHostKeyPairType entrée. Notez que certaines distributions recréera les paires de clés SSH pour les types de chiffrement manquant lorsque le démon SSH hello redémarre (par exemple, après un redémarrage).
 
 **Provisioning.SshHostKeyPairType :**  
 Type : string  
 Par défaut : rsa
 
-Un type d'algorithme de chiffrement qui est pris en charge par le démon SSH sur la machine virtuelle peut être défini. Les valeurs généralement prises en charge sont « rsa », « dsa » et « ecdsa ». Notez que « putty.exe » sur Windows ne prend pas en charge « ecdsa ». Si vous envisagez d'utiliser putty.exe sur Windows pour établir une connexion sur un déploiement Linux, veuillez utiliser « rsa » ou « dsa ».
+Type d’algorithme de chiffrement tooan est pris en charge par le démon SSH hello sur l’ordinateur virtuel de hello celle-ci peut être définie. les valeurs Hello généralement prises en charge sont « rsa », « dsa » et « ecdsa ». Notez que « putty.exe » sur Windows ne prend pas en charge « ecdsa ». Par conséquent, si vous envisagez de toouse putty.exe Windows tooconnect tooa déploiement Linux, utilisez « rsa » ou « dsa ».
 
 **Provisioning.MonitorHostName :**  
 Type : booléen  
 Par défaut : y
 
-Si elle est définie, waagent surveille la machine virtuelle Linux en vue de détecter des modifications de nom d'hôte (comme renvoyé par la commande « hostname ») et met automatiquement à jour la configuration de mise en réseau dans l'image afin de refléter la modification. Afin de transmettre la modification de nom aux serveurs DNS, la mise en réseau est redémarrée sur la machine virtuelle. La connexion Internet est alors brièvement interrompue.
+Si défini, waagent analysez hello Linux virtual machine pour les modifications de nom d’hôte (tel que renvoyé par la commande de « hostname » hello) et mettre à jour automatiquement la configuration du réseau dans la modification de hello hello image tooreflect hello. Dans le nom de l’ordre toopush hello modifier les serveurs DNS toohello, mise en réseau sera redémarré dans la machine virtuelle de hello. La connexion Internet est alors brièvement interrompue.
 
 **Provisioning.DecodeCustomData**  
 Type : booléen  
@@ -229,80 +229,80 @@ Longueur de la chaîne salt aléatoire utilisée lors de la génération du hach
 Type : booléen  
 Par défaut : y
 
-Si elle est définie, le disque de ressources fourni par la plateforme est formaté et monté par waagent si le type de système de fichiers demandé par l'utilisateur dans « ResourceDisk.Filesystem » est différent de « ntfs ». Une partition unique de type Linux (83) est mise à la disposition sur le disque. Notez que cette partition n'est pas formatée si elle ne peut pas être correctement montée.
+Si la valeur, disque de ressources hello fournie par la plateforme de hello sera formaté et monté par waagent si le type de système de fichiers hello demandé par l’utilisateur hello dans « ResourceDisk.Filesystem » n’est pas « ntfs ». Une partition unique de type Linux (83) sera disponible sur le disque de hello. Notez que cette partition n'est pas formatée si elle ne peut pas être correctement montée.
 
 **ResourceDisk.Filesystem :**  
 Type : string  
 Par défaut : ext4
 
-Cette commande spécifie le type de système de fichiers pour le disque de ressources. Les valeurs prises en charge diffèrent selon la distribution Linux. Si la chaîne est X, mkfs.X doit être présent sur l'image Linux. Les images SLES 11 doivent généralement utiliser « ext3 ». Les images FreeBSD doivent utiliser « ufs2 » ici.
+Cela spécifie le type de système de fichiers hello pour le disque de ressources hello. Les valeurs prises en charge diffèrent selon la distribution Linux. Si la chaîne de hello est X, puis mkfs. X doit être présent sur l’image de Linux hello. Les images SLES 11 doivent généralement utiliser « ext3 ». Les images FreeBSD doivent utiliser « ufs2 » ici.
 
 **ResourceDisk.MountPoint :**  
 Type : string  
 Par défaut : /mnt/resource 
 
-Cette commande spécifie le chemin où le disque de ressources est monté. Notez que le disque de ressources est un disque *temporaire* et qu'il peut être vidé lors de l'annulation de l'approvisionnement de la machine virtuelle.
+Cela spécifie le chemin d’accès hello à laquelle le disque de ressources hello est monté. Notez que le disque ressource hello un *temporaire* disque et peut être vidé lorsque hello machine virtuelle est déprovisionnée.
 
 **ResourceDisk.MountOptions**  
 Type : string  
 Par défaut : aucun
 
-Spécifie les options de montage de disque à transmettre à la commande mount -o. Les valeurs de cette liste sont séparées par des virgules, par exemple 'nodev,nosuid'. Pour plus d’informations, consultez mount(8).
+Spécifie le disque montage options toobe passé toohello mount -o commande. Les valeurs de cette liste sont séparées par des virgules, par exemple 'nodev,nosuid'. Pour plus d’informations, consultez mount(8).
 
 **ResourceDisk.EnableSwap :**  
 Type : booléen  
 Par défaut : n
 
-Si elle est définie, un fichier d'échange (/swapfile) est créé sur le disque de ressources et est ajouté à l'espace d'échange système.
+Si défini, un fichier d’échange (/ fichier d’échange) est créé sur le disque de ressources hello et ajouté l’espace d’échange système toohello.
 
 **ResourceDisk.SwapSizeMB :**  
 Type : entier  
 Par défaut : 0
 
-Taille du fichier d'échange en mégaoctets.
+taille de Hello hello du fichier d’échange en mégaoctets.
 
 **Logs.Verbose :**  
 Type : booléen  
 Par défaut : n
 
-Si elle est définie, le niveau de détail du journal est optimisé. Waagent enregistre dans /var/log/waagent.log et exploite la fonctionnalité logrotate du système pour faire tourner les journaux.
+Si elle est définie, le niveau de détail du journal est optimisé. Waagent journaux too/var/log/waagent.log et tire parti des fonctionnalités toorotate journaux de hello système logrotate.
 
 **OS.EnableRDMA**  
 Type : booléen  
 Par défaut : n
 
-Si ce paramètre est défini, l’agent tente de s’installer, puis charge un pilote de noyau RDMA qui correspond à la version du microprogramme sur le matériel sous-jacent.
+Si la valeur, hello agent essayez tooinstall et ensuite charger un pilote de noyau RDMA qui correspond à la version de hello du microprogramme hello sur hello matériel sous-jacent.
 
 **OS.RootDeviceScsiTimeout :**  
 Type : entier  
 Par défaut : 300
 
-Le délai d'expiration SCSI est configuré en secondes sur le disque du système d'exploitation et les lecteurs de données. Si elle n'est pas définie, les valeurs par défaut du système sont utilisées.
+Cela configure le délai d’attente de hello SCSI en secondes sur les lecteurs de disque et les données hello du système d’exploitation. Si la valeur n’est pas définie, les valeurs par défaut sont utilisées par le système hello.
 
 **OS.OpensslPath :**  
 Type : string  
 Par défaut : aucun
 
-Cette commande sert à spécifier un autre chemin pour les données binaires openssl à utiliser pour les opérations de chiffrement.
+Cela peut être utilisé toospecify un chemin alternatif pour toouse binaire d’openssl hello pour les opérations de chiffrement.
 
 **HttpProxy.Host, HttpProxy.Port**  
 Type : string  
 Par défaut : aucun
 
-Si ce paramètre est défini, l’agent utilisera ce serveur proxy pour accéder à internet. 
+Si, l’agent de hello utilisera ce proxy server tooaccess hello internet. 
 
 ## <a name="ubuntu-cloud-images"></a>Images cloud Ubuntu
-Notez que les images cloud Ubuntu utilisent [Cloud-init](https://launchpad.net/ubuntu/+source/cloud-init) pour exécuter les tâches de configuration qui pourraient être gérées par l’agent Linux Azure.  Notez les différences suivantes :
+Notez que Ubuntu Cloud Images utilisent [cloud-init](https://launchpad.net/ubuntu/+source/cloud-init) tooperform nombreuses tâches de configuration qui seraient sinon gérés par hello Linux Agent Azure.  Veuillez noter hello suivant différences :
 
-* **Provisioning.Enabled** est défini par défaut sur n sur les images cloud Ubuntu utilisant Cloud-init pour exécuter les tâches d’approvisionnement.
-* Les paramètres de configuration suivants n’ont aucun effet sur les images cloud Ubuntu utilisant Cloud-init pour gérer le disque de ressources et l’espace d’échange :
+* **Provisioning.Enabled** trop « n » sur les Images de Cloud Ubuntu qui utilisent tooperform cloud-init des tâches de configuration par défaut.
+* Hello, paramètres de configuration suivants ont aucun effet sur Ubuntu Cloud Images qui utilisent cloud-init toomanage hello ressources disque et échange d’espace :
   
   * **ResourceDisk.Format**
   * **ResourceDisk.Filesystem**
   * **ResourceDisk.MountPoint**
   * **ResourceDisk.EnableSwap**
   * **ResourceDisk.SwapSizeMB**
-* Consultez les ressources suivantes pour configurer le point de montage du disque de ressources et l’espace d’échange sur les images cloud Ubuntu durant l’approvisionnement :
+* Consultez hello après le point de montage de disque de ressources ressources tooconfigure hello et échange d’espace sur les Images de Cloud Ubuntu lors de la configuration :
   
   * [Wiki Ubuntu : Configurer les partitions d’échange](http://go.microsoft.com/fwlink/?LinkID=532955&clcid=0x409)
   * [Injection de données personnalisées dans une machine virtuelle Azure](../windows/classic/inject-custom-data.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)

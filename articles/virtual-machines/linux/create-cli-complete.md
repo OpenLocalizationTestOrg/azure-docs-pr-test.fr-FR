@@ -1,6 +1,6 @@
 ---
-title: "Création d’un environnement Linux à l’aide d’Azure CLI 2.0 | Microsoft Docs"
-description: "Créez un stockage, une machine virtuelle Linux, un réseau virtuel et un sous-réseau, un équilibreur de charge, une carte d’interface réseau, une adresse IP publique et un groupe de sécurité réseau à partir de zéro à l’aide de l’interface Azure CLI 2.0."
+title: aaaCreate un environnement Linux avec hello Azure CLI 2.0 | Documents Microsoft
+description: "Créer des stockage, un VM Linux, un réseau virtuel et du sous-réseau, un équilibreur de charge, une carte réseau, une adresse IP publique et un groupe de sécurité réseau, tous les à partir de hello d’arrière-plan à l’aide de hello Azure CLI 2.0."
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: iainfoulds
@@ -15,27 +15,27 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 07/06/2017
 ms.author: iainfou
-ms.openlocfilehash: e5c4785428b2150e951923e98079e00808a82d87
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 7287ea178e76001b84dade628ead04a59dc27f40
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-complete-linux-virtual-machine-with-the-azure-cli"></a>Créer une machine virtuelle Linux complète avec Azure CLI
-Pour créer rapidement une machine virtuelle dans Azure, vous pouvez utiliser une seule commande Azure CLI qui utilise des valeurs par défaut pour créer toutes les ressources associées requises. Les ressources telles que le réseau virtuel, l’adresse IP publique et les règles de groupe de sécurité réseau sont automatiquement créées. Pour un meilleur contrôle de votre environnement en production, vous pouvez créer ces ressources à l’avance, puis leur ajouter vos machines virtuelles. Cet article vous accompagne dans la création d’une machine virtuelle et de chacune des ressources associées.
+# <a name="create-a-complete-linux-virtual-machine-with-hello-azure-cli"></a>Créer une machine virtuelle de Linux complète avec hello CLI d’Azure
+tooquickly créer un ordinateur virtuel (VM) dans Azure, vous pouvez utiliser une seule commande CLI d’Azure qui utilise toocreate de valeurs par défaut tout requis prenant en charge des ressources. Les ressources telles que le réseau virtuel, l’adresse IP publique et les règles de groupe de sécurité réseau sont automatiquement créées. Pour plus de contrôle de votre environnement de production, utilisez, vous pouvez créer ces ressources à l’avance et puis ajoutez votre toothem de machines virtuelles. Cet article vous guide tout au long de la toocreate une machine virtuelle et à chacun des hello une par une des ressources de support.
 
-Assurez-vous que vous avez installé la dernière version de l’interface [Azure CLI 2.0](/cli/azure/install-az-cli2) et que vous vous êtes connecté à un compte Azure avec la commande [az login](/cli/azure/#login).
+Assurez-vous que vous avez installé hello dernières [Azure CLI 2.0](/cli/azure/install-az-cli2) et le compte connecté tooan Azure avec [ouverture de session az](/cli/azure/#login).
 
-Dans les exemples suivants, remplacez les exemples de noms de paramètre par vos propres valeurs. Les noms de paramètre sont par exemple *myResourceGroup*, *myVnet* et *myVM*.
+Bonjour les exemples suivants, remplacez les exemples de noms de paramètre par vos propres valeurs. Les noms de paramètre sont par exemple *myResourceGroup*, *myVnet* et *myVM*.
 
 ## <a name="create-resource-group"></a>Créer un groupe de ressources
-Un groupe de ressources Azure est un conteneur logique dans lequel les ressources Azure sont déployées et gérées. Un groupe de ressources doit être créé avant la machine virtuelle et les ressources de réseau virtuel associées. Créez le groupe de ressources avec la commande [az group create](/cli/azure/group#create). L’exemple suivant crée un groupe de ressources nommé *myResourceGroup* à l’emplacement *eastus* :
+Un groupe de ressources Azure est un conteneur logique dans lequel les ressources Azure sont déployées et gérées. Un groupe de ressources doit être créé avant la machine virtuelle et les ressources de réseau virtuel associées. Créer le groupe de ressources hello avec [az groupe créer](/cli/azure/group#create). Hello exemple suivant crée un groupe de ressources nommé *myResourceGroup* Bonjour *eastus* emplacement :
 
 ```azurecli
 az group create --name myResourceGroup --location eastus
 ```
 
-Par défaut, la sortie des commandes Azure CLI est au format JSON (JavaScript Object Notation). Pour remplacer la sortie par défaut pour une liste ou une table, par exemple, utilisez [az configure --output](/cli/azure/#configure). Vous pouvez également ajouter `--output` à n’importe quelle commande pour modifier ponctuellement le format de sortie. L’exemple suivant illustre la sortie JSON obtenue avec la commande `az group create` :
+Par défaut, la sortie de hello des commandes CLI d’Azure est au format JSON (JavaScript Object Notation). liste de tooa sortie toochange hello par défaut ou une table, par exemple, utilisez [az configurer--sortie](/cli/azure/#configure). Vous pouvez également ajouter `--output` commande tooany pour une seule fois modifier dans le format de sortie. Hello suivant montre la sortie JSON hello de hello `az group create` commande :
 
 ```json                       
 {
@@ -50,7 +50,7 @@ Par défaut, la sortie des commandes Azure CLI est au format JSON (JavaScript Ob
 ```
 
 ## <a name="create-a-virtual-network-and-subnet"></a>Créer un réseau virtuel et un sous-réseau
-Ensuite, vous créez un réseau virtuel dans Azure et un sous-réseau dans lequel vous pouvez créer vos machines virtuelles. Utilisez [az network vnet create](/cli/azure/network/vnet#create) pour créer un réseau virtuel nommé *myVnet* avec le préfixe d’adresse *192.168.0.0/16*. Vous pouvez également ajouter un sous-réseau nommé *mySubnet* avec le préfixe d’adresse *192.168.1.0/24* :
+Ensuite, vous créez un réseau virtuel dans Azure et un sous-réseau dans toowhich, vous pouvez créer vos machines virtuelles. Utilisez [créer un réseau virtuel du réseau az](/cli/azure/network/vnet#create) toocreate un réseau virtuel nommé *myVnet* avec hello *192.168.0.0/16* préfixe d’adresse. Ajoutez un sous-réseau nommé *mySubnet* avec le préfixe d’adresse de hello *192.168.1.0/24*:
 
 ```azurecli
 az network vnet create \
@@ -61,7 +61,7 @@ az network vnet create \
     --subnet-prefix 192.168.1.0/24
 ```
 
-La sortie montre que le sous-réseau est logiquement créé à l’intérieur du réseau virtuel :
+sortie de Hello montre sous-réseau hello comme logiquement créé à l’intérieur du réseau virtuel de hello :
 
 ```json
 {
@@ -102,7 +102,7 @@ La sortie montre que le sous-réseau est logiquement créé à l’intérieur du
 
 
 ## <a name="create-a-public-ip-address"></a>Créer une adresse IP publique
-Créons à présent une adresse IP publique avec la commande [az network public-ip create](/cli/azure/network/public-ip#create). Cette adresse IP publique vous permet de vous connecter à vos machines virtuelles à partir d’Internet. Étant donné que l’adresse par défaut est dynamique, nous créons également une entrée DNS nommée avec l’option `--domain-name-label`. L’exemple suivant permet de créer une adresse IP publique nommée *myPublicIP* avec le nom DNS de *mypublicdns*. Puisque le nom DNS doit être unique, indiquez votre propre nom DNS unique :
+Créons à présent une adresse IP publique avec la commande [az network public-ip create](/cli/azure/network/public-ip#create). Cette adresse IP publique permet de vous tooconnect tooyour machines virtuelles à partir de hello Internet. Comme adresse par défaut de hello est dynamique, nous avons également créer une entrée DNS nommée avec hello `--domain-name-label` option. Hello exemple suivant crée une adresse IP publique nommée *myPublicIP* portant le nom DNS de hello de *mypublicdns*. Étant donné que le nom DNS de hello doit être unique, fournir votre propre nom DNS unique :
 
 ```azurecli
 az network public-ip create \
@@ -141,7 +141,7 @@ Output:
 
 
 ## <a name="create-a-network-security-group"></a>Créer un groupe de sécurité réseau
-Pour contrôler le flux du trafic en direction et en provenance de vos machines virtuelles, créez un groupe de sécurité réseau. Un groupe de sécurité réseau peut être appliqué à une carte d’interface réseau ou à un sous-réseau. L’exemple suivant utilise la commande [az network nsg create](/cli/azure/network/nsg#create) pour créer un groupe de sécurité réseau nommé *myNetworkSecurityGroup* :
+flux de hello toocontrol du trafic vers et depuis vos machines virtuelles, créez un groupe de sécurité réseau. Un groupe de sécurité réseau peut être appliqué tooa carte réseau ou sous-réseau. Hello exemple suivant utilise [az réseau nsg créer](/cli/azure/network/nsg#create) toocreate un groupe de sécurité réseau nommé *myNetworkSecurityGroup*:
 
 ```azurecli
 az network nsg create \
@@ -149,7 +149,7 @@ az network nsg create \
     --name myNetworkSecurityGroup
 ```
 
-Vous définissez des règles qui autorisent ou refusent le trafic spécifique. Pour autoriser les connexions entrantes sur le port 22 (pour prendre en charge le protocole SSH), créez une règle de trafic entrant pour le groupe de sécurité réseau avec la commande [az network nsg rule create](/cli/azure/network/nsg/rule#create). L’exemple suivant crée une règle nommée *myNetworkSecurityGroupRuleSSH* :
+Vous définissez des règles qui autorisent ou refusent un trafic spécifique hello. tooallow les connexions entrantes sur le port 22 (toosupport SSH), créez une règle de trafic entrant pour le groupe de sécurité réseau hello avec [créer de règle de groupe de sécurité réseau du réseau az](/cli/azure/network/nsg/rule#create). Hello exemple suivant crée une règle nommée *myNetworkSecurityGroupRuleSSH*:
 
 ```azurecli
 az network nsg rule create \
@@ -162,7 +162,7 @@ az network nsg rule create \
     --access allow
 ```
 
-Pour autoriser les connexions entrantes sur le port 80 (pour prendre en charge le trafic web), ajoutez une autre règle de groupe de sécurité réseau. L’exemple suivant crée une règle nommée *myNetworkSecurityGroupRuleHTTP* :
+tooallow les connexions entrantes sur le port 80 (trafic web de toosupport), ajoutez une autre règle de groupe de sécurité réseau. Hello exemple suivant crée une règle nommée *myNetworkSecurityGroupRuleHTTP*:
 
 ```azurecli
 az network nsg rule create \
@@ -175,7 +175,7 @@ az network nsg rule create \
     --access allow
 ```
 
-Examinez le groupe et les règles de sécurité réseau avec la commande [az network nsg show](/cli/azure/network/nsg#show) :
+Examiner le groupe de sécurité réseau hello et les règles avec [az réseau nsg afficher](/cli/azure/network/nsg#show):
 
 ```azurecli
 az network nsg show --resource-group myResourceGroup --name myNetworkSecurityGroup
@@ -236,7 +236,7 @@ Output:
     },
     {
       "access": "Allow",
-      "description": "Allow outbound traffic from all VMs to all VMs in VNET",
+      "description": "Allow outbound traffic from all VMs tooall VMs in VNET",
       "destinationAddressPrefix": "VirtualNetwork",
       "destinationPortRange": "*",
       "direction": "Outbound",
@@ -252,7 +252,7 @@ Output:
     },
     {
       "access": "Allow",
-      "description": "Allow outbound traffic from all VMs to Internet",
+      "description": "Allow outbound traffic from all VMs tooInternet",
       "destinationAddressPrefix": "Internet",
       "destinationPortRange": "*",
       "direction": "Outbound",
@@ -332,7 +332,7 @@ Output:
 ```
 
 ## <a name="create-a-virtual-nic"></a>Créer une carte d’interface réseau virtuelle
-La disponibilité des cartes d’interface réseau virtuelles peut être déterminée par programme car vous pouvez définir des règles régissant leur utilisation. Vous pouvez également avoir plusieurs cartes. Dans la commande [az network nic create](/cli/azure/network/nic#create) suivante, vous créez une carte d’interface réseau nommée *myNic* et vous l’associez au groupe de sécurité réseau. L’adresse IP publique *myPublicIP* est également associée à la carte d’interface réseau virtuelle.
+Cartes d’interface réseau virtuelle (NIC) sont disponibles par programme, car vous pouvez appliquer des règles tootheir utilisation. Vous pouvez également avoir plusieurs cartes. Suivant de hello [créer des cartes réseau du réseau az](/cli/azure/network/nic#create) de commande, vous créez une carte réseau nommée *myNic* et l’associer à un groupe de sécurité réseau hello. adresse IP publique de Hello *myPublicIP* est également associé de la carte réseau virtuelle de hello.
 
 ```azurecli
 az network nic create \
@@ -436,15 +436,15 @@ Output:
 
 
 ## <a name="create-an-availability-set"></a>Créer un groupe à haute disponibilité
-Les groupes à haute disponibilité aident à diffuser vos machines virtuelles sur des domaines d’erreur et des domaines de mise à jour. Même si vous ne créez qu’une seule machine virtuelle tout de suite, il est recommandé d’utiliser des groupes à haute disponibilité pour faciliter leur développement à l’avenir. 
+Les groupes à haute disponibilité aident à diffuser vos machines virtuelles sur des domaines d’erreur et des domaines de mise à jour. Même si vous créez uniquement une machine virtuelle dès maintenant, il s’agit des meilleures pratiques toouse disponibilité jeux toomake il plus facile tooexpand Bonjour futures. 
 
-Les domaines d’erreur désignent un groupe de machines virtuelles partageant une source d’alimentation et un commutateur réseau communs. Par défaut, les machines virtuelles configurées dans votre groupe à haute disponibilité sont réparties entre trois domaines de défaillance au maximum. En cas de problème matériel dans l’un de ces domaines d’erreur, toutes les machines virtuelles exécutant votre application ne sont pas affectées.
+Les domaines d’erreur désignent un groupe de machines virtuelles partageant une source d’alimentation et un commutateur réseau communs. Par défaut, hello virtuels qui sont configurés au sein de votre jeu de disponibilité sont séparées à travers des domaines d’erreur toothree. En cas de problème matériel dans l’un de ces domaines d’erreur, toutes les machines virtuelles exécutant votre application ne sont pas affectées.
 
-Les domaines de mise à jour indiquent les groupes de machines virtuelles et les équipements physiques sous-jacents pouvant être redémarrés en même temps. Au cours de la maintenance planifiée, l’ordre de redémarrage des domaines de mise à jour peut ne pas être séquentiel, mais un seul domaine de mise à jour est redémarré à la fois.
+Indiquent les domaines de mise à jour des ordinateurs virtuels et le matériel physique sous-jacent qui peut être redémarré à hello même temps. Pendant les maintenances, commande hello dans la mise à jour des domaines sont redémarrés n’est peut-être pas séquentiel, mais une mise à jour qu’un seul domaine est redémarré à la fois.
 
-Azure distribue automatiquement les machines virtuelles sur les domaines d’erreur et de mise à jour lorsque vous les placez dans un groupe à haute disponibilité. Pour plus d’informations, consultez l’article sur la [gestion de la disponibilité des machines virtuelles](manage-availability.md).
+Azure distribue automatiquement les machines virtuelles entre les domaines d’erreur et la mise à jour de hello lorsque vous les placez dans un ensemble de disponibilité. Pour plus d’informations, consultez [gestion de la disponibilité de hello de machines virtuelles](manage-availability.md).
 
-Créez un groupe à haute disponibilité pour votre machine virtuelle avec la commande [az vm availability-set create](/cli/azure/vm/availability-set#create). L’exemple suivant permet de créer un groupe à haute disponibilité nommé *myAvailabilitySet* :
+Créez un groupe à haute disponibilité pour votre machine virtuelle avec la commande [az vm availability-set create](/cli/azure/vm/availability-set#create). Hello exemple suivant crée un groupe à haute disponibilité nommée *myAvailabilitySet*:
 
 ```azurecli
 az vm availability-set create \
@@ -452,7 +452,7 @@ az vm availability-set create \
     --name myAvailabilitySet
 ```
 
-La sortie indique les domaines d’erreur et les domaines de mise à jour :
+Hello sortie notes des domaines d’erreur et domaines de mise à jour :
 
 ```json
 {
@@ -476,12 +476,12 @@ La sortie indique les domaines d’erreur et les domaines de mise à jour :
 ```
 
 
-## <a name="create-the-linux-vms"></a>Créer les machines virtuelles Linux
-Vous avez créé les ressources de réseau pour prendre en charge des machines virtuelles accessibles par Internet. Maintenant, créez une machine virtuelle et sécurisez-la avec une clé SSH. Dans ce cas précis, nous allons créer une machine virtuelle Ubuntu basée sur la dernière version LTS. Vous pouvez trouver des images supplémentaires avec la commande [az vm image list](/cli/azure/vm/image#list), comme décrit dans l’article sur la [recherche d’images de machine virtuelle Azure](cli-ps-findimage.md).
+## <a name="create-hello-linux-vms"></a>Créer des machines virtuelles Linux hello
+Vous avez créé toosupport de ressources réseau hello machines virtuelles accessibles sur Internet. Maintenant, créez une machine virtuelle et sécurisez-la avec une clé SSH. Dans ce cas, nous allons toocreate une VM Ubuntu selon hello LTS plus récente. Vous pouvez trouver des images supplémentaires avec la commande [az vm image list](/cli/azure/vm/image#list), comme décrit dans l’article sur la [recherche d’images de machine virtuelle Azure](cli-ps-findimage.md).
 
-Nous spécifions également une clé SSH à utiliser pour l’authentification. Si vous ne disposez pas d’une paire de clés publiques SSH, vous pouvez [les créer](mac-create-ssh-keys.md) ou utiliser le paramètre `--generate-ssh-keys` pour les créer automatiquement. Si vous utilisez déjà une paire de clés, ce paramètre utilise les clés existantes dans `~/.ssh`.
+Nous avons également spécifier un toouse clé SSH pour l’authentification. Si vous ne disposez pas d’une paire de clés publiques SSH, vous pouvez [créez-les](mac-create-ssh-keys.md) ou utilisez hello `--generate-ssh-keys` paramètre toocreate pour vous. Si vous utilisez déjà une paire de clés, ce paramètre utilise les clés existantes dans `~/.ssh`.
 
-Créez la machine virtuelle en regroupant toutes nos ressources et informations avec la commande [az vm create](/cli/azure/vm#create). L’exemple suivant crée une machine virtuelle nommée *myVM* :
+Créer hello machine virtuelle en rassemblant tous nos ressources et informations avec hello [az vm créer](/cli/azure/vm#create) commande. Hello exemple suivant crée un ordinateur virtuel nommé *myVM*:
 
 ```azurecli
 az vm create \
@@ -495,7 +495,7 @@ az vm create \
     --generate-ssh-keys
 ```
 
-Pour configurer le protocole SSH avec votre machine virtuelle, utilisez l’entrée DNS que vous avez fournie lors de la création de l’adresse IP publique. Ce `fqdn` est indiqué dans la sortie quand vous créez votre machine virtuelle :
+SSH tooyour machine virtuelle avec hello entrée DNS que vous avez fourni lorsque vous avez créé l’adresse IP publique de hello. Cela `fqdn` est indiqué dans la sortie de hello lorsque vous créez votre machine virtuelle :
 
 ```json
 {
@@ -517,11 +517,11 @@ ssh azureuser@mypublicdns.eastus.cloudapp.azure.com
 Output:
 
 ```bash
-The authenticity of host 'mypublicdns.eastus.cloudapp.azure.com (13.90.94.252)' can't be established.
+hello authenticity of host 'mypublicdns.eastus.cloudapp.azure.com (13.90.94.252)' can't be established.
 ECDSA key fingerprint is SHA256:SylINP80Um6XRTvWiFaNz+H+1jcrKB1IiNgCDDJRj6A.
-Are you sure you want to continue connecting (yes/no)? yes
-Warning: Permanently added 'mypublicdns.eastus.cloudapp.azure.com,13.90.94.252' (ECDSA) to the list of known hosts.
-Welcome to Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-81-generic x86_64)
+Are you sure you want toocontinue connecting (yes/no)? yes
+Warning: Permanently added 'mypublicdns.eastus.cloudapp.azure.com,13.90.94.252' (ECDSA) toohello list of known hosts.
+Welcome tooUbuntu 16.04.2 LTS (GNU/Linux 4.4.0-81-generic x86_64)
 
  * Documentation:  https://help.ubuntu.com
  * Management:     https://landscape.canonical.com
@@ -534,39 +534,39 @@ Welcome to Ubuntu 16.04.2 LTS (GNU/Linux 4.4.0-81-generic x86_64)
 0 updates are security updates.
 
 
-The programs included with the Ubuntu system are free software;
-the exact distribution terms for each program are described in the
+hello programs included with hello Ubuntu system are free software;
+hello exact distribution terms for each program are described in the
 individual files in /usr/share/doc/*/copyright.
 
-Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+Ubuntu comes with ABSOLUTELY NO WARRANTY, toohello extent permitted by
 applicable law.
 
-To run a command as administrator (user "root"), use "sudo <command>".
+toorun a command as administrator (user "root"), use "sudo <command>".
 See "man sudo_root" for details.
 
 azureuser@myVM:~$
 ```
 
-Vous pouvez installer NGINX et voir le flux de trafic vers la machine virtuelle. Installez NGINX comme suit :
+Vous pouvez installer NGINX et toohello de flux de trafic hello machine virtuelle. Installez NGINX comme suit :
 
 ```bash
 sudo apt-get install -y nginx
 ```
 
-Pour voir le site NGINX par défaut en action, ouvrez votre navigateur web, puis entrez votre nom de domaine complet :
+site NGINX toosee hello par défaut en action, ouvrez votre navigateur web, puis entrez votre nom de domaine complet :
 
 ![Site NGINX par défaut sur votre machine virtuelle](media/create-cli-complete/nginx.png)
 
 ## <a name="export-as-a-template"></a>Exporter en tant que modèle
-Que se passe-t-il si vous souhaitez créer un environnement de développement supplémentaire avec les mêmes paramètres ou un environnement de production correspondant ? Resource Manager utilise des modèles JSON qui définissent tous les paramètres pour votre environnement. Vous créez des environnements entiers en faisant référence à ce modèle JSON. Vous pouvez [créer manuellement des modèles JSON](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) ou exporter un environnement existant qui créera le modèle JSON pour vous. Utilisez la commande [az group export](/cli/azure/group#export) pour exporter votre groupe de ressources comme suit :
+Que se passe-t-il si vous souhaitez maintenant toocreate un environnement de développement supplémentaire avec hello mêmes paramètres, ou un environnement de production qui lui correspond ? Le Gestionnaire de ressources utilise des modèles JSON qui définissent tous les paramètres de hello pour votre environnement. Vous créez des environnements entiers en faisant référence à ce modèle JSON. Vous pouvez [créer manuellement des modèles JSON](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) ou exporter un modèle JSON environnement toocreate hello existant pour vous. Utilisez [exportation de groupe az](/cli/azure/group#export) tooexport votre ressource de groupe comme suit :
 
 ```azurecli
 az group export --name myResourceGroup > myResourceGroup.json
 ```
 
-Cette commande crée le fichier `myResourceGroup.json` dans votre répertoire de travail actuel. Quand vous créez un environnement à partir de ce modèle, vous êtes invité à indiquer tous les noms de ressources. Vous pouvez renseigner ces noms dans votre fichier de modèle en ajoutant le paramètre `--include-parameter-default-value` à la commande `az group export`. Modifiez votre modèle JSON pour spécifier les noms de ressources, ou [créez un fichier parameters.json](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) qui spécifie les noms de ressources.
+Cette commande crée hello `myResourceGroup.json` fichier dans votre répertoire de travail actuel. Lorsque vous créez un environnement à partir de ce modèle, vous êtes invité pour tous les noms de ressource hello. Vous pouvez remplir ces noms dans votre fichier de modèle en ajoutant hello `--include-parameter-default-value` paramètre toohello `az group export` commande. Modifier les noms de ressources JSON modèle toospecify hello, ou [créer un fichier parameters.json](../../resource-group-authoring-templates.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) qui spécifie les noms de ressources hello.
 
-Pour créer un environnement à partir de votre modèle, utilisez la commande [az group deployment create](/cli/azure/group/deployment#create) comme suit :
+toocreate un environnement à partir de votre modèle, utilisez [créer de déploiement de groupe az](/cli/azure/group/deployment#create) comme suit :
 
 ```azurecli
 az group deployment create \
@@ -574,7 +574,7 @@ az group deployment create \
     --template-file myResourceGroup.json
 ```
 
-Vous pouvez lire la section contenant [plus de détails sur le déploiement à partir de modèles](../../resource-group-template-deploy-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). Découvrez notamment comment mettre à jour des environnements de manière incrémentielle, utiliser le fichier de paramètres et accéder aux modèles à partir d’un emplacement de stockage unique.
+Vous souhaiterez peut-être tooread [plus sur la façon toodeploy à partir de modèles](../../resource-group-template-deploy-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json). Découvrez comment tooincrementally les environnements de mise à jour, utilisez le fichier de paramètres hello et accéder aux modèles à partir d’un emplacement de stockage unique.
 
 ## <a name="next-steps"></a>Étapes suivantes
-Vous voici en mesure de commencer à utiliser plusieurs composants réseau et machines virtuelles. Vous pouvez utiliser cet exemple d’environnement pour générer votre application en utilisant les composants de base présentés ici.
+Vous êtes maintenant prêt toobegin utilisation de plusieurs composants réseau et les machines virtuelles. Vous pouvez utiliser cette toobuild d’environnement exemple votre application à l’aide de composants hello introduits ici.

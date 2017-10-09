@@ -1,6 +1,6 @@
 ---
-title: "Créer des images de machine virtuelle personnalisées avec l’interface de ligne de commande Azure | Microsoft Docs"
-description: "Didacticiel : créez une image de machine virtuelle personnalisée à l’aide de l’interface de ligne de commande Azure."
+title: "images de machine virtuelle personnalisées aaaCreate avec hello CLI d’Azure | Documents Microsoft"
+description: "Didacticiel : créer une image de machine virtuelle personnalisée à l’aide de hello CLI d’Azure."
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: cynthn
@@ -16,78 +16,78 @@ ms.workload: infrastructure
 ms.date: 05/21/2017
 ms.author: cynthn
 ms.custom: mvc
-ms.openlocfilehash: d32980f05ad17a76793021d0a5355d597974a4e4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 217a993c0c1d48939b74108ac6c5f7a1a619416c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-custom-image-of-an-azure-vm-using-the-cli"></a>Créer une image personnalisée d’une machine virtuelle Azure à l’aide de l’interface de ligne de commande
+# <a name="create-a-custom-image-of-an-azure-vm-using-hello-cli"></a>Créer une image personnalisée d’une machine virtuelle de Azure à l’aide de hello CLI
 
-Les images personnalisées sont comme des images de la Place de marché, sauf que vous les créez vous-même. Les images personnalisées peuvent être utilisées pour amorcer des configurations comme le préchargement des applications, les configurations d’application et d’autres configurations de système d’exploitation. Ce didacticiel explique comment créer votre propre image personnalisée d’une machine virtuelle Azure. Vous allez apprendre à effectuer les actions suivantes :
+Les images personnalisées sont comme des images de la Place de marché, sauf que vous les créez vous-même. Images personnalisées peuvent être des configurations toobootstrap utilisés tels que le préchargement des applications, les configurations de l’application et les autres configurations de système d’exploitation. Ce didacticiel explique comment créer votre propre image personnalisée d’une machine virtuelle Azure. Vous allez apprendre à effectuer les actions suivantes :
 
 > [!div class="checklist"]
 > * Annuler le déploiement de machines virtuelles et généraliser des machines virtuelles
 > * Créer une image personnalisée
 > * Créer une machine virtuelle à partir d’une image personnalisée
-> * Répertorier toutes les images dans votre abonnement
+> * La liste de toutes les images hello dans votre abonnement
 > * Supprimer une image
 
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-Si vous choisissez d’installer et d’utiliser l’interface de ligne de commande localement, vous devez exécuter l’interface de ligne de commande Azure version 2.0.4 ou une version ultérieure pour poursuivre la procédure décrite dans ce didacticiel. Exécutez `az --version` pour trouver la version. Si vous devez installer ou mettre à niveau, consultez [Installation d’Azure CLI 2.0]( /cli/azure/install-azure-cli). 
+Si vous choisissez tooinstall et que vous utilisez hello CLI localement, ce didacticiel nécessite que vous exécutez hello CLI d’Azure version 2.0.4 ou version ultérieure. Exécutez `az --version` version de hello toofind. Si vous avez besoin de tooinstall ou mise à niveau, consultez [installer Azure CLI 2.0]( /cli/azure/install-azure-cli). 
 
 ## <a name="before-you-begin"></a>Avant de commencer
 
-Les étapes ci-dessous expliquent comment prendre une machine virtuelle existante et la transformer en une image personnalisée réutilisable que vous pouvez utiliser pour créer de nouvelles instances de machines virtuelles.
+étapes Hello ci-dessous décrit en détail comment tootake une machine virtuelle existante et les activer dans personnalisé réutilisable de l’image que vous peuvent utiliser toocreate de nouvelles instances de machine virtuelle.
 
-Pour exécuter l’exemple dans ce didacticiel, vous devez disposer d’une machine virtuelle. Si nécessaire, cet [exemple de script](../scripts/virtual-machines-linux-cli-sample-create-vm-nginx.md) peut en créer une pour vous. Au cours du didacticiel, remplacez les noms du groupe de ressources et de la machine virtuelle si nécessaire.
+exemple de hello toocomplete dans ce didacticiel, vous devez disposer d’un ordinateur virtuel existant. Si nécessaire, cet [exemple de script](../scripts/virtual-machines-linux-cli-sample-create-vm-nginx.md) peut en créer une pour vous. Lorsque le travail didacticiel de hello, remplacez machine virtuelle et groupe de ressources hello noms lorsque cela est nécessaire.
 
 ## <a name="create-a-custom-image"></a>Créer une image personnalisée
 
-Pour créer une image de machine virtuelle, vous devez préparer la machine virtuelle en annulant l’approvisionnement, en la libérant et en la marquant comme généralisée. Une fois la machine virtuelle préparée, vous pouvez créer une image.
+toocreate une image d’un ordinateur virtuel, vous devez tooprepare hello VM par mise hors service, désallouer, puis marque la source de hello machine virtuelle comme généralisé. Une fois hello que machine virtuelle a été préparée, vous pouvez créer une image.
 
-### <a name="deprovision-the-vm"></a>Annuler l’approvisionnement de la machine virtuelle 
+### <a name="deprovision-hello-vm"></a>Annuler le déploiement hello machine virtuelle 
 
-L’annulation de l’approvisionnement généralise la machine virtuelle en supprimant les informations spécifiques à la machine. Cette généralisation permet de déployer plusieurs machines virtuelles à partir d’une image unique. Au cours de l’annulation de l’approvisionnement, le nom d’hôte est réinitialisé sur *localhost.localdomain*. Les clés d’hôte SSH, les configurations de serveur de noms, le mot de passe racine et les baux DHCP mis en cache sont également supprimés.
+Annulation de généralise hello machine virtuelle en supprimant les informations spécifiques à l’ordinateur. Cette généralisation rend possible toodeploy de machines virtuelles à partir d’une seule image. Au cours de la mise hors service, le nom d’hôte hello est réinitialisé trop*localhost.localdomain*. Les clés d’hôte SSH, les configurations de serveur de noms, le mot de passe racine et les baux DHCP mis en cache sont également supprimés.
 
-Pour annuler l’approvisionnement de la machine virtuelle, utilisez l’agent de machine virtuelle Azure (waagent). L’agent de machine virtuelle Azure est installé sur la machine virtuelle et gère l’approvisionnement et l’interaction avec le contrôleur de structure Azure. Pour plus d’informations, consultez le [Guide d’utilisateur de l’agent Linux Azure](agent-user-guide.md).
+toodeprovision hello machine virtuelle, utilisez l’agent de machine virtuelle Azure hello (waagent). l’agent de machine virtuelle Azure Hello est installé sur la machine virtuelle de hello et gère la configuration et l’utilisation de hello contrôleur de structure Azure. Pour plus d’informations, consultez hello [guide de l’utilisateur Linux Agent Azure](agent-user-guide.md).
 
-Connectez-vous à votre machine virtuelle à l’aide du protocole SSH et exécutez la commande pour annuler l’approvisionnement de la machine virtuelle. Avec l’argument `+user`, le dernier compte d’utilisateur approvisionné et les données associées sont également supprimés. Remplacez l’exemple d’adresse IP par l’adresse IP publique de votre machine virtuelle.
+Se connecter tooyour machine virtuelle à l’aide de SSH et exécution Bonjour commande toodeprovision Bonjour machine virtuelle. Avec hello `+user` argument, dernier compte d’utilisateur configuré hello et toutes les données associées sont également supprimées. Remplacez l’exemple d’adresse IP hello avec hello adresse IP publique de votre machine virtuelle.
 
-Utilisez une clé SSH sur la machine virtuelle.
+SSH toohello machine virtuelle.
 ```bash
 ssh azureuser@52.174.34.95
 ```
-Annulez l’approvisionnement de la machine virtuelle.
+Annuler le déploiement hello machine virtuelle.
 
 ```bash
 sudo waagent -deprovision+user -force
 ```
-Fermez la session SSH.
+Fermez la session SSH hello.
 
 ```bash
 exit
 ```
 
-### <a name="deallocate-and-mark-the-vm-as-generalized"></a>Libérer la machine virtuelle et la marquer comme généralisée
+### <a name="deallocate-and-mark-hello-vm-as-generalized"></a>Désallouer et marquer hello machine virtuelle comme généralisé
 
-Pour créer une image, la machine virtuelle doit être libérée. Libérez la machine virtuelle à l’aide de [az vm deallocate](/cli//azure/vm#deallocate). 
+toocreate une image, hello machine virtuelle doit toobe désallouée. Désallouer hello machine virtuelle en utilisant [az vm désallouer](/cli//azure/vm#deallocate). 
    
 ```azurecli-interactive 
 az vm deallocate --resource-group myResourceGroup --name myVM
 ```
 
-Enfin, définissez l’état de la machine virtuelle comme généralisé avec [az vm generalize](/cli//azure/vm#generalize) afin que la plateforme Azure sache que la machine virtuelle a été généralisée. Vous pouvez uniquement créer une image à partir d’une machine virtuelle généralisée.
+Enfin, définissez état hello Hello machine virtuelle comme généralisée avec [az vm généraliser](/cli//azure/vm#generalize) afin que hello plateforme Azure sache hello machine virtuelle a été généralisé. Vous pouvez uniquement créer une image à partir d’une machine virtuelle généralisée.
    
 ```azurecli-interactive 
 az vm generalize --resource-group myResourceGroup --name myVM
 ```
 
-### <a name="create-the-image"></a>Création de l’image
+### <a name="create-hello-image"></a>Création d’image de hello
 
-Créez à présent une image de la machine virtuelle à l’aide de [az image create](/cli//azure/image#create). L’exemple suivant crée une image nommée *myimage* à partir d’une machine virtuelle nommée *myimage*.
+Vous pouvez désormais créer une image de machine virtuelle de hello à l’aide de [az image création](/cli//azure/image#create). Hello exemple suivant crée une image nommée *myImage* à partir d’un ordinateur virtuel nommé *myVM*.
    
 ```azurecli-interactive 
 az image create \
@@ -96,9 +96,9 @@ az image create \
     --source myVM
 ```
  
-## <a name="create-vms-from-the-image"></a>Créer des machines virtuelles à partir de l’image
+## <a name="create-vms-from-hello-image"></a>Créer des ordinateurs virtuels à partir de l’image de hello
 
-Maintenant que vous avez une image, vous pouvez créer une ou plusieurs nouvelles machines virtuelles à partir de l’image à l’aide de [az vm create](/cli/azure/vm#create). L’exemple suivant crée une machine virtuelle nommée *myVMfromImage* à partir de l’image nommée *myImage*.
+Maintenant que vous disposez d’une image, vous pouvez créer un ou plusieurs nouveaux ordinateurs virtuels à partir de l’image de hello à l’aide [az vm créer](/cli/azure/vm#create). Hello exemple suivant crée un ordinateur virtuel nommé *myVMfromImage* à partir de l’image hello nommée *myImage*.
 
 ```azurecli-interactive 
 az vm create \
@@ -111,7 +111,7 @@ az vm create \
 
 ## <a name="image-management"></a>Gestion d’image 
 
-Voici quelques exemples de tâches de gestion d’image courantes et comment les exécuter à l’aide d’Azure CLI.
+Voici quelques exemples de tâches de gestion d’image courantes et comment toocomplete les à l’aide de hello CLI d’Azure.
 
 Répertoriez toutes les images par nom dans un format de tableau.
 
@@ -120,7 +120,7 @@ az image list \
   --resource-group myResourceGroup
 ```
 
-Supprimez une image. Cet exemple supprime l’image nommée *myOldImage* à partir du groupe *myResourceGroup*.
+Supprimez une image. Cet exemple supprime hello image nommée *myOldImage* de hello *myResourceGroup*.
 
 ```azurecli-interactive 
 az image delete \
@@ -136,10 +136,10 @@ Ce didacticiel vous montré comment créer une image de machine virtuelle. Vous 
 > * Annuler le déploiement de machines virtuelles et généraliser des machines virtuelles
 > * Créer une image personnalisée
 > * Créer une machine virtuelle à partir d’une image personnalisée
-> * Répertorier toutes les images dans votre abonnement
+> * La liste de toutes les images hello dans votre abonnement
 > * Supprimer une image
 
-Pour découvrir les machines virtuelles hautement disponibles, passez au didacticiel suivant.
+Avance toohello toolearn de didacticiel suivant sur les ordinateurs virtuels hautement disponibles.
 
 > [!div class="nextstepaction"]
 > [How to use availability sets](tutorial-availability-sets.md) (Comment utiliser des groupes à haute disponibilité).

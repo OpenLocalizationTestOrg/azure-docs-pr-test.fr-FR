@@ -1,6 +1,6 @@
 ---
-title: "Instructions de dénomination d’infrastructure Azure - Windows | Microsoft Docs"
-description: "Découvrez-en plus sur les principales instructions de conception et d’implémentation pour la dénomination dans des services d’infrastructure Azure."
+title: infrastructure aaaAzure affectation de noms-Windows | Documents Microsoft
+description: "Découvrez hello clé conception et implémentation des recommandations pour l’affectation de noms dans les services d’infrastructure Azure."
 documentationcenter: 
 services: virtual-machines-windows
 author: iainfoulds
@@ -16,17 +16,17 @@ ms.topic: article
 ms.date: 06/26/2017
 ms.author: iainfou
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 70a595d5c2f0316b5214af7b8939f1af8da187ff
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9b4a16ce99cf1cac5804c77675e24590ac2e2b33
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-infrastructure-naming-guidelines-for-windows-vms"></a>Instructions de dénomination d’infrastructure Azure pour machines virtuelles Windows
 
 [!INCLUDE [virtual-machines-windows-infrastructure-guidelines-intro](../../../includes/virtual-machines-windows-infrastructure-guidelines-intro.md)]
 
-Cet article se concentre sur la compréhension de l’approche des conventions de dénomination de vos diverses ressources Azure afin de créer un ensemble de ressources logique et facilement identifiable au sein de votre environnement.
+Cet article se concentre sur comment tooapproach les conventions d’affectation de noms pour tous les votre toobuild de ressources Azure différents logique et facilement identifiable définir des ressources dans votre environnement.
 
 ## <a name="implementation-guidelines-for-naming-conventions"></a>Instructions d’implémentation pour les conventions d’affectation de noms
 Décisions :
@@ -35,45 +35,45 @@ Décisions :
 
 Tâches :
 
-* Définissez les affixes à utiliser parmi vos ressources pour assurer la cohérence.
-* Définissez des noms de compte de stockage devant être globalement uniques.
-* Documentez la convention de dénomination à utiliser et à distribuer à toutes les parties impliquées pour assurer la conformité à travers les déploiements.
+* Définir un hello affixes toouse dans votre cohérence toomaintain de ressources.
+* Définir le compte de stockage noms hello requis pour les toobe global unique.
+* Hello document toobe de convention d’affectation de noms utilisé et distribuer tooall parties impliquées tooensure cohérence entre des déploiements.
 
 ## <a name="naming-conventions"></a>Conventions d’affectation de noms
-Vous devez avoir une convention d’affectation de noms adaptée avant tout processus de création dans Azure. Une convention d’affectation de noms garantit que toutes les ressources ont un nom prévisible, afin de réduire la charge administrative associée à leur gestion.
+Vous devez avoir une convention d’affectation de noms adaptée avant tout processus de création dans Azure. Une convention d’affectation de noms garantit que toutes les ressources hello ont un nom prévisible, ce qui vous aide à faible charge administrative hello associée à la gestion de ces ressources.
 
-Vous pouvez choisir de suivre un ensemble spécifique de conventions d’affectation de noms définies pour votre organisation, ou pour un compte ou abonnement Azure spécifique. Bien qu’il soit facile d’établir des règles implicites au sein d’entreprises lorsque vous travaillez avec des ressources Azure, ce modèle n’est pas très souple lorsqu’une équipe doit travailler sur un projet sur Azure.
+Vous pouvez choisir toofollow un ensemble spécifique de conventions d’affectation de noms définies pour votre organisation ou un abonnement Azure spécifique ou un compte. Bien qu’il soit facile pour les personnes au sein des organisations tooestablish règles implicites en règles lorsque vous travaillez avec des ressources Azure, quand une équipe doit toowork sur un projet sur Azure, ce modèle n’évolue pas bien.
 
 Convenez d’un ensemble de conventions d’affectation de noms en amont. Certains facteurs sont à prendre en compte pour cet ensemble de règles de dénomination.
 
 ## <a name="affixes"></a>Affixes
-Lorsque vous cherchez à définir une convention de dénomination, vous devez décider de l’emplacement de l’affixe :
+Lorsque vous cherchez toodefine une convention d’affectation de noms, une décision est fourni soit apposer de hello à :
 
-* au début du nom (préfixe)
-* à la fin du nom (suffixe)
+* début de Hello du nom de hello (préfixe)
+* fin de Hello du nom de hello (suffixe)
 
-Voici deux exemples de noms possibles pour un groupe de ressources avec l’affixe `rg` :
+Par exemple, voici les deux noms possibles pour un groupe de ressources à l’aide de hello `rg` apposer :
 
 * Rg-WebApp (préfixe)
 * WebApp-Rg (suffixe)
 
-Les affixes peuvent faire référence à différents aspects des ressources spécifiques. Le tableau suivant présente des exemples généralement utilisés.
+Affixes peuvent faire référence à des aspects toodifferent qui décrivent les ressources hello. Hello tableau suivant présente des exemples en général utilisés.
 
 | Aspect | Exemples | Remarques |
 |:--- |:--- |:--- |
-| Environnement |dev, stg, prod |En fonction de l’objectif et du nom de chaque environnement. |
-| Lieu |usw (West US), use (East US 2) |En fonction de la région du centre de données et de l’organisation. |
-| Composant, service ou produit Azure |Rg pour groupe de ressources, VNet pour réseau virtuel |En fonction du produit auquel la ressource est associée. |
-| Rôle |sql, ora, sp, iis |En fonction du rôle de la machine virtuelle. |
+| Environnement |dev, stg, prod |Selon l’objectif de hello et le nom de chaque environnement. |
+| Lieu |usw (West US), use (East US 2) |En fonction de la région de hello du centre de données hello ou une région de hello d’organisation de hello. |
+| Composant, service ou produit Azure |Rg pour groupe de ressources, VNet pour réseau virtuel |En fonction du produit hello pour le hello ressource fournit la prise en charge. |
+| Rôle |sql, ora, sp, iis |En fonction du rôle hello de machine virtuelle de hello. |
 | Instance |01, 02, 03, etc. |Pour les ressources possédant plusieurs instances. Par exemple, des serveurs Web à charge équilibrée dans un service cloud. |
 
-Lors de l’établissement de conventions d’affectation de noms, assurez-vous qu’elles indiquent clairement les affixes à utiliser pour chaque type de ressource et à quelle position (suffixe ou préfixe).
+Lors de l’établissement des conventions d’affectation de noms, assurez-vous qu’ils clairement l’état qui effectue toouse pour chaque type de ressource et dans quelle position (suffixe vs de préfixe).
 
 ## <a name="dates"></a>Dates
-Dans de nombreux cas, il est important de déterminer la date de création à partir du nom d’une ressource. Nous recommandons le format de date AAAAMMJJ. Ce format permet non seulement d’enregistrer la date complète, mais également de trier simultanément par ordre alphabétique et par ordre chronologique deux ressources dont les noms diffèrent uniquement au niveau de la date.
+Il est souvent important toodetermine hello date de création du nom de hello d’une ressource. Nous vous recommandons de format de date AAAAMMJJ hello. Ce format permet de s’assurer que non seulement la date complète de hello est enregistrée, mais également que deux ressources dont les noms diffèrent uniquement sur la date de hello est trié par ordre alphabétique et par ordre chronologique à hello même temps.
 
 ## <a name="naming-resources"></a>Ressources d’affectation de noms
-Définissez chaque type de ressource dans la convention d’affectation de noms, qui doit comprendre des règles définissant l’attribution de nom pour chaque ressource créée. Ces règles doivent s’appliquer à tous les types de ressources, par exemple :
+Définissez chaque type de ressource dans la convention d’affectation de noms de hello, qui doit avoir des règles qui définissent comment tooassign noms tooeach ressource qui est créé. Ces règles doivent s’appliquer tooall des types de ressources, par exemple :
 
 * Abonnements
 * Comptes
@@ -87,17 +87,17 @@ Définissez chaque type de ressource dans la convention d’affectation de noms,
 * groupes de sécurité réseau ;
 * contrôleur
 
-Les noms doivent être descriptifs, afin de fournir suffisamment d’informations pour déterminer la ressource à laquelle ils font référence.
+tooensure qui hello nom fournit suffisamment ressource toowhich de toodetermine informations qu'elle fait référence, vous devez utiliser des noms descriptifs.
 
 ## <a name="computer-names"></a>Noms des ordinateurs
-Lorsque vous créez une machine virtuelle, Microsoft Azure requiert un nom de machine virtuelle contenant jusqu’à 15 caractères, et qui est utilisé pour le nom de la ressource. Azure utilise le même nom pour le système d’exploitation installé sur la machine virtuelle. Toutefois, ces noms peuvent ne pas toujours être identiques.
+Lorsque vous créez un ordinateur virtuel (VM), Microsoft Azure nécessite un nom ordinateur virtuel, des caractères de too15, qui est utilisé pour le nom de la ressource hello. Azure utilise hello même nom pour le système d’exploitation hello Bonjour machine virtuelle. Toutefois, ces noms ne peuvent pas toujours être hello même.
 
-Si une machine virtuelle est créée à partir d’un fichier d’image .vhd qui contient déjà un système d’exploitation, le nom de la machine virtuelle dans Azure peut différer du nom d’ordinateur du système d’exploitation de la machine virtuelle. Dans ce cas, la gestion de la machine virtuelle devient plus difficile. C’est pourquoi nous le déconseillons. Affectez à la ressource de la machine virtuelle Azure le nom d’ordinateur attribué au système d’exploitation de cette machine virtuelle.
+En cas d’un ordinateur virtuel est créé à partir d’un fichier d’image de disque dur virtuel qui contient déjà un système d’exploitation, nom d’ordinateur virtuel hello dans Azure peut différer hello nom d’ordinateur de système d’exploitation de l’ordinateur virtuel. Cette situation peut ajouter un degré de gestion tooVM des difficultés, nous ne recommandons par conséquent pas. Affecter hello hello de ressource de machine virtuelle Azure même nom en tant que nom de l’ordinateur hello que vous attribuez le système d’exploitation de toohello de cette machine virtuelle.
 
-Nous recommandons que le nom de la machine virtuelle Azure soit le même que le nom d’ordinateur du système d’exploitation sous-jacent.
+Nous vous recommandons de ce nom de machine virtuelle Azure hello est hello identique hello sous-jacent du nom d’ordinateur de système d’exploitation.
 
 ## <a name="storage-account-names"></a>Noms des comptes de stockage
-Cette section ne s’applique pas aux [disques managés Azure](../../storage/storage-managed-disks-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json), étant donné que vous ne créez pas de compte de stockage distinct. Pour les disques non managés, la dénomination des comptes de stockage est régie par des règles spécifiques. Vous ne pouvez utiliser que des lettres minuscules et des chiffres. Pour plus d’informations, consultez la rubrique [Création d’un compte de stockage](../../storage/storage-create-storage-account.md#create-a-storage-account) . En outre, le nom du compte de stockage, ainsi que core.windows.net, doit être un nom DNS unique et globalement valide. Par exemple, si le compte de stockage est appelé mystorageaccount, les noms DNS suivants qui en résultent doivent être uniques :
+Cette section ne s’applique pas trop[disques gérés d’Azure](../../storage/storage-managed-disks-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json), comme vous ne créez pas un compte de stockage distinct. Pour les disques non managés, la dénomination des comptes de stockage est régie par des règles spécifiques. Vous ne pouvez utiliser que des lettres minuscules et des chiffres. Pour plus d’informations, consultez la rubrique [Création d’un compte de stockage](../../storage/storage-create-storage-account.md#create-a-storage-account) . En outre, le nom du compte de stockage hello, ainsi que de core.windows.net, doit être un nom DNS valide globalement unique. Par exemple, si le compte de stockage hello est appelée mystorageaccount, hello résultant de noms DNS suivants doivent être uniques :
 
 * mystorageaccount.blob.core.windows.net
 * mystorageaccount.table.core.windows.net

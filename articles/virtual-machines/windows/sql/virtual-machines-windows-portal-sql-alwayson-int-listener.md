@@ -1,5 +1,5 @@
 ---
-title: "Créer un écouteur de groupe de disponibilité SQL Server dans des machines virtuelles Azure | Microsoft Docs"
+title: "aaaCreate un écouteur de groupe de disponibilité de SQL Server dans des machines virtuelles | Documents Microsoft"
 description: "Instructions pas à pas pour la création d’un écouteur pour un groupe de disponibilité AlwaysOn pour SQL Server dans des machines virtuelles Azure"
 services: virtual-machines
 documentationcenter: na
@@ -14,16 +14,16 @@ ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
 ms.date: 05/01/2017
 ms.author: mikeray
-ms.openlocfilehash: 09fed7e785708d4afe64905de973becc188181d7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c6a44dc5c7c18b572c2bf5772b4651b7210aacbd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-a-load-balancer-for-an-always-on-availability-group-in-azure"></a>Configurer un équilibreur de charge pour un groupe de disponibilité AlwaysOn dans Azure
-Cet article explique comment créer un équilibreur de charge pour un groupe de disponibilité SQL Server AlwaysOn dans des machines virtuelles Azure s’exécutant avec Azure Resource Manager. Un groupe de disponibilité nécessite un équilibreur de charge lorsque les instances SQL Server se trouvent sur des machines virtuelles Azure. Cet équilibrage de charge stocke l’adresse IP de l’écouteur de groupe de disponibilité. Si un groupe de disponibilité englobe plusieurs régions, chaque région a besoin d’un équilibreur de charge.
+Cet article explique comment toocreate un équilibreur de charge pour un groupe de disponibilité SQL Server Always On dans Azure virtual machines qui sont en cours d’exécution avec Azure Resource Manager. Un groupe de disponibilité requiert un équilibrage de charge lorsque les instances de SQL Server de hello se trouvent sur des machines virtuelles. équilibrage de charge Hello stocke l’adresse IP hello écouteur hello. Si un groupe de disponibilité englobe plusieurs régions, chaque région a besoin d’un équilibreur de charge.
 
-Pour mener à bien cette tâche, vous devez avoir déployé un groupe de disponibilité SQL Server sur des machines virtuelles Azure qui s’exécutent avec Resource Manager. Les deux machines virtuelles SQL Server doivent appartenir au même groupe à haute disponibilité. Vous pouvez utiliser le [modèle Microsoft](virtual-machines-windows-portal-sql-alwayson-availability-groups.md) pour créer automatiquement le groupe de disponibilité dans Resource Manager. Ce modèle crée automatiquement un équilibreur de charge interne. 
+toocomplete cette tâche, vous devez toohave un groupe de disponibilité de SQL Server est déployé sur les machines virtuelles qui s’exécutent avec le Gestionnaire de ressources. Les deux machines virtuelles de SQL Server doit appartenir toohello même groupe à haute disponibilité. Vous pouvez utiliser hello [modèle Microsoft](virtual-machines-windows-portal-sql-alwayson-availability-groups.md) tooautomatically créer le groupe de disponibilité hello dans le Gestionnaire de ressources. Ce modèle crée automatiquement un équilibreur de charge interne. 
 
 Si vous préférez, vous pouvez [configurer manuellement un groupe de disponibilité](virtual-machines-windows-portal-sql-alwayson-availability-groups-manual.md).
 
@@ -34,83 +34,83 @@ Rubriques connexes :
 * [Configurer des groupes de disponibilité AlwaysOn dans une machine virtuelle Azure (GUI)](virtual-machines-windows-portal-sql-alwayson-availability-groups-manual.md)   
 * [Configurer une connexion de réseau virtuel à réseau virtuel à l’aide d’Azure Resource Manager et de PowerShell](../../../vpn-gateway/vpn-gateway-vnet-vnet-rm-ps.md)
 
-Dans ce document, vous créez et vous configurez un équilibreur de charge dans le portail Azure. Une fois le processus terminé, vous configurez le cluster afin qu’il utilise l’adresse IP de l’équilibreur de charge pour l’écouteur du groupe de disponibilité.
+En progressant dans cet article, vous créez et configurez un équilibreur de charge Bonjour portail Azure. Après hello est terminée, vous configurez hello toouse hello adresse IP du cluster d’équilibrage de charge hello pour l’écouteur du groupe de disponibilité hello.
 
-## <a name="create-and-configure-the-load-balancer-in-the-azure-portal"></a>Créer et configurer l’équilibrage de charge dans le portail Azure
-Dans cette partie de la tâche, procédez comme suit :
+## <a name="create-and-configure-hello-load-balancer-in-hello-azure-portal"></a>Créer et configurer l’équilibrage de charge hello Bonjour portail Azure
+Dans cette partie de la tâche hello, procédez comme hello suivant :
 
-1. Dans le portail Azure, créez l’équilibreur de charge et configurez l’adresse IP.
-2. Configurez le pool principal.
-3. Créez la sonde. 
-4. Configurez les règles d’équilibrage de charge.
+1. Bonjour portail Azure, équilibrage de charge hello de créer et configurer une adresse IP de hello.
+2. Configurer le pool principal d’hello.
+3. Création de la sonde de hello. 
+4. Définir des règles d’équilibrage de charge hello.
 
 > [!NOTE]
-> Si les instances de SQL Server se trouvent dans plusieurs groupes et régions, effectuez chaque étape à deux reprises, une fois dans chaque groupe de ressources.
+> Si les instances de SQL Server hello se trouvent dans plusieurs groupes de ressources et les régions, effectuer chaque étape à deux reprises, une fois dans chaque groupe de ressources.
 > 
 > 
 
-### <a name="step-1-create-the-load-balancer-and-configure-the-ip-address"></a>Étape 1 : Créer l’équilibreur de charge et configurer l’adresse IP
-Créez d’abord l’équilibreur de charge. 
+### <a name="step-1-create-hello-load-balancer-and-configure-hello-ip-address"></a>Étape 1 : Créer l’équilibreur de charge hello et configurer une adresse IP de hello
+Commencez par créer équilibrage de charge hello. 
 
-1. Dans le portail Azure, ouvrez le groupe de ressources contenant les machines virtuelles SQL Server. 
+1. Bonjour portail Azure, ouvrez le groupe de ressources hello qui contient des machines virtuelles de SQL Server hello. 
 
-2. Dans le groupe de ressources, cliquez sur **Ajouter**.
+2. Dans le groupe de ressources hello, cliquez sur **ajouter**.
 
-3. Recherchez **équilibreur de charge** puis, dans les résultats de la recherche, sélectionnez **Équilibreur de charge**, publié par **Microsoft**.
+3. Recherchez **l’équilibrage de charge** puis, dans les résultats de recherche hello **équilibrage de charge**, qui est publié par **Microsoft**.
 
-4. Dans le panneau **Équilibrage de charge**, cliquez sur **Créer**.
+4. Sur hello **équilibrage de charge** panneau, cliquez sur **créer**.
 
-5. Dans la boîte de dialogue **Créer l’équilibreur de charge**, configurez l’équilibreur de charge comme suit :
+5. Bonjour **équilibrage de charge créer** boîte de dialogue zone, configurer équilibrage de charge hello comme suit :
 
    | Paramètre | Valeur |
    | --- | --- |
-   | **Nom** |Nom de l’équilibrage de charge. Par exemple, **sqlLB**. |
-   | **Type** |**Interne** : la plupart des implémentations utilisent un équilibreur de charge interne, ce qui permet aux applications du même réseau virtuel de se connecter au groupe de disponibilité.  </br> **Externe** : permet aux applications de se connecter au groupe de disponibilité via une connexion Internet publique. |
-   | **Réseau virtuel** |Sélectionnez le réseau virtuel contenant les instances de SQL Server. |
-   | **Sous-réseau** |Sélectionnez le sous-réseau contenant les instances de SQL Server. |
+   | **Name** |Un nom représentant l’équilibrage de charge hello. Par exemple, **sqlLB**. |
+   | **Type** |**Interne**: la plupart des implémentations utilisent un équilibreur de charge interne, ce qui permet aux applications dans hello même groupe de disponibilité toohello tooconnect réseau virtuel.  </br> **Externe**: autorise le groupe de disponibilité applications tooconnect toohello via une connexion Internet publique. |
+   | **Réseau virtuel** |Sélectionnez le réseau virtuel hello qui sont des instances de SQL Server hello dans. |
+   | **Sous-réseau** |Sélectionnez sous-réseau hello qui sont des instances de SQL Server hello dans. |
    | **Affectation d’adresses IP** |**Statique** |
-   | **Adresse IP privée** |Spécifiez une adresse IP disponible à partir du sous-réseau. Vous allez l’utiliser pour créer un écouteur sur le cluster. Dans un script PowerShell plus loin dans cet article, vous utilisez cette adresse pour la variable `$ILBIP`. |
-   | **Abonnement** |Si vous avez plusieurs abonnements, ce champ doit normalement apparaître. Sélectionnez l’abonnement que vous voulez associer à cette ressource. Normalement, il s’agit du même abonnement que pour toutes les ressources du groupe de disponibilité. |
-   | **Groupe de ressources** |Sélectionnez le groupe de ressources contenant les instances de SQL Server. |
-   | **Emplacement** |Sélectionnez l’emplacement Azure contenant les instances de SQL Server. |
+   | **Adresse IP privée** |Spécifiez une adresse IP disponible à partir du sous-réseau de hello. Utilisez cette adresse IP lorsque vous créez un écouteur sur le cluster de hello. Dans un script PowerShell, plus loin dans cet article, utilisez cette adresse pour hello `$ILBIP` variable. |
+   | **Abonnement** |Si vous avez plusieurs abonnements, ce champ doit normalement apparaître. Sélectionnez l’abonnement hello que vous souhaitez tooassociate avec cette ressource. Il est normalement hello même abonnement que toutes les ressources de hello pour le groupe de disponibilité hello. |
+   | **Groupe de ressources** |Sélectionnez le groupe de ressources hello qui sont des instances de SQL Server hello dans. |
+   | **Emplacement** |Sélectionnez hello emplacement Azure qui sont des instances de SQL Server hello dans. |
 
-6. Cliquez sur **Create**. 
+6. Cliquez sur **Créer**. 
 
-Azure crée l’équilibreur de charge. Cet équilibrage de charge appartient à un réseau, un sous-réseau, un groupe de ressources et un emplacement spécifiques. Une fois qu’Azure a terminé la tâche, vérifiez les paramètres de l’équilibreur de charge dans Azure. 
+Azure crée un équilibreur de charge hello. équilibrage de charge Hello appartient tooa réseau, de sous-réseau, de groupe de ressources et d’emplacement. Une fois la tâche hello terminée, vérifiez les paramètres d’équilibrage de charge hello dans Azure. 
 
-### <a name="step-2-configure-the-back-end-pool"></a>Étape 2 : Configurer le pool principal
-Azure appelle *pool principal* ce pool d’adresses principal. En l’occurrence, le pool principal est constitué des adresses des deux instances de SQL Server dans votre groupe de disponibilité. 
+### <a name="step-2-configure-hello-back-end-pool"></a>Étape 2 : Configurer le pool principal de hello
+Appels Azure hello pool d’adresses de serveur principal *pool principal*. Dans ce cas, le pool de principaux de hello est adresses hello de deux instances de SQL Server hello dans votre groupe de disponibilité. 
 
-1. Dans votre groupe de ressources, cliquez sur l’équilibreur de charge que vous avez créé. 
+1. Dans votre groupe de ressources, cliquez sur l’équilibrage de charge hello que vous avez créé. 
 
 2. Dans **Paramètres**, cliquez sur **Pools principaux**.
 
-3. Dans **Pools principaux**, cliquez sur **Ajouter** pour créer un pool d’adresses principal. 
+3. Sur **pools principaux**, cliquez sur **ajouter** toocreate un pool d’adresses du serveur principal. 
 
-4. Dans **Ajouter un pool principal** sous **Nom**, entrez un nom pour le pool principal.
+4. Sur **ajouter le pool principal**, sous **nom**, tapez un nom pour le pool principal d’hello.
 
 5. Sous **Machines virtuelles**, cliquez sur **Ajouter une machine virtuelle**. 
 
-6. Sous **Choisir des machines virtuelles**, cliquez sur **Choisir un groupe à haute disponibilité** puis spécifiez le groupe à haute disponibilité auquel les machines virtuelles SQL Server appartiennent.
+6. Sous **choisir les machines virtuelles**, cliquez sur **choisir un ensemble de disponibilité**, puis spécifiez que les machines virtuelles de SQL Server hello appartiennent au groupe à haute disponibilité de hello.
 
-7. Une fois que vous avez choisi le groupe à haute disponibilité, cliquez sur **Choisir les machines virtuelles**, sélectionnez les deux machines virtuelles qui hébergent des instances de SQL Server dans le groupe de disponibilité puis cliquez sur **Sélectionner**. 
+7. Une fois que vous avez choisi hello à haute disponibilité, cliquez sur **choisissez hello virtuels**, sélectionnez hello deux machines virtuelles qui hébergent des instances de SQL Server hello hello groupe de disponibilité, puis cliquez sur **sélectionnez**. 
 
-8. Cliquez sur **OK** pour fermer les panneaux **Choisir les machines virtuelles** et **Ajouter un pool principal**. 
+8. Cliquez sur **OK** tooclose des panneaux de hello pour **choisir les machines virtuelles**, et **ajouter le pool principal**. 
 
-Azure met à jour les paramètres du pool d’adresses principal. Votre groupe à haute disponibilité a maintenant un pool de deux instances de SQL Server.
+Azure met à jour les paramètres de hello pour le pool d’adresses principal hello. Votre groupe à haute disponibilité a maintenant un pool de deux instances de SQL Server.
 
 ### <a name="step-3-create-a-probe"></a>Étape 3 : Créer une sonde
-La sonde définit la façon dont Azure identifie l’instance de SQL Server qui détient l’écouteur du groupe de disponibilité. Azure sonde le service avec l’adresse IP sur un port que vous définissez lors de la création de la sonde.
+Sonde de Hello définit comment Azure vérifie à qui des instances de SQL Server hello possède actuellement écouteur hello. Les tests de Azure service hello basé sur l’adresse IP de hello sur un port que vous définissez lors de la création de la sonde de hello.
 
-1. Dans le panneau **Paramètres** de l’équilibreur de charge, cliquez sur **Sondes d’intégrité**. 
+1. L’équilibrage de charge sur hello **paramètres** panneau, cliquez sur **sondes d’intégrité**. 
 
-2. Dans le panneau **Sondes d’intégrité**, cliquez sur **Ajouter**.
+2. Sur hello **sondes d’intégrité** panneau, cliquez sur **ajouter**.
 
-3. Configurez la sonde dans le panneau **Ajouter une sonde** . Utilisez les valeurs suivantes pour configurer la sonde :
+3. Configurer la sonde de hello sur hello **ajouter sonde** panneau. Sonde de hello tooconfigure les valeurs hello utilisation suivant :
 
    | Paramètre | Valeur |
    | --- | --- |
-   | **Nom** |Nom de la sonde. Par exemple, **SQLAlwaysOnEndPointProbe**. |
+   | **Name** |Un nom représentant la sonde de hello. Par exemple, **SQLAlwaysOnEndPointProbe**. |
    | **Protocole** |**TCP** |
    | **Port** |Vous pouvez utiliser n’importe quel port disponible. Par exemple, *59999*. |
    | **Intervalle** |*5* |
@@ -119,156 +119,156 @@ La sonde définit la façon dont Azure identifie l’instance de SQL Server qui 
 4.  Cliquez sur **OK**. 
 
 > [!NOTE]
-> Vérifiez que le port que vous spécifiez est ouvert sur le pare-feu des deux instances de SQL Server. Les deux instances nécessitent une règle de trafic entrant pour le port TCP que vous utilisez. Pour plus d’informations, consultez [Ajouter ou modifier une règle de pare-feu](http://technet.microsoft.com/library/cc753558.aspx) . 
+> Assurez-vous que le port hello que vous spécifiez est ouvert sur les pare-feu hello des deux instances de SQL Server. Les deux instances nécessitent une règle de trafic entrant pour hello le port TCP que vous utilisez. Pour plus d’informations, consultez [Ajouter ou modifier une règle de pare-feu](http://technet.microsoft.com/library/cc753558.aspx). 
 > 
 > 
 
-Azure crée la sonde puis l’utilise pour identifier l’instance de SQL Server qui a l’écouteur pour le groupe de disponibilité.
+Azure crée hello sonde, puis il utilise tootest quelle instance de SQL Server a écouteur hello pour le groupe de disponibilité hello.
 
-### <a name="step-4-set-the-load-balancing-rules"></a>Étape 4 : Définir les règles d’équilibrage de charge
-Les règles d’équilibrage de charge déterminent comment l’équilibreur de charge route le trafic vers les instances de SQL Server. Pour cet équilibreur de charge, vous activez le retour direct du serveur, car une seule des deux instances de SQL Server a la ressource d’écouteur de groupe de disponibilité à un moment donné.
+### <a name="step-4-set-hello-load-balancing-rules"></a>Étape 4 : Définir des règles d’équilibrage de charge de hello
+règles d’équilibrage de charge Hello configurer comment équilibrage de charge hello route les instances de SQL Server toohello le trafic. Pour cet équilibrage de charge, vous activez retour direct du serveur, car seul l’un des deux instances de SQL Server hello possède la ressource de port d’écoute du groupe de disponibilité hello à la fois.
 
-1. Dans le panneau **Paramètres** de l’équilibrage de charge, cliquez sur **Règles d’équilibrage de charge**. 
+1. L’équilibrage de charge sur hello **paramètres** panneau, cliquez sur **règles d’équilibrage de charge**. 
 
-2. Dans le panneau **Règles d’équilibrage de charge**, cliquez sur **Ajouter**.
+2. Sur hello **règles d’équilibrage de charge** panneau, cliquez sur **ajouter**.
 
-3. Dans le panneau **Ajouter une règle d’équilibrage de charge**, configurez la règle d’équilibrage de charge. Utilisez les paramètres suivants : 
+3. Sur hello **ajouter équilibrage des règles** panneau, configurer la règle d’équilibrage de charge hello. Utilisez hello suivant les paramètres : 
 
    | Paramètre | Valeur |
    | --- | --- |
-   | **Nom** |Nom de la règle d’équilibrage de charge. Par exemple, **SQLAlwaysOnEndPointListener**. |
+   | **Name** |Un nom de texte représentant les règles d’équilibrage de charge hello. Par exemple, **SQLAlwaysOnEndPointListener**. |
    | **Protocole** |**TCP** |
    | **Port** |*1433* |
    | **Port principal** |*1433*. Cette valeur est ignorée, car cette règle utilise **Adresse IP flottante (retour direct du serveur)**. |
-   | **Sonde** |Utilisez le nom de la sonde que vous avez créée pour cet équilibrage de charge. |
+   | **Sonde** |Utiliser le nom hello de sonde hello que vous avez créé pour cet équilibrage de charge. |
    | **Persistance de session** |**Aucun** |
    | **Délai d’inactivité (minutes).** |*4* |
    | **Adresse IP flottante (retour serveur direct)** |**Activé** |
 
    > [!NOTE]
-   > Il peut être nécessaire de faire défiler le panneau vers le bas pour voir tous les paramètres.
+   > Vous pouvez avoir tooscroll vers le bas hello panneau tooview tous les paramètres de hello.
    > 
 
 4. Cliquez sur **OK**. 
-5. Azure configure la règle d’équilibrage de charge. L’équilibreur de charge est maintenant configuré pour router le trafic vers l’instance de SQL Server qui héberge l’écouteur pour le groupe de disponibilité. 
+5. Azure configure la règle d’équilibrage de charge hello. Équilibrage de charge hello est maintenant une instance tooroute configuré le trafic toohello SQL Server qui héberge l’écoute hello pour le groupe de disponibilité hello. 
 
-À ce stade, le groupe de ressources a un équilibreur de charge qui connecte les deux ordinateurs SQL Server. L’équilibreur de charge contient également une adresse IP pour l’écouteur du groupe de disponibilité AlwaysOn SQL Server, de sorte que l’un ou l’autre des ordinateurs puisse répondre aux demandes pour les groupes de disponibilité.
+À ce stade, groupe de ressources hello possède un équilibreur de charge qui se connecte les ordinateurs SQL Server tooboth. équilibrage de charge Hello contient également une adresse IP pour hello SQL Server Always On écouteur, afin que l’ordinateur peut répondre toorequests hello groupes de disponibilité.
 
 > [!NOTE]
-> Si vos instances de SQL Server se trouvent dans deux régions distinctes, répétez les étapes dans l’autre région. Chaque région nécessite un équilibrage de charge. 
+> Si vos instances de SQL Server se trouvent dans deux régions distinctes, répétez les étapes de hello Bonjour autre région. Chaque région nécessite un équilibrage de charge. 
 > 
 > 
 
-## <a name="configure-the-cluster-to-use-the-load-balancer-ip-address"></a>Configurer le cluster pour qu’il utilise l’adresse IP de l’équilibrage de charge
-L’étape suivante consiste à configurer l’écouteur sur le cluster et à le mettre en ligne. Effectuez les actions suivantes : 
+## <a name="configure-hello-cluster-toouse-hello-load-balancer-ip-address"></a>Configurer l’adresse IP équilibrage de la charge hello cluster toouse hello
+étape suivante de Hello est tooconfigure hello écouter le cluster de hello et mettez écouteur hello en ligne. Hello suivant : 
 
-1. Créez l’écouteur du groupe de disponibilité sur le cluster de basculement. 
+1. Créer l’écouteur hello sur le cluster de basculement hello. 
 
-2. Mettez l’écouteur en ligne.
+2. Mettez l’écouteur hello en ligne.
 
-### <a name="step-5-create-the-availability-group-listener-on-the-failover-cluster"></a>Étape 5 : Créer l’écouteur du groupe de disponibilité sur le cluster de basculement
-Dans cette étape, vous créez manuellement l’écouteur du groupe de disponibilité dans le Gestionnaire du cluster de basculement et dans SQL Server Management Studio.
+### <a name="step-5-create-hello-availability-group-listener-on-hello-failover-cluster"></a>Étape 5 : Créer un écouteur du groupe de disponibilité hello sur le cluster de basculement hello
+Dans cette étape, vous créez manuellement l’écouteur du groupe de disponibilité hello dans le Gestionnaire du Cluster de basculement et de SQL Server Management Studio.
 
 [!INCLUDE [ag-listener-configure](../../../../includes/virtual-machines-ag-listener-configure.md)]
 
-### <a name="verify-the-configuration-of-the-listener"></a>Vérifiez la configuration de l’écouteur
+### <a name="verify-hello-configuration-of-hello-listener"></a>Vérifier la configuration de hello d’écouteur de hello
 
-Si les ressources et les dépendances du cluster sont correctement configurées, vous devez être en mesure de voir l’écouteur dans SQL Server Management Studio. Procédez comme suit pour définir le port de l’écouteur :
+Si les dépendances et les ressources de cluster hello sont correctement configurés, vous devez être en mesure de tooview un écouteur de hello dans SQL Server Management Studio. tooset hello du port d’écoute, hello suivant :
 
-1. Démarrez SQL Server Management Studio, puis connectez-vous au réplica principal.
+1. Démarrez SQL Server Management Studio, puis connectez-vous toohello le réplica principal.
 
-2. Accédez à **Haute disponibilité AlwaysOn** > **Groupes de disponibilité** > **Écouteurs de groupe de disponibilité**.  
-    Vous devez maintenant voir le nom de l'écouteur que vous avez créé dans le Gestionnaire du cluster de basculement. 
+2. Accédez trop**haute disponibilité AlwaysOn** > **groupes de disponibilité** > **écouteurs de groupe de disponibilité**.  
+    Vous devez maintenant voir le nom de l’écouteur hello que vous avez créé dans le Gestionnaire de Cluster de basculement. 
 
-3. Cliquez avec le bouton droit sur le nom de l’écouteur puis cliquez sur **Propriétés**.
+3. Cliquez sur le nom d’écouteur hello, puis cliquez sur **propriétés**.
 
-4. Dans la zone **Port**, spécifiez le numéro de port pour l’écouteur du groupe de disponibilité à l’aide du paramètre $EndpointPort utilisé précédemment (valeur par défaut : 1433) puis cliquez sur **OK**.
+4. Bonjour **Port** , spécifiez un numéro de port hello écouteur hello à l’aide de hello $EndpointPort utilisé précédemment (1433 était la valeur par défaut hello), puis cliquez sur **OK**.
 
 Vous disposez maintenant d’un groupe de disponibilité dans des machines virtuelles Azure s’exécutant en mode Resource Manager. 
 
-## <a name="test-the-connection-to-the-listener"></a>Tester la connexion à l’écouteur
-Testez la connexion en procédant comme suit :
+## <a name="test-hello-connection-toohello-listener"></a>Écouteur de toohello connexion test hello
+Tester la connexion hello de manière hello suivante :
 
-1. Envoyez une requête RDP à une instance de SQL Server qui se trouve dans le même réseau virtuel, mais qui ne détient pas le réplica. Ce serveur peut être une autre instance de SQL Server dans le cluster.
+1. Instance de SQL Server de tooa RDP est Bonjour virtuel même réseau, mais ne pas les réplicas hello propre. Ce serveur peut être hello autre instance SQL Server dans un cluster de hello.
 
-2. Utilisez l’utilitaire **sqlcmd** pour tester la connexion. Par exemple, le script suivant établit une connexion **sqlcmd** au réplica principal par le biais de l’écouteur avec une authentification Windows :
+2. Utilisez **sqlcmd** connexion de hello tootest utilitaire. Par exemple, hello script suivant établit une **sqlcmd** réplica principal de connexion toohello via écouteur hello avec l’authentification Windows :
    
         sqlcmd -S <listenerName> -E
 
-La connexion SQLCMD se connecte automatiquement à l’instance de SQL Server qui héberge le réplica principal. 
+Hello connexion de SQLCMD connecte automatiquement à instance toohello SQL Server qui héberge le réplica principal de hello. 
 
 ## <a name="create-an-ip-address-for-an-additional-availability-group"></a>Créer une adresse IP pour un groupe de disponibilité supplémentaire
 
-Chaque groupe de disponibilité utilise un écouteur distinct. Chaque écouteur possède sa propre adresse IP. Le même équilibreur de charge doit être utilisé pour conserver l’adresse IP des écouteurs supplémentaires. Après avoir créé un groupe de disponibilité, ajoutez l’adresse IP à l’équilibreur de charge, puis configurez l’écouteur.
+Chaque groupe de disponibilité utilise un écouteur distinct. Chaque écouteur possède sa propre adresse IP. Utilisez hello identique à l’adresse IP toohold hello équilibrage de charge pour les écouteurs supplémentaires. Après avoir créé un groupe de disponibilité, ajoutez l’équilibrage de charge hello toohello de l’adresse IP, puis configurez port d’écoute hello.
 
-Pour ajouter une adresse IP à un équilibreur de charge avec le portail Azure, procédez comme suit :
+tooadd un équilibrage de charge de tooa d’adresse IP avec hello portail Azure, procédez comme hello suivant :
 
-1. Dans le portail Azure, ouvrez le groupe de ressources qui contient l’équilibreur de charge puis cliquez sur celui-ci. 
+1. Bonjour portail Azure, ouvrez le groupe de ressources hello qui contient l’équilibrage de charge hello, puis cliquez sur équilibrage de charge hello. 
 
 2. Sous **PARAMÈTRES**, cliquez sur **Pool d’adresses IP frontales** puis cliquez sur **Ajouter**. 
 
-3. Sous **Ajouter une adresse IP frontale**, attribuez un nom au serveur frontal. 
+3. Sous **ajouter une adresse IP de serveur frontal**, attribuez un nom de serveur frontal hello. 
 
-4. Vérifiez que le **réseau virtuel** et le **sous-réseau** sont identiques aux instances SQL Server.
+4. Vérifiez que hello **réseau virtuel** et hello **sous-réseau** sont hello identique hello des instances de SQL Server.
 
-5. Définissez l’adresse IP de l’écouteur. 
+5. Définissez adresse IP hello écouteur de hello. 
    
    >[!TIP]
-   >Vous pouvez la définir en tant qu’adresse IP statique et taper une adresse qui n’est actuellement pas utilisée dans le sous-réseau. Vous pouvez aussi la définir en tant qu’adresse IP dynamique et enregistrer le nouveau pool d’adresses IP frontales. Dans ce dernier cas, le portail Azure affecte automatiquement une adresse IP disponible au pool. Vous pouvez alors rouvrir le pool d’adresses IP frontales et changer l’affectation en statique. 
+   >Vous pouvez définir hello IP adresse toostatic et tapez une adresse qui n’est pas utilisée actuellement dans le sous-réseau de hello. Ou bien, vous pouvez définir des hello IP adresse toodynamic et enregistrer le nouveau pool IP frontale hello. Lorsque vous procédez ainsi, hello portail Azure affecte automatiquement un pool de toohello d’adresses IP disponible. Vous pouvez rouvrir le pool d’adresses IP frontal hello et modifier hello affectation toostatic. 
 
-6. Enregistrez l’adresse IP de l’écouteur. 
+6. Enregistrer l’adresse IP de hello pour le port d’écoute hello. 
 
-7. Ajoutez une sonde d’intégrité en utilisant les paramètres suivants :
+7. Ajouter une sonde d’intégrité à l’aide de hello suivant les paramètres :
 
    |Paramètre |Valeur
    |:-----|:----
-   |**Nom** |Nom destiné à identifier la sonde.
+   |**Name** |Une sonde de hello tooidentify de nom.
    |**Protocole** |TCP
-   |**Port** |Un port TCP non utilisé doit être disponible sur toutes les machines virtuelles. Il ne peut pas être utilisé à d’autres fins. Deux écouteurs distincts ne peuvent pas utiliser un même port de sonde. 
-   |**Intervalle** |Laps de temps entre les différentes tentatives de la sonde. Utilisez la valeur par défaut (5).
-   |**Seuil de défaillance sur le plan de l’intégrité** |Nombre de seuils consécutifs qui doivent échouer avant qu’une machine virtuelle soit considérée comme défectueuse.
+   |**Port** |Un port TCP non utilisé doit être disponible sur toutes les machines virtuelles. Il ne peut pas être utilisé à d’autres fins. Aucun deux écouteurs ne peuvent utiliser hello même port de la sonde. 
+   |**Intervalle** |Durée Hello entre sonde tentatives. Utilisez la valeur par défaut de hello (5).
+   |**Seuil de défaillance sur le plan de l’intégrité** |nombre de Hello de seuils consécutifs qui doivent échouer avant un ordinateur virtuel est considéré comme non intègre.
 
-8. Cliquez sur **OK** pour enregistrer la sonde. 
+8. Cliquez sur **OK** sonde de hello toosave. 
 
 9. Créez une règle d’équilibrage de charge. Cliquez sur **Règles d’équilibrage de charge** puis sur **Ajouter**.
 
-10. Configurez la nouvelle règle d’équilibrage de charge en utilisant les paramètres suivants :
+10. Configurer hello nouvelle équilibrage de charge règle à l’aide de hello suivant les paramètres :
 
    |Paramètre |Valeur
    |:-----|:----
-   |**Nom** |Nom destiné à identifier la règle d’équilibrage de charge. 
-   |**Adresse IP du serveur frontal** |Sélectionnez l’adresse IP que vous avez créée. 
+   |**Name** |Un Bonjour tooidentify de nom de règle d’équilibrage de charger. 
+   |**Adresse IP du serveur frontal** |Sélectionnez l’adresse IP de hello que vous avez créé. 
    |**Protocole** |TCP
-   |**Port** |Utilisez le port utilisé par les instances SQL Server. Une instance par défaut utilise le port 1433, à moins que vous l’ayez changé. 
-   |**Port principal** |Utilisez la même valeur que **Port**.
-   |**Pool back-end** |Pool qui contient les machines virtuelles dotées des instances SQL Server. 
-   |**Sonde d’intégrité** |Choisissez la sonde que vous avez créée.
+   |**Port** |Utiliser le port hello qui utilisent des instances de SQL Server hello. Une instance par défaut utilise le port 1433, à moins que vous l’ayez changé. 
+   |**Port principal** |Hello d’utiliser les mêmes valeurs que **Port**.
+   |**Pool back-end** |pool Hello qui contient des machines virtuelles de hello avec des instances de SQL Server hello. 
+   |**Sonde d’intégrité** |Choisissez la sonde hello que vous avez créé.
    |**Persistance de session** |Aucun
    |**Délai d’inactivité (minutes).** |Valeur par défaut (4)
    |**Adresse IP flottante (retour direct du serveur)** | Activé
 
-### <a name="configure-the-availability-group-to-use-the-new-ip-address"></a>Configurer le groupe de disponibilité pour qu’il utilise la nouvelle adresse IP
+### <a name="configure-hello-availability-group-toouse-hello-new-ip-address"></a>Configurer hello disponibilité groupe toouse hello nouvelle adresse IP
 
-Pour terminer la configuration du cluster, répétez les étapes que vous avez suivies pour créer le premier groupe de disponibilité. Autrement dit, configurez le [cluster pour qu’il utilise la nouvelle adresse IP](#configure-the-cluster-to-use-the-load-balancer-ip-address). 
+toofinish de configuration de cluster de hello, répétition hello étapes lorsque vous avez effectué le premier groupe de disponibilité hello. Autrement dit, configurer hello [toouse hello nouvelle adresse IP de cluster](#configure-the-cluster-to-use-the-load-balancer-ip-address). 
 
-Après avoir ajouté une adresse IP pour l’écouteur, configurez le groupe de disponibilité supplémentaire comme suit : 
+Après avoir ajouté une adresse IP pour le port d’écoute hello, configurez le groupe de disponibilité supplémentaires hello en procédant comme suit de hello : 
 
-1. Vérifiez que le port de la sonde pour la nouvelle adresse IP est ouvert sur les deux machines virtuelles SQL Server. 
+1. Vérifiez que le port de la sonde hello pour la nouvelle adresse IP de hello est ouvert sur les deux machines virtuelles de SQL Server. 
 
-2. [Dans Cluster Manager, ajoutez le point d’accès client](#addcap).
+2. [Dans le Gestionnaire de Cluster, ajouter le point d’accès client hello](#addcap).
 
-3. [Configurez la ressource IP du groupe de disponibilité](#congroup).
+3. [Configurer les ressources IP de hello pour le groupe de disponibilité hello](#congroup).
 
    >[!IMPORTANT]
-   >Au moment de créer l’adresse IP, utilisez l’adresse IP que vous avez ajoutée à l’équilibreur de charge.  
+   >Lorsque vous créez des adresses IP de hello, utiliser l’adresse IP de hello que vous avez ajouté l’équilibrage de charge toohello.  
 
-4. [Rendez la ressource de groupe de disponibilité de SQL Server dépendant du point d’accès client](#dependencyGroup).
+4. [Rendre les ressources de groupe de disponibilité de SQL Server hello dépendante sur le point d’accès client hello](#dependencyGroup).
 
-5. [Créez une dépendance entre la ressource du point d’accès client et l’adresse IP](#listname).
+5. [Hello d’accès client aux ressources dépendant de l’adresse IP de hello de point](#listname).
  
-6. [Définissez les paramètres de cluster dans PowerShell](#setparam).
+6. [Définir les paramètres de cluster hello dans PowerShell](#setparam).
 
-Une fois que vous avez configuré le groupe de disponibilité pour qu’il utilise la nouvelle adresse IP, configurez la connexion à l’écouteur. 
+Après avoir configuré hello disponibilité groupe toouse hello nouvelle adresse IP, configurez l’écouteur de toohello de connexion de hello. 
 
 ## <a name="next-steps"></a>Étapes suivantes
 

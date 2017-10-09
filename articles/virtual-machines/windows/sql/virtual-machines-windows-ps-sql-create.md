@@ -1,5 +1,5 @@
 ---
-title: "Créer une machine virtuelle SQL Server dans Azure PowerShell (Resource Manager) | Microsoft Docs"
+title: aaaCreate une Machine virtuelle de SQL Server dans Azure PowerShell (Resource Manager) | Documents Microsoft
 description: "Fournit une procédure et des scripts PowerShell pour la création d’une machine virtuelle Azure à l’aide des images de la galerie de machines virtuelles SQL Server."
 services: virtual-machines-windows
 documentationcenter: na
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
 ms.date: 01/17/2017
 ms.author: jroth
-ms.openlocfilehash: aa90a1d017af5f477407ab33f0580904472f412b
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 2b8cb8f69ff9894a95eab617816a60c8674eeefa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="provision-a-sql-server-virtual-machine-using-azure-powershell-resource-manager"></a>Approvisionner une machine virtuelle SQL Server à l’aide d’Azure PowerShell (Resource Manager)
 > [!div class="op_single_selector"]
@@ -29,53 +29,53 @@ ms.lasthandoff: 08/29/2017
 >
 
 ## <a name="overview"></a>Vue d'ensemble
-Ce didacticiel vous montre comment créer une machine virtuelle Azure à l’aide du modèle de déploiement **Azure Resource Manager** et d’applets de commande Azure PowerShell. Dans ce didacticiel, nous allons créer une machine virtuelle à l’aide d’un lecteur de disque à partir d’une image dans la galerie SQL. Nous allons créer des fournisseurs pour les ressources de stockage, de réseau et de calcul qui seront utilisées par la machine virtuelle. Si vous avez déjà des fournisseurs pour ces ressources, vous pouvez les utiliser.
+Ce didacticiel vous montre comment une seule machine virtuelle Azure à l’aide de toocreate hello **Azure Resource Manager** modèle de déploiement à l’aide des applets de commande PowerShell de Azure. Dans ce didacticiel, nous allons créer une seule machine virtuelle à l’aide d’un seul lecteur de disque à partir d’une image Bonjour SQL galerie. Nous allons créer de nouveaux fournisseurs de stockage de hello, réseau et les ressources de calcul qui seront utilisées par l’ordinateur virtuel de hello. Si vous avez déjà des fournisseurs pour ces ressources, vous pouvez les utiliser.
 
-Si vous avez besoin de la version classique de cette rubrique, consultez la page [Approvisionner une machine virtuelle SQL Server à l’aide d’Azure PowerShell (Classic)](../classic/ps-sql-create.md).
+Si vous avez besoin de hello version classique de cette rubrique, consultez [configurer un ordinateur virtuel de SQL Server à l’aide de PowerShell Azure Classic](../classic/ps-sql-create.md).
 
-## <a name="prerequisites"></a>Configuration requise
+## <a name="prerequisites"></a>Composants requis
 Pour ce didacticiel, vous devez disposer des éléments suivants :
 
 * Un compte Azure et un abonnement, avant de commencer. Si vous n’en avez pas, inscrivez-vous pour un [essai gratuit](https://azure.microsoft.com/pricing/free-trial/).
 * [Azure PowerShell](/powershell/azure/overview)1.4.0 ou version ultérieure (ce didacticiel a été écrit avec la version 1.5.0).
-  * Pour récupérer votre version, tapez **Get-Module Azure -ListAvailable**.
+  * tooretrieve votre version, le type **Azure de Get-Module - ListAvailable**.
 
 ## <a name="configure-your-subscription"></a>Configurer votre abonnement
-Ouvrez Windows PowerShell et accédez à votre compte Azure en exécutant l’applet de commande suivante. Un écran de connexion vous invite à entrer vos informations d’identification. Utilisez l'adresse électronique et le mot de passe que vous utilisez pour vous connecter au portail Azure.
+Ouvrez Windows PowerShell et établir un accès tooyour compte Azure en exécutant hello suivant l’applet de commande. S’affiche avec un signe dans l’écran tooenter vos informations d’identification. Utilisez hello même courrier électronique et le mot de passe que vous utilisez toosign dans toohello portail Azure.
 
     Add-AzureRmAccount
 
-Une fois que vous êtes connecté, l’écran affiche plusieurs informations, dont l’ID d’abonnement avec lequel vous vous êtes identifié. Il s’agit de l’abonnement dans lequel les ressources de ce didacticiel vont être créées, sauf si vous en changez. Si vous avez plusieurs ID d’abonnement, exécutez l’applet de commande suivante pour renvoyer la liste de tous vos ID d’abonnement :
+Une fois connecté avec succès, vous verrez des informations sur l’écran qui inclut l’ID d’abonnement hello avec lequel vous êtes dans. Il s’agit d’abonnement hello dans lequel les ressources hello pour ce didacticiel sont créées, sauf si vous modifiez tooa autre abonnement. Si vous avez plusieurs abonnement, exécutez hello suivant l’applet de commande tooreturn une liste de tous les de votre abonnement :
 
     Get-AzureRmSubscription
 
-Pour basculer vers un autre ID d’abonnement, exécutez l’applet de commande avec l’ID d’abonnement souhaité.
+toochange tooanother ID d’abonnement, exécutez hello suivant l’applet de commande avec votre ID d’abonnement souhaité.
 
     Select-AzureRmSubscription -SubscriptionId xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 
 ## <a name="define-image-variables"></a>Définir des variables d’image
-Pour simplifier l’utilisation et la compréhension du script complet de ce didacticiel, nous allons commencer par définir plusieurs variables. Modifiez les valeurs des paramètres comme vous le souhaitez, mais sachez que des restrictions s’appliquent à la longueur des noms et aux caractères spéciaux en cas de modification des valeurs fournies.
+utilisation de toosimplify et la compréhension du script hello effectuée à partir de ce didacticiel, nous allons commencer en définissant un nombre de variables. Modifier les valeurs de paramètre de hello que vous convenance mais Méfiez-vous des caractères spéciaux et les longueurs de tooname connexes de restrictions d’affectation de noms lors de la modification des valeurs hello fournies.
 
 ### <a name="location-and-resource-group"></a>Emplacement et groupe de ressources
-Utilisez deux variables pour définir la région des données et le groupe de ressources dans lequel vous allez créer les autres ressources de la machine virtuelle.
+Utilisez les deux variables toodefine hello données hello et zone de groupe de ressources dans lequel vous allez créer vos autres ressources pour la machine virtuelle de hello hello.
 
-Apportez les modifications souhaitées, puis exécutez les applets de commande suivantes pour initialiser ces variables.
+Modifiez-le selon vos besoins, puis exécutez hello suivant d’applets de commande tooinitialize à ces variables.
 
     $Location = "SouthCentralUS"
     $ResourceGroupName = "sqlvm1"
 
 ### <a name="storage-properties"></a>Propriétés de stockage
-Utilisez les variables suivantes pour définir le compte de stockage et le type de stockage à utiliser par la machine virtuelle.
+Utilisez hello suivant variables toodefine hello compte et hello type de stockage de toobe de stockage utilisé par l’ordinateur virtuel de hello.
 
-Apportez les modifications souhaitées, puis exécutez l’applet de commande suivante pour initialiser ces variables. Notez que, dans cet exemple, nous utilisons [Premium Storage](../../../storage/common/storage-premium-storage.md), qui est recommandé pour les charges de travail de production. Pour plus d’informations et d’autres recommandations, consultez [Meilleures pratiques relatives aux performances de SQL Server dans Azure Virtual Machines](virtual-machines-windows-sql-performance.md).
+Modifiez-le selon vos besoins, puis exécutez hello suivant tooinitialize de l’applet de commande à ces variables. Notez que, dans cet exemple, nous utilisons [Premium Storage](../../../storage/common/storage-premium-storage.md), qui est recommandé pour les charges de travail de production. Pour plus d’informations et d’autres recommandations, consultez [Meilleures pratiques relatives aux performances de SQL Server dans Azure Virtual Machines](virtual-machines-windows-sql-performance.md).
 
     $StorageName = $ResourceGroupName + "storage"
     $StorageSku = "Premium_LRS"
 
 ### <a name="network-properties"></a>Propriétés du réseau
-Utilisez les variables suivantes pour définir l’interface réseau, la méthode d’allocation TCP/IP, le nom du réseau virtuel, le nom du sous-réseau virtuel, la plage d’adresses IP du réseau virtuel, la plage d’adresses IP du sous-réseau et le libellé du nom de domaine public à utiliser par le réseau dans la machine virtuelle.
+Utilisez hello suivant l’interface de réseau variables toodefine hello, méthode d’allocation de TCP/IP hello, nom de réseau virtuel hello, nom de sous-réseau virtuel hello, hello plage d’adresses IP pour le réseau virtuel de hello, hello plage d’adresses IP pour le sous-réseau de hello et hello domaine public toobe d’étiquette nom utilisé par le réseau hello dans la machine virtuelle de hello.
 
-Apportez les modifications souhaitées, puis exécutez l’applet de commande suivante pour initialiser ces variables.
+Modifiez-le selon vos besoins, puis exécutez hello suivant tooinitialize de l’applet de commande à ces variables.
 
     $InterfaceName = $ResourceGroupName + "ServerInterface"
     $TCPIPAllocationMethod = "Dynamic"
@@ -86,9 +86,9 @@ Apportez les modifications souhaitées, puis exécutez l’applet de commande su
     $DomainName = "sqlvm1"
 
 ### <a name="virtual-machine-properties"></a>Propriétés de machine virtuelle
-Utilisez les variables suivantes pour définir le nom de la machine virtuelle, le nom de l’ordinateur, la taille de la machine virtuelle et le nom du disque du système d’exploitation de la machine virtuelle.
+Utilisez hello suivant le nom d’ordinateur virtuel de variables toodefine hello, Nom_Ordinateur hello, taille de machine virtuelle hello et nom du disque de système d’exploitation pour la machine virtuelle de hello hello.
 
-Apportez les modifications souhaitées, puis exécutez l’applet de commande suivante pour initialiser ces variables.
+Modifiez-le selon vos besoins, puis exécutez hello suivant tooinitialize de l’applet de commande à ces variables.
 
     $VMName = $ResourceGroupName + "VM"
     $ComputerName = $ResourceGroupName + "Server"
@@ -96,147 +96,147 @@ Apportez les modifications souhaitées, puis exécutez l’applet de commande su
     $OSDiskName = $VMName + "OSDisk"
 
 ### <a name="image-properties"></a>Propriétés de l’image
-Utilisez les variables suivantes pour définir l’image à utiliser pour la machine virtuelle. Dans cet exemple, l’image d’évaluation SQL Server 2016 Enterprise est utilisée.
+Utilisez hello suivant variables toodefine hello image toouse pour la machine virtuelle de hello. Dans cet exemple, l’image de SQL Server 2016 Enterprise hello est utilisé.
 
-Apportez les modifications souhaitées, puis exécutez l’applet de commande suivante pour initialiser ces variables.
+Modifiez-le selon vos besoins, puis exécutez hello suivant tooinitialize de l’applet de commande à ces variables.
 
     $PublisherName = "MicrosoftSQLServer"
     $OfferName = "SQL2016-WS2016"
     $Sku = "Enterprise"
     $Version = "latest"
 
-Notez que vous pouvez obtenir la liste complète des images SQL Server avec la commande Get-AzureRmVMImageOffer :
+Notez que vous pouvez obtenir une liste complète des offres d’image de SQL Server avec la commande hello Get-AzureRmVMImageOffer :
 
     Get-AzureRmVMImageOffer -Location 'East US' -Publisher 'MicrosoftSQLServer'
 
-Et vous pouvez voir les références SKU disponibles pour une offre avec la commande Get-AzureRmVMImageSku. La commande suivante affiche toutes les références disponibles pour l’offre **SQL2014SP1-WS2012R2** .
+Et vous pouvez voir hello références (SKU) disponible pour une offre avec la commande Get-AzureRmVMImageSku de hello. Hello commande suivante affiche toutes les références (SKU) disponible pour hello **SQL2014SP1-WS2012R2** offre.
 
     Get-AzureRmVMImageSku -Location 'East US' -Publisher 'MicrosoftSQLServer' -Offer 'SQL2014SP1-WS2012R2' | Select Skus
 
 ## <a name="create-a-resource-group"></a>Créer un groupe de ressources
-Avec le modèle de déploiement Resource Manager, le premier objet que vous créez est le groupe de ressources. Nous allons utiliser l’applet de commande [New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup) pour créer un groupe de ressources Azure et ses ressources avec le nom et l’emplacement du groupe de ressources définis par les variables que vous avez déjà initialisées.
+Avec le modèle de déploiement du Gestionnaire de ressources hello, hello premier objet que vous créez est le groupe de ressources hello. Nous allons utiliser hello [New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup) toocreate de l’applet de commande un groupe de ressources Azure et ses ressources avec des ressources de hello groupe le nom et l’emplacement défini par des variables hello que vous avez déjà initialisé.
 
-Exécutez l’applet de commande suivante pour créer votre groupe de ressources.
+Exécutez hello suivant l’applet de commande toocreate votre nouveau groupe de ressources.
 
     New-AzureRmResourceGroup -Name $ResourceGroupName -Location $Location
 
-## <a name="create-a-storage-account"></a>Créer un compte de stockage
-La machine virtuelle nécessite des ressources de stockage pour le disque du système d’exploitation ainsi que pour les données et fichiers journaux de SQL Server. Pour plus de simplicité, nous allons créer un seul disque pour les deux. Vous pouvez attacher des disques supplémentaires ultérieurement, à l’aide de l’applet de commande [Add-Azure Disk](/powershell/module/azure/add-azuredisk) , pour placer vos données et vos fichiers journaux SQL Server sur des disques dédiés. Nous allons utiliser l’applet de commande [New-AzureRmStorageAccount](/powershell/module/azurerm.storage/new-azurermstorageaccount) pour créer un compte de stockage standard dans votre nouveau groupe de ressources, avec le nom du compte de stockage, le nom de référence du stockage et l’emplacement définis à l’aide des variables que vous avez déjà initialisées.
+## <a name="create-a-storage-account"></a>Créez un compte de stockage.
+Hello virtual machine nécessite des ressources de stockage pour le disque du système d’exploitation hello et hello de données SQL Server et les fichiers journaux. Pour plus de simplicité, nous allons créer un seul disque pour les deux. Vous pouvez attacher des disques supplémentaires ultérieurement à l’aide de hello [disque Add-Azure](/powershell/module/azure/add-azuredisk) applet de commande de commande tooplace vos données SQL Server et les journaux sur des disques dédiés. Nous allons utiliser hello [New-AzureRmStorageAccount](/powershell/module/azurerm.storage/new-azurermstorageaccount) toocreate de l’applet de commande un stockage standard de compte dans votre nouveau groupe de ressources et avec le nom de compte de stockage hello, nom de référence (SKU) de stockage et l’emplacement définis à l’aide de variables de hello que vous avez précédemment initialisé.
 
-Exécutez l’applet de commande suivante pour créer votre compte de stockage.
+Exécutez hello suivant l’applet de commande toocreate votre nouveau compte de stockage.
 
     $StorageAccount = New-AzureRmStorageAccount -ResourceGroupName $ResourceGroupName -Name $StorageName -SkuName $StorageSku -Kind "Storage" -Location $Location
 
 ## <a name="create-network-resources"></a>Créer des ressources réseau
-La machine virtuelle requiert plusieurs ressources réseau pour la connectivité réseau.
+machine virtuelle de Hello nécessite un nombre de ressources réseau pour la connectivité réseau.
 
 * Chaque machine virtuelle requiert un réseau virtuel.
 * Un réseau virtuel doit avoir au moins un sous-réseau.
 * Une interface réseau doit être définie avec une adresse IP privée ou publique.
 
 ### <a name="create-a-virtual-network-subnet-configuration"></a>Créer une configuration de sous-réseau de réseau virtuel
-Nous allons commencer par créer une configuration de sous-réseau pour notre réseau virtuel. Dans notre didacticiel, nous allons créer un sous-réseau par défaut à l’aide de l’applet de commande [New-AzureRmVirtualNetworkSubnetConfig](/powershell/module/azurerm.network/new-azurermvirtualnetworksubnetconfig) . Nous allons créer notre configuration de sous-réseau de réseau virtuel avec le nom et le préfixe d’adresse définis à l’aide des variables déjà initialisées.
+Nous allons commencer par créer une configuration de sous-réseau pour notre réseau virtuel. Pour notre didacticiel, nous allons créer un sous-réseau par défaut à l’aide de hello [New-AzureRmVirtualNetworkSubnetConfig](/powershell/module/azurerm.network/new-azurermvirtualnetworksubnetconfig) applet de commande. Nous allons créer notre configuration de sous-réseau de réseau virtuel avec hello nom et adresse de préfixe du sous-réseau défini à l’aide de variables hello que vous avez déjà initialisé.
 
 > [!NOTE]
-> Vous pouvez définir des propriétés supplémentaires dans la configuration de sous-réseau de réseau virtuel à l’aide de cette applet de commande, mais cela sort du cadre de ce didacticiel.
+> Vous pouvez définir des propriétés supplémentaires de la configuration de sous-réseau de réseau virtuel hello à l’aide de cette applet de commande, mais qui est abordée dans ce didacticiel hello.
 >
 >
 
-Exécutez l’applet de commande suivante pour créer la configuration de votre sous-réseau virtuel.
+Exécutez hello suivant toocreate de l’applet de commande de votre configuration de sous-réseau virtuel.
 
     $SubnetConfig = New-AzureRmVirtualNetworkSubnetConfig -Name $SubnetName -AddressPrefix $VNetSubnetAddressPrefix
 
 ### <a name="create-a-virtual-network"></a>Créez un réseau virtuel
-Ensuite, nous allons créer notre réseau virtuel à l’aide de l’applet de commande [New-AzureRmVirtualNetwork](/powershell/module/azurerm.network/new-azurermvirtualnetwork) . Nous allons créer notre réseau virtuel dans votre nouveau groupe de ressources, avec le nom, l’emplacement et le préfixe d’adresse définis avec les variables que vous avez déjà initialisées, et à l’aide de la configuration de sous-réseau définie à l’étape précédente.
+Ensuite, nous allons créer notre réseau virtuel à l’aide de hello [New-AzureRmVirtualNetwork](/powershell/module/azurerm.network/new-azurermvirtualnetwork) applet de commande. Nous allons créer notre réseau virtuel dans votre nouveau groupe de ressources, avec un préfixe d’adresse définie à l’aide de variables de hello précédemment initialisée et à l’aide de la configuration de sous-réseau hello que vous avez définie à l’étape précédente de hello, l’emplacement et nom de hello.
 
-Exécutez l’applet de commande suivante pour créer votre réseau virtuel.
+Exécutez hello suivant toocreate de l’applet de commande de votre réseau virtuel.
 
     $VNet = New-AzureRmVirtualNetwork -Name $VNetName -ResourceGroupName $ResourceGroupName -Location $Location -AddressPrefix $VNetAddressPrefix -Subnet $SubnetConfig
 
-### <a name="create-the-public-ip-address"></a>Créer une adresse IP publique
-Maintenant que nous avons défini notre réseau virtuel, nous devons configurer une adresse IP pour la connectivité à la machine virtuelle. Dans ce didacticiel, nous allons créer une adresse IP publique à l’aide de l’adressage IP dynamique pour la connectivité Internet. Nous allons utiliser l’applet de commande [New-AzureRmPublicIpAddress](/powershell/module/azurerm.network/new-azurermpublicipaddress) pour créer l’adresse IP publique dans le groupe de ressources déjà créé, avec le nom, l’emplacement, la méthode d’allocation et le libellé du nom de domaine DNS définis à l’aide des variables que vous avez déjà initialisées.
+### <a name="create-hello-public-ip-address"></a>Créer une adresse IP publique hello
+Maintenant que nous avons notre réseau virtuel défini, nous devons tooconfigure une adresse IP pour la machine virtuelle de toohello connectivité. Pour ce didacticiel, nous allons créer une adresse IP publique à l’aide de la connectivité Internet de toosupport d’adressage IP dynamique. Nous allons utiliser hello [New-AzureRmPublicIpAddress](/powershell/module/azurerm.network/new-azurermpublicipaddress) applet de commande toocreate hello adresse IP publique dans hello ressource groupe créé prevously et avec le nom de hello, l’emplacement, méthode d’allocation et étiquette de nom de domaine DNS défini à l’aide de hello variables que vous avez déjà initialisé.
 
 > [!NOTE]
-> Vous pouvez définir des propriétés supplémentaires de l’adresse IP publique à l’aide de cette applet de commande, mais cela sort du cadre de ce didacticiel. Vous pouvez également créer une adresse privée ou une adresse avec une adresse statique, mais cela sort du cadre de ce didacticiel.
+> Vous pouvez définir des propriétés supplémentaires de l’adresse IP publique hello à l’aide de cette applet de commande, mais qui est abordée dans ce didacticiel initial hello. Vous pouvez également créer une adresse privée ou une adresse avec une adresse statique, mais qui est également abordée dans ce didacticiel hello.
 >
 >
 
-Exécutez l’applet de commande suivante pour créer votre adresse IP publique.
+Exécutez hello suivant l’applet de commande toocreate votre adresse IP publique.
 
     $PublicIp = New-AzureRmPublicIpAddress -Name $InterfaceName -ResourceGroupName $ResourceGroupName -Location $Location -AllocationMethod $TCPIPAllocationMethod -DomainNameLabel $DomainName
 
-### <a name="create-the-network-interface"></a>Créer l’interface réseau
-Nous sommes maintenant prêts à créer l’interface réseau que notre machine virtuelle utilisera. Nous allons utiliser l’applet de commande [New-AzureRmNetworkInterface](/powershell/module/azurerm.network/new-azurermnetworkinterface) pour créer notre interface réseau dans le groupe de ressources déjà créé, et avec le nom, l’emplacement, le sous-réseau et l’adresse IP publique définis auparavant.
+### <a name="create-hello-network-interface"></a>Créer l’interface de réseau hello
+Nous sommes maintenant interface réseau hello prêt toocreate notre ordinateur virtuel utilisera. Nous allons utiliser hello [New-AzureRmNetworkInterface](/powershell/module/azurerm.network/new-azurermnetworkinterface) toocreate de l’applet de commande notre interface réseau dans le groupe de ressources hello créé précédemment et avec le nom de hello, l’emplacement, sous-réseau et adresse IP publique définie précédemment.
 
-Exécutez l’applet de commande suivante pour créer votre interface réseau.
+Exécutez hello suivant l’applet de commande toocreate votre interface réseau.
 
     $Interface = New-AzureRmNetworkInterface -Name $InterfaceName -ResourceGroupName $ResourceGroupName -Location $Location -SubnetId $VNet.Subnets[0].Id -PublicIpAddressId $PublicIp.Id
 
 ## <a name="configure-a-vm-object"></a>Configurer un objet de machine virtuelle
-Maintenant que nous avons défini les ressources réseau et de stockage, nous pouvons définir les ressources de calcul de la machine virtuelle. Dans notre didacticiel, nous allons configurer la taille de la machine virtuelle et plusieurs propriétés du système d’exploitation, spécifier l’interface réseau que nous avons créée auparavant, définir le Blob Storage et identifier le disque du système d’exploitation.
+Maintenant que nous avons des ressources réseau et de stockage définies, nous sommes les ressources de calcul toodefine prêt pour la machine virtuelle de hello. Pour notre didacticiel, nous sera spécifier la taille de machine virtuelle hello et diverses propriétés de système d’exploitation, spécifiez hello une interface réseau que vous avez créée précédemment, définir le stockage d’objets blob, puis spécifiez le disque du système d’exploitation hello.
 
-### <a name="create-the-vm-object"></a>Créer l’objet de machine virtuelle
-Nous allons commencer par spécifier la taille de la machine virtuelle. Dans ce didacticiel, nous spécifions une DS13. Nous allons utiliser l’applet de commande [New-AzureRmVMConfig](/powershell/module/azurerm.compute/new-azurermvmconfig) pour créer une machine virtuelle configurable, avec le nom et la taille définis à l’aide des variables que vous avez déjà initialisées.
+### <a name="create-hello-vm-object"></a>Créer l’objet d’ordinateur virtuel hello
+Nous allons commencer en spécifiant la taille de machine virtuelle hello. Dans ce didacticiel, nous spécifions une DS13. Nous allons utiliser hello [New-AzureRmVMConfig](/powershell/module/azurerm.compute/new-azurermvmconfig) toocreate de l’applet de commande un objet configurables par l’ordinateur virtuel avec le nom de hello et la taille définie à l’aide de variables hello que vous avez déjà initialisé.
 
-Exécutez l’applet de commande suivante pour créer l’objet de machine virtuelle.
+Exécutez hello suivant l’objet d’ordinateur virtuel d’applet de commande toocreate hello.
 
     $VirtualMachine = New-AzureRmVMConfig -VMName $VMName -VMSize $VMSize
 
-### <a name="create-a-credential-object-to-hold-the-name-and-password-for-the-local-administrator-credentials"></a>Créer un objet d’informations d’identification pour stocker le nom et le mot de passe de l’administrateur local
-Avant de définir les propriétés du système d’exploitation de la machine virtuelle, nous devons indiquer les informations d’identification du compte d’administrateur local sous la forme d’une chaîne de caractères sécurisée. Pour ce faire, nous allons utiliser l’applet de commande [Get-Credential](https://technet.microsoft.com/library/hh849815.aspx) .
+### <a name="create-a-credential-object-toohold-hello-name-and-password-for-hello-local-administrator-credentials"></a>Créer un nom de hello toohold l’objet d’informations d’identification et un mot de passe pour les informations d’identification d’administrateur local de hello
+Nous pouvons définir les propriétés de système d’exploitation hello pour la machine virtuelle de hello, nous devons informations d’identification de toosupply hello pour le compte d’administrateur local hello sous forme de chaîne sécurisée. tooaccomplish, nous allons utiliser hello [Get-Credential](https://technet.microsoft.com/library/hh849815.aspx) applet de commande.
 
-Exécutez l’applet de commande suivante puis, dans la fenêtre de demande d’informations d’identification Windows PowerShell, tapez le nom et le mot de passe à utiliser pour le compte d’administrateur local sur la machine virtuelle Windows.
+Exécutez hello suivant l’applet de commande et, dans la fenêtre de demande d’informations d’identification hello Windows PowerShell, tapez toouse de hello nom et mot de passe pour le compte d’administrateur local hello dans l’ordinateur virtuel Windows hello.
 
-    $Credential = Get-Credential -Message "Type the name and password of the local administrator account."
+    $Credential = Get-Credential -Message "Type hello name and password of hello local administrator account."
 
-### <a name="set-the-operating-system-properties-for-the-virtual-machine"></a>Configurer les propriétés du système d’exploitation de la machine virtuelle
-Nous pouvons maintenant configurer les propriétés du système d’exploitation de la machine virtuelle. Nous allons utiliser l’applet de commande [Set-AzureRmVMOperatingSystem](/powershell/module/azurerm.compute/set-azurermvmoperatingsystem) pour configurer le système d’exploitation Windows, exiger l’installation de [l’agent de machine virtuelle](../classic/agents-and-extensions.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json), spécifier que l’applet de commande active la mise à jour automatique et définir le nom de la machine virtuelle, le nom de l’ordinateur et les informations d’identification à l’aide des variables que vous avez déjà initialisées.
+### <a name="set-hello-operating-system-properties-for-hello-virtual-machine"></a>Définir les propriétés de système d’exploitation hello pour la machine virtuelle de hello
+Nous sommes maintenant les propriétés de système d’exploitation de l’ordinateur virtuel tooset prêt hello. Nous allons utiliser hello [Set-AzureRmVMOperatingSystem](/powershell/module/azurerm.compute/set-azurermvmoperatingsystem) type de hello tooset applet de commande du système d’exploitation Windows, nécessitent hello [agent de machine virtuelle](../classic/agents-and-extensions.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json) toobe installé, spécifiez cette applet de commande hello active automatiquement mettre à jour et définir le nom de machine virtuelle hello, Nom_Ordinateur hello et informations d’identification hello à l’aide de variables hello que vous avez déjà initialisé.
 
-Exécutez l’applet de commande suivante pour définir les propriétés du système d’exploitation de votre machine virtuelle.
+Exécutez hello suivant des propriétés de système d’exploitation tooset hello applet de commande pour votre machine virtuelle.
 
     $VirtualMachine = Set-AzureRmVMOperatingSystem -VM $VirtualMachine -Windows -ComputerName $ComputerName -Credential $Credential -ProvisionVMAgent -EnableAutoUpdate
 
-### <a name="add-the-network-interface-to-the-virtual-machine"></a>Ajouter l’interface réseau à la machine virtuelle
-Ensuite, nous allons ajouter l’interface réseau précédemment créée à la machine virtuelle. Nous allons utiliser l’applet de commande [Add-AzureRmVMNetworkInterface](/powershell/module/azurerm.compute/add-azurermvmnetworkinterface) pour ajouter l’interface réseau à l’aide de la variable d’interface réseau définie auparavant.
+### <a name="add-hello-network-interface-toohello-virtual-machine"></a>Ajouter une machine virtuelle de hello réseau interface toohello
+Ensuite, nous allons ajouter interface de réseau hello que nous avons créé précédemment toohello machine virtuelle. Nous allons utiliser hello [Add-AzureRmVMNetworkInterface](/powershell/module/azurerm.compute/add-azurermvmnetworkinterface) interface de réseau hello tooadd applet de commande à l’aide de la variable d’interface réseau hello que vous avez défini précédemment.
 
-Exécutez l’applet de commande suivante pour définir l’interface réseau de votre machine virtuelle.
+Exécutez hello suivant l’interface de réseau tooset hello applet de commande pour votre machine virtuelle.
 
     $VirtualMachine = Add-AzureRmVMNetworkInterface -VM $VirtualMachine -Id $Interface.Id
 
-### <a name="set-the-blob-storage-location-for-the-disk-to-be-used-by-the-virtual-machine"></a>Définir l’emplacement de Blob Storage du disque à utiliser par la machine virtuelle
-Ensuite, nous allons définir l’emplacement de Blob Storage du disque à utiliser par la machine virtuelle à l’aide des variables définies auparavant.
+### <a name="set-hello-blob-storage-location-for-hello-disk-toobe-used-by-hello-virtual-machine"></a>Définir l’emplacement de stockage d’objets blob hello pour hello toobe de disque utilisé par l’ordinateur virtuel de hello
+Ensuite, nous allons définir emplacement de stockage d’objets blob hello pour hello toobe de disque utilisé par l’ordinateur virtuel de hello à l’aide de variables hello que vous avez défini précédemment.
 
-Exécutez l’applet de commande suivante pour définir l’emplacement de Blob Storage.
+Exécutez hello suivant l’emplacement de stockage des objets blob applet de commande tooset hello.
 
     $OSDiskUri = $StorageAccount.PrimaryEndpoints.Blob.ToString() + "vhds/" + $OSDiskName + ".vhd"
 
-### <a name="set-the-operating-system-disk-properties-for-the-virtual-machine"></a>Configurer les propriétés du disque du système d’exploitation de la machine virtuelle
-Ensuite, nous allons configurer les propriétés du disque du système d’exploitation de la machine virtuelle. Nous allons utiliser l’applet de commande [Set-AzureRmVMOSDisk](/powershell/module/azurerm.compute/set-azurermvmosdisk) pour spécifier que le système d’exploitation de la machine virtuelle proviendra d’une image, pour définir la mise en cache en lecture seule (car SQL Server est installé sur le même disque) et spécifier le nom de la machine virtuelle ainsi que le disque du système d’exploitation définis à l’aide des variables configurées auparavant.
+### <a name="set-hello-operating-system-disk-properties-for-hello-virtual-machine"></a>Définir des propriétés du disque pour la machine virtuelle de hello de système d’exploitation de hello
+Ensuite, nous allons définir système d’exploitation de hello propriétés du disque pour la machine virtuelle de hello. Nous allons utiliser hello [Set-AzureRmVMOSDisk](/powershell/module/azurerm.compute/set-azurermvmosdisk) toospecify d’applet de commande qui hello du système d’exploitation pour la machine virtuelle de hello est issu d’une image, tooset tooread uniquement la mise en cache (étant donné que SQL Server est installé sur hello même disque) et définir nom d’ordinateur virtuel Hello et disque de système d’exploitation hello définis à l’aide de variables hello définie précédemment.
 
-Exécutez l’applet de commande suivante pour configurer les propriétés du disque du système d’exploitation de votre machine virtuelle.
+Exécutez hello suivant des propriétés de disque de système d’exploitation applet de commande tooset hello pour votre machine virtuelle.
 
     $VirtualMachine = Set-AzureRmVMOSDisk -VM $VirtualMachine -Name $OSDiskName -VhdUri $OSDiskUri -Caching ReadOnly -CreateOption FromImage
 
-### <a name="specify-the-platform-image-for-the-virtual-machine"></a>Spécifier l’image de plateforme de la machine virtuelle
-Notre dernière étape de configuration consiste à spécifier l’image de plateforme de notre machine virtuelle. Dans notre didacticiel, nous utilisons la dernière image en date de SQL Server 2016 CTP. Nous allons utiliser l’applet de commande [Set-AzureRmVMSourceImage](/powershell/module/azurerm.compute/set-azurermvmsourceimage) pour utiliser cette image définie par les variables définies auparavant.
+### <a name="specify-hello-platform-image-for-hello-virtual-machine"></a>Spécifiez l’image de plateforme hello pour la machine virtuelle de hello
+Notre dernière étape de configuration est l’image de plateforme toospecify hello pour notre machine virtuelle. Pour notre didacticiel, nous utilisons dernière image de SQL Server 2016 CTP hello. Nous allons utiliser hello [Set-AzureRmVMSourceImage](/powershell/module/azurerm.compute/set-azurermvmsourceimage) toouse de l’applet de commande cette image comme défini par les variables hello que vous avez défini précédemment.
 
-Exécutez l’applet de commande suivante pour définir l’image de plateforme de votre machine virtuelle.
+Exécutez hello suivant l’image de plateforme toospecify hello applet de commande pour votre machine virtuelle.
 
     $VirtualMachine = Set-AzureRmVMSourceImage -VM $VirtualMachine -PublisherName $PublisherName -Offer $OfferName -Skus $Sku -Version $Version
 
-## <a name="create-the-sql-vm"></a>Créer la machine virtuelle SQL
-Une fois les étapes de configuration terminées, vous pouvez créer la machine virtuelle. Nous allons utiliser l’applet de commande [New-AzureRmVM](/powershell/module/azurerm.compute/new-azurermvm) pour créer la machine virtuelle à l’aide des variables que nous avons définies.
+## <a name="create-hello-sql-vm"></a>Créer hello SQL VM
+Maintenant que vous avez terminé les étapes de configuration hello, vous êtes prêt toocreate hello virtual machine. Nous allons utiliser hello [New-AzureRmVM](/powershell/module/azurerm.compute/new-azurermvm) applet de commande toocreate hello virtual machine à l’aide de variables hello que nous avons définie.
 
-Exécutez l’applet de commande suivante pour créer votre machine virtuelle.
+Exécutez hello suivant toocreate de l’applet de commande à votre machine virtuelle.
 
     New-AzureRmVM -ResourceGroupName $ResourceGroupName -Location $Location -VM $VirtualMachine
 
-La machine virtuelle est créée. Remarquez qu’un compte de stockage standard est créé pour les diagnostics de démarrage, car le compte de stockage spécifié pour le disque de la machine virtuelle est un compte Premium Storage.
+machine virtuelle de Hello est créé. Notez qu’un compte de stockage standard est créé pour les diagnostics de démarrage car hello spécifié de compte de stockage pour le disque de l’ordinateur virtuel de hello est un compte de stockage premium.
 
-Vous pouvez maintenant afficher cette machine dans le portail Azure pour [voir son adresse IP publique et son nom de domaine complet](virtual-machines-windows-portal-sql-server-provision.md).
+Vous pouvez maintenant afficher cet ordinateur dans hello Azure Portal toosee [son adresse IP publique et son nom de domaine complet](virtual-machines-windows-portal-sql-server-provision.md).
 
 ## <a name="example-script"></a>Exemple de script
-Le script suivant contient le script PowerShell complet pour ce didacticiel. Nous considérons que vous avez déjà configuré l’abonnement Azure à utiliser avec les commandes **Add-AzureRmAccount** et **Select-AzureRmSubscription**.
+Hello script suivant contient complète du script PowerShell hello pour ce didacticiel. Il suppose que vous avez déjà le programme d’installation hello abonnement Azure toouse avec hello **Add-AzureRmAccount** et **sélectionnez-AzureRmSubscription** commandes.
 
     # Variables
     ## Global
@@ -281,7 +281,7 @@ Le script suivant contient le script PowerShell complet pour ce didacticiel. Nou
 
     # Compute
     $VirtualMachine = New-AzureRmVMConfig -VMName $VMName -VMSize $VMSize
-    $Credential = Get-Credential -Message "Type the name and password of the local administrator account."
+    $Credential = Get-Credential -Message "Type hello name and password of hello local administrator account."
     $VirtualMachine = Set-AzureRmVMOperatingSystem -VM $VirtualMachine -Windows -ComputerName $ComputerName -Credential $Credential -ProvisionVMAgent -EnableAutoUpdate #-TimeZone = $TimeZone
     $VirtualMachine = Add-AzureRmVMNetworkInterface -VM $VirtualMachine -Id $Interface.Id
     $OSDiskUri = $StorageAccount.PrimaryEndpoints.Blob.ToString() + "vhds/" + $OSDiskName + ".vhd"
@@ -290,9 +290,9 @@ Le script suivant contient le script PowerShell complet pour ce didacticiel. Nou
     # Image
     $VirtualMachine = Set-AzureRmVMSourceImage -VM $VirtualMachine -PublisherName $PublisherName -Offer $OfferName -Skus $Sku -Version $Version
 
-    ## Create the VM in Azure
+    ## Create hello VM in Azure
     New-AzureRmVM -ResourceGroupName $ResourceGroupName -Location $Location -VM $VirtualMachine
 
 ## <a name="next-steps"></a>Étapes suivantes
-Une fois la machine virtuelle créée, vous pouvez vous y connecter à l’aide du protocole RDP et en configurant la connectivité. Pour plus d’informations, consultez [Se connecter à une machine virtuelle SQL Server sur Azure (Resource Manager)](virtual-machines-windows-sql-connect.md).
+Après la création de la machine virtuelle de hello, vous êtes prêt tooconnect toohello virtuels à l’aide de la connexion RDP et le programme d’installation. Pour plus d’informations, consultez [connecter tooa Machine virtuelle de SQL Server sur Azure (Resource Manager)](virtual-machines-windows-sql-connect.md).
 

@@ -1,6 +1,6 @@
 ---
-title: Tailles des machines virtuelles Linux Azure - GPU | Microsoft Docs
-description: "Répertorie les différentes tailles de GPU optimisées disponibles pour les machines virtuelles Linux dans Azure."
+title: "tailles d’aaaAzure Linux VM - GPU | Documents Microsoft"
+description: "Répertorie les tailles GPU optimisé hello différents disponibles pour les ordinateurs virtuels Linux dans Azure."
 services: virtual-machines-linux
 documentationcenter: 
 author: jonbeck7
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 07/28/2017
 ms.author: jonbeck
-ms.openlocfilehash: 5c9bf89feba519147b07f2810fe4da882664e89e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: e98f720499be37df4048aeb513aa4f6b187b7335
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="gpu-linux-vm-sizes"></a>Tailles de machine virtuelle Linux GPU
 
@@ -34,7 +34,7 @@ Pour les étapes d’installation et de vérification des pilotes, consultez l�
 
 [!INCLUDE [virtual-machines-n-series-considerations](../../../includes/virtual-machines-n-series-considerations.md)]
 
-* Nous ne recommandons pas l’installation d’un serveur spécifique ou d’autres systèmes qui utilisent le pilote nouveau sur les machines virtuelles Ubuntu NC. Avant d’installer les pilotes GPU NVIDIA, vous devez désactiver le pilote nouveau.  
+* Nous ne vous recommandons d’installer X server ou d’autres systèmes qui utilisent le pilote de nouveau hello sur des machines virtuelles de NC Ubuntu. Avant d’installer les pilotes NVIDIA GPU, vous avez besoin d’un pilote de nouveau toodisable hello.  
 
 ## <a name="other-sizes"></a>Autres tailles
 - [Usage général](sizes-general.md)

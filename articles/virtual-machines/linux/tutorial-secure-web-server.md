@@ -1,6 +1,6 @@
 ---
-title: "Sécuriser un serveur web à l’aide de certificats SSL dans Azure | Microsoft Docs"
-description: "Découvrez comment sécuriser le serveur web NGINX à l’aide de certificats SSL sur une machine virtuelle Linux dans Azure"
+title: aaaSecure un serveur web avec SSL des certificats dans Azure | Documents Microsoft
+description: "Découvrez comment les certificats serveur de web NGINX toosecure hello avec SSL sur un VM Linux dans Azure"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: iainfoulds
@@ -16,40 +16,40 @@ ms.workload: infrastructure
 ms.date: 07/17/2017
 ms.author: iainfou
 ms.custom: mvc
-ms.openlocfilehash: 181be35aeb61020db3abaeba22aa882848923c31
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: d3a62d77ac05c9aa2a44356b7c8e44cb485b81aa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="secure-a-web-server-with-ssl-certificates-on-a-linux-virtual-machine-in-azure"></a>Sécuriser un serveur web à l’aide de certificats SSL sur une machine virtuelle Linux dans Azure
-Pour sécuriser les serveurs web, vous pouvez utiliser un certificat SSL (Secure Sockets Layer) et chiffrer ainsi le trafic web. Ces certificats SSL peuvent être stockés dans Azure Key Vault et autoriser des déploiements sécurisés de certificats sur des machines virtuelles Linux dans Azure. Ce didacticiel vous explique comment effectuer les opérations suivantes :
+les serveurs web toosecure, un certificat ultérieurement SSL (Secure Sockets) peut être utilisé tooencrypt le trafic web. Ces certificats SSL peuvent être stockées dans le coffre de clés Azure et autoriser des déploiements sécurisés de certificats tooLinux virtual machines virtuelles dans Azure. Ce didacticiel vous explique comment effectuer les opérations suivantes :
 
 > [!div class="checklist"]
 > * Créer un Azure Key Vault
-> * Générer ou télécharger un certificat dans Key Vault
-> * Créer une machine virtuelle et installer le serveur web NGINX
-> * Injecter le certificat dans la machine virtuelle et configurer NGINX à l’aide d’une liaison SSL
+> * Générer ou télécharger un certificat de toohello le coffre de clés
+> * Créer une machine virtuelle et installer le serveur web hello NGINX
+> * Injecter du certificat de hello dans hello machine virtuelle et configurer NGINX avec une liaison SSL
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-Si vous choisissez d’installer et d’utiliser l’interface de ligne de commande localement, vous devez exécuter Azure CLI version 2.0.4 ou une version ultérieure pour poursuivre la procédure décrite dans ce didacticiel. Exécutez `az --version` pour trouver la version. Si vous devez installer ou mettre à niveau, consultez [Installation d’Azure CLI 2.0]( /cli/azure/install-azure-cli).  
+Si vous choisissez tooinstall et que vous utilisez hello CLI localement, ce didacticiel nécessite que vous exécutez hello CLI d’Azure version 2.0.4 ou version ultérieure. Exécutez `az --version` version de hello toofind. Si vous avez besoin de tooinstall ou mise à niveau, consultez [installer Azure CLI 2.0]( /cli/azure/install-azure-cli).  
 
 
 ## <a name="overview"></a>Vue d'ensemble
-Azure Key Vault protège les clés de chiffrement et les secrets, tels que les certificats ou les mots de passe. Key Vault rationalise le processus de gestion de certificats et vous permet de garder le contrôle sur les clés d’accès à ces certificats. Vous pouvez créer un certificat auto-signé à l’intérieur de Key Vault ou charger un certificat approuvé existant que vous avez déjà.
+Azure Key Vault protège les clés de chiffrement et les secrets, tels que les certificats ou les mots de passe. Coffre de clés permet de rationaliser le processus de gestion des certificats hello et vous permet de contrôler toomaintain clés qui accèdent à ces certificats. Vous pouvez créer un certificat auto-signé à l’intérieur de Key Vault ou charger un certificat approuvé existant que vous avez déjà.
 
-Au lieu d’utiliser une image de machine virtuelle personnalisée qui inclut des certificats intégrés, vous injectez des certificats dans une machine virtuelle en cours d’exécution. Ce processus garantit que les certificats les plus récents sont installés sur un serveur web pendant le déploiement. Si vous renouvelez ou remplacez un certificat, vous n’êtes pas non plus obligé de créer une image de machine virtuelle personnalisée. Les certificats les plus récents sont automatiquement injectés à la création des machines virtuelles supplémentaires. Pendant tout le processus, les certificats ne quittent jamais la plateforme Azure, ni ne sont exposés dans un script, un historique de ligne de commande ou un modèle.
+Au lieu d’utiliser une image de machine virtuelle personnalisée qui inclut des certificats intégrés, vous injectez des certificats dans une machine virtuelle en cours d’exécution. Ce processus garantit que les certificats hello plus récentes sont installés sur un serveur web pendant le déploiement. Si vous renouvelez ou remplacez un certificat, vous ne pouvez toocreate une nouvelle image de machine virtuelle personnalisée. certificats de dernière Hello sont automatiquement injectés que vous créez des machines virtuelles supplémentaires. Au cours de l’ensemble du processus hello, certificats hello jamais laisser hello plateforme Azure ou sont exposées dans un script, un historique de ligne de commande ou un modèle.
 
 
 ## <a name="create-an-azure-key-vault"></a>Créer un Azure Key Vault
-Avant de créer un coffre de clés et des certificats, créez un groupe de ressources avec [az group create](/cli/azure/group#create). L’exemple suivant crée un groupe de ressources nommé *myResourceGroupSecureWeb* à l’emplacement *eastus* :
+Avant de créer un coffre de clés et des certificats, créez un groupe de ressources avec [az group create](/cli/azure/group#create). Hello exemple suivant crée un groupe de ressources nommé *myResourceGroupSecureWeb* Bonjour *eastus* emplacement :
 
 ```azurecli-interactive 
 az group create --name myResourceGroupSecureWeb --location eastus
 ```
 
-Ensuite, créez un coffre de clés avec la commande [az keyvault create](/cli/azure/keyvault#create) et activez son utilisation lors du déploiement d’une machine virtuelle. Chaque Key Vault requiert un nom unique en minuscules. Remplacez *<mykeyvault>* dans l’exemple suivant par le nom unique de votre propre Key Vault :
+Ensuite, créez un coffre de clés avec la commande [az keyvault create](/cli/azure/keyvault#create) et activez son utilisation lors du déploiement d’une machine virtuelle. Chaque Key Vault requiert un nom unique en minuscules. Remplacez  *<mykeyvault>*  Bonjour votre propre nom de coffre de clés unique de l’exemple suivant :
 
 ```azurecli-interactive 
 keyvault_name=<mykeyvault>
@@ -60,7 +60,7 @@ az keyvault create \
 ```
 
 ## <a name="generate-a-certificate-and-store-in-key-vault"></a>Générer un certificat et le stocker dans Key Vault
-Dans un environnement de production, vous devez importer un certificat valide signé par un fournisseur approuvé à l’aide de la commande [az keyvault certificate import](/cli/azure/certificate#import). Pour ce didacticiel, l’exemple suivant vous montre comment générer un certificat auto-signé avec la commande [az keyvault certificate create](/cli/azure/certificate#create) qui utilise la stratégie de certificat par défaut :
+Dans un environnement de production, vous devez importer un certificat valide signé par un fournisseur approuvé à l’aide de la commande [az keyvault certificate import](/cli/azure/certificate#import). Pour ce didacticiel, hello suivant montre comment vous pouvez générer un certificat auto-signé avec [création de certificat de keyvault az](/cli/azure/certificate#create) qui utilise la stratégie de certificat par défaut hello :
 
 ```azurecli-interactive 
 az keyvault certificate create \
@@ -70,7 +70,7 @@ az keyvault certificate create \
 ```
 
 ### <a name="prepare-a-certificate-for-use-with-a-vm"></a>Préparer un certificat en vue de son utilisation avec une machine virtuelle
-Pour utiliser le certificat au cours du processus de création de la machine virtuelle, récupérez l’ID de votre certificat à l’aide de la commande [az keyvault secret list-versions](/cli/azure/keyvault/secret#list-versions). Utilisez la commande [az vm format-secret](/cli/azure/vm#format-secret) pour convertir le certificat. L’exemple suivant affecte la sortie de ces commandes à des variables, afin de simplifier la procédure dans les étapes suivantes :
+certificat de hello de toouse pendant hello VM créer un processus, obtenir l’ID hello de votre certificat avec [az keyvault secrète liste versions](/cli/azure/keyvault/secret#list-versions). Convertir le certificat hello avec [az vm format-secret](/cli/azure/vm#format-secret). Hello, l’exemple suivant attribue à sortie hello de toovariables de ces commandes pour faciliter l’utilisation Bonjour étapes suivantes :
 
 ```azurecli-interactive 
 secret=$(az keyvault secret list-versions \
@@ -80,12 +80,12 @@ secret=$(az keyvault secret list-versions \
 vm_secret=$(az vm format-secret --secret "$secret")
 ```
 
-### <a name="create-a-cloud-init-config-to-secure-nginx"></a>Créer une configuration cloud-init pour sécuriser NGINX
-[Cloud-init](https://cloudinit.readthedocs.io) est une méthode largement utilisée pour personnaliser une machine virtuelle Linux lors de son premier démarrage. Vous pouvez utiliser cloud-init pour installer des packages et écrire des fichiers, ou encore pour configurer des utilisateurs ou des paramètres de sécurité. Comme cloud-init s’exécute pendant le processus de démarrage initial, aucune autre étape ni aucun agent ne sont nécessaires pour appliquer votre configuration.
+### <a name="create-a-cloud-init-config-toosecure-nginx"></a>Créer un toosecure de configuration cloud-init NGINX
+[Init-cloud](https://cloudinit.readthedocs.io) est un toocustomize approche largement utilisée une VM Linux au démarrage pour hello première fois. Vous pouvez utiliser des packages tooinstall init de cloud et écrire des fichiers, ou de tooconfigure utilisateurs et de sécurité. Comme le cloud-init s’exécute pendant le processus de démarrage initial hello, il n’existe aucune étape supplémentaire ou agents tooapply votre configuration.
 
-Lorsque vous créez une machine virtuelle, les certificats et les clés sont stockés dans le répertoire */var/lib/waagent/* protégé. Pour automatiser l’ajout du certificat à la machine virtuelle et la configuration du serveur web, utilisez cloud-init. Dans cet exemple, nous installons et configurons le serveur web NGINX. Vous pouvez utiliser le même processus pour installer et configurer Apache. 
+Lorsque vous créez une machine virtuelle, les certificats et clés sont stockées dans hello protégé */var/lib/waagent/* active. l’ajout de tooautomate hello certificat toohello VM et configuration de serveur web de hello, utilisez init-cloud. Dans cet exemple, nous installer et configurer le serveur de web NGINX hello. Vous pouvez utiliser hello même processus tooinstall et que vous configurez Apache. 
 
-Créez un fichier nommé *cloud-init-web-server.txt* et collez la configuration suivante :
+Créez un fichier nommé *cloud-init-web-server.txt* et coller hello de configuration suivante :
 
 ```yaml
 #cloud-config
@@ -110,7 +110,7 @@ runcmd:
 ```
 
 ### <a name="create-a-secure-vm"></a>Créer une machine virtuelle sécurisée
-Créez maintenant une machine virtuelle avec la commande [az vm create](/cli/azure/vm#create). Les données de certificat sont injectées à partir de Key Vault avec le paramètre `--secrets`. Vous transmettez la configuration cloud-init à l’aide du paramètre `--custom-data` :
+Créez maintenant une machine virtuelle avec la commande [az vm create](/cli/azure/vm#create). les données de certificat Hello sont injectées dans le coffre de clés avec hello `--secrets` paramètre. Vous passez dans la configuration du cloud-init hello avec hello `--custom-data` paramètre :
 
 ```azurecli-interactive 
 az vm create \
@@ -123,9 +123,9 @@ az vm create \
     --secrets "$vm_secret"
 ```
 
-Vous devez patienter quelques minutes le temps que la machine virtuelle soit créée, que les packages soient installés et que l’application démarre. Une fois la machine virtuelle créée, notez la valeur de `publicIpAddress` qui s’affiche dans l’interface Azure CLI. Cette adresse est utilisée pour accéder à votre site à l’aide d’un navigateur web.
+Il prend quelques minutes pour hello toobe de machine virtuelle créée, hello packages tooinstall et toostart d’application hello. Lorsque hello machine virtuelle a été créé, prenez note de hello `publicIpAddress` affiché par hello CLI d’Azure. Cette adresse est utilisée tooaccess votre site dans un navigateur web.
 
-Pour autoriser le trafic web sécurisé à accéder à votre machine virtuelle, ouvrez le port 443 à partir d’Internet à l’aide de la commande [az vm open-port](/cli/azure/vm#open-port) :
+tooallow sécurisé tooreach du trafic web de votre machine virtuelle, ouvrir le port 443 à partir de hello Internet avec [ouvrir un ordinateur virtuel az-port](/cli/azure/vm#open-port):
 
 ```azurecli-interactive 
 az vm open-port \
@@ -135,12 +135,12 @@ az vm open-port \
 ```
 
 
-### <a name="test-the-secure-web-app"></a>Tester l’application web sécurisée
-Vous pouvez maintenant ouvrir un navigateur web et entrer *https://<publicIpAddress>* dans la barre d’adresse. Indiquez votre propre adresse IP publique à partir du processus de création de la machine virtuelle. Acceptez l’avertissement de sécurité si vous avez utilisé un certificat auto-signé :
+### <a name="test-hello-secure-web-app"></a>Application de test hello web sécurisé
+Vous pouvez désormais ouvrir un navigateur web et entrez *https://<publicIpAddress>*  dans la barre d’adresses hello. Fournissez vos propres adresse IP à partir de la machine virtuelle de hello créer le processus. Acceptez l’avertissement de sécurité hello si vous avez utilisé un certificat auto-signé :
 
 ![Accepter l’avertissement de sécurité du navigateur web](./media/tutorial-secure-web-server/browser-warning.png)
 
-Votre site NGINX sécurisé apparaît maintenant comme dans l’exemple suivant :
+Votre site NGINX sécurisé est ensuite affichée comme hello l’exemple suivant :
 
 ![Afficher le site NGINX sécurisé en cours d’exécution](./media/tutorial-secure-web-server/secured-nginx.png)
 
@@ -151,11 +151,11 @@ Dans ce didacticiel, vous avez sécurisé un serveur web NGINX à l’aide d’u
 
 > [!div class="checklist"]
 > * Créer un Azure Key Vault
-> * Générer ou télécharger un certificat dans Key Vault
-> * Créer une machine virtuelle et installer le serveur web NGINX
-> * Injecter le certificat dans la machine virtuelle et configurer NGINX à l’aide d’une liaison SSL
+> * Générer ou télécharger un certificat de toohello le coffre de clés
+> * Créer une machine virtuelle et installer le serveur web hello NGINX
+> * Injecter du certificat de hello dans hello machine virtuelle et configurer NGINX avec une liaison SSL
 
-Suivez ce lien pour consulter des exemples de scripts de machine virtuelle prédéfinis.
+Suivez cette toosee lien intégrées dans les exemples de scripts de machine virtuelle.
 
 > [!div class="nextstepaction"]
 > [Exemples de scripts de machine virtuelle Windows](./cli-samples.md)

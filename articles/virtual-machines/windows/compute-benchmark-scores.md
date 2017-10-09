@@ -1,5 +1,5 @@
 ---
-title: "Calcul des scores de test d’évaluation pour les machines virtuelles Windows | Microsoft Docs"
+title: "scores de banc d’essai aaaCompute pour les machines virtuelles Windows | Documents Microsoft"
 description: "Comparer les scores de test d’évaluation de calcul SPECint pour les machines virtuelles Azure exécutant Windows Server"
 services: virtual-machines-windows
 documentationcenter: 
@@ -15,14 +15,14 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 05/11/2017
 ms.author: cynthn
-ms.openlocfilehash: dc715a9bf4e5366e1719de7c649feb06b0c4bee7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3037d69790cb193161122b902e85fb838285cf81
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="compute-benchmark-scores-for-windows-vms"></a>Calcul des scores de test d’évaluation pour les machines virtuelles Windows
-Les scores de test d’évaluation SPECInt suivants montrent les performances de calcul pour la gamme de machines virtuelles hautes performances d’Azure exécutant Windows Server. Les scores de test d’évaluation de calcul sont également disponibles pour [les machines virtuelles Linux](../linux/compute-benchmark-scores.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
+Hello suivant afficher de scores de banc d’essai SPECInt calcul des performances pour l’alignement de machine virtuelle de hautes performances d’Azure exécutant Windows Server. Les scores de test d’évaluation de calcul sont également disponibles pour [les machines virtuelles Linux](../linux/compute-benchmark-scores.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).
 
 ## <a name="a-series---compute-intensive"></a>Série A - Calcul intensif
 | Taille | Processeurs virtuels | Nœuds NUMA | UC | Exécutions | Taux de base moy. | StdDev |
@@ -65,7 +65,7 @@ Les scores de test d’évaluation SPECInt suivants montrent les performances de
 | Standard_H16mr |16 |2 |Intel Xeon E5-2667 v3 @ 3,2 GHz |7 |569,6 |2.8 |
 
 ## <a name="about-specint"></a>À propos de SPECint
-Les chiffres Windows ont été calculés en exécutant [SPECint 2006](https://www.spec.org/cpu2006/results/rint2006.html) sur Windows Server. SPECint a été exécuté à l’aide de l’option de taux de base (SPECint_rate2006), avec une copie par cœur. SPECint se compose de 12 tests distincts, chacun exécuté trois fois, en prenant la valeur médiane de chaque test et en les pondérant pour former un score composite. Ces tests ont été exécutés sur plusieurs machines virtuelles pour fournir les scores moyens indiqués.
+Les chiffres Windows ont été calculés en exécutant [SPECint 2006](https://www.spec.org/cpu2006/results/rint2006.html) sur Windows Server. SPECint a été exécuté à l’aide d’option de taux de base hello (SPECint_rate2006), avec une copie par cœur. SPECint compose de 12 tests distincts, chacun s’exécuter trois fois, en prenant la valeur médiane de hello chaque test et leur pondération tooform un score de composite. Ces tests ont été exécutées sur plusieurs machines virtuelles tooprovide hello moyenne les scores indiqués.
 
 ## <a name="next-steps"></a>Étapes suivantes
 * Pour plus d’informations sur les capacités de stockage, les détails du disque et d’autres considérations relatives au choix d’une taille de machine virtuelle, consultez [Tailles des machines virtuelles](sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).

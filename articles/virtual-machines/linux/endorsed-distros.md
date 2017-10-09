@@ -1,5 +1,5 @@
 ---
-title: "Distributions approuvées de Linux | Microsoft Docs"
+title: aaaEndorsed des distributions de Linux | Documents Microsoft
 description: "Découvrez les distributions Linux approuvées sur Azure, notamment des instructions pour Ubuntu, CentOS, Oracle et SUSE."
 services: virtual-machines-linux
 documentationcenter: 
@@ -15,21 +15,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/02/2017
 ms.author: szark
-ms.openlocfilehash: 39cb2464eb593a29c4436afb5c14419b704ebff4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f006972d4611434c62b72a1d8df60caf753e15f2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="linux-on-distributions-endorsed-by-azure"></a>Linux sur les distributions approuvées par Azure
-Les partenaires fournissent des images Linux dans la Place de marché Microsoft Azure. Nous collaborons avec différentes communautés Linux pour étoffer la liste des distributions approuvée. Entre-temps, pour les distributions qui ne sont pas disponibles sur la Place de marché, vous pouvez toujours apporter votre propre distribution Linux en suivant les instructions fournies dans [Création et téléchargement d’un disque dur virtuel contenant le système d’exploitation Linux](classic/create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json).
+Partenaires pour fournir des images de Linux Bonjour Azure Marketplace. Nous travaillons avec diverses tooadd de communautés Linux davantage versions toohello visé liste. Bonjour pendant ce temps, pour les distributions qui ne sont pas disponibles à partir de hello Marketplace, vous pouvez toujours mettre votre propre Linux en suivant les instructions de hello sur [création et téléchargement d’un disque dur virtuel qui contient le système d’exploitation de Linux hello](classic/create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json).
 
 ## <a name="supported-distributions-and-versions"></a>Distributions et versions prises en charge
-Le tableau suivant répertorie les distributions et les version Linux prises en charge sur Microsoft Azure. Pour plus de détails, voir [Prise en charge d’images Linux dans Microsoft Azure](https://support.microsoft.com/en-us/kb/2941892).
+Hello tableau suivant répertorie les distributions de Linux hello et les versions prises en charge sur Azure. Consultez trop[de l’image de prise en charge de Linux dans Microsoft Azure](https://support.microsoft.com/en-us/kb/2941892) pour plus d’informations.
 
-Les pilotes LIS (Linux Integration Services) pour Hyper-V et Azure sont des modules noyau que Microsoft distribue directement au noyau Linux en amont.  Certains pilotes LIS sont intégrés dans le noyau de la distribution par défaut. D’anciennes distributions basées sur Red Hat Enterprise (RHEL)/CentOS sont disponibles sous la forme de téléchargements séparés à partir de la page [Linux Integration Services Version 4.1 pour Hyper-V](http://go.microsoft.com/fwlink/?LinkID=403033&clcid=0x409). Pour plus d’informations sur les pilotes LIS, voir [Conditions requises pour le noyau Linux](create-upload-generic.md#linux-kernel-requirements).
+pilotes de Services d’intégration Linux (LIS) Hello pour Hyper-V et Azure sont des modules de noyau que Microsoft participe directement toohello en amont noyau de Linux.  Certains pilotes LIS sont intégrées à noyau de la distribution hello par défaut. D’anciennes distributions basées sur Red Hat Enterprise (RHEL)/CentOS sont disponibles sous la forme de téléchargements séparés à partir de la page [Linux Integration Services Version 4.1 pour Hyper-V](http://go.microsoft.com/fwlink/?LinkID=403033&clcid=0x409). Consultez [configuration requise du noyau Linux](create-upload-generic.md#linux-kernel-requirements) pour plus d’informations sur les pilotes LIS hello.
 
-L’agent Linux Azure est pré-installé sur les images disponibles sur la Place de marché Microsoft Azure, et est généralement disponible dans le référentiel du package de la distribution. Le code source est disponible sur [GitHub](https://github.com/azure/walinuxagent).
+Hello Linux Agent Azure est déjà préinstallé sur les images Azure Marketplace hello et est généralement disponible à partir d’un référentiel de packages de distribution hello. Le code source est disponible sur [GitHub](https://github.com/azure/walinuxagent).
 
 | Distribution | Version | Pilotes | Agent |
 | --- | --- | --- | --- |
@@ -47,33 +47,33 @@ L’agent Linux Azure est pré-installé sur les images disponibles sur la Place
 ### <a name="coreos"></a>CoreOS
 [https://coreos.com/docs/running-coreos/cloud-providers/azure/](https://coreos.com/docs/running-coreos/cloud-providers/azure/)
 
-À partir du site web CoreOS :
+À partir du site Web de CoreOS hello :
 
-*CoreOS est conçu pour la sécurité, la cohérence et la fiabilité. Au lieu d’installer des packages via yum ou apt, CoreOS utilise des conteneurs Linux pour gérer vos services à un niveau supérieur d’abstraction. Un code de service unique et l’ensemble des dépendances sont déployés au sein d’un conteneur pouvant être exécuté sur une ou plusieurs machines CoreOS.*
+*CoreOS est conçu pour la sécurité, la cohérence et la fiabilité. Au lieu de l’installation des packages via yum ou apt, CoreOS utilise Linux conteneurs toomanage vos services à un niveau supérieur d’abstraction. Un code de service unique et l’ensemble des dépendances sont déployés au sein d’un conteneur pouvant être exécuté sur une ou plusieurs machines CoreOS.*
 
 ### <a name="credativ"></a>Credativ
 [http://www.credativ.co.uk/credativ-blog/debian-images-microsoft-azure](http://www.credativ.co.uk/credativ-blog/debian-images-microsoft-azure)
 
-Credativ est une société de conseil et de services indépendante, spécialisée dans le développement et l’implémentation de solutions professionnelles à l’aide de logiciels libres. En tant de leader spécialiste de l’Open Source, Credativ a acquis une reconnaissance internationale et de nombreux services informatiques font appel à ses services. En collaboration avec Microsoft, Credativ actuellement prépare images Debian correspondantes pour Debian 8 (Jessica) et Debian avant le 7 (Wheezy). Les deux images sont spécialement conçus pour s’exécuter sur Azure et peuvent être facilement gérés via la plateforme. Credativ prendra également en charge la maintenance et la mise à jour sur le long terme des images Debian pour Azure grâce à ses centres de support Open Source.
+Credativ est un consultant indépendant et des services qui est spécialisé dans le développement de hello et l’implémentation de solutions professionnelles à l’aide de logiciels gratuits. En tant de leader spécialiste de l’Open Source, Credativ a acquis une reconnaissance internationale et de nombreux services informatiques font appel à ses services. En collaboration avec Microsoft, Credativ actuellement prépare images Debian correspondantes pour Debian 8 (Jessica) et Debian avant le 7 (Wheezy). Les deux images sont spécialement conçus pour toorun sur Azure et peuvent être facilement gérés via la plateforme de hello. Credativ prendront également en charge la mise à jour des images de Debian hello pour Azure via ses centres de Support Open Source et la maintenance à long terme de hello.
 
 ### <a name="oracle"></a>Oracle
 [http://www.oracle.com/technetwork/topics/cloud/faq-1963009.html](http://www.oracle.com/technetwork/topics/cloud/faq-1963009.html)
 
-La stratégie d’Oracle est d’offrir un vaste portefeuille de solutions pour les clouds privés et publics. La stratégie offre aux clients de choix et la flexibilité leur permettant de décider comment déployer les logiciels Oracle dans des clouds Oracle et autres. À la faveur du partenariat conclu entre Oracle et Microsoft, les clients peuvent déployer les logiciels Oracle dans les clouds publics et privés Microsoft tout en étant assurés de bénéficier de la certification et du support d'Oracle.  L'engagement et l'investissement d'Oracle vis-à-vis des solutions de cloud public et privé Oracle sont intacts.
+Stratégie d’Oracle est toooffer une large gamme de solutions pour les clouds privés et publics. stratégie de Hello offre aux clients de choix et la flexibilité dans comment ils déploient des logiciels Oracle dans des clouds d’Oracle et autres clouds. Partenariat d’Oracle avec Microsoft permet au logiciel d’Oracle de toodeploy clients dans des clouds privés et publics de Microsoft en toute confiance hello de certification et de prise en charge à partir d’Oracle.  L'engagement et l'investissement d'Oracle vis-à-vis des solutions de cloud public et privé Oracle sont intacts.
 
 ### <a name="red-hat"></a>Red Hat
 [http://www.redhat.com/en/partners/Strategic-Alliance/Microsoft](http://www.redhat.com/en/partners/strategic-alliance/microsoft)
 
-Le leader mondial de solutions open source, Red Hat permet à plus de 90 % des sociétés du classement Fortune 500 de résoudre les défis commerciaux, d’aligner leur stratégies informatique et commerciale, et d’anticiper l’évolution des technologies. Red Hat y parvient en proposant des solutions sécurisées grâce à un modèle commercial ouvert et à un modèle d’abonnement abordable et prévisible.
+Hello premier fournisseur du world de solutions en open source, Red Hat permet plus de 90 % du classement de Fortune 500 relever les défis de l’entreprise, aligner leur informatique et stratégies d’entreprise et se préparer à l’avenir hello de technologie. Red Hat y parvient en proposant des solutions sécurisées grâce à un modèle commercial ouvert et à un modèle d’abonnement abordable et prévisible.
 
 ### <a name="suse"></a>SUSE
 [http://www.suse.com/suse-linux-enterprise-server-on-azure](http://www.suse.com/suse-linux-enterprise-server-on-azure)
 
-SUSE Linux Enterprise Server sur Azure est une plateforme éprouvée qui offre une fiabilité et un niveau de sécurité supérieurs pour le cloud computing. Polyvalente, la plateforme Linux de SUSE s'intègre en toute transparence aux services cloud Azure pour fournir un environnement cloud facile à gérer. Avec plus de 9 200 applications certifiées issues de plus de 1 800 éditeurs de logiciels indépendants pour SUSE Linux Enterprise Server, SUSE est l’assurance que les charges de travail prises en charge dans les centres de données peuvent être déployées en toute confiance sur Azure.
+SUSE Linux Enterprise Server sur Azure est une plateforme éprouvée qui offre une fiabilité et un niveau de sécurité supérieurs pour le cloud computing. Plate-forme de Linux de SUSE polyvalente s’intègre parfaitement avec Azure cloud services toodeliver un environnement cloud facilement gérables. Avec les applications certifiées 9,200 plus de plus de 1 800 éditeurs de logiciels indépendants pour SUSE Linux Enterprise Server, SUSE garantit que les charges de travail en cours d’exécution pris en charge dans le centre de données hello peuvent être déployés en toute confiance sur Azure.
 
 ### <a name="canonical"></a>Canonical
 [http://www.ubuntu.com/cloud/azure](http://www.ubuntu.com/cloud/azure)
 
-L’ingénierie de Canonical et le mode de gouvernance de la communauté Open Source sont les éléments moteurs de la réussite d’Ubuntu dans les environnements client, serveur et cloud, y compris les services cloud personnels à destination du grand public. La vision de Canonical d’une plateforme unifiée gratuite disponible dans Ubuntu, offre une gamme d’interfaces cohérentes pour téléphones, tablettes, TV et ordinateurs de bureau. Cette vision fait d’Ubuntu le premier choix pour divers établissements, des fournisseurs de cloud public aux fabricant de produits électroniques de grande consommation, et l’un des choix de prédilection des technologues individuels.
+L’ingénierie de Canonical et le mode de gouvernance de la communauté Open Source sont les éléments moteurs de la réussite d’Ubuntu dans les environnements client, serveur et cloud, y compris les services cloud personnels à destination du grand public. Vision de canoniques d’une plateforme unifiée, disponible sous Ubuntu, à partir du téléphone toocloud, fournit une gamme d’interfaces cohérents de hello phone, une tablette, TV et bureau. Cette vision rend Ubuntu hello premier choix pour diverses institutions décideurs de toohello de fournisseurs de cloud public de l’électronique du consommateur et un favori entre spécialistes individuels.
 
-Avec des développeurs et des centres d’ingénierie présents dans le monde entier, Canonical est particulièrement bien placé pour collaborer avec les fabricants de matériel, les fournisseurs de contenu et les développeurs de logiciels pour mettre sur le marché des solutions Ubuntu destinées tant aux PC, qu’aux serveurs ou aux appareils portables.
+Les développeurs et les centres d’ingénierie Bonjour, canoniques est positionnée de manière unique toopartner avec le matériel, les fournisseurs de contenu et les logiciels aux développeurs toobring Ubuntu solutions toomarket pour les PC, serveurs et périphériques de poche.
