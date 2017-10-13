@@ -15,10 +15,10 @@ ms.topic: get-started-article
 ms.date: 7/03/2017
 ms.author: erikje
 ms.openlocfilehash: f70815b5e89753a4b0083ffbe10d9920062d1ff0
-ms.sourcegitcommit: 6699c77dcbd5f8a1a2f21fba3d0a0005ac9ed6b7
-ms.translationtype: HT
+ms.sourcegitcommit: 90e2cced6a773b1b52f999ba73cd8877305d270b
+ms.translationtype: MT
 ms.contentlocale: fr-FR
-ms.lasthandoff: 10/11/2017
+ms.lasthandoff: 10/13/2017
 ---
 # <a name="subscribe-to-an-offer"></a>S’abonner à une offre
 
